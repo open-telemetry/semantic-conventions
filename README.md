@@ -14,7 +14,6 @@ The documentation currently resides in the previous folders, e.g.
 - [Metrics](specification/metrics/semantic_conventions/README.md)
 - [Logs](specification/logs/semantic_conventions/README.md)
 
-
 ## TODOs
 
 - [ ] Set up github actions

@@ -114,5 +114,3 @@ To quickly fix typos, use
 ```bash
 make misspell-correction
 ```
-
-
