@@ -1,10 +1,5 @@
 # General attributes
 
-**NOTICE** Semantic Conventions are moving to a
-[new location](http://github.com/open-telemetry/semantic-conventions).
-
-No changes to this document are allowed.
-
 **Status**: [Experimental](../../document-status.md)
 
 The attributes described in this section are not specific to a particular operation but rather generic.
