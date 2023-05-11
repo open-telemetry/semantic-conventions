@@ -57,9 +57,9 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 ### AWS X-Ray Environment Span Link
 
 If the `_X_AMZN_TRACE_ID` environment variable is set, instrumentation SHOULD try to parse an
-OpenTelemetry `Context` out of it using the [AWS X-Ray Propagator](../../../context/api-propagators.md). If the
-resulting `Context` is [valid](../../api.md#isvalid) then a [Span Link][] SHOULD be added to the new Span's
-[start options](../../api.md#specifying-links) with an associated attribute of `source=x-ray-env` to
+OpenTelemetry `Context` out of it using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md). If the
+resulting `Context` is [valid](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#isvalid) then a [Span Link][] SHOULD be added to the new Span's
+[start options](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#specifying-links) with an associated attribute of `source=x-ray-env` to
 indicate the source of the linked span.
 Instrumentation MUST check if the context is valid before using it because the `_X_AMZN_TRACE_ID` environment variable can
 contain an incomplete trace context which indicates X-Ray isn’t enabled. The environment variable will be set and the
@@ -107,7 +107,7 @@ be `<event source> process`. If there are multiple sources in the batch, the nam
 
 For every message in the event, the [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](../../../context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md) and
 added as a link to the span. This means the span may have as many links as messages in the batch.
 See [compatibility](../../../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
@@ -121,7 +121,7 @@ See [compatibility](../../../../supplementary-guidelines/compatibility/aws.md#co
 For the SQS message span, the name MUST be `<event source> process`.  The parent MUST be the `CONSUMER` span
 corresponding to the SQS event. The [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](../../../context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md) and
 added as a link to the span.
 See [compatibility](../../../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 

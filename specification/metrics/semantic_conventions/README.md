@@ -35,7 +35,7 @@ The following semantic conventions surrounding metrics are defined:
 
 Apart from semantic conventions for metrics and
 [traces](../../trace/semantic_conventions/README.md), OpenTelemetry also
-defines the concept of overarching [Resources](../../resource/sdk.md) with
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md) with
 their own [Resource Semantic
 Conventions](../../resource/semantic_conventions/README.md).
 
@@ -97,7 +97,7 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](../../compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/compatibility/prometheus_and_openmetrics.md).
 
 ### Pluralization
 

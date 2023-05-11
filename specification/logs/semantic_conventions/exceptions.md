@@ -3,8 +3,8 @@
 **Status**: [Experimental](../../document-status.md)
 
 This document defines semantic conventions for recording exceptions on
-[logs](../bridge-api.md#emit-a-logrecord) and [events](../event-api.md#emit-event)
-emitted through the [Logger API](../bridge-api.md#logger).
+[logs](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/bridge-api.md#emit-a-logrecord) and [events](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md#emit-event)
+emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/bridge-api.md#logger).
 
 <!-- toc -->
 
@@ -17,7 +17,7 @@ emitted through the [Logger API](../bridge-api.md#logger).
 ## Recording an Exception
 
 Exceptions SHOULD be recorded as attributes on the
-[LogRecord](../data-model.md#log-and-event-record-definition) passed to the [Logger](../bridge-api.md#logger) emit
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/bridge-api.md#logger) emit
 operations. Exceptions MAY be recorded on "logs" or "events" depending on the
 context.
 
@@ -29,7 +29,7 @@ the language runtime.
 ## Attributes
 
 The table below indicates which attributes should be added to the
-[LogRecord](../data-model.md#log-and-event-record-definition) and their types.
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#log-and-event-record-definition) and their types.
 
 <!-- semconv log-exception -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
