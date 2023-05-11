@@ -114,3 +114,11 @@ To quickly fix typos, use
 ```bash
 make misspell-correction
 ```
+
+## Updating the referenced specification version.
+
+1. Open the `./internal/tools/update_specification_version.sh` script.
+2. Modify the `PREVIOUS_SPECIFICATION_VERSION` to be the same value as `LATEST_SPECIFICATION_VERSION`
+3. Modify `LATEST_SPECIFICATION_VERSION` to the latest specification tag, e.g. `1.21`
+4. Run the script from the root directory, e.g. `semantic-conventions$ ./internal/tools/update_specification_version.sh`.
+5. Add all modified files to the change submit and submit a PR.
