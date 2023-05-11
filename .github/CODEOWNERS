@@ -1,0 +1,18 @@
+#####################################################
+#
+# List of approvers for OpenTelemetry semantic conventions repository
+#
+#####################################################
+#
+# Learn about membership in OpenTelemetry community:
+#  https://github.com/open-telemetry/community/blob/main/community-membership.md
+# 
+#
+# Learn about CODEOWNERS file format: 
+#  https://help.github.com/en/articles/about-code-owners
+#
+
+# Global owners, will be the owners for everything in the repo. Membership is tracked via https://github.com/open-telemetry/community/blob/main/community-members.md 
+*   @open-telemetry/technical-committee @open-telemetry/specs-semconv-approvers
+
+# TODO - Add semconv area experts
