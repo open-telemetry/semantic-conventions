@@ -115,7 +115,7 @@ To quickly fix typos, use
 make misspell-correction
 ```
 
-## Updating the referenced specification version.
+## Updating the referenced specification version
 
 1. Open the `./internal/tools/update_specification_version.sh` script.
 2. Modify the `PREVIOUS_SPECIFICATION_VERSION` to be the same value as `LATEST_SPECIFICATION_VERSION`
