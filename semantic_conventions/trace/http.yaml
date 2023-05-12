@@ -8,6 +8,12 @@ groups:
         These conventions can be used for http and https schemes
         and various HTTP versions like 1.1, 2 and SPDY.
     attributes:
+      - id: request.method
+        type: string
+        requirement_level:
+          recommended: If different than `http.request.canonical_method`.
+        brief: Original HTTP method sent by the client in the request line.
+        examples: ["GET", "ACL", "Patch"]
       - id: request.body.size
         type: int
         brief: >
@@ -22,7 +28,8 @@ groups:
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
-      - ref: http.request.method
+      - ref: http.request.canonical_method
+        requirement_level: required
         sampling_relevant: true
       - ref: network.transport
         requirement_level:
