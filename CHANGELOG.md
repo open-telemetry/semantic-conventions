@@ -64,3 +64,5 @@ release.
   ([#3458](https://github.com/open-telemetry/opentelemetry-specification/pull/3458))
 - Specify the value range for JVM CPU metrics.
   ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
+- Add `gcp.gce.instance.name` and `gcp.gce.instance.hostname` resource
+  attributes for GCP Compute Engine VMs. ([#15](https://github.com/open-telemetry/semantic-conventions/pull/15))
