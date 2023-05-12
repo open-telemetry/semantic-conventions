@@ -49,7 +49,7 @@ groups:
           If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
           populate the exact method passed by client on `http.request.original_method` attribute.
 
-          HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.      
+          HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
       - id: request.original_method
         type: string
         requirement_level:
