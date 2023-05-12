@@ -5,10 +5,57 @@ groups:
     prefix: http
     attributes:
       - id: request.method
-        type: string
+        type:
+          allow_custom_values: true
+          members:
+            - id: connect
+              value: "CONNECT"
+              brief: 'CONNECT method.'
+            - id: delete
+              value: "DELETE"
+              brief: 'DELETE method.'
+            - id: get
+              value: "GET"
+              brief: 'GET method.'
+            - id: head
+              value: "HEAD"
+              brief: 'HEAD method.'
+            - id: options
+              value: "OPTIONS"
+              brief: 'OPTIONS method.'
+            - id: patch
+              value: "PATCH"
+              brief: 'PATCH method.'
+            - id: post
+              value: "POST"
+              brief: 'POST method.'
+            - id: put
+              value: "PUT"
+              brief: 'PUT method.'
+            - id: trace
+              value: "TRACE"
+              brief: 'TRACE method.'
+            - id: other
+              value: "other"
+              brief: 'Any custom HTTP method that the instrumentation has no prior knowledge of.'
         requirement_level: required
         brief: 'HTTP request method.'
         examples: ["GET", "POST", "HEAD"]
+        note: |
+          HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+          Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
+          [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
+          If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
+          populate the exact method passed by client on `http.request.original_method` attribute.
+
+          HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.      
+      - id: request.original_method
+        type: string
+        requirement_level:
+          recommended: If and only if it's different than `http.request.method`.
+        brief: Original HTTP method sent by the client in the request line.
+        examples: ["GeT", "ACL", "foo"]
       - id: response.status_code
         type: int
         requirement_level:
@@ -25,7 +72,7 @@ groups:
   - id: attributes.http.client
     prefix: http
     type: attribute_group
-    brief: 'HTTP client attributes'
+    brief: 'HTTP Client attributes'
     attributes:
       - ref: server.address
         requirement_level: required
@@ -51,7 +98,7 @@ groups:
   - id: attributes.http.server
     prefix: http
     type: attribute_group
-    brief: 'HTTP server attributes'
+    brief: 'HTTP Server attributes'
     attributes:
       - id: route
         type: string
