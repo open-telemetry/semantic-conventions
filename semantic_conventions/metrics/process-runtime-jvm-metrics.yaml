@@ -127,7 +127,7 @@ groups:
     metric_name: process.runtime.jvm.cpu.utilization
     brief: "Recent CPU utilization for the process."
     note: >
-      The value range is [0,1].
+      The value range is [0.0,1.0].
       This utilization is not defined as being for the specific interval since last measurement
       (unlike `system.cpu.utilization`).
       [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()).
@@ -139,7 +139,7 @@ groups:
     metric_name: process.runtime.jvm.system.cpu.utilization
     brief: "Recent CPU utilization for the whole system."
     note: >
-      The value range is [0,1].
+      The value range is [0.0,1.0].
       This utilization is not defined as being for the specific interval since last measurement
       (unlike `system.cpu.utilization`).
       [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()).
@@ -151,7 +151,7 @@ groups:
     metric_name: process.runtime.jvm.system.cpu.load_1m
     brief: "Average CPU load of the whole system for the last minute."
     note: >
-      The value range is [0,n], where n is the number of CPU cores.
+      The value range is [0,n], where n is the number of CPU cores - or a negative number of the value is not available.
       This utilization is not defined as being for the specific interval since last measurement
       (unlike `system.cpu.utilization`).
       [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/java.management/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()).
