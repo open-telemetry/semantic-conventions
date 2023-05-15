@@ -23,7 +23,7 @@ To record an evaluation outside a transaction context, consider
 Deployments of cloud-native applications are automated and done at a fast phase.
 In most cases, deployments are complex, require multiple steps, could spawn across multiple environments,
 and are delivered mostly via either Operators or GitOps practices and tools.
-Hence, the delivery process is modeled as an event stream of OpenTelemetry [`Event`s](../api.md#add-events).
+Hence, the delivery process is modeled as an event stream of OpenTelemetry [`Event`s](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#add-events).
 This document defines semantic conventions to collect telemetry signals about events that occur during the
 deployment of an application.
 
