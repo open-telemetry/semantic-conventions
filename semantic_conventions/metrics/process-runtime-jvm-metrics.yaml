@@ -2,6 +2,7 @@ groups:
   - id: attributes.process.runtime.jvm.memory
     type: attribute_group
     brief: "Describes JVM memory metric attributes."
+    prefix: jvm.memory
     attributes:
       - id: type
         type:
@@ -16,7 +17,7 @@ groups:
         requirement_level: recommended
         brief: The type of memory.
         examples: ["heap", "non_heap"]
-      - id: pool
+      - id: pool.name
         type: string
         requirement_level: recommended
         brief: Name of the memory pool.
@@ -63,8 +64,9 @@ groups:
     brief: "Duration of JVM garbage collection actions."
     instrument: histogram
     unit: "s"
+    prefix: jvm.gc
     attributes:
-      - id: gc
+      - id: name
         type: string
         requirement_level: recommended
         brief: Name of the garbage collector.
@@ -88,9 +90,7 @@ groups:
     instrument: updowncounter
     unit: "{thread}"
     attributes:
-      - id: daemon
-        brief: "Whether the thread is daemon or not."
-        type: boolean
+      - ref: thread.daemon
         requirement_level: recommended
 
   - id: metric.process.runtime.jvm.classes.loaded

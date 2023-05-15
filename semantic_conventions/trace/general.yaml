@@ -215,6 +215,9 @@ groups:
         brief: >
           Current thread name.
         examples: main
+      - id: daemon
+        brief: "Whether the thread is daemon or not."
+        type: boolean
   - id: code
     prefix: code
     type: span
