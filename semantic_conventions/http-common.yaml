@@ -50,12 +50,6 @@ groups:
           populate the exact method passed by client on `http.request.original_method` attribute.
 
           HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
-      - id: request.original_method
-        type: string
-        requirement_level:
-          recommended: If and only if it's different than `http.request.method`.
-        brief: Original HTTP method sent by the client in the request line.
-        examples: ["GeT", "ACL", "foo"]
       - id: response.status_code
         type: int
         requirement_level:
