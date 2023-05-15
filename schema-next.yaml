@@ -8,6 +8,21 @@ versions:
         - rename_metrics:
             http.client.duration: http.client.request.duration
             http.server.duration: http.server.request.duration
+        # https://github.com/open-telemetry/opentelemetry-specification/pull/3464
+        - rename_attributes:
+            attribute_map:
+              type: jvm.memory.type
+              pool: jvm.memory.pool.name
+        - rename_attributes:
+            attribute_map:
+              name: jvm.gc.name
+              action: jvm.gc.action
+        - rename_attributes:
+            attribute_map:
+              daemon: thread.daemon
+        - rename_attributes:
+            attribute_map:
+              pool: jvm.buffer.pool.name
   1.21.0:
     spans:
       changes:
