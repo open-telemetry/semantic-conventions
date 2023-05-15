@@ -382,6 +382,49 @@ groups:
           The collection being accessed within the database stated in `db.name`.
         examples: [ 'customers', 'products' ]
 
+  - id: db.elasticsearch
+    prefix: db.elasticsearch
+    type: span
+    extends: db
+    brief: >
+      Call-level attributes for Elasticsearch
+    attributes:
+      - id: doc_id
+        type: string
+        requirement_level:
+          conditionally_required: when the request targets a specific document by id
+        tag: call-level-tech-specific-elasticsearch
+        brief: >
+          The document that the request targets.
+        examples: [ '123', '456' ]
+      - id: target
+        type: string
+        requirement_level:
+          conditionally_required: when a specific index or data stream is targeted by the request
+        tag: call-level-tech-specific
+        brief: >
+          The name of the data stream or index that is targeted.
+        examples: [ 'users' ]
+      - ref: url.query
+        requirement_level:
+          conditionally_required: when query params are provided as part of the request
+        brief: >
+          The query params of the request, as a json string.
+        examples: [ '"{\"q\":\"test\"}", "{\"refresh\":true}"' ]
+      - ref: url.path
+        requirement_level: required
+        brief: >
+          The path of the request, including the target and exact document id.
+        examples: [ '/test-index/_search', '/test-index/_doc/123' ]
+      - ref: db.statement
+        requirement_level:
+          conditionally_required: when there is a request body
+        brief: The request body, as a json string.
+        note: The value may be sanitized to exclude sensitive information.
+        examples: [ '"{\"name\":\"TestUser\",\"password\":\"top_secret\"}"' ]
+      - ref: http.method
+        requirement_level: required
+
   - id: db.sql
     prefix: 'db.sql'
     type: span

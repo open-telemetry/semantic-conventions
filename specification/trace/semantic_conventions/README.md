@@ -29,6 +29,7 @@ The following library-specific semantic conventions are defined:
 
 * [AWS Lambda](instrumentation/aws-lambda.md): For AWS Lambda spans.
 * [AWS SDK](instrumentation/aws-sdk.md): For AWS SDK spans.
+* [Elasticsearch](instrumentation/elasticsearch.md): For Elasticsearch spans.
 * [GraphQL](instrumentation/graphql.md): For GraphQL spans.
 
 Apart from semantic conventions for traces and [metrics](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/semantic_conventions/README.md),
