@@ -422,7 +422,7 @@ groups:
         brief: The request body, as a json string.
         note: The value may be sanitized to exclude sensitive information.
         examples: [ '"{\"name\":\"TestUser\",\"password\":\"top_secret\"}"' ]
-      - ref: http.method
+      - ref: http.request.method
         requirement_level: required
 
   - id: db.sql
