@@ -12,9 +12,9 @@ To record an evaluation outside a transaction context, consider
 
 - [Overview](#overview)
 - [Definitions](#definitions)
-    * [Application](#application)
-    * [Workload](#workload)
-    * [Task](#task)
+  * [Application](#application)
+  * [Workload](#workload)
+  * [Task](#task)
 
 <!-- tocstop -->
 

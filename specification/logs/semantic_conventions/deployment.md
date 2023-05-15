@@ -10,11 +10,11 @@ a [log record](https://github.com/open-telemetry/opentelemetry-specification/blo
 <!-- toc -->
 
 - [Recording an Application Delivery](#recording-an-application-delivery)
-    * [Attributes](#attributes)
+  * [Attributes](#attributes)
 - [Recording a Workload Delivery](#recording-a-workload-delivery)
-    * [Attributes](#attributes-1)
+  * [Attributes](#attributes-1)
 - [Recording a Task execution](#recording-a-task-execution)
-    * [Attributes](#attributes-2)
+  * [Attributes](#attributes-2)
 
 <!-- tocstop -->
 
