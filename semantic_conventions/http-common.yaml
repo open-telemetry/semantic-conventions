@@ -25,7 +25,7 @@ groups:
   - id: attributes.http.client
     prefix: http
     type: attribute_group
-    brief: 'HTTP Client spans attributes'
+    brief: 'HTTP client attributes'
     attributes:
       - ref: server.address
         requirement_level: required
@@ -51,7 +51,7 @@ groups:
   - id: attributes.http.server
     prefix: http
     type: attribute_group
-    brief: 'HTTP Server spans attributes'
+    brief: 'HTTP server attributes'
     attributes:
       - id: route
         type: string
