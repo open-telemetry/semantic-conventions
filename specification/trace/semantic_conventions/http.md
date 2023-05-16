@@ -54,13 +54,13 @@ and various HTTP versions like 1.1, 2 and SPDY.
 ## Name
 
 HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span).
-HTTP server span names SHOULD be `{http.request.method} {http.route}` if there is a
+HTTP server span names SHOULD be `{http.request.canonical_method} {http.route}` if there is a
 (low-cardinality) `http.route` available.
-HTTP server span names SHOULD be `{http.request.method}` if there is no (low-cardinality)
+HTTP server span names SHOULD be `{http.request.canonical_method}` if there is no (low-cardinality)
 `http.route` available.
 HTTP client spans have no `http.route` attribute since client-side instrumentation
 is not generally aware of the "route", and therefore HTTP client spans SHOULD use
-`{http.request.method}`.
+`{http.request.canonical_method}`.
 Instrumentation MUST NOT default to using URI
 path as span name, but MAY provide hooks to allow custom logic to override the
 default span name.
@@ -90,7 +90,7 @@ sections below.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| `http.request.method` | string | Original HTTP method sent by the client in the request line. | `GET`; `ACL`; `Patch` | Recommended: [1] |
+| `http.request.method` | string | Original HTTP method sent by the client in the request line. | `GET`; `ACL`; `Patch` | Conditionally Required: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.request.canonical_method` | string | Canonical HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
@@ -100,7 +100,7 @@ sections below.
 | [`network.type`](span-general.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
-**[1]:** If different than `http.request.canonical_method`.
+**[1]:** If different than `http.request.canonical_method`, recommended otherwise.
 
 **[2]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
@@ -363,7 +363,7 @@ Span name: `GET`
 
 |   Attribute name     |                                       Value             |
 | :------------------- | :-------------------------------------------------------|
-| `http.request.method`| `"GET"`                                                 |
+| `http.request.canonical_method`| `"GET"`                                                 |
 | `network.protocol.version` | `"1.1"`                                          |
 | `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1"`     |
 | `server.address`     | `example.com`                                           |
@@ -377,7 +377,7 @@ Span name: `GET /webshop/articles/:article_id`.
 
 |   Attribute name     |                      Value                      |
 | :------------------- | :---------------------------------------------- |
-| `http.request.method`| `"GET"`                                         |
+| `http.request.canonical_method`| `"GET"`                                         |
 | `network.protocol.version` | `"1.1"`                                   |
 | `url.path`           | `"/webshop/articles/4"`                         |
 | `url.query`          | `"?s=1"`                                        |
