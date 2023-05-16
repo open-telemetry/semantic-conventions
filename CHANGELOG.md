@@ -59,3 +59,5 @@ release.
   ([#3355](https://github.com/open-telemetry/opentelemetry-specification/pull/3355))
 - Add `gcp.cloud_run.job.execution` and `gcp.cloud_run.job.task_id` resource
   attributes for GCP Cloud Run Jobs ([#3378](https://github.com/open-telemetry/opentelemetry-specification/pull/3378))
+- Specify the value range for JVM CPU metrics.
+  ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
