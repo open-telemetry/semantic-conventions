@@ -93,7 +93,7 @@ sections below.
 | `http.request.method` | string | Original HTTP method sent by the client in the request line. | `GET`; `ACL`; `Patch` | Recommended: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `http.request.canonical_method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| `http.request.canonical_method` | string | Canonical HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | [`network.protocol.name`](span-general.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
 | [`network.protocol.version`](span-general.md) | string | Version of the application layer protocol used. See note below. [3] | `1.0`; `1.1`; `2.0` | Recommended |
 | [`network.transport`](span-general.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [4] |
@@ -106,7 +106,7 @@ sections below.
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
 [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
-If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
+If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.canonical_method` attribute to `other` and SHOULD
 populate the exact method passed by client on `http.request.original_method` attribute.
 
 HTTP method names are case-sensitive and `http.request.canonical_method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.

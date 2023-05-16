@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: method
         type: string
-        brief: 'Deprecated, use `http.request.method` instead.'
+        brief: 'Deprecated, use `http.request.canonical_method` and `http.request.method` instead.'
         stability: deprecated
         examples: ["GET", "POST", "HEAD"]
       - id: status_code
