@@ -66,7 +66,7 @@ contain an incomplete trace context which indicates X-Ray isn’t enabled. The e
 `Context` will be valid and sampled only if AWS X-Ray has been enabled for the Lambda function. A user can
 disable AWS X-Ray for the function if the X-Ray Span Link is not desired.
 
-**Note**: If you are instrumenting a Java AWS lambda then instrumentation will try to parse an OpenTelemetry `Context` out of the system property `com.amazonaws.xray.traceHeader` using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md) first before checking and attempting to parse the environment variable above.
+**Note**: When instrumenting a Java AWS Lambda, instrumentation SHOULD first try to parse an OpenTelemetry `Context` out of the system property `com.amazonaws.xray.traceHeader` using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md) before checking and attempting to parse the environment variable above.
 As above, if the resulting `Context` is valid then a Span Link SHOULD be added to the new Spans start options.   
 
 [Span Link]: https://opentelemetry.io/docs/concepts/signals/traces/#span-links
