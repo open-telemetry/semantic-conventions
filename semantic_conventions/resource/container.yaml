@@ -32,3 +32,25 @@ groups:
         brief: >
           Container image tag.
         examples: ['0.1']
+      - id: image.id
+        type: string
+        brief: >
+          The ID of the container image. Usually a hash algorithm followed by a UUID. The UUID might be abbreviated.
+        examples: ['sha256:f90d814248a0']
+      - id: command
+        type: string
+        brief: >
+          The command used to run the container (i.e. the command name).
+        examples: [ 'otelcontribcol' ]
+      - id: command_line
+        type: string
+        brief: >
+          The full command run by the container as a single string representing the full command.
+          It is recommended to remove embedded credentials or sensitive data to prevent potential leakage.
+        examples: [ 'otelcontribcol --config config.yaml' ]
+      - id: command_args
+        type: string[]
+        brief: >
+          All the command arguments (including the command/executable itself) run by the container.
+          It is recommended to remove embedded credentials or sensitive data to prevent potential leakage.
+        examples: [ 'otelcontribcol, --config, config.yaml' ]
