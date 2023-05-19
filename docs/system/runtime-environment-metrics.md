@@ -38,6 +38,12 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `jvm.buffer.usage`](#metric-jvmbufferusage)
   * [Metric: `jvm.buffer.limit`](#metric-jvmbufferlimit)
   * [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
+  * [Metric: `process.runtime.jvm.cpu.monitor.wait`](#metric-processruntimejvmcpumonitorwait)
+  * [Metric: `process.runtime.jvm.cpu.monitor.blocked`](#metric-processruntimejvmcpumonitorblocked)
+  * [Metric: `process.runtime.jvm.cpu.context_switch`](#metric-processruntimejvmcpucontext_swtich)
+  * [Metric: `process.runtime.jvm.memory.allocation`](#metric-processruntimejvmmemoryallocation)
+  * [Metric: `process.runtime.jvm.network.io`](#metric-processruntimejvmnetworkio)
+  * [Metric: `process.runtime.jvm.network.time`](#metric-processruntimejvmnetworktime)
 
 <!-- tocstop -->
 
@@ -426,6 +432,70 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 | `pool` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+<!-- endsemconv -->
+
+
+### Metric: `process.runtime.jvm.cpu.monitor.time`
+
+This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+
+<!-- semconv metric.process.runtime.jvm.cpu.monitor.time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.cpu.monitor.time` | Histogram | `s` | Time monitor was used bya  thread. Only available in JDK 17+. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.cpu.monitor.time(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `class` | string | Class of the monitor. | `java.lang.Object` | Opt-In |
+| `state` | string | Action taken at monitor. | `blocked`; `wait` | Recommended |
+| [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+<!-- endsemconv -->
+
+### Metric: `process.runtime.jvm.cpu.context_swtich`
+
+This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+
+<!-- semconv metric.process.runtime.jvm.cpu.context_switch(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.context_switches` | UpDownCounter | `Hz` | Number of context switches per second. Only available in JDK 17+. |
+<!-- endsemconv -->
+
+
+### Metric: `process.runtime.jvm.network.io`
+
+This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+
+<!-- semconv metric.process.runtime.jvm.network.io(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.network.io` | Histogram | `By` | Bytes read/written by thread. Only available in JDK 17+. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.network.io(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `network.direction` | string | Read or write. | `read`; `write` | Recommended |
+| [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+<!-- endsemconv -->
+
+### Metric: `process.runtime.jvm.network.time`
+
+This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+
+<!-- semconv metric.process.runtime.jvm.network.time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.network.time` | Histogram | `s` | Duration of network IO operation by thread. Only available in JDK 17+. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.network.time(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `network.direction` | string | Read or write. | `read`; `write` | Recommended |
+| [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

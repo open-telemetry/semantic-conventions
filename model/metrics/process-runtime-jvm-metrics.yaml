@@ -25,6 +25,18 @@ groups:
           Pool names are generally obtained via
           [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
+  - id: attributes.process.runtime.jvm.network
+    type: attribute_group
+    brief: "Describes JVM network IO metric attributes."
+    attributes:
+      - ref: thread.id
+        requirement_level: opt_in
+      - id: network.direction
+        type: string
+        requirement_level: recommended
+        brief: Read or write.
+        examples: [ "read", "write" ]
+
   - id: metric.jvm.memory.usage
     type: metric
     metric_name: jvm.memory.usage
@@ -132,3 +144,80 @@ groups:
       [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()).
     instrument: gauge
     unit: "1"
+
+  - id: attributes.process.runtime.jvm.buffer
+    type: attribute_group
+    brief: "Describes JVM buffer metric attributes."
+    attributes:
+      - ref: pool
+        brief: Name of the buffer pool.
+        examples: [ "mapped", "direct" ]
+        note: >
+          Pool names are generally obtained via
+          [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+
+  - id: metric.process.runtime.jvm.buffer.usage
+    type: metric
+    metric_name: process.runtime.jvm.buffer.usage
+    extends: attributes.process.runtime.jvm.buffer
+    brief: "Measure of memory used by buffers."
+    instrument: updowncounter
+    unit: "By"
+
+  - id: metric.process.runtime.jvm.buffer.limit
+    type: metric
+    metric_name: process.runtime.jvm.buffer.limit
+    extends: attributes.process.runtime.jvm.buffer
+    brief: "Measure of total memory capacity of buffers."
+    instrument: updowncounter
+    unit: "By"
+
+  - id: metric.process.runtime.jvm.buffer.count
+    type: metric
+    metric_name: process.runtime.jvm.buffer.count
+    extends: attributes.process.runtime.jvm.buffer
+    brief: "Number of buffers in the pool."
+    instrument: updowncounter
+    unit: "{buffer}"
+
+  - id: metric.process.runtime.jvm.cpu.monitor.time
+    type: metric
+    metric_name: process.runtime.jvm.cpu.monitor.time
+    brief: "Time monitor was used bya  thread. Only available in JDK 17+."
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: thread.id
+        requirement_level: opt_in
+      - ref: code.namespace
+        requirement_level: opt_in
+        brief: Class of the monitor.
+        examples: [ "java.lang.Object" ]
+      - id: state
+        type: string
+        requirement_level: recommended
+        brief: Action taken at monitor.
+        examples: [ "blocked", "wait" ]
+
+  - id: metric.process.runtime.jvm.cpu.context_switch
+    type: metric
+    metric_name: process.runtime.jvm.context_switches
+    brief: "Number of context switches per second. Only available in JDK 17+."
+    instrument: updowncounter
+    unit: "Hz"
+
+  - id: metric.process.runtime.jvm.network.io
+    type: metric
+    metric_name: process.runtime.jvm.network.io
+    brief: "Bytes read/written by thread. Only available in JDK 17+."
+    extends: attributes.process.runtime.jvm.network
+    instrument: histogram
+    unit: "By"
+
+  - id: metric.process.runtime.jvm.network.time
+    type: metric
+    metric_name: process.runtime.jvm.network.time
+    brief: "Duration of network IO operation by thread. Only available in JDK 17+."
+    extends: attributes.process.runtime.jvm.network
+    instrument: histogram
+    unit: "s"
