@@ -41,7 +41,7 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `process.runtime.jvm.cpu.monitor.wait`](#metric-processruntimejvmcpumonitorwait)
   * [Metric: `process.runtime.jvm.cpu.monitor.blocked`](#metric-processruntimejvmcpumonitorblocked)
   * [Metric: `process.runtime.jvm.cpu.monitor.time`](#metric-processruntimejvmcpumonitortime)
-  * [Metric: `process.runtime.jvm.cpu.context_switch`](#metric-processruntimejvmcpucontext_swtich)
+  * [Metric: `process.runtime.jvm.cpu.context_swtich`](#metric-processruntimejvmcpucontext_swtich)
   * [Metric: `process.runtime.jvm.network.io`](#metric-processruntimejvmnetworkio)
   * [Metric: `process.runtime.jvm.network.time`](#metric-processruntimejvmnetworktime)
 
@@ -438,6 +438,7 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 ### Metric: `process.runtime.jvm.cpu.monitor.time`
 
 This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+This metric is obtained from [`jdk.JavaMonitorWait`](https://sap.github.io/SapMachine/jfrevents/21.html#javamonitorwait) and [`jdk.JavaMonitorEnter`](https://sap.github.io/SapMachine/jfrevents/21.html#javamonitorenter) JFR events.
 
 <!-- semconv metric.process.runtime.jvm.cpu.monitor.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -456,6 +457,7 @@ This metric is [recommended](../metric-requirement-level.md#recommended). Only a
 ### Metric: `process.runtime.jvm.cpu.context_swtich`
 
 This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+This metric is obtained from [`jdk.ThreadContextSwitchRate`](https://sap.github.io/SapMachine/jfrevents/21.html#threadcontextswitchrate) JFR events.
 
 <!-- semconv metric.process.runtime.jvm.cpu.context_switch(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -466,6 +468,7 @@ This metric is [recommended](../metric-requirement-level.md#recommended). Only a
 ### Metric: `process.runtime.jvm.network.io`
 
 This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachine/jfrevents/21.html#socketwrite) and [`jdk.SocketRead`](https://sap.github.io/SapMachine/jfrevents/21.html#socketread) JFR events.
 
 <!-- semconv metric.process.runtime.jvm.network.io(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -483,6 +486,7 @@ This metric is [recommended](../metric-requirement-level.md#recommended). Only a
 ### Metric: `process.runtime.jvm.network.time`
 
 This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachine/jfrevents/21.html#socketwrite) and [`jdk.SocketRead`](https://sap.github.io/SapMachine/jfrevents/21.html#socketread) JFR events.
 
 <!-- semconv metric.process.runtime.jvm.network.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
