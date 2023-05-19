@@ -40,8 +40,8 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
   * [Metric: `process.runtime.jvm.cpu.monitor.wait`](#metric-processruntimejvmcpumonitorwait)
   * [Metric: `process.runtime.jvm.cpu.monitor.blocked`](#metric-processruntimejvmcpumonitorblocked)
+  * [Metric: `process.runtime.jvm.cpu.monitor.time`](#metric-processruntimejvmcpumonitortime)
   * [Metric: `process.runtime.jvm.cpu.context_switch`](#metric-processruntimejvmcpucontext_swtich)
-  * [Metric: `process.runtime.jvm.memory.allocation`](#metric-processruntimejvmmemoryallocation)
   * [Metric: `process.runtime.jvm.network.io`](#metric-processruntimejvmnetworkio)
   * [Metric: `process.runtime.jvm.network.time`](#metric-processruntimejvmnetworktime)
 
@@ -462,7 +462,6 @@ This metric is [recommended](../metric-requirement-level.md#recommended). Only a
 | -------- | --------------- | ----------- | -------------- |
 | `process.runtime.jvm.context_switches` | UpDownCounter | `Hz` | Number of context switches per second. Only available in JDK 17+. |
 <!-- endsemconv -->
-
 
 ### Metric: `process.runtime.jvm.network.io`
 
