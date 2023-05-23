@@ -1,6 +1,6 @@
 # Semantic conventions for RPC spans
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines how to describe remote procedure calls
 (also called "remote method invocations" / "RMI") with spans.
@@ -348,3 +348,5 @@ Conventions specific to [JSON RPC](https://www.jsonrpc.org/).
 
 **[1]:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

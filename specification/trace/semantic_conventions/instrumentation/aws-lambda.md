@@ -1,6 +1,6 @@
 # Instrumenting AWS Lambda
 
-**Status**: [Experimental](../../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines how to apply semantic conventions when instrumenting an AWS Lambda request handler. AWS
 Lambda largely follows the conventions for [FaaS][faas] while [HTTP](../http.md) conventions are also
@@ -58,12 +58,7 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 
 If the `_X_AMZN_TRACE_ID` environment variable is set, instrumentation SHOULD try to parse an
 OpenTelemetry `Context` out of it using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md). If the
-resulting `Context` is [valid](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#isvalid) then a [Span Link][] SHOULD be added to the new Span's
-[start options](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#specifying-links) with an associated attribute of `source=x-ray-env` to
-indicate the source of the linked span.
-Instrumentation MUST check if the context is valid before using it because the `_X_AMZN_TRACE_ID` environment variable can
-contain an incomplete trace context which indicates X-Ray isn’t enabled. The environment variable will be set and the
-`Context` will be valid and sampled only if AWS X-Ray has been enabled for the Lambda function. A user can
+resulting `Context` is [valid](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#isvalid) then a [Span Link][] SHOULD be added to the new Span's(../../document-status.md)
 disable AWS X-Ray for the function if the X-Ray Span Link is not desired.
 
 [Span Link]: https://opentelemetry.io/docs/concepts/signals/traces/#span-links
@@ -247,3 +242,5 @@ Note that [`cloud.resource_id`][cloud] currently cannot be populated as a resour
 because it is not available until function invocation.
 
 [environment variables]: https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

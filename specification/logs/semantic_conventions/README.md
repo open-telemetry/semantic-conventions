@@ -1,6 +1,6 @@
 # Log Attribute Semantic Conventions
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 The following semantic conventions for logs are defined:
 
@@ -14,3 +14,5 @@ The following semantic conventions for events are defined:
 Apart from semantic conventions for logs, [traces](../../trace/semantic_conventions/README.md), and [metrics](../../metrics/semantic_conventions/README.md),
 OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](../../resource/semantic_conventions/README.md).
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

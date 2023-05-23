@@ -1,6 +1,6 @@
 # Semantic conventions for Feature Flags
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for recording dynamic feature flag
 evaluations within a transaction as span events.
@@ -55,3 +55,5 @@ A stringified version of the value can be used in situations where a
 semantic identifier is unavailable. String representation of the value
 should be determined by the implementer.
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

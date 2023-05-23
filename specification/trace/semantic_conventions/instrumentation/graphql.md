@@ -1,6 +1,6 @@
 # Semantic conventions for GraphQL Server
 
-**Status**: [Experimental](../../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions to apply when instrumenting the GraphQL implementation. They map GraphQL
 operations to attributes on a Span.
@@ -27,3 +27,5 @@ MAY be used as span name.
 | `mutation` | GraphQL mutation |
 | `subscription` | GraphQL subscription |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

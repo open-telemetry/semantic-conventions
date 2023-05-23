@@ -1,6 +1,6 @@
 # Semantic Conventions for Exceptions
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for recording application
 exceptions.
@@ -105,3 +105,4 @@ grained information from a stacktrace, if necessary.
 [telemetry-sdk-resource]: ../../resource/semantic_conventions/README.md#telemetry-sdk
 [erlang-stacktrace]: https://www.erlang.org/doc/man/erl_error.html#format_exception-3
 [elixir-stacktrace]: https://hexdocs.pm/elixir/1.14.3/Exception.html#format/3
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

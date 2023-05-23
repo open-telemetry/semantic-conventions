@@ -4,7 +4,7 @@ linkTitle: Runtime Environment
 
 # Semantic Conventions for Runtime Environment Metrics
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document includes semantic conventions for runtime environment level
 metrics in OpenTelemetry. Also consider the [general
@@ -397,3 +397,5 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

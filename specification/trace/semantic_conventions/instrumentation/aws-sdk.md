@@ -1,6 +1,6 @@
 # Semantic conventions for AWS SDK
 
-**Status**: [Experimental](../../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions to apply when instrumenting the AWS SDK. They map request or response
 parameters in AWS SDK API calls to attributes on a Span. The conventions have been collected over time based
@@ -250,3 +250,5 @@ and [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/up
 The `part_number` attribute corresponds to the `--part-number` parameter of the
 [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

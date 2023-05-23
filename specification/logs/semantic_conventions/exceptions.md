@@ -1,6 +1,6 @@
 # Semantic Conventions for Exceptions
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for recording exceptions on
 [logs](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/bridge-api.md#emit-a-logrecord) and [events](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md#emit-event)
@@ -48,3 +48,5 @@ The table below indicates which attributes should be added to the
 
 Same as [Trace Semantic Conventions for Exceptions - Stacktrace
 Representation](../../trace/semantic_conventions/exceptions.md#stacktrace-representation).
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
