@@ -183,7 +183,7 @@ groups:
   - id: metric.process.runtime.jvm.cpu.monitor.time
     type: metric
     metric_name: process.runtime.jvm.cpu.monitor.time
-    brief: "Time monitor was used bya  thread. Only available in JDK 17+."
+    brief: "Time monitor was used by a thread. Only available in JDK 17+."
     instrument: histogram
     unit: "s"
     attributes:
