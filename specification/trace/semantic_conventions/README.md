@@ -31,8 +31,8 @@ The following library-specific semantic conventions are defined:
 * [AWS SDK](instrumentation/aws-sdk.md): For AWS SDK spans.
 * [GraphQL](instrumentation/graphql.md): For GraphQL spans.
 
-Apart from semantic conventions for traces and [metrics](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/semantic_conventions/README.md),
-OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md) with their own
+Apart from semantic conventions for traces and [metrics](https://github.com/open-telemetry/opentelemetry-specification/tree/1.21.0/specification/metrics/semantic_conventions/README.md),
+OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/1.21.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](../../resource/semantic_conventions/README.md).
 
 ## Event Name Reuse Prohibition

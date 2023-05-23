@@ -1,6 +1,6 @@
 # Metric Requirement Levels
 
-This document is the same as [the specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/metric-requirement-level.md).
+This document is the same as [the specification](https://github.com/open-telemetry/opentelemetry-specification/tree/1.21.0/specification/metrics/metric-requirement-level.md).
 
 **Status**: [Stable](../document-status.md)
 
