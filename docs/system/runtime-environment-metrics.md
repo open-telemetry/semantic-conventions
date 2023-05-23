@@ -443,7 +443,7 @@ This metric is obtained from [`jdk.JavaMonitorWait`](https://sap.github.io/SapMa
 <!-- semconv metric.process.runtime.jvm.cpu.monitor.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.cpu.monitor.time` | Histogram | `s` | Time monitor was used bya  thread. Only available in JDK 17+. |
+| `process.runtime.jvm.cpu.monitor.duration` | Histogram | `s` | Time monitor was used bya  thread. Only available in JDK 17+. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.cpu.monitor.time(full) -->
