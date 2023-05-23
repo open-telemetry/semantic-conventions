@@ -38,12 +38,10 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `jvm.buffer.usage`](#metric-jvmbufferusage)
   * [Metric: `jvm.buffer.limit`](#metric-jvmbufferlimit)
   * [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
-  * [Metric: `process.runtime.jvm.cpu.monitor.wait`](#metric-processruntimejvmcpumonitorwait)
-  * [Metric: `process.runtime.jvm.cpu.monitor.blocked`](#metric-processruntimejvmcpumonitorblocked)
-  * [Metric: `process.runtime.jvm.cpu.monitor.time`](#metric-processruntimejvmcpumonitortime)
+  * [Metric: `process.runtime.jvm.cpu.monitor.duration`](#metric-processruntimejvmcpumonitorduration)
   * [Metric: `process.runtime.jvm.cpu.context_swtich`](#metric-processruntimejvmcpucontext_swtich)
   * [Metric: `process.runtime.jvm.network.io`](#metric-processruntimejvmnetworkio)
-  * [Metric: `process.runtime.jvm.network.time`](#metric-processruntimejvmnetworktime)
+  * [Metric: `process.runtime.jvm.network.duration`](#metric-processruntimejvmnetworkduration)
 
 <!-- tocstop -->
 
@@ -435,18 +433,22 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 <!-- endsemconv -->
 
 
-### Metric: `process.runtime.jvm.cpu.monitor.time`
+### Metric: `process.runtime.jvm.cpu.monitor.duration`
 
 This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
 This metric is obtained from [`jdk.JavaMonitorWait`](https://sap.github.io/SapMachine/jfrevents/21.html#javamonitorwait) and [`jdk.JavaMonitorEnter`](https://sap.github.io/SapMachine/jfrevents/21.html#javamonitorenter) JFR events.
 
-<!-- semconv metric.process.runtime.jvm.cpu.monitor.time(metric_table) -->
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#instrument-advice)
+of `[]` (single bucket histogram capturing count, sum, min, max).
+
+<!-- semconv metric.process.runtime.jvm.cpu.monitor.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.cpu.monitor.duration` | Histogram | `s` | Time monitor was used bya  thread. Only available in JDK 17+. |
+| `process.runtime.jvm.cpu.monitor.duration` | Histogram | `s` | Time monitor was used by a thread. Only available in JDK 17+. |
 <!-- endsemconv -->
 
-<!-- semconv metric.process.runtime.jvm.cpu.monitor.time(full) -->
+<!-- semconv metric.process.runtime.jvm.cpu.monitor.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `class` | string | Class of the monitor. | `java.lang.Object` | Opt-In |
@@ -470,6 +472,10 @@ This metric is obtained from [`jdk.ThreadContextSwitchRate`](https://sap.github.
 This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
 This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachine/jfrevents/21.html#socketwrite) and [`jdk.SocketRead`](https://sap.github.io/SapMachine/jfrevents/21.html#socketread) JFR events.
 
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#instrument-advice)
+of `[]` (single bucket histogram capturing count, sum, min, max).
+
 <!-- semconv metric.process.runtime.jvm.network.io(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -483,7 +489,7 @@ This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachin
 | [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
-### Metric: `process.runtime.jvm.network.time`
+### Metric: `process.runtime.jvm.network.duration`
 
 This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
 This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachine/jfrevents/21.html#socketwrite) and [`jdk.SocketRead`](https://sap.github.io/SapMachine/jfrevents/21.html#socketread) JFR events.
@@ -492,13 +498,13 @@ This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#instrument-advice)
 of `[]` (single bucket histogram capturing count, sum, min, max).
 
-<!-- semconv metric.process.runtime.jvm.network.time(metric_table) -->
+<!-- semconv metric.process.runtime.jvm.network.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.network.time` | Histogram | `s` | Duration of network IO operation by thread. Only available in JDK 17+. |
+| `process.runtime.jvm.network.duration` | Histogram | `s` | Duration of network IO operation by thread. Only available in JDK 17+. |
 <!-- endsemconv -->
 
-<!-- semconv metric.process.runtime.jvm.network.time(full) -->
+<!-- semconv metric.process.runtime.jvm.network.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `network.direction` | string | Read or write. | `read`; `write` | Recommended |

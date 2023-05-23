@@ -180,9 +180,9 @@ groups:
     instrument: updowncounter
     unit: "{buffer}"
 
-  - id: metric.process.runtime.jvm.cpu.monitor.time
+  - id: metric.process.runtime.jvm.cpu.monitor.duration
     type: metric
-    metric_name: process.runtime.jvm.cpu.monitor.time
+    metric_name: process.runtime.jvm.cpu.monitor.duration
     brief: "Time monitor was used by a thread. Only available in JDK 17+."
     instrument: histogram
     unit: "s"
@@ -214,9 +214,9 @@ groups:
     instrument: histogram
     unit: "By"
 
-  - id: metric.process.runtime.jvm.network.time
+  - id: metric.process.runtime.jvm.network.duration
     type: metric
-    metric_name: process.runtime.jvm.network.time
+    metric_name: process.runtime.jvm.network.duration
     brief: "Duration of network IO operation by thread. Only available in JDK 17+."
     extends: attributes.process.runtime.jvm.network
     instrument: histogram
