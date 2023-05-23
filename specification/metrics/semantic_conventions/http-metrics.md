@@ -4,7 +4,7 @@ linkTitle: HTTP
 
 # Semantic Conventions for HTTP Metrics
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 The conventions described in this section are HTTP specific. When HTTP operations occur,
 metric events about those operations will be generated and reported to provide insight into the
@@ -348,3 +348,5 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 
 **[4]:** If not default (`80` for `http` scheme, `443` for `https`).
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

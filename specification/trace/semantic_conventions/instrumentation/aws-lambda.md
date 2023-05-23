@@ -1,6 +1,6 @@
 # Instrumenting AWS Lambda
 
-**Status**: [Experimental](../../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines how to apply semantic conventions when instrumenting an AWS Lambda request handler. AWS
 Lambda largely follows the conventions for [FaaS][faas] while [HTTP](../http.md) conventions are also
@@ -247,3 +247,5 @@ Note that [`cloud.resource_id`][cloud] currently cannot be populated as a resour
 because it is not available until function invocation.
 
 [environment variables]: https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

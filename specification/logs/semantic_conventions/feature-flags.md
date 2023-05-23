@@ -1,6 +1,6 @@
 # Semantic Conventions for Feature Flag Evaluations
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for recording feature flag evaluations as
 a [log record](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/data-model.md#log-and-event-record-definition) emitted through the
@@ -51,3 +51,5 @@ A stringified version of the value can be used in situations where a
 semantic identifier is unavailable. String representation of the value
 should be determined by the implementer.
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

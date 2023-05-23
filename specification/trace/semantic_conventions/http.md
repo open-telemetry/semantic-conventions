@@ -1,6 +1,6 @@
 # Semantic conventions for HTTP spans
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
@@ -454,3 +454,5 @@ GET /hello - 200 (CLIENT, trace=t2, span=s1, http.resend_count=1)
  |
  --- server (SERVER, trace=t2, span=s2)
 ```
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

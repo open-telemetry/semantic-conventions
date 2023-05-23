@@ -1,6 +1,6 @@
 # Messaging systems
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
@@ -574,3 +574,5 @@ Process C:                              | Span Recv1 | Span Recv2 |
 | `messaging.operation` |  |  | `"receive"` | `"receive"` | `"process"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` | | | 1 | 1 | 2 |
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

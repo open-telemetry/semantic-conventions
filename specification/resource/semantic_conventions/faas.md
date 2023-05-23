@@ -1,6 +1,6 @@
 # Function as a Service
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `faas`
 
@@ -79,3 +79,5 @@ Note: The resource attribute `faas.instance` differs from the span attribute `fa
 There are cases where a FaaS resource attribute is better applied as a span
 attribute instead.
 See the [FaaS trace conventions](../../trace/semantic_conventions/faas.md) for more.
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

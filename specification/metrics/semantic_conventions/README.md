@@ -5,7 +5,7 @@ linkTitle: Semantic Conventions
 <!-- omit in toc -->
 # Metrics Semantic Conventions
 
-**Status**: [Mixed](../../document-status.md)
+**Status**: [Mixed][DocumentStatus]
 
 <!-- toc -->
 
@@ -41,7 +41,7 @@ Conventions](../../resource/semantic_conventions/README.md).
 
 ## General Guidelines
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 Metric names and attributes exist within a single universe and a single
 hierarchy. Metric names and attributes MUST be considered within the universe of
@@ -127,7 +127,7 @@ to the processes then to represent the count of the processes we can have a metr
 
 ## General Metric Semantic Conventions
 
-**Status**: [Mixed](../../document-status.md)
+**Status**: [Mixed][DocumentStatus]
 
 The following semantic conventions aim to keep naming consistent. They
 provide guidelines for most of the cases in this specification and should be
@@ -135,7 +135,7 @@ followed for other instruments not explicitly defined in this document.
 
 ### Instrument Naming
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 - **limit** - an instrument that measures the constant, known total amount of
 something should be called `entity.limit`. For example, `system.memory.limit`
@@ -180,7 +180,7 @@ instrument creation, but can be added if there is ambiguity.
 
 ### Instrument Units
 
-**Status**: [Stable](../../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 Units should follow the
 [Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html).
@@ -205,7 +205,7 @@ use `{packet}`, `{error}`, `{fault}`, etc.
 
 ### Instrument Types
 
-**Status**: [Stable](../../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 The semantic metric conventions specification is written to use the names of the synchronous instrument types,
 like `Counter` or `UpDownCounter`. However, compliant implementations MAY use the asynchronous equivalent instead,
@@ -215,7 +215,7 @@ implementation detail. Both choices are compliant with this specification.
 
 ### Consistent UpDownCounter timeseries
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 When recording `UpDownCounter` metrics, the same attribute values used to record an increment SHOULD be used to record
 any associated decrement, otherwise those increments and decrements will end up as different timeseries.
@@ -223,3 +223,5 @@ any associated decrement, otherwise those increments and decrements will end up 
 For example, if you are tracking `active_requests` with an `UpDownCounter`, and you are incrementing it each time a
 request starts and decrementing it each time a request ends, then any attributes which are not yet available when
 incrementing the counter at request start should not be used when decrementing the counter at request end.
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

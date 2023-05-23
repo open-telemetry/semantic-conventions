@@ -1,6 +1,6 @@
 # CloudEvents
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
@@ -202,3 +202,5 @@ The following attributes are applicable to creation and processing Spans.
 | `cloudevents.event_type` | string | The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence. | `com.github.pull_request.opened`; `com.example.object.deleted.v2` | Recommended |
 | `cloudevents.event_subject` | string | The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source). | `mynewfile.jpg` | Recommended |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

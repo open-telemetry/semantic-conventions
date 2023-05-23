@@ -4,7 +4,7 @@ linkTitle: RPC
 
 # General RPC conventions
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 The conventions described in this section are RPC specific. When RPC operations
 occur, measurements about those operations are recorded to instruments. The
@@ -220,3 +220,5 @@ Below is a table of attributes that SHOULD be included on client and server RPC 
 | `data_loss` | data_loss |
 | `unauthenticated` | unauthenticated |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

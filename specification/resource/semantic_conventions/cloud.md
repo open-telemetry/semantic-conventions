@@ -1,6 +1,6 @@
 # Cloud
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `cloud`
 
@@ -83,3 +83,5 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

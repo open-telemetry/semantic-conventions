@@ -1,6 +1,6 @@
 # Trace Semantic Conventions
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 In OpenTelemetry spans can be created freely and it’s up to the implementor to
 annotate them with attributes specific to the represented operation. Spans
@@ -43,3 +43,5 @@ the past but was renamed (with a corresponding schema file).
 When introducing a new event name check all existing schema files to make sure
 the name does not appear as a key of any "rename_events" section (keys denote
 old event names in rename operations).
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

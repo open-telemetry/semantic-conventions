@@ -1,6 +1,6 @@
 # AWS Semantic Conventions
 
-**Status**: [Experimental](../../../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This directory defines standards for resource attributes that only apply to Amazon
 Web Services (AWS) resources. If an attribute could apply to resources from more than one cloud
@@ -20,3 +20,5 @@ Attributes that relate to an individual AWS service:
 
 - [Elastic Container Service (ECS)](./ecs.md)
 - [Elastic Kubernetes Service (EKS)](./eks.md)
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

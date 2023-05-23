@@ -1,6 +1,6 @@
 # Semantic Conventions for Log Media
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document describes attributes for log media in OpenTelemetry. Log media are mechanisms by which logs are transmitted. Types of media include files, streams, network protocols, and os-specific logging services such as journald and Windows Event Log.
 
@@ -43,3 +43,5 @@ As such, these should be recorded as Log Record attributes when applicable. They
 | Name                            | Notes and examples                                                                       |
 | ------------------------------- | ---------------------------------------------------------------------------------------- |
 | `log.iostream`        | The stream associated with the log. SHOULD be one of: `stdout`, `stderr` |
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

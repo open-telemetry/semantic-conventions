@@ -1,6 +1,6 @@
 # Resource Semantic Conventions
 
-**Status**: [Mixed](../../document-status.md)
+**Status**: [Mixed][DocumentStatus]
 
 This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
@@ -36,7 +36,7 @@ This document defines standard attributes for resources. These attributes are ty
 
 ## Document Conventions
 
-**Status**: [Stable](../../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 Attributes are grouped logically by the type of the concept that they described. Attributes in the same group have a common prefix that ends with a dot. For example all attributes that describe Kubernetes properties start with "k8s."
 
@@ -45,7 +45,7 @@ should be included.
 
 ## Attributes with Special Handling
 
-**Status**: [Stable](../../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 Given their significance some resource attributes are treated specifically as described below.
 
@@ -66,7 +66,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 
 ## Service
 
-**Status**: [Stable](../../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 **type:** `service`
 
@@ -82,7 +82,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 
 ## Service (Experimental)
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `service`
 
@@ -116,7 +116,7 @@ service.name = Shop.shoppingcart
 
 ## Telemetry SDK
 
-**Status**: [Stable](../../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 **type:** `telemetry.sdk`
 
@@ -156,7 +156,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 ## Telemetry SDK (Experimental)
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `telemetry.sdk`
 
@@ -170,7 +170,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 ## Compute Unit
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 Attributes defining a compute unit (e.g. Container, Process, Function as a Service):
 
@@ -181,7 +181,7 @@ Attributes defining a compute unit (e.g. Container, Process, Function as a Servi
 
 ## Compute Instance
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 Attributes defining a computing instance (e.g. host):
 
@@ -189,7 +189,7 @@ Attributes defining a computing instance (e.g. host):
 
 ## Environment
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 Attributes defining a running environment (e.g. Operating System, Cloud, Data Center, Deployment Service):
 
@@ -203,7 +203,7 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 
 ## Version attributes
 
-**Status**: [Stable](../../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 Version attributes, such as `service.version`, are values of type `string`. They are
 the exact version used to identify an artifact. This may be a semantic version, e.g., `1.2.3`, git hash, e.g.,
@@ -211,7 +211,7 @@ the exact version used to identify an artifact. This may be a semantic version, 
 
 ## Cloud-Provider-Specific Attributes
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 Attributes that are only applicable to resources from a specific cloud provider. Currently, these
 resources can only be defined for providers listed as a valid `cloud.provider` in
@@ -224,3 +224,5 @@ Valid cloud providers are:
 - [Microsoft Azure](https://azure.microsoft.com/) (`azure`)
 - [Tencent Cloud](https://www.tencentcloud.com/) (`tencent_cloud`)
 - [Heroku dyno](./cloud_provider/heroku.md)
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

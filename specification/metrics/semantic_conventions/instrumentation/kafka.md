@@ -4,7 +4,7 @@ linkTitle: Kafka
 
 # Instrumenting Kafka
 
-**Status**: [Experimental](../../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines how to apply semantic conventions when instrumenting Kafka.
 
@@ -82,3 +82,5 @@ This document defines how to apply semantic conventions when instrumenting Kafka
 |                                               |               |            |     |         |                                                                 | `partition` | The number (integer) of the partition |
 | messaging.kafka.consumer.lag_sum              | Gauge         | Int64      | lag sum | `{lag sum}` | Current approximate sum of consumer group lag across all partitions of topic | `group` | The ID (string) of a consumer group |
 |                                               |               |            |         |             |                                                                              | `topic` | The ID (integer) of a topic |
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
