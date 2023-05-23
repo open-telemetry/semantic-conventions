@@ -488,6 +488,10 @@ This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachin
 This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
 This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachine/jfrevents/21.html#socketwrite) and [`jdk.SocketRead`](https://sap.github.io/SapMachine/jfrevents/21.html#socketread) JFR events.
 
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#instrument-advice)
+of `[]` (single bucket histogram capturing count, sum, min, max).
+
 <!-- semconv metric.process.runtime.jvm.network.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
