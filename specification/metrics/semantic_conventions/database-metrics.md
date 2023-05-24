@@ -4,7 +4,7 @@ linkTitle: Database
 
 # Semantic Conventions for Database Metrics
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 The conventions described in this section are specific to SQL and NoSQL clients.
 
@@ -59,3 +59,5 @@ Below is a table of the attributes that MUST be included on all connection pool 
 | Name        | Type   | Description                                                                  | Examples       | Requirement Level |
 |-------------|--------|------------------------------------------------------------------------------|----------------|-------------------|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/specification/trace/semantic_conventions/database.md#connection-level-attributes) should be used. | `myDataSource` | Required          |
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

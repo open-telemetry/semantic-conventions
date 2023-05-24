@@ -1,6 +1,6 @@
 # Semantic conventions for HTTP spans
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
@@ -53,7 +53,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 ## Name
 
-HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span).
+HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#span).
 HTTP server span names SHOULD be `{http.request.method} {http.route}` if there is a
 (low-cardinality) `http.route` available.
 HTTP server span names SHOULD be `{http.request.method}` if there is no (low-cardinality)
@@ -67,7 +67,7 @@ default span name.
 
 ## Status
 
-[Span Status](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
+[Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
 1xx, 2xx or 3xx ranges, unless there was another error (e.g., network error receiving
 the response body; or 3xx codes with max redirects exceeded), in which case status
 MUST be set to `Error`.
@@ -454,3 +454,5 @@ GET /hello - 200 (CLIENT, trace=t2, span=s1, http.resend_count=1)
  |
  --- server (SERVER, trace=t2, span=s2)
 ```
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

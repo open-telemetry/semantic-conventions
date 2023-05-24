@@ -4,7 +4,7 @@ linkTitle: Hardware
 
 # Semantic Conventions for Hardware Metrics
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document describes instruments and attributes for common hardware level
 metrics in OpenTelemetry. Consider the [general metric semantic conventions](README.md#general-metric-semantic-conventions)
@@ -387,3 +387,5 @@ Additional **Recommended** attributes:
 | Attribute Key     | Description            | Example    |
 | ----------------- | ---------------------- | ---------- |
 | `sensor_location` | Location of the sensor | `PS0 V3_3` |
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

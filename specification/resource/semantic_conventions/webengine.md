@@ -1,6 +1,6 @@
 # Webengine
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `webengine`
 
@@ -22,3 +22,5 @@ The situations where there are multiple candidates, it is up to instrumentation 
 
 * Either Apache HTTP Server or `mod_wsgi` MAY be chosen as `webengine`, depending on the decision made by the instrumentation authors.
 * Django SHOULD NOT be set as an `webengine` as the required information is already available in instrumentation library and setting this into `webengine` would duplicate the information.
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

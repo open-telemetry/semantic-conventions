@@ -1,6 +1,6 @@
 # Kubernetes
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 Useful resources to understand Kubernetes objects and metadata:
 
@@ -209,3 +209,5 @@ A CronJob creates Jobs on a repeating schedule.
 | `k8s.cronjob.uid` | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 | `k8s.cronjob.name` | string | The name of the CronJob. | `opentelemetry` | Recommended |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

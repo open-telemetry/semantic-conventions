@@ -1,6 +1,6 @@
 # AWS EKS
 
-**Status**: [Experimental](../../../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `aws.eks`
 
@@ -11,3 +11,5 @@
 |---|---|---|---|---|
 | `aws.eks.cluster.arn` | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | Recommended |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
