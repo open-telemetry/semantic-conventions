@@ -30,6 +30,7 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `process.runtime.jvm.classes.loaded`](#metric-processruntimejvmclassesloaded)
   * [Metric: `process.runtime.jvm.classes.unloaded`](#metric-processruntimejvmclassesunloaded)
   * [Metric: `process.runtime.jvm.classes.current_loaded`](#metric-processruntimejvmclassescurrent_loaded)
+  * [Metric: `process.runtime.jvm.available_processors`](#metric-processruntimejvmavailable_processors)
   * [Metric: `process.runtime.jvm.cpu.utilization`](#metric-processruntimejvmcpuutilization)
   * [Metric: `process.runtime.jvm.system.cpu.utilization`](#metric-processruntimejvmsystemcpuutilization)
   * [Metric: `process.runtime.jvm.system.cpu.load_1m`](#metric-processruntimejvmsystemcpuload_1m)
@@ -295,6 +296,21 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.classes.current_loaded(full) -->
+<!-- endsemconv -->
+
+### Metric: `process.runtime.jvm.available_processors`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`Runtime#availableProcessors()`](https://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#availableProcessors--).
+Note that this is always an integer value (i.e. fractional or millicores are not represented).
+
+<!-- semconv metric.process.runtime.jvm.available_processors(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.available_processors` | UpDownCounter | `{processor}` | Number of processors available to the Java virtual machine. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.available_processors(full) -->
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.cpu.utilization`
