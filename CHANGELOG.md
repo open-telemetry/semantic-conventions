@@ -7,6 +7,8 @@ release.
 
 ## Unreleased
 
+- Updated AWS Java Lambda guidance - using system properties.
+
 ### Semantic Conventions
 
 - Clarify the scope of the HTTP client span.
