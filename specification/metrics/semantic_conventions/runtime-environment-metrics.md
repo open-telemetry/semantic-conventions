@@ -30,6 +30,7 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `process.runtime.jvm.classes.loaded`](#metric-processruntimejvmclassesloaded)
   * [Metric: `process.runtime.jvm.classes.unloaded`](#metric-processruntimejvmclassesunloaded)
   * [Metric: `process.runtime.jvm.classes.current_loaded`](#metric-processruntimejvmclassescurrent_loaded)
+  * [Metric: `process.runtime.jvm.cpu.time`](#metric-processruntimejvmcputime)
   * [Metric: `process.runtime.jvm.cpu.utilization`](#metric-processruntimejvmcpuutilization)
   * [Metric: `process.runtime.jvm.system.cpu.utilization`](#metric-processruntimejvmsystemcpuutilization)
   * [Metric: `process.runtime.jvm.system.cpu.load_1m`](#metric-processruntimejvmsystemcpuload_1m)
@@ -295,6 +296,22 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.classes.current_loaded(full) -->
+<!-- endsemconv -->
+
+### Metric: `process.runtime.jvm.cpu.time`
+
+This metric is [recommended][MetricRecommended].
+
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuTime()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime()) on HotSpot
+and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/com.ibm.java.api.80.doc/com.ibm.lang.management/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuTime--) on J9.
+
+<!-- semconv metric.process.runtime.jvm.cpu.time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.cpu.time` | Counter | `s` | Number of classes currently loaded. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.cpu.time(full) -->
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.cpu.utilization`
