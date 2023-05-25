@@ -66,3 +66,5 @@ release.
   ([#3458](https://github.com/open-telemetry/opentelemetry-specification/pull/3458))
 - Specify the value range for JVM CPU metrics.
   ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
+- Add `process.runtime.jvm.available_processors` metric.
+  ([#52](https://github.com/open-telemetry/semantic-conventions/pull/52))
