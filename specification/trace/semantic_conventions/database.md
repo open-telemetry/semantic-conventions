@@ -1,6 +1,6 @@
 # Semantic conventions for database client calls
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
@@ -362,3 +362,5 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 | `db.cosmosdb.status_code`            | `201` |
 | `db.cosmosdb.sub_status_code`        | `0` |
 | `db.cosmosdb.request_charge`         | `7.43` |
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

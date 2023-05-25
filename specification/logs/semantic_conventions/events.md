@@ -1,6 +1,6 @@
 # Semantic Convention for event attributes
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document describes the attributes of standalone Events that are represented
 in the data model by `LogRecord`s. Events are recorded as LogRecords that are shaped
@@ -43,3 +43,5 @@ unrelated events.
 | `device` | Events from mobile apps |
 | `k8s` | Events from Kubernetes |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

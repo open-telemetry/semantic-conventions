@@ -1,6 +1,6 @@
 # Heroku
 
-**Status**: [Experimental](../../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `heroku`
 
@@ -28,3 +28,5 @@
 Additionally, [the `cloud.provider` resource attribute MUST be set to `heroku`](../cloud.md).
 
 [Heroku dyno metadata]: https://devcenter.heroku.com/articles/dyno-metadata
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

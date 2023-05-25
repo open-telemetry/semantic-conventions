@@ -4,7 +4,7 @@ linkTitle: FaaS
 
 # Semantic Conventions for FaaS Metrics
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines how to describe an instance of a function that runs without provisioning
 or managing of servers (also known as serverless functions or Function as a Service (FaaS)) with metrics.
@@ -81,3 +81,5 @@ FaaS providers. This list is not exhaustive.
 * [Azure Functions Metrics](https://docs.microsoft.com/azure/azure-monitor/platform/metrics-supported)
 * [Google CloudFunctions Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudfunctions)
 * [OpenFaas Metrics](https://docs.openfaas.com/architecture/metrics/)
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

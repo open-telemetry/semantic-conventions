@@ -1,6 +1,6 @@
 # Semantic conventions for RPC spans
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines how to describe remote procedure calls
 (also called "remote method invocations" / "RMI") with spans.
@@ -241,10 +241,10 @@ For remote procedure calls via [gRPC][], additional conventions are described in
 ### gRPC Status
 
 The table below describes when
-the [Span Status](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#set-status) MUST be set
+the [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#set-status) MUST be set
 to `Error` or remain unset
 depending on the [gRPC status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md)
-and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind).
+and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#spankind).
 
 | gRPC Status Code | `SpanKind.SERVER` Span Status | `SpanKind.CLIENT` Span Status |
 |---|---|---|
@@ -317,7 +317,7 @@ Below is a table of attributes that SHOULD be included on client and server RPC 
 
 ### Connect RPC Status
 
-If `rpc.connect_rpc.error_code` is set, [Span Status](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#set-status) MUST be set to `Error` and left unset in all other cases.
+If `rpc.connect_rpc.error_code` is set, [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#set-status) MUST be set to `Error` and left unset in all other cases.
 
 ### Connect RPC Request and Response Metadata
 
@@ -348,3 +348,5 @@ Conventions specific to [JSON RPC](https://www.jsonrpc.org/).
 
 **[1]:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
