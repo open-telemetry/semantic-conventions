@@ -101,6 +101,13 @@ groups:
         type: boolean
         requirement_level: recommended
 
+  - id: metric.process.runtime.jvm.classes.count
+    type: metric
+    metric_name: process.runtime.jvm.classes.count
+    brief: "Number of classes currently loaded."
+    instrument: updowncounter
+    unit: "{class}"
+
   - id: metric.process.runtime.jvm.classes.loaded
     type: metric
     metric_name: process.runtime.jvm.classes.loaded
@@ -113,13 +120,6 @@ groups:
     metric_name: process.runtime.jvm.classes.unloaded
     brief: "Number of classes unloaded since JVM start."
     instrument: counter
-    unit: "{class}"
-
-  - id: metric.process.runtime.jvm.classes.current_loaded
-    type: metric
-    metric_name: process.runtime.jvm.classes.current_loaded
-    brief: "Number of classes currently loaded."
-    instrument: updowncounter
     unit: "{class}"
 
   - id: metric.process.runtime.jvm.cpu.utilization

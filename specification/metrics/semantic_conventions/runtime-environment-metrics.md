@@ -29,7 +29,7 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `process.runtime.jvm.threads.count`](#metric-processruntimejvmthreadscount)
   * [Metric: `process.runtime.jvm.classes.loaded`](#metric-processruntimejvmclassesloaded)
   * [Metric: `process.runtime.jvm.classes.unloaded`](#metric-processruntimejvmclassesunloaded)
-  * [Metric: `process.runtime.jvm.classes.current_loaded`](#metric-processruntimejvmclassescurrent_loaded)
+  * [Metric: `process.runtime.jvm.classes.count`](#metric-processruntimejvmclassescount)
   * [Metric: `process.runtime.jvm.cpu.utilization`](#metric-processruntimejvmcpuutilization)
   * [Metric: `process.runtime.jvm.system.cpu.utilization`](#metric-processruntimejvmsystemcpuutilization)
   * [Metric: `process.runtime.jvm.system.cpu.load_1m`](#metric-processruntimejvmsystemcpuload_1m)
@@ -283,18 +283,18 @@ This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](http
 <!-- semconv metric.process.runtime.jvm.classes.unloaded(full) -->
 <!-- endsemconv -->
 
-### Metric: `process.runtime.jvm.classes.current_loaded`
+### Metric: `process.runtime.jvm.classes.count`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--).
 
-<!-- semconv metric.process.runtime.jvm.classes.current_loaded(metric_table) -->
+<!-- semconv metric.process.runtime.jvm.classes.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.classes.current_loaded` | UpDownCounter | `{class}` | Number of classes currently loaded. |
+| `process.runtime.jvm.classes.count` | UpDownCounter | `{class}` | Number of classes currently loaded. |
 <!-- endsemconv -->
 
-<!-- semconv metric.process.runtime.jvm.classes.current_loaded(full) -->
+<!-- semconv metric.process.runtime.jvm.classes.count(full) -->
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.cpu.utilization`
