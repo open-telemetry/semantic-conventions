@@ -308,7 +308,7 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 <!-- semconv metric.process.runtime.jvm.cpu.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.cpu.time` | Counter | `s` | Number of classes currently loaded. |
+| `process.runtime.jvm.cpu.time` | Counter | `s` | CPU time used by the process. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.cpu.time(full) -->

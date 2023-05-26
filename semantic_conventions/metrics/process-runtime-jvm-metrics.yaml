@@ -125,7 +125,7 @@ groups:
   - id: metric.process.runtime.jvm.cpu.time
     type: metric
     metric_name: process.runtime.jvm.cpu.time
-    brief: "Number of classes currently loaded."
+    brief: "CPU time used by the process."
     instrument: counter
     unit: "s"
 
