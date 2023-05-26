@@ -66,3 +66,5 @@ release.
   ([#3458](https://github.com/open-telemetry/opentelemetry-specification/pull/3458))
 - Specify the value range for JVM CPU metrics.
   ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
+- Split out sections for proposed stable JVM metrics and experimental JVM metrics.
+  ([#56](https://github.com/open-telemetry/semantic-conventions/pull/56))
