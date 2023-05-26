@@ -36,21 +36,25 @@ groups:
         type: string
         brief: >
           The ID of the container image. Usually a hash algorithm followed by a UUID. The UUID might be abbreviated.
-        examples: ['sha256:f90d814248a0']
+        examples: ['sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f']
       - id: command
         type: string
+        requirement_level:
+          conditionally_required: If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
         brief: >
           The command used to run the container (i.e. the command name).
         examples: [ 'otelcontribcol' ]
       - id: command_line
         type: string
+        requirement_level:
+          conditionally_required: [1]
         brief: >
           The full command run by the container as a single string representing the full command.
-          It is recommended to remove embedded credentials or sensitive data to prevent potential leakage.
         examples: [ 'otelcontribcol --config config.yaml' ]
       - id: command_args
         type: string[]
+        requirement_level:
+          conditionally_required: [1]
         brief: >
           All the command arguments (including the command/executable itself) run by the container.
-          It is recommended to remove embedded credentials or sensitive data to prevent potential leakage.
         examples: [ 'otelcontribcol, --config, config.yaml' ]
