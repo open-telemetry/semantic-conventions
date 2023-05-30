@@ -405,23 +405,19 @@ groups:
         brief: >
           The name of the data stream or index that is targeted.
         examples: [ 'users' ]
-      - ref: url.query
-        requirement_level:
-          conditionally_required: when query params are provided as part of the request
-        brief: >
-          The query params of the request, as a json string.
-        examples: [ '"{\"q\":\"test\"}", "{\"refresh\":true}"' ]
-      - ref: url.path
+      - ref: url.full
         requirement_level: required
-        brief: >
-          The path of the request, including the target and exact document id.
-        examples: [ '/test-index/_search', '/test-index/_doc/123' ]
+        examples: [ 'https://localhost:9200/index/_search?q=user.id:kimchy' ]
       - ref: db.statement
         requirement_level:
-          conditionally_required: when there is a request body
-        brief: The request body, as a json string.
+          conditionally_required: when a search-type query is executed
+        brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
         note: The value may be sanitized to exclude sensitive information.
         examples: [ '"{\"name\":\"TestUser\",\"password\":\"top_secret\"}"' ]
+      - ref: server.address
+        requirement_level: recommended
+      - ref: server.port
+        requirement_level: recommended
       - ref: http.request.method
         requirement_level: required
 
