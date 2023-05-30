@@ -11,6 +11,7 @@ release.
 
 ### Semantic Conventions
 
+- Add GCP Bare Metal Solution as a cloud platform.
 - Clarify the scope of the HTTP client span.
  ([#3290](https://github.com/open-telemetry/opentelemetry-specification/pull/3290))
 - Add moratorium on relying on schema transformations for telemetry stability
