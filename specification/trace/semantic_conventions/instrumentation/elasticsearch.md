@@ -23,7 +23,7 @@ When there is no target or document id, the span name contains the exact path, a
 |---|---|---|---|---|
 | `db.elasticsearch.doc_id` | string | The document that the request targets. | `123`; `456` | Conditionally Required: [1] |
 | `db.elasticsearch.target` | string | The name of the data stream or index that is targeted. | `users` | Conditionally Required: [2] |
-| [`db.statement`](../database.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [3] | `"{\"name\":\"TestUser\",\"password\":\"top_secret\"}"` | Conditionally Required: when a search-type query is executed |
+| [`db.statement`](../database.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [3] | `"{\"name\":\"TestUser\",\"password\":\"REDACTED\"}"` | Conditionally Required: when a search-type query is executed |
 | `http.request.method` | string | HTTP request method. | `GET`; `POST`; `HEAD` | Required |
 | [`server.address`](../span-general.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. | `example.com` | See below |
 | [`server.port`](../span-general.md) | int | Logical server port number | `80`; `8080`; `443` | Recommended |

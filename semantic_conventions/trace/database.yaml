@@ -413,7 +413,7 @@ groups:
           conditionally_required: when a search-type query is executed
         brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
         note: The value may be sanitized to exclude sensitive information.
-        examples: [ '"{\"name\":\"TestUser\",\"password\":\"top_secret\"}"' ]
+        examples: [ '"{\"name\":\"TestUser\",\"password\":\"REDACTED\"}"' ]
       - ref: server.address
         requirement_level: recommended
       - ref: server.port
