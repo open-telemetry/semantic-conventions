@@ -16,7 +16,7 @@ This section defines how to apply semantic conventions when instrumenting applic
 
 | Name              | Type   | Values             | Description                                |
 |-------------------|--------|--------------------|--------------------------------------------|
-| `event.name`      | String | `lifecycle`        | The name of the event.                     |
+| `event.name`      | String | `client.lifecycle` | The name of the event.                     |
 | `event.domain`    | String | `device`           | The domain of the event.                   | 
 | `lifecycle.state` | String | platform specific  | The state entered at the time of the event |
 
