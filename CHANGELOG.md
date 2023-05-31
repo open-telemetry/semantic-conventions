@@ -68,3 +68,5 @@ release.
   ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
 - Split out sections for proposed stable JVM metrics and experimental JVM metrics.
   ([#56](https://github.com/open-telemetry/semantic-conventions/pull/56))
+- Clarify `process.runtime.jvm.threads.count` refers to platform threads.
+  ([#54](https://github.com/open-telemetry/semantic-conventions/pull/54))

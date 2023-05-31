@@ -84,7 +84,7 @@ groups:
   - id: metric.process.runtime.jvm.threads.count
     type: metric
     metric_name: process.runtime.jvm.threads.count
-    brief: "Number of executing threads."
+    brief: "Number of executing platform threads."
     instrument: updowncounter
     unit: "{thread}"
     attributes:
