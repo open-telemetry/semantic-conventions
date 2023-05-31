@@ -68,3 +68,5 @@ release.
   ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
 - Add `process.runtime.jvm.available_processors` metric.
   ([#52](https://github.com/open-telemetry/semantic-conventions/pull/52))
+- Clarify `process.runtime.jvm.threads.count` refers to platform threads.
+  ([#54](https://github.com/open-telemetry/semantic-conventions/pull/54))
