@@ -14,18 +14,20 @@ This document defines semantic conventions for instrumentation on mobile platfor
 <!-- tocstop -->
 
 ## Lifecycle instrumentation
+
 This section defines how to apply semantic conventions when instrumenting application lifecycle.
 
 | Name              | Type   | Values             | Description                                |
 |-------------------|--------|--------------------|--------------------------------------------|
 | `event.name`      | String | `client.lifecycle` | The name of the event.                     |
-| `event.domain`    | String | `device`           | The domain of the event.                   | 
+| `event.domain`    | String | `device`           | The domain of the event.                   |
 | `lifecycle.state` | String | platform specific  | The state entered at the time of the event |
 
 ### `lifecycle.state` values
 
 #### iOS
-| Name                           | `lifecycle.state` Value | description                                | 
+
+| Name                           | `lifecycle.state` Value | description                                |
 |--------------------------------|-------------------------|--------------------------------------------|
 | applicationDidBecomeActive     | `active`                | The app has become "active"                |
 | applicationWillResignActive    | `inactive`              | The app is about to become "inactive".     |
@@ -35,7 +37,7 @@ This section defines how to apply semantic conventions when instrumenting applic
 
 #### Android
 
-| Name                 | `lifecycle.state` Value | description                                     | 
+| Name                 | `lifecycle.state` Value | description                                     |
 |----------------------|-------------------------|-------------------------------------------------|
 | App process onCreate | `created`               | The app's process has been launched.            |
 | App process onStart  | `started`               | The app is about to be shown in the foreground. |
