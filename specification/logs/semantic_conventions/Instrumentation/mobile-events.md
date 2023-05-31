@@ -6,9 +6,11 @@ This document defines semantic conventions for instrumentation on mobile platfor
 
 <!-- toc -->
 
-- [Lifecycle Instrumentation](#lifecycle-instrumentation)
-  * [Lifecycle.state values](#lifecycle.state_values)
-    
+- [Lifecycle instrumentation](#lifecycle-instrumentation)
+  * [`lifecycle.state` values](#lifecyclestate-values)
+    + [iOS](#ios)
+    + [Android](#android)
+
 <!-- tocstop -->
 
 ## Lifecycle instrumentation
