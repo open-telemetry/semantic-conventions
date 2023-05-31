@@ -68,3 +68,5 @@ release.
   ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
 - Rename `process.runtime.jvm.cpu.utilization` to `process.runtime.jvm.cpu.recent_utilization`.
   ([#53](https://github.com/open-telemetry/semantic-conventions/pull/53))
+- Clarify `process.runtime.jvm.threads.count` refers to platform threads.
+  ([#54](https://github.com/open-telemetry/semantic-conventions/pull/54))

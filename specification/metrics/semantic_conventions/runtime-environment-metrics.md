@@ -242,11 +242,12 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ThreadMXBean#getDaemonThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getDaemonThreadCount--) and
 [`ThreadMXBean#getThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--).
+Note that this is the number of platform threads (as opposed to virtual threads).
 
 <!-- semconv metric.process.runtime.jvm.threads.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.threads.count` | UpDownCounter | `{thread}` | Number of executing threads. |
+| `process.runtime.jvm.threads.count` | UpDownCounter | `{thread}` | Number of executing platform threads. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.threads.count(full) -->
