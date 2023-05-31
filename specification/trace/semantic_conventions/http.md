@@ -61,9 +61,6 @@ HTTP server span names SHOULD be `{http.request.method}` if there is no (low-car
 HTTP client spans have no `http.route` attribute since client-side instrumentation
 is not generally aware of the "route", and therefore HTTP client spans SHOULD use
 `{http.request.method}`.
-
-If HTTP method used is not known to the instrumentation, it MAY use `other` instead of an unknown method captured in `http.request.method` attribute.
-
 Instrumentation MUST NOT default to using URI
 path as span name, but MAY provide hooks to allow custom logic to override the
 default span name.
@@ -95,42 +92,20 @@ sections below.
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `http.request.method` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
+| `http.request.method` | string | HTTP request method. | `GET`; `POST`; `HEAD` | Required |
 | [`network.protocol.name`](span-general.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
-| [`network.protocol.version`](span-general.md) | string | Version of the application layer protocol used. See note below. [2] | `1.0`; `1.1`; `2.0` | Recommended |
-| [`network.transport`](span-general.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [3] |
+| [`network.protocol.version`](span-general.md) | string | Version of the application layer protocol used. See note below. [1] | `1.0`; `1.1`; `2.0` | Recommended |
+| [`network.transport`](span-general.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [2] |
 | [`network.type`](span-general.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
-**[1]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
-[HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
+**[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-If the HTTP request method is not known to the instrumentation, metrics instrumentations MAY set `other` as the attribute value.
-
-**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[3]:** If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
+**[2]:** If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
 * `http.request.method`
-
-`http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `CONNECT` | CONNECT method. |
-| `DELETE` | DELETE method. |
-| `GET` | GET method. |
-| `HEAD` | HEAD method. |
-| `OPTIONS` | OPTIONS method. |
-| `PATCH` | PATCH method. |
-| `POST` | POST method. |
-| `PUT` | PUT method. |
-| `TRACE` | TRACE method. |
-| `other` | Any custom HTTP method that the instrumentation has no prior knowledge of. |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

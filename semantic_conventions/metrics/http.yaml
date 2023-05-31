@@ -7,8 +7,14 @@ groups:
     unit: "s"
     extends: attributes.http.server
     attributes:
-      # todo (lmolkova) build tools don't populate grandparent attributes
       - ref: http.request.method
+        note: |
+          The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+          However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+
+          Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+      # todo (lmolkova) build tools don't populate grandparent attributes
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
@@ -21,6 +27,12 @@ groups:
     unit: "{request}"
     attributes:
       - ref: http.request.method
+        note: |
+          The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+          However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+
+          Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]
@@ -61,8 +73,14 @@ groups:
     extends: attributes.http.server
     # TODO (trask) below attributes are identical to above in metric.http.server.duration
     attributes:
-      # todo (lmolkova) build tools don't populate grandparent attributes
       - ref: http.request.method
+        note: |
+          The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+          However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+
+          Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+      # todo (lmolkova) build tools don't populate grandparent attributes      
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
@@ -77,6 +95,12 @@ groups:
     # TODO (trask) below attributes are identical to above in metric.http.server.duration
     attributes:
       - ref: http.request.method
+        note: |
+          The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+          However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+
+          Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
@@ -90,6 +114,12 @@ groups:
     extends: attributes.http.client
     attributes:
       - ref: http.request.method
+        note: |
+          The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+          However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+
+          Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
@@ -104,6 +134,12 @@ groups:
     # TODO (trask) below attributes are identical to above in metric.http.client.duration
     attributes:
       - ref: http.request.method
+        note: |
+          The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+          However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+
+          Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
@@ -119,6 +155,12 @@ groups:
     # TODO (trask) below attributes are identical to above in metric.http.client.duration
     attributes:
       - ref: http.request.method
+        note: |
+          The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
+          However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+
+          Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
