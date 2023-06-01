@@ -154,7 +154,12 @@ This span type represents an outbound HTTP request. There are two ways this can 
 For an HTTP client span, `SpanKind` MUST be `Client`.
 
 > **Note**
-> It is nice for HTTP client spans to represent the complete lifetime of the HTTP request. An HTTP request ends once the response body has been fully read or the response closes with an error. However, if there is any possibility for application code to not fully read the HTTP response (and for the HTTP client library to then have to clean up the HTTP response asynchronously), the HTTP client span SHOULD be ended earlier (e.g. after the HTTP response headers are read). This avoids having to end the span asynchronously later on at a time which is no longer directly associated with the application code which made the HTTP request.
+> It is nice for HTTP client spans to represent the complete lifetime of the HTTP request.
+> An HTTP request ends once the response body has been fully read or the response closes with an error.
+> However, if there is any possibility for application code to not fully read the HTTP response
+> (and for the HTTP client library to then have to clean up the HTTP response asynchronously),
+> the HTTP client span SHOULD be ended earlier (e.g. after the HTTP response headers are read, or fail to be read).
+> This avoids having to end the span asynchronously later on at a time which is no longer directly associated with the application code which made the HTTP request.
 >
 > Because of the potential for confusion around this, HTTP client library instrumentations SHOULD document their behavior around ending HTTP client spans.
 
