@@ -68,3 +68,5 @@ release.
   ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
 - Clarify `process.runtime.jvm.threads.count` refers to platform threads.
   ([#54](https://github.com/open-telemetry/semantic-conventions/pull/54))
+- Clarify when HTTP client spans should end.
+  ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
