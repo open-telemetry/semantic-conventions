@@ -194,9 +194,11 @@ Following attributes MUST be provided **at span creation time** (when provided a
 
 Note that in some cases host and port identifiers in the `Host` header might be different from the `server.address` and `server.port`, in this case instrumentation MAY populate `Host` header on `http.request.header.host` attribute even if it's not enabled by user.
 
-### Ending HTTP client spans
+### HTTP client span duration
 
-The HTTP client span SHOULD end when the response body has been fully read or the response closes with an error.
+HTTP client spans SHOULD start sometime before the first request byte is sent. This may or may not include connection time.
+
+HTTP client spans SHOULD end when the response body has been fully read or the response closes with an error.
 
 However, if there is any possibility for application code to not fully read the HTTP response
 (and for the HTTP client library to then have to clean up the HTTP response asynchronously),
