@@ -68,5 +68,7 @@ release.
   ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
 - Clarify `process.runtime.jvm.threads.count` refers to platform threads.
   ([#54](https://github.com/open-telemetry/semantic-conventions/pull/54))
+- Add `gcp.gce.instance.name` and `gcp.gce.instance.hostname` resource
+  attributes for GCP Compute Engine VMs. ([#15](https://github.com/open-telemetry/semantic-conventions/pull/15))
 - Clarify when HTTP client spans should end.
   ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
