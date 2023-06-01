@@ -202,8 +202,8 @@ HTTP client spans SHOULD end be sometime after the HTTP response headers are rea
 
 If there is any possibility for application code to not fully read the HTTP response
 (and for the HTTP client library to then have to clean up the HTTP response asynchronously),
-the HTTP client span SHOULD be ended earlier
-(e.g. after the HTTP response headers are read, or fail to be read).
+the HTTP client span SHOULD NOT be ended in this cleanup phase
+(and instead should end after the HTTP response headers are read, or fail to be read).
 This avoids the span being ended asynchronously later on at a time
 which is no longer directly associated with the application code which made the HTTP request.
 
