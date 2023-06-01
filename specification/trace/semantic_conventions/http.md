@@ -198,25 +198,16 @@ Note that in some cases host and port identifiers in the `Host` header might be 
 
 HTTP client spans SHOULD start sometime before the first request byte is sent. This may or may not include connection time.
 
-HTTP client spans SHOULD end when the response body has been fully read or the response closes with an error.
+HTTP client spans SHOULD end be sometime after the HTTP response headers are read (or when they fail to be read).
 
-However, if there is any possibility for application code to not fully read the HTTP response
+If there is any possibility for application code to not fully read the HTTP response
 (and for the HTTP client library to then have to clean up the HTTP response asynchronously),
-the HTTP client span MUST be ended earlier (e.g. after the HTTP response headers are read, or fail to be read).
-
-This avoids having to end the span asynchronously later on at a time which is no longer directly associated with the application code which made the HTTP request.
+the HTTP client span SHOULD be ended earlier
+(e.g. after the HTTP response headers are read, or fail to be read).
+This avoids the span being ended asynchronously later on at a time
+which is no longer directly associated with the application code which made the HTTP request.
 
 Because of the potential for confusion around this, HTTP client library instrumentations SHOULD document their behavior around ending HTTP client spans.
-
-> **Note**
-> It is nice for HTTP client spans to represent the complete lifetime of the HTTP request.
-> An HTTP request ends once the response body has been fully read or the response closes with an error.
-> However, if there is any possibility for application code to not fully read the HTTP response
-> (and for the HTTP client library to then have to clean up the HTTP response asynchronously),
-> the HTTP client span SHOULD be ended earlier (e.g. after the HTTP response headers are read, or fail to be read).
-> This avoids having to end the span asynchronously later on at a time which is no longer directly associated with the application code which made the HTTP request.
->
-> Because of the potential for confusion around this, HTTP client library instrumentations SHOULD document their behavior around ending HTTP client spans.
 
 ### HTTP request retries and redirects
 
