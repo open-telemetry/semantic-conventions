@@ -87,7 +87,8 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
 However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
 
-Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -133,7 +134,8 @@ This metric is optional.
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
 However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
 
-Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
 
 **[2]:** Determined by using the first of the following that applies
 
@@ -184,7 +186,8 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
 However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
 
-Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -237,7 +240,8 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
 However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
 
-Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -294,7 +298,8 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
 However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
 
-Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -336,7 +341,8 @@ This metric is optional.
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
 However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
 
-Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -378,7 +384,8 @@ This metric is optional.
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
 However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
 
-Applications MAY use Hint API (once available) to specify a list of known HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
+Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
