@@ -197,9 +197,10 @@ Note that in some cases host and port identifiers in the `Host` header might be 
 
 ### HTTP client span duration
 
-HTTP client spans SHOULD start sometime before the first request byte is sent. This may or may not include connection time.
+There are some minimal constraints that SHOULD be honored:
 
-HTTP client spans SHOULD end be sometime after the HTTP response headers are fully read (or when they fail to be read).
+* HTTP client spans SHOULD start sometime before the first request byte is sent. This may or may not include connection time.
+* HTTP client spans SHOULD end be sometime after the HTTP response headers are fully read (or when they fail to be read). This may or may not include reading the response body.
 
 If there is any possibility for application code to not fully read the HTTP response
 (and for the HTTP client library to then have to clean up the HTTP response asynchronously),
