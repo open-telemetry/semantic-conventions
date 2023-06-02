@@ -96,6 +96,8 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
 - Mark initial set of HTTP semantic conventions as frozen
   ([#105](https://github.com/open-telemetry/semantic-conventions/pull/105))
+- Add Elasticsearch client semantic conventions.
+  ([#23](https://github.com/open-telemetry/semantic-conventions/pull/23))
 
 ## v1.20.0 (2023-04-07)
 
