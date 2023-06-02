@@ -70,3 +70,5 @@ release.
   ([#54](https://github.com/open-telemetry/semantic-conventions/pull/54))
 - Add `gcp.gce.instance.name` and `gcp.gce.instance.hostname` resource
   attributes for GCP Compute Engine VMs. ([#15](https://github.com/open-telemetry/semantic-conventions/pull/15))
+- Add note that HTTP duration metrics should match HTTP span duration.
+  ([#69](https://github.com/open-telemetry/semantic-conventions/pull/69))
