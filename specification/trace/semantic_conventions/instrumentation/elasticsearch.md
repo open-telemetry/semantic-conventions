@@ -2,9 +2,7 @@
 
 **Status**: [Experimental](../../../document-status.md)
 
-This document defines semantic conventions to apply when instrumenting requests to Elasticsearch. They map Elasticsearch
-requests to attributes on a Span. Note that there may also be an http span created in addition to the Elasticsearch
-span.
+This document defines semantic conventions to apply when creating a span to capture requests to Elasticsearch.
 
 ## Span Name
 
