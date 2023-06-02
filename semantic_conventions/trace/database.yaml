@@ -414,6 +414,10 @@ groups:
         brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
         note: The value may be sanitized to exclude sensitive information.
         examples: [ '"{\"name\":\"TestUser\",\"password\":\"REDACTED\"}"' ]
+      - ref: db.operation
+        requirement_level: required
+        brief: The endpoint identifier for the request.
+        examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
       - ref: server.address
       - ref: server.port
       - ref: http.request.method
