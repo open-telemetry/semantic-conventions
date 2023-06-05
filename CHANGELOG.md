@@ -11,6 +11,8 @@ release.
 
 ### Semantic Conventions
 
+- Add GCP Bare Metal Solution as a cloud platform
+ ([#64](https://github.com/open-telemetry/semantic-conventions/pull/64))
 - Clarify the scope of the HTTP client span.
  ([#3290](https://github.com/open-telemetry/opentelemetry-specification/pull/3290))
 - Add moratorium on relying on schema transformations for telemetry stability
@@ -70,5 +72,7 @@ release.
   ([#54](https://github.com/open-telemetry/semantic-conventions/pull/54))
 - Add `gcp.gce.instance.name` and `gcp.gce.instance.hostname` resource
   attributes for GCP Compute Engine VMs. ([#15](https://github.com/open-telemetry/semantic-conventions/pull/15))
+- Add note that HTTP duration metrics should match HTTP span duration.
+  ([#69](https://github.com/open-telemetry/semantic-conventions/pull/69))
 - Clarify when HTTP client spans should end.
   ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
