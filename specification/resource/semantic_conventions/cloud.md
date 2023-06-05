@@ -72,6 +72,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `azure_functions` | Azure Functions |
 | `azure_app_service` | Azure App Service |
 | `azure_openshift` | Azure Red Hat OpenShift |
+| `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) |
 | `gcp_compute_engine` | Google Cloud Compute Engine (GCE) |
 | `gcp_cloud_run` | Google Cloud Run |
 | `gcp_kubernetes_engine` | Google Cloud Kubernetes Engine (GKE) |
