@@ -205,7 +205,7 @@ There are some minimal constraints that SHOULD be honored:
 If there is any possibility for application code to not fully read the HTTP response
 (and for the HTTP client library to then have to clean up the HTTP response asynchronously),
 the HTTP client span SHOULD NOT be ended in this cleanup phase,
-and instead SHOULD end at some point after the HTTP response headers are fully read, or fail to be read.
+and instead SHOULD end at some point after the HTTP response headers are fully read (or fail to be read).
 This avoids the span being ended asynchronously later on at a time
 which is no longer directly associated with the application code which made the HTTP request.
 
