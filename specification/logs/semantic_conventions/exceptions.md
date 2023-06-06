@@ -1,10 +1,10 @@
 # Semantic Conventions for Exceptions
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for recording exceptions on
-[logs](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/bridge-api.md#emit-a-logrecord) and [events](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md#emit-event)
-emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/bridge-api.md#logger).
+[logs](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/bridge-api.md#emit-a-logrecord) and [events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/event-api.md#emit-event)
+emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/bridge-api.md#logger).
 
 <!-- toc -->
 
@@ -17,7 +17,7 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 ## Recording an Exception
 
 Exceptions SHOULD be recorded as attributes on the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/bridge-api.md#logger) emit
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/bridge-api.md#logger) emit
 operations. Exceptions MAY be recorded on "logs" or "events" depending on the
 context.
 
@@ -29,7 +29,7 @@ the language runtime.
 ## Attributes
 
 The table below indicates which attributes should be added to the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#log-and-event-record-definition) and their types.
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
 
 <!-- semconv log-exception -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -48,3 +48,5 @@ The table below indicates which attributes should be added to the
 
 Same as [Trace Semantic Conventions for Exceptions - Stacktrace
 Representation](../../trace/semantic_conventions/exceptions.md#stacktrace-representation).
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

@@ -1,6 +1,6 @@
 # Deployment
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `deployment`
 
@@ -11,3 +11,5 @@
 |---|---|---|---|---|
 | `deployment.environment` | string | Name of the [deployment environment](https://en.wikipedia.org/wiki/Deployment_environment) (aka deployment tier). | `staging`; `production` | Recommended |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

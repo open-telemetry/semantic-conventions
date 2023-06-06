@@ -5,6 +5,8 @@ Welcome to the new repository!
 This is currently a direct copy/filter-branch of the Specification repository
 with only semantic conventions included.
 
+This repository is currently using [this specification version][SpecificationVersion].
+
 ## Read the docs
 
 The documentation currently resides in the previous folders, e.g.
@@ -38,10 +40,12 @@ Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/ope
 
 *Find more about the approver role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#approver).*
 
-Maintainers (subset of [@open-telemetry/technical-committee](https://github.com/orgs/open-telemetry/teams/technical-committee)):
+Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)):
 
 - [Josh Suereth](https://github.com/jsuereth)
 - [Armin Ruech](https://github.com/arminru)
 - [Reiley Yang](https://github.com/reyang)
 
 *Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer).*
+
+[SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0

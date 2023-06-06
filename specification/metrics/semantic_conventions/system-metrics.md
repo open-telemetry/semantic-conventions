@@ -4,7 +4,7 @@ linkTitle: System
 
 # Semantic Conventions for System Metrics
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document describes instruments and attributes for common system level
 metrics in OpenTelemetry. Consider the [general metric semantic
@@ -187,3 +187,5 @@ code](https://github.com/torvalds/linux/blob/e4cbce4d131753eca271d9d67f58c6377f2
 An instrument for load average over 1 minute on Linux could be named
 `system.linux.cpu.load_1m`, reusing the `cpu` name proposed above and having
 an `{os}` prefix to split this metric across OSes.
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

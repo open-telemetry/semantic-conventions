@@ -1,6 +1,6 @@
 # Semantic conventions for FaaS spans
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines how to describe an instance of a function that runs without provisioning
 or managing of servers (also known as serverless functions or Function as a Service (FaaS)) with spans.
@@ -255,3 +255,5 @@ This example shows the FaaS attributes for a (non-FaaS) process hosted on Google
 | Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"` |
 | Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"` |
 | Resource       | `cloud.resource_id`     | n/a                    | `"arn:aws:lambda:us-west-2:123456789012:function:my-lambda-function"` |
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

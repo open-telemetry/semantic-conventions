@@ -13,6 +13,14 @@
 #
 
 # Global owners, will be the owners for everything in the repo. Membership is tracked via https://github.com/open-telemetry/community/blob/main/community-members.md 
-*   @open-telemetry/technical-committee @open-telemetry/specs-semconv-approvers
+*   @open-telemetry/specs-semconv-maintainers @open-telemetry/specs-semconv-approvers
+
+# Schemas and schema file tooling
+/schemas/ @tigrannajaryan
+/internal/tools/schema_check.sh @tigrannajaryan
+
+# Logs semantic conventions
+/semantic_conventions/logs/ @tigrannajaryan
+/specification/logs/ @tigrannajaryan
 
 # TODO - Add semconv area experts

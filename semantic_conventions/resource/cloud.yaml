@@ -140,6 +140,9 @@ groups:
             - id: azure_openshift
               value: 'azure_openshift'
               brief: Azure Red Hat OpenShift
+            - id: gcp_bare_metal_solution
+              value: 'gcp_bare_metal_solution'
+              brief: Google Bare Metal Solution (BMS)
             - id: gcp_compute_engine
               value: 'gcp_compute_engine'
               brief: Google Cloud Compute Engine (GCE)

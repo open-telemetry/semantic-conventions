@@ -1,6 +1,6 @@
 # Operating System
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `os`
 
@@ -32,3 +32,5 @@ In case of virtualized environments, this is the operating system as it is obser
 | `solaris` | SunOS, Oracle Solaris |
 | `z_os` | IBM z/OS |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
