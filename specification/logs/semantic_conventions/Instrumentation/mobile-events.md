@@ -15,7 +15,7 @@ This document defines semantic conventions for instrumentation on mobile platfor
 
 ## Lifecycle instrumentation
 
-This section defines how to apply semantic conventions when instrumenting application lifecycle. 
+This section defines how to apply semantic conventions when instrumenting application lifecycle.
 This event is meant to be used in conjunction with `os.name` [resource semantic convention](https://github.com/open-telemetry/semantic-conventions/blob/main/specification/resource/semantic_conventions/os.md) to identify platform.
 
 **Event name**: `client.lifecycle`
@@ -32,8 +32,8 @@ The following attributes are stored in the `event.data` map.
 
 #### iOS
 
-The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902), 
-and from which the `OS terminology` column values are derived. 
+The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
+and from which the `OS terminology` column values are derived.
 
 | Name         | OS terminology                 | description                               |
 |--------------|--------------------------------|-------------------------------------------|
