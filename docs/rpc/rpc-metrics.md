@@ -18,7 +18,17 @@ metrics can be filtered for finer grain analysis.
 
 - [Metric instruments](#metric-instruments)
   * [RPC Server](#rpc-server)
+    + [Metric: `rpc.server.duration`](#metric-rpcserverduration)
+    + [Metric: `rpc.server.request.size`](#metric-rpcserverrequestsize)
+    + [Metric: `rpc.server.response.size`](#metric-rpcserverresponsesize)
+    + [Metric: `rpc.server.requests_per_rpc`](#metric-rpcserverrequests_per_rpc)
+    + [Metric: `rpc.server.responses_per_rpc`](#metric-rpcserverresponses_per_rpc)
   * [RPC Client](#rpc-client)
+    + [Metric: `rpc.client.duration`](#metric-rpcclientduration)
+    + [Metric: `rpc.client.request.size`](#metric-rpcclientrequestsize)
+    + [Metric: `rpc.client.response.size`](#metric-rpcclientresponsesize)
+    + [Metric: `rpc.client.requests_per_rpc`](#metric-rpcclientrequests_per_rpc)
+    + [Metric: `rpc.client.responses_per_rpc`](#metric-rpcclientresponses_per_rpc)
 - [Attributes](#attributes)
   * [Service name](#service-name)
 - [Semantic Conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
@@ -59,28 +69,113 @@ MUST be of the specified type and units.
 
 ### RPC Server
 
-Below is a table of RPC server metric instruments.
+Below is a list of RPC server metric instruments.
 
-| Name | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description | Status | Streaming |
-|------|------------|------|-------------------------------------------|-------------|--------|-----------|
-| `rpc.server.duration` | Histogram  | milliseconds | `ms` | measures duration of inbound RPC | Recommended | N/A.  While streaming RPCs may record this metric as start-of-batch to end-of-batch, it's hard to interpret in practice. |
-| `rpc.server.request.size` | Histogram  | Bytes | `By` | measures size of RPC request messages (uncompressed) | Optional | Recorded per message in a streaming batch |
-| `rpc.server.response.size` | Histogram  | Bytes | `By` | measures size of RPC response messages (uncompressed) | Optional | Recorded per response in a streaming batch |
-| `rpc.server.requests_per_rpc` | Histogram  | count | `{count}` | measures the number of messages received per RPC.  Should be 1 for all non-streaming RPCs | Optional | Required |
-| `rpc.server.responses_per_rpc` | Histogram  | count | `{count}` | measures the number of messages sent per RPC.  Should be 1 for all non-streaming RPCs | Optional | Required |
+#### Metric: `rpc.server.duration`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. **Streaming**: N/A. |
+<!-- endsemconv -->
+
+#### Metric: `rpc.server.request.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.request.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). **Streaming**: Recorded per message in a streaming batch |
+<!-- endsemconv -->
+
+#### Metric: `rpc.server.response.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.response.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). **Streaming**: Recorded per response in a streaming batch |
+<!-- endsemconv -->
+
+#### Metric: `rpc.server.requests_per_rpc`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.requests_per_rpc(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+<!-- endsemconv -->
+
+#### Metric: `rpc.server.responses_per_rpc`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.responses_per_rpc(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+<!-- endsemconv -->
 
 ### RPC Client
 
-Below is a table of RPC client metric instruments.  These apply to traditional
-RPC usage, not streaming RPCs.
+Below is a list of RPC client metric instruments.
+These apply to traditional RPC usage, not streaming RPCs.
 
-| Name | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description | Status | Streaming |
-|------|------------|------|-------------------------------------------|-------------|--------|-----------|
-| `rpc.client.duration` | Histogram | milliseconds | `ms` | measures duration of outbound RPC | Recommended | N/A.  While streaming RPCs may record this metric as start-of-batch to end-of-batch, it's hard to interpret in practice. |
-| `rpc.client.request.size` | Histogram | Bytes | `By` | measures size of RPC request messages (uncompressed) | Optional | Recorded per message in a streaming batch |
-| `rpc.client.response.size` | Histogram | Bytes | `By` | measures size of RPC response messages (uncompressed) | Optional | Recorded per message in a streaming batch |
-| `rpc.client.requests_per_rpc` | Histogram | count | `{count}` | measures the number of messages received per RPC.  Should be 1 for all non-streaming RPCs | Optional | Required |
-| `rpc.client.responses_per_rpc` | Histogram | count | `{count}` | measures the number of messages sent per RPC.  Should be 1 for all non-streaming RPCs | Optional | Required |
+#### Metric: `rpc.client.duration`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC
+**Streaming**: N/A. |
+<!-- endsemconv -->
+
+#### Metric: `rpc.client.request.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.request.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). **Streaming**: Recorded per message in a streaming batch |
+<!-- endsemconv -->
+
+#### Metric: `rpc.client.response.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.response.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). **Streaming**: Recorded per response in a streaming batch |
+<!-- endsemconv -->
+
+#### Metric: `rpc.client.requests_per_rpc`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.requests_per_rpc(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+<!-- endsemconv -->
+
+#### Metric: `rpc.client.responses_per_rpc`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.responses_per_rpc(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+<!-- endsemconv -->
 
 ## Attributes
 
@@ -131,8 +226,6 @@ To avoid high cardinality, implementations should prefer the most stable of `ser
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).
 For server-side spans `server.port` is optional (it describes the port the client is connecting from).
 
-[network.transport]: /docs/general/general-attributes.md#network-attributes
-
 ### Service name
 
 On the server process receiving and handling the remote procedure call, the service name provided in `rpc.service` does not necessarily have to match the [`service.name`][] resource attribute.
@@ -149,3 +242,4 @@ More specific Semantic Conventions are defined for the following RPC technologie
 * [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
