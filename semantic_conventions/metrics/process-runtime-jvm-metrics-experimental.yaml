@@ -29,7 +29,7 @@ groups:
       (unlike `system.cpu.utilization`).
       [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/java.management/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()).
     instrument: gauge
-    unit: "1"
+    unit: "{run_queue_item}"
 
   - id: attributes.process.runtime.jvm.buffer
     type: attribute_group
