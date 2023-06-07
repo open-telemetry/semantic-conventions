@@ -24,7 +24,7 @@ groups:
         examples: ['proxy.example.com']
         note: Typically observed from the client side, and represents a proxy or other intermediary domain name.
         requirement_level:
-          recommended: If different from `server.address`.
+          recommended: If different than `server.address`.
       - id: socket.address
         type: string
         brief: Physical server IP address or Unix socket address.
