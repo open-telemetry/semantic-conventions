@@ -8,7 +8,7 @@ groups:
     extends: attributes.http.server
     attributes:
       # todo (lmolkova) build tools don't populate grandparent attributes
-      - ref: http.request.method      
+      - ref: http.request.method
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
@@ -61,7 +61,7 @@ groups:
     extends: attributes.http.server
     # TODO (trask) below attributes are identical to above in metric.http.server.duration
     attributes:
-      # todo (lmolkova) build tools don't populate grandparent attributes      
+      # todo (lmolkova) build tools don't populate grandparent attributes
       - ref: http.request.method
       - ref: http.response.status_code
       - ref: network.protocol.name
