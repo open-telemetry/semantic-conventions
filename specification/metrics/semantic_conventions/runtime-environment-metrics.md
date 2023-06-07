@@ -301,7 +301,8 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 ### Metric: `process.runtime.jvm.cpu.utilization`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()) on HotSpot.
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()) on HotSpot
+and `com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuLoad()` on J9.
 
 <!-- semconv metric.process.runtime.jvm.cpu.utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -315,8 +316,8 @@ This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProce
 ### Metric: `process.runtime.jvm.system.cpu.utilization`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad()) on Java version 8..13, [`com.sun.management.OperatingSystemMXBean#getCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()) on Java version 14+.
-
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad()) on Java version 8..13, [`com.sun.management.OperatingSystemMXBean#getCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()) on Java version 14+,
+and `com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()` on J9.
 <!-- semconv metric.process.runtime.jvm.system.cpu.utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
