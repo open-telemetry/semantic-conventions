@@ -84,11 +84,14 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 SHOULD include the [application root](/specification/trace/semantic_conventions/http.md#http-server-definitions) if there is one.
 
 **[2]:** The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
-However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
-Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
+Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
+Applications MAY use TODO advice API to override instrumentation defaults.
+
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate the canonical name.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -131,11 +134,14 @@ This metric is optional.
 | `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
-However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
-Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
+Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
+Applications MAY use TODO advice API to override instrumentation defaults.
+
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate the canonical name.
 
 **[2]:** Determined by using the first of the following that applies
 
@@ -183,11 +189,14 @@ This metric is optional.
 SHOULD include the [application root](/specification/trace/semantic_conventions/http.md#http-server-definitions) if there is one.
 
 **[2]:** The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
-However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
-Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
+Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
+Applications MAY use TODO advice API to override instrumentation defaults.
+
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate the canonical name.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -237,11 +246,14 @@ This metric is optional.
 SHOULD include the [application root](/specification/trace/semantic_conventions/http.md#http-server-definitions) if there is one.
 
 **[2]:** The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
-However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
-Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
+Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
+Applications MAY use TODO advice API to override instrumentation defaults.
+
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate the canonical name.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -295,11 +307,14 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 | [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
-However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
-Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
+Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
+Applications MAY use TODO advice API to override instrumentation defaults.
+
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate the canonical name.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -338,11 +353,14 @@ This metric is optional.
 | [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
-However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
-Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
+Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
+Applications MAY use TODO advice API to override instrumentation defaults.
+
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate the canonical name.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -381,11 +399,14 @@ This metric is optional.
 | [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html), or a custom one, which could be registered with [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml).
-However, HTTP clients may send arbitrary method string resulting in a high cardinality of this attribute.
+or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-Instrumentation libraries SHOULD use TODO Hint API (once available) and specify a default list of standard HTTP request methods to be prioritized when capping dimensions if cardinality limit is reached.
-Applications MAY use TODO Hint API (once available) to override instrumentation defaults.
+Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
+Applications MAY use TODO advice API to override instrumentation defaults.
+
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate the canonical name.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
