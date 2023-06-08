@@ -13,10 +13,13 @@ groups:
           The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
           or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-          Instrumentations SHOULD call into TODO advice API (when available) and specify a list of known HTTP request methods.
-          For general-purpose HTTP instrumentations this list SHOULD include common request methods:
+          Instrumentations are RECOMMENDED to provide a list of known HTTP request methods via
+          [Instrument advice](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#instrument-advice) (when available) 
+          to avoid the [cardinality explosion](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/supplementary-guidelines.md#aggregation-temporality)
+          
+          For general-purpose HTTP instrumentations the list SHOULD include common request methods:
           `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
-          Applications MAY use TODO View API to override instrumentation defaults.
+          Applications MAY override instrumentation defaults using [view](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#view) TODO property.
 
           Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate canonical names.
       - id: response.status_code
