@@ -27,7 +27,7 @@ groups:
           recommended: If different than `server.address`.
       - id: socket.address
         type: string
-        brief: Physical server IP address or Unix socket address.
+        brief: Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server).
         examples: ['10.5.3.2']
         requirement_level:
           recommended: If different than `server.address`.
