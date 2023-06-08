@@ -102,12 +102,12 @@ sections below.
 **[1]:** The HTTP request method usually contains one of a standard methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
-and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list SHOULD include common request methods:
+Instrumentations SHOULD call into TODO advice API (when available) and specify a list of known HTTP request methods.
+For general-purpose HTTP instrumentations this list SHOULD include common request methods:
 `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
-Applications MAY use TODO advice API to override instrumentation defaults.
+Applications MAY use TODO View API to override instrumentation defaults.
 
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate the canonical name.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, MAY uppercase HTTP method and populate canonical names.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
