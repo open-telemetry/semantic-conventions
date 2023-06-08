@@ -87,7 +87,7 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
-and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list SHOULD include common request methods:
 `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
 Applications MAY use TODO advice API to override instrumentation defaults.
 
@@ -137,7 +137,7 @@ This metric is optional.
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
-and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list SHOULD include common request methods:
 `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
 Applications MAY use TODO advice API to override instrumentation defaults.
 
@@ -192,7 +192,7 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
-and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list SHOULD include common request methods:
 `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
 Applications MAY use TODO advice API to override instrumentation defaults.
 
@@ -249,7 +249,7 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
-and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list SHOULD include common request methods:
 `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
 Applications MAY use TODO advice API to override instrumentation defaults.
 
@@ -310,7 +310,7 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
-and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list SHOULD include common request methods:
 `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
 Applications MAY use TODO advice API to override instrumentation defaults.
 
@@ -356,7 +356,7 @@ This metric is optional.
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
-and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list SHOULD include common request methods:
 `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
 Applications MAY use TODO advice API to override instrumentation defaults.
 
@@ -402,7 +402,7 @@ This metric is optional.
 or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 Instrumentations SHOULD call into TODO advice API (when available) before recording any telemetry
-and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list MUST include common request methods:
+and specify a list of known HTTP request methods. For general-purpose HTTP instrumentations this list SHOULD include common request methods:
 `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
 Applications MAY use TODO advice API to override instrumentation defaults.
 
