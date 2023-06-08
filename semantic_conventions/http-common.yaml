@@ -14,9 +14,9 @@ groups:
           or [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
           Instrumentations are RECOMMENDED to provide a list of known HTTP request methods via
-          [Instrument advice](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#instrument-advice) (when available) 
+          [Instrument advice](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#instrument-advice) (when available)
           to avoid the [cardinality explosion](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/supplementary-guidelines.md#aggregation-temporality)
-          
+
           For general-purpose HTTP instrumentations the list SHOULD include common request methods:
           `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`.
           Applications MAY override instrumentation defaults using [view](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#view) TODO property.
