@@ -76,3 +76,5 @@ release.
   attributes for GCP Compute Engine VMs. ([#15](https://github.com/open-telemetry/semantic-conventions/pull/15))
 - Add note that HTTP duration metrics should match HTTP span duration.
   ([#69](https://github.com/open-telemetry/semantic-conventions/pull/69))
+- Clarify when HTTP client spans should end.
+  ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
