@@ -35,7 +35,9 @@ groups:
       - id: image.id
         type: string
         brief: >
-          The ID of the container image. Usually a hash algorithm followed by a UUID. The UUID might be abbreviated.
+          Runtime specific image identifier. Usually a hash algorithm followed by a UUID.
+        note:
+          On docker, `image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
         examples: ['sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f']
       - id: command
         type: string
@@ -47,14 +49,14 @@ groups:
       - id: command_line
         type: string
         requirement_level:
-          conditionally_required: [1]
+          conditionally_required: [2]
         brief: >
           The full command run by the container as a single string representing the full command.
         examples: [ 'otelcontribcol --config config.yaml' ]
       - id: command_args
         type: string[]
         requirement_level:
-          conditionally_required: [1]
+          conditionally_required: [2]
         brief: >
           All the command arguments (including the command/executable itself) run by the container.
         examples: [ 'otelcontribcol, --config, config.yaml' ]
