@@ -74,3 +74,6 @@ release.
   attributes for GCP Compute Engine VMs. ([#15](https://github.com/open-telemetry/semantic-conventions/pull/15))
 - Add note that HTTP duration metrics should match HTTP span duration.
   ([#69](https://github.com/open-telemetry/semantic-conventions/pull/69))
+- BREAKING: Remove `messaging.source.*` attributes and use `messaging.destination.*`
+  attributes on producer and consumer to describe messaging queue or topic.
+  ([#100](https://github.com/open-telemetry/semantic-conventions/pull/100))
