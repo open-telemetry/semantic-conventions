@@ -29,7 +29,7 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `process.runtime.jvm.classes.loaded`](#metric-processruntimejvmclassesloaded)
   * [Metric: `process.runtime.jvm.classes.unloaded`](#metric-processruntimejvmclassesunloaded)
   * [Metric: `process.runtime.jvm.classes.current_loaded`](#metric-processruntimejvmclassescurrent_loaded)
-  * [Metric: `process.runtime.jvm.cpu.utilization`](#metric-processruntimejvmcpuutilization)
+  * [Metric: `process.runtime.jvm.cpu.recent_utilization`](#metric-processruntimejvmcpurecent_utilization)
 - [JVM Metrics (Experimental)](#jvm-metrics-experimental)
   * [Metric: `process.runtime.jvm.memory.init`](#metric-processruntimejvmmemoryinit)
   * [Metric: `process.runtime.jvm.system.cpu.utilization`](#metric-processruntimejvmsystemcpuutilization)
@@ -272,19 +272,20 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 <!-- semconv metric.process.runtime.jvm.classes.current_loaded(full) -->
 <!-- endsemconv -->
 
-### Metric: `process.runtime.jvm.cpu.utilization`
+### Metric: `process.runtime.jvm.cpu.recent_utilization`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()) on HotSpot
 and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuLoad--) on J9.
+Note that the JVM does not provide a definition of what "recent" means.
 
-<!-- semconv metric.process.runtime.jvm.cpu.utilization(metric_table) -->
+<!-- semconv metric.process.runtime.jvm.cpu.recent_utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the process. |
+| `process.runtime.jvm.cpu.recent_utilization` | Gauge | `1` | Recent CPU utilization for the process. |
 <!-- endsemconv -->
 
-<!-- semconv metric.process.runtime.jvm.cpu.utilization(full) -->
+<!-- semconv metric.process.runtime.jvm.cpu.recent_utilization(full) -->
 <!-- endsemconv -->
 
 ## JVM Metrics (Experimental)
