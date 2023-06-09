@@ -30,7 +30,7 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `process.runtime.jvm.classes.loaded`](#metric-processruntimejvmclassesloaded)
   * [Metric: `process.runtime.jvm.classes.unloaded`](#metric-processruntimejvmclassesunloaded)
   * [Metric: `process.runtime.jvm.classes.count`](#metric-processruntimejvmclassescount)
-  * [Metric: `process.runtime.jvm.cpu.utilization`](#metric-processruntimejvmcpuutilization)
+  * [Metric: `process.runtime.jvm.cpu.recent_utilization`](#metric-processruntimejvmcpurecent_utilization)
   * [Metric: `process.runtime.jvm.system.cpu.utilization`](#metric-processruntimejvmsystemcpuutilization)
   * [Metric: `process.runtime.jvm.system.cpu.load_1m`](#metric-processruntimejvmsystemcpuload_1m)
   * [Metric: `process.runtime.jvm.buffer.usage`](#metric-processruntimejvmbufferusage)
@@ -242,11 +242,12 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ThreadMXBean#getDaemonThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getDaemonThreadCount--) and
 [`ThreadMXBean#getThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--).
+Note that this is the number of platform threads (as opposed to virtual threads).
 
 <!-- semconv metric.process.runtime.jvm.threads.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.threads.count` | UpDownCounter | `{thread}` | Number of executing threads. |
+| `process.runtime.jvm.threads.count` | UpDownCounter | `{thread}` | Number of executing platform threads. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.threads.count(full) -->
@@ -297,26 +298,27 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 <!-- semconv metric.process.runtime.jvm.classes.count(full) -->
 <!-- endsemconv -->
 
-### Metric: `process.runtime.jvm.cpu.utilization`
+### Metric: `process.runtime.jvm.cpu.recent_utilization`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()) on HotSpot
-and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/com.ibm.java.api.80.doc/com.ibm.lang.management/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuLoad--) on J9.
+and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuLoad--) on J9.
+Note that the JVM does not provide a definition of what "recent" means.
 
-<!-- semconv metric.process.runtime.jvm.cpu.utilization(metric_table) -->
+<!-- semconv metric.process.runtime.jvm.cpu.recent_utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the process. |
+| `process.runtime.jvm.cpu.recent_utilization` | Gauge | `1` | Recent CPU utilization for the process. |
 <!-- endsemconv -->
 
-<!-- semconv metric.process.runtime.jvm.cpu.utilization(full) -->
+<!-- semconv metric.process.runtime.jvm.cpu.recent_utilization(full) -->
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.system.cpu.utilization`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad()) on Java version 8..13, [`com.sun.management.OperatingSystemMXBean#getCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()) on Java version 14+,
-and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/com.ibm.java.api.80.doc/com.ibm.lang.management/com/ibm/lang/management/OperatingSystemMXBean.html#getSystemCpuLoad--) on J9.
+and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html) on J9.
 
 <!-- semconv metric.process.runtime.jvm.system.cpu.utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |

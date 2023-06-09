@@ -15,6 +15,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 - [Common Attributes](#common-attributes)
   * [HTTP request and response headers](#http-request-and-response-headers)
 - [HTTP client](#http-client)
+  * [HTTP client span duration](#http-client-span-duration)
   * [HTTP request retries and redirects](#http-request-retries-and-redirects)
 - [HTTP server](#http-server)
   * [HTTP server definitions](#http-server-definitions)
@@ -193,6 +194,22 @@ Following attributes MUST be provided **at span creation time** (when provided a
 <!-- endsemconv -->
 
 Note that in some cases host and port identifiers in the `Host` header might be different from the `server.address` and `server.port`, in this case instrumentation MAY populate `Host` header on `http.request.header.host` attribute even if it's not enabled by user.
+
+### HTTP client span duration
+
+There are some minimal constraints that SHOULD be honored:
+
+* HTTP client spans SHOULD start sometime before the first request byte is sent. This may or may not include connection time.
+* HTTP client spans SHOULD end sometime after the HTTP response headers are fully read (or when they fail to be read). This may or may not include reading the response body.
+
+If there is any possibility for application code to not fully read the HTTP response
+(and for the HTTP client library to then have to clean up the HTTP response asynchronously),
+the HTTP client span SHOULD NOT be ended in this cleanup phase,
+and instead SHOULD end at some point after the HTTP response headers are fully read (or fail to be read).
+This avoids the span being ended asynchronously later on at a time
+which is no longer directly associated with the application code which made the HTTP request.
+
+Because of the potential for confusion around this, HTTP client library instrumentations SHOULD document their behavior around ending HTTP client spans.
 
 ### HTTP request retries and redirects
 
