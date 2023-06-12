@@ -6,7 +6,7 @@ These conventions are recommended for resources running on Cloud Run.
 
 **Type:** `gcp.cloud_run`
 
-**Description:** Resource attributes for GCE instances.
+**Description:** Resource attributes for Cloud Run.
 
 <!-- semconv gcp.cloud_run -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
