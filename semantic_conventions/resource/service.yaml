@@ -16,3 +16,8 @@ groups:
           with [`process.executable.name`](process.md#process), e.g. `unknown_service:bash`.
           If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
         examples: ["shoppingcart"]
+      - id: version
+        type: string
+        brief: >
+          The version string of the service API or implementation.
+        examples: ["2.0.0"]
