@@ -78,3 +78,5 @@ release.
   ([#69](https://github.com/open-telemetry/semantic-conventions/pull/69))
 - Clarify when HTTP client spans should end.
   ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
+- Mark service.version as stable.
+  ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
