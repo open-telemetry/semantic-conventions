@@ -4,7 +4,7 @@ linkTitle: HTTP
 
 # Semantic Conventions for HTTP Metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Experimental, partial feature-freeze][DocumentStatus]
 
 The conventions described in this section are HTTP specific. When HTTP operations occur,
 metric events about those operations will be generated and reported to provide insight into the
@@ -53,6 +53,8 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 ## HTTP Server
 
 ### Metric: `http.server.duration`
+
+**Status**: [Experimental, Feature-freeze][DocumentStatus]
 
 This metric is required.
 
@@ -107,6 +109,8 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 ### Metric: `http.server.active_requests`
 
+**Status**: [Experimental][DocumentStatus]
+
 This metric is optional.
 
 <!-- semconv metric.http.server.active_requests(metric_table) -->
@@ -144,6 +148,8 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 <!-- endsemconv -->
 
 ### Metric: `http.server.request.size`
+
+**Status**: [Experimental][DocumentStatus]
 
 This metric is optional.
 
@@ -191,6 +197,8 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 <!-- endsemconv -->
 
 ### Metric: `http.server.response.size`
+
+**Status**: [Experimental][DocumentStatus]
 
 This metric is optional.
 
@@ -241,6 +249,8 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 ### Metric: `http.client.duration`
 
+**Status**: [Experimental, Feature-freeze][DocumentStatus]
+
 This metric is required.
 
 When this metric is reported alongside an HTTP client span, the metric value SHOULD be the same as the HTTP client span duration.
@@ -283,6 +293,8 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 
 ### Metric: `http.client.request.size`
 
+**Status**: [Experimental][DocumentStatus]
+
 This metric is optional.
 
 <!-- semconv metric.http.client.request.size(metric_table) -->
@@ -318,6 +330,8 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 <!-- endsemconv -->
 
 ### Metric: `http.client.response.size`
+
+**Status**: [Experimental][DocumentStatus]
 
 This metric is optional.
 
