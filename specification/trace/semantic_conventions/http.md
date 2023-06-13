@@ -15,6 +15,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 - [Common Attributes](#common-attributes)
   * [HTTP request and response headers](#http-request-and-response-headers)
 - [HTTP client](#http-client)
+  * [HTTP client span duration](#http-client-span-duration)
   * [HTTP request retries and redirects](#http-request-retries-and-redirects)
 - [HTTP server](#http-server)
   * [HTTP server definitions](#http-server-definitions)
@@ -37,15 +38,16 @@ and various HTTP versions like 1.1, 2 and SPDY.
 >   include stabilization of a core set of networking attributes which are also used
 >   in HTTP instrumentations).
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which supports the following values:
->   * `none` - continue emitting whatever version of the old experimental
->     HTTP and networking attributes the instrumentation was emitting previously.
->     This is the default value.
+>   in the existing major version which is a comma-separated list of values.
+>   The only values defined so far are:
 >   * `http` - emit the new, stable HTTP and networking attributes,
 >     and stop emitting the old experimental HTTP and networking attributes
 >     that the instrumentation emitted previously.
 >   * `http/dup` - emit both the old and the stable HTTP and networking attributes,
 >     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental HTTP and networking attributes
+>     the instrumentation was emitting previously.
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
 > * SHOULD drop the environment variable in the next major version (stable
@@ -193,6 +195,22 @@ Following attributes MUST be provided **at span creation time** (when provided a
 <!-- endsemconv -->
 
 Note that in some cases host and port identifiers in the `Host` header might be different from the `server.address` and `server.port`, in this case instrumentation MAY populate `Host` header on `http.request.header.host` attribute even if it's not enabled by user.
+
+### HTTP client span duration
+
+There are some minimal constraints that SHOULD be honored:
+
+* HTTP client spans SHOULD start sometime before the first request byte is sent. This may or may not include connection time.
+* HTTP client spans SHOULD end sometime after the HTTP response headers are fully read (or when they fail to be read). This may or may not include reading the response body.
+
+If there is any possibility for application code to not fully read the HTTP response
+(and for the HTTP client library to then have to clean up the HTTP response asynchronously),
+the HTTP client span SHOULD NOT be ended in this cleanup phase,
+and instead SHOULD end at some point after the HTTP response headers are fully read (or fail to be read).
+This avoids the span being ended asynchronously later on at a time
+which is no longer directly associated with the application code which made the HTTP request.
+
+Because of the potential for confusion around this, HTTP client library instrumentations SHOULD document their behavior around ending HTTP client spans.
 
 ### HTTP request retries and redirects
 
