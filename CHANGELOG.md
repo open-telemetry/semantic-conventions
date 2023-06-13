@@ -78,3 +78,5 @@ release.
   ([#69](https://github.com/open-telemetry/semantic-conventions/pull/69))
 - Clarify when HTTP client spans should end.
   ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
+- Clarify that OTEL_SEMCONV_STABILITY_OPT_IN is a comma-separated list of values
+  ([#104](https://github.com/open-telemetry/semantic-conventions/pull/104))
