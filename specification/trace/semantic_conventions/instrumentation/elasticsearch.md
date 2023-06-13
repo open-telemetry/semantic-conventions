@@ -6,7 +6,7 @@ This document defines semantic conventions to apply when creating a span for req
 
 ## Span Name
 
-The **span name** SHOULD be of the format `<http.request.method> <endpoint id>`.
+The **span name** SHOULD be of the format `<endpoint id>`.
 
 The elasticsearch endpoint identifier is used instead of the url path in order to reduce the cardinality of the span 
 name, as the path could contain dynamic values. The endpoint id is the `name` field in the
