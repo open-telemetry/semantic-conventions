@@ -80,3 +80,6 @@ release.
   ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
 - Clarify that OTEL_SEMCONV_STABILITY_OPT_IN is a comma-separated list of values
   ([#104](https://github.com/open-telemetry/semantic-conventions/pull/104))
+- Update `.count` metric naming convention so that it only applies to UpDownCounters,
+  and add that `.total` should not be used by either Counters or UpDownCounters
+  ([#107](https://github.com/open-telemetry/opentelemetry-specification/pull/107))
