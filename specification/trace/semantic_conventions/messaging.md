@@ -344,11 +344,11 @@ set on links. Instrumentations MAY set destination attributes on the span if all
 
 All attributes that are specific for a messaging system SHOULD be populated in `messaging.{system}` namespace. Attributes that describe a message, a destination, a consumer, or a batch of messages SHOULD be populated under the corresponding namespace:
 
-* `messaging.{system}.message`: Describes attributes for individual messages
-* `messaging.{system}.destination`: Describe the destination a message (or a batch) are published to and received from respectively. The combination of attributes in these namespaces should uniquely identify the entity and include properties significant for this messaging system. For example, Kafka instrumentations should include partition identifier.
-* `messaging.{system}.destination_original`: Describe the original destination a message (or a batch) were published to.
-* `messaging.{system}.consumer`: Describes message consumer properties
-* `messaging.{system}.batch`: Describes message batch properties
+* `messaging.{system}.message.*`: Describes attributes for individual messages
+* `messaging.{system}.destination.*`: Describe the destination a message (or a batch) are published to and received from respectively. The combination of attributes in these namespaces should uniquely identify the entity and include properties significant for this messaging system. For example, Kafka instrumentations should include partition identifier.
+* `messaging.{system}.destination_original.*`: Describe the original destination a message (or a batch) were published to.
+* `messaging.{system}.consumer.*`: Describes message consumer properties
+* `messaging.{system}.batch.*`: Describes message batch properties
 
 #### RabbitMQ
 
