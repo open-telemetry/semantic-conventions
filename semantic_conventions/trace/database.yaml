@@ -398,22 +398,6 @@ groups:
       - ref: url.full
         requirement_level: required
         examples: [ 'https://localhost:9200/index/_search?q=user.id:kimchy' ]
-      - id: doc_id
-        type: string
-        requirement_level:
-          conditionally_required: when the request targets a specific document by id
-        tag: call-level-tech-specific-elasticsearch
-        brief: >
-          The document that the request targets.
-        examples: [ '123', '456' ]
-      - id: target
-        type: string
-        requirement_level:
-          conditionally_required: when a specific index or data stream is targeted by the request
-        tag: call-level-tech-specific
-        brief: >
-          The name of the data stream or index that is targeted.
-        examples: [ 'users' ]
       - ref: db.statement
         requirement_level:
           recommended: Should be collected when a search-type query is executed
