@@ -20,9 +20,9 @@ Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in s
 reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
 in order to map the path part values to their names.
 
-| Attribute                           | Type | Description                           | Examples            | Requirement Level |
-|-------------------------------------|---|---------------------------------------|---------------------|---|
-| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path.      | `test-index`; `456` | Conditionally Required: [1] |
+| Attribute                           | Type | Description                           | Examples                                                                                 | Requirement Level |
+|-------------------------------------|---|---------------------------------------|------------------------------------------------------------------------------------------|---|
+| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path.      | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | Conditionally Required: [1] |
 
 **[1]:** when the url has dynamic values
 
