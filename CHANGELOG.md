@@ -68,12 +68,16 @@ release.
   ([#3458](https://github.com/open-telemetry/opentelemetry-specification/pull/3458))
 - Specify the value range for JVM CPU metrics.
   ([#13](https://github.com/open-telemetry/semantic-conventions/pull/13))
+- Rename `process.runtime.jvm.cpu.utilization` to `process.runtime.jvm.cpu.recent_utilization`.
+  ([#53](https://github.com/open-telemetry/semantic-conventions/pull/53))
 - Clarify `process.runtime.jvm.threads.count` refers to platform threads.
   ([#54](https://github.com/open-telemetry/semantic-conventions/pull/54))
 - Add `gcp.gce.instance.name` and `gcp.gce.instance.hostname` resource
   attributes for GCP Compute Engine VMs. ([#15](https://github.com/open-telemetry/semantic-conventions/pull/15))
 - Add note that HTTP duration metrics should match HTTP span duration.
   ([#69](https://github.com/open-telemetry/semantic-conventions/pull/69))
+- Clarify when HTTP client spans should end.
+  ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
 - BREAKING: Remove `messaging.source.*` attributes and use `messaging.destination.*`
   attributes on producer and consumer to describe messaging queue or topic.
   ([#100](https://github.com/open-telemetry/semantic-conventions/pull/100))

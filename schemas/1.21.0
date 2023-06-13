@@ -52,6 +52,11 @@ versions:
               messaging.source.template: messaging.destination_original.template
               messaging.source.temporary: messaging.destination_original.temporary
               messaging.source.anonymous: messaging.destination_original.anonymous
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/53
+        - rename_metrics:
+            process.runtime.jvm.cpu.utilization: process.runtime.jvm.cpu.recent_utilization
   1.20.0:
     spans:
       changes:
