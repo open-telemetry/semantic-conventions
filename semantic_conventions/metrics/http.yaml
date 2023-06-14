@@ -55,8 +55,6 @@ groups:
     instrument: histogram
     unit: "s"
     extends: metric_attributes.http.server
-      # todo (lmolkova) build tools don't populate grandparent attributes
-
 
   - id: metric.http.server.active_requests
     type: metric
