@@ -84,3 +84,8 @@ release.
   ([#55](https://github.com/open-telemetry/semantic-conventions/pull/55))
 - Split out sections for proposed stable JVM metrics and experimental JVM metrics.
   ([#56](https://github.com/open-telemetry/semantic-conventions/pull/56))
+- Change attributes requirement levels on HTTP server semantic conventions:
+ `server.address` and `server.port` requirement level has changed from
+  `required` to `opt_in` on HTTP server metrics and to `recommended` on HTTP spans.
+  `url.query` requirement level has changed from `recommended` to `required`.
+  ([#TODO](https://github.com/open-telemetry/semantic-conventions/pull/TODO))
