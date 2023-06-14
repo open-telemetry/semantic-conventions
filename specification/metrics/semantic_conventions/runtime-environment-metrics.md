@@ -21,7 +21,6 @@ semantic conventions when instrumenting runtime environments.
 - [Attributes](#attributes)
 - [JVM Metrics](#jvm-metrics)
   * [Metric: `process.runtime.jvm.memory.usage`](#metric-processruntimejvmmemoryusage)
-  * [Metric: `process.runtime.jvm.memory.init`](#metric-processruntimejvmmemoryinit)
   * [Metric: `process.runtime.jvm.memory.committed`](#metric-processruntimejvmmemorycommitted)
   * [Metric: `process.runtime.jvm.memory.limit`](#metric-processruntimejvmmemorylimit)
   * [Metric: `process.runtime.jvm.memory.usage_after_last_gc`](#metric-processruntimejvmmemoryusage_after_last_gc)
@@ -30,7 +29,10 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `process.runtime.jvm.classes.loaded`](#metric-processruntimejvmclassesloaded)
   * [Metric: `process.runtime.jvm.classes.unloaded`](#metric-processruntimejvmclassesunloaded)
   * [Metric: `process.runtime.jvm.classes.current_loaded`](#metric-processruntimejvmclassescurrent_loaded)
+  * [Metric: `process.runtime.jvm.cpu.time`](#metric-processruntimejvmcputime)
   * [Metric: `process.runtime.jvm.cpu.recent_utilization`](#metric-processruntimejvmcpurecent_utilization)
+- [JVM Metrics (Experimental)](#jvm-metrics-experimental)
+  * [Metric: `process.runtime.jvm.memory.init`](#metric-processruntimejvmmemoryinit)
   * [Metric: `process.runtime.jvm.system.cpu.utilization`](#metric-processruntimejvmsystemcpuutilization)
   * [Metric: `process.runtime.jvm.system.cpu.load_1m`](#metric-processruntimejvmsystemcpuload_1m)
   * [Metric: `process.runtime.jvm.buffer.usage`](#metric-processruntimejvmbufferusage)
@@ -87,33 +89,6 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.memory.usage(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
-| `pool` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
-
-**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
-
-`type` MUST be one of the following:
-
-| Value  | Description |
-|---|---|
-| `heap` | Heap memory. |
-| `non_heap` | Non-heap memory |
-<!-- endsemconv -->
-
-### Metric: `process.runtime.jvm.memory.init`
-
-This metric is [recommended][MetricRecommended].
-This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryPoolMXBean.html#getUsage--).
-
-<!-- semconv metric.process.runtime.jvm.memory.init(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.memory.init` | UpDownCounter | `By` | Measure of initial memory requested. |
-<!-- endsemconv -->
-
-<!-- semconv metric.process.runtime.jvm.memory.init(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
@@ -298,6 +273,22 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 <!-- semconv metric.process.runtime.jvm.classes.current_loaded(full) -->
 <!-- endsemconv -->
 
+### Metric: `process.runtime.jvm.cpu.time`
+
+This metric is [recommended][MetricRecommended].
+
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuTime()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime()) on HotSpot
+and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuTime--) on J9.
+
+<!-- semconv metric.process.runtime.jvm.cpu.time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.cpu.time` | Counter | `s` | CPU time used by the process. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.cpu.time(full) -->
+<!-- endsemconv -->
+
 ### Metric: `process.runtime.jvm.cpu.recent_utilization`
 
 This metric is [recommended][MetricRecommended].
@@ -312,6 +303,37 @@ Note that the JVM does not provide a definition of what "recent" means.
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.cpu.recent_utilization(full) -->
+<!-- endsemconv -->
+
+## JVM Metrics (Experimental)
+
+**Description:** Experimental Java Virtual Machine (JVM) metrics captured under `process.runtime.jvm.`
+
+### Metric: `process.runtime.jvm.memory.init`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryPoolMXBean.html#getUsage--).
+
+<!-- semconv metric.process.runtime.jvm.memory.init(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.memory.init` | UpDownCounter | `By` | Measure of initial memory requested. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.memory.init(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `pool` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+
+**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+
+`type` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `heap` | Heap memory. |
+| `non_heap` | Non-heap memory |
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.system.cpu.utilization`
