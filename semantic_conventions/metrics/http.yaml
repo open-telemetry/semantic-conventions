@@ -4,10 +4,6 @@ groups:
     brief: 'HTTP server attributes'
     extends: attributes.http.server
     attributes:
-      - ref: http.request.method
-      - ref: http.response.status_code
-      - ref: network.protocol.name
-      - ref: network.protocol.version
       - ref: server.address
         brief: >
           Name of the local HTTP server that received the request.
@@ -34,11 +30,18 @@ groups:
           - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
+      # todo (lmolkova) build tools don't populate grandparent attributes
+      - ref: http.request.method
+      - ref: http.response.status_code
+      - ref: network.protocol.name
+      - ref: network.protocol.version
+
   - id: metric_attributes.http.client
     type: attribute_group
     brief: 'HTTP client attributes'
     extends: attributes.http.client
     attributes:
+      # todo (lmolkova) build tools don't populate grandparent attributes
       - ref: http.request.method
       - ref: http.response.status_code
       - ref: network.protocol.name
