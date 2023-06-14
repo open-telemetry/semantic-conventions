@@ -87,7 +87,7 @@ groups:
     brief: 'Semantic Convention for HTTP Server'
     attributes:
       - ref: server.address
-        requirement_level: recommended
+        requirement_level: required
         sampling_relevant: true
         brief: >
           Name of the local HTTP server that received the request.
@@ -104,7 +104,7 @@ groups:
       - ref: server.port
         sampling_relevant: true
         requirement_level:
-          recommended: If not default (`80` for `http` scheme, `443` for `https`).
+          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
         brief: >
           Port of the local HTTP server that received the request.
         note: |
@@ -138,7 +138,7 @@ groups:
         requirement_level: required
         sampling_relevant: true
       - ref: url.query
-        requirement_level: required
+        requirement_level: recommended
         sampling_relevant: true
       - ref: url.scheme
         requirement_level: required
