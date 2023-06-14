@@ -80,5 +80,9 @@ release.
   ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
 - Clarify that OTEL_SEMCONV_STABILITY_OPT_IN is a comma-separated list of values
   ([#104](https://github.com/open-telemetry/semantic-conventions/pull/104))
+- Add `process.runtime.jvm.cpu.time` metric.
+  ([#55](https://github.com/open-telemetry/semantic-conventions/pull/55))
+- Split out sections for proposed stable JVM metrics and experimental JVM metrics.
+  ([#56](https://github.com/open-telemetry/semantic-conventions/pull/56))
 - Rename `process.runtime.jvm.classes.current_loaded` to `process.runtime.jvm.classes.count`.
   ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
