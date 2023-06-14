@@ -44,7 +44,7 @@ groups:
         note: |
           HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
           or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-          
+
           General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
           containing a comma-separated list of case-sensitive known HTTP methods.
 
