@@ -37,19 +37,22 @@ groups:
               brief: 'TRACE method.'
             - id: other
               value: "other"
-              brief: 'Any custom HTTP method that the instrumentation has no prior knowledge of.'
+              brief: 'Any HTTP method that the instrumentation has no prior knowledge of.'
         requirement_level: required
         brief: 'HTTP request method.'
         examples: ["GET", "POST", "HEAD"]
         note: |
           HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
           or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-          Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
-          [HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
-          If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
-          populate the exact method passed by client on `http.request.original_method` attribute.
+          
+          General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
+          containing a comma-separated list of case-sensitive known HTTP methods.
 
-          HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
+          If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+          populate the exact method passed in the request line on `http.request.method_original` span attribute.
+
+          HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+          Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
       - id: response.status_code
         type: int
         requirement_level:

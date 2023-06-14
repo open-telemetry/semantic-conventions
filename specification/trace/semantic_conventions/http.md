@@ -92,7 +92,7 @@ sections below.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| `http.request.original_method` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
+| `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
@@ -106,11 +106,15 @@ sections below.
 
 **[2]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-Instrumentation SHOULD provide a configuration option to specify additional HTTP methods to be preserved.
-If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
-populate the exact method passed by client on `http.request.original_method` attribute.
 
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
+General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
+containing a comma-separated list of case-sensitive known HTTP methods.
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+populate the exact method passed in the request line on `http.request.method_original` span attribute.
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -133,7 +137,7 @@ Following attributes MUST be provided **at span creation time** (when provided a
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any custom HTTP method that the instrumentation has no prior knowledge of. |
+| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

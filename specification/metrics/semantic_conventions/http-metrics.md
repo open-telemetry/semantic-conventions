@@ -86,12 +86,15 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 
 **[2]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
-[HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
-If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
-populate the exact method passed by client on `http.request.original_method` attribute.
 
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
+General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
+containing a comma-separated list of case-sensitive known HTTP methods.
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+populate the exact method passed in the request line on `http.request.method_original` span attribute.
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -125,7 +128,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any custom HTTP method that the instrumentation has no prior knowledge of. |
+| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.server.active_requests`
@@ -148,12 +151,15 @@ This metric is optional.
 
 **[1]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
-[HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
-If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
-populate the exact method passed by client on `http.request.original_method` attribute.
 
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
+General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
+containing a comma-separated list of case-sensitive known HTTP methods.
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+populate the exact method passed in the request line on `http.request.method_original` span attribute.
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 
 **[2]:** Determined by using the first of the following that applies
 
@@ -185,7 +191,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any custom HTTP method that the instrumentation has no prior knowledge of. |
+| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.server.request.size`
@@ -215,12 +221,15 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 
 **[2]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
-[HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
-If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
-populate the exact method passed by client on `http.request.original_method` attribute.
 
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
+General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
+containing a comma-separated list of case-sensitive known HTTP methods.
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+populate the exact method passed in the request line on `http.request.method_original` span attribute.
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -254,7 +263,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any custom HTTP method that the instrumentation has no prior knowledge of. |
+| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.server.response.size`
@@ -284,12 +293,15 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 
 **[2]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
-[HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
-If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
-populate the exact method passed by client on `http.request.original_method` attribute.
 
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
+General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
+containing a comma-separated list of case-sensitive known HTTP methods.
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+populate the exact method passed in the request line on `http.request.method_original` span attribute.
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -323,7 +335,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any custom HTTP method that the instrumentation has no prior knowledge of. |
+| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ## HTTP Client
@@ -357,12 +369,15 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 
 **[1]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
-[HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
-If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
-populate the exact method passed by client on `http.request.original_method` attribute.
 
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
+General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
+containing a comma-separated list of case-sensitive known HTTP methods.
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+populate the exact method passed in the request line on `http.request.method_original` span attribute.
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -391,7 +406,7 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any custom HTTP method that the instrumentation has no prior knowledge of. |
+| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.client.request.size`
@@ -417,12 +432,15 @@ This metric is optional.
 
 **[1]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
-[HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
-If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
-populate the exact method passed by client on `http.request.original_method` attribute.
 
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
+General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
+containing a comma-separated list of case-sensitive known HTTP methods.
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+populate the exact method passed in the request line on `http.request.method_original` span attribute.
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -451,7 +469,7 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any custom HTTP method that the instrumentation has no prior knowledge of. |
+| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.client.response.size`
@@ -477,12 +495,15 @@ This metric is optional.
 
 **[1]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-Instrumentation MAY additionally support the closed set of custom HTTP methods defined in
-[HTTP method registry](https://www.iana.org/assignments/http-methods/http-methods.xhtml) or a private registry.
-If the HTTP request method is not known to the instrumentation, it MUST set the `http.request.method` attribute to `other` and SHOULD
-populate the exact method passed by client on `http.request.original_method` attribute.
 
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a standard (or documented elsewhere) HTTP method name exactly.
+General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
+containing a comma-separated list of case-sensitive known HTTP methods.
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+populate the exact method passed in the request line on `http.request.method_original` span attribute.
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 
 **[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -511,7 +532,7 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any custom HTTP method that the instrumentation has no prior knowledge of. |
+| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

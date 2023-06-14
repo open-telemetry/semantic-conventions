@@ -8,7 +8,7 @@ groups:
         These conventions can be used for http and https schemes
         and various HTTP versions like 1.1, 2 and SPDY.
     attributes:
-      - id: request.original_method
+      - id: request.method_original
         type: string
         requirement_level:
           conditionally_required: If and only if it's different than `http.request.method`.
