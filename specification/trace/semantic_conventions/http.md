@@ -108,10 +108,10 @@ sections below.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, if it reports spans, MUST
 populate the exact method passed in the request line on `http.request.method_original` span attribute.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `other`, then it MUST provide a way to override
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
@@ -141,7 +141,7 @@ Following attributes MUST be provided **at span creation time** (when provided a
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

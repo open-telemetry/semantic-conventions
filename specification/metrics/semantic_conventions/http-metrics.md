@@ -88,10 +88,10 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, if it reports spans, MUST
 populate the exact method passed in the request line on `http.request.method_original` span attribute.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `other`, then it MUST provide a way to override
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
@@ -132,7 +132,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.server.active_requests`
@@ -157,10 +157,10 @@ This metric is optional.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, if it reports spans, MUST
 populate the exact method passed in the request line on `http.request.method_original` span attribute.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `other`, then it MUST provide a way to override
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
@@ -199,7 +199,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.server.request.size`
@@ -231,10 +231,10 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, if it reports spans, MUST
 populate the exact method passed in the request line on `http.request.method_original` span attribute.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `other`, then it MUST provide a way to override
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
@@ -275,7 +275,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.server.response.size`
@@ -307,10 +307,10 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, if it reports spans, MUST
 populate the exact method passed in the request line on `http.request.method_original` span attribute.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `other`, then it MUST provide a way to override
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
@@ -351,7 +351,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ## HTTP Client
@@ -387,10 +387,10 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, if it reports spans, MUST
 populate the exact method passed in the request line on `http.request.method_original` span attribute.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `other`, then it MUST provide a way to override
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
@@ -426,7 +426,7 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.client.request.size`
@@ -454,10 +454,10 @@ This metric is optional.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, if it reports spans, MUST
 populate the exact method passed in the request line on `http.request.method_original` span attribute.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `other`, then it MUST provide a way to override
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
@@ -493,7 +493,7 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 ### Metric: `http.client.response.size`
@@ -521,10 +521,10 @@ This metric is optional.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, if it reports spans, MUST
 populate the exact method passed in the request line on `http.request.method_original` span attribute.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `other`, then it MUST provide a way to override
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
@@ -560,7 +560,7 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 | `POST` | POST method. |
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
-| `other` | Any HTTP method that the instrumentation has no prior knowledge of. |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
