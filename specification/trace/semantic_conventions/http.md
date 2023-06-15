@@ -161,8 +161,8 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 | `http.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [1] | `3` | Recommended: if and only if request was retried. |
 | [`server.address`](span-general.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com` | Required |
 | [`server.port`](span-general.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
-| [`server.socket.address`](span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
-| [`server.socket.domain`](span-general.md) | string | The domain name of an immediate peer. [5] | `proxy.example.com` | Recommended |
+| [`server.socket.address`](span-general.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.domain`](span-general.md) | string | The domain name of an immediate peer. [5] | `proxy.example.com` | Recommended: If different than `server.address`. |
 | [`server.socket.port`](span-general.md) | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
 | `url.full` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [6] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
 
