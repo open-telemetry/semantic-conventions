@@ -104,17 +104,21 @@ sections below.
 
 **[1]:** If and only if it's different than `http.request.method`.
 
-**[2]:** HTTP request method SHOULD be one of the methods defined in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-or the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-General-purpose HTTP instrumentations SHOULD allow overriding the list of known HTTP methods with OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS environment variable,
-containing a comma-separated list of case-sensitive known HTTP methods.
+**[2]:** HTTP request method value SHOULD be known to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `other` and, if it reports spans, MUST
 populate the exact method passed in the request line on `http.request.method_original` span attribute.
 
+If the HTTP instrumentation could end up converting valid HTTP request methods to `other`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
