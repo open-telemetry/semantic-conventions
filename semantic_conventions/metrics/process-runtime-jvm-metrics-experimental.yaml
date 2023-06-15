@@ -1,0 +1,67 @@
+groups:
+  - id: metric.process.runtime.jvm.memory.init
+    type: metric
+    metric_name: process.runtime.jvm.memory.init
+    extends: attributes.process.runtime.jvm.memory
+    brief: "Measure of initial memory requested."
+    instrument: updowncounter
+    unit: "By"
+
+  - id: metric.process.runtime.jvm.system.cpu.utilization
+    type: metric
+    metric_name: process.runtime.jvm.system.cpu.utilization
+    brief: "Recent CPU utilization for the whole system."
+    note: >
+      The value range is [0.0,1.0].
+      This utilization is not defined as being for the specific interval since last measurement
+      (unlike `system.cpu.utilization`).
+      [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()).
+    instrument: gauge
+    unit: "1"
+
+  - id: metric.process.runtime.jvm.system.cpu.load_1m
+    type: metric
+    metric_name: process.runtime.jvm.system.cpu.load_1m
+    brief: "Average CPU load of the whole system for the last minute."
+    note: >
+      The value range is [0,n], where n is the number of CPU cores - or a negative number if the value is not available.
+      This utilization is not defined as being for the specific interval since last measurement
+      (unlike `system.cpu.utilization`).
+      [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/java.management/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()).
+    instrument: gauge
+    unit: "1"
+
+  - id: attributes.process.runtime.jvm.buffer
+    type: attribute_group
+    brief: "Describes JVM buffer metric attributes."
+    attributes:
+      - ref: pool
+        brief: Name of the buffer pool.
+        examples: [ "mapped", "direct" ]
+        note: >
+          Pool names are generally obtained via
+          [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+
+  - id: metric.process.runtime.jvm.buffer.usage
+    type: metric
+    metric_name: process.runtime.jvm.buffer.usage
+    extends: attributes.process.runtime.jvm.buffer
+    brief: "Measure of memory used by buffers."
+    instrument: updowncounter
+    unit: "By"
+
+  - id: metric.process.runtime.jvm.buffer.limit
+    type: metric
+    metric_name: process.runtime.jvm.buffer.limit
+    extends: attributes.process.runtime.jvm.buffer
+    brief: "Measure of total memory capacity of buffers."
+    instrument: updowncounter
+    unit: "By"
+
+  - id: metric.process.runtime.jvm.buffer.count
+    type: metric
+    metric_name: process.runtime.jvm.buffer.count
+    extends: attributes.process.runtime.jvm.buffer
+    brief: "Number of buffers in the pool."
+    instrument: updowncounter
+    unit: "{buffer}"
