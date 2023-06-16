@@ -19,7 +19,7 @@
 | `container.command_line` | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` | Conditionally Required: [2] |
 | `container.command_args` | string[] | All the command arguments (including the command/executable itself) run by the container. | `[otelcontribcol, --config, config.yaml]` | Conditionally Required: [2] |
 
-**[1]:** On docker, `image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
+**[1]:** On docker, `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
 
 **[2]:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 <!-- endsemconv -->
