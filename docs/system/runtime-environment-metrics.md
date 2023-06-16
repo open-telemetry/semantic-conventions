@@ -451,8 +451,8 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.process.runtime.jvm.cpu.monitor.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `class` | string | Class of the monitor. | `java.lang.Object` | Opt-In |
 | `state` | string | Action taken at monitor. | `blocked`; `wait` | Recommended |
+| [`code.namespace`](../../trace/semantic_conventions/span-general.md) | string | Class of the monitor. | `java.lang.Object` | Opt-In |
 | [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
