@@ -229,7 +229,7 @@ The following operations related to messages are defined for these semantic conv
 | [`network.transport`](span-general.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](span-general.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](span-general.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. [15] | `example.com` | Conditionally Required: If available. |
-| [`server.socket.address`](span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.address`](span-general.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
 | [`server.socket.domain`](span-general.md) | string | The domain name of an immediate peer. [16] | `proxy.example.com` | Recommended: [17] |
 | [`server.socket.port`](span-general.md) | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
 
