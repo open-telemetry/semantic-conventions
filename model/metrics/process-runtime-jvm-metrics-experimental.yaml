@@ -65,3 +65,45 @@ groups:
     brief: "Number of buffers in the pool."
     instrument: updowncounter
     unit: "{buffer}"
+
+  - id: metric.process.runtime.jvm.cpu.monitor.duration
+    type: metric
+    metric_name: process.runtime.jvm.cpu.monitor.duration
+    brief: "Time monitor was used by a thread. Only available in JDK 17+."
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: thread.id
+        requirement_level: opt_in
+      - ref: code.namespace
+        requirement_level: opt_in
+        brief: Class of the monitor.
+        examples: [ "java.lang.Object" ]
+      - id: state
+        type: string
+        requirement_level: recommended
+        brief: Action taken at monitor.
+        examples: [ "blocked", "wait" ]
+
+  - id: metric.process.runtime.jvm.cpu.context_switch
+    type: metric
+    metric_name: process.runtime.jvm.context_switches
+    brief: "Number of context switches per second. Only available in JDK 17+."
+    instrument: updowncounter
+    unit: "Hz"
+
+  - id: metric.process.runtime.jvm.network.io
+    type: metric
+    metric_name: process.runtime.jvm.network.io
+    brief: "Bytes read/written by thread. Only available in JDK 17+."
+    extends: attributes.process.runtime.jvm.network
+    instrument: histogram
+    unit: "By"
+
+  - id: metric.process.runtime.jvm.network.duration
+    type: metric
+    metric_name: process.runtime.jvm.network.duration
+    brief: "Duration of network IO operation by thread. Only available in JDK 17+."
+    extends: attributes.process.runtime.jvm.network
+    instrument: histogram
+    unit: "s"
