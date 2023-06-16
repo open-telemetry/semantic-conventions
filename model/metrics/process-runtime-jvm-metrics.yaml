@@ -31,11 +31,8 @@ groups:
     attributes:
       - ref: thread.id
         requirement_level: opt_in
-      - id: network.direction
-        type: string
+      - ref: network.connection.direction
         requirement_level: recommended
-        brief: Read or write.
-        examples: [ "read", "write" ]
 
   - id: metric.jvm.memory.usage
     type: metric

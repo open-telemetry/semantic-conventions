@@ -249,6 +249,7 @@ Destination fields capture details about the receiver of a network exchange/pack
 <!-- semconv network-connection-and-carrier -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| `network.connection.direction` | string | Read or write. | `read`; `write` | Recommended |
 | `network.connection.type` | string | The internet connection type. | `wifi` | Recommended |
 | `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | Recommended |
 | `network.carrier.name` | string | The name of the mobile carrier. | `sprint` | Recommended |

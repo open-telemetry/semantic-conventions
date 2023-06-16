@@ -435,7 +435,7 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 
 ### Metric: `process.runtime.jvm.cpu.monitor.duration`
 
-This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+This metric is [recommended][MetricRecommended]. Only available with JDK 17+.
 This metric is obtained from [`jdk.JavaMonitorWait`](https://sap.github.io/SapMachine/jfrevents/21.html#javamonitorwait) and [`jdk.JavaMonitorEnter`](https://sap.github.io/SapMachine/jfrevents/21.html#javamonitorenter) JFR events.
 
 This metric SHOULD be specified with
@@ -458,7 +458,7 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 
 ### Metric: `process.runtime.jvm.cpu.context_swtich`
 
-This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+This metric is [recommended][MetricRecommended]. Only available with JDK 17+.
 This metric is obtained from [`jdk.ThreadContextSwitchRate`](https://sap.github.io/SapMachine/jfrevents/21.html#threadcontextswitchrate) JFR events.
 
 <!-- semconv metric.process.runtime.jvm.cpu.context_switch(metric_table) -->
@@ -469,7 +469,7 @@ This metric is obtained from [`jdk.ThreadContextSwitchRate`](https://sap.github.
 
 ### Metric: `process.runtime.jvm.network.io`
 
-This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+This metric is [recommended][MetricRecommended]. Only available with JDK 17+.
 This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachine/jfrevents/21.html#socketwrite) and [`jdk.SocketRead`](https://sap.github.io/SapMachine/jfrevents/21.html#socketread) JFR events.
 
 This metric SHOULD be specified with
@@ -485,13 +485,13 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.process.runtime.jvm.network.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.direction` | string | Read or write. | `read`; `write` | Recommended |
+| [`network.connection.direction`](../../trace/semantic_conventions/span-general.md) | string | Read or write. | `read`; `write` | Recommended |
 | [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.network.duration`
 
-This metric is [recommended](../metric-requirement-level.md#recommended). Only available with JDK 17+.
+This metric is [recommended][MetricRecommended]. Only available with JDK 17+.
 This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachine/jfrevents/21.html#socketwrite) and [`jdk.SocketRead`](https://sap.github.io/SapMachine/jfrevents/21.html#socketread) JFR events.
 
 This metric SHOULD be specified with
@@ -507,7 +507,7 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.process.runtime.jvm.network.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.direction` | string | Read or write. | `read`; `write` | Recommended |
+| [`network.connection.direction`](../../trace/semantic_conventions/span-general.md) | string | Read or write. | `read`; `write` | Recommended |
 | [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
