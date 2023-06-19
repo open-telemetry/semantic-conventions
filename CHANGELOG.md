@@ -7,8 +7,6 @@ release.
 
 ## Unreleased
 
-- Updated AWS Java Lambda guidance - using system properties.
-
 ### Semantic Conventions
 
 - Add GCP Bare Metal Solution as a cloud platform
@@ -84,3 +82,5 @@ release.
   ([#55](https://github.com/open-telemetry/semantic-conventions/pull/55))
 - Split out sections for proposed stable JVM metrics and experimental JVM metrics.
   ([#56](https://github.com/open-telemetry/semantic-conventions/pull/56))
+- Updated AWS Java Lambda guidance - using system properties.
+  ([#27](https://github.com/open-telemetry/semantic-conventions/pull/27))
