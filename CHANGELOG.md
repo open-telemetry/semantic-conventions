@@ -84,6 +84,5 @@ release.
   ([#55](https://github.com/open-telemetry/semantic-conventions/pull/55))
 - Split out sections for proposed stable JVM metrics and experimental JVM metrics.
   ([#56](https://github.com/open-telemetry/semantic-conventions/pull/56))
-- BREAKING: Remove `messaging.source.*` attributes and use `messaging.destination.*`
-  attributes on producer and consumer to describe messaging queue or topic.
+- BREAKING: Remove `messaging.source.*` attributes.
   ([#100](https://github.com/open-telemetry/semantic-conventions/pull/100))

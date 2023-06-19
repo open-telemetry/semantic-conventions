@@ -5,7 +5,6 @@ groups:
     brief: 'Semantic convention describing per-message attributes populated on messaging spans or links.'
     attributes:
       - ref: messaging.destination.name
-      - ref: messaging.destination_original.name
       - id: message.id
         type: string
         brief: 'A value used by the messaging system as an identifier for the message, represented as a string.'
@@ -64,48 +63,6 @@ groups:
       - id: anonymous
         type: boolean
         brief: 'A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name).'
-
-  - id: messaging.destination_original
-    prefix: messaging.destination_original
-    type: attribute_group
-    brief: >
-      Semantic convention for attributes that describe original messaging destination on broker.
-      The term Original Destination refers to the destination the message was originally published to.
-      These attributes should be used on the consumer side when original destination
-      is available and different than destination message are consumed from.
-    note: |
-      Original destination attributes should be set on publish, receive,
-      or other spans describing messaging operations.
-
-      Destination attributes should be set when the messaging operation handles
-      single messages. When the operation handles a batch of messages,
-      the destination attributes should only be applied when the attribute value
-      applies to all messages in the batch.
-      In other cases, destination attributes may be set on links.
-    attributes:
-      - id: name
-        type: string
-        brief: 'The original destination name'
-        note: |
-          The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
-          the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
-        examples: ['MyQueue', 'MyTopic']
-      - id: template
-        type: string
-        brief: 'Low cardinality representation of the original messaging destination name'
-        examples: ['/customers/{customerId}']
-        note: >
-          Destination names could be constructed from templates.
-          An example would be a destination name involving a user name or product id.
-          Although the destination name in this case is of high cardinality,
-          the underlying template is of low cardinality and can be effectively
-          used for grouping and aggregation.
-      - id: temporary
-        type: boolean
-        brief: 'A boolean that is true if the original message destination is temporary and might not exist anymore after messages are processed.'
-      - id: anonymous
-        type: boolean
-        brief: 'A boolean that is true if the original message destination is anonymous (could be unnamed or have auto-generated name).'
 
   - id: messaging
     prefix: messaging
@@ -197,18 +154,6 @@ groups:
       - ref: network.protocol.name
         examples: ['amqp', 'mqtt']
       - ref: network.protocol.version
-
-  - id: messaging.consumer
-    prefix: messaging
-    type: span
-    extends: messaging
-    span_kind: consumer
-    brief: 'Semantic convention for a consumer of messages received from a messaging system'
-    attributes:
-      - ref: messaging.destination_original.name
-      - ref: messaging.destination_original.template
-      - ref: messaging.destination_original.temporary
-      - ref: messaging.destination_original.anonymous
 
   - id: messaging.rabbitmq
     prefix: messaging.rabbitmq

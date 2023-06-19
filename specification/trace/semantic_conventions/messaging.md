@@ -22,7 +22,6 @@
   * [Operation names](#operation-names)
 - [Messaging attributes](#messaging-attributes)
   * [Attribute namespaces](#attribute-namespaces)
-  * [Consumer attributes](#consumer-attributes)
   * [Per-message attributes](#per-message-attributes)
   * [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems)
     + [RabbitMQ](#rabbitmq)
@@ -287,7 +286,6 @@ These attributes should be set to the broker to which the message is sent/from w
 - `messaging.destination`: Contains attributes that describe the logical entity
    messages are published to and received from.
    See [Destinations](#destinations) for more details
-- `messaging.destination_original`: Contains attributes that describe the logical entity messages were originally published to
 - `messaging.batch`: Contains attributes that describe batch operations
 - `messaging.consumer`: Contains attributes that describe application instance that consumes a message. See [consumer](#consumer) for more details
 
@@ -300,37 +298,6 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 [`network.transport`]: span-general.md#network-attributes
 [Hangfire]: https://www.hangfire.io/
 
-### Consumer attributes
-
-The following additional attributes describe message operations on the consumer side.
-
-> Note: Because messages could be routed by brokers, the destination a message
-> is consumed from does not always match the destination it was published to.
-> If information about the original destination is available on the consumer side,
-> consumer instrumentations SHOULD populate the attributes about
-> the original destination under the `messaging.destination_original` namespace.
-
-<!-- semconv messaging.consumer -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `messaging.destination_original.anonymous` | boolean | A boolean that is true if the original message destination is anonymous (could be unnamed or have auto-generated name). |  | Recommended |
-| `messaging.destination_original.name` | string | The original destination name [1] | `MyQueue`; `MyTopic` | Recommended |
-| `messaging.destination_original.template` | string | Low cardinality representation of the original messaging destination name [2] | `/customers/{customerId}` | Recommended |
-| `messaging.destination_original.temporary` | boolean | A boolean that is true if the original message destination is temporary and might not exist anymore after messages are processed. |  | Recommended |
-
-**[1]:** The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
-the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
-
-**[2]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
-<!-- endsemconv -->
-
-The *receive* span is be used to track the time used for receiving the message(s), whereas the *process* span(s) track the time for processing the message(s).
-Note that one or multiple Spans with `messaging.operation` = `process` may often be the children of a Span with `messaging.operation` = `receive`.
-The distinction between receiving and processing of messages is not always of particular interest or sometimes hidden away in a framework (see the [Message consumption](#message-consumption) section above) and therefore the attribute can be left out.
-For batch receiving and processing (see the [Batch receiving](#batch-receiving) and [Batch processing](#batch-processing) examples below) in particular, the attribute SHOULD be set.
-Even though in that case one might think that the processing span's kind should be `INTERNAL`, that kind MUST NOT be used.
-Instead span kind should be set to either `CONSUMER` or `SERVER` according to the rules defined above.
-
 ### Per-message attributes
 
 All messaging operations (`publish`, `receive`, `process`, or others not covered by this specification) can describe both single and/or batch of messages.
@@ -338,7 +305,7 @@ Attributes in the `messaging.message` or `messaging.{system}.message` namespace 
 
 For batch operations, per-message attributes are usually different and cannot be set on the corresponding span. In such cases the attributes MAY be set on links. See [Batch Receiving](#batch-receiving) and [Batch Processing](#batch-processing) for more information on correlation using links.
 
-Some messaging systems (e.g., Kafka, Azure EventGrid) allow publishing a single batch of messages to different topics. In such cases, the attributes in `messaging.destination` and `messaging.destination_original` MAY be
+Some messaging systems (e.g., Kafka, Azure EventGrid) allow publishing a single batch of messages to different topics. In such cases, the attributes in `messaging.destination` MAY be
 set on links. Instrumentations MAY set destination attributes on the span if all messages in the batch share the same destination.
 
 ### Attributes specific to certain messaging systems
@@ -347,7 +314,6 @@ All attributes that are specific for a messaging system SHOULD be populated in `
 
 * `messaging.{system}.message.*`: Describes attributes for individual messages
 * `messaging.{system}.destination.*`: Describes the destination a message (or a batch) are published to and received from respectively. The combination of attributes in these namespaces should uniquely identify the entity and include properties significant for this messaging system. For example, Kafka instrumentations should include partition identifier.
-* `messaging.{system}.destination_original.*`: Describes the original destination a message (or a batch) were published to.
 * `messaging.{system}.consumer.*`: Describes message consumer properties
 * `messaging.{system}.batch.*`: Describes message batch properties
 
