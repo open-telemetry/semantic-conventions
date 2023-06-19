@@ -22,6 +22,7 @@
   * [Operation names](#operation-names)
 - [Messaging attributes](#messaging-attributes)
   * [Attribute namespaces](#attribute-namespaces)
+  * [Consumer attributes](#consumer-attributes)
   * [Per-message attributes](#per-message-attributes)
   * [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems)
     + [RabbitMQ](#rabbitmq)
@@ -297,6 +298,15 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 [network attributes]: span-general.md#server-and-client-attributes
 [`network.transport`]: span-general.md#network-attributes
 [Hangfire]: https://www.hangfire.io/
+
+### Consumer attributes
+
+The *receive* span is used to track the time used for receiving the message(s), whereas the *process* span(s) track the time for processing the message(s).
+Note that one or multiple Spans with `messaging.operation` = `process` may often be the children of a Span with `messaging.operation` = `receive`.
+The distinction between receiving and processing of messages is not always of particular interest or sometimes hidden away in a framework (see the [Message consumption](#message-consumption) section above) and therefore the attribute can be left out.
+For batch receiving and processing (see the [Batch receiving](#batch-receiving) and [Batch processing](#batch-processing) examples below) in particular, the attribute SHOULD be set.
+Even though in that case one might think that the processing span's kind should be `INTERNAL`, that kind MUST NOT be used.
+Instead span kind should be set to either `CONSUMER` or `SERVER` according to the rules defined above.
 
 ### Per-message attributes
 
