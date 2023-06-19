@@ -84,3 +84,5 @@ release.
   ([#55](https://github.com/open-telemetry/semantic-conventions/pull/55))
 - Split out sections for proposed stable JVM metrics and experimental JVM metrics.
   ([#56](https://github.com/open-telemetry/semantic-conventions/pull/56))
+- Make `url.query` conditionally required for HTTP spans.
+  ([#118](https://github.com/open-telemetry/semantic-conventions/pull/118))
