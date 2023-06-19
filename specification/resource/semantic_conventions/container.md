@@ -1,6 +1,6 @@
 # Container
 
-**Status**: [Experimental](../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 **type:** `container`
 
@@ -19,7 +19,11 @@
 | `container.command_line` | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` | Conditionally Required: [2] |
 | `container.command_args` | string[] | All the command arguments (including the command/executable itself) run by the container. | `[otelcontribcol, --config, config.yaml]` | Conditionally Required: [2] |
 
-**[1]:** On docker, `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
+**[1]:** Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker  container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect)  endpoint.
+K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
+OCI defines a digest of manifest.
 
 **[2]:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
