@@ -82,5 +82,10 @@ release.
   ([#55](https://github.com/open-telemetry/semantic-conventions/pull/55))
 - Split out sections for proposed stable JVM metrics and experimental JVM metrics.
   ([#56](https://github.com/open-telemetry/semantic-conventions/pull/56))
+- Make `url.query` conditionally required for HTTP spans.
+  ([#118](https://github.com/open-telemetry/semantic-conventions/pull/118))
+- Change `server.address` and `server.port` requirement levels on HTTP server metrics
+  from `required` to `opt_in`.
+  ([#109](https://github.com/open-telemetry/semantic-conventions/pull/109))
 - Updated AWS Java Lambda guidance - using system properties.
   ([#27](https://github.com/open-telemetry/semantic-conventions/pull/27))

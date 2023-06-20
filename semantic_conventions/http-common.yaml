@@ -65,7 +65,6 @@ groups:
 
           SHOULD include the [application root](/specification/trace/semantic_conventions/http.md#http-server-definitions) if there is one.
       - ref: server.address
-        requirement_level: required
         brief: >
           Name of the local HTTP server that received the request.
         note: |
@@ -80,8 +79,6 @@ groups:
           SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
       - ref: server.port
-        requirement_level:
-          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
         brief: >
           Port of the local HTTP server that received the request.
         note: |
