@@ -89,3 +89,6 @@ release.
   ([#109](https://github.com/open-telemetry/semantic-conventions/pull/109))
 - Updated AWS Java Lambda guidance - using system properties.
   ([#27](https://github.com/open-telemetry/semantic-conventions/pull/27))
+- Limit `http.request.method` values to a closed set of known values,
+  introduce `http.request.method_original` for the original value.
+  ([#17](https://github.com/open-telemetry/opentelemetry-specification/pull/17))
