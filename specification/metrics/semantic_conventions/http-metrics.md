@@ -36,15 +36,16 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 >   include stabilization of a core set of networking attributes which are also used
 >   in HTTP instrumentations).
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which supports the following values:
->   * `none` - continue emitting whatever version of the old experimental
->     HTTP and networking attributes the instrumentation was emitting previously.
->     This is the default value.
+>   in the existing major version which is a comma-separated list of values.
+>   The only values defined so far are:
 >   * `http` - emit the new, stable HTTP and networking attributes,
 >     and stop emitting the old experimental HTTP and networking attributes
 >     that the instrumentation emitted previously.
 >   * `http/dup` - emit both the old and the stable HTTP and networking attributes,
 >     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental HTTP and networking attributes
+>     the instrumentation was emitting previously.
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
 > * SHOULD drop the environment variable in the next major version (stable
@@ -76,8 +77,8 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../../trace/semantic_conventions/span-general.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
 | [`network.protocol.version`](../../trace/semantic_conventions/span-general.md) | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
-| [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Name of the local HTTP server that received the request. [3] | `example.com` | Required |
-| [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port of the local HTTP server that received the request. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
+| [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Name of the local HTTP server that received the request. [3] | `example.com` | Opt-In |
+| [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port of the local HTTP server that received the request. [4] | `80`; `8080`; `443` | Opt-In |
 | `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
@@ -101,8 +102,6 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
-
-**[5]:** If not default (`80` for `http` scheme, `443` for `https`).
 <!-- endsemconv -->
 
 ### Metric: `http.server.active_requests`
@@ -119,8 +118,8 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.request.method` | string | HTTP request method. | `GET`; `POST`; `HEAD` | Required |
-| [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Name of the local HTTP server that received the request. [1] | `example.com` | Required |
-| [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port of the local HTTP server that received the request. [2] | `80`; `8080`; `443` | Conditionally Required: [3] |
+| [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Name of the local HTTP server that received the request. [1] | `example.com` | Opt-In |
+| [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port of the local HTTP server that received the request. [2] | `80`; `8080`; `443` | Opt-In |
 | `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** Determined by using the first of the following that applies
@@ -139,8 +138,6 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
-
-**[3]:** If not default (`80` for `http` scheme, `443` for `https`).
 <!-- endsemconv -->
 
 ### Metric: `http.server.request.size`
@@ -161,8 +158,8 @@ This metric is optional.
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../../trace/semantic_conventions/span-general.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
 | [`network.protocol.version`](../../trace/semantic_conventions/span-general.md) | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
-| [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Name of the local HTTP server that received the request. [3] | `example.com` | Required |
-| [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port of the local HTTP server that received the request. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
+| [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Name of the local HTTP server that received the request. [3] | `example.com` | Opt-In |
+| [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port of the local HTTP server that received the request. [4] | `80`; `8080`; `443` | Opt-In |
 | `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
@@ -186,8 +183,6 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
-
-**[5]:** If not default (`80` for `http` scheme, `443` for `https`).
 <!-- endsemconv -->
 
 ### Metric: `http.server.response.size`
@@ -208,8 +203,8 @@ This metric is optional.
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../../trace/semantic_conventions/span-general.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
 | [`network.protocol.version`](../../trace/semantic_conventions/span-general.md) | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
-| [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Name of the local HTTP server that received the request. [3] | `example.com` | Required |
-| [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port of the local HTTP server that received the request. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
+| [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Name of the local HTTP server that received the request. [3] | `example.com` | Opt-In |
+| [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port of the local HTTP server that received the request. [4] | `80`; `8080`; `443` | Opt-In |
 | `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
@@ -233,8 +228,6 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
-
-**[5]:** If not default (`80` for `http` scheme, `443` for `https`).
 <!-- endsemconv -->
 
 ## HTTP Client
@@ -264,7 +257,7 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 | [`network.protocol.version`](../../trace/semantic_conventions/span-general.md) | string | Version of the application layer protocol used. See note below. [1] | `3.1.1` | Recommended |
 | [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com` | Required |
 | [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
-| [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -300,7 +293,7 @@ This metric is optional.
 | [`network.protocol.version`](../../trace/semantic_conventions/span-general.md) | string | Version of the application layer protocol used. See note below. [1] | `3.1.1` | Recommended |
 | [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com` | Required |
 | [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
-| [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -336,7 +329,7 @@ This metric is optional.
 | [`network.protocol.version`](../../trace/semantic_conventions/span-general.md) | string | Version of the application layer protocol used. See note below. [1] | `3.1.1` | Recommended |
 | [`server.address`](../../trace/semantic_conventions/span-general.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com` | Required |
 | [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
-| [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 

@@ -52,8 +52,8 @@ if they do not cause breaking changes to HTTP semantic conventions.
 |---|---|---|---|---|
 | `server.address` | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. | `example.com` | Recommended |
 | `server.port` | int | Logical server port number | `80`; `8080`; `443` | Recommended |
-| `server.socket.domain` | string | The domain name of an immediate peer. [1] | `proxy.example.com` | Recommended |
-| `server.socket.address` | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
+| `server.socket.domain` | string | The domain name of an immediate peer. [1] | `proxy.example.com` | Recommended: If different than `server.address`. |
+| `server.socket.address` | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
 | `server.socket.port` | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
 
 **[1]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
