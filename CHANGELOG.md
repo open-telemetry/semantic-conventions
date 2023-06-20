@@ -7,8 +7,6 @@ release.
 
 ## Unreleased
 
-- Updated AWS Java Lambda guidance - using system properties.
-
 ### Semantic Conventions
 
 - Add GCP Bare Metal Solution as a cloud platform
@@ -89,3 +87,5 @@ release.
 - Change `server.address` and `server.port` requirement levels on HTTP server metrics
   from `required` to `opt_in`.
   ([#109](https://github.com/open-telemetry/semantic-conventions/pull/109))
+- Updated AWS Java Lambda guidance - using system properties.
+  ([#27](https://github.com/open-telemetry/semantic-conventions/pull/27))
