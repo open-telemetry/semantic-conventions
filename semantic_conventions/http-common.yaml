@@ -42,7 +42,7 @@ groups:
         brief: 'HTTP request method.'
         examples: ["GET", "POST", "HEAD"]
         note: |
-          HTTP request method value SHOULD be known to the instrumentation.
+          HTTP request method value SHOULD be "known" to the instrumentation.
           By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
           and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
