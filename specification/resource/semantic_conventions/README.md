@@ -77,7 +77,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `service.name` | string | Logical name of the service. [1] | `shoppingcart` | Required |
-| `service.version` | string | The version string of the service API or implementation. | `2.0.0` | Recommended |
+| `service.version` | string | The version string of the service API or implementation. | `2.0.0`, `a01dbef8a` | Recommended |
 
 **[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md#process), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 <!-- endsemconv -->
