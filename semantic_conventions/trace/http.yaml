@@ -8,6 +8,12 @@ groups:
         These conventions can be used for http and https schemes
         and various HTTP versions like 1.1, 2 and SPDY.
     attributes:
+      - id: request.method_original
+        type: string
+        requirement_level:
+          conditionally_required: If and only if it's different than `http.request.method`.
+        brief: Original HTTP method sent by the client in the request line.
+        examples: ["GeT", "ACL", "foo"]
       - id: request.body.size
         type: int
         brief: >
@@ -138,6 +144,8 @@ groups:
         requirement_level: required
         sampling_relevant: true
       - ref: url.query
+        requirement_level:
+          conditionally_required: If and only if one was received/sent.
         sampling_relevant: true
       - ref: url.scheme
         sampling_relevant: true
