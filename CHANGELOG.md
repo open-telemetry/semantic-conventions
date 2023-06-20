@@ -92,6 +92,8 @@ release.
 - Limit `http.request.method` values to a closed set of known values,
   introduce `http.request.method_original` for the original value.
   ([#17](https://github.com/open-telemetry/opentelemetry-specification/pull/17))
+- Mark service.version as stable.
+  ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
 - Update `.count` metric naming convention so that it only applies to UpDownCounters,
   and add that `.total` should not be used by either Counters or UpDownCounters
   ([#107](https://github.com/open-telemetry/opentelemetry-specification/pull/107))
