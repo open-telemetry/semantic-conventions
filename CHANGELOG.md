@@ -92,3 +92,6 @@ release.
 - Limit `http.request.method` values to a closed set of known values,
   introduce `http.request.method_original` for the original value.
   ([#17](https://github.com/open-telemetry/opentelemetry-specification/pull/17))
+- Mark service.version as stable.
+  ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
+  
