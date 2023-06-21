@@ -94,4 +94,3 @@ release.
   ([#17](https://github.com/open-telemetry/opentelemetry-specification/pull/17))
 - Mark service.version as stable.
   ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
-  
