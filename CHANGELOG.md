@@ -34,7 +34,7 @@ release.
   ([#3402](https://github.com/open-telemetry/opentelemetry-specification/pull/3402))
     BREAKING: rename `net.peer.name` to `server.address` on client side and to `client.address` on server side,
      `net.peer.port` to `server.port` on client side and to `client.port` on server side,
-     `net.host.name` and `net.host.port` to `server.address` and `server.port` on client side (`net.host.*` attributes do not apply to server instrumentation)
+     `net.host.name` and `net.host.port` to `server.address` and `server.port` (since `net.host.*` attributes only applied on server side)
      `net.sock.peer.addr` to `server.socket.address` on client side and to `client.socket.address` on server side,
      `net.sock.peer.port` to `server.socket.port` on client side and to `client.socket.port` on server side,
      `net.sock.peer.name` to `server.socket.domain` (since `net.sock.peer.name` only applied to client instrumentation),
