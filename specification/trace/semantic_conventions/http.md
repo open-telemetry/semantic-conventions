@@ -327,8 +327,8 @@ If the route cannot be determined, the `name` attribute MUST be set as defined i
 | [`client.port`](span-general.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [3] | `65123` | Recommended |
 | [`client.socket.address`](span-general.md) | string | Immediate client peer address - unix domain socket name, IPv4 or IPv6 address. | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
 | [`client.socket.port`](span-general.md) | int | Immediate client peer port number | `35555` | Recommended: If different than `client.port`. |
-| [`server.address`](span-general.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Required |
-| [`server.port`](span-general.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Conditionally Required: [6] |
+| [`server.address`](span-general.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Recommended |
+| [`server.port`](span-general.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Recommended: [6] |
 | [`server.socket.address`](span-general.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.5.3.2` | Opt-In |
 | [`server.socket.port`](span-general.md) | int | Local socket port. Useful in case of a multi-port host. | `16456` | Opt-In |
 | `url.path` | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [7] | `/search` | Required |
