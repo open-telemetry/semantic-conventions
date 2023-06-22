@@ -7,8 +7,6 @@ release.
 
 ## Unreleased
 
-- Updated AWS Java Lambda guidance - using system properties.
-
 ### Semantic Conventions
 
 - Add GCP Bare Metal Solution as a cloud platform
@@ -80,5 +78,21 @@ release.
   ([#70](https://github.com/open-telemetry/semantic-conventions/pull/70))
 - Clarify that OTEL_SEMCONV_STABILITY_OPT_IN is a comma-separated list of values
   ([#104](https://github.com/open-telemetry/semantic-conventions/pull/104))
+- Add `process.runtime.jvm.cpu.time` metric.
+  ([#55](https://github.com/open-telemetry/semantic-conventions/pull/55))
+- Split out sections for proposed stable JVM metrics and experimental JVM metrics.
+  ([#56](https://github.com/open-telemetry/semantic-conventions/pull/56))
+- Make `url.query` conditionally required for HTTP spans.
+  ([#118](https://github.com/open-telemetry/semantic-conventions/pull/118))
+- Change `server.address` and `server.port` requirement levels on HTTP server metrics
+  from `required` to `opt_in`.
+  ([#109](https://github.com/open-telemetry/semantic-conventions/pull/109))
+- Updated AWS Java Lambda guidance - using system properties.
+  ([#27](https://github.com/open-telemetry/semantic-conventions/pull/27))
+- Limit `http.request.method` values to a closed set of known values,
+  introduce `http.request.method_original` for the original value.
+  ([#17](https://github.com/open-telemetry/opentelemetry-specification/pull/17))
+- Mark service.version as stable.
+  ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
 - Mark initial set of HTTP semantic conventions as frozen
-  ([#105](https://github.com/open-telemetry/semantic-conventions/pull/105))
+  ([#105](https://github.com/open-telemetry/semantic-conventions/pull/105))  
