@@ -283,7 +283,7 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 <!-- semconv metric.process.runtime.jvm.cpu.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.cpu.time` | Counter | `s` | CPU time used by the process. |
+| `process.runtime.jvm.cpu.time` | Counter | `s` | CPU time used by the process as reported by the JVM. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.cpu.time(full) -->
@@ -299,7 +299,7 @@ Note that the JVM does not provide a definition of what "recent" means.
 <!-- semconv metric.process.runtime.jvm.cpu.recent_utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.cpu.recent_utilization` | Gauge | `1` | Recent CPU utilization for the process. |
+| `process.runtime.jvm.cpu.recent_utilization` | Gauge | `1` | Recent CPU utilization for the process as reported by the JVM. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.cpu.recent_utilization(full) -->
@@ -345,7 +345,7 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https:/
 <!-- semconv metric.process.runtime.jvm.system.cpu.utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.system.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the whole system. |
+| `process.runtime.jvm.system.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the whole system as reported by the JVM. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.system.cpu.utilization(full) -->
@@ -359,7 +359,7 @@ This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](ht
 <!-- semconv metric.process.runtime.jvm.system.cpu.load_1m(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.system.cpu.load_1m` | Gauge | `1` | Average CPU load of the whole system for the last minute. |
+| `process.runtime.jvm.system.cpu.load_1m` | Gauge | `1` | Average CPU load of the whole system for the last minute as reported by the JVM. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.system.cpu.load_1m(full) -->
