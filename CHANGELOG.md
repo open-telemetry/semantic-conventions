@@ -34,7 +34,7 @@ release.
   ([#3402](https://github.com/open-telemetry/opentelemetry-specification/pull/3402))
     BREAKING: rename `net.peer.name` to `server.address` on client side and to `client.address` on server side,
      `net.peer.port` to `server.port` on client side and to `client.port` on server side,
-     `net.host.name` and `net.host.port` to `server.name` and `server.port` (since `net.host.*` attributes only applied to server instrumentation)
+     `net.host.name` and `net.host.port` to `server.address` and `server.port` (since `net.host.*` attributes only applied to server instrumentation),
      `net.sock.peer.addr` to `server.socket.address` on client side and to `client.socket.address` on server side,
      `net.sock.peer.port` to `server.socket.port` on client side and to `client.socket.port` on server side,
      `net.sock.peer.name` to `server.socket.domain` (since `net.sock.peer.name` only applied to client instrumentation),
@@ -89,3 +89,8 @@ release.
   ([#109](https://github.com/open-telemetry/semantic-conventions/pull/109))
 - Updated AWS Java Lambda guidance - using system properties.
   ([#27](https://github.com/open-telemetry/semantic-conventions/pull/27))
+- Limit `http.request.method` values to a closed set of known values,
+  introduce `http.request.method_original` for the original value.
+  ([#17](https://github.com/open-telemetry/opentelemetry-specification/pull/17))
+- Mark service.version as stable.
+  ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
