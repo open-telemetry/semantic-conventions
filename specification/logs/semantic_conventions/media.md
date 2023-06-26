@@ -47,7 +47,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 |---|---|---|---|---|
 | `log.iostream` | string | The stream associated with the log. SHOULD be one of: `stdout`, `stderr`. | `stdout` | Opt-In |
 
-`log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`log.iostream` MUST be one of the following:
 
 | Value  | Description |
 |---|---|

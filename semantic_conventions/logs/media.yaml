@@ -9,7 +9,7 @@ groups:
         brief: >
           The stream associated with the log. SHOULD be one of: `stdout`, `stderr`.
         type:
-          allow_custom_values: true
+          allow_custom_values: false
           members:
             - id: stdout
               value: 'stdout'
