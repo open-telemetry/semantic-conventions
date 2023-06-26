@@ -19,7 +19,7 @@
 | `container.command_line` | string | The full command run by the container as a single string representing the full command. [2] | `otelcontribcol --config config.yaml` | Opt-In |
 | `container.command_args` | string[] | All the command arguments (including the command/executable itself) run by the container. [2] | `[otelcontribcol, --config, config.yaml]` | Opt-In |
 
-**[1]:** Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker  container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect)  endpoint.
+**[1]:** Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
 K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
 OCI defines a digest of manifest.
 
