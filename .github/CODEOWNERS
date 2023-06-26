@@ -23,4 +23,12 @@
 /semantic_conventions/logs/ @tigrannajaryan
 /specification/logs/ @tigrannajaryan
 
+# JVM semantic conventions approvers
+/semantic_conventions/metrics/process-runtime-jvm-metrics.yaml @trask
+/semantic_conventions/metrics/process-runtime-jvm-metrics-experimental.yaml @trask
+
+# HTTP semantic conventions approvers
+/semantic_conventions/metrics/http.yaml @trask
+/semantic_conventions/trace/http.yaml @trask
+
 # TODO - Add semconv area experts
