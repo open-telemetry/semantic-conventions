@@ -464,7 +464,6 @@ Note: This is the first release of Semantic Conventions separate from the Specif
 - Update semantic conventions to distinguish between int and double ([#1550](https://github.com/open-telemetry/opentelemetry-specification/pull/1550))
 - Add semantic convention for AWS ECS task revision ([#1581](https://github.com/open-telemetry/opentelemetry-specification/pull/1581))
 
-
 ## v1.1.0 (2021-03-11)
 
 - Add `elasticsearch` to `db.system` semantic conventions ([#1463](https://github.com/open-telemetry/opentelemetry-specification/pull/1463))
@@ -486,5 +485,3 @@ N/A
 ## v1.0.0 (2021-02-10)
 
 First release of OpenTelemetry Specification. Semantic conventions were not explicitly tracked in changelog up to this point.
-
-
