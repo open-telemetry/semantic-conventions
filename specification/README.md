@@ -8,6 +8,7 @@ The benefit to using Semantic Conventions is in following a common naming scheme
 
 Semantic Conventions are defined for the following areas:
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
+* *Other areas can be found in the signal specific Semantic Conventions below*
 
 Semantic Conventions by signals:
 * [Resource](resource/semantic_conventions/README.md): Semantic Conventions for resources.
