@@ -32,7 +32,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 <!-- semconv log.file -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `log.file.name` | string | The basename of the file. | `audit.log` | Opt-In |
+| `log.file.name` | string | The basename of the file. | `audit.log` | Recommended |
 | `log.file.path` | string | The full path to the file. | `/var/log/mysql/audit.log` | Opt-In |
 | `log.file.name_resolved` | string | The basename of the file, with symlinks resolved. | `uuid.log` | Opt-In |
 | `log.file.path_resolved` | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | Opt-In |

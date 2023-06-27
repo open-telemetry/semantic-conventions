@@ -25,7 +25,7 @@ groups:
     attributes:
       - id: name
         type: string
-        requirement_level: opt_in
+        requirement_level: recommended
         brief: >
           The basename of the file.
         examples: ["audit.log"]
