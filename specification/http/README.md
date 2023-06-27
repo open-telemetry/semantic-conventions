@@ -32,6 +32,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 >   next major version SHOULD NOT be released prior to October 1, 2023).
 
 Semantic conventions for HTTP are defined for the following signals:
+
 * [HTTP Spans](http-spans.md): Semantic Conventions for HTTP client and server *spans*.
 * [HTTP Metrics](http-metrics.md): Semantic Conventions for HTTP client and server *metrics*.
 
