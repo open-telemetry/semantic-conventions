@@ -1,6 +1,6 @@
 # Semantic conventions for Elasticsearch
 
-**Status**: [Experimental](../../../document-status.md)
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions to apply when creating a span for requests to Elasticsearch.
 
@@ -8,7 +8,7 @@ This document defines semantic conventions to apply when creating a span for req
 
 The **span name** SHOULD be of the format `<endpoint id>`.
 
-The elasticsearch endpoint identifier is used instead of the url path in order to reduce the cardinality of the span 
+The elasticsearch endpoint identifier is used instead of the url path in order to reduce the cardinality of the span
 name, as the path could contain dynamic values. The endpoint id is the `name` field in the
 [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json).
 If the endpoint id is not available, the span name SHOULD be `http.request.method`.
