@@ -32,3 +32,8 @@ groups:
         brief: >
           Container image tag.
         examples: ['0.1']
+      - id: labels.<key>
+        type: string
+        brief: >
+          Container labels, `<key>` being the label name, the value being the label value.
+        examples: [ 'container.labels.app=nginx']
