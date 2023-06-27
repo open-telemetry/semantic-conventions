@@ -3,7 +3,7 @@
 **Status**: [Experimental][DocumentStatus]
 
 This document defines how to apply semantic conventions when instrumenting an AWS Lambda request handler. AWS
-Lambda largely follows the conventions for [FaaS][faas] while [HTTP](../http.md) conventions are also
+Lambda largely follows the conventions for [FaaS][faas] while [HTTP](/specification/http/http-spans.md) conventions are also
 applicable when handlers are for HTTP requests.
 
 There are a variety of triggers for Lambda functions, and this document will grow over time to cover all the
@@ -78,11 +78,11 @@ configuration for a REST API, in which case only a deserialized body payload is 
 gateway is configured to proxy to the Lambda function, the instrumented request handler will have access to all
 the information about the HTTP request in the form of an API Gateway Proxy Request Event.
 
-The Lambda span name and the [`http.route` span attribute](../http.md#http-server-semantic-conventions) SHOULD
+The Lambda span name and the [`http.route` span attribute](/specification/http/http-spans.md#http-server-semantic-conventions) SHOULD
 be set to the [resource property][] from the proxy request event, which corresponds to the user configured HTTP
 route instead of the function name.
 
-[`faas.trigger`][faas] MUST be set to `http`. [HTTP attributes](../http.md) SHOULD be set based on the
+[`faas.trigger`][faas] MUST be set to `http`. [HTTP attributes](/specification/http/http-spans.md) SHOULD be set based on the
 available information in the Lambda event initiated by the proxy request. `http.scheme` is available as the
 `x-forwarded-proto` header in the Lambda event. Refer to the [input event format][] for more details.
 
