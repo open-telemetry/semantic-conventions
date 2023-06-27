@@ -99,6 +99,8 @@ Note: This is the first release of Semantic Conventions separate from the Specif
 
 ## v1.20.0 (2023-04-07)
 
+This and earlier versions were released as part of [the Specification](https://github.com/open-telemetry/opentelemetry-specification/). See [the specification changelog](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/CHANGELOG.md) if you'd like to `git blame` a changelog entry.
+
 - Clarify that attribute requirement levels apply to the instrumentation library
   ([#3289](https://github.com/open-telemetry/opentelemetry-specification/pull/3289))
 - Fix grammatical number of metric units.
