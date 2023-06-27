@@ -1,4 +1,4 @@
-# General attributes
+# General logs attributes
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -12,6 +12,17 @@ They may be used in any Log Record they apply to.
 - [General log identification attributes](#general-log-identification-attributes)
 
 <!-- tocstop -->
+
+The following semantic conventions for logs are defined:
+
+* [General](#general-log-identification-attributes): General semantic attributes that may be used in describing Log Records.
+* [Log Media](/specification/logs/semantic_conventions/media.md): Semantic attributes that may be used in describing the source of a log.
+* [Exceptions](/specification/logs/semantic_conventions/exceptions.md): Semantic attributes that may be used in describing exceptions in logs.
+* [Feature Flags](/specification/logs/semantic_conventions/feature-flags.md): Semantic attributes that may be used in describing feature flag evaluations in logs.
+
+Apart from semantic conventions for logs, [events](events-general.md), [traces](trace-general.md), and [metrics](metrics-general.md),
+OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/resource/sdk.md) with their own
+[Resource Semantic Conventions](/specification/resource/semantic_conventions/README.md).
 
 ## General log identification attributes
 

@@ -64,7 +64,7 @@ MUST be of the specified type and units.
 
 Below is a table of RPC server metric instruments.
 
-| Name | Instrument Type ([*](README.md#instrument-types)) | Unit | Unit ([UCUM](README.md#instrument-units)) | Description | Status | Streaming |
+| Name | Instrument Type ([*](/specification/general/metrics-general.md#instrument-types)) | Unit | Unit ([UCUM](/specification/general/metrics-general.md#instrument-units)) | Description | Status | Streaming |
 |------|------------|------|-------------------------------------------|-------------|--------|-----------|
 | `rpc.server.duration` | Histogram  | milliseconds | `ms` | measures duration of inbound RPC | Recommended | N/A.  While streaming RPCs may record this metric as start-of-batch to end-of-batch, it's hard to interpret in practice. |
 | `rpc.server.request.size` | Histogram  | Bytes | `By` | measures size of RPC request messages (uncompressed) | Optional | Recorded per message in a streaming batch |
@@ -77,7 +77,7 @@ Below is a table of RPC server metric instruments.
 Below is a table of RPC client metric instruments.  These apply to traditional
 RPC usage, not streaming RPCs.
 
-| Name | Instrument Type ([*](README.md#instrument-types)) | Unit | Unit ([UCUM](README.md#instrument-units)) | Description | Status | Streaming |
+| Name | Instrument Type ([*](/specification/general/metrics-general.md#instrument-types)) | Unit | Unit ([UCUM](/specification/general/metrics-general.md#instrument-units)) | Description | Status | Streaming |
 |------|------------|------|-------------------------------------------|-------------|--------|-----------|
 | `rpc.client.duration` | Histogram | milliseconds | `ms` | measures duration of outbound RPC | Recommended | N/A.  While streaming RPCs may record this metric as start-of-batch to end-of-batch, it's hard to interpret in practice. |
 | `rpc.client.request.size` | Histogram | Bytes | `By` | measures size of RPC request messages (uncompressed) | Optional | Recorded per message in a streaming batch |
@@ -96,12 +96,12 @@ measurements.
 | [`rpc.system`](../../trace/semantic_conventions/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
 | [`rpc.service`](../../trace/semantic_conventions/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [1] | `myservice.EchoService` | Recommended |
 | [`rpc.method`](../../trace/semantic_conventions/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [2] | `exampleMethod` | Recommended |
-| [`network.transport`](../../trace/semantic_conventions/span-general.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
-| [`network.type`](../../trace/semantic_conventions/span-general.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../../trace/semantic_conventions/span-general.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com` | Required |
-| [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Logical server port number | `80`; `8080`; `443` | Conditionally Required: See below |
-| [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | See below |
-| [`server.socket.port`](../../trace/semantic_conventions/span-general.md) | int | Physical server port. | `16456` | Recommended: [4] |
+| [`network.transport`](../../general/general-attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
+| [`network.type`](../../general/general-attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../../general/general-attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com` | Required |
+| [`server.port`](../../general/general-attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Conditionally Required: See below |
+| [`server.socket.address`](../../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | See below |
+| [`server.socket.port`](../../general/general-attributes.md) | int | Physical server port. | `16456` | Recommended: [4] |
 
 **[1]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
@@ -113,8 +113,8 @@ measurements.
 
 **Additional attribute requirements:** At least one of the following sets of attributes is required:
 
-* [`server.socket.address`](../../trace/semantic_conventions/span-general.md)
-* [`server.address`](../../trace/semantic_conventions/span-general.md)
+* [`server.socket.address`](../../general/general-attributes.md)
+* [`server.address`](../../general/general-attributes.md)
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -134,7 +134,7 @@ To avoid high cardinality, implementations should prefer the most stable of `ser
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).
 For server-side spans `server.port` is optional (it describes the port the client is connecting from).
 
-[network.transport]: ../../trace/semantic_conventions/span-general.md#network-attributes
+[network.transport]: ../../general/general-attributes.md#network-attributes
 
 ### Service name
 

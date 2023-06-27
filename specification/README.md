@@ -6,12 +6,14 @@ The benefit to using Semantic Conventions is in following a common naming scheme
 
 Semantic Conventions are defined for the following areas:
 
+* [General](general/README.md): General Semantic Conventions.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * *Other areas can be found in the signal specific Semantic Conventions below*
 
 Semantic Conventions by signals:
 
 * [Resource](resource/semantic_conventions/README.md): Semantic Conventions for resources.
-* [Trace](trace/semantic_conventions/README.md): Semantic Conventions for traces and spans.
-* [Metrics](metrics/semantic_conventions/README.md): Semantic Conventions for metrics.
-* [Logs](logs/semantic_conventions/README.md): Semantic Conventions for logs and event data.
+* [Trace](general/trace-general.md): Semantic Conventions for traces and spans.
+* [Metrics](general/metrics-general.md): Semantic Conventions for metrics.
+* [Logs](general/logs-general.md): Semantic Conventions for logs data.
+* [Events](general/events-general.md): Semantic Conventions for event data.
