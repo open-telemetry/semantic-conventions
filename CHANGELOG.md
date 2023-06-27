@@ -91,7 +91,7 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#27](https://github.com/open-telemetry/semantic-conventions/pull/27))
 - Limit `http.request.method` values to a closed set of known values,
   introduce `http.request.method_original` for the original value.
-  ([#17](https://github.com/open-telemetry/opentelemetry-specification/pull/17))
+  ([#17](https://github.com/open-telemetry/semantic-conventions/pull/17))
 - Mark service.version as stable.
   ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
 - Mark initial set of HTTP semantic conventions as frozen
