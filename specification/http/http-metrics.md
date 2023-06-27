@@ -28,7 +28,7 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 
 > **Warning**
 > Existing HTTP instrumentations that are using
-> [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/http/http-metrics.md)
+> [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/metrics/semantic_conventions/http-metrics.md)
 > (or prior):
 >
 > * SHOULD NOT change the version of the HTTP or networking attributes that they emit
