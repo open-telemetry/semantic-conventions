@@ -338,7 +338,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 ### Metric: `process.runtime.jvm.system.cpu.utilization`
 
-This metric is [recommended][MetricRecommended].
+This metric is [Opt-In][MetricOptIn].
 This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad()) on Java version 8..13, [`com.sun.management.OperatingSystemMXBean#getCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()) on Java version 14+,
 and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html) on J9.
 
@@ -353,7 +353,7 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https:/
 
 ### Metric: `process.runtime.jvm.system.cpu.load_1m`
 
-This metric is [recommended][MetricRecommended].
+This metric is [Opt-In][MetricOptIn].
 This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage--).
 
 <!-- semconv metric.process.runtime.jvm.system.cpu.load_1m(metric_table) -->
@@ -423,4 +423,5 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#opt-in
 [MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
