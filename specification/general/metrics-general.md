@@ -21,7 +21,7 @@ The following semantic conventions surrounding metrics are defined:
 
 * [HTTP](/specification/http/http-metrics.md): For HTTP client and server metrics.
 * [RPC](/specification/metrics/semantic_conventions/rpc-metrics.md): For RPC client and server metrics.
-* [Database](/specification/metrics/semantic_conventions/database-metrics.md): For SQL and NoSQL client metrics.
+* [Database](/specification/database/database-metrics.md): For SQL and NoSQL client metrics.
 * [System](/specification/metrics/semantic_conventions/system-metrics.md): For standard system metrics.
 * [Process](/specification/metrics/semantic_conventions/process-metrics.md): For standard process metrics.
 * [Runtime Environment](/specification/metrics/semantic_conventions/runtime-environment-metrics.md): For runtime environment metrics.
