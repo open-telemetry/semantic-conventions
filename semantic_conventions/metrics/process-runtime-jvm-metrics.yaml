@@ -117,14 +117,14 @@ groups:
   - id: metric.process.runtime.jvm.cpu.time
     type: metric
     metric_name: process.runtime.jvm.cpu.time
-    brief: "CPU time used by the process."
+    brief: "CPU time used by the process as reported by the JVM."
     instrument: counter
     unit: "s"
 
   - id: metric.process.runtime.jvm.cpu.recent_utilization
     type: metric
     metric_name: process.runtime.jvm.cpu.recent_utilization
-    brief: "Recent CPU utilization for the process."
+    brief: "Recent CPU utilization for the process as reported by the JVM."
     note: >
       The value range is [0.0,1.0].
       This utilization is not defined as being for the specific interval since last measurement

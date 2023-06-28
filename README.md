@@ -18,9 +18,7 @@ The documentation currently resides in the previous folders, e.g.
 
 ## TODOs
 
-- [ ] Set up github actions
 - [ ] Set up SchemaURL publication
-- [ ] Set up codeowners
 - [ ] Contributing.MD document
 - [ ] Restructure markdown for easier consumption.
 
