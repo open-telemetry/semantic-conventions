@@ -42,7 +42,7 @@ in order to map the path part values to their names.
 
 **[2]:** The value may be sanitized to exclude sensitive information.
 
-**[3]:** Should be collected when a search-type query is executed
+**[3]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
 
 **[4]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password should be redacted and attribute's value should be `https://REDACTED:REDACTED@www.example.com/`.
