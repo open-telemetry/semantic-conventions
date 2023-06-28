@@ -7,7 +7,7 @@ groups:
       - id: iostream
         requirement_level: opt_in
         brief: >
-          The stream associated with the log. SHOULD be one of: `stdout`, `stderr`.
+          The stream associated with the log. See below for a list of well-known values.
         type:
           allow_custom_values: false
           members:
@@ -17,7 +17,7 @@ groups:
             - id: stderr
               value: 'stderr'
               brief: 'Events from stderr stream'
-  - id: log.file
+  - id: attributes.log.file
     prefix: log.file
     type: attribute_group
     brief: >

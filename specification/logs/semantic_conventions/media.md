@@ -29,7 +29,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 **Description:** A file to which log was emitted.
 
-<!-- semconv log.file -->
+<!-- semconv attributes.log.file -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `log.file.name` | string | The basename of the file. | `audit.log` | Recommended |
@@ -45,7 +45,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 <!-- semconv log -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `log.iostream` | string | The stream associated with the log. SHOULD be one of: `stdout`, `stderr`. | `stdout` | Opt-In |
+| `log.iostream` | string | The stream associated with the log. See below for a list of well-known values. | `stdout` | Opt-In |
 
 `log.iostream` MUST be one of the following:
 
