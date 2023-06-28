@@ -98,6 +98,8 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#105](https://github.com/open-telemetry/semantic-conventions/pull/105))
 - Mark `process.runtime.jvm.system.cpu.load_1m` and `process.runtime.jvm.system.cpu.utilization` metrics as opt-in.
   ([#57](https://github.com/open-telemetry/semantic-conventions/pull/57))
+- Add container `image.id`, `command`, `command_line` and `command_args` resource attributes.
+  ([#39](https://github.com/open-telemetry/semantic-conventions/pull/39))
 
 ## v1.20.0 (2023-04-07)
 
