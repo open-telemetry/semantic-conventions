@@ -11,7 +11,7 @@ groups:
         note: |
           Determined by using the first of the following that applies
 
-          - The [primary server name](/specification/trace/semantic_conventions/http.md#http-server-definitions) of the matched virtual host. MUST only
+          - The [primary server name](/specification/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
             include host identifier.
           - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
@@ -26,7 +26,7 @@ groups:
         note: |
           Determined by using the first of the following that applies
 
-          - Port identifier of the [primary server host](/specification/trace/semantic_conventions/http.md#http-server-definitions) of the matched virtual host.
+          - Port identifier of the [primary server host](/specification/http/http-spans.md#http-server-definitions) of the matched virtual host.
           - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
@@ -74,7 +74,7 @@ groups:
         note: |
           Determined by using the first of the following that applies
 
-          - The [primary server name](/specification/trace/semantic_conventions/http.md#http-server-definitions) of the matched virtual host. MUST only
+          - The [primary server name](/specification/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
             include host identifier.
           - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
@@ -89,7 +89,7 @@ groups:
         note: |
           Determined by using the first of the following that applies
 
-          - Port identifier of the [primary server host](/specification/trace/semantic_conventions/http.md#http-server-definitions) of the matched virtual host.
+          - Port identifier of the [primary server host](/specification/http/http-spans.md#http-server-definitions) of the matched virtual host.
           - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
