@@ -103,6 +103,8 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#57](https://github.com/open-telemetry/semantic-conventions/pull/57))
 - Add container `image.id`, `command`, `command_line` and `command_args` resource attributes.
   ([#39](https://github.com/open-telemetry/semantic-conventions/pull/39))
+- Add Elasticsearch client semantic conventions.
+  ([#23](https://github.com/open-telemetry/semantic-conventions/pull/23))
 
 ## v1.20.0 (2023-04-07)
 
