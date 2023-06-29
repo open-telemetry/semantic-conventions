@@ -18,6 +18,7 @@
   * [Redis](#redis)
   * [MongoDB](#mongodb)
   * [Microsoft Azure Cosmos DB](#microsoft-azure-cosmos-db)
+  * [Elasticsearch](#elasticsearch)
 
 <!-- tocstop -->
 
