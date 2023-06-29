@@ -103,6 +103,9 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#57](https://github.com/open-telemetry/semantic-conventions/pull/57))
 - Add container `image.id`, `command`, `command_line` and `command_args` resource attributes.
   ([#39](https://github.com/open-telemetry/semantic-conventions/pull/39))
+- Update `.count` metric naming convention so that it only applies to UpDownCounters,
+  and add that `.total` should not be used by either Counters or UpDownCounters
+  ([#107](https://github.com/open-telemetry/opentelemetry-specification/pull/107))
 
 ## v1.20.0 (2023-04-07)
 
@@ -494,3 +497,4 @@ N/A
 ## v1.0.0 (2021-02-10)
 
 First release of OpenTelemetry Specification. Semantic conventions were not explicitly tracked in changelog up to this point.
+
