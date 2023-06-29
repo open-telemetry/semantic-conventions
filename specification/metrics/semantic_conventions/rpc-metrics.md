@@ -38,15 +38,16 @@ metrics can be filtered for finer grain analysis.
 >   include stabilization of a core set of networking attributes which are also used
 >   in RPC instrumentations).
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which supports the following values:
->   * `none` - continue emitting whatever version of the old experimental
->     networking attributes the instrumentation was emitting previously.
->     This is the default value.
+>   in the existing major version which is a comma-separated list of values.
+>   The only values defined so far are:
 >   * `http` - emit the new, stable networking attributes,
 >     and stop emitting the old experimental networking attributes
 >     that the instrumentation emitted previously.
 >   * `http/dup` - emit both the old and the stable networking attributes,
 >     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental networking attributes
+>     the instrumentation was emitting previously.
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
 > * SHOULD drop the environment variable in the next major version (stable
@@ -99,7 +100,7 @@ measurements.
 | [`network.type`](../../trace/semantic_conventions/span-general.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](../../trace/semantic_conventions/span-general.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com` | Required |
 | [`server.port`](../../trace/semantic_conventions/span-general.md) | int | Logical server port number | `80`; `8080`; `443` | Conditionally Required: See below |
-| [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | See below |
+| [`server.socket.address`](../../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | See below |
 | [`server.socket.port`](../../trace/semantic_conventions/span-general.md) | int | Physical server port. | `16456` | Recommended: [4] |
 
 **[1]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
