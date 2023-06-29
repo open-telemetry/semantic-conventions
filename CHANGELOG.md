@@ -95,7 +95,7 @@ Note: This is the first release of Semantic Conventions separate from the Specif
 - Mark service.version as stable.
   ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
 - Mark initial set of HTTP semantic conventions as frozen
-  ([#105](https://github.com/open-telemetry/semantic-conventions/pull/105))  
+  ([#105](https://github.com/open-telemetry/semantic-conventions/pull/105))
 - BREAKING: Remove `messaging.source.*` attributes and use `messaging.destination.*`
   attributes on producer and consumer to describe messaging queue or topic.
   ([#100](https://github.com/open-telemetry/semantic-conventions/pull/100))
