@@ -42,7 +42,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 **Description:** The I/O stream to which the log was emitted.
 
-<!-- semconv log -->
+<!-- semconv attributes.log -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `log.iostream` | string | The stream associated with the log. See below for a list of well-known values. | `stdout` | Opt-In |

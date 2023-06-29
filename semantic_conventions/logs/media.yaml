@@ -1,5 +1,5 @@
 groups:
-  - id: log
+  - id: attributes.log
     prefix: log
     type: attribute_group
     brief: "Describes Log attributes"
