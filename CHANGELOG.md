@@ -96,6 +96,9 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#106](https://github.com/open-telemetry/semantic-conventions/pull/106))
 - Mark initial set of HTTP semantic conventions as frozen
   ([#105](https://github.com/open-telemetry/semantic-conventions/pull/105))
+- BREAKING: Remove `messaging.source.*` attributes and use `messaging.destination.*`
+  attributes on producer and consumer to describe messaging queue or topic.
+  ([#100](https://github.com/open-telemetry/semantic-conventions/pull/100))
 - Mark `process.runtime.jvm.system.cpu.load_1m` and `process.runtime.jvm.system.cpu.utilization` metrics as opt-in.
   ([#57](https://github.com/open-telemetry/semantic-conventions/pull/57))
 - Add container `image.id`, `command`, `command_line` and `command_args` resource attributes.
