@@ -1,6 +1,6 @@
 # Semantic conventions for HTTP spans
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Experimental, Feature-freeze][DocumentStatus]
 
 This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
@@ -15,6 +15,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 - [Common Attributes](#common-attributes)
   * [HTTP request and response headers](#http-request-and-response-headers)
 - [HTTP client](#http-client)
+  * [HTTP client span duration](#http-client-span-duration)
   * [HTTP request retries and redirects](#http-request-retries-and-redirects)
 - [HTTP server](#http-server)
   * [HTTP server definitions](#http-server-definitions)
@@ -37,15 +38,16 @@ and various HTTP versions like 1.1, 2 and SPDY.
 >   include stabilization of a core set of networking attributes which are also used
 >   in HTTP instrumentations).
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which supports the following values:
->   * `none` - continue emitting whatever version of the old experimental
->     HTTP and networking attributes the instrumentation was emitting previously.
->     This is the default value.
+>   in the existing major version which is a comma-separated list of values.
+>   The only values defined so far are:
 >   * `http` - emit the new, stable HTTP and networking attributes,
 >     and stop emitting the old experimental HTTP and networking attributes
 >     that the instrumentation emitted previously.
 >   * `http/dup` - emit both the old and the stable HTTP and networking attributes,
 >     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental HTTP and networking attributes
+>     the instrumentation was emitting previously.
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
 > * SHOULD drop the environment variable in the next major version (stable
@@ -90,22 +92,56 @@ sections below.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
+| `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `http.request.method` | string | HTTP request method. | `GET`; `POST`; `HEAD` | Required |
-| [`network.protocol.name`](span-general.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
-| [`network.protocol.version`](span-general.md) | string | Version of the application layer protocol used. See note below. [1] | `1.0`; `1.1`; `2.0` | Recommended |
-| [`network.transport`](span-general.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [2] |
-| [`network.type`](span-general.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
+| `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| [`network.protocol.name`](../trace/semantic_conventions/span-general.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
+| [`network.protocol.version`](../trace/semantic_conventions/span-general.md) | string | Version of the application layer protocol used. See note below. [3] | `1.0`; `1.1`; `2.0` | Recommended |
+| [`network.transport`](../trace/semantic_conventions/span-general.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [4] |
+| [`network.type`](../trace/semantic_conventions/span-general.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
-**[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[1]:** If and only if it's different than `http.request.method`.
 
-**[2]:** If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
+**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, except if reporting a metric, MUST
+set the exact method received in the request line as value of the `http.request.method_original` attribute.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+**[4]:** If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
 * `http.request.method`
+
+`http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `CONNECT` | CONNECT method. |
+| `DELETE` | DELETE method. |
+| `GET` | GET method. |
+| `HEAD` | HEAD method. |
+| `OPTIONS` | OPTIONS method. |
+| `PATCH` | PATCH method. |
+| `POST` | POST method. |
+| `PUT` | PUT method. |
+| `TRACE` | TRACE method. |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -157,11 +193,11 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [1] | `3` | Recommended: if and only if request was retried. |
-| [`server.address`](span-general.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com` | Required |
-| [`server.port`](span-general.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
-| [`server.socket.address`](span-general.md) | string | Physical server IP address or Unix socket address. | `10.5.3.2` | Recommended: If different than `server.address`. |
-| [`server.socket.domain`](span-general.md) | string | The domain name of an immediate peer. [5] | `proxy.example.com` | Recommended |
-| [`server.socket.port`](span-general.md) | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
+| [`server.address`](../trace/semantic_conventions/span-general.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com` | Required |
+| [`server.port`](../trace/semantic_conventions/span-general.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
+| [`server.socket.address`](../trace/semantic_conventions/span-general.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.domain`](../trace/semantic_conventions/span-general.md) | string | The domain name of an immediate peer. [5] | `proxy.example.com` | Recommended: If different than `server.address`. |
+| [`server.socket.port`](../trace/semantic_conventions/span-general.md) | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
 | `url.full` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [6] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
 
 **[1]:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
@@ -187,12 +223,28 @@ If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
-* [`server.address`](span-general.md)
-* [`server.port`](span-general.md)
+* [`server.address`](../trace/semantic_conventions/span-general.md)
+* [`server.port`](../trace/semantic_conventions/span-general.md)
 * `url.full`
 <!-- endsemconv -->
 
 Note that in some cases host and port identifiers in the `Host` header might be different from the `server.address` and `server.port`, in this case instrumentation MAY populate `Host` header on `http.request.header.host` attribute even if it's not enabled by user.
+
+### HTTP client span duration
+
+There are some minimal constraints that SHOULD be honored:
+
+* HTTP client spans SHOULD start sometime before the first request byte is sent. This may or may not include connection time.
+* HTTP client spans SHOULD end sometime after the HTTP response headers are fully read (or when they fail to be read). This may or may not include reading the response body.
+
+If there is any possibility for application code to not fully read the HTTP response
+(and for the HTTP client library to then have to clean up the HTTP response asynchronously),
+the HTTP client span SHOULD NOT be ended in this cleanup phase,
+and instead SHOULD end at some point after the HTTP response headers are fully read (or fail to be read).
+This avoids the span being ended asynchronously later on at a time
+which is no longer directly associated with the application code which made the HTTP request.
+
+Because of the potential for confusion around this, HTTP client library instrumentations SHOULD document their behavior around ending HTTP client spans.
 
 ### HTTP request retries and redirects
 
@@ -271,20 +323,20 @@ If the route cannot be determined, the `name` attribute MUST be set as defined i
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`client.address`](span-general.md) | string | Client address - unix domain socket name, IPv4 or IPv6 address. [2] | `83.164.160.102` | Recommended |
-| [`client.port`](span-general.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [3] | `65123` | Recommended |
-| [`client.socket.address`](span-general.md) | string | Immediate client peer address - unix domain socket name, IPv4 or IPv6 address. | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
-| [`client.socket.port`](span-general.md) | int | Immediate client peer port number | `35555` | Recommended: If different than `client.port`. |
-| [`server.address`](span-general.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Required |
-| [`server.port`](span-general.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Conditionally Required: [6] |
-| [`server.socket.address`](span-general.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.5.3.2` | Opt-In |
-| [`server.socket.port`](span-general.md) | int | Local socket port. Useful in case of a multi-port host. | `16456` | Opt-In |
+| [`client.address`](../trace/semantic_conventions/span-general.md) | string | Client address - unix domain socket name, IPv4 or IPv6 address. [2] | `83.164.160.102` | Recommended |
+| [`client.port`](../trace/semantic_conventions/span-general.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [3] | `65123` | Recommended |
+| [`client.socket.address`](../trace/semantic_conventions/span-general.md) | string | Immediate client peer address - unix domain socket name, IPv4 or IPv6 address. | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
+| [`client.socket.port`](../trace/semantic_conventions/span-general.md) | int | Immediate client peer port number | `35555` | Recommended: If different than `client.port`. |
+| [`server.address`](../trace/semantic_conventions/span-general.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Recommended |
+| [`server.port`](../trace/semantic_conventions/span-general.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Recommended: [6] |
+| [`server.socket.address`](../trace/semantic_conventions/span-general.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.5.3.2` | Opt-In |
+| [`server.socket.port`](../trace/semantic_conventions/span-general.md) | int | Local socket port. Useful in case of a multi-port host. | `16456` | Opt-In |
 | `url.path` | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [7] | `/search` | Required |
-| `url.query` | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Recommended |
+| `url.query` | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
 | `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
-SHOULD include the [application root](/specification/trace/semantic_conventions/http.md#http-server-definitions) if there is one.
+SHOULD include the [application root](/specification/http/http-spans.md#http-server-definitions) if there is one.
 
 **[2]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
 
@@ -292,7 +344,7 @@ SHOULD include the [application root](/specification/trace/semantic_conventions/
 
 **[4]:** Determined by using the first of the following that applies
 
-- The [primary server name](/specification/trace/semantic_conventions/http.md#http-server-definitions) of the matched virtual host. MUST only
+- The [primary server name](/specification/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
   include host identifier.
 - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
@@ -302,7 +354,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 **[5]:** Determined by using the first of the following that applies
 
-- Port identifier of the [primary server host](/specification/trace/semantic_conventions/http.md#http-server-definitions) of the matched virtual host.
+- Port identifier of the [primary server host](/specification/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
@@ -315,8 +367,8 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
-* [`server.address`](span-general.md)
-* [`server.port`](span-general.md)
+* [`server.address`](../trace/semantic_conventions/span-general.md)
+* [`server.port`](../trace/semantic_conventions/span-general.md)
 * `url.path`
 * `url.query`
 * `url.scheme`
