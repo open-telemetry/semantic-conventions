@@ -72,7 +72,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `server.address`                    | `"elasticsearch.mydomain.com"`                                                                                                      |
 | `server.port`                       | `9200`                                                                                                                              |
 | `http.request.method`               | `"GET"`                                                                                                                             |
-| `db.statement`                      | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                  |
+| `db.statement`                      | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                 |
 | `db.operation`                      | `"search"`                                                                                                                          |
 | `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
 | `db.elasticsearch.path_parts.index` | `"my-index-000001"`                                                                                                                 |
