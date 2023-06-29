@@ -62,3 +62,17 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password should be redacted and attribute's value should be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed) and SHOULD NOT be validated or modified except for sanitizing purposes.
 <!-- endsemconv -->
+
+## Example
+
+| Key                                 | Value                                                                                                                               |
+|:------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|
+| Span name                           | `"search"`                                                                                                                          |
+| `db.system`                         | `"elasticsearch"`                                                                                                                   |
+| `server.address`                    | `"elasticsearch.mydomain.com"`                                                                                                      |
+| `server.port`                       | `9200`                                                                                                                              |
+| `http.request.method`               | `"GET"`                                                                                                                             |
+| `db.statement`                      | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                  |
+| `db.operation`                      | `"search"`                                                                                                                          |
+| `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
+| `db.elasticsearch.path_parts.index` | `"my-index-000001"`                                                                                                                 |
