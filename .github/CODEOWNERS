@@ -24,11 +24,11 @@
 /specification/logs/ @tigrannajaryan
 
 # JVM semantic conventions approvers
-/semantic_conventions/metrics/process-runtime-jvm-metrics.yaml @open-telemetry/semconv-jvm-approvers
-/semantic_conventions/metrics/process-runtime-jvm-metrics-experimental.yaml @open-telemetry/semconv-jvm-approvers
+/semantic_conventions/metrics/process-runtime-jvm-metrics.yaml              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
+/semantic_conventions/metrics/process-runtime-jvm-metrics-experimental.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 
 # HTTP semantic conventions approvers
-/semantic_conventions/metrics/http.yaml @open-telemetry/semconv-http-approvers
-/semantic_conventions/trace/http.yaml @open-telemetry/semconv-http-approvers
+/semantic_conventions/metrics/http.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/semantic_conventions/trace/http.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 
 # TODO - Add semconv area experts
