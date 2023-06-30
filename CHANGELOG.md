@@ -107,6 +107,9 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#23](https://github.com/open-telemetry/semantic-conventions/pull/23))
 - Add YAML definitions for log semantic conventions and define requirement levels
   ([#133](https://github.com/open-telemetry/semantic-conventions/pull/133))
+- Re-introduce namespace and attributes to describe the original destination messages were
+  published to (`messaging.destination_publish.*`).
+  ([#156](https://github.com/open-telemetry/semantic-conventions/pull/156))
 
 ## v1.20.0 (2023-04-07)
 
