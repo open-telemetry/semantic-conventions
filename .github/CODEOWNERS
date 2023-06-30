@@ -21,9 +21,9 @@
 
 # Logs semantic conventions
 /semantic_conventions/logs/ @tigrannajaryan
-/specification/logs/ @tigrannajaryan
 /specification/general/events-general.md @tigrannajaryan
 /specification/general/logs-general.md @tigrannajaryan
+/specification/logs/ @tigrannajaryan
 
 # JVM semantic conventions approvers
 /semantic_conventions/metrics/process-runtime-jvm-metrics.yaml @trask
