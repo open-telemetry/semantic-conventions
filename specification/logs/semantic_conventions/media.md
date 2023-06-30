@@ -29,19 +29,30 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 **Description:** A file to which log was emitted.
 
-| Name                            | Notes and examples                                                                       |
-| ------------------------------- | ---------------------------------------------------------------------------------------- |
-| `log.file.name`          | The basename of the file. Example: `audit.log`                                           |
-| `log.file.path`          | The full path to the file. Example: `/var/log/mysql/audit.log`                           |
-| `log.file.name_resolved` | The basename of the file, with symlinks resolved. Example: `uuid.log`                    |
-| `log.file.path_resolved` | The full path to the file, with symlinks resolved. Example: `/var/lib/docker/uuid.log`   |
+<!-- semconv attributes.log.file -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `log.file.name` | string | The basename of the file. | `audit.log` | Recommended |
+| `log.file.path` | string | The full path to the file. | `/var/log/mysql/audit.log` | Opt-In |
+| `log.file.name_resolved` | string | The basename of the file, with symlinks resolved. | `uuid.log` | Opt-In |
+| `log.file.path_resolved` | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | Opt-In |
+<!-- endsemconv -->
 
 ### I/O Stream
 
 **Description:** The I/O stream to which the log was emitted.
 
-| Name                            | Notes and examples                                                                       |
-| ------------------------------- | ---------------------------------------------------------------------------------------- |
-| `log.iostream`        | The stream associated with the log. SHOULD be one of: `stdout`, `stderr` |
+<!-- semconv attributes.log -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `log.iostream` | string | The stream associated with the log. See below for a list of well-known values. | `stdout` | Opt-In |
+
+`log.iostream` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `stdout` | Logs from stdout stream |
+| `stderr` | Events from stderr stream |
+<!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
