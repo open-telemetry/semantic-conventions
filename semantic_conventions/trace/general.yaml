@@ -61,6 +61,10 @@ groups:
     brief: >
       These attributes may be used for any network related operation.
     attributes:
+      - id: connection.direction
+        type: string
+        brief: Read or write.
+        examples: [ "read", "write" ]
       - id: connection.type
         type:
           allow_custom_values: true

@@ -25,6 +25,15 @@ groups:
           Pool names are generally obtained via
           [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
+  - id: attributes.process.runtime.jvm.network
+    type: attribute_group
+    brief: "Describes JVM network IO metric attributes."
+    attributes:
+      - ref: thread.id
+        requirement_level: opt_in
+      - ref: network.connection.direction
+        requirement_level: recommended
+
   - id: metric.process.runtime.jvm.memory.usage
     type: metric
     metric_name: process.runtime.jvm.memory.usage

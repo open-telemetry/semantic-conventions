@@ -38,6 +38,10 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `process.runtime.jvm.buffer.usage`](#metric-processruntimejvmbufferusage)
   * [Metric: `process.runtime.jvm.buffer.limit`](#metric-processruntimejvmbufferlimit)
   * [Metric: `process.runtime.jvm.buffer.count`](#metric-processruntimejvmbuffercount)
+  * [Metric: `process.runtime.jvm.cpu.monitor.duration`](#metric-processruntimejvmcpumonitorduration)
+  * [Metric: `process.runtime.jvm.cpu.context_swtich`](#metric-processruntimejvmcpucontext_swtich)
+  * [Metric: `process.runtime.jvm.network.io`](#metric-processruntimejvmnetworkio)
+  * [Metric: `process.runtime.jvm.network.duration`](#metric-processruntimejvmnetworkduration)
 
 <!-- tocstop -->
 
@@ -420,6 +424,84 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 | `pool` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+<!-- endsemconv -->
+
+### Metric: `process.runtime.jvm.cpu.monitor.duration`
+
+This metric is [recommended][MetricRecommended]. Only available with JDK 17+.
+This metric is obtained from [`jdk.JavaMonitorWait`](https://sap.github.io/SapMachine/jfrevents/21.html#javamonitorwait) and [`jdk.JavaMonitorEnter`](https://sap.github.io/SapMachine/jfrevents/21.html#javamonitorenter) JFR events.
+
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#instrument-advice)
+of `[]` (single bucket histogram capturing count, sum, min, max).
+
+<!-- semconv metric.process.runtime.jvm.cpu.monitor.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.cpu.monitor.duration` | Histogram | `s` | Time monitor was used by a thread. Only available in JDK 17+. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.cpu.monitor.duration(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `state` | string | Action taken at monitor. | `blocked`; `wait` | Recommended |
+| [`code.namespace`](../../trace/semantic_conventions/span-general.md) | string | Class of the monitor. | `java.lang.Object` | Opt-In |
+| [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+<!-- endsemconv -->
+
+### Metric: `process.runtime.jvm.cpu.context_swtich`
+
+This metric is [recommended][MetricRecommended]. Only available with JDK 17+.
+This metric is obtained from [`jdk.ThreadContextSwitchRate`](https://sap.github.io/SapMachine/jfrevents/21.html#threadcontextswitchrate) JFR events.
+
+<!-- semconv metric.process.runtime.jvm.cpu.context_switch(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.context_switches` | UpDownCounter | `Hz` | Number of context switches per second. Only available in JDK 17+. |
+<!-- endsemconv -->
+
+### Metric: `process.runtime.jvm.network.io`
+
+This metric is [recommended][MetricRecommended]. Only available with JDK 17+.
+This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachine/jfrevents/21.html#socketwrite) and [`jdk.SocketRead`](https://sap.github.io/SapMachine/jfrevents/21.html#socketread) JFR events.
+
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#instrument-advice)
+of `[]` (single bucket histogram capturing count, sum, min, max).
+
+<!-- semconv metric.process.runtime.jvm.network.io(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.network.io` | Histogram | `By` | Bytes read/written by thread. Only available in JDK 17+. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.network.io(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`network.connection.direction`](../../trace/semantic_conventions/span-general.md) | string | Read or write. | `read`; `write` | Recommended |
+| [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+<!-- endsemconv -->
+
+### Metric: `process.runtime.jvm.network.duration`
+
+This metric is [recommended][MetricRecommended]. Only available with JDK 17+.
+This metric is obtained from [`jdk.SocketWrite`](https://sap.github.io/SapMachine/jfrevents/21.html#socketwrite) and [`jdk.SocketRead`](https://sap.github.io/SapMachine/jfrevents/21.html#socketread) JFR events.
+
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#instrument-advice)
+of `[]` (single bucket histogram capturing count, sum, min, max).
+
+<!-- semconv metric.process.runtime.jvm.network.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.runtime.jvm.network.duration` | Histogram | `s` | Duration of network IO operation by thread. Only available in JDK 17+. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.runtime.jvm.network.duration(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`network.connection.direction`](../../trace/semantic_conventions/span-general.md) | string | Read or write. | `read`; `write` | Recommended |
+| [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
