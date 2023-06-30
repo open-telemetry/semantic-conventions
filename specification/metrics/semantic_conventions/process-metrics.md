@@ -8,7 +8,7 @@ linkTitle: Process
 
 This document describes instruments and attributes for common OS process level
 metrics in OpenTelemetry. Also consider the [general metric semantic
-conventions](README.md#general-metric-semantic-conventions) when creating
+conventions](/specification/general/metrics-general.md#general-metric-semantic-conventions) when creating
 instruments not explicitly defined in this document. OS process metrics are
 not related to the runtime environment of the program, and should take
 measurements from the operating system. For runtime environment metrics see
@@ -31,7 +31,7 @@ metrics](runtime-environment-metrics.md).
 
 Below is a table of Process metric instruments.
 
-| Name                            | Instrument Type ([\*](README.md#instrument-types)) | Unit      | Description                                                                                                                         | Labels                                                                                                                                                                                          |
+| Name                            | Instrument Type ([\*](/specification/general/metrics-general.md#instrument-types)) | Unit      | Description                                                                                                                         | Labels                                                                                                                                                                                          |
 |---------------------------------|----------------------------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `process.cpu.time`              | Counter                                            | s         | Total CPU seconds broken down by different states.                                                                                  | `state`, if specified, SHOULD be one of: `system`, `user`, `wait`. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. |
 | `process.cpu.utilization`       | Gauge                                              | 1         | Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process. | `state`, if specified, SHOULD be one of: `system`, `user`, `wait`. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. |

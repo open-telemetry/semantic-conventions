@@ -5,12 +5,7 @@ be used by the various OpenTelemetry language implementations to aid in automati
 generation of semantics-related code.
 
 ⚠ If you want to read the semantic conventions and not edit them, please see
-the generated markdown output under `/specification/*/semantic_conventions/`,
-i.e.:
-
-* [Trace semantic conventions](../specification/trace/semantic_conventions/README.md)
-* [Metric semantic conventions](../specification/metrics/semantic_conventions/README.md)
-* [Resource semantic conventions](../specification/resource/semantic_conventions/README.md)
+the generated markdown output in the [specification](../specification/README.md) folder.
 
 ## Writing semantic conventions
 

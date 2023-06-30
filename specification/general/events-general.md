@@ -3,7 +3,16 @@
 **Status**: [Experimental][DocumentStatus]
 
 This document describes the attributes of standalone Events that are represented
-in the data model by `LogRecord`s. Events are recorded as LogRecords that are shaped
+in the data model by `LogRecord`s.
+
+The following semantic conventions for events are defined:
+
+* [General](#general-event-attributes): General semantic attributes that may be used in describing Events.
+* [Exceptions](/specification/logs/semantic_conventions/exceptions.md): Semantic attributes that may be used in describing exceptions as events.
+
+## General event attributes
+
+Events are recorded as LogRecords that are shaped
 in a special way: Event LogRecords have the attributes `event.domain`
 and `event.name` (and possibly other LogRecord attributes).
 

@@ -224,14 +224,14 @@ The following operations related to messages are defined for these semantic conv
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [11] |
 | `messaging.message.payload_compressed_size_bytes` | int | The compressed size of the message payload in bytes. | `2048` | Recommended: [12] |
 | `messaging.message.payload_size_bytes` | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. | `2738` | Recommended: [13] |
-| [`network.protocol.name`](span-general.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `mqtt` | Recommended |
-| [`network.protocol.version`](span-general.md) | string | Version of the application layer protocol used. See note below. [14] | `3.1.1` | Recommended |
-| [`network.transport`](span-general.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
-| [`network.type`](span-general.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](span-general.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. [15] | `example.com` | Conditionally Required: If available. |
-| [`server.socket.address`](span-general.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
-| [`server.socket.domain`](span-general.md) | string | The domain name of an immediate peer. [16] | `proxy.example.com` | Recommended: [17] |
-| [`server.socket.port`](span-general.md) | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
+| [`network.protocol.name`](../../general/general-attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `mqtt` | Recommended |
+| [`network.protocol.version`](../../general/general-attributes.md) | string | Version of the application layer protocol used. See note below. [14] | `3.1.1` | Recommended |
+| [`network.transport`](../../general/general-attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
+| [`network.type`](../../general/general-attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../../general/general-attributes.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. [15] | `example.com` | Conditionally Required: If available. |
+| [`server.socket.address`](../../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.domain`](../../general/general-attributes.md) | string | The domain name of an immediate peer. [16] | `proxy.example.com` | Recommended: [17] |
+| [`server.socket.port`](../../general/general-attributes.md) | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
@@ -295,8 +295,8 @@ Communication with broker is described with general [network attributes].
 Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace
 as described in [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems).
 
-[network attributes]: span-general.md#server-and-client-attributes
-[`network.transport`]: span-general.md#network-attributes
+[network attributes]: /specification/general/general-attributes.md#server-and-client-attributes
+[`network.transport`]: /specification/general/general-attributes.md#network-attributes
 [Hangfire]: https://www.hangfire.io/
 
 ### Consumer attributes
@@ -356,7 +356,7 @@ For Apache Kafka, the following additional attributes are defined:
 **[2]:** If value is `true`. When missing, the value is assumed to be `false`.
 <!-- endsemconv -->
 
-For Apache Kafka producers, [`peer.service`](./span-general.md#general-remote-service-attributes) SHOULD be set to the name of the broker or service the message will be sent to.
+For Apache Kafka producers, [`peer.service`](/specification/general/general-attributes.md#general-remote-service-attributes) SHOULD be set to the name of the broker or service the message will be sent to.
 The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of the Producer, when the message is directly passed to another service.
 If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
 

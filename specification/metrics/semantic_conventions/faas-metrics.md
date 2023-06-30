@@ -36,7 +36,7 @@ type and units.
 
 Below is a table of FaaS invocation metric instruments.
 
-| Name                   | Instrument Type ([*](README.md#instrument-types)) | Unit         | Unit ([UCUM](README.md#instrument-units)) | Description                                                                  |
+| Name                   | Instrument Type ([*](/specification/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/specification/general/metrics-general.md#instrument-units)) | Description                                                                  |
 |------------------------|---------------------------------------------------|--------------|-------------------------------------------|------------------------------------------------------------------------------|
 | `faas.invoke_duration` | Histogram                                         | milliseconds | `ms`                                      | Measures the duration of the invocation                                      |
 | `faas.init_duration`   | Histogram                                         | milliseconds | `ms`                                      | Measures the duration of the function's initialization, such as a cold start |
@@ -47,7 +47,7 @@ Below is a table of FaaS invocation metric instruments.
 
 Optionally, when applicable:
 
-| Name             | Instrument Type ([*](README.md#instrument-types)) | Unit         | Unit ([UCUM](README.md#instrument-units)) | Description                                     |
+| Name             | Instrument Type ([*](/specification/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/specification/general/metrics-general.md#instrument-units)) | Description                                     |
 |------------------|---------------------------------------------------|--------------|-------------------------------------------|-------------------------------------------------|
 | `faas.mem_usage` | Histogram                                         | Bytes        | `By`                                      | Distribution of max memory usage per invocation |
 | `faas.cpu_usage` | Histogram                                         | milliseconds | `ms`                                      | Distribution of CPU usage per invocation        |
