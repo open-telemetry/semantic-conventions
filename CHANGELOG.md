@@ -7,6 +7,10 @@ release.
 
 ## Unreleased
 
+- Re-introduce namespace and attributes to describe the original destination messages were
+  published to (`messaging.destination_publish.*`).
+  ([#156](https://github.com/open-telemetry/semantic-conventions/pull/156))
+
 ## v1.21.0 (2023-07-13)
 
 Note: This is the first release of Semantic Conventions separate from the Specification.
