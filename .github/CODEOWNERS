@@ -16,19 +16,19 @@
 *   @open-telemetry/specs-semconv-maintainers @open-telemetry/specs-semconv-approvers
 
 # Schemas and schema file tooling
-/schemas/ @tigrannajaryan
-/internal/tools/schema_check.sh @tigrannajaryan
+/schemas/                       @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/internal/tools/schema_check.sh @open-telemetry/specs-semconv-approvers @tigrannajaryan
 
 # Logs semantic conventions
-/semantic_conventions/logs/ @tigrannajaryan
-/specification/logs/ @tigrannajaryan
+/semantic_conventions/logs/     @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/specification/logs/            @open-telemetry/specs-semconv-approvers @tigrannajaryan
 
 # JVM semantic conventions approvers
-/semantic_conventions/metrics/process-runtime-jvm-metrics.yaml @trask
-/semantic_conventions/metrics/process-runtime-jvm-metrics-experimental.yaml @trask
+/semantic_conventions/metrics/process-runtime-jvm-metrics.yaml              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
+/semantic_conventions/metrics/process-runtime-jvm-metrics-experimental.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 
 # HTTP semantic conventions approvers
-/semantic_conventions/metrics/http.yaml @trask
-/semantic_conventions/trace/http.yaml @trask
+/semantic_conventions/metrics/http.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/semantic_conventions/trace/http.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 
 # TODO - Add semconv area experts
