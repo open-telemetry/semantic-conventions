@@ -8,6 +8,7 @@ Semantic Conventions are defined for the following areas:
 
 * [General](general/README.md): General Semantic Conventions.
 * [Exceptions](exceptions/README.md): Semantic Conventions for Exceptions.
+* [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * [Database](database/README.md): Semantic Conventions for database operations.
 * *Other areas can be found in the signal specific Semantic Conventions below*
