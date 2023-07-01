@@ -5,7 +5,7 @@
 This document defines how to describe an instance of a function that runs without provisioning
 or managing of servers (also known as serverless functions or Function as a Service (FaaS)) with spans.
 
-See also the [additional instructions for instrumenting AWS Lambda](instrumentation/aws-lambda.md).
+See also the [additional instructions for instrumenting AWS Lambda](aws-lambda.md).
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
@@ -32,14 +32,14 @@ See also the [additional instructions for instrumenting AWS Lambda](instrumentat
 
 Span `name` should be set to the function name being executed. Depending on the value of the `faas.trigger` attribute, additional attributes MUST be set. For example, an `http` trigger SHOULD follow the [HTTP Server semantic conventions](/specification/http/http-spans.md#http-server-semantic-conventions). For more information, refer to the [Function Trigger Type](#function-trigger-type) section.
 
-If Spans following this convention are produced, a Resource of type `faas` MUST exist following the [Resource semantic convention](../../resource/semantic_conventions/faas.md#function-as-a-service).
+If Spans following this convention are produced, a Resource of type `faas` MUST exist following the [Resource semantic convention](../resource/semantic_conventions/faas.md#function-as-a-service).
 
 <!-- semconv faas_span -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `faas.trigger` | string | Type of the trigger which caused this function invocation. [1] | `datasource` | Recommended |
 | `faas.invocation_id` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | Recommended |
-| [`cloud.resource_id`](../../resource/semantic_conventions/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/en-us/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
+| [`cloud.resource_id`](../resource/semantic_conventions/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/en-us/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
 
 **[1]:** For the server/consumer span on the incoming side,
 `faas.trigger` MUST be set.
@@ -83,7 +83,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 ### Function Name
 
 There are 2 locations where the function's name can be recorded: the span name and the
-[`faas.name` Resource attribute](../../resource/semantic_conventions/faas.md#function-as-a-service).
+[`faas.name` Resource attribute](../resource/semantic_conventions/faas.md#function-as-a-service).
 
 It is guaranteed that if `faas.name` attribute is present it will contain the
 function name, since it is defined in the semantic convention strictly for that
@@ -134,7 +134,7 @@ call to invoke the lambda, which is often HTTP).
 
 ### Resource attributes as incoming FaaS span attributes
 
-In addition to the attributes listed above, any [FaaS](../../resource/semantic_conventions/faas.md) or [cloud](../../resource/semantic_conventions/cloud.md) resource attributes MAY
+In addition to the attributes listed above, any [FaaS](../resource/semantic_conventions/faas.md) or [cloud](../resource/semantic_conventions/cloud.md) resource attributes MAY
 instead be set as span attributes on incoming FaaS invocation spans: In some
 FaaS environments some of the information required for resource
 attributes is only readily available in the context of an invocation (e.g. as part of a "request context" argument)
@@ -180,8 +180,8 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 | `tencent_cloud` | Tencent Cloud |
 <!-- endsemconv -->
 
-[FaaS resource attributes]: ../../resource/semantic_conventions/faas.md
-[Cloud resource attributes]: ../../resource/semantic_conventions/cloud.md
+[FaaS resource attributes]: ../resource/semantic_conventions/faas.md
+[Cloud resource attributes]: ../resource/semantic_conventions/cloud.md
 
 ## Function Trigger Type
 
@@ -217,7 +217,7 @@ The function responsibility is to provide an answer to an inbound HTTP request. 
 
 A function is set to be executed when messages are sent to a messaging system.
 In this case, multiple messages could be batch and forwarded at once to the same function invocation.
-Therefore, a different root span of type `faas` MUST be created for each message processed by the function, following the [Messaging systems semantic conventions](messaging.md).
+Therefore, a different root span of type `faas` MUST be created for each message processed by the function, following the [Messaging systems semantic conventions](/specification/trace/semantic_conventions/messaging.md).
 This way, it is possible to correlate each individual message with its invocation sender.
 
 ### Timer

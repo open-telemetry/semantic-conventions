@@ -25,7 +25,7 @@ The following semantic conventions surrounding metrics are defined:
 * [System](/specification/metrics/semantic_conventions/system-metrics.md): For standard system metrics.
 * [Process](/specification/metrics/semantic_conventions/process-metrics.md): For standard process metrics.
 * [Runtime Environment](/specification/metrics/semantic_conventions/runtime-environment-metrics.md): For runtime environment metrics.
-* [FaaS](/specification/metrics/semantic_conventions/faas-metrics.md): For [Function as a Service](https://en.wikipedia.org/wiki/Function_as_a_service) metrics.
+* [FaaS](/specification/faas/faas-metrics.md): For [Function as a Service](https://en.wikipedia.org/wiki/Function_as_a_service) metrics.
 * [Hardware](/specification/metrics/semantic_conventions/hardware-metrics.md): For hardware-related metrics.
 
 Apart from semantic conventions for metrics, [traces](trace-general.md), [logs](logs-general.md), and [events](events-general.md), OpenTelemetry also
