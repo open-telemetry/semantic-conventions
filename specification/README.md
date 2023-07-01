@@ -12,6 +12,7 @@ Semantic Conventions are defined for the following areas:
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * [Database](database/README.md): Semantic Conventions for database operations.
+* [RPC](rpc/README.md): Semantic Conventions for RPC client and server operations.
 * [System](system/README.md): System Semantic Conventions.
 * *Other areas can be found in the signal specific Semantic Conventions below*
 
