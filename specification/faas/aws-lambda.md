@@ -114,9 +114,9 @@ added as a link to the span. This means the span may have as many links as messa
 See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation`](/specification/trace/semantic_conventions/messaging.md) MUST be set to `process`.
-- [`messaging.system`](/specification/trace/semantic_conventions/messaging.md) MUST be set to `AmazonSQS`.
-- [`messaging.destination.kind` or `messaging.source.kind`](/specification/trace/semantic_conventions/messaging.md#messaging-attributes) MUST be set to `queue`.
+- [`messaging.operation`](/specification/messaging/messaging-spans.md) MUST be set to `process`.
+- [`messaging.system`](/specification/messaging/messaging-spans.md) MUST be set to `AmazonSQS`.
+- [`messaging.destination.kind` or `messaging.source.kind`](/specification/messaging/messaging-spans.md#messaging-attributes) MUST be set to `queue`.
 
 ### SQS Message
 
@@ -128,10 +128,10 @@ added as a link to the span.
 See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation`](/specification/trace/semantic_conventions/messaging.md#messaging-attributes) MUST be set to `process`.
-- [`messaging.system`](/specification/trace/semantic_conventions/messaging.md#messaging-attributes) MUST be set to `AmazonSQS`.
+- [`messaging.operation`](/specification/messaging/messaging-spans.md#messaging-attributes) MUST be set to `process`.
+- [`messaging.system`](/specification/messaging/messaging-spans.md#messaging-attributes) MUST be set to `AmazonSQS`.
 
-Other [Messaging attributes](/specification/trace/semantic_conventions/messaging.md#messaging-attributes) SHOULD be set based on the available information in the SQS message
+Other [Messaging attributes](/specification/messaging/messaging-spans.md#messaging-attributes) SHOULD be set based on the available information in the SQS message
 event.
 
 Note that `AWSTraceHeader` is the only supported mechanism for propagating `Context` in instrumentation for SQS
