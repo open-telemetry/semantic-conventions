@@ -22,6 +22,7 @@
 # Logs semantic conventions
 /semantic_conventions/logs/                  @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /specification/exceptions/exceptions-logs.md @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/specification/feature-flags/feature-flags-logs.md @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /specification/general/events-general.md     @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /specification/general/logs-general.md       @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /specification/logs/                         @open-telemetry/specs-semconv-approvers @tigrannajaryan

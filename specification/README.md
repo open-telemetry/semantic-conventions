@@ -10,6 +10,7 @@ Semantic Conventions are defined for the following areas:
 * [Exceptions](exceptions/README.md): Semantic Conventions for Exceptions.
 * [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
+* [Feature Flags](http/README.md): Semantic Conventions for feature flag evaluations.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * [Database](database/README.md): Semantic Conventions for database operations.
 * [System](system/README.md): System Semantic Conventions.

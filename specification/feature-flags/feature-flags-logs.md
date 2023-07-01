@@ -1,4 +1,4 @@
-# Semantic Conventions for Feature Flag Evaluations
+# Semantic Conventions for Feature Flags in Logs
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -8,10 +8,10 @@ a [log record](https://github.com/open-telemetry/opentelemetry-specification/tre
 This is useful when a flag is evaluated outside of a transaction context
 such as when the application loads or on a timer.
 To record a flag evaluation as a part of a transaction context,
-consider [recording it as a span event](../../trace/semantic_conventions/feature-flags.md).
+consider [recording it as a span event](feature-flags-spans.md).
 
 For more information about why it is useful to capture feature flag evaluations,
-refer to the [motivation](../../trace/semantic_conventions/feature-flags.md#motivation)
+refer to the [motivation](feature-flags-spans.md#motivation)
 section of the trace semantic convention for feature flag evaluations.
 
 <!-- toc -->
@@ -38,9 +38,9 @@ The event name MUST be `feature_flag`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`feature_flag.key`](../../trace/semantic_conventions/feature-flags.md) | string | The unique identifier of the feature flag. | `logo-color` | Required |
-| [`feature_flag.provider_name`](../../trace/semantic_conventions/feature-flags.md) | string | The name of the service provider that performs the flag evaluation. | `Flag Manager` | Recommended |
-| [`feature_flag.variant`](../../trace/semantic_conventions/feature-flags.md) | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on` | Recommended |
+| [`feature_flag.key`](feature-flags-spans.md) | string | The unique identifier of the feature flag. | `logo-color` | Required |
+| [`feature_flag.provider_name`](feature-flags-spans.md) | string | The name of the service provider that performs the flag evaluation. | `Flag Manager` | Recommended |
+| [`feature_flag.variant`](feature-flags-spans.md) | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on` | Recommended |
 
 **[1]:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can

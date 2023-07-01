@@ -1,11 +1,11 @@
-# Semantic conventions for Feature Flags
+# Semantic conventions for Feature Flags in Spans
 
 **Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for recording dynamic feature flag
 evaluations within a transaction as span events.
 To record an evaluation outside of a transaction context, consider
-[recording it as a log record](../../logs/semantic_conventions/feature-flags.md).
+[recording it as a log record](feature-flags-logs.md).
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
