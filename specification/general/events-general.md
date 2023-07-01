@@ -8,7 +8,7 @@ in the data model by `LogRecord`s.
 The following semantic conventions for events are defined:
 
 * [General](#general-event-attributes): General semantic attributes that may be used in describing Events.
-* [Exceptions](/specification/logs/semantic_conventions/exceptions.md): Semantic attributes that may be used in describing exceptions as events.
+* [Exceptions](/specification/exceptions/exceptions-logs.md): Semantic attributes that may be used in describing exceptions as events.
 
 ## General event attributes
 

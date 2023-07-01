@@ -1,4 +1,4 @@
-# Semantic Conventions for Exceptions
+# Semantic Conventions for Exceptions in Logs
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -47,6 +47,6 @@ The table below indicates which attributes should be added to the
 ### Stacktrace Representation
 
 Same as [Trace Semantic Conventions for Exceptions - Stacktrace
-Representation](../../trace/semantic_conventions/exceptions.md#stacktrace-representation).
+Representation](exceptions-spans.md#stacktrace-representation).
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
