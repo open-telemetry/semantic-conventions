@@ -1,4 +1,4 @@
-# Semantic conventions for Compatibility components
+# Semantic conventions for tracing Compatibility components
 
 **Status**: [Experimental][DocumentStatus]
 
