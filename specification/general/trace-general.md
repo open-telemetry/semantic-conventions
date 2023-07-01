@@ -17,7 +17,7 @@ The following semantic conventions for spans are defined:
 
 * [General](general-attributes.md): General semantic attributes that may be used in describing different kinds of operations.
 * [HTTP](/specification/http/http-spans.md): For HTTP client and server spans.
-* [Database](/specification/trace/semantic_conventions/database.md): For SQL and NoSQL client call spans.
+* [Database](/specification/database/database-spans.md): For SQL and NoSQL client call spans.
 * [RPC/RMI](/specification/trace/semantic_conventions/rpc.md): For remote procedure call (e.g., gRPC) spans.
 * [Messaging](/specification/trace/semantic_conventions/messaging.md): For messaging systems (queues, publish/subscribe, etc.) spans.
 * [FaaS](/specification/trace/semantic_conventions/faas.md): For [Function as a Service](https://en.wikipedia.org/wiki/Function_as_a_service) (e.g., AWS Lambda) spans.
@@ -28,8 +28,7 @@ The following semantic conventions for spans are defined:
 The following library-specific semantic conventions are defined:
 
 * [AWS Lambda](/specification/trace/semantic_conventions/instrumentation/aws-lambda.md): For AWS Lambda spans.
-* [AWS SDK](/specification/trace/semantic_conventions/instrumentation/aws-sdk.md): For AWS SDK spans.
-* [GraphQL](/specification/trace/semantic_conventions/instrumentation/graphql.md): For GraphQL spans.
+* [AWS SDK](/specification/cloud-providers/aws-sdk.md): For AWS SDK spans.
 
 Apart from semantic conventions for traces, [metrics](metrics-general.md), [logs](logs-general.md), and [events](events-general.md),
 OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/resource/sdk.md) with their own

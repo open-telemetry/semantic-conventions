@@ -1,50 +1,24 @@
-# Semantic conventions for AWS SDK
+# Semantic Conventions for AWS DynamoDB
 
 **Status**: [Experimental][DocumentStatus]
 
-This document defines semantic conventions to apply when instrumenting the AWS SDK. They map request or response
-parameters in AWS SDK API calls to attributes on a Span. The conventions have been collected over time based
-on feedback from AWS users of tracing and will continue to increase as new interesting conventions
-are found.
-
-Some descriptions are also provided for populating general OpenTelemetry semantic conventions based on these APIs.
-
-## Context Propagation
-
-See [compatibility](../../../../supplementary-guidelines/compatibility/aws.md#context-propagation).
+The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) extend and override the general
+[AWS SDK Semantic Conventions](/specification/cloud-providers/aws-sdk.md)
+that describe common AWS SDK attributes and the [Database Semantic Conventions](database-spans.md).
+that describe common database operations attributes in addition to the Semantic Conventions
+described on this page.
 
 ## Common Attributes
-
-The span name MUST be of the format `Service.Operation` as per the AWS HTTP API, e.g., `DynamoDB.GetItem`,
-`S3.ListBuckets`. This is equivalent to concatenating `rpc.service` and `rpc.method` with `.` and consistent
-with the naming guidelines for RPC client spans.
-
-<!-- semconv aws -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `aws.request_id` | string | The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | Recommended |
-| [`rpc.method`](../rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | Recommended |
-| [`rpc.service`](../rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | Recommended |
-| [`rpc.system`](../rpc.md) | string | The value `aws-api`. | `aws-api` | Required |
-
-**[1]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
-
-**[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
-<!-- endsemconv -->
-
-## DynamoDB
-
-### Common Attributes
 
 These attributes are filled in for all DynamoDB request types.
 
 <!-- semconv dynamodb.all -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`db.system`](../database.md) | string | The value `dynamodb`. | `dynamodb` | Required |
+| [`db.system`](database-spans.md) | string | The value `dynamodb`. | `dynamodb` | Required |
 <!-- endsemconv -->
 
-### DynamoDB.BatchGetItem
+## DynamoDB.BatchGetItem
 
 <!-- semconv dynamodb.batchgetitem -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -53,7 +27,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | The keys in the `RequestItems` object field. | `[Users, Cats]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.BatchWriteItem
+## DynamoDB.BatchWriteItem
 
 <!-- semconv dynamodb.batchwriteitem -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -63,7 +37,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | The keys in the `RequestItems` object field. | `[Users, Cats]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.CreateTable
+## DynamoDB.CreateTable
 
 <!-- semconv dynamodb.createtable -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -77,7 +51,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.DeleteItem
+## DynamoDB.DeleteItem
 
 <!-- semconv dynamodb.deleteitem -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -87,7 +61,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.DeleteTable
+## DynamoDB.DeleteTable
 
 <!-- semconv dynamodb.deletetable -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -95,7 +69,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.DescribeTable
+## DynamoDB.DescribeTable
 
 <!-- semconv dynamodb.describetable -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -103,7 +77,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.GetItem
+## DynamoDB.GetItem
 
 <!-- semconv dynamodb.getitem -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -114,7 +88,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.ListTables
+## DynamoDB.ListTables
 
 <!-- semconv dynamodb.listtables -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -124,7 +98,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.limit` | int | The value of the `Limit` request parameter. | `10` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.PutItem
+## DynamoDB.PutItem
 
 <!-- semconv dynamodb.putitem -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -134,7 +108,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | The keys in the `RequestItems` object field. | `[Users, Cats]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.Query
+## DynamoDB.Query
 
 <!-- semconv dynamodb.query -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -150,7 +124,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.Scan
+## DynamoDB.Scan
 
 <!-- semconv dynamodb.scan -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -169,7 +143,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.UpdateItem
+## DynamoDB.UpdateItem
 
 <!-- semconv dynamodb.updateitem -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -179,7 +153,7 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
 <!-- endsemconv -->
 
-### DynamoDB.UpdateTable
+## DynamoDB.UpdateTable
 
 <!-- semconv dynamodb.updatetable -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -190,65 +164,6 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.provisioned_read_capacity` | double | The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter. | `1.0`; `2.0` | Recommended |
 | `aws.dynamodb.provisioned_write_capacity` | double | The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter. | `1.0`; `2.0` | Recommended |
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
-<!-- endsemconv -->
-
-## S3
-
-<!-- semconv aws.s3 -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `aws.s3.bucket` | string | The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [1] | `some-bucket-name` | Recommended |
-| `aws.s3.key` | string | The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [2] | `someFile.yml` | Recommended |
-| `aws.s3.copy_source` | string | The source object (in the form `bucket`/`key`) for the copy operation. [3] | `someFile.yml` | Recommended |
-| `aws.s3.upload_id` | string | Upload ID that identifies the multipart upload. [4] | `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ` | Recommended |
-| `aws.s3.delete` | string | The delete request container that specifies the objects to be deleted. [5] | `Objects=[{Key=string,VersionId=string},{Key=string,VersionId=string}],Quiet=boolean` | Recommended |
-| `aws.s3.part_number` | int | The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000. [6] | `3456` | Recommended |
-
-**[1]:** The `bucket` attribute is applicable to all S3 operations that reference a bucket, i.e. that require the bucket name as a mandatory parameter.
-This applies to almost all S3 operations except `list-buckets`.
-
-**[2]:** The `key` attribute is applicable to all object-related S3 operations, i.e. that require the object key as a mandatory parameter.
-This applies in particular to the following operations:
-
-- [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html)
-- [delete-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html)
-- [get-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/get-object.html)
-- [head-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/head-object.html)
-- [put-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-object.html)
-- [restore-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/restore-object.html)
-- [select-object-content](https://docs.aws.amazon.com/cli/latest/reference/s3api/select-object-content.html)
-- [abort-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/abort-multipart-upload.html)
-- [complete-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/complete-multipart-upload.html)
-- [create-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/create-multipart-upload.html)
-- [list-parts](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-parts.html)
-- [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
-- [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
-
-**[3]:** The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter
-of the [copy-object operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html).
-This applies in particular to the following operations:
-
-- [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html)
-- [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
-
-**[4]:** The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter
-of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) multipart operations.
-This applies in particular to the following operations:
-
-- [abort-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/abort-multipart-upload.html)
-- [complete-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/complete-multipart-upload.html)
-- [list-parts](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-parts.html)
-- [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
-- [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
-
-**[5]:** The `delete` attribute is only applicable to the [delete-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) operation.
-The `delete` attribute corresponds to the `--delete` parameter of the
-[delete-objects operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-objects.html).
-
-**[6]:** The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
-and [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) operations.
-The `part_number` attribute corresponds to the `--part-number` parameter of the
-[upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
