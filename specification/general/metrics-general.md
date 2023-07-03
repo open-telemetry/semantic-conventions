@@ -20,7 +20,7 @@
 The following semantic conventions surrounding metrics are defined:
 
 * [HTTP](/specification/http/http-metrics.md): For HTTP client and server metrics.
-* [RPC](/specification/metrics/semantic_conventions/rpc-metrics.md): For RPC client and server metrics.
+* [RPC](/specification/rpc/rpc-metrics.md): For RPC client and server metrics.
 * [Database](/specification/database/database-metrics.md): For SQL and NoSQL client metrics.
 * [FaaS](/specification/faas/faas-metrics.md): For [Function as a Service](https://en.wikipedia.org/wiki/Function_as_a_service) metrics.
 * **System metrics**

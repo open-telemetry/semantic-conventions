@@ -2,7 +2,7 @@
 linkTitle: RPC
 --->
 
-# General RPC conventions
+# Semantic conventions for RPC metrics
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -21,10 +21,7 @@ metrics can be filtered for finer grain analysis.
   * [RPC Client](#rpc-client)
 - [Attributes](#attributes)
   * [Service name](#service-name)
-- [gRPC conventions](#grpc-conventions)
-  * [gRPC Attributes](#grpc-attributes)
-- [Connect RPC conventions](#connect-rpc-conventions)
-  * [Connect RPC Attributes](#connect-rpc-attributes)
+- [Semantic Conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
 
 <!-- tocstop -->
 
@@ -93,15 +90,15 @@ measurements.
 <!-- semconv rpc -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`rpc.system`](../../trace/semantic_conventions/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
-| [`rpc.service`](../../trace/semantic_conventions/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [1] | `myservice.EchoService` | Recommended |
-| [`rpc.method`](../../trace/semantic_conventions/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [2] | `exampleMethod` | Recommended |
-| [`network.transport`](../../general/general-attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
-| [`network.type`](../../general/general-attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../../general/general-attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com` | Required |
-| [`server.port`](../../general/general-attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Conditionally Required: See below |
-| [`server.socket.address`](../../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | See below |
-| [`server.socket.port`](../../general/general-attributes.md) | int | Physical server port. | `16456` | Recommended: [4] |
+| [`rpc.system`](rpc-spans.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
+| [`rpc.service`](rpc-spans.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [1] | `myservice.EchoService` | Recommended |
+| [`rpc.method`](rpc-spans.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [2] | `exampleMethod` | Recommended |
+| [`network.transport`](../general/general-attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
+| [`network.type`](../general/general-attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../general/general-attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com` | Required |
+| [`server.port`](../general/general-attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Conditionally Required: See below |
+| [`server.socket.address`](../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | See below |
+| [`server.socket.port`](../general/general-attributes.md) | int | Physical server port. | `16456` | Recommended: [4] |
 
 **[1]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
@@ -113,8 +110,8 @@ measurements.
 
 **Additional attribute requirements:** At least one of the following sets of attributes is required:
 
-* [`server.socket.address`](../../general/general-attributes.md)
-* [`server.address`](../../general/general-attributes.md)
+* [`server.socket.address`](../general/general-attributes.md)
+* [`server.address`](../general/general-attributes.md)
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -134,92 +131,21 @@ To avoid high cardinality, implementations should prefer the most stable of `ser
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).
 For server-side spans `server.port` is optional (it describes the port the client is connecting from).
 
-[network.transport]: ../../general/general-attributes.md#network-attributes
+[network.transport]: /specification/general/general-attributes.md#network-attributes
 
 ### Service name
 
 On the server process receiving and handling the remote procedure call, the service name provided in `rpc.service` does not necessarily have to match the [`service.name`][] resource attribute.
 One process can expose multiple RPC endpoints and thus have multiple RPC service names. From a deployment perspective, as expressed by the `service.*` resource attributes, it will be treated as one deployed service with one `service.name`.
 
-[`service.name`]: ../../resource/semantic_conventions/README.md#service
+[`service.name`]: /specification/resource/semantic_conventions/README.md#service
 
-## gRPC conventions
+## Semantic Conventions for specific RPC technologies
 
-For remote procedure calls via [gRPC][], additional conventions are described in this section.
+More specific Semantic Conventions are defined for the following RPC technologies:
 
-`rpc.system` MUST be set to `"grpc"`.
-
-### gRPC Attributes
-
-Below is a table of attributes that SHOULD be included on client and server RPC measurements when `rpc.system` is `"grpc"`.
-
-<!-- semconv rpc.grpc -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`rpc.grpc.status_code`](../../trace/semantic_conventions/rpc.md) | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0` | Required |
-
-`rpc.grpc.status_code` MUST be one of the following:
-
-| Value  | Description |
-|---|---|
-| `0` | OK |
-| `1` | CANCELLED |
-| `2` | UNKNOWN |
-| `3` | INVALID_ARGUMENT |
-| `4` | DEADLINE_EXCEEDED |
-| `5` | NOT_FOUND |
-| `6` | ALREADY_EXISTS |
-| `7` | PERMISSION_DENIED |
-| `8` | RESOURCE_EXHAUSTED |
-| `9` | FAILED_PRECONDITION |
-| `10` | ABORTED |
-| `11` | OUT_OF_RANGE |
-| `12` | UNIMPLEMENTED |
-| `13` | INTERNAL |
-| `14` | UNAVAILABLE |
-| `15` | DATA_LOSS |
-| `16` | UNAUTHENTICATED |
-<!-- endsemconv -->
-
-[gRPC]: https://grpc.io/
-
-## Connect RPC conventions
-
-For remote procedure calls via [connect](http://connect.build), additional conventions are described in this section.
-
-`rpc.system` MUST be set to `"connect_rpc"`.
-
-### Connect RPC Attributes
-
-Below is a table of attributes that SHOULD be included on client and server RPC measurements when `rpc.system` is `"connect_rpc"`.
-
-<!-- semconv rpc.connect_rpc -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`rpc.connect_rpc.error_code`](../../trace/semantic_conventions/rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled` | Conditionally Required: [1] |
-
-**[1]:** If response is not successful and if error code available.
-
-`rpc.connect_rpc.error_code` MUST be one of the following:
-
-| Value  | Description |
-|---|---|
-| `cancelled` | cancelled |
-| `unknown` | unknown |
-| `invalid_argument` | invalid_argument |
-| `deadline_exceeded` | deadline_exceeded |
-| `not_found` | not_found |
-| `already_exists` | already_exists |
-| `permission_denied` | permission_denied |
-| `resource_exhausted` | resource_exhausted |
-| `failed_precondition` | failed_precondition |
-| `aborted` | aborted |
-| `out_of_range` | out_of_range |
-| `unimplemented` | unimplemented |
-| `internal` | internal |
-| `unavailable` | unavailable |
-| `data_loss` | data_loss |
-| `unauthenticated` | unauthenticated |
-<!-- endsemconv -->
+* [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
+* [gRPC](grpc.md): Semantic Conventions for *gRPC*.
+* [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

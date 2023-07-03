@@ -18,7 +18,7 @@ The following semantic conventions for spans are defined:
 * [General](general-attributes.md): General semantic attributes that may be used in describing different kinds of operations.
 * [HTTP](/specification/http/http-spans.md): For HTTP client and server spans.
 * [Database](/specification/database/database-spans.md): For SQL and NoSQL client call spans.
-* [RPC/RMI](/specification/trace/semantic_conventions/rpc.md): For remote procedure call (e.g., gRPC) spans.
+* [RPC/RMI](/specification/rpc/rpc-spans.md): For remote procedure call (e.g., gRPC) spans.
 * [Messaging](/specification/trace/semantic_conventions/messaging.md): For messaging systems (queues, publish/subscribe, etc.) spans.
 * [FaaS](/specification/faas/faas-spans.md): For [Function as a Service](https://en.wikipedia.org/wiki/Function_as_a_service) (e.g., AWS Lambda) spans.
 * [Exceptions](/specification/exceptions/exceptions-spans.md): For recording exceptions associated with a span.
