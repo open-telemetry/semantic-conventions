@@ -47,11 +47,13 @@ and from which the `OS terminology` column values are derived.
 
 The Android lifecycle states are defined in [Activty lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS idenfifiers` are derived.
 
-| Name        | OS terminology        | description                                     |
-|-------------|-----------------------|-------------------------------------------------|
-| `created`   | App process onCreate  | The app's process has been launched.            |
-| `started`   | App process onStart   | The app is about to be shown in the foreground. |
-| `resumed`   | App process onResume  | The app is in the foreground.                   |
-| `paused`    | App process onPause   | The app is about to go into the background.     |
-| `stopped`   | App process onStop    | The app is in the background.                   |
-| `destroyed` | App process onDestroy | The app is destroyed.                           |
+| Name         | OS terminology | description                                       |
+|--------------|----------------|---------------------------------------------------|
+| `created`    | [1]            | The app has been launched.                        |
+| `foreground` | [2]            | The app is in the foreground or otherwise active. |
+| `background` | [3]            | The app is in the background.                     |
+
+
+[1] Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time
+[2] Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states
+[3] Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state
