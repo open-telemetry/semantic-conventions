@@ -1,4 +1,4 @@
-# CloudEvents
+# Semantic conventions for CloudEvents spans
 
 **Status**: [Experimental][DocumentStatus]
 
