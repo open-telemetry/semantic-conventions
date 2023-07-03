@@ -1,4 +1,4 @@
-# Semantic Conventions for RibbitMQ
+# Semantic Conventions for RabbitMQ
 
 **Status**: [Experimental][DocumentStatus]
 
