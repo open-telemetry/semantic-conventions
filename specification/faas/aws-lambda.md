@@ -9,7 +9,7 @@ applicable when handlers are for HTTP requests.
 There are a variety of triggers for Lambda functions, and this document will grow over time to cover all the
 use cases.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i specification/trace/semantic_conventions/instrumentation/aws-lambda.md` -->
+<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i specification/faas/aws-lambda.md` -->
 
 <!-- toc -->
 
@@ -50,9 +50,9 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
 <!-- endsemconv -->
 
-[faas]: ../faas.md (FaaS trace conventions)
-[faasres]: ../../../resource/semantic_conventions/faas.md (FaaS resource conventions)
-[cloud]: ../../../resource/semantic_conventions/cloud.md (Cloud resource conventions)
+[faas]: faas-spans.md (FaaS trace conventions)
+[faasres]: /specification/resource/semantic_conventions/faas.md (FaaS resource conventions)
+[cloud]: /specification/resource/semantic_conventions/cloud.md (Cloud resource conventions)
 
 ### AWS X-Ray Environment Span Link
 
@@ -111,12 +111,12 @@ For every message in the event, the [message system attributes][] (not message a
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
 parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/context/api-propagators.md) and
 added as a link to the span. This means the span may have as many links as messages in the batch.
-See [compatibility](../../../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
+See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation`](../messaging.md) MUST be set to `process`.
-- [`messaging.system`](../messaging.md) MUST be set to `AmazonSQS`.
-- [`messaging.destination.kind` or `messaging.source.kind`](../messaging.md#messaging-attributes) MUST be set to `queue`.
+- [`messaging.operation`](/specification/trace/semantic_conventions/messaging.md) MUST be set to `process`.
+- [`messaging.system`](/specification/trace/semantic_conventions/messaging.md) MUST be set to `AmazonSQS`.
+- [`messaging.destination.kind` or `messaging.source.kind`](/specification/trace/semantic_conventions/messaging.md#messaging-attributes) MUST be set to `queue`.
 
 ### SQS Message
 
@@ -125,13 +125,13 @@ corresponding to the SQS event. The [message system attributes][] (not message a
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
 parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/context/api-propagators.md) and
 added as a link to the span.
-See [compatibility](../../../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
+See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation`](../messaging.md#messaging-attributes) MUST be set to `process`.
-- [`messaging.system`](../messaging.md#messaging-attributes) MUST be set to `AmazonSQS`.
+- [`messaging.operation`](/specification/trace/semantic_conventions/messaging.md#messaging-attributes) MUST be set to `process`.
+- [`messaging.system`](/specification/trace/semantic_conventions/messaging.md#messaging-attributes) MUST be set to `AmazonSQS`.
 
-Other [Messaging attributes](../messaging.md#messaging-attributes) SHOULD be set based on the available information in the SQS message
+Other [Messaging attributes](/specification/trace/semantic_conventions/messaging.md#messaging-attributes) SHOULD be set based on the available information in the SQS message
 event.
 
 Note that `AWSTraceHeader` is the only supported mechanism for propagating `Context` in instrumentation for SQS
