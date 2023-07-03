@@ -217,7 +217,8 @@ The function responsibility is to provide an answer to an inbound HTTP request. 
 
 A function is set to be executed when messages are sent to a messaging system.
 In this case, multiple messages could be batch and forwarded at once to the same function invocation.
-Therefore, a different root span of type `faas` MUST be created for each message processed by the function, following the [Messaging systems semantic conventions](/specification/trace/semantic_conventions/messaging.md).
+Therefore, a different root span of type `faas` MUST be created for each message processed by the function,
+following the [Messaging systems semantic conventions](/specification/messaging/messaging-spans.md).
 This way, it is possible to correlate each individual message with its invocation sender.
 
 ### Timer
