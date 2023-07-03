@@ -36,6 +36,16 @@ This document defines how to apply semantic conventions when instrumenting Kafka
 | messaging.kafka.leader.elections             | Counter       | Int64      | elections | `{election}` | Leader election rate (increasing values indicates broker failures). | | |
 | messaging.kafka.leader.unclean-elections     | Counter       | Int64      | elections | `{election}` | Unclean leader election rate (increasing values indicates broker failures). | | |
 | messaging.kafka.brokers                      | UpDownCounter | Int64      | brokers   | `{broker}`   | Number of brokers in the cluster. | | |
+| messaging.kafka.brokers.count                | Gauge         | Int64      | brokers   | `{broker}`   | Number of brokers in the cluster. (Replacement for messaging.kafka.brokers) | | |
+| messaging.kafka.brokers.consumer_fetch_rate  | Gauge         | Double     | fetches per second | `{fetch}/s`  | Average consumer fetch Rate. | | |
+| messaging.kafka.brokers.incoming_byte_rate   | Gauge         | Double     | bytes per second   | `{By/s}`     | Average tncoming Byte Rate in bytes/second. | | |
+| messaging.kafka.brokers.outgoing_byte_rate   | Gauge         | Double     | bytes per second   | `{By/s}`     | Average outgoing Byte Rate in bytes/second. | | |
+| messaging.kafka.brokers.request_latency      | Gauge         | Double     | ms        | `{ms}` | Average Request latency in ms. | | |
+| messaging.kafka.brokers.request_rate         | Gauge         | Double     | requests per second | `{request}/s`| Average request rate per second. | | |
+| messaging.kafka.brokers.request_size         | Gauge         | Double     | bytes     | `By`         | Average request size in bytes. | | |
+| messaging.kafka.brokers.response_rate        | Gauge         | Double     | responses per second| `{response}/s`| Average response rate per second. | | |
+| messaging.kafka.brokers.response_size        | Gauge         | Double     | bytes     | `By`         | Average response size in bytes. | | |
+| messaging.kafka.brokers.requests_in_flight   | Gauge         | Int64      | requests  | `{request}`  | Requests in flight. | | |
 | messaging.kafka.topic.partitions             | UpDownCounter | Int64      | partitions | `{partition}` | Number of partitions in topic. | `topic` | The ID (integer) of a topic |
 | messaging.kafka.partition.current_offset     | Gauge         | Int64      | partition offset | `{partition offset}` | Current offset of partition of topic. | `topic` | The ID (integer) of a topic |
 |                                              |               |            |                  |                      |                                       | `partition` | The number (integer) of the partition |
