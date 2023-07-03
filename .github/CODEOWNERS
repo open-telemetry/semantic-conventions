@@ -20,11 +20,12 @@
 /internal/tools/schema_check.sh @open-telemetry/specs-semconv-approvers @tigrannajaryan
 
 # Logs semantic conventions
-/semantic_conventions/logs/                  @open-telemetry/specs-semconv-approvers @tigrannajaryan
-/specification/exceptions/exceptions-logs.md @open-telemetry/specs-semconv-approvers @tigrannajaryan
-/specification/general/events-general.md     @open-telemetry/specs-semconv-approvers @tigrannajaryan
-/specification/general/logs-general.md       @open-telemetry/specs-semconv-approvers @tigrannajaryan
-/specification/logs/                         @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/semantic_conventions/logs/                        @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/specification/exceptions/exceptions-logs.md       @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/specification/feature-flags/feature-flags-logs.md @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/specification/general/events-general.md           @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/specification/general/logs-general.md             @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/specification/logs/                               @open-telemetry/specs-semconv-approvers @tigrannajaryan
 
 # JVM semantic conventions approvers
 /semantic_conventions/metrics/process-runtime-jvm-metrics.yaml              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
