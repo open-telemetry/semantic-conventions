@@ -46,6 +46,6 @@ Below is a table of Process metric instruments.
 
 ## Attributes
 
-Process metrics SHOULD be associated with a [`process`](../../resource/semantic_conventions/process.md#process) resource whose attributes provide additional context about the process.
+Process metrics SHOULD be associated with a [`process`](/specification/resource/semantic_conventions/process.md#process) resource whose attributes provide additional context about the process.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

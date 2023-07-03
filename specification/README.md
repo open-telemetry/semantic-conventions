@@ -11,6 +11,7 @@ Semantic Conventions are defined for the following areas:
 * [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * [Database](database/README.md): Semantic Conventions for database operations.
+* [System](system/README.md): System Semantic Conventions.
 * *Other areas can be found in the signal specific Semantic Conventions below*
 
 Semantic Conventions by signals:

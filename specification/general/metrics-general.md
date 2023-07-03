@@ -22,11 +22,12 @@ The following semantic conventions surrounding metrics are defined:
 * [HTTP](/specification/http/http-metrics.md): For HTTP client and server metrics.
 * [RPC](/specification/metrics/semantic_conventions/rpc-metrics.md): For RPC client and server metrics.
 * [Database](/specification/database/database-metrics.md): For SQL and NoSQL client metrics.
-* [System](/specification/metrics/semantic_conventions/system-metrics.md): For standard system metrics.
-* [Process](/specification/metrics/semantic_conventions/process-metrics.md): For standard process metrics.
-* [Runtime Environment](/specification/metrics/semantic_conventions/runtime-environment-metrics.md): For runtime environment metrics.
 * [FaaS](/specification/faas/faas-metrics.md): For [Function as a Service](https://en.wikipedia.org/wiki/Function_as_a_service) metrics.
-* [Hardware](/specification/metrics/semantic_conventions/hardware-metrics.md): For hardware-related metrics.
+* **System metrics**
+  * [System](/specification/system/system-metrics.md): For standard system metrics.
+  * [Hardware](/specification/system/hardware-metrics.md): For hardware-related metrics.
+  * [Process](/specification/system/process-metrics.md): For standard process metrics.
+  * [Runtime Environment](/specification/system/runtime-environment-metrics.md): For runtime environment metrics.
 
 Apart from semantic conventions for metrics, [traces](trace-general.md), [logs](logs-general.md), and [events](events-general.md), OpenTelemetry also
 defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/resource/sdk.md) with
