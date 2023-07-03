@@ -35,7 +35,7 @@ when creating instruments not explicitly defined in the specification.
 
 ## Common hardware attributes
 
-All metrics in `hw.` instruments should be attached to a [Host Resource](../../resource/semantic_conventions/host.md)
+All metrics in `hw.` instruments should be attached to a [Host Resource](/specification/resource/semantic_conventions/host.md)
 and therefore inherit its attributes, like `host.id` and `host.name`.
 
 Additionally, all metrics in `hw.` instruments have the following attributes:
