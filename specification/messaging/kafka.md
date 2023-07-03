@@ -80,8 +80,7 @@ Process CB:                           | Span Rcv2 |
 | `peer.service` | `"myKafka"` |  |  | `"myKafka"` |  |
 | `service.name` |  | `"myConsumer1"` | `"myConsumer1"` |  | `"myConsumer2"` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
-| `messaging.destination.name` | `"T1"` | | | | |
-| `messaging.source.name` |  | `"T1"` | `"T1"` | `"T2"` | `"T2"` |
+| `messaging.destination.name` | `"T1"` | `"T1"` | `"T1"` | `"T2"` | `"T2"` |
 | `messaging.operation` |  |  | `"process"` |  | `"receive"` |
 | `messaging.client_id` |  | `"5"` | `"5"` | `"5"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | `"anotherKey"` | `"anotherKey"` |

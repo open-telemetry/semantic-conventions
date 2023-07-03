@@ -348,8 +348,7 @@ Process CB:                 | Span CB1 |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
-| `messaging.destination.name` | `"T"` | | |
-| `messaging.source.name` | | `"T"` | `"T"` |
+| `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation` |  | `"process"` | `"process"` |
 | `messaging.message.id` | `"a1"` | `"a1"`| `"a1"` |
 
@@ -377,8 +376,7 @@ Process C:                      | Span Recv1 |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
-| `messaging.destination.name` | `"Q"` | `"Q"` | | | |
-| `messaging.source.name` | | | `"Q"` | `"Q"` | `"Q"` |
+| `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation` |  |  | `"receive"` | `"process"` | `"process"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` |  |  | 2 |  |  |
@@ -412,8 +410,7 @@ Process C:                              | Span Recv1 | Span Recv2 |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
-| `messaging.destination.name` | `"Q"` | `"Q"` | | | |
-| `messaging.source.name` | | | `"Q"` | `"Q"` | `"Q"` |
+| `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation` |  |  | `"receive"` | `"receive"` | `"process"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` | | | 1 | 1 | 2 |
