@@ -279,6 +279,12 @@ groups:
     brief: >
       Call-level attributes for Cassandra
     attributes:
+      - ref: db.name
+        tag: call-level-tech-specific-cassandra
+        brief: >
+          The keyspace name in Cassandra.
+        examples: ["mykeyspace"]
+        note: For Cassandra the `db.name` should be set to the Cassandra keyspace name.
       - id: page_size
         type: int
         tag: call-level-tech-specific-cassandra
@@ -350,6 +356,39 @@ groups:
           The data center of the coordinating node for a query.
         examples: 'us-west-2'
 
+  - id: db.hbase
+    prefix: db.hbase
+    type: span
+    extends: db
+    brief: >
+      Call-level attributes for HBase
+    attributes:
+      - ref: db.name
+        tag: call-level-tech-specific
+        brief: >
+          The HBase namespace.
+        examples: ['mynamespace']
+        note: For HBase the `db.name` should be set to the HBase namespace.
+
+  - id: db.couchdb
+    prefix: db.couchdb
+    type: span
+    extends: db
+    brief: >
+      Call-level attributes for CouchDB
+    attributes:
+      - ref: db.operation
+        tag: call-level-tech-specific
+        brief: >
+          The HTTP method + the target REST route.
+        examples: ['GET /{db}/{docid}']
+        note: >
+          In **CouchDB**, `db.operation` should be set to the HTTP method +
+          the target REST route according to the API reference documentation.
+          For example, when retrieving a document, `db.operation` would be set to
+          (literally, i.e., without replacing the placeholders with concrete values):
+          [`GET /{db}/{docid}`](http://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
+
   - id: db.redis
     prefix: db.redis
     type: span
@@ -366,7 +405,14 @@ groups:
           The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer.
           To be used instead of the generic `db.name` attribute.
         examples: [0, 1, 15]
-
+      - ref: db.statement
+        tag: call-level-tech-specific
+        brief: >
+          The full syntax of the Redis CLI command.
+        examples: ["HMSET myhash field1 'Hello' field2 'World'"]
+        note: >
+          For **Redis**, the value provided for `db.statement` SHOULD correspond to the syntax of the Redis CLI.
+          If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.statement`.
   - id: db.mongodb
     prefix: db.mongodb
     type: span
@@ -381,6 +427,32 @@ groups:
         brief: >
           The collection being accessed within the database stated in `db.name`.
         examples: [ 'customers', 'products' ]
+
+  - id: db.elasticsearch
+    prefix: db.elasticsearch
+    type: span
+    extends: db
+    brief: >
+      Call-level attributes for Elasticsearch
+    attributes:
+      - ref: http.request.method
+        requirement_level: required
+      - ref: db.operation
+        requirement_level: required
+        brief: The endpoint identifier for the request.
+        examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
+      - ref: url.full
+        requirement_level: required
+        examples: [ 'https://localhost:9200/index/_search?q=user.id:kimchy' ]
+      - ref: db.statement
+        requirement_level:
+          recommended: >
+            Should be collected by default for search-type queries and only if there is sanitization that excludes
+            sensitive information.
+        brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
+        examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
+      - ref: server.address
+      - ref: server.port
 
   - id: db.sql
     prefix: 'db.sql'

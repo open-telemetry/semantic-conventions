@@ -9,18 +9,11 @@ This repository is currently using [this specification version][SpecificationVer
 
 ## Read the docs
 
-The documentation currently resides in the previous folders, e.g.
-
-- [Resource](specification/resource/semantic_conventions/README.md)
-- [Trace](specification/trace/semantic_conventions/README.md)
-- [Metrics](specification/metrics/semantic_conventions/README.md)
-- [Logs](specification/logs/semantic_conventions/README.md)
+The documentation currently resides in the [specification](specification/README.md) folder.
 
 ## TODOs
 
-- [ ] Set up github actions
 - [ ] Set up SchemaURL publication
-- [ ] Set up codeowners
 - [ ] Contributing.MD document
 - [ ] Restructure markdown for easier consumption.
 

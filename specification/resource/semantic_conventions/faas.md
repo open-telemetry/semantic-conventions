@@ -8,7 +8,7 @@
 
 See also:
 
-- The [Trace semantic conventions for FaaS](../../trace/semantic_conventions/faas.md)
+- The [Trace semantic conventions for FaaS](/specification/faas/faas-spans.md)
 - The [Cloud resource conventions](cloud.md)
 
 ## FaaS resource attributes
@@ -25,7 +25,7 @@ See also:
 **[1]:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback
 function (which may be stored in the
-[`code.namespace`/`code.function`](../../trace/semantic_conventions/span-general.md#source-code-attributes)
+[`code.namespace`/`code.function`](/specification/general/general-attributes.md#source-code-attributes)
 span attributes).
 
 For some cloud providers, the above definition is ambiguous. The following
@@ -72,12 +72,12 @@ The following well-known definitions MUST be used if you set this attribute and 
   a TracerProvider.
 <!-- endsemconv -->
 
-Note: The resource attribute `faas.instance` differs from the span attribute `faas.invocation_id`. For more information see the [Semantic conventions for FaaS spans](../../trace/semantic_conventions/faas.md#difference-between-invocation-and-instance).
+Note: The resource attribute `faas.instance` differs from the span attribute `faas.invocation_id`. For more information see the [Semantic conventions for FaaS spans](/specification/faas/faas-spans.md#difference-between-invocation-and-instance).
 
 ## Using span attributes instead of resource attributes
 
 There are cases where a FaaS resource attribute is better applied as a span
 attribute instead.
-See the [FaaS trace conventions](../../trace/semantic_conventions/faas.md) for more.
+See the [FaaS trace conventions](/specification/faas/faas-spans.md) for more.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

@@ -170,7 +170,7 @@ groups:
       - id: service
         type: string
         brief: >
-          The [`service.name`](../../resource/semantic_conventions/README.md#service)
+          The [`service.name`](/specification/resource/semantic_conventions/README.md#service)
           of the remote service. SHOULD be equal to the actual `service.name`
           resource attribute of the remote service if any.
         examples: "AuthTokenCache"
