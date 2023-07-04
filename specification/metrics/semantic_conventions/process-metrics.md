@@ -19,29 +19,53 @@ metrics](runtime-environment-metrics.md).
 
 <!-- toc -->
 
-- [Metric Instruments](#metric-instruments)
-  * [Process](#process)
-- [Attributes](#attributes)
+- [Semantic Conventions for OS Process Metrics](#semantic-conventions-for-os-process-metrics)
+  - [Metric Instruments](#metric-instruments)
+    - [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
+    - [Process](#process)
+  - [Attributes](#attributes)
 
 <!-- tocstop -->
 
 ## Metric Instruments
 
+### Metric: `process.cpu.utilization`
+
+<!-- semconv metric.process.cpu.utilization(metric_table) -->
+| Name                      | Instrument Type | Unit (UCUM) | Description                                                                                                                         |
+| ------------------------- | --------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `process.cpu.utilization` | Gauge           | `1`         | Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.cpu.utilization(full) -->
+| Attribute           | Type   | Description                                                                                                                                                     | Examples | Requirement Level |
+| ------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------- |
+| `process.cpu.state` | string | The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `system` | Recommended       |
+
+`process.cpu.state` MUST be one of the following:
+
+| Value    | Description |
+| -------- | ----------- |
+| `system` | system      |
+| `user`   | user        |
+| `wait`   | wait        |
+<!-- endsemconv -->
+
 ### Process
 
 Below is a table of Process metric instruments.
 
-| Name                            | Instrument Type ([\*](README.md#instrument-types)) | Unit      | Description                                                                                                                         | Labels                                                                                                                                                                                          |
-|---------------------------------|----------------------------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `process.cpu.time`              | Counter                                            | s         | Total CPU seconds broken down by different states.                                                                                  | `state`, if specified, SHOULD be one of: `system`, `user`, `wait`. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. |
-| `process.cpu.utilization`       | Gauge                                              | 1         | Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process. | `state`, if specified, SHOULD be one of: `system`, `user`, `wait`. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. |
-| `process.memory.usage`          | UpDownCounter                                      | By        | The amount of physical memory in use.                                                                                               |                                                                                                                                                                                                 |
-| `process.memory.virtual`        | UpDownCounter                                      | By        | The amount of committed virtual memory.                                                                                             |                                                                                                                                                                                                 |
-| `process.disk.io`               | Counter                                            | By        | Disk bytes transferred.                                                                                                             | `direction` SHOULD be one of: `read`, `write`                                                                                                                                                   |
-| `process.network.io`            | Counter                                            | By        | Network bytes transferred.                                                                                                          | `direction` SHOULD be one of: `receive`, `transmit`                                                                                                                                             |
+| Name                            | Instrument Type ([\*](README.md#instrument-types)) | Unit     | Description                                                                                                                         | Labels                                                                                                                                                                                          |
+| ------------------------------- | -------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `process.cpu.time`              | Counter                                            | s        | Total CPU seconds broken down by different states.                                                                                  | `state`, if specified, SHOULD be one of: `system`, `user`, `wait`. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. |
+| `process.cpu.utilization`       | Gauge                                              | 1        | Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process. | `state`, if specified, SHOULD be one of: `system`, `user`, `wait`. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. |
+| `process.memory.usage`          | UpDownCounter                                      | By       | The amount of physical memory in use.                                                                                               |                                                                                                                                                                                                 |
+| `process.memory.virtual`        | UpDownCounter                                      | By       | The amount of committed virtual memory.                                                                                             |                                                                                                                                                                                                 |
+| `process.disk.io`               | Counter                                            | By       | Disk bytes transferred.                                                                                                             | `direction` SHOULD be one of: `read`, `write`                                                                                                                                                   |
+| `process.network.io`            | Counter                                            | By       | Network bytes transferred.                                                                                                          | `direction` SHOULD be one of: `receive`, `transmit`                                                                                                                                             |
 | `process.threads`               | UpDownCounter                                      | {thread} | Process threads count.                                                                                                              |                                                                                                                                                                                                 |
-| `process.open_file_descriptors` | UpDownCounter                                      | {count}   | Number of file descriptors in use by the process.                                                                                   |                                                                                                                                                                                                 |
-| `process.context_switches`      | Counter                                            | {count}   | Number of times the process has been context switched.                                                                              | `type` SHOULD be one of: `involuntary`, `voluntary`                                                                                                                                             |
+| `process.open_file_descriptors` | UpDownCounter                                      | {count}  | Number of file descriptors in use by the process.                                                                                   |                                                                                                                                                                                                 |
+| `process.context_switches`      | Counter                                            | {count}  | Number of times the process has been context switched.                                                                              | `type` SHOULD be one of: `involuntary`, `voluntary`                                                                                                                                             |
 | `process.paging.faults`         | Counter                                            | {fault}  | Number of page faults the process has made.                                                                                         | `type`, if specified, SHOULD be one of: `major` (for major, or hard, page faults), `minor` (for minor, or soft, page faults).                                                                   |
 
 ## Attributes
