@@ -102,7 +102,7 @@ grained information from a stacktrace, if necessary.
 [ruby-full-message]: https://ruby-doc.org/core-2.7.1/Exception.html#method-i-full_message
 [csharp-stacktrace]: https://docs.microsoft.com/en-us/dotnet/api/system.exception.tostring
 [go-stacktrace]: https://pkg.go.dev/runtime/debug#Stack
-[telemetry-sdk-resource]: ../resource/semantic_conventions/README.md#telemetry-sdk
+[telemetry-sdk-resource]: ../resource/README.md#telemetry-sdk
 [erlang-stacktrace]: https://www.erlang.org/doc/man/erl_error.html#format_exception-3
 [elixir-stacktrace]: https://hexdocs.pm/elixir/1.14.3/Exception.html#format/3
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
