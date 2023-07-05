@@ -6,17 +6,14 @@
 
 <!-- toc -->
 
-<!-- tocstop -->
+- [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
+- [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
+- [Metric: `messaging.deliver.duration`](#metric-messagingdeliverduration)
+- [Metric: `messaging.settle.duration`](#metric-messagingsettleduration)
+- [Metric: `messaging.published_messages.count`](#metric-messagingpublished_messagescount)
+- [Metric: `messaging.received_messages.count`](#metric-messagingreceived_messagescount)
+- [Metric: `messaging.settled_messages.count`](#metric-messagingsettled_messagescount)
 
-# Semantic Conventions for Messaging Metrics
-
-**Status**: [Experimental][DocumentStatus]
-
-The conventions described in this section are messaging specific.
-
-**Disclaimer:** These are initial messaging metric instruments and attributes but more may be added in the future.
-
-<!-- toc -->
 <!-- tocstop -->
 
 ## Metric: `messaging.publish.duration`
@@ -139,7 +136,7 @@ This metric is recommended when messaging system supports settle operations.
 |---|---|---|---|---|
 | `messaging.system` | string | A string identifying the messaging system. | `kafka`; `rabbitmq`; `rocketmq`; `activemq`; `AmazonSQS` | Required |
 | `messaging.todo.status` | string | The status of the operation: TODO | `ok`; `error`; `timeout` | Required |
-| [`messaging.todo_settlement.status`](../system/messaging-metrics.md) | string | The status of the settlement: acknowledged, rejected, TODO | `ack`; `nack` | Recommended |
+| `messaging.todo_settlement.status` | string | The status of the settlement: acknowledged, rejected, TODO | `ack`; `nack` | Recommended |
 | `messaging.destination.name` | string | The message destination name [1] | `MyQueue`; `MyTopic` | Conditionally Required: [2] |
 | `messaging.destination.template` | string | Low cardinality representation of the messaging destination name [3] | `/customers/{customerId}` | Conditionally Required: if available. |
 | [`network.protocol.name`](../general/general-attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `mqtt` | Recommended |

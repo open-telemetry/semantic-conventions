@@ -1,4 +1,4 @@
-# Tracing Semantic Conventions for Messaging
+# Semantic Conventions for Messaging Spans
 
 **Status**: [Experimental][DocumentStatus]
 
