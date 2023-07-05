@@ -1,4 +1,4 @@
-# Messaging systems
+# Tracing Semantic Conventions for Messaging
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -206,7 +206,7 @@ The following operations related to messages are defined for these semantic conv
 
 ## Messaging attributes
 
-<!-- semconv messaging -->
+<!-- semconv messaging(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `messaging.system` | string | A string identifying the messaging system. | `kafka`; `rabbitmq`; `rocketmq`; `activemq`; `AmazonSQS` | Required |
@@ -225,9 +225,10 @@ The following operations related to messages are defined for these semantic conv
 | [`network.protocol.version`](../general/general-attributes.md) | string | Version of the application layer protocol used. See note below. [14] | `3.1.1` | Recommended |
 | [`network.transport`](../general/general-attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/general-attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/general-attributes.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. [15] | `example.com` | Conditionally Required: If available. |
+| [`server.address`](../general/general-attributes.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. | `example.com` | Conditionally Required: If available. |
+| [`server.port`](../general/general-attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Conditionally Required: If available. |
 | [`server.socket.address`](../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
-| [`server.socket.domain`](../general/general-attributes.md) | string | The domain name of an immediate peer. [16] | `proxy.example.com` | Recommended: [17] |
+| [`server.socket.domain`](../general/general-attributes.md) | string | The domain name of an immediate peer. [15] | `proxy.example.com` | Recommended: [16] |
 | [`server.socket.port`](../general/general-attributes.md) | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
@@ -259,11 +260,9 @@ the broker does not have such notion, the destination name SHOULD uniquely ident
 
 **[14]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[15]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[15]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
 
-**[16]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
-
-**[17]:** If different than `server.address` and if `server.socket.address` is set.
+**[16]:** If different than `server.address` and if `server.socket.address` is set.
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -272,6 +271,22 @@ the broker does not have such notion, the destination name SHOULD uniquely ident
 | `publish` | publish |
 | `receive` | receive |
 | `process` | process |
+
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `tcp` | TCP |
+| `udp` | UDP |
+| `pipe` | Named or anonymous pipe. See note below. |
+| `unix` | Unix domain socket |
+
+`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `ipv4` | IPv4 |
+| `ipv6` | IPv6 |
 <!-- endsemconv -->
 
 Additionally `server.port` from the [network attributes][] is recommended.

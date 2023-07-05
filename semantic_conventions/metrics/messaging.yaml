@@ -1,0 +1,82 @@
+groups:
+  - id: metric.messaging.attributes
+    type: attribute_group
+    brief: "Common messaging metrics attributes."
+    extends: messaging.attributes.common
+    attributes:
+      - ref: messaging.destination.name
+        requirement_level:
+          conditionally_required: if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
+      - ref: messaging.destination.template
+        requirement_level:
+          conditionally_required: if available.
+      - id: messaging.todo.status
+        type: string
+        brief: "The status of the operation: TODO"
+        requirement_level: required
+        examples: ["ok", "error", "timeout"]
+
+# duration
+
+  - id: metric.messaging.publish.duration
+    type: metric
+    metric_name: messaging.publish.duration
+    brief: "Measures the duration of publish operation."
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.receive.duration
+    type: metric
+    metric_name: messaging.receive.duration
+    brief: "Measures the duration of receive operation."
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.deliver.duration
+    type: metric
+    metric_name: messaging.deliver.duration
+    brief: "Measures the duration of deliver operation."
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.settle.duration
+    type: metric
+    metric_name: messaging.settle.duration
+    brief: "Measures the duration of settle operation."
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
+    attributes:
+      - id: messaging.todo_settlement.status
+        type: string
+        brief: "The status of the settlement: acknowledged, rejected, TODO"
+        examples: ["ack", "nack"]
+
+# count
+
+  - id: metric.messaging.publish.count
+    type: metric
+    metric_name: messaging.published_messages.count
+    brief: "Measures the number of published messages."
+    instrument: counter
+    unit: "message"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.receive.count
+    type: metric
+    metric_name: messaging.received_messages.count
+    brief: "Measures the number of received or delivered messages."
+    instrument: counter
+    unit: "message"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.settle.count
+    type: metric
+    metric_name: messaging.settled_messages.count
+    brief: "Measures the number of settled messages."
+    instrument: counter
+    unit: "message"
+    extends: metric.messaging.attributes
