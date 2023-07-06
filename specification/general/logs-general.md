@@ -24,7 +24,7 @@ The following semantic conventions for logs are defined:
 
 Apart from semantic conventions for logs, [events](events-general.md), [traces](trace-general.md), and [metrics](metrics-general.md),
 OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/resource/sdk.md) with their own
-[Resource Semantic Conventions](/specification/resource/semantic_conventions/README.md).
+[Resource Semantic Conventions](/specification/resource/README.md).
 
 ## General log identification attributes
 

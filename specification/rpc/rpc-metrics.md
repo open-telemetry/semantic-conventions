@@ -138,7 +138,7 @@ For server-side spans `server.port` is optional (it describes the port the clien
 On the server process receiving and handling the remote procedure call, the service name provided in `rpc.service` does not necessarily have to match the [`service.name`][] resource attribute.
 One process can expose multiple RPC endpoints and thus have multiple RPC service names. From a deployment perspective, as expressed by the `service.*` resource attributes, it will be treated as one deployed service with one `service.name`.
 
-[`service.name`]: /specification/resource/semantic_conventions/README.md#service
+[`service.name`]: /specification/resource/README.md#service
 
 ## Semantic Conventions for specific RPC technologies
 

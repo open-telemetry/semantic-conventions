@@ -51,8 +51,8 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 <!-- endsemconv -->
 
 [faas]: faas-spans.md (FaaS trace conventions)
-[faasres]: /specification/resource/semantic_conventions/faas.md (FaaS resource conventions)
-[cloud]: /specification/resource/semantic_conventions/cloud.md (Cloud resource conventions)
+[faasres]: /specification/resource/faas.md (FaaS resource conventions)
+[cloud]: /specification/resource/cloud.md (Cloud resource conventions)
 
 ### AWS X-Ray Environment Span Link
 

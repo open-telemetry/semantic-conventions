@@ -128,7 +128,7 @@ In this example, spans representing client request should have their `peer.servi
 Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service name.
 
 [network attributes]: /specification/general/general-attributes.md#server-and-client-attributes
-[`service.name`]: /specification/resource/semantic_conventions/README.md#service
+[`service.name`]: /specification/resource/README.md#service
 [`peer.service`]: /specification/general/general-attributes.md#general-remote-service-attributes
 
 ### Client attributes

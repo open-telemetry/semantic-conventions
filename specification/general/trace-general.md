@@ -30,4 +30,4 @@ The following semantic conventions for spans are defined:
 
 Apart from semantic conventions for traces, [metrics](metrics-general.md), [logs](logs-general.md), and [events](events-general.md),
 OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/resource/sdk.md) with their own
-[Resource Semantic Conventions](/specification/resource/semantic_conventions/README.md).
+[Resource Semantic Conventions](/specification/resource/README.md).

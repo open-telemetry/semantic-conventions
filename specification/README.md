@@ -24,5 +24,5 @@ Semantic Conventions by signals:
 * [Events](general/events-general.md): Semantic Conventions for event data.
 * [Logs](general/logs-general.md): Semantic Conventions for logs data.
 * [Metrics](general/metrics-general.md): Semantic Conventions for metrics.
-* [Resource](resource/semantic_conventions/README.md): Semantic Conventions for resources.
+* [Resource](resource/README.md): Semantic Conventions for resources.
 * [Trace](general/trace-general.md): Semantic Conventions for traces and spans.
