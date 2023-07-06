@@ -14,7 +14,7 @@ use cases.
 <!-- toc -->
 
 - [All triggers](#all-triggers)
-  * [AWS X-Ray Environment Span Link](#aws-x-ray-environment-span-link)
+  * [Determining the remote parent span context](#determining-the-remote-parent-span-context)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
   * [SQS Event](#sqs-event)
@@ -54,21 +54,31 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 [faasres]: /specification/resource/semantic_conventions/faas.md (FaaS resource conventions)
 [cloud]: /specification/resource/semantic_conventions/cloud.md (Cloud resource conventions)
 
-### AWS X-Ray Environment Span Link
+### Determining the remote parent span context
 
-If the `_X_AMZN_TRACE_ID` environment variable is set, instrumentation SHOULD try to parse an
-OpenTelemetry `Context` out of it using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/context/api-propagators.md). If the
-resulting `Context` is [valid](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#isvalid) then a [Span Link][] SHOULD be added to the new Span's
-[start options](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#specifying-links) with an associated attribute of `source=x-ray-env` to
-indicate the source of the linked span.
-Instrumentation MUST check if the context is valid before using it because the `_X_AMZN_TRACE_ID` environment variable can
-contain an incomplete trace context which indicates X-Ray isn’t enabled. The environment variable will be set and the
-`Context` will be valid and sampled only if AWS X-Ray has been enabled for the Lambda function. A user can
-disable AWS X-Ray for the function if the X-Ray Span Link is not desired.
+Lambda does not have HTTP headers to read from and instead stores the headers it was invoked with (including TraceID, etc.) as part of the invocation event. If using the AWS XRay tracing then the trace information is instead stored in the Lambda environment. It is also possible that both options are populated at the same time, with different values. Finally it is also possible to propagate tracing information in a SQS message using the system attribute of the message `AWSTraceHeader`. A single lambda function can be triggered from multiple sources, however spans can only have a single parent.
 
-**Note**: When instrumenting a Java AWS Lambda, instrumentation SHOULD first try to parse an OpenTelemetry `Context` out of the system property `com.amazonaws.xray.traceHeader` using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md) before checking and attempting to parse the environment variable above.
+To determine the parent span context, the lambda instrumentation SHOULD use a `EventToCarrier`. `EventToCarrier` defines how the instrumentation should prepare a `Carrier` to be used by subsequent `TextMapPropagators`.
 
-[Span Link]: https://opentelemetry.io/docs/concepts/signals/traces/#span-links
+The `EventToCarrier` MUST implement the `Convert` operation to convert a lammbda `Event` into a `Carrier`.
+
+The `Convert` operation MUST have the following parameters:
+  `Carrier` - the carrier that will be populated from the `Event`
+  `Event` - the lambda event.
+
+#### Composite EventToCarrier
+
+Implementations MUST provide a facility to group multiple `EventToCarrier`s. A composite `EventToCarrier` can be built from a list of `EventToCarrier`s. The resulting composite `EventToCarrier` will invoke the `Convert` operation of each individual `EventToCarrier` in the order they were specified, sequentially updating the carrier.
+
+The list of `EventToCarrier`s passed to the composite `EventToCarrier` MUST be configured using the `OTEL_AWS_LAMBDA_EVENT_TO_CARRIERS`, as a comma separated list of values.
+
+Valid values to configure the composite `EventToCarrier` are:
+
+* `lambda_runtime` - populates the `Carrier` with a key `X-Amzn-Trace-Id` from the value of the `_X_AMZN_TRACE_ID` environment variable. (see note below)
+* `http_headers` = populates the `Carrier` with the content of the http headers.
+* `sqs` - populate the carrier with the content of the `AWSTraceHeader` system attribute of the message.
+
+**NOTE**: When instrumenting a Java AWS Lambda, instrumentation SHOULD first try to parse the `X-Amzn-Trace-Id` out of the system property `com.amazonaws.xray.traceHeader` before checking and attempting to parse the environment variable `_X_AMZN_TRACE_ID`.
 
 ## API Gateway
 
