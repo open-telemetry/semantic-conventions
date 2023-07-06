@@ -18,7 +18,7 @@ They may be used in any Log Record they apply to.
 
 The following semantic conventions for logs are defined:
 
-* [General](#general-log-identification-attributes): General semantic attributes that may be used in describing Log Records.
+* **[General](#general-log-identification-attributes): General semantic attributes that may be used in describing Log Records.**
 * [Exceptions](/specification/exceptions/exceptions-logs.md): Semantic attributes that may be used in describing exceptions in logs.
 * [Feature Flags](/specification/feature-flags/feature-flags-logs.md): Semantic attributes that may be used in describing feature flag evaluations in logs.
 

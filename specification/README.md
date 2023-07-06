@@ -6,22 +6,23 @@ The benefit to using Semantic Conventions is in following a common naming scheme
 
 Semantic Conventions are defined for the following areas:
 
-* [General](general/README.md): General Semantic Conventions.
-* [Exceptions](exceptions/README.md): Semantic Conventions for Exceptions.
-* [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
+* **[General](general/README.md): General Semantic Conventions**.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
-* [Feature Flags](http/README.md): Semantic Conventions for feature flag evaluations.
-* [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
+* [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
 * [Database](database/README.md): Semantic Conventions for database operations.
+* [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
+* [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
+* [Feature Flags](http/README.md): Semantic Conventions for feature flag evaluations.
+* [HTTP](feature-flags/README.md): Semantic Conventions for HTTP client and server operations.
+* [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.
+* [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
 * [RPC](rpc/README.md): Semantic Conventions for RPC client and server operations.
-* [Messaging](messaging/README.md): Semantic Conventions for Messaging operations and systems.
 * [System](system/README.md): System Semantic Conventions.
-* *Other areas can be found in the signal specific Semantic Conventions below*
 
 Semantic Conventions by signals:
 
+* [Events](general/events-general.md): Semantic Conventions for event data.
+* [Logs](general/logs-general.md): Semantic Conventions for logs data.
+* [Metrics](general/metrics-general.md): Semantic Conventions for metrics.
 * [Resource](resource/semantic_conventions/README.md): Semantic Conventions for resources.
 * [Trace](general/trace-general.md): Semantic Conventions for traces and spans.
-* [Metrics](general/metrics-general.md): Semantic Conventions for metrics.
-* [Logs](general/logs-general.md): Semantic Conventions for logs data.
-* [Events](general/events-general.md): Semantic Conventions for event data.
