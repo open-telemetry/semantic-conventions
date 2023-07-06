@@ -1,4 +1,4 @@
-# Semantic Conventions for gRPC
+# Semantic Conventions for JSON-RPC
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -6,7 +6,7 @@ The Semantic Conventions for [JSON-RPC](https://www.jsonrpc.org/) extend and ove
 that describe common RPC operations attributes in addition to the Semantic Conventions
 described on this page.
 
-## JSON RPC Attributes
+## JSON-RPC Attributes
 
 `rpc.system` MUST be set to `"jsonrpc"`.
 
