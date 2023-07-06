@@ -464,8 +464,8 @@ This metric is [recommended][MetricRecommended].
 
 ## Attributes
 
-More details on these attributes, the function name and the difference compared to the faas.invoked_name can be found at the related [FaaS tracing specification](../../trace/semantic_conventions/faas.md).
-For incoming FaaS invocations, the function for which metrics are reported is already described by its [FaaS resource attributes](../../resource/semantic_conventions/faas.md).
+More details on these attributes, the function name and the difference compared to the faas.invoked_name can be found at the related [FaaS tracing specification](faas-spans.md).
+For incoming FaaS invocations, the function for which metrics are reported is already described by its [FaaS resource attributes](/docs/resource/faas.md).
 Outgoing FaaS invocations are identified using the `faas.invoked_*` attributes above.
 `faas.trigger` SHOULD be included in all metric events while `faas.invoked_*` attributes apply on outgoing FaaS invocation events only.
 
