@@ -22,7 +22,7 @@ fix_file() {
    "$1"
 }
 
-important_files=("specification" "semantic_conventions" "README.md" "supplementary-guidelines")
+important_files=("specification" "model" "README.md" "supplementary-guidelines")
 
 # TODO - limit to markdown/yaml files?
 find "${important_files[@]}" -type f -not -path '*/.*' -print0 | while read -d $'\0' file; do
