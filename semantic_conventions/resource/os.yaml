@@ -61,5 +61,5 @@ groups:
         type: string
         brief: >
           The version string of the operating system as defined in
-          [Version Attributes](../../resource/semantic_conventions/README.md#version-attributes).
+          [Version Attributes](/specification/resource/README.md#version-attributes).
         examples: ['14.2.1', '18.04.1']
