@@ -53,7 +53,7 @@ See:
 ### YAML to Markdown
 
 Semantic conventions are declared in YAML files and markdown tables are
-generated from these files. Read about semantic convention updates [here](./semantic_conventions/README.md).
+generated from these files. Read about semantic convention updates [here](./model/README.md).
 
 ### Autoformatting
 

@@ -9,7 +9,7 @@ This repository is currently using [this specification version][SpecificationVer
 
 ## Read the docs
 
-The documentation currently resides in the [specification](specification/README.md) folder.
+The documentation currently resides in the [semantic_conventions](semantic_conventions/README.md) folder.
 
 ## TODOs
 

@@ -1,41 +1,28 @@
-# YAML Model for Semantic Conventions
+# OpenTelemetry Semantic Conventions
 
-The YAML descriptions of semantic convention contained in this directory are intended to
-be used by the various OpenTelemetry language implementations to aid in automatic
-generation of semantics-related code.
+The Semantic Conventions define a common set of (semantic) attributes which provide meaning to data when collecting, producing and consuming it.
+The Semantic Conventions specify among other things span names and kind, metric instruments and units as well as attribute names, types, meaning and valid values. For a detailed definition of the Semantic Conventions' scope see [Semantic Conventions Stability](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability).
+The benefit to using Semantic Conventions is in following a common naming scheme that can be standardized across a codebase, libraries, and platforms. This allows easier correlation and consumption of data.
 
-⚠ If you want to read the semantic conventions and not edit them, please see
-the generated markdown output in the [specification](../specification/README.md) folder.
+Semantic Conventions are defined for the following areas:
 
-## Writing semantic conventions
+* **[General](general/README.md): General Semantic Conventions**.
+* [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
+* [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
+* [Database](database/README.md): Semantic Conventions for database operations.
+* [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
+* [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
+* [Feature Flags](http/README.md): Semantic Conventions for feature flag evaluations.
+* [HTTP](feature-flags/README.md): Semantic Conventions for HTTP client and server operations.
+* [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.
+* [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
+* [RPC](rpc/README.md): Semantic Conventions for RPC client and server operations.
+* [System](system/README.md): System Semantic Conventions.
 
-Semantic conventions for the spec MUST adhere to the
-[attribute naming](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/common/attribute-naming.md),
-[attribute requirement level](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/common/attribute-requirement-level.md),
-and [metric requirement level](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/metric-requirement-level.md) conventions.
+Semantic Conventions by signals:
 
-Refer to the [syntax](https://github.com/open-telemetry/build-tools/tree/v0.18.0/semantic-conventions/syntax.md)
-for how to write the YAML files for semantic conventions and what the YAML properties mean.
-
-A schema file for VS code is configured in the `/.vscode/settings.json` of this
-repository, enabling auto-completion and additional checks. Refer to
-[the generator README](https://github.com/open-telemetry/build-tools/tree/v0.18.0/semantic-conventions/README.md) for what extension you need.
-
-## Generating markdown
-
-These YAML files are used by the make target `table-generation` to generate consistently
-formatted Markdown tables for all semantic conventions in the specification. Run it from the root of this repository using the command
-
-```
-make table-generation
-```
-
-For more information, see the [semantic convention generator](https://github.com/open-telemetry/build-tools/tree/v0.18.0/semantic-conventions)
-in the OpenTelemetry build tools repository.
-Using this build tool, it is also possible to generate code for use in OpenTelemetry
-language projects.
-
-See also:
-
-* [Markdown Tables](https://github.com/open-telemetry/build-tools/tree/main/semantic-conventions#markdown-tables)
-* [Code Generator](https://github.com/open-telemetry/build-tools/tree/main/semantic-conventions#code-generator)
+* [Events](general/events-general.md): Semantic Conventions for event data.
+* [Logs](general/logs-general.md): Semantic Conventions for logs data.
+* [Metrics](general/metrics-general.md): Semantic Conventions for metrics.
+* [Resource](resource/README.md): Semantic Conventions for resources.
+* [Trace](general/trace-general.md): Semantic Conventions for traces and spans.
