@@ -15,6 +15,7 @@ use cases.
 
 - [All triggers](#all-triggers)
   * [Determining the remote parent span context](#determining-the-remote-parent-span-context)
+    * [Composite EventToCarrier](#composite-eventtocarrier)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
   * [SQS Event](#sqs-event)
