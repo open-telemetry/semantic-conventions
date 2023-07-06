@@ -359,7 +359,7 @@ This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](ht
 <!-- semconv metric.process.runtime.jvm.system.cpu.load_1m(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.system.cpu.load_1m` | Gauge | `1` | Average CPU load of the whole system for the last minute as reported by the JVM. |
+| `process.runtime.jvm.system.cpu.load_1m` | Gauge | `{run_queue_item}` | Average CPU load of the whole system for the last minute as reported by the JVM. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.runtime.jvm.system.cpu.load_1m(full) -->
