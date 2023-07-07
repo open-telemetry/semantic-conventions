@@ -12,7 +12,17 @@ SEMCONVGEN_VERSION=0.18.0
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint markdown-link-check misspell table-check schema-check
+all: install-tools markdownlint markdown-link-check misspell table-check schema-check \
+		 check-file-and-folder-names-in-docs
+
+.PHONY: check-file-and-folder-names-in-docs
+check-file-and-folder-names-in-docs:
+	@found=`find docs -name '*_*'`; \
+	if [ -n "$$found" ]; then \
+		echo "Error: Underscores found in doc file or folder names, use hyphens instead:"; \
+		echo $$found; \
+		exit 1; \
+	fi
 
 $(MISSPELL):
 	cd $(TOOLS_DIR) && go build -o $(MISSPELL_BINARY) github.com/client9/misspell/cmd/misspell
@@ -74,13 +84,13 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/specification:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions
 .PHONY: table-check
 table-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/specification:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check
 
 .PHONY: schema-check
