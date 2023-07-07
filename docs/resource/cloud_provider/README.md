@@ -8,7 +8,8 @@ linkTitle: Cloud Provider
 
 This document defines semantic conventions for resource cloud providers.
 
-* [AWS](aws/readme.md): Semantic Conventions for Amazon Web Services.
-* [GCP](gcp/readme.md): Semantic Conventions for Google Cloud Platform.
+* [AWS](aws/README.md): Semantic Conventions for Amazon Web Services.
+* [GCP](gcp/README.md): Semantic Conventions for Google Cloud Platform.
 * [Heroku](heroku.md): Semantic Conventions for Heroku.
+
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
