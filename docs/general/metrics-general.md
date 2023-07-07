@@ -202,6 +202,12 @@ use `{packet}`, `{error}`, `{fault}`, etc.
   unless there is good technical reason to not do so.
 - When instruments are measuring durations, seconds (i.e. `s`) SHOULD be used.
 
+#### Explicit Bucket boundaries for Duration Histograms
+
+Duration histograms SHOULD use seconds (see above) and SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/api.md#instrument-advice)
+of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+
 ### Instrument Types
 
 **Status**: [Stable][DocumentStatus]
