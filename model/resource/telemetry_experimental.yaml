@@ -8,7 +8,7 @@ groups:
       - id: auto.name
         type: string
         brief: >
-          The name string of the auto instrumentation agent or distribution, if used.
+          The name of the auto instrumentation agent or distribution, if used.
         examples: ["opentelemetry-parts-unlimited-java"]
       - id: auto.version
         type: string
