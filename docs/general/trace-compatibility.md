@@ -1,4 +1,8 @@
-# Semantic conventions for tracing Compatibility components
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Tracing Compatibility
+--->
+
+# Semantic Conventions for Tracing Compatibility Components
 
 **Status**: [Experimental][DocumentStatus]
 

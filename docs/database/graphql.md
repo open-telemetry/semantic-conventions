@@ -1,4 +1,8 @@
-# Semantic conventions for GraphQL Server
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: GraphQL Server
+--->
+
+# Semantic Conventions for GraphQL Server
 
 **Status**: [Experimental][DocumentStatus]
 

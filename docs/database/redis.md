@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Redis
+--->
+
 # Semantic Conventions for Redis
 
 **Status**: [Experimental][DocumentStatus]

@@ -1,4 +1,8 @@
-# Semantic conventions for FaaS spans
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Spans
+--->
+
+# Semantic Conventions for FaaS Spans
 
 **Status**: [Experimental][DocumentStatus]
 
