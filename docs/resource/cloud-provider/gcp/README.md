@@ -9,7 +9,7 @@ provider (like account ID, operating system, etc), it belongs in the parent
 
 ## Services
 
-- [Cloud Run](./cloud_run.md)
+- [Cloud Run](./cloud-run.md)
 - [Compute Engine](./gce.md)
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

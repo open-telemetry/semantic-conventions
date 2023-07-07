@@ -198,7 +198,7 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 - [Device](./device.md)
 - [Cloud](./cloud.md)
 - Deployment:
-  - [Deployment Environment](./deployment_environment.md)
+  - [Deployment Environment](./deployment-environment.md)
   - [Kubernetes](./k8s.md)
 - [Browser](./browser.md)
 
@@ -216,14 +216,14 @@ the exact version used to identify an artifact. This may be a semantic version, 
 
 Attributes that are only applicable to resources from a specific cloud provider. Currently, these
 resources can only be defined for providers listed as a valid `cloud.provider` in
-[Cloud](./cloud.md) and below. Provider-specific attributes all reside in the `cloud_provider` directory.
+[Cloud](./cloud.md) and below. Provider-specific attributes all reside in the `cloud-provider` directory.
 Valid cloud providers are:
 
 - [Alibaba Cloud](https://www.alibabacloud.com/) (`alibaba_cloud`)
-- [Amazon Web Services](https://aws.amazon.com/) ([`aws`](cloud_provider/aws/README.md))
-- [Google Cloud Platform](https://cloud.google.com/) ([`gcp`](cloud_provider/gcp/README.md))
+- [Amazon Web Services](https://aws.amazon.com/) ([`aws`](cloud-provider/aws/README.md))
+- [Google Cloud Platform](https://cloud.google.com/) ([`gcp`](cloud-provider/gcp/README.md))
 - [Microsoft Azure](https://azure.microsoft.com/) (`azure`)
 - [Tencent Cloud](https://www.tencentcloud.com/) (`tencent_cloud`)
-- [Heroku dyno](./cloud_provider/heroku.md)
+- [Heroku dyno](./cloud-provider/heroku.md)
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
