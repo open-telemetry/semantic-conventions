@@ -19,7 +19,7 @@ all: install-tools markdownlint markdown-link-check misspell table-check schema-
 check-file-and-folder-names-in-docs:
 	@found=`find docs -name '*_*'`; \
 	if [ -n "$$found" ]; then \
-		echo "Error: Underscores found in doc file or folder names, please use hyphens instead:"; \
+		echo "Error: Underscores found in doc file or folder names, use hyphens instead:"; \
 		echo $$found; \
 		exit 1; \
 	fi
