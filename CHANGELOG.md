@@ -109,6 +109,8 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#133](https://github.com/open-telemetry/semantic-conventions/pull/133))
 - Add `system.cpu.physical.count` and `system.cpu.logical.count` metrics.
   ([#99](https://github.com/open-telemetry/opentelemetry-specification/pull/99))
+- Add markdown file for url semantic conventions
+  ([#174](https://github.com/open-telemetry/semantic-conventions/pull/174))
 
 ## v1.20.0 (2023-04-07)
 

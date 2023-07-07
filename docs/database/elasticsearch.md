@@ -38,7 +38,7 @@ in order to map the path part values to their names.
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | [`server.address`](../general/general-attributes.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. | `example.com` | See below |
 | [`server.port`](../general/general-attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Recommended |
-| `url.full` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [4] | `https://localhost:9200/index/_search?q=user.id:kimchy` | Required |
+| [`url.full`](../url/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [4] | `https://localhost:9200/index/_search?q=user.id:kimchy` | Required |
 
 **[1]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL statement has an ambiguous operation, or performs more than one operation, this value may be omitted.
 
