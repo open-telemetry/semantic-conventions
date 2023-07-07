@@ -1,4 +1,8 @@
-# Semantic conventions for database client calls
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Client Calls
+--->
+
+# Semantic Conventions for Database Client Calls
 
 **Status**: [Experimental][DocumentStatus]
 

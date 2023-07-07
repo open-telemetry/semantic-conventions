@@ -1,4 +1,8 @@
-# Semantic conventions for Feature Flags in Spans
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Spans
+--->
+
+# Semantic Conventions for Feature Flags in Spans
 
 **Status**: [Experimental][DocumentStatus]
 

@@ -1,4 +1,11 @@
-# Semantic conventions for Exceptions
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Exceptions
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/exceptions/_index.md
+  to: exceptions/README.md
+--->
+
+# Semantic Conventions for Exceptions
 
 **Status**: [Experimental][DocumentStatus]
 

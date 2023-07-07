@@ -1,4 +1,11 @@
-# Semantic conventions for CloudEvents
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: CloudEvents
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/cloudevents/_index.md
+  to: cloudevents/README.md
+--->
+
+# Semantic Conventions for CloudEvents
 
 **Status**: [Experimental][DocumentStatus]
 

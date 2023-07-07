@@ -1,3 +1,17 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Semantic Conventions
+# no_list: true
+cascade:
+  body_class: otel-docs-spec
+  github_repo: &repo https://github.com/open-telemetry/semantic-conventions
+  github_subdir: docs
+  path_base_for_github_subdir: content/en/docs/specs/semconv/
+  github_project_repo: *repo
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/_index.md
+  to: README.md
+--->
+
 # OpenTelemetry Semantic Conventions
 
 The Semantic Conventions define a common set of (semantic) attributes which provide meaning to data when collecting, producing and consuming it.
@@ -7,8 +21,8 @@ The benefit to using Semantic Conventions is in following a common naming scheme
 Semantic Conventions are defined for the following areas:
 
 * **[General](general/README.md): General Semantic Conventions**.
-* [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
 * [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
+* [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
 * [Database](database/README.md): Semantic Conventions for database operations.
 * [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
 * [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.

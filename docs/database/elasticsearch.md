@@ -1,4 +1,8 @@
-# Semantic conventions for Elasticsearch
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Elasticsearch
+--->
+
+# Semantic Conventions for Elasticsearch
 
 **Status**: [Experimental][DocumentStatus]
 

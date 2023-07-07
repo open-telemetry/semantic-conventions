@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: RPC
+linkTitle: Metrics
 --->
 
-# Semantic conventions for RPC metrics
+# Semantic Conventions for RPC Metrics
 
 **Status**: [Experimental][DocumentStatus]
 
