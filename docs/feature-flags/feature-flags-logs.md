@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Logs
+--->
+
 # Semantic Conventions for Feature Flags in Logs
 
 **Status**: [Experimental][DocumentStatus]

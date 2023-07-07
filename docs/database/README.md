@@ -1,4 +1,11 @@
-# Semantic conventions for database calls and systems
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Database
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/database/_index.md
+  to: database/README.md
+--->
+
+# Semantic Conventions for Database Calls and Systems
 
 **Status**: [Experimental][DocumentStatus]
 

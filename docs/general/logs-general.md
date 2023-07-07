@@ -1,4 +1,8 @@
-# General logs attributes
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Logs
+--->
+
+# General Logs Attributes
 
 **Status**: [Experimental][DocumentStatus]
 
