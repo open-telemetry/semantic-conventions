@@ -172,7 +172,11 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 <!-- semconv telemetry_experimental -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `telemetry.auto.version` | string | The version string of the auto instrumentation agent, if used. | `1.2.3` | Recommended |
+| `telemetry.distro.name` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | Recommended |
+| `telemetry.distro.version` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | Recommended |
+
+**[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
+a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 <!-- endsemconv -->
 
 ## Compute Unit
