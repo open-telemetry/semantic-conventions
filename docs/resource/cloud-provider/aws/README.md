@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: AWS
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/resource/cloud_provider/aws/_index.md
-  to: resource/cloud_provider/aws/README.md
+  from: content/en/docs/specs/semconv/resource/cloud-provider/aws/_index.md
+  to: resource/cloud-provider/aws/README.md
 --->
 
 # AWS Semantic Conventions
