@@ -36,7 +36,7 @@ See also the [additional instructions for instrumenting AWS Lambda](aws-lambda.m
 
 Span `name` should be set to the function name being executed. Depending on the value of the `faas.trigger` attribute, additional attributes MUST be set. For example, an `http` trigger SHOULD follow the [HTTP Server semantic conventions](/docs/http/http-spans.md#http-server-semantic-conventions). For more information, refer to the [Function Trigger Type](#function-trigger-type) section.
 
-If Spans following this convention are produced, a Resource of type `faas` MUST exist following the [Resource semantic convention](../resource/faas.md#function-as-a-service).
+If Spans following this convention are produced, a Resource of type `faas` MUST exist following the [Resource semantic convention](../resource/faas.md).
 
 <!-- semconv faas_span -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -87,7 +87,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 ### Function Name
 
 There are 2 locations where the function's name can be recorded: the span name and the
-[`faas.name` Resource attribute](../resource/faas.md#function-as-a-service).
+[`faas.name` Resource attribute](../resource/faas.md).
 
 It is guaranteed that if `faas.name` attribute is present it will contain the
 function name, since it is defined in the semantic convention strictly for that
