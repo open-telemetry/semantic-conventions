@@ -16,7 +16,7 @@ This document defines semantic conventions for instrumentation on mobile platfor
 ## Lifecycle instrumentation
 
 This section defines how to apply semantic conventions when instrumenting application lifecycle.
-This event is meant to be used in conjunction with `os.name` [resource semantic convention](https://github.com/open-telemetry/semantic-conventions/blob/main/specification/resource/semantic_conventions/os.md) to identify platform.
+This event is meant to be used in conjunction with `os.name` [resource semantic convention](/docs/resource/os.md) to identify platform.
 
 **Event name**: `client.lifecycle`
 
