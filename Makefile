@@ -12,7 +12,17 @@ SEMCONVGEN_VERSION=0.18.0
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint markdown-link-check misspell table-check schema-check
+all: install-tools markdownlint markdown-link-check misspell table-check schema-check \
+		 check-file-and-folder-names-in-docs
+
+.PHONY: check-file-and-folder-names-in-docs
+check-file-and-folder-names-in-docs:
+	@found=`find docs -name '*_*'`; \
+	if [ -n "$$found" ]; then \
+		echo "Error: Underscores found in doc file or folder names:"; \
+		echo $$found; \
+		exit 1; \
+	fi
 
 $(MISSPELL):
 	cd $(TOOLS_DIR) && go build -o $(MISSPELL_BINARY) github.com/client9/misspell/cmd/misspell
