@@ -53,7 +53,6 @@ The Android lifecycle states are defined in [Activty lifecycle callbacks](https:
 | `foreground` | [2]            | The app is in the foreground or otherwise active. |
 | `background` | [3]            | The app is in the background.                     |
 
-
 [1] Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time
 [2] Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states
 [3] Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state
