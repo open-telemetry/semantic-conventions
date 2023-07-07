@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Cassandra
+--->
+
 # Semantic Conventions for Cassandra
 
 **Status**: [Experimental][DocumentStatus]

@@ -1,4 +1,8 @@
-# Semantic Convention for event attributes
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Events
+--->
+
+# Semantic Conventions for Event Attributes
 
 **Status**: [Experimental][DocumentStatus]
 

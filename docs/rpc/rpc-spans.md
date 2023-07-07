@@ -1,4 +1,8 @@
-# Semantic conventions for RPC spans
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Spans
+--->
+
+# Semantic Conventions for RPC Spans
 
 **Status**: [Experimental][DocumentStatus]
 
