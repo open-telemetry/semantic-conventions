@@ -198,7 +198,7 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 | [`server.socket.address`](../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
 | [`server.socket.domain`](../general/general-attributes.md) | string | The domain name of an immediate peer. [5] | `proxy.example.com` | Recommended: If different than `server.address`. |
 | [`server.socket.port`](../general/general-attributes.md) | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
-| `url.full` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [6] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
+| [`url.full`](../url/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [6] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
 
 **[1]:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
@@ -225,7 +225,7 @@ Following attributes MUST be provided **at span creation time** (when provided a
 
 * [`server.address`](../general/general-attributes.md)
 * [`server.port`](../general/general-attributes.md)
-* `url.full`
+* [`url.full`](../url/url.md)
 <!-- endsemconv -->
 
 Note that in some cases host and port identifiers in the `Host` header might be different from the `server.address` and `server.port`, in this case instrumentation MAY populate `Host` header on `http.request.header.host` attribute even if it's not enabled by user.
@@ -331,9 +331,9 @@ If the route cannot be determined, the `name` attribute MUST be set as defined i
 | [`server.port`](../general/general-attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Recommended: [6] |
 | [`server.socket.address`](../general/general-attributes.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.5.3.2` | Opt-In |
 | [`server.socket.port`](../general/general-attributes.md) | int | Local socket port. Useful in case of a multi-port host. | `16456` | Opt-In |
-| `url.path` | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [7] | `/search` | Required |
-| `url.query` | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
-| `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
+| [`url.path`](../url/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [7] | `/search` | Required |
+| [`url.query`](../url/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
+| [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
@@ -369,9 +369,9 @@ Following attributes MUST be provided **at span creation time** (when provided a
 
 * [`server.address`](../general/general-attributes.md)
 * [`server.port`](../general/general-attributes.md)
-* `url.path`
-* `url.query`
-* `url.scheme`
+* [`url.path`](../url/url.md)
+* [`url.query`](../url/url.md)
+* [`url.scheme`](../url/url.md)
 <!-- endsemconv -->
 
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
