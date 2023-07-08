@@ -15,152 +15,661 @@ instruments not explicitly defined in the specification.
 
 <!-- toc -->
 
-- [Metric Instruments](#metric-instruments)
-  * [`system.cpu.` - Processor metrics](#systemcpu---processor-metrics)
-  * [`system.memory.` - Memory metrics](#systemmemory---memory-metrics)
-  * [`system.paging.` - Paging/swap metrics](#systempaging---pagingswap-metrics)
-  * [`system.disk.` - Disk controller metrics](#systemdisk---disk-controller-metrics)
-  * [`system.filesystem.` - Filesystem metrics](#systemfilesystem---filesystem-metrics)
-  * [`system.network.` - Network metrics](#systemnetwork---network-metrics)
-  * [`system.processes.` - Aggregate system process metrics](#systemprocesses---aggregate-system-process-metrics)
-  * [`system.{os}.` - OS Specific System Metrics](#systemos---os-specific-system-metrics)
+- [Processor Metrics](#processor-metrics)
+  * [Metric: `system.cpu.time`](#metric-systemcputime)
+  * [Metric: `system.cpu.utilization`](#metric-systemcpuutilization)
+- [Memory Metrics](#memory-metrics)
+  * [Metric: `system.memory.usage`](#metric-systemmemoryusage)
+  * [Metric: `system.memory.utilization`](#metric-systemmemoryutilization)
+- [Paging/Swap Metrics](#pagingswap-metrics)
+  * [Metric: `system.paging.usage`](#metric-systempagingusage)
+  * [Metric: `system.paging.utilization`](#metric-systempagingutilization)
+  * [Metric: `system.paging.faults`](#metric-systempagingfaults)
+  * [Metric: `system.paging.operations`](#metric-systempagingoperations)
+- [Disk Controller Metrics](#disk-controller-metrics)
+  * [Metric: `system.disk.io`](#metric-systemdiskio)
+  * [Metric: `system.disk.operations`](#metric-systemdiskoperations)
+  * [Metric: `system.disk.io_time`](#metric-systemdiskio_time)
+  * [Metric: `system.disk.operation_time`](#metric-systemdiskoperation_time)
+  * [Metric: `system.disk.merged`](#metric-systemdiskmerged)
+- [Filesystem Metrics](#filesystem-metrics)
+  * [Metric: `system.filesystem.usage`](#metric-systemfilesystemusage)
+  * [Metric: `system.filesystem.utilization`](#metric-systemfilesystemutilization)
+- [Network Metrics](#network-metrics)
+  * [Metric: `system.network.dropped`](#metric-systemnetworkdropped)
+  * [Metric: `system.network.packets`](#metric-systemnetworkpackets)
+  * [Metric: `system.network.errors`](#metric-systemnetworkerrors)
+  * [Metric: `system.network.io`](#metric-systemnetworkio)
+  * [Metric: `system.network.connections`](#metric-systemnetworkconnections)
+- [Aggregate System Process Metrics](#aggregate-system-process-metrics)
+  * [Metric: `system.processes.count`](#metric-systemprocessescount)
+  * [Metric: `system.processes.created`](#metric-systemprocessescreated)
+- [`system.{os}.` - OS Specific System Metrics](#systemos---os-specific-system-metrics)
 
 <!-- tocstop -->
 
-## Metric Instruments
+## Processor Metrics
 
-### `system.cpu.` - Processor metrics
+**Description:** System level processor metrics captured under `system.cpu`.
 
-**Description:** System level processor metrics.
+### Metric: `system.cpu.time`
 
-| Name                   | Description                                                                                              | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values                    |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ---------------- | ----------------------------------- |
-| system.cpu.time        |                                                                                                          | s     | Counter                                           | Double     | state            | idle, user, system, interrupt, etc. |
-|                        |                                                                                                          |       |                                                   |            | cpu              | CPU number [0..n-1]                 |
-| system.cpu.utilization | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of CPUs | 1     | Gauge                                             | Double     | state            | idle, user, system, interrupt, etc. |
-|                        |                                                                                                          |       |                                                   |            | cpu              | CPU number (0..n)                   |
+This metric is [recommended][MetricRecommended].
 
-### `system.memory.` - Memory metrics
+<!-- semconv metric.system.cpu.time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.cpu.time` | Counter | `s` |  |
+<!-- endsemconv -->
 
-**Description:** System level memory metrics. This does not include [paging/swap
-memory](#systempaging---pagingswap-metrics).
+<!-- semconv metric.system.cpu.time(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.cpu.cpu` | int | The CPU number [0..n-1] | `1` | Recommended |
+| `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
 
-| Name                      | Description | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values         |
-| ------------------------- | ----------- | ----- | ------------------------------------------------- | ---------- | ------------- | ------------------------ |
-| system.memory.usage       |             | By    | UpDownCounter                                     | Int64      | state         | used, free, cached, etc. |
-| system.memory.utilization |             | 1     | Gauge                                             | Double     | state         | used, free, cached, etc. |
+`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
-### `system.paging.` - Paging/swap metrics
+| Value  | Description |
+|---|---|
+| `idle` | idle |
+| `user` | user |
+| `system` | system |
+| `interrupt` | interrupt |
+<!-- endsemconv -->
 
-**Description:** System level paging/swap memory metrics.
+### Metric: `system.cpu.utilization`
 
-| Name                      | Description                         | Units        | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values |
-|---------------------------|-------------------------------------|--------------|---------------------------------------------------|------------|---------------|------------------|
-| system.paging.usage       | Unix swap or windows pagefile usage | By           | UpDownCounter                                     | Int64      | state         | used, free       |
-| system.paging.utilization |                                     | 1            | Gauge                                             | Double     | state         | used, free       |
-| system.paging.faults      |                                     | {fault}     | Counter                                           | Int64      | type          | major, minor     |
-| system.paging.operations  |                                     | {operation} | Counter                                           | Int64      | type          | major, minor     |
-|                           |                                     |              |                                                   |            | direction     | in, out          |
+This metric is [recommended][MetricRecommended].
 
-### `system.disk.` - Disk controller metrics
+<!-- semconv metric.system.cpu.utilization(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.cpu.utilization` | Gauge | `1` | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of CPUs |
+<!-- endsemconv -->
 
-**Description:** System level disk performance metrics.
+<!-- semconv metric.system.cpu.utilization(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.cpu.cpu` | int | The CPU number [0..n-1] | `1` | Recommended |
+| `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
 
-| Name                                       | Description                                     | Units        | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values |
-|--------------------------------------------|-------------------------------------------------|--------------|---------------------------------------------------|------------|---------------|------------------|
-| system.disk.io<!--notlink-->               |                                                 | By           | Counter                                           | Int64      | device        | (identifier)     |
-|                                            |                                                 |              |                                                   |            | direction     | read, write      |
-| system.disk.operations                     |                                                 | {operation} | Counter                                           | Int64      | device        | (identifier)     |
-|                                            |                                                 |              |                                                   |            | direction     | read, write      |
-| system.disk.io_time<sup>\[1\]</sup>        | Time disk spent activated                       | s            | Counter                                           | Double     | device        | (identifier)     |
-| system.disk.operation_time<sup>\[2\]</sup> | Sum of the time each operation took to complete | s            | Counter                                           | Double     | device        | (identifier)     |
-|                                            |                                                 |              |                                                   |            | direction     | read, write      |
-| system.disk.merged                         |                                                 | {operation} | Counter                                           | Int64      | device        | (identifier)     |
-|                                            |                                                 |              |                                                   |            | direction     | read, write      |
+`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
-<sup>1</sup> The real elapsed time ("wall clock")
-used in the I/O path (time from operations running in parallel are not
-counted). Measured as:
+| Value  | Description |
+|---|---|
+| `idle` | idle |
+| `user` | user |
+| `system` | system |
+| `interrupt` | interrupt |
+<!-- endsemconv -->
 
-- Linux: Field 13 from
-[procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
-- Windows: The complement of ["Disk\% Idle
-Time"](https://docs.microsoft.com/en-us/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained:~:text=%25%20Idle%20Time,Idle\)%20to%200%20(meaning%20always%20busy).)
-performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
+## Memory Metrics
 
-<sup>2</sup> Because it is the sum of time each
-request took, parallel-issued requests each contribute to make the count
-grow. Measured as:
+**Description:** System level memory metrics capture under `system.memory`.
+This does not include [paging/swap memory](#pagingswap-metrics).
 
-- Linux: Fields 7 & 11 from
-[procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
-- Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec"
-perf counter (similar for Writes)
+### Metric: `system.memory.usage`
 
-### `system.filesystem.` - Filesystem metrics
+This metric is [recommended][MetricRecommended].
 
-**Description:** System level filesystem metrics.
+<!-- semconv metric.system.memory.usage(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.memory.usage` | UpDownCounter | `By` |  |
+<!-- endsemconv -->
 
-| Name                          | Description | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values     |
-| ----------------------------- | ----------- | ----- | ------------------------------------------------- | ---------- | ------------- | -------------------- |
-| system.filesystem.usage       |             | By    | UpDownCounter                                     | Int64      | device        | (identifier)         |
-|                               |             |       |                                                   |            | state         | used, free, reserved |
-|                               |             |       |                                                   |            | type          | ext4, tmpfs, etc.    |
-|                               |             |       |                                                   |            | mode          | rw, ro, etc.         |
-|                               |             |       |                                                   |            | mountpoint    | (path)               |
-| system.filesystem.utilization |             | 1     | Gauge                                             | Double     | device        | (identifier)         |
-|                               |             |       |                                                   |            | state         | used, free, reserved |
-|                               |             |       |                                                   |            | type          | ext4, tmpfs, etc.    |
-|                               |             |       |                                                   |            | mode          | rw, ro, etc.         |
-|                               |             |       |                                                   |            | mountpoint    | (path)               |
+<!-- semconv metric.system.memory.usage(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.memory.state` | string | The memory state | `free`; `cached` | Recommended |
 
-### `system.network.` - Network metrics
+`system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
-**Description:** System level network metrics.
+| Value  | Description |
+|---|---|
+| `used` | used |
+| `free` | free |
+| `cached` | cached |
+<!-- endsemconv -->
 
-| Name                                   | Description                                                                   | Units         | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values                                                                                                                                                                                            |
-|----------------------------------------|-------------------------------------------------------------------------------|---------------|---------------------------------------------------|------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| system.network.dropped<sup>\[1\]</sup> | Count of packets that are dropped or discarded even though there was no error | {packet}     | Counter                                           | Int64      | device        | (identifier)                                                                                                                                                                                                |
-|                                        |                                                                               |               |                                                   |            | direction     | transmit, receive                                                                                                                                                                                           |
-| system.network.packets                 |                                                                               | {packet}     | Counter                                           | Int64      | device        | (identifier)                                                                                                                                                                                                |
-|                                        |                                                                               |               |                                                   |            | direction     | transmit, receive                                                                                                                                                                                           |
-| system.network.errors<sup>\[2\]</sup>  | Count of network errors detected                                              | {error}      | Counter                                           | Int64      | device        | (identifier)                                                                                                                                                                                                |
-|                                        |                                                                               |               |                                                   |            | direction     | transmit, receive                                                                                                                                                                                           |
-| system<!--notlink-->.network.io        |                                                                               | By            | Counter                                           | Int64      | device        | (identifier)                                                                                                                                                                                                |
-|                                        |                                                                               |               |                                                   |            | direction     | transmit, receive                                                                                                                                                                                           |
-| system.network.connections             |                                                                               | {connection} | UpDownCounter                                     | Int64      | device        | (identifier)                                                                                                                                                                                                |
-|                                        |                                                                               |               |                                                   |            | protocol      | tcp, udp, [etc.](https://en.wikipedia.org/wiki/Transport_layer#Protocols)                                                                                                                                   |
-|                                        |                                                                               |               |                                                   |            | state         | If specified, SHOULD be one of: close, close_wait, closing, delete, established, fin_wait_1, fin_wait_2, last_ack, listen, syn_recv, syn_sent, time_wait. A stateless protocol MUST NOT set this attribute. |
+### Metric: `system.memory.utilization`
 
-<sup>1</sup> Measured as:
+This metric is [recommended][MetricRecommended].
 
-- Linux: the `drop` column in `/proc/dev/net`
-([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
-- Windows:
-[`InDiscards`/`OutDiscards`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
-from
-[`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2).
+<!-- semconv metric.system.memory.utilization(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.memory.utilization` | Gauge | `1` |  |
+<!-- endsemconv -->
 
-<sup>2</sup> Measured as:
+<!-- semconv metric.system.memory.utilization(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.memory.state` | string | The memory state | `free`; `cached` | Recommended |
 
-- Linux: the `errs` column in `/proc/dev/net`
-([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
-- Windows:
-[`InErrors`/`OutErrors`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
-from
-[`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2).
+`system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
-### `system.processes.` - Aggregate system process metrics
+| Value  | Description |
+|---|---|
+| `used` | used |
+| `free` | free |
+| `cached` | cached |
+<!-- endsemconv -->
 
-**Description:** System level aggregate process metrics. For metrics at the
-individual process level, see [process metrics](process-metrics.md).
+## Paging/Swap Metrics
 
-| Name                     | Description                                               | Units       | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values                                                                               |
-| ------------------------ | --------------------------------------------------------- | ----------- | ------------------------------------------------- | ---------- | ------------- | ---------------------------------------------------------------------------------------------- |
-| system.processes.count   | Total number of processes in each state                   | {process} | UpDownCounter                                     | Int64      | status        | running, sleeping, [etc.](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) |
-| system.processes.created | Total number of processes created over uptime of the host | {process} | Counter                                           | Int64      | -             | -                                                                                              |
+**Description:** System level paging/swap memory metrics captured under `system.paging`.
 
-### `system.{os}.` - OS Specific System Metrics
+### Metric: `system.paging.usage`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.paging.usage(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.paging.usage` | UpDownCounter | `By` | Unix swap or windows pagefile usage |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.paging.usage(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.paging.state` | string | The memory paging state | `free` | Recommended |
+
+`system.paging.state` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `used` | used |
+| `free` | free |
+<!-- endsemconv -->
+
+### Metric: `system.paging.utilization`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.paging.utilization(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.paging.utilization` | Gauge | `1` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.paging.utilization(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.paging.state` | string | The memory paging state | `free` | Recommended |
+
+`system.paging.state` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `used` | used |
+| `free` | free |
+<!-- endsemconv -->
+
+### Metric: `system.paging.faults`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.paging.faults(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.paging.faults` | Counter | `{fault}` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.paging.faults(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.paging.type` | string | The memory paging type | `minor` | Recommended |
+
+`system.paging.type` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `major` | major |
+| `minor` | minor |
+<!-- endsemconv -->
+
+### Metric: `system.paging.operations`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.paging.operations(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.paging.operations` | Counter | `{operation}` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.paging.operations(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.paging.direction` | string | The paging access direction | `in` | Recommended |
+| `system.paging.type` | string | The memory paging type | `minor` | Recommended |
+
+`system.paging.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `in` | in |
+| `out` | out |
+
+`system.paging.type` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `major` | major |
+| `minor` | minor |
+<!-- endsemconv -->
+
+## Disk Controller Metrics
+
+**Description:** System level disk performance metrics captured under `system.disk`.
+
+### Metric: `system.disk.io`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.disk.io(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.disk.io` | Counter | `By` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.disk.io(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
+
+`system.disk.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `read` | read |
+| `write` | write |
+<!-- endsemconv -->
+
+### Metric: `system.disk.operations`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.disk.operations(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.disk.operations` | Counter | `{operation}` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.disk.operations(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
+
+`system.disk.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `read` | read |
+| `write` | write |
+<!-- endsemconv -->
+
+### Metric: `system.disk.io_time`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.disk.io_time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.disk.io_time` | Counter | `s` | Time disk spent activated [1] |
+
+**[1]:** The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
+
+- Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+- Windows: The complement of
+  ["Disk\% IdleTime"](https://docs.microsoft.com/en-us/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
+  %20to%200%20(meaning%20always%20busy).) performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
+<!-- endsemconv -->
+
+<!-- semconv metric.system.disk.io_time(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+<!-- endsemconv -->
+
+### Metric: `system.disk.operation_time`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.disk.operation_time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.disk.operation_time` | Counter | `s` | Sum of the time each operation took to complete [1] |
+
+**[1]:** Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
+
+- Linux: Fields 7 & 11 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+- Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes)
+<!-- endsemconv -->
+
+<!-- semconv metric.system.disk.operation_time(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
+
+`system.disk.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `read` | read |
+| `write` | write |
+<!-- endsemconv -->
+
+### Metric: `system.disk.merged`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.disk.merged(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.disk.merged` | Counter | `{operation}` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.disk.merged(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
+
+`system.disk.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `read` | read |
+| `write` | write |
+<!-- endsemconv -->
+
+## Filesystem Metrics
+
+**Description:** System level filesystem metrics captured under `system.filesystem`.
+
+### Metric: `system.filesystem.usage`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.filesystem.usage(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.filesystem.usage` | UpDownCounter | `By` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.filesystem.usage(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.filesystem.mode` | string | The filesystem mode | `rw, ro` | Recommended |
+| `system.filesystem.mountpoint` | string | The filesystem mount path | `/mnt/data` | Recommended |
+| `system.filesystem.state` | string | The filesystem state | `used` | Recommended |
+| `system.filesystem.type` | string | The filesystem type | `ext4` | Recommended |
+
+`system.filesystem.state` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `used` | used |
+| `free` | free |
+| `reserved` | reserved |
+
+`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `fat32` | fat32 |
+| `exfat` | exfat |
+| `ntfs` | ntfs |
+| `refs` | refs |
+| `hfsplus` | hfsplus |
+| `ext4` | ext4 |
+<!-- endsemconv -->
+
+### Metric: `system.filesystem.utilization`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.filesystem.utilization(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.filesystem.utilization` | Gauge | `1` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.filesystem.utilization(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.filesystem.mode` | string | The filesystem mode | `rw, ro` | Recommended |
+| `system.filesystem.mountpoint` | string | The filesystem mount path | `/mnt/data` | Recommended |
+| `system.filesystem.state` | string | The filesystem state | `used` | Recommended |
+| `system.filesystem.type` | string | The filesystem type | `ext4` | Recommended |
+
+`system.filesystem.state` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `used` | used |
+| `free` | free |
+| `reserved` | reserved |
+
+`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `fat32` | fat32 |
+| `exfat` | exfat |
+| `ntfs` | ntfs |
+| `refs` | refs |
+| `hfsplus` | hfsplus |
+| `ext4` | ext4 |
+<!-- endsemconv -->
+
+## Network Metrics
+
+**Description:** System level network metrics captured under `system.network`.
+
+### Metric: `system.network.dropped`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.network.dropped(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.network.dropped` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error [1] |
+
+**[1]:** Measured as:
+
+- Linux: the `drop` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
+- Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+  from [`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2)
+<!-- endsemconv -->
+
+<!-- semconv metric.system.network.dropped(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.network.direction` | string |  | `transmit` | Recommended |
+
+`system.network.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `transmit` | transmit |
+| `receive` | receive |
+<!-- endsemconv -->
+
+### Metric: `system.network.packets`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.network.packets(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.network.packets` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.network.packets(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.network.direction` | string |  | `transmit` | Recommended |
+
+`system.network.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `transmit` | transmit |
+| `receive` | receive |
+<!-- endsemconv -->
+
+### Metric: `system.network.errors`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.network.errors(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.network.errors` | Counter | `{error}` | Count of network errors detected [1] |
+
+**[1]:** Measured as:
+
+- Linux: the `errs` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
+- Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+  from [`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2).
+<!-- endsemconv -->
+
+<!-- semconv metric.system.network.errors(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.network.direction` | string |  | `transmit` | Recommended |
+
+`system.network.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `transmit` | transmit |
+| `receive` | receive |
+<!-- endsemconv -->
+
+### Metric: `system.network.io`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.network.io(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.network.io` | Counter | `By` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.network.io(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.network.direction` | string |  | `transmit` | Recommended |
+
+`system.network.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `transmit` | transmit |
+| `receive` | receive |
+<!-- endsemconv -->
+
+### Metric: `system.network.connections`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.network.connections(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.network.connections` | UpDownCounter | `{connection}` |  |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.network.connections(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`network.transport`](../general/general-attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| `system.network.state` | string |  | `close_wait` | Recommended |
+
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `tcp` | TCP |
+| `udp` | UDP |
+| `pipe` | Named or anonymous pipe. See note below. |
+| `unix` | Unix domain socket |
+
+`system.network.state` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `close` | close |
+| `close_wait` | close_wait |
+| `closing` | closing |
+| `delete` | delete |
+| `established` | established |
+| `fin_wait_1` | fin_wait_1 |
+| `fin_wait_2` | fin_wait_2 |
+| `last_ack` | last_ack |
+| `listen` | listen |
+| `syn_recv` | syn_recv |
+| `syn_sent` | syn_sent |
+| `time_wait` | time_wait |
+<!-- endsemconv -->
+## Aggregate System Process Metrics
+
+**Description:** System level aggregate process metrics captured under `system.processes`.
+For metrics at the individual process level, see [process metrics](process-metrics.md).
+
+### Metric: `system.processes.count`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.processes.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.processes.count` | UpDownCounter | `{process}` | Total number of processes in each state |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.processes.count(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `status` | string | [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running, sleeping` | Recommended |
+
+`status` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `running` | running |
+| `sleeping` | sleeping |
+| `stopped` | stopped |
+| `defunct` | defunct |
+<!-- endsemconv -->
+
+### Metric: `system.processes.created`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.processes.created(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.processes.created` | Counter | `{process}` | Total number of processes created over uptime of the host |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.processes.created(full) -->
+<!-- endsemconv -->
+
+## `system.{os}.` - OS Specific System Metrics
 
 Instrument names for system level metrics that have different and conflicting
 meaning across multiple OSes should be prefixed with `system.{os}.` and
@@ -189,3 +698,4 @@ An instrument for load average over 1 minute on Linux could be named
 an `{os}` prefix to split this metric across OSes.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
