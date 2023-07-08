@@ -1,0 +1,77 @@
+groups:
+  - id: attributes.faas.common
+    type: attribute_group
+    brief: "Describes FaaS attributes."
+    prefix: faas
+    attributes:
+      - id: trigger
+        brief: 'Type of the trigger which caused this function invocation.'
+        type:
+          allow_custom_values: false
+          members:
+            - id: datasource
+              value: 'datasource'
+              brief: 'A response to some data source operation such as a database or filesystem read/write'
+            - id: http
+              value: 'http'
+              brief: 'To provide an answer to an inbound HTTP request'
+            - id: pubsub
+              value: 'pubsub'
+              brief: 'A function is set to be executed when messages are sent to a messaging system'
+            - id: timer
+              value: 'timer'
+              brief: 'A function is scheduled to be executed regularly'
+            - id: other
+              value: 'other'
+              brief: 'If none of the others apply'
+      - id: invoked_name
+        type: string
+        requirement_level: required
+        brief: >
+          The name of the invoked function.
+        note: >
+          SHOULD be equal to the `faas.name` resource attribute of the
+          invoked function.
+        examples: 'my-function'
+      - id: invoked_provider
+        type:
+          allow_custom_values: true
+          members:
+            - id: 'alibaba_cloud'
+              value: 'alibaba_cloud'
+              brief: 'Alibaba Cloud'
+            - id: 'aws'
+              value: 'aws'
+              brief: 'Amazon Web Services'
+            - id: 'azure'
+              value: 'azure'
+              brief: 'Microsoft Azure'
+            - id: 'gcp'
+              value: 'gcp'
+              brief: 'Google Cloud Platform'
+            - id: 'tencent_cloud'
+              value: 'tencent_cloud'
+              brief: 'Tencent Cloud'
+        requirement_level: required
+        brief: >
+          The cloud provider of the invoked function.
+        note: >
+          SHOULD be equal to the `cloud.provider` resource attribute of the
+          invoked function.
+      - id: invoked_region
+        type: string
+        requirement_level:
+          conditionally_required: >
+            For some cloud providers, like AWS or GCP, the region in which a
+            function is hosted is essential to uniquely identify the function
+            and also part of its endpoint. Since it's part of the endpoint
+            being called, the region is always known to clients. In these cases,
+            `faas.invoked_region` MUST be set accordingly. If the region is
+            unknown to the client or not required for identifying the invoked
+            function, setting `faas.invoked_region` is optional.
+        brief: >
+          The cloud region of the invoked function.
+        note: >
+          SHOULD be equal to the `cloud.region` resource attribute of the
+          invoked function.
+        examples: 'eu-central-1'
