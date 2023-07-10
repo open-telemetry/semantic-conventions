@@ -35,7 +35,7 @@ The following semantic conventions surrounding metrics are defined:
   * [Runtime Environment](/docs/system/runtime-environment-metrics.md): For runtime environment metrics.
 
 Apart from semantic conventions for metrics, [traces](trace-general.md), [logs](logs-general.md), and [events](events-general.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/resource/sdk.md) with
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General Guidelines
@@ -96,7 +96,7 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/compatibility/prometheus_and_openmetrics.md).
 
 ### Pluralization
 
@@ -223,4 +223,4 @@ For example, if you are tracking `active_requests` with an `UpDownCounter`, and 
 request starts and decrementing it each time a request ends, then any attributes which are not yet available when
 incrementing the counter at request start should not be used when decrementing the counter at request end.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

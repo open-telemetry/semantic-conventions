@@ -60,4 +60,4 @@ Below is a table of the attributes that MUST be included on all connection pool 
 |-------------|--------|------------------------------------------------------------------------------|----------------|-------------------|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used. | `myDataSource` | Required          |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
