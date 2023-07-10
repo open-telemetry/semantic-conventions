@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: AWS DynamoDB
+--->
+
 # Semantic Conventions for AWS DynamoDB
 
 **Status**: [Experimental][DocumentStatus]

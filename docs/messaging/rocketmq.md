@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: RocketMQ
+--->
+
 # Semantic Conventions for RocketMQ
 
 **Status**: [Experimental][DocumentStatus]

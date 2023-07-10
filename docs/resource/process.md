@@ -1,4 +1,4 @@
-# Process and process runtime resources
+# Process and Process Runtime Resources
 
 **Status**: [Experimental][DocumentStatus]
 

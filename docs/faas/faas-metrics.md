@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: FaaS
+linkTitle: Metrics
 --->
 
 # Semantic Conventions for FaaS Metrics

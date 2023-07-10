@@ -1,4 +1,8 @@
-# Semantic conventions for URL
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: URL
+--->
+
+# Semantic Conventions for URL
 
 **Status**: [Experimental][DocumentStatus]
 

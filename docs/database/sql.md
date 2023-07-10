@@ -1,4 +1,8 @@
-# Semantic Conventions for SQL databases
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: SQL
+--->
+
+# Semantic Conventions for SQL Databases
 
 **Status**: [Experimental][DocumentStatus]
 

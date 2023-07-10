@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: CouchDB
+--->
+
 # Semantic Conventions for CouchDB
 
 **Status**: [Experimental][DocumentStatus]

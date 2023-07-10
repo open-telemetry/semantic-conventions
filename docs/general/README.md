@@ -1,3 +1,11 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: General
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/general/_index.md
+  to: general/README.md
+weight: -1
+--->
+
 # General Semantic Conventions
 
 This document defines general Semantic Conventions for spans, metrics, logs and events.

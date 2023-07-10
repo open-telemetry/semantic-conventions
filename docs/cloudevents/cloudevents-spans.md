@@ -1,4 +1,8 @@
-# Semantic conventions for CloudEvents spans
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: CloudEvents Spans
+--->
+
+# Semantic Conventions for CloudEvents Spans
 
 **Status**: [Experimental][DocumentStatus]
 

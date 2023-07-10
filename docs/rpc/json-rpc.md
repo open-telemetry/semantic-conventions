@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: JSON-RPC
+--->
+
 # Semantic Conventions for JSON-RPC
 
 **Status**: [Experimental][DocumentStatus]

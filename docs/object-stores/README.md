@@ -1,4 +1,11 @@
-# Semantic conventions for Object Stores
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Object Stores
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/object-stores/_index.md
+  to: object-stores/README.md
+--->
+
+# Semantic Conventions for Object Stores
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 

@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: gRPC
+--->
+
 # Semantic Conventions for gRPC
 
 **Status**: [Experimental][DocumentStatus]
