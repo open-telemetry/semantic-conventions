@@ -195,6 +195,8 @@ This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/api.md#instrument-advice)
 of `[]` (single bucket histogram capturing count, sum, min, max).
 
+This metric SHOULD use [`ExplicitBucketBoundaries`](../general/metrics-general.md#explicit-bucket-boundaries-for-duration-histograms).
+
 <!-- semconv metric.process.runtime.jvm.gc.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |

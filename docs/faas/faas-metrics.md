@@ -36,22 +36,24 @@ type and units.
 
 Below is a table of FaaS invocation metric instruments.
 
+All duration metrics SHOULD use [`ExplicitBucketBoundaries`](../general/metrics-general.md#explicit-bucket-boundaries-for-duration-histograms).
+
 | Name                   | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                                                  |
-|------------------------|---------------------------------------------------|--------------|-------------------------------------------|------------------------------------------------------------------------------|
-| `faas.invoke_duration` | Histogram                                         | milliseconds | `ms`                                      | Measures the duration of the invocation                                      |
-| `faas.init_duration`   | Histogram                                         | milliseconds | `ms`                                      | Measures the duration of the function's initialization, such as a cold start |
-| `faas.coldstarts`      | Counter                                           | default unit | `{coldstart}`                            | Number of invocation cold starts.                                            |
-| `faas.errors`          | Counter                                           | default unit | `{error}`                                | Number of invocation errors.                                                 |
-| `faas.invocations`      | Counter                                          | default unit | `{invocation}`                           | Number of successful invocations.                                            |
-| `faas.timeouts`        | Counter                                           | default unit | `{timeout}`                              | Number of invocation timeouts.                                               |
+|------------------------|---------------------------------------------------|--------------|-----------------------------------------|------------------------------------------------------------------------------|
+| `faas.invoke_duration` | Histogram                                         | seconds | `s`                                     | Measures the duration of the invocation                                      |
+| `faas.init_duration`   | Histogram                                         | seconds | `s`                                     | Measures the duration of the function's initialization, such as a cold start |
+| `faas.coldstarts`      | Counter                                           | default unit | `{coldstart}`                           | Number of invocation cold starts.                                            |
+| `faas.errors`          | Counter                                           | default unit | `{error}`                               | Number of invocation errors.                                                 |
+| `faas.invocations`      | Counter                                          | default unit | `{invocation}`                          | Number of successful invocations.                                            |
+| `faas.timeouts`        | Counter                                           | default unit | `{timeout}`                             | Number of invocation timeouts.                                               |
 
 Optionally, when applicable:
 
 | Name             | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                     |
-|------------------|---------------------------------------------------|--------------|-------------------------------------------|-------------------------------------------------|
-| `faas.mem_usage` | Histogram                                         | Bytes        | `By`                                      | Distribution of max memory usage per invocation |
-| `faas.cpu_usage` | Histogram                                         | milliseconds | `ms`                                      | Distribution of CPU usage per invocation        |
-| `faas.net_io`    | Histogram                                         | Bytes        | `By`                                      | Distribution of net I/O usage per invocation    |
+|------------------|---------------------------------------------------|--------------|------------------------------------------|-------------------------------------------------|
+| `faas.mem_usage` | Histogram                                         | Bytes        | `By`                                     | Distribution of max memory usage per invocation |
+| `faas.cpu_usage` | Histogram                                         | seconds | `s`                                      | Distribution of CPU usage per invocation        |
+| `faas.net_io`    | Histogram                                         | Bytes        | `By`                                     | Distribution of net I/O usage per invocation    |
 
 ## Attributes
 
