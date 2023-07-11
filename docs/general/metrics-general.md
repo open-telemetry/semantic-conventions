@@ -16,6 +16,7 @@ linkTitle: Metrics
 - [General Metric Semantic Conventions](#general-metric-semantic-conventions)
   * [Instrument Naming](#instrument-naming)
   * [Instrument Units](#instrument-units)
+    + [Explicit Bucket boundaries for Duration Histograms](#explicit-bucket-boundaries-for-duration-histograms)
   * [Instrument Types](#instrument-types)
   * [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
