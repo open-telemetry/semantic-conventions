@@ -6,9 +6,7 @@ linkTitle: Metrics
 
 **Status**: [Experimental, partial feature-freeze][DocumentStatus]
 
-The conventions described in this section are HTTP specific. When HTTP operations occur,
-metric events about those operations are generated and reported to provide insight into the
-operations. Adding HTTP attributes to metric events enables finely tuned filtering.
+The conventions described in this section are HTTP specific. When HTTP operations occur, metric events about those operations are generated and reported to provide insight into the operations. Adding HTTP attributes to metric events enables finely tuned filtering.
 
 **Disclaimer:** These are initial HTTP metric instruments and attributes but more may be added in the future.
 
@@ -61,9 +59,7 @@ This metric is required.
 
 When this metric is reported alongside an HTTP server span, the metric value SHOULD be the same as the HTTP server span duration.
 
-This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/api.md#instrument-advice)
-of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+This metric SHOULD be specified with [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/api.md#instrument-advice) of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.http.server.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -83,27 +79,21 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 | [`server.port`](../general/general-attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
-**[1]:** MUST NOT be populated when this isn't supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
-SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+**[1]:** MUST NOT be populated when this isn't supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it. SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+**[2]:** HTTP request method value SHOULD be "known" to the instrumentation. By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods) and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 If the HTTP request method isn't known to instrumentation, it MUST set the:
 
 - `http.request.method` attribute to `_OTHER`.
 - Exact method received in the request line as value of the `http.request.method_original` attribute, **except** if reporting a metric.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable:
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override the list of known HTTP methods. If this override is done via environment variable, then the environment variable:
 
-- MUST be named `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS` and support a comma-separated list of case-sensitive known HTTP methods.
-- This list MUST be a full override of the default known method, it isn't a list of known methods in addition to the defaults.
+- MUST be named `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`.
+- Support a comma-separated list of case-sensitive known HTTP methods. This list MUST be a full override of the default known method, it isn't a list of known methods in addition to the defaults.
 
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly. Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent. Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
 **[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
@@ -113,13 +103,12 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
 - Host identifier of the `Host` header
 
-SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
+SHOULD NOT be set if only the IP address is available and capturing the name would require a reverse DNS lookup.
 
-**[5]:** Determined by using the first of the following that applies
+**[5]:** Determined by using the first of the following that applies:
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
+- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
 - Port identifier of the `Host` header
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
@@ -158,9 +147,7 @@ This metric is optional.
 | [`server.port`](../general/general-attributes.md) | int | Port of the local HTTP server that received the request. [3] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
-**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation. By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods) and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 If the HTTP request method isn't known to instrumentation, it MUST set the:
 
@@ -170,26 +157,22 @@ If the HTTP request method isn't known to instrumentation, it MUST set the:
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be:
 
 - Named `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`
-- Support a comma-separated list of case-sensitive known HTTP methods.
-- This list MUST be a full override of the default known method, it isn't a list of known methods in addition to the defaults.
+- Support a comma-separated list of case-sensitive known HTTP methods. This list MUST be a full override of the default known method, it isn't a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly. Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent. Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
 **[2]:** Determined by using the first of the following that applies
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
-  include host identifier.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
+- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only include host identifier.
+- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
 - Host identifier of the `Host` header
 
-SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
+SHOULD NOT be set if only the IP address is available and capturing the name would require a reverse DNS lookup.
 
-**[3]:** Determined by using the first of the following that applies
+**[3]:** Determined by using the first of the following that applies:
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
+- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
 - Port identifier of the `Host` header
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
