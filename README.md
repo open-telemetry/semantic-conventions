@@ -11,12 +11,6 @@ This repository is currently using [this specification version][SpecificationVer
 
 The documentation currently resides in the [doc](docs/README.md) folder.
 
-## TODOs
-
-- [ ] Set up SchemaURL publication
-- [ ] Contributing.MD document
-- [ ] Restructure markdown for easier consumption.
-
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
