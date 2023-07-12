@@ -7,8 +7,8 @@ linkTitle: Metrics
 **Status**: [Experimental, partial feature-freeze][DocumentStatus]
 
 The conventions described in this section are HTTP specific. When HTTP operations occur,
-metric events about those operations will be generated and reported to provide insight into the
-operations. By adding HTTP attributes to metric events it allows for finely tuned filtering.
+metric events about those operations are generated and reported to provide insight into the
+operations. Adding HTTP attributes to metric events enables finely tuned filtering.
 
 **Disclaimer:** These are initial HTTP metric instruments and attributes but more may be added in the future.
 
@@ -32,8 +32,8 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 > (or prior):
 >
 > * SHOULD NOT change the version of the HTTP or networking attributes that they emit
->   until the HTTP semantic conventions are marked stable (HTTP stabilization will
->   include stabilization of a core set of networking attributes which are also used
+>   until the HTTP semantic conventions are marked stable (HTTP stabilization
+>   includes stabilization of a core set of networking attributes which are also used
 >   in HTTP instrumentations).
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version which is a comma-separated list of values.
@@ -43,13 +43,13 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 >     that the instrumentation emitted previously.
 >   * `http/dup` - emit both the old and the stable HTTP and networking attributes,
 >     allowing for a seamless transition.
->   * The default behavior (in the absence of one of these values) is to continue
+>   * The default behavior, in the absence of one of these values, continues
 >     emitting whatever version of the old experimental HTTP and networking attributes
 >     the instrumentation was emitting previously.
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
-> * SHOULD drop the environment variable in the next major version (stable
->   next major version SHOULD NOT be released prior to October 1, 2023).
+> * SHOULD drop the environment variable in the next major version. The stable
+>   next major version SHOULD NOT be released prior to October 1, 2023.
 
 ## HTTP Server
 
