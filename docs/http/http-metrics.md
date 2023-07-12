@@ -165,7 +165,7 @@ and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789
 If the HTTP request method isn't known to instrumentation, it MUST set the:
 
 * `http.request.method` attribute to `_OTHER`.
-*  The exact method received in the request line as value of the `http.request.method_original` attribute, **except** if reporting a metric.
+*  Exact method received in the request line as value of the `http.request.method_original` attribute, **except** if reporting a metric.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be:
 
