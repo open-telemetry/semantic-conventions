@@ -152,7 +152,7 @@ This metric is optional.
 If the HTTP request method isn't known to instrumentation, it MUST set the:
 
 * `http.request.method` attribute to `_OTHER`.
-*  Exact method received in the request line as value of the `http.request.method_original` attribute, **except** if reporting a metric.
+* Exact method received in the request line as value of the `http.request.method_original` attribute, **except** if reporting a metric.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be:
 
@@ -228,7 +228,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST:
 
 - Be named `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`.
--  Support a comma-separated list of case-sensitive known HTTP methods. This list MUST be a full override of the default known method, it isn't a list of known methods in addition to the defaults.
+- Support a comma-separated list of case-sensitive known HTTP methods. This list MUST be a full override of the default known method, it isn't a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent. Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
@@ -383,7 +383,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST:
 
 - Be named `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`.
--  Support a comma-separated list of case-sensitive known HTTP methods. This list MUST be a full override of the default known method, it isn't a list of known methods in addition to the defaults.
+- Support a comma-separated list of case-sensitive known HTTP methods. This list MUST be a full override of the default known method, it isn't a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly. Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent. Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
