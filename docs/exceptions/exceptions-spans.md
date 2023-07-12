@@ -23,7 +23,7 @@ An exception SHOULD be recorded as an `Event` on the span during which it occurr
 The name of the event MUST be `"exception"`.
 
 A typical template for an auto-instrumentation implementing this semantic convention
-using an [API-provided `recordException` method](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#record-exception)
+using an [API-provided `recordException` method](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#record-exception)
 could look like this (pseudo-Java):
 
 ```java
@@ -109,4 +109,4 @@ grained information from a stacktrace, if necessary.
 [telemetry-sdk-resource]: ../resource/README.md#telemetry-sdk
 [erlang-stacktrace]: https://www.erlang.org/doc/man/erl_error.html#format_exception-3
 [elixir-stacktrace]: https://hexdocs.pm/elixir/1.14.3/Exception.html#format/3
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

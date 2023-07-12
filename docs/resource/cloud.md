@@ -85,4 +85,4 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

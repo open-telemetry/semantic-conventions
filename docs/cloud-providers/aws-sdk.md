@@ -43,4 +43,4 @@ The following Semantic Conventions extend the general AWS SDK attributes for spe
 * [AWS DynamoDB](/docs/database/dynamodb.md): Semantic Conventions for *AWS DynamoDB*.
 * [AWS S3](/docs/object-stores/s3.md): Semantic Conventions for *AWS S3*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
