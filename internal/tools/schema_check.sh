@@ -32,12 +32,15 @@ grep -o -e '## v[1-9].*\s' $root_dir/CHANGELOG.md | grep -o '[1-9].*' | while re
     exit 3
   fi
 
-  curl --no-progress-meter https://opentelemetry.io/schemas/$ver > verify$ver
-
-  diff verify$ver $file && echo "Published schema at https://opentelemetry.io/schemas/$ver is correct" \
-    || (echo "Published schema at https://opentelemetry.io/schemas/$ver is incorrect!" && exit 3)
-
-  rm verify$ver
+  # Schema file will no be served directly from this repository when linked
+  # into opentelemetry.io.  We disable this for now and need to move the check
+  # into the website.
+  # curl --no-progress-meter https://opentelemetry.io/schemas/$ver > verify$ver
+  #
+  # diff verify$ver $file && echo "Published schema at https://opentelemetry.io/schemas/$ver is correct" \
+  #   || (echo "Published schema at https://opentelemetry.io/schemas/$ver is incorrect!" && exit 3)
+  #
+  # rm verify$ver
 done
 
 # Now check the content of all schema files in the ../shemas directory.
