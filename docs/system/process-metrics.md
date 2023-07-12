@@ -48,4 +48,4 @@ Below is a table of Process metric instruments.
 
 Process metrics SHOULD be associated with a [`process`](/docs/resource/process.md#process) resource whose attributes provide additional context about the process.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
