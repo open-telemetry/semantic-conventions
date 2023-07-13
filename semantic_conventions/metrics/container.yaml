@@ -1,0 +1,97 @@
+groups:
+  - id: metric.container.cpu.usage
+    type: metric
+    metric_name: container.cpu.usage
+    brief: "Recent CPU utilization for the container."
+    note: >
+      CPU usage percentage normalized by the number of CPU cores.
+      The value range is [0.0,1.0].
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: container.name
+      - ref: container.id
+      - ref: container.runtime
+      - ref: container.image.name
+      - ref: container.image.tag
+  - id: metric.container.memory.usage
+    type: metric
+    metric_name: container.memory.usage
+    brief: "Recent memory utilization for the container."
+    note: >
+      Memory usage percentage.
+      The value range is [0.0,1.0].
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: container.name
+      - ref: container.id
+      - ref: container.runtime
+      - ref: container.image.name
+      - ref: container.image.tag
+  - id: metric.container.disk.read.bytes
+    type: metric
+    metric_name: container.disk.read.bytes
+    brief: "Disk read bytes for the container."
+    note: >
+      The total number of bytes read
+      successfully (aggregated from all disks)
+      since the last metric collection.
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: container.name
+      - ref: container.id
+      - ref: container.runtime
+      - ref: container.image.name
+      - ref: container.image.tag
+  - id: metric.container.disk.write.bytes
+    type: metric
+    metric_name: container.disk.write.bytes
+    brief: "Disk write bytes for the container."
+    note: >
+      The total number of bytes written 
+      successfully (aggregated from all disks)
+      since the last metric collection
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: container.name
+      - ref: container.id
+      - ref: container.runtime
+      - ref: container.image.name
+      - ref: container.image.tag
+  - id: metric.container.network.ingress.bytes
+    type: metric
+    metric_name: container.network.ingress.bytes
+    brief: "Network ingress bytes for the container."
+    note: >
+      The number of bytes received
+      on all network interfaces
+      by the container since
+      the last metric collection.
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: container.name
+      - ref: container.id
+      - ref: container.runtime
+      - ref: container.image.name
+      - ref: container.image.tag
+  - id: metric.container.network.egress.bytes
+    type: metric
+    metric_name: container.network.egress.bytes
+    brief: "Network egress bytes for the container."
+    note: >
+      The number of bytes sent out
+      on all network interfaces
+      by the container since
+      the last metric collection.
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: container.name
+      - ref: container.id
+      - ref: container.runtime
+      - ref: container.image.name
+      - ref: container.image.tag
