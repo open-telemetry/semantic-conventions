@@ -7,7 +7,7 @@ release.
 
 ## Unreleased
 
-## v1.21.0 (2023-07-12)
+## v1.21.0 (2023-07-13)
 
 Note: This is the first release of Semantic Conventions separate from the Specification.
 
