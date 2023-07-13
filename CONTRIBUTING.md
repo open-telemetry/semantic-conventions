@@ -22,7 +22,7 @@ The Specification has a number of tools it uses to check things like style,
 spelling and link validity. Before using the tools:
 
 - Install the latest LTS release of **[Node](https://nodejs.org/)**.
-For example, using **[nvm][]** under Linux run:
+  For example, using **[nvm][]** under Linux run:
 
   ```bash
   nvm install --lts
@@ -41,7 +41,7 @@ make check
 ```
 
 Note: This can take a long time as it checks all links. You should use this
-prior to submitting a PR to ensure validity.  However, you can run individual
+prior to submitting a PR to ensure validity. However, you can run individual
 checks directly.
 
 See:
