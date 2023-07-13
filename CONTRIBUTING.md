@@ -129,11 +129,11 @@ make misspell-correction
    [tooling to update the spec](#updating-the-referenced-specification-version)
    if needed.
 2. Create a staging branch for the release.
-  a. Update `schema-next.yaml` file and move to `schemas/{version}`
+  - a. Update `schema-next.yaml` file and move to `schemas/{version}`
     - Ensure the `next` version is appropriately configured as the `{version}`.
     - Copy `schema-next.yaml` to `schemas/{version}`.
     - Add `next` as a version in `schema-next.yaml` version.
-  b. Update `CHANGELOG.md` for the latest version.
+  - b. Update `CHANGELOG.md` for the latest version.
     - Add `## v{version} ({date})` under `## Unreleased`
-  c. Send staging tag as PR for review.
+  - c. Send staging tag as PR for review.
 3. Create a tag `v{version}` on the merged PR and push remote.
