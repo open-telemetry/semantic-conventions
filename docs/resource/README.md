@@ -171,9 +171,10 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 **Description:** Additions to the telemetry SDK.
 
 <!-- semconv telemetry_experimental -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `telemetry.auto.version` | string | The version string of the auto instrumentation agent, if used. | `1.2.3` | Recommended |
+| Attribute                | Type | Description  | Examples  | Requirement Level |
+|--------------------------|---|---|---|---|
+| `telemetry.auto.name`    | string | The name of the auto instrumentation agent or distribution, if used. | `opentelemetry-parts-unlimited-java` | Recommended |
+| `telemetry.auto.version` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | Recommended |
 <!-- endsemconv -->
 
 ## Compute Unit
