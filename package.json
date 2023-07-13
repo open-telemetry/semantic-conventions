@@ -1,4 +1,13 @@
 {
+  "scripts": {
+    "_check:format": "npx prettier --check .",
+    "_check:format:any": "npx prettier --check --ignore-path ''",
+    "check": "npm run check:format && make check",
+    "check:format": "npm run _check:format || (echo '[help] Run: npm run format'; exit 1)",
+    "fix": "npm run fix:format && make fix",
+    "fix:format": "npm run _check:format -- --write",
+    "test": "npm run check"
+  },
   "devDependencies": {
     "gulp": "^4.0.2",
     "js-yaml": "^4.1.0",
