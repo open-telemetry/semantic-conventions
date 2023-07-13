@@ -7,6 +7,8 @@ release.
 
 ## Unreleased
 
+## v1.21.0 (2023-07-13)
+
 Note: This is the first release of Semantic Conventions separate from the Specification.
 
 - Add GCP Bare Metal Solution as a cloud platform
