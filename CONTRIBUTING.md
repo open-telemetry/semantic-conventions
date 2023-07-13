@@ -125,15 +125,15 @@ make misspell-correction
 
 ## Making a Release
 
-1. Ensure the referenced specification version is up to date.  Use
-   [tooling to update the spec](#updating-the-referenced-specification-version)
-   if needed.
-2. Create a staging branch for the release.
-  - a. Update `schema-next.yaml` file and move to `schemas/{version}`
+- Ensure the referenced specification version is up to date.  Use
+  [tooling to update the spec](#updating-the-referenced-specification-version)
+  if needed.
+- Create a staging branch for the release.
+  - Update `schema-next.yaml` file and move to `schemas/{version}`
     - Ensure the `next` version is appropriately configured as the `{version}`.
     - Copy `schema-next.yaml` to `schemas/{version}`.
     - Add `next` as a version in `schema-next.yaml` version.
-  - b. Update `CHANGELOG.md` for the latest version.
+  - Update `CHANGELOG.md` for the latest version.
     - Add `## v{version} ({date})` under `## Unreleased`
-  - c. Send staging tag as PR for review.
-3. Create a tag `v{version}` on the merged PR and push remote.
+  - Send staging tag as PR for review.
+- Create a tag `v{version}` on the merged PR and push remote.
