@@ -137,3 +137,5 @@ make misspell-correction
     - Add `## v{version} ({date})` under `## Unreleased`
   - Send staging tag as PR for review.
 - Create a tag `v{version}` on the merged PR and push remote.
+
+[nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating

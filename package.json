@@ -1,7 +1,15 @@
 {
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "js-yaml": "^4.1.0",
     "markdown-link-check": "3.10.3",
     "markdown-toc": "^1.2.0",
-    "markdownlint-cli": "0.31.0"
+    "markdownlint": "^0.29.0",
+    "markdownlint-cli": "0.31.0",
+    "prettier": "^3.0.0",
+    "through2": "^4.0.2"
+  },
+  "prettier": {
+    "proseWrap": "preserve"
   }
 }
