@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Trace
+aliases: [docs/specs/semconv/general/trace-general]
 --->
 
 # Trace Semantic Conventions

@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Metrics
+aliases: [docs/specs/semconv/general/metrics-general]
 --->
 
 # Metrics Semantic Conventions
