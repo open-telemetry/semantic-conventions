@@ -131,8 +131,6 @@ To avoid high cardinality, implementations should prefer the most stable of `ser
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).
 For server-side spans `server.port` is optional (it describes the port the client is connecting from).
 
-[network.transport]: /docs/general/general-attributes.md#network-attributes
-
 ### Service name
 
 On the server process receiving and handling the remote procedure call, the service name provided in `rpc.service` does not necessarily have to match the [`service.name`][] resource attribute.
