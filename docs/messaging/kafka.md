@@ -122,7 +122,7 @@ This section defines how to apply semantic conventions when collecting Kafka met
 | messaging.kafka.brokers.response_size        | Gauge         | Double     | bytes     | `By`         | Average response size in bytes. | | |
 | messaging.kafka.brokers.requests.in.flight   | Gauge         | Int64      | requests  | `{request}`  | Requests in flight. | | |
 | messaging.kafka.topic.partitions             | UpDownCounter | Int64      | partitions | `{partition}` | Number of partitions in topic. | `topic` | The ID (integer) of a topic |
-| messaging.kafka.partition.current.offset     | Gauge         | Int64      | partition offset | `{partition offset}` | Current offset of partition of topic. | `topic` | The ID (integer) of a topic |
+| messaging.kafka.partition.current_offset     | Gauge         | Int64      | partition offset | `{partition offset}` | Current offset of partition of topic. | `topic` | The ID (integer) of a topic |
 |                                              |               |            |                  |                      |                                       | `partition` | The number (integer) of the partition |
 | messaging.kafka.partition.oldest_offset      | Gauge         | Int64      | partition offset | `{partition offset}` | Oldest offset of partition of topic | `topic` | The ID (integer) of a topic |
 |                                              |               |            |                  |                      |                                     | `partition` | The number (integer) of the partition |
