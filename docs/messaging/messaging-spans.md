@@ -292,8 +292,8 @@ Communication with broker is described with general [network attributes].
 Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace
 as described in [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems).
 
-[network attributes]: /docs/general/general-attributes.md#server-and-client-attributes
-[`network.transport`]: /docs/general/general-attributes.md#network-attributes
+[network attributes]: /docs/general/attributes.md#server-and-client-attributes
+[`network.transport`]: /docs/general/attributes.md#network-attributes
 [Hangfire]: https://www.hangfire.io/
 
 ### Consumer attributes

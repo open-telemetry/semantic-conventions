@@ -8,7 +8,7 @@ linkTitle: Runtime Environment
 
 This document includes semantic conventions for runtime environment level
 metrics in OpenTelemetry. Also consider the [general
-metric](/docs/general/metrics-general.md#general-metric-semantic-conventions), [system
+metric](/docs/general/metrics.md#general-metric-semantic-conventions), [system
 metrics](system-metrics.md) and [OS Process metrics](process-metrics.md)
 semantic conventions when instrumenting runtime environments.
 
@@ -56,7 +56,7 @@ discussion.
 Metrics specific to a certain runtime environment should be prefixed with
 `process.runtime.{environment}.` and follow the semantic conventions outlined in
 [general metric semantic
-conventions](/docs/general/metrics-general.md#general-metric-semantic-conventions). Authors of
+conventions](/docs/general/metrics.md#general-metric-semantic-conventions). Authors of
 runtime instrumentations are responsible for the choice of `{environment}` to
 avoid ambiguity when interpreting a metric's name or values.
 
