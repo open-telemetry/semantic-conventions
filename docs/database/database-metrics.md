@@ -29,7 +29,7 @@ and units.
 Below is a table of database client connection pool metric instruments that MUST be used by connection pool
 instrumentations:
 
-| Name                          | Instrument                 | Unit        | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                                                               |
+| Name                          | Instrument                 | Unit        | Unit ([UCUM](/docs/general/metrics.md#instrument-units)) | Description                                                                               |
 |-------------------------------|----------------------------|-------------|-------------------------------------------|-------------------------------------------------------------------------------------------|
 | `db.client.connections.usage` | UpDownCounter | connections | `{connection}`                           | The number of connections that are currently in state described by the `state` attribute. |
 
@@ -43,7 +43,7 @@ Instrumentation libraries for database client connection pools that collect data
 following metric instruments. Otherwise, if the instrumentation library does not collect this data, these instruments
 MUST NOT be used.
 
-| Name                                     | Instrument ([*](/docs/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                                                                       |
+| Name                                     | Instrument ([*](/docs/general/metrics.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics.md#instrument-units)) | Description                                                                                       |
 |------------------------------------------|----------------------------------------------|--------------|-------------------------------------------|---------------------------------------------------------------------------------------------------|
 | `db.client.connections.idle.max`         | UpDownCounter                                | connections  | `{connection}`                           | The maximum number of idle open connections allowed.                                              |
 | `db.client.connections.idle.min`         | UpDownCounter                                | connections  | `{connection}`                           | The minimum number of idle open connections allowed.                                              |
