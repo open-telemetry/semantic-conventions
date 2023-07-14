@@ -112,8 +112,17 @@ This section defines how to apply semantic conventions when collecting Kafka met
 | messaging.kafka.leader.elections             | Counter       | Int64      | elections | `{election}` | Leader election rate (increasing values indicates broker failures). | | |
 | messaging.kafka.leader.unclean-elections     | Counter       | Int64      | elections | `{election}` | Unclean leader election rate (increasing values indicates broker failures). | | |
 | messaging.kafka.brokers                      | UpDownCounter | Int64      | brokers   | `{broker}`   | Number of brokers in the cluster. | | |
+| messaging.kafka.brokers.count                | UpDownCounter | Int64      | brokers   | `{broker}`   | sum of brokers in the cluster | | |
+| messaging.kafka.brokers.consumer.fetch.rate  | Gauge         | Double     | fetches per second | `{fetch}/s`  | Average consumer fetch Rate. | `state` | `in`, `out` |
+| messaging.kafka.brokers.network.io           | Gauge         | Double     | bytes per second   | `{By/s}`     | Average tncoming Byte Rate in bytes/second. | | |
+| messaging.kafka.brokers.requests.latency     | Gauge         | Double     | ms        | `{ms}` | Average Request latency in ms. | | |
+| messaging.kafka.brokers.requests.rate        | Gauge         | Double     | requests per second | `{request}/s`| Average request rate per second. | | |
+| messaging.kafka.brokers.requsts.size         | Gauge         | Double     | bytes     | `By`         | Average request size in bytes. | | |
+| messaging.kafka.brokers.responses.rate       | Gauge         | Double     | responses per second| `{response}/s`| Average response rate per second. | | |
+| messaging.kafka.brokers.response_size        | Gauge         | Double     | bytes     | `By`         | Average response size in bytes. | | |
+| messaging.kafka.brokers.requests.in.flight   | Gauge         | Int64      | requests  | `{request}`  | Requests in flight. | | |
 | messaging.kafka.topic.partitions             | UpDownCounter | Int64      | partitions | `{partition}` | Number of partitions in topic. | `topic` | The ID (integer) of a topic |
-| messaging.kafka.partition.current_offset     | Gauge         | Int64      | partition offset | `{partition offset}` | Current offset of partition of topic. | `topic` | The ID (integer) of a topic |
+| messaging.kafka.partition.current.offset     | Gauge         | Int64      | partition offset | `{partition offset}` | Current offset of partition of topic. | `topic` | The ID (integer) of a topic |
 |                                              |               |            |                  |                      |                                       | `partition` | The number (integer) of the partition |
 | messaging.kafka.partition.oldest_offset      | Gauge         | Int64      | partition offset | `{partition offset}` | Oldest offset of partition of topic | `topic` | The ID (integer) of a topic |
 |                                              |               |            |                  |                      |                                     | `partition` | The number (integer) of the partition |
