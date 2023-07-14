@@ -114,14 +114,14 @@ groups:
         examples: [ "www.opentelemetry.io" ]
       - id: port
         requirement_level: opt_in
-        type: string
+        type: int
         brief: Port of the request
         examples: [ "9090" ]
       - id: original
         requirement_level: opt_in
         type: string
         brief: >
-          Unmodified original url as seen in the event source.
+          Unmodified original URL as seen in the event source.
 
           Note that in network monitoring, the observed URL may be
           a full URL, whereas in access logs, the URL is often just represented as a path.
