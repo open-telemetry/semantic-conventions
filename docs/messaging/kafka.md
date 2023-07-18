@@ -114,7 +114,7 @@ This section defines how to apply semantic conventions when collecting Kafka met
 | messaging.kafka.brokers                      | UpDownCounter | Int64      | brokers   | `{broker}`   | Number of brokers in the cluster. | | |
 | messaging.kafka.brokers.count                | UpDownCounter | Int64      | brokers   | `{broker}`   | sum of brokers in the cluster | | |
 | messaging.kafka.brokers.consumer.fetch.rate  | Gauge         | Double     | fetches per second | `{fetch}/s`  | Average consumer fetch Rate. | `state` | `in`, `out` |
-| messaging.kafka.brokers.network.io           | Gauge         | Double     | bytes per second   | `{By/s}`     | Average tncoming Byte Rate in bytes/second. | | |
+| messaging.kafka.brokers.network.io           | Counter         | Int64     | bytes   | `By`     |  The bytes received or sent by the broker. | | |
 | messaging.kafka.brokers.requests.latency     | Gauge         | Double     | ms        | `{ms}` | Average Request latency in ms. | | |
 | messaging.kafka.brokers.requests.rate        | Gauge         | Double     | requests per second | `{request}/s`| Average request rate per second. | | |
 | messaging.kafka.brokers.requsts.size         | Gauge         | Double     | bytes     | `By`         | Average request size in bytes. | | |
