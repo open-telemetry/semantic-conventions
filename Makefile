@@ -7,11 +7,7 @@ MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
-<<<<<<< HEAD
-# Keep links in semantic_conventions/README.md and .vscode/settings.json in sync!
-=======
 # Keep links in model/README.md and .vscode/settings.json in sync!
->>>>>>> main
 SEMCONVGEN_VERSION=0.19.0
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
