@@ -1,5 +1,5 @@
 groups:
-  - id: process.cpu
+  - id: attributes.process.cpu
     prefix: process.cpu
     type: attribute_group
     brief: "Attributes for process CPU metrics."
@@ -106,7 +106,7 @@ groups:
     type: metric
     metric_name: process.context_switches
     brief: "Number of times the process has been context switched."
-    instrument: updowncounter
+    instrument: counter
     unit: "{count}"
     attributes:
       - id: process.context_switches.type
