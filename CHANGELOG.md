@@ -7,6 +7,8 @@ release.
 
 ## Unreleased
 
+## v1.21.0 (2023-07-13)
+
 Note: This is the first release of Semantic Conventions separate from the Specification.
 
 - Add GCP Bare Metal Solution as a cloud platform
@@ -105,6 +107,10 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#39](https://github.com/open-telemetry/semantic-conventions/pull/39))
 - Add Elasticsearch client semantic conventions.
   ([#23](https://github.com/open-telemetry/semantic-conventions/pull/23))
+- Add YAML definitions for log semantic conventions and define requirement levels
+  ([#133](https://github.com/open-telemetry/semantic-conventions/pull/133))
+- Add markdown file for url semantic conventions
+  ([#174](https://github.com/open-telemetry/semantic-conventions/pull/174))
 
 ## v1.20.0 (2023-04-07)
 
