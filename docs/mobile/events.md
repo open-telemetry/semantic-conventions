@@ -7,7 +7,6 @@ This document defines semantic conventions for instrumentation on mobile platfor
 <!-- toc -->
 
 - [Lifecycle instrumentation](#lifecycle-instrumentation)
-  * [`state` values](#state-values)
     + [iOS](#ios)
     + [Android](#android)
 
@@ -18,41 +17,34 @@ This document defines semantic conventions for instrumentation on mobile platfor
 This section defines how to apply semantic conventions when instrumenting application lifecycle.
 This event is meant to be used in conjunction with `os.name` [resource semantic convention](/docs/resource/os.md) to identify platform.
 
-**Event name**: `client.lifecycle`
+<!-- semconv mobile-lifecycle-events -->
+The event name MUST be `client.lifecycle`.
 
-**Event domain**: `device`
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `event.data.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. | `created` | Required |
 
-The following attributes are stored in the `event.data` map.
+`event.data.state` MUST be one of the following:
 
-| Attribute | Type   | Description                                | Examples          | Requirement level |
-|-----------|--------|--------------------------------------------|-------------------|-------------------|
-| `state`   | String | The state entered at the time of the event | platform specific | Required          |
+| Value  | Description |
+|---|---|
+| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. [1] |
+| `active` | The app has become "active". Associated with UIKit notification `applicationDidBecomeActive`. [2] |
+| `inactive` | the app is now "inactive". Associated with UIKit notification `applicationWillResignActive`. [2] |
+| `background` | The app is now in the background.\n **On iOS**: this value is associated with UIKit notification `applicationDidEnterBackground`. **On Android:** Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. |
+| `foreground` | The app is now in the foreground.  **On iOS:** this value is associated with UIKit notification `applicationWillEnterForeground`. **On Android:** Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states |
+| `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. [2] |
 
-### `state` values
+**[1]:** Android only.
 
-#### iOS
+**[2]:** iOS only.
+<!-- endsemconv -->
+
+## iOS
 
 The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
 and from which the `OS terminology` column values are derived.
 
-| Name         | OS terminology                 | description                               |
-|--------------|--------------------------------|-------------------------------------------|
-| `active`     | applicationDidBecomeActive     | The app has become "active"               |
-| `inactive`   | applicationWillResignActive    | The app is about to become "inactive".    |
-| `background` | applicationDidEnterBackground  | The app is now in the background.         |
-| `foreground` | applicationWillEnterForeground | The app is about to enter the foreground. |
-| `terminate`  | applicationWillTerminate       | The app is about to terminate.            |
-
-#### Android
+## Android
 
 The Android lifecycle states are defined in [Activty lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS idenfifiers` are derived.
-
-| Name         | OS terminology | description                                       |
-|--------------|----------------|---------------------------------------------------|
-| `created`    | [1]            | The app has been launched.                        |
-| `foreground` | [2]            | The app is in the foreground or otherwise active. |
-| `background` | [3]            | The app is in the background.                     |
-
-[1] Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time
-[2] Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states
-[3] Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state

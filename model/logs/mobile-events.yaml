@@ -1,0 +1,44 @@
+groups:
+  - id: mobile-lifecycle-events
+    type: event
+    prefix: event.data
+    name: client.lifecycle
+    brief: >
+      This event represents an occurrence of a lifecycle transition on either the iOS or Android platforms.  `event.domain` MUST be 'device'.
+    attributes:
+      - id: state
+        requirement_level: "required"
+        brief: >
+          This attribute represents the state the application has transitioned into at the occurrence of the event.
+        type:
+          allow_custom_values: false
+          members:
+            - id: created
+              value: 'created'
+              note: 'Android only.'
+              brief: 'Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.'
+            - id: active
+              value: 'active'
+              brief: 'The app has become "active". Associated with UIKit notification `applicationDidBecomeActive`.'
+              note: "iOS only."
+            - id: inactive
+              value: 'inactive'
+              brief: "the app is now \"inactive\". Associated with UIKit notification `applicationWillResignActive`. [2]"
+            - id: background
+              value: 'background'
+              brief: >
+                The app is now in the background.\n
+                **On iOS**: this value is associated with UIKit notification `applicationDidEnterBackground`.
+                **On Android:** Any time after Activity.onPause() or, if the app has no Activity,
+                Context.stopService() has been called when the app was in the foreground state.
+            - id: foreground
+              value: 'foreground'
+              brief: >
+                The app is now in the foreground. 
+                **On iOS:** this value is associated with UIKit notification `applicationWillEnterForeground`.
+                **On Android:** Any time after Activity.onResume() or, if the app has no Activity,
+                Context.startService() has been called when the app was in either the created or background states
+            - id: terminate
+              value: 'terminate'
+              brief: "The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. [2]"
+
