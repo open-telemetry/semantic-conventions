@@ -208,7 +208,7 @@ Function F:                      | Span ProcBatch |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
 | `messaging.system` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` |
-| `messaging.destination.name` | `Q` | `Q` | | `Q` | `Q` |
+| `messaging.destination.name` | `Q` | `Q` | `Q` | `Q` | `Q` |
 | `messaging.operation` |  |  | `process` | `process` | `process` |
 | `messaging.message.id` | | | | `"a1"` | `"a2"` |
 
