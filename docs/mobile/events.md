@@ -7,8 +7,8 @@ This document defines semantic conventions for instrumentation on mobile platfor
 <!-- toc -->
 
 - [Lifecycle instrumentation](#lifecycle-instrumentation)
-    + [iOS](#ios)
-    + [Android](#android)
+- [iOS](#ios)
+- [Android](#android)
 
 <!-- tocstop -->
 
