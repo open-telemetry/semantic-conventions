@@ -102,14 +102,22 @@ table-check:
 schema-check:
 	$(TOOLS_DIR)/schema_check.sh
 
+.PHONY: check-format
+check-format:
+	npm run check:format
+
+.PHONY: fix-format
+fix-format:
+	npm run fix:format
+
 # Run all checks in order of speed / likely failure.
 .PHONY: check
-check: misspell markdownlint markdown-link-check
+check: misspell markdownlint markdown-link-check check-format
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation misspell-correction
+fix: table-generation misspell-correction fix-format
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
