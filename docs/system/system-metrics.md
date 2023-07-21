@@ -8,7 +8,7 @@ linkTitle: System
 
 This document describes instruments and attributes for common system level
 metrics in OpenTelemetry. Consider the [general metric semantic
-conventions](/docs/general/metrics-general.md#general-metric-semantic-conventions) when creating
+conventions](/docs/general/metrics.md#general-metric-semantic-conventions) when creating
 instruments not explicitly defined in the specification.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
@@ -33,7 +33,7 @@ instruments not explicitly defined in the specification.
 
 **Description:** System level processor metrics.
 
-| Name                   | Description                                                                                              | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values                    |
+| Name                   | Description                                                                                              | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values                    |
 | ---------------------- | -------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ---------------- | ----------------------------------- |
 | system.cpu.time        |                                                                                                          | s     | Counter                                           | Double     | state            | idle, user, system, interrupt, etc. |
 |                        |                                                                                                          |       |                                                   |            | cpu              | CPU number [0..n-1]                 |
@@ -45,7 +45,7 @@ instruments not explicitly defined in the specification.
 **Description:** System level memory metrics. This does not include [paging/swap
 memory](#systempaging---pagingswap-metrics).
 
-| Name                      | Description | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values         |
+| Name                      | Description | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key | Attribute Values         |
 | ------------------------- | ----------- | ----- | ------------------------------------------------- | ---------- | ------------- | ------------------------ |
 | system.memory.usage       |             | By    | UpDownCounter                                     | Int64      | state         | used, free, cached, etc. |
 | system.memory.utilization |             | 1     | Gauge                                             | Double     | state         | used, free, cached, etc. |
@@ -54,7 +54,7 @@ memory](#systempaging---pagingswap-metrics).
 
 **Description:** System level paging/swap memory metrics.
 
-| Name                      | Description                         | Units        | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values |
+| Name                      | Description                         | Units        | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key | Attribute Values |
 |---------------------------|-------------------------------------|--------------|---------------------------------------------------|------------|---------------|------------------|
 | system.paging.usage       | Unix swap or windows pagefile usage | By           | UpDownCounter                                     | Int64      | state         | used, free       |
 | system.paging.utilization |                                     | 1            | Gauge                                             | Double     | state         | used, free       |
@@ -66,7 +66,7 @@ memory](#systempaging---pagingswap-metrics).
 
 **Description:** System level disk performance metrics.
 
-| Name                                       | Description                                     | Units        | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values |
+| Name                                       | Description                                     | Units        | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key | Attribute Values |
 |--------------------------------------------|-------------------------------------------------|--------------|---------------------------------------------------|------------|---------------|------------------|
 | system.disk.io<!--notlink-->               |                                                 | By           | Counter                                           | Int64      | device        | (identifier)     |
 |                                            |                                                 |              |                                                   |            | direction     | read, write      |
@@ -101,7 +101,7 @@ perf counter (similar for Writes)
 
 **Description:** System level filesystem metrics.
 
-| Name                          | Description | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values     |
+| Name                          | Description | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key | Attribute Values     |
 | ----------------------------- | ----------- | ----- | ------------------------------------------------- | ---------- | ------------- | -------------------- |
 | system.filesystem.usage       |             | By    | UpDownCounter                                     | Int64      | device        | (identifier)         |
 |                               |             |       |                                                   |            | state         | used, free, reserved |
@@ -118,7 +118,7 @@ perf counter (similar for Writes)
 
 **Description:** System level network metrics.
 
-| Name                                   | Description                                                                   | Units         | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values                                                                                                                                                                                            |
+| Name                                   | Description                                                                   | Units         | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key | Attribute Values                                                                                                                                                                                            |
 |----------------------------------------|-------------------------------------------------------------------------------|---------------|---------------------------------------------------|------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | system.network.dropped<sup>\[1\]</sup> | Count of packets that are dropped or discarded even though there was no error | {packet}     | Counter                                           | Int64      | device        | (identifier)                                                                                                                                                                                                |
 |                                        |                                                                               |               |                                                   |            | direction     | transmit, receive                                                                                                                                                                                           |
@@ -155,7 +155,7 @@ from
 **Description:** System level aggregate process metrics. For metrics at the
 individual process level, see [process metrics](process-metrics.md).
 
-| Name                     | Description                                               | Units       | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key | Attribute Values                                                                               |
+| Name                     | Description                                               | Units       | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key | Attribute Values                                                                               |
 | ------------------------ | --------------------------------------------------------- | ----------- | ------------------------------------------------- | ---------- | ------------- | ---------------------------------------------------------------------------------------------- |
 | system.processes.count   | Total number of processes in each state                   | {process} | UpDownCounter                                     | Int64      | status        | running, sleeping, [etc.](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) |
 | system.processes.created | Total number of processes created over uptime of the host | {process} | Counter                                           | Int64      | -             | -                                                                                              |

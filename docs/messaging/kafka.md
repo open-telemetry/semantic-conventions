@@ -42,7 +42,7 @@ For Apache Kafka, the following additional attributes are defined:
 **[2]:** If value is `true`. When missing, the value is assumed to be `false`.
 <!-- endsemconv -->
 
-For Apache Kafka producers, [`peer.service`](/docs/general/general-attributes.md#general-remote-service-attributes) SHOULD be set to the name of the broker or service the message will be sent to.
+For Apache Kafka producers, [`peer.service`](/docs/general/attributes.md#general-remote-service-attributes) SHOULD be set to the name of the broker or service the message will be sent to.
 The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of the Producer, when the message is directly passed to another service.
 If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
 
@@ -96,7 +96,7 @@ This section defines how to apply semantic conventions when collecting Kafka met
 
 **Description:** General Kafka metrics.
 
-| Name                                         | Instrument    | Value type | Unit   | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description    | Attribute Key | Attribute Values |
+| Name                                         | Instrument    | Value type | Unit   | Unit ([UCUM](/docs/general/metrics.md#instrument-units)) | Description    | Attribute Key | Attribute Values |
 | ---------------------------------------------| ------------- | ---------- | ------ | -------------------------------------------- | -------------- | ------------- | ---------------- |
 | messaging.kafka.messages                     | Counter       | Int64      | messages | `{message}` | The number of messages received by the broker. | | |
 | messaging.kafka.requests.failed              | Counter       | Int64      | requests | `{request}` | The number of requests to the broker resulting in a failure. | `type`  | `produce`, `fetch` |
@@ -126,7 +126,7 @@ This section defines how to apply semantic conventions when collecting Kafka met
 
 **Description:** Kafka Producer level metrics.
 
-| Name                                          | Instrument    | Value type | Unit   | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description    | Attribute Key | Attribute Values |
+| Name                                          | Instrument    | Value type | Unit   | Unit ([UCUM](/docs/general/metrics.md#instrument-units)) | Description    | Attribute Key | Attribute Values |
 | --------------------------------------------- | ------------- | ---------- | ------ | -------------------------------------------- | -------------- | ------------- | ---------------- |
 | messaging.kafka.producer.outgoing-bytes.rate  | Gauge         | Double     | bytes per second | `By/s` | The average number of outgoing bytes sent per second to all servers. | `client-id` | `client-id` value |
 | messaging.kafka.producer.responses.rate       | Gauge         | Double     | responses per second | `{response}/s` | The average number of responses received per second. | `client-id` | `client-id` value |
@@ -145,7 +145,7 @@ This section defines how to apply semantic conventions when collecting Kafka met
 
 **Description:** Kafka Consumer level metrics.
 
-| Name                                          | Instrument    | Value type | Unit   | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description    | Attribute Key | Attribute Values |
+| Name                                          | Instrument    | Value type | Unit   | Unit ([UCUM](/docs/general/metrics.md#instrument-units)) | Description    | Attribute Key | Attribute Values |
 | --------------------------------------------- | ------------- | ---------- | ------ | -------------------------------------------- | -------------- | ------------- | ---------------- |
 | messaging.kafka.consumer.members              | UpDownCounter | Int64      | members | `{member}` | Count of members in the consumer group | `group` | The ID (string) of a consumer group |
 | messaging.kafka.consumer.offset               | Gauge         | Int64      | offset | `{offset}` | Current offset of the consumer group at partition of topic | `group` | The ID (string) of a consumer group |

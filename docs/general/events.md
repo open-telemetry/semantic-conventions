@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Events
+aliases: [docs/specs/semconv/general/events-general]
 --->
 
 # Semantic Conventions for Event Attributes
