@@ -7,6 +7,9 @@ release.
 
 ## Unreleased
 
+- Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
+  ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
+
 ## v1.21.0 (2023-07-13)
 
 Note: This is the first release of Semantic Conventions separate from the Specification.
