@@ -7,14 +7,17 @@ release.
 
 ## Unreleased
 
+- Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
+  ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
+
 ## v1.21.0 (2023-07-13)
 
 Note: This is the first release of Semantic Conventions separate from the Specification.
 
 - Add GCP Bare Metal Solution as a cloud platform
- ([#64](https://github.com/open-telemetry/semantic-conventions/pull/64))
+  ([#64](https://github.com/open-telemetry/semantic-conventions/pull/64))
 - Clarify the scope of the HTTP client span.
- ([#3290](https://github.com/open-telemetry/opentelemetry-specification/pull/3290))
+  ([#3290](https://github.com/open-telemetry/opentelemetry-specification/pull/3290))
 - Add moratorium on relying on schema transformations for telemetry stability
   ([#3380](https://github.com/open-telemetry/opentelemetry-specification/pull/3380))
 - Mark "Instrumentation Units" and "Instrumentation Types" sections of the general
