@@ -1,0 +1,174 @@
+groups:
+  - id: metric.dotnet.dns.lookup.duration
+    type: metric
+    metric_name: dns.lookup.duration
+    brief: Measures the time taken to perform a DNS lookup.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `System.Net.NameResolution`; Added in: .NET 8.0
+    attributes:
+      - id: dns.question.name
+        type: string
+        brief: The name being queried.
+        requirement_level: required
+        examples: ["www.example.com", "dot.net"]
+        note: |
+          The name being queried.
+
+          If the name field contains non-printable
+          characters (below 32 or above 126), those characters should be represented
+          as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped.
+          Tabs, carriage returns, and line feeds should be converted to \t, \r, and
+          \n respectively.
+
+  - id: metric.dotnet.http.client.open_connections
+    type: metric
+    metric_name: http.client.open_connections
+    brief: "Number of outbound HTTP connections that are currently active or idle on the client"
+    instrument: updowncounter
+    unit: "{connection}"
+    note: |
+      Meter name: `System.Net.Http`; Added in: .NET 8.0
+    attributes:
+      - id: http.connection.state
+        type:
+          members:
+            - id: active
+              value: "active"
+              brief: 'active state.'
+            - id: idle
+              value: "idle"
+              brief: 'idle state.'
+        brief: State of HTTP connection in the HTTP connection pool.
+        requirement_level: required
+        examples: ["active", "idle"]
+      - ref: url.scheme
+        examples: ['http', 'https', 'ftp']
+      - ref: network.protocol.version
+        examples: ["1.1", "2"]
+      - ref: server.address
+        requirement_level: required
+        brief: >
+          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: |
+          Determined by using the first of the following that applies
+
+          - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
+            if it's sent in absolute-form
+          - Host identifier of the `Host` header
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
+        brief: >
+          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: >
+          When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
+          URI port identifier, otherwise it MUST match `Host` header port identifier.
+      - ref: server.socket.address
+
+  - id: metric.dotnet.http.client.connection.duration
+    type: metric
+    metric_name: http.client.connection.duration
+    brief: "The duration of successfully established outbound HTTP connections."
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `System.Net.Http`; Added in: .NET 8.0
+    attributes:
+      - ref: url.scheme
+        examples: ['http', 'https', 'ftp']
+      - ref: network.protocol.version
+        examples: ["1.1", "2"]
+      - ref: server.address
+        requirement_level: required
+        brief: >
+          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: |
+          Determined by using the first of the following that applies
+
+          - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
+            if it's sent in absolute-form
+          - Host identifier of the `Host` header
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
+        brief: >
+          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: >
+          When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
+          URI port identifier, otherwise it MUST match `Host` header port identifier.
+      - ref: server.socket.address
+
+  - id: metric.dotnet.http.client.active_requests
+    type: metric
+    metric_name: http.client.active_requests
+    brief: "Number of active HTTP requests."
+    instrument: updowncounter
+    unit: "{request}"
+    note: |
+      Meter name: `System.Net.Http`; Added in: .NET 8.0
+    attributes:
+      - ref: http.request.method
+        note: |
+          HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+          If the HTTP request method is not known, it sets the `http.request.method` attribute to `_OTHER`.
+
+          It is not possible at the moment to override the list of known HTTP methods.
+      - ref: url.scheme
+        examples: ['http', 'https', 'ftp']
+      - ref: network.protocol.version
+        examples: ["1.1", "2"]
+      - ref: server.address
+        requirement_level: required
+        brief: >
+          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: |
+          Determined by using the first of the following that applies
+
+          - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
+            if it's sent in absolute-form
+          - Host identifier of the `Host` header
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
+        brief: >
+          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: >
+          When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
+          URI port identifier, otherwise it MUST match `Host` header port identifier.
+
+  - id: metric.dotnet.http.client.request.time_in_queue
+    type: metric
+    metric_name: http.client.request.time_in_queue
+    brief: "The amount of time requests spent on a queue waiting for an available connection."
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `System.Net.Http`; Added in: .NET 8.0
+    attributes:
+      - ref: http.request.method
+      - ref: url.scheme
+        examples: ['http', 'https', 'ftp']
+      - ref: network.protocol.version
+        examples: ["1.1", "2"]
+      - ref: server.address
+        requirement_level: required
+        brief: >
+          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: |
+          Determined by using the first of the following that applies
+
+          - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
+            if it's sent in absolute-form
+          - Host identifier of the `Host` header
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
+        brief: >
+          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: >
+          When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
+          URI port identifier, otherwise it MUST match `Host` header port identifier.

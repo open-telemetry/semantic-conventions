@@ -24,6 +24,8 @@ release.
   ([#503](https://github.com/open-telemetry/semantic-conventions/pull/503))
 - Add Semantic conventions for TLS/SSL encrypted communication.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+- Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
+  ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
 
 ### Fixes
 
