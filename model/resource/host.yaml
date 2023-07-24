@@ -77,12 +77,12 @@ groups:
           Available IPv4 addresses of the host, excluding loopback interfaces.
         note: >
           Addresses MUST be specified in dotted-quad notation.
-        examples: [["192.168.1.140"]]
+        examples: ["192.168.1.140"]
       - id: ipv6.addresses
         type: string[]
         requirement_level: opt_in
         brief: >
           Available IPv6 addresses of the host, excluding loopback interfaces.
-        note: > 
+        note: >
           Addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
-        examples: [["fe80::abc2:4a28:737a:609e", "fe80::849e:eaff:fe31:3c90"]]
+        examples: ["fe80::abc2:4a28:737a:609e", "fe80::849e:eaff:fe31:3c90"]
