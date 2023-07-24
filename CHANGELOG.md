@@ -508,4 +508,3 @@ N/A
 ## v1.0.0 (2021-02-10)
 
 First release of OpenTelemetry Specification. Semantic conventions were not explicitly tracked in changelog up to this point.
-
