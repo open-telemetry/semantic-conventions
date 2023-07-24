@@ -1,0 +1,49 @@
+groups:
+  - id: attributes.log
+    prefix: log
+    type: attribute_group
+    brief: "Describes Log attributes"
+    attributes:
+      - id: iostream
+        requirement_level: opt_in
+        brief: >
+          The stream associated with the log. See below for a list of well-known values.
+        type:
+          allow_custom_values: false
+          members:
+            - id: stdout
+              value: 'stdout'
+              brief: 'Logs from stdout stream'
+            - id: stderr
+              value: 'stderr'
+              brief: 'Events from stderr stream'
+  - id: attributes.log.file
+    prefix: log.file
+    type: attribute_group
+    brief: >
+      A file to which log was emitted.
+    attributes:
+      - id: name
+        type: string
+        requirement_level: recommended
+        brief: >
+          The basename of the file.
+        examples: ["audit.log"]
+      - id: path
+        type: string
+        requirement_level: opt_in
+        brief: >
+          The full path to the file.
+        examples: [ "/var/log/mysql/audit.log" ]
+      - id: name_resolved
+        type: string
+        requirement_level: opt_in
+        brief: >
+          The basename of the file, with symlinks resolved.
+        examples: [ "uuid.log" ]
+      - id: path_resolved
+        type: string
+        requirement_level: opt_in
+        brief: >
+          The full path to the file, with symlinks resolved.
+        examples: [ "/var/lib/docker/uuid.log" ]

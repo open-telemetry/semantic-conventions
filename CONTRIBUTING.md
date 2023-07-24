@@ -22,7 +22,7 @@ The Specification has a number of tools it uses to check things like style,
 spelling and link validity. Before using the tools:
 
 - Install the latest LTS release of **[Node](https://nodejs.org/)**.
-For example, using **[nvm][]** under Linux run:
+  For example, using **[nvm][]** under Linux run:
 
   ```bash
   nvm install --lts
@@ -41,7 +41,7 @@ make check
 ```
 
 Note: This can take a long time as it checks all links. You should use this
-prior to submitting a PR to ensure validity.  However, you can run individual
+prior to submitting a PR to ensure validity. However, you can run individual
 checks directly.
 
 See:
@@ -49,11 +49,12 @@ See:
 - [MarkdownStyle](#markdown-style)
 - [Misspell Check](#misspell-check)
 - Markdown link checking (docs TODO)
+- Prettier formatting
 
 ### YAML to Markdown
 
 Semantic conventions are declared in YAML files and markdown tables are
-generated from these files. Read about semantic convention updates [here](./semantic_conventions/README.md).
+generated from these files. Read about semantic convention updates [here](./model/README.md).
 
 ### Autoformatting
 
@@ -122,3 +123,20 @@ make misspell-correction
 3. Modify `LATEST_SPECIFICATION_VERSION` to the latest specification tag, e.g. `1.21`
 4. Run the script from the root directory, e.g. `semantic-conventions$ ./internal/tools/update_specification_version.sh`.
 5. Add all modified files to the change submit and submit a PR.
+
+## Making a Release
+
+- Ensure the referenced specification version is up to date. Use
+  [tooling to update the spec](#updating-the-referenced-specification-version)
+  if needed.
+- Create a staging branch for the release.
+  - Update `schema-next.yaml` file and move to `schemas/{version}`
+    - Ensure the `next` version is appropriately configured as the `{version}`.
+    - Copy `schema-next.yaml` to `schemas/{version}`.
+    - Add `next` as a version in `schema-next.yaml` version.
+  - Update `CHANGELOG.md` for the latest version.
+    - Add `## v{version} ({date})` under `## Unreleased`
+  - Send staging tag as PR for review.
+- Create a tag `v{version}` on the merged PR and push remote.
+
+[nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating

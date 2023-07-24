@@ -29,14 +29,14 @@ Propagation headers must be added before the signature is calculated to prevent
 errors on signed requests. If injecting into the request itself (not just adding
 additional HTTP headers), additional considerations may apply (for example, the
 .NET AWS SDK calculates a hash of the attributes it sends and compares it with
-the  `MD5OfMessageAttributes` that it receives).
+the `MD5OfMessageAttributes` that it receives).
 
 The following formats are currently natively supported by AWS services for propagation:
 
-* [AWS X-Ray](https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html)
+- [AWS X-Ray](https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html)
 
 AWS service-supported context propagation is necessary to allow context propagation
 through AWS managed services, for example: `S3 -> SNS -> SQS -> Lambda`.
 
-(See the [aws-lambda sqs-event semantic convention](../../specification/trace/semantic_conventions/instrumentation/aws-lambda.md#sqs-event)
+(See the [aws-lambda sqs-event semantic convention](/docs/faas/aws-lambda.md#sqs-event)
 doc for details on how this context propagation is consumed by Lambda instrumentation.)

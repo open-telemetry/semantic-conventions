@@ -9,18 +9,7 @@ This repository is currently using [this specification version][SpecificationVer
 
 ## Read the docs
 
-The documentation currently resides in the previous folders, e.g.
-
-- [Resource](specification/resource/semantic_conventions/README.md)
-- [Trace](specification/trace/semantic_conventions/README.md)
-- [Metrics](specification/metrics/semantic_conventions/README.md)
-- [Logs](specification/logs/semantic_conventions/README.md)
-
-## TODOs
-
-- [ ] Set up SchemaURL publication
-- [ ] Contributing.MD document
-- [ ] Restructure markdown for easier consumption.
+The documentation currently resides in the [doc](docs/README.md) folder.
 
 ## Contributing
 
@@ -36,7 +25,7 @@ Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/ope
 - [Sean Marciniak](https://github.com/MovieStoreGuy), Atlassian
 - [Ted Young](https://github.com/tedsuo), Lightstep
 
-*Find more about the approver role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#approver).*
+_Find more about the approver role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#approver)._
 
 Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)):
 
@@ -44,6 +33,6 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Armin Ruech](https://github.com/arminru)
 - [Reiley Yang](https://github.com/reyang)
 
-*Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer).*
+_Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer)._
 
-[SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0
+[SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0
