@@ -48,6 +48,7 @@ release.
 - Clarify that `http/dup` has higher precedence than `http` in case both values are present
   in `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
+<<<<<<< HEAD
 - Add `jvm.cpu.count` metric.
   ([#52](https://github.com/open-telemetry/semantic-conventions/pull/52))
 - BREAKING: Rename metrics `jvm.buffer.usage` to `jvm.buffer.memory.usage`
@@ -61,6 +62,8 @@ release.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
 - Add host cpu resource attributes.
   ([#209](https://github.com/open-telemetry/semantic-conventions/pull/209))
+- Introduce `error.id` attribute and use it in HTTP conventions
+  ([#205](https://github.com/open-telemetry/semantic-conventions/pull/205))
 
 ## v1.21.0 (2023-07-13)
 

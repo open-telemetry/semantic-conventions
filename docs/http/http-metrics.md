@@ -77,18 +77,34 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| `error.description` | string | Describes a class of error that operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request completed with an error. |
+| `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Opt-In |
-| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [4] | `3.1.1` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [5] | `example.com` | Opt-In |
+| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [6] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[2]:** If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+`error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+returned in the status line or to `_OTHER`.
+
+If request fails with an error before or after status code was sent or received, such error SHOULD be
+recorded on `error.description` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of error description within one instrumentation library SHOULD be low, but
+telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.description` to have high cardinality at query time, when no
+additional filters are applied.
+
+If operation has completed successfully, instrumentations SHOULD NOT set `error.description`.
+
+**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -103,9 +119,9 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[4]:** Determined by using the first of the following that applies
+**[5]:** Determined by using the first of the following that applies
 
 - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
   include host identifier.
@@ -115,12 +131,19 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
-**[5]:** Determined by using the first of the following that applies
+**[6]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
+
+`error.description` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `` | No error. Default value. |
+| `_OTHER` | Any error reason instrumentation does not define custom value for. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -224,18 +247,34 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| `error.description` | string | Describes a class of error that operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request completed with an error. |
+| `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Opt-In |
-| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [4] | `3.1.1` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [5] | `example.com` | Opt-In |
+| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [6] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[2]:** If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+`error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+returned in the status line or to `_OTHER`.
+
+If request fails with an error before or after status code was sent or received, such error SHOULD be
+recorded on `error.description` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of error description within one instrumentation library SHOULD be low, but
+telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.description` to have high cardinality at query time, when no
+additional filters are applied.
+
+If operation has completed successfully, instrumentations SHOULD NOT set `error.description`.
+
+**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -250,9 +289,9 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[4]:** Determined by using the first of the following that applies
+**[5]:** Determined by using the first of the following that applies
 
 - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
   include host identifier.
@@ -262,12 +301,19 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
-**[5]:** Determined by using the first of the following that applies
+**[6]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
+
+`error.description` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `` | No error. Default value. |
+| `_OTHER` | Any error reason instrumentation does not define custom value for. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -303,18 +349,34 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| `error.description` | string | Describes a class of error that operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request completed with an error. |
+| `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Opt-In |
-| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [4] | `3.1.1` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [5] | `example.com` | Opt-In |
+| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [6] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[2]:** If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+`error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+returned in the status line or to `_OTHER`.
+
+If request fails with an error before or after status code was sent or received, such error SHOULD be
+recorded on `error.description` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of error description within one instrumentation library SHOULD be low, but
+telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.description` to have high cardinality at query time, when no
+additional filters are applied.
+
+If operation has completed successfully, instrumentations SHOULD NOT set `error.description`.
+
+**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -329,9 +391,9 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[4]:** Determined by using the first of the following that applies
+**[5]:** Determined by using the first of the following that applies
 
 - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
   include host identifier.
@@ -341,12 +403,19 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
-**[5]:** Determined by using the first of the following that applies
+**[6]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
+
+`error.description` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `` | No error. Default value. |
+| `_OTHER` | Any error reason instrumentation does not define custom value for. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

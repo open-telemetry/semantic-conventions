@@ -31,6 +31,25 @@ groups:
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
       # todo (lmolkova) build tools don't populate grandparent attributes
+      - ref: error.description
+        requirement_level:
+          conditionally_required: If request completed with an error.
+        examples: ['timeout', 'name_resolution_error', 'Internal Server Error']
+        note: |
+          If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+          `error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+          returned in the status line or to `_OTHER`.
+
+          If request fails with an error before or after status code was sent or received, such error SHOULD be
+          recorded on `error.description` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+          Instrumentations SHOULD document the list of errors they report.
+
+          The cardinality of error description within one instrumentation library SHOULD be low, but
+          telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+          should be prepared for `error.description` to have high cardinality at query time, when no
+          additional filters are applied.
+
+          If operation has completed successfully, instrumentations SHOULD NOT set `error.description`.
       - ref: http.request.method
       - ref: http.response.status_code
       - ref: network.protocol.name

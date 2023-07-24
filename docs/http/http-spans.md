@@ -88,6 +88,12 @@ failed to interpret, span status MUST be set to `Error`.
 
 Don't set the span status description if the reason can be inferred from `http.response.status_code`.
 
+HTTP request may fail if it was cancelled or an error occurred preventing
+the client or server from sending/receiving the request/response fully.
+
+When instrumentation detects such errors it MUST to `Error` and MUST set `error.description`
+attribute.
+
 ## Common Attributes
 
 The common attributes listed in this section apply to both HTTP clients and servers in addition to
@@ -101,16 +107,32 @@ sections below.
 | `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| `error.description` | string | Describes a class of error that operation ended with. [2] | `timeout`; `name_resolution_error`; `server_certificate_invalid` | Conditionally Required: If request or response has ended prematurely. |
+| `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `1.0`; `1.1`; `2`; `3` | Recommended |
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [4] |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [5] |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
 **[1]:** If and only if it's different than `http.request.method`.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[2]:** If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+`error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+returned in the status line or to `_OTHER`.
+
+If request fails with an error before or after status code was sent or received, such error SHOULD be
+recorded on `error.description` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of error description within one instrumentation library SHOULD be low, but
+telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.description` to have high cardinality at query time, when no
+additional filters are applied.
+
+If operation has completed successfully, instrumentations SHOULD not set `error.description`.
+
+**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -125,13 +147,20 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[4]:** If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
+**[5]:** If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
 * `http.request.method`
+
+`error.description` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `` | No error. Default value. |
+| `_OTHER` | Any error reason instrumentation does not define custom value for. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -412,7 +441,7 @@ Span name: `GET`
 |   Attribute name     |                                       Value             |
 | :------------------- | :-------------------------------------------------------|
 | `http.request.method`| `"GET"`                                                 |
-| `network.protocol.version` | `"1.1"`                                          |
+| `network.protocol.version` | `"1.1"`                                           |
 | `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1"`     |
 | `server.address`     | `example.com`                                           |
 | `server.port`        | 8080                                                    |
@@ -529,5 +558,45 @@ GET /hello - 200 (CLIENT, trace=t2, span=s1, http.resend_count=1)
  |
  --- server (SERVER, trace=t2, span=s2)
 ```
+
+### HTTP client call: DNS error
+
+As an example, if a user requested `https://does-not-exist-123.com`, we may have the following span on the client side:
+
+|   Attribute name     |                                       Value             |
+| :------------------- | :-------------------------------------------------------|
+| `http.request.method`| `"GET"`                                                 |
+| `network.protocol.version` | `"1.1"`                                           |
+| `url.full`           | `"https://does-not-exist-123.com"`                      |
+| `server.address`     | `"does-not-exist-123.com"`                              |
+| `error.description`  | `"java.net.UnknownHostException"`                       |
+
+### HTTP client call: Internal Server Error
+
+As an example, if a user requested `https://example.com` and server returned 500, we may have the following span on the client side:
+
+|   Attribute name     |                                       Value             |
+| :------------------- | :-------------------------------------------------------|
+| `http.request.method`| `"GET"`                                                 |
+| `network.protocol.version` | `"1.1"`                                           |
+| `url.full`           | `"https://example.com"`                                 |
+| `server.address`     | `"example.com"`                                         |
+| `http.response.status_code` | `500`                                            |
+| `error.description`  | `"Internal Server Error"`                               |
+
+### HTTP server call: connection dropped before response body was sent
+
+As an example, if a user sent a `POST` request with a body to `https://example.com:8080/uploads/4`, we may see the following span on a server side:
+
+Span name: `POST /uploads/:document_id`.
+
+|   Attribute name     |                      Value                      |
+| :------------------- | :---------------------------------------------- |
+| `http.request.method`| `"GET"`                                         |
+| `url.path`           | `"/uploads/4"`                                  |
+| `url.scheme`         | `"https"`                                       |
+| `http.route`         | `"/uploads/:document_id"`                       |
+| `http.response.status_code` | `201`                                    |
+| `error.description`  | `WebSocketDisconnect`                           |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

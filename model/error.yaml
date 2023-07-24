@@ -1,0 +1,34 @@
+groups:
+  - id: error
+    type: attribute_group
+    prefix: error
+    brief: >
+      This document defines the shared attributes used to
+      report an error.
+    attributes:
+      - id: description
+        brief: 'Describes a class of error that operation ended with.'
+        type:
+          allow_custom_values: true
+          members:
+            - id: empty
+              value: ""
+              brief: 'No error. Default value.'
+            - id: other
+              value: "_OTHER"
+              brief: 'Any error reason instrumentation does not define custom value for.'
+        examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', 'Internal Server Error']
+        note: |
+          The error description SHOULD be predictable and SHOULD have low cardinality.
+          Instrumentations SHOULD document the list of errors they report.
+
+          The cardinality of error description within one instrumentation library SHOULD be low, but
+          telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+          should be prepared for `error.description` to have high cardinality at query time, when no
+          additional filters are applied.
+
+          If operation has completed successfully, instrumentations SHOULD NOT set `error.description`.
+
+          If a specific domain defines its own set of error codes (such as HTTP or gRPC status codes),
+          it's RECOMMENDED to use a domain-specific attribute and also set `error.description` to capture
+          all errors, regardless of whether they are defined within the domain-specific set or not.
