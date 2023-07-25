@@ -32,7 +32,10 @@ groups:
           - Port identifier of the `Host` header
       # todo (lmolkova) build tools don't populate grandparent attributes
       - ref: http.request.method
+        requirement_level: required
       - ref: http.response.status_code
+        requirement_level:
+          conditionally_required: If and only if one was received/sent.
       - ref: network.protocol.name
       - ref: network.protocol.version
 
@@ -43,7 +46,10 @@ groups:
     attributes:
       # todo (lmolkova) build tools don't populate grandparent attributes
       - ref: http.request.method
+        requirement_level: required
       - ref: http.response.status_code
+        requirement_level:
+          conditionally_required: If and only if one was received/sent.
       - ref: network.protocol.name
       - ref: network.protocol.version
       - ref: server.socket.address
@@ -64,6 +70,7 @@ groups:
     unit: "{request}"
     attributes:
       - ref: http.request.method
+        requirement_level: required
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]

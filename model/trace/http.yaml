@@ -1,6 +1,5 @@
 groups:
   - id: trace.http.common
-    prefix: http
     extends: attributes.http.common
     type: attribute_group
     brief: 'This document defines semantic conventions for HTTP client and server Spans.'
@@ -8,28 +7,14 @@ groups:
         These conventions can be used for http and https schemes
         and various HTTP versions like 1.1, 2 and SPDY.
     attributes:
-      - id: request.method_original
-        type: string
+      - ref: http.request.method_original
         requirement_level:
           conditionally_required: If and only if it's different than `http.request.method`.
-        brief: Original HTTP method sent by the client in the request line.
-        examples: ["GeT", "ACL", "foo"]
-      - id: request.body.size
-        type: int
-        brief: >
-          The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
-          is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
-          header. For requests using transport encoding, this should be the compressed size.
-        examples: 3495
-      - id: response.body.size
-        type: int
-        brief: >
-          The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
-          is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
-          header. For requests using transport encoding, this should be the compressed size.
-        examples: 3495
+      - ref: http.request.body.size
+      - ref: http.response.body.size
       - ref: http.request.method
         sampling_relevant: true
+        requirement_level: required
       - ref: network.transport
         requirement_level:
           conditionally_required: If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
@@ -37,23 +22,14 @@ groups:
       - ref: user_agent.original
 
   - id: trace.http.client
-    prefix: http
     type: span
     extends: attributes.http.client
     span_kind: client
     brief: 'Semantic Convention for HTTP Client'
     attributes:
-      - id: resend_count
-        type: int
-        brief: >
-          The ordinal number of request resending attempt (for any reason, including redirects).
-        note: >
-          The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what
-          was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues,
-          or any other).
+      - ref: http.resend_count
         requirement_level:
           recommended: if and only if request was retried.
-        examples: 3
       - ref: server.address
         sampling_relevant: true
         requirement_level: required
@@ -86,7 +62,6 @@ groups:
 
 
   - id: trace.http.server
-    prefix: http
     type: span
     extends: attributes.http.server
     span_kind: server
