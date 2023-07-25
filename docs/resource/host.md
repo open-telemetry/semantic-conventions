@@ -38,7 +38,7 @@
 |---|---|---|---|---|
 | `host.cpu.vendor_id` | string | Processor manufacturer. First part of the CPUID identifier - a maximum 12-character name of the manufacturer. | `GenuineIntel` | Opt-In |
 | `host.cpu.family` | string | Numeric value specifying model variant. Second part of the CPUID identifier. | `6` | Opt-In |
-| `host.cpu.model` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `6` | Opt-In |
+| `host.cpu.model` | string | Extended Model ID | `6` | Opt-In |
 | `host.cpu.model_name` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | Opt-In |
 | `host.cpu.stepping` | string | Stepping or core revisions. | `1` | Opt-In |
 | `host.cpu.frequency` | string | Clock frequency in MHz. | `3000.000` | Opt-In |

@@ -92,7 +92,7 @@ groups:
         requirement_level: opt_in
         type: string
         brief: >
-          VM image ID or host OS image ID. For Cloud, this value is from the provider.
+          Extended Model ID
         examples: [ '6' ]
       - id: model_name
         requirement_level: opt_in
