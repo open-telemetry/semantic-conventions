@@ -16,6 +16,13 @@
 | `host.image.name` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` | Recommended |
 | `host.image.id` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` | Recommended |
 | `host.image.version` | string | The version string of the VM image or host OS as defined in [Version Attributes](README.md#version-attributes). | `0.1` | Recommended |
+| `host.cpu.vendor_id` | string | Processor manufacturer. First part of the CPUID identifier - a maximum 12-character name of the manufacturer. | `GenuineIntel` | Opt-In |
+| `host.cpu.family` | string | Numeric value specifying model variant. Second part of the CPUID identifier. | `6` | Opt-In |
+| `host.cpu.model` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `6` | Opt-In |
+| `host.cpu.model_name` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | Opt-In |
+| `host.cpu.stepping` | string | Stepping or core revisions. | `1` | Opt-In |
+| `host.cpu.frequency` | string | Clock frequency in MHz. | `3000.000` | Opt-In |
+| `host.cpu.cache_size` | string | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | Opt-In |
 
 `host.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
