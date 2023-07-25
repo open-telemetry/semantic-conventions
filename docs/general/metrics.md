@@ -12,7 +12,8 @@ aliases: [docs/specs/semconv/general/metrics-general]
 - [General Guidelines](#general-guidelines)
   * [Name Reuse Prohibition](#name-reuse-prohibition)
   * [Units](#units)
-  * [Pluralization](#pluralization)
+  * [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
+    * [Pluralization](#pluralization)
     + [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
     + [Do not use `total`](#do-not-use-total)
 - [General Metric Semantic Conventions](#general-metric-semantic-conventions)
@@ -100,7 +101,9 @@ When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
 [OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/compatibility/prometheus_and_openmetrics.md).
 
-### Pluralization
+### Naming rules for Counters and UpDownCounters
+
+#### Pluralization
 
 Metric names SHOULD NOT be pluralized, unless the value being recorded
 represents discrete instances of a
@@ -126,21 +129,13 @@ to the processes then to represent the count of the processes we can have a metr
 `system.processes.count`. The suffix `count` here indicates that it is the count of
 `system.processes`.
 
-This rule SHOULD only be applied to UpDownCounters, since (monotonic) Counters have
-`_total` appended to their names when they are
-[mapped to Prometheus](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/compatibility/prometheus_and_openmetrics.md#otlp-metric-points-to-prometheus),
-which would lead to `_count_total`.
-
 #### Do not use `total`
 
-Counters SHOULD NOT append `_total`  to their names. Counters have `_total` appended to their names when they are
-[mapped to Prometheus](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/compatibility/prometheus_and_openmetrics.md#otlp-metric-points-to-prometheus),
-which would lead to `_total_total`. The reason that the Prometheus mapping cannot
-suppress adding the duplicate `_total` is because then the mapping wouldn't be
-bidirectional.
+UpDownCounters SHOULD NOT use `_total` because then they will look like
+monotonic sums.
 
-UpDownCounters SHOULD NOT use `_total` either because then they will look like
-monotonic sums in Prometheus.
+Counters SHOULD NOT append `_total` either because then their meaning will
+be confusing in delta backends.
 
 ## General Metric Semantic Conventions
 
