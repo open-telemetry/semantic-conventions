@@ -13,7 +13,7 @@ aliases: [docs/specs/semconv/general/metrics-general]
   * [Name Reuse Prohibition](#name-reuse-prohibition)
   * [Units](#units)
   * [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
-    * [Pluralization](#pluralization)
+    + [Pluralization](#pluralization)
     + [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
     + [Do not use `total`](#do-not-use-total)
 - [General Metric Semantic Conventions](#general-metric-semantic-conventions)
