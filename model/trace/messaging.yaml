@@ -47,16 +47,40 @@ groups:
       - ref: messaging.destination_publish.name
       - ref: messaging.destination_publish.anonymous
 
+  - id: messaging.attributes.common
+    type: attribute_group
+    brief: "Common messaging attributes."
+    prefix: messaging
+    attributes:
+      - ref: messaging.system
+        requirement_level: required
+      - ref: error.type
+        examples: ['amqp:decode-error', 'KAFKA_STORAGE_ERROR', 'channel-error']
+        requirement_level:
+          conditionally_required: If and only if the messaging operation has failed.
+      - ref: server.address
+        note: >
+          This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+        requirement_level:
+          conditionally_required: If available.
+      - ref: server.port
+      - ref: network.protocol.name
+        examples: ['amqp', 'mqtt']
+        tag: connection-level
+      - ref: network.protocol.version
+      - ref: network.transport
+        tag: connection-level
+      - ref: network.type
+        tag: connection-level
+
   - id: messaging
     type: span
     brief: >
         This document defines general attributes used in
         messaging systems.
+    extends: messaging.attributes.common
     attributes:
-      - ref: messaging.system
-        requirement_level: required
       - ref: messaging.operation
-        requirement_level: required
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
@@ -90,23 +114,13 @@ groups:
         requirement_level:
           recommended: Only if span represents operation on a single message.
       - ref: server.address
-        note: >
-          This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
-        requirement_level:
-          conditionally_required: If available.
       - ref: network.peer.address
         tag: connection-level
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
         tag: connection-level
-      - ref: network.transport
-        tag: connection-level
-      - ref: network.type
-        tag: connection-level
-      - ref: network.protocol.name
-        examples: ['amqp', 'mqtt']
-      - ref: network.protocol.version
+
 
   - id: messaging.rabbitmq
     type: attribute_group
