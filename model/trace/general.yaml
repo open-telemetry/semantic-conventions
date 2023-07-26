@@ -210,11 +210,13 @@ groups:
         brief: >
           Current "managed" thread ID (as opposed to OS thread ID).
         examples: 42
+        sampling_relevant: true
       - id: name
         type: string
         brief: >
           Current thread name.
         examples: main
+        sampling_relevant: true
   - id: code
     prefix: code
     type: span
