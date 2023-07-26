@@ -9,6 +9,9 @@ release.
 
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
+- Update `.count` metric naming convention so that it only applies to UpDownCounters,
+  and add that `.total` should not be used by either Counters or UpDownCounters
+  ([#107](https://github.com/open-telemetry/opentelemetry-specification/pull/107))
 
 ## v1.21.0 (2023-07-13)
 
