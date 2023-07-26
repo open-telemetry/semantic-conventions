@@ -351,6 +351,11 @@ a thread that started a span.
 |---|---|---|---|---|
 | `thread.id` | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
 | `thread.name` | string | Current thread name. | `main` | Recommended |
+
+Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
+
+* `thread.id`
+* `thread.name`
 <!-- endsemconv -->
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
