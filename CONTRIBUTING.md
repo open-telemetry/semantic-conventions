@@ -17,15 +17,16 @@ When contributing to semantic conventions, it's important to understand a few
 key, but non-obvious, aspects:
 
 - All attributes, metrics, etc. are formally defined in YAML files under
-  the `model/` directory
+  the `model/` directory.
 - All descriptions, normative language are defined in the `docs/`
   directory.
-  - We provide tooling to generate Markdown docuemntation from the formal
+  - We provide tooling to generate Markdown documentation from the formal
     YAML definitons.  See [Yaml to Markdown](#yaml-to-markdown).
-  - We use Hugo to render [on our website](https://opentelemetry.io/docs/specs/semconv/).
+  - We use Hugo to render [semantic conventions on our website](https://opentelemetry.io/docs/specs/semconv/).
     You will see `<!--- Hugo front matter used to generate ...` sections
     in markdown.  See [Hugo frontmatter](#hugo-frontmatter) for details.
-- All changes to existing attributes, metrics, etc. MUST be allowed and
+- All changes to existing attributes, metrics, etc. MUST be allowed as
+  per our [stability guarantees](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/versioning-and-stability.md#semantic-conventions-stability) and
   defined in a schema file.  As part of any contribution, you should
   include attribute changes defined in the `schema-next.yaml` file.
   For details, please read [the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
@@ -54,7 +55,7 @@ to generate the navigation bar on the website, and will be listed relative to th
 
 ## Automation
 
-Semantic Conventions provides a set of autoamted tools for general development.
+Semantic Conventions provides a set of automated tools for general development.
 
 ### Consistency Checks
 
