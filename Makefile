@@ -8,7 +8,7 @@ MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
-SEMCONVGEN_VERSION=0.18.0
+SEMCONVGEN_VERSION=0.19.0
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -66,6 +66,11 @@ markdown-toc:
 .PHONY: markdownlint
 markdownlint:
 	@if ! npm ls markdownlint; then npm install; fi
+	@npx gulp lint-md
+
+.PHONY: markdownlint-old
+markdownlint-old:
+	@if ! npm ls markdownlint; then npm install; fi
 	@for f in $(ALL_DOCS); do \
 		echo $$f; \
 		npx --no -p markdownlint-cli markdownlint -c .markdownlint.yaml $$f \
@@ -97,14 +102,22 @@ table-check:
 schema-check:
 	$(TOOLS_DIR)/schema_check.sh
 
+.PHONY: check-format
+check-format:
+	npm run check:format
+
+.PHONY: fix-format
+fix-format:
+	npm run fix:format
+
 # Run all checks in order of speed / likely failure.
 .PHONY: check
-check: misspell markdownlint markdown-link-check
+check: misspell markdownlint markdown-link-check check-format
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation misspell-correction
+fix: table-generation misspell-correction fix-format
 	@echo "All autofixes complete"
 
 .PHONY: install-tools

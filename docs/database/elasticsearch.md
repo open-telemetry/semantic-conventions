@@ -40,8 +40,8 @@ in order to map the path part values to their names.
 | [`db.operation`](database-spans.md) | string | The endpoint identifier for the request. [1] | `search`; `ml.close_job`; `cat.aliases` | Required |
 | [`db.statement`](database-spans.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [2] |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
-| [`server.address`](../general/general-attributes.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. | `example.com` | See below |
-| [`server.port`](../general/general-attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. | `example.com` | See below |
+| [`server.port`](../general/attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Recommended |
 | [`url.full`](../url/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [4] | `https://localhost:9200/index/_search?q=user.id:kimchy` | Required |
 
 **[1]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL statement has an ambiguous operation, or performs more than one operation, this value may be omitted.

@@ -20,12 +20,12 @@ Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/ope
 - [Christian Neumüller](https://github.com/Oberon00), Dynatrace
 - [James Moessis](https://github.com/jamesmoessis), Atlassian
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
-- [Johannes Tax](https://github.com/pyohannes), Microsoft
+- [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Liudmila Molkova](https://github.com/lmolkova), Microsoft
 - [Sean Marciniak](https://github.com/MovieStoreGuy), Atlassian
 - [Ted Young](https://github.com/tedsuo), Lightstep
 
-*Find more about the approver role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#approver).*
+_Find more about the approver role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#approver)._
 
 Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)):
 
@@ -33,6 +33,6 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Armin Ruech](https://github.com/arminru)
 - [Reiley Yang](https://github.com/reyang)
 
-*Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer).*
+_Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer)._
 
 [SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0

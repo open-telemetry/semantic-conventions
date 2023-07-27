@@ -12,11 +12,11 @@ This document defines general Semantic Conventions for spans, metrics, logs and 
 
 The following general Semantic Conventions are defined:
 
-* **[General attributes](general-attributes.md): General semantic attributes**.
-* [Events](events-general.md): General Semantic Conventions for events.
-* [Logs](logs-general.md): General Semantic Conventions for logs.
-* [Metrics](metrics-general.md): General Semantic Conventions for metrics.
-* [Spans](trace-general.md): General Semantic Conventions for traces / spans.
+* **[General attributes](attributes.md): General semantic attributes**.
+* [Events](events.md): General Semantic Conventions for events.
+* [Logs](logs.md): General Semantic Conventions for logs.
+* [Metrics](metrics.md): General Semantic Conventions for metrics.
+* [Spans](trace.md): General Semantic Conventions for traces / spans.
 
 ## Event Name Reuse Prohibition
 

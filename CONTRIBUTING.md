@@ -22,7 +22,7 @@ The Specification has a number of tools it uses to check things like style,
 spelling and link validity. Before using the tools:
 
 - Install the latest LTS release of **[Node](https://nodejs.org/)**.
-For example, using **[nvm][]** under Linux run:
+  For example, using **[nvm][]** under Linux run:
 
   ```bash
   nvm install --lts
@@ -41,7 +41,7 @@ make check
 ```
 
 Note: This can take a long time as it checks all links. You should use this
-prior to submitting a PR to ensure validity.  However, you can run individual
+prior to submitting a PR to ensure validity. However, you can run individual
 checks directly.
 
 See:
@@ -49,6 +49,7 @@ See:
 - [MarkdownStyle](#markdown-style)
 - [Misspell Check](#misspell-check)
 - Markdown link checking (docs TODO)
+- Prettier formatting
 
 ### YAML to Markdown
 
@@ -125,7 +126,7 @@ make misspell-correction
 
 ## Making a Release
 
-- Ensure the referenced specification version is up to date.  Use
+- Ensure the referenced specification version is up to date. Use
   [tooling to update the spec](#updating-the-referenced-specification-version)
   if needed.
 - Create a staging branch for the release.
@@ -137,3 +138,5 @@ make misspell-correction
     - Add `## v{version} ({date})` under `## Unreleased`
   - Send staging tag as PR for review.
 - Create a tag `v{version}` on the merged PR and push remote.
+
+[nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating

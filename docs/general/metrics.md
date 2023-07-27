@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Metrics
+aliases: [docs/specs/semconv/general/metrics-general]
 --->
 
 # Metrics Semantic Conventions
@@ -11,8 +12,10 @@ linkTitle: Metrics
 - [General Guidelines](#general-guidelines)
   * [Name Reuse Prohibition](#name-reuse-prohibition)
   * [Units](#units)
-  * [Pluralization](#pluralization)
-    + [Use `count` Instead of Pluralization](#use-count-instead-of-pluralization)
+  * [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
+    + [Pluralization](#pluralization)
+    + [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
+    + [Do not use `total`](#do-not-use-total)
 - [General Metric Semantic Conventions](#general-metric-semantic-conventions)
   * [Instrument Naming](#instrument-naming)
   * [Instrument Units](#instrument-units)
@@ -34,7 +37,7 @@ The following semantic conventions surrounding metrics are defined:
   * [Process](/docs/system/process-metrics.md): For standard process metrics.
   * [Runtime Environment](/docs/system/runtime-environment-metrics.md): For runtime environment metrics.
 
-Apart from semantic conventions for metrics, [traces](trace-general.md), [logs](logs-general.md), and [events](events-general.md), OpenTelemetry also
+Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
 defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
@@ -98,7 +101,9 @@ When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
 [OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/compatibility/prometheus_and_openmetrics.md).
 
-### Pluralization
+### Naming rules for Counters and UpDownCounters
+
+#### Pluralization
 
 Metric names SHOULD NOT be pluralized, unless the value being recorded
 represents discrete instances of a
@@ -113,7 +118,7 @@ should not be pluralized, even if many data points are recorded.
 * `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
 should be pluralized, even if only a single data point is recorded.
 
-#### Use `count` Instead of Pluralization
+#### Use `count` Instead of Pluralization for UpDownCounters
 
 If the value being recorded represents the count of concepts signified
 by the namespace then the metric should be named `count` (within its namespace).
@@ -123,6 +128,14 @@ For example if we have a namespace `system.processes` which contains all metrics
 to the processes then to represent the count of the processes we can have a metric named
 `system.processes.count`. The suffix `count` here indicates that it is the count of
 `system.processes`.
+
+#### Do not use `total`
+
+UpDownCounters SHOULD NOT use `_total` because then they will look like
+monotonic sums.
+
+Counters SHOULD NOT append `_total` either because then their meaning will
+be confusing in delta backends.
 
 ## General Metric Semantic Conventions
 

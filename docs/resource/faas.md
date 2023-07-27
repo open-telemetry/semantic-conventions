@@ -25,7 +25,7 @@ See also:
 **[1]:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback
 function (which may be stored in the
-[`code.namespace`/`code.function`](/docs/general/general-attributes.md#source-code-attributes)
+[`code.namespace`/`code.function`](/docs/general/attributes.md#source-code-attributes)
 span attributes).
 
 For some cloud providers, the above definition is ambiguous. The following
