@@ -8,4 +8,6 @@ and mobile apps (that run on a phone or tablet).
 Client applications are differentiated from server applications in that they service a user rather than requests. This adds unique requirements and needs to client-side semantic conventions. 
 
 
-The following semantic conventions exist for client
+The following semantic conventions exist for client:
+
+* [Session](session.md): Semantic Conventions for client session.
