@@ -7,7 +7,7 @@ linkTitle: Hardware
 **Status**: [Experimental][DocumentStatus]
 
 This document describes instruments and attributes for common hardware level
-metrics in OpenTelemetry. Consider the [general metric semantic conventions](/docs/general/metrics-general.md#general-metric-semantic-conventions)
+metrics in OpenTelemetry. Consider the [general metric semantic conventions](/docs/general/metrics.md#general-metric-semantic-conventions)
 when creating instruments not explicitly defined in the specification.
 
 <!-- toc -->
@@ -52,7 +52,7 @@ Additionally, all metrics in `hw.` instruments have the following attributes:
 
 The below metrics apply to any type of hardware component.
 
-| Name        | Description                                                                        | Units   | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key(s)              | Attribute Values           |
+| Name        | Description                                                                        | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s)              | Attribute Values           |
 | ----------- | ---------------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ----------------------------- | -------------------------- |
 | `hw.energy` | Energy consumed by the component, in joules                                        | J       | Counter                                           | Int64      |                               |                            |
 | `hw.errors` | Number of errors encountered by the component                                      | {error} | Counter                                           | Int64      | `hw.error.type` (Recommended) |                            |
@@ -75,7 +75,7 @@ monitored component:
 **Description:** Physical system as opposed to a virtual system or a container.
 Examples: physical server, switch or disk array.
 
-| Name                          | Description                                                                                                                                           | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values |
+| Name                          | Description                                                                                                                                           | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ---------------- | ---------------- |
 | `hw.host.ambient_temperature` | Ambient (external) temperature of the physical host                                                                                                   | Cel   | Gauge                                             | Double     |                  |                  |
 | `hw.host.energy`              | Total energy consumed by the entire physical host, in joules                                                                                          | J     | Counter                                           | Int64      |                  |                  |
@@ -92,7 +92,7 @@ Examples: physical server, switch or disk array.
 
 **Description:** A battery in a computer system or an UPS.
 
-| Name                      | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key(s)                                                            | Attribute Values                                      |
+| Name                      | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s)                                                            | Attribute Values                                      |
 | ------------------------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | --------------------------------------------------------------------------- | ----------------------------------------------------- |
 | `hw.battery.charge`       | Remaining fraction of battery charge                                          | 1     | Gauge                                             | Double     |                                                                             |                                                       |
 | `hw.battery.charge.limit` | Lower limit of battery charge fraction to ensure proper operation             | 1     | Gauge                                             | Double     | `limit_type` (Recommended)                                                  | `critical`, `throttled`, `degraded`                   |
@@ -116,7 +116,7 @@ describe the characteristics of the monitored battery:
 the operating system for multi-core systems). A physical processor may include
 many individual cores.
 
-| Name                 | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                |
+| Name                 | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                |
 | -------------------- | ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | -------------------------- | ----------------------------------------------- |
 | `hw.errors`          | Total number of errors encountered and corrected by the CPU                   | {error} | Counter                                           | Int64      | `hw.type` (**Required**)   | `cpu`                                           |
 | `hw.cpu.speed`       | CPU current frequency                                                         | Hz      | Gauge                                             | Int64      |                            |                                                 |
@@ -136,7 +136,7 @@ Additional **Recommended** attributes:
 **Description:** Controller that controls the physical disks and organize
 them in RAID sets and logical disks that are exposed to the operating system.
 
-| Name        | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values           |
+| Name        | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values           |
 | ----------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ------------------------ | -------------------------- |
 | `hw.status` | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed` |
 |             |                                                                               |       |                                                   |            | `hw.type` (**Required**) | `disk_controller`          |
@@ -156,7 +156,7 @@ Additional **Recommended** attributes:
 
 **Description:** Computer chassis (can be an expansion enclosure)
 
-| Name        | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                   |
+| Name        | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                   |
 | ----------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ------------------------ | ---------------------------------- |
 | `hw.status` | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed`, `open` |
 |             |                                                                               |       |                                                   |            | `hw.type` (**Required**) | `enclosure`                        |
@@ -176,7 +176,7 @@ Additional **Recommended** attributes:
 **Description:** Fan that keeps the air flowing to maintain the internal
 temperature of a computer
 
-| Name                 | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key                  | Attribute Values                      |
+| Name                 | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key                  | Attribute Values                      |
 | -------------------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ------------------------------ | ------------------------------------- |
 | `hw.fan.speed`       | Fan speed in revolutions per minute                                           | rpm   | Gauge                                             | Int        |                                |                                       |
 | `hw.fan.speed.limit` | Speed limit in rpm                                                            | rpm   | Gauge                                             | Int        | `limit_type` (**Recommended**) | `low.critical`, `low.degraded`, `max` |
@@ -194,7 +194,7 @@ Additional **Recommended** attributes:
 
 **Description:** Graphics Processing Unit (discrete)
 
-| Name                        | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key                 | Attribute Values                                |
+| Name                        | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key                 | Attribute Values                                |
 | --------------------------- | ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ----------------------------- | ----------------------------------------------- |
 | `hw.errors`                 | Number of errors encountered by the GPU                                       | {error} | Counter                                           | Int64      | `hw.error.type` (Recommended) | `corrected`, `uncorrected`                      |
 |                             |                                                                               |         |                                                   |            | `hw.type` (**Required**)      | `gpu`                                           |
@@ -223,7 +223,7 @@ Additional **Recommended** attributes:
 controller to the operating system (e.g. a RAID 1 set made of 2 disks, and exposed
 as /dev/hdd0 by the controller).
 
-| Name                          | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values           |
+| Name                          | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values           |
 | ----------------------------- | ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ------------------------ | -------------------------- |
 | `hw.errors`                   | Number of errors encountered on this logical disk                             | {error} | Counter                                           | Int64      | `hw.type` (**Required**) | `logical_disk`             |
 | `hw.logical_disk.limit`       | Size of the logical disk                                                      | By      | UpDownCounter                                     | Int64      |                          |                            |
@@ -242,7 +242,7 @@ Additional **Recommended** attributes:
 
 **Description:** A memory module in a computer system.
 
-| Name             | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                                |
+| Name             | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                                |
 | ---------------- | ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ------------------------ | ----------------------------------------------- |
 | `hw.errors`      | Number of errors encountered on this memory module                            | {error} | Counter                                           | Int64      | `hw.type` (**Required**) | `memory`                                        |
 | `hw.memory.size` | Size of the memory module                                                     | By      | UpDownCounter                                     | Int64      |                          |                                                 |
@@ -265,7 +265,7 @@ Additional **Recommended** attributes:
 physical network interface on a server, switch, router or firewall, an HBA, a
 fiber channel port or a Wi-Fi adapter.
 
-| Name                               | Description                                                                                                  | Units    | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key                 | Attribute Values                  |
+| Name                               | Description                                                                                                  | Units    | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key                 | Attribute Values                  |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------- | ---------- | ----------------------------- | --------------------------------- |
 | `hw.errors`                        | Number of errors encountered by the network adapter                                                          | {error}  | Counter                                           | Int64      | `hw.error.type` (Recommended) | `zero_buffer_credit`, `crc`, etc. |
 |                                    |                                                                                                              |          |                                                   |            | `hw.type` (**Required**)      | `network`                         |
@@ -292,7 +292,7 @@ Additional **Recommended** attributes:
 
 **Description:** Physical hard drive (HDD or SDD)
 
-| Name                                     | Description                                                                                 | Units   | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key                   | Attribute Values                                |
+| Name                                     | Description                                                                                 | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key                   | Attribute Values                                |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ------------------------------- | ----------------------------------------------- |
 | `hw.errors`                              | Number of errors encountered on this disk                                                   | {error} | Counter                                           | Int64      | `hw.error.type` (Recommended)   | `bad_sector`, `write`, etc.                     |
 |                                          |                                                                                             |         |                                                   |            | `hw.type` (**Required**)        | `physical_disk`                                 |
@@ -317,7 +317,7 @@ Additional **Recommended** attributes:
 **Description:** Power supply converting AC current to DC used by the
 motherboard and the GPUs
 
-| Name                          | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values               |
+| Name                          | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values               |
 | ----------------------------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | -------------------------- | ------------------------------ |
 | `hw.power_supply.limit`       | Maximum power output of the power supply                                      | W     | UpDownCounter                                     | Int64      | `limit_type` (Recommended) | `max`, `critical`, `throttled` |
 | `hw.power_supply.utilization` | Utilization of the power supply as a fraction of its maximum output           | 1     | Gauge                                             | Double     |                            |                                |
@@ -337,7 +337,7 @@ Additional **Recommended** attributes:
 **Description:** A tape drive in a computer or in a tape library (excluding
 virtual tape libraries)
 
-| Name                       | Description                                                                   | Units       | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                             |
+| Name                       | Description                                                                   | Units       | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                             |
 | -------------------------- | ----------------------------------------------------------------------------- | ----------- | ------------------------------------------------- | ---------- | ------------------------ | -------------------------------------------- |
 | `hw.errors`                | Number of errors encountered by the tape drive                                | {error}     | Counter                                           | Int64      | `hw.error.type`          | `read`, `write`, `mount`, etc.               |
 |                            |                                                                               |             |                                                   |            | `hw.type` (**Required**) | `tape_drive`                                 |
@@ -357,7 +357,7 @@ Additional **Recommended** attributes:
 
 **Description:** A temperature sensor, either numeric or discrete
 
-| Name                   | Description                                                                                               | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                                 |
+| Name                   | Description                                                                                               | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                                 |
 | ---------------------- | --------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | -------------------------- | ---------------------------------------------------------------- |
 | `hw.temperature`       | Temperature in degrees Celsius                                                                            | Cel   | Gauge                                             | Double     |                            |                                                                  |
 | `hw.temperature.limit` | Temperature limit in degrees Celsius                                                                      | Cel   | Gauge                                             | Double     | `limit_type` (Recommended) | `low.critical`, `low.degraded`, `high.degraded`, `high.critical` |
@@ -374,7 +374,7 @@ Additional **Recommended** attributes:
 
 **Description:** A voltage sensor, either numeric or discrete
 
-| Name                 | Description                                                                                           | Units | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                                 |
+| Name                 | Description                                                                                           | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                                 |
 | -------------------- | ----------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | -------------------------- | ---------------------------------------------------------------- |
 | `hw.voltage.limit`   | Voltage limit in Volts                                                                                | V     | Gauge                                             | Double     | `limit_type` (Recommended) | `low.critical`, `low.degraded`, `high.degraded`, `high.critical` |
 | `hw.voltage.nominal` | Nominal (expected) voltage                                                                            | V     | Gauge                                             | Double     |                            |                                                                  |
