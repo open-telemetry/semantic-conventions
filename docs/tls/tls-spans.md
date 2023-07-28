@@ -1,4 +1,4 @@
-# Semantic conventions for TLS spans
+# Semantic Conventions for TLS spans
 
 **Status**: [Experimental](../../document-status.md)
 
@@ -8,9 +8,10 @@ This document defines semantic conventions for TLS/SSL client and server Spans.
 
 <!-- toc -->
 
-- [Common Attributes](#common-attributes)
-- [Client attributes](#client-attributes)
-- [Server attributes](#server-attributes)
+- [Semantic Conventions for TLS spans](#semantic-conventions-for-tls-spans)
+  - [Common Attributes](#common-attributes)
+  - [Client attributes](#client-attributes)
+  - [Server attributes](#server-attributes)
 
 <!-- tocstop -->
 
@@ -21,21 +22,20 @@ These attributes may be used for base information of any TLS/SSL encrypted commu
 <!-- semconv tls -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `tls.version` | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES) | `1.2`; `3` | Required |
-| `tls.version_protocol` | string | Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES) | `ssl` | Required |
+| `tls.protocol.name` | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES) | `1.2`; `3` | Required |
+| `tls.protocol.version` | string | Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES) | `ssl` | Conditionally Required: if not `tls` |
 | `tls.cipher` | string | String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5) used during the current connection. | `TLS_RSA_WITH_3DES_EDE_CBC_SHA`; `TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256` | Opt-In |
 | `tls.curve` | string | String indicating the curve used for the given cipher, when applicable | `secp256r1` | Opt-In |
 | `tls.established` | boolean | Boolean flag indicating if the TLS negotiation was successful and transitioned to an encrypted tunnel. | `True` | Opt-In |
 | `tls.next_protocol` | string | String indicating the protocol being tunneled. Per the values in the [IANA registry](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids), this string should be lower case. | `http/1.1` | Opt-In |
 | `tls.resumed` | boolean | Boolean flag indicating if this TLS connection was resumed from an existing TLS negotiation. | `True` | Opt-In |
 
-`tls.version_protocol` MUST be one of the following:
+`tls.protocol.version` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
 | `ssl` | ssl |
 | `tls` | tls |
-| `unknown` | unknown |
 <!-- endsemconv -->
 
 The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).

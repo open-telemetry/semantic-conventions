@@ -4,14 +4,14 @@ groups:
     type: span
     brief: "This document defines semantic conventions for TLS/SSL client and server Spans."
     attributes:
-      - id: version
+      - id: protocol.name
         requirement_level: required
         brief: >
           Numeric part of the version parsed from the original string of the
           negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES)
         type: string
         examples: ["1.2", "3"]
-      - id: version_protocol
+      - id: protocol.version
         requirement_level:
           conditionally_required: if not `tls`
         brief: >
@@ -69,16 +69,14 @@ groups:
         brief: >
           PEM-encoded stand-alone certificate offered by the client.
           This is usually mutually-exclusive of `client.certificate_chain` since this value also exists in that list.
-        examples:
-          ['MII...']
+        examples: ["MII..."]
       - id: certificate_chain
         type: string[]
         requirement_level: opt_in
         brief: >
           Array of PEM-encoded certificates that make up the certificate chain offered by the client.
           This is usually mutually-exclusive of `client.certificate` since that value should be the first certificate in the chain.
-        examples:
-          ['MII...', 'MI...']
+        examples: ["MII...", "MI..."]
       - id: issuer
         type: string
         requirement_level: opt_in
@@ -103,7 +101,7 @@ groups:
       - id: server_name
         type: string
         requirement_level: opt_in
-        brief: 'Also called an SNI, this tells the server which hostname to which the client is attempting to connect to.'
+        brief: "Also called an SNI, this tells the server which hostname to which the client is attempting to connect to."
         examples: ["opentelemetry.io"]
       - id: subject
         type: string
@@ -143,16 +141,14 @@ groups:
         brief: >
           PEM-encoded stand-alone certificate offered by the server.
           This is usually mutually-exclusive of `server.certificate_chain` since this value also exists in that list.
-        examples:
-          ['MII...']
+        examples: ["MII..."]
       - id: certificate_chain
         type: string[]
         requirement_level: opt_in
         brief: >
           Array of PEM-encoded certificates that make up the certificate chain offered by the server.
           This is usually mutually-exclusive of `server.certificate` since that value should be the first certificate in the chain.
-        examples:
-          ['MII...', 'MI...']
+        examples: ["MII...", "MI..."]
       - id: issuer
         type: string
         requirement_level: opt_in
