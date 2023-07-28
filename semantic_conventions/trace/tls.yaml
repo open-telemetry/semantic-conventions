@@ -12,19 +12,18 @@ groups:
         type: string
         examples: ["1.2", "3"]
       - id: version_protocol
-        requirement_level: required
+        requirement_level:
+          conditionally_required: if not `tls`
         brief: >
           Normalized lowercase protocol name parsed from original string of the
           negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES)
         type:
-          allow_custom_values: false
+          allow_custom_values: true
           members:
             - id: ssl
               value: ssl
             - id: tls
               value: tls
-            - id: unknown
-              value: unknown
       - id: cipher
         requirement_level: opt_in
         brief: >
