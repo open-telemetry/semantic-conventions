@@ -11,6 +11,46 @@ BUILD_TOOL_SCHEMAS_VERSION=0.18.0
 # List of versions that do not require or have a schema.
 declare -a skip_versions=("1.0.0" "1.0.1" "1.1.0" "1.2.0" "1.3.0" "1.6.0")
 
+# Verifies remote avilability of a schema file.
+# 
+# If the schema file is available for download, THEN we make sure it is exactly
+# what is in the repository.  If the file is not available for download,
+# we pass this check.  This is to allow releases to be checked in, where
+# a new version is specified but hasn't propagated to the website yet.
+#
+# Args:
+# 1 - version number
+verify_remote_availability() {
+  local ver="$1"
+  echo -n "Ensure published schema file https://opentelemetry.io/schemas/$ver matches local copy... "
+  if curl --fail --no-progress-meter https://opentelemetry.io/schemas/$ver > verify$ver 2>/dev/null; then
+    diff verify$ver $file && echo "OK, matches" \
+      || (echo "Incorrect!" && exit 3)
+  else
+    echo "Not found"
+  fi
+  rm verify$ver
+}
+
+# Verifies remote avilability of a schema file in the current repository.
+#
+# Args:
+# 1 - version number
+verify_local_availability() {
+  local ver="$1"
+  
+  file="$schemas_dir/$ver"
+  echo -n "Ensure schema file $file exists... "
+  
+  # Check that the schema for the version exists.
+  if [ -f "$file" ]; then
+    echo "OK, exists."
+  else
+    echo "FAILED: $file does not exist. The schema file must exist because the version is declared in CHANGELOG.md."
+    exit 3
+  fi
+}
+
 root_dir=$PWD
 schemas_dir=$root_dir/schemas
 
@@ -21,26 +61,8 @@ grep -o -e '## v[1-9].*\s' $root_dir/CHANGELOG.md | grep -o '[1-9].*' | while re
     continue
   fi
 
-  file="$schemas_dir/$ver"
-  echo -n "Ensure schema file $file exists... "
-
-  # Check that the schema for the version exists.
-  if [ -f "$file" ]; then
-    echo "OK, exists."
-  else
-    echo "FAILED: $file does not exist. The schema file must exist because the version is declared in CHANGELOG.md."
-    exit 3
-  fi
-
-  # Schema file will no be served directly from this repository when linked
-  # into opentelemetry.io.  We disable this for now and need to move the check
-  # into the website.
-  # curl --no-progress-meter https://opentelemetry.io/schemas/$ver > verify$ver
-  #
-  # diff verify$ver $file && echo "Published schema at https://opentelemetry.io/schemas/$ver is correct" \
-  #   || (echo "Published schema at https://opentelemetry.io/schemas/$ver is incorrect!" && exit 3)
-  #
-  # rm verify$ver
+  verify_local_availability "$ver"
+  verify_remote_availability "$ver"
 done
 
 # Now check the content of all schema files in the ../shemas directory.
