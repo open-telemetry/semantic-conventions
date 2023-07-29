@@ -12,7 +12,6 @@
   * [PageView](#pageview)
   * [PageNavigationTiming](#pagenavigationtiming)
   * [ResourceTiming](#resourcetiming)
-  * [HttpRequestTiming](#httprequesttiming)
   * [Exception](#exception)
   * [UserAction](#useraction)
   * [WebVital](#webvital)
@@ -45,6 +44,7 @@ All events have the following three high-level attributes. The event name is spe
 | `type` | int | Browser page type | `0` | Required |
 | `title` | string | Page title DOM property | `Shopping cart page` | Recommended |
 | `url` [1] | string | Full HTTP request URL in the form `scheme://host[:port]/path?query[#fragment]`. Usually the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless. [2] | `https://en.wikipedia.org/wiki/Main_Page`; `https://en.wikipedia.org/wiki/Main_Page#foo` | Required |
+| `changeState` | string | Type of state change used for the virtual page navigation | `pushState`, `replaceState` | Recommended |
 
 **[1]:**  Alias for [`http.url`](../../../trace/semantic_conventions/http.md)
 **[2]:** The URL fragment may be included for virtual pages
@@ -122,6 +122,7 @@ This event describes the timing metrics of a page navigation as provided by
 
 | Key  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| name | string | URL of the page || Recommended |
 | fetchStart | long | || Recommended |
 | unloadEventStart | long | || Recommended |
 | unloadEventEnd | long | || Recommended |
@@ -144,6 +145,7 @@ XMLHttpRequest, Fetch, sendBeacon APIs, SVG, image or script.
 
 | Key  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+|name | string | URL of the requested resource || Recommended |
 |fetchStart | long | || Recommended |
 |domainLookupStart | long | || Recommended |
 |domainLookupEnd | long | || Recommended |
@@ -171,6 +173,8 @@ XMLHttpRequest, Fetch, sendBeacon APIs, SVG, image or script.
 
 **Event name**:`user_action`
 
+This event describes actions performed by the user such as click, scroll, zoom, resize, etc.
+
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `element` | string | Target element tag name (obtained via `event.target.tagName`) | `button` | Recommended |
@@ -188,6 +192,8 @@ XMLHttpRequest, Fetch, sendBeacon APIs, SVG, image or script.
 ### WebVital
 
 **Event name**:`web_vital`
+
+This event describes the website performance metrics introduced by Google (See <https://web.dev/vitals/>).
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
