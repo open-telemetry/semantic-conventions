@@ -1,0 +1,68 @@
+groups:
+  - id: container
+    prefix: container
+    type: resource
+    brief: >
+      A container instance.
+    attributes:
+      - id: name
+        type: string
+        brief: >
+          Container name used by container runtime.
+        examples: ['opentelemetry-autoconf']
+      - id: id
+        type: string
+        brief: >
+          Container ID. Usually a UUID, as for example used to
+          [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification).
+          The UUID might be abbreviated.
+        examples: ['a3bf90e006b2']
+      - id: runtime
+        type: string
+        brief: >
+          The container runtime managing this container.
+        examples: ['docker', 'containerd', 'rkt']
+      - id: image.name
+        type: string
+        brief: >
+          Name of the image the container was built on.
+        examples: ['gcr.io/opentelemetry/operator']
+      - id: image.tag
+        type: string
+        brief: >
+          Container image tag.
+        examples: ['0.1']
+      - id: image.id
+        type: string
+        brief: >
+          Runtime specific image identifier. Usually a hash algorithm followed by a UUID.
+        note: >
+          Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker
+          container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect)
+          endpoint.
+
+          K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io
+          /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
+
+          OCI defines a digest of manifest.
+        examples: ['sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f']
+      - id: command
+        type: string
+        requirement_level: opt_in
+        note: >
+          If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
+        brief: >
+          The command used to run the container (i.e. the command name).
+        examples: [ 'otelcontribcol' ]
+      - id: command_line
+        type: string
+        requirement_level: opt_in
+        brief: >
+          The full command run by the container as a single string representing the full command. [2]
+        examples: [ 'otelcontribcol --config config.yaml' ]
+      - id: command_args
+        type: string[]
+        requirement_level: opt_in
+        brief: >
+          All the command arguments (including the command/executable itself) run by the container. [2]
+        examples: [ 'otelcontribcol, --config, config.yaml' ]

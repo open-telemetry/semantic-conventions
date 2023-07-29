@@ -15,4 +15,24 @@
 # Global owners, will be the owners for everything in the repo. Membership is tracked via https://github.com/open-telemetry/community/blob/main/community-members.md 
 *   @open-telemetry/specs-semconv-maintainers @open-telemetry/specs-semconv-approvers
 
+# Schemas and schema file tooling
+/schemas/                       @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/internal/tools/schema_check.sh @open-telemetry/specs-semconv-approvers @tigrannajaryan
+
+# Logs semantic conventions
+/model/logs/                        @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/docs/exceptions/exceptions-logs.md       @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/docs/feature-flags/feature-flags-logs.md @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/docs/general/events-general.md           @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/docs/general/logs-general.md             @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/docs/logs/                               @open-telemetry/specs-semconv-approvers @tigrannajaryan
+
+# JVM semantic conventions approvers
+/model/metrics/process-runtime-jvm-metrics.yaml              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
+/model/metrics/process-runtime-jvm-metrics-experimental.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
+
+# HTTP semantic conventions approvers
+/model/metrics/http.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/trace/http.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+
 # TODO - Add semconv area experts

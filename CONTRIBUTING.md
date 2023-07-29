@@ -11,10 +11,51 @@ requirements and recommendations.
 Before you can contribute, you will need to sign the [Contributor License
 Agreement](https://identity.linuxfoundation.org/projects/cncf).
 
-## TODO
+## How to Contribute
 
-We need to flesh out the rest of the contributing document for specifics on
-semantic conventions.
+When contributing to semantic conventions, it's important to understand a few
+key, but non-obvious, aspects:
+
+- All attributes, metrics, etc. are formally defined in YAML files under
+  the `model/` directory.
+- All descriptions, normative language are defined in the `docs/`
+  directory.
+  - We provide tooling to generate Markdown documentation from the formal
+    YAML definitons.  See [Yaml to Markdown](#yaml-to-markdown).
+  - We use Hugo to render [semantic conventions on our website](https://opentelemetry.io/docs/specs/semconv/).
+    You will see `<!--- Hugo front matter used to generate ...` sections
+    in markdown.  See [Hugo frontmatter](#hugo-frontmatter) for details.
+- All changes to existing attributes, metrics, etc. MUST be allowed as
+  per our [stability guarantees](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/versioning-and-stability.md#semantic-conventions-stability) and
+  defined in a schema file.  As part of any contribution, you should
+  include attribute changes defined in the `schema-next.yaml` file.
+  For details, please read [the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
+- After creating a pull request, please update the [CHANGELOG](CHANGELOG.md) file with
+  a description of your changes.
+  
+Please make sure all Pull Requests are compliant with these rules!
+
+### Hugo frontmatter
+
+At the top of all Markdown files under the `docs/` directory, you will see
+headers like the following:
+
+```
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: HTTP
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/http/_index.md
+  to: http/README.md
+--->
+```
+
+When creating new pages, you should provide the `linkTitle` attribute. This is used
+to generate the navigation bar on the website, and will be listed relative to the
+"parent" document.
+
+## Automation
+
+Semantic Conventions provides a set of automated tools for general development.
 
 ### Consistency Checks
 
@@ -22,7 +63,7 @@ The Specification has a number of tools it uses to check things like style,
 spelling and link validity. Before using the tools:
 
 - Install the latest LTS release of **[Node](https://nodejs.org/)**.
-For example, using **[nvm][]** under Linux run:
+  For example, using **[nvm][]** under Linux run:
 
   ```bash
   nvm install --lts
@@ -41,7 +82,7 @@ make check
 ```
 
 Note: This can take a long time as it checks all links. You should use this
-prior to submitting a PR to ensure validity.  However, you can run individual
+prior to submitting a PR to ensure validity. However, you can run individual
 checks directly.
 
 See:
@@ -49,11 +90,12 @@ See:
 - [MarkdownStyle](#markdown-style)
 - [Misspell Check](#misspell-check)
 - Markdown link checking (docs TODO)
+- Prettier formatting
 
 ### YAML to Markdown
 
 Semantic conventions are declared in YAML files and markdown tables are
-generated from these files. Read about semantic convention updates [here](./semantic_conventions/README.md).
+generated from these files. Read about semantic convention updates [here](./model/README.md).
 
 ### Autoformatting
 
@@ -114,3 +156,28 @@ To quickly fix typos, use
 ```bash
 make misspell-correction
 ```
+
+## Updating the referenced specification version
+
+1. Open the `./internal/tools/update_specification_version.sh` script.
+2. Modify the `PREVIOUS_SPECIFICATION_VERSION` to be the same value as `LATEST_SPECIFICATION_VERSION`
+3. Modify `LATEST_SPECIFICATION_VERSION` to the latest specification tag, e.g. `1.21`
+4. Run the script from the root directory, e.g. `semantic-conventions$ ./internal/tools/update_specification_version.sh`.
+5. Add all modified files to the change submit and submit a PR.
+
+## Making a Release
+
+- Ensure the referenced specification version is up to date. Use
+  [tooling to update the spec](#updating-the-referenced-specification-version)
+  if needed.
+- Create a staging branch for the release.
+  - Update `schema-next.yaml` file and move to `schemas/{version}`
+    - Ensure the `next` version is appropriately configured as the `{version}`.
+    - Copy `schema-next.yaml` to `schemas/{version}`.
+    - Add `next` as a version in `schema-next.yaml` version.
+  - Update `CHANGELOG.md` for the latest version.
+    - Add `## v{version} ({date})` under `## Unreleased`
+  - Send staging tag as PR for review.
+- Create a tag `v{version}` on the merged PR and push remote.
+
+[nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
