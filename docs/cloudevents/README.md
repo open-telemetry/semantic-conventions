@@ -1,4 +1,11 @@
-# Semantic conventions for CloudEvents
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: CloudEvents
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/cloudevents/_index.md
+  to: cloudevents/README.md
+--->
+
+# Semantic Conventions for CloudEvents
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -6,6 +13,6 @@ This document defines semantic conventions for the [CloudEvents specification](h
 
 Semantic conventions for CloudEvents are defined for the following signals:
 
-* [CloudEvents Spans](cloudevents-spans.md): Semantic Conventions for modeling CloudEvents as *spans*.
+- [CloudEvents Spans](cloudevents-spans.md): Semantic Conventions for modeling CloudEvents as _spans_.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

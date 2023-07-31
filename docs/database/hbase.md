@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: HBase
+--->
+
 # Semantic Conventions for HBase
 
 **Status**: [Experimental][DocumentStatus]
@@ -18,4 +22,4 @@ described on this page.
 **[1]:** For HBase the `db.name` should be set to the HBase namespace.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

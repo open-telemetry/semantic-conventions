@@ -1,4 +1,11 @@
-# Semantic conventions for database calls and systems
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Database
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/database/_index.md
+  to: database/README.md
+--->
+
+# Semantic Conventions for Database Calls and Systems
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -24,4 +31,4 @@ Technology specific semantic conventions are defined for the following databases
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

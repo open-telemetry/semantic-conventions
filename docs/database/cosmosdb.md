@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Cosmos DB
+--->
+
 # Semantic Conventions for Microsoft Cosmos DB
 
 **Status**: [Experimental][DocumentStatus]
@@ -86,4 +90,4 @@ In addition to Cosmos DB attributes, all spans include
 | `db.cosmosdb.sub_status_code`        | `0` |
 | `db.cosmosdb.request_charge`         | `7.43` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

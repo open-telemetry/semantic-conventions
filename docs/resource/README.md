@@ -1,8 +1,15 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Resource
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/resource/_index.md
+  to: resource/README.md
+--->
+
 # Resource Semantic Conventions
 
 **Status**: [Mixed][DocumentStatus]
 
-This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
+This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
@@ -40,7 +47,7 @@ This document defines standard attributes for resources. These attributes are ty
 
 Attributes are grouped logically by the type of the concept that they described. Attributes in the same group have a common prefix that ends with a dot. For example all attributes that describe Kubernetes properties start with "k8s."
 
-See [Attribute Requirement Levels](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/common/attribute-requirement-level.md) for details on when attributes
+See [Attribute Requirement Levels](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/common/attribute-requirement-level.md) for details on when attributes
 should be included.
 
 ## Attributes with Special Handling
@@ -52,7 +59,7 @@ Given their significance some resource attributes are treated specifically as de
 ### Semantic Attributes with Dedicated Environment Variable
 
 These are the attributes which MAY be configurable via a dedicated environment variable
-as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/configuration/sdk-environment-variables.md):
+as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/configuration/sdk-environment-variables.md):
 
 - [`service.name`](#service)
 - [`service.version`](#service)
@@ -60,7 +67,7 @@ as specified in [OpenTelemetry Environment Variable Specification](https://githu
 ## Semantic Attributes with SDK-provided Default Value
 
 These are the attributes which MUST be provided by the SDK
-as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
+as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
 
 - [`service.name`](#service)
 - [`telemetry.sdk` group](#telemetry-sdk)
@@ -198,7 +205,7 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 - [Device](./device.md)
 - [Cloud](./cloud.md)
 - Deployment:
-  - [Deployment Environment](./deployment_environment.md)
+  - [Deployment Environment](./deployment-environment.md)
   - [Kubernetes](./k8s.md)
 - [Browser](./browser.md)
 
@@ -216,14 +223,14 @@ the exact version used to identify an artifact. This may be a semantic version, 
 
 Attributes that are only applicable to resources from a specific cloud provider. Currently, these
 resources can only be defined for providers listed as a valid `cloud.provider` in
-[Cloud](./cloud.md) and below. Provider-specific attributes all reside in the `cloud_provider` directory.
+[Cloud](./cloud.md) and below. Provider-specific attributes all reside in the `cloud-provider` directory.
 Valid cloud providers are:
 
 - [Alibaba Cloud](https://www.alibabacloud.com/) (`alibaba_cloud`)
-- [Amazon Web Services](https://aws.amazon.com/) ([`aws`](cloud_provider/aws/README.md))
-- [Google Cloud Platform](https://cloud.google.com/) ([`gcp`](cloud_provider/gcp/README.md))
+- [Amazon Web Services](https://aws.amazon.com/) ([`aws`](cloud-provider/aws/README.md))
+- [Google Cloud Platform](https://cloud.google.com/) ([`gcp`](cloud-provider/gcp/README.md))
 - [Microsoft Azure](https://azure.microsoft.com/) (`azure`)
 - [Tencent Cloud](https://www.tencentcloud.com/) (`tencent_cloud`)
-- [Heroku dyno](./cloud_provider/heroku.md)
+- [Heroku dyno](./cloud-provider/heroku.md)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

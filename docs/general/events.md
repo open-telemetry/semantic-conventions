@@ -1,4 +1,9 @@
-# Semantic Convention for event attributes
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Events
+aliases: [docs/specs/semconv/general/events-general]
+--->
+
+# Semantic Conventions for Event Attributes
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -53,4 +58,4 @@ unrelated events.
 | `k8s` | Events from Kubernetes |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

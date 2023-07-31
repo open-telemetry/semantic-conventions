@@ -1,4 +1,9 @@
-# General attributes
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Attributes
+aliases: [docs/specs/semconv/general/general-attributes]
+--->
+
+# General Attributes
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -322,8 +327,6 @@ Examples of where the `enduser.id` value is extracted from:
 | [JavaEE/JakartaEE Servlet] | `javax.servlet.http.HttpServletRequest.getUserPrincipal()` |
 | [Windows Communication Foundation] | `ServiceSecurityContext.Current.PrimaryIdentity` |
 
-[Authorization]: https://tools.ietf.org/html/rfc7235#section-4.2
-[OAuth 2.0 Access Token]: https://tools.ietf.org/html/rfc6749#section-3.3
 [SAML 2.0 Assertion]: http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html
 [HTTP Basic/Digest Authentication]: https://tools.ietf.org/html/rfc2617
 [OAuth 2.0 Bearer Token]: https://tools.ietf.org/html/rfc6750
@@ -379,4 +382,4 @@ about the span.
 | `code.column` | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | Recommended |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

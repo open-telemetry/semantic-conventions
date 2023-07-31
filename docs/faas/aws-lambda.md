@@ -57,9 +57,9 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 ### AWS X-Ray Environment Span Link
 
 If the `_X_AMZN_TRACE_ID` environment variable is set, instrumentation SHOULD try to parse an
-OpenTelemetry `Context` out of it using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/context/api-propagators.md). If the
-resulting `Context` is [valid](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#isvalid) then a [Span Link][] SHOULD be added to the new Span's
-[start options](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#specifying-links) with an associated attribute of `source=x-ray-env` to
+OpenTelemetry `Context` out of it using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/context/api-propagators.md). If the
+resulting `Context` is [valid](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#isvalid) then a [Span Link][] SHOULD be added to the new Span's
+[start options](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#specifying-links) with an associated attribute of `source=x-ray-env` to
 indicate the source of the linked span.
 Instrumentation MUST check if the context is valid before using it because the `_X_AMZN_TRACE_ID` environment variable can
 contain an incomplete trace context which indicates X-Ray isn’t enabled. The environment variable will be set and the
@@ -109,21 +109,20 @@ be `<event source> process`. If there are multiple sources in the batch, the nam
 
 For every message in the event, the [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/context/api-propagators.md) and
 added as a link to the span. This means the span may have as many links as messages in the batch.
 See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
 - [`messaging.operation`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
 - [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `AmazonSQS`.
-- [`messaging.destination.kind` or `messaging.source.kind`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `queue`.
 
 ### SQS Message
 
 For the SQS message span, the name MUST be `<event source> process`.  The parent MUST be the `CONSUMER` span
 corresponding to the SQS event. The [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/context/api-propagators.md) and
 added as a link to the span.
 See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
@@ -209,15 +208,12 @@ Function F:                      | Span ProcBatch |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
 | `messaging.system` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` |
-| `messaging.destination.name` | `Q` | `Q` | | | |
-| `messaging.source.name` | | | `Q` | `Q` | `Q` |
-| `messaging.destination.kind` | `queue` | `queue` | | | |
-| `messaging.source.kind` | | | `queue` | `queue` | `queue` |
+| `messaging.destination.name` | `Q` | `Q` | `Q` | `Q` | `Q` |
 | `messaging.operation` |  |  | `process` | `process` | `process` |
 | `messaging.message.id` | | | | `"a1"` | `"a2"` |
 
 Note that if Span Prod1 and Span Prod2 were sent to different queues, Span ProcBatch would not have
-`messaging.source.name` set as it would correspond to multiple sources.
+`messaging.destination.name` set as it would correspond to multiple queues.
 
 The above requires user code change to create `Span Proc1` and `Span Proc2`. In Java, the user would inherit from
 [TracingSqsMessageHandler][] instead of Lambda's standard `RequestHandler` to enable them. Otherwise these two spans
@@ -250,4 +246,4 @@ because it is not available until function invocation.
 
 [environment variables]: https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

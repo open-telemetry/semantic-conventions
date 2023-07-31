@@ -1,3 +1,10 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: AWS
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/resource/cloud-provider/aws/_index.md
+  to: resource/cloud-provider/aws/README.md
+--->
+
 # AWS Semantic Conventions
 
 **Status**: [Experimental][DocumentStatus]
@@ -21,4 +28,4 @@ Attributes that relate to an individual AWS service:
 - [Elastic Container Service (ECS)](./ecs.md)
 - [Elastic Kubernetes Service (EKS)](./eks.md)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

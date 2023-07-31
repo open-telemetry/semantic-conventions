@@ -1,4 +1,8 @@
-# Semantic conventions for AWS SDK
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: AWS SDK
+--->
+
+# Semantic Conventions for AWS SDK
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -19,6 +23,7 @@ The span name MUST be of the format `Service.Operation` as per the AWS HTTP API,
 `S3.ListBuckets`. This is equivalent to concatenating `rpc.service` and `rpc.method` with `.` and consistent
 with the naming guidelines for RPC client spans.
 
+<!-- prettier-ignore-start -->
 <!-- semconv aws -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
@@ -31,12 +36,13 @@ with the naming guidelines for RPC client spans.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 <!-- endsemconv -->
+<!-- prettier-ignore-end -->
 
 ## AWS service specific attributes
 
 The following Semantic Conventions extend the general AWS SDK attributes for specific AWS services:
 
-* [AWS DynamoDB](/docs/database/dynamodb.md): Semantic Conventions for *AWS DynamoDB*.
-* [AWS S3](/docs/object-stores/s3.md): Semantic Conventions for *AWS S3*.
+- [AWS DynamoDB](/docs/database/dynamodb.md): Semantic Conventions for _AWS DynamoDB_.
+- [AWS S3](/docs/object-stores/s3.md): Semantic Conventions for _AWS S3_.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

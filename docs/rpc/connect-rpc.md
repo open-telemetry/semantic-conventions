@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Connect
+--->
+
 # Semantic Conventions for Connect RPC
 
 **Status**: [Experimental][DocumentStatus]
@@ -43,7 +47,7 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 
 ## Connect RPC Status
 
-If `rpc.connect_rpc.error_code` is set, [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/trace/api.md#set-status) MUST be set to `Error` and left unset in all other cases.
+If `rpc.connect_rpc.error_code` is set, [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#set-status) MUST be set to `Error` and left unset in all other cases.
 
 ## Connect RPC Request and Response Metadata
 
@@ -55,4 +59,4 @@ If `rpc.connect_rpc.error_code` is set, [Span Status](https://github.com/open-te
 **[1]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request/response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
