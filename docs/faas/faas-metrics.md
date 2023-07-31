@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: FaaS
+linkTitle: Metrics
 --->
 
 # Semantic Conventions for FaaS Metrics
@@ -36,7 +36,7 @@ type and units.
 
 Below is a table of FaaS invocation metric instruments.
 
-| Name                   | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                                                  |
+| Name                   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics.md#instrument-units)) | Description                                                                  |
 |------------------------|---------------------------------------------------|--------------|-------------------------------------------|------------------------------------------------------------------------------|
 | `faas.invoke_duration` | Histogram                                         | milliseconds | `ms`                                      | Measures the duration of the invocation                                      |
 | `faas.init_duration`   | Histogram                                         | milliseconds | `ms`                                      | Measures the duration of the function's initialization, such as a cold start |
@@ -47,7 +47,7 @@ Below is a table of FaaS invocation metric instruments.
 
 Optionally, when applicable:
 
-| Name             | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                     |
+| Name             | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics.md#instrument-units)) | Description                                     |
 |------------------|---------------------------------------------------|--------------|-------------------------------------------|-------------------------------------------------|
 | `faas.mem_usage` | Histogram                                         | Bytes        | `By`                                      | Distribution of max memory usage per invocation |
 | `faas.cpu_usage` | Histogram                                         | milliseconds | `ms`                                      | Distribution of CPU usage per invocation        |
@@ -82,4 +82,4 @@ FaaS providers. This list is not exhaustive.
 * [Google CloudFunctions Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudfunctions)
 * [OpenFaas Metrics](https://docs.openfaas.com/architecture/metrics/)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

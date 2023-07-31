@@ -1,4 +1,11 @@
-# Semantic conventions for Messaging systems
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Messaging Systems
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/messaging/_index.md
+  to: messaging/README.md
+--->
+
+# Semantic Conventions for Messaging Systems
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -14,4 +21,4 @@ Technology specific semantic conventions are defined for the following messaging
 * [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
 * [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

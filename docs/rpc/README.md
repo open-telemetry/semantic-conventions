@@ -1,4 +1,11 @@
-# Semantic conventions for RPC
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: RPC
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/rpc/_index.md
+  to: rpc/README.md
+--->
+
+# Semantic Conventions for RPC
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -16,4 +23,4 @@ Technology specific semantic conventions are defined for the following RPC syste
 * [gRPC](grpc.md): Semantic Conventions for *gRPC*.
 * [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

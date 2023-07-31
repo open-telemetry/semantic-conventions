@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: AWS DynamoDB
+--->
+
 # Semantic Conventions for AWS DynamoDB
 
 **Status**: [Experimental][DocumentStatus]
@@ -166,4 +170,4 @@ These attributes are filled in for all DynamoDB request types.
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

@@ -210,4 +210,4 @@ A CronJob creates Jobs on a repeating schedule.
 | `k8s.cronjob.name` | string | The name of the CronJob. | `opentelemetry` | Recommended |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

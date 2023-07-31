@@ -1,10 +1,14 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Logs
+--->
+
 # Semantic Conventions for Feature Flags in Logs
 
 **Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for recording feature flag evaluations as
-a [log record](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/data-model.md#log-and-event-record-definition) emitted through the
-[Logger API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/bridge-api.md#emit-a-logrecord).
+a [log record](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/logs/data-model.md#log-and-event-record-definition) emitted through the
+[Logger API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/logs/bridge-api.md#emit-a-logrecord).
 This is useful when a flag is evaluated outside of a transaction context
 such as when the application loads or on a timer.
 To record a flag evaluation as a part of a transaction context,
@@ -24,14 +28,14 @@ section of the trace semantic convention for feature flag evaluations.
 ## Recording an Evaluation
 
 Feature flag evaluations SHOULD be recorded as attributes on the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/bridge-api.md#logger) emit
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/logs/bridge-api.md#logger) emit
 operations. Evaluations MAY be recorded on "logs" or "events" depending on the
 context.
 
 ## Attributes
 
 The table below indicates which attributes should be added to the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
 
 <!-- semconv log-feature_flag -->
 The event name MUST be `feature_flag`.
@@ -52,4 +56,4 @@ semantic identifier is unavailable. String representation of the value
 should be determined by the implementer.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
