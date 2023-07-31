@@ -80,20 +80,21 @@ groups:
         requirement_level: opt_in
         type: string
         brief: >
-          Processor manufacturer. First part of the CPUID identifier - a maximum 12-character name of the manufacturer.
+          Processor manufacturer identifier. A maximum 12-character string.
         examples: [ 'GenuineIntel' ]
       - id: family
         requirement_level: opt_in
-        type: string
+        type: int
         brief: >
-          Numeric value specifying model variant. Second part of the CPUID identifier.
-        examples: [ '6' ]
+          Numeric value specifying the family or generation of the CPU.
+        examples: [ 6 ]
       - id: model
         requirement_level: opt_in
-        type: string
+        type: int
         brief: >
-          Extended Model ID
-        examples: [ '6' ]
+          Model identifier. It provides more granular information about the CPU, distinguishing it from
+          other CPUs within the same family.
+        examples: [ 6 ]
       - id: model_name
         requirement_level: opt_in
         type: string
@@ -102,19 +103,19 @@ groups:
         examples: [ '11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz' ]
       - id: stepping
         requirement_level: opt_in
-        type: string
+        type: int
         brief: >
           Stepping or core revisions.
-        examples: [ '1' ]
+        examples: [ 1 ]
       - id: frequency
         requirement_level: opt_in
-        type: string
+        type: double
         brief: >
           Clock frequency in MHz.
-        examples: [ '3000.000' ]
+        examples: [ 3000.000 ]
       - id: cache_size
         requirement_level: opt_in
-        type: string
+        type: int
         brief: >
           The amount of level 2 memory cache available to the processor (in Bytes).
-        examples: [ '12288000' ]
+        examples: [ 12288000 ]
