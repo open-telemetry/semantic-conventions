@@ -71,7 +71,6 @@ groups:
     metric_name: rpc.client.duration
     brief: >
       Measures the duration of outbound RPC
-
       **Streaming**: N/A.
     instrument: histogram
     unit: "ms"
