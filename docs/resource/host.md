@@ -16,12 +16,9 @@
 | `host.image.name` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` | Recommended |
 | `host.image.id` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` | Recommended |
 | `host.image.version` | string | The version string of the VM image or host OS as defined in [Version Attributes](README.md#version-attributes). | `0.1` | Recommended |
-| `host.ipv4.addresses` | string[] | Available IPv4 addresses of the host, excluding loopback interfaces. [1] | `[192.168.1.140]` | Opt-In |
-| `host.ipv6.addresses` | string[] | Available IPv6 addresses of the host, excluding loopback interfaces. [2] | `[fe80::abc2:4a28:737a:609e, fe80::849e:eaff:fe31:3c90]` | Opt-In |
+| `host.ip` | string[] | Available IP addresses of the host, excluding loopback interfaces. [1] | `[192.168.1.140, fe80::abc2:4a28:737a:609e]` | Opt-In |
 
-**[1]:** Addresses MUST be specified in dotted-quad notation.
-
-**[2]:** Addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
+**[1]:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
 
 `host.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
