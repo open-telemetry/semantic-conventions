@@ -20,7 +20,7 @@ Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/ope
 - [Christian Neumüller](https://github.com/Oberon00), Dynatrace
 - [James Moessis](https://github.com/jamesmoessis), Atlassian
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
-- [Johannes Tax](https://github.com/pyohannes), Microsoft
+- [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Liudmila Molkova](https://github.com/lmolkova), Microsoft
 - [Sean Marciniak](https://github.com/MovieStoreGuy), Atlassian
 - [Ted Young](https://github.com/tedsuo), Lightstep
