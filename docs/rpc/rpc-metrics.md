@@ -78,7 +78,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.server.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. **Streaming**: N/A. |
+| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. **Streaming**: N/A. [1] |
+
+**[1]:** While streaming RPCs may record this metric as start-of-batch
+to end-of-batch, it's hard to interpret in practice.
 <!-- endsemconv -->
 
 #### Metric: `rpc.server.request.size`
@@ -134,7 +137,10 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC
-**Streaming**: N/A. |
+**Streaming**: N/A. [1] |
+
+**[1]:** While streaming RPCs may record this metric as start-of-batch
+to end-of-batch, it's hard to interpret in practice.
 <!-- endsemconv -->
 
 #### Metric: `rpc.client.request.size`
