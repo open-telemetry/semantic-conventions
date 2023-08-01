@@ -2,7 +2,7 @@
 This document defines semantic conventions to apply to client-side applications when tracking sessions.
 
 Session is defined as the period of time encompassing all activities performed by the application and the actions
-executed by the end user. The period of time is defined by the initial activity and concluded after a period of 
+executed by the end user. The period of time is defined by the initial activity and concluded after a period of
 inactivity, or explicitly ended after a maximum duration is reached.
 
 Consequently, a Session is represented as a collection of Logs, Events, and Spans emitted by the Client Application
@@ -18,9 +18,11 @@ the Logs, Events, and Spans generated during the Session's lifecycle.
 <!-- endsemconv -->
 
 ## How a session operates
+
 After a period of timeout, `client.session_id` MUST be refreshed.
 The timeout period MUST be restarted when any Logs, Events, or Spans are recorded.
 The session timeout period CAN be customized.
-Default session timeout SHOULD be 30 minutes. Session timeout period SHOULD be established when the instrumentation is first configured and MUST NOT be updated in the middle of a session. 
+Default session timeout SHOULD be 30 minutes. Session timeout period SHOULD be established when the instrumentation is
+first configured and MUST NOT be updated in the middle of a session.
 
 Maximum session length SHOULD NOT exceed 4 hours.
