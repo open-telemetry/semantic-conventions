@@ -17,6 +17,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/open-telemetry/teams/specs-semconv-approvers)):
 
+- [Alexander Wert](https://github.com/AlexanderWert), Elastic
 - [Christian Neumüller](https://github.com/Oberon00), Dynatrace
 - [James Moessis](https://github.com/jamesmoessis), Atlassian
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
@@ -29,8 +30,8 @@ _Find more about the approver role in [community repository](https://github.com/
 
 Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)):
 
-- [Josh Suereth](https://github.com/jsuereth)
 - [Armin Ruech](https://github.com/arminru)
+- [Josh Suereth](https://github.com/jsuereth)
 - [Reiley Yang](https://github.com/reyang)
 
 _Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer)._

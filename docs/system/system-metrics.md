@@ -33,12 +33,14 @@ instruments not explicitly defined in the specification.
 
 **Description:** System level processor metrics.
 
-| Name                   | Description                                                                                              | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values                    |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ---------------- | ----------------------------------- |
-| system.cpu.time        |                                                                                                          | s     | Counter                                           | Double     | state            | idle, user, system, interrupt, etc. |
-|                        |                                                                                                          |       |                                                   |            | cpu              | CPU number [0..n-1]                 |
-| system.cpu.utilization | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of CPUs | 1     | Gauge                                             | Double     | state            | idle, user, system, interrupt, etc. |
-|                        |                                                                                                          |       |                                                   |            | cpu              | CPU number (0..n)                   |
+| Name                      | Description                                                                                                      | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ---------------- | ----------------------------------- |
+| system.cpu.time           | Seconds each logical CPU spent on each mode                                                                      | s     | Counter                                           | Double     | state            | idle, user, system, interrupt, etc. |
+|                           |                                                                                                                  |       |                                                   |            | cpu              | Logical CPU number [0..n-1]         |
+| system.cpu.utilization    | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs | 1     | Gauge                                             | Double     | state            | idle, user, system, interrupt, etc. |
+|                           |                                                                                                                  |       |                                                   |            | cpu              | Logical CPU number (0..n)           |
+| system.cpu.physical.count | Reports the number of actual physical processor cores on the hardware | {cpu} | UpDownCounter                                     | Int64      |                  |                                     |
+| system.cpu.logical.count  | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking | {cpu} | UpDownCounter                                     | Int64      |                  |                                     |
 
 ### `system.memory.` - Memory metrics
 
