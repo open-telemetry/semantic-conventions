@@ -1,5 +1,7 @@
 # Semantic conventions for session
 
+**Status**: [Experimental][DocumentStatus]
+
 This document defines semantic conventions to apply to client-side applications when tracking sessions.
 
 Session is defined as the period of time encompassing all activities performed by the application and the actions
@@ -27,3 +29,5 @@ Default session timeout SHOULD be 30 minutes. Session timeout period SHOULD be e
 first configured and MUST NOT be updated in the middle of a session.
 
 Maximum session length SHOULD NOT exceed 4 hours.
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

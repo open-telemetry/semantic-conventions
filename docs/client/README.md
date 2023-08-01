@@ -11,3 +11,5 @@ This adds unique requirements and needs to client-side semantic conventions.
 The following semantic conventions exist for client:
 
 * [Session](session.md): Semantic Conventions for client session.
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

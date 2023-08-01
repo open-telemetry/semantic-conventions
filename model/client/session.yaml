@@ -2,7 +2,7 @@ groups:
   - id: client-session-id
     prefix: client
     type: attribute_group
-    brief: > 
+    brief: >
       This attribute can be applied to all signals generate. It may be omitted from metrics, due to the
       aggregated nature of metrics, and the high cardinality of this attribute.
     attributes:
