@@ -10,3 +10,4 @@ Note: if the PR is touching an area that is not listed in the [existing areas](h
 
 * [ ] [CONTRIBUTING.md](https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md) guidelines followed.
 * [ ] [CHANGELOG.md](https://github.com/open-telemetry/semantic-conventions/blob/main/CHANGELOG.md) updated for non-trivial changes.
+* [ ] [schema-next.yaml](https://github.com/open-telemetry/semantic-conventions/blob/main/schema-next.yaml) updated with changes to existing conventions.
