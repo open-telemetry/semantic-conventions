@@ -1,4 +1,5 @@
 # Semantic conventions for session
+
 This document defines semantic conventions to apply to client-side applications when tracking sessions.
 
 Session is defined as the period of time encompassing all activities performed by the application and the actions
