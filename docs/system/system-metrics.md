@@ -33,7 +33,6 @@ instruments not explicitly defined in the specification.
 
 **Description:** System level processor metrics.
 
-
 | Name                      | Description                                                                                                      | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ---------------- | ----------------------------------- |
 | system.cpu.time           | Seconds each logical CPU spent on each mode                                                                      | s     | Counter                                           | Double     | state            | idle, user, system, interrupt, etc. |
