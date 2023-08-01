@@ -39,8 +39,8 @@ instruments not explicitly defined in the specification.
 |                           |                                                                                                                  |       |                                                   |            | cpu              | Logical CPU number [0..n-1]         |
 | system.cpu.utilization    | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs | 1     | Gauge                                             | Double     | state            | idle, user, system, interrupt, etc. |
 |                           |                                                                                                                  |       |                                                   |            | cpu              | Logical CPU number (0..n)           |
-| system.cpu.physical.count | Reports the number of actual physical processor cores on the hardware | {cpu} | UpDownCounters                                    | Int64      |                  |                                     |
-| system.cpu.logical.count  | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking | {cpu} | UpDownCounters                                    | Int64      |                  |                                     |
+| system.cpu.physical.count | Reports the number of actual physical processor cores on the hardware | {cpu} | UpDownCounter                                     | Int64      |                  |                                     |
+| system.cpu.logical.count  | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking | {cpu} | UpDownCounter                                     | Int64      |                  |                                     |
 
 ### `system.memory.` - Memory metrics
 
