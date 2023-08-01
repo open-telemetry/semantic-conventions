@@ -8,5 +8,5 @@ Note: if the PR is touching an area that is not listed in the [existing areas](h
 
 ## Merge requirement checklist
 
-* [ ] [CONTRIBUTING](https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md) guidelines followed.
-* [ ] Appropriate `CHANGELOG.md` files updated for non-trivial changes.
+* [ ] [CONTRIBUTING.md](https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md) guidelines followed.
+* [ ] [CHANGELOG.md](https://github.com/open-telemetry/semantic-conventions/blob/main/CHANGELOG.md) updated for non-trivial changes.
