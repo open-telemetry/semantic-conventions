@@ -4,7 +4,7 @@ versions:
   next:
     metrics:
       changes:
-        # https://github.com/open-telemetry/semantic-conventions/pull/TODO
+        # https://github.com/open-telemetry/semantic-conventions/pull/224
         - rename_metrics:
             http.client.duration: http.client.request.duration
             http.server.duration: http.server.request.duration

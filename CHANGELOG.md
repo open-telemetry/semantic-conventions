@@ -11,10 +11,10 @@ release.
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
 - Update `.count` metric naming convention so that it only applies to UpDownCounters,
   and add that `.total` should not be used by either Counters or UpDownCounters
-  ([#107](https://github.com/open-telemetry/opentelemetry-specification/pull/107))
-- BREAKING: Renamed `http.client.duration` and `http.server.duration` metrics to
+  ([#107](https://github.com/open-telemetry/semantic-conventions/pull/107))
+- BREAKING: Rename `http.client.duration` and `http.server.duration` metrics to
   `http.client.request.duration` and `http.server.request.duration` respectively.
-  ([#TODO](https://github.com/open-telemetry/opentelemetry-specification/pull/TODO))
+  ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
 
 ## v1.21.0 (2023-07-13)
 
