@@ -1,4 +1,8 @@
-# Semantic conventions for GraphQL Server
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: GraphQL Server
+--->
+
+# Semantic Conventions for GraphQL Server
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -28,4 +32,4 @@ MAY be used as span name.
 | `subscription` | GraphQL subscription |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

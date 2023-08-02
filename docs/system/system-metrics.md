@@ -8,7 +8,7 @@ linkTitle: System
 
 This document describes instruments and attributes for common system level
 metrics in OpenTelemetry. Consider the [general metric semantic
-conventions](/docs/general/metrics-general.md#general-metric-semantic-conventions) when creating
+conventions](/docs/general/metrics.md#general-metric-semantic-conventions) when creating
 instruments not explicitly defined in the specification.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
@@ -697,5 +697,5 @@ An instrument for load average over 1 minute on Linux could be named
 `system.linux.cpu.load_1m`, reusing the `cpu` name proposed above and having
 an `{os}` prefix to split this metric across OSes.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/document-status.md
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/metrics/metric-requirement-level.md#recommended

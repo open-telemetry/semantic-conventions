@@ -8,7 +8,7 @@ linkTitle: Runtime Environment
 
 This document includes semantic conventions for runtime environment level
 metrics in OpenTelemetry. Also consider the [general
-metric](/docs/general/metrics-general.md#general-metric-semantic-conventions), [system
+metric](/docs/general/metrics.md#general-metric-semantic-conventions), [system
 metrics](system-metrics.md) and [OS Process metrics](process-metrics.md)
 semantic conventions when instrumenting runtime environments.
 
@@ -56,7 +56,7 @@ discussion.
 Metrics specific to a certain runtime environment should be prefixed with
 `process.runtime.{environment}.` and follow the semantic conventions outlined in
 [general metric semantic
-conventions](/docs/general/metrics-general.md#general-metric-semantic-conventions). Authors of
+conventions](/docs/general/metrics.md#general-metric-semantic-conventions). Authors of
 runtime instrumentations are responsible for the choice of `{environment}` to
 avoid ambiguity when interpreting a metric's name or values.
 
@@ -192,7 +192,7 @@ This metric is obtained by subscribing to
 [`GarbageCollectionNotificationInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GarbageCollectionNotificationInfo.html) events provided by [`GarbageCollectorMXBean`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/GarbageCollectorMXBean.html). The duration value is obtained from [`GcInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GcInfo.html#getDuration--)
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/api.md#instrument-advice)
 of `[]` (single bucket histogram capturing count, sum, min, max).
 
 <!-- semconv metric.process.runtime.jvm.gc.duration(metric_table) -->
@@ -363,7 +363,7 @@ This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](ht
 <!-- semconv metric.process.runtime.jvm.system.cpu.load_1m(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.runtime.jvm.system.cpu.load_1m` | Gauge | `1` | Average CPU load of the whole system for the last minute as reported by the JVM. [1] |
+| `process.runtime.jvm.system.cpu.load_1m` | Gauge | `{run_queue_item}` | Average CPU load of the whole system for the last minute as reported by the JVM. [1] |
 
 **[1]:** The value range is [0,n], where n is the number of CPU cores - or a negative number if the value is not available. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/java.management/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()).
 <!-- endsemconv -->
@@ -428,6 +428,6 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
-[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#opt-in
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#opt-in
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#recommended

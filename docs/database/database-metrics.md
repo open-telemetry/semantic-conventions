@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Database
+linkTitle: Metrics
 --->
 
 # Semantic Conventions for Database Metrics
@@ -8,56 +8,181 @@ linkTitle: Database
 
 The conventions described in this section are specific to SQL and NoSQL clients.
 
-**Disclaimer:** These are initial database client metric instruments and attributes but more may be added in the future.
+**Disclaimer:** These are initial database client metric instruments
+and attributes but more may be added in the future.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
-- [Metric Instruments](#metric-instruments)
-  * [Connection pools](#connection-pools)
+- [Connection pools](#connection-pools)
+  * [Metric: `db.client.connections.usage`](#metric-dbclientconnectionsusage)
+  * [Metric: `db.client.connections.idle.max`](#metric-dbclientconnectionsidlemax)
+  * [Metric: `db.client.connections.idle.min`](#metric-dbclientconnectionsidlemin)
+  * [Metric: `db.client.connections.max`](#metric-dbclientconnectionsmax)
+  * [Metric: `db.client.connections.pending_requests`](#metric-dbclientconnectionspending_requests)
+  * [Metric: `db.client.connections.timeouts`](#metric-dbclientconnectionstimeouts)
+  * [Metric: `db.client.connections.create_time`](#metric-dbclientconnectionscreate_time)
+  * [Metric: `db.client.connections.wait_time`](#metric-dbclientconnectionswait_time)
+  * [Metric: `db.client.connections.use_time`](#metric-dbclientconnectionsuse_time)
 
 <!-- tocstop -->
 
-## Metric Instruments
+## Connection pools
 
-The following metric instruments MUST be used to describe database client operations. They MUST be of the specified type
-and units.
+The following metric instruments describe database client connection pool operations.
 
-### Connection pools
+### Metric: `db.client.connections.usage`
 
-Below is a table of database client connection pool metric instruments that MUST be used by connection pool
-instrumentations:
+This metric is [required][MetricRequired].
 
-| Name                          | Instrument                 | Unit        | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                                                               |
-|-------------------------------|----------------------------|-------------|-------------------------------------------|-------------------------------------------------------------------------------------------|
-| `db.client.connections.usage` | UpDownCounter | connections | `{connection}`                           | The number of connections that are currently in state described by the `state` attribute. |
+<!-- semconv metric.db.client.connections.usage(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `db.client.connections.usage` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute |
+<!-- endsemconv -->
 
-All `db.client.connections.usage` measurements MUST include the following attribute:
+<!-- semconv metric.db.client.connections.usage(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
+| `state` | string | The state of a connection in the pool | `idle` | Required |
 
-| Name    | Type   | Description                                                                  | Examples | Requirement Level |
-|---------|--------|------------------------------------------------------------------------------|----------|-------------------|
-| `state` | string | The state of a connection in the pool. Valid values include: `idle`, `used`. | `idle`   | Required          |
+`state` MUST be one of the following:
 
-Instrumentation libraries for database client connection pools that collect data for the following data MUST use the
-following metric instruments. Otherwise, if the instrumentation library does not collect this data, these instruments
-MUST NOT be used.
+| Value  | Description |
+|---|---|
+| `idle` | idle |
+| `used` | used |
+<!-- endsemconv -->
+### Metric: `db.client.connections.idle.max`
 
-| Name                                     | Instrument ([*](/docs/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                                                                       |
-|------------------------------------------|----------------------------------------------|--------------|-------------------------------------------|---------------------------------------------------------------------------------------------------|
-| `db.client.connections.idle.max`         | UpDownCounter                                | connections  | `{connection}`                           | The maximum number of idle open connections allowed.                                              |
-| `db.client.connections.idle.min`         | UpDownCounter                                | connections  | `{connection}`                           | The minimum number of idle open connections allowed.                                              |
-| `db.client.connections.max`              | UpDownCounter                                | connections  | `{connection}`                           | The maximum number of open connections allowed.                                                   |
-| `db.client.connections.pending_requests` | UpDownCounter                                | requests     | `{request}`                              | The number of pending requests for an open connection, cumulative for the entire pool.            |
-| `db.client.connections.timeouts`         | Counter                                      | timeouts     | `{timeout}`                              | The number of connection timeouts that have occurred trying to obtain a connection from the pool. |
-| `db.client.connections.create_time`      | Histogram                                    | milliseconds | `ms`                                      | The time it took to create a new connection.                                                      |
-| `db.client.connections.wait_time`        | Histogram                                    | milliseconds | `ms`                                      | The time it took to obtain an open connection from the pool.                                      |
-| `db.client.connections.use_time`         | Histogram                                    | milliseconds | `ms`                                      | The time between borrowing a connection and returning it to the pool.                             |
+This metric is [recommended][MetricRecommended].
 
-Below is a table of the attributes that MUST be included on all connection pool measurements:
+<!-- semconv metric.db.client.connections.idle.max(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `db.client.connections.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed |
+<!-- endsemconv -->
 
-| Name        | Type   | Description                                                                  | Examples       | Requirement Level |
-|-------------|--------|------------------------------------------------------------------------------|----------------|-------------------|
-| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used. | `myDataSource` | Required          |
+<!-- semconv metric.db.client.connections.idle.max(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
+<!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+### Metric: `db.client.connections.idle.min`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.db.client.connections.idle.min(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `db.client.connections.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed |
+<!-- endsemconv -->
+
+<!-- semconv metric.db.client.connections.idle.min(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
+<!-- endsemconv -->
+
+### Metric: `db.client.connections.max`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.db.client.connections.max(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `db.client.connections.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed |
+<!-- endsemconv -->
+
+<!-- semconv metric.db.client.connections.max(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
+<!-- endsemconv -->
+
+### Metric: `db.client.connections.pending_requests`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.db.client.connections.pending_requests(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `db.client.connections.pending_requests` | UpDownCounter | `{request}` | The number of pending requests for an open connection, cumulative for the entire pool |
+<!-- endsemconv -->
+
+<!-- semconv metric.db.client.connections.pending_requests(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
+<!-- endsemconv -->
+
+### Metric: `db.client.connections.timeouts`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.db.client.connections.timeouts(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `db.client.connections.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool |
+<!-- endsemconv -->
+
+<!-- semconv metric.db.client.connections.timeouts(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
+<!-- endsemconv -->
+
+### Metric: `db.client.connections.create_time`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.db.client.connections.create_time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `db.client.connections.create_time` | Histogram | `ms` | The time it took to create a new connection |
+<!-- endsemconv -->
+
+<!-- semconv metric.db.client.connections.create_time(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
+<!-- endsemconv -->
+
+### Metric: `db.client.connections.wait_time`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.db.client.connections.wait_time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `db.client.connections.wait_time` | Histogram | `ms` | The time it took to obtain an open connection from the pool |
+<!-- endsemconv -->
+
+<!-- semconv metric.db.client.connections.wait_time(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
+<!-- endsemconv -->
+
+### Metric: `db.client.connections.use_time`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.db.client.connections.use_time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `db.client.connections.use_time` | Histogram | `ms` | The time between borrowing a connection and returning it to the pool |
+<!-- endsemconv -->
+
+<!-- semconv metric.db.client.connections.use_time(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
+<!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#required
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#recommended

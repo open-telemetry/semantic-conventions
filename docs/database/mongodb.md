@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: MongoDB
+--->
+
 # Semantic Conventions for MongoDB
 
 **Status**: [Experimental][DocumentStatus]
@@ -33,4 +37,4 @@ described on this page.
 | `db.operation`          | `"findAndModify"` |
 | `db.mongodb.collection` | `"products"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
