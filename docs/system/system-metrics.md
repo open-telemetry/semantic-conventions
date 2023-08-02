@@ -18,6 +18,8 @@ instruments not explicitly defined in the specification.
 - [Processor Metrics](#processor-metrics)
   * [Metric: `system.cpu.time`](#metric-systemcputime)
   * [Metric: `system.cpu.utilization`](#metric-systemcpuutilization)
+  * [Metric: `system.cpu.physical.count`](#metric-systemcpuphysicalcount)
+  * [Metric: `system.cpu.logical.count`](#metric-systemcpulogicalcount)
 - [Memory Metrics](#memory-metrics)
   * [Metric: `system.memory.usage`](#metric-systemmemoryusage)
   * [Metric: `system.memory.utilization`](#metric-systemmemoryutilization)
@@ -50,7 +52,7 @@ instruments not explicitly defined in the specification.
 
 ## Processor Metrics
 
-**Description:** System level processor metrics captured under `system.cpu`.
+**Description:** System level processor metrics captured under the namespace `system.cpu`.
 
 ### Metric: `system.cpu.time`
 
@@ -59,13 +61,13 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.cpu.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.cpu.time` | Counter | `s` |  |
+| `system.cpu.time` | Counter | `s` | Seconds each logical CPU spent on each mode |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.cpu.time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `system.cpu.cpu` | int | The CPU number [0..n-1] | `1` | Recommended |
+| `system.cpu.cpu` | int | The logical CPU number [0..n-1] | `1` | Recommended |
 | `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
@@ -85,13 +87,13 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.cpu.utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.cpu.utilization` | Gauge | `1` | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of CPUs |
+| `system.cpu.utilization` | Gauge | `1` | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.cpu.utilization(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `system.cpu.cpu` | int | The CPU number [0..n-1] | `1` | Recommended |
+| `system.cpu.cpu` | int | The logical CPU number [0..n-1] | `1` | Recommended |
 | `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
@@ -104,9 +106,35 @@ This metric is [recommended][MetricRecommended].
 | `interrupt` | interrupt |
 <!-- endsemconv -->
 
+### Metric: `system.cpu.physical.count`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.cpu.physical.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.cpu.physical.count(full) -->
+<!-- endsemconv -->
+
+### Metric: `system.cpu.logical.count`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.cpu.logical.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.cpu.logical.count(full) -->
+<!-- endsemconv -->
+
 ## Memory Metrics
 
-**Description:** System level memory metrics capture under `system.memory`.
+**Description:** System level memory metrics capture under the namespace `system.memory`.
 This does not include [paging/swap memory](#pagingswap-metrics).
 
 ### Metric: `system.memory.usage`
@@ -159,7 +187,7 @@ This metric is [recommended][MetricRecommended].
 
 ## Paging/Swap Metrics
 
-**Description:** System level paging/swap memory metrics captured under `system.paging`.
+**Description:** System level paging/swap memory metrics captured under the namespace `system.paging`.
 
 ### Metric: `system.paging.usage`
 
@@ -263,7 +291,7 @@ This metric is [recommended][MetricRecommended].
 
 ## Disk Controller Metrics
 
-**Description:** System level disk performance metrics captured under `system.disk`.
+**Description:** System level disk performance metrics captured under the namespace `system.disk`.
 
 ### Metric: `system.disk.io`
 
@@ -326,8 +354,8 @@ This metric is [recommended][MetricRecommended].
 
 - Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
 - Windows: The complement of
-  ["Disk\% IdleTime"](https://docs.microsoft.com/en-us/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
-  %20to%200%20(meaning%20always%20busy).) performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
+  ["Disk\% Idle Time"](https://learn.microsoft.com/en-us/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
+  performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
 <!-- endsemconv -->
 
 <!-- semconv metric.system.disk.io_time(full) -->
@@ -391,7 +419,7 @@ This metric is [recommended][MetricRecommended].
 
 ## Filesystem Metrics
 
-**Description:** System level filesystem metrics captured under `system.filesystem`.
+**Description:** System level filesystem metrics captured under the namespace `system.filesystem`.
 
 ### Metric: `system.filesystem.usage`
 
@@ -473,7 +501,7 @@ This metric is [recommended][MetricRecommended].
 
 ## Network Metrics
 
-**Description:** System level network metrics captured under `system.network`.
+**Description:** System level network metrics captured under the namespace `system.network`.
 
 ### Metric: `system.network.dropped`
 
@@ -512,7 +540,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.packets(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.network.packets` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error |
+| `system.network.packets` | Counter | `{packet}` |  |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.packets(full) -->
@@ -596,9 +624,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/general-attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.state` | string |  | `close_wait` | Recommended |
+| `system.network.state` | string | A stateless protocol MUST NOT set this attribute | `close_wait` | Recommended |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -628,7 +656,7 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 ## Aggregate System Process Metrics
 
-**Description:** System level aggregate process metrics captured under `system.processes`.
+**Description:** System level aggregate process metrics captured under the namespace `system.processes`.
 For metrics at the individual process level, see [process metrics](process-metrics.md).
 
 ### Metric: `system.processes.count`
@@ -644,9 +672,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.processes.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `status` | string | [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running, sleeping` | Recommended |
+| `system.processes.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | Recommended |
 
-`status` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|

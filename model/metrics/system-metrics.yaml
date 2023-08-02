@@ -32,13 +32,13 @@ groups:
         examples: ["idle", "interrupt"]
       - id: cpu
         type: int
-        brief: "The CPU number [0..n-1]"
+        brief: "The logical CPU number [0..n-1]"
         examples: [1]
 
   - id: metric.system.cpu.time
     type: metric
     metric_name: system.cpu.time
-    brief: ""
+    brief: "Seconds each logical CPU spent on each mode"
     instrument: counter
     unit: "s"
     attributes:
@@ -48,12 +48,28 @@ groups:
   - id: metric.system.cpu.utilization
     type: metric
     metric_name: system.cpu.utilization
-    brief: "Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of CPUs"
+    brief: "Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs"
     instrument: gauge
     unit: "1"
     attributes:
       - ref: system.cpu.state
       - ref: system.cpu.cpu
+
+  - id: metric.system.cpu.physical.count
+    type: metric
+    metric_name: system.cpu.physical.count
+    brief: "Reports the number of actual physical processor cores on the hardware"
+    instrument: updowncounter
+    unit: "{cpu}"
+    attributes: []
+
+  - id: metric.system.cpu.logical.count
+    type: metric
+    metric_name: system.cpu.logical.count
+    brief: "Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking"
+    instrument: updowncounter
+    unit: "{cpu}"
+    attributes: []
 
   # sytem.memory.* metrics and attribute group
   - id: attributes.system.memory
@@ -213,8 +229,8 @@ groups:
 
        - Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
        - Windows: The complement of
-         ["Disk\% IdleTime"](https://docs.microsoft.com/en-us/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
-         %20to%200%20(meaning%20always%20busy).) performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
+         ["Disk\% Idle Time"](https://learn.microsoft.com/en-us/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
+         performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
     attributes:
       - ref: system.device
 
@@ -358,7 +374,7 @@ groups:
               value: 'syn_sent'
             - id: time_wait
               value: 'time_wait'
-        brief: ""
+        brief: "A stateless protocol MUST NOT set this attribute"
         examples: ["close_wait"]
 
   - id: metric.system.network.dropped
@@ -380,7 +396,7 @@ groups:
   - id: metric.system.network.packets
     type: metric
     metric_name: system.network.packets
-    brief: "Count of packets that are dropped or discarded even though there was no error"
+    brief: ""
     instrument: counter
     unit: "{packet}"
     attributes:
@@ -424,13 +440,11 @@ groups:
       - ref: system.network.state
       - ref: network.transport
 
-  # system.processes.* metrics and attribute group
-  - id: metric.system.processes.count
-    type: metric
-    metric_name: system.processes.count
-    brief: "Total number of processes in each state"
-    instrument: updowncounter
-    unit: "{process}"
+    # system.processes.* metrics and attribute group
+  - id: attributes.system.processes
+    prefix: system.processes
+    type: attribute_group
+    brief: "Describes System Processes metric attributes"
     attributes:
       - id: status
         type:
@@ -445,8 +459,18 @@ groups:
             - id: defunct
               value: 'defunct'
         brief: >
-          [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
-        examples: ["running, sleeping"]
+          The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+        examples: ["running"]
+
+
+  - id: metric.system.processes.count
+    type: metric
+    metric_name: system.processes.count
+    brief: "Total number of processes in each state"
+    instrument: updowncounter
+    unit: "{process}"
+    attributes:
+      - ref: system.processes.status
 
   - id: metric.system.processes.created
     type: metric
