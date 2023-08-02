@@ -8,21 +8,35 @@ versions:
         - rename_metrics:
             http.client.duration: http.client.request.duration
             http.server.duration: http.server.request.duration
-        # https://github.com/open-telemetry/opentelemetry-specification/pull/3464
+        # https://github.com/open-telemetry/semantic-conventions/pull/20
         - rename_attributes:
             attribute_map:
               type: jvm.memory.type
               pool: jvm.memory.pool.name
+            apply_to_metrics:
+              - process.runtime.jvm.memory.usage
+              - process.runtime.jvm.memory.committed
+              - process.runtime.jvm.memory.limit
+              - process.runtime.jvm.memory.usage_after_last_gc
+              - process.runtime.jvm.memory.init
         - rename_attributes:
             attribute_map:
               name: jvm.gc.name
               action: jvm.gc.action
+            apply_to_metrics:
+              - process.runtime.jvm.gc.duration
         - rename_attributes:
             attribute_map:
               daemon: thread.daemon
+            apply_to_metrics:
+              - process.runtime.jvm.threads.count
         - rename_attributes:
             attribute_map:
               pool: jvm.buffer.pool.name
+            apply_to_metrics:
+              - process.runtime.jvm.buffer.usage
+              - process.runtime.jvm.buffer.limit
+              - process.runtime.jvm.buffer.count
   1.21.0:
     spans:
       changes:
