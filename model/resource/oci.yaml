@@ -6,7 +6,7 @@ groups:
       An OCI instance.
     attributes:
       - id: manifest.digests
-        type: string
+        type: string[]
         brief: >
           The digest(s) of the OCI image manifest. For container images specifically it can be one or more
           digests by which the container image is known.
