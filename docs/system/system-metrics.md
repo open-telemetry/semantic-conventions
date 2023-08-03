@@ -74,10 +74,13 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description |
 |---|---|
-| `idle` | idle |
 | `user` | user |
 | `system` | system |
+| `nice` | nice |
+| `idle` | idle |
+| `iowait` | iowait |
 | `interrupt` | interrupt |
+| `steal` | steal |
 <!-- endsemconv -->
 
 ### Metric: `system.cpu.utilization`
@@ -100,10 +103,13 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description |
 |---|---|
-| `idle` | idle |
 | `user` | user |
 | `system` | system |
+| `nice` | nice |
+| `idle` | idle |
+| `iowait` | iowait |
 | `interrupt` | interrupt |
+| `steal` | steal |
 <!-- endsemconv -->
 
 ### Metric: `system.cpu.physical.count`

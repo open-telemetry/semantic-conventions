@@ -20,14 +20,20 @@ groups:
         type:
           allow_custom_values: true
           members:
-            - id: idle
-              value: 'idle'
             - id: user
               value: 'user'
             - id: system
               value: 'system'
+            - id: nice
+              value: 'nice'
+            - id: idle
+              value: 'idle'
+            - id: iowait
+              value: 'iowait'
             - id: interrupt
               value: 'interrupt'
+            - id: steal
+              value: 'steal'
         brief: "The state of the CPU"
         examples: ["idle", "interrupt"]
       - id: cpu
