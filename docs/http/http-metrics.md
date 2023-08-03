@@ -15,12 +15,12 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 <!-- toc -->
 
 - [HTTP Server](#http-server)
-  * [Metric: `http.server.duration`](#metric-httpserverduration)
+  * [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
   * [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
   * [Metric: `http.server.request.size`](#metric-httpserverrequestsize)
   * [Metric: `http.server.response.size`](#metric-httpserverresponsesize)
 - [HTTP Client](#http-client)
-  * [Metric: `http.client.duration`](#metric-httpclientduration)
+  * [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
   * [Metric: `http.client.request.size`](#metric-httpclientrequestsize)
   * [Metric: `http.client.response.size`](#metric-httpclientresponsesize)
 
@@ -53,7 +53,7 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 
 ## HTTP Server
 
-### Metric: `http.server.duration`
+### Metric: `http.server.request.duration`
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
@@ -65,13 +65,13 @@ This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/api.md#instrument-advice)
 of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.http.server.duration(metric_table) -->
+<!-- semconv metric.http.server.request.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.server.duration` | Histogram | `s` | Measures the duration of inbound HTTP requests. |
+| `http.server.request.duration` | Histogram | `s` | Measures the duration of inbound HTTP requests. |
 <!-- endsemconv -->
 
-<!-- semconv metric.http.server.duration(full) -->
+<!-- semconv metric.http.server.request.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
@@ -364,7 +364,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 ## HTTP Client
 
-### Metric: `http.client.duration`
+### Metric: `http.client.request.duration`
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
@@ -376,13 +376,13 @@ This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/api.md#instrument-advice)
 of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.http.client.duration(metric_table) -->
+<!-- semconv metric.http.client.request.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.client.duration` | Histogram | `s` | Measures the duration of outbound HTTP requests. |
+| `http.client.request.duration` | Histogram | `s` | Measures the duration of outbound HTTP requests. |
 <!-- endsemconv -->
 
-<!-- semconv metric.http.client.duration(full) -->
+<!-- semconv metric.http.client.request.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.request.method` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |

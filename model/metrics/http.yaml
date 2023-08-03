@@ -48,9 +48,9 @@ groups:
       - ref: network.protocol.version
       - ref: server.socket.address
 
-  - id: metric.http.server.duration
+  - id: metric.http.server.request.duration
     type: metric
-    metric_name: http.server.duration
+    metric_name: http.server.request.duration
     brief: "Measures the duration of inbound HTTP requests."
     instrument: histogram
     unit: "s"
@@ -110,9 +110,9 @@ groups:
     unit: "By"
     extends: metric_attributes.http.server
 
-  - id: metric.http.client.duration
+  - id: metric.http.client.request.duration
     type: metric
-    metric_name: http.client.duration
+    metric_name: http.client.request.duration
     brief: "Measures the duration of outbound HTTP requests."
     instrument: histogram
     unit: "s"
