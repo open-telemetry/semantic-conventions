@@ -2,14 +2,11 @@ groups:
   - id: metric.faas.invoke_duration
     type: metric
     metric_name: faas.invoke_duration
-    brief: "Measures the duration of the invocation"
+    brief: "Measures the duration of the function's logic execution"
     instrument: histogram
     unit: "ms"
     attributes:
       - ref: faas.trigger
-      - ref: faas.invoked_name
-      - ref: faas.invoked_provider
-      - ref: faas.invoked_region
 
   - id: metric.faas.init_duration
     type: metric
@@ -19,9 +16,6 @@ groups:
     unit: "ms"
     attributes:
       - ref: faas.trigger
-      - ref: faas.invoked_name
-      - ref: faas.invoked_provider
-      - ref: faas.invoked_region
 
   - id: metric.faas.coldstarts
     type: metric
@@ -31,9 +25,6 @@ groups:
     unit: "{coldstart}"
     attributes:
       - ref: faas.trigger
-      - ref: faas.invoked_name
-      - ref: faas.invoked_provider
-      - ref: faas.invoked_region
 
   - id: metric.faas.errors
     type: metric
@@ -43,9 +34,6 @@ groups:
     unit: "{error}"
     attributes:
       - ref: faas.trigger
-      - ref: faas.invoked_name
-      - ref: faas.invoked_provider
-      - ref: faas.invoked_region
 
   - id: metric.faas.invocations
     type: metric
@@ -55,9 +43,6 @@ groups:
     unit: "{invocation}"
     attributes:
       - ref: faas.trigger
-      - ref: faas.invoked_name
-      - ref: faas.invoked_provider
-      - ref: faas.invoked_region
 
   - id: metric.faas.timeouts
     type: metric
@@ -67,9 +52,6 @@ groups:
     unit: "{timeout}"
     attributes:
       - ref: faas.trigger
-      - ref: faas.invoked_name
-      - ref: faas.invoked_provider
-      - ref: faas.invoked_region
 
   - id: metric.faas.mem_usage
     type: metric
@@ -79,9 +61,6 @@ groups:
     unit: "By"
     attributes:
       - ref: faas.trigger
-      - ref: faas.invoked_name
-      - ref: faas.invoked_provider
-      - ref: faas.invoked_region
 
   - id: metric.faas.cpu_usage
     type: metric
@@ -91,9 +70,6 @@ groups:
     unit: "ms"
     attributes:
       - ref: faas.trigger
-      - ref: faas.invoked_name
-      - ref: faas.invoked_provider
-      - ref: faas.invoked_region
 
   - id: metric.faas.net_io
     type: metric
@@ -103,6 +79,3 @@ groups:
     unit: "By"
     attributes:
       - ref: faas.trigger
-      - ref: faas.invoked_name
-      - ref: faas.invoked_provider
-      - ref: faas.invoked_region
