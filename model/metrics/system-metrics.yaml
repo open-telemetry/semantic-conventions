@@ -87,10 +87,16 @@ groups:
         type:
           allow_custom_values: true
           members:
+            - id: total
+              value: 'total'
             - id: used
               value: 'used'
             - id: free
               value: 'free'
+            - id: shared
+              value: 'shared'
+            - id: buffers
+              value: 'buffers'
             - id: cached
               value: 'cached'
         brief: "The memory state"

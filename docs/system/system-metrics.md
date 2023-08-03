@@ -162,8 +162,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description |
 |---|---|
+| `total` | total |
 | `used` | used |
 | `free` | free |
+| `shared` | shared |
+| `buffers` | buffers |
 | `cached` | cached |
 <!-- endsemconv -->
 
@@ -186,8 +189,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description |
 |---|---|
+| `total` | total |
 | `used` | used |
 | `free` | free |
+| `shared` | shared |
+| `buffers` | buffers |
 | `cached` | cached |
 <!-- endsemconv -->
 
