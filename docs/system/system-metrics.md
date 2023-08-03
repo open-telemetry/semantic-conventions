@@ -67,7 +67,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.cpu.time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `system.cpu.cpu` | int | The logical CPU number [0..n-1] | `1` | Recommended |
+| `system.cpu.logical` | int | The logical CPU number [0..n-1] | `1` | Recommended |
 | `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
@@ -96,7 +96,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.cpu.utilization(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `system.cpu.cpu` | int | The logical CPU number [0..n-1] | `1` | Recommended |
+| `system.cpu.logical` | int | The logical CPU number [0..n-1] | `1` | Recommended |
 | `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
