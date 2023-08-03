@@ -27,7 +27,7 @@ groups:
         brief: >
           Name of the image the container was built on.
         examples: ['gcr.io/opentelemetry/operator']
-      - id: image.tag
+      - id: image.tags
         type: string[]
         brief: >
           Container image tags. An example can be found in
