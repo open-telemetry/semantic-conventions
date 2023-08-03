@@ -16,7 +16,7 @@ groups:
           [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
           An example can be found in
           [Example Image Manifest](https://docs.docker.com/registry/spec/manifest-v2-2/#example-image-manifest).
-          [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageCreate) and 
-          [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) 
+          [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageCreate) and
+          [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238)
           reports those under the `RepoDigests` field.
         examples: [ 'sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4', 'sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b' ]
