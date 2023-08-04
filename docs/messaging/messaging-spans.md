@@ -302,7 +302,7 @@ These attributes should be set to the broker to which the message is sent/from w
 - `messaging.message`: Contains attributes that describe individual messages
    messages are published to and received from.
    See [Destinations](#destinations) for more details
-- `messaging.payload`: Contains attributes that describe payloads, which can denote single message or batches of messages, always including metadata.
+- `messaging.payload`: Contains attributes that describe payloads, which can represent a single message or a batch of messages.
 
 Communication with broker is described with general [network attributes].
 
