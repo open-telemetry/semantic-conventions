@@ -107,12 +107,6 @@ groups:
         brief: >
           Stepping or core revisions.
         examples: [ 1 ]
-      - id: frequency
-        requirement_level: opt_in
-        type: double
-        brief: >
-          Clock frequency in MHz.
-        examples: [ 3000.000 ]
       - id: cache_size
         requirement_level: opt_in
         type: int

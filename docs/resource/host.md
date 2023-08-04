@@ -41,7 +41,6 @@
 | `host.cpu.model` | int | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6` | Opt-In |
 | `host.cpu.model_name` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | Opt-In |
 | `host.cpu.stepping` | int | Stepping or core revisions. | `1` | Opt-In |
-| `host.cpu.frequency` | double | Clock frequency in MHz. | `3000.0` | Opt-In |
 | `host.cpu.cache_size` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | Opt-In |
 <!-- endsemconv -->
 
