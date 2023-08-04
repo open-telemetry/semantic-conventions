@@ -1,0 +1,115 @@
+groups:
+  # TODO: Should we list the attributes on each metric
+  # OR leave a single table like it is today? Since all attributes are applied
+  # to all metrics, the repetition of them bloats the page
+  - id: attributes.metrics.rpc
+    type: attribute_group
+    brief: "Describes RPC metric attributes."
+    attributes:
+      - ref: rpc.system
+      - ref: rpc.service
+      - ref: rpc.method
+      - ref: network.transport
+      - ref: network.type
+      - ref: server.address
+      - ref: server.port
+      - ref: server.socket.address
+      - ref: server.socket.port
+
+  # RPC Server metrics
+  - id: metric.rpc.server.duration
+    type: metric
+    metric_name: rpc.server.duration
+    brief: >
+      Measures the duration of inbound RPC.
+      **Streaming**: N/A.
+    instrument: histogram
+    unit: "ms"
+    note: |
+      While streaming RPCs may record this metric as start-of-batch
+      to end-of-batch, it's hard to interpret in practice.
+
+  - id: metric.rpc.server.request.size
+    type: metric
+    metric_name: rpc.server.request.size
+    brief: >
+      Measures the size of RPC request messages (uncompressed).
+      **Streaming**: Recorded per message in a streaming batch
+    instrument: histogram
+    unit: "By"
+
+  - id: metric.rpc.server.response.size
+    type: metric
+    metric_name: rpc.server.response.size
+    brief: >
+      Measures the size of RPC response messages (uncompressed).
+      **Streaming**: Recorded per response in a streaming batch
+    instrument: histogram
+    unit: "By"
+
+  - id: metric.rpc.server.requests_per_rpc
+    type: metric
+    metric_name: rpc.server.requests_per_rpc
+    brief: >
+      Measures the number of messages received per RPC. Should be 1 for all non-streaming RPCs.
+      **Streaming**: This metric is required for server and client streaming RPCs
+    instrument: histogram
+    unit: "{count}"
+
+  - id: metric.rpc.server.responses_per_rpc
+    type: metric
+    metric_name: rpc.server.responses_per_rpc
+    brief: >
+      Measures the number of messages sent per RPC. Should be 1 for all non-streaming RPCs.
+      **Streaming**: This metric is required for server and client streaming RPCs
+    instrument: histogram
+    unit: "{count}"
+
+  # RPC Client metrics
+  - id: metric.rpc.client.duration
+    type: metric
+    metric_name: rpc.client.duration
+    brief: >
+      Measures the duration of outbound RPC
+      **Streaming**: N/A.
+    instrument: histogram
+    unit: "ms"
+    note: |
+      While streaming RPCs may record this metric as start-of-batch
+      to end-of-batch, it's hard to interpret in practice.
+
+  - id: metric.rpc.client.request.size
+    type: metric
+    metric_name: rpc.client.request.size
+    brief: >
+      Measures the size of RPC request messages (uncompressed).
+      **Streaming**: Recorded per message in a streaming batch
+    instrument: histogram
+    unit: "By"
+
+  - id: metric.rpc.client.response.size
+    type: metric
+    metric_name: rpc.client.response.size
+    brief: >
+      Measures the size of RPC response messages (uncompressed).
+      **Streaming**: Recorded per response in a streaming batch
+    instrument: histogram
+    unit: "By"
+
+  - id: metric.rpc.client.requests_per_rpc
+    type: metric
+    metric_name: rpc.client.requests_per_rpc
+    brief: >
+      Measures the number of messages received per RPC. Should be 1 for all non-streaming RPCs.
+      **Streaming**: This metric is required for server and client streaming RPCs
+    instrument: histogram
+    unit: "{count}"
+
+  - id: metric.rpc.client.responses_per_rpc
+    type: metric
+    metric_name: rpc.client.responses_per_rpc
+    brief: >
+      Measures the number of messages sent per RPC. Should be 1 for all non-streaming RPCs.
+      **Streaming**: This metric is required for server and client streaming RPCs
+    instrument: histogram
+    unit: "{count}"
