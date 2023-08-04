@@ -47,9 +47,9 @@ groups:
           K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io
           /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
 
-          The ID of the same image running in different environments don't not always match.
-          The `oci.manifest.digests` attribute, however, is the same for a given image
-          in all container runtimes that follow OCI specification.
+          The ID is assinged by the container runtime and can vary in different environments.
+          Consider using `oci.manifest.digests` if it is important to identify the same
+          image in different environments/runtimes.
         examples: ['sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f']
       - id: command
         type: string
