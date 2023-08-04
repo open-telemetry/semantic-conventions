@@ -76,7 +76,7 @@ groups:
     brief: >
       A host's CPU information
     attributes:
-      - id: vendor_id
+      - id: vendor.id
         requirement_level: opt_in
         type: string
         brief: >
@@ -88,14 +88,14 @@ groups:
         brief: >
           Numeric value specifying the family or generation of the CPU.
         examples: [ 6 ]
-      - id: model
+      - id: model.id
         requirement_level: opt_in
         type: int
         brief: >
           Model identifier. It provides more granular information about the CPU, distinguishing it from
           other CPUs within the same family.
         examples: [ 6 ]
-      - id: model_name
+      - id: model.name
         requirement_level: opt_in
         type: string
         brief: >
@@ -107,7 +107,7 @@ groups:
         brief: >
           Stepping or core revisions.
         examples: [ 1 ]
-      - id: cache_size
+      - id: cache.l2.size
         requirement_level: opt_in
         type: int
         brief: >
