@@ -66,8 +66,8 @@
 
 Although messaging systems are not as standardized as, e.g., HTTP, it is assumed that the following definitions are applicable to most of them that have similar concepts at all (names borrowed mostly from JMS):
 
-A *message* is an envelope with a potentially empty payload.
-This envelope may offer the possibility to convey additional metadata, often in key/value form.
+A *message* is an envelope with a potentially empty body.
+This envelope may offer the possibility to convey additional metadata, often in key/value form. A single message or a batch of message can be represented by a *payload*.
 
 A message is sent by a message *producer* to:
 
@@ -227,10 +227,9 @@ The following operations related to messages are defined for these semantic conv
 | `messaging.destination.temporary` | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [9] |
 | `messaging.message.conversation_id` | string | The [conversation ID](#conversations) identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [10] |
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [11] |
-| `messaging.message.payload_compressed_size_bytes` | int | The compressed size of the message payload in bytes. | `2048` | Recommended: [12] |
-| `messaging.message.payload_size_bytes` | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. | `2738` | Recommended: [13] |
+| `messaging.payload.size` | int | The size of the uncompressed message payload in bytes. | `2738` | Recommended |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [14] | `3.1.1` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [12] | `3.1.1` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [15] | `example.com` | Conditionally Required: If available. |
@@ -261,11 +260,11 @@ the broker does not have such notion, the destination name SHOULD uniquely ident
 
 **[11]:** Only for spans that represent an operation on a single message.
 
-**[12]:** Only if span represents operation on a single message.
+**[12]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[13]:** Only if span represents operation on a single message.
+**[13]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
-**[14]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[14]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
 
 **[15]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
@@ -299,6 +298,11 @@ These attributes should be set to the broker to which the message is sent/from w
 - `messaging.destination_publish`: Contains attributes that describe the logical entity messages were originally published to. See [Destinations](#destinations) for more details
 - `messaging.batch`: Contains attributes that describe batch operations
 - `messaging.consumer`: Contains attributes that describe application instance that consumes a message. See [consumer](#consumer) for more details
+- `messaging.destination`: Contains attributes that describe the logical entity
+- `messaging.message`: Contains attributes that describe individual messages
+   messages are published to and received from.
+   See [Destinations](#destinations) for more details
+- `messaging.payload`: Contains attributes that describe payloads, which can denote single message or batches of messages, always including metadata.
 
 Communication with broker is described with general [network attributes].
 
