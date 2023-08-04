@@ -163,16 +163,16 @@ This section defines how to apply semantic conventions when collecting Kafka met
 **Description:** Kafka Broker level metrics.
 
 | Name                                         | Instrument    | Value type | Unit  | Unit ([UCUM](/docs/general/metrics.md#instrument-units)) | Description                         | Attribute Key | Attribute Values |
-| -------------------------------------------- | ------------- | ---------- | -------------------- | --------------                            | ----------------------------------- | ------------- | ---------------- |
+| -------------------------------------------- | ------------- | ---------- | -------------------- | ----------------------------------------- | ----------------------------------- | ------------- | ---------------- |
 | messaging.kafka.broker.count                 | Counter       | Int64      | brokers              | `{broker}`                                | Number of brokers                   |  |  |
-| messaging.kafka.broker.consumer_fetch_count  | Gauge         | Double     | fetches per second   | `{fetch}/s`                               | Average consumer fetch Rate.        | `node` | The ID (integer) of the broker |
+| messaging.kafka.broker.consumer_fetch_count  | Counter       | Double     | fetches              | `{fetch}/s`                               | Count of consumer fetches           | `node` | The ID (integer) of the broker |
 | messaging.kafka.broker.incoming_byte_rate    | Gauge         | Double     | bytes                | `By`                                      | Bytes received by the broker.       | `node` | The ID (integer) of the broker |
 | messaging.kafka.broker.outgoing_byte_rate    | Gauge         | Double     | bytes                | `By`                                      | Bytes sent by the broker.           | `node` | The ID (integer) of the broker |
 | messaging.kafka.broker.requests_latency      | Gauge         | Double     | ms                   | `{ms}`                                    | Average Request latency in ms.      | `node` | The ID (integer) of the broker |
 | messaging.kafka.broker.requests_count        | Counter       | Double     | requests             | `{request}/s`                             | Number of requests in the broker    | `node` | The ID (integer) of the broker |
-| messaging.kafka.broker.requsts_size          | Gauge         | Double     | bytes                | `By`                                      | Average request size in bytes.      | `node` | The ID (integer) of the broker |
+| messaging.kafka.broker.requsts_size          | Histogram     | Double     | bytes                | `By`                                      | Measures the size of the request    | `node` | The ID (integer) of the broker |
 | messaging.kafka.broker.responses_count       | Counter       | Double     | responses            | `{response}/s`                            | Number of responses from the broker | `node` | The ID (integer) of the broker |
-| messaging.kafka.broker.response_size         | Gauge         | Double     | bytes                | `By`                                      | Average response size in bytes.     | `node` | The ID (integer) of the broker |
+| messaging.kafka.broker.response_size         | Histogram     | Double     | bytes                | `By`                                      | Measures the size of the response   | `node` | The ID (integer) of the broker |
 | messaging.kafka.broker.requests_in_flight    | Gauge         | Int64      | requests             | `{request}`                               | Requests in flight.                 | `node` | The ID (integer) of the broker |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
