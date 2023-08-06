@@ -68,7 +68,7 @@ groups:
         requirement_level:
           recommended: if not default (`http`).
       - ref: network.protocol.version
-        examples: ['1.0', '1.1', '2.0']
+        examples: ['1.0', '1.1', '2', '3']
 
   - id: attributes.http.client
     prefix: http
