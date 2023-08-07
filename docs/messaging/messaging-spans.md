@@ -105,6 +105,12 @@ A destination is usually uniquely identified by its name within
 the messaging system instance.
 Examples of a destination name would be an URL or a simple one-word identifier.
 
+In some use cases, messages are routed within one or multiple brokers. In such
+cases, the destination the message was originally published to is different
+from the destination it is being consumed from. When information about the
+destination where the message was originally published to is available, consumers
+can record them under the `destination_publish` namespace.
+
 Typical examples of destinations include Kafka topics, RabbitMQ queues and topics.
 
 ### Message consumption
@@ -281,9 +287,8 @@ These attributes should be set to the broker to which the message is sent/from w
 ### Attribute namespaces
 
 - `messaging.message`: Contains attributes that describe individual messages
-- `messaging.destination`: Contains attributes that describe the logical entity
-   messages are published to and received from.
-   See [Destinations](#destinations) for more details
+- `messaging.destination`: Contains attributes that describe the logical entity messages are published to. See [Destinations](#destinations) for more details
+- `messaging.destination_publish`: Contains attributes that describe the logical entity messages were originally published to. See [Destinations](#destinations) for more details
 - `messaging.batch`: Contains attributes that describe batch operations
 - `messaging.consumer`: Contains attributes that describe application instance that consumes a message. See [consumer](#consumer) for more details
 
@@ -297,6 +302,25 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 [Hangfire]: https://www.hangfire.io/
 
 ### Consumer attributes
+
+The following additional attributes describe message consumer operations.
+
+Since messages could be routed by brokers, the destination messages are published
+to may not match with the destination they are consumed from.
+
+If information about the original destination is available on the consumer,
+consumer instrumentations SHOULD populate the attributes
+under the namespace `messaging.destination_publish.*`
+
+<!-- semconv messaging.destination_publish -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `messaging.destination_publish.name` | string | The name of the original destination the message was published to [1] | `MyQueue`; `MyTopic` | Recommended |
+| `messaging.destination_publish.anonymous` | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name). |  | Recommended |
+
+**[1]:** The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
+the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
+<!-- endsemconv -->
 
 The *receive* span is used to track the time used for receiving the message(s), whereas the *process* span(s) track the time for processing the message(s).
 Note that one or multiple Spans with `messaging.operation` = `process` may often be the children of a Span with `messaging.operation` = `receive`.
