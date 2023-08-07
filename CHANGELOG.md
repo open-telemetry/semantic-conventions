@@ -15,6 +15,8 @@ release.
 - BREAKING: Rename `http.client.duration` and `http.server.duration` metrics to
   `http.client.request.duration` and `http.server.request.duration` respectively.
   ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
+- Update HTTP `network.protocol.version` examples to match HTTP RFCs.
+  ([#228](https://github.com/open-telemetry/semantic-conventions/pull/228))
 
 ## v1.21.0 (2023-07-13)
 
