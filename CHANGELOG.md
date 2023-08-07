@@ -17,6 +17,8 @@ release.
   ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
 - Update HTTP `network.protocol.version` examples to match HTTP RFCs.
   ([#228](https://github.com/open-telemetry/semantic-conventions/pull/228))
+- Remove unnecessary `http.request.method_original` attribute from HTTP metrics.
+  ([#231](https://github.com/open-telemetry/semantic-conventions/pull/231))
 
 ## v1.21.0 (2023-07-13)
 
