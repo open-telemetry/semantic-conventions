@@ -1,13 +1,26 @@
 groups:
-  - id: client-session-id
-    prefix: client
+  - id: session-id
+    prefix: session
     type: attribute_group
     brief: >
       This attribute can be applied to all signals generate. It may be omitted from metrics, due to the
       aggregated nature of metrics, and the high cardinality of this attribute.
     attributes:
-      - id: session_id
+      - id: id
         type: string
-        brief: "A GUID."
+        brief: "A GUID to identify the current session."
         examples: "00112233-4455-6677-8899-aabbccddeeff"
+        requirement_level: opt_in
+      - id: duration
+        type: double
+        brief: > 
+          The fractional-second duration of the associated session id.
+          This may be attached to a session event generated at session end.
+        examples: 29.5
+        requirement_level: opt_in
+      - id: start
+        type: int
+        brief: > 
+          The timestamp in Unix milliseconds the session started. This may be attached to an event generated at session start.
+        examples: 1665987217045
         requirement_level: opt_in
