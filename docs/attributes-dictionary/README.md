@@ -3,6 +3,7 @@ linkTitle: Attributes Dictionary
 --->
 
 # Attributes Dictionary
+
 All attributes defined in the semantic conventions are listed by namespace in this dictionary.
 Currently, the following namespaces exist:
 

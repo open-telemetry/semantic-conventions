@@ -2,6 +2,8 @@
 linkTitle: HTTP
 --->
 
+# HTTP
+
 <!-- semconv registry.http -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
