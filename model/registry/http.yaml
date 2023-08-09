@@ -96,4 +96,3 @@ groups:
           MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 
           SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
-
