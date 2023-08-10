@@ -10,7 +10,7 @@ groups:
         brief: "The device identifier"
         examples: ["(identifier)"]
 
-  # sytem.cpu.* metrics and attribute group
+  # system.cpu.* metrics and attribute group
   - id: attributes.system.cpu
     prefix: system.cpu
     type: attribute_group
