@@ -24,7 +24,7 @@ release.
   ([#88](https://github.com/open-telemetry/semantic-conventions/pull/88))
   The conventions cover metrics that are recorded by the FaaS itself and not by
   clients invoking them.
-- Rename all JVM metrics from `process.runtime.jvm.*` to `jvm.*`
+- BREAKING: Rename all JVM metrics from `process.runtime.jvm.*` to `jvm.*`
   ([#241](https://github.com/open-telemetry/semantic-conventions/pull/241))
 
 ## v1.21.0 (2023-07-13)
