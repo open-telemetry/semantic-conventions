@@ -17,6 +17,13 @@ release.
   ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
 - Update HTTP `network.protocol.version` examples to match HTTP RFCs.
   ([#228](https://github.com/open-telemetry/semantic-conventions/pull/228))
+- Re-introduce namespace and attributes to describe the original destination messages were
+  published to (`messaging.destination_publish.*`).
+  ([#156](https://github.com/open-telemetry/semantic-conventions/pull/156))
+- Generate FaaS metric semantic conventions from YAML.
+  ([#88](https://github.com/open-telemetry/semantic-conventions/pull/88))
+  The conventions cover metrics that are recorded by the FaaS itself and not by
+  clients invoking them.
 
 ## v1.21.0 (2023-07-13)
 
