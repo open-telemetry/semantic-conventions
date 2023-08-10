@@ -24,6 +24,33 @@ release.
   ([#88](https://github.com/open-telemetry/semantic-conventions/pull/88))
   The conventions cover metrics that are recorded by the FaaS itself and not by
   clients invoking them.
+- BREAKING: Generate System metrics semconv from YAML.
+  ([#89](https://github.com/open-telemetry/semantic-conventions/pull/89))  
+  - Rename attributes for `system.cpu.*` metrics:
+    - `state` to `system.cpu.state`
+    - `cpu` to `system.cpu.logical`
+  - Rename attributes for `system.memory.*` metrics:
+    - `state` to `system.memory.state`
+  - Rename attributes for `system.paging.*` metrics:
+    - `state` to `system.paging.state`
+    - `type` to `system.paging.type`
+    - `direction` to `system.paging.direction`
+  - Rename attributes for `system.disk.*` metrics:
+    - `device` to `system.device`
+    - `direction` to `system.disk.direction`
+  - Rename attributes for `system.filesystem.*` metrics:
+    - `device` to `system.device`
+    - `state` to `system.filesystem.state`
+    - `type` to `system.filesystem.type`
+    - `mode` to `system.filesystem.mode`
+    - `mountpoint` to `system.filesystem.mountpoint`
+  - Rename attributes for `system.network.*` metrics:
+    - `device` to `system.device`
+    - `direction` to `system.network.direction`
+    - `protocol` to `network.protocol`
+    - `state` to `system.network.state`
+  - Rename attributes for `system.processes.*` metrics:
+    - `status` to `system.processes.status`
 
 ## v1.21.0 (2023-07-13)
 
