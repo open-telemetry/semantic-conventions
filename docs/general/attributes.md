@@ -238,8 +238,8 @@ Destination fields capture details about the receiver of a network exchange/pack
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `destination.domain` | string | The domain name of the destination system. [1] | `foo.example.com` | Recommended |
-| `destination.address` | string | Peer address, for example IP address or UNIX socket name. | `10.5.3.2` | Recommended |
-| `destination.port` | int | Peer port number | `3389`; `2888` | Recommended |
+| `destination.address` | string | Destination address, for example IP address or UNIX socket name. | `10.5.3.2` | Recommended |
+| `destination.port` | int | Destination port number | `3389`; `2888` | Recommended |
 
 **[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
 <!-- endsemconv -->
