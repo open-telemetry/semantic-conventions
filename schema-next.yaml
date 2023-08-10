@@ -8,6 +8,25 @@ versions:
         - rename_metrics:
             http.client.duration: http.client.request.duration
             http.server.duration: http.server.request.duration
+        # https://github.com/open-telemetry/semantic-conventions/pull/241
+        - rename_metrics:
+            process.runtime.jvm.memory.usage: jvm.memory.usage
+            process.runtime.jvm.memory.committed: jvm.memory.committed
+            process.runtime.jvm.memory.limit: jvm.memory.limit
+            process.runtime.jvm.memory.usage_after_last_gc: jvm.memory.usage_after_last_gc
+            process.runtime.jvm.gc.duration: jvm.gc.duration
+            process.runtime.jvm.threads.count: jvm.threads.count
+            process.runtime.jvm.classes.loaded: jvm.classes.loaded
+            process.runtime.jvm.classes.unloaded: jvm.classes.unloaded
+            process.runtime.jvm.classes.current_loaded: jvm.classes.current_loaded
+            process.runtime.jvm.cpu.time: jvm.cpu.time
+            process.runtime.jvm.cpu.recent_utilization: jvm.cpu.recent_utilization
+            process.runtime.jvm.memory.init: jvm.memory.init
+            process.runtime.jvm.system.cpu.utilization: jvm.system.cpu.utilization
+            process.runtime.jvm.system.cpu.load_1m: jvm.system.cpu.load_1m
+            process.runtime.jvm.buffer.usage: jvm.buffer.usage
+            process.runtime.jvm.buffer.limit: jvm.buffer.limit
+            process.runtime.jvm.buffer.count: jvm.buffer.count
   1.21.0:
     spans:
       changes:
