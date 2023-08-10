@@ -36,7 +36,7 @@ groups:
         brief: Server address of the socket connection - IP address or Unix domain socket name.
         note: >
           When observed from the client side, this SHOULD represent the immediate server peer address.
-          
+
           When observed from the server side, this SHOULD represent the physical server address.
         examples: ['10.5.3.2']
         requirement_level:
@@ -46,7 +46,7 @@ groups:
         brief: Server port number of the socket connection.
         note: >
           When observed from the client side, this SHOULD represent the immediate server peer port.
-          
+
           When observed from the server side, this SHOULD represent the physical server port.
         examples: [16456]
         requirement_level:
