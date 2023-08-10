@@ -75,7 +75,7 @@ consider, for example pthreads vs green thread implementations.
 
 ## JVM Metrics
 
-**Description:** Java Virtual Machine (JVM) metrics captured under `jvm.`
+**Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.`
 
 ### Metric: `jvm.memory.usage`
 
