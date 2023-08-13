@@ -265,9 +265,9 @@ This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--).
 
 <!-- semconv metric.jvm.classes.count(metric_table) -->
-| Name                         | Instrument Type | Unit (UCUM) | Description    |
-|------------------------------| --------------- | ----------- | -------------- |
-| `jvm.classes.count`         | UpDownCounter | `{class}` | Number of classes currently loaded. |
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `jvm.classes.count` | UpDownCounter | `{class}` | Number of classes currently loaded. |
 <!-- endsemconv -->
 
 <!-- semconv metric.jvm.classes.count(full) -->
