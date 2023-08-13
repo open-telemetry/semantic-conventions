@@ -273,19 +273,19 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 <!-- semconv metric.jvm.classes.current_loaded(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.available_processors`
+### Metric: `jvm.cpu.count`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`Runtime#availableProcessors()`](https://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#availableProcessors--).
 Note that this is always an integer value (i.e. fractional or millicores are not represented).
 
-<!-- semconv metric.jvm.available_processors(metric_table) -->
+<!-- semconv metric.jvm.cpu.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.available_processors` | UpDownCounter | `{processor}` | Number of processors available to the Java virtual machine. |
+| `jvm.cpu.count` | UpDownCounter | `{cpu}` | Number of processors available to the Java virtual machine. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.available_processors(full) -->
+<!-- semconv metric.jvm.cpu.count(full) -->
 <!-- endsemconv -->
 
 ### Metric: `jvm.cpu.time`

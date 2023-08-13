@@ -26,7 +26,7 @@ release.
   clients invoking them.
 - BREAKING: Rename all JVM metrics from `process.runtime.jvm.*` to `jvm.*`
   ([#241](https://github.com/open-telemetry/semantic-conventions/pull/241))
-- Add `jvm.available_processors` metric.
+- Add `jvm.cpu.count` metric.
   ([#52](https://github.com/open-telemetry/semantic-conventions/pull/52))
 
 ## v1.21.0 (2023-07-13)
