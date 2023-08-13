@@ -26,6 +26,9 @@ release.
   clients invoking them.
 - BREAKING: Rename all JVM metrics from `process.runtime.jvm.*` to `jvm.*`
   ([#241](https://github.com/open-telemetry/semantic-conventions/pull/241))
+- BREAKING: Rename `http.server.request.size` metric to `http.server.request.body.size`
+  and `http.server.response.size` metric to `http.server.response.body.size`
+  ([#247](https://github.com/open-telemetry/semantic-conventions/pull/247))
 
 ## v1.21.0 (2023-07-13)
 

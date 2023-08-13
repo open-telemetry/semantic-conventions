@@ -94,18 +94,24 @@ groups:
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
 
-  - id: metric.http.server.request.size
+  - id: metric.http.server.request.body.size
     type: metric
-    metric_name: http.server.request.size
-    brief: "Measures the size of HTTP request messages (compressed)."
+    metric_name: http.server.request.body.size
+    brief: >
+      The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     instrument: histogram
     unit: "By"
     extends: metric_attributes.http.server
 
-  - id: metric.http.server.response.size
+  - id: metric.http.server.response.body.size
     type: metric
-    metric_name: http.server.response.size
-    brief: "Measures the size of HTTP response messages (compressed)."
+    metric_name: http.server.response.body.size
+    brief: >
+      The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     instrument: histogram
     unit: "By"
     extends: metric_attributes.http.server
@@ -118,17 +124,17 @@ groups:
     unit: "s"
     extends: metric_attributes.http.client
 
-  - id: metric.http.client.request.size
+  - id: metric.http.client.request.body.size
     type: metric
-    metric_name: http.client.request.size
+    metric_name: http.client.request.body.size
     brief: "Measures the size of HTTP request messages (compressed)."
     instrument: histogram
     unit: "By"
     extends: metric_attributes.http.client
 
-  - id: metric.http.client.response.size
+  - id: metric.http.client.response.body.size
     type: metric
-    metric_name: http.client.response.size
+    metric_name: http.client.response.body.size
     brief: "Measures the size of HTTP response messages (compressed)."
     instrument: histogram
     unit: "By"

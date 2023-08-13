@@ -27,6 +27,10 @@ versions:
             process.runtime.jvm.buffer.usage: jvm.buffer.usage
             process.runtime.jvm.buffer.limit: jvm.buffer.limit
             process.runtime.jvm.buffer.count: jvm.buffer.count
+        # https://github.com/open-telemetry/semantic-conventions/pull/247
+        - rename_metrics:
+            http.server.request.size: http.server.request.body.size
+            http.server.response.size: http.server.response.body.size
   1.21.0:
     spans:
       changes:
