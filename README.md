@@ -9,20 +9,7 @@ This repository is currently using [this specification version][SpecificationVer
 
 ## Read the docs
 
-The documentation currently resides in the previous folders, e.g.
-
-- [Resource](specification/resource/semantic_conventions/README.md)
-- [Trace](specification/trace/semantic_conventions/README.md)
-- [Metrics](specification/metrics/semantic_conventions/README.md)
-- [Logs](specification/logs/semantic_conventions/README.md)
-
-## TODOs
-
-- [ ] Set up github actions
-- [ ] Set up SchemaURL publication
-- [ ] Set up codeowners
-- [ ] Contributing.MD document
-- [ ] Restructure markdown for easier consumption.
+The documentation currently resides in the [doc](docs/README.md) folder.
 
 ## Contributing
 
@@ -30,22 +17,23 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/open-telemetry/teams/specs-semconv-approvers)):
 
+- [Alexander Wert](https://github.com/AlexanderWert), Elastic
 - [Christian Neumüller](https://github.com/Oberon00), Dynatrace
 - [James Moessis](https://github.com/jamesmoessis), Atlassian
-- [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
-- [Johannes Tax](https://github.com/pyohannes), Microsoft
+- [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Liudmila Molkova](https://github.com/lmolkova), Microsoft
 - [Sean Marciniak](https://github.com/MovieStoreGuy), Atlassian
 - [Ted Young](https://github.com/tedsuo), Lightstep
 
-*Find more about the approver role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#approver).*
+_Find more about the approver role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#approver)._
 
 Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)):
 
-- [Josh Suereth](https://github.com/jsuereth)
-- [Armin Ruech](https://github.com/arminru)
-- [Reiley Yang](https://github.com/reyang)
+- [Armin Ruech](https://github.com/arminru), Dynatrace
+- [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
+- [Josh Suereth](https://github.com/jsuereth), Google
+- [Reiley Yang](https://github.com/reyang), Microsoft
 
-*Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer).*
+_Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer)._
 
-[SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0
+[SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0

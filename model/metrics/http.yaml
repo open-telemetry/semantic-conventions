@@ -1,0 +1,135 @@
+groups:
+  - id: metric_attributes.http.server
+    type: attribute_group
+    brief: 'HTTP server attributes'
+    extends: attributes.http.server
+    attributes:
+      - ref: server.address
+        brief: >
+          Name of the local HTTP server that received the request.
+        requirement_level: opt_in
+        note: |
+          Determined by using the first of the following that applies
+
+          - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
+            include host identifier.
+          - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
+            if it's sent in absolute-form.
+          - Host identifier of the `Host` header
+
+          SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
+
+      - ref: server.port
+        brief: >
+          Port of the local HTTP server that received the request.
+        requirement_level: opt_in
+        note: |
+          Determined by using the first of the following that applies
+
+          - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
+          - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
+            if it's sent in absolute-form.
+          - Port identifier of the `Host` header
+      # todo (lmolkova) build tools don't populate grandparent attributes
+      - ref: http.request.method
+      - ref: http.response.status_code
+      - ref: network.protocol.name
+      - ref: network.protocol.version
+
+  - id: metric_attributes.http.client
+    type: attribute_group
+    brief: 'HTTP client attributes'
+    extends: attributes.http.client
+    attributes:
+      # todo (lmolkova) build tools don't populate grandparent attributes
+      - ref: http.request.method
+      - ref: http.response.status_code
+      - ref: network.protocol.name
+      - ref: network.protocol.version
+      - ref: server.socket.address
+
+  - id: metric.http.server.request.duration
+    type: metric
+    metric_name: http.server.request.duration
+    brief: "Measures the duration of inbound HTTP requests."
+    instrument: histogram
+    unit: "s"
+    extends: metric_attributes.http.server
+
+  - id: metric.http.server.active_requests
+    type: metric
+    metric_name: http.server.active_requests
+    brief: "Measures the number of concurrent HTTP requests that are currently in-flight."
+    instrument: updowncounter
+    unit: "{request}"
+    attributes:
+      - ref: http.request.method
+      - ref: url.scheme
+        requirement_level: required
+        examples: ["http", "https"]
+      - ref: server.address
+        requirement_level: opt_in
+        brief: >
+          Name of the local HTTP server that received the request.
+        note: |
+          Determined by using the first of the following that applies
+
+          - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
+            include host identifier.
+          - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
+            if it's sent in absolute-form.
+          - Host identifier of the `Host` header
+
+          SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
+
+      - ref: server.port
+        requirement_level: opt_in
+        brief: >
+          Port of the local HTTP server that received the request.
+        note: |
+          Determined by using the first of the following that applies
+
+          - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
+          - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
+            if it's sent in absolute-form.
+          - Port identifier of the `Host` header
+
+  - id: metric.http.server.request.size
+    type: metric
+    metric_name: http.server.request.size
+    brief: "Measures the size of HTTP request messages (compressed)."
+    instrument: histogram
+    unit: "By"
+    extends: metric_attributes.http.server
+
+  - id: metric.http.server.response.size
+    type: metric
+    metric_name: http.server.response.size
+    brief: "Measures the size of HTTP response messages (compressed)."
+    instrument: histogram
+    unit: "By"
+    extends: metric_attributes.http.server
+
+  - id: metric.http.client.request.duration
+    type: metric
+    metric_name: http.client.request.duration
+    brief: "Measures the duration of outbound HTTP requests."
+    instrument: histogram
+    unit: "s"
+    extends: metric_attributes.http.client
+
+  - id: metric.http.client.request.size
+    type: metric
+    metric_name: http.client.request.size
+    brief: "Measures the size of HTTP request messages (compressed)."
+    instrument: histogram
+    unit: "By"
+    extends: metric_attributes.http.client
+
+  - id: metric.http.client.response.size
+    type: metric
+    metric_name: http.client.response.size
+    brief: "Measures the size of HTTP response messages (compressed)."
+    instrument: histogram
+    unit: "By"
+    extends: metric_attributes.http.client
