@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.process.runtime.jvm.memory
+  - id: attributes.jvm.memory
     type: attribute_group
     brief: "Describes JVM memory metric attributes."
     attributes:
@@ -25,41 +25,41 @@ groups:
           Pool names are generally obtained via
           [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-  - id: metric.process.runtime.jvm.memory.usage
+  - id: metric.jvm.memory.usage
     type: metric
-    metric_name: process.runtime.jvm.memory.usage
-    extends: attributes.process.runtime.jvm.memory
+    metric_name: jvm.memory.usage
+    extends: attributes.jvm.memory
     brief: "Measure of memory used."
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.process.runtime.jvm.memory.committed
+  - id: metric.jvm.memory.committed
     type: metric
-    metric_name: process.runtime.jvm.memory.committed
-    extends: attributes.process.runtime.jvm.memory
+    metric_name: jvm.memory.committed
+    extends: attributes.jvm.memory
     brief: "Measure of memory committed."
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.process.runtime.jvm.memory.limit
+  - id: metric.jvm.memory.limit
     type: metric
-    metric_name: process.runtime.jvm.memory.limit
-    extends: attributes.process.runtime.jvm.memory
+    metric_name: jvm.memory.limit
+    extends: attributes.jvm.memory
     brief: "Measure of max obtainable memory."
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.process.runtime.jvm.memory.usage_after_last_gc
+  - id: metric.jvm.memory.usage_after_last_gc
     type: metric
-    metric_name: process.runtime.jvm.memory.usage_after_last_gc
-    extends: attributes.process.runtime.jvm.memory
+    metric_name: jvm.memory.usage_after_last_gc
+    extends: attributes.jvm.memory
     brief: "Measure of memory used, as measured after the most recent garbage collection event on this pool."
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.process.runtime.jvm.gc.duration
+  - id: metric.jvm.gc.duration
     type: metric
-    metric_name: process.runtime.jvm.gc.duration
+    metric_name: jvm.gc.duration
     brief: "Duration of JVM garbage collection actions."
     instrument: histogram
     unit: "s"
@@ -81,9 +81,9 @@ groups:
           Garbage collector action is generally obtained via
           [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
-  - id: metric.process.runtime.jvm.threads.count
+  - id: metric.jvm.threads.count
     type: metric
-    metric_name: process.runtime.jvm.threads.count
+    metric_name: jvm.threads.count
     brief: "Number of executing platform threads."
     instrument: updowncounter
     unit: "{thread}"
@@ -93,37 +93,37 @@ groups:
         type: boolean
         requirement_level: recommended
 
-  - id: metric.process.runtime.jvm.classes.count
+  - id: metric.jvm.classes.loaded
     type: metric
-    metric_name: process.runtime.jvm.classes.count
-    brief: "Number of classes currently loaded."
-    instrument: updowncounter
-    unit: "{class}"
-
-  - id: metric.process.runtime.jvm.classes.loaded
-    type: metric
-    metric_name: process.runtime.jvm.classes.loaded
+    metric_name: jvm.classes.loaded
     brief: "Number of classes loaded since JVM start."
     instrument: counter
     unit: "{class}"
 
-  - id: metric.process.runtime.jvm.classes.unloaded
+  - id: metric.jvm.classes.unloaded
     type: metric
-    metric_name: process.runtime.jvm.classes.unloaded
+    metric_name: jvm.classes.unloaded
     brief: "Number of classes unloaded since JVM start."
     instrument: counter
     unit: "{class}"
 
-  - id: metric.process.runtime.jvm.cpu.time
+  - id: metric.jvm.classes.count
     type: metric
-    metric_name: process.runtime.jvm.cpu.time
+    metric_name: jvm.classes.count
+    brief: "Number of classes currently loaded."
+    instrument: updowncounter
+    unit: "{class}"
+
+  - id: metric.jvm.cpu.time
+    type: metric
+    metric_name: jvm.cpu.time
     brief: "CPU time used by the process as reported by the JVM."
     instrument: counter
     unit: "s"
 
-  - id: metric.process.runtime.jvm.cpu.recent_utilization
+  - id: metric.jvm.cpu.recent_utilization
     type: metric
-    metric_name: process.runtime.jvm.cpu.recent_utilization
+    metric_name: jvm.cpu.recent_utilization
     brief: "Recent CPU utilization for the process as reported by the JVM."
     note: >
       The value range is [0.0,1.0].

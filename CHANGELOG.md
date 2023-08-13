@@ -9,6 +9,23 @@ release.
 
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
+- Update `.count` metric naming convention so that it only applies to UpDownCounters,
+  and add that `.total` should not be used by either Counters or UpDownCounters
+  ([#107](https://github.com/open-telemetry/semantic-conventions/pull/107))
+- BREAKING: Rename `http.client.duration` and `http.server.duration` metrics to
+  `http.client.request.duration` and `http.server.request.duration` respectively.
+  ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
+- Update HTTP `network.protocol.version` examples to match HTTP RFCs.
+  ([#228](https://github.com/open-telemetry/semantic-conventions/pull/228))
+- Re-introduce namespace and attributes to describe the original destination messages were
+  published to (`messaging.destination_publish.*`).
+  ([#156](https://github.com/open-telemetry/semantic-conventions/pull/156))
+- Generate FaaS metric semantic conventions from YAML.
+  ([#88](https://github.com/open-telemetry/semantic-conventions/pull/88))
+  The conventions cover metrics that are recorded by the FaaS itself and not by
+  clients invoking them.
+- BREAKING: Rename all JVM metrics from `process.runtime.jvm.*` to `jvm.*`
+  ([#241](https://github.com/open-telemetry/semantic-conventions/pull/241))
 
 ## v1.21.0 (2023-07-13)
 
@@ -114,6 +131,8 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#133](https://github.com/open-telemetry/semantic-conventions/pull/133))
 - Add markdown file for url semantic conventions
   ([#174](https://github.com/open-telemetry/semantic-conventions/pull/174))
+- Add `system.cpu.physical.count` and `system.cpu.logical.count` metrics.
+  ([#99](https://github.com/open-telemetry/opentelemetry-specification/pull/99))
 
 ## v1.20.0 (2023-04-07)
 

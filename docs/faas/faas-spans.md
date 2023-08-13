@@ -38,24 +38,14 @@ Span `name` should be set to the function name being executed. Depending on the 
 
 If Spans following this convention are produced, a Resource of type `faas` MUST exist following the [Resource semantic convention](../resource/faas.md).
 
-<!-- semconv faas_span -->
+<!-- semconv faas_span(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. [1] | `datasource` | Recommended |
 | `faas.invocation_id` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | Recommended |
-| [`cloud.resource_id`](../resource/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/en-us/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
+| [`cloud.resource_id`](../resource/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/en-us/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. [2] | `datasource` | Recommended |
 
-**[1]:** For the server/consumer span on the incoming side,
-`faas.trigger` MUST be set.
-
-Clients invoking FaaS instances usually cannot set `faas.trigger`,
-since they would typically need to look in the payload to determine
-the event type. If clients set it, it should be the same as the
-trigger that corresponding incoming would have (i.e., this has
-nothing to do with the underlying transport used to make the API
-call to invoke the lambda, which is often HTTP).
-
-**[2]:** On some cloud providers, it may not be possible to determine the full ID at startup,
+**[1]:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 
 The exact value to use for `cloud.resource_id` depends on the cloud provider.
@@ -73,14 +63,24 @@ The following well-known definitions MUST be used if you set this attribute and 
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
 
+**[2]:** For the server/consumer span on the incoming side,
+`faas.trigger` MUST be set.
+
+Clients invoking FaaS instances usually cannot set `faas.trigger`,
+since they would typically need to look in the payload to determine
+the event type. If clients set it, it should be the same as the
+trigger that corresponding incoming would have (i.e., this has
+nothing to do with the underlying transport used to make the API
+call to invoke the lambda, which is often HTTP).
+
 `faas.trigger` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write. |
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
 | `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system. |
-| `timer` | A function is scheduled to be executed regularly. |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
 | `other` | If none of the others apply |
 <!-- endsemconv -->
 
@@ -158,7 +158,7 @@ The values reported by the client for the attributes listed below SHOULD be equa
 the corresponding [FaaS resource attributes][] and [Cloud resource attributes][],
 which the invoked FaaS instance reports about itself, if it's instrumented.
 
-<!-- semconv faas_span.out -->
+<!-- semconv faas_span.out(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `faas.invoked_name` | string | The name of the invoked function. [1] | `my-function` | Required |
