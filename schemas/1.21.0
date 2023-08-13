@@ -50,9 +50,6 @@ versions:
         # https://github.com/open-telemetry/semantic-conventions/pull/53
         - rename_metrics:
             process.runtime.jvm.cpu.utilization: process.runtime.jvm.cpu.recent_utilization
-        # https://github.com/open-telemetry/semantic-conventions/pull/60
-        - rename_metrics:
-            process.runtime.jvm.classes.current_loaded: process.runtime.jvm.classes.count
   1.20.0:
     spans:
       changes:
