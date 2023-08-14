@@ -79,7 +79,7 @@ groups:
         requirement_level: opt_in
         brief: Class of the monitor.
         examples: [ "java.lang.Object" ]
-      - id: state
+      - id: status
         type: string
         requirement_level: recommended
         brief: Action taken at monitor.
