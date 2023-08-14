@@ -81,9 +81,9 @@ groups:
           Garbage collector action is generally obtained via
           [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
-  - id: metric.jvm.threads.count
+  - id: metric.jvm.thread.count
     type: metric
-    metric_name: jvm.threads.count
+    metric_name: jvm.thread.count
     brief: "Number of executing platform threads."
     instrument: updowncounter
     unit: "{thread}"
@@ -93,23 +93,23 @@ groups:
         type: boolean
         requirement_level: recommended
 
-  - id: metric.jvm.classes.loaded
+  - id: metric.jvm.class.loaded
     type: metric
-    metric_name: jvm.classes.loaded
+    metric_name: jvm.class.loaded
     brief: "Number of classes loaded since JVM start."
     instrument: counter
     unit: "{class}"
 
-  - id: metric.jvm.classes.unloaded
+  - id: metric.jvm.class.unloaded
     type: metric
-    metric_name: jvm.classes.unloaded
+    metric_name: jvm.class.unloaded
     brief: "Number of classes unloaded since JVM start."
     instrument: counter
     unit: "{class}"
 
-  - id: metric.jvm.classes.current_loaded
+  - id: metric.jvm.class.current_loaded
     type: metric
-    metric_name: jvm.classes.current_loaded
+    metric_name: jvm.class.current_loaded
     brief: "Number of classes currently loaded."
     instrument: updowncounter
     unit: "{class}"

@@ -15,10 +15,14 @@ versions:
             process.runtime.jvm.memory.limit: jvm.memory.limit
             process.runtime.jvm.memory.usage_after_last_gc: jvm.memory.usage_after_last_gc
             process.runtime.jvm.gc.duration: jvm.gc.duration
-            process.runtime.jvm.threads.count: jvm.threads.count
-            process.runtime.jvm.classes.loaded: jvm.classes.loaded
-            process.runtime.jvm.classes.unloaded: jvm.classes.unloaded
-            process.runtime.jvm.classes.current_loaded: jvm.classes.current_loaded
+            # also https://github.com/open-telemetry/semantic-conventions/pull/252
+            process.runtime.jvm.threads.count: jvm.thread.count
+            # also https://github.com/open-telemetry/semantic-conventions/pull/252
+            process.runtime.jvm.classes.loaded: jvm.class.loaded
+            # also https://github.com/open-telemetry/semantic-conventions/pull/252
+            process.runtime.jvm.classes.unloaded: jvm.class.unloaded
+            # also https://github.com/open-telemetry/semantic-conventions/pull/252
+            process.runtime.jvm.classes.current_loaded: jvm.class.current_loaded
             process.runtime.jvm.cpu.time: jvm.cpu.time
             process.runtime.jvm.cpu.recent_utilization: jvm.cpu.recent_utilization
             process.runtime.jvm.memory.init: jvm.memory.init
