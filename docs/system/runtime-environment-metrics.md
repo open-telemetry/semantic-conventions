@@ -432,7 +432,6 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
 
-
 ### Metric: `process.runtime.jvm.cpu.monitor.duration`
 
 This metric is [recommended][MetricRecommended]. Only available with JDK 17+.
@@ -452,8 +451,8 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `state` | string | Action taken at monitor. | `blocked`; `wait` | Recommended |
-| [`code.namespace`](../../trace/semantic_conventions/span-general.md) | string | Class of the monitor. | `java.lang.Object` | Opt-In |
-| [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+| [`code.namespace`](../../model/trace/general.yaml) | string | Class of the monitor. | `java.lang.Object` | Opt-In |
+| [`thread.id`](../../model/trace/general.yaml) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.cpu.context_swtich`
@@ -485,8 +484,8 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.process.runtime.jvm.network.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.connection.direction`](../../trace/semantic_conventions/span-general.md) | string | Read or write. | `read`; `write` | Recommended |
-| [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+| [`network.connection.direction`](../../model/trace/general.yaml) | string | Read or write. | `read`; `write` | Recommended |
+| [`thread.id`](../../model/trace/general.yaml) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.network.duration`
@@ -507,8 +506,8 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.process.runtime.jvm.network.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.connection.direction`](../../trace/semantic_conventions/span-general.md) | string | Read or write. | `read`; `write` | Recommended |
-| [`thread.id`](../../trace/semantic_conventions/span-general.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+| [`network.connection.direction`](../../model/trace/general.yaml) | string | Read or write. | `read`; `write` | Recommended |
+| [`thread.id`](../../model/trace/general.yaml) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
