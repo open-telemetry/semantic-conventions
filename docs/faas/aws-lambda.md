@@ -15,7 +15,7 @@ use cases.
 
 - [All triggers](#all-triggers)
   * [Determining the remote parent span context](#determining-the-remote-parent-span-context)
-    + [Composite EventToCarrier](#composite-eventtocarrier)
+    + [EventToCarrier in auto-instrumentation](#eventtocarrier-in-auto-instrumentation)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
   * [SQS Event](#sqs-event)
@@ -57,29 +57,29 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 
 ### Determining the remote parent span context
 
-Lambda does not have HTTP headers to read from and instead stores the headers it was invoked with (including any propagated context, etc.) as part of the invocation event. If using AWS X-Ray tracing then the trace context is instead stored in the Lambda environment. It is also possible that both options are populated at the same time, with different values. Finally it is also possible to propagate tracing information in a SQS message using the system attribute of the message `AWSTraceHeader`. A single lambda function can be triggered from multiple sources, however spans can only have a single parent.
+Lambda does not have HTTP headers to read from and instead stores the headers it was invoked with (including any propagated context, etc.) as part of the invocation event. If using AWS X-Ray tracing then the trace context is instead stored in the Lambda environment. It is also possible that both options are populated at the same time, with different values. Finally it is also possible to propagate tracing information in a SQS message using the system attribute of the message `AWSTraceHeader`.
 
-To determine the parent span context, the lambda instrumentation SHOULD use a `EventToCarrier`. `EventToCarrier` defines how the instrumentation should prepare a `Carrier` to be used by subsequent `TextMapPropagators`.
+To determine the parent span context, the lambda instrumentation SHOULD use a `EventToCarrier`. `EventToCarrier` defines how the lambda instrumentation should prepare a `Carrier` to be used by subsequent `TextMapPropagators`.
 
-The `EventToCarrier` MUST implement the `Convert` operation to convert a lammbda `Event` into a `Carrier`.
+The `EventToCarrier` MUST implement the `Convert` operation to convert a lambda `Event` into a `Carrier`.
 
-The `Convert` operation MUST have the following parameters:
-  `Carrier` - the carrier that will be populated from the `Event`
+The `Convert` operation MUST return a `Carrier` and MUST have the following parameters:
   `Event` - the lambda event.
 
-#### Composite EventToCarrier
+The `EventToCarrier` used in the lambda instrumentation SHOULD be provided as a parameter during the initialization of this
+instrumentation. This parameter MAY be provided by users that provide a implementation for the `EventToCarrier`.
 
-Implementations MUST provide a facility to group multiple `EventToCarrier`s. A composite `EventToCarrier` can be built from a list of `EventToCarrier`s. The resulting composite `EventToCarrier` will invoke the `Convert` operation of each individual `EventToCarrier` in the order they were specified, sequentially updating the carrier.
+Lambda instrumentation MUST provide a default `EventToCarrier`, the `HttpEventToCarrier`, which populates the `Carrier` with the content of the http headers used to invoke the lambda function.
 
-The list of `EventToCarrier`s passed to the composite `EventToCarrier` MUST be configured using the `OTEL_AWS_LAMBDA_EVENT_TO_CARRIERS`, as a comma separated list of values.
+If no `EventToCarrier` is provided during the initialization of the lambda instrumentation, the `HttpEventToCarrier` MUST be used.
 
-Valid values to configure the composite `EventToCarrier` are:
+**NOTE**: When instrumenting a Java AWS Lambda with an `EventToCarrier` that extracts the event from the lambda environment, this `EventToCarrier` SHOULD first try to parse the `X-Amzn-Trace-Id` out of the system property `com.amazonaws.xray.traceHeader` before checking and attempting to parse the environment variable `_X_AMZN_TRACE_ID`.
 
-* `lambda_runtime` - populates the `Carrier` with a key `X-Amzn-Trace-Id` from the value of the `_X_AMZN_TRACE_ID` environment variable. (see note below)
-* `http_headers` = populates the `Carrier` with the content of the http headers.
-* `sqs` - populate the carrier with the content of the `AWSTraceHeader` system attribute of the message.
+#### EventToCarrier in auto-instrumentation
 
-**NOTE**: When instrumenting a Java AWS Lambda, instrumentation SHOULD first try to parse the `X-Amzn-Trace-Id` out of the system property `com.amazonaws.xray.traceHeader` before checking and attempting to parse the environment variable `_X_AMZN_TRACE_ID`.
+In languages that support auto-instrumentation, the `EventToCarrier` used in the lambda instrumentation MAY be configured using the environment variable `OTEL_AWS_LAMBDA_EVENT_TO_CARRIER`. This environment variable MUST be set to the name of the `EventToCarrier` that will be used.
+
+The `HttpEventToCarrier` has name `http`.
 
 ## API Gateway
 
