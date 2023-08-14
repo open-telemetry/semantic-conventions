@@ -45,6 +45,9 @@ release.
     - `jvm.buffer.usage`
     - `jvm.buffer.limit`
     - `jvm.buffer.count`
+- Clarify that `http/dup` has higher precedence than `http` in case both values are present
+  in `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
 
 ## v1.21.0 (2023-07-13)
 
