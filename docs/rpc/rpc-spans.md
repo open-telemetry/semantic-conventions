@@ -90,9 +90,9 @@ Examples of span names:
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](../general/attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com` | Required |
-| [`server.port`](../general/attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Conditionally Required: See below |
-| [`server.socket.address`](../general/attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | See below |
-| [`server.socket.port`](../general/attributes.md) | int | Physical server port. | `16456` | Recommended: [4] |
+| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Conditionally Required: See below |
+| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [5] | `10.5.3.2` | See below |
+| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [6] | `16456` | Recommended: [7] |
 
 **[1]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
@@ -100,7 +100,15 @@ Examples of span names:
 
 **[3]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
-**[4]:** If different than `server.port` and if `server.socket.address` is set.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+
+**[5]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+When observed from the server side, this SHOULD represent the physical server address.
+
+**[6]:** When observed from the client side, this SHOULD represent the immediate server peer port.
+When observed from the server side, this SHOULD represent the physical server port.
+
+**[7]:** If different than `server.port` and if `server.socket.address` is set.
 
 **Additional attribute requirements:** At least one of the following sets of attributes is required:
 
@@ -140,7 +148,7 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 <!-- semconv rpc.client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`server.socket.domain`](../general/attributes.md) | string | The domain name of an immediate peer. [1] | `proxy.example.com` | Recommended: [2] |
+| [`server.socket.domain`](../general/attributes.md) | string | Immediate server peer's domain name if available without reverse DNS lookup [1] | `proxy.example.com` | Recommended: [2] |
 
 **[1]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
 
@@ -152,16 +160,22 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 <!-- semconv rpc.server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`client.address`](../general/attributes.md) | string | Client address - unix domain socket name, IPv4 or IPv6 address. [1] | `/tmp/my.sock`; `10.1.2.80` | Recommended |
-| [`client.port`](../general/attributes.md) | int | Client port number [2] | `65123` | Recommended |
-| [`client.socket.address`](../general/attributes.md) | string | Immediate client peer address - unix domain socket name, IPv4 or IPv6 address. | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
-| [`client.socket.port`](../general/attributes.md) | int | Immediate client peer port number | `35555` | Recommended: If different than `client.port`. |
+| [`client.address`](../general/attributes.md) | string | Client address - IP address or Unix domain socket name. [1] | `/tmp/my.sock`; `10.1.2.80` | Recommended |
+| [`client.port`](../general/attributes.md) | int | Client port number. [2] | `65123` | Recommended |
+| [`client.socket.address`](../general/attributes.md) | string | Client address of the socket connection - IP address or Unix domain socket name. [3] | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
+| [`client.socket.port`](../general/attributes.md) | int | Client port number of the socket connection. [4] | `35555` | Recommended: If different than `client.port`. |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 
-**[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent client address behind any intermediaries (e.g. proxies) if it's available.
+**[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent client port behind any intermediaries (e.g. proxies) if it's available.
+**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
+
+**[3]:** When observed from the server side, this SHOULD represent the immediate client peer address.
+When observed from the client side, this SHOULD represent the physical client address.
+
+**[4]:** When observed from the server side, this SHOULD represent the immediate client peer port.
+When observed from the client side, this SHOULD represent the physical client port.
 <!-- endsemconv -->
 
 ### Events

@@ -197,9 +197,9 @@ measurements.
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](../general/attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com` | Required |
-| [`server.port`](../general/attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Conditionally Required: See below |
-| [`server.socket.address`](../general/attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | See below |
-| [`server.socket.port`](../general/attributes.md) | int | Physical server port. | `16456` | Recommended: [4] |
+| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Conditionally Required: See below |
+| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [5] | `10.5.3.2` | See below |
+| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [6] | `16456` | Recommended: [7] |
 
 **[1]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
@@ -207,7 +207,15 @@ measurements.
 
 **[3]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
-**[4]:** If different than `server.port` and if `server.socket.address` is set.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+
+**[5]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+When observed from the server side, this SHOULD represent the physical server address.
+
+**[6]:** When observed from the client side, this SHOULD represent the immediate server peer port.
+When observed from the server side, this SHOULD represent the physical server port.
+
+**[7]:** If different than `server.port` and if `server.socket.address` is set.
 
 **Additional attribute requirements:** At least one of the following sets of attributes is required:
 
