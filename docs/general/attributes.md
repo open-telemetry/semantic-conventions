@@ -55,13 +55,24 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `server.address` | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. | `example.com` | Recommended |
-| `server.port` | int | Logical server port number | `80`; `8080`; `443` | Recommended |
-| `server.socket.domain` | string | The domain name of an immediate peer. [1] | `proxy.example.com` | Recommended: If different than `server.address`. |
-| `server.socket.address` | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
-| `server.socket.port` | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
+| `server.address` | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
+| `server.port` | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
+| `server.socket.domain` | string | Immediate server peer's domain name if available without reverse DNS lookup [3] | `proxy.example.com` | Recommended: If different than `server.address`. |
+| `server.socket.address` | string | Server address of the socket connection - IP address or Unix domain socket name. [4] | `10.5.3.2` | Recommended: If different than `server.address`. |
+| `server.socket.port` | int | Server port number of the socket connection. [5] | `16456` | Recommended: If different than `server.port`. |
 
-**[1]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
+**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+the server address behind any intermediaries (e.g. proxies) if it's available.
+
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+
+**[3]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
+
+**[4]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+When observed from the server side, this SHOULD represent the physical server address.
+
+**[5]:** When observed from the client side, this SHOULD represent the immediate server peer port.
+When observed from the server side, this SHOULD represent the physical server port.
 <!-- endsemconv -->
 
 `server.address` and `server.port` represent logical server name and port. Semantic conventions that refer to these attributes SHOULD
@@ -117,14 +128,20 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `client.address` | string | Client address - unix domain socket name, IPv4 or IPv6 address. [1] | `/tmp/my.sock`; `10.1.2.80` | Recommended |
-| `client.port` | int | Client port number [2] | `65123` | Recommended |
-| `client.socket.address` | string | Immediate client peer address - unix domain socket name, IPv4 or IPv6 address. | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
-| `client.socket.port` | int | Immediate client peer port number | `35555` | Recommended: If different than `client.port`. |
+| `client.address` | string | Client address - IP address or Unix domain socket name. [1] | `/tmp/my.sock`; `10.1.2.80` | Recommended |
+| `client.port` | int | Client port number. [2] | `65123` | Recommended |
+| `client.socket.address` | string | Client address of the socket connection - IP address or Unix domain socket name. [3] | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
+| `client.socket.port` | int | Client port number of the socket connection. [4] | `35555` | Recommended: If different than `client.port`. |
 
-**[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent client address behind any intermediaries (e.g. proxies) if it's available.
+**[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent client port behind any intermediaries (e.g. proxies) if it's available.
+**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
+
+**[3]:** When observed from the server side, this SHOULD represent the immediate client peer address.
+When observed from the client side, this SHOULD represent the physical client address.
+
+**[4]:** When observed from the server side, this SHOULD represent the immediate client peer port.
+When observed from the client side, this SHOULD represent the physical client port.
 <!-- endsemconv -->
 
 `client.socket.address` and `client.socket.port` represent physical client name and port.
@@ -351,6 +368,7 @@ a thread that started a span.
 |---|---|---|---|---|
 | `thread.id` | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
 | `thread.name` | string | Current thread name. | `main` | Recommended |
+| `thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
 <!-- endsemconv -->
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
