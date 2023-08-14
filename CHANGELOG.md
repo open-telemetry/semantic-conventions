@@ -45,6 +45,9 @@ release.
     - `jvm.buffer.usage`
     - `jvm.buffer.limit`
     - `jvm.buffer.count`
+- Clarify that `http/dup` has higher precedence than `http` in case both values are present
+  in `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
 - BREAKING: Rename `jvm.classes.current_loaded` metrics to `jvm.classes.count`
   ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
 
