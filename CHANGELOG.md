@@ -26,6 +26,25 @@ release.
   clients invoking them.
 - BREAKING: Rename all JVM metrics from `process.runtime.jvm.*` to `jvm.*`
   ([#241](https://github.com/open-telemetry/semantic-conventions/pull/241))
+- BREAKING: Add namespaces to JVM metric attributes ([#20](https://github.com/open-telemetry/semantic-conventions/pull/20)).
+  - Rename attributes `type` to `jvm.memory.type`, `pool` to `jvm.memory.pool.name`
+  - Applies to metrics:
+    - `jvm.memory.usage`
+    - `jvm.memory.init`
+    - `jvm.memory.committed`
+    - `jvm.memory.limit`
+    - `jvm.memory.usage_after_last_gc`
+  - Rename attributes `gc` to `jvm.gc.name`, `action` to `jvm.gc.action`
+  - Applies to metrics:
+    - `jvm.gc.duration`
+  - Rename attribute `daemon` to `thread.daemon`
+  - Applies to metrics:
+    - `jvm.threads.count`
+  - Rename attribute `pool` to `jvm.buffer.pool.name`
+  - Applies to metrics:
+    - `jvm.buffer.usage`
+    - `jvm.buffer.limit`
+    - `jvm.buffer.count`
 - Add `jvm.cpu.count` metric.
   ([#52](https://github.com/open-telemetry/semantic-conventions/pull/52))
 

@@ -34,8 +34,11 @@ groups:
   - id: attributes.jvm.buffer
     type: attribute_group
     brief: "Describes JVM buffer metric attributes."
+    prefix: jvm.buffer
     attributes:
-      - ref: pool
+      - id: pool.name
+        type: string
+        requirement_level: recommended
         brief: Name of the buffer pool.
         examples: [ "mapped", "direct" ]
         note: >
