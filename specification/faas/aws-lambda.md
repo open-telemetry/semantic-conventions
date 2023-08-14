@@ -57,7 +57,7 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 
 ### Determining the remote parent span context
 
-Lambda does not have HTTP headers to read from and instead stores the headers it was invoked with (including TraceID, etc.) as part of the invocation event. If using the AWS XRay tracing then the trace information is instead stored in the Lambda environment. It is also possible that both options are populated at the same time, with different values. Finally it is also possible to propagate tracing information in a SQS message using the system attribute of the message `AWSTraceHeader`. A single lambda function can be triggered from multiple sources, however spans can only have a single parent.
+Lambda does not have HTTP headers to read from and instead stores the headers it was invoked with (including any propagated context, etc.) as part of the invocation event. If using AWS X-Ray tracing then the trace context is instead stored in the Lambda environment. It is also possible that both options are populated at the same time, with different values. Finally it is also possible to propagate tracing information in a SQS message using the system attribute of the message `AWSTraceHeader`. A single lambda function can be triggered from multiple sources, however spans can only have a single parent.
 
 To determine the parent span context, the lambda instrumentation SHOULD use a `EventToCarrier`. `EventToCarrier` defines how the instrumentation should prepare a `Carrier` to be used by subsequent `TextMapPropagators`.
 
