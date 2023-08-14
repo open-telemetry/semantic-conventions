@@ -33,6 +33,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental HTTP and networking attributes
 >     the instrumentation was emitting previously.
+>   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
 > * SHOULD drop the environment variable in the next major version (stable
