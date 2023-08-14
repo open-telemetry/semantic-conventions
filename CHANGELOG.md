@@ -34,7 +34,7 @@ release.
     - `jvm.memory.committed`
     - `jvm.memory.limit`
     - `jvm.memory.usage_after_last_gc`
-  - Rename attributes `gc`, `action` to `jvm.gc.name`, `jvm.gc.action`
+  - Rename attributes `gc` to `jvm.gc.name`, `action` to `jvm.gc.action`
   - Applies to metrics:
     - `jvm.gc.duration`
   - Rename attribute `daemon` to `thread.daemon`
