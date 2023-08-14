@@ -35,8 +35,8 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `jvm.memory.init`](#metric-jvmmemoryinit)
   * [Metric: `jvm.system.cpu.utilization`](#metric-jvmsystemcpuutilization)
   * [Metric: `jvm.system.cpu.load_1m`](#metric-jvmsystemcpuload_1m)
-  * [Metric: `jvm.buffer.usage`](#metric-jvmbufferusage)
-  * [Metric: `jvm.buffer.limit`](#metric-jvmbufferlimit)
+  * [Metric: `jvm.buffer.memory.usage`](#metric-jvmbuffermemoryusage)
+  * [Metric: `jvm.buffer.memory.limit`](#metric-jvmbuffermemorylimit)
   * [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
 
 <!-- tocstop -->
@@ -371,18 +371,18 @@ This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](ht
 <!-- semconv metric.jvm.system.cpu.load_1m(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.buffer.usage`
+### Metric: `jvm.buffer.memory.usage`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/BufferPoolMXBean.html#getMemoryUsed--).
 
-<!-- semconv metric.jvm.buffer.usage(metric_table) -->
+<!-- semconv metric.jvm.buffer.memory.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.buffer.usage` | UpDownCounter | `By` | Measure of memory used by buffers. |
+| `jvm.buffer.memory.usage` | UpDownCounter | `By` | Measure of memory used by buffers. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.buffer.usage(full) -->
+<!-- semconv metric.jvm.buffer.memory.usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
@@ -390,18 +390,18 @@ This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.o
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
 
-### Metric: `jvm.buffer.limit`
+### Metric: `jvm.buffer.memory.limit`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/BufferPoolMXBean.html#getTotalCapacity--).
 
-<!-- semconv metric.jvm.buffer.limit(metric_table) -->
+<!-- semconv metric.jvm.buffer.memory.limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.buffer.limit` | UpDownCounter | `By` | Measure of total memory capacity of buffers. |
+| `jvm.buffer.memory.limit` | UpDownCounter | `By` | Measure of total memory capacity of buffers. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.buffer.limit(full) -->
+<!-- semconv metric.jvm.buffer.memory.limit(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
