@@ -450,9 +450,9 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.process.runtime.jvm.cpu.monitor.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `state` | string | Action taken at monitor. | `blocked`; `wait` | Recommended |
-| [`code.namespace`](../../model/trace/general.yaml) | string | Class of the monitor. | `java.lang.Object` | Opt-In |
-| [`thread.id`](../../model/trace/general.yaml) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+| `status` | string | Action taken at monitor. | `blocked`; `wait` | Recommended |
+| [`code.namespace`](../general/attributes.md) | string | Class of the monitor. | `java.lang.Object` | Opt-In |
+| [`thread.id`](../general/attributes.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.cpu.context_swtich`
@@ -484,8 +484,8 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.process.runtime.jvm.network.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.connection.direction`](../../model/trace/general.yaml) | string | Read or write. | `read`; `write` | Recommended |
-| [`thread.id`](../../model/trace/general.yaml) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+| [`network.connection.direction`](../general/attributes.md) | string | Read or write. | `read`; `write` | Recommended |
+| [`thread.id`](../general/attributes.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
 ### Metric: `process.runtime.jvm.network.duration`
@@ -506,8 +506,8 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.process.runtime.jvm.network.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.connection.direction`](../../model/trace/general.yaml) | string | Read or write. | `read`; `write` | Recommended |
-| [`thread.id`](../../model/trace/general.yaml) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
+| [`network.connection.direction`](../general/attributes.md) | string | Read or write. | `read`; `write` | Recommended |
+| [`thread.id`](../general/attributes.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Opt-In |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
