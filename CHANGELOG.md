@@ -29,22 +29,22 @@ release.
 - BREAKING: Add namespaces to JVM metric attributes ([#20](https://github.com/open-telemetry/semantic-conventions/pull/20)).
   - Rename attributes `type` to `jvm.memory.type`, `pool` to `jvm.memory.pool.name`
   - Applies to metrics:
-    - `process.runtime.jvm.memory.usage`
-    - `process.runtime.jvm.memory.init`
-    - `process.runtime.jvm.memory.committed`
-    - `process.runtime.jvm.memory.limit`
-    - `process.runtime.jvm.memory.usage_after_last_gc`
+    - `jvm.memory.usage`
+    - `jvm.memory.init`
+    - `jvm.memory.committed`
+    - `jvm.memory.limit`
+    - `jvm.memory.usage_after_last_gc`
   - Rename attributes `gc`, `action` to `jvm.gc.name`, `jvm.gc.action`
   - Applies to metrics:
-    - `process.runtime.jvm.gc.duration`
+    - `jvm.gc.duration`
   - Rename attribute `daemon` to `thread.daemon`
   - Applies to metrics:
-    - `process.runtime.jvm.threads.count`
+    - `jvm.threads.count`
   - Rename attribute `pool` to `jvm.buffer.pool.name`
   - Applies to metrics:
-    - `process.runtime.jvm.buffer.usage`
-    - `process.runtime.jvm.buffer.limit`
-    - `process.runtime.jvm.buffer.count`
+    - `jvm.buffer.usage`
+    - `jvm.buffer.limit`
+    - `jvm.buffer.count`
 
 ## v1.21.0 (2023-07-13)
 
