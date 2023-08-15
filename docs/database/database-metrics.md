@@ -16,15 +16,15 @@ and attributes but more may be added in the future.
 <!-- toc -->
 
 - [Connection pools](#connection-pools)
-  * [Metric: `db.client.connections.usage`](#metric-dbclientconnectionsusage)
-  * [Metric: `db.client.connections.idle.max`](#metric-dbclientconnectionsidlemax)
-  * [Metric: `db.client.connections.idle.min`](#metric-dbclientconnectionsidlemin)
-  * [Metric: `db.client.connections.max`](#metric-dbclientconnectionsmax)
-  * [Metric: `db.client.connections.pending_requests`](#metric-dbclientconnectionspending_requests)
-  * [Metric: `db.client.connections.timeouts`](#metric-dbclientconnectionstimeouts)
-  * [Metric: `db.client.connections.create_time`](#metric-dbclientconnectionscreate_time)
-  * [Metric: `db.client.connections.wait_time`](#metric-dbclientconnectionswait_time)
-  * [Metric: `db.client.connections.use_time`](#metric-dbclientconnectionsuse_time)
+  * [Metric: `db.client.connection.usage`](#metric-dbclientconnectionusage)
+  * [Metric: `db.client.connection.idle.max`](#metric-dbclientconnectionidlemax)
+  * [Metric: `db.client.connection.idle.min`](#metric-dbclientconnectionidlemin)
+  * [Metric: `db.client.connection.max`](#metric-dbclientconnectionmax)
+  * [Metric: `db.client.connection.pending_requests`](#metric-dbclientconnectionpending_requests)
+  * [Metric: `db.client.connection.timeouts`](#metric-dbclientconnectiontimeouts)
+  * [Metric: `db.client.connection.create_time`](#metric-dbclientconnectioncreate_time)
+  * [Metric: `db.client.connection.wait_time`](#metric-dbclientconnectionwait_time)
+  * [Metric: `db.client.connection.use_time`](#metric-dbclientconnectionuse_time)
 
 <!-- tocstop -->
 
@@ -32,17 +32,17 @@ and attributes but more may be added in the future.
 
 The following metric instruments describe database client connection pool operations.
 
-### Metric: `db.client.connections.usage`
+### Metric: `db.client.connection.usage`
 
 This metric is [required][MetricRequired].
 
-<!-- semconv metric.db.client.connections.usage(metric_table) -->
+<!-- semconv metric.db.client.connection.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.usage` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute |
+| `db.client.connection.usage` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.usage(full) -->
+<!-- semconv metric.db.client.connection.usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
@@ -55,129 +55,129 @@ This metric is [required][MetricRequired].
 | `idle` | idle |
 | `used` | used |
 <!-- endsemconv -->
-### Metric: `db.client.connections.idle.max`
+### Metric: `db.client.connection.idle.max`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.idle.max(metric_table) -->
+<!-- semconv metric.db.client.connection.idle.max(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed |
+| `db.client.connection.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.idle.max(full) -->
+<!-- semconv metric.db.client.connection.idle.max(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.idle.min`
+### Metric: `db.client.connection.idle.min`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.idle.min(metric_table) -->
+<!-- semconv metric.db.client.connection.idle.min(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed |
+| `db.client.connection.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.idle.min(full) -->
+<!-- semconv metric.db.client.connection.idle.min(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.max`
+### Metric: `db.client.connection.max`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.max(metric_table) -->
+<!-- semconv metric.db.client.connection.max(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed |
+| `db.client.connection.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.max(full) -->
+<!-- semconv metric.db.client.connection.max(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.pending_requests`
+### Metric: `db.client.connection.pending_requests`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.pending_requests(metric_table) -->
+<!-- semconv metric.db.client.connection.pending_requests(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.pending_requests` | UpDownCounter | `{request}` | The number of pending requests for an open connection, cumulative for the entire pool |
+| `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of pending requests for an open connection, cumulative for the entire pool |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.pending_requests(full) -->
+<!-- semconv metric.db.client.connection.pending_requests(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.timeouts`
+### Metric: `db.client.connection.timeouts`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.timeouts(metric_table) -->
+<!-- semconv metric.db.client.connection.timeouts(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool |
+| `db.client.connection.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.timeouts(full) -->
+<!-- semconv metric.db.client.connection.timeouts(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.create_time`
+### Metric: `db.client.connection.create_time`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.create_time(metric_table) -->
+<!-- semconv metric.db.client.connection.create_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.create_time` | Histogram | `ms` | The time it took to create a new connection |
+| `db.client.connection.create_time` | Histogram | `ms` | The time it took to create a new connection |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.create_time(full) -->
+<!-- semconv metric.db.client.connection.create_time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.wait_time`
+### Metric: `db.client.connection.wait_time`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.wait_time(metric_table) -->
+<!-- semconv metric.db.client.connection.wait_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.wait_time` | Histogram | `ms` | The time it took to obtain an open connection from the pool |
+| `db.client.connection.wait_time` | Histogram | `ms` | The time it took to obtain an open connection from the pool |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.wait_time(full) -->
+<!-- semconv metric.db.client.connection.wait_time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.use_time`
+### Metric: `db.client.connection.use_time`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.use_time(metric_table) -->
+<!-- semconv metric.db.client.connection.use_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.use_time` | Histogram | `ms` | The time between borrowing a connection and returning it to the pool |
+| `db.client.connection.use_time` | Histogram | `ms` | The time between borrowing a connection and returning it to the pool |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.use_time(full) -->
+<!-- semconv metric.db.client.connection.use_time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
