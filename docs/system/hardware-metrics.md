@@ -93,11 +93,11 @@ Examples: physical server, switch or disk array.
 **Description:** A battery in a computer system or an UPS.
 
 | Name                      | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s)                                                            | Attribute Values                                      |
-| ------------------------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | --------------------------------------------------------------------------- | ----------------------------------------------------- |
+|---------------------------| ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | --------------------------------------------------------------------------- | ----------------------------------------------------- |
 | `hw.battery.charge`       | Remaining fraction of battery charge                                          | 1     | Gauge                                             | Double     |                                                                             |                                                       |
 | `hw.battery.charge.limit` | Lower limit of battery charge fraction to ensure proper operation             | 1     | Gauge                                             | Double     | `limit_type` (Recommended)                                                  | `critical`, `throttled`, `degraded`                   |
 | `hw.battery.time_left`    | Time left before battery is completely charged or discharged                  | s     | Gauge                                             | Int        | `state` (Conditionally Required, if the battery is charging or discharging) | `charging`, `discharging`                             |
-| `hw.status`               | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)                                                      | `ok`, `degraded`, `failed`, `charging`, `discharging` |
+| `hw.battery.status`       | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)                                                      | `ok`, `degraded`, `failed`, `charging`, `discharging` |
 |                           |                                                                               |       |                                                   |            | `hw.type`                                                                   | `battery`                                             |
 
 All `hw.battery.` metrics may include the below **Recommended** attributes to
@@ -117,11 +117,11 @@ the operating system for multi-core systems). A physical processor may include
 many individual cores.
 
 | Name                 | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                |
-| -------------------- | ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | -------------------------- | ----------------------------------------------- |
-| `hw.errors`          | Total number of errors encountered and corrected by the CPU                   | {error} | Counter                                           | Int64      | `hw.type` (**Required**)   | `cpu`                                           |
+|----------------------| ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | -------------------------- | ----------------------------------------------- |
+| `hw.cpu.errors`      | Total number of errors encountered and corrected by the CPU                   | {error} | Counter                                           | Int64      | `hw.type` (**Required**)   | `cpu`                                           |
 | `hw.cpu.speed`       | CPU current frequency                                                         | Hz      | Gauge                                             | Int64      |                            |                                                 |
 | `hw.cpu.speed.limit` | CPU maximum frequency                                                         | Hz      | Gauge                                             | Int64      | `limit_type` (Recommended) | `throttled`, `max`, `turbo`                     |
-| `hw.status`          | Operational status: `1` (true) or `0` (false) for each of the possible states |         | UpDownCounter                                     | Int        | `state` (**Required**)     | `ok`, `degraded`, `failed`, `predicted_failure` |
+| `hw.cpu.status`      | Operational status: `1` (true) or `0` (false) for each of the possible states |         | UpDownCounter                                     | Int        | `state` (**Required**)     | `ok`, `degraded`, `failed`, `predicted_failure` |
 |                      |                                                                               |         |                                                   |            | `hw.type` (**Required**)   | `cpu`                                           |
 
 Additional **Recommended** attributes:
@@ -136,10 +136,10 @@ Additional **Recommended** attributes:
 **Description:** Controller that controls the physical disks and organize
 them in RAID sets and logical disks that are exposed to the operating system.
 
-| Name        | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values           |
-| ----------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ------------------------ | -------------------------- |
-| `hw.status` | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed` |
-|             |                                                                               |       |                                                   |            | `hw.type` (**Required**) | `disk_controller`          |
+| Name                        | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values           |
+|-----------------------------| ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ------------------------ | -------------------------- |
+| `hw.disk_controller.status` | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed` |
+|                             |                                                                               |       |                                                   |            | `hw.type` (**Required**) | `disk_controller`          |
 
 Additional **Recommended** attributes:
 
@@ -156,10 +156,10 @@ Additional **Recommended** attributes:
 
 **Description:** Computer chassis (can be an expansion enclosure)
 
-| Name        | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                   |
-| ----------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ------------------------ | ---------------------------------- |
-| `hw.status` | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed`, `open` |
-|             |                                                                               |       |                                                   |            | `hw.type` (**Required**) | `enclosure`                        |
+| Name                  | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                   |
+|-----------------------| ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ------------------------ | ---------------------------------- |
+| `hw.enclosure.status` | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed`, `open` |
+|                       |                                                                               |       |                                                   |            | `hw.type` (**Required**) | `enclosure`                        |
 
 Additional **Recommended** attributes:
 
@@ -177,11 +177,11 @@ Additional **Recommended** attributes:
 temperature of a computer
 
 | Name                 | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key                  | Attribute Values                      |
-| -------------------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ------------------------------ | ------------------------------------- |
+|----------------------| ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ------------------------------ | ------------------------------------- |
 | `hw.fan.speed`       | Fan speed in revolutions per minute                                           | rpm   | Gauge                                             | Int        |                                |                                       |
 | `hw.fan.speed.limit` | Speed limit in rpm                                                            | rpm   | Gauge                                             | Int        | `limit_type` (**Recommended**) | `low.critical`, `low.degraded`, `max` |
 | `hw.fan.speed_ratio` | Fan speed expressed as a fraction of its maximum speed                        | 1     | Gauge                                             | Double     |                                |                                       |
-| `hw.status`          | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)         | `ok`, `degraded`, `failed`            |
+| `hw.fan.status`      | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)         | `ok`, `degraded`, `failed`            |
 |                      |                                                                               |       |                                                   |            | `hw.type` (**Required**)       | `fan`                                 |
 
 Additional **Recommended** attributes:
@@ -195,8 +195,8 @@ Additional **Recommended** attributes:
 **Description:** Graphics Processing Unit (discrete)
 
 | Name                        | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key                 | Attribute Values                                |
-| --------------------------- | ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ----------------------------- | ----------------------------------------------- |
-| `hw.errors`                 | Number of errors encountered by the GPU                                       | {error} | Counter                                           | Int64      | `hw.error.type` (Recommended) | `corrected`, `uncorrected`                      |
+|-----------------------------| ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ----------------------------- | ----------------------------------------------- |
+| `hw.gpu.errors`             | Number of errors encountered by the GPU                                       | {error} | Counter                                           | Int64      | `hw.error.type` (Recommended) | `corrected`, `uncorrected`                      |
 |                             |                                                                               |         |                                                   |            | `hw.type` (**Required**)      | `gpu`                                           |
 | `hw.gpu.io`                 | Received and transmitted bytes by the GPU                                     | By      | Counter                                           | Int64      | `direction` (**Required**)    | `receive`, `transmit`                           |
 | `hw.gpu.memory.limit`       | Size of the GPU memory                                                        | By      | UpDownCounter                                     | Int64      |                               |                                                 |
@@ -204,7 +204,7 @@ Additional **Recommended** attributes:
 | `hw.gpu.memory.usage`       | GPU memory used                                                               | By      | UpDownCounter                                     | Int64      |                               |                                                 |
 | `hw.gpu.power`              | GPU instantaneous power consumption in Watts                                  | W       | Gauge                                             | Double     |                               |                                                 |
 | `hw.gpu.utilization`        | Fraction of time spent in a specific task                                     | 1       | Gauge                                             | Double     | `task` (Recommended)          | `decoder`, `encoder`, `general`                 |
-| `hw.status`                 | Operational status: `1` (true) or `0` (false) for each of the possible states |         | UpDownCounter                                     | Int        | `state` (**Required**)        | `ok`, `degraded`, `failed`, `predicted_failure` |
+| `hw.gpu.status`             | Operational status: `1` (true) or `0` (false) for each of the possible states |         | UpDownCounter                                     | Int        | `state` (**Required**)        | `ok`, `degraded`, `failed`, `predicted_failure` |
 |                             |                                                                               |         |                                                   |            | `hw.type` (**Required**)      | `gpu`                                           |
 
 Additional **Recommended** attributes:
@@ -224,12 +224,12 @@ controller to the operating system (e.g. a RAID 1 set made of 2 disks, and expos
 as /dev/hdd0 by the controller).
 
 | Name                          | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values           |
-| ----------------------------- | ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ------------------------ | -------------------------- |
-| `hw.errors`                   | Number of errors encountered on this logical disk                             | {error} | Counter                                           | Int64      | `hw.type` (**Required**) | `logical_disk`             |
+|-------------------------------| ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ------------------------ | -------------------------- |
+| `hw.logical_disk.errors`      | Number of errors encountered on this logical disk                             | {error} | Counter                                           | Int64      | `hw.type` (**Required**) | `logical_disk`             |
 | `hw.logical_disk.limit`       | Size of the logical disk                                                      | By      | UpDownCounter                                     | Int64      |                          |                            |
 | `hw.logical_disk.usage`       | Logical disk space usage                                                      | By      | UpDownCounter                                     | Int64      | `state` (**Required**)   | `used`, `free`             |
 | `hw.logical_disk.utilization` | Logical disk space utilization as a fraction                                  | 1       | Gauge                                             | Double     | `state` (**Required**)   | `used`, `free`             |
-| `hw.status`                   | Operational status: `1` (true) or `0` (false) for each of the possible states |         | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed` |
+| `hw.logical_disk.status`      | Operational status: `1` (true) or `0` (false) for each of the possible states |         | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed` |
 |                               |                                                                               |         |                                                   |            | `hw.type` (**Required**) | `logical_disk`             |
 
 Additional **Recommended** attributes:
@@ -242,12 +242,12 @@ Additional **Recommended** attributes:
 
 **Description:** A memory module in a computer system.
 
-| Name             | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                                |
-| ---------------- | ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ------------------------ | ----------------------------------------------- |
-| `hw.errors`      | Number of errors encountered on this memory module                            | {error} | Counter                                           | Int64      | `hw.type` (**Required**) | `memory`                                        |
-| `hw.memory.size` | Size of the memory module                                                     | By      | UpDownCounter                                     | Int64      |                          |                                                 |
-| `hw.status`      | Operational status: `1` (true) or `0` (false) for each of the possible states |         | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed`, `predicted_failure` |
-|                  |                                                                               |         |                                                   |            | `hw.type` (**Required**) | `memory`                                        |
+| Name               | Description                                                                   | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                                |
+|--------------------| ----------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ------------------------ | ----------------------------------------------- |
+| `hw.memory.errors` | Number of errors encountered on this memory module                            | {error} | Counter                                           | Int64      | `hw.type` (**Required**) | `memory`                                        |
+| `hw.memory.size`   | Size of the memory module                                                     | By      | UpDownCounter                                     | Int64      |                          |                                                 |
+| `hw.memory.status` | Operational status: `1` (true) or `0` (false) for each of the possible states |         | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed`, `predicted_failure` |
+|                    |                                                                               |         |                                                   |            | `hw.type` (**Required**) | `memory`                                        |
 
 Additional **Recommended** attributes:
 
@@ -266,8 +266,8 @@ physical network interface on a server, switch, router or firewall, an HBA, a
 fiber channel port or a Wi-Fi adapter.
 
 | Name                               | Description                                                                                                  | Units    | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key                 | Attribute Values                  |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------- | ---------- | ----------------------------- | --------------------------------- |
-| `hw.errors`                        | Number of errors encountered by the network adapter                                                          | {error}  | Counter                                           | Int64      | `hw.error.type` (Recommended) | `zero_buffer_credit`, `crc`, etc. |
+|------------------------------------| ------------------------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------- | ---------- | ----------------------------- | --------------------------------- |
+| `hw.network.errors`                | Number of errors encountered by the network adapter                                                          | {error}  | Counter                                           | Int64      | `hw.error.type` (Recommended) | `zero_buffer_credit`, `crc`, etc. |
 |                                    |                                                                                                              |          |                                                   |            | `hw.type` (**Required**)      | `network`                         |
 |                                    |                                                                                                              |          |                                                   |            | `direction` (Recommended)     | `receive`, `transmit`             |
 | `hw.network.bandwidth.limit`       | Link speed                                                                                                   | By       | UpDownCounter                                     | Int64      |                               |                                   |
@@ -275,7 +275,7 @@ fiber channel port or a Wi-Fi adapter.
 | `hw.network.io`                    | Received and transmitted network traffic in bytes                                                            | By       | Counter                                           | Int64      | `direction` (**Required**)    | `receive`, `transmit`             |
 | `hw.network.packets`               | Received and transmitted network traffic in packets (or frames)                                              | {packet} | Counter                                           | Int64      | `direction` (**Required**)    | `receive`, `transmit`             |
 | `hw.network.up`                    | Link status: `1` (up) or `0` (down)                                                                          |          | UpDownCounter                                     | Int        |                               |                                   |
-| `hw.status`                        | Operational status, regardless of the link status: `1` (true) or `0` (false) for each of the possible states |          | UpDownCounter                                     | Int        | `state` (**Required**)        | `ok`, `degraded`, `failed`        |
+| `hw.network.status`                | Operational status, regardless of the link status: `1` (true) or `0` (false) for each of the possible states |          | UpDownCounter                                     | Int        | `state` (**Required**)        | `ok`, `degraded`, `failed`        |
 |                                    |                                                                                                              |          |                                                   |            | `hw.type` (**Required**)      | `network`                         |
 
 Additional **Recommended** attributes:
@@ -293,13 +293,13 @@ Additional **Recommended** attributes:
 **Description:** Physical hard drive (HDD or SDD)
 
 | Name                                     | Description                                                                                 | Units   | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key                   | Attribute Values                                |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ------------------------------- | ----------------------------------------------- |
-| `hw.errors`                              | Number of errors encountered on this disk                                                   | {error} | Counter                                           | Int64      | `hw.error.type` (Recommended)   | `bad_sector`, `write`, etc.                     |
+|------------------------------------------| ------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------- | ---------- | ------------------------------- | ----------------------------------------------- |
+| `hw.physical_disk.errors`                | Number of errors encountered on this disk                                                   | {error} | Counter                                           | Int64      | `hw.error.type` (Recommended)   | `bad_sector`, `write`, etc.                     |
 |                                          |                                                                                             |         |                                                   |            | `hw.type` (**Required**)        | `physical_disk`                                 |
 | `hw.physical_disk.endurance_utilization` | Endurance remaining for this SSD disk                                                       | 1       | Gauge                                             | Double     | `state` (**Required**)          | `remaining`                                     |
 | `hw.physical_disk.size`                  | Size of the disk                                                                            | By      | UpDownCounter                                     | Int64      |                                 |                                                 |
 | `hw.physical_disk.smart`                 | Value of the corresponding [S.M.A.R.T.](https://en.wikipedia.org/wiki/S.M.A.R.T.) attribute | 1       | Gauge                                             | Int        | `smart_attribute` (Recommended) | `Seek Error Rate`, `Spin Retry Count`, etc.     |
-| `hw.status`                              | Operational status: `1` (true) or `0` (false) for each of the possible states               |         | UpDownCounter                                     | Int        | `state` (**Required**)          | `ok`, `degraded`, `failed`, `predicted_failure` |
+| `hw.physical_disk.status`                | Operational status: `1` (true) or `0` (false) for each of the possible states               |         | UpDownCounter                                     | Int        | `state` (**Required**)          | `ok`, `degraded`, `failed`, `predicted_failure` |
 |                                          |                                                                                             |         |                                                   |            | `hw.type` (**Required**)        | `physical_disk`                                 |
 
 Additional **Recommended** attributes:
@@ -318,10 +318,10 @@ Additional **Recommended** attributes:
 motherboard and the GPUs
 
 | Name                          | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values               |
-| ----------------------------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | -------------------------- | ------------------------------ |
+|-------------------------------| ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | -------------------------- | ------------------------------ |
 | `hw.power_supply.limit`       | Maximum power output of the power supply                                      | W     | UpDownCounter                                     | Int64      | `limit_type` (Recommended) | `max`, `critical`, `throttled` |
 | `hw.power_supply.utilization` | Utilization of the power supply as a fraction of its maximum output           | 1     | Gauge                                             | Double     |                            |                                |
-| `hw.status`                   | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)     | `ok`, `degraded`, `failed`     |
+| `hw.power_supply.status`      | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)     | `ok`, `degraded`, `failed`     |
 |                               |                                                                               |       |                                                   |            | `hw.type` (**Required**)   | `power_supply`                 |
 
 Additional **Recommended** attributes:
@@ -338,11 +338,11 @@ Additional **Recommended** attributes:
 virtual tape libraries)
 
 | Name                       | Description                                                                   | Units       | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key            | Attribute Values                             |
-| -------------------------- | ----------------------------------------------------------------------------- | ----------- | ------------------------------------------------- | ---------- | ------------------------ | -------------------------------------------- |
-| `hw.errors`                | Number of errors encountered by the tape drive                                | {error}     | Counter                                           | Int64      | `hw.error.type`          | `read`, `write`, `mount`, etc.               |
+|----------------------------| ----------------------------------------------------------------------------- | ----------- | ------------------------------------------------- | ---------- | ------------------------ | -------------------------------------------- |
+| `hw.tape_drive.errors`     | Number of errors encountered by the tape drive                                | {error}     | Counter                                           | Int64      | `hw.error.type`          | `read`, `write`, `mount`, etc.               |
 |                            |                                                                               |             |                                                   |            | `hw.type` (**Required**) | `tape_drive`                                 |
 | `hw.tape_drive.operations` | Operations performed by the tape drive                                        | {operation} | Counter                                           | Int64      | `type` (Recommended)     | `mount`, `unmount`, `clean`                  |
-| `hw.status`                | Operational status: `1` (true) or `0` (false) for each of the possible states |             | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed`, `needs_cleaning` |
+| `hw.tape_drive.status`                | Operational status: `1` (true) or `0` (false) for each of the possible states |             | UpDownCounter                                     | Int        | `state` (**Required**)   | `ok`, `degraded`, `failed`, `needs_cleaning` |
 |                            |                                                                               |             |                                                   |            | `hw.type` (**Required**) | `tape_drive`                                 |
 
 Additional **Recommended** attributes:
@@ -357,12 +357,12 @@ Additional **Recommended** attributes:
 
 **Description:** A temperature sensor, either numeric or discrete
 
-| Name                   | Description                                                                                               | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                                 |
-| ---------------------- | --------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | -------------------------- | ---------------------------------------------------------------- |
-| `hw.temperature`       | Temperature in degrees Celsius                                                                            | Cel   | Gauge                                             | Double     |                            |                                                                  |
-| `hw.temperature.limit` | Temperature limit in degrees Celsius                                                                      | Cel   | Gauge                                             | Double     | `limit_type` (Recommended) | `low.critical`, `low.degraded`, `high.degraded`, `high.critical` |
-| `hw.status`            | Whether the temperature is within normal range: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)     | `ok`, `degraded`, `failed`                                       |
-|                        |                                                                                                           |       |                                                   |            | `hw.type` (**Required**)   | `temperature`                                                    |
+| Name                    | Description                                                                                               | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                                 |
+|-------------------------| --------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | -------------------------- | ---------------------------------------------------------------- |
+| `hw.temperature`        | Temperature in degrees Celsius                                                                            | Cel   | Gauge                                             | Double     |                            |                                                                  |
+| `hw.temperature.limit`  | Temperature limit in degrees Celsius                                                                      | Cel   | Gauge                                             | Double     | `limit_type` (Recommended) | `low.critical`, `low.degraded`, `high.degraded`, `high.critical` |
+| `hw.temperature.status` | Whether the temperature is within normal range: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)     | `ok`, `degraded`, `failed`                                       |
+|                         |                                                                                                           |       |                                                   |            | `hw.type` (**Required**)   | `temperature`                                                    |
 
 Additional **Recommended** attributes:
 
@@ -375,11 +375,11 @@ Additional **Recommended** attributes:
 **Description:** A voltage sensor, either numeric or discrete
 
 | Name                 | Description                                                                                           | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key              | Attribute Values                                                 |
-| -------------------- | ----------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | -------------------------- | ---------------------------------------------------------------- |
+|----------------------| ----------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | -------------------------- | ---------------------------------------------------------------- |
 | `hw.voltage.limit`   | Voltage limit in Volts                                                                                | V     | Gauge                                             | Double     | `limit_type` (Recommended) | `low.critical`, `low.degraded`, `high.degraded`, `high.critical` |
 | `hw.voltage.nominal` | Nominal (expected) voltage                                                                            | V     | Gauge                                             | Double     |                            |                                                                  |
 | `hw.voltage`         | Voltage measured by the sensor                                                                        | V     | Gauge                                             | Double     |                            |                                                                  |
-| `hw.status`          | Whether the voltage is within normal range: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)     | `ok`, `degraded`, `failed`                                       |
+| `hw.voltage.status`  | Whether the voltage is within normal range: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)     | `ok`, `degraded`, `failed`                                       |
 |                      |                                                                                                       |       |                                                   |            | `hw.type` (**Required**)   | `voltage`                                                        |
 
 Additional **Recommended** attributes:
