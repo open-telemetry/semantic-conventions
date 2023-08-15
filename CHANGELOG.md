@@ -48,6 +48,8 @@ release.
 - Clarify that `http/dup` has higher precedence than `http` in case both values are present
   in `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
+- BREAKING: Rename `db.client.connections.*` metric namespace to `db.client.connection.*`.
+  ([#259](https://github.com/open-telemetry/semantic-conventions/pull/259))
 
 ## v1.21.0 (2023-07-13)
 

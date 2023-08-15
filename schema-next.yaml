@@ -56,6 +56,17 @@ versions:
               - jvm.buffer.usage
               - jvm.buffer.limit
               - jvm.buffer.count
+        # https://github.com/open-telemetry/semantic-conventions/pull/259
+        - rename_metrics:
+            db.client.connections.usage: db.client.connection.usage
+            db.client.connections.idle.max: db.client.connection.idle.max
+            db.client.connections.idle.min: db.client.connection.idle.min
+            db.client.connections.max: db.client.connection.max
+            db.client.connections.pending_requests: db.client.connection.pending_requests
+            db.client.connections.timeouts: db.client.connection.timeouts
+            db.client.connections.create_time: db.client.connection.create_time
+            db.client.connections.wait_time: db.client.connection.wait_time
+            db.client.connections.use_time: db.client.connection.use_time
   1.21.0:
     spans:
       changes:
