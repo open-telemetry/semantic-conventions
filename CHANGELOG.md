@@ -50,6 +50,8 @@ release.
   ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
 - Add `jvm.cpu.count` metric.
   ([#52](https://github.com/open-telemetry/semantic-conventions/pull/52))
+- BREAKING: Rename `jvm.classes.current_loaded` metrics to `jvm.classes.count`
+  ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
 
 ## v1.21.0 (2023-07-13)
 
