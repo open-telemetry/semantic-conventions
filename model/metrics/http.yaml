@@ -36,7 +36,7 @@ groups:
           conditionally_required: If request completed with an error.
         examples: ['timeout', 'name_resolution_error', 'Internal Server Error']
         note: |
-          If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
           `error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
           returned in the status line or to `_OTHER`.
 

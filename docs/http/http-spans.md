@@ -29,6 +29,9 @@ and various HTTP versions like 1.1, 2 and SPDY.
   * [HTTP client retries examples](#http-client-retries-examples)
   * [HTTP client authorization retry examples](#http-client-authorization-retry-examples)
   * [HTTP client redirects examples](#http-client-redirects-examples)
+  * [HTTP client call: DNS error](#http-client-call-dns-error)
+  * [HTTP client call: Internal Server Error](#http-client-call-internal-server-error)
+  * [HTTP server call: connection dropped before response body was sent](#http-server-call-connection-dropped-before-response-body-was-sent)
 
 <!-- tocstop -->
 
@@ -107,7 +110,7 @@ sections below.
 | `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `error.description` | string | Describes a class of error that operation ended with. [2] | `timeout`; `name_resolution_error`; `server_certificate_invalid` | Conditionally Required: If request or response has ended prematurely. |
+| `error.description` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `server_certificate_invalid` | Conditionally Required: If request or response has ended prematurely. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
@@ -117,7 +120,7 @@ sections below.
 
 **[1]:** If and only if it's different than `http.request.method`.
 
-**[2]:** If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+**[2]:** If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
 `error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 returned in the status line or to `_OTHER`.
 

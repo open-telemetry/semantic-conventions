@@ -7,7 +7,7 @@ groups:
       report an error.
     attributes:
       - id: description
-        brief: 'Describes a class of error that operation ended with.'
+        brief: 'Describes a class of error operation has ended with.'
         type:
           allow_custom_values: true
           members:

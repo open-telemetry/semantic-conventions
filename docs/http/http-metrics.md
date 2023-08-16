@@ -77,7 +77,7 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `error.description` | string | Describes a class of error that operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request completed with an error. |
+| `error.description` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request completed with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
@@ -89,7 +89,7 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[2]:** If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+**[2]:** If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
 `error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 returned in the status line or to `_OTHER`.
 
@@ -247,7 +247,7 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `error.description` | string | Describes a class of error that operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request completed with an error. |
+| `error.description` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request completed with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
@@ -259,7 +259,7 @@ This metric is optional.
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[2]:** If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+**[2]:** If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
 `error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 returned in the status line or to `_OTHER`.
 
@@ -349,7 +349,7 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `error.description` | string | Describes a class of error that operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request completed with an error. |
+| `error.description` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request completed with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
@@ -361,7 +361,7 @@ This metric is optional.
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[2]:** If response status code was sent or received and indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+**[2]:** If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
 `error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 returned in the status line or to `_OTHER`.
 
