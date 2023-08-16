@@ -49,7 +49,8 @@ release.
   in `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
 - BREAKING: Generate System metrics semconv from YAML.
-  ([#89](https://github.com/open-telemetry/semantic-conventions/pull/89))  
+  ([#89](https://github.com/open-telemetry/semantic-conventions/pull/89))
+  - Remove pluralization from process metrics `system.processes.*` to `system.process.*`
   - Rename attributes for `system.cpu.*` metrics:
     - `state` to `system.cpu.state`
     - `cpu` to `system.cpu.logical`
