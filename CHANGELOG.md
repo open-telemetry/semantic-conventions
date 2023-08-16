@@ -11,9 +11,45 @@ release.
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
 - Update `.count` metric naming convention so that it only applies to UpDownCounters,
   and add that `.total` should not be used by either Counters or UpDownCounters
-  ([#107](https://github.com/open-telemetry/opentelemetry-specification/pull/107))
+  ([#107](https://github.com/open-telemetry/semantic-conventions/pull/107))
 - Add `oci.manifest.digests` attribute. Make `container.image.tag` array and in plural form.
   ([#159](https://github.com/open-telemetry/semantic-conventions/pull/159))
+- BREAKING: Rename `http.client.duration` and `http.server.duration` metrics to
+  `http.client.request.duration` and `http.server.request.duration` respectively.
+  ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
+- Update HTTP `network.protocol.version` examples to match HTTP RFCs.
+  ([#228](https://github.com/open-telemetry/semantic-conventions/pull/228))
+- Re-introduce namespace and attributes to describe the original destination messages were
+  published to (`messaging.destination_publish.*`).
+  ([#156](https://github.com/open-telemetry/semantic-conventions/pull/156))
+- Generate FaaS metric semantic conventions from YAML.
+  ([#88](https://github.com/open-telemetry/semantic-conventions/pull/88))
+  The conventions cover metrics that are recorded by the FaaS itself and not by
+  clients invoking them.
+- BREAKING: Rename all JVM metrics from `process.runtime.jvm.*` to `jvm.*`
+  ([#241](https://github.com/open-telemetry/semantic-conventions/pull/241))
+- BREAKING: Add namespaces to JVM metric attributes ([#20](https://github.com/open-telemetry/semantic-conventions/pull/20)).
+  - Rename attributes `type` to `jvm.memory.type`, `pool` to `jvm.memory.pool.name`
+  - Applies to metrics:
+    - `jvm.memory.usage`
+    - `jvm.memory.init`
+    - `jvm.memory.committed`
+    - `jvm.memory.limit`
+    - `jvm.memory.usage_after_last_gc`
+  - Rename attributes `gc` to `jvm.gc.name`, `action` to `jvm.gc.action`
+  - Applies to metrics:
+    - `jvm.gc.duration`
+  - Rename attribute `daemon` to `thread.daemon`
+  - Applies to metrics:
+    - `jvm.threads.count`
+  - Rename attribute `pool` to `jvm.buffer.pool.name`
+  - Applies to metrics:
+    - `jvm.buffer.usage`
+    - `jvm.buffer.limit`
+    - `jvm.buffer.count`
+- Clarify that `http/dup` has higher precedence than `http` in case both values are present
+  in `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
 
 ## v1.21.0 (2023-07-13)
 
