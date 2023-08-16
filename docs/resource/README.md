@@ -62,7 +62,6 @@ These are the attributes which MAY be configurable via a dedicated environment v
 as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/configuration/sdk-environment-variables.md):
 
 - [`service.name`](#service)
-- [`service.version`](#service)
 
 ## Semantic Attributes with SDK-provided Default Value
 
