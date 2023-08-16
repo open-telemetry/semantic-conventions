@@ -27,6 +27,35 @@ versions:
             process.runtime.jvm.buffer.usage: jvm.buffer.usage
             process.runtime.jvm.buffer.limit: jvm.buffer.limit
             process.runtime.jvm.buffer.count: jvm.buffer.count
+        # https://github.com/open-telemetry/semantic-conventions/pull/20
+        - rename_attributes:
+            attribute_map:
+              type: jvm.memory.type
+              pool: jvm.memory.pool.name
+            apply_to_metrics:
+              - jvm.memory.usage
+              - jvm.memory.committed
+              - jvm.memory.limit
+              - jvm.memory.usage_after_last_gc
+              - jvm.memory.init
+        - rename_attributes:
+            attribute_map:
+              name: jvm.gc.name
+              action: jvm.gc.action
+            apply_to_metrics:
+              - jvm.gc.duration
+        - rename_attributes:
+            attribute_map:
+              daemon: thread.daemon
+            apply_to_metrics:
+              - jvm.threads.count
+        - rename_attributes:
+            attribute_map:
+              pool: jvm.buffer.pool.name
+            apply_to_metrics:
+              - jvm.buffer.usage
+              - jvm.buffer.limit
+              - jvm.buffer.count
         # https://github.com/open-telemetry/semantic-conventions/pull/89
         - rename_attributes:
             attribute_map:
