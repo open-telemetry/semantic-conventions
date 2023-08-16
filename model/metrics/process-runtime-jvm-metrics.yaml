@@ -114,6 +114,13 @@ groups:
     instrument: updowncounter
     unit: "{class}"
 
+  - id: metric.jvm.cpu.count
+    type: metric
+    metric_name: jvm.cpu.count
+    brief: "Number of processors available to the Java virtual machine."
+    instrument: updowncounter
+    unit: "{cpu}"
+
   - id: metric.jvm.cpu.time
     type: metric
     metric_name: jvm.cpu.time
