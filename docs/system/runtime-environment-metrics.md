@@ -30,6 +30,7 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `jvm.classes.unloaded`](#metric-jvmclassesunloaded)
   * [Metric: `jvm.classes.current_loaded`](#metric-jvmclassescurrent_loaded)
   * [Metric: `jvm.cpu.time`](#metric-jvmcputime)
+  * [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   * [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
 - [JVM Metrics (Experimental)](#jvm-metrics-experimental)
   * [Metric: `jvm.memory.init`](#metric-jvmmemoryinit)
@@ -287,6 +288,21 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 <!-- endsemconv -->
 
 <!-- semconv metric.jvm.cpu.time(full) -->
+<!-- endsemconv -->
+
+### Metric: `jvm.cpu.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`Runtime#availableProcessors()`](https://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#availableProcessors--).
+Note that this is always an integer value (i.e. fractional or millicores are not represented).
+
+<!-- semconv metric.jvm.cpu.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `jvm.cpu.count` | UpDownCounter | `{cpu}` | Number of processors available to the Java virtual machine. |
+<!-- endsemconv -->
+
+<!-- semconv metric.jvm.cpu.count(full) -->
 <!-- endsemconv -->
 
 ### Metric: `jvm.cpu.recent_utilization`
