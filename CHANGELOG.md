@@ -57,6 +57,8 @@ release.
   ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
 - BREAKING: Remove pluralization from JVM metric namespaces.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
+- Metric namespaces SHOULD NOT be pluralized.
+  ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 
 ## v1.21.0 (2023-07-13)
 
