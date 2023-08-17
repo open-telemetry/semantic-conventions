@@ -28,15 +28,16 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `jvm.thread.count`](#metric-jvmthreadcount)
   * [Metric: `jvm.class.loaded`](#metric-jvmclassloaded)
   * [Metric: `jvm.class.unloaded`](#metric-jvmclassunloaded)
-  * [Metric: `jvm.class.current_loaded`](#metric-jvmclasscurrent_loaded)
+  * [Metric: `jvm.class.count`](#metric-jvmclasscount)
   * [Metric: `jvm.cpu.time`](#metric-jvmcputime)
+  * [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   * [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
 - [JVM Metrics (Experimental)](#jvm-metrics-experimental)
   * [Metric: `jvm.memory.init`](#metric-jvmmemoryinit)
   * [Metric: `jvm.system.cpu.utilization`](#metric-jvmsystemcpuutilization)
   * [Metric: `jvm.system.cpu.load_1m`](#metric-jvmsystemcpuload_1m)
-  * [Metric: `jvm.buffer.usage`](#metric-jvmbufferusage)
-  * [Metric: `jvm.buffer.limit`](#metric-jvmbufferlimit)
+  * [Metric: `jvm.buffer.memory.usage`](#metric-jvmbuffermemoryusage)
+  * [Metric: `jvm.buffer.memory.limit`](#metric-jvmbuffermemorylimit)
   * [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
 
 <!-- tocstop -->
@@ -91,12 +92,12 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
-| `pool` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-`type` MUST be one of the following:
+`jvm.memory.type` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -118,12 +119,12 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.committed(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
-| `pool` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-`type` MUST be one of the following:
+`jvm.memory.type` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -145,12 +146,12 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.limit(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
-| `pool` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-`type` MUST be one of the following:
+`jvm.memory.type` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -172,12 +173,12 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 <!-- semconv metric.jvm.memory.usage_after_last_gc(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
-| `pool` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-`type` MUST be one of the following:
+`jvm.memory.type` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -204,8 +205,8 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.jvm.gc.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `gc` | string | Name of the garbage collector. [1] | `G1 Young Generation`; `G1 Old Generation` | Recommended |
-| `action` | string | Name of the garbage collector action. [2] | `end of minor GC`; `end of major GC` | Recommended |
+| `jvm.gc.name` | string | Name of the garbage collector. [1] | `G1 Young Generation`; `G1 Old Generation` | Recommended |
+| `jvm.gc.action` | string | Name of the garbage collector action. [2] | `end of minor GC`; `end of major GC` | Recommended |
 
 **[1]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
 
@@ -228,7 +229,7 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 <!-- semconv metric.jvm.thread.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
+| [`thread.daemon`](../general/attributes.md) | boolean | Whether the thread is daemon or not. |  | Recommended |
 <!-- endsemconv -->
 
 ### Metric: `jvm.class.loaded`
@@ -259,18 +260,27 @@ This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](http
 <!-- semconv metric.jvm.class.unloaded(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.class.current_loaded`
+### Metric: `jvm.class.count`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--).
 
+<<<<<<< HEAD
 <!-- semconv metric.jvm.class.current_loaded(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `jvm.class.current_loaded` | UpDownCounter | `{class}` | Number of classes currently loaded. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.class.current_loaded(full) -->
+<!-- semconv metric.jvm.class.count(full) -->
+=======
+<!-- semconv metric.jvm.class.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `jvm.class.count` | UpDownCounter | `{class}` | Number of classes currently loaded. |
+<!-- endsemconv -->
+
+<!-- semconv metric.jvm.class.count(full) -->
 <!-- endsemconv -->
 
 ### Metric: `jvm.cpu.time`
@@ -287,6 +297,21 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 <!-- endsemconv -->
 
 <!-- semconv metric.jvm.cpu.time(full) -->
+<!-- endsemconv -->
+
+### Metric: `jvm.cpu.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`Runtime#availableProcessors()`](https://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#availableProcessors--).
+Note that this is always an integer value (i.e. fractional or millicores are not represented).
+
+<!-- semconv metric.jvm.cpu.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `jvm.cpu.count` | UpDownCounter | `{cpu}` | Number of processors available to the Java virtual machine. |
+<!-- endsemconv -->
+
+<!-- semconv metric.jvm.cpu.count(full) -->
 <!-- endsemconv -->
 
 ### Metric: `jvm.cpu.recent_utilization`
@@ -325,12 +350,12 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.init(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
-| `pool` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-`type` MUST be one of the following:
+`jvm.memory.type` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -371,40 +396,40 @@ This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](ht
 <!-- semconv metric.jvm.system.cpu.load_1m(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.buffer.usage`
+### Metric: `jvm.buffer.memory.usage`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/BufferPoolMXBean.html#getMemoryUsed--).
 
-<!-- semconv metric.jvm.buffer.usage(metric_table) -->
+<!-- semconv metric.jvm.buffer.memory.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.buffer.usage` | UpDownCounter | `By` | Measure of memory used by buffers. |
+| `jvm.buffer.memory.usage` | UpDownCounter | `By` | Measure of memory used by buffers. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.buffer.usage(full) -->
+<!-- semconv metric.jvm.buffer.memory.usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `pool` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
+| `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
 
-### Metric: `jvm.buffer.limit`
+### Metric: `jvm.buffer.memory.limit`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/BufferPoolMXBean.html#getTotalCapacity--).
 
-<!-- semconv metric.jvm.buffer.limit(metric_table) -->
+<!-- semconv metric.jvm.buffer.memory.limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.buffer.limit` | UpDownCounter | `By` | Measure of total memory capacity of buffers. |
+| `jvm.buffer.memory.limit` | UpDownCounter | `By` | Measure of total memory capacity of buffers. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.buffer.limit(full) -->
+<!-- semconv metric.jvm.buffer.memory.limit(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `pool` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
+| `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
@@ -423,7 +448,7 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 <!-- semconv metric.jvm.buffer.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `pool` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
+| `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
