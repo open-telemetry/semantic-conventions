@@ -48,8 +48,8 @@ groups:
           members:
             - id: created
               value: 'created'
-              brief: > 
-                Any time before Activity.onResume() or, if the app has no Activity, Context.startService() 
+              brief: >
+                Any time before Activity.onResume() or, if the app has no Activity, Context.startService()
                 has been called in the app for the first time.'
             - id: background
               value: 'background'
