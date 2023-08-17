@@ -28,7 +28,7 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `jvm.threads.count`](#metric-jvmthreadscount)
   * [Metric: `jvm.classes.loaded`](#metric-jvmclassesloaded)
   * [Metric: `jvm.classes.unloaded`](#metric-jvmclassesunloaded)
-  * [Metric: `jvm.classes.current_loaded`](#metric-jvmclassescurrent_loaded)
+  * [Metric: `jvm.classes.count`](#metric-jvmclassescount)
   * [Metric: `jvm.cpu.time`](#metric-jvmcputime)
   * [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   * [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
@@ -260,18 +260,18 @@ This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](http
 <!-- semconv metric.jvm.classes.unloaded(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.classes.current_loaded`
+### Metric: `jvm.classes.count`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--).
 
-<!-- semconv metric.jvm.classes.current_loaded(metric_table) -->
+<!-- semconv metric.jvm.classes.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.classes.current_loaded` | UpDownCounter | `{class}` | Number of classes currently loaded. |
+| `jvm.classes.count` | UpDownCounter | `{class}` | Number of classes currently loaded. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.classes.current_loaded(full) -->
+<!-- semconv metric.jvm.classes.count(full) -->
 <!-- endsemconv -->
 
 ### Metric: `jvm.cpu.time`

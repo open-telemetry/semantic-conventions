@@ -53,6 +53,8 @@ release.
 - BREAKING: Rename metrics `jvm.buffer.usage` to `jvm.buffer.memory.usage`
   and `jvm.buffer.limit` to `jvm.buffer.memory.limit`.
   ([#253](https://github.com/open-telemetry/semantic-conventions/pull/253))
+- BREAKING: Rename `jvm.classes.current_loaded` metrics to `jvm.classes.count`
+  ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
 
 ## v1.21.0 (2023-07-13)
 

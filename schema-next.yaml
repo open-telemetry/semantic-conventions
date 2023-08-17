@@ -18,7 +18,8 @@ versions:
             process.runtime.jvm.threads.count: jvm.threads.count
             process.runtime.jvm.classes.loaded: jvm.classes.loaded
             process.runtime.jvm.classes.unloaded: jvm.classes.unloaded
-            process.runtime.jvm.classes.current_loaded: jvm.classes.current_loaded
+            # https://github.com/open-telemetry/semantic-conventions/pull/60
+            process.runtime.jvm.classes.current_loaded: jvm.classes.count
             process.runtime.jvm.cpu.time: jvm.cpu.time
             process.runtime.jvm.cpu.recent_utilization: jvm.cpu.recent_utilization
             process.runtime.jvm.memory.init: jvm.memory.init

@@ -107,9 +107,9 @@ groups:
     instrument: counter
     unit: "{class}"
 
-  - id: metric.jvm.classes.current_loaded
+  - id: metric.jvm.classes.count
     type: metric
-    metric_name: jvm.classes.current_loaded
+    metric_name: jvm.classes.count
     brief: "Number of classes currently loaded."
     instrument: updowncounter
     unit: "{class}"
