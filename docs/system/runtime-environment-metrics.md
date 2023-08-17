@@ -25,10 +25,10 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `jvm.memory.limit`](#metric-jvmmemorylimit)
   * [Metric: `jvm.memory.usage_after_last_gc`](#metric-jvmmemoryusage_after_last_gc)
   * [Metric: `jvm.gc.duration`](#metric-jvmgcduration)
-  * [Metric: `jvm.threads.count`](#metric-jvmthreadscount)
-  * [Metric: `jvm.classes.loaded`](#metric-jvmclassesloaded)
-  * [Metric: `jvm.classes.unloaded`](#metric-jvmclassesunloaded)
-  * [Metric: `jvm.classes.count`](#metric-jvmclassescount)
+  * [Metric: `jvm.thread.count`](#metric-jvmthreadcount)
+  * [Metric: `jvm.class.loaded`](#metric-jvmclassloaded)
+  * [Metric: `jvm.class.unloaded`](#metric-jvmclassunloaded)
+  * [Metric: `jvm.class.count`](#metric-jvmclasscount)
   * [Metric: `jvm.cpu.time`](#metric-jvmcputime)
   * [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   * [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
@@ -213,65 +213,65 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 **[2]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 <!-- endsemconv -->
 
-### Metric: `jvm.threads.count`
+### Metric: `jvm.thread.count`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ThreadMXBean#getDaemonThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getDaemonThreadCount--) and
 [`ThreadMXBean#getThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--).
 Note that this is the number of platform threads (as opposed to virtual threads).
 
-<!-- semconv metric.jvm.threads.count(metric_table) -->
+<!-- semconv metric.jvm.thread.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.threads.count` | UpDownCounter | `{thread}` | Number of executing platform threads. |
+| `jvm.thread.count` | UpDownCounter | `{thread}` | Number of executing platform threads. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.threads.count(full) -->
+<!-- semconv metric.jvm.thread.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`thread.daemon`](../general/attributes.md) | boolean | Whether the thread is daemon or not. |  | Recommended |
 <!-- endsemconv -->
 
-### Metric: `jvm.classes.loaded`
+### Metric: `jvm.class.loaded`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getTotalLoadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getTotalLoadedClassCount--).
 
-<!-- semconv metric.jvm.classes.loaded(metric_table) -->
+<!-- semconv metric.jvm.class.loaded(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.classes.loaded` | Counter | `{class}` | Number of classes loaded since JVM start. |
+| `jvm.class.loaded` | Counter | `{class}` | Number of classes loaded since JVM start. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.classes.loaded(full) -->
+<!-- semconv metric.jvm.class.loaded(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.classes.unloaded`
+### Metric: `jvm.class.unloaded`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getUnloadedClassCount--).
 
-<!-- semconv metric.jvm.classes.unloaded(metric_table) -->
+<!-- semconv metric.jvm.class.unloaded(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.classes.unloaded` | Counter | `{class}` | Number of classes unloaded since JVM start. |
+| `jvm.class.unloaded` | Counter | `{class}` | Number of classes unloaded since JVM start. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.classes.unloaded(full) -->
+<!-- semconv metric.jvm.class.unloaded(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.classes.count`
+### Metric: `jvm.class.count`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--).
 
-<!-- semconv metric.jvm.classes.count(metric_table) -->
+<!-- semconv metric.jvm.class.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.classes.count` | UpDownCounter | `{class}` | Number of classes currently loaded. |
+| `jvm.class.count` | UpDownCounter | `{class}` | Number of classes currently loaded. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.classes.count(full) -->
+<!-- semconv metric.jvm.class.count(full) -->
 <!-- endsemconv -->
 
 ### Metric: `jvm.cpu.time`
