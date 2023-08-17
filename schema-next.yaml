@@ -25,8 +25,10 @@ versions:
             process.runtime.jvm.memory.init: jvm.memory.init
             process.runtime.jvm.system.cpu.utilization: jvm.system.cpu.utilization
             process.runtime.jvm.system.cpu.load_1m: jvm.system.cpu.load_1m
-            process.runtime.jvm.buffer.usage: jvm.buffer.usage
-            process.runtime.jvm.buffer.limit: jvm.buffer.limit
+            # https://github.com/open-telemetry/semantic-conventions/pull/253
+            process.runtime.jvm.buffer.usage: jvm.buffer.memory.usage
+            # https://github.com/open-telemetry/semantic-conventions/pull/253
+            process.runtime.jvm.buffer.limit: jvm.buffer.memory.limit
             process.runtime.jvm.buffer.count: jvm.buffer.count
         # https://github.com/open-telemetry/semantic-conventions/pull/20
         - rename_attributes:
