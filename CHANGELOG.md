@@ -49,7 +49,7 @@ release.
   in `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
 - FaaS: Add an option to use the X-Ray env var as main parent.
-  ([]())
+  ([#263](https://github.com/open-telemetry/semantic-conventions/pull/263))
 
 ## v1.21.0 (2023-07-13)
 
