@@ -14,7 +14,7 @@ use cases.
 <!-- toc -->
 
 - [All triggers](#all-triggers)
-  * [AWS X-Ray Environment Span Link](#aws-x-ray-environment-span-link)
+  * [AWS X-Ray Environment `SpanContext`](#aws-x-ray-environment-spancontext)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
   * [SQS Event](#sqs-event)
@@ -54,19 +54,25 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 [faasres]: /docs/resource/faas.md (FaaS resource conventions)
 [cloud]: /docs/resource/cloud.md (Cloud resource conventions)
 
-### AWS X-Ray Environment Span Link
+### AWS X-Ray Environment `SpanContext`
 
-If the `_X_AMZN_TRACE_ID` environment variable is set, instrumentation SHOULD try to parse an
-OpenTelemetry `Context` out of it using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/context/api-propagators.md). If the
-resulting `Context` is [valid](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#isvalid) then a [Span Link][] SHOULD be added to the new Span's
-[start options](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#specifying-links) with an associated attribute of `source=x-ray-env` to
-indicate the source of the linked span.
-Instrumentation MUST check if the context is valid before using it because the `_X_AMZN_TRACE_ID` environment variable can
-contain an incomplete trace context which indicates X-Ray isn’t enabled. The environment variable will be set and the
-`Context` will be valid and sampled only if AWS X-Ray has been enabled for the Lambda function. A user can
-disable AWS X-Ray for the function if the X-Ray Span Link is not desired.
+If the `_X_AMZN_TRACE_ID` environment variable contains a non-empty value then instrumentation MUST attempt to extract an
+OpenTelemetry `Context` from it using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/context/api-propagators.md). If the
+resulting `Context` contains a [valid `SpanContext`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#isvalid) then the
+instrumentation MUST utilize it in one of the following ways when creating a `Span` representing the invocation (the `Invocation Span`):
 
-**Note**: When instrumenting a Java AWS Lambda, instrumentation SHOULD first try to parse an OpenTelemetry `Context` out of the system property `com.amazonaws.xray.traceHeader` using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md) before checking and attempting to parse the environment variable above.
+* as the parent `Context`
+* as a `SpanContext` associated with a [Span Link][] added to the `Invocation Span`'s
+[start options](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#specifying-links) with an associated `String`-typed
+attribute with a key of `source` and a value of `x-ray-env`, in order to indicate the source of the linked span.
+
+Instrumentation MUST provide a mechanism for the user to select the behavior that they require it to utilize.  In the absence of an expressed user preference
+instrumentation SHOULD utilize the extracted `Context` as the parent context for the `Invocation Span`.  Instrumentation MAY require that the user explicitly
+choose a behavior.
+
+**Note**: When instrumenting a Java AWS Lambda function, instrumentation SHOULD first try to extract an OpenTelemetry `Context` from the system property `com.amazonaws.xray.traceHeader`
+using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md) before attempting to
+extract a `Context` from the environment variable above.
 
 [Span Link]: https://opentelemetry.io/docs/concepts/signals/traces/#span-links
 
