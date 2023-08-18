@@ -55,5 +55,3 @@ consider, for example pthreads vs green thread implementations.
 [`process.runtime`](/docs/resource/process.md#process-runtimes) resource attributes SHOULD be included on runtime metric events as appropriate.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
-[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#opt-in
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#recommended
