@@ -25,18 +25,19 @@ semantic conventions when instrumenting runtime environments.
   * [Metric: `jvm.memory.limit`](#metric-jvmmemorylimit)
   * [Metric: `jvm.memory.usage_after_last_gc`](#metric-jvmmemoryusage_after_last_gc)
   * [Metric: `jvm.gc.duration`](#metric-jvmgcduration)
-  * [Metric: `jvm.threads.count`](#metric-jvmthreadscount)
-  * [Metric: `jvm.classes.loaded`](#metric-jvmclassesloaded)
-  * [Metric: `jvm.classes.unloaded`](#metric-jvmclassesunloaded)
-  * [Metric: `jvm.classes.current_loaded`](#metric-jvmclassescurrent_loaded)
+  * [Metric: `jvm.thread.count`](#metric-jvmthreadcount)
+  * [Metric: `jvm.class.loaded`](#metric-jvmclassloaded)
+  * [Metric: `jvm.class.unloaded`](#metric-jvmclassunloaded)
+  * [Metric: `jvm.class.count`](#metric-jvmclasscount)
   * [Metric: `jvm.cpu.time`](#metric-jvmcputime)
+  * [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   * [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
 - [JVM Metrics (Experimental)](#jvm-metrics-experimental)
   * [Metric: `jvm.memory.init`](#metric-jvmmemoryinit)
   * [Metric: `jvm.system.cpu.utilization`](#metric-jvmsystemcpuutilization)
   * [Metric: `jvm.system.cpu.load_1m`](#metric-jvmsystemcpuload_1m)
-  * [Metric: `jvm.buffer.usage`](#metric-jvmbufferusage)
-  * [Metric: `jvm.buffer.limit`](#metric-jvmbufferlimit)
+  * [Metric: `jvm.buffer.memory.usage`](#metric-jvmbuffermemoryusage)
+  * [Metric: `jvm.buffer.memory.limit`](#metric-jvmbuffermemorylimit)
   * [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
 
 <!-- tocstop -->
@@ -212,65 +213,65 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 **[2]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 <!-- endsemconv -->
 
-### Metric: `jvm.threads.count`
+### Metric: `jvm.thread.count`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ThreadMXBean#getDaemonThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getDaemonThreadCount--) and
 [`ThreadMXBean#getThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--).
 Note that this is the number of platform threads (as opposed to virtual threads).
 
-<!-- semconv metric.jvm.threads.count(metric_table) -->
+<!-- semconv metric.jvm.thread.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.threads.count` | UpDownCounter | `{thread}` | Number of executing platform threads. |
+| `jvm.thread.count` | UpDownCounter | `{thread}` | Number of executing platform threads. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.threads.count(full) -->
+<!-- semconv metric.jvm.thread.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`thread.daemon`](../general/attributes.md) | boolean | Whether the thread is daemon or not. |  | Recommended |
 <!-- endsemconv -->
 
-### Metric: `jvm.classes.loaded`
+### Metric: `jvm.class.loaded`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getTotalLoadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getTotalLoadedClassCount--).
 
-<!-- semconv metric.jvm.classes.loaded(metric_table) -->
+<!-- semconv metric.jvm.class.loaded(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.classes.loaded` | Counter | `{class}` | Number of classes loaded since JVM start. |
+| `jvm.class.loaded` | Counter | `{class}` | Number of classes loaded since JVM start. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.classes.loaded(full) -->
+<!-- semconv metric.jvm.class.loaded(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.classes.unloaded`
+### Metric: `jvm.class.unloaded`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getUnloadedClassCount--).
 
-<!-- semconv metric.jvm.classes.unloaded(metric_table) -->
+<!-- semconv metric.jvm.class.unloaded(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.classes.unloaded` | Counter | `{class}` | Number of classes unloaded since JVM start. |
+| `jvm.class.unloaded` | Counter | `{class}` | Number of classes unloaded since JVM start. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.classes.unloaded(full) -->
+<!-- semconv metric.jvm.class.unloaded(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.classes.current_loaded`
+### Metric: `jvm.class.count`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--).
 
-<!-- semconv metric.jvm.classes.current_loaded(metric_table) -->
+<!-- semconv metric.jvm.class.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.classes.current_loaded` | UpDownCounter | `{class}` | Number of classes currently loaded. |
+| `jvm.class.count` | UpDownCounter | `{class}` | Number of classes currently loaded. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.classes.current_loaded(full) -->
+<!-- semconv metric.jvm.class.count(full) -->
 <!-- endsemconv -->
 
 ### Metric: `jvm.cpu.time`
@@ -287,6 +288,21 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 <!-- endsemconv -->
 
 <!-- semconv metric.jvm.cpu.time(full) -->
+<!-- endsemconv -->
+
+### Metric: `jvm.cpu.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`Runtime#availableProcessors()`](https://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#availableProcessors--).
+Note that this is always an integer value (i.e. fractional or millicores are not represented).
+
+<!-- semconv metric.jvm.cpu.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `jvm.cpu.count` | UpDownCounter | `{cpu}` | Number of processors available to the Java virtual machine. |
+<!-- endsemconv -->
+
+<!-- semconv metric.jvm.cpu.count(full) -->
 <!-- endsemconv -->
 
 ### Metric: `jvm.cpu.recent_utilization`
@@ -371,18 +387,18 @@ This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](ht
 <!-- semconv metric.jvm.system.cpu.load_1m(full) -->
 <!-- endsemconv -->
 
-### Metric: `jvm.buffer.usage`
+### Metric: `jvm.buffer.memory.usage`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/BufferPoolMXBean.html#getMemoryUsed--).
 
-<!-- semconv metric.jvm.buffer.usage(metric_table) -->
+<!-- semconv metric.jvm.buffer.memory.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.buffer.usage` | UpDownCounter | `By` | Measure of memory used by buffers. |
+| `jvm.buffer.memory.usage` | UpDownCounter | `By` | Measure of memory used by buffers. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.buffer.usage(full) -->
+<!-- semconv metric.jvm.buffer.memory.usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
@@ -390,18 +406,18 @@ This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.o
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
 
-### Metric: `jvm.buffer.limit`
+### Metric: `jvm.buffer.memory.limit`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/BufferPoolMXBean.html#getTotalCapacity--).
 
-<!-- semconv metric.jvm.buffer.limit(metric_table) -->
+<!-- semconv metric.jvm.buffer.memory.limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.buffer.limit` | UpDownCounter | `By` | Measure of total memory capacity of buffers. |
+| `jvm.buffer.memory.limit` | UpDownCounter | `By` | Measure of total memory capacity of buffers. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.buffer.limit(full) -->
+<!-- semconv metric.jvm.buffer.memory.limit(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
