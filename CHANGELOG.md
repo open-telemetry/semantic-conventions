@@ -57,6 +57,8 @@ release.
   ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
 - BREAKING: Remove pluralization from JVM metric namespaces.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
+- FaaS: Change requirements regarding handling of AWS Lambda-provided `SpanContext`
+  ([#277](https://github.com/open-telemetry/semantic-conventions/pull/277))
 
 ## v1.21.0 (2023-07-13)
 
