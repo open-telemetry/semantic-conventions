@@ -14,7 +14,7 @@ use cases.
 <!-- toc -->
 
 - [All triggers](#all-triggers)
-  * [AWS X-Ray Environment Span Link](#aws-x-ray-environment-span-link)
+  * [AWS X-Ray Environment `SpanContext`](#aws-x-ray-environment-spancontext)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
   * [SQS Event](#sqs-event)
