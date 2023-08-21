@@ -75,7 +75,7 @@ release.
     - `protocol` to `network.protocol`
     - `state` to `system.network.state`
   - Rename attributes for `system.processes.*` metrics:
-    - `status` to `system.processes.status`
+    - `status` to `system.process.status`
 
 ## v1.21.0 (2023-07-13)
 

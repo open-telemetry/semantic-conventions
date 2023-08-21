@@ -120,9 +120,9 @@ versions:
               - system.network.connections
         - rename_attributes:
             attribute_map:
-              status: system.processes.status
+              status: system.process.status
             apply_to_metrics:
-              - system.processes.count
+              - system.process.count
   1.21.0:
     spans:
       changes:
