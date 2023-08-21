@@ -79,10 +79,12 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.server.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. **Streaming**: N/A. [1] |
+| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. [1] |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
+
+**Streaming**: N/A.
 <!-- endsemconv -->
 
 #### Metric: `rpc.server.request.size`
@@ -92,7 +94,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.server.request.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). **Streaming**: Recorded per message in a streaming batch |
+| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] |
+
+**[1]:** **Streaming**: Recorded per message in a streaming batch
 <!-- endsemconv -->
 
 #### Metric: `rpc.server.response.size`
@@ -102,7 +106,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.server.response.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). **Streaming**: Recorded per response in a streaming batch |
+| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] |
+
+**[1]:** **Streaming**: Recorded per response in a streaming batch
 <!-- endsemconv -->
 
 #### Metric: `rpc.server.requests_per_rpc`
@@ -112,7 +118,11 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.server.requests_per_rpc(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.server.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+| `rpc.server.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] |
+
+**[1]:** Should be 1 for all non-streaming RPCs.
+
+**Streaming** : This metric is required for server and client streaming RPCs
 <!-- endsemconv -->
 
 #### Metric: `rpc.server.responses_per_rpc`
@@ -122,7 +132,11 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.server.responses_per_rpc(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.server.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+| `rpc.server.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] |
+
+**[1]:** Should be 1 for all non-streaming RPCs.
+
+**Streaming**: This metric is required for server and client streaming RPCs
 <!-- endsemconv -->
 
 ### RPC Client
@@ -137,10 +151,12 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.client.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC **Streaming**: N/A. [1] |
+| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC. [1] |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
+
+**Streaming**: N/A.
 <!-- endsemconv -->
 
 #### Metric: `rpc.client.request.size`
@@ -150,7 +166,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.client.request.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). **Streaming**: Recorded per message in a streaming batch |
+| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] |
+
+**[1]:** **Streaming**: Recorded per message in a streaming batch
 <!-- endsemconv -->
 
 #### Metric: `rpc.client.response.size`
@@ -160,7 +178,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.client.response.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). **Streaming**: Recorded per response in a streaming batch |
+| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] |
+
+**[1]:** **Streaming**: Recorded per response in a streaming batch
 <!-- endsemconv -->
 
 #### Metric: `rpc.client.requests_per_rpc`
@@ -170,7 +190,11 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.client.requests_per_rpc(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.client.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+| `rpc.client.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] |
+
+**[1]:** Should be 1 for all non-streaming RPCs.
+
+**Streaming**: This metric is required for server and client streaming RPCs
 <!-- endsemconv -->
 
 #### Metric: `rpc.client.responses_per_rpc`
@@ -180,7 +204,11 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.rpc.client.responses_per_rpc(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `rpc.client.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+| `rpc.client.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] |
+
+**[1]:** Should be 1 for all non-streaming RPCs.
+
+**Streaming**: This metric is required for server and client streaming RPCs
 <!-- endsemconv -->
 
 ## Attributes
