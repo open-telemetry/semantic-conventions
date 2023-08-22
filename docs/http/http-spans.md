@@ -110,7 +110,7 @@ sections below.
 | `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `error.description` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `server_certificate_invalid` | Conditionally Required: If request or response has ended prematurely. |
+| `error.id` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `server_certificate_invalid` | Conditionally Required: If request has ended with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
@@ -121,19 +121,21 @@ sections below.
 **[1]:** If and only if it's different than `http.request.method`.
 
 **[2]:** If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-`error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+`error.id` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 returned in the status line or to `_OTHER`.
 
 If request fails with an error before or after status code was sent or received, such error SHOULD be
-recorded on `error.description` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+recorded on `error.id` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
 
-The cardinality of error description within one instrumentation library SHOULD be low, but
+The cardinality of `error.id` within one instrumentation library SHOULD be low, but
 telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.description` to have high cardinality at query time, when no
+should be prepared for `error.id` to have high cardinality at query time, when no
 additional filters are applied.
 
-If operation has completed successfully, instrumentations SHOULD not set `error.description`.
+If operation has completed successfully, instrumentations SHOULD not set `error.id`.
+Telemetry consumers SHOULD treat absence of `error.id` and empty `error.id` the same
+(as an indication that operation did not fail).
 
 **[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -158,12 +160,12 @@ Following attributes MUST be provided **at span creation time** (when provided a
 
 * `http.request.method`
 
-`error.description` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`error.id` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
-| `` | No error. Default value. |
-| `_OTHER` | Any error reason instrumentation does not define custom value for. |
+| `` | No error. |
+| `_OTHER` | Any error instrumentation does not define custom value for. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

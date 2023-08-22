@@ -62,25 +62,27 @@ groups:
           conditionally_required: If and only if one was received/sent.
         brief: '[HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).'
         examples: [200]
-      - ref: error.description
+      - ref: error.id
         requirement_level:
-          conditionally_required: If request or response has ended prematurely.
+          conditionally_required: If request has ended with an error.
         examples: ['timeout', 'name_resolution_error', 'server_certificate_invalid']
         note: |
           If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-          `error.description` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+          `error.id` SHOULD be set to the [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
           returned in the status line or to `_OTHER`.
 
           If request fails with an error before or after status code was sent or received, such error SHOULD be
-          recorded on `error.description` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+          recorded on `error.id` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
 
-          The cardinality of error description within one instrumentation library SHOULD be low, but
+          The cardinality of `error.id` within one instrumentation library SHOULD be low, but
           telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-          should be prepared for `error.description` to have high cardinality at query time, when no
+          should be prepared for `error.id` to have high cardinality at query time, when no
           additional filters are applied.
 
-          If operation has completed successfully, instrumentations SHOULD not set `error.description`.
+          If operation has completed successfully, instrumentations SHOULD not set `error.id`.
+          Telemetry consumers SHOULD treat absence of `error.id` and empty `error.id` the same
+          (as an indication that operation did not fail).
       - ref: network.protocol.name
         examples: ['http', 'spdy']
         requirement_level:
