@@ -31,24 +31,25 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/metrics/semantic_conventions/http-metrics.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the HTTP or networking attributes that they emit
+> * SHOULD NOT change the version of the HTTP or networking conventions that they emit
 >   until the HTTP semantic conventions are marked stable (HTTP stabilization will
->   include stabilization of a core set of networking attributes which are also used
->   in HTTP instrumentations).
+>   include stabilization of a core set of networking conventions which are also used
+>   in HTTP instrumentations). Conventions include, but are not limited to, attributes,
+>   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version which is a comma-separated list of values.
 >   The only values defined so far are:
->   * `http` - emit the new, stable HTTP and networking attributes,
->     and stop emitting the old experimental HTTP and networking attributes
+>   * `http` - emit the new, stable HTTP and networking conventions,
+>     and stop emitting the old experimental HTTP and networking conventions
 >     that the instrumentation emitted previously.
->   * `http/dup` - emit both the old and the stable HTTP and networking attributes,
+>   * `http/dup` - emit both the old and the stable HTTP and networking conventions,
 >     allowing for a seamless transition.
 >   * The default behavior (in the absence of one of these values) is to continue
->     emitting whatever version of the old experimental HTTP and networking attributes
+>     emitting whatever version of the old experimental HTTP and networking conventions
 >     the instrumentation was emitting previously.
 >   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
->   for at least six months after it starts emitting both sets of attributes.
+>   for at least six months after it starts emitting both sets of conventions.
 > * SHOULD drop the environment variable in the next major version (stable
 >   next major version SHOULD NOT be released prior to October 1, 2023).
 
