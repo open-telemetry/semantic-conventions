@@ -58,7 +58,7 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 
 If the `_X_AMZN_TRACE_ID` environment variable is set, instrumentation MUST ensure that the value from that
 environment variable is included in the `Carrier` used to extract a parent `Context` with the `Field` name
-"X-Amzn-Trace-Id" unless the `Carrier` already includes a value for that `Field`.
+"X-Amzn-Trace-Id".
 
 Instrumentation MUST provide users with the option to create a `Link` to the AWS Lambda vended spans.  If this
 option is enabled then the instrumentation MUST attempt to extract a `SpanContext` from a `Carrier` including
