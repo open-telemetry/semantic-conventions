@@ -59,6 +59,8 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- BREAKING: Change HTTP span name when method is unknown (use `HTTP` instead of `_OTHER`)
+  ([#270](https://github.com/open-telemetry/semantic-conventions/pull/270))
 
 ## v1.21.0 (2023-07-13)
 
