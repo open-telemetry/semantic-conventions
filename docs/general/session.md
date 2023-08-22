@@ -18,7 +18,7 @@ the Logs, Events, and Spans generated during the Session's lifecycle.
 <!-- semconv session-id -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `session.id` | string | A GUID to identify the current session. | `00112233-4455-6677-8899-aabbccddeeff` | Opt-In |
+| `session.id` | string | A UUID to identify the current session. | `00112233-4455-6677-8899-aabbccddeeff` | Opt-In |
 <!-- endsemconv -->
 
 
