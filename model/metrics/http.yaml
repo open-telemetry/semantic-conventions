@@ -97,17 +97,19 @@ groups:
   - id: metric.http.server.request.size
     type: metric
     metric_name: http.server.request.size
-    brief: "Measures the size of HTTP request messages (compressed)."
+    brief: "Measures the size of HTTP request messages."
     instrument: histogram
     unit: "By"
+    note: Size as measured over the wire (compressed size if messages are compressed).
     extends: metric_attributes.http.server
 
   - id: metric.http.server.response.size
     type: metric
     metric_name: http.server.response.size
-    brief: "Measures the size of HTTP response messages (compressed)."
+    brief: "Measures the size of HTTP response messages."
     instrument: histogram
     unit: "By"
+    note: Size as measured over the wire (compressed size if messages are compressed).
     extends: metric_attributes.http.server
 
   - id: metric.http.client.request.duration
@@ -121,15 +123,17 @@ groups:
   - id: metric.http.client.request.size
     type: metric
     metric_name: http.client.request.size
-    brief: "Measures the size of HTTP request messages (compressed)."
+    brief: "Measures the size of HTTP request messages."
     instrument: histogram
     unit: "By"
+    note: Size as measured over the wire (compressed size if messages are compressed).
     extends: metric_attributes.http.client
 
   - id: metric.http.client.response.size
     type: metric
     metric_name: http.client.response.size
-    brief: "Measures the size of HTTP response messages (compressed)."
+    brief: "Measures the size of HTTP response messages."
     instrument: histogram
     unit: "By"
+    note: Size as measured over the wire (compressed size if messages are compressed).
     extends: metric_attributes.http.client
