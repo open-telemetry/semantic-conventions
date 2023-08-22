@@ -57,6 +57,8 @@ release.
   ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
 - BREAKING: Remove pluralization from JVM metric namespaces.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
+- Simplify HTTP metric briefs.
+  ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
 - Moved RPC streaming notes from metric brief section to notes section.
   ([#275](https://github.com/open-telemetry/semantic-conventions/pull/275))
 
