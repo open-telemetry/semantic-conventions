@@ -214,7 +214,9 @@ This metric is optional.
 <!-- semconv metric.http.server.request.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.server.request.size` | Histogram | `By` | Measures the size of HTTP request messages (compressed). |
+| `http.server.request.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.server.request.size(full) -->
@@ -291,7 +293,9 @@ This metric is optional.
 <!-- semconv metric.http.server.response.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.server.response.size` | Histogram | `By` | Measures the size of HTTP response messages (compressed). |
+| `http.server.response.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.server.response.size(full) -->
@@ -447,7 +451,9 @@ This metric is optional.
 <!-- semconv metric.http.client.request.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.client.request.size` | Histogram | `By` | Measures the size of HTTP request messages (compressed). |
+| `http.client.request.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.client.request.size(full) -->
@@ -518,7 +524,9 @@ This metric is optional.
 <!-- semconv metric.http.client.response.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.client.response.size` | Histogram | `By` | Measures the size of HTTP response messages (compressed). |
+| `http.client.response.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.client.response.size(full) -->
