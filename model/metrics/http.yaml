@@ -50,8 +50,6 @@ groups:
           additional filters are applied.
 
           If operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
-          Telemetry consumers SHOULD treat absence of `error.id` and empty `error.id` the same
-          (as an indication that operation did not fail).
       - ref: http.request.method
       - ref: http.response.status_code
       - ref: network.protocol.name

@@ -103,8 +103,6 @@ should be prepared for `error.id` to have high cardinality at query time, when n
 additional filters are applied.
 
 If operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
-Telemetry consumers SHOULD treat absence of `error.id` and empty `error.id` the same
-(as an indication that operation did not fail).
 
 **[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -144,7 +142,6 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 | Value  | Description |
 |---|---|
-| `` | No error. |
 | `_OTHER` | Any error instrumentation does not define custom value for. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
@@ -275,8 +272,6 @@ should be prepared for `error.id` to have high cardinality at query time, when n
 additional filters are applied.
 
 If operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
-Telemetry consumers SHOULD treat absence of `error.id` and empty `error.id` the same
-(as an indication that operation did not fail).
 
 **[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -316,7 +311,6 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 | Value  | Description |
 |---|---|
-| `` | No error. |
 | `_OTHER` | Any error instrumentation does not define custom value for. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
@@ -379,8 +373,6 @@ should be prepared for `error.id` to have high cardinality at query time, when n
 additional filters are applied.
 
 If operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
-Telemetry consumers SHOULD treat absence of `error.id` and empty `error.id` the same
-(as an indication that operation did not fail).
 
 **[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -420,7 +412,6 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 | Value  | Description |
 |---|---|
-| `` | No error. |
 | `_OTHER` | Any error instrumentation does not define custom value for. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.

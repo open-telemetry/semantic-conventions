@@ -11,9 +11,6 @@ groups:
         type:
           allow_custom_values: true
           members:
-            - id: empty
-              value: ""
-              brief: 'No error.'
             - id: other
               value: "_OTHER"
               brief: 'Any error instrumentation does not define custom value for.'
@@ -22,14 +19,12 @@ groups:
           The `error.id` SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
 
-          The cardinality of `error.id`` within one instrumentation library SHOULD be low, but
+          The cardinality of `error.id` within one instrumentation library SHOULD be low, but
           telemetry consumers that aggregate data from multiple instrumentation libraries and applications
           should be prepared for `error.id` to have high cardinality at query time, when no
           additional filters are applied.
 
           If operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
-          Telemetry consumers SHOULD treat absence of `error.id` and empty `error.id` the same
-          (as an indication that operation did not fail).
 
           If a specific domain defines its own set of error codes (such as HTTP or gRPC status codes),
           it's RECOMMENDED to use a domain-specific attribute and also set `error.id` to capture
