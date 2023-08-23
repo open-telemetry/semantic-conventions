@@ -110,7 +110,7 @@ sections below.
 | `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `error.id` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `server_certificate_invalid` | Conditionally Required: If request has ended with an error. |
+| `error.id` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `server_certificate_invalid` | Conditionally Required: If the request has ended with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
@@ -120,11 +120,11 @@ sections below.
 
 **[1]:** If and only if it's different than `http.request.method`.
 
-**[2]:** If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+**[2]:** If the response status code was sent/received and the status indicates an error according to the [HTTP span status definition](/docs/http/http-spans.md),
 `error.id` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
-corresponding to the returned status code or to `_OTHER`.
+corresponding to the returned status code, otherwise it SHOULD be set `_OTHER`.
 
-If request fails with an error before or after status code was sent or received, such error SHOULD be
+If the request fails with an error before or after the status code was sent or received, such error SHOULD be
 recorded on `error.id` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
 
@@ -162,7 +162,7 @@ Following attributes MUST be provided **at span creation time** (when provided a
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | Any error instrumentation does not define custom value for. |
+| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

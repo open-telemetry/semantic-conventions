@@ -77,7 +77,7 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `error.id` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
+| `error.id` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
@@ -142,7 +142,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | Any error instrumentation does not define custom value for. |
+| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -246,7 +246,7 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `error.id` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
+| `error.id` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
@@ -311,7 +311,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | Any error instrumentation does not define custom value for. |
+| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -347,7 +347,7 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `error.id` | string | Describes a class of error operation has ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
+| `error.id` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
@@ -412,7 +412,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | Any error instrumentation does not define custom value for. |
+| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
