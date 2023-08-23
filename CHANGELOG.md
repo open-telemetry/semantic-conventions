@@ -59,6 +59,8 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - FaaS: Change requirements regarding handling of AWS Lambda-provided `SpanContext`
   ([#277](https://github.com/open-telemetry/semantic-conventions/pull/277))
+- Simplify HTTP metric briefs.
+  ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
 
 ## v1.21.0 (2023-07-13)
 
