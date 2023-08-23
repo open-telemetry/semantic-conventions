@@ -94,8 +94,8 @@ Don't set the span status description if the reason can be inferred from `http.r
 HTTP request may fail if it was cancelled or an error occurred preventing
 the client or server from sending/receiving the request/response fully.
 
-When instrumentation detects such errors it MUST to `Error` and MUST set `error.description`
-attribute.
+When instrumentation detects such errors it MUST set span status to `Error`
+and MUST set the `error.id` attribute.
 
 ## Common Attributes
 
@@ -571,7 +571,7 @@ As an example, if a user requested `https://does-not-exist-123.com`, we may have
 | `network.protocol.version` | `"1.1"`                                           |
 | `url.full`           | `"https://does-not-exist-123.com"`                      |
 | `server.address`     | `"does-not-exist-123.com"`                              |
-| `error.description`  | `"java.net.UnknownHostException"`                       |
+| `error.id`           | `"java.net.UnknownHostException"`                       |
 
 ### HTTP client call: Internal Server Error
 
@@ -584,7 +584,7 @@ As an example, if a user requested `https://example.com` and server returned 500
 | `url.full`           | `"https://example.com"`                                 |
 | `server.address`     | `"example.com"`                                         |
 | `http.response.status_code` | `500`                                            |
-| `error.description`  | `"Internal Server Error"`                               |
+| `error.id`           | `"Internal Server Error"`                               |
 
 ### HTTP server call: connection dropped before response body was sent
 
@@ -599,6 +599,6 @@ Span name: `POST /uploads/:document_id`.
 | `url.scheme`         | `"https"`                                       |
 | `http.route`         | `"/uploads/:document_id"`                       |
 | `http.response.status_code` | `201`                                    |
-| `error.description`  | `WebSocketDisconnect`                           |
+| `error.id`           | `WebSocketDisconnect`                           |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

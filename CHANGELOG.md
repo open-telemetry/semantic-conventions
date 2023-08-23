@@ -48,7 +48,6 @@ release.
 - Clarify that `http/dup` has higher precedence than `http` in case both values are present
   in `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
-<<<<<<< HEAD
 - Add `jvm.cpu.count` metric.
   ([#52](https://github.com/open-telemetry/semantic-conventions/pull/52))
 - BREAKING: Rename metrics `jvm.buffer.usage` to `jvm.buffer.memory.usage`
