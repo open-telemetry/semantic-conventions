@@ -74,7 +74,7 @@ is not generally aware of the "route", and therefore HTTP client spans SHOULD be
 `{method}`.
 
 The `{method}` SHOULD be `{http.request.method}` if method represents original method known to the instrumentation.
-In other cases (when `{http.request.method}` is set to `OTHER`), `{method}` SHOULD match `HTTP`.
+In other cases (when `{http.request.method}` is set to `_OTHER`), `{method}` SHOULD match `HTTP`.
 
 Instrumentation MUST NOT default to using URI
 path as span name, but MAY provide hooks to allow custom logic to override the
