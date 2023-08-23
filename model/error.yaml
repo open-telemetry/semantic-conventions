@@ -7,13 +7,13 @@ groups:
       report an error.
     attributes:
       - id: id
-        brief: 'Describes a class of error operation has ended with.'
+        brief: 'Describes a class of error the operation ended with.'
         type:
           allow_custom_values: true
           members:
             - id: other
               value: "_OTHER"
-              brief: 'Any error instrumentation does not define custom value for.'
+              brief: 'A fallback error value to be used when the instrumentation does not define a custom value for it.'
         examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', 'Internal Server Error']
         note: |
           The `error.id` SHOULD be predictable and SHOULD have low cardinality.
@@ -24,7 +24,7 @@ groups:
           should be prepared for `error.id` to have high cardinality at query time, when no
           additional filters are applied.
 
-          If operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
+          If the operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
 
           If a specific domain defines its own set of error codes (such as HTTP or gRPC status codes),
           it's RECOMMENDED to use a domain-specific attribute and also set `error.id` to capture

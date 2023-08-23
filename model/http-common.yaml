@@ -64,14 +64,14 @@ groups:
         examples: [200]
       - ref: error.id
         requirement_level:
-          conditionally_required: If request has ended with an error.
+          conditionally_required: If the request has ended with an error.
         examples: ['timeout', 'name_resolution_error', 'server_certificate_invalid']
         note: |
-          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+          If the response status code was sent/received and the status indicates an error according to the [HTTP span status definition](/docs/http/http-spans.md),
           `error.id` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
-          corresponding to the returned status code or to `_OTHER`.
+          corresponding to the returned status code, otherwise it SHOULD be set `_OTHER`.
 
-          If request fails with an error before or after status code was sent or received, such error SHOULD be
+          If the request fails with an error before or after the status code was sent or received, such error SHOULD be
           recorded on `error.id` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
 
