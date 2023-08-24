@@ -63,11 +63,11 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#span).
 
-HTTP server span names SHOULD be `{method} {http.route}` if there is a
+HTTP server span names SHOULD be `{method} {http.route}` (see below for the exact definition of the method placeholder) if there is a
 (low-cardinality) `http.route` available,
 
 If there is no (low-cardinality) `http.route` available, HTTP server span names
-SHOULD match `{method}`
+SHOULD be `{method}` (see below for the exact definition of the method placeholder)
 
 HTTP client spans have no `http.route` attribute since client-side instrumentation
 is not generally aware of the "route", and therefore HTTP client spans SHOULD be
