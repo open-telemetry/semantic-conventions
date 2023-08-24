@@ -40,9 +40,9 @@ groups:
       - id: registered_domain
         requirement_level: opt_in
         type: string
-        brief: |
+        brief: >
           The highest registered url domain, stripped of the subdomain.
-
+        note: >
           For example, the registered domain for "foo.example.com" is "example.com".
 
           This value can be determined precisely with a list like the public suffix
@@ -52,12 +52,12 @@ groups:
       - id: subdomain
         requirement_level: opt_in
         type: string
-        brief: |
+        brief: >
           The subdomain portion of a fully qualified domain name includes all of
           the names except the host name under the registered_domain. In a partially
           qualified domain, or if the the qualification level of the full name cannot
           be determined, subdomain contains all of the names below the registered domain.
-
+        note: >
           For example the subdomain portion of `www.east.mydomain.co.uk` is "east".
           If the domain has multiple levels of subdomain, such as `sub2.sub1.example.com`,
           the subdomain field should contain "sub2.sub1", with no trailing period.
@@ -65,11 +65,11 @@ groups:
       - id: top_level_domain
         requirement_level: opt_in
         type: string
-        brief: |
+        brief: >
           The effective top level domain (eTLD), also known as the domain suffix,
           is the last part of the domain name. For example, the top level domain
           for example.com is "com".
-
+        note: >
           This value can be determined precisely with a list like the public suffix list
           (`http://publicsuffix.org`). Trying to approximate this by simply taking the last
           label will not work well for effective TLDs such as `co.uk`.
@@ -87,10 +87,10 @@ groups:
       - id: extension
         requirement_level: opt_in
         type: string
-        brief: |
+        brief: >
           The field contains the file extension from the original request url,
           excluding the leading dot.
-
+        note: >
           The file extension is only set if it exists, as not every url has
           a file extension.
 
@@ -103,9 +103,9 @@ groups:
       - id: domain
         requirement_level: opt_in
         type: string
-        brief: |
+        brief: >
           Domain of the url, such as `www.opentelemetry.io`.
-
+        note: >
           In some cases a URL may refer to an IP and/or port directly,
           without a domain name. In this case, the IP address would go to the domain field.
 
@@ -120,9 +120,8 @@ groups:
       - id: original
         requirement_level: opt_in
         type: string
-        brief: |
-          Unmodified original URL as seen in the event source.
-
+        brief: Unmodified original URL as seen in the event source.
+        note: >
           Note that in network monitoring, the observed URL may be
           a full URL, whereas in access logs, the URL is often just represented as a path.
 
