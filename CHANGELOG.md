@@ -364,6 +364,8 @@ stabilized.
 - Make `network.protocol.name|version` description consistent between HTTP
   spans and metrics.
   ([#367](https://github.com/open-telemetry/semantic-conventions/pull/367))
+- Add container metric fields (from ECS).
+  ([#282](https://github.com/open-telemetry/semantic-conventions/pull/282))
 
 ## v1.21.0 (2023-07-13)
 
