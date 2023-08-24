@@ -59,6 +59,8 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- Add more ECS url fields.
+  ([#181](https://github.com/open-telemetry/semantic-conventions/pull/181))
 
 ## v1.21.0 (2023-07-13)
 

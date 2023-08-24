@@ -40,7 +40,7 @@ groups:
       - id: registered_domain
         requirement_level: opt_in
         type: string
-        brief: >
+        brief: |
           The highest registered url domain, stripped of the subdomain.
 
           For example, the registered domain for "foo.example.com" is "example.com".
@@ -52,7 +52,7 @@ groups:
       - id: subdomain
         requirement_level: opt_in
         type: string
-        brief: >
+        brief: |
           The subdomain portion of a fully qualified domain name includes all of
           the names except the host name under the registered_domain. In a partially
           qualified domain, or if the the qualification level of the full name cannot
@@ -65,7 +65,7 @@ groups:
       - id: top_level_domain
         requirement_level: opt_in
         type: string
-        brief: >
+        brief: |
           The effective top level domain (eTLD), also known as the domain suffix,
           is the last part of the domain name. For example, the top level domain
           for example.com is "com".
@@ -87,7 +87,7 @@ groups:
       - id: extension
         requirement_level: opt_in
         type: string
-        brief: >
+        brief: |
           The field contains the file extension from the original request url,
           excluding the leading dot.
 
@@ -103,7 +103,7 @@ groups:
       - id: domain
         requirement_level: opt_in
         type: string
-        brief: >
+        brief: |
           Domain of the url, such as `www.opentelemetry.io`.
 
           In some cases a URL may refer to an IP and/or port directly,
@@ -120,7 +120,7 @@ groups:
       - id: original
         requirement_level: opt_in
         type: string
-        brief: >
+        brief: |
           Unmodified original URL as seen in the event source.
 
           Note that in network monitoring, the observed URL may be
