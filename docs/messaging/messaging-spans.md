@@ -53,6 +53,7 @@
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental networking attributes
 >     the instrumentation was emitting previously.
+>   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
 > * SHOULD drop the environment variable in the next major version (stable
@@ -104,6 +105,12 @@ messages are published to and consumed from.
 A destination is usually uniquely identified by its name within
 the messaging system instance.
 Examples of a destination name would be an URL or a simple one-word identifier.
+
+In some use cases, messages are routed within one or multiple brokers. In such
+cases, the destination the message was originally published to is different
+from the destination it is being consumed from. When information about the
+destination where the message was originally published to is available, consumers
+can record them under the `destination_publish` namespace.
 
 Typical examples of destinations include Kafka topics, RabbitMQ queues and topics.
 
@@ -221,14 +228,14 @@ The following operations related to messages are defined for these semantic conv
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [11] |
 | `messaging.message.payload_compressed_size_bytes` | int | The compressed size of the message payload in bytes. | `2048` | Recommended: [12] |
 | `messaging.message.payload_size_bytes` | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. | `2738` | Recommended: [13] |
-| [`network.protocol.name`](../general/general-attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/general-attributes.md) | string | Version of the application layer protocol used. See note below. [14] | `3.1.1` | Recommended |
-| [`network.transport`](../general/general-attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
-| [`network.type`](../general/general-attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/general-attributes.md) | string | Logical server hostname, matches server FQDN if available, and IP or socket address if FQDN is not known. [15] | `example.com` | Conditionally Required: If available. |
-| [`server.socket.address`](../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
-| [`server.socket.domain`](../general/general-attributes.md) | string | The domain name of an immediate peer. [16] | `proxy.example.com` | Recommended: [17] |
-| [`server.socket.port`](../general/general-attributes.md) | int | Physical server port. | `16456` | Recommended: If different than `server.port`. |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `mqtt` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [14] | `3.1.1` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [15] | `example.com` | Conditionally Required: If available. |
+| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [16] | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.domain`](../general/attributes.md) | string | Immediate server peer's domain name if available without reverse DNS lookup [17] | `proxy.example.com` | Recommended: [18] |
+| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [19] | `16456` | Recommended: If different than `server.port`. |
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
@@ -261,9 +268,15 @@ the broker does not have such notion, the destination name SHOULD uniquely ident
 
 **[15]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
-**[16]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
+**[16]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+When observed from the server side, this SHOULD represent the physical server address.
 
-**[17]:** If different than `server.address` and if `server.socket.address` is set.
+**[17]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
+
+**[18]:** If different than `server.address` and if `server.socket.address` is set.
+
+**[19]:** When observed from the client side, this SHOULD represent the immediate server peer port.
+When observed from the server side, this SHOULD represent the physical server port.
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -281,9 +294,8 @@ These attributes should be set to the broker to which the message is sent/from w
 ### Attribute namespaces
 
 - `messaging.message`: Contains attributes that describe individual messages
-- `messaging.destination`: Contains attributes that describe the logical entity
-   messages are published to and received from.
-   See [Destinations](#destinations) for more details
+- `messaging.destination`: Contains attributes that describe the logical entity messages are published to. See [Destinations](#destinations) for more details
+- `messaging.destination_publish`: Contains attributes that describe the logical entity messages were originally published to. See [Destinations](#destinations) for more details
 - `messaging.batch`: Contains attributes that describe batch operations
 - `messaging.consumer`: Contains attributes that describe application instance that consumes a message. See [consumer](#consumer) for more details
 
@@ -292,11 +304,30 @@ Communication with broker is described with general [network attributes].
 Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace
 as described in [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems).
 
-[network attributes]: /docs/general/general-attributes.md#server-and-client-attributes
-[`network.transport`]: /docs/general/general-attributes.md#network-attributes
+[network attributes]: /docs/general/attributes.md#server-and-client-attributes
+[`network.transport`]: /docs/general/attributes.md#network-attributes
 [Hangfire]: https://www.hangfire.io/
 
 ### Consumer attributes
+
+The following additional attributes describe message consumer operations.
+
+Since messages could be routed by brokers, the destination messages are published
+to may not match with the destination they are consumed from.
+
+If information about the original destination is available on the consumer,
+consumer instrumentations SHOULD populate the attributes
+under the namespace `messaging.destination_publish.*`
+
+<!-- semconv messaging.destination_publish -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `messaging.destination_publish.name` | string | The name of the original destination the message was published to [1] | `MyQueue`; `MyTopic` | Recommended |
+| `messaging.destination_publish.anonymous` | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name). |  | Recommended |
+
+**[1]:** The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
+the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
+<!-- endsemconv -->
 
 The *receive* span is used to track the time used for receiving the message(s), whereas the *process* span(s) track the time for processing the message(s).
 Note that one or multiple Spans with `messaging.operation` = `process` may often be the children of a Span with `messaging.operation` = `receive`.

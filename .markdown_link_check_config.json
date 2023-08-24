@@ -15,8 +15,5 @@
     }
   ],
   "retryOn429": true,
-  "aliveStatusCodes": [
-    200,
-    403
-  ]
+  "aliveStatusCodes": [200, 403]
 }
