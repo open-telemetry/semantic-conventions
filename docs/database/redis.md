@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Redis
+--->
+
 # Semantic Conventions for Redis
 
 **Status**: [Experimental][DocumentStatus]
@@ -39,4 +43,4 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 | `db.operation`            | not set |
 | `db.redis.database_index` | `15` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

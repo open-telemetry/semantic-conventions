@@ -1,4 +1,8 @@
-# Semantic conventions for URL
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: URL
+--->
+
+# Semantic Conventions for URL
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -44,4 +48,4 @@ Instrumentations that are aware of specific sensitive query string parameters MU
 
 _Note: Applications and telemetry consumers should scrub sensitive information from URL attributes on collected telemetry. In systems unable to identify sensitive information, certain attribute values may be redacted entirely._
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

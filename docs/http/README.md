@@ -1,4 +1,11 @@
-# Semantic conventions for HTTP
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: HTTP
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/http/_index.md
+  to: http/README.md
+--->
+
+# Semantic Conventions for HTTP
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
@@ -26,6 +33,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental HTTP and networking attributes
 >     the instrumentation was emitting previously.
+>   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
 > * SHOULD drop the environment variable in the next major version (stable
@@ -36,4 +44,4 @@ Semantic conventions for HTTP are defined for the following signals:
 * [HTTP Spans](http-spans.md): Semantic Conventions for HTTP client and server *spans*.
 * [HTTP Metrics](http-metrics.md): Semantic Conventions for HTTP client and server *metrics*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

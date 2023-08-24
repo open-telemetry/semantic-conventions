@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: HTTP
+linkTitle: Metrics
 --->
 
 # Semantic Conventions for HTTP Metrics
@@ -15,12 +15,12 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 <!-- toc -->
 
 - [HTTP Server](#http-server)
-  * [Metric: `http.server.duration`](#metric-httpserverduration)
+  * [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
   * [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
   * [Metric: `http.server.request.size`](#metric-httpserverrequestsize)
   * [Metric: `http.server.response.size`](#metric-httpserverresponsesize)
 - [HTTP Client](#http-client)
-  * [Metric: `http.client.duration`](#metric-httpclientduration)
+  * [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
   * [Metric: `http.client.request.size`](#metric-httpclientrequestsize)
   * [Metric: `http.client.response.size`](#metric-httpclientresponsesize)
 
@@ -46,6 +46,7 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental HTTP and networking attributes
 >     the instrumentation was emitting previously.
+>   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
 > * SHOULD drop the environment variable in the next major version (stable
@@ -53,7 +54,7 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 
 ## HTTP Server
 
-### Metric: `http.server.duration`
+### Metric: `http.server.request.duration`
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
@@ -62,25 +63,25 @@ This metric is required.
 When this metric is reported alongside an HTTP server span, the metric value SHOULD be the same as the HTTP server span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/api.md#instrument-advice)
 of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.http.server.duration(metric_table) -->
+<!-- semconv metric.http.server.request.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.server.duration` | Histogram | `s` | Measures the duration of inbound HTTP requests. |
+| `http.server.request.duration` | Histogram | `s` | Measures the duration of inbound HTTP requests. |
 <!-- endsemconv -->
 
-<!-- semconv metric.http.server.duration(full) -->
+<!-- semconv metric.http.server.request.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
 | `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/general-attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/general-attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
-| [`server.address`](../general/general-attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Opt-In |
-| [`server.port`](../general/general-attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Opt-In |
+| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
@@ -90,8 +91,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, except if reporting a metric, MUST
-set the exact method received in the request line as value of the `http.request.method_original` attribute.
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
@@ -153,16 +153,15 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.request.method` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
-| [`server.address`](../general/general-attributes.md) | string | Name of the local HTTP server that received the request. [2] | `example.com` | Opt-In |
-| [`server.port`](../general/general-attributes.md) | int | Port of the local HTTP server that received the request. [3] | `80`; `8080`; `443` | Opt-In |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [2] | `example.com` | Opt-In |
+| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [3] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, except if reporting a metric, MUST
-set the exact method received in the request line as value of the `http.request.method_original` attribute.
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
@@ -215,7 +214,9 @@ This metric is optional.
 <!-- semconv metric.http.server.request.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.server.request.size` | Histogram | `By` | Measures the size of HTTP request messages (compressed). |
+| `http.server.request.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.server.request.size(full) -->
@@ -224,10 +225,10 @@ This metric is optional.
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
 | `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/general-attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/general-attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
-| [`server.address`](../general/general-attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Opt-In |
-| [`server.port`](../general/general-attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Opt-In |
+| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
@@ -237,8 +238,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, except if reporting a metric, MUST
-set the exact method received in the request line as value of the `http.request.method_original` attribute.
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
@@ -293,7 +293,9 @@ This metric is optional.
 <!-- semconv metric.http.server.response.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.server.response.size` | Histogram | `By` | Measures the size of HTTP response messages (compressed). |
+| `http.server.response.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.server.response.size(full) -->
@@ -302,10 +304,10 @@ This metric is optional.
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
 | `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/general-attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/general-attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
-| [`server.address`](../general/general-attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Opt-In |
-| [`server.port`](../general/general-attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com` | Opt-In |
+| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
@@ -315,8 +317,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, except if reporting a metric, MUST
-set the exact method received in the request line as value of the `http.request.method_original` attribute.
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
@@ -364,7 +365,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 ## HTTP Client
 
-### Metric: `http.client.duration`
+### Metric: `http.client.request.duration`
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
@@ -373,32 +374,31 @@ This metric is required.
 When this metric is reported alongside an HTTP client span, the metric value SHOULD be the same as the HTTP client span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/api.md#instrument-advice)
 of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.http.client.duration(metric_table) -->
+<!-- semconv metric.http.client.request.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.client.duration` | Histogram | `s` | Measures the duration of outbound HTTP requests. |
+| `http.client.request.duration` | Histogram | `s` | Measures the duration of outbound HTTP requests. |
 <!-- endsemconv -->
 
-<!-- semconv metric.http.client.duration(full) -->
+<!-- semconv metric.http.client.request.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.request.method` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/general-attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/general-attributes.md) | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
-| [`server.address`](../general/general-attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `example.com` | Required |
-| [`server.port`](../general/general-attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
-| [`server.socket.address`](../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `example.com` | Required |
+| [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
+| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [6] | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, except if reporting a metric, MUST
-set the exact method received in the request line as value of the `http.request.method_original` attribute.
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
@@ -422,6 +422,9 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 **[4]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
 
 **[5]:** If not default (`80` for `http` scheme, `443` for `https`).
+
+**[6]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+When observed from the server side, this SHOULD represent the physical server address.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -448,7 +451,9 @@ This metric is optional.
 <!-- semconv metric.http.client.request.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.client.request.size` | Histogram | `By` | Measures the size of HTTP request messages (compressed). |
+| `http.client.request.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.client.request.size(full) -->
@@ -456,18 +461,17 @@ This metric is optional.
 |---|---|---|---|---|
 | `http.request.method` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/general-attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/general-attributes.md) | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
-| [`server.address`](../general/general-attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `example.com` | Required |
-| [`server.port`](../general/general-attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
-| [`server.socket.address`](../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `example.com` | Required |
+| [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
+| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [6] | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, except if reporting a metric, MUST
-set the exact method received in the request line as value of the `http.request.method_original` attribute.
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
@@ -491,6 +495,9 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 **[4]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
 
 **[5]:** If not default (`80` for `http` scheme, `443` for `https`).
+
+**[6]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+When observed from the server side, this SHOULD represent the physical server address.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -517,7 +524,9 @@ This metric is optional.
 <!-- semconv metric.http.client.response.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.client.response.size` | Histogram | `By` | Measures the size of HTTP response messages (compressed). |
+| `http.client.response.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.client.response.size(full) -->
@@ -525,18 +534,17 @@ This metric is optional.
 |---|---|---|---|---|
 | `http.request.method` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/general-attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/general-attributes.md) | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
-| [`server.address`](../general/general-attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `example.com` | Required |
-| [`server.port`](../general/general-attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
-| [`server.socket.address`](../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `example.com` | Required |
+| [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
+| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [6] | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, except if reporting a metric, MUST
-set the exact method received in the request line as value of the `http.request.method_original` attribute.
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
@@ -561,6 +569,9 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 
 **[5]:** If not default (`80` for `http` scheme, `443` for `https`).
 
+**[6]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+When observed from the server side, this SHOULD represent the physical server address.
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
@@ -577,4 +588,4 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: RPC
+linkTitle: Metrics
 --->
 
-# Semantic conventions for RPC metrics
+# Semantic Conventions for RPC Metrics
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -18,7 +18,17 @@ metrics can be filtered for finer grain analysis.
 
 - [Metric instruments](#metric-instruments)
   * [RPC Server](#rpc-server)
+    + [Metric: `rpc.server.duration`](#metric-rpcserverduration)
+    + [Metric: `rpc.server.request.size`](#metric-rpcserverrequestsize)
+    + [Metric: `rpc.server.response.size`](#metric-rpcserverresponsesize)
+    + [Metric: `rpc.server.requests_per_rpc`](#metric-rpcserverrequests_per_rpc)
+    + [Metric: `rpc.server.responses_per_rpc`](#metric-rpcserverresponses_per_rpc)
   * [RPC Client](#rpc-client)
+    + [Metric: `rpc.client.duration`](#metric-rpcclientduration)
+    + [Metric: `rpc.client.request.size`](#metric-rpcclientrequestsize)
+    + [Metric: `rpc.client.response.size`](#metric-rpcclientresponsesize)
+    + [Metric: `rpc.client.requests_per_rpc`](#metric-rpcclientrequests_per_rpc)
+    + [Metric: `rpc.client.responses_per_rpc`](#metric-rpcclientresponses_per_rpc)
 - [Attributes](#attributes)
   * [Service name](#service-name)
 - [Semantic Conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
@@ -45,6 +55,7 @@ metrics can be filtered for finer grain analysis.
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental networking attributes
 >     the instrumentation was emitting previously.
+>   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of attributes.
 > * SHOULD drop the environment variable in the next major version (stable
@@ -59,28 +70,118 @@ MUST be of the specified type and units.
 
 ### RPC Server
 
-Below is a table of RPC server metric instruments.
+Below is a list of RPC server metric instruments.
 
-| Name | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description | Status | Streaming |
-|------|------------|------|-------------------------------------------|-------------|--------|-----------|
-| `rpc.server.duration` | Histogram  | milliseconds | `ms` | measures duration of inbound RPC | Recommended | N/A.  While streaming RPCs may record this metric as start-of-batch to end-of-batch, it's hard to interpret in practice. |
-| `rpc.server.request.size` | Histogram  | Bytes | `By` | measures size of RPC request messages (uncompressed) | Optional | Recorded per message in a streaming batch |
-| `rpc.server.response.size` | Histogram  | Bytes | `By` | measures size of RPC response messages (uncompressed) | Optional | Recorded per response in a streaming batch |
-| `rpc.server.requests_per_rpc` | Histogram  | count | `{count}` | measures the number of messages received per RPC.  Should be 1 for all non-streaming RPCs | Optional | Required |
-| `rpc.server.responses_per_rpc` | Histogram  | count | `{count}` | measures the number of messages sent per RPC.  Should be 1 for all non-streaming RPCs | Optional | Required |
+#### Metric: `rpc.server.duration`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. **Streaming**: N/A. [1] |
+
+**[1]:** While streaming RPCs may record this metric as start-of-batch
+to end-of-batch, it's hard to interpret in practice.
+<!-- endsemconv -->
+
+#### Metric: `rpc.server.request.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.request.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). **Streaming**: Recorded per message in a streaming batch |
+<!-- endsemconv -->
+
+#### Metric: `rpc.server.response.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.response.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). **Streaming**: Recorded per response in a streaming batch |
+<!-- endsemconv -->
+
+#### Metric: `rpc.server.requests_per_rpc`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.requests_per_rpc(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+<!-- endsemconv -->
+
+#### Metric: `rpc.server.responses_per_rpc`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.server.responses_per_rpc(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.server.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+<!-- endsemconv -->
 
 ### RPC Client
 
-Below is a table of RPC client metric instruments.  These apply to traditional
-RPC usage, not streaming RPCs.
+Below is a list of RPC client metric instruments.
+These apply to traditional RPC usage, not streaming RPCs.
 
-| Name | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description | Status | Streaming |
-|------|------------|------|-------------------------------------------|-------------|--------|-----------|
-| `rpc.client.duration` | Histogram | milliseconds | `ms` | measures duration of outbound RPC | Recommended | N/A.  While streaming RPCs may record this metric as start-of-batch to end-of-batch, it's hard to interpret in practice. |
-| `rpc.client.request.size` | Histogram | Bytes | `By` | measures size of RPC request messages (uncompressed) | Optional | Recorded per message in a streaming batch |
-| `rpc.client.response.size` | Histogram | Bytes | `By` | measures size of RPC response messages (uncompressed) | Optional | Recorded per message in a streaming batch |
-| `rpc.client.requests_per_rpc` | Histogram | count | `{count}` | measures the number of messages received per RPC.  Should be 1 for all non-streaming RPCs | Optional | Required |
-| `rpc.client.responses_per_rpc` | Histogram | count | `{count}` | measures the number of messages sent per RPC.  Should be 1 for all non-streaming RPCs | Optional | Required |
+#### Metric: `rpc.client.duration`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC **Streaming**: N/A. [1] |
+
+**[1]:** While streaming RPCs may record this metric as start-of-batch
+to end-of-batch, it's hard to interpret in practice.
+<!-- endsemconv -->
+
+#### Metric: `rpc.client.request.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.request.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). **Streaming**: Recorded per message in a streaming batch |
+<!-- endsemconv -->
+
+#### Metric: `rpc.client.response.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.response.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). **Streaming**: Recorded per response in a streaming batch |
+<!-- endsemconv -->
+
+#### Metric: `rpc.client.requests_per_rpc`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.requests_per_rpc(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+<!-- endsemconv -->
+
+#### Metric: `rpc.client.responses_per_rpc`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.rpc.client.responses_per_rpc(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `rpc.client.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. Should be 1 for all non-streaming RPCs. **Streaming**: This metric is required for server and client streaming RPCs |
+<!-- endsemconv -->
 
 ## Attributes
 
@@ -93,12 +194,12 @@ measurements.
 | [`rpc.system`](rpc-spans.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
 | [`rpc.service`](rpc-spans.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [1] | `myservice.EchoService` | Recommended |
 | [`rpc.method`](rpc-spans.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [2] | `exampleMethod` | Recommended |
-| [`network.transport`](../general/general-attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
-| [`network.type`](../general/general-attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/general-attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com` | Required |
-| [`server.port`](../general/general-attributes.md) | int | Logical server port number | `80`; `8080`; `443` | Conditionally Required: See below |
-| [`server.socket.address`](../general/general-attributes.md) | string | Physical server IP address or Unix socket address. If set from the client, should simply use the socket's peer address, and not attempt to find any actual server IP (i.e., if set from client, this may represent some proxy server instead of the logical server). | `10.5.3.2` | See below |
-| [`server.socket.port`](../general/general-attributes.md) | int | Physical server port. | `16456` | Recommended: [4] |
+| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../general/attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com` | Required |
+| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Conditionally Required: See below |
+| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [5] | `10.5.3.2` | See below |
+| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [6] | `16456` | Recommended: [7] |
 
 **[1]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
@@ -106,12 +207,20 @@ measurements.
 
 **[3]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
-**[4]:** If different than `server.port` and if `server.socket.address` is set.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+
+**[5]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+When observed from the server side, this SHOULD represent the physical server address.
+
+**[6]:** When observed from the client side, this SHOULD represent the immediate server peer port.
+When observed from the server side, this SHOULD represent the physical server port.
+
+**[7]:** If different than `server.port` and if `server.socket.address` is set.
 
 **Additional attribute requirements:** At least one of the following sets of attributes is required:
 
-* [`server.socket.address`](../general/general-attributes.md)
-* [`server.address`](../general/general-attributes.md)
+* [`server.socket.address`](../general/attributes.md)
+* [`server.address`](../general/attributes.md)
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -131,8 +240,6 @@ To avoid high cardinality, implementations should prefer the most stable of `ser
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).
 For server-side spans `server.port` is optional (it describes the port the client is connecting from).
 
-[network.transport]: /docs/general/general-attributes.md#network-attributes
-
 ### Service name
 
 On the server process receiving and handling the remote procedure call, the service name provided in `rpc.service` does not necessarily have to match the [`service.name`][] resource attribute.
@@ -148,4 +255,5 @@ More specific Semantic Conventions are defined for the following RPC technologie
 * [gRPC](grpc.md): Semantic Conventions for *gRPC*.
 * [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/document-status.md
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/metrics/metric-requirement-level.md#recommended

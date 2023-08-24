@@ -1,8 +1,12 @@
-# Semantic conventions for CloudEvents spans
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: CloudEvents Spans
+--->
+
+# Semantic Conventions for CloudEvents Spans
 
 **Status**: [Experimental][DocumentStatus]
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
+<!-- prettier-ignore-start -->
 
 <!-- toc -->
 
@@ -16,14 +20,15 @@
 
 <!-- tocstop -->
 
+<!-- prettier-ignore-end -->
+
 ## Definitions
 
- From the
- [CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#overview):
+From the
+[CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#overview):
 
 > CloudEvents is a specification for describing event data in common formats
-to provide interoperability across services, platforms and systems.
->
+> to provide interoperability across services, platforms and systems.
 
 For more information on the concepts, terminology and background of CloudEvents
 consult the
@@ -35,7 +40,7 @@ document.
 A CloudEvent can be sent directly from producer to consumer.
 For such a scenario, the traditional parent-child trace model works well.
 However, CloudEvents are also used in distributed systems where an event
-can go through many [hops](https://en.wikipedia.org/wiki/Hop_(networking))
+can go through many [hops](<https://en.wikipedia.org/wiki/Hop_(networking)>)
 until it reaches a consumer. In this scenario, the traditional parent-child
 trace model is not sufficient to produce a meaningful trace.
 
@@ -45,13 +50,13 @@ Consider the following scenario:
 +----------+                  +--------------+
 | Producer | ---------------> | Intermediary |
 +----------+                  +--------------+
-                                     |        
-                                     |        
-                                     |        
-                                     v        
-+----------+                    +----------+  
-| Consumer | <----------------- |  Queue   |  
-+----------+                    +----------+ 
+                                     |
+                                     |
+                                     |
+                                     v
++----------+                    +----------+
+| Consumer | <----------------- |  Queue   |
++----------+                    +----------+
 ```
 
 With the traditional parent-child trace model, the above scenario would produce
@@ -155,12 +160,12 @@ Instrumentation SHOULD create a new span and populate the
 on the event. This applies when:
 
 - A CloudEvent is created by the instrumented library.
-It may be impossible or impractical to create the Span during event
-creation (e.g. inside the constructor or in a factory method),
-so instrumentation MAY create the Span later, when passing the event to the transport layer.
+  It may be impossible or impractical to create the Span during event
+  creation (e.g. inside the constructor or in a factory method),
+  so instrumentation MAY create the Span later, when passing the event to the transport layer.
 - A CloudEvent is created outside of the instrumented library
-(e.g. directly constructed by the application owner, without calling a constructor or factory method),
-and passed without the Distributed Tracing Extension populated.
+  (e.g. directly constructed by the application owner, without calling a constructor or factory method),
+  and passed without the Distributed Tracing Extension populated.
 
 In case a CloudEvent is passed to the instrumented library with the
 Distributed Tracing Extension already populated, instrumentation MUST NOT create
@@ -171,7 +176,7 @@ a span and MUST NOT modify the Distributed Tracing Extension on the event.
 - Span kind: PRODUCER
 
 - Span attributes: Instrumentation MUST add the required attributes defined
-in the [table below](#attributes).
+  in the [table below](#attributes).
 
 #### Processing
 
@@ -187,12 +192,13 @@ Instrumentation MAY add attributes to the link to further describe it.
 - Span kind: CONSUMER
 
 - Span attributes: Instrumentation MUST add the required attributes defined
-in the [table below](#attributes).
+  in the [table below](#attributes).
 
 ### Attributes
 
 The following attributes are applicable to creation and processing Spans.
 
+<!-- prettier-ignore-start -->
 <!-- semconv cloudevents -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
@@ -202,5 +208,6 @@ The following attributes are applicable to creation and processing Spans.
 | `cloudevents.event_type` | string | The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence. | `com.github.pull_request.opened`; `com.example.object.deleted.v2` | Recommended |
 | `cloudevents.event_subject` | string | The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source). | `mynewfile.jpg` | Recommended |
 <!-- endsemconv -->
+<!-- prettier-ignore-end -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

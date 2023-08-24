@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: JSON-RPC
+--->
+
 # Semantic Conventions for JSON-RPC
 
 **Status**: [Experimental][DocumentStatus]
@@ -22,4 +26,4 @@ described on this page.
 **[1]:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

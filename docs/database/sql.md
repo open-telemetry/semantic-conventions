@@ -1,4 +1,8 @@
-# Semantic Conventions for SQL databases
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: SQL
+--->
+
+# Semantic Conventions for SQL Databases
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -35,4 +39,4 @@ This is an example of attributes for a MySQL database span:
 | `db.operation`          | `"SELECT"` |
 | `db.sql.table`          | `"orders"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

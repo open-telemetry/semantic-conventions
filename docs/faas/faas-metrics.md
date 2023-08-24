@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: FaaS
+linkTitle: Metrics
 --->
 
 # Semantic Conventions for FaaS Metrics
@@ -13,15 +13,21 @@ The conventions described in this section are FaaS (function as a service) speci
 metric events about those operations will be generated and reported to provide insights into the
 operations. By adding FaaS attributes to metric events it allows for finely tuned filtering.
 
-**Disclaimer:** These are initial FaaS metric instruments and attributes but more may be added in the future.
-
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
 - [Metric Instruments](#metric-instruments)
-  * [FaaS Invocations](#faas-invocations)
-- [Attributes](#attributes)
+  * [FaaS Instance](#faas-instance)
+    + [Metric: `faas.invoke_duration`](#metric-faasinvoke_duration)
+    + [Metric: `faas.init_duration`](#metric-faasinit_duration)
+    + [Metric: `faas.coldstarts`](#metric-faascoldstarts)
+    + [Metric: `faas.errors`](#metric-faaserrors)
+    + [Metric: `faas.invocations`](#metric-faasinvocations)
+    + [Metric: `faas.timeouts`](#metric-faastimeouts)
+    + [Metric: `faas.mem_usage`](#metric-faasmem_usage)
+    + [Metric: `faas.cpu_usage`](#metric-faascpu_usage)
+    + [Metric: `faas.net_io`](#metric-faasnet_io)
 - [References](#references)
   * [Metric References](#metric-references)
 
@@ -29,45 +35,245 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
 
 ## Metric Instruments
 
-The following metric instruments MUST be used to describe FaaS operations. They MUST be of the specified
-type and units.
+The following metric instruments describe FaaS operations.
 
-### FaaS Invocations
+### FaaS Instance
 
-Below is a table of FaaS invocation metric instruments.
+The following metrics are recorded by the FaaS instance.
 
-| Name                   | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                                                  |
-|------------------------|---------------------------------------------------|--------------|-------------------------------------------|------------------------------------------------------------------------------|
-| `faas.invoke_duration` | Histogram                                         | milliseconds | `ms`                                      | Measures the duration of the invocation                                      |
-| `faas.init_duration`   | Histogram                                         | milliseconds | `ms`                                      | Measures the duration of the function's initialization, such as a cold start |
-| `faas.coldstarts`      | Counter                                           | default unit | `{coldstart}`                            | Number of invocation cold starts.                                            |
-| `faas.errors`          | Counter                                           | default unit | `{error}`                                | Number of invocation errors.                                                 |
-| `faas.invocations`      | Counter                                          | default unit | `{invocation}`                           | Number of successful invocations.                                            |
-| `faas.timeouts`        | Counter                                           | default unit | `{timeout}`                              | Number of invocation timeouts.                                               |
+#### Metric: `faas.invoke_duration`
 
-Optionally, when applicable:
+This metric is [recommended][MetricRecommended].
 
-| Name             | Instrument Type ([*](/docs/general/metrics-general.md#instrument-types)) | Unit         | Unit ([UCUM](/docs/general/metrics-general.md#instrument-units)) | Description                                     |
-|------------------|---------------------------------------------------|--------------|-------------------------------------------|-------------------------------------------------|
-| `faas.mem_usage` | Histogram                                         | Bytes        | `By`                                      | Distribution of max memory usage per invocation |
-| `faas.cpu_usage` | Histogram                                         | milliseconds | `ms`                                      | Distribution of CPU usage per invocation        |
-| `faas.net_io`    | Histogram                                         | Bytes        | `By`                                      | Distribution of net I/O usage per invocation    |
+<!-- semconv metric.faas.invoke_duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `faas.invoke_duration` | Histogram | `ms` | Measures the duration of the function's logic execution |
+<!-- endsemconv -->
 
-## Attributes
+<!-- semconv metric.faas.invoke_duration(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
-Below is a table of the attributes to be included on FaaS metric events.
+`faas.trigger` MUST be one of the following:
 
-| Name                    | Requirement Level | Notes and examples                                                                                                       |
-|-------------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------|
-| `faas.trigger`          | Required          | Type of the trigger on which the function is invoked. SHOULD be one of: `datasource`, `http`, `pubsub`, `timer`, `other` |
-| `faas.invoked_name`     | Required          | Name of the invoked function. Example: `my-function`                                                                     |
-| `faas.invoked_provider` | Required          | Cloud provider of the invoked function. Corresponds to the resource `cloud.provider`. Example: `aws`                     |
-| `faas.invoked_region`   | Required          | Cloud provider region of invoked function. Corresponds to resource `cloud.region`. Example: `us-east-1`                  |
+| Value  | Description |
+|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
+| `http` | To provide an answer to an inbound HTTP request |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
+| `other` | If none of the others apply |
+<!-- endsemconv -->
 
-More details on these attributes, the function name and the difference compared to the faas.invoked_name can be found at the related [FaaS tracing specification](faas-spans.md).
-For incoming FaaS invocations, the function for which metrics are reported is already described by its [FaaS resource attributes](../resource/faas.md).
-Outgoing FaaS invocations are identified using the `faas.invoked_*` attributes above.
-`faas.trigger` SHOULD be included in all metric events while `faas.invoked_*` attributes apply on outgoing FaaS invocation events only.
+#### Metric: `faas.init_duration`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.faas.init_duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `faas.init_duration` | Histogram | `ms` | Measures the duration of the function's initialization, such as a cold start |
+<!-- endsemconv -->
+
+<!-- semconv metric.faas.init_duration(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+
+`faas.trigger` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
+| `http` | To provide an answer to an inbound HTTP request |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
+| `other` | If none of the others apply |
+<!-- endsemconv -->
+
+#### Metric: `faas.coldstarts`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.faas.coldstarts(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `faas.coldstarts` | Counter | `{coldstart}` | Number of invocation cold starts |
+<!-- endsemconv -->
+
+<!-- semconv metric.faas.coldstarts(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+
+`faas.trigger` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
+| `http` | To provide an answer to an inbound HTTP request |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
+| `other` | If none of the others apply |
+<!-- endsemconv -->
+
+#### Metric: `faas.errors`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.faas.errors(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `faas.errors` | Counter | `{error}` | Number of invocation errors |
+<!-- endsemconv -->
+
+<!-- semconv metric.faas.errors(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+
+`faas.trigger` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
+| `http` | To provide an answer to an inbound HTTP request |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
+| `other` | If none of the others apply |
+<!-- endsemconv -->
+
+#### Metric: `faas.invocations`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.faas.invocations(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `faas.invocations` | Counter | `{invocation}` | Number of successful invocations |
+<!-- endsemconv -->
+
+<!-- semconv metric.faas.invocations(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+
+`faas.trigger` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
+| `http` | To provide an answer to an inbound HTTP request |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
+| `other` | If none of the others apply |
+<!-- endsemconv -->
+
+#### Metric: `faas.timeouts`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.faas.timeouts(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `faas.timeouts` | Counter | `{timeout}` | Number of invocation timeouts |
+<!-- endsemconv -->
+
+<!-- semconv metric.faas.timeouts(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+
+`faas.trigger` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
+| `http` | To provide an answer to an inbound HTTP request |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
+| `other` | If none of the others apply |
+<!-- endsemconv -->
+
+#### Metric: `faas.mem_usage`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.faas.mem_usage(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `faas.mem_usage` | Histogram | `By` | Distribution of max memory usage per invocation |
+<!-- endsemconv -->
+
+<!-- semconv metric.faas.mem_usage(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+
+`faas.trigger` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
+| `http` | To provide an answer to an inbound HTTP request |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
+| `other` | If none of the others apply |
+<!-- endsemconv -->
+
+#### Metric: `faas.cpu_usage`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.faas.cpu_usage(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `faas.cpu_usage` | Histogram | `ms` | Distribution of CPU usage per invocation |
+<!-- endsemconv -->
+
+<!-- semconv metric.faas.cpu_usage(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+
+`faas.trigger` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
+| `http` | To provide an answer to an inbound HTTP request |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
+| `other` | If none of the others apply |
+<!-- endsemconv -->
+
+#### Metric: `faas.net_io`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.faas.net_io(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `faas.net_io` | Histogram | `By` | Distribution of net I/O usage per invocation |
+<!-- endsemconv -->
+
+<!-- semconv metric.faas.net_io(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+
+`faas.trigger` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write |
+| `http` | To provide an answer to an inbound HTTP request |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
+| `timer` | A function is scheduled to be executed regularly |
+| `other` | If none of the others apply |
+<!-- endsemconv -->
 
 ## References
 
@@ -82,4 +288,5 @@ FaaS providers. This list is not exhaustive.
 * [Google CloudFunctions Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudfunctions)
 * [OpenFaas Metrics](https://docs.openfaas.com/architecture/metrics/)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#recommended

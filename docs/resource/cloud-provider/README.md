@@ -1,5 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Cloud Provider
+linkTitle: Resource Cloud Provider
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/resource/cloud-provider/_index.md
+  to: resource/cloud-provider/README.md
 --->
 
 # Resource Cloud Provider Semantic Conventions
@@ -12,4 +15,4 @@ This document defines semantic conventions for resource cloud providers.
 * [GCP](gcp/README.md): Semantic Conventions for Google Cloud Platform.
 * [Heroku](heroku.md): Semantic Conventions for Heroku.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

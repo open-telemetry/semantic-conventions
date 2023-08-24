@@ -1,3 +1,10 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: GCP
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/resource/cloud-provider/gcp/_index.md
+  to: resource/cloud-provider/gcp/README.md
+--->
+
 # GCP Semantic Conventions
 
 **Status**: [Experimental][DocumentStatus]
@@ -12,4 +19,4 @@ provider (like account ID, operating system, etc), it belongs in the parent
 - [Cloud Run](./cloud-run.md)
 - [Compute Engine](./gce.md)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

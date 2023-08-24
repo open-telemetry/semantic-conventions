@@ -64,6 +64,34 @@ groups:
         type: boolean
         brief: 'A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name).'
 
+  - id: messaging.destination_publish
+    prefix: messaging.destination_publish
+    type: attribute_group
+    brief: >
+      Semantic convention for attributes that describe the publish messaging destination on broker.
+      The term Publish Destination refers to the destination the message was originally published to.
+      These attributes should be used on the consumer side when information about
+      the publish destination is available and different than the destination message are consumed from.
+    note: |
+      Publish destination attributes should be set on publish, receive,
+      or other spans describing messaging operations.
+      Destination attributes should be set when the messaging operation handles
+      single messages. When the operation handles a batch of messages,
+      the destination attributes should only be applied when the attribute value
+      applies to all messages in the batch.
+      In other cases, destination attributes may be set on links.
+    attributes:
+      - id: name
+        type: string
+        brief: 'The name of the original destination the message was published to'
+        note: |
+          The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
+          the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
+        examples: ['MyQueue', 'MyTopic']
+      - id: anonymous
+        type: boolean
+        brief: 'A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name).'
+
   - id: messaging
     prefix: messaging
     type: span
