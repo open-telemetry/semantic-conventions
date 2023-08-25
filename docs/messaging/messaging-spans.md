@@ -196,12 +196,6 @@ Examples:
 * `AuthenticationRequest-Conversations process`
 * `(anonymous) publish` (`(anonymous)` being a stable identifier for an unnamed destination)
 
-### Span kind
-
-A producer of a message should set the span kind to `PRODUCER` unless it synchronously waits for a response: then it should use `CLIENT`.
-The processor of the message should set the kind to `CONSUMER`, unless it always sends back a reply that is directed to the producer of the message
-(as opposed to e.g., a queue on which the producer happens to listen): then it should use `SERVER`.
-
 ### Operation names
 
 The following operations related to messages are defined for these semantic conventions:
@@ -211,6 +205,16 @@ The following operations related to messages are defined for these semantic conv
 | `publish`      | A message is sent to a destination by a message producer/client.       |
 | `receive`      | A message is received from a destination by a message consumer/server. |
 | `process`      | A message that was previously received from a destination is processed by a message consumer/server. |
+
+### Span kind
+
+[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind)
+SHOULD be set according to the following table, based on the operation a span describes.
+
+| Operation name | Span kind|
+|----------------|-------------|
+| `publish`      | `PRODUCER` |
+| `receive`      | `CONSUMER` |
 
 ## Messaging attributes
 
@@ -346,7 +350,14 @@ under the namespace `messaging.destination_publish.*`
 the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
 <!-- endsemconv -->
 
-The *receive* span is used to track the time used for receiving the message(s), whereas the *process* span(s) track the time for processing the message(s).
+"Receive" spans SHOULD be created for operations of passing messages to the application when those operations are initiated by the application code.
+
+"Receive" spans MUST NOT be created for messages which are not forwarded to the caller, but are pre-fetched or cached by messaging libraries or SDKs.
+
+A single "Receive" span can account for a single message, for multiple messages (in case messages are passed for processing as batches), or for no message at all (if it is signalled that no messages were received). For each message it accounts for, the "Receive" span SHOULD link to the message's creation context. In addition, if it is possible the creation context MAY be
+set as a parent of the "Receive" span.
+
+The "Receive" span is used to track the time used for receiving the message(s), whereas the "Process" span(s) track the time for processing the message(s).
 Note that one or multiple Spans with `messaging.operation` = `process` may often be the children of a Span with `messaging.operation` = `receive`.
 The distinction between receiving and processing of messages is not always of particular interest or sometimes hidden away in a framework (see the [Message consumption](#message-consumption) section above) and therefore the attribute can be left out.
 For batch receiving and processing (see the [Batch receiving](#batch-receiving) and [Batch processing](#batch-processing) examples below) in particular, the attribute SHOULD be set.
@@ -358,7 +369,7 @@ Instead span kind should be set to either `CONSUMER` or `SERVER` according to th
 All messaging operations (`publish`, `receive`, `process`, or others not covered by this specification) can describe both single and/or batch of messages.
 Attributes in the `messaging.message` or `messaging.{system}.message` namespace describe individual messages. For single-message operations they SHOULD be set on corresponding span.
 
-For batch operations, per-message attributes are usually different and cannot be set on the corresponding span. In such cases the attributes MAY be set on links. See [Batch Receiving](#batch-receiving) and [Batch Processing](#batch-processing) for more information on correlation using links.
+For batch operations, per-message attributes are usually different and cannot be set on the corresponding span. In such cases the attributes SHOULD be set on links. See [Batch Receiving](#batch-receiving) and [Batch Processing](#batch-processing) for more information on correlation using links.
 
 Some messaging systems (e.g., Kafka, Azure EventGrid) allow publishing a single batch of messages to different topics. In such cases, the attributes in `messaging.destination` MAY be
 set on links. Instrumentations MAY set destination attributes on the span if all messages in the batch share the same destination.
@@ -376,29 +387,44 @@ All attributes that are specific for a messaging system SHOULD be populated in `
 
 ### Topic with multiple consumers
 
-Given is a process P, that publishes a message to a topic T on messaging system MS, and two processes CA and CB, which both receive the message and process it.
+Given is a process P, that publishes a message to a topic T on messaging system MS, and two processes CA and CB, which both receive the message.
 
-```
-Process P:  | Span Prod1 |
---
-Process CA:              | Span CA1 |
---
-Process CB:                 | Span CB1 |
+```mermaid
+flowchart LR;
+  subgraph PRODUCER
+  direction TB
+  P[Span Publish A]
+  end
+  subgraph CONSUMER1
+  direction TB
+  R1[Span Receive A 1]
+  end
+  subgraph CONSUMER2
+  direction TB
+  R2[Span Receive A 2]
+  end
+  P-. link .-R1;
+  P-. link .-R2;
+
+  classDef normal fill:green
+  class P,R1,R2 normal
+  linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Prod1 | Span CA1 | Span CB1 |
+
+| Field or Attribute | Span Publish A | Span Receive A 1| Span Receive A 2 |
 |-|-|-|-|
-| Span name | `"T publish"` | `"T process"` | `"T process"` |
-| Parent |  | Span Prod1 | Span Prod1 |
-| Links |  |  |  |
+| Span name | `T publish` | `T receive` | `T receive` |
+| Parent | | | |
+| Links |  | `T publish` | `T publish` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
-| `messaging.operation` |  | `"process"` | `"process"` |
-| `messaging.message.id` | `"a1"` | `"a1"`| `"a1"` |
+| `messaging.operation` |  | `"receive"` | `"receive"` |
+| `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
 ### Batch receiving
 
@@ -406,62 +432,41 @@ Given is a process P, that publishes two messages to a queue Q on messaging syst
 
 Since a span can only have one parent and the propagated trace and span IDs are not known when the receiving span is started, the receiving span will have no parent and the processing spans are correlated with the producing spans using links.
 
-```
-Process P: | Span Prod1 | Span Prod2 |
---
-Process C:                      | Span Recv1 |
-                                        | Span Proc1 |
-                                               | Span Proc2 |
-```
+```mermaid
+flowchart LR;
+  subgraph PRODUCER
+  direction TB
+  PA[Span Publish A]
+  PB[Span Publish B]
+  end
+  subgraph CONSUMER1
+  direction TB
+  R1[Span Receive A B]
+  end
+  PA-. link .-R1;
+  PB-. link .-R1;
 
-| Field or Attribute | Span Prod1 | Span Prod2 | Span Recv1 | Span Proc1 | Span Proc2 |
-|-|-|-|-|-|-|
-| Span name | `"Q publish"` | `"Q publish"` | `"Q receive"` | `"Q process"` | `"Q process"` |
-| Parent |  |  |  | Span Recv1 | Span Recv1 |
-| Links |  |  |  | Span Prod1 | Span Prod2 |
-| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
-| Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
-| `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
-| `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
-| `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation` |  |  | `"receive"` | `"process"` | `"process"` |
-| `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
-| `messaging.batch.message_count` |  |  | 2 |  |  |
-
-### Batch processing
-
-Given is a process P, that publishes two messages to a queue Q on messaging system MS, and a process C, which receives them separately in two different operations (Span Recv1 and Recv2) and processes both messages in one batch (Span Proc1).
-
-Since each span can only have one parent, C3 should not choose a random parent out of C1 and C2, but rather rely on the implicitly selected parent as defined by the [tracing API spec](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md).
-Depending on the implementation, the producing spans might still be available in the meta data of the messages and should be added to C3 as links.
-The client library or application could also add the receiver span's SpanContext to the data structure it returns for each message. In this case, C3 could also add links to the receiver spans C1 and C2.
-
-The status of the batch processing span is selected by the application. Depending on the semantics of the operation. A span status `Ok` could, for example, be set only if all messages or if just at least one were properly processed.
-
-```
-Process P: | Span Prod1 | Span Prod2 |
---
-Process C:                              | Span Recv1 | Span Recv2 |
-                                                                   | Span Proc1 |
+  classDef normal fill:green
+  class PA,PB,R1 normal
+  linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Prod1 | Span Prod2 | Span Recv1 | Span Recv2 | Span Proc1 |
-|-|-|-|-|-|-|
-| Span name | `"Q publish"` | `"Q publish"` | `"Q receive"` | `"Q receive"` | `"Q process"` |
-| Parent |  |  | Span Prod1 | Span Prod2 |  |
-| Links |  |  |  |  | [Span Prod1, Span Prod2 ] |
-| Link attributes |  |  |  |  | Span Prod1: `messaging.message.id`: `"a1"`  |
-|                 |  |  |  |  | Span Prod2: `messaging.message.id`: `"a2"`  |
-| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
-| Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
-| `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
-| `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
-| `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation` |  |  | `"receive"` | `"receive"` | `"process"` |
-| `messaging.message.id` | `"a1"` | `"a2"` | `"a1"` | `"a2"` | |
-| `messaging.batch.message_count` | | | 1 | 1 | 2 |
+| Field or Attribute | Span Publish A | Span Publish B | Span Receive A B |
+|-|-|-|-|
+| Span name | `Q publish` | `Q publish` | `Q receive` |
+| Parent |  |  |  |
+| Links |  |  | Span Publish A, Span Publish B |
+| Link attributes |  |  | Span Publish A: `messaging.message.id`: `"a1"`  |
+|                 |  |  | Span Publish B: `messaging.message.id`: `"a2"`  |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |
+| Status | `Ok` | `Ok` | `Ok` |
+| `server.address` | `"ms"` | `"ms"` | `"ms"` |
+| `server.port` | `1234` | `1234` | `1234` |
+| `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
+| `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
+| `messaging.operation` |  |  | `"receive"` |
+| `messaging.message.id` | `"a1"` | `"a2"` | |
+| `messaging.batch.message_count` |  |  | 2 |
 
 ## Semantic Conventions for specific messaging technologies
 
