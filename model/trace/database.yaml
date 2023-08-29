@@ -413,7 +413,7 @@ groups:
         note: >
           For **Redis**, the value provided for `db.statement` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.statement`.
-  
+
   - id: db.mongodb
     prefix: db.mongodb
     type: span
