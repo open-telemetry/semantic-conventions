@@ -40,7 +40,7 @@ in order to map the path part values to their names.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `db.elasticsearch.cluster.name` | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | Recommended: [1] |
-| `db.elasticsearch.cluster.instance` | string | Represents the identifier of the node/instance to which the request was routed. | `instance-0000000001` | Recommended: [2] |
+| `db.elasticsearch.node.name` | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | Recommended: [2] |
 | [`db.operation`](database-spans.md) | string | The endpoint identifier for the request. [3] | `search`; `ml.close_job`; `cat.aliases` | Required |
 | [`db.statement`](database-spans.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [4] |
 | `http.request.method` | string | HTTP request method. [5] | `GET`; `POST`; `HEAD` | Required |
