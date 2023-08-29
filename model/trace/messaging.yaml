@@ -15,6 +15,16 @@ groups:
           The [conversation ID](#conversations) identifying the conversation to which the message belongs,
           represented as a string. Sometimes called "Correlation ID".
         examples: 'MyConversationId'
+      - id: message.envelope.size
+        type: int
+        brief: >
+          The size of the uncompressed message body and metadata in bytes.
+        examples: 2738
+      - id: message.body.size
+        type: int
+        brief: >
+          The size of the uncompressed message body in bytes.
+        examples: 1439
 
   - id: messaging.destination
     prefix: messaging.destination
@@ -134,7 +144,6 @@ groups:
           conditionally_required: >
             If available. Instrumentations MUST NOT use `messaging.destination.name` as template
             unless low-cardinality of destination name is guaranteed.
-      - ref: messaging.payload.size
       - ref: messaging.destination.temporary
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
@@ -145,6 +154,12 @@ groups:
         requirement_level:
           recommended: Only for spans that represent an operation on a single message.
       - ref: messaging.message.conversation_id
+        requirement_level:
+          recommended: Only if span represents operation on a single message.
+      - ref: messaging.message.envelope.size
+        requirement_level:
+          recommended: Only if span represents operation on a single message.
+      - ref: messaging.message.body.size
         requirement_level:
           recommended: Only if span represents operation on a single message.
       - ref: server.address
