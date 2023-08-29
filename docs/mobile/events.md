@@ -46,7 +46,7 @@ The event name MUST be `app.lifecycle`.
 
 | Value  | Description |
 |---|---|
-| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService()  has been called in the app for the first time.' |
+| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.' |
 | `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. |
 <!-- endsemconv -->
