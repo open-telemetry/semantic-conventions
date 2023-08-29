@@ -7,7 +7,7 @@ release.
 
 ## Unreleased
 
-- Add two additional attributes to Elasticsearch semantic conventions.
+- Add `cluster_name` and `cluster_instance` attributes to Elasticsearch semantic conventions.
   ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
