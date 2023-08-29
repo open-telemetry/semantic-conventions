@@ -51,9 +51,8 @@ the `server.*` attributes are the same on the client and server.
 
 ### Address and port attributes
 
-For the purpose of these semantic conventions, for all IP-based protocols the "address" should be just the IP address
-(in some cases, specific semantic conventions might explicitly allow using the DNS name corresponding to that IP as an alternative).
-Protocol-specific parts of an address are split into other attributes if applicable such as "port" attributes for
+For the purpose of these semantic conventions, for all IP-based protocols the "address" should be just IP-level address,
+i.e. protocol-specific parts of an address are split into other attributes if applicable such as "port" attributes for
 TCP and UDP. If such transport-specific information is collected and the attribute name does not already uniquely
 identify the transport, then setting the [`network.transport`](#network-attributes) is especially encouraged.
 
