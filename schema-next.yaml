@@ -63,6 +63,10 @@ versions:
               - jvm.buffer.usage
               - jvm.buffer.limit
               - jvm.buffer.count
+        - rename_attributes:
+          attribute_map:
+            net.host.name: server.domain # This is re-renamed from the 1.21.0 renaming to server.address
+
   1.21.0:
     spans:
       changes:
