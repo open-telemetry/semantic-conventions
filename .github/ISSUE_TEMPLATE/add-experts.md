@@ -11,7 +11,7 @@ You can either request a new area to be created or add experts to an existing ar
 
 **Who should be added?**
 
-List out the individuals who should be added. Provide the following information.
+List out the individuals who should be added. Provide the following information:
 
 * Full name
 * GitHub alias
