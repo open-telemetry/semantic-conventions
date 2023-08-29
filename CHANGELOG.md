@@ -59,6 +59,8 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- Encourage setting `network.transport` when reporting port numbers
+  ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
 
 ## v1.21.0 (2023-07-13)
 
