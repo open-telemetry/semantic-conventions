@@ -7,12 +7,22 @@ MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
-# Keep links in semantic_conventions/README.md and .vscode/settings.json in sync!
-SEMCONVGEN_VERSION=0.18.0
+# Keep links in model/README.md and .vscode/settings.json in sync!
+SEMCONVGEN_VERSION=0.20.0
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint markdown-link-check misspell table-check schema-check
+all: install-tools markdownlint markdown-link-check misspell table-check schema-check \
+		 check-file-and-folder-names-in-docs
+
+.PHONY: check-file-and-folder-names-in-docs
+check-file-and-folder-names-in-docs:
+	@found=`find docs -name '*_*'`; \
+	if [ -n "$$found" ]; then \
+		echo "Error: Underscores found in doc file or folder names, use hyphens instead:"; \
+		echo $$found; \
+		exit 1; \
+	fi
 
 $(MISSPELL):
 	cd $(TOOLS_DIR) && go build -o $(MISSPELL_BINARY) github.com/client9/misspell/cmd/misspell
@@ -56,6 +66,11 @@ markdown-toc:
 .PHONY: markdownlint
 markdownlint:
 	@if ! npm ls markdownlint; then npm install; fi
+	@npx gulp lint-md
+
+.PHONY: markdownlint-old
+markdownlint-old:
+	@if ! npm ls markdownlint; then npm install; fi
 	@for f in $(ALL_DOCS); do \
 		echo $$f; \
 		npx --no -p markdownlint-cli markdownlint -c .markdownlint.yaml $$f \
@@ -74,27 +89,35 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --rm -v $(PWD)/semantic_conventions:/source -v $(PWD)/specification:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions
 .PHONY: table-check
 table-check:
-	docker run --rm -v $(PWD)/semantic_conventions:/source -v $(PWD)/specification:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check
 
 .PHONY: schema-check
 schema-check:
 	$(TOOLS_DIR)/schema_check.sh
 
+.PHONY: check-format
+check-format:
+	npm run check:format
+
+.PHONY: fix-format
+fix-format:
+	npm run fix:format
+
 # Run all checks in order of speed / likely failure.
 .PHONY: check
-check: misspell markdownlint markdown-link-check
+check: misspell markdownlint markdown-link-check check-format
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation misspell-correction
+fix: table-generation misspell-correction fix-format
 	@echo "All autofixes complete"
 
 .PHONY: install-tools

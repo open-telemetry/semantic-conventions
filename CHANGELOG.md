@@ -7,12 +7,67 @@ release.
 
 ## Unreleased
 
+- Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
+  ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
+- Update `.count` metric naming convention so that it only applies to UpDownCounters,
+  and add that `.total` should not be used by either Counters or UpDownCounters
+  ([#107](https://github.com/open-telemetry/semantic-conventions/pull/107))
+- BREAKING: Rename `http.client.duration` and `http.server.duration` metrics to
+  `http.client.request.duration` and `http.server.request.duration` respectively.
+  ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
+- Update HTTP `network.protocol.version` examples to match HTTP RFCs.
+  ([#228](https://github.com/open-telemetry/semantic-conventions/pull/228))
+- Re-introduce namespace and attributes to describe the original destination messages were
+  published to (`messaging.destination_publish.*`).
+  ([#156](https://github.com/open-telemetry/semantic-conventions/pull/156))
+- Generate FaaS metric semantic conventions from YAML.
+  ([#88](https://github.com/open-telemetry/semantic-conventions/pull/88))
+  The conventions cover metrics that are recorded by the FaaS itself and not by
+  clients invoking them.
+- BREAKING: Rename all JVM metrics from `process.runtime.jvm.*` to `jvm.*`
+  ([#241](https://github.com/open-telemetry/semantic-conventions/pull/241))
+- BREAKING: Add namespaces to JVM metric attributes ([#20](https://github.com/open-telemetry/semantic-conventions/pull/20)).
+  - Rename attributes `type` to `jvm.memory.type`, `pool` to `jvm.memory.pool.name`
+  - Applies to metrics:
+    - `jvm.memory.usage`
+    - `jvm.memory.init`
+    - `jvm.memory.committed`
+    - `jvm.memory.limit`
+    - `jvm.memory.usage_after_last_gc`
+  - Rename attributes `gc` to `jvm.gc.name`, `action` to `jvm.gc.action`
+  - Applies to metrics:
+    - `jvm.gc.duration`
+  - Rename attribute `daemon` to `thread.daemon`
+  - Applies to metrics:
+    - `jvm.threads.count`
+  - Rename attribute `pool` to `jvm.buffer.pool.name`
+  - Applies to metrics:
+    - `jvm.buffer.usage`
+    - `jvm.buffer.limit`
+    - `jvm.buffer.count`
+- Clarify that `http/dup` has higher precedence than `http` in case both values are present
+  in `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
+- Add `jvm.cpu.count` metric.
+  ([#52](https://github.com/open-telemetry/semantic-conventions/pull/52))
+- BREAKING: Rename metrics `jvm.buffer.usage` to `jvm.buffer.memory.usage`
+  and `jvm.buffer.limit` to `jvm.buffer.memory.limit`.
+  ([#253](https://github.com/open-telemetry/semantic-conventions/pull/253))
+- BREAKING: Rename `jvm.classes.current_loaded` metrics to `jvm.classes.count`
+  ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
+- BREAKING: Remove pluralization from JVM metric namespaces.
+  ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
+- Simplify HTTP metric briefs.
+  ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+
+## v1.21.0 (2023-07-13)
+
 Note: This is the first release of Semantic Conventions separate from the Specification.
 
 - Add GCP Bare Metal Solution as a cloud platform
- ([#64](https://github.com/open-telemetry/semantic-conventions/pull/64))
+  ([#64](https://github.com/open-telemetry/semantic-conventions/pull/64))
 - Clarify the scope of the HTTP client span.
- ([#3290](https://github.com/open-telemetry/opentelemetry-specification/pull/3290))
+  ([#3290](https://github.com/open-telemetry/opentelemetry-specification/pull/3290))
 - Add moratorium on relying on schema transformations for telemetry stability
   ([#3380](https://github.com/open-telemetry/opentelemetry-specification/pull/3380))
 - Mark "Instrumentation Units" and "Instrumentation Types" sections of the general
@@ -32,15 +87,15 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#3443](https://github.com/open-telemetry/opentelemetry-specification/pull/3443))
 - Rename `net.peer.*`, `net.host.*`, and `net.sock.*` attributes to align with ECS
   ([#3402](https://github.com/open-telemetry/opentelemetry-specification/pull/3402))
-    BREAKING: rename `net.peer.name` to `server.address` on client side and to `client.address` on server side,
-     `net.peer.port` to `server.port` on client side and to `client.port` on server side,
-     `net.host.name` and `net.host.port` to `server.address` and `server.port` (since `net.host.*` attributes only applied to server instrumentation),
-     `net.sock.peer.addr` to `server.socket.address` on client side and to `client.socket.address` on server side,
-     `net.sock.peer.port` to `server.socket.port` on client side and to `client.socket.port` on server side,
-     `net.sock.peer.name` to `server.socket.domain` (since `net.sock.peer.name` only applied to client instrumentation),
-     `net.sock.host.addr` to `server.socket.address` (since `net.sock.host.*` only applied to server instrumentation),
-     `net.sock.host.port` to `server.socket.port` (similarly since `net.sock.host.*` only applied to server instrumentation),
-     `http.client_ip` to `client.address`
+  BREAKING: rename `net.peer.name` to `server.address` on client side and to `client.address` on server side,
+  `net.peer.port` to `server.port` on client side and to `client.port` on server side,
+  `net.host.name` and `net.host.port` to `server.address` and `server.port` (since `net.host.*` attributes only applied to server instrumentation),
+  `net.sock.peer.addr` to `server.socket.address` on client side and to `client.socket.address` on server side,
+  `net.sock.peer.port` to `server.socket.port` on client side and to `client.socket.port` on server side,
+  `net.sock.peer.name` to `server.socket.domain` (since `net.sock.peer.name` only applied to client instrumentation),
+  `net.sock.host.addr` to `server.socket.address` (since `net.sock.host.*` only applied to server instrumentation),
+  `net.sock.host.port` to `server.socket.port` (similarly since `net.sock.host.*` only applied to server instrumentation),
+  `http.client_ip` to `client.address`
 - BREAKING: Introduce `network.transport` defined as
   [OSI Transport Layer](https://osi-model.com/transport-layer/) or
   [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication).
@@ -103,6 +158,14 @@ Note: This is the first release of Semantic Conventions separate from the Specif
   ([#57](https://github.com/open-telemetry/semantic-conventions/pull/57))
 - Add container `image.id`, `command`, `command_line` and `command_args` resource attributes.
   ([#39](https://github.com/open-telemetry/semantic-conventions/pull/39))
+- Add Elasticsearch client semantic conventions.
+  ([#23](https://github.com/open-telemetry/semantic-conventions/pull/23))
+- Add YAML definitions for log semantic conventions and define requirement levels
+  ([#133](https://github.com/open-telemetry/semantic-conventions/pull/133))
+- Add markdown file for url semantic conventions
+  ([#174](https://github.com/open-telemetry/semantic-conventions/pull/174))
+- Add `system.cpu.physical.count` and `system.cpu.logical.count` metrics.
+  ([#99](https://github.com/open-telemetry/opentelemetry-specification/pull/99))
 
 ## v1.20.0 (2023-04-07)
 
@@ -341,7 +404,7 @@ This and earlier versions were released as part of [the Specification](https://g
   ([#2508](https://github.com/open-telemetry/opentelemetry-specification/pull/2508)).
 - Refactor jvm classes semantic conventions
   ([#2550](https://github.com/open-telemetry/opentelemetry-specification/pull/2550)).
-- Add browser.* attributes
+- Add browser.\* attributes
   ([#2353](https://github.com/open-telemetry/opentelemetry-specification/pull/2353)).
 - Change JVM runtime metric `process.runtime.jvm.memory.max`
   to `process.runtime.jvm.memory.limit`
@@ -479,13 +542,13 @@ This and earlier versions were released as part of [the Specification](https://g
 - Add `arch` to `host` semantic conventions ([#1483](https://github.com/open-telemetry/opentelemetry-specification/pull/1483))
 - Add `runtime` to `container` semantic conventions ([#1482](https://github.com/open-telemetry/opentelemetry-specification/pull/1482))
 - Rename `gcp_gke` to `gcp_kubernetes_engine` to have consistency with other
-Google products under `cloud.infrastructure_service` ([#1496](https://github.com/open-telemetry/opentelemetry-specification/pull/1496))
+  Google products under `cloud.infrastructure_service` ([#1496](https://github.com/open-telemetry/opentelemetry-specification/pull/1496))
 - `http.url` MUST NOT contain credentials ([#1502](https://github.com/open-telemetry/opentelemetry-specification/pull/1502))
 - Add `aws.eks.cluster.arn` to EKS specific semantic conventions ([#1484](https://github.com/open-telemetry/opentelemetry-specification/pull/1484))
 - Rename `zone` to `availability_zone` in `cloud` semantic conventions ([#1495](https://github.com/open-telemetry/opentelemetry-specification/pull/1495))
 - Rename `cloud.infrastructure_service` to `cloud.platform` ([#1530](https://github.com/open-telemetry/opentelemetry-specification/pull/1530))
 - Add section describing that libraries and the collector should autogenerate
-the semantic convention keys. ([#1515](https://github.com/open-telemetry/opentelemetry-specification/pull/1515))
+  the semantic convention keys. ([#1515](https://github.com/open-telemetry/opentelemetry-specification/pull/1515))
 
 ## v1.0.1 (2021-02-11)
 

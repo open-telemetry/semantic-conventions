@@ -1,0 +1,53 @@
+groups:
+  - id: server
+    prefix: server
+    type: attribute_group
+    brief: >
+      These attributes may be used to describe the server in a connection-based network interaction
+      where there is one side that initiates the connection (the client is the side that initiates the connection).
+      This covers all TCP network interactions since TCP is connection-based and one side initiates the
+      connection (an exception is made for peer-to-peer communication over TCP where the "user-facing" surface of the
+      protocol / API does not expose a clear notion of client and server).
+      This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
+    attributes:
+      - id: address
+        type: string
+        brief: Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name.
+        note: |
+          When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+          the server address behind any intermediaries (e.g. proxies) if it's available.
+        examples: ['example.com']
+      - id: port
+        type: int
+        brief: Server port number
+        note: >
+          When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent
+          the server port behind any intermediaries (e.g. proxies) if it's available.
+        examples: [80, 8080, 443]
+      - id: socket.domain
+        type: string
+        brief: Immediate server peer's domain name if available without reverse DNS lookup
+        examples: ['proxy.example.com']
+        note: Typically observed from the client side, and represents a proxy or other intermediary domain name.
+        requirement_level:
+          recommended: If different than `server.address`.
+      - id: socket.address
+        type: string
+        brief: Server address of the socket connection - IP address or Unix domain socket name.
+        note: >
+          When observed from the client side, this SHOULD represent the immediate server peer address.
+
+          When observed from the server side, this SHOULD represent the physical server address.
+        examples: ['10.5.3.2']
+        requirement_level:
+          recommended: If different than `server.address`.
+      - id: socket.port
+        type: int
+        brief: Server port number of the socket connection.
+        note: >
+          When observed from the client side, this SHOULD represent the immediate server peer port.
+
+          When observed from the server side, this SHOULD represent the physical server port.
+        examples: [16456]
+        requirement_level:
+          recommended: If different than `server.port`.
