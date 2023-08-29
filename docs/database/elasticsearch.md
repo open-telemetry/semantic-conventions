@@ -39,8 +39,8 @@ in order to map the path part values to their names.
 <!-- semconv db.elasticsearch -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `db.elasticsearch.cluster_name` | string | Represents the identifier of an Elasticsearch cluster. [1] | `e9106fc68e3044f0b1475b04bf4ffd5f` | Recommended: [2] |
-| `db.elasticsearch.cluster_instance` | string | Represents the identifier of the node/instance to which the request was routed. [3] | `instance-0000000001` | Recommended: [4] |
+| `db.elasticsearch.cluster.name` | string | Represents the identifier of an Elasticsearch cluster. [1] | `e9106fc68e3044f0b1475b04bf4ffd5f` | Recommended: [2] |
+| `db.elasticsearch.cluster.instance` | string | Represents the identifier of the node/instance to which the request was routed. [3] | `instance-0000000001` | Recommended: [4] |
 | [`db.operation`](database-spans.md) | string | The endpoint identifier for the request. [5] | `search`; `ml.close_job`; `cat.aliases` | Required |
 | [`db.statement`](database-spans.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [6] |
 | `http.request.method` | string | HTTP request method. [7] | `GET`; `POST`; `HEAD` | Required |

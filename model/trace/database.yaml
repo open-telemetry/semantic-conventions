@@ -454,7 +454,7 @@ groups:
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
       - ref: server.address
       - ref: server.port
-      - id: cluster_name
+      - id: cluster.name
         type: string
         requirement_level:
           recommended: >
@@ -465,7 +465,7 @@ groups:
         examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
         note: >
           For Elastic Cloud hosted deployents the "X-Found-Handling-Cluster" HTTP response header contains the cluster ID.
-      - id: cluster_instance
+      - id: cluster.instance
         type: string
         requirement_level:
           recommended: >
