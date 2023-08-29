@@ -458,24 +458,20 @@ groups:
         type: string
         requirement_level:
           recommended: >
-            Should be collected from the relevant HTTP response header if available.
+            When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
         tag: call-level-tech-specific
         brief: >
           Represents the identifier of an Elasticsearch cluster.
         examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
-        note: >
-          For Elastic Cloud hosted deployents the "X-Found-Handling-Cluster" HTTP response header contains the cluster ID.
       - id: cluster.instance
         type: string
         requirement_level:
           recommended: >
-            Should be collected from the relevant HTTP response header if available.
+            When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
         tag: call-level-tech-specific
         brief: >
           Represents the identifier of the node/instance to which the request was routed.
         examples: ["instance-0000000001"]
-        note: >
-          For Elastic Cloud hosted deployents "X-Found-Handling-Instance" HTTP response header contains the instance identifier.
 
   - id: db.sql
     prefix: 'db.sql'
