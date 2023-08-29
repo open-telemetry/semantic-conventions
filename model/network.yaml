@@ -28,7 +28,7 @@ groups:
 
           Consider always setting the transport when setting a port number, since
           a port number is ambiguous without knowing the transport, for example
-          different processes could be listening on TCP port 12345 and UDP port 12345.  
+          different processes could be listening on TCP port 12345 and UDP port 12345.
         examples: ['tcp', 'udp']
       - id: type
         type:
