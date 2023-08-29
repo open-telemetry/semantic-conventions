@@ -60,13 +60,6 @@ If the `_X_AMZN_TRACE_ID` environment variable is set, instrumentation MUST ensu
 environment variable is included in the `Carrier` used to extract a parent `Context` with the `Field` name
 "X-Amzn-Trace-Id".
 
-Instrumentation MUST provide users with the option to create a `Link` to the AWS Lambda vended spans.  If this
-option is enabled then the instrumentation MUST attempt to extract a `SpanContext` from a `Carrier` including
-only the value of the `_X_AMZN_TRACE_ID` environment variable in a `Field` with the name "X-Amzn-Trace-Id".  If
-a valid `SpanContext` is extracted then it MUST be included as a `Link` in the initial span created by the
-instrumentation.  The `Link` MUST have an associated `String`-typed
-attribute with a key of `source` and a value of `x-ray-env`, in order to indicate the source of the linked span.
-
 **Note**: When instrumenting a Java AWS Lambda function, instrumentation SHOULD first try to obtain a value
 from the system property `com.amazonaws.xray.traceHeader` before checking the `_X_AMZN_TRACE_ID` environment variable.
 
