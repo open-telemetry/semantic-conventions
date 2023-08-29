@@ -54,7 +54,7 @@ groups:
         requirement_level:
           recommended: if and only if request was retried.
         examples: 3
-      - ref: server.address
+      - ref: server.domain
         sampling_relevant: true
         requirement_level: required
         brief: >
@@ -67,7 +67,7 @@ groups:
           - Host identifier of the `Host` header
 
           If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-          `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+          `server.domain` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
       - ref: server.port
         sampling_relevant: true
         requirement_level:
@@ -77,6 +77,7 @@ groups:
         note: >
           When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
           URI port identifier, otherwise it MUST match `Host` header port identifier.
+      - ref: server.address
       - ref: server.socket.domain
       - ref: server.socket.address
       - ref: server.socket.port
@@ -92,7 +93,7 @@ groups:
     span_kind: server
     brief: 'Semantic Convention for HTTP Server'
     attributes:
-      - ref: server.address
+      - ref: server.domain
         requirement_level: recommended
         sampling_relevant: true
         brief: >
@@ -138,6 +139,7 @@ groups:
             The port of the original client behind all proxies, if
             known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header).
             Otherwise, the immediate client peer port.
+      - ref: server.address
       - ref: client.socket.address
       - ref: client.socket.port
       - ref: url.path

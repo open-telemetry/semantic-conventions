@@ -11,7 +11,7 @@ groups:
     attributes:
       - id: domain
         type: string
-        brief: The domain name of the destination system.
+        brief: The domain name of the destination system. May be set to an address if a domain is required but not available.
         examples: ['foo.example.com']
         note: This value may be a host name, a fully qualified domain name, or another host naming format.
       - id: address

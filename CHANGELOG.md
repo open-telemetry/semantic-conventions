@@ -59,6 +59,8 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- BREAKING: Split server.domain from server.address, no longer allow domain name
+  in address.
 
 ## v1.21.0 (2023-07-13)
 
