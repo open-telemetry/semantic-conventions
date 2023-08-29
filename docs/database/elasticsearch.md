@@ -40,7 +40,7 @@ in order to map the path part values to their names.
 | [`db.operation`](database-spans.md) | string | The endpoint identifier for the request. [1] | `search`; `ml.close_job`; `cat.aliases` | Required |
 | [`db.statement`](database-spans.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [2] |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [4] | `example.com` | See below |
+| [`server.address`](../general/attributes.md) | string | Server address - IP address or Unix domain socket name. [4] | `127.0.0.1` | See below |
 | [`server.port`](../general/attributes.md) | int | Server port number [5] | `80`; `8080`; `443` | Recommended |
 | [`url.full`](../url/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [6] | `https://localhost:9200/index/_search?q=user.id:kimchy` | Required |
 

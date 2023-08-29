@@ -4,7 +4,7 @@ groups:
     brief: 'HTTP server attributes'
     extends: attributes.http.server
     attributes:
-      - ref: server.address
+      - ref: server.domain
         brief: >
           Name of the local HTTP server that received the request.
         requirement_level: opt_in

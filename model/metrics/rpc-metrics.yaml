@@ -11,6 +11,7 @@ groups:
       - ref: rpc.method
       - ref: network.transport
       - ref: network.type
+      - ref: server.domain
       - ref: server.address
       - ref: server.port
       - ref: server.socket.address

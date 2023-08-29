@@ -228,7 +228,7 @@ groups:
           If the SQL statement has an ambiguous operation, or performs more
           than one operation, this value may be omitted.
         examples: ['findAndModify', 'HMSET', 'SELECT']
-      - ref: server.address
+      - ref: server.domain
         tag: connection-level
         requirement_level:
           conditionally_required: See alternative attributes below.
@@ -238,6 +238,10 @@ groups:
         tag: connection-level
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+      - ref: server.address
+        tag: connection-level
+        requirement_level:
+          conditionally_required: See alternative attributes below.
       - ref: server.socket.address
         tag: connection-level
       - ref: server.socket.port
@@ -248,9 +252,10 @@ groups:
         tag: connection-level
       - ref: server.socket.domain
         requirement_level:
-          recommended: If different than `server.address` and if `server.socket.address` is set.
+          recommended: If different than `server.domain` and if `server.socket.address` is set.
     constraints:
       - any_of:
+          - 'server.domain'
           - 'server.address'
           - 'server.socket.address'
 

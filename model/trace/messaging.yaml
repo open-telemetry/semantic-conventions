@@ -162,11 +162,16 @@ groups:
       - ref: messaging.message.payload_compressed_size_bytes
         requirement_level:
           recommended: Only if span represents operation on a single message.
-      - ref: server.address
+      - ref: server.domain
         note: >
-          This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+          This should be the hostname of the broker (or other network-level peer) this specific message is sent to/received from.
         requirement_level:
           conditionally_required: If available.
+      - ref: server.address
+        note: >
+          This should be the IP of the broker (or other network-level peer) this specific message is sent to/received from.
+        requirement_level:
+          conditionally_required: If available and especially if `server.domain` is not set.
       - ref: server.socket.address
         tag: connection-level
       - ref: server.socket.port

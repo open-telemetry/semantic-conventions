@@ -55,27 +55,30 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `server.address` | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
-| `server.port` | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
-| `server.socket.domain` | string | Immediate server peer's domain name if available without reverse DNS lookup [3] | `proxy.example.com` | Recommended: If different than `server.address`. |
-| `server.socket.address` | string | Server address of the socket connection - IP address or Unix domain socket name. [4] | `10.5.3.2` | Recommended: If different than `server.address`. |
-| `server.socket.port` | int | Server port number of the socket connection. [5] | `16456` | Recommended: If different than `server.port`. |
+| `server.address` | string | Server address - IP address or Unix domain socket name. [1] | `127.0.0.1` | Recommended |
+| `server.domain` | string | Domain name of the server. May be set to an address if a domain is required but not available. [2] | `example.com` | Recommended |
+| `server.port` | int | Server port number [3] | `80`; `8080`; `443` | Recommended |
+| `server.socket.domain` | string | Immediate server peer's domain name if available without reverse DNS lookup [4] | `proxy.example.com` | Recommended: If different than `server.address`. |
+| `server.socket.address` | string | Server address of the socket connection - IP address or Unix domain socket name. [5] | `10.5.3.2` | Recommended: If different than `server.address`. |
+| `server.socket.port` | int | Server port number of the socket connection. [6] | `16456` | Recommended: If different than `server.port`. |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[2]:** Should only be set to an actual domain name if available without reverse DNS lookup.
 
-**[3]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
-**[4]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+**[4]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
+
+**[5]:** When observed from the client side, this SHOULD represent the immediate server peer address.
 When observed from the server side, this SHOULD represent the physical server address.
 
-**[5]:** When observed from the client side, this SHOULD represent the immediate server peer port.
+**[6]:** When observed from the client side, this SHOULD represent the immediate server peer port.
 When observed from the server side, this SHOULD represent the physical server port.
 <!-- endsemconv -->
 
-`server.address` and `server.port` represent logical server name and port. Semantic conventions that refer to these attributes SHOULD
+`server.domain`, `server.address` and `server.port` represent logical server name, address and port. Semantic conventions that refer to these attributes SHOULD
 specify what these attributes mean in their context.
 
 Semantic conventions and instrumentations that populate both logical (`server.address` and `server.port`) and socket-level (`server.socket.*`) attributes SHOULD set socket-level attributes only when they don't match logical ones. For example, when direct connection to the remote destination is established and `server.address` is populated, `server.socket.domain` SHOULD NOT be set. Check out [Connecting through intermediary](#connecting-through-intermediary) for more information.
@@ -223,7 +226,7 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 <!-- semconv source -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `source.domain` | string | The domain name of the source system. [1] | `foo.example.com` | Recommended |
+| `source.domain` | string | The domain name of the source system. May be set to an address if a domain is required but not available. [1] | `foo.example.com` | Recommended |
 | `source.address` | string | Source address, for example IP address or Unix socket name. | `10.5.3.2` | Recommended |
 | `source.port` | int | Source port number | `3389`; `2888` | Recommended |
 
@@ -237,7 +240,7 @@ Destination fields capture details about the receiver of a network exchange/pack
 <!-- semconv destination -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `destination.domain` | string | The domain name of the destination system. [1] | `foo.example.com` | Recommended |
+| `destination.domain` | string | The domain name of the destination system. May be set to an address if a domain is required but not available. [1] | `foo.example.com` | Recommended |
 | `destination.address` | string | Destination address, for example IP address or UNIX socket name. | `10.5.3.2` | Recommended |
 | `destination.port` | int | Destination port number | `3389`; `2888` | Recommended |
 
