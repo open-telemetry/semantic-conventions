@@ -59,3 +59,5 @@ and from which the `OS terminology` column values are derived.
 ## Android
 
 The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS idenfifiers` are derived.
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
