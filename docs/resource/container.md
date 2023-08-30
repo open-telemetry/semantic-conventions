@@ -15,15 +15,18 @@
 | `container.image.name` | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` | Recommended |
 | `container.image.tags` | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `[v1.27.1, 3.5.7-0]` | Recommended |
 | `container.image.id` | string | Runtime specific image identifier. Usually a hash algorithm followed by a UUID. [1] | `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` | Recommended |
-| `container.command` | string | The command used to run the container (i.e. the command name). [2] | `otelcontribcol` | Opt-In |
+| `container.image.repo_digests` | string[] | Repo digests of the container image as provided by the container runtime. [2] | `[sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4, sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b]` | Recommended |
+| `container.command` | string | The command used to run the container (i.e. the command name). [3] | `otelcontribcol` | Opt-In |
 | `container.command_line` | string | The full command run by the container as a single string representing the full command. [2] | `otelcontribcol --config config.yaml` | Opt-In |
 | `container.command_args` | string[] | All the command arguments (including the command/executable itself) run by the container. [2] | `[otelcontribcol, --config, config.yaml]` | Opt-In |
 
 **[1]:** Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
 K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
-The ID is assinged by the container runtime and can vary in different environments. Consider using `oci.manifest.digests` if it is important to identify the same image in different environments/runtimes.
+The ID is assinged by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
 
-**[2]:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
+**[2]:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
+
+**[3]:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 <!-- endsemconv -->
 
 ## Open Container Initiative (OCI)
@@ -44,10 +47,10 @@ that defines an OCI Image manifest.
 <!-- semconv oci.manifest -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `oci.manifest.digests` | string[] | The digest(s) of the OCI image manifest. For container images specifically it can be one or more digests by which the container image is known. [1] | `[sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4, sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b]` | Recommended |
+| `oci.manifest.digest` | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [1] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | Recommended |
 
 **[1]:** Follows [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md), and specifically the [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
-An example can be found in [Example Image Manifest](https://docs.docker.com/registry/spec/manifest-v2-2/#example-image-manifest). [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageCreate) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) which report those under the `RepoDigests` field.
+An example can be found in [Example Image Manifest](https://docs.docker.com/registry/spec/manifest-v2-2/#example-image-manifest).
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
