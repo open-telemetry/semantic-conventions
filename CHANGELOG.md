@@ -59,6 +59,8 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- Added `os.build` and `os.sdk_version` resource attributes.
+  ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
 
 ## v1.21.0 (2023-07-13)
 
