@@ -12,8 +12,10 @@ aliases: [docs/specs/semconv/general/metrics-general]
 - [General Guidelines](#general-guidelines)
   * [Name Reuse Prohibition](#name-reuse-prohibition)
   * [Units](#units)
-  * [Pluralization](#pluralization)
-    + [Use `count` Instead of Pluralization](#use-count-instead-of-pluralization)
+  * [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
+    + [Pluralization](#pluralization)
+    + [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
+    + [Do not use `total`](#do-not-use-total)
 - [General Metric Semantic Conventions](#general-metric-semantic-conventions)
   * [Instrument Naming](#instrument-naming)
   * [Instrument Units](#instrument-units)
@@ -99,7 +101,9 @@ When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
 [OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/compatibility/prometheus_and_openmetrics.md).
 
-### Pluralization
+### Naming rules for Counters and UpDownCounters
+
+#### Pluralization
 
 Metric names SHOULD NOT be pluralized, unless the value being recorded
 represents discrete instances of a
@@ -109,12 +113,12 @@ question is a non-unit (like `{fault}` or `{operation}`).
 
 Examples:
 
-* `system.filesystem.utilization`, `http.server.duration`, and `system.cpu.time`
+* `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
 should not be pluralized, even if many data points are recorded.
 * `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
 should be pluralized, even if only a single data point is recorded.
 
-#### Use `count` Instead of Pluralization
+#### Use `count` Instead of Pluralization for UpDownCounters
 
 If the value being recorded represents the count of concepts signified
 by the namespace then the metric should be named `count` (within its namespace).
@@ -124,6 +128,14 @@ For example if we have a namespace `system.processes` which contains all metrics
 to the processes then to represent the count of the processes we can have a metric named
 `system.processes.count`. The suffix `count` here indicates that it is the count of
 `system.processes`.
+
+#### Do not use `total`
+
+UpDownCounters SHOULD NOT use `_total` because then they will look like
+monotonic sums.
+
+Counters SHOULD NOT append `_total` either because then their meaning will
+be confusing in delta backends.
 
 ## General Metric Semantic Conventions
 

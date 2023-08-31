@@ -116,7 +116,6 @@ See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
 - [`messaging.operation`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
 - [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `AmazonSQS`.
-- [`messaging.destination.kind` or `messaging.source.kind`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `queue`.
 
 ### SQS Message
 
@@ -209,15 +208,12 @@ Function F:                      | Span ProcBatch |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
 | `messaging.system` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` |
-| `messaging.destination.name` | `Q` | `Q` | | | |
-| `messaging.source.name` | | | `Q` | `Q` | `Q` |
-| `messaging.destination.kind` | `queue` | `queue` | | | |
-| `messaging.source.kind` | | | `queue` | `queue` | `queue` |
+| `messaging.destination.name` | `Q` | `Q` | `Q` | `Q` | `Q` |
 | `messaging.operation` |  |  | `process` | `process` | `process` |
 | `messaging.message.id` | | | | `"a1"` | `"a2"` |
 
 Note that if Span Prod1 and Span Prod2 were sent to different queues, Span ProcBatch would not have
-`messaging.source.name` set as it would correspond to multiple sources.
+`messaging.destination.name` set as it would correspond to multiple queues.
 
 The above requires user code change to create `Span Proc1` and `Span Proc2`. In Java, the user would inherit from
 [TracingSqsMessageHandler][] instead of Lambda's standard `RequestHandler` to enable them. Otherwise these two spans
