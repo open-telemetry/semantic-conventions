@@ -59,6 +59,9 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- BREAKING: Remove `thread.daemon`, and introduce `jvm.thread.daemon` instead.
+  Introduce `jvm.thread.state` attribute and add it to `jvm.thread.count` metric.
+  ([#297](https://github.com/open-telemetry/semantic-conventions/pull/297))
 
 ## v1.21.0 (2023-07-13)
 
