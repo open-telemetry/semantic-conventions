@@ -233,8 +233,7 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv network-core -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.transport` | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase.
-Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `udp` | Recommended |
+| `network.transport` | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `udp` | Recommended |
 | `network.type` | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | `network.protocol.name` | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
 | `network.protocol.version` | string | Version of the application layer protocol used. See note below. [1] | `3.1.1` | Recommended |
