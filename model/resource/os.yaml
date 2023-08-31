@@ -60,8 +60,8 @@ groups:
       - id: version
         type: string
         brief: >
-          The major version string of the operating system. 
-          Additionally, build numbers can be added in os.build attribute.
+          The version string of the operating system as defined in
+          [Version Attributes](/docs/resource/README.md#version-attributes).
         examples: ['14.2.1', '18.04.1']
       - id: build
         type: string
