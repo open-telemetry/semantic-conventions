@@ -77,7 +77,7 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `error.id` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
+| `error.type` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
@@ -90,19 +90,19 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 **[2]:** If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-`error.id` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+`error.type` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 corresponding to the returned status code or to `_OTHER`.
 
 If request fails with an error before or after status code was sent or received, such error SHOULD be
-recorded on `error.id` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+recorded on `error.type` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
 
-The cardinality of `error.id` within one instrumentation library SHOULD be low, but
+The cardinality of `error.type` within one instrumentation library SHOULD be low, but
 telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.id` to have high cardinality at query time, when no
+should be prepared for `error.type` to have high cardinality at query time, when no
 additional filters are applied.
 
-If operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
+If operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
 **[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -138,7 +138,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
 
-`error.id` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
@@ -246,7 +246,7 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `error.id` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
+| `error.type` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
@@ -259,19 +259,19 @@ This metric is optional.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 **[2]:** If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-`error.id` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+`error.type` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 corresponding to the returned status code or to `_OTHER`.
 
 If request fails with an error before or after status code was sent or received, such error SHOULD be
-recorded on `error.id` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+recorded on `error.type` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
 
-The cardinality of `error.id` within one instrumentation library SHOULD be low, but
+The cardinality of `error.type` within one instrumentation library SHOULD be low, but
 telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.id` to have high cardinality at query time, when no
+should be prepared for `error.type` to have high cardinality at query time, when no
 additional filters are applied.
 
-If operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
+If operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
 **[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -307,7 +307,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
 
-`error.id` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
@@ -347,7 +347,7 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| `error.id` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
+| `error.type` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `Internal Server Error` | Conditionally Required: If request has ended with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
@@ -360,19 +360,19 @@ This metric is optional.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 **[2]:** If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-`error.id` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+`error.type` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 corresponding to the returned status code or to `_OTHER`.
 
 If request fails with an error before or after status code was sent or received, such error SHOULD be
-recorded on `error.id` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+recorded on `error.type` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
 
-The cardinality of `error.id` within one instrumentation library SHOULD be low, but
+The cardinality of `error.type` within one instrumentation library SHOULD be low, but
 telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.id` to have high cardinality at query time, when no
+should be prepared for `error.type` to have high cardinality at query time, when no
 additional filters are applied.
 
-If operation has completed successfully, instrumentations SHOULD NOT set `error.id`.
+If operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
 **[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -408,7 +408,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
 
-`error.id` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|

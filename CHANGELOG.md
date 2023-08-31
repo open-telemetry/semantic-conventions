@@ -61,7 +61,7 @@ release.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
 - Add host cpu resource attributes.
   ([#209](https://github.com/open-telemetry/semantic-conventions/pull/209))
-- Introduce `error.id` attribute and use it in HTTP conventions
+- Introduce `error.type` attribute and use it in HTTP conventions
   ([#205](https://github.com/open-telemetry/semantic-conventions/pull/205))
 
 ## v1.21.0 (2023-07-13)

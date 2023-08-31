@@ -95,7 +95,7 @@ HTTP request may fail if it was cancelled or an error occurred preventing
 the client or server from sending/receiving the request/response fully.
 
 When instrumentation detects such errors it MUST set span status to `Error`
-and MUST set the `error.id` attribute.
+and MUST set the `error.type` attribute.
 
 ## Common Attributes
 
@@ -110,7 +110,7 @@ sections below.
 | `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `error.id` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `server_certificate_invalid` | Conditionally Required: If the request has ended with an error. |
+| `error.type` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `server_certificate_invalid` | Conditionally Required: If the request has ended with an error. |
 | `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
@@ -121,19 +121,19 @@ sections below.
 **[1]:** If and only if it's different than `http.request.method`.
 
 **[2]:** If the response status code was sent/received and the status indicates an error according to the [HTTP span status definition](/docs/http/http-spans.md),
-`error.id` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
+`error.type` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 corresponding to the returned status code, otherwise it SHOULD be set `_OTHER`.
 
 If the request fails with an error before or after the status code was sent or received, such error SHOULD be
-recorded on `error.id` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+recorded on `error.type` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
 
-The cardinality of `error.id` within one instrumentation library SHOULD be low, but
+The cardinality of `error.type` within one instrumentation library SHOULD be low, but
 telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.id` to have high cardinality at query time, when no
+should be prepared for `error.type` to have high cardinality at query time, when no
 additional filters are applied.
 
-If operation has completed successfully, instrumentations SHOULD not set `error.id`.
+If operation has completed successfully, instrumentations SHOULD not set `error.type`.
 
 **[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -158,7 +158,7 @@ Following attributes MUST be provided **at span creation time** (when provided a
 
 * `http.request.method`
 
-`error.id` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
@@ -571,7 +571,7 @@ As an example, if a user requested `https://does-not-exist-123.com`, we may have
 | `network.protocol.version` | `"1.1"`                                           |
 | `url.full`           | `"https://does-not-exist-123.com"`                      |
 | `server.address`     | `"does-not-exist-123.com"`                              |
-| `error.id`           | `"java.net.UnknownHostException"`                       |
+| `error.type`           | `"java.net.UnknownHostException"`                       |
 
 ### HTTP client call: Internal Server Error
 
@@ -584,7 +584,7 @@ As an example, if a user requested `https://example.com` and server returned 500
 | `url.full`           | `"https://example.com"`                                 |
 | `server.address`     | `"example.com"`                                         |
 | `http.response.status_code` | `500`                                            |
-| `error.id`           | `"Internal Server Error"`                               |
+| `error.type`           | `"Internal Server Error"`                               |
 
 ### HTTP server call: connection dropped before response body was sent
 
@@ -599,6 +599,6 @@ Span name: `POST /uploads/:document_id`.
 | `url.scheme`         | `"https"`                                       |
 | `http.route`         | `"/uploads/:document_id"`                       |
 | `http.response.status_code` | `201`                                    |
-| `error.id`           | `WebSocketDisconnect`                           |
+| `error.type`           | `WebSocketDisconnect`                           |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
