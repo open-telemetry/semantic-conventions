@@ -334,7 +334,7 @@ If the route cannot be determined, the `name` attribute MUST be set as defined i
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`client.address`](../general/attributes.md) | string | Client address - IP address or Unix domain socket name. [2] | `83.164.160.102` | Recommended |
+| [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `83.164.160.102` | Recommended |
 | [`client.port`](../general/attributes.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [3] | `65123` | Recommended |
 | [`client.socket.address`](../general/attributes.md) | string | Client address of the socket connection - IP address or Unix domain socket name. [4] | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
 | [`client.socket.port`](../general/attributes.md) | int | Client port number of the socket connection. [5] | `35555` | Recommended: If different than `client.port`. |

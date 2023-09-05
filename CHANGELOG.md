@@ -59,6 +59,8 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- Updates `client.address` to allow domain names for consistency with `server.address`.
+  ([#302](https://github.com/open-telemetry/semantic-conventions/pull/302))
 
 ## v1.21.0 (2023-07-13)
 
