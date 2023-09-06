@@ -120,7 +120,7 @@ sections below.
 
 **[1]:** If and only if it's different than `http.request.method`.
 
-**[2]:** If the response status code was sent/received and the status indicates an error according to the [HTTP span status definition](/docs/http/http-spans.md),
+**[2]:** If the response status code was sent/received and the status indicates an error according to the [HTTP span status definition](/docs/http/http-spans.md#status),
 `error.type` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
 corresponding to the returned status code, otherwise it SHOULD be set `_OTHER`.
 
