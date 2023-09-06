@@ -63,6 +63,8 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#span).
 
+<!-- markdown-link-check-disable -->
+<!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
 HTTP server span names SHOULD be `{method} {http.route}` if there is a
 (low-cardinality) `http.route` available (see below for the exact definition of the [`{method}`](#method-placeholder) placeholder).
 
@@ -72,6 +74,7 @@ SHOULD be [`{method}`](#method-placeholder).
 HTTP client spans have no `http.route` attribute since client-side instrumentation
 is not generally aware of the "route", and therefore HTTP client spans SHOULD be
 [`{method}`](#method-placeholder).
+<!-- markdown-link-check-enable -->
 
 The <span id="method-placeholder">`{method}`</span> MUST be `{http.request.method}` if the method represents the original method known to the instrumentation.
 In other cases (when `{http.request.method}` is set to `_OTHER`), `{method}` MUST be `HTTP`.
