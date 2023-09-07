@@ -28,8 +28,8 @@
 /docs/logs/                               @open-telemetry/specs-semconv-approvers @tigrannajaryan
 
 # JVM semantic conventions approvers
-/model/metrics/process-runtime-jvm-metrics.yaml              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
-/model/metrics/process-runtime-jvm-metrics-experimental.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
+/model/metrics/jvm-* @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
+/docs/jvm/           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 
 # HTTP semantic conventions approvers
 /model/metrics/http.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
