@@ -452,9 +452,9 @@ groups:
       - ref: system.network.state
       - ref: network.transport
 
-    # system.process.* metrics and attribute group
-  - id: attributes.system.process
-    prefix: system.process
+    # system.processes.* metrics and attribute group
+  - id: attributes.system.processes
+    prefix: system.processes
     type: attribute_group
     brief: "Describes System Process metric attributes"
     attributes:
@@ -475,18 +475,18 @@ groups:
         examples: ["running"]
 
 
-  - id: metric.system.process.count
+  - id: metric.system.processes.count
     type: metric
-    metric_name: system.process.count
+    metric_name: system.processes.count
     brief: "Total number of processes in each state"
     instrument: updowncounter
     unit: "{process}"
     attributes:
-      - ref: system.process.status
+      - ref: system.processes.status
 
-  - id: metric.system.process.created
+  - id: metric.system.processes.created
     type: metric
-    metric_name: system.process.created
+    metric_name: system.processes.created
     brief: "Total number of processes created over uptime of the host"
     instrument: counter
     unit: "{process}"

@@ -61,7 +61,6 @@ release.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
 - BREAKING: Generate System metrics semconv from YAML.
   ([#89](https://github.com/open-telemetry/semantic-conventions/pull/89))
-  - Remove pluralization from process metrics `system.processes.*` to `system.process.*`
   - Rename attributes for `system.cpu.*` metrics:
     - `state` to `system.cpu.state`
     - `cpu` to `system.cpu.logical`
@@ -86,7 +85,7 @@ release.
     - `protocol` to `network.protocol`
     - `state` to `system.network.state`
   - Rename attributes for `system.processes.*` metrics:
-    - `status` to `system.process.status`
+    - `status` to `system.processes.status`
 
 ## v1.21.0 (2023-07-13)
 

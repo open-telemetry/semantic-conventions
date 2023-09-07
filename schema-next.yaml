@@ -64,9 +64,6 @@ versions:
               - jvm.buffer.limit
               - jvm.buffer.count
         # https://github.com/open-telemetry/semantic-conventions/pull/89
-        - rename_metrics:
-            system.processes.count: system.process.count
-            system.processes.created: system.process.created
         - rename_attributes:
             attribute_map:
               state: system.cpu.state
@@ -127,9 +124,9 @@ versions:
               - system.network.connections
         - rename_attributes:
             attribute_map:
-              status: system.process.status
+              status: system.processes.status
             apply_to_metrics:
-              - system.process.count
+              - system.processes.count
   1.21.0:
     spans:
       changes:

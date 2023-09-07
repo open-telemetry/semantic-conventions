@@ -44,8 +44,8 @@ instruments not explicitly defined in the specification.
   * [Metric: `system.network.io`](#metric-systemnetworkio)
   * [Metric: `system.network.connections`](#metric-systemnetworkconnections)
 - [Aggregate System Process Metrics](#aggregate-system-process-metrics)
-  * [Metric: `system.process.count`](#metric-systemprocesscount)
-  * [Metric: `system.process.created`](#metric-systemprocesscreated)
+  * [Metric: `system.processes.count`](#metric-systemprocessescount)
+  * [Metric: `system.processes.created`](#metric-systemprocessescreated)
 - [`system.{os}.` - OS Specific System Metrics](#systemos---os-specific-system-metrics)
 
 <!-- tocstop -->
@@ -671,22 +671,22 @@ This metric is [recommended][MetricRecommended].
 **Description:** System level aggregate process metrics captured under the namespace `system.process`.
 For metrics at the individual process level, see [process metrics](process-metrics.md).
 
-### Metric: `system.process.count`
+### Metric: `system.processes.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.system.process.count(metric_table) -->
+<!-- semconv metric.system.processes.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.process.count` | UpDownCounter | `{process}` | Total number of processes in each state |
+| `system.processes.count` | UpDownCounter | `{process}` | Total number of processes in each state |
 <!-- endsemconv -->
 
-<!-- semconv metric.system.process.count(full) -->
+<!-- semconv metric.system.processes.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `system.process.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | Recommended |
+| `system.processes.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | Recommended |
 
-`system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
@@ -696,17 +696,17 @@ This metric is [recommended][MetricRecommended].
 | `defunct` | defunct |
 <!-- endsemconv -->
 
-### Metric: `system.process.created`
+### Metric: `system.processes.created`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.system.process.created(metric_table) -->
+<!-- semconv metric.system.processes.created(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host |
+| `system.processes.created` | Counter | `{process}` | Total number of processes created over uptime of the host |
 <!-- endsemconv -->
 
-<!-- semconv metric.system.process.created(full) -->
+<!-- semconv metric.system.processes.created(full) -->
 <!-- endsemconv -->
 
 ## `system.{os}.` - OS Specific System Metrics
