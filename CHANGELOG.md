@@ -59,6 +59,8 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- Add host cpu resource attributes.
+  ([#209](https://github.com/open-telemetry/semantic-conventions/pull/209))
 - Encourage setting `network.transport` when reporting port numbers
   ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
 
