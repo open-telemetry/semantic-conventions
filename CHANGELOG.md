@@ -59,6 +59,8 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- Add host cpu resource attributes.
+  ([#209](https://github.com/open-telemetry/semantic-conventions/pull/209))
 - BREAKING: Change HTTP span name when method is unknown (use `HTTP` instead of `_OTHER`)
   ([#270](https://github.com/open-telemetry/semantic-conventions/pull/270))
 
