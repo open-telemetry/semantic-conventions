@@ -14,7 +14,7 @@ groups:
             - id: other
               value: "_OTHER"
               brief: 'A fallback error value to be used when the instrumentation does not define a custom value for it.'
-        examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', 'Internal Server Error']
+        examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', '500']
         note: |
           The `error.type` SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.

@@ -34,14 +34,15 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If request has ended with an error.
-        examples: ['timeout', 'name_resolution_error', 'Internal Server Error']
+        examples: ['timeout', 'name_resolution_error', '500']
         note: |
-          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-          `error.type` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
-          corresponding to the returned status code or to `_OTHER`.
+          If the request fails with an error before response status code was sent or received,
+          `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
 
-          If request fails with an error before or after status code was sent or received, such error SHOULD be
-          recorded on `error.type` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+          `error.type` SHOULD be set to the string representation of the status code, an exception type (if thrown) or a component-specific error code.
+
+          The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
 
           The cardinality of `error.type` within one instrumentation library SHOULD be low, but
@@ -49,7 +50,7 @@ groups:
           should be prepared for `error.type` to have high cardinality at query time, when no
           additional filters are applied.
 
-          If operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+          If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
       - ref: http.request.method
       - ref: http.response.status_code
       - ref: network.protocol.name
@@ -69,14 +70,15 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If request has ended with an error.
-        examples: ['timeout', 'name_resolution_error', 'Internal Server Error']
+        examples: ['timeout', 'name_resolution_error', '500']
         note: |
-          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-          `error.type` SHOULD be set to the canonical [Reason Phrase](https://www.rfc-editor.org/rfc/rfc2616.html#section-6.1.1)
-          corresponding to the returned status code or to `_OTHER`.
+          If the request fails with an error before response status code was sent or received,
+          `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
 
-          If request fails with an error before or after status code was sent or received, such error SHOULD be
-          recorded on `error.type` attribute. The description SHOULD be predictable and SHOULD have low cardinality.
+          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+          `error.type` SHOULD be set to the string representation of the status code, an exception type (if thrown) or a component-specific error code.
+
+          The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
 
           The cardinality of `error.type` within one instrumentation library SHOULD be low, but
@@ -84,7 +86,7 @@ groups:
           should be prepared for `error.type` to have high cardinality at query time, when no
           additional filters are applied.
 
-          If operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+          If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
   - id: metric.http.server.request.duration
     type: metric
