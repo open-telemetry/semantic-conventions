@@ -189,8 +189,8 @@ groups:
         examples: 'username'
       - id: role
         type: string
-        brief: 'Actual/assumed role the client is making the request under extracted from token or application security context.'
-        examples: 'admin'
+        brief: 'Actual/assumed role(s) the client is making the request under extracted from token or application security context.'
+        examples: 'admin, superadmin'
       - id: scope
         type: string
         brief: >
