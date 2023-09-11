@@ -65,6 +65,8 @@ release.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
 - Add host cpu resource attributes.
   ([#209](https://github.com/open-telemetry/semantic-conventions/pull/209))
+- Moved RPC streaming notes from metric brief section to notes section.
+  ([#275](https://github.com/open-telemetry/semantic-conventions/pull/275))
 
 ## v1.21.0 (2023-07-13)
 
