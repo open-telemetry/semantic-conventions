@@ -59,9 +59,9 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 
 Lambda does not have HTTP headers to read from and instead stores the headers it was invoked with (including any propagated context, etc.) as part of the invocation event. If using AWS X-Ray tracing then the trace context is instead stored in the Lambda environment. It is also possible that both options are populated at the same time, with different values. Finally it is also possible to propagate tracing information in a SQS message using the system attribute of the message `AWSTraceHeader`.
 
-To determine the parent span context, the lambda instrumentation SHOULD use a `EventToCarrier`. `EventToCarrier` defines how the lambda instrumentation should prepare a `Carrier` to be used by subsequent `TextMapPropagators`.
+The lambda instrumentation MUST use a `EventToCarrier` to prepare a `Carrier` to be used by subsequent `TextMapPropagators`.
 
-The `EventToCarrier` MUST implement the `Convert` operation to convert a lambda `Event` into a `Carrier`.
+A `EventToCarrier` MUST implement the `Convert` operation to convert a lambda `Event` into a `Carrier`.
 
 The `Convert` operation MUST return a `Carrier` and MUST have the following parameters:
   `Event` - the lambda event.
@@ -69,7 +69,7 @@ The `Convert` operation MUST return a `Carrier` and MUST have the following para
 The `EventToCarrier` used in the lambda instrumentation SHOULD be provided as a parameter during the initialization of this
 instrumentation. This parameter MAY be provided by users that provide a implementation for the `EventToCarrier`.
 
-Lambda instrumentation MUST provide a default `EventToCarrier`, the `HttpEventToCarrier`, which populates the `Carrier` with the content of the http headers used to invoke the lambda function.
+Lambda instrumentation MUST provide a default `EventToCarrier`, the `HttpEventToCarrier`, which populates the `Carrier` with the content of the http headers used to invoke the lambda function, when that is available.
 
 If no `EventToCarrier` is provided during the initialization of the lambda instrumentation, the `HttpEventToCarrier` MUST be used.
 
@@ -79,7 +79,7 @@ If no `EventToCarrier` is provided during the initialization of the lambda instr
 
 In languages that support auto-instrumentation, the `EventToCarrier` used in the lambda instrumentation MAY be configured using the environment variable `OTEL_AWS_LAMBDA_EVENT_TO_CARRIER`. This environment variable MUST be set to the name of the `EventToCarrier` that will be used.
 
-The `HttpEventToCarrier` has name `http`.
+The `HttpEventToCarrier` has name `http-headers`.
 
 ## API Gateway
 
