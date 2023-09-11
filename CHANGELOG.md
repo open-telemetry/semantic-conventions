@@ -7,6 +7,8 @@ release.
 
 ## Unreleased
 
+- Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
+  ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
 - Update `.count` metric naming convention so that it only applies to UpDownCounters,
