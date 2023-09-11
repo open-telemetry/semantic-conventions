@@ -413,6 +413,7 @@ groups:
         note: >
           For **Redis**, the value provided for `db.statement` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.statement`.
+
   - id: db.mongodb
     prefix: db.mongodb
     type: span
@@ -453,6 +454,24 @@ groups:
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
       - ref: server.address
       - ref: server.port
+      - id: cluster.name
+        type: string
+        requirement_level:
+          recommended: >
+            When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+        tag: call-level-tech-specific
+        brief: >
+          Represents the identifier of an Elasticsearch cluster.
+        examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
+      - id: node.name
+        type: string
+        requirement_level:
+          recommended: >
+            When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+        tag: call-level-tech-specific
+        brief: >
+          Represents the human-readable identifier of the node/instance to which a request was routed.
+        examples: ["instance-0000000001"]
 
   - id: db.sql
     prefix: 'db.sql'
