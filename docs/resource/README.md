@@ -104,6 +104,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 
 **[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent and stay the same for the lifetime of the service instance, however it is acceptable that the ID is ephemeral and changes during important lifetime events for the service (e.g. service restarts). If the service has no inherent unique ID that can be used as the value of this attribute it is recommended to generate a random Version 1 or Version 4 [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. Services aiming for reproducible UUIDs may also use Version 5.
 SDKs are required to follow the following algorithm when generating `service.instance.id`:
+
 - If the user has provided a `service.instance.id`, via environment
   variable, configuration or custom resource detection, this will
   always be used and honored over generated IDs.
