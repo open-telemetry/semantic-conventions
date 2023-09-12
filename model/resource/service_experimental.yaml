@@ -48,7 +48,8 @@ groups:
             along with the hostname and process ID (PID) separated with a dot ("namespace.hostname.pid") as the input
             for generating a UUID v5.
           - When the SDK is running in an environment where a `/etc/machine-id` (see MACHINE-ID(5))
-            is available, the machine-id should be used as the input for generating a UUID v5.
+            is available, the machine-id should be used as the input for generating a UUID v5 along with
+            the `service.name`.
           - When the SDK is running on a Windows environment and there's a reasonable way to read
             registry keys for the SDK, the registry key
             `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid` can be used in a
