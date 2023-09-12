@@ -7,11 +7,15 @@ release.
 
 ## Unreleased
 
+- Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
+  ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
 - Update `.count` metric naming convention so that it only applies to UpDownCounters,
   and add that `.total` should not be used by either Counters or UpDownCounters
   ([#107](https://github.com/open-telemetry/semantic-conventions/pull/107))
+- Add `oci.manifest.digest`, `container.image.repo_digests` attributes. Make `container.image.tag` array and in plural form.
+  ([#159](https://github.com/open-telemetry/semantic-conventions/pull/159))
 - BREAKING: Rename `http.client.duration` and `http.server.duration` metrics to
   `http.client.request.duration` and `http.server.request.duration` respectively.
   ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
@@ -26,6 +30,47 @@ release.
   clients invoking them.
 - BREAKING: Rename all JVM metrics from `process.runtime.jvm.*` to `jvm.*`
   ([#241](https://github.com/open-telemetry/semantic-conventions/pull/241))
+- BREAKING: Add namespaces to JVM metric attributes ([#20](https://github.com/open-telemetry/semantic-conventions/pull/20)).
+  - Rename attributes `type` to `jvm.memory.type`, `pool` to `jvm.memory.pool.name`
+  - Applies to metrics:
+    - `jvm.memory.usage`
+    - `jvm.memory.init`
+    - `jvm.memory.committed`
+    - `jvm.memory.limit`
+    - `jvm.memory.usage_after_last_gc`
+  - Rename attributes `gc` to `jvm.gc.name`, `action` to `jvm.gc.action`
+  - Applies to metrics:
+    - `jvm.gc.duration`
+  - Rename attribute `daemon` to `thread.daemon`
+  - Applies to metrics:
+    - `jvm.threads.count`
+  - Rename attribute `pool` to `jvm.buffer.pool.name`
+  - Applies to metrics:
+    - `jvm.buffer.usage`
+    - `jvm.buffer.limit`
+    - `jvm.buffer.count`
+- Clarify that `http/dup` has higher precedence than `http` in case both values are present
+  in `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#249](https://github.com/open-telemetry/semantic-conventions/pull/249))
+- Add `jvm.cpu.count` metric.
+  ([#52](https://github.com/open-telemetry/semantic-conventions/pull/52))
+- BREAKING: Rename metrics `jvm.buffer.usage` to `jvm.buffer.memory.usage`
+  and `jvm.buffer.limit` to `jvm.buffer.memory.limit`.
+  ([#253](https://github.com/open-telemetry/semantic-conventions/pull/253))
+- BREAKING: Rename `jvm.classes.current_loaded` metrics to `jvm.classes.count`
+  ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
+- BREAKING: Remove pluralization from JVM metric namespaces.
+  ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
+- Simplify HTTP metric briefs.
+  ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- Add host cpu resource attributes.
+  ([#209](https://github.com/open-telemetry/semantic-conventions/pull/209))
+- Introduce `error.type` attribute and use it in HTTP conventions
+  ([#205](https://github.com/open-telemetry/semantic-conventions/pull/205))
+- BREAKING: Change HTTP span name when method is unknown (use `HTTP` instead of `_OTHER`)
+  ([#270](https://github.com/open-telemetry/semantic-conventions/pull/270))
+- Moved RPC streaming notes from metric brief section to notes section.
+  ([#275](https://github.com/open-telemetry/semantic-conventions/pull/275))
 
 ## v1.21.0 (2023-07-13)
 

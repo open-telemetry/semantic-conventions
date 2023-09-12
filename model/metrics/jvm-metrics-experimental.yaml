@@ -34,25 +34,28 @@ groups:
   - id: attributes.jvm.buffer
     type: attribute_group
     brief: "Describes JVM buffer metric attributes."
+    prefix: jvm.buffer
     attributes:
-      - ref: pool
+      - id: pool.name
+        type: string
+        requirement_level: recommended
         brief: Name of the buffer pool.
         examples: [ "mapped", "direct" ]
         note: >
           Pool names are generally obtained via
           [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
-  - id: metric.jvm.buffer.usage
+  - id: metric.jvm.buffer.memory.usage
     type: metric
-    metric_name: jvm.buffer.usage
+    metric_name: jvm.buffer.memory.usage
     extends: attributes.jvm.buffer
     brief: "Measure of memory used by buffers."
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.jvm.buffer.limit
+  - id: metric.jvm.buffer.memory.limit
     type: metric
-    metric_name: jvm.buffer.limit
+    metric_name: jvm.buffer.memory.limit
     extends: attributes.jvm.buffer
     brief: "Measure of total memory capacity of buffers."
     instrument: updowncounter
