@@ -7,11 +7,15 @@ release.
 
 ## Unreleased
 
+- Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
+  ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
 - Update `.count` metric naming convention so that it only applies to UpDownCounters,
   and add that `.total` should not be used by either Counters or UpDownCounters
   ([#107](https://github.com/open-telemetry/semantic-conventions/pull/107))
+- Add `oci.manifest.digest`, `container.image.repo_digests` attributes. Make `container.image.tag` array and in plural form.
+  ([#159](https://github.com/open-telemetry/semantic-conventions/pull/159))
 - BREAKING: Rename `http.client.duration` and `http.server.duration` metrics to
   `http.client.request.duration` and `http.server.request.duration` respectively.
   ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
@@ -61,6 +65,12 @@ release.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
 - Add host cpu resource attributes.
   ([#209](https://github.com/open-telemetry/semantic-conventions/pull/209))
+- Introduce `error.type` attribute and use it in HTTP conventions
+  ([#205](https://github.com/open-telemetry/semantic-conventions/pull/205))
+- BREAKING: Change HTTP span name when method is unknown (use `HTTP` instead of `_OTHER`)
+  ([#270](https://github.com/open-telemetry/semantic-conventions/pull/270))
+- Moved RPC streaming notes from metric brief section to notes section.
+  ([#275](https://github.com/open-telemetry/semantic-conventions/pull/275))
 
 ## v1.21.0 (2023-07-13)
 
