@@ -67,7 +67,7 @@ versions:
         - rename_attributes:
             attribute_map:
               state: system.cpu.state
-              cpu: system.cpu.logical
+              cpu: system.cpu.logical_number
             apply_to_metrics:
               - system.cpu.time
               - system.cpu.utilization

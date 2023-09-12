@@ -63,7 +63,7 @@ release.
   ([#89](https://github.com/open-telemetry/semantic-conventions/pull/89))
   - Rename attributes for `system.cpu.*` metrics:
     - `state` to `system.cpu.state`
-    - `cpu` to `system.cpu.logical`
+    - `cpu` to `system.cpu.logical_number`
   - Rename attributes for `system.memory.*` metrics:
     - `state` to `system.memory.state`
   - Rename attributes for `system.paging.*` metrics:
