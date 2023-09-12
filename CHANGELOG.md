@@ -71,6 +71,8 @@ release.
   ([#270](https://github.com/open-telemetry/semantic-conventions/pull/270))
 - Moved RPC streaming notes from metric brief section to notes section.
   ([#275](https://github.com/open-telemetry/semantic-conventions/pull/275))
+- Updates `client.address` to allow domain names for consistency with `server.address`.
+  ([#302](https://github.com/open-telemetry/semantic-conventions/pull/302))
 - BREAKING: Generate System metrics semconv from YAML.
   ([#89](https://github.com/open-telemetry/semantic-conventions/pull/89))
   - Rename attributes for `system.cpu.*` metrics:
