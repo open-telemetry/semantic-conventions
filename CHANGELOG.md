@@ -100,6 +100,9 @@ release.
     - `state` to `system.network.state`
   - Rename attributes for `system.processes.*` metrics:
     - `status` to `system.processes.status`
+- BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
+  and `http.client.request.duration`.
+  ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
 
 ## v1.21.0 (2023-07-13)
 
