@@ -31,7 +31,28 @@ groups:
           the ID is ephemeral and changes during important lifetime events for the service
           (e.g. service restarts).
           If the service has no inherent unique ID that can be used as the value of this attribute
-          it is recommended to generate a random Version 1 or Version 4 RFC 4122 UUID
-          (services aiming for reproducible UUIDs may also use Version 5, see RFC 4122
-          for more recommendations).
+          it is recommended to generate a random Version 1 or Version 4
+          [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. Services aiming for reproducible UUIDs may also
+          use Version 5.
+
+          SDKs are required to follow the following algorithm when generating `service.instance.id`:
+
+          - If the user has provided a `service.instance.id`, via environment
+            variable, configuration or custom resource detection, this will
+            always be used and honored over generated IDs.
+          - When the `container.id` resource attribute is provided, it should be used as the input
+            for generating a UUID v5.
+          - When the SDK can detect it's running on Kubernetes or derivatives, such as by checking the
+            availability of a directory named `/var/run/secrets/kubernetes.io`, it should use
+            the contents of the file `/var/run/secrets/kubernetes.io/serviceaccount/namespace`,
+            along with the hostname and separated with a dot ("namespace.hostname") as the input
+            for generating a UUID v5.
+          - When the SDK is running in an environment where a `/etc/machine-id` (see MACHINE-ID(5))
+            is available, the machine-id should be used as the input for generating a UUID v5.
+          - When the SDK is running on a Windows environment and there's a reasonable way to read
+            registry keys for the SDK, the registry key
+            `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid` can be used in a
+            similar way to Linux' machine-id above.
+          - When no other source is available the SDK MUST generate an ID. This
+            ID SHOULD follow version 1 or 4 of RFC 4122 UUIDs.
         examples: ["my-k8s-pod-deployment-1", "627cc493-f310-47de-96bd-71410b7dec09"]

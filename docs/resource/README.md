@@ -102,7 +102,26 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 | `service.instance.id` | string | The string ID of the service instance. [1] | `my-k8s-pod-deployment-1`; `627cc493-f310-47de-96bd-71410b7dec09` | Recommended |
 | `service.namespace` | string | A namespace for `service.name`. [2] | `Shop` | Recommended |
 
-**[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent and stay the same for the lifetime of the service instance, however it is acceptable that the ID is ephemeral and changes during important lifetime events for the service (e.g. service restarts). If the service has no inherent unique ID that can be used as the value of this attribute it is recommended to generate a random Version 1 or Version 4 RFC 4122 UUID (services aiming for reproducible UUIDs may also use Version 5, see RFC 4122 for more recommendations).
+**[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent and stay the same for the lifetime of the service instance, however it is acceptable that the ID is ephemeral and changes during important lifetime events for the service (e.g. service restarts). If the service has no inherent unique ID that can be used as the value of this attribute it is recommended to generate a random Version 1 or Version 4 [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. Services aiming for reproducible UUIDs may also use Version 5.
+SDKs are required to follow the following algorithm when generating `service.instance.id`:
+- If the user has provided a `service.instance.id`, via environment
+  variable, configuration or custom resource detection, this will
+  always be used and honored over generated IDs.
+- When the `container.id` resource attribute is provided, it should be used as the input
+  for generating a UUID v5.
+- When the SDK can detect it's running on Kubernetes or derivatives, such as by checking the
+  availability of a directory named `/var/run/secrets/kubernetes.io`, it should use
+  the contents of the file `/var/run/secrets/kubernetes.io/serviceaccount/namespace`,
+  along with the hostname and separated with a dot ("namespace.hostname") as the input
+  for generating a UUID v5.
+- When the SDK is running in an environment where a `/etc/machine-id` (see MACHINE-ID(5))
+  is available, the machine-id should be used as the input for generating a UUID v5.
+- When the SDK is running on a Windows environment and there's a reasonable way to read
+  registry keys for the SDK, the registry key
+  `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid` can be used in a
+  similar way to Linux' machine-id above.
+- When no other source is available the SDK MUST generate an ID. This
+  ID SHOULD follow version 1 or 4 of RFC 4122 UUIDs.
 
 **[2]:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
 <!-- endsemconv -->
