@@ -40,8 +40,11 @@ groups:
           - If the user has provided a `service.instance.id`, via environment
             variable, configuration or custom resource detection, this will
             always be used and honored over generated IDs.
-          - When the `container.id` resource attribute is provided, it should be used as the input
-            for generating a UUID v5.
+          - When any of the below combinations of resource attribute are provided, they should be used as the input
+            for generating a UUID v5. The values within each combination should be separated with dots:
+            * `container.id`
+            * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`
+            * `host.id`
           - When the SDK can detect it's running on Kubernetes or derivatives, such as by checking the
             availability of a directory named `/var/run/secrets/kubernetes.io`, it should use
             the contents of the file `/var/run/secrets/kubernetes.io/serviceaccount/namespace`,
