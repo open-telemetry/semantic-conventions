@@ -1,0 +1,492 @@
+groups:
+  # General system attributes
+  - id: attributes.system
+    prefix: system
+    type: attribute_group
+    brief: "Describes System metric attributes"
+    attributes:
+      - id: device
+        type: string
+        brief: "The device identifier"
+        examples: ["(identifier)"]
+
+  # system.cpu.* metrics and attribute group
+  - id: attributes.system.cpu
+    prefix: system.cpu
+    type: attribute_group
+    brief: "Describes System CPU metric attributes"
+    attributes:
+      - id: state
+        type:
+          allow_custom_values: true
+          members:
+            - id: user
+              value: 'user'
+            - id: system
+              value: 'system'
+            - id: nice
+              value: 'nice'
+            - id: idle
+              value: 'idle'
+            - id: iowait
+              value: 'iowait'
+            - id: interrupt
+              value: 'interrupt'
+            - id: steal
+              value: 'steal'
+        brief: "The state of the CPU"
+        examples: ["idle", "interrupt"]
+      - id: logical_number
+        type: int
+        brief: "The logical CPU number [0..n-1]"
+        examples: [1]
+
+  - id: metric.system.cpu.time
+    type: metric
+    metric_name: system.cpu.time
+    brief: "Seconds each logical CPU spent on each mode"
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: system.cpu.state
+      - ref: system.cpu.logical_number
+
+  - id: metric.system.cpu.utilization
+    type: metric
+    metric_name: system.cpu.utilization
+    brief: "Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs"
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.cpu.state
+      - ref: system.cpu.logical_number
+
+  - id: metric.system.cpu.physical.count
+    type: metric
+    metric_name: system.cpu.physical.count
+    brief: "Reports the number of actual physical processor cores on the hardware"
+    instrument: updowncounter
+    unit: "{cpu}"
+    attributes: []
+
+  - id: metric.system.cpu.logical.count
+    type: metric
+    metric_name: system.cpu.logical.count
+    brief: "Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking"
+    instrument: updowncounter
+    unit: "{cpu}"
+    attributes: []
+
+  # sytem.memory.* metrics and attribute group
+  - id: attributes.system.memory
+    prefix: system.memory
+    type: attribute_group
+    brief: "Describes System Memory metric attributes"
+    attributes:
+      - id: state
+        type:
+          allow_custom_values: true
+          members:
+            - id: total
+              value: 'total'
+            - id: used
+              value: 'used'
+            - id: free
+              value: 'free'
+            - id: shared
+              value: 'shared'
+            - id: buffers
+              value: 'buffers'
+            - id: cached
+              value: 'cached'
+        brief: "The memory state"
+        examples: ["free", "cached"]
+
+  - id: metric.system.memory.usage
+    type: metric
+    metric_name: system.memory.usage
+    brief: ""
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.memory.state
+
+  - id: metric.system.memory.utilization
+    type: metric
+    metric_name: system.memory.utilization
+    brief: ""
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.memory.state
+
+  # system.paging.* metrics and attribute group
+  - id: attributes.system.paging
+    prefix: system.paging
+    type: attribute_group
+    brief: "Describes System Memory Paging metric attributes"
+    attributes:
+      - id: state
+        type:
+          allow_custom_values: false
+          members:
+            - id: used
+              value: 'used'
+            - id: free
+              value: 'free'
+        brief: "The memory paging state"
+        examples: ["free"]
+      - id: type
+        type:
+          allow_custom_values: false
+          members:
+            - id: major
+              value: 'major'
+            - id: minor
+              value: 'minor'
+        brief: "The memory paging type"
+        examples: ["minor"]
+      - id: direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: in
+              value: 'in'
+            - id: out
+              value: 'out'
+        brief: "The paging access direction"
+        examples: ["in"]
+  - id: metric.system.paging.usage
+    type: metric
+    metric_name: system.paging.usage
+    brief: "Unix swap or windows pagefile usage"
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.paging.state
+
+  - id: metric.system.paging.utilization
+    type: metric
+    metric_name: system.paging.utilization
+    brief: ""
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.paging.state
+
+  - id: metric.system.paging.faults
+    type: metric
+    metric_name: system.paging.faults
+    brief: ""
+    instrument: counter
+    unit: "{fault}"
+    attributes:
+      - ref: system.paging.type
+
+  - id: metric.system.paging.operations
+    type: metric
+    metric_name: system.paging.operations
+    brief: ""
+    instrument: counter
+    unit: "{operation}"
+    attributes:
+      - ref: system.paging.type
+      - ref: system.paging.direction
+
+  # system.disk.* metrics and attribute group
+  - id: attributes.system.disk
+    prefix: system.disk
+    type: attribute_group
+    brief: "Describes System Disk metric attributes"
+    attributes:
+      - id: direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: read
+              value: 'read'
+            - id: write
+              value: 'write'
+        brief: "The disk operation direction"
+        examples: ["read"]
+
+  - id: metric.system.disk.io
+    type: metric
+    metric_name: system.disk.io
+    brief: ""
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: system.device
+      - ref: system.disk.direction
+
+  - id: metric.system.disk.operations
+    type: metric
+    metric_name: system.disk.operations
+    brief: ""
+    instrument: counter
+    unit: "{operation}"
+    attributes:
+      - ref: system.device
+      - ref: system.disk.direction
+
+  - id: metric.system.disk.io_time
+    type: metric
+    metric_name: system.disk.io_time
+    brief: "Time disk spent activated"
+    instrument: counter
+    unit: "s"
+    note: |
+       The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
+
+       - Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+       - Windows: The complement of
+         ["Disk\% Idle Time"](https://learn.microsoft.com/en-us/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
+         performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
+    attributes:
+      - ref: system.device
+
+  - id: metric.system.disk.operation_time
+    type: metric
+    metric_name: system.disk.operation_time
+    brief: "Sum of the time each operation took to complete"
+    instrument: counter
+    unit: "s"
+    note: |
+       Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
+
+       - Linux: Fields 7 & 11 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+       - Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes)
+    attributes:
+      - ref: system.device
+      - ref: system.disk.direction
+
+  - id: metric.system.disk.merged
+    type: metric
+    metric_name: system.disk.merged
+    brief: ""
+    instrument: counter
+    unit: "{operation}"
+    attributes:
+      - ref: system.device
+      - ref: system.disk.direction
+
+  # system.filesystem.* metrics and attribute group
+  - id: attributes.system.filesystem
+    prefix: system.filesystem
+    type: attribute_group
+    brief: "Describes Filesystem metric attributes"
+    attributes:
+      - id: state
+        brief: "The filesystem state"
+        type:
+          allow_custom_values: false
+          members:
+            - id: used
+              value: 'used'
+            - id: free
+              value: 'free'
+            - id: reserved
+              value: 'reserved'
+        examples: ["used"]
+      - id: type
+        type:
+          allow_custom_values: true
+          members:
+            - id: fat32
+              value: 'fat32'
+            - id: exfat
+              value: 'exfat'
+            - id: ntfs
+              value: 'ntfs'
+            - id: refs
+              value: 'refs'
+            - id: hfsplus
+              value: 'hfsplus'
+            - id: ext4
+              value: 'ext4'
+        brief: "The filesystem type"
+        examples: ["ext4"]
+      - id: mode
+        type: string
+        brief: "The filesystem mode"
+        examples: ["rw, ro"]
+      - id: mountpoint
+        type: string
+        brief: "The filesystem mount path"
+        examples: ["/mnt/data"]
+
+  - id: metric.system.filesystem.usage
+    type: metric
+    metric_name: system.filesystem.usage
+    brief: ""
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.device
+      - ref: system.filesystem.state
+      - ref: system.filesystem.type
+      - ref: system.filesystem.mode
+      - ref: system.filesystem.mountpoint
+
+  - id: metric.system.filesystem.utilization
+    type: metric
+    metric_name: system.filesystem.utilization
+    brief: ""
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.device
+      - ref: system.filesystem.state
+      - ref: system.filesystem.type
+      - ref: system.filesystem.mode
+      - ref: system.filesystem.mountpoint
+
+  # system.network.* metrics and attribute group
+  - id: attributes.system.network
+    prefix: system.network
+    type: attribute_group
+    brief: "Describes Network metric attributes"
+    attributes:
+      - id: direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: transmit
+              value: 'transmit'
+            - id: receive
+              value: 'receive'
+        brief: ""
+        examples: ["transmit"]
+      - id: state
+        type:
+          allow_custom_values: false
+          members:
+            - id: close
+              value: 'close'
+            - id: close_wait
+              value: 'close_wait'
+            - id: closing
+              value: 'closing'
+            - id: delete
+              value: 'delete'
+            - id: established
+              value: 'established'
+            - id: fin_wait_1
+              value: 'fin_wait_1'
+            - id: fin_wait_2
+              value: 'fin_wait_2'
+            - id: last_ack
+              value: 'last_ack'
+            - id: listen
+              value: 'listen'
+            - id: syn_recv
+              value: 'syn_recv'
+            - id: syn_sent
+              value: 'syn_sent'
+            - id: time_wait
+              value: 'time_wait'
+        brief: "A stateless protocol MUST NOT set this attribute"
+        examples: ["close_wait"]
+
+  - id: metric.system.network.dropped
+    type: metric
+    metric_name: system.network.dropped
+    brief: "Count of packets that are dropped or discarded even though there was no error"
+    instrument: counter
+    unit: "{packet}"
+    note: |
+      Measured as:
+
+      - Linux: the `drop` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
+      - Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+        from [`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2)
+    attributes:
+      - ref: system.device
+      - ref: system.network.direction
+
+  - id: metric.system.network.packets
+    type: metric
+    metric_name: system.network.packets
+    brief: ""
+    instrument: counter
+    unit: "{packet}"
+    attributes:
+      - ref: system.device
+      - ref: system.network.direction
+
+  - id: metric.system.network.errors
+    type: metric
+    metric_name: system.network.errors
+    brief: "Count of network errors detected"
+    instrument: counter
+    unit: "{error}"
+    note: |
+      Measured as:
+
+      - Linux: the `errs` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
+      - Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+        from [`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2).
+    attributes:
+      - ref: system.device
+      - ref: system.network.direction
+
+  - id: metric.system.network.io
+    type: metric
+    metric_name: system.network.io
+    brief: ""
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: system.device
+      - ref: system.network.direction
+
+  - id: metric.system.network.connections
+    type: metric
+    metric_name: system.network.connections
+    brief: ""
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: system.device
+      - ref: system.network.state
+      - ref: network.transport
+
+    # system.processes.* metrics and attribute group
+  - id: attributes.system.processes
+    prefix: system.processes
+    type: attribute_group
+    brief: "Describes System Process metric attributes"
+    attributes:
+      - id: status
+        type:
+          allow_custom_values: true
+          members:
+            - id: running
+              value: 'running'
+            - id: sleeping
+              value: 'sleeping'
+            - id: stopped
+              value: 'stopped'
+            - id: defunct
+              value: 'defunct'
+        brief: >
+          The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+        examples: ["running"]
+
+
+  - id: metric.system.processes.count
+    type: metric
+    metric_name: system.processes.count
+    brief: "Total number of processes in each state"
+    instrument: updowncounter
+    unit: "{process}"
+    attributes:
+      - ref: system.processes.status
+
+  - id: metric.system.processes.created
+    type: metric
+    metric_name: system.processes.created
+    brief: "Total number of processes created over uptime of the host"
+    instrument: counter
+    unit: "{process}"
