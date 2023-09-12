@@ -45,7 +45,7 @@ groups:
           - When the SDK can detect it's running on Kubernetes or derivatives, such as by checking the
             availability of a directory named `/var/run/secrets/kubernetes.io`, it should use
             the contents of the file `/var/run/secrets/kubernetes.io/serviceaccount/namespace`,
-            along with the hostname and separated with a dot ("namespace.hostname") as the input
+            along with the hostname and process ID (PID) separated with a dot ("namespace.hostname.pid") as the input
             for generating a UUID v5.
           - When the SDK is running in an environment where a `/etc/machine-id` (see MACHINE-ID(5))
             is available, the machine-id should be used as the input for generating a UUID v5.
