@@ -16,7 +16,7 @@ groups:
         note: |
           When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
           the server address behind any intermediaries (e.g. proxies) if it's available.
-        examples: ['example.com']
+        examples: ['example.com', '10.1.2.80', '/tmp/my.sock']
       - id: port
         type: int
         brief: Server port number
@@ -24,30 +24,14 @@ groups:
           When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent
           the server port behind any intermediaries (e.g. proxies) if it's available.
         examples: [80, 8080, 443]
-      - id: socket.domain
+      - id: ip
         type: string
-        brief: Immediate server peer's domain name if available without reverse DNS lookup
-        examples: ['proxy.example.com']
-        note: Typically observed from the client side, and represents a proxy or other intermediary domain name.
-        requirement_level:
-          recommended: If different than `server.address`.
-      - id: socket.address
-        type: string
-        brief: Server address of the socket connection - IP address or Unix domain socket name.
+        brief: Server IP address.
         note: >
-          When observed from the client side, this SHOULD represent the immediate server peer address.
+          When observed from the client side, and when communicating through an intermediary, `server.ip` SHOULD represent
+          the server IP address behind any intermediaries (e.g. proxies) if it's available.
 
-          When observed from the server side, this SHOULD represent the physical server address.
+          When observed from the server side, this SHOULD represent the physical server IP address.
         examples: ['10.5.3.2']
         requirement_level:
           recommended: If different than `server.address`.
-      - id: socket.port
-        type: int
-        brief: Server port number of the socket connection.
-        note: >
-          When observed from the client side, this SHOULD represent the immediate server peer port.
-
-          When observed from the server side, this SHOULD represent the physical server port.
-        examples: [16456]
-        requirement_level:
-          recommended: If different than `server.port`.

@@ -77,9 +77,10 @@ groups:
         note: >
           When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
           URI port identifier, otherwise it MUST match `Host` header port identifier.
-      - ref: server.socket.domain
-      - ref: server.socket.address
-      - ref: server.socket.port
+      - ref: server.ip
+      - ref: proxy.address
+      - ref: proxy.port
+      - ref: proxy.ip
       - ref: url.full
         sampling_relevant: true
         requirement_level: required
@@ -120,12 +121,9 @@ groups:
           - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
-      - ref: server.socket.address
+      - ref: server.ip
         requirement_level: opt_in
-        brief: Local socket address. Useful in case of a multi-IP host.
-      - ref: server.socket.port
-        requirement_level: opt_in
-        brief: Local socket port. Useful in case of a multi-port host.
+        brief: Local socket IP address. Useful in case of a multi-IP host.
       - ref: client.address
         note: >
             The IP address of the original client behind all proxies, if
@@ -138,8 +136,10 @@ groups:
             The port of the original client behind all proxies, if
             known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header).
             Otherwise, the immediate client peer port.
-      - ref: client.socket.address
-      - ref: client.socket.port
+      - ref: client.ip
+      - ref: proxy.address
+      - ref: proxy.port
+      - ref: proxy.ip
       - ref: url.path
         requirement_level: required
         sampling_relevant: true
