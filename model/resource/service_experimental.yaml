@@ -38,7 +38,12 @@ groups:
           `/etc/machine-id` file, the underlying data, such as pod name and namespace should be treated as
           confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
 
-          SDKs are required to follow the following algorithm when generating `service.instance.id`:
+          When a UUID v5 is generated, the UUID's namespace MUST be set to:
+          `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`, so that the same service yields the
+          same ID if the same value (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still
+          yield different results for different services on the same host.
+
+          SDKs are required to use the following algorithm when generating `service.instance.id`:
 
           - If the user has provided a `service.instance.id`, via environment
             variable, configuration or custom resource detection, this will
@@ -50,17 +55,17 @@ groups:
             * `host.id`
           - When the SDK is running in an environment where a `/etc/machine-id` 
             (see [MACHINE-ID(5)](https://www.freedesktop.org/software/systemd/man/machine-id.html))
-            is available, the machine-id should be used as the input for generating a UUID v5 along with
-            the `service.name`.
+            is available, the machine-id should be used as the input for generating a UUID v5.
           - When the SDK is running on a Windows environment and there's a reasonable way to read
             registry keys for the SDK, the registry key
             `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid` can be used in a
             similar way to Linux' machine-id above.
-          - When no other source is available the SDK MUST generate an ID. This
-            ID SHOULD follow version 1 or 4 of RFC 4122 UUIDs. This would also typically be the case for
-            service instances running on Kubernetes, given that the pod's name and namespace are not unique
-            enough to determine a service instance's identity: on pods with multiple containers, the
-            `service.instance.id` would yield the same results for all containers, which is not desirable.
-            And given that the services are ephemeral on Kubernetes, the `service.instance.id` would change
-            on each restart, being therefore no different than a completely new UUID per process.
+          - When no other source is available the SDK MUST generate a value using UUID v1 or v4.
+            This would also typically be the case for service instances running on Kubernetes,
+            given that the pod's name and namespace are not unique enough to determine a service
+            instance's identity and the container name cannot easily be infered: on pods with
+            multiple containers, the `service.instance.id` would yield the same results for all
+            containers, which is not desirable. And given that the services are ephemeral on
+            Kubernetes, the `service.instance.id` would change on each restart, being therefore
+            no different than a completely new UUID per process.
         examples: ["my-k8s-pod-deployment-1", "627cc493-f310-47de-96bd-71410b7dec09"]

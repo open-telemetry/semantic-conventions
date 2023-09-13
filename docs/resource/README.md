@@ -103,7 +103,8 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 | `service.namespace` | string | A namespace for `service.name`. [2] | `Shop` | Recommended |
 
 **[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent and stay the same for the lifetime of the service instance, however it is acceptable that the ID is ephemeral and changes during important lifetime events for the service (e.g. service restarts). If the service has no inherent unique ID that can be used as the value of this attribute it is recommended to generate a random Version 1 or Version 4 [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. Services aiming for reproducible UUIDs may also use Version 5. UUIDs are typically recommended, as we only need an opaque yet reproducible value for the purposes of identifying a service instance. Similar to what can be seen in the man page for the `/etc/machine-id` file, the underlying data, such as pod name and namespace should be treated as confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
-SDKs are required to follow the following algorithm when generating `service.instance.id`:
+When a UUID v5 is generated, the UUID's namespace MUST be set to: `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`, so that the same service yields the same ID if the same value (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still yield different results for different services on the same host.
+SDKs are required to use the following algorithm when generating `service.instance.id`:
 - If the user has provided a `service.instance.id`, via environment
   variable, configuration or custom resource detection, this will
   always be used and honored over generated IDs.
@@ -114,19 +115,19 @@ SDKs are required to follow the following algorithm when generating `service.ins
   * `host.id`
 - When the SDK is running in an environment where a `/etc/machine-id` 
   (see [MACHINE-ID(5)](https://www.freedesktop.org/software/systemd/man/machine-id.html))
-  is available, the machine-id should be used as the input for generating a UUID v5 along with
-  the `service.name`.
+  is available, the machine-id should be used as the input for generating a UUID v5.
 - When the SDK is running on a Windows environment and there's a reasonable way to read
   registry keys for the SDK, the registry key
   `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid` can be used in a
   similar way to Linux' machine-id above.
-- When no other source is available the SDK MUST generate an ID. This
-  ID SHOULD follow version 1 or 4 of RFC 4122 UUIDs. This would also typically be the case for
-  service instances running on Kubernetes, given that the pod's name and namespace are not unique
-  enough to determine a service instance's identity: on pods with multiple containers, the
-  `service.instance.id` would yield the same results for all containers, which is not desirable.
-  And given that the services are ephemeral on Kubernetes, the `service.instance.id` would change
-  on each restart, being therefore no different than a completely new UUID per process.
+- When no other source is available the SDK MUST generate a value using UUID v1 or v4.
+  This would also typically be the case for service instances running on Kubernetes,
+  given that the pod's name and namespace are not unique enough to determine a service
+  instance's identity and the container name cannot easily be infered: on pods with
+  multiple containers, the `service.instance.id` would yield the same results for all
+  containers, which is not desirable. And given that the services are ephemeral on
+  Kubernetes, the `service.instance.id` would change on each restart, being therefore
+  no different than a completely new UUID per process.
 
 **[2]:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
 <!-- endsemconv -->
