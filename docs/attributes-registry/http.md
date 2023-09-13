@@ -3,18 +3,18 @@
 
 # HTTP
 
-<!-- semconv registry.http -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `http.request.header.<key>` | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values. [1] | `http.request.header.content_type=["application/json"]`; `http.request.header.x_forwarded_for=["1.2.3.4", "1.2.3.5"]` | Recommended |
-| `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Recommended |
-| `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Recommended |
-| `http.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` | Recommended |
-| `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `http.response.header.<key>` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values. [4] | `http.response.header.content_type=["application/json"]`; `http.response.header.my_custom_header=["abc", "def"]` | Recommended |
-| `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Recommended |
-| `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [5] | `/users/:userID?`; `{controller}/{action}/{id?}` | Recommended |
+<!-- semconv registry.http(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  |
+|---|---|---|---|
+| `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
+| `http.request.header.<key>` | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values. [1] | `http.request.header.content_type=["application/json"]`; `http.request.header.x_forwarded_for=["1.2.3.4", "1.2.3.5"]` |
+| `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` |
+| `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` |
+| `http.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` |
+| `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
+| `http.response.header.<key>` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values. [4] | `http.response.header.content_type=["application/json"]`; `http.response.header.my_custom_header=["abc", "def"]` |
+| `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
+| `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [5] | `/users/:userID?`; `{controller}/{action}/{id?}` |
 
 **[1]:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 The `User-Agent` header is already captured in the `user_agent.original` attribute. Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
