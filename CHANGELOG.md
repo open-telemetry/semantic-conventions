@@ -100,6 +100,8 @@ release.
     - `state` to `system.network.state`
   - Rename attributes for `system.processes.*` metrics:
     - `status` to `system.processes.status`
+- Add `system.linux.memory.available` metric.
+  ([#323](https://github.com/open-telemetry/semantic-conventions/pull/323))
 
 ## v1.21.0 (2023-07-13)
 
