@@ -2,7 +2,7 @@ groups:
   - id: proxy
     prefix: proxy
     type: attribute_group
-    brief: These attributes may be used to describe a proxy (or other intermediary) in a connection-based network interaction.
+    brief: These attributes may be used to describe a known proxy (or other intermediary) in a connection-based network interaction.
     attributes:
       - id: address
         type: string
