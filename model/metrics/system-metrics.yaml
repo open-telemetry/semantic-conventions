@@ -452,7 +452,7 @@ groups:
       - ref: system.network.state
       - ref: network.transport
 
-    # system.processes.* metrics and attribute group
+  # system.processes.* metrics and attribute group
   - id: attributes.system.processes
     prefix: system.processes
     type: attribute_group
