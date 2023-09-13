@@ -15,8 +15,6 @@ linkTitle: LLM Calls
 
 <!-- tocstop -->
 
-**Span kind:** MUST always be `CLIENT`.
-
 The **span name** SHOULD be set to a low cardinality value representing the request made to an LLM.
 It MAY be a name of the API endpoint for the LLM being called.
 
