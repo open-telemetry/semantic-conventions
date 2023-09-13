@@ -12,6 +12,8 @@ described on this page.
 
 ## OpenAI LLM request attributes
 
+These are additional attributes when instrumenting OpenAI LLM requests.
+
 <!-- semconv llm.openai(tag=llm-request-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
@@ -30,6 +32,8 @@ described on this page.
 | `llm.openai.user` | string | If present, the `user` used in an OpenAI request. | `bob` | Recommended |
 
 ## OpenAI LLM response attributes
+
+These are additional attributes when instrumenting OpenAI LLM responses.
 
 <!-- semconv llm.openai(tag=llm-response-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
