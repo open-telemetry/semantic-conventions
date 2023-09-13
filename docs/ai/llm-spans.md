@@ -29,7 +29,7 @@ These attributes track input data and metadata for a request to an LLM. Each att
 | `llm.prompt` | string | The full prompt string sent to an LLM in a request. If the LLM accepts a more complex input like a JSON object made up of several pieces (such as OpenAI's different message types), this field is that entire JSON object encoded as a string. | `\n\nHuman:You are an AI assistant that tells jokes. Can you tell me a joke about OpenTelemetry?\n\nAssistant:` | Required |
 | `llm.max_tokens` | int | The maximum number of tokens the LLM generates for a request. | `100` | Recommended |
 | `llm.temperature` | float | The temperature setting for the LLM request. | `0.0` | Recommended |
-| `llm.top_p` | float | The top-p setting for the LLM request. | `1.0` | Recommended |
+| `llm.top_p` | float | The top_p sampling setting for the LLM request. | `1.0` | Recommended |
 | `llm.stream` | bool | Whether the LLM responds with a stream. | `false` | Recommended |
 | `llm.stop_sequences` | array | Array of strings the LLM uses as a stop sequence. | `["stop1"]` | Recommended |
 
