@@ -10,7 +10,7 @@ The Semantic Conventions for [OpenAI](https://www.microsoft.com/sql-server) exte
 that describe common LLM request attributes in addition to the Semantic Conventions
 described on this page.
 
-## OpenAI LLM attributes
+## OpenAI LLM request attributes
 
 <!-- semconv llm.openai(tag=llm-request-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -29,6 +29,21 @@ described on this page.
 | `llm.openai.logit_bias` | string | If present, the JSON-encoded string of a `logit_bias` used in an OpenAI request. | `{2435:-100, 640:-100}` | Recommended |
 | `llm.openai.user` | string | If present, the `user` used in an OpenAI request. | `bob` | Recommended |
 
+## OpenAI LLM response attributes
 
+<!-- semconv llm.openai(tag=llm-response-tech-specific) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `llm.openai.choices.<index>.role` | string | The assigned role for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. | `system` | Required |
+| `llm.openai.choices.<index>.content` | string | The content for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. | `Why did the developer stop using OpenTelemetry? Because they couldn't trace their steps!` | Required |
+| `llm.openai.choices.<index>.function_call.name` | string | If exists, the name of a function call for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. | `get_weather_report` | Required |
+| `llm.openai.choices.<index>.function_call.arguments` | string | If exists, the arguments to call a function call with for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. | `{"type": "object", "properties": {"some":"data"}}` | Required |
+| `llm.openai.finish_reason` | string | The reason the OpenAI model stopped generating tokens | `stop` | Recommended |
+| `llm.openai.id` | string | The unique identifier for the chat completion. | `chatcmpl-123` | Recommended |
+| `llm.openai.created` | int | The UNIX timestamp (in seconds) if when the completion was created. | `1677652288` | Recommended |
+| `llm.openai.model` | string | The name of the model used for the completion. | `gpt-3.5-turbo` | Recommended |
+| `llm.openai.usage.prompt_tokens` | int | The number of tokens in the prompt passed as input. | `500` | Recommended |
+| `llm.openai.usage.completion_tokens` | int | The number of tokens generated in the completion. | `100` | Recommended |
+| `llm.openai.usage.total_tokens` | int | The total number of tokens used in both the prompt and the generated completion. | `600` | Recommended |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
