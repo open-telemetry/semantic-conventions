@@ -102,9 +102,28 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 | `service.instance.id` | string | The string ID of the service instance. [1] | `my-k8s-pod-deployment-1`; `627cc493-f310-47de-96bd-71410b7dec09` | Recommended |
 | `service.namespace` | string | A namespace for `service.name`. [2] | `Shop` | Recommended |
 
-**[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent and stay the same for the lifetime of the service instance, however it is acceptable that the ID is ephemeral and changes during important lifetime events for the service (e.g. service restarts). If the service has no inherent unique ID that can be used as the value of this attribute it is recommended to generate a random Version 1 or Version 4 [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. Services aiming for reproducible UUIDs may also use Version 5. UUIDs are typically recommended, as we only need an opaque yet reproducible value for the purposes of identifying a service instance. Similar to what can be seen in the man page for the `/etc/machine-id` file, the underlying data, such as pod name and namespace should be treated as confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
-When a UUID v5 is generated, the UUID's namespace MUST be set to: `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`, so that the same service yields the same ID if the same value (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still yield different results for different services on the same host.
+**[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair
+(in other words `service.namespace,service.name,service.instance.id` triplet MUST be globally unique).
+The ID helps to distinguish instances of the same service that exist at the same time
+(e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent
+and stay the same for the lifetime of the service instance, however it is acceptable that
+the ID is ephemeral and changes during important lifetime events for the service
+(e.g. service restarts).
+If the service has no inherent unique ID that can be used as the value of this attribute
+it is recommended to generate a random Version 1 or Version 4
+[RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. Services aiming for reproducible UUIDs may also
+use Version 5. UUIDs are typically recommended, as we only need an opaque yet reproducible value for
+the purposes of identifying a service instance. Similar to what can be seen in the man page for the
+`/etc/machine-id` file, the underlying data, such as pod name and namespace should be treated as
+confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
+
+When a UUID v5 is generated, the UUID's namespace MUST be set to:
+`${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`, so that the same service yields the
+same ID if the same value (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still
+yield different results for different services on the same host.
+
 SDKs are required to use the following algorithm when generating `service.instance.id`:
+
 - If the user has provided a `service.instance.id`, via environment
   variable, configuration or custom resource detection, this will
   always be used and honored over generated IDs.
@@ -113,7 +132,7 @@ SDKs are required to use the following algorithm when generating `service.instan
   * `container.id`
   * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`
   * `host.id`
-- When the SDK is running in an environment where a `/etc/machine-id` 
+- When the SDK is running in an environment where a `/etc/machine-id`
   (see [MACHINE-ID(5)](https://www.freedesktop.org/software/systemd/man/machine-id.html))
   is available, the machine-id should be used as the input for generating a UUID v5.
 - When the SDK is running on a Windows environment and there's a reasonable way to read
