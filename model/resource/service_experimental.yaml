@@ -33,7 +33,10 @@ groups:
           If the service has no inherent unique ID that can be used as the value of this attribute
           it is recommended to generate a random Version 1 or Version 4
           [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. Services aiming for reproducible UUIDs may also
-          use Version 5.
+          use Version 5. UUIDs are typically recommended, as we only need an opaque yet reproducible value for
+          the purposes of identifying a service instance. Similar to what can be seen in the man page for the
+          `/etc/machine-id` file, the underlying data, such as pod name and namespace should be treated as
+          confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
 
           SDKs are required to follow the following algorithm when generating `service.instance.id`:
 
@@ -45,12 +48,8 @@ groups:
             * `container.id`
             * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`
             * `host.id`
-          - When the SDK can detect it's running on Kubernetes or derivatives, such as by checking the
-            availability of a directory named `/var/run/secrets/kubernetes.io`, it should use
-            the contents of the file `/var/run/secrets/kubernetes.io/serviceaccount/namespace`,
-            along with the hostname and process ID (PID) separated with a dot ("namespace.hostname.pid") as the input
-            for generating a UUID v5.
-          - When the SDK is running in an environment where a `/etc/machine-id` (see MACHINE-ID(5))
+          - When the SDK is running in an environment where a `/etc/machine-id` 
+            (see [MACHINE-ID(5)](https://www.freedesktop.org/software/systemd/man/machine-id.html))
             is available, the machine-id should be used as the input for generating a UUID v5 along with
             the `service.name`.
           - When the SDK is running on a Windows environment and there's a reasonable way to read
@@ -58,5 +57,10 @@ groups:
             `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid` can be used in a
             similar way to Linux' machine-id above.
           - When no other source is available the SDK MUST generate an ID. This
-            ID SHOULD follow version 1 or 4 of RFC 4122 UUIDs.
+            ID SHOULD follow version 1 or 4 of RFC 4122 UUIDs. This would also typically be the case for
+            service instances running on Kubernetes, given that the pod's name and namespace are not unique
+            enough to determine a service instance's identity: on pods with multiple containers, the
+            `service.instance.id` would yield the same results for all containers, which is not desirable.
+            And given that the services are ephemeral on Kubernetes, the `service.instance.id` would change
+            on each restart, being therefore no different than a completely new UUID per process.
         examples: ["my-k8s-pod-deployment-1", "627cc493-f310-47de-96bd-71410b7dec09"]
