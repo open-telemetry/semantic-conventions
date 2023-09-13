@@ -352,7 +352,7 @@ the broker does not have such notion, the original destination name SHOULD uniqu
 
 "Receive" spans SHOULD be created for operations of passing messages to the application when those operations are initiated by the application code.
 
-"Receive" spans MUST NOT be created for messages which are not forwarded to the caller, but are pre-fetched or cached by messaging libraries or SDKs.
+"Receive" spans MUST NOT be created for messages until they are forwarded to the caller, but are pre-fetched or cached by messaging libraries or SDKs.
 
 A single "Receive" span can account for a single message, for multiple messages (in case messages are passed for processing as batches), or for no message at all (if it is signalled that no messages were received). For each message it accounts for, the "Receive" span SHOULD link to the message's creation context. In addition, if it is possible the creation context MAY be
 set as a parent of the "Receive" span.
