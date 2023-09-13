@@ -748,5 +748,5 @@ an `{os}` prefix to split this metric across OSes.
 | -------- | --------------- | ----------- | -------------- |
 | `system.linux.memory.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without swapping [1] |
 
-**[1]:** Available since Linux 3.14: see `MemAvailable` in https://man7.org/linux/man-pages/man5/proc.5.html.
+**[1]:** Available since Linux 3.14: see `MemAvailable` in [here](https://man7.org/linux/man-pages/man5/proc.5.html).
 <!-- endsemconv -->
