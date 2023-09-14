@@ -28,8 +28,7 @@
   * [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems)
 - [Examples](#examples)
   * [Topic with multiple consumers](#topic-with-multiple-consumers)
-  * [Batch receiving](#batch-receiving)
-  * [Batch processing](#batch-processing)
+  * [Batch delivering](#batch-delivering)
 - [Semantic Conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies)
 
 <!-- tocstop -->
@@ -390,10 +389,6 @@ under the namespace `messaging.destination_publish.*`
 the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
 <!-- endsemconv -->
 
-Note that one or multiple Spans with `messaging.operation` = `process` may often be the children of a Span with `messaging.operation` = `receive`.
-The distinction between receiving and processing of messages is not always of particular interest or sometimes hidden away in a framework (see the [Message consumption](#message-consumption) section above) and therefore the attribute can be left out.
-For batch receiving and processing (see the [Batch receiving](#batch-receiving) and [Batch processing](#batch-processing) examples below) in particular, the attribute SHOULD be set.
-
 ### Per-message attributes
 
 All messaging operations (`publish`, `receive`, `process`, or others not covered by this specification) can describe both single and/or batch of messages.
@@ -440,7 +435,6 @@ flowchart LR;
   class P,R1,R2 normal
   linkStyle 0,1 color:green,stroke:green
 ```
-
 
 | Field or Attribute | Span Publish A | Span Receive A 1| Span Receive A 2 |
 |-|-|-|-|
