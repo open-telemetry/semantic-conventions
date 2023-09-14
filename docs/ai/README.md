@@ -12,13 +12,14 @@ path_base_for_github_subdir:
 This document defines semantic conventions for the following kind of AI systems:
 
 * LLMs
-* Vector Embeddings (todo)
-* Vector Databases (todo)
+* LLM Chains and Agents
+* Vector Embeddings
+* Vector Databases
 
 Semantic conventions for LLM operations are defined for the following signals:
 
-* [LLM Spans](llm-spans.md): Semantic Conventions for LLM requests.
-* [LLM chains](llm-chains.md): Semantic Conventions for LLM chains.
+* [LLM Spans](llm-spans.md): Semantic Conventions for LLM requests - *spans*.
+* [LLM chains](llm-chains-agents.md): Semantic Conventions for LLM chains and agents - *spans*.
 
 Technology specific semantic conventions are defined for the following databases:
 
