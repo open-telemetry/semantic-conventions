@@ -20,6 +20,15 @@ A request to an LLM is modeled as a span in a trace.
 The **span name** SHOULD be set to a low cardinality value representing the request made to an LLM.
 It MAY be a name of the API endpoint for the LLM being called.
 
+## Configuration
+
+Instrumentations for LLMs MUST offer the ability to turn off capture of raw inputs to LLM requests and the completion response text for LLM responses. This is for two primary reasons:
+
+1. Data privacy concerns. End users of LLM applications may input sensitive information or personally identifiable information (PII) that they do not wish to be sent to a telemetry backend.
+2. Data size concerns. Although there is no specified limit to the size of an attribute, there are practical limitations in programming languages and telemety systems. Some LLMs allow for extremely large context windows that end users may take full advantage of.
+
+By default, these configurations SHOULD capture inputs and outputs.
+
 ## LLM Request attributes
 
 These attributes track input data and metadata for a request to an LLM. Each attribute represents a concept that is common to most LLMs.
