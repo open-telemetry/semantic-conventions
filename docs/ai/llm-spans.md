@@ -15,6 +15,8 @@ linkTitle: LLM Calls
 
 <!-- tocstop -->
 
+A request to an LLM is modeled as a span in a trace.
+
 The **span name** SHOULD be set to a low cardinality value representing the request made to an LLM.
 It MAY be a name of the API endpoint for the LLM being called.
 
