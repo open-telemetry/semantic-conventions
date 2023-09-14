@@ -11,9 +11,9 @@
 
 <!-- tocstop -->
 
-A chain is defined as a sequence of requests to an LLM controlled by a program. Some requests are made in parallel, following a map-reduce pattern, and some are sequential. Crucially, requests to an LLM are initiated programmatically.
+A chain is defined as a sequence of actions, some of which may involve a call to an LLM, controlled by a program. Some requests are made in parallel, following a map-reduce pattern, and some are sequential. Crucially, requests to an LLM are initiated programmatically.
 
-An agent is defined as an executable that, given instructions, performs any number of requests to an LLM until certain criteria is satisfied. Although similar to a chain, and agent is distinguished by the ability to make a request to an LLM on behalf of a program.
+An agent is defined as an executable that, given instructions, performs any number of actions, some of which may involve requests to an LLM or other services, until certain criteria is satisfied. Although similar to a chain, and agent is distinguished by the ability to make a request to an LLM on behalf of a program.
 
 In both cases, traces model the behavior of a chain or an agent. As such, spans in a chain or agent should follow the guidance in [llm-spans](llm-spans.md).
 
