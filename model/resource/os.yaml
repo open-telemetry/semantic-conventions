@@ -67,7 +67,3 @@ groups:
         type: string
         brief: 'Unique identifier for a particular build or compilation of software.'
         examples: ['TQ3C.230805.001.B2', '20E247']
-      - id: sdk_version
-        type: string
-        brief: 'Identifies the set of development tools and APIs used for building the software.'
-        examples: ['26', '6.1.1']
