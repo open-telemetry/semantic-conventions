@@ -6,7 +6,7 @@ linkTitle: OpenAI
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for [OpenAI](https://www.microsoft.com/sql-server) extend the [LLM Semantic Conventions](llm-spans.md)
+The Semantic Conventions for [OpenAI](https://platform.openai.com/) extend the [LLM Semantic Conventions](llm-spans.md)
 that describe common LLM request attributes in addition to the Semantic Conventions
 described on this page.
 
