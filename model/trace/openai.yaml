@@ -8,8 +8,32 @@ groups:
         type: string
         brief: 'Model name'
         examples: ['text-davinci-003']
+        requirement_level: required
       - ref: server.address
+        requirement_level: required
       - ref: error.type
+        note: |
+          The `error.type` SHOULD be predictable and SHOULD have low cardinality.
+          Instrumentations SHOULD document the list of errors they report.
+
+          The cardinality of `error.type` within one instrumentation library SHOULD be low, but
+          telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+          should be prepared for `error.type` to have high cardinality at query time, when no
+          additional filters are applied.
+
+          If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+        requirement_level:
+          conditionally_required: if and only if operation has ended with an error
+
+  - id: attributes.openai.metrics
+    prefix: openai
+    type: attribute_group
+    brief: 'Semantic convention describing OpenAI metrics-specific attributes.'
+    attributes:
+      - id: response.usage_type
+        type: string
+        brief: 'Describes if tokens were used in prompt or completion'
+        examples: ['prompt', 'completion']
 
   - id: attributes.openai.azure
     prefix: openai.azure
@@ -20,6 +44,8 @@ groups:
         type: string[]
         brief: 'Array of results that were filtered out.'
         examples: ['[1]: self_harm', '[2]: violence, hate']
+        requirement_level:
+          conditionally_required: if and only if some content was filtered
 
   - id: attributes.openai.chat_completions.request
     prefix: openai.chat_completions.request
@@ -159,45 +185,28 @@ groups:
       - ref: openai.image_generations.request.image_size
       - ref: openai.image_generations.request.image_format
 
-  - id: metric.openai.chat_completions.total_tokens
+  - id: metric.openai.chat_completions.tokens
     type: metric
-    metric_name: openai.chat_completions.total_tokens
-    brief: "Number of tokens used"
+    metric_name: openai.chat_completions.tokens
+    brief: "Number of tokens used in prompt and completions"
     instrument: counter
     unit: "{token}"
     extends: attributes.openai
+    attributes:
+      - ref: openai.response.usage_type
+        requirement_level: required
 
-  - id: metric.openai.chat_completions.completion_tokens
+  - id: metric.openai.embeddings.tokens
     type: metric
-    metric_name: openai.chat_completions.completion_tokens
-    brief: "Number of tokens used in completion."
-    instrument: counter
-    unit: "{token}"
-    extends: attributes.openai
-
-  - id: metric.openai.chat_completions.prompt_tokens
-    type: metric
-    metric_name: openai.chat_completions.prompt_tokens
+    metric_name: openai.embeddings.tokens
     brief: "Number of tokens used in prompt."
     instrument: counter
     unit: "{token}"
     extends: attributes.openai
-
-  - id: metric.openai.embeddings.prompt_tokens
-    type: metric
-    metric_name: openai.embeddings.prompt_tokens
-    brief: "Number of tokens used in prompt."
-    instrument: counter
-    unit: "{token}"
-    extends: attributes.openai
-
-  - id: metric.openai.embeddings.total_tokens
-    type: metric
-    metric_name: openai.embeddings.total_tokens
-    brief: "Number of tokens used."
-    instrument: counter
-    unit: "{token}"
-    extends: attributes.openai
+    attributes:
+      - ref: openai.response.usage_type
+        requirement_level: recommended
+        examples: ['prompt']
 
   - id: metric.openai.embeddings.vector_size
     type: metric
