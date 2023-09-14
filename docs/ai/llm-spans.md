@@ -11,6 +11,7 @@ linkTitle: LLM Calls
 <!-- toc -->
 
 - [LLM Request attributes](#llm-request-attributes)
+- [Configuration](#configuration)
 - [Semantic Conventions for specific LLM technologies](#semantic-conventions-for-specific-llm-technologies)
 
 <!-- tocstop -->
@@ -54,6 +55,7 @@ These attributes track input data and metadata for a request to an LLM. Each att
 | `gpt-3.5-turbo-16k` | GPT-3.5-turbo with 16k context window|
 | `claude-instant-1` | Claude Instant (latest version) |
 | `claude-2` | Claude 2 (latest version) |
+ `other-llm` | Any LLM not listed in this table. Use for any fine-tuned version of a model. |
 <!-- endsemconv -->
 
 ## LLM Response attributes
