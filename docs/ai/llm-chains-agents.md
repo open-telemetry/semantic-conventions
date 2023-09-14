@@ -30,20 +30,20 @@ Each of the above groups of spans may represent a single *step* of a chain or ag
 
 ## LLM Chain attributes
 
-todo -- why would we name? I think we should to distinguish different chains that may be grouped together.
+Despite the similarity with agent attributes, chain attributes are distinguished to represent the difference between a chain and an agent, especially when the two are mixed together.
 
 <!-- semconv ai(tag=llm-chain-step) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `llm.chain.name`|string|The name of the chain.|Required|
-| `llm.chain.step`|int|Denotes the current step or iteration of an LLM chain.|Required|
+| `llm.chain.name`|string|The name of the chain.|`answer-question`|Required|
+| `llm.chain.step`|int|Denotes the current step or iteration of an LLM chain.|`0`|Required|
 
 ## LLM Agent Step attributes
 
-todo -- why would we name? I think we should to distinguish different agents, esp. when composed together.
+Despite the similarity with chain attributes, agent attributes are distinguished to represent the difference between a chain and an agent, especially when the two are mixed together.
 
 <!-- semconv ai(tag=llm-agent-step) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `llm.agent.name`|int|The name of the agent.|Required|
-| `llm.agent.step`|int|Indicates the current step or iteration an agent is performing one or more tasks.|Required|
+| `llm.agent.name`|int|The name of the agent.|`document-system-analyzer`|Required|
+| `llm.agent.step`|int|Indicates the current step or iteration an agent is performing one or more tasks.|`0`|Required|
