@@ -30,10 +30,18 @@ groups:
     type: attribute_group
     brief: 'Semantic convention describing OpenAI metrics-specific attributes.'
     attributes:
-      - id: response.usage_type
+      - id: usage.type
         type: string
         brief: 'Describes if tokens were used in prompt or completion'
         examples: ['prompt', 'completion']
+      - id: choice.finish_reason
+        type: string
+        brief: 'Finish reason for single chat completion choice'
+        examples: ['stop', 'length', 'content_filter']
+      - id: choice.finish_reasons
+        type: string[]
+        brief: 'A list of finish reason for chat completion request'
+        examples: ['stop, length, content_filter']
 
   - id: attributes.openai.azure
     prefix: openai.azure
@@ -86,6 +94,12 @@ groups:
         type: int
         brief: 'The Unix timestamp (in seconds) of when the chat completion was created.'
         examples: [1677652288]
+
+  - id: attributes.openai.usage
+    prefix: openai.usage
+    type: attribute_group
+    brief: 'Semantic convention describing common OpenAI usage attributes.'
+    attributes:
       - id: prompt_tokens
         type: int
         brief: 'Number of tokens in the prompt.'
@@ -94,10 +108,6 @@ groups:
         type: int
         brief: 'Number of tokens in the generated completion.'
         examples: [12]
-      - id: finish_reasons
-        type: string[]
-        brief: 'Finish reasons'
-        examples: ['stop, length, content_filter']
 
   - id: attributes.openai.embeddings.request
     prefix: openai.embeddings.request
@@ -122,10 +132,6 @@ groups:
         type: int
         brief: 'The size of embedding vector'
         examples: [1536]
-      - id: prompt_tokens
-        type: int
-        brief: 'Number of tokens in the prompt.'
-        examples: [9]
 
   - id: attributes.openai.image_generations.request
     prefix: openai.image_generations.request
@@ -158,9 +164,9 @@ groups:
       - ref: openai.chat_completions.request.frequency_penalty
       - ref: openai.chat_completions.response.id
       - ref: openai.chat_completions.response.created_at
-      - ref: openai.chat_completions.response.prompt_tokens
-      - ref: openai.chat_completions.response.completion_tokens
-      - ref: openai.chat_completions.response.finish_reasons
+      - ref: openai.usage.prompt_tokens
+      - ref: openai.usage.completion_tokens
+      - ref: openai.choice.finish_reasons
       # TODO separate span for Azure
       - ref: openai.azure.chat_completions.response.filter_results
 
@@ -173,7 +179,7 @@ groups:
       - ref: openai.embeddings.request.input_size
       - ref: openai.embeddings.response.index
       - ref: openai.embeddings.response.vector_size
-      - ref: openai.embeddings.response.prompt_tokens
+      - ref: openai.usage.prompt_tokens
 
   - id: trace.openai.image_generations
     type: span
@@ -193,8 +199,22 @@ groups:
     unit: "{token}"
     extends: attributes.openai
     attributes:
-      - ref: openai.response.usage_type
+      - ref: openai.usage.type
         requirement_level: required
+
+  - id: metric.openai.chat_completions.choices
+    type: metric
+    metric_name: openai.chat_completions.choices
+    brief: "Number of choices returned by chat completions call"
+    instrument: counter
+    unit: "{choice}"
+    extends: attributes.openai
+    attributes:
+      - ref: openai.usage.type
+        requirement_level: required
+      - ref: openai.choice.finish_reason
+        requirement_level:
+          conditionally_required: if and only if it was returned.
 
   - id: metric.openai.embeddings.tokens
     type: metric
@@ -204,7 +224,7 @@ groups:
     unit: "{token}"
     extends: attributes.openai
     attributes:
-      - ref: openai.response.usage_type
+      - ref: openai.usage.type
         requirement_level: recommended
         examples: ['prompt']
 

@@ -35,11 +35,11 @@ The common attributes listed in this section apply to OpenAI [create chat comple
 | `openai.chat_completions.request.presence_penalty` | double | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear. | `0.0` | Recommended |
 | `openai.chat_completions.request.temperature` | double | Sampling temperature, between 0 and 2 | `0.7` | Recommended |
 | `openai.chat_completions.request.top_p` | double | The nucleus sampling factor, between 0 and 1 | `0.1` | Recommended |
-| `openai.chat_completions.response.completion_tokens` | int | Number of tokens in the generated completion. | `12` | Recommended |
 | `openai.chat_completions.response.created_at` | int | The Unix timestamp (in seconds) of when the chat completion was created. | `1677652288` | Recommended |
-| `openai.chat_completions.response.finish_reasons` | string[] | Finish reasons | `[stop, length, content_filter]` | Recommended |
 | `openai.chat_completions.response.id` | string | A unique identifier for the chat completion. | `cmpl-7ykn0gf4r76hfDam5e7l0s05ZWSmA` | Recommended |
-| `openai.chat_completions.response.prompt_tokens` | int | Number of tokens in the prompt. | `9` | Recommended |
+| `openai.choice.finish_reasons` | string[] | A list of finish reason for chat completion request | `[stop, length, content_filter]` | Recommended |
+| `openai.usage.completion_tokens` | int | Number of tokens in the generated completion. | `12` | Recommended |
+| `openai.usage.prompt_tokens` | int | Number of tokens in the prompt. | `9` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Required |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
@@ -75,8 +75,8 @@ The common attributes listed in this section apply to OpenAI [create embedding c
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: if and only if operation has ended with an error |
 | `openai.embeddings.request.input_size` | int | Size of input text to embed. | `1024` | Recommended |
 | `openai.embeddings.response.index` | int | The index of the embedding in the list of embeddings. | `0` | Recommended |
-| `openai.embeddings.response.prompt_tokens` | int | Number of tokens in the prompt. | `9` | Recommended |
 | `openai.embeddings.response.vector_size` | int | The size of embedding vector | `1536` | Recommended |
+| `openai.usage.prompt_tokens` | int | Number of tokens in the prompt. | `9` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Required |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
