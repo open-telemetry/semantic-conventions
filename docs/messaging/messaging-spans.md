@@ -494,7 +494,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation` |  |  | `"receive"` |
+| `messaging.operation` |  |  | `"deliver"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
 
