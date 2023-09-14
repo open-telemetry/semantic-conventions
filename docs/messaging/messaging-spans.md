@@ -18,8 +18,9 @@
 - [Conventions](#conventions)
   * [Context propagation](#context-propagation)
   * [Span name](#span-name)
-  * [Span kind](#span-kind)
   * [Operation names](#operation-names)
+  * [Span kind](#span-kind)
+  * [Trace structure](#trace-structure)
 - [Messaging attributes](#messaging-attributes)
   * [Attribute namespaces](#attribute-namespaces)
   * [Consumer attributes](#consumer-attributes)
@@ -202,9 +203,10 @@ The following operations related to messages are defined for these semantic conv
 
 | Operation name | Description |
 | -------------- | ----------- |
-| `publish`      | A message is sent to a destination by a message producer/client.       |
-| `receive`      | A message is received from a destination by a message consumer/server. |
-| `process`      | A message that was previously received from a destination is processed by a message consumer/server. |
+| `publish`      | One or more messages are provided for publishing to an intermediary. |
+| `create`       | A message is created. |
+| `receive`      | One or more messages are requested by a consumer. |
+| `deliver`      | One or more messages are passed to a consumer. |
 
 ### Span kind
 
@@ -213,8 +215,46 @@ SHOULD be set according to the following table, based on the operation a span de
 
 | Operation name | Span kind|
 |----------------|-------------|
-| `publish`      | `PRODUCER` |
+| `publish`      | `PRODUCER`, if no `create` spans are present. |
+| `create`       | `PRODUCER`, |
 | `receive`      | `CONSUMER` |
+| `deliver`      | `CONSUMER` |
+
+### Trace structure
+
+#### Producer spans
+
+"Publish" spans SHOULD be created for operations of providing messages for
+sending or publishing to an intermediary. A single "Publish" span can account
+for a single message, or for multiple messages (in the case of providing
+messages in batches). "Create" spans MAY be created. A single "Create" span
+SHOULD account only for a single message. "Create" spans SHOULD either be
+children or links of the related "Publish" span.
+
+If a "Create" span exists for a message, its context SHOULD be injected into
+the message. If no "Create" span exists, the context of the related "Publish"
+span SHOULD be injected into the message.
+
+#### Consumer spans
+
+"Deliver" spans SHOULD be created for operations of passing messages to the
+application when those operations are not initiated by the application code
+(push-based scenarios).
+
+"Receive" spans SHOULD be created for operations of passing messages to the
+application when those operations are initiated by the application code
+(pull-based scenarios).
+
+"Deliver" or "Receive" spans MUST NOT be created for messages that are
+pre-fetched or cached by messaging libraries or SDKs until they are forwarded
+to the caller.
+
+A single "Deliver" or "Receive" span can account for a single message, for
+multiple messages (in case messages are passed for processing as batches), or
+for no message at all (if it is signalled that no messages were received). For
+each message it accounts for, the "Deliver" or "Receive" span SHOULD link to
+the message's creation context. In addition, if it is possible the creation
+context MAY be set as a parent of the "Deliver" or "Receive" span.
 
 ## Messaging attributes
 
@@ -350,19 +390,9 @@ under the namespace `messaging.destination_publish.*`
 the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
 <!-- endsemconv -->
 
-"Receive" spans SHOULD be created for operations of passing messages to the application when those operations are initiated by the application code.
-
-"Receive" spans MUST NOT be created for messages until they are forwarded to the caller, but are pre-fetched or cached by messaging libraries or SDKs.
-
-A single "Receive" span can account for a single message, for multiple messages (in case messages are passed for processing as batches), or for no message at all (if it is signalled that no messages were received). For each message it accounts for, the "Receive" span SHOULD link to the message's creation context. In addition, if it is possible the creation context MAY be
-set as a parent of the "Receive" span.
-
-The "Receive" span is used to track the time used for receiving the message(s), whereas the "Process" span(s) track the time for processing the message(s).
 Note that one or multiple Spans with `messaging.operation` = `process` may often be the children of a Span with `messaging.operation` = `receive`.
 The distinction between receiving and processing of messages is not always of particular interest or sometimes hidden away in a framework (see the [Message consumption](#message-consumption) section above) and therefore the attribute can be left out.
 For batch receiving and processing (see the [Batch receiving](#batch-receiving) and [Batch processing](#batch-processing) examples below) in particular, the attribute SHOULD be set.
-Even though in that case one might think that the processing span's kind should be `INTERNAL`, that kind MUST NOT be used.
-Instead span kind should be set to either `CONSUMER` or `SERVER` according to the rules defined above.
 
 ### Per-message attributes
 
@@ -426,11 +456,11 @@ flowchart LR;
 | `messaging.operation` |  | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
-### Batch receiving
+### Batch delivering
 
-Given is a process P, that publishes two messages to a queue Q on messaging system MS, and a process C, which receives both of them in one batch (Span Recv1) and processes each message separately (Spans Proc1 and Proc2).
+Given is a process P, that publishes two messages to a queue Q on messaging system MS, and a process C, which gets both of them delivered in one batch (Span Recv1) and processes each message separately.
 
-Since a span can only have one parent and the propagated trace and span IDs are not known when the receiving span is started, the receiving span will have no parent and the processing spans are correlated with the producing spans using links.
+Since a span can only have one parent, the `deliver` span will have no parent will be correlated with the producing spans using links.
 
 ```mermaid
 flowchart LR;
@@ -441,19 +471,19 @@ flowchart LR;
   end
   subgraph CONSUMER1
   direction TB
-  R1[Span Receive A B]
+  D1[Span Deliver A B]
   end
-  PA-. link .-R1;
-  PB-. link .-R1;
+  PA-. link .-D1;
+  PB-. link .-D1;
 
   classDef normal fill:green
   class PA,PB,R1 normal
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Publish A | Span Publish B | Span Receive A B |
+| Field or Attribute | Span Publish A | Span Publish B | Span Deliver A B |
 |-|-|-|-|
-| Span name | `Q publish` | `Q publish` | `Q receive` |
+| Span name | `Q publish` | `Q publish` | `Q deliver` |
 | Parent |  |  |  |
 | Links |  |  | Span Publish A, Span Publish B |
 | Link attributes |  |  | Span Publish A: `messaging.message.id`: `"a1"`  |
