@@ -17,9 +17,9 @@ groups:
     brief: 'Semantic convention describing Azure-specific OpenAI attributes.'
     attributes:
       - id: chat_completions.response.filter_results
-        type: string
+        type: string[]
         brief: 'Array of results that were filtered out.'
-        examples: ['self_harm', 'violence, hate']
+        examples: ['[1]: self_harm', '[2]: violence, hate']
 
   - id: attributes.openai.chat_completions.request
     prefix: openai.chat_completions.request

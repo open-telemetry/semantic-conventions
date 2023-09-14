@@ -29,7 +29,7 @@ The common attributes listed in this section apply to OpenAI [create chat comple
 |---|---|---|---|---|
 | `openai.model` | string | Model name | `text-davinci-003` | Recommended |
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Recommended |
-| `openai.azure.chat_completions.response.filter_results` | string | Array of results that were filtered out. | `self_harm`; `violence, hate` | Recommended |
+| `openai.azure.chat_completions.response.filter_results` | string[] | Array of results that were filtered out. | `[[1]: self_harm, [2]: violence, hate]` | Recommended |
 | `openai.chat_completions.request.frequency_penalty` | double | Number between -2.0 and 2.0.Positive values penalize new tokens based on their existing frequency. | `0.0` | Recommended |
 | `openai.chat_completions.request.max_tokens` | int | The maximum number of tokens to generate in the completion. | `1024` | Recommended |
 | `openai.chat_completions.request.presence_penalty` | double | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear. | `0.0` | Recommended |
