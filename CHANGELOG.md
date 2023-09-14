@@ -100,6 +100,8 @@ release.
     - `state` to `system.network.state`
   - Rename attributes for `system.processes.*` metrics:
     - `status` to `system.processes.status`
+- Added `os.build` resource attributes.
+  ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
 
 ## v1.21.0 (2023-07-13)
 

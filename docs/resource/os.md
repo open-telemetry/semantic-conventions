@@ -15,7 +15,7 @@ In case of virtualized environments, this is the operating system as it is obser
 | `os.description` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | Recommended |
 | `os.name` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | Recommended |
 | `os.version` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | Recommended |
-| `os.build` | string | Unique identifier for a particular build or compilation of software. | `TQ3C.230805.001.B2`; `20E247` | Recommended |
+| `os.build` | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247` | Recommended |
 
 `os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
