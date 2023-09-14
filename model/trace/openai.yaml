@@ -1,0 +1,232 @@
+groups:
+  - id: attributes.openai
+    prefix: openai
+    type: attribute_group
+    brief: 'Semantic convention describing common OpenAI attributes.'
+    attributes:
+      - id: model
+        type: string
+        brief: 'Model name'
+        examples: ['text-davinci-003']
+      - ref: server.address
+      - ref: error.type
+
+  - id: attributes.openai.azure
+    prefix: openai.azure
+    type: attribute_group
+    brief: 'Semantic convention describing Azure-specific OpenAI attributes.'
+    attributes:
+      - id: chat_completions.response.filter_results
+        type: string
+        brief: 'Array of results that were filtered out.'
+        examples: ['self_harm', 'violence, hate']
+
+  - id: attributes.openai.chat_completions.request
+    prefix: openai.chat_completions.request
+    type: attribute_group
+    brief: 'Semantic convention describing common OpenAI chat completions request attributes.'
+    attributes:
+      - id: max_tokens
+        type: int
+        brief: 'The maximum number of tokens to generate in the completion.'
+        examples: [1024]
+      - id: temperature
+        type: double
+        brief: 'Sampling temperature, between 0 and 2'
+        examples: [0.7]
+      - id: top_p
+        type: double
+        brief: 'The nucleus sampling factor, between 0 and 1'
+        examples: [0.1]
+      - id: presence_penalty
+        type: double
+        brief: 'Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear.'
+        examples: [0.0]
+      - id: frequency_penalty
+        type: double
+        brief: 'Number between -2.0 and 2.0.Positive values penalize new tokens based on their existing frequency.'
+        examples: [0.0]
+
+  - id: attributes.openai.chat_completions.response
+    prefix: openai.chat_completions.response
+    type: attribute_group
+    brief: 'Semantic convention describing common OpenAI chat completions response attributes.'
+    attributes:
+      - id: id
+        type: string
+        brief: 'A unique identifier for the chat completion.'
+        examples: ['cmpl-7ykn0gf4r76hfDam5e7l0s05ZWSmA']
+      - id: created_at
+        type: int
+        brief: 'The Unix timestamp (in seconds) of when the chat completion was created.'
+        examples: [1677652288]
+      - id: prompt_tokens
+        type: int
+        brief: 'Number of tokens in the prompt.'
+        examples: [9]
+      - id: completion_tokens
+        type: int
+        brief: 'Number of tokens in the generated completion.'
+        examples: [12]
+      - id: finish_reasons
+        type: string[]
+        brief: 'Finish reasons'
+        examples: ['stop, length, content_filter']
+
+  - id: attributes.openai.embeddings.request
+    prefix: openai.embeddings.request
+    type: attribute_group
+    brief: 'Semantic convention describing common OpenAI embeddings request attributes.'
+    attributes:
+      - id: input_size
+        type: int
+        brief: 'Size of input text to embed.'
+        examples: [1024]
+
+  - id: attributes.openai.embeddings.response
+    prefix: openai.embeddings.response
+    type: attribute_group
+    brief: 'Semantic convention describing common OpenAI embeddings response attributes.'
+    attributes:
+      - id: index
+        type: int
+        brief: 'The index of the embedding in the list of embeddings.'
+        examples: [0]
+      - id: vector_size
+        type: int
+        brief: 'The size of embedding vector'
+        examples: [1536]
+      - id: prompt_tokens
+        type: int
+        brief: 'Number of tokens in the prompt.'
+        examples: [9]
+
+  - id: attributes.openai.image_generations.request
+    prefix: openai.image_generations.request
+    type: attribute_group
+    brief: 'Semantic convention describing common OpenAI images generations request attributes.'
+    attributes:
+      - id: image_count
+        type: int
+        brief: 'The number of images to generate.'
+        examples: [2]
+      - id: image_size
+        type: string
+        brief: 'The size of the generated images.'
+        examples: ['256x256']
+      - id: image_format
+        type: string
+        brief: 'The format in which the generated images should be returned.'
+        examples: ['b64_json']
+
+  - id: trace.openai.chat_completions
+    type: span
+    extends: attributes.openai
+    span_kind: client
+    brief: 'Semantic Convention for OpenAI client chat completions spans'
+    attributes:
+      - ref: openai.chat_completions.request.max_tokens
+      - ref: openai.chat_completions.request.temperature
+      - ref: openai.chat_completions.request.top_p
+      - ref: openai.chat_completions.request.presence_penalty
+      - ref: openai.chat_completions.request.frequency_penalty
+      - ref: openai.chat_completions.response.id
+      - ref: openai.chat_completions.response.created_at
+      - ref: openai.chat_completions.response.prompt_tokens
+      - ref: openai.chat_completions.response.completion_tokens
+      - ref: openai.chat_completions.response.finish_reasons
+      # TODO separate span for Azure
+      - ref: openai.azure.chat_completions.response.filter_results
+
+  - id: trace.openai.embeddings
+    type: span
+    extends: attributes.openai
+    span_kind: client
+    brief: 'Semantic Convention for OpenAI client embeddings spans'
+    attributes:
+      - ref: openai.embeddings.request.input_size
+      - ref: openai.embeddings.response.index
+      - ref: openai.embeddings.response.vector_size
+      - ref: openai.embeddings.response.prompt_tokens
+
+  - id: trace.openai.image_generations
+    type: span
+    extends: attributes.openai
+    span_kind: client
+    brief: 'Semantic Convention for OpenAI client image generations spans'
+    attributes:
+      - ref: openai.image_generations.request.image_count
+      - ref: openai.image_generations.request.image_size
+      - ref: openai.image_generations.request.image_format
+
+  - id: metric.openai.chat_completions.total_tokens
+    type: metric
+    metric_name: openai.chat_completions.total_tokens
+    brief: "Number of tokens used"
+    instrument: counter
+    unit: "{token}"
+    extends: attributes.openai
+
+  - id: metric.openai.chat_completions.completion_tokens
+    type: metric
+    metric_name: openai.chat_completions.completion_tokens
+    brief: "Number of tokens used in completion."
+    instrument: counter
+    unit: "{token}"
+    extends: attributes.openai
+
+  - id: metric.openai.chat_completions.prompt_tokens
+    type: metric
+    metric_name: openai.chat_completions.prompt_tokens
+    brief: "Number of tokens used in prompt."
+    instrument: counter
+    unit: "{token}"
+    extends: attributes.openai
+
+  - id: metric.openai.embeddings.prompt_tokens
+    type: metric
+    metric_name: openai.embeddings.prompt_tokens
+    brief: "Number of tokens used in prompt."
+    instrument: counter
+    unit: "{token}"
+    extends: attributes.openai
+
+  - id: metric.openai.embeddings.total_tokens
+    type: metric
+    metric_name: openai.embeddings.total_tokens
+    brief: "Number of tokens used."
+    instrument: counter
+    unit: "{token}"
+    extends: attributes.openai
+
+  - id: metric.openai.embeddings.vector_size
+    type: metric
+    metric_name: openai.embeddings.vector_size
+    brief: "The size of returned vector."
+    instrument: counter
+    unit: "{element}"
+    extends: attributes.openai
+
+  - id: metric.openai.chat_completions.duration
+    type: metric
+    metric_name: openai.chat_completions.duration
+    brief: "Duration of chat completion operation"
+    instrument: histogram
+    unit: "s"
+    extends: attributes.openai
+
+  - id: metric.openai.embeddings.duration
+    type: metric
+    metric_name: openai.embeddings.duration
+    brief: "Duration of embeddings operation"
+    instrument: histogram
+    unit: "s"
+    extends: attributes.openai
+
+  - id: metric.openai.image_generations.duration
+    type: metric
+    metric_name: openai.image_generations.duration
+    brief: "Duration of image generations operation"
+    instrument: histogram
+    unit: "s"
+    extends: attributes.openai
