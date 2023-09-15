@@ -749,7 +749,8 @@ an `{os}` prefix to split this metric across OSes.
 | `system.linux.memory.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping [1] |
 
 **[1]:** This is an alternative to `system.memory.usage` metric with `state=free`.
-Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values. This is supposed to be more accurate than just "free" memory.
+Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
+This is supposed to be more accurate than just "free" memory.
 People who are not experts in Linux Kernel are not expected to know the precise formula. For reference, see the calculations [here](https://superuser.com/a/980821).
 See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
 <!-- endsemconv -->
