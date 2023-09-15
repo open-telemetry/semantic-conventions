@@ -100,6 +100,8 @@ release.
     - `state` to `system.network.state`
   - Rename attributes for `system.processes.*` metrics:
     - `status` to `system.processes.status`
+- Add yaml and markdown definitions for android resource attributes and add android.os.api.level attribute.
+  ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
 
 ## v1.21.0 (2023-07-13)
 
