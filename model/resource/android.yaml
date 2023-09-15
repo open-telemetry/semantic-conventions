@@ -8,7 +8,7 @@ groups:
       - id: os.api.level
         type: string
         brief: >
-          Uniquely identifies the framework API revision offered by a version 
+          Uniquely identifies the framework API revision offered by a version
           (`os.version`) of the android operating system. More information can be found
           [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
         examples: ['33', '32']
