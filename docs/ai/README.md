@@ -13,8 +13,9 @@ This document defines semantic conventions for the following kind of AI systems:
 
 * LLMs
 * LLM Chains and Agents
+* LLM Frameworks (e.g., LangChain, LlamaIndex)
 * Vector Embeddings
-* Vector Databases
+* Vector Databases (e.g., Pinecone, Milvus)
 
 Semantic conventions for LLM operations are defined for the following signals:
 
