@@ -19,9 +19,9 @@ This document defines semantic conventions for the following kind of AI systems:
 Semantic conventions for LLM operations are defined for the following signals:
 
 * [LLM Spans](llm-spans.md): Semantic Conventions for LLM requests - *spans*.
-* [LLM chains](llm-chains-agents.md): Semantic Conventions for LLM chains and agents - *spans*.
+* [LLM Chains and Agents](llm-chains-agents.md): Semantic Conventions for LLM chains and agents - *spans*.
 
-Technology specific semantic conventions are defined for the following databases:
+Technology specific semantic conventions are defined for the following LLM providers:
 
 * [OpenAI](openai.md): Semantic Conventions for *OpenAI*.
 * [Anthropic](anthropic.md): Semantic Conventions for *Anthropic*.
