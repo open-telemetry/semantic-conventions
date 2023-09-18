@@ -442,34 +442,34 @@ As an example, if a browser request for `https://example.com:8080/webshop/articl
 
 Span name: `GET`
 
-|   Attribute name     |                                       Value             |
-| :------------------- | :-------------------------------------------------------|
-| `http.request.method`| `"GET"`                                                 |
-| `network.protocol.version` | `"1.1"`                                           |
-| `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1"`     |
-| `server.address`     | `example.com`                                           |
-| `server.port`        | 8080                                                    |
-| `server.socket.address` | `"192.0.2.5"`                                        |
+| Attribute name              |                                       Value             |
+|:----------------------------| :-------------------------------------------------------|
+| `http.request.method`       | `"GET"`                                                 |
+| `network.protocol.version`  | `"1.1"`                                           |
+| `url.full`                  | `"https://example.com:8080/webshop/articles/4?s=1"`     |
+| `server.address`            | `example.com`                                           |
+| `server.port`               | 8080                                                    |
+| `server.ip`                 | `"192.0.2.5"`                                        |
 | `http.response.status_code` | `200`                                            |
 
 The corresponding server Span may look like this:
 
 Span name: `GET /webshop/articles/:article_id`.
 
-|   Attribute name     |                      Value                      |
-| :------------------- | :---------------------------------------------- |
-| `http.request.method`| `"GET"`                                         |
-| `network.protocol.version` | `"1.1"`                                   |
-| `url.path`           | `"/webshop/articles/4"`                         |
-| `url.query`          | `"?s=1"`                                        |
-| `server.address`     | `"example.com"`                                 |
-| `server.port`        | `8080`                                          |
-| `url.scheme`         | `"https"`                                       |
-| `http.route`         | `"/webshop/articles/:article_id"`               |
-| `http.response.status_code` | `200`                                    |
-| `client.address`     | `"192.0.2.4"`                                   |
-| `client.socket.address` | `"192.0.2.5"` (the client goes through a proxy) |
-| `user_agent.original` | `"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0"` |
+| Attribute name              | Value                                                                              |
+|:----------------------------|:-----------------------------------------------------------------------------------|
+| `http.request.method`       | `"GET"`                                                                            |
+| `network.protocol.version`  | `"1.1"`                                                                            |
+| `url.path`                  | `"/webshop/articles/4"`                                                            |
+| `url.query`                 | `"?s=1"`                                                                           |
+| `server.address`            | `"example.com"`                                                                    |
+| `server.port`               | `8080`                                                                             |
+| `url.scheme`                | `"https"`                                                                          |
+| `http.route`                | `"/webshop/articles/:article_id"`                                                  |
+| `http.response.status_code` | `200`                                                                              |
+| `client.address`            | `"192.0.2.4"`                                                                      |
+| `proxy.address`             | `"192.0.2.5"` (the request goes through a proxy)                                   |
+| `user_agent.original`       | `"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0"` |
 
 ### HTTP client retries examples
 

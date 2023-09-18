@@ -36,7 +36,7 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 | `db.system`               | `"redis"` |
 | `db.connection_string`    | not set |
 | `db.user`                 | not set |
-| `server.socket.address`   | `"/tmp/redis.sock"` |
+| `server.address`          | `"/tmp/redis.sock"` |
 | `network.transport`       | `"Unix"` |
 | `db.name`                 | not set |
 | `db.statement`            | `"HMSET myhash field1 'Hello' field2 'World"` |

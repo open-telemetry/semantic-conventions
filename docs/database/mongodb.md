@@ -22,14 +22,14 @@ described on this page.
 
 ## Example
 
-| Key | Value |
-| :---------------------- | :----------------------------------------------------------- |
+| Key                     | Value |
+|:------------------------| :----------------------------------------------------------- |
 | Span name               | `"products.findAndModify"` |
 | `db.system`             | `"mongodb"` |
 | `db.connection_string`  | not set |
 | `db.user`               | `"the_user"` |
 | `server.address`        | `"mongodb0.example.com"` |
-| `server.socket.address` | `"192.0.2.14"` |
+| `server.ip`             | `"192.0.2.14"` |
 | `server.port`           | `27017` |
 | `network.transport`     | `"IP.TCP"` |
 | `db.name`               | `"shopDb"` |
