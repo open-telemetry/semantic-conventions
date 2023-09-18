@@ -203,6 +203,18 @@ stabilized.
   ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
   ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
+- BREAKING: Generate process metrics from YAML 
+  ([#330](https://github.com/open-telemetry/semantic-conventions/pull/330))
+  - Rename attributes for `process.cpu.*`
+    - `state` to `process.cpu.state`
+  - Rename attributes for `process.disk.io`
+    - `direction` to `process.disk.io.direction`
+  - Rename attributes for `process.network.io`
+    - `direction` to `process.network.io.direction`
+  - Rename attributes for `process.context_switches`
+    - `type` to `process.context_switches.type`
+  - Rename attributes for `process.paging.faults`
+    - `type` to `process.paging.faults.type`
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
   ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
