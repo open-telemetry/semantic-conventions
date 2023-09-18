@@ -2,6 +2,131 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/1.21.0
 versions:
   next:
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/224
+        - rename_metrics:
+            http.client.duration: http.client.request.duration
+            http.server.duration: http.server.request.duration
+        # https://github.com/open-telemetry/semantic-conventions/pull/241
+        - rename_metrics:
+            process.runtime.jvm.memory.usage: jvm.memory.usage
+            process.runtime.jvm.memory.committed: jvm.memory.committed
+            process.runtime.jvm.memory.limit: jvm.memory.limit
+            process.runtime.jvm.memory.usage_after_last_gc: jvm.memory.usage_after_last_gc
+            process.runtime.jvm.gc.duration: jvm.gc.duration
+            # also https://github.com/open-telemetry/semantic-conventions/pull/252
+            process.runtime.jvm.threads.count: jvm.thread.count
+            # also https://github.com/open-telemetry/semantic-conventions/pull/252
+            process.runtime.jvm.classes.loaded: jvm.class.loaded
+            # also https://github.com/open-telemetry/semantic-conventions/pull/252
+            process.runtime.jvm.classes.unloaded: jvm.class.unloaded
+            # also https://github.com/open-telemetry/semantic-conventions/pull/252
+            # and https://github.com/open-telemetry/semantic-conventions/pull/60
+            process.runtime.jvm.classes.current_loaded: jvm.class.count
+            process.runtime.jvm.cpu.time: jvm.cpu.time
+            process.runtime.jvm.cpu.recent_utilization: jvm.cpu.recent_utilization
+            process.runtime.jvm.memory.init: jvm.memory.init
+            process.runtime.jvm.system.cpu.utilization: jvm.system.cpu.utilization
+            process.runtime.jvm.system.cpu.load_1m: jvm.system.cpu.load_1m
+            # https://github.com/open-telemetry/semantic-conventions/pull/253
+            process.runtime.jvm.buffer.usage: jvm.buffer.memory.usage
+            # https://github.com/open-telemetry/semantic-conventions/pull/253
+            process.runtime.jvm.buffer.limit: jvm.buffer.memory.limit
+            process.runtime.jvm.buffer.count: jvm.buffer.count
+        # https://github.com/open-telemetry/semantic-conventions/pull/20
+        - rename_attributes:
+            attribute_map:
+              type: jvm.memory.type
+              pool: jvm.memory.pool.name
+            apply_to_metrics:
+              - jvm.memory.usage
+              - jvm.memory.committed
+              - jvm.memory.limit
+              - jvm.memory.usage_after_last_gc
+              - jvm.memory.init
+        - rename_attributes:
+            attribute_map:
+              name: jvm.gc.name
+              action: jvm.gc.action
+            apply_to_metrics:
+              - jvm.gc.duration
+        - rename_attributes:
+            attribute_map:
+              daemon: thread.daemon
+            apply_to_metrics:
+              - jvm.threads.count
+        - rename_attributes:
+            attribute_map:
+              pool: jvm.buffer.pool.name
+            apply_to_metrics:
+              - jvm.buffer.usage
+              - jvm.buffer.limit
+              - jvm.buffer.count
+        # https://github.com/open-telemetry/semantic-conventions/pull/89
+        - rename_attributes:
+            attribute_map:
+              state: system.cpu.state
+              cpu: system.cpu.logical_number
+            apply_to_metrics:
+              - system.cpu.time
+              - system.cpu.utilization
+        - rename_attributes:
+            attribute_map:
+              state: system.memory.state
+            apply_to_metrics:
+              - system.memory.usage
+              - system.memory.utilization
+        - rename_attributes:
+            attribute_map:
+              state: system.paging.state
+            apply_to_metrics:
+              - system.paging.usage
+              - system.paging.utilization
+        - rename_attributes:
+            attribute_map:
+              type: system.paging.type
+              direction: system.paging.direction
+            apply_to_metrics:
+              - system.paging.faults
+              - system.paging.operations
+        - rename_attributes:
+            attribute_map:
+              device: system.device
+              direction: system.disk.direction
+            apply_to_metrics:
+              - system.disk.io
+              - system.disk.operations
+              - system.disk.io_time
+              - system.disk.operation_time
+              - system.disk.merged
+        - rename_attributes:
+            attribute_map:
+              device: system.device
+              state: system.filesystem.state
+              type: system.filesystem.type
+              mode: system.filesystem.mode
+              mountpoint: system.filesystem.mountpoint
+            apply_to_metrics:
+              - system.filesystem.usage
+              - system.filesystem.utilization
+        - rename_attributes:
+            attribute_map:
+              device: system.device
+              direction: system.network.direction
+              protocol: network.protocol
+              state: system.network.state
+            apply_to_metrics:
+              - system.network.dropped
+              - system.network.packets
+              - system.network.errors
+              - system.network.io
+              - system.network.connections
+        - rename_attributes:
+            attribute_map:
+              status: system.processes.status
+            apply_to_metrics:
+              - system.processes.count
   1.21.0:
     spans:
       changes:

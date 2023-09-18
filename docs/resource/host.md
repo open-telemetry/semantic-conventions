@@ -34,6 +34,21 @@
 | `x86` | 32-bit x86 |
 <!-- endsemconv -->
 
+**type:** `host.cpu`
+
+<!-- semconv host.cpu -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `host.cpu.vendor.id` | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | Opt-In |
+| `host.cpu.family` | int | Numeric value specifying the family or generation of the CPU. | `6` | Opt-In |
+| `host.cpu.model.id` | int | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6` | Opt-In |
+| `host.cpu.model.name` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | Opt-In |
+| `host.cpu.stepping` | int | Stepping or core revisions. | `1` | Opt-In |
+| `host.cpu.cache.l2.size` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | Opt-In |
+
+**[1]:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
+<!-- endsemconv -->
+
 ## Collecting host.id from non-containerized systems
 
 ### Non-privileged Machine ID Lookup

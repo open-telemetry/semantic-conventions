@@ -113,7 +113,7 @@ question is a non-unit (like `{fault}` or `{operation}`).
 
 Examples:
 
-* `system.filesystem.utilization`, `http.server.duration`, and `system.cpu.time`
+* `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
 should not be pluralized, even if many data points are recorded.
 * `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
 should be pluralized, even if only a single data point is recorded.
