@@ -55,24 +55,17 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `server.address` | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
+| `server.address` | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | `server.port` | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
-| `server.socket.domain` | string | Immediate server peer's domain name if available without reverse DNS lookup [3] | `proxy.example.com` | Recommended: If different than `server.address`. |
-| `server.socket.address` | string | Server address of the socket connection - IP address or Unix domain socket name. [4] | `10.5.3.2` | Recommended: If different than `server.address`. |
-| `server.socket.port` | int | Server port number of the socket connection. [5] | `16456` | Recommended: If different than `server.port`. |
+| `server.ip` | string | Server IP address. [3] | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
 **[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
-**[3]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
-
-**[4]:** When observed from the client side, this SHOULD represent the immediate server peer address.
-When observed from the server side, this SHOULD represent the physical server address.
-
-**[5]:** When observed from the client side, this SHOULD represent the immediate server peer port.
-When observed from the server side, this SHOULD represent the physical server port.
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.ip` SHOULD represent the server IP address behind any intermediaries (e.g. proxies) if it's available.
+When observed from the server side, this SHOULD represent the physical server IP address.
 <!-- endsemconv -->
 
 `server.address` and `server.port` represent logical server name and port. Semantic conventions that refer to these attributes SHOULD
@@ -128,20 +121,16 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `client.address` | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `/tmp/my.sock`; `10.1.2.80` | Recommended |
+| `client.address` | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | `client.port` | int | Client port number. [2] | `65123` | Recommended |
-| `client.socket.address` | string | Client address of the socket connection - IP address or Unix domain socket name. [3] | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
-| `client.socket.port` | int | Client port number of the socket connection. [4] | `35555` | Recommended: If different than `client.port`. |
+| `client.ip` | string | Client IP address. [3] | `127.0.0.1` | Recommended: If different than `client.address`. |
 
 **[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries (e.g. proxies) if it's available.
 
 **[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
 
-**[3]:** When observed from the server side, this SHOULD represent the immediate client peer address.
-When observed from the client side, this SHOULD represent the physical client address.
-
-**[4]:** When observed from the server side, this SHOULD represent the immediate client peer port.
-When observed from the client side, this SHOULD represent the physical client port.
+**[3]:** When observed from the server side, and when communicating through an intermediary, `client.ip` SHOULD represent the client IP address behind any intermediaries (e.g. proxies) if it's available.
+When observed from the client side, this SHOULD represent the physical client IP address.
 <!-- endsemconv -->
 
 `client.socket.address` and `client.socket.port` represent physical client name and port.

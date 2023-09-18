@@ -233,10 +233,11 @@ The following operations related to messages are defined for these semantic conv
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [14] | `3.1.1` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [15] | `example.com` | Conditionally Required: If available. |
-| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [16] | `10.5.3.2` | Recommended: If different than `server.address`. |
-| [`server.socket.domain`](../general/attributes.md) | string | Immediate server peer's domain name if available without reverse DNS lookup [17] | `proxy.example.com` | Recommended: [18] |
-| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [19] | `16456` | Recommended: If different than `server.port`. |
+| `proxy.address` | string | Proxy address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. | `proxy.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `proxy.ip` | string | Proxy IP address. | `10.1.2.80` | Recommended: If different than `proxy.address`. |
+| `proxy.port` | int | Proxy port number. | `65123` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.ip`](../general/attributes.md) | string | Server IP address. [16] | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
@@ -269,15 +270,8 @@ the broker does not have such notion, the destination name SHOULD uniquely ident
 
 **[15]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
-**[16]:** When observed from the client side, this SHOULD represent the immediate server peer address.
-When observed from the server side, this SHOULD represent the physical server address.
-
-**[17]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
-
-**[18]:** If different than `server.address` and if `server.socket.address` is set.
-
-**[19]:** When observed from the client side, this SHOULD represent the immediate server peer port.
-When observed from the server side, this SHOULD represent the physical server port.
+**[16]:** When observed from the client side, and when communicating through an intermediary, `server.ip` SHOULD represent the server IP address behind any intermediaries (e.g. proxies) if it's available.
+When observed from the server side, this SHOULD represent the physical server IP address.
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

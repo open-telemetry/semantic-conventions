@@ -69,28 +69,22 @@ Some database systems may allow a connection to switch to a different `db.user`,
 | `db.user` | string | Username for accessing the database. | `readonly_user`; `reporting_user` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Name of the database host. [1] | `example.com` | Conditionally Required: See alternative attributes below. |
-| [`server.port`](../general/attributes.md) | int | Server port number [2] | `80`; `8080`; `443` | Conditionally Required: [3] |
-| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [4] | `10.5.3.2` | See below |
-| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [5] | `16456` | Recommended: If different than `server.port`. |
+| `proxy.address` | string | Proxy address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. | `proxy.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `proxy.ip` | string | Proxy IP address. | `10.1.2.80` | Recommended: If different than `proxy.address`. |
+| `proxy.port` | int | Proxy port number. | `65123` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Name of the database host. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: See alternative attributes below. |
+| [`server.ip`](../general/attributes.md) | string | Server IP address. [2] | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.port`](../general/attributes.md) | int | Server port number [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.ip` SHOULD represent the server IP address behind any intermediaries (e.g. proxies) if it's available.
+When observed from the server side, this SHOULD represent the physical server IP address.
 
-**[3]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
-**[4]:** When observed from the client side, this SHOULD represent the immediate server peer address.
-When observed from the server side, this SHOULD represent the physical server address.
-
-**[5]:** When observed from the client side, this SHOULD represent the immediate server peer port.
-When observed from the server side, this SHOULD represent the physical server port.
-
-**Additional attribute requirements:** At least one of the following sets of attributes is required:
-
-* [`server.address`](../general/attributes.md)
-* [`server.socket.address`](../general/attributes.md)
+**[4]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
