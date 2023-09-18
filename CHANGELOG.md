@@ -7,11 +7,15 @@ release.
 
 ## Unreleased
 
+- Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
+  ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
 - Update `.count` metric naming convention so that it only applies to UpDownCounters,
   and add that `.total` should not be used by either Counters or UpDownCounters
   ([#107](https://github.com/open-telemetry/semantic-conventions/pull/107))
+- Add `oci.manifest.digest`, `container.image.repo_digests` attributes. Make `container.image.tag` array and in plural form.
+  ([#159](https://github.com/open-telemetry/semantic-conventions/pull/159))
 - BREAKING: Rename `http.client.duration` and `http.server.duration` metrics to
   `http.client.request.duration` and `http.server.request.duration` respectively.
   ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
@@ -59,6 +63,43 @@ release.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
 - Simplify HTTP metric briefs.
   ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- Add host cpu resource attributes.
+  ([#209](https://github.com/open-telemetry/semantic-conventions/pull/209))
+- Introduce `error.type` attribute and use it in HTTP conventions
+  ([#205](https://github.com/open-telemetry/semantic-conventions/pull/205))
+- BREAKING: Change HTTP span name when method is unknown (use `HTTP` instead of `_OTHER`)
+  ([#270](https://github.com/open-telemetry/semantic-conventions/pull/270))
+- Moved RPC streaming notes from metric brief section to notes section.
+  ([#275](https://github.com/open-telemetry/semantic-conventions/pull/275))
+- Updates `client.address` to allow domain names for consistency with `server.address`.
+  ([#302](https://github.com/open-telemetry/semantic-conventions/pull/302))
+- BREAKING: Generate System metrics semconv from YAML.
+  ([#89](https://github.com/open-telemetry/semantic-conventions/pull/89))
+  - Rename attributes for `system.cpu.*` metrics:
+    - `state` to `system.cpu.state`
+    - `cpu` to `system.cpu.logical_number`
+  - Rename attributes for `system.memory.*` metrics:
+    - `state` to `system.memory.state`
+  - Rename attributes for `system.paging.*` metrics:
+    - `state` to `system.paging.state`
+    - `type` to `system.paging.type`
+    - `direction` to `system.paging.direction`
+  - Rename attributes for `system.disk.*` metrics:
+    - `device` to `system.device`
+    - `direction` to `system.disk.direction`
+  - Rename attributes for `system.filesystem.*` metrics:
+    - `device` to `system.device`
+    - `state` to `system.filesystem.state`
+    - `type` to `system.filesystem.type`
+    - `mode` to `system.filesystem.mode`
+    - `mountpoint` to `system.filesystem.mountpoint`
+  - Rename attributes for `system.network.*` metrics:
+    - `device` to `system.device`
+    - `direction` to `system.network.direction`
+    - `protocol` to `network.protocol`
+    - `state` to `system.network.state`
+  - Rename attributes for `system.processes.*` metrics:
+    - `status` to `system.processes.status`
 
 ## v1.21.0 (2023-07-13)
 
