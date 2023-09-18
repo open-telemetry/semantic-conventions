@@ -29,7 +29,7 @@ groups:
           The size of the message body in bytes.
         note: |
           This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
-          body size should used.
+          body size should be used.
         examples: 1439
 
   - id: messaging.destination
