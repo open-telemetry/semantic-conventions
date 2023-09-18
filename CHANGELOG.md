@@ -7,7 +7,7 @@ release.
 
 ## Unreleased
 
-- Adds `session.id` and session.md to general docs and model 
+- Adds `session.id` and session.md to general docs and model
 ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
   ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
