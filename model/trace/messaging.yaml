@@ -21,7 +21,7 @@ groups:
           The size of the message body and metadata in bytes.
         note: |
           This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
-          body size should used.
+         size should be used.
         examples: 2738
       - id: message.body.size
         type: int
