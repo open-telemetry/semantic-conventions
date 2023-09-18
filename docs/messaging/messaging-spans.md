@@ -258,14 +258,14 @@ the broker does not have such notion, the destination name SHOULD uniquely ident
 **[9]:** If value is `true`. When missing, the value is assumed to be `false`.
 
 **[10]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
-body size should used.
+body size should be used.
 
 **[11]:** Only if span represents operation on a single message.
 
 **[12]:** Only if span represents operation on a single message.
 
-**[13]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
-body size should used.
+**[13]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+size should be used.
 
 **[14]:** Only if span represents operation on a single message.
 
