@@ -166,8 +166,10 @@ over all attribute values SHOULD be equal to the **limit**.
 
 - **utilization** - an instrument that measures the *fraction* of **usage**
 out of its **limit** should be called `entity.utilization`. For example,
-`system.memory.utilization` for the fraction of memory in use. Utilization
-values are in the range `[0, 1]`.
+`system.memory.utilization` for the fraction of memory in use. Utilization can
+be with respect to a fixed limit or a soft limit. Utilization values are
+represended as a ratio and are typically in the range `[0, 1]`, but may go above 1
+in case of exceeding a soft limit.
 
 - **time** - an instrument that measures passage of time should be called
 `entity.time`. For example, `system.cpu.time` with attribute `state = idle | user
