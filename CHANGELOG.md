@@ -206,6 +206,13 @@ stabilized.
 - BREAKING: Generate process metrics from YAML 
   ([#330](https://github.com/open-telemetry/semantic-conventions/pull/330))
   - Rename attributes for `process.cpu.*`
+=======
+- BREAKING: Generate process metrics from YAML
+  ([#330](https://github.com/open-telemetry/semantic-conventions/pull/330))
+  - Rename attributes for `process.cpu.time`
+    - `state` to `process.cpu.state`
+  - Rename attributes for `process.cpu.utilization`
+>>>>>>> 3e1bee7 (Fix lint errors, add ignore to .yamllint)
     - `state` to `process.cpu.state`
   - Rename attributes for `process.disk.io`
     - `direction` to `process.disk.io.direction`
