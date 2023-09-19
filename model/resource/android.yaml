@@ -3,9 +3,9 @@ groups:
     prefix: android
     type: resource
     brief: >
-      The android platform on which the android application is running.
+      The Android platform on which the Android application is running.
     attributes:
-      - id: os.api.level
+      - id: os.api_level
         type: string
         brief: >
           Uniquely identifies the framework API revision offered by a version
