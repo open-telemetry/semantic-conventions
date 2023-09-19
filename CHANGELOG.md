@@ -100,6 +100,9 @@ release.
     - `state` to `system.network.state`
   - Rename attributes for `system.processes.*` metrics:
     - `status` to `system.processes.status`
+- BREAKING: Rename `messaging.message.payload_size_bytes` to `messaging.message.body.size`,
+  remove `messaging.message.payload_compressed_size_bytes`.
+  ([#229](https://github.com/open-telemetry/semantic-conventions/pull/229))
 
 ## v1.21.0 (2023-07-13)
 
