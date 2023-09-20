@@ -172,7 +172,10 @@ groups:
     brief: "Measures the size of HTTP request messages."
     instrument: histogram
     unit: "By"
-    note: Size as measured over the wire (compressed size if messages are compressed).
+    note: >
+      The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.client
 
   - id: metric.http.client.response.body.size
@@ -181,5 +184,8 @@ groups:
     brief: "Measures the size of HTTP response messages."
     instrument: histogram
     unit: "By"
-    note: Size as measured over the wire (compressed size if messages are compressed).
+    note: >
+      The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.client
