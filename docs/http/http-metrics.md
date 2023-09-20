@@ -238,6 +238,9 @@ This metric is optional.
 <!-- semconv metric.http.server.request.body.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
+| `http.server.request.body.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
+
+**[1]:** The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 <!-- endsemconv -->
 
 <!-- semconv metric.http.server.request.body.size(full) -->
@@ -337,6 +340,9 @@ This metric is optional.
 <!-- semconv metric.http.server.response.body.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
+| `http.server.response.body.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
+
+**[1]:** The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 <!-- endsemconv -->
 
 <!-- semconv metric.http.server.response.body.size(full) -->
@@ -538,6 +544,9 @@ This metric is optional.
 <!-- semconv metric.http.client.request.body.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
+| `http.client.request.body.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.client.request.body.size(full) -->
@@ -631,6 +640,9 @@ This metric is optional.
 <!-- semconv metric.http.client.response.body.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
+| `http.client.response.body.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
+
+**[1]:** Size as measured over the wire (compressed size if messages are compressed).
 <!-- endsemconv -->
 
 <!-- semconv metric.http.client.response.body.size(full) -->
