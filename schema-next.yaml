@@ -4,6 +4,10 @@ versions:
   next:
     metrics:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/229
+        - rename_attributes:
+            attribute_map:
+              messaging.message.payload_size_bytes: messaging.message.body.size
         # https://github.com/open-telemetry/semantic-conventions/pull/224
         - rename_metrics:
             http.client.duration: http.client.request.duration
