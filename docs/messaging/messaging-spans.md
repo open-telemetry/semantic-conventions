@@ -231,12 +231,12 @@ The following operations related to messages are defined for these semantic conv
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [15] |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `mqtt` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [16] | `3.1.1` | Recommended |
+| [`network.server.address`](../general/attributes.md) | string | Server address of the network connection - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock`; `proxy.example.com` | Recommended: If different than `server.address`. |
+| [`network.server.ip`](../general/attributes.md) | string | Server IP address of the network connection. | `10.1.2.80` | Recommended: If different than `network.server.address`. |
+| [`network.server.port`](../general/attributes.md) | int | Server port number of the network connection. | `65123` | Recommended: [18] |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [17] | `example.com` | Conditionally Required: If available. |
-| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [18] | `10.5.3.2` | Recommended: If different than `server.address`. |
-| [`server.socket.domain`](../general/attributes.md) | string | Immediate server peer's domain name if available without reverse DNS lookup [19] | `proxy.example.com` | Recommended: [20] |
-| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [21] | `16456` | Recommended: If different than `server.port`. |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [19] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
@@ -273,17 +273,11 @@ size should be used.
 
 **[16]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[17]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[17]:** Typically an IP address or Unix domain socket name, but can be domain name if available without reverse DNS lookup.
 
-**[18]:** When observed from the client side, this SHOULD represent the immediate server peer address.
-When observed from the server side, this SHOULD represent the physical server address.
+**[18]:** If different than `server.port` and if `network.server.address` is set.
 
-**[19]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
-
-**[20]:** If different than `server.address` and if `server.socket.address` is set.
-
-**[21]:** When observed from the client side, this SHOULD represent the immediate server peer port.
-When observed from the server side, this SHOULD represent the physical server port.
+**[19]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

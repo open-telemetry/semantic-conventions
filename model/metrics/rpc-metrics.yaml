@@ -13,8 +13,8 @@ groups:
       - ref: network.type
       - ref: server.address
       - ref: server.port
-      - ref: server.socket.address
-      - ref: server.socket.port
+      - ref: network.server.address
+      - ref: network.server.port
 
   # RPC Server metrics
   - id: metric.rpc.server.duration

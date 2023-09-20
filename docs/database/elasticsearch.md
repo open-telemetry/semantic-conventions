@@ -44,8 +44,8 @@ in order to map the path part values to their names.
 | [`db.operation`](database-spans.md) | string | The endpoint identifier for the request. [3] | `search`; `ml.close_job`; `cat.aliases` | Required |
 | [`db.statement`](database-spans.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [4] |
 | `http.request.method` | string | HTTP request method. [5] | `GET`; `POST`; `HEAD` | Required |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [6] | `example.com` | See below |
-| [`server.port`](../general/attributes.md) | int | Server port number [7] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number. [7] | `80`; `8080`; `443` | Recommended |
 | [`url.full`](../url/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [8] | `https://localhost:9200/index/_search?q=user.id:kimchy` | Required |
 
 **[1]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.

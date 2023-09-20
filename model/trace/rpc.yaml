@@ -49,10 +49,8 @@ groups:
           (e.g., method actually executing the call on the server side,
           RPC client stub method on the client side).
         examples: "exampleMethod"
-      - ref: server.socket.address
-      - ref: server.socket.port
-        requirement_level:
-          recommended: If different than `server.port` and if `server.socket.address` is set.
+      - ref: network.server.address
+      - ref: network.server.port
       - ref: network.transport
       - ref: network.type
       - ref: server.address
@@ -66,19 +64,13 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: See below
-    constraints:
-      - any_of:
-          - server.socket.address
-          - server.address
 
   - id: rpc.client
     type: span
     brief: 'This document defines semantic conventions for remote procedure call client spans.'
     extends: rpc
     attributes:
-      - ref: server.socket.domain
-        requirement_level:
-          recommended: If different than `server.address` and if `server.socket.address` is set.
+      - ref: network.server.ip
 
   - id: rpc.server
     prefix: rpc
@@ -89,8 +81,8 @@ groups:
     attributes:
       - ref: client.address
       - ref: client.port
-      - ref: client.socket.address
-      - ref: client.socket.port
+      - ref: network.client.address
+      - ref: network.client.port
       - ref: network.transport
       - ref: network.type
 

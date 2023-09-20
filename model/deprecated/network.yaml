@@ -8,19 +8,19 @@ groups:
       - id: sock.peer.name
         type: string
         stability: deprecated
-        brief: Deprecated, use `server.socket.domain` on client spans.
+        brief: Deprecated, use `network.server.address` on client spans.
         examples: ['/var/my.sock']
       - id: sock.peer.addr
         type: string
         stability: deprecated
         brief: >
-          Deprecated, use `server.socket.address` on client spans and `client.socket.address` on server spans.
+          Deprecated, use `network.server.address` or `network.server.ip` on client spans and `network.client.address` on server spans.
         examples: ['192.168.0.1']
       - id: sock.peer.port
         type: int
         stability: deprecated
         examples: [65531]
-        brief: Deprecated, use `server.socket.port` on client spans and `client.socket.port` on server spans.
+        brief: Deprecated, use `network.server.port` on client spans and `network.client.port` on server spans.
       - id: peer.name
         type: string
         stability: deprecated
@@ -44,12 +44,12 @@ groups:
       - id: sock.host.addr
         type: string
         stability: deprecated
-        brief: Deprecated, use `server.socket.address`.
+        brief: Deprecated, use `network.server.address`.
         examples: ['/var/my.sock']
       - id: sock.host.port
         type: int
         stability: deprecated
-        brief: Deprecated, use `server.socket.port`.
+        brief: Deprecated, use `network.server.port`.
         examples: [8080]
       - id: transport
         type:

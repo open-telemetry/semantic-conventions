@@ -67,30 +67,24 @@ Some database systems may allow a connection to switch to a different `db.user`,
 | `db.system` | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | Required |
 | `db.connection_string` | string | The connection string used to connect to the database. It is recommended to remove embedded credentials. | `Server=(localdb)\v11.0;Integrated Security=true;` | Recommended |
 | `db.user` | string | Username for accessing the database. | `readonly_user`; `reporting_user` | Recommended |
+| [`network.server.address`](../general/attributes.md) | string | Server address of the network connection - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock`; `proxy.example.com` | Recommended: If different than `server.address`. |
+| [`network.server.ip`](../general/attributes.md) | string | Server IP address of the network connection. | `10.1.2.80` | Recommended: If different than `network.server.address`. |
+| [`network.server.port`](../general/attributes.md) | int | Server port number of the network connection. | `65123` | Recommended: [2] |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Name of the database host. [1] | `example.com` | Conditionally Required: See alternative attributes below. |
-| [`server.port`](../general/attributes.md) | int | Server port number [2] | `80`; `8080`; `443` | Conditionally Required: [3] |
-| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [4] | `10.5.3.2` | See below |
-| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [5] | `16456` | Recommended: If different than `server.port`. |
+| [`server.address`](../general/attributes.md) | string | Name of the database host. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: See alternative attributes below. |
+| [`server.port`](../general/attributes.md) | int | Server port number. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
 
-**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+**[1]:** Typically an IP address or Unix domain socket name, but can be domain name if available without reverse DNS lookup.
+
+**[2]:** If different than `server.port` and if `network.server.address` is set.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
-**[3]:** If using a port other than the default port for this DBMS and if `server.address` is set.
-
-**[4]:** When observed from the client side, this SHOULD represent the immediate server peer address.
-When observed from the server side, this SHOULD represent the physical server address.
-
-**[5]:** When observed from the client side, this SHOULD represent the immediate server peer port.
-When observed from the server side, this SHOULD represent the physical server port.
-
-**Additional attribute requirements:** At least one of the following sets of attributes is required:
-
-* [`server.address`](../general/attributes.md)
-* [`server.socket.address`](../general/attributes.md)
+**[5]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
