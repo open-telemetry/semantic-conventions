@@ -13,7 +13,8 @@ instruments not explicitly defined in the specification.
 
 The `system.*` namespace SHOULD be exclusively used to report hosts' metrics.
 The `system.*` namespace SHOULD only be used when the metrics are collected from within the target system. (physical servers, virtual machines etc).
-For metrics collected specifically for known entities (e.g., containers, pods etc), the metrics should be reported in the entity's respective namespace (container.*).
+Metrics collected from technology-specific, well-defined APIs (e.g. Kubelet's API or container runtimes)
+should be reported under their respective namespace (e.g. k8s.*, container.*).
 For resource attributes related to a host the `host.*` namespace should be used.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
