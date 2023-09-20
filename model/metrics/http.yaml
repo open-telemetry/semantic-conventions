@@ -40,7 +40,7 @@ groups:
           `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
 
           If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-          `error.type` SHOULD be set to the string representation of the status code, an exception type (if thrown) or a component-specific error code.
+          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
 
           The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
@@ -76,7 +76,7 @@ groups:
           `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
 
           If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-          `error.type` SHOULD be set to the string representation of the status code, an exception type (if thrown) or a component-specific error code.
+          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
 
           The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
