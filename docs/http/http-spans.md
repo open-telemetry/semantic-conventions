@@ -29,6 +29,9 @@ and various HTTP versions like 1.1, 2 and SPDY.
   * [HTTP client retries examples](#http-client-retries-examples)
   * [HTTP client authorization retry examples](#http-client-authorization-retry-examples)
   * [HTTP client redirects examples](#http-client-redirects-examples)
+  * [HTTP client call: DNS error](#http-client-call-dns-error)
+  * [HTTP client call: Internal Server Error](#http-client-call-internal-server-error)
+  * [HTTP server call: connection dropped before response body was sent](#http-server-call-connection-dropped-before-response-body-was-sent)
 
 <!-- tocstop -->
 
@@ -62,13 +65,23 @@ and various HTTP versions like 1.1, 2 and SPDY.
 ## Name
 
 HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#span).
-HTTP server span names SHOULD be `{http.request.method} {http.route}` if there is a
-(low-cardinality) `http.route` available.
-HTTP server span names SHOULD be `{http.request.method}` if there is no (low-cardinality)
-`http.route` available.
+
+<!-- markdown-link-check-disable -->
+<!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
+HTTP server span names SHOULD be `{method} {http.route}` if there is a
+(low-cardinality) `http.route` available (see below for the exact definition of the [`{method}`](#method-placeholder) placeholder).
+
+If there is no (low-cardinality) `http.route` available, HTTP server span names
+SHOULD be [`{method}`](#method-placeholder).
+
 HTTP client spans have no `http.route` attribute since client-side instrumentation
-is not generally aware of the "route", and therefore HTTP client spans SHOULD use
-`{http.request.method}`.
+is not generally aware of the "route", and therefore HTTP client spans SHOULD be
+[`{method}`](#method-placeholder).
+<!-- markdown-link-check-enable -->
+
+The <span id="method-placeholder">`{method}`</span> MUST be `{http.request.method}` if the method represents the original method known to the instrumentation.
+In other cases (when `{http.request.method}` is set to `_OTHER`), `{method}` MUST be `HTTP`.
+
 Instrumentation MUST NOT default to using URI
 path as span name, but MAY provide hooks to allow custom logic to override the
 default span name.
@@ -88,6 +101,12 @@ failed to interpret, span status MUST be set to `Error`.
 
 Don't set the span status description if the reason can be inferred from `http.response.status_code`.
 
+HTTP request may fail if it was cancelled or an error occurred preventing
+the client or server from sending/receiving the request/response fully.
+
+When instrumentation detects such errors it MUST set span status to `Error`
+and MUST set the `error.type` attribute.
+
 ## Common Attributes
 
 The common attributes listed in this section apply to both HTTP clients and servers in addition to
@@ -101,16 +120,33 @@ sections below.
 | `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| `error.type` | string | Describes a class of error the operation ended with. [2] | `timeout`; `name_resolution_error`; `500` | Conditionally Required: If request has ended with an error. |
+| `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `spdy` | Recommended: if not default (`http`). |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `1.0`; `1.1`; `2`; `3` | Recommended |
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [4] |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [5] |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
 **[1]:** If and only if it's different than `http.request.method`.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[2]:** If the request fails with an error before response status code was sent or received,
+`error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
+
+If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+`error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
+
+The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low, but
+telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time, when no
+additional filters are applied.
+
+If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -125,13 +161,19 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[4]:** If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
+**[5]:** If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
 * `http.request.method`
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -334,7 +376,7 @@ If the route cannot be determined, the `name` attribute MUST be set as defined i
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`client.address`](../general/attributes.md) | string | Client address - IP address or Unix domain socket name. [2] | `83.164.160.102` | Recommended |
+| [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `83.164.160.102` | Recommended |
 | [`client.port`](../general/attributes.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [3] | `65123` | Recommended |
 | [`client.socket.address`](../general/attributes.md) | string | Client address of the socket connection - IP address or Unix domain socket name. [4] | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
 | [`client.socket.port`](../general/attributes.md) | int | Client port number of the socket connection. [5] | `35555` | Recommended: If different than `client.port`. |
@@ -412,7 +454,7 @@ Span name: `GET`
 |   Attribute name     |                                       Value             |
 | :------------------- | :-------------------------------------------------------|
 | `http.request.method`| `"GET"`                                                 |
-| `network.protocol.version` | `"1.1"`                                          |
+| `network.protocol.version` | `"1.1"`                                           |
 | `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1"`     |
 | `server.address`     | `example.com`                                           |
 | `server.port`        | 8080                                                    |
@@ -529,5 +571,45 @@ GET /hello - 200 (CLIENT, trace=t2, span=s1, http.resend_count=1)
  |
  --- server (SERVER, trace=t2, span=s2)
 ```
+
+### HTTP client call: DNS error
+
+As an example, if a user requested `https://does-not-exist-123.com`, we may have the following span on the client side:
+
+|   Attribute name     |                                       Value             |
+| :------------------- | :-------------------------------------------------------|
+| `http.request.method`| `"GET"`                                                 |
+| `network.protocol.version` | `"1.1"`                                           |
+| `url.full`           | `"https://does-not-exist-123.com"`                      |
+| `server.address`     | `"does-not-exist-123.com"`                              |
+| `error.type`         | `"java.net.UnknownHostException"`                       |
+
+### HTTP client call: Internal Server Error
+
+As an example, if a user requested `https://example.com` and server returned 500, we may have the following span on the client side:
+
+|   Attribute name     |                                       Value             |
+| :------------------- | :-------------------------------------------------------|
+| `http.request.method`| `"GET"`                                                 |
+| `network.protocol.version` | `"1.1"`                                           |
+| `url.full`           | `"https://example.com"`                                 |
+| `server.address`     | `"example.com"`                                         |
+| `http.response.status_code` | `500`                                            |
+| `error.type`         | `"500"`                                                 |
+
+### HTTP server call: connection dropped before response body was sent
+
+As an example, if a user sent a `POST` request with a body to `https://example.com:8080/uploads/4`, we may see the following span on a server side:
+
+Span name: `POST /uploads/:document_id`.
+
+|   Attribute name     |                      Value                      |
+| :------------------- | :---------------------------------------------- |
+| `http.request.method`| `"GET"`                                         |
+| `url.path`           | `"/uploads/4"`                                  |
+| `url.scheme`         | `"https"`                                       |
+| `http.route`         | `"/uploads/:document_id"`                       |
+| `http.response.status_code` | `201`                                    |
+| `error.type`         | `WebSocketDisconnect`                           |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

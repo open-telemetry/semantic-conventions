@@ -4,6 +4,10 @@ versions:
   next:
     metrics:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/229
+        - rename_attributes:
+            attribute_map:
+              messaging.message.payload_size_bytes: messaging.message.body.size
         # https://github.com/open-telemetry/semantic-conventions/pull/224
         - rename_metrics:
             http.client.duration: http.client.request.duration
@@ -63,6 +67,70 @@ versions:
               - jvm.buffer.usage
               - jvm.buffer.limit
               - jvm.buffer.count
+        # https://github.com/open-telemetry/semantic-conventions/pull/89
+        - rename_attributes:
+            attribute_map:
+              state: system.cpu.state
+              cpu: system.cpu.logical_number
+            apply_to_metrics:
+              - system.cpu.time
+              - system.cpu.utilization
+        - rename_attributes:
+            attribute_map:
+              state: system.memory.state
+            apply_to_metrics:
+              - system.memory.usage
+              - system.memory.utilization
+        - rename_attributes:
+            attribute_map:
+              state: system.paging.state
+            apply_to_metrics:
+              - system.paging.usage
+              - system.paging.utilization
+        - rename_attributes:
+            attribute_map:
+              type: system.paging.type
+              direction: system.paging.direction
+            apply_to_metrics:
+              - system.paging.faults
+              - system.paging.operations
+        - rename_attributes:
+            attribute_map:
+              device: system.device
+              direction: system.disk.direction
+            apply_to_metrics:
+              - system.disk.io
+              - system.disk.operations
+              - system.disk.io_time
+              - system.disk.operation_time
+              - system.disk.merged
+        - rename_attributes:
+            attribute_map:
+              device: system.device
+              state: system.filesystem.state
+              type: system.filesystem.type
+              mode: system.filesystem.mode
+              mountpoint: system.filesystem.mountpoint
+            apply_to_metrics:
+              - system.filesystem.usage
+              - system.filesystem.utilization
+        - rename_attributes:
+            attribute_map:
+              device: system.device
+              direction: system.network.direction
+              protocol: network.protocol
+              state: system.network.state
+            apply_to_metrics:
+              - system.network.dropped
+              - system.network.packets
+              - system.network.errors
+              - system.network.io
+              - system.network.connections
+        - rename_attributes:
+            attribute_map:
+              status: system.processes.status
+            apply_to_metrics:
+              - system.processes.count
   1.21.0:
     spans:
       changes:
