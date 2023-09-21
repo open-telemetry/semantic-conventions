@@ -187,8 +187,8 @@ Conventions per [OTEP 222][otep222]. When adding a semantic convention that
 exists in some form in ECS, consider the following guidelines:
 
 - Prefer using the existing ECS name when possible. In particular:
-  - Do not amend ECS names to follow plural guidelines or other syntactical
-    attribute naming rules.
+  - Do not amend ECS names to follow plural guidelines or other soft 
+    recommendations.
   - If proposing a name that differs from the ECS convention, provide usage
     data, user issue reports or feature requests or comparable evidence about
     the alternatives.
