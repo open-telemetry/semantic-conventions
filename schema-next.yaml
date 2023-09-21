@@ -131,6 +131,10 @@ versions:
               status: system.processes.status
             apply_to_metrics:
               - system.processes.count
+        # https://github.com/open-telemetry/semantic-conventions/pull/247
+        - rename_metrics:
+            http.server.request.size: http.server.request.body.size
+            http.server.response.size: http.server.response.body.size
   1.21.0:
     spans:
       changes:
