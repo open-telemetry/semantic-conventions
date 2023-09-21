@@ -17,12 +17,12 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 - [HTTP Server](#http-server)
   * [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
   * [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
-  * [Metric: `http.server.request.size`](#metric-httpserverrequestsize)
-  * [Metric: `http.server.response.size`](#metric-httpserverresponsesize)
+  * [Metric: `http.server.request.body.size`](#metric-httpserverrequestbodysize)
+  * [Metric: `http.server.response.body.size`](#metric-httpserverresponsebodysize)
 - [HTTP Client](#http-client)
   * [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
-  * [Metric: `http.client.request.size`](#metric-httpclientrequestsize)
-  * [Metric: `http.client.response.size`](#metric-httpclientresponsesize)
+  * [Metric: `http.client.request.body.size`](#metric-httpclientrequestbodysize)
+  * [Metric: `http.client.response.body.size`](#metric-httpclientresponsebodysize)
 
 <!-- tocstop -->
 
@@ -229,21 +229,21 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
-### Metric: `http.server.request.size`
+### Metric: `http.server.request.body.size`
 
 **Status**: [Experimental][DocumentStatus]
 
 This metric is optional.
 
-<!-- semconv metric.http.server.request.size(metric_table) -->
+<!-- semconv metric.http.server.request.body.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.server.request.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
+| `http.server.request.body.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
 
-**[1]:** Size as measured over the wire (compressed size if messages are compressed).
+**[1]:** The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 <!-- endsemconv -->
 
-<!-- semconv metric.http.server.request.size(full) -->
+<!-- semconv metric.http.server.request.body.size(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
@@ -331,21 +331,21 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
-### Metric: `http.server.response.size`
+### Metric: `http.server.response.body.size`
 
 **Status**: [Experimental][DocumentStatus]
 
 This metric is optional.
 
-<!-- semconv metric.http.server.response.size(metric_table) -->
+<!-- semconv metric.http.server.response.body.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.server.response.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
+| `http.server.response.body.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
 
-**[1]:** Size as measured over the wire (compressed size if messages are compressed).
+**[1]:** The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 <!-- endsemconv -->
 
-<!-- semconv metric.http.server.response.size(full) -->
+<!-- semconv metric.http.server.response.body.size(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
@@ -535,21 +535,21 @@ When observed from the server side, this SHOULD represent the physical server ad
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
-### Metric: `http.client.request.size`
+### Metric: `http.client.request.body.size`
 
 **Status**: [Experimental][DocumentStatus]
 
 This metric is optional.
 
-<!-- semconv metric.http.client.request.size(metric_table) -->
+<!-- semconv metric.http.client.request.body.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.client.request.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
+| `http.client.request.body.size` | Histogram | `By` | Measures the size of HTTP request messages. [1] |
 
-**[1]:** Size as measured over the wire (compressed size if messages are compressed).
+**[1]:** The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 <!-- endsemconv -->
 
-<!-- semconv metric.http.client.request.size(full) -->
+<!-- semconv metric.http.client.request.body.size(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `name_resolution_error`; `500` | Conditionally Required: If request has ended with an error. |
@@ -631,21 +631,21 @@ When observed from the server side, this SHOULD represent the physical server ad
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
-### Metric: `http.client.response.size`
+### Metric: `http.client.response.body.size`
 
 **Status**: [Experimental][DocumentStatus]
 
 This metric is optional.
 
-<!-- semconv metric.http.client.response.size(metric_table) -->
+<!-- semconv metric.http.client.response.body.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.client.response.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
+| `http.client.response.body.size` | Histogram | `By` | Measures the size of HTTP response messages. [1] |
 
-**[1]:** Size as measured over the wire (compressed size if messages are compressed).
+**[1]:** The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 <!-- endsemconv -->
 
-<!-- semconv metric.http.client.response.size(full) -->
+<!-- semconv metric.http.client.response.body.size(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `name_resolution_error`; `500` | Conditionally Required: If request has ended with an error. |
