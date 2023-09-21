@@ -132,6 +132,8 @@ release.
 - BREAKING: Rename `telemetry.auto.version` resource attribute to `telemetry.distro.version`
   and add `telemetry.distro.name` resource attribute
   ([#178](https://github.com/open-telemetry/semantic-conventions/pull/178))
+- Add `system.cpu.frequency` metric.
+  ([#337](https://github.com/open-telemetry/semantic-conventions/pull/337))
 
 ## v1.21.0 (2023-07-13)
 

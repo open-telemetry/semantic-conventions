@@ -61,6 +61,15 @@ groups:
       - ref: system.cpu.state
       - ref: system.cpu.logical_number
 
+  - id: metric.system.cpu.frequency
+    type: metric
+    metric_name: system.cpu.frequency
+    brief: "Reports the current frequency of the CPU core in MHz"
+    instrument: gauge
+    unit: "{MHz}"
+    attributes:
+      - ref: system.cpu.logical_number
+
   - id: metric.system.cpu.physical.count
     type: metric
     metric_name: system.cpu.physical.count
