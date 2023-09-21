@@ -11,10 +11,6 @@ linkTitle: Kafka
 - [Span attributes](#span-attributes)
 - [Examples](#examples)
   * [Apache Kafka with Quarkus or Spring Boot Example](#apache-kafka-with-quarkus-or-spring-boot-example)
-- [Metrics](#metrics)
-  * [General Metrics](#general-metrics)
-  * [Producer Metrics](#producer-metrics)
-  * [Consumer Metrics](#consumer-metrics)
 
 <!-- tocstop -->
 
