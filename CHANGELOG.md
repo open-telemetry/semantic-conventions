@@ -112,6 +112,8 @@ release.
   ([#247](https://github.com/open-telemetry/semantic-conventions/pull/247))
 - Move non-`network.*` attributes out of network.yaml.
   ([#296](https://github.com/open-telemetry/semantic-conventions/pull/296))
+- Introducing Android `android.os.api_level` resource attribute.
+  ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
 
 ## v1.21.0 (2023-07-13)
 
