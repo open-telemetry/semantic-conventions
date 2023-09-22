@@ -108,6 +108,8 @@ release.
 - BREAKING: Rename `http.server.request.size` metric to `http.server.request.body.size`
   and `http.server.response.size` metric to `http.server.response.body.size`
   ([#247](https://github.com/open-telemetry/semantic-conventions/pull/247))
+- Add `host.mac` resource attribute convention.
+  ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
 
 ## v1.21.0 (2023-07-13)
 
