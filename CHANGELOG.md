@@ -103,6 +103,8 @@ release.
 - BREAKING: Rename `messaging.message.payload_size_bytes` to `messaging.message.body.size`,
   remove `messaging.message.payload_compressed_size_bytes`.
   ([#229](https://github.com/open-telemetry/semantic-conventions/pull/229))
+- Add `host.ip` resource attribute convention.
+  ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
 
 ## v1.21.0 (2023-07-13)
 
