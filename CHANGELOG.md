@@ -100,6 +100,12 @@ release.
     - `state` to `system.network.state`
   - Rename attributes for `system.processes.*` metrics:
     - `status` to `system.processes.status`
+- BREAKING: Rename `messaging.message.payload_size_bytes` to `messaging.message.body.size`,
+  remove `messaging.message.payload_compressed_size_bytes`.
+  ([#229](https://github.com/open-telemetry/semantic-conventions/pull/229))
+- BREAKING: Rename `http.server.request.size` metric to `http.server.request.body.size`
+  and `http.server.response.size` metric to `http.server.response.body.size`
+  ([#247](https://github.com/open-telemetry/semantic-conventions/pull/247))
 - Introducing Android `android.os.api_level` resource attribute.
   ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
 
