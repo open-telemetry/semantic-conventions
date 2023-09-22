@@ -110,6 +110,8 @@ release.
 - BREAKING: Rename `http.server.request.size` metric to `http.server.request.body.size`
   and `http.server.response.size` metric to `http.server.response.body.size`
   ([#247](https://github.com/open-telemetry/semantic-conventions/pull/247))
+- Move non-`network.*` attributes out of network.yaml.
+  ([#296](https://github.com/open-telemetry/semantic-conventions/pull/296))
 
 ## v1.21.0 (2023-07-13)
 
