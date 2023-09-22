@@ -40,7 +40,7 @@ groups:
           `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
 
           If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-          `error.type` SHOULD be set to the string representation of the status code, an exception type (if thrown) or a component-specific error code.
+          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
 
           The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
@@ -76,7 +76,7 @@ groups:
           `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
 
           If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-          `error.type` SHOULD be set to the string representation of the status code, an exception type (if thrown) or a component-specific error code.
+          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
 
           The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
@@ -134,22 +134,28 @@ groups:
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
 
-  - id: metric.http.server.request.size
+  - id: metric.http.server.request.body.size
     type: metric
-    metric_name: http.server.request.size
+    metric_name: http.server.request.body.size
     brief: "Measures the size of HTTP request messages."
     instrument: histogram
     unit: "By"
-    note: Size as measured over the wire (compressed size if messages are compressed).
+    note: >
+      The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.server
 
-  - id: metric.http.server.response.size
+  - id: metric.http.server.response.body.size
     type: metric
-    metric_name: http.server.response.size
+    metric_name: http.server.response.body.size
     brief: "Measures the size of HTTP response messages."
     instrument: histogram
     unit: "By"
-    note: Size as measured over the wire (compressed size if messages are compressed).
+    note: >
+      The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.server
 
   - id: metric.http.client.request.duration
@@ -160,20 +166,26 @@ groups:
     unit: "s"
     extends: metric_attributes.http.client
 
-  - id: metric.http.client.request.size
+  - id: metric.http.client.request.body.size
     type: metric
-    metric_name: http.client.request.size
+    metric_name: http.client.request.body.size
     brief: "Measures the size of HTTP request messages."
     instrument: histogram
     unit: "By"
-    note: Size as measured over the wire (compressed size if messages are compressed).
+    note: >
+      The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.client
 
-  - id: metric.http.client.response.size
+  - id: metric.http.client.response.body.size
     type: metric
-    metric_name: http.client.response.size
+    metric_name: http.client.response.body.size
     brief: "Measures the size of HTTP response messages."
     instrument: histogram
     unit: "By"
-    note: Size as measured over the wire (compressed size if messages are compressed).
+    note: >
+      The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.client
