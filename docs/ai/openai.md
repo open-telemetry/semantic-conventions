@@ -12,7 +12,9 @@ described on this page.
 
 ## OpenAI LLM request attributes
 
-These are additional attributes when instrumenting OpenAI LLM requests.
+### Chat completion attributes
+
+These are additional attributes when instrumenting OpenAI LLM requests with the `/chat` endpoint.
 
 <!-- semconv llm.openai(tag=llm-request-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -30,6 +32,10 @@ These are additional attributes when instrumenting OpenAI LLM requests.
 | `llm.openai.frequency_penalty` | float | If present, the `frequency_penalty` used in an OpenAI request. Value is between -2.0 and 2.0. | `-0.5` | Recommended |
 | `llm.openai.logit_bias` | string | If present, the JSON-encoded string of a `logit_bias` used in an OpenAI request. | `{2435:-100, 640:-100}` | Recommended |
 | `llm.openai.user` | string | If present, the `user` used in an OpenAI request. | `bob` | Recommended |
+
+### Completion attributes
+
+These are additional attributes when instrumenting OpenAI LLM requests with the `/completion` endpoint.
 
 ## OpenAI LLM response attributes
 
@@ -57,6 +63,8 @@ These are the attributes for a full chat completion (no streaming).
 ### Chat completion chunk attributes
 
 These are the attributes for a chunk of data in a streamed chat completion.
+
+todo
 
 <!-- semconv llm.openai(tag=llm-response-tech-specific-chunk) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
