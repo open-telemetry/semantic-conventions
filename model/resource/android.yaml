@@ -1,0 +1,14 @@
+groups:
+  - id: android
+    prefix: android
+    type: resource
+    brief: >
+      The Android platform on which the Android application is running.
+    attributes:
+      - id: os.api_level
+        type: string
+        brief: >
+          Uniquely identifies the framework API revision offered by a version
+          (`os.version`) of the android operating system. More information can be found
+          [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
+        examples: ['33', '32']
