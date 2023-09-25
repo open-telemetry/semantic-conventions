@@ -120,6 +120,13 @@ groups:
     attributes:
       - ref: system.memory.state
 
+  - id: metric.system.memory.limit
+    type: metric
+    metric_name: system.memory.limit
+    brief: "Total bytes of memory available"
+    instrument: updowncounter
+    unit: "By"
+
   # system.paging.* metrics and attribute group
   - id: attributes.system.paging
     prefix: system.paging
