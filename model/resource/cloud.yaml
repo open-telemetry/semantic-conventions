@@ -88,7 +88,7 @@ groups:
         note: >
           Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
         examples: ['us-east-1c']
-      - id: platform
+      - id: service.name
         type:
           allow_custom_values: true
           members:
