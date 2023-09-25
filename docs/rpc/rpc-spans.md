@@ -30,24 +30,25 @@ This document defines how to describe remote procedure calls
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/rpc.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the networking attributes that they emit
+> * SHOULD NOT change the version of the networking conventions that they emit
 >   until the HTTP semantic conventions are marked stable (HTTP stabilization will
->   include stabilization of a core set of networking attributes which are also used
->   in RPC instrumentations).
+>   include stabilization of a core set of networking conventions which are also used
+>   in RPC instrumentations). Conventions include, but are not limited to, attributes,
+>   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version which is a comma-separated list of values.
 >   The only values defined so far are:
->   * `http` - emit the new, stable networking attributes,
->     and stop emitting the old experimental networking attributes
+>   * `http` - emit the new, stable networking conventions,
+>     and stop emitting the old experimental networking conventions
 >     that the instrumentation emitted previously.
->   * `http/dup` - emit both the old and the stable networking attributes,
+>   * `http/dup` - emit both the old and the stable networking conventions,
 >     allowing for a seamless transition.
 >   * The default behavior (in the absence of one of these values) is to continue
->     emitting whatever version of the old experimental networking attributes
+>     emitting whatever version of the old experimental networking conventions
 >     the instrumentation was emitting previously.
 >   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
->   for at least six months after it starts emitting both sets of attributes.
+>   for at least six months after it starts emitting both sets of conventions.
 > * SHOULD drop the environment variable in the next major version (stable
 >   next major version SHOULD NOT be released prior to October 1, 2023).
 
@@ -160,7 +161,7 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 <!-- semconv rpc.server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`client.address`](../general/attributes.md) | string | Client address - IP address or Unix domain socket name. [1] | `/tmp/my.sock`; `10.1.2.80` | Recommended |
+| [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `/tmp/my.sock`; `10.1.2.80` | Recommended |
 | [`client.port`](../general/attributes.md) | int | Client port number. [2] | `65123` | Recommended |
 | [`client.socket.address`](../general/attributes.md) | string | Client address of the socket connection - IP address or Unix domain socket name. [3] | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
 | [`client.socket.port`](../general/attributes.md) | int | Client port number of the socket connection. [4] | `35555` | Recommended: If different than `client.port`. |

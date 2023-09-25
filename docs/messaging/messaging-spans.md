@@ -38,24 +38,25 @@
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/messaging.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the networking attributes that they emit
+> * SHOULD NOT change the version of the networking conventions that they emit
 >   until the HTTP semantic conventions are marked stable (HTTP stabilization will
->   include stabilization of a core set of networking attributes which are also used
->   in Messaging instrumentations).
+>   include stabilization of a core set of networking conventions which are also used
+>   in Messaging instrumentations). Conventions include, but are not limited to, attributes,
+>   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version which is a comma-separated list of values.
 >   The only values defined so far are:
->   * `http` - emit the new, stable networking attributes,
->     and stop emitting the old experimental networking attributes
+>   * `http` - emit the new, stable networking conventions,
+>     and stop emitting the old experimental networking conventions
 >     that the instrumentation emitted previously.
->   * `http/dup` - emit both the old and the stable networking attributes,
+>   * `http/dup` - emit both the old and the stable networking conventions,
 >     allowing for a seamless transition.
 >   * The default behavior (in the absence of one of these values) is to continue
->     emitting whatever version of the old experimental networking attributes
+>     emitting whatever version of the old experimental networking conventions
 >     the instrumentation was emitting previously.
 >   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
->   for at least six months after it starts emitting both sets of attributes.
+>   for at least six months after it starts emitting both sets of conventions.
 > * SHOULD drop the environment variable in the next major version (stable
 >   next major version SHOULD NOT be released prior to October 1, 2023).
 
@@ -65,7 +66,7 @@
 
 Although messaging systems are not as standardized as, e.g., HTTP, it is assumed that the following definitions are applicable to most of them that have similar concepts at all (names borrowed mostly from JMS):
 
-A *message* is an envelope with a potentially empty payload.
+A *message* is an envelope with a potentially empty body.
 This envelope may offer the possibility to convey additional metadata, often in key/value form.
 
 A message is sent by a message *producer* to:
@@ -224,18 +225,18 @@ The following operations related to messages are defined for these semantic conv
 | `messaging.destination.name` | string | The message destination name [5] | `MyQueue`; `MyTopic` | Conditionally Required: [6] |
 | `messaging.destination.template` | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` | Conditionally Required: [8] |
 | `messaging.destination.temporary` | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [9] |
-| `messaging.message.conversation_id` | string | The [conversation ID](#conversations) identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [10] |
-| `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [11] |
-| `messaging.message.payload_compressed_size_bytes` | int | The compressed size of the message payload in bytes. | `2048` | Recommended: [12] |
-| `messaging.message.payload_size_bytes` | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. | `2738` | Recommended: [13] |
+| `messaging.message.body.size` | int | The size of the message body in bytes. [10] | `1439` | Recommended: [11] |
+| `messaging.message.conversation_id` | string | The [conversation ID](#conversations) identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [12] |
+| `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [13] | `2738` | Recommended: [14] |
+| `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [15] |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [14] | `3.1.1` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [16] | `3.1.1` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [15] | `example.com` | Conditionally Required: If available. |
-| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [16] | `10.5.3.2` | Recommended: If different than `server.address`. |
-| [`server.socket.domain`](../general/attributes.md) | string | Immediate server peer's domain name if available without reverse DNS lookup [17] | `proxy.example.com` | Recommended: [18] |
-| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [19] | `16456` | Recommended: If different than `server.port`. |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [17] | `example.com` | Conditionally Required: If available. |
+| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [18] | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.domain`](../general/attributes.md) | string | Immediate server peer's domain name if available without reverse DNS lookup [19] | `proxy.example.com` | Recommended: [20] |
+| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [21] | `16456` | Recommended: If different than `server.port`. |
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
@@ -256,26 +257,32 @@ the broker does not have such notion, the destination name SHOULD uniquely ident
 
 **[9]:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[10]:** Only if span represents operation on a single message.
+**[10]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+body size should be used.
 
-**[11]:** Only for spans that represent an operation on a single message.
+**[11]:** Only if span represents operation on a single message.
 
 **[12]:** Only if span represents operation on a single message.
 
-**[13]:** Only if span represents operation on a single message.
+**[13]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+size should be used.
 
-**[14]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[14]:** Only if span represents operation on a single message.
 
-**[15]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[15]:** Only for spans that represent an operation on a single message.
 
-**[16]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+**[16]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+**[17]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+
+**[18]:** When observed from the client side, this SHOULD represent the immediate server peer address.
 When observed from the server side, this SHOULD represent the physical server address.
 
-**[17]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
+**[19]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
 
-**[18]:** If different than `server.address` and if `server.socket.address` is set.
+**[20]:** If different than `server.address` and if `server.socket.address` is set.
 
-**[19]:** When observed from the client side, this SHOULD represent the immediate server peer port.
+**[21]:** When observed from the client side, this SHOULD represent the immediate server peer port.
 When observed from the server side, this SHOULD represent the physical server port.
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.

@@ -9,7 +9,7 @@ This repository is currently using [this specification version][SpecificationVer
 
 ## Read the docs
 
-The documentation currently resides in the [doc](docs/README.md) folder.
+The documentation currently resides in the [docs](docs/README.md) folder.
 
 ## Contributing
 
