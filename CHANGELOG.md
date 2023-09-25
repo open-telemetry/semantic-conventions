@@ -114,6 +114,8 @@ release.
   ([#296](https://github.com/open-telemetry/semantic-conventions/pull/296))
 - Introducing Android `android.os.api_level` resource attribute.
   ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
+- Added `os.build_id` resource attribute.
+  ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
 - Add `host.ip` resource attribute convention.
   ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
 

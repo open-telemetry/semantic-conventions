@@ -368,10 +368,6 @@ This span type represents an inbound HTTP request.
 
 For an HTTP server span, `SpanKind` MUST be `Server`.
 
-Given an inbound request for a route (e.g. `"/users/:userID?"`) the `name` attribute of the span SHOULD be set to this route.
-
-If the route cannot be determined, the `name` attribute MUST be set as defined in the general semantic conventions for HTTP.
-
 <!-- semconv trace.http.server(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
