@@ -116,7 +116,8 @@ release.
   ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
 - Added `os.build_id` resource attribute.
   ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
-- BREAKING: Rename `cloud.platform` to `cloud.service.name`. 
+- BREAKING: Rename `cloud.platform` to `cloud.service.name`.
+  ([#344](https://github.com/open-telemetry/semantic-conventions/pull/344))
 
 ## v1.21.0 (2023-07-13)
 

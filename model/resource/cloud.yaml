@@ -38,6 +38,11 @@ groups:
         brief: >
           The cloud account ID the resource is assigned to.
         examples: ['111111111111', 'opentelemetry']
+      - id: account.name
+        type: string
+        brief: >
+          The cloud account name or alias the resource is assigned to.
+        examples: [ 'dev-env', 'prod-env' ]
       - id: region
         type: string
         brief: >
@@ -174,6 +179,6 @@ groups:
               value: 'tencent_cloud_scf'
               brief: Tencent Cloud Serverless Cloud Function (SCF)
         brief: >
-          The cloud platform in use.
+          The cloud service name in use.
         note: >
           The prefix of the service SHOULD match the one specified in `cloud.provider`.
