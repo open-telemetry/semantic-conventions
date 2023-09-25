@@ -88,8 +88,8 @@ Examples of span names:
 | `rpc.system` | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
 | `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [1] | `myservice.EchoService` | Recommended |
 | `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [2] | `exampleMethod` | Recommended |
-| [`network.server.address`](../general/attributes.md) | string | Server address of the network connection - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock`; `proxy.example.com` | Recommended: If different than `server.address`. |
-| [`network.server.port`](../general/attributes.md) | int | Server port number of the network connection. | `65123` | Recommended: [4] |
+| [`network.server.address`](../general/attributes.md) | string | Server address of the (physical) network connection - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock`; `proxy.example.com` | Recommended: If different than `server.address`. |
+| [`network.server.port`](../general/attributes.md) | int | Server port number of the (physical) network connection. | `65123` | Recommended: [4] |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](../general/attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
@@ -140,7 +140,7 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 <!-- semconv rpc.client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.server.ip`](../general/attributes.md) | string | Server IP address of the network connection. | `10.1.2.80` | Recommended: If different than `network.server.address`. |
+| [`network.server.ip`](../general/attributes.md) | string | Server IP address of the (physical) network connection. | `10.1.2.80` | Recommended: If different than `network.server.address`. |
 <!-- endsemconv -->
 
 ### Server attributes
@@ -150,8 +150,8 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 |---|---|---|---|---|
 | [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`client.port`](../general/attributes.md) | int | Client port number. [2] | `65123` | Recommended |
-| [`network.client.address`](../general/attributes.md) | string | Client address of the network connection - IP address or Unix domain socket name. | `/tmp/my.sock`; `10.1.2.80` | Recommended: If different than `client.address`. |
-| [`network.client.port`](../general/attributes.md) | int | Client port number of the network connection. | `65123` | Recommended: [3] |
+| [`network.client.address`](../general/attributes.md) | string | Client address of the (physical) network connection - IP address or Unix domain socket name. | `/tmp/my.sock`; `10.1.2.80` | Recommended: If different than `client.address`. |
+| [`network.client.port`](../general/attributes.md) | int | Client port number of the (physical) network connection. | `65123` | Recommended: [3] |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 

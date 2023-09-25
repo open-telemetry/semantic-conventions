@@ -56,19 +56,19 @@ groups:
           of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
       - id: client.address
         type: string
-        brief: Client address of the network connection - IP address or Unix domain socket name.
+        brief: Client address of the (physical) network connection - IP address or Unix domain socket name.
         examples: ['/tmp/my.sock', '10.1.2.80']
         requirement_level:
           recommended: If different than `client.address`.
       - id: client.port
         type: int
-        brief: Client port number of the network connection.
+        brief: Client port number of the (physical) network connection.
         examples: [65123]
         requirement_level:
           recommended: If different than `client.port` and if `network.client.address` is set.
       - id: server.address
         type: string
-        brief: Server address of the network connection - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name.
+        brief: Server address of the (physical) network connection - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name.
         examples: ['example.com', '10.1.2.80', '/tmp/my.sock', 'proxy.example.com']
         note: >
           Typically an IP address or Unix domain socket name, but can be domain name if available without reverse DNS
@@ -77,13 +77,13 @@ groups:
           recommended: If different than `server.address`.
       - id: server.port
         type: int
-        brief: Server port number of the network connection.
+        brief: Server port number of the (physical) network connection.
         examples: [65123]
         requirement_level:
           recommended: If different than `server.port` and if `network.server.address` is set.
       - id: server.ip
         type: string
-        brief: Server IP address of the network connection.
+        brief: Server IP address of the (physical) network connection.
         examples: ['10.1.2.80']
         requirement_level:
           recommended: If different than `network.server.address`.
