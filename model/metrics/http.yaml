@@ -66,7 +66,9 @@ groups:
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
-      - ref: network.server.address
+      - ref: network.peer.address
+        requirement_level:
+          recommended: If different than `server.address`.
       - ref: error.type
         requirement_level:
           conditionally_required: If request has ended with an error.

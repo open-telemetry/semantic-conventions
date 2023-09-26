@@ -234,20 +234,17 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [1] | `3` | Recommended: if and only if request was retried. |
-| [`network.server.address`](../general/attributes.md) | string | Server address of the (physical) network connection - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock`; `proxy.example.com` | Recommended: If different than `server.address`. |
-| [`network.server.ip`](../general/attributes.md) | string | Server IP address of the (physical) network connection. | `10.1.2.80` | Recommended: If different than `network.server.address`. |
-| [`network.server.port`](../general/attributes.md) | int | Server port number of the (physical) network connection. | `65123` | Recommended: [3] |
-| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `80`; `8080`; `443` | Conditionally Required: [6] |
-| [`url.full`](../url/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [7] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
+| [`network.peer.address`](../general/attributes.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended: If different than `server.address`. |
+| [`network.peer.port`](../general/attributes.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
+| `proxy.address` | string | Proxy address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. | `proxy.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `proxy.port` | int | Proxy port number. | `65123` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
+| [`url.full`](../url/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [5] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
 
 **[1]:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
-**[2]:** Typically an IP address or Unix domain socket name, but can be domain name if available without reverse DNS lookup.
-
-**[3]:** If different than `server.port` and if `network.server.address` is set.
-
-**[4]:** Determined by using the first of the following that applies
+**[2]:** Determined by using the first of the following that applies
 
 - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form
@@ -256,11 +253,11 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
 `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-**[5]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
+**[3]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
 
-**[6]:** If not default (`80` for `http` scheme, `443` for `https`).
+**[4]:** If not default (`80` for `http` scheme, `443` for `https`).
 
-**[7]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless.
+**[5]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password should be redacted and attribute's value should be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed) and SHOULD NOT be validated or modified except for sanitizing purposes.
 
@@ -364,14 +361,14 @@ For an HTTP server span, `SpanKind` MUST be `Server`.
 | `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
 | [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `83.164.160.102` | Recommended |
 | [`client.port`](../general/attributes.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [3] | `65123` | Recommended |
-| [`network.client.address`](../general/attributes.md) | string | Client address of the (physical) network connection - IP address or Unix domain socket name. | `/tmp/my.sock`; `10.1.2.80` | Recommended: If different than `client.address`. |
-| [`network.client.port`](../general/attributes.md) | int | Client port number of the (physical) network connection. | `65123` | Recommended: [4] |
-| [`network.server.address`](../general/attributes.md) | string | Local socket address. Useful in case of a multi-IP host. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock`; `proxy.example.com` | Opt-In |
-| [`network.server.port`](../general/attributes.md) | int | Local socket port. Useful in case of a multi-port host. | `65123` | Opt-In |
-| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [7] | `80`; `8080`; `443` | Recommended: [8] |
-| [`url.path`](../url/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [9] | `/search` | Required |
-| [`url.query`](../url/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [10] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
+| [`network.local.address`](../general/attributes.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` | Opt-In |
+| [`network.local.port`](../general/attributes.md) | int | Local socket port. Useful in case of a multi-port host. | `65123` | Opt-In |
+| [`network.peer.address`](../general/attributes.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended: If different than `client.address`. |
+| [`network.peer.port`](../general/attributes.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Recommended: [6] |
+| [`url.path`](../url/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [7] | `/search` | Required |
+| [`url.query`](../url/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
@@ -381,11 +378,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[3]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
 
-**[4]:** If different than `client.port` and if `network.client.address` is set.
-
-**[5]:** Typically an IP address or Unix domain socket name, but can be domain name if available without reverse DNS lookup.
-
-**[6]:** Determined by using the first of the following that applies
+**[4]:** Determined by using the first of the following that applies
 
 - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
   include host identifier.
@@ -395,18 +388,18 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
-**[7]:** Determined by using the first of the following that applies
+**[5]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
 
-**[8]:** If not default (`80` for `http` scheme, `443` for `https`).
+**[6]:** If not default (`80` for `http` scheme, `443` for `https`).
 
-**[9]:** When missing, the value is assumed to be `/`
+**[7]:** When missing, the value is assumed to be `/`
 
-**[10]:** Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
+**[8]:** Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 

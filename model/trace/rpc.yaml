@@ -49,8 +49,6 @@ groups:
           (e.g., method actually executing the call on the server side,
           RPC client stub method on the client side).
         examples: "exampleMethod"
-      - ref: network.server.address
-      - ref: network.server.port
       - ref: network.transport
       - ref: network.type
       - ref: server.address
@@ -70,7 +68,14 @@ groups:
     brief: 'This document defines semantic conventions for remote procedure call client spans.'
     extends: rpc
     attributes:
-      - ref: network.server.ip
+      - ref: network.peer.address
+        requirement_level:
+          recommended: If different than `server.address`.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
+      - ref: proxy.address
+      - ref: proxy.port
 
   - id: rpc.server
     prefix: rpc
@@ -81,8 +86,12 @@ groups:
     attributes:
       - ref: client.address
       - ref: client.port
-      - ref: network.client.address
-      - ref: network.client.port
+      - ref: network.peer.address
+        requirement_level:
+          recommended: If different than `client.address`.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
       - ref: network.transport
       - ref: network.type
 

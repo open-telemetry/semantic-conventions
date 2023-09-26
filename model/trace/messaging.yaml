@@ -173,16 +173,20 @@ groups:
           This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
         requirement_level:
           conditionally_required: If available.
-      - ref: network.server.address
+      - ref: network.peer.address
+        requirement_level:
+          recommended: If different than `server.address`.
         tag: connection-level
-      - ref: network.server.port
-        tag: connection-level
-      - ref: network.server.ip
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
         tag: connection-level
       - ref: network.transport
         tag: connection-level
       - ref: network.type
         tag: connection-level
+      - ref: proxy.address
+      - ref: proxy.port
       - ref: network.protocol.name
         examples: ['amqp', 'mqtt']
       - ref: network.protocol.version

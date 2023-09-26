@@ -170,19 +170,12 @@ if they do not cause breaking changes to HTTP semantic conventions.
 | `network.type` | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | `network.protocol.name` | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
 | `network.protocol.version` | string | Version of the application layer protocol used. See note below. [1] | `3.1.1` | Recommended |
-| `network.client.address` | string | Client address of the (physical) network connection - IP address or Unix domain socket name. | `/tmp/my.sock`; `10.1.2.80` | Recommended: If different than `client.address`. |
-| `network.client.port` | int | Client port number of the (physical) network connection. | `65123` | Recommended: [2] |
-| `network.server.address` | string | Server address of the (physical) network connection - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock`; `proxy.example.com` | Recommended: If different than `server.address`. |
-| `network.server.port` | int | Server port number of the (physical) network connection. | `65123` | Recommended: [4] |
-| `network.server.ip` | string | Server IP address of the (physical) network connection. | `10.1.2.80` | Recommended: If different than `network.server.address`. |
+| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `network.peer.port` | int | Peer port number of the network connection. | `65123` | Recommended |
+| `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `network.local.port` | int | Local port number of the network connection. | `65123` | Recommended |
 
 **[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[2]:** If different than `client.port` and if `network.client.address` is set.
-
-**[3]:** Typically an IP address or Unix domain socket name, but can be domain name if available without reverse DNS lookup.
-
-**[4]:** If different than `server.port` and if `network.server.address` is set.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
