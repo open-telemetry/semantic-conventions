@@ -211,3 +211,10 @@ A CronJob creates Jobs on a repeating schedule.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+
+## Well-Known Labels
+
+There are certain Kubernetes [Well-Known Labels and Annotations](https://kubernetes.io/docs/reference/labels-annotations-taints/) that SHOULD align to OpenTelemetry resource attributes. Labels are typically converted to existing OpenTelemetry attributes automatically using an OpenTelemetry Collector component like the [Kubernetes Attribute Processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/k8sattributesprocessor).
+
+* The Well-Known Label `app.kubernetes.io/name` SHOULD align to the OpenTelemetry resource attribute `service.name`.
+* The Well-Known Label `app.kubernetes.io/version` SHOULD align to the OpenTelemetry resource attribute `service.version`.
