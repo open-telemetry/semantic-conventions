@@ -21,18 +21,18 @@ key, but non-obvious, aspects:
 - All descriptions, normative language are defined in the `docs/`
   directory.
   - We provide tooling to generate Markdown documentation from the formal
-    YAML definitons.  See [Yaml to Markdown](#yaml-to-markdown).
+    YAML definitons. See [Yaml to Markdown](#yaml-to-markdown).
   - We use Hugo to render [semantic conventions on our website](https://opentelemetry.io/docs/specs/semconv/).
     You will see `<!--- Hugo front matter used to generate ...` sections
-    in markdown.  See [Hugo frontmatter](#hugo-frontmatter) for details.
+    in markdown. See [Hugo frontmatter](#hugo-frontmatter) for details.
 - All changes to existing attributes, metrics, etc. MUST be allowed as
   per our [stability guarantees](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/versioning-and-stability.md#semantic-conventions-stability) and
-  defined in a schema file.  As part of any contribution, you should
+  defined in a schema file. As part of any contribution, you should
   include attribute changes defined in the `schema-next.yaml` file.
   For details, please read [the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
 - After creating a pull request, please update the [CHANGELOG](CHANGELOG.md) file with
   a description of your changes.
-  
+
 Please make sure all Pull Requests are compliant with these rules!
 
 ### Hugo frontmatter

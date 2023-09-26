@@ -47,6 +47,7 @@ instruments not explicitly defined in the specification.
   * [Metric: `system.processes.count`](#metric-systemprocessescount)
   * [Metric: `system.processes.created`](#metric-systemprocessescreated)
 - [`system.{os}.` - OS Specific System Metrics](#systemos---os-specific-system-metrics)
+  * [Metric: `system.linux.memory.available`](#metric-systemlinuxmemoryavailable)
 
 <!-- tocstop -->
 
@@ -739,3 +740,17 @@ an `{os}` prefix to split this metric across OSes.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/document-status.md
 [MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/metrics/metric-requirement-level.md#recommended
+
+### Metric: `system.linux.memory.available`
+
+<!-- semconv metric.system.linux.memory.available(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.linux.memory.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping [1] |
+
+**[1]:** This is an alternative to `system.memory.usage` metric with `state=free`.
+Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
+This is supposed to be more accurate than just "free" memory.
+For reference, see the calculations [here](https://superuser.com/a/980821).
+See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
+<!-- endsemconv -->

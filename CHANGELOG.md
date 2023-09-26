@@ -7,6 +7,8 @@ release.
 
 ## Unreleased
 
+- Adds `session.id` and session.md to general docs and model
+([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
   ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
@@ -103,6 +105,17 @@ release.
 - BREAKING: Rename `messaging.message.payload_size_bytes` to `messaging.message.body.size`,
   remove `messaging.message.payload_compressed_size_bytes`.
   ([#229](https://github.com/open-telemetry/semantic-conventions/pull/229))
+- Add `system.linux.memory.available` metric.
+  ([#323](https://github.com/open-telemetry/semantic-conventions/pull/323))
+- BREAKING: Rename `http.server.request.size` metric to `http.server.request.body.size`
+  and `http.server.response.size` metric to `http.server.response.body.size`
+  ([#247](https://github.com/open-telemetry/semantic-conventions/pull/247))
+- Move non-`network.*` attributes out of network.yaml.
+  ([#296](https://github.com/open-telemetry/semantic-conventions/pull/296))
+- Introducing Android `android.os.api_level` resource attribute.
+  ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
+- Added `os.build_id` resource attribute.
+  ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
 
 ## v1.21.0 (2023-07-13)
 
