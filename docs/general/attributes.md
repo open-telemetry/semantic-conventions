@@ -233,12 +233,14 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv network-core -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.transport` | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `udp` | Recommended |
+| `network.transport` | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Conditionally Required: [1] |
 | `network.type` | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
 | `network.protocol.name` | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| `network.protocol.version` | string | Version of the application layer protocol used. See note below. [1] | `3.1.1` | Recommended |
+| `network.protocol.version` | string | Version of the application layer protocol used. See note below. [2] | `3.1.1` | Recommended |
 
-**[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[1]:** Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
