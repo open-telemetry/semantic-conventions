@@ -108,6 +108,8 @@ release.
 - BREAKING: Rename `http.server.request.size` metric to `http.server.request.body.size`
   and `http.server.response.size` metric to `http.server.response.body.size`
   ([#247](https://github.com/open-telemetry/semantic-conventions/pull/247))
+- Add `system.memory.limit` metric.
+  ([#346](https://github.com/open-telemetry/semantic-conventions/pull/346))
 
 ## v1.21.0 (2023-07-13)
 
