@@ -467,6 +467,19 @@ groups:
         brief: >
           Represents the human-readable identifier of the node/instance to which a request was routed.
         examples: ["instance-0000000001"]
+      - id: path_parts
+        type: template[string]
+        requirement_level:
+          conditionally_required: when the url has dynamic values
+        tag: call-level-tech-specific
+        brief: >
+          A dynamic value in the url path.
+        note: >
+          Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format
+          `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD
+          reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
+          in order to map the path part values to their names.
+        examples: ['db.elasticsearch.path_parts.index=test-index', 'db.elasticsearch.path_parts.doc_id=123']
 
   - id: db.sql
     prefix: 'db.sql'
