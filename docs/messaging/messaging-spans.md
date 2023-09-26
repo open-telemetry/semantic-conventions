@@ -449,7 +449,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
-| `messaging.operation` |  | `"receive"` | `"receive"` |
+| `messaging.operation` | `"publish"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
 ### Batch delivering
@@ -490,7 +490,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation` |  |  | `"deliver"` |
+| `messaging.operation` | `"publish"` | `"publish"` | `"deliver"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
 
