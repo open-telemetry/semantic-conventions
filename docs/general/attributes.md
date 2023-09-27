@@ -166,6 +166,20 @@ with `AF_INET` address family, `network.peer.address` and `network.peer.port` re
 `network.local.address` and `network.local.port` can be obtained by calling `getsockname` method on [Linux](https://man7.org/linux/man-pages/man2/getsockname.2.html) or
 [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname).
 
+#### Client/server examples using  `network.peer.*` and `network.local.*`
+
+##### Simple client/server example
+
+![simple.png](simple.png)
+
+##### Client/server example with reverse proxy
+
+![reverse-proxy.png](reverse-proxy.png)
+
+##### Client/server example with forward proxy
+
+![forward-proxy.png](forward-proxy.png)
+
 ### Source and destination attributes
 
 These attributes may be used to describe the sender and receiver of a network exchange/packet. These should be used
