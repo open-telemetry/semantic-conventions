@@ -463,7 +463,6 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `example.com` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `80`; `8080`; `443` | Conditionally Required: [6] |
-| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [7] | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
@@ -509,9 +508,6 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 **[5]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
 
 **[6]:** If not default (`80` for `http` scheme, `443` for `https`).
-
-**[7]:** When observed from the client side, this SHOULD represent the immediate server peer address.
-When observed from the server side, this SHOULD represent the physical server address.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -559,7 +555,6 @@ This metric is optional.
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `example.com` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `80`; `8080`; `443` | Conditionally Required: [6] |
-| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [7] | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
@@ -605,9 +600,6 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 **[5]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
 
 **[6]:** If not default (`80` for `http` scheme, `443` for `https`).
-
-**[7]:** When observed from the client side, this SHOULD represent the immediate server peer address.
-When observed from the server side, this SHOULD represent the physical server address.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -655,7 +647,6 @@ This metric is optional.
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [3] | `3.1.1` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `example.com` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `80`; `8080`; `443` | Conditionally Required: [6] |
-| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [7] | `10.5.3.2` | Recommended: If different than `server.address`. |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
@@ -701,9 +692,6 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 **[5]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
 
 **[6]:** If not default (`80` for `http` scheme, `443` for `https`).
-
-**[7]:** When observed from the client side, this SHOULD represent the immediate server peer address.
-When observed from the server side, this SHOULD represent the physical server address.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
