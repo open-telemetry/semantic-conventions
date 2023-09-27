@@ -118,6 +118,9 @@ release.
   ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
 - Added `os.build_id` resource attribute.
   ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
+- BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
+  and `http.client.request.duration`.
+  ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
 - Encourage setting `network.transport` when reporting port numbers
   ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
 
