@@ -18,10 +18,10 @@ Particular operations may refer to or require some of these attributes.
 - [Server and client attributes](#server-and-client-attributes)
   * [Server attributes](#server-attributes)
     + [`server.address`](#serveraddress)
-    + [`server.socket.*` attributes](#serversocket-attributes)
   * [Client attributes](#client-attributes)
     + [Connecting through intermediary](#connecting-through-intermediary)
 - [Network attributes](#network-attributes)
+  + [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
   * [Source and destination attributes](#source-and-destination-attributes)
     + [Source](#source)
     + [Destination](#destination)
@@ -67,8 +67,6 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 `server.address` and `server.port` represent logical server name and port. Semantic conventions that refer to these attributes SHOULD
 specify what these attributes mean in their context.
 
-Semantic conventions and instrumentations that populate both logical (`server.address` and `server.port`) and socket-level (`server.socket.*`) attributes SHOULD set socket-level attributes only when they don't match logical ones. For example, when direct connection to the remote destination is established and `server.address` is populated, `server.socket.domain` SHOULD NOT be set. Check out [Connecting through intermediary](#connecting-through-intermediary) for more information.
-
 #### `server.address`
 
 For IP-based communication, the name should be a DNS host name of the service. On client side it matches remote service name, on server side, it represents local service name as seen externally on clients.
@@ -84,28 +82,6 @@ If there is no such file (e.g., anonymous pipe),
 the name should explicitly be set to the empty string to distinguish it from the case where the name is just unknown or not covered by the instrumentation.
 
 For Unix domain socket, `server.address` attribute represents remote endpoint address on the client side and local endpoint address on the server side.
-
-#### `server.socket.*` attributes
-
-_Note: this section applies to socket connections visible to instrumentations. Instrumentations have limited knowledge about intermediaries communications goes through such as [transparent proxies](https://www.rfc-editor.org/rfc/rfc3040.html#section-2.5) or VPN servers. Higher-level instrumentations such as HTTP don't always have access to the socket-level information and may not be able to populate socket-level attributes._
-
-Socket-level attributes identify peer and host that are directly connected to each other. Since instrumentations may have limited knowledge on network information, instrumentations SHOULD populate such attributes to the best of their knowledge when populate them at all.
-
-_Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
-
-For IP-based communication, `server.socket.domain` represents either fully qualified domain name of immediate peer and `server.socket.address` to the IP address (or one specific to network family).
-
-`server.socket.domain`, `server.socket.address`, and `server.socket.port` describe server side of socket communication. For example, when connecting using `connect(2)`
-on [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect)
-with `AF_INET` address family, they represent `sin_addr` and `sin_port` fields of [`sockaddr_in`](https://man7.org/linux/man-pages/man7/ip.7.html) structure.
-
-On client side, address and port can be obtained by calling `getpeername` method on [Linux](https://man7.org/linux/man-pages/man2/getpeername.2.html) or
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername).
-
-On server side address and port can be obtained by calling `getsockname` method on [Linux](https://man7.org/linux/man-pages/man2/getsockname.2.html) or
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname).
-
-`server.socket.port` SHOULD only be populated for families that have notion of port.
 
 ### Client attributes
 
@@ -124,37 +100,6 @@ if they do not cause breaking changes to HTTP semantic conventions.
 
 **[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
 <!-- endsemconv -->
-
-`client.socket.address` and `client.socket.port` represent physical client name and port.
-
-For IP-based communication, the `client.socket.address` should be a IP address, Unix domain name, or another address specific to network type.
-
-On server side, `client.socket.address` identifies the direct peer endpoint socket address. For example, when using `bind(2)`
-on [Linux](https://man7.org/linux/man-pages/man2/bind.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind)
-with `AF_INET` address family, represent `sin_addr` and `sin_port` fields of `sockaddr_in` structure.
-
-On client side it represents local socket address and port can be obtained by calling `getsockname` method on [Linux](https://man7.org/linux/man-pages/man2/getsockname.2.html),
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname).
-
-#### Connecting through intermediary
-
-When connecting to the remote destination through an intermediary (e.g. proxy), client instrumentations SHOULD set `server.address` and `server.port` to logical remote destination address and `server.socket.name`, `server.socket.address` and `server.socket.port` to the socket peer connection is established with - the intermediary.
-
-`server.socket.domain` SHOULD be set to the DNS name used to resolve `server.socket.address` if it's readily available. Instrumentations
-SHOULD NOT do DNS lookups to obtain `server.socket.address`. If peer information available to instrumentation
-can represent DNS name or IP address, instrumentation SHOULD NOT attempt to parse it and SHOULD only set `server.socket.domain`.
-
-_Note: Telemetry consumers can obtain IP address from telemetry item by first checking `server.socket.address` and if not present, falling back to `server.socket.domain`._
-
-For example, [URL Host component](https://www.rfc-editor.org/rfc/rfc3986#section-3.2.2) can contain IP address or DNS name and
-instrumentations that don't have access to socket-level communication can only populate `server.socket.domain`.
-Instrumentations that have access to socket connection, may be able to populate valid `server.socket.address` instead of or
-in addition to DNS name.
-
-Server instrumentations that leverage `client.address` and `client.port` attributes SHOULD set them to originating client address and port behind all proxies if this information is available.
-The `client.socket.address` and `client.socket.port` attributes then SHOULD contain immediate client peer address and port.
-
-If only immediate peer information is available, it should be set on `client.address` and `client.port` and `client.socket.*` attributes SHOULD NOT be set.
 
 ## Network attributes
 
@@ -193,6 +138,34 @@ if they do not cause breaking changes to HTTP semantic conventions.
 | `ipv4` | IPv4 |
 | `ipv6` | IPv6 |
 <!-- endsemconv -->
+
+#### `network.peer.*` and `network.local.*` attributes
+
+These attributes identify network peers that are directly connected to each other.
+
+For IP-based communication, `network.peer.address` and `network.local.address` should be IP addresses, Unix domain names, or other addresses specific to network type.
+
+Semantic conventions and instrumentations that populate `address`/`port` pairs
+on `server.*`, `client.*`, `destination.*` or `source.*`, SHOULD only populate the `address`/`port` pair on
+`network.peer.*` and `network.local.*` when they are not the same.
+
+`network.peer.port` and `network.local.port` SHOULD only be populated for families that have notion of port.
+
+_Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
+
+When connecting using `connect(2)`
+on [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect)
+with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields of [`sockaddr_in`](https://man7.org/linux/man-pages/man7/ip.7.html) structure.
+
+When using `bind(2)`
+on [Linux](https://man7.org/linux/man-pages/man2/bind.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind)
+with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields of `sockaddr_in` structure.
+
+`network.peer.address` and `network.peer.port` can be obtained by calling `getpeername` method on [Linux](https://man7.org/linux/man-pages/man2/getpeername.2.html) or
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername).
+
+`network.local.address` and `network.local.port` can be obtained by calling `getsockname` method on [Linux](https://man7.org/linux/man-pages/man2/getsockname.2.html) or
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname).
 
 ### Source and destination attributes
 
