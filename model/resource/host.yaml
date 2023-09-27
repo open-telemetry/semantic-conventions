@@ -77,8 +77,8 @@ groups:
           Available MAC addresses of the host, excluding loopback interfaces.
         note: >
           MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
-          as hyphen-separated octets in hexadecimal form from most to least significant.
-        examples: ['ac-de-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
+          as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+        examples: ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
   - id: host.cpu
     prefix: host.cpu
     type: resource
