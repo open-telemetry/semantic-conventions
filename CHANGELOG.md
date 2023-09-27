@@ -116,6 +116,8 @@ release.
   ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
 - Added `os.build_id` resource attribute.
   ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
+- Add `geo` fields into general attribute.
+  ([#351](https://github.com/open-telemetry/semantic-conventions/pull/351))
 
 ## v1.21.0 (2023-07-13)
 
