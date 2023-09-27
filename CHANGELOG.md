@@ -121,9 +121,6 @@ release.
 - BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
   and `http.client.request.duration`.
   ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
-- BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
-  and `http.client.request.duration`.
-  ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
 - BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
   with `network.(peer|local).(address|port)`.
   ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
