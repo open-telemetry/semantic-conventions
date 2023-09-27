@@ -19,9 +19,8 @@ Particular operations may refer to or require some of these attributes.
   * [Server attributes](#server-attributes)
     + [`server.address`](#serveraddress)
   * [Client attributes](#client-attributes)
-    + [Connecting through intermediary](#connecting-through-intermediary)
 - [Network attributes](#network-attributes)
-  + [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
+  * [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
   * [Source and destination attributes](#source-and-destination-attributes)
     + [Source](#source)
     + [Destination](#destination)
@@ -139,7 +138,7 @@ if they do not cause breaking changes to HTTP semantic conventions.
 | `ipv6` | IPv6 |
 <!-- endsemconv -->
 
-#### `network.peer.*` and `network.local.*` attributes
+### `network.peer.*` and `network.local.*` attributes
 
 These attributes identify network peers that are directly connected to each other.
 
