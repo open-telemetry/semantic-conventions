@@ -136,8 +136,6 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 |---|---|---|---|---|
 | [`network.peer.address`](../general/attributes.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended: If different than `server.address`. |
 | [`network.peer.port`](../general/attributes.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
-| `proxy.address` | string | Proxy address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. | `proxy.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `proxy.port` | int | Proxy port number. | `65123` | Recommended |
 <!-- endsemconv -->
 
 ### Server attributes

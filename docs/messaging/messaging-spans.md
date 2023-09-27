@@ -235,8 +235,6 @@ The following operations related to messages are defined for these semantic conv
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [16] | `3.1.1` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| `proxy.address` | string | Proxy address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. | `proxy.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `proxy.port` | int | Proxy port number. | `65123` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.

@@ -74,8 +74,6 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
-      - ref: proxy.address
-      - ref: proxy.port
 
   - id: rpc.server
     prefix: rpc

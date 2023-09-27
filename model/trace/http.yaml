@@ -114,8 +114,6 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
-      - ref: proxy.address
-      - ref: proxy.port
       - ref: url.full
         sampling_relevant: true
         requirement_level: required

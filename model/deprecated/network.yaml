@@ -8,7 +8,7 @@ groups:
       - id: sock.peer.name
         type: string
         stability: deprecated
-        brief: Deprecated, use `proxy.address` if applicable.
+        brief: Deprecated, no replacement at this time.
         examples: ['/var/my.sock']
       - id: sock.peer.addr
         type: string

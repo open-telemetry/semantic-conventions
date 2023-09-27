@@ -185,8 +185,6 @@ groups:
         tag: connection-level
       - ref: network.type
         tag: connection-level
-      - ref: proxy.address
-      - ref: proxy.port
       - ref: network.protocol.name
         examples: ['amqp', 'mqtt']
       - ref: network.protocol.version
