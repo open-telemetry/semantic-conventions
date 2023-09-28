@@ -152,8 +152,6 @@ Semantic conventions and instrumentations that populate `address`/`port` pairs
 on `server.*`, `client.*`, `destination.*` or `source.*`, SHOULD only populate the `address`/`port` pair on
 `network.peer.*` and `network.local.*` when they are not the same.
 
-`network.peer.port` and `network.local.port` SHOULD only be populated for families that have notion of port.
-
 _Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
 
 When connecting using `connect(2)`
