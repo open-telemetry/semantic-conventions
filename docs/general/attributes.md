@@ -155,17 +155,17 @@ on `server.*`, `client.*`, `destination.*` or `source.*`, SHOULD only populate t
 _Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
 
 When connecting using `connect(2)`
-on [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect)
+on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect)
 with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields of [`sockaddr_in`](https://man7.org/linux/man-pages/man7/ip.7.html) structure.
 
 When using `bind(2)`
-on [Linux](https://man7.org/linux/man-pages/man2/bind.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind)
+on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/bind.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind)
 with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields of `sockaddr_in` structure.
 
-`network.peer.address` and `network.peer.port` can be obtained by calling `getpeername` method on [Linux](https://man7.org/linux/man-pages/man2/getpeername.2.html) or
+`network.peer.address` and `network.peer.port` can be obtained by calling `getpeername` method on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getpeername.2.html) or
 [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername).
 
-`network.local.address` and `network.local.port` can be obtained by calling `getsockname` method on [Linux](https://man7.org/linux/man-pages/man2/getsockname.2.html) or
+`network.local.address` and `network.local.port` can be obtained by calling `getsockname` method on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getsockname.2.html) or
 [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname).
 
 #### Client/server examples using  `network.peer.*` and `network.local.*`
