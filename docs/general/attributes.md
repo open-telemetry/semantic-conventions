@@ -146,7 +146,7 @@ if they do not cause breaking changes to HTTP semantic conventions.
 
 These attributes identify network peers that are directly connected to each other.
 
-For IP-based communication, `network.peer.address` and `network.local.address` should be IP addresses, Unix domain socket names, or other addresses specific to network type.
+`network.peer.address` and `network.local.address` should be IP addresses, Unix domain socket names, or other addresses specific to network type.
 
 _Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
 
