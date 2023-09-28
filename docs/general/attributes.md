@@ -150,19 +150,20 @@ For IP-based communication, `network.peer.address` and `network.local.address` s
 
 _Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
 
-When connecting using `connect(2)`
-on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect)
-with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields of [`sockaddr_in`](https://man7.org/linux/man-pages/man7/ip.7.html) structure.
+When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect))
+or `bind(2)`([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/bind.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind))
+with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields
+of `sockaddr_in` structure.
 
-When using `bind(2)`
-on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/bind.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind)
-with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields of `sockaddr_in` structure.
+`network.peer.address` and `network.peer.port` can be obtained by calling `getpeername` method
+([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getpeername.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername)).
 
-`network.peer.address` and `network.peer.port` can be obtained by calling `getpeername` method on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getpeername.2.html) or
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername).
-
-`network.local.address` and `network.local.port` can be obtained by calling `getsockname` method on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getsockname.2.html) or
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname).
+`network.local.address` and `network.local.port` can be obtained by calling `getsockname` method
+([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getsockname.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname)).
 
 #### Client/server examples using  `network.peer.*`
 
