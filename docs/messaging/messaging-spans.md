@@ -456,7 +456,7 @@ flowchart LR;
 
 Given is a process P, that publishes two messages to a queue Q on messaging system MS, and a process C, which gets both of them delivered in one batch (Span Recv1) and processes each message separately.
 
-Since a span can only have one parent, the `deliver` span will have no parent will be correlated with the producing spans using links.
+Since a span can only have one parent, the `deliver` span will have no parent and will be correlated with the producing spans using links.
 
 ```mermaid
 flowchart LR;
