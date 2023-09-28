@@ -173,11 +173,7 @@ groups:
             known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header).
             Otherwise, the immediate client peer port.
       - ref: network.peer.address
-        requirement_level:
-          recommended: If different than `client.address`.
       - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
       - ref: url.path
         requirement_level: required
         sampling_relevant: true

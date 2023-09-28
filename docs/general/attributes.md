@@ -148,10 +148,6 @@ These attributes identify network peers that are directly connected to each othe
 
 For IP-based communication, `network.peer.address` and `network.local.address` should be IP addresses, Unix domain socket names, or other addresses specific to network type.
 
-Semantic conventions and instrumentations that populate `address`/`port` pairs
-on `server.*`, `client.*`, `destination.*` or `source.*`, SHOULD only populate the `address`/`port` pair on
-`network.peer.*` and `network.local.*` when they are not the same.
-
 _Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
 
 When connecting using `connect(2)`
@@ -168,7 +164,9 @@ with `AF_INET` address family, `network.peer.address` and `network.peer.port` re
 `network.local.address` and `network.local.port` can be obtained by calling `getsockname` method on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getsockname.2.html) or
 [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname).
 
-#### Client/server examples using  `network.peer.*` and `network.local.*`
+#### Client/server examples using  `network.peer.*`
+
+Note that `network.local.*` attributes are not included in these examples since they are typically Opt-In.
 
 ##### Simple client/server example
 
