@@ -21,7 +21,7 @@ Particular operations may refer to or require some of these attributes.
   * [Client attributes](#client-attributes)
 - [Network attributes](#network-attributes)
   * [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
-    + [Client/server examples using `network.peer.*` and `network.local.*`](#clientserver-examples-using--networkpeer-and-networklocal)
+    + [Client/server examples using `network.peer.*`](#clientserver-examples-using--networkpeer)
       - [Simple client/server example](#simple-clientserver-example)
       - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
       - [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
