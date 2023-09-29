@@ -121,6 +121,8 @@ release.
 - BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
   and `http.client.request.duration`.
   ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
+- Encourage setting `network.transport` when reporting port numbers
+  ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
 
 ## v1.21.0 (2023-07-13)
 
