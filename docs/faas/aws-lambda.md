@@ -56,9 +56,10 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 
 ### AWS X-Ray `Active Tracing` Considerations
 
-When AWS `Active Tracing` is enabled for a lambda, the runtime will automatically generate a span based on configured sampling rates and propagate the span context
-via the `_X_AMZN_TRACE_ID` environment variable (and the `com.amazonaws.xray.traceHeader` system property for Java Lambda functions). This span context is encoded using
-the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/context/api-propagators.md).
+When [AWS `Active Tracing`](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html) is enabled for a lambda,
+the runtime will automatically generate a span based on configured sampling rates and propagate the span context
+via the `_X_AMZN_TRACE_ID` environment variable (and the `com.amazonaws.xray.traceHeader` system property for Java Lambda functions).
+This span context is encoded using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/context/api-propagators.md).
 
 Users MUST be able to configure the propagator to prioritize propagating the X-Ray `Active Tracing` span context.
 (Users probably want this enabled if OpenTelemetry is configured to report spans to AWS X-Ray so their trace is linked together properly.)
