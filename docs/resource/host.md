@@ -6,6 +6,9 @@
 
 **Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
 
+The `host.*` namespace SHOULD be exclusively used to capture resource attributes.
+To report host metrics, the `system.*` namespace SHOULD be used.
+
 <!-- semconv host -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
