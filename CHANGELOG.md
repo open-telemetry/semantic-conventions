@@ -9,6 +9,8 @@ release.
 
 - Adds `session.id` and session.md to general docs and model
 ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
+- Add `container.labels.<key>` attributes.
+  ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
   ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
@@ -116,6 +118,13 @@ release.
   ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
 - Added `os.build_id` resource attribute.
   ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
+- BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
+  and `http.client.request.duration`.
+  ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
+- Encourage setting `network.transport` when reporting port numbers
+  ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
+- BREAKING: Add `url.scheme` to `http.client.*` metrics
+  ([#357](https://github.com/open-telemetry/semantic-conventions/pull/357))
 - Add `host.ip` resource attribute convention.
   ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
 
