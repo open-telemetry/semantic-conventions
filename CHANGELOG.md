@@ -123,6 +123,8 @@ release.
   ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
 - Encourage setting `network.transport` when reporting port numbers
   ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
+- BREAKING: Add `url.scheme` to `http.client.*` metrics
+  ([#357](https://github.com/open-telemetry/semantic-conventions/pull/357))
 
 ## v1.21.0 (2023-07-13)
 
