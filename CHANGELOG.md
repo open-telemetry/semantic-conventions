@@ -9,6 +9,8 @@ release.
 
 - Adds `session.id` and session.md to general docs and model
 ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
+- Add `container.labels.<key>` attributes.
+  ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
   ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
@@ -105,9 +107,24 @@ release.
 - BREAKING: Rename `messaging.message.payload_size_bytes` to `messaging.message.body.size`,
   remove `messaging.message.payload_compressed_size_bytes`.
   ([#229](https://github.com/open-telemetry/semantic-conventions/pull/229))
+- Add `system.linux.memory.available` metric.
+  ([#323](https://github.com/open-telemetry/semantic-conventions/pull/323))
 - BREAKING: Rename `http.server.request.size` metric to `http.server.request.body.size`
   and `http.server.response.size` metric to `http.server.response.body.size`
   ([#247](https://github.com/open-telemetry/semantic-conventions/pull/247))
+- Move non-`network.*` attributes out of network.yaml.
+  ([#296](https://github.com/open-telemetry/semantic-conventions/pull/296))
+- Introducing Android `android.os.api_level` resource attribute.
+  ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
+- Added `os.build_id` resource attribute.
+  ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
+- BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
+  and `http.client.request.duration`.
+  ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
+- Encourage setting `network.transport` when reporting port numbers
+  ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
+- BREAKING: Add `url.scheme` to `http.client.*` metrics
+  ([#357](https://github.com/open-telemetry/semantic-conventions/pull/357))
 
 ## v1.21.0 (2023-07-13)
 

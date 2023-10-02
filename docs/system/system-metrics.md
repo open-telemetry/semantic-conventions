@@ -53,6 +53,7 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   * [Metric: `system.processes.count`](#metric-systemprocessescount)
   * [Metric: `system.processes.created`](#metric-systemprocessescreated)
 - [`system.{os}.` - OS Specific System Metrics](#systemos---os-specific-system-metrics)
+  * [Metric: `system.linux.memory.available`](#metric-systemlinuxmemoryavailable)
 
 <!-- tocstop -->
 
@@ -642,7 +643,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `udp` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
 | `system.network.state` | string | A stateless protocol MUST NOT set this attribute | `close_wait` | Recommended |
 
@@ -745,3 +746,17 @@ an `{os}` prefix to split this metric across OSes.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/document-status.md
 [MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/metrics/metric-requirement-level.md#recommended
+
+### Metric: `system.linux.memory.available`
+
+<!-- semconv metric.system.linux.memory.available(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.linux.memory.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping [1] |
+
+**[1]:** This is an alternative to `system.memory.usage` metric with `state=free`.
+Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
+This is supposed to be more accurate than just "free" memory.
+For reference, see the calculations [here](https://superuser.com/a/980821).
+See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
+<!-- endsemconv -->
