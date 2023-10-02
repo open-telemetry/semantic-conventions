@@ -240,7 +240,7 @@ This span type represents an outbound HTTP request. There are two ways this can 
 
 For an HTTP client span, `SpanKind` MUST be `Client`.
 
-<!-- semconv trace.http.client(full) -->
+<!-- semconv trace.http.client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`http.resend_count`](../attributes-registry/http.md) | int | The ordinal number of request resending attempt (for any reason, including redirects). [1] | `3` | Recommended: if and only if request was retried. |
@@ -363,7 +363,7 @@ This span type represents an inbound HTTP request.
 
 For an HTTP server span, `SpanKind` MUST be `Server`.
 
-<!-- semconv trace.http.server(full) -->
+<!-- semconv trace.http.server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `83.164.160.102` | Recommended |
