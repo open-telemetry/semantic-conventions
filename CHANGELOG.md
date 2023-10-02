@@ -125,6 +125,8 @@ release.
   ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
 - BREAKING: Add `url.scheme` to `http.client.*` metrics
   ([#357](https://github.com/open-telemetry/semantic-conventions/pull/357))
+- BREAKING: Remove `server.socket.address` from HTTP and RPC client metrics.
+  ([#350](https://github.com/open-telemetry/semantic-conventions/pull/350))
 
 ## v1.21.0 (2023-07-13)
 
