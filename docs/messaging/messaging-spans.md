@@ -229,14 +229,14 @@ The following operations related to messages are defined for these semantic conv
 | `messaging.message.conversation_id` | string | The [conversation ID](#conversations) identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [12] |
 | `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [13] | `2738` | Recommended: [14] |
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [15] |
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `mqtt` | Recommended |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [16] | `3.1.1` | Recommended |
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `udp` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [17] | `example.com` | Conditionally Required: If available. |
-| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [18] | `10.5.3.2` | Recommended: If different than `server.address`. |
-| [`server.socket.domain`](../general/attributes.md) | string | Immediate server peer's domain name if available without reverse DNS lookup [19] | `proxy.example.com` | Recommended: [20] |
-| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [21] | `16456` | Recommended: If different than `server.port`. |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [16] | `amqp`; `mqtt` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [17] | `3.1.1` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [18] | `tcp`; `udp` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [19] | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [20] | `example.com` | Conditionally Required: If available. |
+| [`server.socket.address`](../general/attributes.md) | string | Server address of the socket connection - IP address or Unix domain socket name. [21] | `10.5.3.2` | Recommended: If different than `server.address`. |
+| [`server.socket.domain`](../general/attributes.md) | string | Immediate server peer's domain name if available without reverse DNS lookup [22] | `proxy.example.com` | Recommended: [23] |
+| [`server.socket.port`](../general/attributes.md) | int | Server port number of the socket connection. [24] | `16456` | Recommended: If different than `server.port`. |
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
@@ -271,18 +271,28 @@ size should be used.
 
 **[15]:** Only for spans that represent an operation on a single message.
 
-**[16]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[16]:** The value SHOULD be normalized to lowercase.
 
-**[17]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[17]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[18]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+**[18]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[19]:** The value SHOULD be normalized to lowercase.
+
+**[20]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+
+**[21]:** When observed from the client side, this SHOULD represent the immediate server peer address.
 When observed from the server side, this SHOULD represent the physical server address.
 
-**[19]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
+**[22]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
 
-**[20]:** If different than `server.address` and if `server.socket.address` is set.
+**[23]:** If different than `server.address` and if `server.socket.address` is set.
 
-**[21]:** When observed from the client side, this SHOULD represent the immediate server peer port.
+**[24]:** When observed from the client side, this SHOULD represent the immediate server peer port.
 When observed from the server side, this SHOULD represent the physical server port.
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
