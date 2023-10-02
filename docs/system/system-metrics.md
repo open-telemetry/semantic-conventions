@@ -637,9 +637,15 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `udp` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
 | `system.network.state` | string | A stateless protocol MUST NOT set this attribute | `close_wait` | Recommended |
+
+**[1]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
