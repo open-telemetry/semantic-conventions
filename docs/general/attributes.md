@@ -129,11 +129,10 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 <!-- semconv source -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `source.domain` | string | The domain name of the source system. [1] | `foo.example.com` | Recommended |
-| `source.address` | string | Source address, for example IP address or Unix socket name. | `10.5.3.2` | Recommended |
+| `source.address` | string | Source address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | `source.port` | int | Source port number | `3389`; `2888` | Recommended |
 
-**[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
+**[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries (e.g. proxies) if it's available.
 <!-- endsemconv -->
 
 #### Destination
@@ -143,11 +142,10 @@ Destination fields capture details about the receiver of a network exchange/pack
 <!-- semconv destination -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `destination.domain` | string | The domain name of the destination system. [1] | `foo.example.com` | Recommended |
-| `destination.address` | string | Destination address, for example IP address or UNIX socket name. | `10.5.3.2` | Recommended |
+| `destination.address` | string | Destination address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | `destination.port` | int | Destination port number | `3389`; `2888` | Recommended |
 
-**[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
+**[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries (e.g. proxies) if it's available.
 <!-- endsemconv -->
 
 <a name="network-attributes"></a>
