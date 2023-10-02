@@ -230,8 +230,6 @@ groups:
         examples: ['findAndModify', 'HMSET', 'SELECT']
       - ref: server.address
         tag: connection-level
-        requirement_level:
-          conditionally_required: See alternative attributes below.
         brief: >
           Name of the database host.
       - ref: server.port
