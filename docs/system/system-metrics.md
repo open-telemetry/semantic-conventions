@@ -11,6 +11,12 @@ metrics in OpenTelemetry. Consider the [general metric semantic
 conventions](/docs/general/metrics.md#general-metric-semantic-conventions) when creating
 instruments not explicitly defined in the specification.
 
+The `system.*` namespace SHOULD be exclusively used to report hosts' metrics.
+The `system.*` namespace SHOULD only be used when the metrics are collected from within the target system. (physical servers, virtual machines etc).
+Metrics collected from technology-specific, well-defined APIs (e.g. Kubelet's API or container runtimes)
+should be reported under their respective namespace (e.g. k8s.*, container.*).
+Resource attributes related to a host, SHOULD be reported under the `host.*` namespace.
+
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
@@ -637,9 +643,15 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
 | `system.network.state` | string | A stateless protocol MUST NOT set this attribute | `close_wait` | Recommended |
+
+**[1]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

@@ -121,6 +121,14 @@ release.
 - BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
   and `http.client.request.duration`.
   ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
+- Encourage setting `network.transport` when reporting port numbers
+  ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
+- BREAKING: Add `url.scheme` to `http.client.*` metrics
+  ([#357](https://github.com/open-telemetry/semantic-conventions/pull/357))
+- BREAKING: Remove `server.socket.address` from HTTP and RPC client metrics.
+  ([#350](https://github.com/open-telemetry/semantic-conventions/pull/350))
+- Improve network attribute briefs.
+  ([#352](https://github.com/open-telemetry/semantic-conventions/pull/352))
 - BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
   with `network.(peer|local).(address|port)`.
   ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))

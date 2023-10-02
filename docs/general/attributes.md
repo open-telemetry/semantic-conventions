@@ -15,20 +15,21 @@ Particular operations may refer to or require some of these attributes.
 
 <!-- toc -->
 
-- [Server and client attributes](#server-and-client-attributes)
+- [Server, client and shared network attributes](#server-client-and-shared-network-attributes)
+  * [Address and port attributes](#address-and-port-attributes)
   * [Server attributes](#server-attributes)
     + [`server.address`](#serveraddress)
   * [Client attributes](#client-attributes)
-- [Network attributes](#network-attributes)
-  * [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
-    + [Client/server examples using `network.peer.*`](#clientserver-examples-using--networkpeer)
-      - [Simple client/server example](#simple-clientserver-example)
-      - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
-      - [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
   * [Source and destination attributes](#source-and-destination-attributes)
     + [Source](#source)
     + [Destination](#destination)
-  * [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
+  * [Other network attributes](#other-network-attributes)
+    + [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
+      - [Client/server examples using `network.peer.*`](#clientserver-examples-using--networkpeer)
+        * [Simple client/server example](#simple-clientserver-example)
+        * [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
+        * [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
+    + [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
 - [General remote service attributes](#general-remote-service-attributes)
 - [General identity attributes](#general-identity-attributes)
 - [General thread attributes](#general-thread-attributes)
@@ -36,7 +37,10 @@ Particular operations may refer to or require some of these attributes.
 
 <!-- tocstop -->
 
-## Server and client attributes
+<!-- Keep old anchor IDs -->
+<a name="server-and-client-attributes"></a>
+
+## Server, client and shared network attributes
 
 These attributes may be used to describe the client and server in a connection-based network interaction
 where there is one side that initiates the connection (the client is the side that initiates the connection).
@@ -47,6 +51,13 @@ This also covers UDP network interactions where one side initiates the interacti
 
 In an ideal situation, not accounting for proxies, multiple IP addresses or host names,
 the `server.*` attributes are the same on the client and server.
+
+### Address and port attributes
+
+For all IP-based protocols, the "address" should be just the IP-level address.
+Protocol-specific parts of an address are split into other attributes (when applicable) such as "port" attributes for
+TCP and UDP. If such transport-specific information is collected and the attribute name does not already uniquely
+identify the transport, then setting [`network.transport`](#other-network-attributes) is especially encouraged.
 
 ### Server attributes
 
@@ -104,83 +115,6 @@ if they do not cause breaking changes to HTTP semantic conventions.
 **[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
 <!-- endsemconv -->
 
-## Network attributes
-
-> **Warning**
-> Attributes in this section are in use by the HTTP semantic conventions.
-Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
-if they do not cause breaking changes to HTTP semantic conventions.
-
-<!-- semconv network-core -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `network.transport` | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
-| `network.type` | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| `network.protocol.name` | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| `network.protocol.version` | string | Version of the application layer protocol used. See note below. [1] | `3.1.1` | Recommended |
-| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `network.peer.port` | int | Peer port number of the network connection. | `65123` | Recommended |
-| `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `network.local.port` | int | Local port number of the network connection. | `65123` | Recommended |
-
-**[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `tcp` | TCP |
-| `udp` | UDP |
-| `pipe` | Named or anonymous pipe. See note below. |
-| `unix` | Unix domain socket |
-
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `ipv4` | IPv4 |
-| `ipv6` | IPv6 |
-<!-- endsemconv -->
-
-### `network.peer.*` and `network.local.*` attributes
-
-These attributes identify network peers that are directly connected to each other.
-
-`network.peer.address` and `network.local.address` should be IP addresses, Unix domain socket names, or other addresses specific to network type.
-
-_Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
-
-When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html) /
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect))
-or `bind(2)`([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/bind.2.html) /
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind))
-with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields
-of `sockaddr_in` structure.
-
-`network.peer.address` and `network.peer.port` can be obtained by calling `getpeername` method
-([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getpeername.2.html) /
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername)).
-
-`network.local.address` and `network.local.port` can be obtained by calling `getsockname` method
-([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getsockname.2.html) /
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname)).
-
-#### Client/server examples using  `network.peer.*`
-
-Note that `network.local.*` attributes are not included in these examples since they are typically Opt-In.
-
-##### Simple client/server example
-
-![simple.png](simple.png)
-
-##### Client/server example with reverse proxy
-
-![reverse-proxy.png](reverse-proxy.png)
-
-##### Client/server example with forward proxy
-
-![forward-proxy.png](forward-proxy.png)
-
 ### Source and destination attributes
 
 These attributes may be used to describe the sender and receiver of a network exchange/packet. These should be used
@@ -216,7 +150,96 @@ Destination fields capture details about the receiver of a network exchange/pack
 **[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
 <!-- endsemconv -->
 
-### Network connection and carrier attributes
+<a name="network-attributes"></a>
+
+### Other network attributes
+
+> **Warning**
+> Attributes in this section are in use by the HTTP semantic conventions.
+Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
+if they do not cause breaking changes to HTTP semantic conventions.
+
+<!-- semconv network-core -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
+| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended |
+| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `amqp`; `http`; `mqtt` | Recommended |
+| `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [4] | `3.1.1` | Recommended |
+| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `network.peer.port` | int | Peer port number of the network connection. | `65123` | Recommended |
+| `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `network.local.port` | int | Local port number of the network connection. | `65123` | Recommended |
+
+**[1]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[2]:** The value SHOULD be normalized to lowercase.
+
+**[3]:** The value SHOULD be normalized to lowercase.
+
+**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `tcp` | TCP |
+| `udp` | UDP |
+| `pipe` | Named or anonymous pipe. See note below. |
+| `unix` | Unix domain socket |
+
+`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `ipv4` | IPv4 |
+| `ipv6` | IPv6 |
+<!-- endsemconv -->
+
+#### `network.peer.*` and `network.local.*` attributes
+
+These attributes identify network peers that are directly connected to each other.
+
+`network.peer.address` and `network.local.address` should be IP addresses, Unix domain socket names, or other addresses specific to network type.
+
+_Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
+
+When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect))
+or `bind(2)`([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/bind.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind))
+with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields
+of `sockaddr_in` structure.
+
+`network.peer.address` and `network.peer.port` can be obtained by calling `getpeername` method
+([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getpeername.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername)).
+
+`network.local.address` and `network.local.port` can be obtained by calling `getsockname` method
+([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getsockname.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname)).
+
+##### Client/server examples using  `network.peer.*`
+
+Note that `network.local.*` attributes are not included in these examples since they are typically Opt-In.
+
+###### Simple client/server example
+
+![simple.png](simple.png)
+
+###### Client/server example with reverse proxy
+
+![reverse-proxy.png](reverse-proxy.png)
+
+###### Client/server example with forward proxy
+
+![forward-proxy.png](forward-proxy.png)
+
+#### Network connection and carrier attributes
 
 <!-- semconv network-connection-and-carrier -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
