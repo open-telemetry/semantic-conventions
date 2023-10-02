@@ -6,7 +6,7 @@ content of "Unreleased" section content will generate release notes for the
 release.
 
 ## Unreleased
-- Replace AWS X-Ray Environment Span Link section with AWS X-Ray `Active Tracing` Considerations
+- Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
   ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
 
 ### Breaking

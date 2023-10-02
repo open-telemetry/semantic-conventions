@@ -14,7 +14,7 @@ use cases.
 <!-- toc -->
 
 - [All triggers](#all-triggers)
-  * [AWS X-Ray `Active Tracing` Considerations](#aws-x-ray-active-tracing-considerations)
+  * [AWS X-Ray Active Tracing Considerations](#aws-x-ray-active-tracing-considerations)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
   * [SQS Event](#sqs-event)
