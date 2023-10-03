@@ -11,6 +11,12 @@ metrics in OpenTelemetry. Consider the [general metric semantic
 conventions](/docs/general/metrics.md#general-metric-semantic-conventions) when creating
 instruments not explicitly defined in the specification.
 
+The `system.*` namespace SHOULD be exclusively used to report hosts' metrics.
+The `system.*` namespace SHOULD only be used when the metrics are collected from within the target system. (physical servers, virtual machines etc).
+Metrics collected from technology-specific, well-defined APIs (e.g. Kubelet's API or container runtimes)
+should be reported under their respective namespace (e.g. k8s.*, container.*).
+Resource attributes related to a host, SHOULD be reported under the `host.*` namespace.
+
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->

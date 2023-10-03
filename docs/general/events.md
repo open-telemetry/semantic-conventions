@@ -43,8 +43,8 @@ that identify the class of Events but not the instance of the Event.
 <!-- semconv event -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `event.name` | string | The name identifies the event. | `click`; `exception` | Required |
 | `event.domain` | string | The domain identifies the business context for the events. [1] | `browser` | Required |
+| `event.name` | string | The name identifies the event. | `click`; `exception` | Required |
 
 **[1]:** Events across different domains may have same `event.name`, yet be
 unrelated events.
