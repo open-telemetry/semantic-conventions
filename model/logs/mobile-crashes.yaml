@@ -1,0 +1,32 @@
+groups:
+  - id: event
+    type: attribute_group
+    prefix: event
+    brief: >
+      This document defines attributes for crashes represented using Log Record Events.
+    attributes:
+      - id: name
+        type: string
+        requirement_level: required
+        brief: >
+          Will be the string "crash" to denote that this is a crash event
+        examples: ['crash']
+      - id: domain
+        type: string
+        requirement_level: required
+        brief: >
+          Will be the string "mobile" to denote that this is a crash event from a mobile device
+        examples: ['mobile']
+        note: |
+          Events across different domains may have same `event.name`, yet be
+          unrelated events.
+      - id: data
+        type: attribute_group
+        requirement_level: required
+        brief: >
+          Will be different in Android vs iOS. 
+          Android will contain 'stacktrace', 'thread', and 'throwableMessage'
+          iOS will contain 'crashReport' containing the contents from PLCrashReporter
+          Both will have an 'isAppInForeground' field
+        examples: ['stacktrace: stacktraceValue, thread: threadValue, throwableMessage: throwableMessageValue, isAppInForeground: false',
+                   'crashReport: crashReportContents, isAppInForeground: true']
