@@ -17,9 +17,9 @@ MAY be used as span name.
 <!-- semconv graphql -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| `graphql.document` | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | Recommended |
 | `graphql.operation.name` | string | The name of the operation being executed. | `findBookById` | Recommended |
 | `graphql.operation.type` | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | Recommended |
-| `graphql.document` | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | Recommended |
 
 **[1]:** The value may be sanitized to exclude sensitive information.
 

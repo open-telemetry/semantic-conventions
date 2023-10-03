@@ -160,26 +160,26 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv network-core -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended |
-| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `amqp`; `http`; `mqtt` | Recommended |
-| `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [4] | `3.1.1` | Recommended |
-| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `network.peer.port` | int | Peer port number of the network connection. | `65123` | Recommended |
 | `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | `network.local.port` | int | Local port number of the network connection. | `65123` | Recommended |
+| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `network.peer.port` | int | Peer port number of the network connection. | `65123` | Recommended |
+| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | Recommended |
+| `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` | Recommended |
+| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | Recommended |
+| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
+
+**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+**[3]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport, for example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** The value SHOULD be normalized to lowercase.
-
-**[3]:** The value SHOULD be normalized to lowercase.
-
-**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[4]:** The value SHOULD be normalized to lowercase.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -242,22 +242,12 @@ Note that `network.local.*` attributes are not included in these examples since 
 <!-- semconv network-connection-and-carrier -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.connection.type` | string | The internet connection type. | `wifi` | Recommended |
-| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | Recommended |
-| `network.carrier.name` | string | The name of the mobile carrier. | `sprint` | Recommended |
+| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | Recommended |
 | `network.carrier.mcc` | string | The mobile carrier country code. | `310` | Recommended |
 | `network.carrier.mnc` | string | The mobile carrier network code. | `001` | Recommended |
-| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | Recommended |
-
-`network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `wifi` | wifi |
-| `wired` | wired |
-| `cell` | cell |
-| `unavailable` | unavailable |
-| `unknown` | unknown |
+| `network.carrier.name` | string | The name of the mobile carrier. | `sprint` | Recommended |
+| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | Recommended |
+| `network.connection.type` | string | The internet connection type. | `wifi` | Recommended |
 
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -284,6 +274,16 @@ Note that `network.local.*` attributes are not included in these examples since 
 | `nr` | 5G NR (New Radio) |
 | `nrnsa` | 5G NRNSA (New Radio Non-Standalone) |
 | `lte_ca` | LTE CA |
+
+`network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `wifi` | wifi |
+| `wired` | wired |
+| `cell` | cell |
+| `unavailable` | unavailable |
+| `unknown` | unknown |
 <!-- endsemconv -->
 
 For `Unix` and `pipe`, since the connection goes over the file system instead of being directly to a known peer, `server.address` is the only attribute that usually makes sense (see description of `server.address` below).
@@ -359,9 +359,9 @@ a thread that started a span.
 <!-- semconv thread -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| `thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
 | `thread.id` | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
 | `thread.name` | string | Current thread name. | `main` | Recommended |
-| `thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
 <!-- endsemconv -->
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
@@ -386,11 +386,11 @@ about the span.
 <!-- semconv code -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `code.function` | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
-| `code.namespace` | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
-| `code.filepath` | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | Recommended |
-| `code.lineno` | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
 | `code.column` | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | Recommended |
+| `code.filepath` | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | Recommended |
+| `code.function` | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
+| `code.lineno` | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
+| `code.namespace` | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

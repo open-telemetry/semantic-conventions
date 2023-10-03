@@ -217,18 +217,18 @@ The following operations related to messages are defined for these semantic conv
 <!-- semconv messaging -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `messaging.system` | string | A string identifying the messaging system. | `kafka`; `rabbitmq`; `rocketmq`; `activemq`; `AmazonSQS` | Required |
-| `messaging.operation` | string | A string identifying the kind of messaging operation as defined in the [Operation names](#operation-names) section above. [1] | `publish` | Required |
-| `messaging.batch.message_count` | int | The number of messages sent, received, or processed in the scope of the batching operation. [2] | `0`; `1`; `2` | Conditionally Required: [3] |
+| `messaging.batch.message_count` | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` | Conditionally Required: [2] |
 | `messaging.client_id` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | Recommended: If a client id is available |
-| `messaging.destination.anonymous` | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | Conditionally Required: [4] |
-| `messaging.destination.name` | string | The message destination name [5] | `MyQueue`; `MyTopic` | Conditionally Required: [6] |
-| `messaging.destination.template` | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` | Conditionally Required: [8] |
-| `messaging.destination.temporary` | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [9] |
-| `messaging.message.body.size` | int | The size of the message body in bytes. [10] | `1439` | Recommended: [11] |
-| `messaging.message.conversation_id` | string | The [conversation ID](#conversations) identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [12] |
-| `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [13] | `2738` | Recommended: [14] |
-| `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [15] |
+| `messaging.destination.anonymous` | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | Conditionally Required: [3] |
+| `messaging.destination.name` | string | The message destination name [4] | `MyQueue`; `MyTopic` | Conditionally Required: [5] |
+| `messaging.destination.template` | string | Low cardinality representation of the messaging destination name [6] | `/customers/{customerId}` | Conditionally Required: [7] |
+| `messaging.destination.temporary` | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [8] |
+| `messaging.message.body.size` | int | The size of the message body in bytes. [9] | `1439` | Recommended: [10] |
+| `messaging.message.conversation_id` | string | The [conversation ID](#conversations) identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [11] |
+| `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [12] | `2738` | Recommended: [13] |
+| `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [14] |
+| `messaging.operation` | string | A string identifying the kind of messaging operation as defined in the [Operation names](#operation-names) section above. [15] | `publish` | Required |
+| `messaging.system` | string | A string identifying the messaging system. | `kafka`; `rabbitmq`; `rocketmq`; `activemq`; `AmazonSQS` | Required |
 | [`network.peer.address`](../general/attributes.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended: If different than `server.address`. |
 | [`network.peer.port`](../general/attributes.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [16] | `amqp`; `mqtt` | Recommended |
@@ -237,38 +237,38 @@ The following operations related to messages are defined for these semantic conv
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [19] | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
 
-**[1]:** If a custom value is used, it MUST be of low cardinality.
+**[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[2]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[2]:** If the span describes an operation on a batch of messages.
 
-**[3]:** If the span describes an operation on a batch of messages.
+**[3]:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[4]:** If value is `true`. When missing, the value is assumed to be `false`.
-
-**[5]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[4]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker does not have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[6]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[5]:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[7]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[6]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[8]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
+**[7]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[8]:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[10]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[9]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
+
+**[10]:** Only if span represents operation on a single message.
 
 **[11]:** Only if span represents operation on a single message.
 
-**[12]:** Only if span represents operation on a single message.
-
-**[13]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[12]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[14]:** Only if span represents operation on a single message.
+**[13]:** Only if span represents operation on a single message.
 
-**[15]:** Only for spans that represent an operation on a single message.
+**[14]:** Only for spans that represent an operation on a single message.
+
+**[15]:** If a custom value is used, it MUST be of low cardinality.
 
 **[16]:** The value SHOULD be normalized to lowercase.
 
@@ -328,8 +328,8 @@ under the namespace `messaging.destination_publish.*`
 <!-- semconv messaging.destination_publish -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `messaging.destination_publish.name` | string | The name of the original destination the message was published to [1] | `MyQueue`; `MyTopic` | Recommended |
 | `messaging.destination_publish.anonymous` | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name). |  | Recommended |
+| `messaging.destination_publish.name` | string | The name of the original destination the message was published to [1] | `MyQueue`; `MyTopic` | Recommended |
 
 **[1]:** The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
 the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.

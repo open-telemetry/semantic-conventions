@@ -115,31 +115,21 @@ sections below.
 <!-- semconv trace.http.common(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [1] |
+| `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `name_resolution_error`; `500` | Conditionally Required: If request has ended with an error. |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
-| `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | `http.request.header.<key>` | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values. [2] | `http.request.header.content_type=["application/json"]`; `http.request.header.x_forwarded_for=["1.2.3.4", "1.2.3.5"]` | Opt-In |
-| `http.response.header.<key>` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values. [3] | `http.response.header.content_type=["application/json"]`; `http.response.header.my_custom_header=["abc", "def"]` | Opt-In |
-| `error.type` | string | Describes a class of error the operation ended with. [4] | `timeout`; `name_resolution_error`; `500` | Conditionally Required: If request has ended with an error. |
-| `http.request.method` | string | HTTP request method. [5] | `GET`; `POST`; `HEAD` | Required |
+| `http.request.method` | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
+| `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [4] |
+| `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
+| `http.response.header.<key>` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values. [5] | `http.response.header.content_type=["application/json"]`; `http.response.header.my_custom_header=["abc", "def"]` | Opt-In |
+| `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `http`; `spdy` | Recommended: if not default (`http`). |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp` | Conditionally Required: [9] |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [10] | `ipv4`; `ipv6` | Recommended |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
-**[1]:** If and only if it's different than `http.request.method`.
-
-**[2]:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-The `User-Agent` header is already captured in the `user_agent.original` attribute. Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
-
-**[3]:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
-
-**[4]:** If the request fails with an error before response status code was sent or received,
+**[1]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
 
 If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
@@ -155,7 +145,11 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[5]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[2]:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+The `User-Agent` header is already captured in the `user_agent.original` attribute. Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
+The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
+
+**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -169,6 +163,12 @@ OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of ca
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[4]:** If and only if it's different than `http.request.method`.
+
+**[5]:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
+The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
 
 **[6]:** The value SHOULD be normalized to lowercase.
 
@@ -366,9 +366,9 @@ For an HTTP server span, `SpanKind` MUST be `Server`.
 <!-- semconv trace.http.server(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `83.164.160.102` | Recommended |
-| [`client.port`](../general/attributes.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [3] | `65123` | Recommended |
+| [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `83.164.160.102` | Recommended |
+| [`client.port`](../general/attributes.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [2] | `65123` | Recommended |
+| `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
 | [`network.local.address`](../general/attributes.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`network.local.port`](../general/attributes.md) | int | Local socket port. Useful in case of a multi-port host. | `65123` | Opt-In |
 | [`network.peer.address`](../general/attributes.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
@@ -379,12 +379,12 @@ For an HTTP server span, `SpanKind` MUST be `Server`.
 | [`url.query`](../url/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
-**[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[1]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
+
+**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
+
+**[3]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
-
-**[2]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
-
-**[3]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
 
 **[4]:** Determined by using the first of the following that applies
 

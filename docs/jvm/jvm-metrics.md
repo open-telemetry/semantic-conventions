@@ -57,8 +57,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -84,8 +84,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.committed(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -111,8 +111,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.limit(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -138,8 +138,8 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 <!-- semconv metric.jvm.memory.usage_after_last_gc(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -174,12 +174,12 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.jvm.gc.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.gc.name` | string | Name of the garbage collector. [1] | `G1 Young Generation`; `G1 Old Generation` | Recommended |
-| `jvm.gc.action` | string | Name of the garbage collector action. [2] | `end of minor GC`; `end of major GC` | Recommended |
+| `jvm.gc.action` | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` | Recommended |
+| `jvm.gc.name` | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` | Recommended |
 
-**[1]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+**[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
-**[2]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
+**[2]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
 <!-- endsemconv -->
 
 ## JVM Threads
@@ -322,8 +322,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.init(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 

@@ -85,25 +85,25 @@ Examples of span names:
 <!-- semconv rpc -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended |
+| `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [3] | `exampleMethod` | Recommended |
+| `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | Recommended |
 | `rpc.system` | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
-| `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [1] | `myservice.EchoService` | Recommended |
-| `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [2] | `exampleMethod` | Recommended |
-| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](../general/attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Server port number. [6] | `80`; `8080`; `443` | Conditionally Required: See below |
 
-**[1]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
-
-**[2]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
-
-**[3]:** The value SHOULD be normalized to lowercase.
+**[1]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport, for example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[4]:** The value SHOULD be normalized to lowercase.
+**[2]:** The value SHOULD be normalized to lowercase.
+
+**[3]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+
+**[4]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 **[5]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -182,9 +182,9 @@ The event name MUST be `message`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `message.type` | string | Whether this is a received or sent message. | `SENT` | Recommended |
-| `message.id` | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] |  | Recommended |
 | `message.compressed_size` | int | Compressed size of the message in bytes. |  | Recommended |
+| `message.id` | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] |  | Recommended |
+| `message.type` | string | Whether this is a received or sent message. | `SENT` | Recommended |
 | `message.uncompressed_size` | int | Uncompressed size of the message in bytes. |  | Recommended |
 
 **[1]:** This way we guarantee that the values will be consistent between different implementations.
