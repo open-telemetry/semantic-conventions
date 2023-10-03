@@ -129,6 +129,8 @@ release.
   ([#350](https://github.com/open-telemetry/semantic-conventions/pull/350))
 - Improve network attribute briefs.
   ([#352](https://github.com/open-telemetry/semantic-conventions/pull/352))
+- Improve HTTP metric briefs.
+  ([#366](https://github.com/open-telemetry/semantic-conventions/pull/366))
 
 ## v1.21.0 (2023-07-13)
 
