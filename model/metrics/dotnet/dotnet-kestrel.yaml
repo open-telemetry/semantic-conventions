@@ -47,7 +47,7 @@ groups:
       - ref: network.protocol.version
         examples: ["1.1", "2"]
       - ref: tls.protocol.version
-      - ref: exception.type
+      - ref: error.type
         brief: The full name of exception type.
         requirement_level:
           conditionally_required: if and only if an exception was thrown.
@@ -112,7 +112,7 @@ groups:
     extends: common.kestrel.attributes
     attributes:
       - ref: tls.protocol.version
-      - ref: exception.type
+      - ref: error.type
         brief: The full name of exception type.
         requirement_level:
           conditionally_required: if and only if an exception was thrown.

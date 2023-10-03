@@ -41,15 +41,23 @@ and `network.transport` value to corresponding `endpoint.AddressFamily` property
 <!-- semconv metric.kestrel.active_connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `unix` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
 
-**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+**[1]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[2]:** The value SHOULD be normalized to lowercase.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -81,21 +89,51 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 <!-- semconv metric.kestrel.connection.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `exception.type` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` | Conditionally Required: if and only if an exception was thrown. |
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `web_sockets` | Recommended |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [1] | `1.1`; `2` | Recommended |
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `unix` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [3] | `80`; `8080`; `443` | Recommended |
+| `error.type` | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | Conditionally Required: if and only if an exception was thrown. |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [2] | `http`; `web_sockets` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [3] | `1.1`; `2` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `unix` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [6] | `example.com` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number [7] | `80`; `8080`; `443` | Recommended |
 | `tls.protocol.version` | string | TLS protocol version. | `1.2`; `1.3` | Conditionally Required: if the connection is secured with TLS. |
 
-**[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+The cardinality of `error.type` within one instrumentation library SHOULD be low, but
+telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time, when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error codes (such as HTTP or gRPC status codes),
+it's RECOMMENDED to use a domain-specific attribute and also set `error.type` to capture
+all errors, regardless of whether they are defined within the domain-specific set or not.
+
+**[2]:** The value SHOULD be normalized to lowercase.
+
+**[3]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+**[4]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[5]:** The value SHOULD be normalized to lowercase.
+
+**[6]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -128,15 +166,23 @@ Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
 <!-- semconv metric.kestrel.rejected_connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `unix` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
 
-**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+**[1]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[2]:** The value SHOULD be normalized to lowercase.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -168,15 +214,23 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 <!-- semconv metric.kestrel.queued_connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `unix` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
 
-**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+**[1]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[2]:** The value SHOULD be normalized to lowercase.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -208,19 +262,29 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 <!-- semconv metric.kestrel.queued_requests(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `http`; `web_sockets` | Recommended |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the application layer protocol used. See note below. [1] | `1.1`; `2` | Recommended |
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `unix` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [3] | `80`; `8080`; `443` | Recommended |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `http`; `web_sockets` | Recommended |
+| [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [2] | `1.1`; `2` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `unix` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [5] | `example.com` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number [6] | `80`; `8080`; `443` | Recommended |
 
-**[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[1]:** The value SHOULD be normalized to lowercase.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+**[3]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[4]:** The value SHOULD be normalized to lowercase.
+
+**[5]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -254,15 +318,23 @@ Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
 <!-- semconv metric.kestrel.upgraded_connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `unix` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
 
-**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+**[1]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[2]:** The value SHOULD be normalized to lowercase.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -294,17 +366,45 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 <!-- semconv metric.kestrel.tls_handshake.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `exception.type` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` | Conditionally Required: if and only if an exception was thrown. |
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `unix` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
+| `error.type` | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | Conditionally Required: if and only if an exception was thrown. |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `unix` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [3] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [4] | `example.com` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number [5] | `80`; `8080`; `443` | Recommended |
 | `tls.protocol.version` | string | TLS protocol version. | `1.2`; `1.3` | Conditionally Required: if the connection is secured with TLS. |
 
-**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+**[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low, but
+telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time, when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error codes (such as HTTP or gRPC status codes),
+it's RECOMMENDED to use a domain-specific attribute and also set `error.type` to capture
+all errors, regardless of whether they are defined within the domain-specific set or not.
+
+**[2]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[3]:** The value SHOULD be normalized to lowercase.
+
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[5]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -336,15 +436,23 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 <!-- semconv metric.kestrel.active_tls_handshakes(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/attributes.md) | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport, for example different processes could be listening on TCP port 12345 and UDP port 12345. | `tcp`; `unix` | Recommended |
-| [`network.type`](../general/attributes.md) | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
+| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
+| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
 
-**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+**[1]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[2]:** The value SHOULD be normalized to lowercase.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
