@@ -125,6 +125,10 @@ release.
   ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
 - BREAKING: Add `url.scheme` to `http.client.*` metrics
   ([#357](https://github.com/open-telemetry/semantic-conventions/pull/357))
+- BREAKING: Remove `server.socket.address` from HTTP and RPC client metrics.
+  ([#350](https://github.com/open-telemetry/semantic-conventions/pull/350))
+- Improve network attribute briefs.
+  ([#352](https://github.com/open-telemetry/semantic-conventions/pull/352))
 - Add `host.ip` resource attribute convention.
   ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
 
