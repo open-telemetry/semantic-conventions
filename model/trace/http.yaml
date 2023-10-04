@@ -48,7 +48,7 @@ groups:
         type: template[string[]]
         requirement_level: opt_in
         brief: >
-          HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values.
+          HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
         note: >
           Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
           Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.

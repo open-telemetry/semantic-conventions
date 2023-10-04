@@ -129,7 +129,8 @@ release.
   ([#350](https://github.com/open-telemetry/semantic-conventions/pull/350))
 - Improve network attribute briefs.
   ([#352](https://github.com/open-telemetry/semantic-conventions/pull/352))
-- BREAKING: remove `-` to `_` normalization from http header attribute keys.
+- BREAKING: remove `-` to `_` normalization from http header and rpc metadata
+  attribute keys.
   ([#369](https://github.com/open-telemetry/semantic-conventions/pull/369))
 
 ## v1.21.0 (2023-07-13)

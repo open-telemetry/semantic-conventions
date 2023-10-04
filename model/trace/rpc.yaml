@@ -160,7 +160,7 @@ groups:
         type: template[string[]]
         requirement_level: opt_in
         brief: >
-          gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+          gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
         note: >
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -169,7 +169,7 @@ groups:
         type: template[string[]]
         requirement_level: opt_in
         brief: >
-          gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+          gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
         note: >
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -283,7 +283,7 @@ groups:
         type: template[string[]]
         requirement_level: opt_in
         brief: >
-          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         note: >
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -292,7 +292,7 @@ groups:
         type: template[string[]]
         requirement_level: opt_in
         brief: >
-          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         note: >
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
