@@ -1,32 +1,42 @@
 groups:
-  - id: event
-    type: attribute_group
-    prefix: event
+  - id: mobile-crash-event
+    type: event
     brief: >
       This document defines attributes for crashes represented using Log Record Events.
+      `event.domain` is 'mobile' and `event.name` is 'crash
     attributes:
-      - id: name
-        type: string
-        requirement_level: required
+      - id: platform
+        requirement_level: "required"
         brief: >
-          Will be the string "crash" to denote that this is a crash event
-        examples: ['crash']
-      - id: domain
-        type: string
-        requirement_level: required
+            This attribute represents the state the application has transitioned into at the occurrence of the event.
+        type:
+          allow_custom_values: false
+          members:
+            - id: android
+              value: 'android'
+              brief: 'Value if crash happened on android device'
+            - id: ios
+              value: 'ios'
+              brief: 'Value if crash happened on ios device'
+      - id: isAppInForeground
+        requirement_level: "required"
         brief: >
-          Will be the string "mobile" to denote that this is a crash event from a mobile device
-        examples: ['mobile']
-        note: |
-          Events across different domains may have same `event.name`, yet be
-          unrelated events.
+          This attribute indicates whether the app was in the foreground or not during the crash.
+        type:
+          allow_custom_values: false
+          members:
+            - id: true
+              value: 'true'
+              brief: 'Value if crash happened in foreground'
+            - id: false
+              value: 'false'
+              brief: 'Value if crash did not happen in foreground'
       - id: data
+        requirement_level: "required"
         type: attribute_group
-        requirement_level: required
         brief: >
-          Will be different in Android vs iOS. 
-          Android will contain 'stacktrace', 'thread', and 'throwableMessage'
-          iOS will contain 'crashReport' containing the contents from PLCrashReporter
-          Both will have an 'isAppInForeground' field
-        examples: ['stacktrace: stacktraceValue, thread: threadValue, throwableMessage: throwableMessageValue, isAppInForeground: false',
-                   'crashReport: crashReportContents, isAppInForeground: true']
+          'event.data' in the case of mobile crashes will be an attribute that contains nested attributes.
+          Android crashes will contain 'stacktrace', 'thread', and 'throwableMessage'
+          On the iOS side, it will contain 'crashReport' containing the contents from PLCrashReporter
+        examples: ['stacktrace: stacktraceValue, thread: threadValue, throwableMessage: throwableMessageValue',
+                   'crashReport: crashReportContents']
