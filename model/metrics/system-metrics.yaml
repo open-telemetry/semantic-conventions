@@ -61,10 +61,10 @@ groups:
       - ref: system.cpu.state
       - ref: system.cpu.logical_number
 
-  - id: metric.system.cpu.frequency
+  - id: metric.system.cpu.frequency.max
     type: metric
-    metric_name: system.cpu.frequency
-    brief: "Reports the current frequency of the CPU core in MHz"
+    metric_name: system.cpu.frequency.max
+    brief: "Reports the maximum operating frequency the processor can run at (in MHz)"
     instrument: gauge
     unit: "{MHz}"
     attributes:
