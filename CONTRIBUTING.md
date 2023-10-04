@@ -161,7 +161,7 @@ make misspell-correction
 
 A PR (pull request) is considered to be **ready to merge** when:
 
-* It has received more than two approvals from the [code
+* It has received at least two approvals from the [code
   owners](./.github/CODEOWNERS) (if approvals are from only one company, they
   won't count).
 * There is no `request changes` from the [code owners](./.github/CODEOWNERS).
