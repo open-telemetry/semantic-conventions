@@ -1,5 +1,5 @@
 groups:
-  - id: ios-lifecycle-events
+  - id: ios.lifecycle.events
     type: event
     prefix: ios
     name: app.lifecycle
