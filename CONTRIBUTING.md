@@ -190,8 +190,8 @@ exists in some form in ECS, consider the following guidelines:
   - Do not amend ECS names to follow plural guidelines or other soft
     recommendations.
   - If proposing a name that differs from the ECS convention, provide usage
-    data, user issue reports or feature requests or comparable evidence about
-    the alternatives.
+    data, user issue reports, feature requests, examples of prior work on a
+    different standard or comparable evidence about the alternatives.
 - Do not use an existing ECS name as a namespace. If the name must differ, use a
   different namespace name to avoid clashes or avoid using the namespace
   entirely.
