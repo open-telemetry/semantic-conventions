@@ -64,17 +64,17 @@ This span context is encoded using the [AWS X-Ray Propagator](https://github.com
 Users MUST be able to configure the propagator to prioritize propagating the X-Ray "Active Tracing" span context.
 (Users probably want this enabled if OpenTelemetry is configured to report spans to AWS X-Ray so their trace is linked together properly.)
 
-Implementations MUST provide an additional propagator configurable as `xray-env` which ignores the given carrier instance and instead attempts to propagate
+Implementations MUST provide an additional propagator configurable as `xray-lambda` which ignores the given carrier instance and instead attempts to propagate
 the span context from the `_X_AMZN_TRACE_ID` environment variable (and the `com.amazonaws.xray.traceHeader` system property for Java Lambda functions with priority given
 to the system property if set).
 
 Since propagators are invoked in order, users would give priority to X-Ray's "Active Tracing" span context by setting the environment variable:
 
-`OTEL_PROPAGATORS=tracecontext,baggage,xray,xray-env`
+`OTEL_PROPAGATORS=tracecontext,baggage,xray,xray-lambda`
 
-To avoid broken traces, if OpenTelemetry is reporting traces to another system besides AWS X-Ray, users should either omit `xray-env` or add it to the beginning:
+To avoid broken traces, if OpenTelemetry is reporting traces to another system besides AWS X-Ray, users should either omit `xray-lambda` or add it to the beginning:
 
-`OTEL_PROPAGATORS=xray-env,tracecontext,baggage,xray`
+`OTEL_PROPAGATORS=xray-lambda,tracecontext,baggage,xray`
 
 *Note: The `trace-env` propagator can only `extract` context. The `inject` operation MUST be a no-op.*
 
