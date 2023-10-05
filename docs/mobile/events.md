@@ -1,4 +1,4 @@
-# Semantic Conventions for mobile instrumentation
+# Semantic Conventions for mobile events
 
 **Status**: [Experimental][DocumentStatus]
 
