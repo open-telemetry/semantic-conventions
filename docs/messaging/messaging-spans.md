@@ -204,10 +204,10 @@ The following operations related to messages are defined for these semantic conv
 
 | Operation name | Description |
 | -------------- | ----------- |
-| `publish`      | One or more messages are provided for publishing to an intermediary. |
-| `create`       | A message is created. |
-| `receive`      | One or more messages are requested by a consumer. |
-| `deliver`      | One or more messages are passed to a consumer. |
+| `publish`      | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
+| `create`       | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
+| `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
+| `deliver`      | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
 
 ### Span kind
 
@@ -244,8 +244,9 @@ SHOULD account only for a single message. "Create" spans SHOULD either be
 children or links of the related "Publish" span.
 
 If a "Create" span exists for a message, its context SHOULD be injected into
-the message. If no "Create" span exists, the context of the related "Publish"
-span SHOULD be injected into the message.
+the message. If no "Create" span exists and no custom creation context is
+injected into the message, the context of the related "Publish" span SHOULD be
+injected into the message.
 
 #### Consumer spans
 
