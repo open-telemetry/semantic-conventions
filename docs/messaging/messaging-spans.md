@@ -216,10 +216,21 @@ SHOULD be set according to the following table, based on the operation a span de
 
 | Operation name | Span kind|
 |----------------|-------------|
-| `publish`      | `PRODUCER`, if no `create` spans are present. |
-| `create`       | `PRODUCER` |
+| `publish`      | `PRODUCER`, if the context of the "Publish" span is used as creation context. |
+| `create`       | `PRODUCER`, |
 | `receive`      | `CONSUMER` |
 | `deliver`      | `CONSUMER` |
+
+For cases not covered by the table above, the span kind should be set according
+to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind),
+e. g. it should be set to CLIENT for the "Publish" span if its context is not
+used as creation context and if the "Publish" span models a synchronous call to
+the intermediary.
+
+Setting span kinds according to this table ensures that span links between
+consumers and producers always exist between a PRODUCER span on the producer
+side and a CONSUMER span on the consumer side. This allows analysis tools to
+interpret linked traces without the need for additional semantic hints.
 
 ### Trace structure
 
@@ -250,12 +261,12 @@ application when those operations are initiated by the application code
 pre-fetched or cached by messaging libraries or SDKs until they are forwarded
 to the caller.
 
-A single "Deliver" or "Receive" span can account for a single message, for
-multiple messages (in case messages are passed for processing as batches), or
-for no message at all (if it is signalled that no messages were received). For
-each message it accounts for, the "Deliver" or "Receive" span SHOULD link to
-the message's creation context. In addition, if it is possible the creation
-context MAY be set as a parent of the "Deliver" or "Receive" span.
+A single "Deliver" or "Receive" span can account for a single message, for a
+batch of messages, or for no message at all (if it is signalled that no
+messages were received). For each message it accounts for, the "Deliver" or
+"Receive" span SHOULD link to the message's creation context. In addition, if
+it is possible the creation context MAY be set as a parent of the "Deliver" or
+"Receive" span.
 
 ## Messaging attributes
 
@@ -414,7 +425,7 @@ All attributes that are specific for a messaging system SHOULD be populated in `
 
 ### Topic with multiple consumers
 
-Given is a process P, that publishes a message to a topic T on messaging system MS, and two processes CA and CB, which both receive the message.
+Given is a publisher that publishes a message to a queue "T" on RabbitMQ, and two consumers which both receive the message.
 
 ```mermaid
 flowchart LR;
@@ -454,7 +465,7 @@ flowchart LR;
 
 ### Batch delivering
 
-Given is a process P, that publishes two messages to a queue Q on messaging system MS, and a process C, which gets both of them delivered in one batch (Span Recv1) and processes each message separately.
+Given is a publisher that publishes two messages to a topic "Q" on Kafka, and a consumer which gets both messages delivered in one batch.
 
 Since a span can only have one parent, the `deliver` span will have no parent and will be correlated with the producing spans using links.
 
@@ -473,7 +484,7 @@ flowchart LR;
   PB-. link .-D1;
 
   classDef normal fill:green
-  class PA,PB,R1 normal
+  class PA,PB,D1 normal
   linkStyle 0,1 color:green,stroke:green
 ```
 
@@ -488,7 +499,7 @@ flowchart LR;
 | Status | `Ok` | `Ok` | `Ok` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
+| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation` | `"publish"` | `"publish"` | `"deliver"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
