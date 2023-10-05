@@ -265,9 +265,7 @@ to the caller.
 A single "Deliver" or "Receive" span can account for a single message, for a
 batch of messages, or for no message at all (if it is signalled that no
 messages were received). For each message it accounts for, the "Deliver" or
-"Receive" span SHOULD link to the message's creation context. In addition, if
-it is possible the creation context MAY be set as a parent of the "Deliver" or
-"Receive" span.
+"Receive" span SHOULD link to the message's creation context.
 
 ## Messaging attributes
 
@@ -467,8 +465,6 @@ flowchart LR;
 ### Batch delivering
 
 Given is a publisher that publishes two messages to a topic "Q" on Kafka, and a consumer which gets both messages delivered in one batch.
-
-Since a span can only have one parent, the `deliver` span will have no parent and will be correlated with the producing spans using links.
 
 ```mermaid
 flowchart LR;
