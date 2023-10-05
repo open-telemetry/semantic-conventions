@@ -22,9 +22,14 @@ groups:
               value: 'unix'
               brief: "Unix domain socket"
         brief: >
-          [OSI Transport Layer](https://osi-model.com/transport-layer/) or
-          [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication).
+          [OSI transport layer](https://osi-model.com/transport-layer/) or
+          [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication).
+        note: |
           The value SHOULD be normalized to lowercase.
+
+          Consider always setting the transport when setting a port number, since
+          a port number is ambiguous without knowing the transport, for example
+          different processes could be listening on TCP port 12345 and UDP port 12345.
         examples: ['tcp', 'udp']
       - id: type
         type:
@@ -36,19 +41,17 @@ groups:
             - id: ipv6
               value: 'ipv6'
               brief: "IPv6"
-        brief: >
-          [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent.
-          The value SHOULD be normalized to lowercase.
+        brief: '[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent.'
+        note: The value SHOULD be normalized to lowercase.
         examples: ['ipv4', 'ipv6']
       - id: protocol.name
         type: string
-        brief: >
-          [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent.
-          The value SHOULD be normalized to lowercase.
+        brief: '[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent.'
+        note: The value SHOULD be normalized to lowercase.
         examples: ['amqp', 'http', 'mqtt']
       - id: protocol.version
         type: string
-        brief: 'Version of the application layer protocol used. See note below.'
+        brief: Version of the protocol specified in `network.protocol.name`.
         examples: '3.1.1'
         note: >
           `network.protocol.version` refers to the version of the protocol used and might be

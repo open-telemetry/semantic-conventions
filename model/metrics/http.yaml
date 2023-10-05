@@ -66,7 +66,6 @@ groups:
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
-      - ref: server.socket.address
       - ref: error.type
         requirement_level:
           conditionally_required: If request has ended with an error.
@@ -87,6 +86,8 @@ groups:
           additional filters are applied.
 
           If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
+      - ref: url.scheme
+        requirement_level: required
 
   - id: metric.http.server.request.duration
     type: metric

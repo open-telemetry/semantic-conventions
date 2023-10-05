@@ -15,17 +15,18 @@ Particular operations may refer to or require some of these attributes.
 
 <!-- toc -->
 
-- [Server and client attributes](#server-and-client-attributes)
+- [Server, client and shared network attributes](#server-client-and-shared-network-attributes)
+  * [Address and port attributes](#address-and-port-attributes)
   * [Server attributes](#server-attributes)
     + [`server.address`](#serveraddress)
     + [`server.socket.*` attributes](#serversocket-attributes)
   * [Client attributes](#client-attributes)
     + [Connecting through intermediary](#connecting-through-intermediary)
-- [Network attributes](#network-attributes)
   * [Source and destination attributes](#source-and-destination-attributes)
     + [Source](#source)
     + [Destination](#destination)
-  * [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
+  * [Other network attributes](#other-network-attributes)
+    + [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
 - [General remote service attributes](#general-remote-service-attributes)
 - [General identity attributes](#general-identity-attributes)
 - [General thread attributes](#general-thread-attributes)
@@ -33,7 +34,10 @@ Particular operations may refer to or require some of these attributes.
 
 <!-- tocstop -->
 
-## Server and client attributes
+<!-- Keep old anchor IDs -->
+<a name="server-and-client-attributes"></a>
+
+## Server, client and shared network attributes
 
 These attributes may be used to describe the client and server in a connection-based network interaction
 where there is one side that initiates the connection (the client is the side that initiates the connection).
@@ -44,6 +48,13 @@ This also covers UDP network interactions where one side initiates the interacti
 
 In an ideal situation, not accounting for proxies, multiple IP addresses or host names,
 the `server.*` attributes are the same on the client and server.
+
+### Address and port attributes
+
+For all IP-based protocols, the "address" should be just the IP-level address.
+Protocol-specific parts of an address are split into other attributes (when applicable) such as "port" attributes for
+TCP and UDP. If such transport-specific information is collected and the attribute name does not already uniquely
+identify the transport, then setting [`network.transport`](#other-network-attributes) is especially encouraged.
 
 ### Server attributes
 
@@ -57,8 +68,8 @@ if they do not cause breaking changes to HTTP semantic conventions.
 |---|---|---|---|---|
 | `server.address` | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
 | `server.port` | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
-| `server.socket.domain` | string | Immediate server peer's domain name if available without reverse DNS lookup [3] | `proxy.example.com` | Recommended: If different than `server.address`. |
-| `server.socket.address` | string | Server address of the socket connection - IP address or Unix domain socket name. [4] | `10.5.3.2` | Recommended: If different than `server.address`. |
+| `server.socket.address` | string | Server address of the socket connection - IP address or Unix domain socket name. [3] | `10.5.3.2` | Recommended: If different than `server.address`. |
+| `server.socket.domain` | string | Immediate server peer's domain name if available without reverse DNS lookup [4] | `proxy.example.com` | Recommended: If different than `server.address`. |
 | `server.socket.port` | int | Server port number of the socket connection. [5] | `16456` | Recommended: If different than `server.port`. |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
@@ -66,10 +77,10 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 
 **[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
 
-**[3]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
-
-**[4]:** When observed from the client side, this SHOULD represent the immediate server peer address.
+**[3]:** When observed from the client side, this SHOULD represent the immediate server peer address.
 When observed from the server side, this SHOULD represent the physical server address.
+
+**[4]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
 
 **[5]:** When observed from the client side, this SHOULD represent the immediate server peer port.
 When observed from the server side, this SHOULD represent the physical server port.
@@ -175,7 +186,44 @@ The `client.socket.address` and `client.socket.port` attributes then SHOULD cont
 
 If only immediate peer information is available, it should be set on `client.address` and `client.port` and `client.socket.*` attributes SHOULD NOT be set.
 
-## Network attributes
+### Source and destination attributes
+
+These attributes may be used to describe the sender and receiver of a network exchange/packet. These should be used
+when there is no client/server relationship between the two sides, or when that relationship is unknown.
+This covers low-level network interactions (e.g. packet tracing) where you don't know if
+there was a connection or which side initiated it.
+This also covers unidirectional UDP flows and peer-to-peer communication where the
+"user-facing" surface of the protocol / API does not expose a clear notion of client and server.
+
+#### Source
+
+<!-- semconv source -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `source.address` | string | Source address, for example IP address or Unix socket name. | `10.5.3.2` | Recommended |
+| `source.domain` | string | The domain name of the source system. [1] | `foo.example.com` | Recommended |
+| `source.port` | int | Source port number | `3389`; `2888` | Recommended |
+
+**[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
+<!-- endsemconv -->
+
+#### Destination
+
+Destination fields capture details about the receiver of a network exchange/packet.
+
+<!-- semconv destination -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `destination.address` | string | Destination address, for example IP address or UNIX socket name. | `10.5.3.2` | Recommended |
+| `destination.domain` | string | The domain name of the destination system. [1] | `foo.example.com` | Recommended |
+| `destination.port` | int | Destination port number | `3389`; `2888` | Recommended |
+
+**[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
+<!-- endsemconv -->
+
+<a name="network-attributes"></a>
+
+### Other network attributes
 
 > **Warning**
 > Attributes in this section are in use by the HTTP semantic conventions.
@@ -185,12 +233,22 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv network-core -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.transport` | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
-| `network.type` | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| `network.protocol.name` | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| `network.protocol.version` | string | Version of the application layer protocol used. See note below. [1] | `3.1.1` | Recommended |
+| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | Recommended |
+| `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` | Recommended |
+| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | Recommended |
+| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended |
 
-**[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[1]:** The value SHOULD be normalized to lowercase.
+
+**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+**[3]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport, for example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[4]:** The value SHOULD be normalized to lowercase.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -209,62 +267,17 @@ if they do not cause breaking changes to HTTP semantic conventions.
 | `ipv6` | IPv6 |
 <!-- endsemconv -->
 
-### Source and destination attributes
-
-These attributes may be used to describe the sender and receiver of a network exchange/packet. These should be used
-when there is no client/server relationship between the two sides, or when that relationship is unknown.
-This covers low-level network interactions (e.g. packet tracing) where you don't know if
-there was a connection or which side initiated it.
-This also covers unidirectional UDP flows and peer-to-peer communication where the
-"user-facing" surface of the protocol / API does not expose a clear notion of client and server.
-
-#### Source
-
-<!-- semconv source -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `source.domain` | string | The domain name of the source system. [1] | `foo.example.com` | Recommended |
-| `source.address` | string | Source address, for example IP address or Unix socket name. | `10.5.3.2` | Recommended |
-| `source.port` | int | Source port number | `3389`; `2888` | Recommended |
-
-**[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
-<!-- endsemconv -->
-
-#### Destination
-
-Destination fields capture details about the receiver of a network exchange/packet.
-
-<!-- semconv destination -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `destination.domain` | string | The domain name of the destination system. [1] | `foo.example.com` | Recommended |
-| `destination.address` | string | Destination address, for example IP address or UNIX socket name. | `10.5.3.2` | Recommended |
-| `destination.port` | int | Destination port number | `3389`; `2888` | Recommended |
-
-**[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
-<!-- endsemconv -->
-
-### Network connection and carrier attributes
+#### Network connection and carrier attributes
 
 <!-- semconv network-connection-and-carrier -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.connection.type` | string | The internet connection type. | `wifi` | Recommended |
-| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | Recommended |
-| `network.carrier.name` | string | The name of the mobile carrier. | `sprint` | Recommended |
+| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | Recommended |
 | `network.carrier.mcc` | string | The mobile carrier country code. | `310` | Recommended |
 | `network.carrier.mnc` | string | The mobile carrier network code. | `001` | Recommended |
-| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | Recommended |
-
-`network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `wifi` | wifi |
-| `wired` | wired |
-| `cell` | cell |
-| `unavailable` | unavailable |
-| `unknown` | unknown |
+| `network.carrier.name` | string | The name of the mobile carrier. | `sprint` | Recommended |
+| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | Recommended |
+| `network.connection.type` | string | The internet connection type. | `wifi` | Recommended |
 
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -291,6 +304,16 @@ Destination fields capture details about the receiver of a network exchange/pack
 | `nr` | 5G NR (New Radio) |
 | `nrnsa` | 5G NRNSA (New Radio Non-Standalone) |
 | `lte_ca` | LTE CA |
+
+`network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `wifi` | wifi |
+| `wired` | wired |
+| `cell` | cell |
+| `unavailable` | unavailable |
+| `unknown` | unknown |
 <!-- endsemconv -->
 
 For `Unix` and `pipe`, since the connection goes over the file system instead of being directly to a known peer, `server.address` is the only attribute that usually makes sense (see description of `server.address` below).
@@ -366,9 +389,9 @@ a thread that started a span.
 <!-- semconv thread -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| `thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
 | `thread.id` | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
 | `thread.name` | string | Current thread name. | `main` | Recommended |
-| `thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
 <!-- endsemconv -->
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
@@ -393,11 +416,11 @@ about the span.
 <!-- semconv code -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `code.function` | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
-| `code.namespace` | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
-| `code.filepath` | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | Recommended |
-| `code.lineno` | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
 | `code.column` | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | Recommended |
+| `code.filepath` | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | Recommended |
+| `code.function` | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
+| `code.lineno` | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
+| `code.namespace` | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
