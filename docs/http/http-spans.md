@@ -153,8 +153,7 @@ The attribute value MUST consist of either multiple header values as an array of
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER` and, except if reporting a metric, MUST
-set the exact method received in the request line as value of the `http.request.method_original` attribute.
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
