@@ -15,7 +15,7 @@ This document defines semantic conventions for instrumentations that emit events
 ## Lifecycle instrumentation
 
 This section defines how to apply semantic conventions when instrumenting application lifecycle.
-This event is meant to be used in conjunction with `os.name` [resource semantic convention](/docs/resource/os.md) to identify platform.
+This event is meant to be used in conjunction with `os.name` [resource semantic convention](/docs/resource/os.md) to identify the mobile operating system (e.g. Android, iOS).
 
 <!-- semconv ios-lifecycle-events -->
 The event name MUST be `app.lifecycle`.
