@@ -2,7 +2,7 @@
 
 **Status**: [Experimental][DocumentStatus]
 
-This document defines semantic conventions for instrumentation on mobile platforms.
+This document defines semantic conventions for instrumentations that emit events on mobile platforms.
 
 <!-- toc -->
 
