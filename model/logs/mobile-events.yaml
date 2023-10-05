@@ -32,7 +32,7 @@ groups:
             - id: terminate
               value: 'terminate'
               brief: "The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`."
-  - id: android-lifecycle-events
+  - id: android.lifecycle.events
     type: event
     prefix: android
     name: app.lifecycle
