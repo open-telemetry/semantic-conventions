@@ -13,7 +13,7 @@ instruments not explicitly defined in this document. OS process metrics are
 not related to the runtime environment of the program, and should take
 measurements from the operating system. For runtime environment metrics see
 [semantic conventions for runtime environment
-metrics](/docs/runtime/readme.md#metrics).
+metrics](/docs/runtime/README.md#metrics).
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
