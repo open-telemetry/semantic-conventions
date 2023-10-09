@@ -17,11 +17,14 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | `host.image.id` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` | Recommended |
 | `host.image.name` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` | Recommended |
 | `host.image.version` | string | The version string of the VM image or host OS as defined in [Version Attributes](README.md#version-attributes). | `0.1` | Recommended |
-| `host.mac` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [1] | `[AC-DE-48-23-45-67, AC-DE-48-23-45-67-01-9F]` | Opt-In |
+| `host.ip` | string[] | Available IP addresses of the host, excluding loopback interfaces. [1] | `[192.168.1.140, fe80::abc2:4a28:737a:609e]` | Opt-In |
+| `host.mac` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [2] | `[AC-DE-48-23-45-67, AC-DE-48-23-45-67-01-9F]` | Opt-In |
 | `host.name` | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | Recommended |
 | `host.type` | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | Recommended |
 
-**[1]:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+**[1]:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
+
+**[2]:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 `host.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
