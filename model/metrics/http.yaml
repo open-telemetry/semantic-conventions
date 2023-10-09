@@ -31,6 +31,26 @@ groups:
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
       # todo (lmolkova) build tools don't populate grandparent attributes
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If request has ended with an error.
+        examples: ['timeout', 'name_resolution_error', '500']
+        note: |
+          If the request fails with an error before response status code was sent or received,
+          `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
+
+          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
+
+          The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+          Instrumentations SHOULD document the list of errors they report.
+
+          The cardinality of `error.type` within one instrumentation library SHOULD be low, but
+          telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+          should be prepared for `error.type` to have high cardinality at query time, when no
+          additional filters are applied.
+
+          If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
       - ref: http.request.method
       - ref: http.response.status_code
       - ref: network.protocol.name
@@ -46,12 +66,33 @@ groups:
       - ref: http.response.status_code
       - ref: network.protocol.name
       - ref: network.protocol.version
-      - ref: server.socket.address
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If request has ended with an error.
+        examples: ['timeout', 'name_resolution_error', '500']
+        note: |
+          If the request fails with an error before response status code was sent or received,
+          `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
+
+          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
+
+          The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+          Instrumentations SHOULD document the list of errors they report.
+
+          The cardinality of `error.type` within one instrumentation library SHOULD be low, but
+          telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+          should be prepared for `error.type` to have high cardinality at query time, when no
+          additional filters are applied.
+
+          If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
+      - ref: url.scheme
+        requirement_level: required
 
   - id: metric.http.server.request.duration
     type: metric
     metric_name: http.server.request.duration
-    brief: "Measures the duration of inbound HTTP requests."
+    brief: "Duration of HTTP server requests."
     instrument: histogram
     unit: "s"
     extends: metric_attributes.http.server
@@ -59,7 +100,7 @@ groups:
   - id: metric.http.server.active_requests
     type: metric
     metric_name: http.server.active_requests
-    brief: "Measures the number of concurrent HTTP requests that are currently in-flight."
+    brief: "Number of active HTTP server requests."
     instrument: updowncounter
     unit: "{request}"
     attributes:
@@ -94,42 +135,58 @@ groups:
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
 
-  - id: metric.http.server.request.size
+  - id: metric.http.server.request.body.size
     type: metric
-    metric_name: http.server.request.size
-    brief: "Measures the size of HTTP request messages (compressed)."
+    metric_name: http.server.request.body.size
+    brief: "Size of HTTP server request bodies."
     instrument: histogram
     unit: "By"
+    note: >
+      The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.server
 
-  - id: metric.http.server.response.size
+  - id: metric.http.server.response.body.size
     type: metric
-    metric_name: http.server.response.size
-    brief: "Measures the size of HTTP response messages (compressed)."
+    metric_name: http.server.response.body.size
+    brief: "Size of HTTP server response bodies."
     instrument: histogram
     unit: "By"
+    note: >
+      The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.server
 
   - id: metric.http.client.request.duration
     type: metric
     metric_name: http.client.request.duration
-    brief: "Measures the duration of outbound HTTP requests."
+    brief: "Duration of HTTP client requests."
     instrument: histogram
     unit: "s"
     extends: metric_attributes.http.client
 
-  - id: metric.http.client.request.size
+  - id: metric.http.client.request.body.size
     type: metric
-    metric_name: http.client.request.size
-    brief: "Measures the size of HTTP request messages (compressed)."
+    metric_name: http.client.request.body.size
+    brief: "Size of HTTP client request bodies."
     instrument: histogram
     unit: "By"
+    note: >
+      The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.client
 
-  - id: metric.http.client.response.size
+  - id: metric.http.client.response.body.size
     type: metric
-    metric_name: http.client.response.size
-    brief: "Measures the size of HTTP response messages (compressed)."
+    metric_name: http.client.response.body.size
+    brief: "Size of HTTP client response bodies."
     instrument: histogram
     unit: "By"
+    note: >
+      The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
+      is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
+      header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.client

@@ -9,7 +9,7 @@ This repository is currently using [this specification version][SpecificationVer
 
 ## Read the docs
 
-The documentation currently resides in the [doc](docs/README.md) folder.
+The documentation currently resides in the [docs](docs/README.md) folder.
 
 ## Contributing
 
@@ -17,7 +17,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/open-telemetry/teams/specs-semconv-approvers)):
 
-- [Alexander Wert](https://github.com/AlexanderWert), Elastic
 - [Christian Neumüller](https://github.com/Oberon00), Dynatrace
 - [James Moessis](https://github.com/jamesmoessis), Atlassian
 - [Johannes Tax](https://github.com/pyohannes), Grafana Labs
@@ -29,6 +28,7 @@ _Find more about the approver role in [community repository](https://github.com/
 
 Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)):
 
+- [Alexander Wert](https://github.com/AlexanderWert), Elastic
 - [Armin Ruech](https://github.com/arminru), Dynatrace
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
 - [Josh Suereth](https://github.com/jsuereth), Google

@@ -2,37 +2,34 @@
 linkTitle: Runtime Environment
 --->
 
-# Semantic Conventions for Runtime Environment Metrics
+# Semantic Conventions for JVM Metrics
 
 **Status**: [Experimental][DocumentStatus]
 
-This document includes semantic conventions for runtime environment level
-metrics in OpenTelemetry. Also consider the [general
-metric](/docs/general/metrics.md#general-metric-semantic-conventions), [system
-metrics](system-metrics.md) and [OS Process metrics](process-metrics.md)
-semantic conventions when instrumenting runtime environments.
+This document describes semantic conventions for JVM metrics in OpenTelemetry.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
-- [Metric Instruments](#metric-instruments)
-  * [Runtime Environment Specific Metrics - `process.runtime.{environment}.`](#runtime-environment-specific-metrics---processruntimeenvironment)
-- [Attributes](#attributes)
-- [JVM Metrics](#jvm-metrics)
+- [JVM Memory](#jvm-memory)
   * [Metric: `jvm.memory.usage`](#metric-jvmmemoryusage)
   * [Metric: `jvm.memory.committed`](#metric-jvmmemorycommitted)
   * [Metric: `jvm.memory.limit`](#metric-jvmmemorylimit)
   * [Metric: `jvm.memory.usage_after_last_gc`](#metric-jvmmemoryusage_after_last_gc)
+- [JVM Garbage Collection](#jvm-garbage-collection)
   * [Metric: `jvm.gc.duration`](#metric-jvmgcduration)
+- [JVM Threads](#jvm-threads)
   * [Metric: `jvm.thread.count`](#metric-jvmthreadcount)
+- [JVM Classes](#jvm-classes)
   * [Metric: `jvm.class.loaded`](#metric-jvmclassloaded)
   * [Metric: `jvm.class.unloaded`](#metric-jvmclassunloaded)
   * [Metric: `jvm.class.count`](#metric-jvmclasscount)
+- [JVM CPU](#jvm-cpu)
   * [Metric: `jvm.cpu.time`](#metric-jvmcputime)
   * [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   * [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
-- [JVM Metrics (Experimental)](#jvm-metrics-experimental)
+- [Very experimental](#very-experimental)
   * [Metric: `jvm.memory.init`](#metric-jvmmemoryinit)
   * [Metric: `jvm.system.cpu.utilization`](#metric-jvmsystemcpuutilization)
   * [Metric: `jvm.system.cpu.load_1m`](#metric-jvmsystemcpuload_1m)
@@ -42,41 +39,9 @@ semantic conventions when instrumenting runtime environments.
 
 <!-- tocstop -->
 
-## Metric Instruments
+## JVM Memory
 
-Runtime environments vary widely in their terminology, implementation, and
-relative values for a given metric. For example, Go and Python are both
-garbage collected languages, but comparing heap usage between the Go and
-CPython runtimes directly is not meaningful. For this reason, this document
-does not propose any standard top-level runtime metric instruments. See [OTEP
-108](https://github.com/open-telemetry/oteps/pull/108/files) for additional
-discussion.
-
-### Runtime Environment Specific Metrics - `process.runtime.{environment}.`
-
-Metrics specific to a certain runtime environment should be prefixed with
-`process.runtime.{environment}.` and follow the semantic conventions outlined in
-[general metric semantic
-conventions](/docs/general/metrics.md#general-metric-semantic-conventions). Authors of
-runtime instrumentations are responsible for the choice of `{environment}` to
-avoid ambiguity when interpreting a metric's name or values.
-
-For example, some programming languages have multiple runtime environments
-that vary significantly in their implementation, like [Python which has many
-implementations](https://wiki.python.org/moin/PythonImplementations). For
-such languages, consider using specific `{environment}` prefixes to avoid
-ambiguity, like `process.runtime.cpython.` and `process.runtime.pypy.`.
-
-There are other dimensions even within a given runtime environment to
-consider, for example pthreads vs green thread implementations.
-
-## Attributes
-
-[`process.runtime`](/docs/resource/process.md#process-runtimes) resource attributes SHOULD be included on runtime metric events as appropriate.
-
-## JVM Metrics
-
-**Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.`
+**Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.memory.*`
 
 ### Metric: `jvm.memory.usage`
 
@@ -92,8 +57,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -119,8 +84,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.committed(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -146,8 +111,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.limit(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -173,8 +138,8 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 <!-- semconv metric.jvm.memory.usage_after_last_gc(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -185,6 +150,10 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 | `heap` | Heap memory. |
 | `non_heap` | Non-heap memory |
 <!-- endsemconv -->
+
+## JVM Garbage Collection
+
+**Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.gc.*`
 
 ### Metric: `jvm.gc.duration`
 
@@ -205,13 +174,17 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 <!-- semconv metric.jvm.gc.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.gc.name` | string | Name of the garbage collector. [1] | `G1 Young Generation`; `G1 Old Generation` | Recommended |
-| `jvm.gc.action` | string | Name of the garbage collector action. [2] | `end of minor GC`; `end of major GC` | Recommended |
+| `jvm.gc.action` | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` | Recommended |
+| `jvm.gc.name` | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` | Recommended |
 
-**[1]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+**[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
-**[2]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
+**[2]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
 <!-- endsemconv -->
+
+## JVM Threads
+
+**Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.thread.*`
 
 ### Metric: `jvm.thread.count`
 
@@ -231,6 +204,10 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 |---|---|---|---|---|
 | [`thread.daemon`](../general/attributes.md) | boolean | Whether the thread is daemon or not. |  | Recommended |
 <!-- endsemconv -->
+
+## JVM Classes
+
+**Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.class.*`
 
 ### Metric: `jvm.class.loaded`
 
@@ -273,6 +250,10 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 
 <!-- semconv metric.jvm.class.count(full) -->
 <!-- endsemconv -->
+
+## JVM CPU
+
+**Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.cpu.*`
 
 ### Metric: `jvm.cpu.time`
 
@@ -323,9 +304,9 @@ Note that the JVM does not provide a definition of what "recent" means.
 <!-- semconv metric.jvm.cpu.recent_utilization(full) -->
 <!-- endsemconv -->
 
-## JVM Metrics (Experimental)
+## Very experimental
 
-**Description:** Experimental Java Virtual Machine (JVM) metrics captured under `jvm.`
+**Description:** Very experimental Java Virtual Machine (JVM) metrics captured under `jvm.`
 
 ### Metric: `jvm.memory.init`
 
@@ -341,8 +322,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.init(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 

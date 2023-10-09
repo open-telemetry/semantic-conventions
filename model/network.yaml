@@ -22,9 +22,14 @@ groups:
               value: 'unix'
               brief: "Unix domain socket"
         brief: >
-          [OSI Transport Layer](https://osi-model.com/transport-layer/) or
-          [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication).
+          [OSI transport layer](https://osi-model.com/transport-layer/) or
+          [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication).
+        note: |
           The value SHOULD be normalized to lowercase.
+
+          Consider always setting the transport when setting a port number, since
+          a port number is ambiguous without knowing the transport, for example
+          different processes could be listening on TCP port 12345 and UDP port 12345.
         examples: ['tcp', 'udp']
       - id: type
         type:
@@ -36,19 +41,17 @@ groups:
             - id: ipv6
               value: 'ipv6'
               brief: "IPv6"
-        brief: >
-          [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent.
-          The value SHOULD be normalized to lowercase.
+        brief: '[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent.'
+        note: The value SHOULD be normalized to lowercase.
         examples: ['ipv4', 'ipv6']
       - id: protocol.name
         type: string
-        brief: >
-          [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent.
-          The value SHOULD be normalized to lowercase.
+        brief: '[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent.'
+        note: The value SHOULD be normalized to lowercase.
         examples: ['amqp', 'http', 'mqtt']
       - id: protocol.version
         type: string
-        brief: 'Version of the application layer protocol used. See note below.'
+        brief: Version of the protocol specified in `network.protocol.name`.
         examples: '3.1.1'
         note: >
           `network.protocol.version` refers to the version of the protocol used and might be
@@ -162,91 +165,3 @@ groups:
         type: string
         brief: "The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network."
         examples: "DE"
-  - id: peer
-    prefix: peer
-    type: span
-    brief: "Operations that access some remote service."
-    attributes:
-      - id: service
-        type: string
-        brief: >
-          The [`service.name`](/docs/resource/README.md#service)
-          of the remote service. SHOULD be equal to the actual `service.name`
-          resource attribute of the remote service if any.
-        examples: "AuthTokenCache"
-  - id: identity
-    prefix: enduser
-    type: span
-    brief: >
-        These attributes may be used for any operation with an authenticated and/or authorized enduser.
-    attributes:
-      - id: id
-        type: string
-        brief: >
-          Username or client_id extracted from the access token or
-          [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)
-          header in the inbound request from outside the system.
-        examples: 'username'
-      - id: role
-        type: string
-        brief: 'Actual/assumed role the client is making the request under extracted from token or application security context.'
-        examples: 'admin'
-      - id: scope
-        type: string
-        brief: >
-          Scopes or granted authorities the client currently possesses extracted from token
-          or application security context. The value would come from the scope associated
-          with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3)
-          or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html).
-        examples: 'read:message, write:files'
-  - id: thread
-    prefix: thread
-    type: span
-    brief: >
-      These attributes may be used for any operation to store information about a thread that started a span.
-    attributes:
-      - id: id
-        type: int
-        brief: >
-          Current "managed" thread ID (as opposed to OS thread ID).
-        examples: 42
-      - id: name
-        type: string
-        brief: >
-          Current thread name.
-        examples: main
-      - id: daemon
-        brief: "Whether the thread is daemon or not."
-        type: boolean
-  - id: code
-    prefix: code
-    type: span
-    brief: >
-      These attributes allow to report this unit of code and therefore to provide more context about the span.
-    attributes:
-      - id: function
-        type: string
-        brief: >
-          The method or function name, or equivalent (usually rightmost part of the code unit's name).
-        examples: serveRequest
-      - id: namespace
-        type: string
-        brief: >
-          The "namespace" within which `code.function` is defined. Usually the qualified class or module name,
-          such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit.
-        examples: com.example.MyHttpService
-      - id: filepath
-        type: string
-        brief: >
-          The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path).
-        examples: /usr/local/MyApplication/content_root/app/index.php
-      - id: lineno
-        type: int
-        brief: >
-          The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
-        examples: 42
-      - id: column
-        type: int
-        brief: >
-          The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
-        examples: 16

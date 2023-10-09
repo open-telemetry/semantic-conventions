@@ -7,11 +7,19 @@ release.
 
 ## Unreleased
 
+- Adds `session.id` and session.md to general docs and model
+([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
+- Add `container.labels.<key>` attributes.
+  ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
+- Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
+  ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
   ([#95](https://github.com/open-telemetry/semantic-conventions/pull/95))
 - Update `.count` metric naming convention so that it only applies to UpDownCounters,
   and add that `.total` should not be used by either Counters or UpDownCounters
   ([#107](https://github.com/open-telemetry/semantic-conventions/pull/107))
+- Add `oci.manifest.digest`, `container.image.repo_digests` attributes. Make `container.image.tag` array and in plural form.
+  ([#159](https://github.com/open-telemetry/semantic-conventions/pull/159))
 - BREAKING: Rename `http.client.duration` and `http.server.duration` metrics to
   `http.client.request.duration` and `http.server.request.duration` respectively.
   ([#224](https://github.com/open-telemetry/semantic-conventions/pull/224))
@@ -57,6 +65,77 @@ release.
   ([#60](https://github.com/open-telemetry/semantic-conventions/pull/60))
 - BREAKING: Remove pluralization from JVM metric namespaces.
   ([#252](https://github.com/open-telemetry/semantic-conventions/pull/252))
+- Simplify HTTP metric briefs.
+  ([#276](https://github.com/open-telemetry/semantic-conventions/pull/276))
+- Add host cpu resource attributes.
+  ([#209](https://github.com/open-telemetry/semantic-conventions/pull/209))
+- Introduce `error.type` attribute and use it in HTTP conventions
+  ([#205](https://github.com/open-telemetry/semantic-conventions/pull/205))
+- BREAKING: Change HTTP span name when method is unknown (use `HTTP` instead of `_OTHER`)
+  ([#270](https://github.com/open-telemetry/semantic-conventions/pull/270))
+- Moved RPC streaming notes from metric brief section to notes section.
+  ([#275](https://github.com/open-telemetry/semantic-conventions/pull/275))
+- Updates `client.address` to allow domain names for consistency with `server.address`.
+  ([#302](https://github.com/open-telemetry/semantic-conventions/pull/302))
+- BREAKING: Generate System metrics semconv from YAML.
+  ([#89](https://github.com/open-telemetry/semantic-conventions/pull/89))
+  - Rename attributes for `system.cpu.*` metrics:
+    - `state` to `system.cpu.state`
+    - `cpu` to `system.cpu.logical_number`
+  - Rename attributes for `system.memory.*` metrics:
+    - `state` to `system.memory.state`
+  - Rename attributes for `system.paging.*` metrics:
+    - `state` to `system.paging.state`
+    - `type` to `system.paging.type`
+    - `direction` to `system.paging.direction`
+  - Rename attributes for `system.disk.*` metrics:
+    - `device` to `system.device`
+    - `direction` to `system.disk.direction`
+  - Rename attributes for `system.filesystem.*` metrics:
+    - `device` to `system.device`
+    - `state` to `system.filesystem.state`
+    - `type` to `system.filesystem.type`
+    - `mode` to `system.filesystem.mode`
+    - `mountpoint` to `system.filesystem.mountpoint`
+  - Rename attributes for `system.network.*` metrics:
+    - `device` to `system.device`
+    - `direction` to `system.network.direction`
+    - `protocol` to `network.protocol`
+    - `state` to `system.network.state`
+  - Rename attributes for `system.processes.*` metrics:
+    - `status` to `system.processes.status`
+- BREAKING: Rename `messaging.message.payload_size_bytes` to `messaging.message.body.size`,
+  remove `messaging.message.payload_compressed_size_bytes`.
+  ([#229](https://github.com/open-telemetry/semantic-conventions/pull/229))
+- Add `system.linux.memory.available` metric.
+  ([#323](https://github.com/open-telemetry/semantic-conventions/pull/323))
+- BREAKING: Rename `http.server.request.size` metric to `http.server.request.body.size`
+  and `http.server.response.size` metric to `http.server.response.body.size`
+  ([#247](https://github.com/open-telemetry/semantic-conventions/pull/247))
+- Move non-`network.*` attributes out of network.yaml.
+  ([#296](https://github.com/open-telemetry/semantic-conventions/pull/296))
+- Introducing Android `android.os.api_level` resource attribute.
+  ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
+- Added `os.build_id` resource attribute.
+  ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
+- BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
+  and `http.client.request.duration`.
+  ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
+- Encourage setting `network.transport` when reporting port numbers
+  ([#289](https://github.com/open-telemetry/semantic-conventions/pull/289))
+- BREAKING: Add `url.scheme` to `http.client.*` metrics
+  ([#357](https://github.com/open-telemetry/semantic-conventions/pull/357))
+- BREAKING: Remove `server.socket.address` from HTTP and RPC client metrics.
+  ([#350](https://github.com/open-telemetry/semantic-conventions/pull/350))
+- Improve network attribute briefs.
+  ([#352](https://github.com/open-telemetry/semantic-conventions/pull/352))
+- BREAKING: Rename `telemetry.auto.version` resource attribute to `telemetry.distro.version`
+  and add `telemetry.distro.name` resource attribute
+  ([#178](https://github.com/open-telemetry/semantic-conventions/pull/178))
+- Improve HTTP metric briefs.
+  ([#366](https://github.com/open-telemetry/semantic-conventions/pull/366))
+- Add `host.ip` resource attribute convention.
+  ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
 - Metric namespaces SHOULD NOT be pluralized.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 
