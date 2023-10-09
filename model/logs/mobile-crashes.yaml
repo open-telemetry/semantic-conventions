@@ -8,7 +8,7 @@ groups:
       - id: platform
         requirement_level: "required"
         brief: >
-            This attribute represents the state the application has transitioned into at the occurrence of the event.
+            This attribute the platform type of the device on which the crash event occurred.
         type:
           allow_custom_values: false
           members:
