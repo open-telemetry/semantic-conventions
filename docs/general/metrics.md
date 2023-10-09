@@ -35,7 +35,7 @@ The following semantic conventions surrounding metrics are defined:
   * [System](/docs/system/system-metrics.md): For standard system metrics.
   * [Hardware](/docs/system/hardware-metrics.md): For hardware-related metrics.
   * [Process](/docs/system/process-metrics.md): For standard process metrics.
-  * [Runtime Environment](/docs/system/runtime-environment-metrics.md): For runtime environment metrics.
+  * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
 
 Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
 defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/resource/sdk.md) with
