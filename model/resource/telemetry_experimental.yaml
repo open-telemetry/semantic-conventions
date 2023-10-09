@@ -5,8 +5,16 @@ groups:
     brief: >
       The telemetry SDK used to capture data recorded by the instrumentation libraries.
     attributes:
-      - id: auto.version
+      - id: distro.name
         type: string
         brief: >
-          The version string of the auto instrumentation agent, if used.
+          The name of the auto instrumentation agent or distribution, if used.
+        note: |
+          Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
+          a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
+        examples: ["parts-unlimited-java"]
+      - id: distro.version
+        type: string
+        brief: >
+          The version string of the auto instrumentation agent or distribution, if used.
         examples: ["1.2.3"]
