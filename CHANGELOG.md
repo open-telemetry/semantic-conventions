@@ -134,6 +134,8 @@ release.
   ([#178](https://github.com/open-telemetry/semantic-conventions/pull/178))
 - Improve HTTP metric briefs.
   ([#366](https://github.com/open-telemetry/semantic-conventions/pull/366))
+- Add `host.ip` resource attribute convention.
+  ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
 
 ## v1.21.0 (2023-07-13)
 
