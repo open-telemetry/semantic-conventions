@@ -92,7 +92,7 @@ groups:
   - id: metric.http.server.request.duration
     type: metric
     metric_name: http.server.request.duration
-    brief: "Measures the duration of inbound HTTP requests."
+    brief: "Duration of HTTP server requests."
     instrument: histogram
     unit: "s"
     extends: metric_attributes.http.server
@@ -100,7 +100,7 @@ groups:
   - id: metric.http.server.active_requests
     type: metric
     metric_name: http.server.active_requests
-    brief: "Measures the number of concurrent HTTP requests that are currently in-flight."
+    brief: "Number of active HTTP server requests."
     instrument: updowncounter
     unit: "{request}"
     attributes:
@@ -138,7 +138,7 @@ groups:
   - id: metric.http.server.request.body.size
     type: metric
     metric_name: http.server.request.body.size
-    brief: "Measures the size of HTTP request messages."
+    brief: "Size of HTTP server request bodies."
     instrument: histogram
     unit: "By"
     note: >
@@ -150,7 +150,7 @@ groups:
   - id: metric.http.server.response.body.size
     type: metric
     metric_name: http.server.response.body.size
-    brief: "Measures the size of HTTP response messages."
+    brief: "Size of HTTP server response bodies."
     instrument: histogram
     unit: "By"
     note: >
@@ -162,7 +162,7 @@ groups:
   - id: metric.http.client.request.duration
     type: metric
     metric_name: http.client.request.duration
-    brief: "Measures the duration of outbound HTTP requests."
+    brief: "Duration of HTTP client requests."
     instrument: histogram
     unit: "s"
     extends: metric_attributes.http.client
@@ -170,7 +170,7 @@ groups:
   - id: metric.http.client.request.body.size
     type: metric
     metric_name: http.client.request.body.size
-    brief: "Measures the size of HTTP request messages."
+    brief: "Size of HTTP client request bodies."
     instrument: histogram
     unit: "By"
     note: >
@@ -182,7 +182,7 @@ groups:
   - id: metric.http.client.response.body.size
     type: metric
     metric_name: http.client.response.body.size
-    brief: "Measures the size of HTTP response messages."
+    brief: "Size of HTTP client response bodies."
     instrument: histogram
     unit: "By"
     note: >
