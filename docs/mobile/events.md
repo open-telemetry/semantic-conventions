@@ -29,10 +29,10 @@ The event name MUST be `app.lifecycle`.
 
 | Value  | Description |
 |---|---|
-| `active` | The app has become "active". Associated with UIKit notification `applicationDidBecomeActive`. |
-| `inactive` | the app is now "inactive". Associated with UIKit notification `applicationWillResignActive`. |
+| `active` | The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`. |
+| `inactive` | The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`. |
 | `background` | The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`. |
-| `foreground` | The app is now in the foreground. this value is associated with UIKit notification `applicationWillEnterForeground`. |
+| `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. |
 | `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. |
 <!-- endsemconv -->
 
@@ -49,7 +49,7 @@ The event name MUST be `app.lifecycle`.
 
 | Value  | Description |
 |---|---|
-| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.' |
+| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. |
 | `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. |
 <!-- endsemconv -->
