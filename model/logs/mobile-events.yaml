@@ -43,7 +43,7 @@ groups:
     name: app.lifecycle
     brief: >
       This event represents an occurrence of a lifecycle transition on the Android platform.
-      `event.domain` MUST be 'device'.
+      `event.domain` MUST be `device`.
     attributes:
       - id: state
         requirement_level: required
