@@ -18,7 +18,8 @@ groups:
           members:
             - id: active
               value: 'active'
-              brief: 'The app has become "active". Associated with UIKit notification `applicationDidBecomeActive`.'
+              brief: >
+                The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
             - id: inactive
               value: 'inactive'
               brief: >
