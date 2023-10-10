@@ -3,7 +3,7 @@
 **Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for instrumentations that emit events on mobile platforms.
-
+All mobile events MUST set `event.domain` as `device`.
 <!-- toc -->
 
 - [Lifecycle instrumentation](#lifecycle-instrumentation)
