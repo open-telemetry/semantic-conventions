@@ -31,7 +31,7 @@ groups:
               value: 'foreground'
               brief: >
                 The app is now in the foreground.
-                this value is associated with UIKit notification `applicationWillEnterForeground`.
+                This value is associated with UIKit notification `applicationWillEnterForeground`.
             - id: terminate
               value: 'terminate'
               brief: "The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`."
