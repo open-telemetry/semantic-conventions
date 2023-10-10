@@ -139,6 +139,8 @@ release.
 - BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
   with `network.(peer|local).(address|port)`.
   ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
+- BREAKING: Rename http.resend_count to http.request.resend_count.
+  ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
 
 ## v1.21.0 (2023-07-13)
 
