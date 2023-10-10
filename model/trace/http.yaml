@@ -1,6 +1,5 @@
 groups:
   - id: trace.http.common
-    prefix: http
     extends: attributes.http.common
     type: attribute_group
     brief: 'This document defines semantic conventions for HTTP client and server Spans.'
@@ -8,59 +7,18 @@ groups:
         These conventions can be used for http and https schemes
         and various HTTP versions like 1.1, 2 and SPDY.
     attributes:
-      - id: request.method_original
-        type: string
+      - ref: http.request.method_original
         requirement_level:
           conditionally_required: If and only if it's different than `http.request.method`.
-        brief: Original HTTP method sent by the client in the request line.
-        examples: ["GeT", "ACL", "foo"]
-      - id: request.body.size
-        type: int
-        brief: >
-          The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
-          is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
-          header. For requests using transport encoding, this should be the compressed size.
-        examples: 3495
-      - id: response.body.size
-        type: int
-        brief: >
-          The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
-          is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
-          header. For requests using transport encoding, this should be the compressed size.
-        examples: 3495
-      - id: request.header
-        type: template[string[]]
+      - ref: http.request.body.size
+      - ref: http.request.header
         requirement_level: opt_in
-        brief: >
-          HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values.
-        note: >
-          Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-          Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-          The `User-Agent` header is already captured in the `user_agent.original` attribute.
-          Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-
-          The attribute value MUST consist of either multiple header values as an array of strings
-          or a single-item array containing a possibly comma-concatenated string, depending on the way
-          the HTTP library provides access to headers.
-        examples: ['http.request.header.content_type=["application/json"]', 'http.request.header.x_forwarded_for=["1.2.3.4", "1.2.3.5"]']
-      - id: response.header
-        type: template[string[]]
+      - ref: http.response.body.size
+      - ref: http.response.header
         requirement_level: opt_in
-        brief: >
-          HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values.
-        note: >
-          Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-          Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-          Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-
-          The attribute value MUST consist of either multiple header values as an array of strings
-          or a single-item array containing a possibly comma-concatenated string, depending on the way
-          the HTTP library provides access to headers.
-        examples: ['http.response.header.content_type=["application/json"]', 'http.response.header.my_custom_header=["abc", "def"]']
       - ref: http.request.method
         sampling_relevant: true
+        requirement_level: required
       - ref: network.transport
         requirement_level:
           conditionally_required: If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
@@ -68,23 +26,14 @@ groups:
       - ref: user_agent.original
 
   - id: trace.http.client
-    prefix: http
     type: span
     extends: attributes.http.client
     span_kind: client
     brief: 'Semantic Convention for HTTP Client'
     attributes:
-      - id: resend_count
-        type: int
-        brief: >
-          The ordinal number of request resending attempt (for any reason, including redirects).
-        note: >
-          The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what
-          was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues,
-          or any other).
+      - ref: http.resend_count
         requirement_level:
           recommended: if and only if request was retried.
-        examples: 3
       - ref: server.address
         sampling_relevant: true
         requirement_level: required
@@ -108,16 +57,18 @@ groups:
         note: >
           When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
           URI port identifier, otherwise it MUST match `Host` header port identifier.
-      - ref: server.socket.domain
-      - ref: server.socket.address
-      - ref: server.socket.port
+      - ref: network.peer.address
+        requirement_level:
+          recommended: If different than `server.address`.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
       - ref: url.full
         sampling_relevant: true
         requirement_level: required
 
 
   - id: trace.http.server
-    prefix: http
     type: span
     extends: attributes.http.server
     span_kind: server
@@ -151,10 +102,10 @@ groups:
           - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
-      - ref: server.socket.address
+      - ref: network.local.address
         requirement_level: opt_in
         brief: Local socket address. Useful in case of a multi-IP host.
-      - ref: server.socket.port
+      - ref: network.local.port
         requirement_level: opt_in
         brief: Local socket port. Useful in case of a multi-port host.
       - ref: client.address
@@ -169,8 +120,8 @@ groups:
             The port of the original client behind all proxies, if
             known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header).
             Otherwise, the immediate client peer port.
-      - ref: client.socket.address
-      - ref: client.socket.port
+      - ref: network.peer.address
+      - ref: network.peer.port
       - ref: url.path
         requirement_level: required
         sampling_relevant: true
