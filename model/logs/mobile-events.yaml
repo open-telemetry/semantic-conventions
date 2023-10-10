@@ -48,7 +48,8 @@ groups:
     attributes:
       - id: state
         requirement_level: required
-        brief: This attribute represents the state the application has transitioned into at the occurrence of the event.
+        brief: >
+          This attribute represents the state the application has transitioned into at the occurrence of the event.
         note: >
           The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
           and from which the `OS identifiers` are derived.
