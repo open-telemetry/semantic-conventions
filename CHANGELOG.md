@@ -7,6 +7,7 @@ release.
 
 ## Unreleased
 
+<<<<<<< HEAD
 ### Breaking
 
 - Rename `system.processes.*` namespace to `system.process.*`
@@ -199,6 +200,8 @@ stabilized.
 ## v1.22.0 (2023-10-12)
 
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
+=======
+>>>>>>> 0f8b883 (adding conflict fix I forgot to save)
 - Adds `session.id` and session.md to general docs and model
   ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
@@ -206,13 +209,6 @@ stabilized.
 - BREAKING: Generate process metrics from YAML 
   ([#330](https://github.com/open-telemetry/semantic-conventions/pull/330))
   - Rename attributes for `process.cpu.*`
-=======
-- BREAKING: Generate process metrics from YAML
-  ([#330](https://github.com/open-telemetry/semantic-conventions/pull/330))
-  - Rename attributes for `process.cpu.time`
-    - `state` to `process.cpu.state`
-  - Rename attributes for `process.cpu.utilization`
->>>>>>> 3e1bee7 (Fix lint errors, add ignore to .yamllint)
     - `state` to `process.cpu.state`
   - Rename attributes for `process.disk.io`
     - `direction` to `process.disk.io.direction`
