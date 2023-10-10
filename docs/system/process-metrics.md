@@ -19,16 +19,18 @@ metrics](/docs/runtime/README.md#metrics).
 
 <!-- toc -->
 
-- [Metric Instruments](#metric-instruments)
-  * [Metric: `process.cpu.time`](#metric-processcputime)
-  * [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
-  * [Metric: `process.memory.usage`](#metric-processmemoryusage)
-  * [Metric: `process.memory.virtual`](#metric-processmemoryvirtual)
-  * [Metric: `process.disk.io`](#metric-processdiskio)
-  * [Metric: `process.network.io`](#metric-processnetworkio)
-  * [Metric: `process.threads`](#metric-processthreads)
-  * [Metric: `process.context_switches`](#metric-processcontext_switches)
-  * [Metric: `process.paging.faults`](#metric-processpagingfaults)
+- [Semantic Conventions for OS Process Metrics](#semantic-conventions-for-os-process-metrics)
+  - [Metric Instruments](#metric-instruments)
+    - [Metric: `process.cpu.time`](#metric-processcputime)
+    - [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
+    - [Metric: `process.memory.usage`](#metric-processmemoryusage)
+    - [Metric: `process.memory.virtual`](#metric-processmemoryvirtual)
+    - [Metric: `process.disk.io`](#metric-processdiskio)
+    - [Metric: `process.network.io`](#metric-processnetworkio)
+    - [Metric: `process.threads`](#metric-processthreads)
+    - [Metric: `process.open_file_descriptors`](#metric-processopen_file_descriptors)
+    - [Metric: `process.context_switches`](#metric-processcontext_switches)
+    - [Metric: `process.paging.faults`](#metric-processpagingfaults)
 
 <!-- tocstop -->
 
@@ -163,6 +165,18 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- semconv metric.process.threads(full) -->
 <!-- endsemconv -->
 
+### Metric: `process.open_file_descriptors`
+
+<!-- semconv metric.process.open_file_descriptors(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `process.open_file_descriptors` | UpDownCounter | `{count}` | Number of file descriptors in use by the process. |
+<!-- endsemconv -->
+
+<!-- semconv metric.process.open_file_descriptors(full) -->
+<!-- endsemconv -->
+
+
 ### Metric: `process.context_switches`
 
 <!-- semconv metric.process.context_switches(metric_table) -->
@@ -189,7 +203,7 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- semconv metric.process.paging.faults(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.paging.faults` | UpDownCounter | `{fault}` | Number of page faults the process has made. |
+| `process.paging.faults` | Counter | `{fault}` | Number of page faults the process has made. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.paging.faults(full) -->

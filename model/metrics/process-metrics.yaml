@@ -122,7 +122,7 @@ groups:
     type: metric
     metric_name: process.paging.faults
     brief: "Number of page faults the process has made."
-    instrument: updowncounter
+    instrument: counter
     unit: "{fault}"
     attributes:
       - id: process.paging.faults.type
