@@ -4,7 +4,7 @@ groups:
     prefix: ios
     name: app.lifecycle
     brief: >
-      This event represents an occurrence of a lifecycle transition on the iOS platform.  `event.domain` MUST be 'device'.
+      This event represents an occurrence of a lifecycle transition on the iOS platform. `event.domain` MUST be `device`.
     attributes:
       - id: state
         requirement_level: "required"
