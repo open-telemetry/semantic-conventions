@@ -21,7 +21,8 @@ groups:
               brief: 'The app has become "active". Associated with UIKit notification `applicationDidBecomeActive`.'
             - id: inactive
               value: 'inactive'
-              brief: "the app is now \"inactive\". Associated with UIKit notification `applicationWillResignActive`."
+              brief: >
+                The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`.
             - id: background
               value: 'background'
               brief: >
