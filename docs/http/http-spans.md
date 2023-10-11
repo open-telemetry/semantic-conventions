@@ -63,7 +63,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 ## Name
 
-HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#span).
+HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#span).
 
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
@@ -87,7 +87,7 @@ default span name.
 
 ## Status
 
-[Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
+[Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
 1xx, 2xx or 3xx ranges, unless there was another error (e.g., network error receiving
 the response body; or 3xx codes with max redirects exceeded), in which case status
 MUST be set to `Error`.
@@ -593,4 +593,4 @@ Span name: `POST /uploads/:document_id`.
 | `http.response.status_code` | `201`                                    |
 | `error.type`         | `WebSocketDisconnect`                           |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

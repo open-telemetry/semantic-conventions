@@ -89,4 +89,4 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | `db.elasticsearch.cluster.name`     | `"e9106fc68e3044f0b1475b04bf4ffd5f"`                                                                                                |
 | `db.elasticsearch.node.name` | `"instance-0000000001"`                                                                                                             |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

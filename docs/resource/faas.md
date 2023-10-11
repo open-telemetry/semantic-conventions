@@ -80,4 +80,4 @@ There are cases where a FaaS resource attribute is better applied as a span
 attribute instead.
 See the [FaaS trace conventions](/docs/faas/faas-spans.md) for more.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
