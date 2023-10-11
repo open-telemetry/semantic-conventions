@@ -45,10 +45,12 @@ The following metrics are recorded by the FaaS instance.
 
 This metric is [recommended][MetricRecommended].
 
+This metric SHOULD use [`ExplicitBucketBoundaries`](../general/metrics-general.md#explicit-bucket-boundaries-for-duration-histograms).
+
 <!-- semconv metric.faas.invoke_duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `faas.invoke_duration` | Histogram | `ms` | Measures the duration of the function's logic execution |
+| `faas.invoke_duration` | Histogram | `s` | Measures the duration of the function's logic execution |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.invoke_duration(full) -->
@@ -71,10 +73,12 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
+This metric SHOULD use [`ExplicitBucketBoundaries`](../general/metrics-general.md#explicit-bucket-boundaries-for-duration-histograms).
+
 <!-- semconv metric.faas.init_duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `faas.init_duration` | Histogram | `ms` | Measures the duration of the function's initialization, such as a cold start |
+| `faas.init_duration` | Histogram | `s` | Measures the duration of the function's initialization, such as a cold start |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.init_duration(full) -->
@@ -227,10 +231,12 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
+This metric SHOULD use [`ExplicitBucketBoundaries`](../general/metrics-general.md#explicit-bucket-boundaries-for-duration-histograms).
+
 <!-- semconv metric.faas.cpu_usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `faas.cpu_usage` | Histogram | `ms` | Distribution of CPU usage per invocation |
+| `faas.cpu_usage` | Histogram | `s` | Distribution of CPU usage per invocation |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.cpu_usage(full) -->
