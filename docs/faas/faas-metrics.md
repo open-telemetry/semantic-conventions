@@ -45,7 +45,9 @@ The following metrics are recorded by the FaaS instance.
 
 This metric is [recommended][MetricRecommended].
 
-This metric SHOULD use [`ExplicitBucketBoundaries`](../general/metrics-general.md#explicit-bucket-boundaries-for-duration-histograms).
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.invoke_duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -73,7 +75,9 @@ This metric SHOULD use [`ExplicitBucketBoundaries`](../general/metrics-general.m
 
 This metric is [recommended][MetricRecommended].
 
-This metric SHOULD use [`ExplicitBucketBoundaries`](../general/metrics-general.md#explicit-bucket-boundaries-for-duration-histograms).
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.init_duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -231,7 +235,9 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
-This metric SHOULD use [`ExplicitBucketBoundaries`](../general/metrics-general.md#explicit-bucket-boundaries-for-duration-histograms).
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.cpu_usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
