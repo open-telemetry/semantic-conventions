@@ -36,4 +36,4 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 
 _Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer)._
 
-[SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0
+[SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0

@@ -136,6 +136,9 @@ release.
   ([#366](https://github.com/open-telemetry/semantic-conventions/pull/366))
 - Add `host.ip` resource attribute convention.
   ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
+- BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
+  with `network.(peer|local).(address|port)`.
+  ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
 - Add `host.mac` resource attribute convention.
   ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
 

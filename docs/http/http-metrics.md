@@ -64,7 +64,7 @@ This metric is required.
 When this metric is reported alongside an HTTP server span, the metric value SHOULD be the same as the HTTP server span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.http.server.request.duration(metric_table) -->
@@ -82,7 +82,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`http.route`](../attributes-registry/http.md) | string | The matched route (path template in the format used by the respective server framework). See note below [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `amqp`; `http`; `mqtt` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `3.1.1` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com` | Opt-In |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [7] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
@@ -179,7 +179,7 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
-| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [2] | `example.com` | Opt-In |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [3] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
@@ -254,7 +254,7 @@ This metric is optional.
 | [`http.route`](../attributes-registry/http.md) | string | The matched route (path template in the format used by the respective server framework). See note below [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `amqp`; `http`; `mqtt` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `3.1.1` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com` | Opt-In |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [7] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
@@ -358,7 +358,7 @@ This metric is optional.
 | [`http.route`](../attributes-registry/http.md) | string | The matched route (path template in the format used by the respective server framework). See note below [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `amqp`; `http`; `mqtt` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `3.1.1` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com` | Opt-In |
+| [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [7] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
@@ -450,7 +450,7 @@ This metric is required.
 When this metric is reported alongside an HTTP client span, the metric value SHOULD be the same as the HTTP client span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.http.client.request.duration(metric_table) -->
@@ -467,7 +467,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `amqp`; `http`; `mqtt` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [4] | `3.1.1` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `example.com` | Required |
+| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | Required |
 
@@ -562,7 +562,7 @@ This metric is optional.
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `amqp`; `http`; `mqtt` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [4] | `3.1.1` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `example.com` | Required |
+| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | Required |
 
@@ -657,7 +657,7 @@ This metric is optional.
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `amqp`; `http`; `mqtt` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [4] | `3.1.1` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `example.com` | Required |
+| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
 | [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | Required |
 
@@ -730,4 +730,4 @@ SHOULD NOT be set if capturing it would require an extra DNS lookup.
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

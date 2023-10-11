@@ -26,4 +26,4 @@ described on this page.
 **[1]:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
