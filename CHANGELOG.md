@@ -129,6 +129,16 @@ release.
   ([#350](https://github.com/open-telemetry/semantic-conventions/pull/350))
 - Improve network attribute briefs.
   ([#352](https://github.com/open-telemetry/semantic-conventions/pull/352))
+- BREAKING: Rename `telemetry.auto.version` resource attribute to `telemetry.distro.version`
+  and add `telemetry.distro.name` resource attribute
+  ([#178](https://github.com/open-telemetry/semantic-conventions/pull/178))
+- Improve HTTP metric briefs.
+  ([#366](https://github.com/open-telemetry/semantic-conventions/pull/366))
+- Add `host.ip` resource attribute convention.
+  ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
+- BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
+  with `network.(peer|local).(address|port)`.
+  ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
 
 ## v1.21.0 (2023-07-13)
 
