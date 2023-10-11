@@ -85,4 +85,4 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud` | Tencent Cloud |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

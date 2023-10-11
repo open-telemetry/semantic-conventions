@@ -19,4 +19,4 @@ provider (like account ID, operating system, etc), it belongs in the parent
 - [Cloud Run](./cloud-run.md)
 - [Compute Engine](./gce.md)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

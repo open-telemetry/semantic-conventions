@@ -19,4 +19,4 @@ the Logs, Events, and Spans generated during the Session's lifecycle.
 | `session.id` | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | Opt-In |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
