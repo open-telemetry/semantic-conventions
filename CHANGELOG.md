@@ -139,7 +139,7 @@ release.
 - BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
   with `network.(peer|local).(address|port)`.
   ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
-- BREAKING: Use seconds as default duration for FaaS duration histograms 
+- BREAKING: Use seconds as default duration for FaaS duration histograms
   ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
 
 ## v1.21.0 (2023-07-13)
