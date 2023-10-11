@@ -17,4 +17,4 @@ Semantic conventions for feature flags are defined for the following signals:
 * [Feature Flags in Spans](feature-flags-spans.md): Semantic Conventions for recording feature flags in *spans*.
 * [Feature Flags in Logs](feature-flags-logs.md): Semantic Conventions for recording feature flags in *logs*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

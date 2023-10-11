@@ -18,4 +18,4 @@ System semantic conventions are defined for the following metrics:
 * [Process](process-metrics.md): For standard process metrics.
 * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
