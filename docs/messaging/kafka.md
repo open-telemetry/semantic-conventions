@@ -84,4 +84,4 @@ Process CB:                           | Span Rcv2 |
 | `messaging.kafka.partition` | `"1"` | `"1"` | `"1"` | `"3"` | `"3"` |
 | `messaging.kafka.message.offset` | `"12"` | `"12"` | `"12"` | `"32"` | `"32"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
