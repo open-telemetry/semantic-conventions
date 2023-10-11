@@ -7,6 +7,8 @@ release.
 
 ## Unreleased
 
+## v1.22.0 (2023-10-11)
+
 - Adds `session.id` and session.md to general docs and model
 ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
