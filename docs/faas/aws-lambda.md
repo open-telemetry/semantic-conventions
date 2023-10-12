@@ -76,7 +76,7 @@ To avoid broken traces, if OpenTelemetry is reporting traces to another system b
 
 `OTEL_PROPAGATORS=xray-lambda,tracecontext,baggage,xray`
 
-*Note: The `trace-lambda` propagator can only `extract` context. The `inject` operation MUST be a no-op.*
+*Note: The `xray-lambda` propagator can only `extract` context. The `inject` operation MUST be a no-op.*
 
 ## API Gateway
 
