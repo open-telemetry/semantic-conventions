@@ -131,10 +131,10 @@ sections below.
 
 **[1]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
-or a component-specific low cardinality error code.
+or a component-specific low cardinality error identifier.
 
 If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-`error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
+`error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error identifier.
 
 The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
