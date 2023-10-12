@@ -144,6 +144,9 @@ release.
 - BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
   with `network.(peer|local).(address|port)`.
   ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
+- Make `network.protocol.name|version` description consistent between HTTP
+  spans and metrics.
+  ([#367](https://github.com/open-telemetry/semantic-conventions/pull/367))
 
 ## v1.21.0 (2023-07-13)
 
