@@ -7,6 +7,9 @@ release.
 
 ## Unreleased
 
+- Change `server.port` from recommended to conditionally required on HTTP server semconv.
+  ([#399](https://github.com/open-telemetry/semantic-conventions/pull/399))
+
 ## v1.22.0 (2023-10-12)
 
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
