@@ -49,10 +49,6 @@ groups:
           (e.g., method actually executing the call on the server side,
           RPC client stub method on the client side).
         examples: "exampleMethod"
-      - ref: server.socket.address
-      - ref: server.socket.port
-        requirement_level:
-          recommended: If different than `server.port` and if `server.socket.address` is set.
       - ref: network.transport
       - ref: network.type
       - ref: server.address
@@ -66,19 +62,18 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: See below
-    constraints:
-      - any_of:
-          - server.socket.address
-          - server.address
 
   - id: rpc.client
     type: span
     brief: 'This document defines semantic conventions for remote procedure call client spans.'
     extends: rpc
     attributes:
-      - ref: server.socket.domain
+      - ref: network.peer.address
         requirement_level:
-          recommended: If different than `server.address` and if `server.socket.address` is set.
+          recommended: If different than `server.address`.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
 
   - id: rpc.server
     prefix: rpc
@@ -89,8 +84,12 @@ groups:
     attributes:
       - ref: client.address
       - ref: client.port
-      - ref: client.socket.address
-      - ref: client.socket.port
+      - ref: network.peer.address
+        requirement_level:
+          recommended: If different than `client.address`.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
       - ref: network.transport
       - ref: network.type
 
@@ -156,6 +155,24 @@ groups:
               value: 16
         requirement_level: required
         brief: "The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request."
+      - id: request.metadata
+        type: template[string[]]
+        requirement_level: opt_in
+        brief: >
+          gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.grpc.request.metadata.my_custom_metadata_attribute=["1.2.3.4", "1.2.3.5"]']
+      - id: response.metadata
+        type: template[string[]]
+        requirement_level: opt_in
+        brief: >
+          gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.grpc.response.metadata.my_custom_metadata_attribute=["attribute_value"]']
 
   - id: rpc.jsonrpc
     prefix: rpc.jsonrpc
@@ -261,3 +278,21 @@ groups:
         requirement_level:
           conditionally_required: If response is not successful and if error code available.
         brief: "The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
+      - id: request.metadata
+        type: template[string[]]
+        requirement_level: opt_in
+        brief: >
+          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.request.metadata.my_custom_metadata_attribute=["1.2.3.4", "1.2.3.5"]']
+      - id: response.metadata
+        type: template[string[]]
+        requirement_level: opt_in
+        brief: >
+          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.response.metadata.my_custom_metadata_attribute=["attribute_value"]']

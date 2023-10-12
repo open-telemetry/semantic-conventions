@@ -15,4 +15,4 @@ This document defines semantic conventions for resource cloud providers.
 * [GCP](gcp/README.md): Semantic Conventions for Google Cloud Platform.
 * [Heroku](heroku.md): Semantic Conventions for Heroku.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

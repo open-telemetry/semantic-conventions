@@ -12,27 +12,15 @@ groups:
     attributes:
       - id: address
         type: string
-        brief: Client address - unix domain socket name, IPv4 or IPv6 address.
+        brief: Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name.
         note: >
           When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent
-          client address behind any intermediaries (e.g. proxies) if it's available.
-        examples: ['/tmp/my.sock', '10.1.2.80']
+          the client address behind any intermediaries (e.g. proxies) if it's available.
+        examples: ['client.example.com', '10.1.2.80', '/tmp/my.sock']
       - id: port
         type: int
-        brief: 'Client port number'
+        brief: Client port number.
         examples: [65123]
         note: >
           When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent
-          client port behind any intermediaries (e.g. proxies) if it's available.
-      - id: socket.address
-        type: string
-        brief: Immediate client peer address - unix domain socket name, IPv4 or IPv6 address.
-        examples: ['/tmp/my.sock', '127.0.0.1']
-        requirement_level:
-          recommended: If different than `client.address`.
-      - id: socket.port
-        type: int
-        brief: 'Immediate client peer port number'
-        examples: [35555]
-        requirement_level:
-          recommended: If different than `client.port`.
+          the client port behind any intermediaries (e.g. proxies) if it's available.
