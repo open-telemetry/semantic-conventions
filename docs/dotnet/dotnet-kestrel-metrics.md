@@ -43,8 +43,8 @@ and `network.transport` value to corresponding `endpoint.AddressFamily` property
 |---|---|---|---|---|
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number. [4] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -94,8 +94,8 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [3] | `1.1`; `2` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `unix` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [6] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [7] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number. [7] | `80`; `8080`; `443` | Recommended |
 | `tls.protocol.version` | string | TLS protocol version. | `1.2`; `1.3` | Conditionally Required: if the connection is secured with TLS. |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
@@ -168,8 +168,8 @@ Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
 |---|---|---|---|---|
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number. [4] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -216,8 +216,8 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 |---|---|---|---|---|
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number. [4] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -266,8 +266,8 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [2] | `1.1`; `2` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `unix` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [5] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [6] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number. [6] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -320,8 +320,8 @@ Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
 |---|---|---|---|---|
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number. [4] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -369,8 +369,8 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | `error.type` | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | Conditionally Required: if and only if an exception was thrown. |
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `unix` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [3] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [4] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [5] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number. [5] | `80`; `8080`; `443` | Recommended |
 | `tls.protocol.version` | string | TLS protocol version. | `1.2`; `1.3` | Conditionally Required: if the connection is secured with TLS. |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
@@ -438,8 +438,8 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 |---|---|---|---|---|
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number [4] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../general/attributes.md) | int | Server port number. [4] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 

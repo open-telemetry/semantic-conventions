@@ -39,9 +39,9 @@ All routing metrics are reported by `Microsoft.AspNetCore.Routing` meter.
 <!-- semconv metric.aspnetcore.routing.match_attempts(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aspnetcore.routing.match_status` | string | Match result - success or failure | `success`; `failure` | Required |
 | `aspnetcore.routing.is_fallback_route` | boolean | A value that indicates whether the matched route is a fallback route. | `True` | Conditionally Required: if and only if a route was successfully matched. |
-| `http.route` | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: if and only if a route was successfully matched. |
+| `aspnetcore.routing.match_status` | string | Match result - success or failure | `success`; `failure` | Required |
+| [`http.route`](../attributes-registry/http.md) | string | The matched route (path template in the format used by the respective server framework). See note below [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: if and only if a route was successfully matched. |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
@@ -73,9 +73,23 @@ Metrics reported by `Microsoft.AspNetCore.Diagnostics` meter.
 |---|---|---|---|---|
 | `aspnetcore.diagnostics.exception.result` | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | Required |
 | `aspnetcore.diagnostics.handler.type` | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | Conditionally Required: [1] |
-| `exception.type` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` | Required |
+| `error.type` | string | The full name of exception type. [2] | `System.OperationCanceledException`; `Contoso.MyException` | Required |
 
 **[1]:** if and only if the exception was handled by this handler.
+
+**[2]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low, but
+telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time, when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error codes (such as HTTP or gRPC status codes),
+it's RECOMMENDED to use a domain-specific attribute and also set `error.type` to capture
+all errors, regardless of whether they are defined within the domain-specific set or not.
 
 `aspnetcore.diagnostics.exception.result` MUST be one of the following:
 
@@ -85,6 +99,12 @@ Metrics reported by `Microsoft.AspNetCore.Diagnostics` meter.
 | `unhandled` | Exception was not handled by the exception handling middleware. |
 | `skipped` | Exception handling was skipped because the response had started. |
 | `aborted` | Exception handling didn't run because the request was aborted. |
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 <!-- endsemconv -->
 
 ## Rate-limiting

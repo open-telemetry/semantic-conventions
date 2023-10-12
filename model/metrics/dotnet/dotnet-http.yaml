@@ -21,6 +21,17 @@ groups:
           as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped.
           Tabs, carriage returns, and line feeds should be converted to \t, \r, and
           \n respectively.
+      - ref: error.type
+        brief: One of the resolution errors or the full name of exception type.
+        note: |
+          Following errors code are reported:
+          - "host_not_found"
+          - "try_again"
+          - "address_family_not_supported"
+          - "no_recovery"
+          See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror)
+          documentation for more details.
+        examples: ["host_not_found", "no_recovery", "System.Net.Sockets.SocketException"]
 
   - id: metric.dotnet.http.client.open_connections
     type: metric
@@ -65,7 +76,7 @@ groups:
         note: >
           When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
           URI port identifier, otherwise it MUST match `Host` header port identifier.
-      - ref: server.socket.address
+      - ref: network.peer.address
 
   - id: metric.dotnet.http.client.connection.duration
     type: metric
@@ -98,7 +109,7 @@ groups:
         note: >
           When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
           URI port identifier, otherwise it MUST match `Host` header port identifier.
-      - ref: server.socket.address
+      - ref: network.peer.address
 
   - id: metric.dotnet.http.client.active_requests
     type: metric

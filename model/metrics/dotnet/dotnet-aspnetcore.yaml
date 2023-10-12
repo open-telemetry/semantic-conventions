@@ -89,7 +89,7 @@ groups:
     note: |
       Meter name: `Microsoft.AspNetCore.Diagnostics`; Added in: ASP.NET Core 8.0
     attributes:
-      - ref: exception.type
+      - ref: error.type
         brief: The full name of exception type.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
         requirement_level: required
