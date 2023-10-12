@@ -39,6 +39,7 @@ groups:
   - id: attributes.http.client
     type: attribute_group
     brief: 'HTTP Client attributes'
+    extends: attributes.http.common
     attributes:
       - ref: server.address
         requirement_level: required
@@ -51,7 +52,8 @@ groups:
             if it's sent in absolute-form
           - Host identifier of the `Host` header
 
-          SHOULD NOT be set if capturing it would require an extra DNS lookup.
+          If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
+          `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
@@ -64,6 +66,7 @@ groups:
   - id: attributes.http.server
     type: attribute_group
     brief: 'HTTP Server attributes'
+    extends: attributes.http.common
     attributes:
       - ref: http.route
         requirement_level:
@@ -92,6 +95,8 @@ groups:
           - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
+        requirement_level:
+          recommended: If not default (`80` for `http` scheme, `443` for `https`).
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]
