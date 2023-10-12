@@ -13,6 +13,9 @@ release.
 
 ### Fixes
 
+- Add cardinality warning about two opt-in HTTP metric attributes
+  ([#401](https://github.com/open-telemetry/semantic-conventions/pull/401))
+
 ## v1.22.0 (2023-10-12)
 
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
