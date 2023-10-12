@@ -7,6 +7,9 @@ release.
 
 ## Unreleased
 
+- Remove `network.protocol.name` from HTTP semconv.
+  ([#398](https://github.com/open-telemetry/semantic-conventions/pull/398))
+
 ## v1.22.0 (2023-10-12)
 
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))

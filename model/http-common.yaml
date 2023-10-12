@@ -28,10 +28,6 @@ groups:
           additional filters are applied.
 
           If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
-      - ref: network.protocol.name
-        examples: ['http', 'spdy']
-        requirement_level:
-          recommended: if not default (`http`).
       - ref: network.protocol.version
         examples: ['1.0', '1.1', '2', '3']
 
