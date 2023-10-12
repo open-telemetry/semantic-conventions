@@ -16,12 +16,12 @@ described on this page.
 
 Below is a table of attributes that SHOULD be included on client and server Connect RPC measurements.
 
-<!-- semconv rpc.connect_rpc -->
+<!-- semconv rpc.connect_rpc(full,tag=connect_rpc-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `rpc.connect_rpc.error_code` | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled` | Conditionally Required: [1] |
-| `rpc.connect_rpc.request.metadata.<key>` | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | Opt-In |
-| `rpc.connect_rpc.response.metadata.<key>` | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | Opt-In |
+| [`rpc.connect_rpc.error_code`](../attributes-registry/rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled` | Conditionally Required: [1] |
+| [`rpc.connect_rpc.request.metadata.<key>`](../attributes-registry/rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | Opt-In |
+| [`rpc.connect_rpc.response.metadata.<key>`](../attributes-registry/rpc.md) | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | Opt-In |
 
 **[1]:** If response is not successful and if error code available.
 
