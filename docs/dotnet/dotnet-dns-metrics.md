@@ -27,7 +27,7 @@ This document defines semantic conventions for DNS metrics emitted by .NET.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `dns.question.name` | string | The name being queried. [1] | `www.example.com`; `dot.net` | Required |
-| `error.type` | string | One of the resolution errors or the full name of exception type. [2] | `host_not_found`; `no_recovery`; `System.Net.Sockets.SocketException` | Recommended |
+| `error.type` | string | One of the resolution errors or the full name of exception type. [2] | `host_not_found`; `no_recovery`; `System.Net.Sockets.SocketException` | Conditionally Required: if and only if an error has occurred. |
 
 **[1]:** The name being queried.
 
@@ -38,10 +38,12 @@ Tabs, carriage returns, and line feeds should be converted to \t, \r, and
 \n respectively.
 
 **[2]:** Following errors code are reported:
+
 - "host_not_found"
 - "try_again"
 - "address_family_not_supported"
 - "no_recovery"
+
 See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror)
 documentation for more details.
 

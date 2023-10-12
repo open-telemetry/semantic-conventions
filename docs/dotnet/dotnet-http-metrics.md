@@ -48,7 +48,7 @@ Notes:
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.connection.state` | string | State of HTTP connection in the HTTP connection pool. | `active`; `idle` | Required |
-| [`network.peer.address`](../general/attributes.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.peer.address`](../general/attributes.md) | string | Remote IP address of the socket connection. | `10.1.2.80` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [1] | `1.1`; `2` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
@@ -87,7 +87,7 @@ Notes:
 <!-- semconv metric.dotnet.http.client.connection.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.peer.address`](../general/attributes.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.peer.address`](../general/attributes.md) | string | Remote IP address of the socket connection. | `10.1.2.80` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [1] | `1.1`; `2` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |

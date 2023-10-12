@@ -23,12 +23,16 @@ groups:
           \n respectively.
       - ref: error.type
         brief: One of the resolution errors or the full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         note: |
           Following errors code are reported:
+
           - "host_not_found"
           - "try_again"
           - "address_family_not_supported"
           - "no_recovery"
+
           See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror)
           documentation for more details.
         examples: ["host_not_found", "no_recovery", "System.Net.Sockets.SocketException"]
@@ -77,6 +81,8 @@ groups:
           When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
           URI port identifier, otherwise it MUST match `Host` header port identifier.
       - ref: network.peer.address
+        brief: Remote IP address of the socket connection.
+        examples: ["10.1.2.80"]
 
   - id: metric.dotnet.http.client.connection.duration
     type: metric
@@ -110,6 +116,8 @@ groups:
           When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match
           URI port identifier, otherwise it MUST match `Host` header port identifier.
       - ref: network.peer.address
+        brief: Remote IP address of the socket connection.
+        examples: ["10.1.2.80"]
 
   - id: metric.dotnet.http.client.active_requests
     type: metric

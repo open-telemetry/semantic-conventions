@@ -50,7 +50,7 @@ groups:
       - ref: error.type
         brief: The full name of exception type.
         requirement_level:
-          conditionally_required: if and only if an exception was thrown.
+          conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
 
   - id: metric.kestrel.rejected_connections
@@ -115,7 +115,7 @@ groups:
       - ref: error.type
         brief: The full name of exception type.
         requirement_level:
-          conditionally_required: if and only if an exception was thrown.
+          conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
 
   - id: metric.kestrel.active_tls_handshakes

@@ -89,7 +89,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 <!-- semconv metric.kestrel.connection.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `error.type` | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | Conditionally Required: if and only if an exception was thrown. |
+| `error.type` | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | Conditionally Required: if and only if an error has occurred. |
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [2] | `http`; `web_sockets` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [3] | `1.1`; `2` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `unix` | Recommended |
@@ -366,7 +366,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 <!-- semconv metric.kestrel.tls_handshake.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `error.type` | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | Conditionally Required: if and only if an exception was thrown. |
+| `error.type` | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | Conditionally Required: if and only if an error has occurred. |
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `unix` | Recommended |
 | [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [3] | `ipv4`; `ipv6` | Recommended: if the transport is `tcp` or `udp` |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
