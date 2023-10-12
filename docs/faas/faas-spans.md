@@ -261,4 +261,4 @@ This example shows the FaaS attributes for a (non-FaaS) process hosted on Google
 | Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"` |
 | Resource       | `cloud.resource_id`     | n/a                    | `"arn:aws:lambda:us-west-2:123456789012:function:my-lambda-function"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

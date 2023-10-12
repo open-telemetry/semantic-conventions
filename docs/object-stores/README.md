@@ -15,4 +15,4 @@ The following technology specific semantic conventions are defined for object st
 
 * [AWS S3](s3.md): Semantic Conventions for *AWS S3*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

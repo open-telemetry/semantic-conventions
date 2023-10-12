@@ -39,4 +39,4 @@ between a child Span and a parent Span, as defined by
 | `follows_from` | The parent Span does not depend in any way on the result of the child Span |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
