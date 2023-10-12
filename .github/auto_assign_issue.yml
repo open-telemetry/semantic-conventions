@@ -6,7 +6,9 @@ addAssignees: true
 
 # A list of assignees, overrides reviewers if set
 assignees:
+   - AlexanderWert
    - arminru
+   - joaopgrassi
    - jsuereth
    - reyang
 
