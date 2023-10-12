@@ -15,4 +15,4 @@ Semantic conventions exist for the following cloud provider SDKs:
 
 - [AWS SDK](aws-sdk.md): Semantic Conventions for the _AWS SDK_.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

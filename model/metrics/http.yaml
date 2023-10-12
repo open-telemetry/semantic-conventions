@@ -52,7 +52,10 @@ groups:
 
           If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
       - ref: http.request.method
+        requirement_level: required
       - ref: http.response.status_code
+        requirement_level:
+          conditionally_required: If and only if one was received/sent.
       - ref: network.protocol.name
       - ref: network.protocol.version
 
@@ -63,7 +66,10 @@ groups:
     attributes:
       # todo (lmolkova) build tools don't populate grandparent attributes
       - ref: http.request.method
+        requirement_level: required
       - ref: http.response.status_code
+        requirement_level:
+          conditionally_required: If and only if one was received/sent.
       - ref: network.protocol.name
       - ref: network.protocol.version
       - ref: error.type
@@ -92,7 +98,7 @@ groups:
   - id: metric.http.server.request.duration
     type: metric
     metric_name: http.server.request.duration
-    brief: "Measures the duration of inbound HTTP requests."
+    brief: "Duration of HTTP server requests."
     instrument: histogram
     unit: "s"
     extends: metric_attributes.http.server
@@ -100,11 +106,12 @@ groups:
   - id: metric.http.server.active_requests
     type: metric
     metric_name: http.server.active_requests
-    brief: "Measures the number of concurrent HTTP requests that are currently in-flight."
+    brief: "Number of active HTTP server requests."
     instrument: updowncounter
     unit: "{request}"
     attributes:
       - ref: http.request.method
+        requirement_level: required
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]
@@ -138,7 +145,7 @@ groups:
   - id: metric.http.server.request.body.size
     type: metric
     metric_name: http.server.request.body.size
-    brief: "Measures the size of HTTP request messages."
+    brief: "Size of HTTP server request bodies."
     instrument: histogram
     unit: "By"
     note: >
@@ -150,7 +157,7 @@ groups:
   - id: metric.http.server.response.body.size
     type: metric
     metric_name: http.server.response.body.size
-    brief: "Measures the size of HTTP response messages."
+    brief: "Size of HTTP server response bodies."
     instrument: histogram
     unit: "By"
     note: >
@@ -162,7 +169,7 @@ groups:
   - id: metric.http.client.request.duration
     type: metric
     metric_name: http.client.request.duration
-    brief: "Measures the duration of outbound HTTP requests."
+    brief: "Duration of HTTP client requests."
     instrument: histogram
     unit: "s"
     extends: metric_attributes.http.client
@@ -170,7 +177,7 @@ groups:
   - id: metric.http.client.request.body.size
     type: metric
     metric_name: http.client.request.body.size
-    brief: "Measures the size of HTTP request messages."
+    brief: "Size of HTTP client request bodies."
     instrument: histogram
     unit: "By"
     note: >
@@ -182,7 +189,7 @@ groups:
   - id: metric.http.client.response.body.size
     type: metric
     metric_name: http.client.response.body.size
-    brief: "Measures the size of HTTP response messages."
+    brief: "Size of HTTP client response bodies."
     instrument: histogram
     unit: "By"
     note: >
