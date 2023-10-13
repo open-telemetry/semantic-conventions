@@ -7,6 +7,9 @@ release.
 
 ## Unreleased
 
+- Remove `network.protocol.name` from HTTP semconv.
+  ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
+
 ### Breaking
 
 ### Features
