@@ -205,7 +205,7 @@ exists in some form in ECS, consider the following guidelines:
 
 - Prefer using the existing ECS name when possible. In particular:
   - Do not modify an ECS name for the only reason of complying with
-    OpenTelemetry general attribute guidelines.
+    [OpenTelemetry general attribute naming guidelines](https://opentelemetry.io/docs/specs/otel/common/attribute-naming/).
   - If proposing a name that differs from the ECS convention, provide usage
     data, user issue reports, feature requests, examples of prior work on a
     different standard or comparable evidence about the alternatives.
