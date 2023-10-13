@@ -1,57 +1,82 @@
 groups:
-  - id: metric.container.cpu.usage
+  - id: metric.container.cpu.utilization
     type: metric
-    metric_name: container.cpu.usage
+    metric_name: container.cpu.utilization
     brief: "Recent CPU utilization for the container."
     note: >
       CPU usage percentage normalized by the number of CPU cores.
       The value range is [0.0,1.0].
     instrument: gauge
     unit: "1"
-  - id: metric.container.memory.usage
+    attributes:
+      - ref: container.id
+  - id: metric.container.memory.utilization
     type: metric
-    metric_name: container.memory.usage
+    metric_name: container.memory.utilization
     brief: "Recent memory utilization for the container."
     note: >
       Memory usage percentage.
       The value range is [0.0,1.0].
     instrument: gauge
     unit: "1"
-  - id: metric.container.disk.read.bytes
+    attributes:
+      - ref: container.id
+
+  # container.disk.io.* metrics and attribute group
+  - id: attributes.container.disk.io
+    prefix: container.disk.io
+    type: attribute_group
+    brief: "Describes Container Disk IO metric attributes"
+    attributes:
+      - id: direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: read
+              value: 'read'
+            - id: write
+              value: 'write'
+        brief: "The disk IO operation's direction"
+        examples: [ "read", "write" ]
+  - id: metric.container.disk.io.bytes
     type: metric
-    metric_name: container.disk.read.bytes
-    brief: "Disk read bytes for the container."
+    metric_name: container.disk.io.bytes
+    brief: "Disk bytes for the container."
     note: >
-      The total number of bytes read
+      The total number of bytes read/written
       successfully (aggregated from all disks).
     instrument: counter
     unit: "By"
-  - id: metric.container.disk.write.bytes
+    attributes:
+      - ref: container.id
+      - ref: container.disk.io.direction
+
+  # container.network.io.* metrics and attribute group
+  - id: attributes.container.network.io
+    prefix: container.network.io
+    type: attribute_group
+    brief: "Describes Container Network IO metric attributes"
+    attributes:
+      - id: direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: ingress
+              value: 'ingress'
+            - id: egress
+              value: 'egress'
+        brief: "The Network IO direction"
+        examples: [ "ingress", "egress" ]
+  - id: metric.container.network.io.bytes
     type: metric
-    metric_name: container.disk.write.bytes
-    brief: "Disk write bytes for the container."
+    metric_name: container.disk.io.bytes
+    brief: "Network bytes for the container."
     note: >
-      The total number of bytes written
-      successfully (aggregated from all disks).
-    instrument: counter
-    unit: "By"
-  - id: metric.container.network.ingress.bytes
-    type: metric
-    metric_name: container.network.ingress.bytes
-    brief: "Network ingress bytes for the container."
-    note: >
-      The number of bytes received
+      The number of bytes sent/received
       on all network interfaces
       by the container.
     instrument: counter
     unit: "By"
-  - id: metric.container.network.egress.bytes
-    type: metric
-    metric_name: container.network.egress.bytes
-    brief: "Network egress bytes for the container."
-    note: >
-      The number of bytes sent out
-      on all network interfaces
-      by the container.
-    instrument: counter
-    unit: "By"
+    attributes:
+      - ref: container.id
+      - ref: container.network.io.direction
