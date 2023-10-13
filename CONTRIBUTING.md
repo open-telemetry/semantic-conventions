@@ -204,8 +204,8 @@ Conventions per [OTEP 222][otep222]. When adding a semantic convention that
 exists in some form in ECS, consider the following guidelines:
 
 - Prefer using the existing ECS name when possible. In particular:
-  - Do not amend ECS names to follow plural guidelines or other soft
-    recommendations.
+  - Do not modify an ECS name for the only reason of complying with
+    OpenTelemetry general attribute guidelines.
   - If proposing a name that differs from the ECS convention, provide usage
     data, user issue reports, feature requests, examples of prior work on a
     different standard or comparable evidence about the alternatives.
