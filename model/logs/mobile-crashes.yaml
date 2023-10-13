@@ -14,7 +14,7 @@ groups:
           members:
             - id: android
               value: 'android'
-              brief: 'Value if crash happened on android device'
+              brief: 'Value if crash happened on an android device.'
             - id: ios
               value: 'ios'
               brief: 'Value if crash happened on ios device'
