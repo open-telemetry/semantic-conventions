@@ -22,15 +22,7 @@ groups:
         requirement_level: "required"
         brief: >
           This attribute indicates whether the app was in the foreground or not during the crash.
-        type:
-          allow_custom_values: false
-          members:
-            - id: true
-              value: 'true'
-              brief: 'Value if crash happened in foreground'
-            - id: false
-              value: 'false'
-              brief: 'Value if crash did not happen in foreground'
+        type: boolean
       - id: data
         requirement_level: "required"
         type: attribute_group
