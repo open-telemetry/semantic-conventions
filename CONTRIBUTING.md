@@ -26,7 +26,7 @@ key, but non-obvious, aspects:
     You will see `<!--- Hugo front matter used to generate ...` sections
     in markdown. See [Hugo frontmatter](#hugo-frontmatter) for details.
 - All changes to existing attributes, metrics, etc. MUST be allowed as
-  per our [stability guarantees](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/versioning-and-stability.md#semantic-conventions-stability) and
+  per our [stability guarantees][stability guarantees] and
   defined in a schema file. As part of any contribution, you should
   include attribute changes defined in the `schema-next.yaml` file.
   For details, please read [the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
@@ -214,4 +214,5 @@ exists in some form in ECS, consider the following guidelines:
   entirely.
 
 [nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
+[stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/versioning-and-stability.md#semantic-conventions-stability
 [otep222]: https://github.com/open-telemetry/oteps/pull/222

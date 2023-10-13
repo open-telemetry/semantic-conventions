@@ -34,7 +34,7 @@ The following semantic conventions for spans are defined:
 * [RPC/RMI](/docs/rpc/rpc-spans.md): For remote procedure call (e.g., gRPC) spans.
 
 Apart from semantic conventions for traces, [metrics](metrics.md), [logs](logs.md), and [events](events.md),
-OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/resource/sdk.md) with their own
+OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

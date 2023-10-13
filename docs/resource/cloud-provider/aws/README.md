@@ -28,4 +28,4 @@ Attributes that relate to an individual AWS service:
 - [Elastic Container Service (ECS)](./ecs.md)
 - [Elastic Kubernetes Service (EKS)](./eks.md)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

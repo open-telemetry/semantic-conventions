@@ -7,6 +7,15 @@ release.
 
 ## Unreleased
 
+### Breaking
+
+### Features
+
+### Fixes
+
+## v1.22.0 (2023-10-12)
+
+- Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
 - Adds `session.id` and session.md to general docs and model
 ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
@@ -129,6 +138,8 @@ release.
   ([#350](https://github.com/open-telemetry/semantic-conventions/pull/350))
 - Improve network attribute briefs.
   ([#352](https://github.com/open-telemetry/semantic-conventions/pull/352))
+- Document the difference between host and system metrics
+  ([#324](https://github.com/open-telemetry/semantic-conventions/pull/324))
 - BREAKING: Rename `telemetry.auto.version` resource attribute to `telemetry.distro.version`
   and add `telemetry.distro.name` resource attribute
   ([#178](https://github.com/open-telemetry/semantic-conventions/pull/178))
@@ -136,6 +147,12 @@ release.
   ([#366](https://github.com/open-telemetry/semantic-conventions/pull/366))
 - Add `host.ip` resource attribute convention.
   ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
+- BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
+  with `network.(peer|local).(address|port)`.
+  ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
+- Make `network.protocol.name|version` description consistent between HTTP
+  spans and metrics.
+  ([#367](https://github.com/open-telemetry/semantic-conventions/pull/367))
 
 ## v1.21.0 (2023-07-13)
 
