@@ -18,7 +18,7 @@ groups:
             - id: ios
               value: 'ios'
               brief: 'Value if crash happened on an ios device.'
-      - id: isappinforeground
+      - id: foreground
         requirement_level: "required"
         brief: >
           This attribute indicates whether the app was in the foreground or not during the crash.
