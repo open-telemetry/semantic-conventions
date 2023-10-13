@@ -7,6 +7,15 @@ release.
 
 ## Unreleased
 
+### Breaking
+
+### Features
+
+### Fixes
+
+- Clarify that `error.type` should be the fully-qualified exception class name
+  when it represents an exception type.
+  ([#387](https://github.com/open-telemetry/semantic-conventions/pull/387))
 - Change `server.port` from recommended to conditionally required on HTTP server semconv.
   ([#399](https://github.com/open-telemetry/semantic-conventions/pull/399))
 
