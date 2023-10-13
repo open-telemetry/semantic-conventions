@@ -13,6 +13,9 @@ release.
 
 ### Fixes
 
+- Clarify that `error.type` should be the fully-qualified exception class name
+  when it represents an exception type.
+  ([#387](https://github.com/open-telemetry/semantic-conventions/pull/387))
 - Add cardinality warning about two opt-in HTTP metric attributes
   ([#401](https://github.com/open-telemetry/semantic-conventions/pull/401))
 
