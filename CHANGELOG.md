@@ -23,6 +23,8 @@ release.
   ([#401](https://github.com/open-telemetry/semantic-conventions/pull/401))
 - Change `server.port` from recommended to conditionally required on HTTP server semconv.
   ([#399](https://github.com/open-telemetry/semantic-conventions/pull/399))
+- Remove outdated note about not recording HTTP `server.address` when only IP address available.
+  ([#413](https://github.com/open-telemetry/semantic-conventions/pull/413))
 
 ## v1.22.0 (2023-10-12)
 

@@ -133,8 +133,6 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
   if it's sent in absolute-form.
 - Host identifier of the `Host` header
 
-SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
-
 **[7]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
@@ -206,8 +204,6 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Host identifier of the `Host` header
-
-SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
 Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
 to trigger cardinality limits, degrading the usefulness of the metric.
@@ -312,8 +308,6 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
   if it's sent in absolute-form.
 - Host identifier of the `Host` header
 
-SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
-
 **[7]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
@@ -416,8 +410,6 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Host identifier of the `Host` header
-
-SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
 **[7]:** Determined by using the first of the following that applies
 

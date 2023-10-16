@@ -83,8 +83,6 @@ groups:
             if it's sent in absolute-form.
           - Host identifier of the `Host` header
 
-          SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
-
       - ref: server.port
         brief: >
           Port of the local HTTP server that received the request.
