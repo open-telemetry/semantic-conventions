@@ -19,6 +19,11 @@ groups:
       - ref: http.request.method
         sampling_relevant: true
         requirement_level: required
+      - ref: network.transport
+        requirement_level: opt_in
+        note: >
+          Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
+          More obscure implementations are possible.
       - ref: network.type
       - ref: user_agent.original
 
