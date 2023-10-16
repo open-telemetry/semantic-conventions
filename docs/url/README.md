@@ -15,4 +15,4 @@ URL semantic conventions are defined for the following:
 
 * [URL](url.md): For describing URL and its components.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

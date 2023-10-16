@@ -270,7 +270,7 @@ fiber channel port or a Wi-Fi adapter.
 | `hw.errors`                        | Number of errors encountered by the network adapter                                                          | {error}  | Counter                                           | Int64      | `hw.error.type` (Recommended) | `zero_buffer_credit`, `crc`, etc. |
 |                                    |                                                                                                              |          |                                                   |            | `hw.type` (**Required**)      | `network`                         |
 |                                    |                                                                                                              |          |                                                   |            | `direction` (Recommended)     | `receive`, `transmit`             |
-| `hw.network.bandwidth.limit`       | Link speed                                                                                                   | By       | UpDownCounter                                     | Int64      |                               |                                   |
+| `hw.network.bandwidth.limit`       | Link speed                                                                                                   | By/s     | UpDownCounter                                     | Int64      |                               |                                   |
 | `hw.network.bandwidth.utilization` | Utilization of the network bandwidth as a fraction                                                           | 1        | Gauge                                             | Double     |                               |                                   |
 | `hw.network.io`                    | Received and transmitted network traffic in bytes                                                            | By       | Counter                                           | Int64      | `direction` (**Required**)    | `receive`, `transmit`             |
 | `hw.network.packets`               | Received and transmitted network traffic in packets (or frames)                                              | {packet} | Counter                                           | Int64      | `direction` (**Required**)    | `receive`, `transmit`             |
@@ -388,4 +388,4 @@ Additional **Recommended** attributes:
 | ----------------- | ---------------------- | ---------- |
 | `sensor_location` | Location of the sensor | `PS0 V3_3` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
