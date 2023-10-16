@@ -410,7 +410,7 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 
 **[8]:** Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
 
-**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
