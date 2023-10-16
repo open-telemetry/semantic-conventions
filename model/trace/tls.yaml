@@ -4,14 +4,14 @@ groups:
     type: span
     brief: "This document defines semantic conventions for TLS/SSL client and server Spans."
     attributes:
-      - id: protocol.name
+      - id: protocol.version
         requirement_level: required
         brief: >
           Numeric part of the version parsed from the original string of the
           negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES)
         type: string
         examples: ["1.2", "3"]
-      - id: protocol.version
+      - id: protocol.name
         requirement_level:
           conditionally_required: if not `tls`
         brief: >
