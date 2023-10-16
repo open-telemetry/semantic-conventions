@@ -28,6 +28,7 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   * [Metric: `system.cpu.logical.count`](#metric-systemcpulogicalcount)
 - [Memory Metrics](#memory-metrics)
   * [Metric: `system.memory.usage`](#metric-systemmemoryusage)
+  * [Metric: `system.memory.limit`](#metric-systemmemorylimit)
   * [Metric: `system.memory.utilization`](#metric-systemmemoryutilization)
 - [Paging/Swap Metrics](#pagingswap-metrics)
   * [Metric: `system.paging.usage`](#metric-systempagingusage)
@@ -157,7 +158,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.memory.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.memory.usage` | UpDownCounter | `By` |  |
+| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. [1] |
+
+**[1]:** The sum over all `system.memory.state` values SHOULD equal the total memory
+available on the system, that is `system.memory.limit`.
 <!-- endsemconv -->
 
 <!-- semconv metric.system.memory.usage(full) -->
@@ -169,12 +173,26 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description |
 |---|---|
-| `total` | total |
 | `used` | used |
 | `free` | free |
 | `shared` | shared |
 | `buffers` | buffers |
 | `cached` | cached |
+<!-- endsemconv -->
+
+### Metric: `system.memory.limit`
+
+This metric is [opt-in][MetricOptIn].
+
+<!-- semconv metric.system.memory.limit(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.memory.limit` | UpDownCounter | `By` | Total memory available in the system. [1] |
+
+**[1]:** Its value SHOULD equal the sum of `system.memory.state` over all states.
+<!-- endsemconv -->
+
+<!-- semconv metric.system.memory.limit(full) -->
 <!-- endsemconv -->
 
 ### Metric: `system.memory.utilization`
@@ -196,7 +214,6 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description |
 |---|---|
-| `total` | total |
 | `used` | used |
 | `free` | free |
 | `shared` | shared |
@@ -752,6 +769,7 @@ an `{os}` prefix to split this metric across OSes.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
 [MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
+[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md#opt-in
 
 ### Metric: `system.linux.memory.available`
 
