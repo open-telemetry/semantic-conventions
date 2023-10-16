@@ -31,7 +31,7 @@ groups:
     span_kind: client
     brief: 'Semantic Convention for HTTP Client'
     attributes:
-      - ref: http.resend_count
+      - ref: http.request.resend_count
         requirement_level:
           recommended: if and only if request was retried.
       - ref: server.address
