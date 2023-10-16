@@ -135,12 +135,18 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
+Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+to trigger cardinality limits, degrading the usefulness of the metric.
+
 **[7]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
+
+Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+to trigger cardinality limits, degrading the usefulness of the metric.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -314,12 +320,18 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
+Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+to trigger cardinality limits, degrading the usefulness of the metric.
+
 **[7]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
+
+Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+to trigger cardinality limits, degrading the usefulness of the metric.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -419,12 +431,18 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
+Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+to trigger cardinality limits, degrading the usefulness of the metric.
+
 **[7]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Port identifier of the `Host` header
+
+Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+to trigger cardinality limits, degrading the usefulness of the metric.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
