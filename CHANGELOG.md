@@ -7,14 +7,14 @@ release.
 
 ## Unreleased
 
-- Remove `network.protocol.name` from HTTP semconv.
-  ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
-
 ### Breaking
 
 ### Features
 
 ### Fixes
+
+- Change `network.transport` from recommended to opt-in in the HTTP semconv.
+  ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
 
 ## v1.22.0 (2023-10-12)
 
