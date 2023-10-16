@@ -30,7 +30,7 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 | `db.elasticsearch.node.name` | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | Recommended: [2] |
 | `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [3] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | Conditionally Required: when the url has dynamic values |
 | [`db.operation`](database-spans.md) | string | The endpoint identifier for the request. [4] | `search`; `ml.close_job`; `cat.aliases` | Required |
-| [`db.statement`](database-spans.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [5] |
+| [`db.statement`](database-spans.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [5] |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [6] | `GET`; `POST`; `HEAD` | Required |
 | [`server.address`](../general/attributes.md) | string | Name of the database host. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`server.port`](../general/attributes.md) | int | Server port number. [8] | `80`; `8080`; `443` | Conditionally Required: [9] |
@@ -61,10 +61,9 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
-the server address behind any intermediaries (e.g. proxies) if it's available.
+**[7]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
+**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[9]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 

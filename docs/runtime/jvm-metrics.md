@@ -60,7 +60,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 | `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
-**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 `jvm.memory.type` MUST be one of the following:
 
@@ -87,7 +87,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 | `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
-**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 `jvm.memory.type` MUST be one of the following:
 
@@ -114,7 +114,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 | `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
-**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 `jvm.memory.type` MUST be one of the following:
 
@@ -141,7 +141,7 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 | `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
-**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 `jvm.memory.type` MUST be one of the following:
 
@@ -177,9 +177,9 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 | `jvm.gc.action` | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` | Recommended |
 | `jvm.gc.name` | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` | Recommended |
 
-**[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
+**[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
-**[2]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+**[2]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
 <!-- endsemconv -->
 
 ## JVM Threads
@@ -259,7 +259,7 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 
 This metric is [recommended][MetricRecommended].
 
-This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuTime()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime()) on HotSpot
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuTime()`](https://docs.oracle.com/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime()) on HotSpot
 and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuTime--) on J9.
 
 <!-- semconv metric.jvm.cpu.time(metric_table) -->
@@ -289,7 +289,7 @@ Note that this is always an integer value (i.e. fractional or millicores are not
 ### Metric: `jvm.cpu.recent_utilization`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()) on HotSpot
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://docs.oracle.com/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()) on HotSpot
 and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuLoad--) on J9.
 Note that the JVM does not provide a definition of what "recent" means.
 
@@ -298,7 +298,7 @@ Note that the JVM does not provide a definition of what "recent" means.
 | -------- | --------------- | ----------- | -------------- |
 | `jvm.cpu.recent_utilization` | Gauge | `1` | Recent CPU utilization for the process as reported by the JVM. [1] |
 
-**[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()).
+**[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()).
 <!-- endsemconv -->
 
 <!-- semconv metric.jvm.cpu.recent_utilization(full) -->
@@ -325,7 +325,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
 | `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
 
-**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+**[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 `jvm.memory.type` MUST be one of the following:
 
@@ -338,7 +338,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 ### Metric: `jvm.system.cpu.utilization`
 
 This metric is [Opt-In][MetricOptIn].
-This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad()) on Java version 8..13, [`com.sun.management.OperatingSystemMXBean#getCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()) on Java version 14+,
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://docs.oracle.com/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad()) on Java version 8..13, [`com.sun.management.OperatingSystemMXBean#getCpuLoad()`](https://docs.oracle.com/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()) on Java version 14+,
 and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html) on J9.
 
 <!-- semconv metric.jvm.system.cpu.utilization(metric_table) -->
@@ -346,7 +346,7 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https:/
 | -------- | --------------- | ----------- | -------------- |
 | `jvm.system.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the whole system as reported by the JVM. [1] |
 
-**[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()).
+**[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()).
 <!-- endsemconv -->
 
 <!-- semconv metric.jvm.system.cpu.utilization(full) -->
@@ -362,7 +362,7 @@ This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](ht
 | -------- | --------------- | ----------- | -------------- |
 | `jvm.system.cpu.load_1m` | Gauge | `{run_queue_item}` | Average CPU load of the whole system for the last minute as reported by the JVM. [1] |
 
-**[1]:** The value range is [0,n], where n is the number of CPU cores - or a negative number if the value is not available. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/java.management/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()).
+**[1]:** The value range is [0,n], where n is the number of CPU cores - or a negative number if the value is not available. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/java/javase/17/docs/api/java.management/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()).
 <!-- endsemconv -->
 
 <!-- semconv metric.jvm.system.cpu.load_1m(full) -->
@@ -384,7 +384,7 @@ This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.o
 |---|---|---|---|---|
 | `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
 
-**[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+**[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
 
 ### Metric: `jvm.buffer.memory.limit`
@@ -403,7 +403,7 @@ This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://doc
 |---|---|---|---|---|
 | `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
 
-**[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+**[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
 
 ### Metric: `jvm.buffer.count`
@@ -422,7 +422,7 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 |---|---|---|---|---|
 | `jvm.buffer.pool.name` | string | Name of the buffer pool. [1] | `mapped`; `direct` | Recommended |
 
-**[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+**[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

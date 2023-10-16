@@ -7,15 +7,15 @@ groups:
       where there is one side that initiates the connection (the client is the side that initiates the connection).
       This covers all TCP network interactions since TCP is connection-based and one side initiates the
       connection (an exception is made for peer-to-peer communication over TCP where the "user-facing" surface of the
-      protocol / API does not expose a clear notion of client and server).
+      protocol / API doesn't expose a clear notion of client and server).
       This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
     attributes:
       - id: address
         type: string
-        brief: Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name.
+        brief: "Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
         note: >
           When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent
-          the client address behind any intermediaries (e.g. proxies) if it's available.
+          the client address behind any intermediaries , for example proxies, if it's available.
         examples: ['client.example.com', '10.1.2.80', '/tmp/my.sock']
       - id: port
         type: int
@@ -23,4 +23,4 @@ groups:
         examples: [65123]
         note: >
           When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent
-          the client port behind any intermediaries (e.g. proxies) if it's available.
+          the client port behind any intermediaries , for example proxies, if it's available.

@@ -125,7 +125,7 @@ sections below.
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
 | [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `http`; `spdy` | Opt-In |
 | [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp` | Opt-In |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp` | Opt-In |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
@@ -172,7 +172,7 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[6]:** The value SHOULD be normalized to lowercase.
 
-**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 **[8]:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
@@ -184,7 +184,7 @@ Following attributes MUST be provided **at span creation time** (when provided a
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -207,7 +207,7 @@ Following attributes MUST be provided **at span creation time** (when provided a
 |---|---|
 | `tcp` | TCP |
 | `udp` | UDP |
-| `pipe` | Named or anonymous pipe. See note below. |
+| `pipe` | Named or anonymous pipe. |
 | `unix` | Unix domain socket |
 <!-- endsemconv -->
 
@@ -237,16 +237,15 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 
 **[1]:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
-**[2]:** Determined by using the first of the following that applies
+**[2]:** Determined by using the first of the following that applies:
 
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form
-- Host identifier of the `Host` header
+- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
+- Host identifier of the `Host` header.
 
 If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
 `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-**[3]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
+**[3]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier; otherwise, it MUST match `Host` header port identifier.
 
 **[4]:** If not default (`80` for `http` scheme, `443` for `https`).
 
@@ -332,13 +331,13 @@ Some servers allow to bind the same HTTP application to multiple `(virtual host,
 
 [HTTP host header]: https://tools.ietf.org/html/rfc7230#section-5.4
 [PEP 3333]: https://www.python.org/dev/peps/pep-3333/
-[modwsgisetup]: https://modwsgi.readthedocs.io/en/develop/user-guides/quick-configuration-guide.html
-[context root]: https://docs.jboss.org/jbossas/guides/webguide/r2/en/html/ch06.html
+[modwsgisetup]: https://modwsgi.readthedocs.io/develop/user-guides/quick-configuration-guide.html
+[context root]: https://docs.jboss.org/jbossas/guides/webguide/r2/html/ch06.html
 [context prefix]: https://marc.info/?l=apache-cvs&m=130928191414740
 [document base]: http://tomcat.apache.org/tomcat-5.5-doc/config/context.html
 [rfc-servername]: https://tools.ietf.org/html/rfc3875#section-4.1.14
 [ap-sn]: https://httpd.apache.org/docs/2.4/mod/core.html#servername
-[nx-sn]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
+[nx-sn]: http://nginx.org/docs/http/ngx_http_core_module.html#server_name
 [JSR 53]: https://jcp.org/aboutJava/communityprocess/maintenance/jsr053/index2.html
 [opentelemetry/opentelementry-specification#335]: https://github.com/open-telemetry/opentelemetry-specification/issues/335
 
@@ -351,9 +350,9 @@ For an HTTP server span, `SpanKind` MUST be `Server`.
 <!-- semconv trace.http.server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `83.164.160.102` | Recommended |
-| [`client.port`](../general/attributes.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [2] | `65123` | Recommended |
-| [`http.route`](../attributes-registry/http.md) | string | The matched route (path template in the format used by the respective server framework). See note below [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
+| [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `83.164.160.102` | Recommended |
+| [`client.port`](../general/attributes.md) | int | The port of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded) or a similar header). Otherwise, the immediate client peer port. [2] | `65123` | Recommended |
+| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
 | [`network.local.address`](../attributes-registry/network.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`network.local.port`](../attributes-registry/network.md) | int | Local socket port. Useful in case of a multi-port host. | `65123` | Opt-In |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
@@ -364,32 +363,32 @@ For an HTTP server span, `SpanKind` MUST be `Server`.
 | [`url.query`](../attributes-registry/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [9] | `http`; `https` | Required |
 
-**[1]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
+**[1]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-For](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
 
-**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
+**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries , for example proxies, if it's available.
 
 **[3]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[4]:** Determined by using the first of the following that applies
+**[4]:** Determined by using the first of the following that applies:
 
 - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header
+- Host identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
+  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
+- Host identifier of the `Host` header.
 
 MUST NOT include the port identifier.
 
-**[5]:** Determined by using the first of the following that applies
+**[5]:** Determined by using the first of the following that applies:
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header
+- Port identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
+  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
+- Port identifier of the `Host` header.
 
 **[6]:** If not default (`80` for `http` scheme, `443` for `https`).
 
@@ -397,7 +396,7 @@ MUST NOT include the port identifier.
 
 **[8]:** Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
 
-**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 

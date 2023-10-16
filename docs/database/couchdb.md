@@ -19,7 +19,7 @@ described on this page.
 |---|---|---|---|---|
 | [`db.operation`](database-spans.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | Conditionally Required: If `db.statement` is not applicable. |
 
-**[1]:** In **CouchDB**, `db.operation` should be set to the HTTP method + the target REST route according to the API reference documentation. For example, when retrieving a document, `db.operation` would be set to (literally, i.e., without replacing the placeholders with concrete values): [`GET /{db}/{docid}`](http://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
+**[1]:** In **CouchDB**, `db.operation` should be set to the HTTP method + the target REST route according to the API reference documentation. For example, when retrieving a document, `db.operation` would be set to (literally, i.e., without replacing the placeholders with concrete values): [`GET /{db}/{docid}`](http://docs.couchdb.org/stable/api/document/common.html#get--db-docid).
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

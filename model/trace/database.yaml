@@ -263,7 +263,7 @@ groups:
           If setting a `db.mssql.instance_name`, `server.port` is no longer
           required (but still recommended if non-standard).
         brief: >
-          The Microsoft SQL Server [instance name](https://docs.microsoft.com/en-us/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15)
+          The Microsoft SQL Server [instance name](https://docs.microsoft.com/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15)
           connecting to. This name is used to determine the port of a named instance.
         examples: 'MSSQLSERVER'
 
@@ -289,7 +289,7 @@ groups:
       - id: consistency_level
         tag: call-level-tech-specific-cassandra
         brief: >
-          The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
+          The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
         type:
           members:
             - id: all
@@ -382,7 +382,7 @@ groups:
           the target REST route according to the API reference documentation.
           For example, when retrieving a document, `db.operation` would be set to
           (literally, i.e., without replacing the placeholders with concrete values):
-          [`GET /{db}/{docid}`](http://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
+          [`GET /{db}/{docid}`](http://docs.couchdb.org/stable/api/document/common.html#get--db-docid).
 
   - id: db.redis
     prefix: db.redis
@@ -445,7 +445,7 @@ groups:
           recommended: >
             Should be collected by default for search-type queries and only if there is sanitization that excludes
             sensitive information.
-        brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
+        brief: The request body for a [search-type query](https://www.elastic.co/guide/elasticsearch/reference/current/search.html), as a json string.
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
       - ref: server.address
       - ref: server.port
