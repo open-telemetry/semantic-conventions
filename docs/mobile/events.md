@@ -38,6 +38,8 @@ The event name MUST be `app.lifecycle`.
 | `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. |
 <!-- endsemconv -->
 
+### Android
+
 <!-- semconv android.lifecycle.events -->
 The event name MUST be `app.lifecycle`.
 
