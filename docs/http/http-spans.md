@@ -115,7 +115,7 @@ sections below.
 <!-- semconv trace.http.common(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `name_resolution_error`; `500` | Conditionally Required: If request has ended with an error. |
+| `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.request.body.size`](../attributes-registry/http.md) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | [`http.request.header.<key>`](../attributes-registry/http.md) | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values. [2] | `http.request.header.content_type=["application/json"]`; `http.request.header.x_forwarded_for=["1.2.3.4", "1.2.3.5"]` | Opt-In |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | Required |
@@ -130,10 +130,11 @@ sections below.
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
-`error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
+`error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
+or a component-specific low cardinality error identifier.
 
 If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-`error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
+`error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error identifier.
 
 The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -240,7 +241,7 @@ This span type represents an outbound HTTP request. There are two ways this can 
 
 For an HTTP client span, `SpanKind` MUST be `Client`.
 
-<!-- semconv trace.http.client(full) -->
+<!-- semconv trace.http.client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`http.request.resend_count`](../attributes-registry/http.md) | int | The ordinal number of request resending attempt (for any reason, including redirects). [1] | `3` | Recommended: if and only if request was retried. |
@@ -363,7 +364,7 @@ This span type represents an inbound HTTP request.
 
 For an HTTP server span, `SpanKind` MUST be `Server`.
 
-<!-- semconv trace.http.server(full) -->
+<!-- semconv trace.http.server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `83.164.160.102` | Recommended |
