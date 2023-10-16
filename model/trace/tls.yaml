@@ -30,6 +30,8 @@ groups:
           String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5)
           used during the current connection.
         type: string
+        note: >
+          The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
         examples:
           [
             "TLS_RSA_WITH_3DES_EDE_CBC_SHA",
@@ -130,6 +132,11 @@ groups:
           For consistency with other hash values, this value should be formatted as an uppercase hash.
         examples:
           ["0687F666A054EF17A08E2F2162EAB4CBC0D265E1D7875BE74BF3C712CA92DAF0"]
+      - id: supported_ciphers
+        type: string[]
+        requirement_level: opt_in
+        brief: Array of ciphers offered by the client during the client hello.
+        examples: [ '"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", "..."']
   - id: tls.server
     prefix: tls.server
     type: span
