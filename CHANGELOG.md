@@ -7,8 +7,24 @@ release.
 
 ## Unreleased
 
-- Remove `network.protocol.name` from HTTP semconv.
+### Breaking
+
+- BREAKING: Rename http.resend_count to http.request.resend_count.
+  ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
+- BREAKING: Change `network.protocol.name` from recommended to opt-in in HTTP semconv.
   ([#398](https://github.com/open-telemetry/semantic-conventions/pull/398))
+
+### Features
+
+### Fixes
+
+- Clarify that `error.type` should be the fully-qualified exception class name
+  when it represents an exception type.
+  ([#387](https://github.com/open-telemetry/semantic-conventions/pull/387))
+- Add cardinality warning about two opt-in HTTP metric attributes
+  ([#401](https://github.com/open-telemetry/semantic-conventions/pull/401))
+- Change `server.port` from recommended to conditionally required on HTTP server semconv.
+  ([#399](https://github.com/open-telemetry/semantic-conventions/pull/399))
 
 ## v1.22.0 (2023-10-12)
 
