@@ -38,7 +38,6 @@ These attributes may be used for base information of any TLS/SSL encrypted commu
 | `tls` | tls |
 <!-- endsemconv -->
 
-The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
 
 ## Client attributes
 
