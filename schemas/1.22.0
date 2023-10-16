@@ -1,7 +1,6 @@
 file_format: 1.1.0
-schema_url: https://opentelemetry.io/schemas/next
+schema_url: https://opentelemetry.io/schemas/1.22.0
 versions:
-  next:
   1.22.0:
     spans:
       changes:
@@ -9,10 +8,6 @@ versions:
         - rename_attributes:
             attribute_map:
               messaging.message.payload_size_bytes: messaging.message.body.size
-        # https://github.com/open-telemetry/opentelemetry-specification/pull/374
-        - rename_attributes:
-            attribute_map:
-              http.resend_count: http.request.resend_count
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/224

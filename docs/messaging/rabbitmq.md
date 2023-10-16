@@ -6,7 +6,7 @@ linkTitle: RabbitMQ
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for [RibbitMQ](https://www.rabbitmq.com/) extend and override the [Messaging Semantic Conventions](README.md)
+The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and override the [Messaging Semantic Conventions](README.md)
 that describe common messaging operations attributes in addition to the Semantic Conventions
 described on this page.
 
@@ -23,4 +23,4 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey` | Conditionally Required: If not empty. |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
