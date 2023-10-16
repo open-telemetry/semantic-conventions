@@ -16,6 +16,7 @@ All mobile events MUST set `event.domain` as `device`.
 This section defines how to apply semantic conventions when instrumenting application lifecycle.
 This event is meant to be used in conjunction with `os.name` [resource semantic convention](/docs/resource/os.md) to identify the mobile operating system (e.g. Android, iOS).
 
+### iOS
 <!-- semconv ios.lifecycle.events -->
 The event name MUST be `app.lifecycle`.
 
