@@ -25,7 +25,7 @@ groups:
         type: boolean
       - id: data
         requirement_level: "required"
-        type: attribute_group
+        type: attributes
         brief: >
           'event.data' in the case of mobile crashes will be an attribute that contains nested attributes.
           Android crashes will contain 'stacktrace', 'thread', and 'throwableMessage'
