@@ -11,6 +11,8 @@ release.
 
 - BREAKING: Rename http.resend_count to http.request.resend_count.
   ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
+- BREAKING: Consider `X-Forwarded-Host` / `Forwarded` when capturing `server.address` and `server.port`.
+  ([#411](https://github.com/open-telemetry/semantic-conventions/pull/411))
 
 ### Features
 

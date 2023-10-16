@@ -389,11 +389,14 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[4]:** Determined by using the first of the following that applies
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
-  include host identifier.
+- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
+- Host identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
+  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
 - Host identifier of the `Host` header
+
+MUST NOT include the port identifier.
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
@@ -402,6 +405,8 @@ SHOULD NOT be set if only IP address is available and capturing name would requi
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
 - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
+- Port identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
+  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
 - Port identifier of the `Host` header
 
 **[6]:** If not default (`80` for `http` scheme, `443` for `https`).
