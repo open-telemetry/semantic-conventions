@@ -96,7 +96,7 @@ groups:
             if it's sent in absolute-form.
           - Port identifier of the `Host` header
         requirement_level:
-          recommended: If not default (`80` for `http` scheme, `443` for `https`).
+          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]
