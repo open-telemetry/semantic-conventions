@@ -13,7 +13,7 @@ groups:
         brief: The name being queried.
         requirement_level: required
         examples: ["www.example.com", "dot.net"]
-        note: |
+        note: >
           The name being queried.
 
           If the name field contains non-printable
@@ -26,7 +26,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         note: |
-          Following errors code are reported:
+          The following errors codes are reported:
 
           - "host_not_found"
           - "try_again"
@@ -34,7 +34,7 @@ groups:
           - "no_recovery"
 
           See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror)
-          documentation for more details.
+          for more details.
         examples: ["host_not_found", "no_recovery", "System.Net.Sockets.SocketException"]
 
   - id: metric.dotnet.http.client.open_connections
@@ -55,7 +55,7 @@ groups:
             - id: idle
               value: "idle"
               brief: 'idle state.'
-        brief: State of HTTP connection in the HTTP connection pool.
+        brief: State of the HTTP connection in the HTTP connection pool.
         requirement_level: required
         examples: ["active", "idle"]
       - ref: url.scheme

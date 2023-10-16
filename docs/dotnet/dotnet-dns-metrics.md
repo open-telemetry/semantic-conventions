@@ -2,7 +2,7 @@
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
-This document defines semantic conventions for DNS metrics emitted by .NET.
+This article defines semantic conventions for DNS metrics emitted by .NET.
 
 <!-- toc -->
 
@@ -30,14 +30,9 @@ This document defines semantic conventions for DNS metrics emitted by .NET.
 | `error.type` | string | One of the resolution errors or the full name of exception type. [2] | `host_not_found`; `no_recovery`; `System.Net.Sockets.SocketException` | Conditionally Required: if and only if an error has occurred. |
 
 **[1]:** The name being queried.
+If the name field contains non-printable characters (below 32 or above 126), those characters should be represented as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped. Tabs, carriage returns, and line feeds should be converted to \t, \r, and \n respectively.
 
-If the name field contains non-printable
-characters (below 32 or above 126), those characters should be represented
-as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped.
-Tabs, carriage returns, and line feeds should be converted to \t, \r, and
-\n respectively.
-
-**[2]:** Following errors code are reported:
+**[2]:** The following errors codes are reported:
 
 - "host_not_found"
 - "try_again"
@@ -45,7 +40,7 @@ Tabs, carriage returns, and line feeds should be converted to \t, \r, and
 - "no_recovery"
 
 See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror)
-documentation for more details.
+for more details.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

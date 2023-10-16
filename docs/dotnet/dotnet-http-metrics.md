@@ -2,7 +2,7 @@
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
-This document defines semantic conventions for HTTP metrics emitted by .NET components and runtime.
+This article defines semantic conventions for HTTP metrics emitted by .NET components and runtime.
 
 <!-- toc -->
 
@@ -20,19 +20,19 @@ This document defines semantic conventions for HTTP metrics emitted by .NET comp
 
 ## HTTP client
 
-All Http client metrics are reported by `System.Net.Http` meter.
+All Http client metrics are reported by the `System.Net.Http` meter.
 
 ### Metric: `http.client.request.duration`
 
-Client request duration measures time it takes to receive response headers and does not include time to read response body.
+Client request duration measures the time it takes to receive response headers and doesn't include time to read the response body.
 
-This metric follows common [http.client.request.duration](../http/http-metrics.md#metric-httpclientrequestduration) definition.
+This metric follows the common [http.client.request.duration](../http/http-metrics.md#metric-httpclientrequestduration) definition.
 
 Notes:
 
 - Meter name is `System.Net.Http`
 - Metric added in .NET 8.0
-- When `error.type` attribute is reported, it contains one of [HTTP Request errors](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Http/src/System/Net/Http/HttpRequestError.cs), a full exception type, or a string representation of received status code.
+- When the `error.type` attribute is reported, it contains one of [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror), a full exception type, or a string representation of received status code.
 
 ### Metric: `http.client.open_connections`
 
@@ -47,7 +47,7 @@ Notes:
 <!-- semconv metric.dotnet.http.client.open_connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `http.connection.state` | string | State of HTTP connection in the HTTP connection pool. | `active`; `idle` | Required |
+| `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | Required |
 | [`network.peer.address`](../general/attributes.md) | string | Remote IP address of the socket connection. | `10.1.2.80` | Recommended |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [1] | `1.1`; `2` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
@@ -224,11 +224,11 @@ It is not possible at the moment to override the list of known HTTP methods.
 
 ## HTTP server
 
-All HTTP server metrics are reported by `Microsoft.AspNetCore.Hosting` meter.
+All HTTP server metrics are reported by the `Microsoft.AspNetCore.Hosting` meter.
 
 ### Metric: `http.server.request.duration`
 
-Measures time to last byte. This metric follows common [http.server.request.duration](../http/http-metrics.md#metric-httpserverrequestduration) definition.
+Measures time to last byte. This metric follows the common [http.server.request.duration](../http/http-metrics.md#metric-httpserverrequestduration) definition.
 
 Notes:
 
@@ -241,7 +241,7 @@ Notes:
 
 ### Metric: `http.server.active_requests`
 
-Measures the number of HTTP requests that are currently active on the server. This metric follows common [http.server.active_requests](../http/http-metrics.md#metric-httpserveractive_requests) definition.
+Measures the number of HTTP requests that are currently active on the server. This metric follows the common [http.server.active_requests](../http/http-metrics.md#metric-httpserveractive_requests) definition.
 
 Notes:
 

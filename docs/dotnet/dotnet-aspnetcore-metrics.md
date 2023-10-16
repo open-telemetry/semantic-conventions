@@ -2,7 +2,7 @@
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
-This document defines semantic conventions for ASP.NET Core metrics.
+This article defines semantic conventions for ASP.NET Core metrics.
 
 <!-- toc -->
 
@@ -24,7 +24,7 @@ This document defines semantic conventions for ASP.NET Core metrics.
 
 ## Routing
 
-All routing metrics are reported by `Microsoft.AspNetCore.Routing` meter.
+All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 
 ### Metric: `aspnetcore.routing.match_attempts`
 
@@ -56,7 +56,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 ## Exception metrics
 
-Metrics reported by `Microsoft.AspNetCore.Diagnostics` meter.
+Metrics reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 
 ### Metric: `aspnetcore.diagnostics.exceptions`
 
@@ -109,7 +109,7 @@ all errors, regardless of whether they are defined within the domain-specific se
 
 ## Rate-limiting
 
-All rate-limiting metrics are reported by `Microsoft.AspNetCore.RateLimiting` meter.
+All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting` meter.
 
 ### Metric: `aspnetcore.rate_limiting.active_request_leases`
 
@@ -170,7 +170,7 @@ All rate-limiting metrics are reported by `Microsoft.AspNetCore.RateLimiting` me
 <!-- semconv metric.aspnetcore.rate_limiting.request.time_in_queue(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `aspnetcore.rate_limiting.request.time_in_queue` | Histogram | `s` | The time request spent in a queue, waiting to acquire a rate limiting lease. [1] |
+| `aspnetcore.rate_limiting.request.time_in_queue` | Histogram | `s` | The time the request spent in a queue waiting to acquire a rate limiting lease. [1] |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 <!-- endsemconv -->
@@ -179,7 +179,7 @@ All rate-limiting metrics are reported by `Microsoft.AspNetCore.RateLimiting` me
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
-| `aspnetcore.rate_limiting.result` | string | Rate-limiting result, shows whether lease was acquired or contains rejection reason | `acquired`; `request_canceled` | Required |
+| `aspnetcore.rate_limiting.result` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | Required |
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
 
@@ -200,7 +200,10 @@ All rate-limiting metrics are reported by `Microsoft.AspNetCore.RateLimiting` me
 | -------- | --------------- | ----------- | -------------- |
 | `aspnetcore.rate_limiting.requests` | Counter | `{request}` | Number of requests that tried to acquire a rate limiting lease. [1] |
 
-**[1]:** Requests could be rejected by global or endpoint rate limiting policies. Or the request could be cancelled while waiting for the lease.
+**[1]:** Requests could be:
+
+  * rejected by global or endpoint rate limiting policies
+  * canceled while waiting for the lease.
 
 Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 <!-- endsemconv -->
@@ -209,7 +212,7 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
-| `aspnetcore.rate_limiting.result` | string | Rate-limiting result, shows whether lease was acquired or contains rejection reason | `acquired`; `request_canceled` | Required |
+| `aspnetcore.rate_limiting.result` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | Required |
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
 

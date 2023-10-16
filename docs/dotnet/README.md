@@ -9,9 +9,9 @@ path_base_for_github_subdir:
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
-This document documents semantic conventions for metrics emitted by .NET runtime and individual components in .NET ecosystem.
+This article documents semantic conventions for metrics emitted by the .NET runtime and individual components in the .NET ecosystem.
 
-Following metrics are currently supported:
+The following metrics are currently supported:
 
 * [ASP.NET Core](dotnet-aspnetcore-metrics.md): Semantic Conventions for ASP.NET Core routing, exceptions, and rate-limiting *metrics*.
 * [DNS](dotnet-dns-metrics.md): Semantic Conventions for client-side DNS lookups associated with *metrics*.

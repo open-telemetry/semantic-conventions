@@ -2,7 +2,7 @@
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
-This document defines semantic conventions for Kestrel web server.
+This article defines semantic conventions for Kestrel web server.
 
 <!-- toc -->
 
@@ -20,13 +20,11 @@ This document defines semantic conventions for Kestrel web server.
 
 ## Kestrel endpoint
 
-Kestrel endpoint is represented with [`System.Net.EndPoint`](https://learn.microsoft.com/en-us/dotnet/api/system.net.endpoint) class,
-which does not always provide information about server address or port.
+Kestrel endpoint is represented with [`System.Net.EndPoint`](https://learn.microsoft.com/dotnet/api/system.net.endpoint) class, which does not always provide information about server address or port.
 
-Instrumentation supports `IPEndPoint`, `UnixDomainSocketEndPoint`, and `NamedPipeEndPoint` and sets `server.address`, `server.port` (for IP endpoint), `network.type`, and `network.transport` attributes from corresponding endpoint on Kestrel metrics.
+Instrumentation supports `IPEndPoint`, `UnixDomainSocketEndPoint`, and `NamedPipeEndPoint` and sets the `server.address`, `server.port` (for IP endpoint), `network.type`, and `network.transport` attributes from the corresponding endpoint on Kestrel metrics.
 
-In case instrumentation does not recognize `EndPoint` implementation, it sets `server.address` attribute to `endpoint.ToString()` value
-and `network.transport` value to corresponding `endpoint.AddressFamily` property.
+In case instrumentation does not recognize `EndPoint` implementation, it sets the `server.address` attribute to `endpoint.ToString()` value and `network.transport` value to corresponding `endpoint.AddressFamily` property.
 
 ## Metric: `kestrel.active_connections`
 

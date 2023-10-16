@@ -2,7 +2,7 @@
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
-This document defines semantic conventions for SignalR metrics emitted by .NET components and runtime.
+This article defines semantic conventions for SignalR metrics emitted by .NET components and runtime.
 
 <!-- toc -->
 
