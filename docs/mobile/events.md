@@ -8,6 +8,8 @@ All mobile events MUST set `event.domain` as `device`.
 <!-- toc -->
 
 - [Lifecycle instrumentation](#lifecycle-instrumentation)
+  * [iOS](#ios)
+  * [Android](#android)
 
 <!-- tocstop -->
 
