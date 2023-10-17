@@ -15,7 +15,7 @@ release.
   ([#376](https://github.com/open-telemetry/semantic-conventions/pull/376))
 - BREAKING: Change `network.transport` from recommended to opt-in in HTTP semconv.
   ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
-- BREAKING: Consider `X-Forwarded-Host` / `Forwarded` when capturing `server.address` and `server.port`.
+- BREAKING: Factor in `X-Forwarded-Host` / `Forwarded` when capturing `server.address` and `server.port`.
   ([#411](https://github.com/open-telemetry/semantic-conventions/pull/411))
 
 ### Features
