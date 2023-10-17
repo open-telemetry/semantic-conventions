@@ -96,19 +96,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | [`server.port`](../general/attributes.md) | int | Server port number. [7] | `80`; `8080`; `443` | Recommended |
 | `tls.protocol.version` | string | TLS protocol version. | `1.2`; `1.3` | Conditionally Required: if the connection is secured with TLS. |
 
-**[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low, but
-telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time, when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to use a domain-specific attribute and also set `error.type` to capture
-all errors, regardless of whether they are defined within the domain-specific set or not.
+**[1]:** Captures the exception type when a connection fails.
 
 **[2]:** The value SHOULD be normalized to lowercase.
 
@@ -157,7 +145,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | -------- | --------------- | ----------- | -------------- |
 | `kestrel.rejected_connections` | Counter | `{connection}` | Number of connections rejected by the server. [1] |
 
-**[1]:** Connections are rejected when the currently active count exceeds the value configured with MaxConcurrentConnections.
+**[1]:** Connections are rejected when the currently active count exceeds the value configured with `MaxConcurrentConnections`.
 Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
 <!-- endsemconv -->
 
@@ -371,19 +359,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | [`server.port`](../general/attributes.md) | int | Server port number. [5] | `80`; `8080`; `443` | Recommended |
 | `tls.protocol.version` | string | TLS protocol version. | `1.2`; `1.3` | Conditionally Required: if the connection is secured with TLS. |
 
-**[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low, but
-telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time, when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to use a domain-specific attribute and also set `error.type` to capture
-all errors, regardless of whether they are defined within the domain-specific set or not.
+**[1]:** Captures the exception type when a TLS handshake fails.
 
 **[2]:** The value SHOULD be normalized to lowercase.
 

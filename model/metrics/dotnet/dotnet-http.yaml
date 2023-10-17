@@ -56,7 +56,7 @@ groups:
           - Host identifier of the `Host` header.
       - ref: server.port
         requirement_level:
-          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
+          conditionally_required: If not the default (`80` for `http` scheme, `443` for `https`).
         brief: >
           Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) the HTTP request is sent to.
         note: >
@@ -106,7 +106,7 @@ groups:
   - id: metric.dotnet.http.client.connection.duration
     type: metric
     metric_name: http.client.connection.duration
-    brief: "The duration of successfully established outbound HTTP connections."
+    brief: "The duration of the successfully established outbound HTTP connections."
     instrument: histogram
     unit: "s"
     note: >

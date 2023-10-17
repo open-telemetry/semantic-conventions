@@ -63,7 +63,7 @@ Notes:
 
 **[3]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is an absolute URI, `server.port` MUST match the URI port identifier; otherwise, it MUST match the `Host` header port identifier.
 
-**[4]:** If not default (`80` for `http` scheme, `443` for `https`).
+**[4]:** If not the default (`80` for `http` scheme, `443` for `https`).
 
 `http.connection.state` MUST be one of the following:
 
@@ -78,7 +78,7 @@ Notes:
 <!-- semconv metric.dotnet.http.client.connection.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.client.connection.duration` | Histogram | `s` | The duration of successfully established outbound HTTP connections. [1] |
+| `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. [1] |
 
 **[1]:** Meter name: `System.Net.Http`; Added in: .NET 8.0
 <!-- endsemconv -->
@@ -101,7 +101,7 @@ Notes:
 
 **[3]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is an absolute URI, `server.port` MUST match the URI port identifier; otherwise, it MUST match the `Host` header port identifier.
 
-**[4]:** If not default (`80` for `http` scheme, `443` for `https`).
+**[4]:** If not the default (`80` for `http` scheme, `443` for `https`).
 <!-- endsemconv -->
 
 ### Metric: `http.client.request.time_in_queue`
@@ -136,7 +136,7 @@ It's not possible at the moment to override the list of known HTTP methods.
 
 **[4]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is an absolute URI, `server.port` MUST match the URI port identifier; otherwise, it MUST match the `Host` header port identifier.
 
-**[5]:** If not default (`80` for `http` scheme, `443` for `https`).
+**[5]:** If not the default (`80` for `http` scheme, `443` for `https`).
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -186,7 +186,7 @@ It's not possible at the moment to override the list of known HTTP methods.
 
 **[4]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is an absolute URI, `server.port` MUST match the URI port identifier; otherwise, it MUST match the `Host` header port identifier.
 
-**[5]:** If not default (`80` for `http` scheme, `443` for `https`).
+**[5]:** If not the default (`80` for `http` scheme, `443` for `https`).
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

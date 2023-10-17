@@ -51,6 +51,7 @@ groups:
         brief: The full name of exception type.
         requirement_level:
           conditionally_required: if and only if an error has occurred.
+        note: "Captures the exception type when a connection fails."
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
 
   - id: metric.kestrel.rejected_connections
@@ -60,7 +61,7 @@ groups:
     instrument: counter
     unit: "{connection}"
     note: |
-      Connections are rejected when the currently active count exceeds the value configured with MaxConcurrentConnections.
+      Connections are rejected when the currently active count exceeds the value configured with `MaxConcurrentConnections`.
       Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
     extends: common.kestrel.attributes
 
@@ -114,6 +115,7 @@ groups:
       - ref: tls.protocol.version
       - ref: error.type
         brief: The full name of exception type.
+        note: "Captures the exception type when a TLS handshake fails."
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
