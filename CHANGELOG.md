@@ -11,6 +11,8 @@ release.
 
 - BREAKING: Rename http.resend_count to http.request.resend_count.
   ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
+- BREAKING: Define url.scheme in terms of logical operation in HTTP server semconv.
+  ([#376](https://github.com/open-telemetry/semantic-conventions/pull/376))
 - BREAKING: Change `network.transport` from recommended to opt-in in HTTP semconv.
   ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
 
