@@ -216,8 +216,8 @@ SHOULD be set according to the following table, based on the operation a span de
 
 | Operation name | Span kind|
 |----------------|-------------|
-| `publish`      | `PRODUCER`, if the context of the "Publish" span is used as creation context. |
-| `create`       | `PRODUCER`, |
+| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context. |
+| `create`       | `PRODUCER` |
 | `receive`      | `CONSUMER` |
 | `deliver`      | `CONSUMER` |
 
@@ -424,7 +424,7 @@ All attributes that are specific for a messaging system SHOULD be populated in `
 
 ### Topic with multiple consumers
 
-Given is a publisher that publishes a message to a queue "T" on RabbitMQ, and two consumers which both receive the message.
+Given is a publisher that publishes a message to a topic "T" on Kafka, and two consumers which both get the message delivered.
 
 ```mermaid
 flowchart LR;
@@ -434,11 +434,11 @@ flowchart LR;
   end
   subgraph CONSUMER1
   direction TB
-  R1[Span Receive A 1]
+  R1[Span Deliver A 1]
   end
   subgraph CONSUMER2
   direction TB
-  R2[Span Receive A 2]
+  R2[Span Deliver A 2]
   end
   P-. link .-R1;
   P-. link .-R2;
@@ -448,23 +448,23 @@ flowchart LR;
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Publish A | Span Receive A 1| Span Receive A 2 |
+| Field or Attribute | Span Publish A | Span Deliver A 1| Span Deliver A 2 |
 |-|-|-|-|
-| Span name | `T publish` | `T receive` | `T receive` |
+| Span name | `T publish` | `T deliver` | `T deliver` |
 | Parent | | | |
 | Links |  | `T publish` | `T publish` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
+| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
-| `messaging.operation` | `"publish"` | `"receive"` | `"receive"` |
+| `messaging.operation` | `"publish"` | `"deliver"` | `"deliver"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
 ### Batch delivering
 
-Given is a publisher that publishes two messages to a topic "Q" on Kafka, and a consumer which gets both messages delivered in one batch.
+Given is a publisher that publishes two messages to a queue "Q" on RabbitMQ, and a consumer which receives both messages in one batch.
 
 ```mermaid
 flowchart LR;
@@ -475,7 +475,7 @@ flowchart LR;
   end
   subgraph CONSUMER1
   direction TB
-  D1[Span Deliver A B]
+  D1[Span Receive A B]
   end
   PA-. link .-D1;
   PB-. link .-D1;
@@ -485,9 +485,9 @@ flowchart LR;
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Publish A | Span Publish B | Span Deliver A B |
+| Field or Attribute | Span Publish A | Span Publish B | Span Receive A B |
 |-|-|-|-|
-| Span name | `Q publish` | `Q publish` | `Q deliver` |
+| Span name | `Q publish` | `Q publish` | `Q receive` |
 | Parent |  |  |  |
 | Links |  |  | Span Publish A, Span Publish B |
 | Link attributes |  |  | Span Publish A: `messaging.message.id`: `"a1"`  |
@@ -496,9 +496,9 @@ flowchart LR;
 | Status | `Ok` | `Ok` | `Ok` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation` | `"publish"` | `"publish"` | `"deliver"` |
+| `messaging.operation` | `"publish"` | `"publish"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
 
