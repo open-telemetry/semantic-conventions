@@ -138,7 +138,7 @@ MUST NOT include the port identifier.
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
-Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
 to trigger cardinality limits, degrading the usefulness of the metric.
 
 **[7]:** Determined by using the first of the following that applies
@@ -150,7 +150,7 @@ to trigger cardinality limits, degrading the usefulness of the metric.
   [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
 - Port identifier of the `Host` header
 
-Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
 to trigger cardinality limits, degrading the usefulness of the metric.
 
 **[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
@@ -335,7 +335,7 @@ MUST NOT include the port identifier.
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
-Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
 to trigger cardinality limits, degrading the usefulness of the metric.
 
 **[7]:** Determined by using the first of the following that applies
@@ -347,7 +347,7 @@ to trigger cardinality limits, degrading the usefulness of the metric.
   [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
 - Port identifier of the `Host` header
 
-Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
 to trigger cardinality limits, degrading the usefulness of the metric.
 
 **[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
@@ -453,7 +453,7 @@ MUST NOT include the port identifier.
 
 SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
-Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
 to trigger cardinality limits, degrading the usefulness of the metric.
 
 **[7]:** Determined by using the first of the following that applies
@@ -465,7 +465,7 @@ to trigger cardinality limits, degrading the usefulness of the metric.
   [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
 - Port identifier of the `Host` header
 
-Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
 to trigger cardinality limits, degrading the usefulness of the metric.
 
 **[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
