@@ -29,13 +29,11 @@ The ID is assinged by the container runtime and can vary in different environmen
 **[3]:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 <!-- endsemconv -->
 
-
 ## Open Container Initiative (OCI)
 
 The [Open Container Initiative](https://opencontainers.org/) defines open industry standards around container formats and runtimes.
 
 ### OCI Image Manifest
-
 
 <!-- semconv registry.oci.manifest(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
