@@ -30,7 +30,7 @@
   * [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems)
 - [Examples](#examples)
   * [Topic with multiple consumers](#topic-with-multiple-consumers)
-  * [Batch delivering](#batch-delivering)
+  * [Batch receiving](#batch-receiving)
 - [Semantic Conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies)
 
 <!-- tocstop -->
@@ -462,7 +462,7 @@ flowchart LR;
 | `messaging.operation` | `"publish"` | `"deliver"` | `"deliver"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
-### Batch delivering
+### Batch receiving
 
 Given is a publisher that publishes two messages to a queue "Q" on RabbitMQ, and a consumer which receives both messages in one batch.
 
