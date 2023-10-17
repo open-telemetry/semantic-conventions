@@ -7,8 +7,8 @@ linkTitle: Metrics
 **Status**: [Experimental, partial feature-freeze][DocumentStatus]
 
 The conventions described in this section are HTTP specific. When HTTP operations occur,
-metric events about those operations will be generated and reported to provide insight into the
-operations. By adding HTTP attributes to metric events it allows for finely tuned filtering.
+metric events about those operations are generated and reported to provide insight into the
+operations. Adding HTTP attributes to metric events allows for finely tuned filtering.
 
 **Disclaimer:** These are initial HTTP metric instruments and attributes but more may be added in the future.
 
@@ -32,8 +32,8 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 > (or prior):
 >
 > * SHOULD NOT change the version of the HTTP or networking conventions that they emit
->   until the HTTP semantic conventions are marked stable (HTTP stabilization will
->   include stabilization of a core set of networking conventions which are also used
+>   until the HTTP semantic conventions are marked stable (HTTP stabilization
+>   includes stabilization of a core set of networking conventions which are also used
 >   in HTTP instrumentations). Conventions include, but are not limited to, attributes,
 >   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
@@ -44,14 +44,14 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 >     that the instrumentation emitted previously.
 >   * `http/dup` - emit both the old and the stable HTTP and networking conventions,
 >     allowing for a seamless transition.
->   * The default behavior (in the absence of one of these values) is to continue
+>   * The default behavior, in the absence of one of these values, continues
 >     emitting whatever version of the old experimental HTTP and networking conventions
 >     the instrumentation was emitting previously.
 >   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version (stable
->   next major version SHOULD NOT be released prior to October 1, 2023).
+> * SHOULD drop the environment variable in the next major version. The stable
+>   next major version SHOULD NOT be released prior to October 1, 2023.
 
 ## HTTP Server
 
@@ -118,8 +118,7 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
-SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+**[3]:** MUST NOT be populated when this isn't supported by the HTTP server framework. In this case, it shouldn't be populated as the route attribute should have low-cardinality and the URI path can NOT substitute it. SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 **[4]:** The value SHOULD be normalized to lowercase.
 
@@ -190,17 +189,17 @@ and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST:
+
+* Be named `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`
+* Support a comma-separated list of case-sensitive known HTTP methods. The list of known HTTP methods MUST be a full override of the default known method, it's not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
 **[2]:** Determined by using the first of the following that applies
-
+<!--zz-->
 - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
   include host identifier.
 - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
