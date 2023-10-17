@@ -13,6 +13,8 @@ release.
   ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
 - BREAKING: Change `network.protocol.name` from recommended to opt-in in HTTP semconv.
   ([#398](https://github.com/open-telemetry/semantic-conventions/pull/398))
+- BREAKING: Define url.scheme in terms of logical operation in HTTP server semconv.
+  ([#376](https://github.com/open-telemetry/semantic-conventions/pull/376))
 
 ### Features
 
