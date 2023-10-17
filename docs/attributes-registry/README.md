@@ -29,5 +29,6 @@ Currently, the following namespaces exist:
 
 * [HTTP](http.md)
 * [URL](url.md)
+* [Container](container.md)
 
 [developers recommendations]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/common/attribute-naming.md#recommendations-for-application-developers
