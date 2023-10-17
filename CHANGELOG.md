@@ -15,6 +15,8 @@ release.
   ([#376](https://github.com/open-telemetry/semantic-conventions/pull/376))
 - BREAKING: Change `network.transport` from recommended to opt-in in HTTP semconv.
   ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
+- BREAKING: Change `network.type` from recommended to opt-in in HTTP semconv.
+  ([#410](https://github.com/open-telemetry/semantic-conventions/pull/410))
 
 ### Features
 
