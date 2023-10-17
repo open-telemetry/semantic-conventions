@@ -424,7 +424,7 @@ All attributes that are specific for a messaging system SHOULD be populated in `
 
 ### Topic with multiple consumers
 
-Given is a publisher that publishes a message to a topic "T" on Kafka, and two consumers which both get the message delivered.
+Given is a publisher that publishes a message to a topic exchange "T" on RabbitMQ, and two consumers which both get the message delivered.
 
 ```mermaid
 flowchart LR;
@@ -457,14 +457,14 @@ flowchart LR;
 | Status | `Ok` | `Ok` | `Ok` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation` | `"publish"` | `"deliver"` | `"deliver"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
 ### Batch receiving
 
-Given is a publisher that publishes two messages to a queue "Q" on RabbitMQ, and a consumer which receives both messages in one batch.
+Given is a publisher that publishes two messages to a topic "Q" on Kafka, and a consumer which receives both messages in one batch.
 
 ```mermaid
 flowchart LR;
@@ -496,7 +496,7 @@ flowchart LR;
 | Status | `Ok` | `Ok` | `Ok` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
+| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation` | `"publish"` | `"publish"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
