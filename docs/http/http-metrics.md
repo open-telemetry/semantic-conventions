@@ -2,8 +2,7 @@
 linkTitle: Metrics
 --->
 
-<!--- This file should not be edited. This file These was generated from YAML so changes need to be made
-to the source.  See refer to https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md#yaml-to-markdown
+<!--- This file should not be edited. This file was generated from YAML so changes need to be made to the source.  See refer to https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md#yaml-to-markdown
 --->
 
 # Semantic Conventions for HTTP Metrics
