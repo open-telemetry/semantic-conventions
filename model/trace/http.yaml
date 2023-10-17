@@ -20,8 +20,10 @@ groups:
         sampling_relevant: true
         requirement_level: required
       - ref: network.transport
-        requirement_level:
-          conditionally_required: If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
+        requirement_level: opt_in
+        note: >
+          Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
+          Other obscure implementations are possible.
       - ref: network.type
       - ref: user_agent.original
 
@@ -31,7 +33,7 @@ groups:
     span_kind: client
     brief: 'Semantic Convention for HTTP Client'
     attributes:
-      - ref: http.resend_count
+      - ref: http.request.resend_count
         requirement_level:
           recommended: if and only if request was retried.
       - ref: server.address
