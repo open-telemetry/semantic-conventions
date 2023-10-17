@@ -23,4 +23,4 @@
 **[4]:** It's recommended this value represents a human readable version of the device model rather than a machine readable alternative.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
