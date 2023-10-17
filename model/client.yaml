@@ -15,7 +15,7 @@ groups:
         brief: "Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
         note: >
           When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent
-          the client address behind any intermediaries , for example proxies, if it's available.
+          the client address behind any intermediaries,  for example proxies, if it's available.
         examples: ['client.example.com', '10.1.2.80', '/tmp/my.sock']
       - id: port
         type: int
@@ -23,4 +23,4 @@ groups:
         examples: [65123]
         note: >
           When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent
-          the client port behind any intermediaries , for example proxies, if it's available.
+          the client port behind any intermediaries,  for example proxies, if it's available.
