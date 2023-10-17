@@ -202,8 +202,8 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 
 **[1]:** Requests could be:
 
-  * rejected by global or endpoint rate limiting policies
-  * canceled while waiting for the lease.
+* Rejected by global or endpoint rate limiting policies
+* Canceled while waiting for the lease.
 
 Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 <!-- endsemconv -->
