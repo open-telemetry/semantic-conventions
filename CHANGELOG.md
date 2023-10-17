@@ -15,6 +15,8 @@ release.
   ([#398](https://github.com/open-telemetry/semantic-conventions/pull/398))
 - BREAKING: Define url.scheme in terms of logical operation in HTTP server semconv.
   ([#376](https://github.com/open-telemetry/semantic-conventions/pull/376))
+- BREAKING: Change `network.transport` from recommended to opt-in in HTTP semconv.
+  ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
 
 ### Features
 
