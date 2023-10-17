@@ -24,7 +24,7 @@ groups:
         examples: ["G1 Old Gen", "G1 Eden space", "G1 Survivor Space"]
         note: >
           Pool names are generally obtained via
-          [MemoryPoolMXBean#getName()](https://docs.oracle.com/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+          [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
   - id: metric.jvm.memory.usage
     type: metric
@@ -73,7 +73,7 @@ groups:
         examples: ["G1 Young Generation", "G1 Old Generation"]
         note: >
           Garbage collector name is generally obtained via
-          [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+          [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
       - id: action
         type: string
         requirement_level: recommended
@@ -81,7 +81,7 @@ groups:
         examples: ["end of minor GC", "end of major GC"]
         note: >
           Garbage collector action is generally obtained via
-          [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
+          [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
   - id: metric.jvm.thread.count
     type: metric
@@ -136,6 +136,6 @@ groups:
       The value range is [0.0,1.0].
       This utilization is not defined as being for the specific interval since last measurement
       (unlike `system.cpu.utilization`).
-      [Reference](https://docs.oracle.com/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()).
+      [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()).
     instrument: gauge
     unit: "1"

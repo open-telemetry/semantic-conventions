@@ -331,8 +331,8 @@ Some servers allow to bind the same HTTP application to multiple `(virtual host,
 
 [HTTP host header]: https://tools.ietf.org/html/rfc7230#section-5.4
 [PEP 3333]: https://www.python.org/dev/peps/pep-3333/
-[modwsgisetup]: https://modwsgi.readthedocs.io/develop/user-guides/quick-configuration-guide.html
-[context root]: https://docs.jboss.org/jbossas/guides/webguide/r2/html/ch06.html
+[modwsgisetup]: https://modwsgi.readthedocs.io/en/develop/user-guides/quick-configuration-guide.html
+[context root]: https://docs.jboss.org/jbossas/guides/webguide/r2/en/html/ch06.html
 [context prefix]: https://marc.info/?l=apache-cvs&m=130928191414740
 [document base]: http://tomcat.apache.org/tomcat-5.5-doc/config/context.html
 [rfc-servername]: https://tools.ietf.org/html/rfc3875#section-4.1.14

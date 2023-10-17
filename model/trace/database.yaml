@@ -445,7 +445,7 @@ groups:
           recommended: >
             Should be collected by default for search-type queries and only if there is sanitization that excludes
             sensitive information.
-        brief: The request body for a [search-type query](https://www.elastic.co/guide/elasticsearch/reference/current/search.html), as a json string.
+        brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
       - ref: server.address
       - ref: server.port
