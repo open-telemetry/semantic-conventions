@@ -64,7 +64,6 @@ groups:
           - 'internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578'
       - id: command
         type: string
-        requirement_level: opt_in
         note: >
           If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
         brief: >
@@ -72,13 +71,11 @@ groups:
         examples: [ 'otelcontribcol' ]
       - id: command_line
         type: string
-        requirement_level: opt_in
         brief: >
           The full command run by the container as a single string representing the full command. [2]
         examples: [ 'otelcontribcol --config config.yaml' ]
       - id: command_args
         type: string[]
-        requirement_level: opt_in
         brief: >
           All the command arguments (including the command/executable itself) run by the container. [2]
         examples: [ 'otelcontribcol, --config, config.yaml' ]
