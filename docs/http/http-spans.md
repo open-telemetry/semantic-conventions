@@ -123,10 +123,9 @@ sections below.
 | [`http.response.body.size`](../attributes-registry/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | Recommended |
 | [`http.response.header.<key>`](../attributes-registry/http.md) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values. [5] | `http.response.header.content_type=["application/json"]`; `http.response.header.my_custom_header=["abc", "def"]` | Opt-In |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `http`; `spdy` | Recommended: if not default (`http`). |
+| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `http`; `spdy` | Opt-In |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp` | Opt-In |
-| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [9] | `ipv4`; `ipv6` | Recommended |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
@@ -177,8 +176,6 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[8]:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
-**[9]:** The value SHOULD be normalized to lowercase.
-
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
 * [`http.request.method`](../attributes-registry/http.md)
@@ -212,13 +209,6 @@ Following attributes MUST be provided **at span creation time** (when provided a
 | `udp` | UDP |
 | `pipe` | Named or anonymous pipe. See note below. |
 | `unix` | Unix domain socket |
-
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `ipv4` | IPv4 |
-| `ipv6` | IPv6 |
 <!-- endsemconv -->
 
 ## HTTP client
@@ -243,7 +233,7 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 | [`network.peer.port`](../general/attributes.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
-| [`url.full`](../url/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [5] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
+| [`url.full`](../attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [5] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
 
 **[1]:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
@@ -268,7 +258,7 @@ Following attributes MUST be provided **at span creation time** (when provided a
 
 * [`server.address`](../general/attributes.md)
 * [`server.port`](../general/attributes.md)
-* [`url.full`](../url/url.md)
+* [`url.full`](../attributes-registry/url.md)
 <!-- endsemconv -->
 
 Note that in some cases host and port identifiers in the `Host` header might be different from the `server.address` and `server.port`, in this case instrumentation MAY populate `Host` header on `http.request.header.host` attribute even if it's not enabled by user.
@@ -370,9 +360,9 @@ For an HTTP server span, `SpanKind` MUST be `Server`.
 | [`network.peer.port`](../general/attributes.md) | int | Peer port number of the network connection. | `65123` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [5] | `80`; `8080`; `443` | Conditionally Required: [6] |
-| [`url.path`](../url/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [7] | `/search` | Required |
-| [`url.query`](../url/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
-| [`url.scheme`](../url/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [9] | `http`; `https` | Required |
+| [`url.path`](../attributes-registry/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [7] | `/search` | Required |
+| [`url.query`](../attributes-registry/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [9] | `http`; `https` | Required |
 
 **[1]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
 
@@ -388,8 +378,6 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
   if it's sent in absolute-form.
 - Host identifier of the `Host` header
-
-SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
 **[5]:** Determined by using the first of the following that applies
 
@@ -410,9 +398,9 @@ Following attributes MUST be provided **at span creation time** (when provided a
 
 * [`server.address`](../general/attributes.md)
 * [`server.port`](../general/attributes.md)
-* [`url.path`](../url/url.md)
-* [`url.query`](../url/url.md)
-* [`url.scheme`](../url/url.md)
+* [`url.path`](../attributes-registry/url.md)
+* [`url.query`](../attributes-registry/url.md)
+* [`url.scheme`](../attributes-registry/url.md)
 <!-- endsemconv -->
 
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
