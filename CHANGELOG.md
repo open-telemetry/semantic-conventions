@@ -22,6 +22,9 @@ release.
 
 ### Features
 
+- Metric namespaces SHOULD NOT be pluralized.
+  ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
+
 ### Fixes
 
 - Clarify that `error.type` should be the fully-qualified exception class name
