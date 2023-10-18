@@ -6,6 +6,7 @@ groups:
       A container instance.
     attributes:
       - ref: container.name
+      - ref: container.id
       - ref: container.runtime
       - ref: container.image.name
       - ref: container.image.tags
