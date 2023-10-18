@@ -33,6 +33,8 @@ release.
   ([#399](https://github.com/open-telemetry/semantic-conventions/pull/399))
 - Add cardinality warning about two opt-in HTTP metric attributes to all HTTP metrics.
   ([#412](https://github.com/open-telemetry/semantic-conventions/pull/412))
+- Remove outdated note about not recording HTTP `server.address` when only IP address available.
+  ([#413](https://github.com/open-telemetry/semantic-conventions/pull/413))
 
 ## v1.22.0 (2023-10-12)
 

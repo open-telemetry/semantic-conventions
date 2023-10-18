@@ -379,8 +379,6 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
   if it's sent in absolute-form.
 - Host identifier of the `Host` header
 
-SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
-
 **[5]:** Determined by using the first of the following that applies
 
 - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
