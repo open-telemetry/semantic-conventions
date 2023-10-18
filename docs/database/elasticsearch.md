@@ -34,7 +34,7 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [6] | `GET`; `POST`; `HEAD` | Required |
 | [`server.address`](../general/attributes.md) | string | Name of the database host. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`server.port`](../general/attributes.md) | int | Server port number. [8] | `80`; `8080`; `443` | Conditionally Required: [9] |
-| [`url.full`](../url/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [10] | `https://localhost:9200/index/_search?q=user.id:kimchy` | Required |
+| [`url.full`](../attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [10] | `https://localhost:9200/index/_search?q=user.id:kimchy` | Required |
 
 **[1]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
 
