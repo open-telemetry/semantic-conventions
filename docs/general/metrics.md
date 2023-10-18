@@ -35,10 +35,10 @@ The following semantic conventions surrounding metrics are defined:
   * [System](/docs/system/system-metrics.md): For standard system metrics.
   * [Hardware](/docs/system/hardware-metrics.md): For hardware-related metrics.
   * [Process](/docs/system/process-metrics.md): For standard process metrics.
-  * [Runtime Environment](/docs/system/runtime-environment-metrics.md): For runtime environment metrics.
+  * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
 
 Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/resource/sdk.md) with
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General Guidelines
@@ -99,11 +99,13 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/compatibility/prometheus_and_openmetrics.md).
 
 ### Naming rules for Counters and UpDownCounters
 
 #### Pluralization
+
+Metric namespaces SHOULD NOT be pluralized.
 
 Metric names SHOULD NOT be pluralized, unless the value being recorded
 represents discrete instances of a
@@ -166,8 +168,10 @@ over all attribute values SHOULD be equal to the **limit**.
 
 - **utilization** - an instrument that measures the *fraction* of **usage**
 out of its **limit** should be called `entity.utilization`. For example,
-`system.memory.utilization` for the fraction of memory in use. Utilization
-values are in the range `[0, 1]`.
+`system.memory.utilization` for the fraction of memory in use. Utilization can
+be with respect to a fixed limit or a soft limit. Utilization values are
+represended as a ratio and are typically in the range `[0, 1]`, but may go above 1
+in case of exceeding a soft limit.
 
 - **time** - an instrument that measures passage of time should be called
 `entity.time`. For example, `system.cpu.time` with attribute `state = idle | user
@@ -236,4 +240,4 @@ For example, if you are tracking `active_requests` with an `UpDownCounter`, and 
 request starts and decrementing it each time a request ends, then any attributes which are not yet available when
 incrementing the counter at request start should not be used when decrementing the counter at request end.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

@@ -43,8 +43,8 @@ that identify the class of Events but not the instance of the Event.
 <!-- semconv event -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `event.name` | string | The name identifies the event. | `click`; `exception` | Required |
 | `event.domain` | string | The domain identifies the business context for the events. [1] | `browser` | Required |
+| `event.name` | string | The name identifies the event. | `click`; `exception` | Required |
 
 **[1]:** Events across different domains may have same `event.name`, yet be
 unrelated events.
@@ -58,4 +58,4 @@ unrelated events.
 | `k8s` | Events from Kubernetes |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

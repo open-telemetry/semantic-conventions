@@ -183,6 +183,6 @@ This metric is [recommended][MetricRecommended].
 | `pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation does not provide a name, then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes) should be used | `myDataSource` | Required |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
-[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#required
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#recommended
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#required
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
