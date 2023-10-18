@@ -359,7 +359,6 @@ a thread that started a span.
 <!-- semconv thread -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
 | `thread.id` | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
 | `thread.name` | string | Current thread name. | `main` | Recommended |
 <!-- endsemconv -->
