@@ -31,8 +31,7 @@ groups:
           If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
       - ref: network.protocol.name
         examples: ['http', 'spdy']
-        requirement_level:
-          recommended: if not default (`http`).
+        requirement_level: opt_in
       - ref: network.protocol.version
         examples: ['1.0', '1.1', '2', '3']
 
@@ -83,8 +82,6 @@ groups:
             if it's sent in absolute-form.
           - Host identifier of the `Host` header
 
-          SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
-
       - ref: server.port
         brief: >
           Port of the local HTTP server that received the request.
@@ -100,3 +97,9 @@ groups:
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]
+        note: >
+          The scheme of the original client request, if known
+          (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded),
+          [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto),
+          or a similar header).
+          Otherwise, the scheme of the immediate peer request.

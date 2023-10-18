@@ -11,11 +11,20 @@ release.
 
 - BREAKING: Rename http.resend_count to http.request.resend_count.
   ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
+- BREAKING: Change `network.protocol.name` from recommended to opt-in in HTTP semconv.
+  ([#398](https://github.com/open-telemetry/semantic-conventions/pull/398))
+- BREAKING: Define url.scheme in terms of logical operation in HTTP server semconv.
+  ([#376](https://github.com/open-telemetry/semantic-conventions/pull/376))
+- BREAKING: Change `network.transport` from recommended to opt-in in HTTP semconv.
+  ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
+- BREAKING: Change `network.type` from recommended to opt-in in HTTP semconv.
+  ([#410](https://github.com/open-telemetry/semantic-conventions/pull/410))
 - BREAKING: Remove `total` from list of well-known values of `system.memory.state` attribute.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 
 ### Features
-
+- Metric namespaces SHOULD NOT be pluralized.
+  ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 - Add opt-in `system.memory.limit` metric.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 
@@ -28,6 +37,10 @@ release.
   ([#401](https://github.com/open-telemetry/semantic-conventions/pull/401))
 - Change `server.port` from recommended to conditionally required on HTTP server semconv.
   ([#399](https://github.com/open-telemetry/semantic-conventions/pull/399))
+- Add cardinality warning about two opt-in HTTP metric attributes to all HTTP metrics.
+  ([#412](https://github.com/open-telemetry/semantic-conventions/pull/412))
+- Remove outdated note about not recording HTTP `server.address` when only IP address available.
+  ([#413](https://github.com/open-telemetry/semantic-conventions/pull/413))
 
 ## v1.22.0 (2023-10-12)
 
