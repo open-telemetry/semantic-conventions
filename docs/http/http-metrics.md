@@ -125,31 +125,11 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[6]:** Determined by using the first of the following that applies:
+**[6]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**: since this attribute may be based on HTTP headers, opting in to it may allow an attacker to trigger cardinality limits, degrading the usefulness of the metric.
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header.
-
-MUST NOT include the port identifier.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[7]:** Determined by using the first of the following that applies:
-
-- Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
+**[7]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**: since this attribute may be based on HTTP headers, opting in to it may allow an attacker to trigger cardinality limits, degrading the usefulness of the metric.
 
 **[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
@@ -210,30 +190,14 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[2]:** Determined by using the first of the following that applies:
+**[2]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header.
-
-MUST NOT include the port identifier.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> **Warning**: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
 to trigger cardinality limits, degrading the usefulness of the metric.
 
-**[3]:** Determined by using the first of the following that applies:
+**[3]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
-- Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> **Warning**: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
 to trigger cardinality limits, degrading the usefulness of the metric.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
@@ -318,31 +282,11 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[6]:** Determined by using the first of the following that applies:
+**[6]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**: since this attribute may be based on HTTP headers, opting in to it may allow an attacker to trigger cardinality limits, degrading the usefulness of the metric.
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header.
-
-MUST NOT include the port identifier.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[7]:** Determined by using the first of the following that applies:
-
-- Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
+**[7]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**: since this attribute may be based on HTTP headers, opting in to it may allow an attacker to trigger cardinality limits, degrading the usefulness of the metric.
 
 **[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
@@ -434,31 +378,11 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[6]:** Determined by using the first of the following that applies:
+**[6]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**: since this attribute may be based on HTTP headers, opting in to it may allow an attacker to trigger cardinality limits, degrading the usefulness of the metric.
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header.
-
-MUST NOT include the port identifier.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[7]:** Determined by using the first of the following that applies:
-
-- Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
+**[7]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**: since this attribute may be based on HTTP headers, opting in to it may allow an attacker to trigger cardinality limits, degrading the usefulness of the metric.
 
 **[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
