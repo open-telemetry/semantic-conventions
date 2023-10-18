@@ -18,8 +18,6 @@ groups:
 
           MUST NOT include the port identifier.
 
-          SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
-
           Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
           to trigger cardinality limits, degrading the usefulness of the metric.
 
@@ -81,8 +79,6 @@ groups:
           - Host identifier of the `Host` header
 
           MUST NOT include the port identifier.
-
-          SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
           Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
           to trigger cardinality limits, degrading the usefulness of the metric.

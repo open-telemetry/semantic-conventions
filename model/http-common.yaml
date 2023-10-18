@@ -31,8 +31,7 @@ groups:
           If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
       - ref: network.protocol.name
         examples: ['http', 'spdy']
-        requirement_level:
-          recommended: if not default (`http`).
+        requirement_level: opt_in
       - ref: network.protocol.version
         examples: ['1.0', '1.1', '2', '3']
 
@@ -85,8 +84,6 @@ groups:
           - Host identifier of the `Host` header
 
           MUST NOT include the port identifier.
-
-          SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
 
       - ref: server.port
         brief: >
