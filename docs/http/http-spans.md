@@ -126,7 +126,6 @@ sections below.
 | [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `http`; `spdy` | Opt-In |
 | [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp` | Opt-In |
-| [`network.type`](../general/attributes.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [9] | `ipv4`; `ipv6` | Recommended |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3` | Recommended |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
@@ -177,8 +176,6 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[8]:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
-**[9]:** The value SHOULD be normalized to lowercase.
-
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
 * [`http.request.method`](../attributes-registry/http.md)
@@ -212,13 +209,6 @@ Following attributes MUST be provided **at span creation time** (when provided a
 | `udp` | UDP |
 | `pipe` | Named or anonymous pipe. See note below. |
 | `unix` | Unix domain socket |
-
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `ipv4` | IPv4 |
-| `ipv6` | IPv6 |
 <!-- endsemconv -->
 
 ## HTTP client
