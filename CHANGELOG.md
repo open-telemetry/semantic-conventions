@@ -7,6 +7,9 @@ release.
 
 ## Unreleased
 
+- Move cloud fields into registry and add more cloud fields from ECS.
+  ([#425](https://github.com/open-telemetry/semantic-conventions/pull/425))
+
 ### Breaking
 
 - BREAKING: Rename http.resend_count to http.request.resend_count.
