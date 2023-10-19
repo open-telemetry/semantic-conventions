@@ -19,6 +19,8 @@ release.
   ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
 - BREAKING: Change `network.type` from recommended to opt-in in HTTP semconv.
   ([#410](https://github.com/open-telemetry/semantic-conventions/pull/410))
+- BREAKING: Factor in `X-Forwarded-Host` / `Forwarded` when capturing `server.address` and `server.port`.
+  ([#411](https://github.com/open-telemetry/semantic-conventions/pull/411))
 - Remove `thread.daemon`, and introduce `jvm.thread.daemon` instead.
   Introduce `jvm.thread.state` attribute and add it to `jvm.thread.count` metric.
   ([#297](https://github.com/open-telemetry/semantic-conventions/pull/297))
