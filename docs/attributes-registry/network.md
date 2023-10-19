@@ -22,17 +22,17 @@ These attributes may be used for any network related operation.
 | `network.peer.port` | int | Peer port number of the network connection. | `65123` |
 | `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` |
 | `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` |
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` |
+| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` |
 | `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
-**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 **[3]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport, for example
+a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[4]:** The value SHOULD be normalized to lowercase.
@@ -79,7 +79,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|
 | `tcp` | TCP |
 | `udp` | UDP |
-| `pipe` | Named or anonymous pipe. See note below. |
+| `pipe` | Named or anonymous pipe. |
 | `unix` | Unix domain socket |
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
