@@ -108,19 +108,24 @@ The ID helps to distinguish instances of the same service that exist at the same
 (e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent
 and stay the same for the lifetime of the service instance, however it is acceptable that
 the ID is ephemeral and changes during important lifetime events for the service
-(e.g. service restarts).
-If the service has no inherent unique ID that can be used as the value of this attribute
+(e.g. service instance restarts).
+If the instance has no inherent unique ID that can be used as the value of this attribute
 it is recommended to generate a random Version 1 or Version 4
 [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. Services aiming for reproducible UUIDs may also
 use Version 5. UUIDs are typically recommended, as we only need an opaque yet reproducible value for
 the purposes of identifying a service instance. Similar to what can be seen in the man page for the
-`/etc/machine-id` file, the underlying data, such as pod name and namespace should be treated as
+[`/etc/machine-id`](https://www.freedesktop.org/software/systemd/man/machine-id.html) file, the underlying data, such as pod name and namespace should be treated as
 confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
 
 When a UUID v5 is generated, the UUID's namespace MUST be set to:
 `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`, so that the same service yields the
 same ID if the same value (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still
 yield different results for different services on the same host.
+
+Users running their services on platforms such as Kubernetes are encouraged to explicitly set the
+`service.instance.id` using their existing automation, or by setting a value that can be used for a
+consistent value, such as `container.id`. Similarly, users of application servers such as `unicorn`
+are encouraged to set the `service.instance.id` on a per-worker basis.
 
 SDKs are required to use the following algorithm when generating `service.instance.id`:
 
@@ -142,7 +147,7 @@ SDKs are required to use the following algorithm when generating `service.instan
 - When no other source is available the SDK MUST generate a value using UUID v1 or v4.
   This would also typically be the case for service instances running on Kubernetes,
   given that the pod's name and namespace are not unique enough to determine a service
-  instance's identity and the container name cannot easily be infered: on pods with
+  instance's identity and the container name cannot easily be inferred: on pods with
   multiple containers, the `service.instance.id` would yield the same results for all
   containers, which is not desirable. And given that the services are ephemeral on
   Kubernetes, the `service.instance.id` would change on each restart, being therefore

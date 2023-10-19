@@ -45,7 +45,8 @@ groups:
 
           Users running their services on platforms such as Kubernetes are encouraged to explicitly set the
           `service.instance.id` using their existing automation, or by setting a value that can be used for a
-          consistent value, such as `container.id`. Similarly, 
+          consistent value, such as `container.id`. Similarly, users of application servers such as `unicorn`
+          are encouraged to set the `service.instance.id` on a per-worker basis.
 
           SDKs are required to use the following algorithm when generating `service.instance.id`:
 
