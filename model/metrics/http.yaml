@@ -9,13 +9,16 @@ groups:
         note: |
           Determined by using the first of the following that applies
 
-          - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
-            include host identifier.
+          - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
           - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
+          - Host identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
+            [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
           - Host identifier of the `Host` header
 
-          Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+          MUST NOT include the port identifier.
+
+          Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
           to trigger cardinality limits, degrading the usefulness of the metric.
 
       - ref: server.port
@@ -26,9 +29,11 @@ groups:
           - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
           - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
+          - Port identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
+            [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
           - Port identifier of the `Host` header
 
-          Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+          Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
           to trigger cardinality limits, degrading the usefulness of the metric.
 
   - id: metric_attributes.http.client
@@ -66,13 +71,16 @@ groups:
         note: |
           Determined by using the first of the following that applies
 
-          - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
-            include host identifier.
+          - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
           - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
+          - Host identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
+            [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
           - Host identifier of the `Host` header
 
-          Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+          MUST NOT include the port identifier.
+
+          Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
           to trigger cardinality limits, degrading the usefulness of the metric.
 
       - ref: server.port
@@ -85,9 +93,11 @@ groups:
           - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
           - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
+          - Port identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
+            [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
           - Port identifier of the `Host` header
 
-          Warning: since this attribute may be based on the `Host` header, opting in to it may allow an attacker
+          Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
           to trigger cardinality limits, degrading the usefulness of the metric.
 
   - id: metric.http.server.request.body.size
