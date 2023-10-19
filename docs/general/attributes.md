@@ -157,17 +157,17 @@ Destination fields capture details about the receiver of a network exchange/pack
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
 
-<!-- semconv network-core -->
+<!-- semconv network-core(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `network.local.port` | int | Local port number of the network connection. | `65123` | Recommended |
-| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `network.peer.port` | int | Peer port number of the network connection. | `65123` | Recommended |
-| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | Recommended |
-| `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` | Recommended |
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | Recommended |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended |
+| [`network.local.address`](../attributes-registry/network.md) | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.local.port`](../attributes-registry/network.md) | int | Local port number of the network connection. | `65123` | Recommended |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | Recommended |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` | Recommended |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | Recommended |
+| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -239,15 +239,15 @@ Note that `network.local.*` attributes are not included in these examples since 
 
 #### Network connection and carrier attributes
 
-<!-- semconv network-connection-and-carrier -->
+<!-- semconv network-connection-and-carrier(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | Recommended |
-| `network.carrier.mcc` | string | The mobile carrier country code. | `310` | Recommended |
-| `network.carrier.mnc` | string | The mobile carrier network code. | `001` | Recommended |
-| `network.carrier.name` | string | The name of the mobile carrier. | `sprint` | Recommended |
-| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | Recommended |
-| `network.connection.type` | string | The internet connection type. | `wifi` | Recommended |
+| [`network.carrier.icc`](../attributes-registry/network.md) | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | Recommended |
+| [`network.carrier.mcc`](../attributes-registry/network.md) | string | The mobile carrier country code. | `310` | Recommended |
+| [`network.carrier.mnc`](../attributes-registry/network.md) | string | The mobile carrier network code. | `001` | Recommended |
+| [`network.carrier.name`](../attributes-registry/network.md) | string | The name of the mobile carrier. | `sprint` | Recommended |
+| [`network.connection.subtype`](../attributes-registry/network.md) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | Recommended |
+| [`network.connection.type`](../attributes-registry/network.md) | string | The internet connection type. | `wifi` | Recommended |
 
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
