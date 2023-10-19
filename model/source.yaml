@@ -14,7 +14,7 @@ groups:
         brief: "Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
         note: >
           When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent
-          the source address behind any intermediaries (e.g. proxies) if it's available.
+          the source address behind any intermediaries, for example proxies, if it's available.
         examples: ['source.example.com', '10.1.2.80', '/tmp/my.sock']
       - id: port
         type: int

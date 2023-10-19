@@ -131,7 +131,7 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 | `source.address` | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | `source.port` | int | Source port number | `3389`; `2888` | Recommended |
 
-**[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries (e.g. proxies) if it's available.
+**[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
 
 #### Destination
@@ -144,7 +144,7 @@ Destination fields capture details about the receiver of a network exchange/pack
 | `destination.address` | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | `destination.port` | int | Destination port number | `3389`; `2888` | Recommended |
 
-**[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries (e.g. proxies) if it's available.
+**[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
 
 <a name="network-attributes"></a>

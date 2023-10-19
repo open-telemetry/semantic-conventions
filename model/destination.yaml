@@ -14,7 +14,7 @@ groups:
         brief: "Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
         note: >
           When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent
-          the destination address behind any intermediaries (e.g. proxies) if it's available.
+          the destination address behind any intermediaries, for example proxies, if it's available.
         examples: ['destination.example.com', '10.1.2.80', '/tmp/my.sock']
       - id: port
         type: int
