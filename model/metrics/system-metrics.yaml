@@ -64,9 +64,9 @@ groups:
   - id: metric.system.cpu.frequency
     type: metric
     metric_name: system.cpu.frequency
-    brief: "Reports the current frequency of the CPU processor in MHz"
+    brief: "Reports the current frequency of the CPU processor in Hz"
     instrument: gauge
-    unit: "{MHz}"
+    unit: "{Hz}"
     attributes:
       - ref: system.cpu.logical_number
 

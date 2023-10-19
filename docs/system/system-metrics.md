@@ -145,6 +145,22 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.cpu.logical.count(full) -->
 <!-- endsemconv -->
 
+### Metric: `system.cpu.frequency`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.cpu.frequency(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.cpu.frequency` | Gauge | `{Hz}` | Reports the current frequency of the CPU processor in Hz |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.cpu.frequency(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | Recommended |
+<!-- endsemconv -->
+
 ## Memory Metrics
 
 **Description:** System level memory metrics capture under the namespace `system.memory`.
