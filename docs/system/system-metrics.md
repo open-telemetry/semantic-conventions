@@ -26,6 +26,7 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   * [Metric: `system.cpu.utilization`](#metric-systemcpuutilization)
   * [Metric: `system.cpu.physical.count`](#metric-systemcpuphysicalcount)
   * [Metric: `system.cpu.logical.count`](#metric-systemcpulogicalcount)
+  * [Metric: `system.cpu.frequency`](#metric-systemcpufrequency)
 - [Memory Metrics](#memory-metrics)
   * [Metric: `system.memory.usage`](#metric-systemmemoryusage)
   * [Metric: `system.memory.utilization`](#metric-systemmemoryutilization)
