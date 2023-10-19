@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Semantic Conventions for Runtime Environment
+linkTitle: Runtime Environment
 --->
 
 # Semantic Conventions for Runtime Environment
