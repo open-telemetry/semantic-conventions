@@ -13,7 +13,7 @@ instruments not explicitly defined in this document. OS process metrics are
 not related to the runtime environment of the program, and should take
 measurements from the operating system. For runtime environment metrics see
 [semantic conventions for runtime environment
-metrics](runtime-environment-metrics.md).
+metrics](/docs/runtime/README.md#metrics).
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
@@ -48,4 +48,4 @@ Below is a table of Process metric instruments.
 
 Process metrics SHOULD be associated with a [`process`](/docs/resource/process.md#process) resource whose attributes provide additional context about the process.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

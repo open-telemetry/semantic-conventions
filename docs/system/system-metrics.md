@@ -767,8 +767,8 @@ An instrument for load average over 1 minute on Linux could be named
 `system.linux.cpu.load_1m`, reusing the `cpu` name proposed above and having
 an `{os}` prefix to split this metric across OSes.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/metrics/metric-requirement-level.md#recommended
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
 
 ### Metric: `system.linux.memory.available`
 
