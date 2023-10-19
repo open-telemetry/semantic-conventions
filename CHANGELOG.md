@@ -21,6 +21,8 @@ release.
   ([#410](https://github.com/open-telemetry/semantic-conventions/pull/410))
 - BREAKING: Factor in `X-Forwarded-Host` / `Forwarded` when capturing `server.address` and `server.port`.
   ([#411](https://github.com/open-telemetry/semantic-conventions/pull/411))
+- Fix `server.port` to be not required when `server.address` is not set.
+  ([#429](https://github.com/open-telemetry/semantic-conventions/pull/429))
 
 ### Features
 
