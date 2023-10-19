@@ -6,7 +6,7 @@ linkTitle: RabbitMQ
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for [RibbitMQ](https://www.rabbitmq.com/) extend and override the [Messaging Semantic Conventions](README.md)
+The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and override the [Messaging Semantic Conventions](README.md)
 that describe common messaging operations attributes in addition to the Semantic Conventions
 described on this page.
 

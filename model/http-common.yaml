@@ -11,13 +11,14 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If request has ended with an error.
-        examples: ['timeout', 'name_resolution_error', '500']
+        examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', '500']
         note: |
           If the request fails with an error before response status code was sent or received,
-          `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
+          `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
+          or a component-specific low cardinality error identifier.
 
           If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error code.
+          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error identifier.
 
           The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
@@ -30,8 +31,7 @@ groups:
           If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
       - ref: network.protocol.name
         examples: ['http', 'spdy']
-        requirement_level:
-          recommended: if not default (`http`).
+        requirement_level: opt_in
       - ref: network.protocol.version
         examples: ['1.0', '1.1', '2', '3']
 
@@ -76,13 +76,14 @@ groups:
         note: |
           Determined by using the first of the following that applies
 
-          - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host. MUST only
-            include host identifier.
+          - The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
           - Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
+          - Host identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
+            [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
           - Host identifier of the `Host` header
 
-          SHOULD NOT be set if only IP address is available and capturing name would require a reverse DNS lookup.
+          MUST NOT include the port identifier.
 
       - ref: server.port
         brief: >
@@ -93,9 +94,17 @@ groups:
           - Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
           - Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
             if it's sent in absolute-form.
+          - Port identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
+            [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
           - Port identifier of the `Host` header
         requirement_level:
-          recommended: If not default (`80` for `http` scheme, `443` for `https`).
+          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]
+        note: >
+          The scheme of the original client request, if known
+          (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded),
+          [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto),
+          or a similar header).
+          Otherwise, the scheme of the immediate peer request.
