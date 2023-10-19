@@ -45,7 +45,7 @@ groups:
 
           Users running their services on platforms such as Kubernetes are encouraged to explicitly set the
           `service.instance.id` using their existing automation, or by setting a value that can be used for a
-          consistent value, such as `container.id`.
+          consistent value, such as `container.id`. Similarly, 
 
           SDKs are required to use the following algorithm when generating `service.instance.id`:
 
@@ -67,7 +67,7 @@ groups:
           - When no other source is available the SDK MUST generate a value using UUID v1 or v4.
             This would also typically be the case for service instances running on Kubernetes,
             given that the pod's name and namespace are not unique enough to determine a service
-            instance's identity and the container name cannot easily be infered: on pods with
+            instance's identity and the container name cannot easily be inferred: on pods with
             multiple containers, the `service.instance.id` would yield the same results for all
             containers, which is not desirable. And given that the services are ephemeral on
             Kubernetes, the `service.instance.id` would change on each restart, being therefore
