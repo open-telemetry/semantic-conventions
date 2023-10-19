@@ -184,7 +184,7 @@ groups:
         type: string
         requirement_level:
           conditionally_required: If other than the default version (`1.0`)
-        brief: "Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 does not specify this, the value can be omitted."
+        brief: "Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted."
         examples: ['2.0', '1.0']
       - id: request_id
         type: string

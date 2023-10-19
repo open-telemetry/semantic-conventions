@@ -8,6 +8,6 @@ groups:
       - id: environment
         type: string
         brief: >
-          Name of the [deployment environment](https://en.wikipedia.org/wiki/Deployment_environment)
+          Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
           (aka deployment tier).
         examples: ['staging', 'production']

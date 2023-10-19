@@ -28,7 +28,7 @@ The following semantic conventions surrounding metrics are defined:
 
 * **[General Guidelines](#general-guidelines): General metrics guidelines.**
 * [Database](/docs/database/database-metrics.md): For SQL and NoSQL client metrics.
-* [FaaS](/docs/faas/faas-metrics.md): For [Function as a Service](https://en.wikipedia.org/wiki/Function_as_a_service) metrics.
+* [FaaS](/docs/faas/faas-metrics.md): For [Function as a Service](https://wikipedia.org/wiki/Function_as_a_service) metrics.
 * [HTTP](/docs/http/http-metrics.md): For HTTP client and server metrics.
 * [RPC](/docs/rpc/rpc-metrics.md): For RPC client and server metrics.
 * **System metrics**
@@ -109,7 +109,7 @@ Metric namespaces SHOULD NOT be pluralized.
 
 Metric names SHOULD NOT be pluralized, unless the value being recorded
 represents discrete instances of a
-[countable quantity](https://en.wikipedia.org/wiki/Count_noun).
+[countable quantity](https://wikipedia.org/wiki/Count_noun).
 Generally, the name SHOULD be pluralized only if the unit of the metric in
 question is a non-unit (like `{fault}` or `{operation}`).
 
