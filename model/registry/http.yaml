@@ -118,7 +118,7 @@ groups:
       - id: route
         type: string
         brief: >
-            The matched route (path template in the format used by the respective server framework). See note below
+            The matched route, that is, the path template in the format used by the respective server framework.
         examples: ['/users/:userID?', '{controller}/{action}/{id?}']
         note: >
           MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
