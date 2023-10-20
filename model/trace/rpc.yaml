@@ -159,20 +159,20 @@ groups:
         type: template[string[]]
         requirement_level: opt_in
         brief: >
-          gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+          gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
         note: >
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.grpc.request.metadata.my_custom_metadata_attribute=["1.2.3.4", "1.2.3.5"]']
+        examples: ['rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
       - id: response.metadata
         type: template[string[]]
         requirement_level: opt_in
         brief: >
-          gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+          gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
         note: >
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.grpc.response.metadata.my_custom_metadata_attribute=["attribute_value"]']
+        examples: ['rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
 
   - id: rpc.jsonrpc
     prefix: rpc.jsonrpc
@@ -282,17 +282,17 @@ groups:
         type: template[string[]]
         requirement_level: opt_in
         brief: >
-          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         note: >
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.request.metadata.my_custom_metadata_attribute=["1.2.3.4", "1.2.3.5"]']
+        examples: ['rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
       - id: response.metadata
         type: template[string[]]
         requirement_level: opt_in
         brief: >
-          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase, with `-` characters replaced by `_`), the value being the metadata values.
+          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         note: >
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.response.metadata.my_custom_metadata_attribute=["attribute_value"]']
+        examples: ['rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
