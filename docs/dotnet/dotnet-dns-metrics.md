@@ -50,7 +50,7 @@ for more details.
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
