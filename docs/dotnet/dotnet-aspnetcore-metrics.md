@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: ASP.NET Core
+--->
+
 # Semantic Conventions for ASP.NET Core metrics
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
@@ -9,7 +13,7 @@ This article defines semantic conventions for ASP.NET Core metrics.
 - [Server](#server)
 - [Routing](#routing)
   * [Metric: `aspnetcore.routing.match_attempts`](#metric-aspnetcoreroutingmatch_attempts)
-- [Exception metrics](#exception-metrics)
+- [Exceptions](#exceptions)
   * [Metric: `aspnetcore.diagnostics.exceptions`](#metric-aspnetcorediagnosticsexceptions)
 - [Rate-limiting](#rate-limiting)
   * [Metric: `aspnetcore.rate_limiting.active_request_leases`](#metric-aspnetcorerate_limitingactive_request_leases)
@@ -54,9 +58,9 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `failure` | Match failed |
 <!-- endsemconv -->
 
-## Exception metrics
+## Exceptions
 
-Metrics reported by the `Microsoft.AspNetCore.Diagnostics` meter.
+Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 
 ### Metric: `aspnetcore.diagnostics.exceptions`
 

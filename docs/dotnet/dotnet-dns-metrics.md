@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: DNS
+--->
+
 # Semantic Conventions for DNS metrics emitted by .NET
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]

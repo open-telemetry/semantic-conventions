@@ -1,4 +1,8 @@
-# Semantic Conventions for HTTP-relevant metrics emitted by .NET
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: HTTP client and server
+--->
+
+# Semantic Conventions for HTTP client and server metrics emitted by .NET
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 

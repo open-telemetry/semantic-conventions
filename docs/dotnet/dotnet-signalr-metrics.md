@@ -1,4 +1,8 @@
-# Semantic Conventions for SignalR metrics emitted by ASP.NET Core 8.0
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: SignalR
+--->
+
+# Semantic Conventions for SignalR server metrics
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 

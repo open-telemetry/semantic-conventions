@@ -1,4 +1,8 @@
-# Semantic Conventions for Kestrel web server metrics emitted by .NET
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Kestrel
+--->
+
+# Semantic Conventions for Kestrel web server metrics
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 
