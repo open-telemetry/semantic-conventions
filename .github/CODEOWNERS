@@ -6,13 +6,13 @@
 #
 # Learn about membership in OpenTelemetry community:
 #  https://github.com/open-telemetry/community/blob/main/community-membership.md
-# 
 #
-# Learn about CODEOWNERS file format: 
-#  https://help.github.com/en/articles/about-code-owners
+#
+# Learn about CODEOWNERS file format:
+#  https://help.github.com/articles/about-code-owners
 #
 
-# Global owners, will be the owners for everything in the repo. Membership is tracked via https://github.com/open-telemetry/community/blob/main/community-members.md 
+# Global owners, will be the owners for everything in the repo. Membership is tracked via https://github.com/open-telemetry/community/blob/main/community-members.md
 *   @open-telemetry/specs-semconv-maintainers @open-telemetry/specs-semconv-approvers
 
 # Schemas and schema file tooling
