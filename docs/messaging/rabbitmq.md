@@ -21,7 +21,7 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey` | Conditionally Required: If not empty. |
-| `messaging.rabbitmq.delivery_tag` | long | RabbitMQ delivery tag. `123` | Conditionally Required: When messages are received or delivered. |
+| `messaging.rabbitmq.delivery_tag` | long | RabbitMQ delivery tag. | `123` | Conditionally Required: When messages are received or delivered. |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
