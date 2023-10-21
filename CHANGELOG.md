@@ -24,6 +24,8 @@ release.
 
 ### Features
 
+- Adds `session.previous_id` to session.md
+  ([#348](https://github.com/open-telemetry/semantic-conventions/pull/348))
 - Metric namespaces SHOULD NOT be pluralized.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 
