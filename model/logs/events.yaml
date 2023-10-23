@@ -27,6 +27,6 @@ groups:
               value: 'k8s'
               brief: 'Events from Kubernetes'
         requirement_level: required
-        note: |
+        note: >
           Events across different domains may have same `event.name`, yet be
           unrelated events.

@@ -104,7 +104,7 @@ grained information from a stacktrace, if necessary.
 [python-stacktrace]: https://docs.python.org/3/library/traceback.html#traceback.format_exc
 [js-stacktrace]: https://v8.dev/docs/stack-trace-api
 [ruby-full-message]: https://ruby-doc.org/core-2.7.1/Exception.html#method-i-full_message
-[csharp-stacktrace]: https://docs.microsoft.com/en-us/dotnet/api/system.exception.tostring
+[csharp-stacktrace]: https://docs.microsoft.com/dotnet/api/system.exception.tostring
 [go-stacktrace]: https://pkg.go.dev/runtime/debug#Stack
 [telemetry-sdk-resource]: ../resource/README.md#telemetry-sdk
 [erlang-stacktrace]: https://www.erlang.org/doc/man/erl_error.html#format_exception-3

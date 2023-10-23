@@ -233,9 +233,9 @@ The following operations related to messages are defined for these semantic conv
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
 | [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [16] | `amqp`; `mqtt` | Recommended |
 | [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [17] | `3.1.1` | Recommended |
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [18] | `tcp`; `udp` | Recommended |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [18] | `tcp`; `udp` | Recommended |
 | [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [19] | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.address`](../general/attributes.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -244,7 +244,7 @@ The following operations related to messages are defined for these semantic conv
 **[3]:** If value is `true`. When missing, the value is assumed to be `false`.
 
 **[4]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker does not have such notion, the destination name SHOULD uniquely identify the broker.
+the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
 **[5]:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
@@ -272,12 +272,12 @@ size should be used.
 
 **[16]:** The value SHOULD be normalized to lowercase.
 
-**[17]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[17]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 **[18]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport, for example
+a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[19]:** The value SHOULD be normalized to lowercase.
@@ -332,7 +332,7 @@ under the namespace `messaging.destination_publish.*`
 | `messaging.destination_publish.name` | string | The name of the original destination the message was published to [1] | `MyQueue`; `MyTopic` | Recommended |
 
 **[1]:** The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
-the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
+the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
 <!-- endsemconv -->
 
 The *receive* span is used to track the time used for receiving the message(s), whereas the *process* span(s) track the time for processing the message(s).

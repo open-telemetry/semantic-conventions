@@ -27,7 +27,7 @@ Kubernetes object, but "name" is usually more user friendly so can be also set.
 | `k8s.cluster.name` | string | The name of the cluster. | `opentelemetry-cluster` | Recommended |
 | `k8s.cluster.uid` | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | Recommended |
 
-**[1]:** K8s does not have support for obtaining a cluster ID. If this is ever
+**[1]:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
 official APIs. In the meantime, we are able to use the `uid` of the
 `kube-system` namespace as a proxy for cluster ID. Read on for the
