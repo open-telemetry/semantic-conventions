@@ -315,6 +315,7 @@ HTTP server instrumentations SHOULD do the best effort when populating `server.a
 
 * The original host which may be passed by the reverse proxy in the [`Forwarded#host`][Forwarded], [`X-Forwarded-Host`][X-Forwarded-Host], or a similar header.
 * The `Host` header.
+* The [`:authority`][HTTP/2 authority] pseudo-header in case of HTTP/2 or HTTP/3
 
 > **Note**: The `Host` header specifies host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
 
@@ -329,7 +330,7 @@ Application developers MAY overwrite potentially inaccurate values of `server.*`
 ![reverse-proxy-http-server.png](reverse-proxy-http-server.png)
 
 [HTTP Host header]: https://tools.ietf.org/html/rfc7230#section-5.4
-[request target]: https://www.rfc-editor.org/rfc/rfc9110.html#target.resource
+[HTTP/2 authority]: https://tools.ietf.org/html/rfc9113#section-8.3.1
 [Forwarded]: https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded
 [X-Forwarded-Host]: https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host
 
