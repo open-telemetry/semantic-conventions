@@ -97,7 +97,7 @@ groups:
             [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
           - Port identifier of the `Host` header.
         requirement_level:
-          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
+          conditionally_required: If `server.address` is set and the port is not default (`80` for `http` scheme, `443` for `https`).
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]
