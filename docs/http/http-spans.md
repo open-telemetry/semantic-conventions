@@ -303,7 +303,7 @@ HTTP requests sent to the same domain name may be handled by multiple applicatio
 For example, different versions of the same web-application can run side-by-side as independent applications behind the reverse proxy which routes request to one or another based on the request path.
 
 Instances of different HTTP server applications may run on the same physical host and share the same IP address, but listen to different TCP/UDP ports.
-In order to route request to a specific application, reverse proxies usually modify the [HTTP Host header][] replacing the original value provided by the client with an actual proxied server name. This behavior depends on the reverse proxy configuration. In some cases, `Host` header is not used when routing request to a specific application, making it prone to having bogus content.
+In order to route request to a specific application, reverse proxies usually modify the [HTTP Host header][Host and authority] replacing the original value provided by the client with an actual proxied server name. This behavior depends on the reverse proxy configuration. In some cases, `Host` header is not used when routing request to a specific application, making it prone to having bogus content.
 
 HTTP server frameworks and their instrumentations have limited knowledge about the HTTP infrastructure and intermediaries that requests go through. In a general case, they can only use HTTP request properties such as request target or headers to populate `server.*` attributes.
 
@@ -314,10 +314,10 @@ In the context of HTTP server, `server.address` and `server.port` attributes cap
 HTTP server instrumentations SHOULD do the best effort when populating `server.address` and `server.port` attributes and SHOULD determine them by using the first of the following that applies:
 
 * The original host which may be passed by the reverse proxy in the [`Forwarded#host`][Forwarded], [`X-Forwarded-Host`][X-Forwarded-Host], or a similar header.
-* The `Host` header.
+* The [`Host`][Host header] header.
 * The [`:authority`][HTTP/2 authority] pseudo-header in case of HTTP/2 or HTTP/3
 
-> **Note**: The `Host` header specifies host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
+> **Note**: The `Host` and `:authority` headers contain host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
 
 Application developers MAY overwrite potentially inaccurate values of `server.*` attributes using a [SpanProcessor][SpanProcessor] and MAY capture private host information using applicable [resource attributes](/docs/resource/README.md).
 
@@ -329,7 +329,8 @@ Application developers MAY overwrite potentially inaccurate values of `server.*`
 
 ![reverse-proxy-http-server.png](reverse-proxy-http-server.png)
 
-[HTTP Host header]: https://tools.ietf.org/html/rfc7230#section-5.4
+[Host and authority]: https://tools.ietf.org/html/rfc9110#section-7.2
+[Host header]: https://tools.ietf.org/html/rfc7230#section-5.4
 [HTTP/2 authority]: https://tools.ietf.org/html/rfc9113#section-8.3.1
 [Forwarded]: https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded
 [X-Forwarded-Host]: https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host
