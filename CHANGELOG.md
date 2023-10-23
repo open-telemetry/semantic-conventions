@@ -27,6 +27,8 @@ release.
 
 ### Features
 
+- Adds `session.previous_id` to session.md
+  ([#348](https://github.com/open-telemetry/semantic-conventions/pull/348))
 - Metric namespaces SHOULD NOT be pluralized.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 
@@ -178,6 +180,9 @@ release.
   ([#366](https://github.com/open-telemetry/semantic-conventions/pull/366))
 - Add `host.ip` resource attribute convention.
   ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
+- BREAKING: remove `-` to `_` normalization from http header and rpc metadata
+  attribute keys.
+  ([#369](https://github.com/open-telemetry/semantic-conventions/pull/369))
 - BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
   with `network.(peer|local).(address|port)`.
   ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
