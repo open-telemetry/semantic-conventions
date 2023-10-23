@@ -476,15 +476,9 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[5]:** Determined by using the first of the following that applies:
+**[5]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
-- Host identifier of the `Host` header.
-
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[6]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier; otherwise, it MUST match `Host` header port identifier.
+**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7]:** If not default (`80` for `http` scheme, `443` for `https`).
 
@@ -572,15 +566,9 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[5]:** Determined by using the first of the following that applies:
+**[5]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
-- Host identifier of the `Host` header.
-
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[6]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier; otherwise, it MUST match `Host` header port identifier.
+**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7]:** If not default (`80` for `http` scheme, `443` for `https`).
 
@@ -668,15 +656,9 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[5]:** Determined by using the first of the following that applies:
+**[5]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
-- Host identifier of the `Host` header.
-
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[6]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier; otherwise, it MUST match `Host` header port identifier.
+**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7]:** If not default (`80` for `http` scheme, `443` for `https`).
 

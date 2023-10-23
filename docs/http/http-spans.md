@@ -240,15 +240,9 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 
 **[1]:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
-**[2]:** Determined by using the first of the following that applies:
+**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
-- Host identifier of the `Host` header.
-
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[3]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier; otherwise, it MUST match `Host` header port identifier.
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[4]:** If not default (`80` for `http` scheme, `443` for `https`).
 
@@ -313,22 +307,16 @@ In order to route request to a specific application, reverse proxies usually mod
 
 HTTP server frameworks and their instrumentations have limited knowledge about the HTTP infrastructure and intermediaries that requests go through. In a general case, they can only use HTTP request properties such as request target or headers to populate `server.*` attributes.
 
-Certain web frameworks may provide additional information about server. For example CGI specification defines `SERVER_NAME` and `SERVER_PORT` ([RFC 3875][rfc-servername]) variables. HTTP servers usually know server names as they are provided by users in the configuration. See for example, the Apache [`ServerName`][ap-sn] or NGINX [`server_name`][nx-sn] directive.
-
-Still, the original logical server name might not be available to the HTTP server instrumentation or can be inaccurate.
-
 #### Setting `server.address` and `server.port` attributes
 
-In the context of HTTP server, `server.address` and `server.port` attributes capture logical host and port name and intended, whenever possible, to be the same on the client and server sides.
+In the context of HTTP server, `server.address` and `server.port` attributes capture the original host name and port. The are intended, whenever possible, to be the same on the client and server sides.
 
 HTTP server instrumentations SHOULD do the best effort when populating `server.address` and `server.port` attributes and SHOULD determine them by using the first of the following that applies:
 
 * The original host which may be passed by the reverse proxy in the [`Forwarded#host`][Forwarded], [`X-Forwarded-Host`][X-Forwarded-Host], or a similar header.
-* Server name and port available through web framework or HTTP server properties if they're based on the user configuration. Instrumentations SHOULD NOT use properties that rely on the `Host` header.
-* The [request target][request target] if it's passed in the absolute form.
 * The `Host` header.
 
-> **Note**: The `Host` header specifies host and port number of the server. The same applies to the `host` identifier of `Forwarded` header, the `X-Forwarded-Host` header, or the authority component in the request target. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the applicable property.
+> **Note**: The `Host` header specifies host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
 
 Application developers MAY overwrite potentially inaccurate values of `server.*` attributes using a [SpanProcessor][SpanProcessor] and MAY capture private host information using applicable [resource attributes](/docs/resource/README.md).
 
@@ -344,9 +332,6 @@ Application developers MAY overwrite potentially inaccurate values of `server.*`
 [request target]: https://www.rfc-editor.org/rfc/rfc9110.html#target.resource
 [Forwarded]: https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded
 [X-Forwarded-Host]: https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host
-[rfc-servername]: https://tools.ietf.org/html/rfc3875#section-4.1.14
-[ap-sn]: https://httpd.apache.org/docs/2.4/mod/core.html#servername
-[nx-sn]: http://nginx.org/docs/http/ngx_http_core_module.html#server_name
 
 ### HTTP Server semantic conventions
 
