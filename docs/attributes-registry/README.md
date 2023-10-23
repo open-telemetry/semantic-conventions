@@ -29,6 +29,7 @@ Currently, the following namespaces exist:
 
 * [HTTP](http.md)
 * [Network](network.md)
+* [RPC](rpc.md)
 * [URL](url.md)
 * [User agent](user-agent.md)
 
