@@ -189,8 +189,13 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 ### Metric: `jvm.thread.count`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from [`ThreadMXBean#getDaemonThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getDaemonThreadCount--) and
-[`ThreadMXBean#getThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--).
+This metric is obtained from a combination of
+
+* [`ThreadMXBean#getAllThreadIds()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getAllThreadIds--)
+* [`ThreadMXBean#getThreadInfo()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadInfo-long:A-)
+* [`ThreadInfo#getThreadState()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadInfo.html#getThreadState--)
+* [`ThreadInfo#isDaemon()`](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/ThreadInfo.html#isDaemon()) (requires Java 9+)
+
 Note that this is the number of platform threads (as opposed to virtual threads).
 
 <!-- semconv metric.jvm.thread.count(metric_table) -->
@@ -202,7 +207,19 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 <!-- semconv metric.jvm.thread.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`thread.daemon`](../general/attributes.md) | boolean | Whether the thread is daemon or not. |  | Recommended |
+| `jvm.thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
+| `jvm.thread.state` | string | State of the thread. | `runnable`; `blocked` | Recommended |
+
+`jvm.thread.state` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `new` | A thread that has not yet started is in this state. |
+| `runnable` | A thread executing in the Java virtual machine is in this state. |
+| `blocked` | A thread that is blocked waiting for a monitor lock is in this state. |
+| `waiting` | A thread that is waiting indefinitely for another thread to perform a particular action is in this state. |
+| `timed_waiting` | A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state. |
+| `terminated` | A thread that has exited is in this state. |
 <!-- endsemconv -->
 
 ## JVM Classes

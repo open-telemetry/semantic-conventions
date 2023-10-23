@@ -14,7 +14,7 @@ The attributes registry is the place where attributes are defined. An attribute 
 
 Attributes defined in the registry can be used in different semantic conventions. Attributes should be included in this registry before they are used in semantic conventions. Semantic conventions may override all the properties of an attribute except for the `id` and `type` in case it's required for a particular context. In addition, semantic conventions specify the requirement level of an attribute in the corresponding context.
 
-A definition of an attribute in the registry does not necessarily imply that the attribute is used in any of the semantic conventions.
+A definition of an attribute in the registry doesn't necessarily imply that the attribute is used in any of the semantic conventions.
 
 If applicable, application developers are encouraged to use existing attributes from this registry. See also [these recommendations][developers recommendations] regarding attribute selection and attribute naming for custom use cases.
 

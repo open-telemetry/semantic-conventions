@@ -373,7 +373,7 @@ This metric is [recommended][MetricRecommended].
 
 - Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
 - Windows: The complement of
-  ["Disk\% Idle Time"](https://learn.microsoft.com/en-us/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
+  ["Disk\% Idle Time"](https://learn.microsoft.com/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
   performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
 <!-- endsemconv -->
 
@@ -534,8 +534,8 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Measured as:
 
 - Linux: the `drop` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
-- Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
-  from [`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2)
+- Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+  from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2)
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.dropped(full) -->
@@ -588,8 +588,8 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Measured as:
 
 - Linux: the `errs` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
-- Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
-  from [`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2).
+- Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+  from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2).
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.errors(full) -->
@@ -643,14 +643,14 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
 | `system.network.state` | string | A stateless protocol MUST NOT set this attribute | `close_wait` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport, for example
+a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
@@ -659,7 +659,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|
 | `tcp` | TCP |
 | `udp` | UDP |
-| `pipe` | Named or anonymous pipe. See note below. |
+| `pipe` | Named or anonymous pipe. |
 | `unix` | Unix domain socket |
 
 `system.network.state` MUST be one of the following:
@@ -730,7 +730,7 @@ follow the hierarchies listed above for different entities like CPU, memory,
 and network.
 
 For example, [UNIX load
-average](https://en.wikipedia.org/wiki/Load_(computing)) over a given
+average](https://wikipedia.org/wiki/Load_(computing)) over a given
 interval is not well standardized and its value across different UNIX like
 OSes may vary despite being under similar load:
 
