@@ -27,9 +27,11 @@ All registered attributes are listed by namespace in this registry.
 
 Currently, the following namespaces exist:
 
+* [Code](code.md)
 * [HTTP](http.md)
 * [Network](network.md)
 * [RPC](rpc.md)
+* [Thread](thread.md)
 * [URL](url.md)
 * [User agent](user-agent.md)
 
