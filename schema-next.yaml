@@ -2,6 +2,14 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/20
+        - rename_attributes:
+            attribute_map:
+              thread.daemon: jvm.thread.daemon
+            apply_to_metrics:
+              - jvm.thread.count
   1.22.0:
     spans:
       changes:
