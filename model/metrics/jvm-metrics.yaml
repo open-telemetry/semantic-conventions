@@ -90,8 +90,35 @@ groups:
     instrument: updowncounter
     unit: "{thread}"
     attributes:
-      - ref: thread.daemon
+      - id: jvm.thread.daemon
+        type: boolean
         requirement_level: recommended
+        brief: "Whether the thread is daemon or not."
+      - id: jvm.thread.state
+        requirement_level: recommended
+        type:
+          allow_custom_values: false
+          members:
+            - id: new
+              value: 'new'
+              brief: 'A thread that has not yet started is in this state.'
+            - id: runnable
+              value: 'runnable'
+              brief: 'A thread executing in the Java virtual machine is in this state.'
+            - id: blocked
+              value: 'blocked'
+              brief: 'A thread that is blocked waiting for a monitor lock is in this state.'
+            - id: waiting
+              value: 'waiting'
+              brief: 'A thread that is waiting indefinitely for another thread to perform a particular action is in this state.'
+            - id: timed_waiting
+              value: 'timed_waiting'
+              brief: 'A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.'
+            - id: terminated
+              value: 'terminated'
+              brief: 'A thread that has exited is in this state.'
+        brief: "State of the thread."
+        examples: ["runnable", "blocked"]
 
   - id: metric.jvm.class.loaded
     type: metric
