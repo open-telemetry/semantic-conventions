@@ -20,7 +20,7 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 <!-- semconv messaging.rabbitmq(full,tag=tech-specific-rabbitmq) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `messaging.rabbitmq.delivery_tag` | int | RabbitMQ delivery tag | `123` | Conditionally Required: When messages are received or delivered. |
+| `messaging.rabbitmq.delivery_tag` | int | RabbitMQ delivery tag. | `123` | Conditionally Required: When messages are received or delivered. |
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey` | Conditionally Required: If not empty. |
 <!-- endsemconv -->
 
