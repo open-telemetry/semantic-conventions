@@ -390,7 +390,7 @@ MUST NOT include the port identifier.
   [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
 - Port identifier of the `Host` header.
 
-**[6]:** If not default (`80` for `http` scheme, `443` for `https`).
+**[6]:** If `server.address` is set and the port is not default (`80` for `http` scheme, `443` for `https`).
 
 **[7]:** When missing, the value is assumed to be `/`
 
