@@ -51,7 +51,7 @@ groups:
         brief: 'The message destination name'
         note: |
           Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-          the broker does not have such notion, the destination name SHOULD uniquely identify the broker.
+          the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
         examples: ['MyQueue', 'MyTopic']
       - id: template
         type: string
@@ -92,7 +92,7 @@ groups:
         brief: 'The name of the original destination the message was published to'
         note: |
           The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
-          the broker does not have such notion, the original destination name SHOULD uniquely identify the broker.
+          the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
         examples: ['MyQueue', 'MyTopic']
       - id: anonymous
         type: boolean

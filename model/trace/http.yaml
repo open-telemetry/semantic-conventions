@@ -20,9 +20,10 @@ groups:
         sampling_relevant: true
         requirement_level: required
       - ref: network.transport
-        requirement_level:
-          conditionally_required: If not default (`tcp` for `HTTP/1.1` and `HTTP/2`, `udp` for `HTTP/3`).
-      - ref: network.type
+        requirement_level: opt_in
+        note: >
+          Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
+          Other obscure implementations are possible.
       - ref: user_agent.original
 
   - id: trace.http.client
@@ -31,7 +32,7 @@ groups:
     span_kind: client
     brief: 'Semantic Convention for HTTP Client'
     attributes:
-      - ref: http.resend_count
+      - ref: http.request.resend_count
         requirement_level:
           recommended: if and only if request was retried.
       - ref: server.address
@@ -68,14 +69,14 @@ groups:
       - ref: client.address
         note: >
             The IP address of the original client behind all proxies, if
-            known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded),
-            [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header).
+            known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded),
+            [X-Forwarded-For](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header).
             Otherwise, the immediate client peer address.
         examples: ['83.164.160.102']
       - ref: client.port
         brief: >
             The port of the original client behind all proxies, if
-            known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header).
+            known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded) or a similar header).
             Otherwise, the immediate client peer port.
       - ref: network.peer.address
       - ref: network.peer.port
