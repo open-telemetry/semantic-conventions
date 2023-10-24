@@ -291,11 +291,9 @@ See the examples for more details about:
 
 ## HTTP server
 
-Read the following section to understand how HTTP server instrumentations should capture server information.
+Read the following section to understand how HTTP server instrumentations are suggested to capture server information.
 
 ### HTTP server definitions
-
-This section gives a short summary of some concepts in web server configuration and web app deployment that are relevant to observability.
 
 An HTTP request can be routed to a specific HTTP application via intermediaries such as reverse proxies.
 HTTP requests sent to the same domain name may be handled by multiple applications depending on the port, path, headers, or other parameters.
