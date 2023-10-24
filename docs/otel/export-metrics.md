@@ -7,7 +7,7 @@ linkTitle: OpenTelemetry Export
 **Status**: [Experimental][DocumentStatus]
 
 This document describes instruments and attributes for OpenTelemetry
-collection-level metrics. Consider the [general metric semantic
+export-level metrics. Consider the [general metric semantic
 conventions](README.md#general-metric-semantic-conventions) when creating
 instruments not explicitly defined in the specification.
 
@@ -117,20 +117,6 @@ were two `batch` processors in a collection pipeline (e.g., one for
 error spans and one for non-error spans) they might use the names
 `batch/error` and `batch/noerror`.
 
-### Use of scope attributes
-
-The `domain`, `signal`, and `name` attributes described here are
-considered scope attributes.  When these metrics are encoded using an
-OTLP data representation, the `domain`, `signal`, and `name`
-attributes SHOULD be encoded using ther OTLP Scope attributes field.
-
-
-| Attribute  | Type | Description  | Examples  | Requirement Level | Detail level |
-|---|---|---|---|---|
-| `<prefix>.domain` | string | Domain of the pipeline with this component | `sdk`, `collector` | Required | Basic |
-| `<prefix>.name` | string | Type and optional name of this component. | `batch`, `batch/errors` | Required | Basic |
-| `<prefix>.signal` | string | Type of signal being described. | `trace`, `logs`, `metrics` | Required | Basic |
-
 ## Metric Instruments
 
 ### Metric: `otel.processor.items`
@@ -147,7 +133,9 @@ This metric is [required][MetricRequired].
 <!-- semconv metric.otel.processor.items(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level | Detail Level |
 |---|---|---|---|---|
-| `processor.name` | string | Type and optional name of processor being used. | `batch` | Required | Basic |
+| `processor.domain` | string | Domain of the pipeline with this exporter | `sdk`, `collector` | Required | Basic |
+| `processor.name` | string | Type and optional name of this exporter. | `batch`, `batch/errors` | Required | Basic |
+| `processor.signal` | string | Type of signal being described. | `trace`, `logs`, `metrics` | Required | Basic |
 | `processor.success` | boolean | Whether the item was successful or not. [1] | true, false | Recommended | Normal |
 | `processor.reason` | string | Short string explaining category of success and failure. | `ok`, `queue_full`, `timeout`, `permission_denied` | Recommended | Detailed |
 
@@ -167,7 +155,9 @@ This metric is [required][MetricRequired].
 <!-- semconv metric.otel.exporter.items(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `exporter.name` | string | Type and optional name of exporter being used. | `otlp/grpc` | Required | Basic |
+| `exporter.domain` | string | Domain of the pipeline with this exporter | `sdk`, `collector` | Required | Basic |
+| `exporter.name` | string | Type and optional name of this exporter. | `otlp/grpc`, `otlp/errors` | Required | Basic |
+| `exporter.signal` | string | Type of signal being described. | `trace`, `logs`, `metrics` | Required | Basic |
 | `exporter.success` | boolean | Whether the item was successful or not. [1] | true, false | Recommended | Normal |
 | `exporter.reason` | string | Short string explaining category of success and failure. | `ok`, `queue_full`, `timeout`, `permission_denied` | Recommended | Detailed |
 
