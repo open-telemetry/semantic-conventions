@@ -74,7 +74,7 @@ If there is no (low-cardinality) `http.route` available, HTTP server span names
 SHOULD be [`{method}`](#method-placeholder).
 
 HTTP client spans have no `http.route` attribute since client-side instrumentation
-is not generally aware of the "route", and therefore HTTP client spans SHOULD be
+is not generally aware of the "route", and therefore HTTP client span names SHOULD be
 [`{method}`](#method-placeholder).
 <!-- markdown-link-check-enable -->
 
