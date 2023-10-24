@@ -31,6 +31,7 @@ Currently, the following namespaces exist:
 * [Code](code.md)
 * [Container](container.md)
 * [HTTP](http.md)
+* [DB](db.md)
 * [Network](network.md)
 * [OCI](oci.md)
 * [RPC](rpc.md)

@@ -14,10 +14,10 @@ described on this page.
 
 ## Call-level attributes
 
-<!-- semconv db.couchdb(tag=call-level-tech-specific) -->
+<!-- semconv db.couchdb(full,tag=call-level-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`db.operation`](database-spans.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | Conditionally Required: If `db.statement` is not applicable. |
+| [`db.operation`](../attributes-registry/db.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | Conditionally Required: If `db.statement` is not applicable. |
 
 **[1]:** In **CouchDB**, `db.operation` should be set to the HTTP method + the target REST route according to the API reference documentation. For example, when retrieving a document, `db.operation` would be set to (literally, i.e., without replacing the placeholders with concrete values): [`GET /{db}/{docid}`](http://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
 <!-- endsemconv -->
