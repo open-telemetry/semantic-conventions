@@ -131,13 +131,13 @@ This metric is [required][MetricRequired].
 
 
 <!-- semconv metric.otel.processor.items(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level | Detail Level |
-|---|---|---|---|---|
-| `processor.domain` | string | Domain of the pipeline with this exporter | `sdk`, `collector` | Required | Basic |
-| `processor.name` | string | Type and optional name of this exporter. | `batch`, `batch/errors` | Required | Basic |
-| `processor.signal` | string | Type of signal being described. | `trace`, `logs`, `metrics` | Required | Basic |
-| `processor.success` | boolean | Whether the item was successful or not. [1] | true, false | Recommended | Normal |
-| `processor.reason` | string | Short string explaining category of success and failure. | `ok`, `queue_full`, `timeout`, `permission_denied` | Recommended | Detailed |
+| Attribute           | Type    | Description                                              | Examples                                           | Requirement Level |
+|---------------------|---------|----------------------------------------------------------|----------------------------------------------------|-------------------|
+| `processor.domain`  | string  | Domain of the pipeline with this exporter                | `sdk`, `collector`                                 | Required          |
+| `processor.name`    | string  | Type and optional name of this exporter.                 | `batch`, `batch/errors`                            | Required          |
+| `processor.signal`  | string  | Type of signal being described.                          | `trace`, `logs`, `metrics`                         | Required          |
+| `processor.success` | boolean | Whether the item was successful or not. [1]              | true, false                                        | Recommended       |
+| `processor.reason`  | string  | Short string explaining category of success and failure. | `ok`, `queue_full`, `timeout`, `permission_denied` | Detailed          |
 
 **[1]:** Consider `success=false` a stronger signal than `success=true`
 <!-- endsemconv -->
@@ -153,13 +153,13 @@ This metric is [required][MetricRequired].
 <!-- endsemconv -->
 
 <!-- semconv metric.otel.exporter.items(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `exporter.domain` | string | Domain of the pipeline with this exporter | `sdk`, `collector` | Required | Basic |
-| `exporter.name` | string | Type and optional name of this exporter. | `otlp/grpc`, `otlp/errors` | Required | Basic |
-| `exporter.signal` | string | Type of signal being described. | `trace`, `logs`, `metrics` | Required | Basic |
-| `exporter.success` | boolean | Whether the item was successful or not. [1] | true, false | Recommended | Normal |
-| `exporter.reason` | string | Short string explaining category of success and failure. | `ok`, `queue_full`, `timeout`, `permission_denied` | Recommended | Detailed |
+| Attribute          | Type    | Description                                              | Examples                                           | Requirement Level |
+|--------------------|---------|----------------------------------------------------------|----------------------------------------------------|-------------------|
+| `exporter.domain`  | string  | Domain of the pipeline with this exporter                | `sdk`, `collector`                                 | Required          |
+| `exporter.name`    | string  | Type and optional name of this exporter.                 | `otlp/http`, `otlp/grpc`                           | Required          |
+| `exporter.signal`  | string  | Type of signal being described.                          | `trace`, `logs`, `metrics`                         | Required          |
+| `exporter.success` | boolean | Whether the item was successful or not. [1]              | true, false                                        | Recommended       |
+| `exporter.reason`  | string  | Short string explaining category of success and failure. | `ok`, `queue_full`, `timeout`, `permission_denied` | Detailed          |
 
 **[1]:** Items may be dropped in case of failed ingestion, e.g. network problem or the exported endpoint being down.  Consult transport-specific instrumentation for more information about the export requests themselves, including retry attempts.
 <!-- endsemconv -->
