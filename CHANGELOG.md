@@ -26,6 +26,8 @@ release.
   ([#297](https://github.com/open-telemetry/semantic-conventions/pull/297))
 - Fix `server.port` to be not required when `server.address` is not set.
   ([#429](https://github.com/open-telemetry/semantic-conventions/pull/429))
+- Use seconds as default duration for FaaS duration histograms
+  ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
 - BREAKING: Remove `total` from list of well-known values of `system.memory.state` attribute.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 
