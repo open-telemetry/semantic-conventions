@@ -243,10 +243,13 @@ messages in batches). "Create" spans MAY be created. A single "Create" span
 SHOULD account only for a single message. "Create" spans SHOULD either be
 children or links of the related "Publish" span.
 
-If a "Create" span exists for a message, its context SHOULD be injected into
-the message. If no "Create" span exists and no custom creation context is
-injected into the message, the context of the related "Publish" span SHOULD be
-injected into the message.
+If a user provides a custom creation context in a message, this context SHOULD
+NOT be modified, the "Create" span SHOULD NOT be created, and "Publish" span
+SHOULD link to the custom creation context.  Otherwise, if a "Create" span
+exists for a message, its context SHOULD be injected into the message. If no
+"Create" span exists and no custom creation context is injected into the
+message, the context of the related "Publish" span SHOULD be injected into the
+message.
 
 #### Consumer spans
 
