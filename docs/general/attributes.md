@@ -306,12 +306,13 @@ Examples of `peer.service` that users may specify:
 
 ## General identity attributes
 
-These attributes may be used for any operation with an authenticated and/or authorized enduser.
+These attributes may be used for any operation with an authenticated or anonymous enduser.
 
 <!-- semconv identity -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `enduser.id` | string | Username or client_id extracted from the access token or [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2) header in the inbound request from outside the system. | `username` | Recommended |
+| `enduser.anon_id` | string | Randomly generated id of an anonymous user that is persisted throughout the lifetime of the visits. | `V1StGXR8_Z5jdHi6B-myT` | Recommended |
 | `enduser.role` | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | Recommended |
 | `enduser.scope` | string | Scopes or granted authorities the client currently possesses extracted from token or application security context. The value would come from the scope associated with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html). | `read:message, write:files` | Recommended |
 <!-- endsemconv -->
