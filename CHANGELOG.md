@@ -28,6 +28,8 @@ release.
   ([#429](https://github.com/open-telemetry/semantic-conventions/pull/429))
 - Use seconds as default duration for FaaS duration histograms
   ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
+- Remove conditional requirement on `network.peer.address` and `network.peer.port`
+  ([#449](https://github.com/open-telemetry/semantic-conventions/pull/449))
 
 ### Features
 
