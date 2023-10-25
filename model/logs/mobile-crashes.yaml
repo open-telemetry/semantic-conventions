@@ -27,21 +27,25 @@ groups:
         requirement_level: recommended
         brief: >
           The contents of printStackTrace() being called on the throwable
+          For android crashes
         type: string
       - id: thread
         requirement_level: recommended
         brief: >
           A string representation of this thread. Including the thread's name, priority, and thread group
+          For android crashes
         type: string
       - id: throwableMessage
         requirement_level: recommended
         brief: >
           The message within the throwable object
+          For android crashes
         type: string
       - id: crashReport
         requirement_level: recommended
         brief: >
           The contents from PLCrashReporter
           Contains three primary elements. "images", "threads" and "signal". These could be broken out as individual elements
+          For ios crashes
         type: string
 
