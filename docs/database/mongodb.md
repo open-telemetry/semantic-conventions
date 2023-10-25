@@ -31,7 +31,7 @@ described on this page.
 | `server.address`        | `"mongodb0.example.com"` |
 | `server.socket.address` | `"192.0.2.14"` |
 | `server.port`           | `27017` |
-| `network.transport`     | `"IP.TCP"` |
+| `network.transport`     | `"tcp"` |
 | `db.name`               | `"shopDb"` |
 | `db.statement`          | not set |
 | `db.operation`          | `"findAndModify"` |

@@ -33,7 +33,7 @@ This is an example of attributes for a MySQL database span:
 | `server.address`        | `"shopdb.example.com"` |
 | `server.socket.address` | `"192.0.2.12"` |
 | `server.port`           | `3306` |
-| `network.transport`     | `"IP.TCP"` |
+| `network.transport`     | `"tcp"` |
 | `db.name`               | `"ShopDb"` |
 | `db.statement`          | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
 | `db.operation`          | `"SELECT"` |
