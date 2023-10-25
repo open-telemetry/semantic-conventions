@@ -255,7 +255,8 @@ message.
 
 "Deliver" spans SHOULD be created for operations of passing messages to the
 application when those operations are not initiated by the application code
-(push-based scenarios).
+(push-based scenarios). A "Deliver" span covers the duration of such an
+operation, which is usually a callback or handler.
 
 "Receive" spans SHOULD be created for operations of passing messages to the
 application when those operations are initiated by the application code
