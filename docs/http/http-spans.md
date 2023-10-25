@@ -301,13 +301,13 @@ HTTP requests sent to the same domain name may be handled by multiple applicatio
 For example, different versions of the same web-application can run side-by-side as independent applications behind the reverse proxy which routes request to one or another based on the request path.
 
 Instances of different HTTP server applications may run on the same physical host and share the same IP address, but listen to different TCP/UDP ports.
-In order to route request to a specific application, reverse proxies usually modify the [HTTP Host header][Host and authority] replacing the original value provided by the client with an actual proxied server name. This behavior depends on the reverse proxy configuration. In some cases, `Host` header is not used when routing request to a specific application, making it prone to having bogus content.
+In order to route the request to a specific application, reverse proxies usually modify the [HTTP Host header][Host and authority] replacing the original value provided by the client with an actual proxied server name. This behavior depends on the reverse proxy configuration. In some cases, the `Host` header is not used when routing request to a specific application, making it prone to having bogus content.
 
 HTTP server frameworks and their instrumentations have limited knowledge about the HTTP infrastructure and intermediaries that requests go through. In a general case, they can only use HTTP request properties such as request target or headers to populate `server.*` attributes.
 
 #### Setting `server.address` and `server.port` attributes
 
-In the context of HTTP server, `server.address` and `server.port` attributes capture the original host name and port. The are intended, whenever possible, to be the same on the client and server sides.
+In the context of HTTP server, `server.address` and `server.port` attributes capture the original host name and port. They are intended, whenever possible, to be the same on the client and server sides.
 
 HTTP server instrumentations SHOULD do the best effort when populating `server.address` and `server.port` attributes and SHOULD determine them by using the first of the following that applies:
 
