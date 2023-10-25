@@ -29,11 +29,7 @@ groups:
     extends: rpc
     attributes:
       - ref: network.peer.address
-        requirement_level:
-          recommended: If different than `server.address`.
       - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
 
   - id: rpc.server
     type: span
@@ -44,11 +40,7 @@ groups:
       - ref: client.address
       - ref: client.port
       - ref: network.peer.address
-        requirement_level:
-          recommended: If different than `client.address`.
       - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
       - ref: network.transport
       - ref: network.type
 

@@ -237,12 +237,8 @@ groups:
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
       - ref: network.peer.address
-        requirement_level:
-          recommended: If different than `server.address`.
         tag: connection-level
       - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
         tag: connection-level
       - ref: network.transport
         tag: connection-level
