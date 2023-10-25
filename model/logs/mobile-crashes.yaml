@@ -23,12 +23,25 @@ groups:
         brief: >
           This attribute indicates whether the app was in the foreground or not during the crash.
         type: boolean
-      - id: data
-        requirement_level: "required"
-        type: attributes
+      - id: stacktrace
+        requirement_level: recommended
         brief: >
-          'event.data' in the case of mobile crashes will be an attribute that contains nested attributes.
-          Android crashes will contain 'stacktrace', 'thread', and 'throwableMessage'
-          On the iOS side, it will contain 'crashReport' containing the contents from PLCrashReporter
-        examples: ['stacktrace: stacktraceValue, thread: threadValue, throwableMessage: throwableMessageValue',
-                   'crashReport: crashReportContents']
+          The contents of printStackTrace() being called on the throwable
+        type: string
+      - id: thread
+        requirement_level: recommended
+        brief: >
+          A string representation of this thread. Including the thread's name, priority, and thread group
+        type: string
+      - id: throwableMessage
+        requirement_level: recommended
+        brief: >
+          The message within the throwable object
+        type: string
+      - id: crashReport
+        requirement_level: recommended
+        brief: >
+          The contents from PLCrashReporter
+          Contains three primary elements. "images", "threads" and "signal". These could be broken out as individual elements
+        type: string
+
