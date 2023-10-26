@@ -78,6 +78,8 @@ To avoid broken traces, if OpenTelemetry is reporting traces to another system b
 
 *Note: The `xray-lambda` propagator can only `extract` context. The `inject` operation MUST be a no-op.*
 
+To avoid potential issues when extracting with an active span context, the `xray-lambda` propagator SHOULD check if the provided context already has an active span context. If found, the propagator SHOULD return the provided context unmodified.
+
 ## API Gateway
 
 API Gateway allows a user to trigger a Lambda function in response to HTTP requests. It can be configured to be
