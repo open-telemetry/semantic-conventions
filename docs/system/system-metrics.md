@@ -153,7 +153,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.cpu.frequency(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.cpu.frequency` | Gauge | `{Hz}` | Reports the current frequency of the CPU processor in Hz |
+| `system.cpu.frequency` | Gauge | `{Hz}` | Reports the current frequency of the CPU in Hz |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.cpu.frequency(full) -->
