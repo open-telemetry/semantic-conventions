@@ -40,7 +40,7 @@ document.
 A CloudEvent can be sent directly from producer to consumer.
 For such a scenario, the traditional parent-child trace model works well.
 However, CloudEvents are also used in distributed systems where an event
-can go through many [hops](<https://en.wikipedia.org/wiki/Hop_(networking)>)
+can go through many [hops](<https://wikipedia.org/wiki/Hop_(networking)>)
 until it reaches a consumer. In this scenario, the traditional parent-child
 trace model is not sufficient to produce a meaningful trace.
 
