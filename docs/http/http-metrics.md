@@ -79,9 +79,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`http.route`](../attributes-registry/http.md) | string | The matched route (path template in the format used by the respective server framework). See note below [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `http`; `spdy` | Opt-In |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `http`; `spdy` | Opt-In |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [7] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [8] | `http`; `https` | Required |
@@ -123,41 +123,25 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[4]:** The value SHOULD be normalized to lowercase.
 
-**[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[6]:** Determined by using the first of the following that applies
+**[6]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header
+**[7]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
-MUST NOT include the port identifier.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[7]:** Determined by using the first of the following that applies
-
-- Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -210,31 +194,15 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[2]:** Determined by using the first of the following that applies
+**[2]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header
-
-MUST NOT include the port identifier.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[3]:** Determined by using the first of the following that applies
-
-- Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
+**[3]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -272,9 +240,9 @@ This metric is optional.
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`http.route`](../attributes-registry/http.md) | string | The matched route (path template in the format used by the respective server framework). See note below [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `http`; `spdy` | Opt-In |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `http`; `spdy` | Opt-In |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [7] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [8] | `http`; `https` | Required |
@@ -316,41 +284,25 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[4]:** The value SHOULD be normalized to lowercase.
 
-**[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[6]:** Determined by using the first of the following that applies
+**[6]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header
+**[7]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
-MUST NOT include the port identifier.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[7]:** Determined by using the first of the following that applies
-
-- Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -388,9 +340,9 @@ This metric is optional.
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`http.route`](../attributes-registry/http.md) | string | The matched route (path template in the format used by the respective server framework). See note below [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `http`; `spdy` | Opt-In |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `http`; `spdy` | Opt-In |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Name of the local HTTP server that received the request. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`server.port`](../general/attributes.md) | int | Port of the local HTTP server that received the request. [7] | `80`; `8080`; `443` | Opt-In |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [8] | `http`; `https` | Required |
@@ -432,41 +384,25 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[4]:** The value SHOULD be normalized to lowercase.
 
-**[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[6]:** Determined by using the first of the following that applies
+**[6]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header
+**[7]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute may be based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
-MUST NOT include the port identifier.
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[7]:** Determined by using the first of the following that applies
-
-- Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header
-
-Warning: since this attribute may be based on HTTP headers, opting in to it may allow an attacker
-to trigger cardinality limits, degrading the usefulness of the metric.
-
-**[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[8]:** The scheme of the original client request, if known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -510,11 +446,11 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `http`; `spdy` | Opt-In |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `http`; `spdy` | Opt-In |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | Required |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
@@ -550,18 +486,11 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[3]:** The value SHOULD be normalized to lowercase.
 
-**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[5]:** Determined by using the first of the following that applies
+**[5]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form
-- Host identifier of the `Host` header
-
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[6]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
+**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7]:** If not default (`80` for `http` scheme, `443` for `https`).
 
@@ -569,7 +498,7 @@ If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -607,11 +536,11 @@ This metric is optional.
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `http`; `spdy` | Opt-In |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `http`; `spdy` | Opt-In |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | Required |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
@@ -647,18 +576,11 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[3]:** The value SHOULD be normalized to lowercase.
 
-**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[5]:** Determined by using the first of the following that applies
+**[5]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form
-- Host identifier of the `Host` header
-
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[6]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
+**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7]:** If not default (`80` for `http` scheme, `443` for `https`).
 
@@ -666,7 +588,7 @@ If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -704,11 +626,11 @@ This metric is optional.
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../general/attributes.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `http`; `spdy` | Opt-In |
-| [`network.protocol.version`](../general/attributes.md) | string | Version of the protocol specified in `network.protocol.name`. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `http`; `spdy` | Opt-In |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [4] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | Required |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
@@ -744,18 +666,11 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[3]:** The value SHOULD be normalized to lowercase.
 
-**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[4]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[5]:** Determined by using the first of the following that applies
+**[5]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form
-- Host identifier of the `Host` header
-
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[6]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier, otherwise it MUST match `Host` header port identifier.
+**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7]:** If not default (`80` for `http` scheme, `443` for `https`).
 
@@ -763,7 +678,7 @@ If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.
 
 | Value  | Description |
 |---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

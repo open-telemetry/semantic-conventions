@@ -21,9 +21,18 @@ release.
   ([#410](https://github.com/open-telemetry/semantic-conventions/pull/410))
 - BREAKING: Factor in `X-Forwarded-Host` / `Forwarded` when capturing `server.address` and `server.port`.
   ([#411](https://github.com/open-telemetry/semantic-conventions/pull/411))
+- Remove `thread.daemon`, and introduce `jvm.thread.daemon` instead.
+  Introduce `jvm.thread.state` attribute and add it to `jvm.thread.count` metric.
+  ([#297](https://github.com/open-telemetry/semantic-conventions/pull/297))
+- Fix `server.port` to be not required when `server.address` is not set.
+  ([#429](https://github.com/open-telemetry/semantic-conventions/pull/429))
+- Use seconds as default duration for FaaS duration histograms
+  ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
 
 ### Features
 
+- Adds `session.previous_id` to session.md
+  ([#348](https://github.com/open-telemetry/semantic-conventions/pull/348))
 - Metric namespaces SHOULD NOT be pluralized.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 
@@ -40,6 +49,8 @@ release.
   ([#412](https://github.com/open-telemetry/semantic-conventions/pull/412))
 - Remove outdated note about not recording HTTP `server.address` when only IP address available.
   ([#413](https://github.com/open-telemetry/semantic-conventions/pull/413))
+- Clarify HTTP server definitions and `server.address|port` notes.
+  ([#423](https://github.com/open-telemetry/semantic-conventions/pull/423))
 
 ## v1.22.0 (2023-10-12)
 
@@ -177,6 +188,9 @@ release.
   ([#366](https://github.com/open-telemetry/semantic-conventions/pull/366))
 - Add `host.ip` resource attribute convention.
   ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
+- BREAKING: remove `-` to `_` normalization from http header and rpc metadata
+  attribute keys.
+  ([#369](https://github.com/open-telemetry/semantic-conventions/pull/369))
 - BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
   with `network.(peer|local).(address|port)`.
   ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
