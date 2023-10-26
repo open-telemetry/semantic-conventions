@@ -1,8 +1,8 @@
-## Open Container Initiative (OCI)
+# Open Container Initiative (OCI)
 
 The [Open Container Initiative](https://opencontainers.org/) defines open industry standards around container formats and runtimes.
 
-### OCI Image Manifest
+## OCI Image Manifest
 
 <!-- semconv registry.oci.manifest(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
