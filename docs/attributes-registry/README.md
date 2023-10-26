@@ -30,6 +30,7 @@ Currently, the following namespaces exist:
 * [Container](container.md)
 * [HTTP](http.md)
 * [Network](network.md)
+* [OCI](oci.md)
 * [RPC](rpc.md)
 * [URL](url.md)
 * [User agent](user-agent.md)
