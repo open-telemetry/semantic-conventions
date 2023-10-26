@@ -35,6 +35,8 @@ release.
   ([#348](https://github.com/open-telemetry/semantic-conventions/pull/348))
 - Metric namespaces SHOULD NOT be pluralized.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
+- Add remaining ECS fields to the user-agent namespace
+  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
 
 ### Fixes
 

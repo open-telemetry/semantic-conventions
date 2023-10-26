@@ -10,7 +10,7 @@ groups:
           Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client.
         examples: ['CERN-LineMode/2.15 libwww/2.17b3',
                    'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1']
-      - id: device_name
+      - id: device.name
         type: string
         brief: >
           Name of the device extracted from original
@@ -18,10 +18,10 @@ groups:
       - id: name
         type: string
         brief: >
-          Name of the user-agent extracted from original
+          Name of the user-agent extracted from original. Usually refers to the browser's name
         examples: ['Safari']
       - id: version
         type: string
         brief: >
-          Version of the user-agent extracted from original
+          Version of the user-agent extracted from original. Usually refers to the browser's version
         examples: ['14.1.2']
