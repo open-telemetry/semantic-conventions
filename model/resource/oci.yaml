@@ -1,8 +1,0 @@
-groups:
-  - id: oci.manifest
-    prefix: oci.manifest
-    type: resource
-    brief: >
-      An OCI image manifest.
-    attributes:
-      - ref: oci.manifest.digest
