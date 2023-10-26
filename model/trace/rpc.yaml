@@ -30,6 +30,8 @@ groups:
     attributes:
       - ref: network.peer.address
       - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
 
   - id: rpc.server
     type: span
@@ -41,6 +43,8 @@ groups:
       - ref: client.port
       - ref: network.peer.address
       - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
       - ref: network.transport
       - ref: network.type
 

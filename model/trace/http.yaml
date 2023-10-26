@@ -41,6 +41,8 @@ groups:
         sampling_relevant: true
       - ref: network.peer.address
       - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
       - ref: url.full
         sampling_relevant: true
         requirement_level: required

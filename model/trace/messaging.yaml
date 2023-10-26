@@ -176,6 +176,8 @@ groups:
       - ref: network.peer.address
         tag: connection-level
       - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
         tag: connection-level
       - ref: network.transport
         tag: connection-level
