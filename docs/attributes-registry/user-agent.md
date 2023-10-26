@@ -8,5 +8,8 @@
 <!-- semconv registry.user_agent(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
+| `user_agent.device_name` | string | Name of the device extracted from original | `iPhone` |
+| `user_agent.name` | string | Name of the user-agent extracted from original | `Safari` |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` |
+| `user_agent.version` | string | Version of the user-agent extracted from original | `14.1.2` |
 <!-- endsemconv -->
