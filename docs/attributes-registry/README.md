@@ -27,6 +27,7 @@ All registered attributes are listed by namespace in this registry.
 
 Currently, the following namespaces exist:
 
+* [Cloud](cloud.md)
 * [HTTP](http.md)
 * [Network](network.md)
 * [RPC](rpc.md)

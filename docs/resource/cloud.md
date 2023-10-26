@@ -9,12 +9,12 @@
 <!-- semconv cloud -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `cloud.account.id` | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | Recommended |
-| `cloud.availability_zone` | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | Recommended |
-| `cloud.platform` | string | The cloud platform in use. [2] | `alibaba_cloud_ecs` | Recommended |
-| `cloud.provider` | string | Name of the cloud provider. | `alibaba_cloud` | Recommended |
-| `cloud.region` | string | The geographical region the resource is running. [3] | `us-central1`; `us-east-1` | Recommended |
-| `cloud.resource_id` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
+| [`cloud.account.id`](../attributes-registry/cloud.md) | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | Recommended |
+| [`cloud.availability_zone`](../attributes-registry/cloud.md) | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | Recommended |
+| [`cloud.platform`](../attributes-registry/cloud.md) | string | The cloud platform in use. [2] | `alibaba_cloud_ecs` | Recommended |
+| [`cloud.provider`](../attributes-registry/cloud.md) | string | Name of the cloud provider. | `alibaba_cloud` | Recommended |
+| [`cloud.region`](../attributes-registry/cloud.md) | string | The geographical region the resource is running. [3] | `us-central1`; `us-east-1` | Recommended |
+| [`cloud.resource_id`](../attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
 
 **[1]:** Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
 
@@ -39,50 +39,6 @@ The following well-known definitions MUST be used if you set this attribute and 
   `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
-
-`cloud.platform` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `alibaba_cloud_ecs` | Alibaba Cloud Elastic Compute Service |
-| `alibaba_cloud_fc` | Alibaba Cloud Function Compute |
-| `alibaba_cloud_openshift` | Red Hat OpenShift on Alibaba Cloud |
-| `aws_ec2` | AWS Elastic Compute Cloud |
-| `aws_ecs` | AWS Elastic Container Service |
-| `aws_eks` | AWS Elastic Kubernetes Service |
-| `aws_lambda` | AWS Lambda |
-| `aws_elastic_beanstalk` | AWS Elastic Beanstalk |
-| `aws_app_runner` | AWS App Runner |
-| `aws_openshift` | Red Hat OpenShift on AWS (ROSA) |
-| `azure_vm` | Azure Virtual Machines |
-| `azure_container_instances` | Azure Container Instances |
-| `azure_aks` | Azure Kubernetes Service |
-| `azure_functions` | Azure Functions |
-| `azure_app_service` | Azure App Service |
-| `azure_openshift` | Azure Red Hat OpenShift |
-| `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) |
-| `gcp_compute_engine` | Google Cloud Compute Engine (GCE) |
-| `gcp_cloud_run` | Google Cloud Run |
-| `gcp_kubernetes_engine` | Google Cloud Kubernetes Engine (GKE) |
-| `gcp_cloud_functions` | Google Cloud Functions (GCF) |
-| `gcp_app_engine` | Google Cloud App Engine (GAE) |
-| `gcp_openshift` | Red Hat OpenShift on Google Cloud |
-| `ibm_cloud_openshift` | Red Hat OpenShift on IBM Cloud |
-| `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) |
-| `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) |
-| `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) |
-
-`cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `alibaba_cloud` | Alibaba Cloud |
-| `aws` | Amazon Web Services |
-| `azure` | Microsoft Azure |
-| `gcp` | Google Cloud Platform |
-| `heroku` | Heroku Platform as a Service |
-| `ibm_cloud` | IBM Cloud |
-| `tencent_cloud` | Tencent Cloud |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
