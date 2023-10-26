@@ -271,10 +271,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `connect_rpc` | Connect RPC |
 <!-- endsemconv -->
 
-To avoid high cardinality, implementations should prefer the most stable of `server.address` or
-`server.socket.address`, depending on expected deployment profile.  For many cloud applications, this is likely
-`server.address` as names can be recycled even across re-instantiation of a server with a different `ip`.
-
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).
 For server-side spans `server.port` is optional (it describes the port the client is connecting from).
 
