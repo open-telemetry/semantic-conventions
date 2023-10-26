@@ -49,6 +49,8 @@ release.
   ([#412](https://github.com/open-telemetry/semantic-conventions/pull/412))
 - Remove outdated note about not recording HTTP `server.address` when only IP address available.
   ([#413](https://github.com/open-telemetry/semantic-conventions/pull/413))
+- Clarify HTTP server definitions and `server.address|port` notes.
+  ([#423](https://github.com/open-telemetry/semantic-conventions/pull/423))
 
 ## v1.22.0 (2023-10-12)
 
