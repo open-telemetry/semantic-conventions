@@ -26,6 +26,7 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   * [Metric: `system.cpu.utilization`](#metric-systemcpuutilization)
   * [Metric: `system.cpu.physical.count`](#metric-systemcpuphysicalcount)
   * [Metric: `system.cpu.logical.count`](#metric-systemcpulogicalcount)
+  * [Metric: `system.cpu.frequency`](#metric-systemcpufrequency)
 - [Memory Metrics](#memory-metrics)
   * [Metric: `system.memory.usage`](#metric-systemmemoryusage)
   * [Metric: `system.memory.limit`](#metric-systemmemorylimit)
@@ -144,6 +145,22 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 
 <!-- semconv metric.system.cpu.logical.count(full) -->
+<!-- endsemconv -->
+
+### Metric: `system.cpu.frequency`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.cpu.frequency(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.cpu.frequency` | Gauge | `{Hz}` | Reports the current frequency of the CPU in Hz |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.cpu.frequency(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | Recommended |
 <!-- endsemconv -->
 
 ## Memory Metrics
