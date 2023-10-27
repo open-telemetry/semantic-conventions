@@ -372,7 +372,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[8]:** Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
 
-**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
