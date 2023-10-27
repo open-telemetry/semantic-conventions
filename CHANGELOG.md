@@ -28,6 +28,8 @@ release.
   ([#429](https://github.com/open-telemetry/semantic-conventions/pull/429))
 - Use seconds as default duration for FaaS duration histograms
   ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
+- BREAKING: Remove `total` from list of well-known values of `system.memory.state` attribute.
+  ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 
 ### Features
 
@@ -35,6 +37,8 @@ release.
   ([#348](https://github.com/open-telemetry/semantic-conventions/pull/348))
 - Metric namespaces SHOULD NOT be pluralized.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
+- Add opt-in `system.memory.limit` metric.
+  ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 
 ### Fixes
 
