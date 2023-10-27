@@ -68,8 +68,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `http.method` | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` |
-| `http.request_content_length` | int | Deprecated, use `http.request.body.size` instead. | `3495` |
-| `http.response_content_length` | int | Deprecated, use `http.response.body.size` instead. | `3495` |
+| `http.request_content_length` | int | Deprecated, use the opt-in `http.request.header.content-length` instead. | `3495` |
+| `http.response_content_length` | int | Deprecated, use the opt-in `http.response.header.content-length` instead. | `3495` |
 | `http.scheme` | string | Deprecated, use `url.scheme` instead. | `http`; `https` |
 | `http.status_code` | int | Deprecated, use `http.response.status_code` instead. | `200` |
 | `http.target` | string | Deprecated, use `url.path` and `url.query` instead. | `/search?q=OpenTelemetry#SemConv` |

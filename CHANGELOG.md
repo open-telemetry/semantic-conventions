@@ -30,6 +30,9 @@ release.
   ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
 - BREAKING: Remove `total` from list of well-known values of `system.memory.state` attribute.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
+- Change `http.request.body.size` and `http.response.body.size`
+  from recommended to opt-in.
+  ([#460](https://github.com/open-telemetry/semantic-conventions/pull/460))
 
 ### Features
 
