@@ -6,11 +6,11 @@ groups:
     attributes:
       - id: request.body.size
         type: int
-        brief: >
-          The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
-          is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
-          header. For requests using transport encoding, this should be the compressed size.
+        brief: Size of the HTTP request body.
         examples: 3495
+        stability: experimental # this should not be marked stable with other HTTP attributes
+        note: >
+          This is the same as the `Content-Length` header value when that header is present and when the request body was fully transferred.
       - id: request.header
         type: template[string[]]
         brief: >
@@ -92,11 +92,11 @@ groups:
         examples: 3
       - id: response.body.size
         type: int
-        brief: >
-          The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
-          is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
-          header. For requests using transport encoding, this should be the compressed size.
+        brief: Size of the HTTP response body.
         examples: 3495
+        stability: experimental # this should not be marked stable with other HTTP attributes
+        note: >
+          This is the same as the `Content-Length` header value when that header is present and when the response body was fully transferred.
       - id: response.header
         type: template[string[]]
         brief: >
