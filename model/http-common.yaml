@@ -51,6 +51,9 @@ groups:
         requirement_level: required
         brief: >
           Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+      - ref: url.scheme
+        requirement_level: opt_in
+        examples: ["http", "https"]
 
   - id: attributes.http.server
     type: attribute_group
