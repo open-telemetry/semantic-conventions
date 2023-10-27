@@ -86,6 +86,7 @@ groups:
         brief: Original HTTP method sent by the client in the request line.
         examples: ["GeT", "ACL", "foo"]
       - id: request.resend_count
+        stability: stable
         type: int
         brief: >
           The ordinal number of request resending attempt (for any reason, including redirects).
