@@ -22,6 +22,9 @@ and various HTTP versions like 1.1, 2 and SPDY.
   * [HTTP request retries and redirects](#http-request-retries-and-redirects)
 - [HTTP server](#http-server)
   * [HTTP server definitions](#http-server-definitions)
+    + [Setting `server.address` and `server.port` attributes](#setting-serveraddress-and-serverport-attributes)
+    + [Simple client/server example](#simple-clientserver-example)
+    + [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
   * [HTTP Server semantic conventions](#http-server-semantic-conventions)
 - [Examples](#examples)
   * [HTTP client-server example](#http-client-server-example)
@@ -237,20 +240,14 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 
 **[1]:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
-**[2]:** Determined by using the first of the following that applies:
+**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) if it's sent in absolute-form.
-- Host identifier of the `Host` header.
-
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[3]:** When [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource) is absolute URI, `server.port` MUST match URI port identifier; otherwise, it MUST match `Host` header port identifier.
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[4]:** If not default (`80` for `http` scheme, `443` for `https`).
 
-**[5]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless.
-`url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password should be redacted and attribute's value should be `https://REDACTED:REDACTED@www.example.com/`.
+**[5]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
+`url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed) and SHOULD NOT be validated or modified except for sanitizing purposes.
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
@@ -294,52 +291,47 @@ See the examples for more details about:
 
 ## HTTP server
 
-To understand the attributes defined in this section, it is helpful to read the "Definitions" subsection.
+Read the following section to understand how HTTP server instrumentations are suggested to capture server information.
 
 ### HTTP server definitions
 
-This section gives a short summary of some concepts
-in web server configuration and web app deployment
-that are relevant to tracing.
+An HTTP request can be routed to a specific HTTP application via intermediaries such as reverse proxies.
+HTTP requests sent to the same domain name may be handled by multiple applications depending on the port, path, headers, or other parameters.
 
-Usually, on a physical host, reachable by one or multiple IP addresses, a single HTTP listener process runs.
-If multiple processes are running, they must listen on distinct TCP/UDP ports so that the OS can route incoming TCP/UDP packets to the right one.
+For example, different versions of the same web-application can run side-by-side as independent applications behind the reverse proxy which routes request to one or another based on the request path.
 
-Within a single server process, there can be multiple **virtual hosts**.
-The [HTTP host header][] (in combination with a port number) is normally used to determine to which of them to route incoming HTTP requests.
+Instances of different HTTP server applications may run on the same physical host and share the same IP address, but listen to different TCP/UDP ports.
+In order to route the request to a specific application, reverse proxies usually modify the [HTTP Host header][Host and authority] replacing the original value provided by the client with an actual proxied server name. This behavior depends on the reverse proxy configuration. In some cases, the `Host` header is not used when routing request to a specific application, making it prone to having bogus content.
 
-The host header value that matches some virtual host is called the virtual hosts's **server name**. If there are multiple aliases for the virtual host, one of them (often the first one listed in the configuration) is called the **primary server name**. See for example, the Apache [`ServerName`][ap-sn] or NGINX [`server_name`][nx-sn] directive or the CGI specification on `SERVER_NAME` ([RFC 3875][rfc-servername]).
-In practice the HTTP host header is often ignored when just a single virtual host is configured for the IP.
+HTTP server frameworks and their instrumentations have limited knowledge about the HTTP infrastructure and intermediaries that requests go through. In a general case, they can only use HTTP request properties such as request target or headers to populate `server.*` attributes.
 
-Within a single virtual host, some servers support the concepts of an **HTTP application**
-(for example in Java, the Servlet JSR defines an application as
-"a collection of servlets, HTML pages, classes, and other resources that make up a complete application on a Web server"
--- SRV.9 in [JSR 53][];
-in a deployment of a Python application to Apache, the application would be the [PEP 3333][] conformant callable that is configured using the
-[`WSGIScriptAlias` directive][modwsgisetup] of `mod_wsgi`).
+#### Setting `server.address` and `server.port` attributes
 
-An application can be "mounted" under an **application root**
-(also known as a *[context root][]*, *[context prefix][]*, or *[document base][]*)
-which is a fixed path prefix of the URL that determines to which application a request is routed
-(e.g., the server could be configured to route all requests that go to an URL path starting with `/webshop/`
-at a particular virtual host
-to the `com.example.webshop` web application).
+In the context of HTTP server, `server.address` and `server.port` attributes capture the original host name and port. They are intended, whenever possible, to be the same on the client and server sides.
 
-Some servers allow to bind the same HTTP application to multiple `(virtual host, application root)` pairs.
+HTTP server instrumentations SHOULD do the best effort when populating `server.address` and `server.port` attributes and SHOULD determine them by using the first of the following that applies:
 
-> TODO: Find way to trace HTTP application and application root ([opentelemetry/opentelementry-specification#335][])
+* The original host which may be passed by the reverse proxy in the [`Forwarded#host`][Forwarded], [`X-Forwarded-Host`][X-Forwarded-Host], or a similar header.
+* The [`Host`][Host header] header.
+* The [`:authority`][HTTP/2 authority] pseudo-header in case of HTTP/2 or HTTP/3
 
-[HTTP host header]: https://tools.ietf.org/html/rfc7230#section-5.4
-[PEP 3333]: https://www.python.org/dev/peps/pep-3333/
-[modwsgisetup]: https://modwsgi.readthedocs.io/en/develop/user-guides/quick-configuration-guide.html
-[context root]: https://docs.jboss.org/jbossas/guides/webguide/r2/en/html/ch06.html
-[context prefix]: https://marc.info/?l=apache-cvs&m=130928191414740
-[document base]: http://tomcat.apache.org/tomcat-5.5-doc/config/context.html
-[rfc-servername]: https://tools.ietf.org/html/rfc3875#section-4.1.14
-[ap-sn]: https://httpd.apache.org/docs/2.4/mod/core.html#servername
-[nx-sn]: http://nginx.org/docs/http/ngx_http_core_module.html#server_name
-[JSR 53]: https://jcp.org/aboutJava/communityprocess/maintenance/jsr053/index2.html
-[opentelemetry/opentelementry-specification#335]: https://github.com/open-telemetry/opentelemetry-specification/issues/335
+> **Note**: The `Host` and `:authority` headers contain host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
+
+Application developers MAY overwrite potentially inaccurate values of `server.*` attributes using a [SpanProcessor][SpanProcessor] and MAY capture private host information using applicable [resource attributes](/docs/resource/README.md).
+
+#### Simple client/server example
+
+![simple-http-server.png](simple-http-server.png)
+
+#### Client/server example with reverse proxy
+
+![reverse-proxy-http-server.png](reverse-proxy-http-server.png)
+
+[Host and authority]: https://tools.ietf.org/html/rfc9110#section-7.2
+[Host header]: https://tools.ietf.org/html/rfc7230#section-5.4
+[HTTP/2 authority]: https://tools.ietf.org/html/rfc9113#section-8.3.1
+[Forwarded]: https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded
+[X-Forwarded-Host]: https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host
 
 ### HTTP Server semantic conventions
 
@@ -370,25 +362,9 @@ For an HTTP server span, `SpanKind` MUST be `Server`.
 **[3]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[4]:** Determined by using the first of the following that applies:
+**[4]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
-- The [primary server name](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Host identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Host identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Host identifier of the `Host` header.
-
-MUST NOT include the port identifier.
-
-**[5]:** Determined by using the first of the following that applies:
-
-- Port identifier of the [primary server host](/docs/http/http-spans.md#http-server-definitions) of the matched virtual host.
-- Port identifier of the [request target](https://www.rfc-editor.org/rfc/rfc9110.html#target.resource)
-  if it's sent in absolute-form.
-- Port identifier of [Forwarded#host](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host),
-  [X-Forwarded-Host](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host), or a similar header.
-- Port identifier of the `Host` header.
+**[5]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
 **[6]:** If `server.address` is set and the port is not default (`80` for `http` scheme, `443` for `https`).
 
@@ -425,8 +401,9 @@ Span name: `GET`
 | `network.protocol.version` | `"1.1"`                                           |
 | `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1"`     |
 | `server.address`     | `example.com`                                           |
-| `server.port`        | 8080                                                    |
-| `server.socket.address` | `"192.0.2.5"`                                        |
+| `server.port`        | `8080`                                                  |
+| `network.peer.address` | `"192.0.2.5"`                                         |
+| `network.peer.port`    | `8080`                                                |
 | `http.response.status_code` | `200`                                            |
 
 The corresponding server Span may look like this:
@@ -581,3 +558,4 @@ Span name: `POST /uploads/:document_id`.
 | `error.type`         | `WebSocketDisconnect`                           |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/sdk.md#span-processor
