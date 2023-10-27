@@ -13,6 +13,7 @@
   * [Intermediary](#intermediary)
   * [Destinations](#destinations)
   * [Message consumption](#message-consumption)
+  * [Conversations](#conversations)
   * [Temporary and anonymous destinations](#temporary-and-anonymous-destinations)
 - [Conventions](#conventions)
   * [Context propagation](#context-propagation)
@@ -123,6 +124,12 @@ First, the lower-level receiving of a message at a consumer, and then the logica
 Often, the waiting for a message is not particularly interesting and hidden away in a framework that only invokes some handler function to process a message once one is received
 (in the same way that the listening on a TCP port for an incoming HTTP message is not particularly interesting).
 
+### Conversations
+
+In some messaging systems, a message can receive one or more reply messages that answers a particular other message that was sent earlier. All messages that are grouped together by such a reply-relationship are called a *conversation*.
+The grouping usually happens through some sort of "In-Reply-To:" meta information or an explicit *conversation ID* (sometimes called *correlation ID*).
+Sometimes a conversation can span multiple message destinations (e.g. initiated via a topic, continued on a temporary one-to-one queue).
+
 ### Temporary and anonymous destinations
 
 Some messaging systems support the concept of *temporary destination* (often only temporary queues) that are established just for a particular set of communication partners (often one to one) or conversation.
@@ -175,10 +182,10 @@ The span name SHOULD be set to the message destination name and the operation be
 The destination name SHOULD only be used for the span name if it is known to be of low cardinality (cf. [general span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#span)).
 This can be assumed if it is statically derived from application code or configuration.
 Wherever possible, the real destination names after resolving logical or aliased names SHOULD be used.
-If the destination name is dynamic, such as a [conversation ID](../attributes-registry/messaging.md) or a value obtained from a `Reply-To` header, it SHOULD NOT be used for the span name.
+If the destination name is dynamic, such as a [conversation ID](#conversations) or a value obtained from a `Reply-To` header, it SHOULD NOT be used for the span name.
 In these cases, an artificial destination name that best expresses the destination, or a generic, static fallback like `"(anonymous)"` for [anonymous destinations](#temporary-and-anonymous-destinations) SHOULD be used instead.
 
-The values allowed for `<operation name>` are defined in the well-known values section for the [`messaging.operation`](../attributes-registry/messaging.md) attribute.
+The values allowed for `<operation name>` are defined in the section [Operation names](#operation-names) below.
 If the format above is used, the operation name MUST match the `messaging.operation` attribute defined for message consumer spans below.
 
 Examples:
@@ -276,18 +283,18 @@ messages were received). For each message it accounts for, the "Deliver" or
 | [`messaging.destination.template`](../attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [6] | `/customers/{customerId}` | Conditionally Required: [7] |
 | [`messaging.destination.temporary`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [8] |
 | [`messaging.message.body.size`](../attributes-registry/messaging.md) | int | The size of the message body in bytes. [9] | `1439` | Recommended: [10] |
-| [`messaging.message.conversation_id`](../attributes-registry/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". [11] | `MyConversationId` | Recommended: [12] |
-| [`messaging.message.envelope.size`](../attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [13] | `2738` | Recommended: [14] |
-| [`messaging.message.id`](../attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [15] |
-| [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [16] | `publish` | Required |
+| [`messaging.message.conversation_id`](../attributes-registry/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [11] |
+| [`messaging.message.envelope.size`](../attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [12] | `2738` | Recommended: [13] |
+| [`messaging.message.id`](../attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [14] |
+| [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [15] | `publish` | Required |
 | [`messaging.system`](../attributes-registry/messaging.md) | string | A string identifying the messaging system. | `kafka`; `rabbitmq`; `rocketmq`; `activemq`; `AmazonSQS` | Required |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [17] | `amqp`; `mqtt` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [18] | `3.1.1` | Recommended |
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [19] | `tcp`; `udp` | Recommended |
-| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [20] | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [21] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [16] | `amqp`; `mqtt` | Recommended |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [17] | `3.1.1` | Recommended |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [18] | `tcp`; `udp` | Recommended |
+| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [19] | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../general/attributes.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -311,43 +318,39 @@ body size should be used.
 
 **[10]:** Only if span represents operation on a single message.
 
-**[11]:** In some messaging systems, a message can receive one or more reply messages that answers a particular other message that was sent earlier.
-All messages that are grouped together by such a reply-relationship are called a *conversation*.
-The grouping usually happens through some sort of "In-Reply-To:" meta information or an explicit *conversation ID* (sometimes called *correlation ID*).
-Sometimes a conversation can span multiple message destinations (e.g. initiated via a topic, continued on a temporary one-to-one queue).
+**[11]:** Only if span represents operation on a single message.
 
-**[12]:** Only if span represents operation on a single message.
-
-**[13]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[12]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[14]:** Only if span represents operation on a single message.
+**[13]:** Only if span represents operation on a single message.
 
-**[15]:** Only for spans that represent an operation on a single message.
+**[14]:** Only for spans that represent an operation on a single message.
 
-**[16]:** If a custom value is used, it MUST be of low cardinality.
+**[15]:** If a custom value is used, it MUST be of low cardinality.
 
-**[17]:** The value SHOULD be normalized to lowercase.
+**[16]:** The value SHOULD be normalized to lowercase.
 
-**[18]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[17]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[19]:** The value SHOULD be normalized to lowercase.
+**[18]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[20]:** The value SHOULD be normalized to lowercase.
+**[19]:** The value SHOULD be normalized to lowercase.
 
-**[21]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[20]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
-| `publish` | A message is sent to a destination by a message producer/client. |
-| `receive` | A message is received from a destination by a message consumer/server. |
-| `process` | A message that was previously received from a destination is processed by a message consumer/server. |
+| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
+| `deliver` | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

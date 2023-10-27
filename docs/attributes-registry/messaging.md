@@ -22,10 +22,10 @@
 | `messaging.kafka.message.offset` | int | The offset of a record in the corresponding Kafka partition. | `42` |
 | `messaging.kafka.message.tombstone` | boolean | A boolean that is true if the message is a tombstone. |  |
 | `messaging.message.body.size` | int | The size of the message body in bytes. [6] | `1439` |
-| `messaging.message.conversation_id` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". [7] | `MyConversationId` |
-| `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [8] | `2738` |
+| `messaging.message.conversation_id` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
+| `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [7] | `2738` |
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
-| `messaging.operation` | string | A string identifying the kind of messaging operation. [9] | `publish` |
+| `messaging.operation` | string | A string identifying the kind of messaging operation. [8] | `publish` |
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey` |
 | `messaging.rocketmq.client_group` | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` |
 | `messaging.rocketmq.consumption_model` | string | Model of message consumption. This only applies to consumer spans. | `clustering` |
@@ -53,23 +53,19 @@ the broker doesn't have such notion, the original destination name SHOULD unique
 **[6]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[7]:** In some messaging systems, a message can receive one or more reply messages that answers a particular other message that was sent earlier.
-All messages that are grouped together by such a reply-relationship are called a *conversation*.
-The grouping usually happens through some sort of "In-Reply-To:" meta information or an explicit *conversation ID* (sometimes called *correlation ID*).
-Sometimes a conversation can span multiple message destinations (e.g. initiated via a topic, continued on a temporary one-to-one queue).
-
-**[8]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[7]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[9]:** If a custom value is used, it MUST be of low cardinality.
+**[8]:** If a custom value is used, it MUST be of low cardinality.
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
-| `publish` | A message is sent to a destination by a message producer/client. |
-| `receive` | A message is received from a destination by a message consumer/server. |
-| `process` | A message that was previously received from a destination is processed by a message consumer/server. |
+| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
+| `deliver` | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
 
 `messaging.rocketmq.consumption_model` MUST be one of the following:
 
