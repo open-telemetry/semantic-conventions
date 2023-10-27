@@ -312,8 +312,8 @@ In the context of HTTP server, `server.address` and `server.port` attributes cap
 HTTP server instrumentations SHOULD do the best effort when populating `server.address` and `server.port` attributes and SHOULD determine them by using the first of the following that applies:
 
 * The original host which may be passed by the reverse proxy in the [`Forwarded#host`][Forwarded], [`X-Forwarded-Host`][X-Forwarded-Host], or a similar header.
-* The [`Host`][Host header] header.
 * The [`:authority`][HTTP/2 authority] pseudo-header in case of HTTP/2 or HTTP/3
+* The [`Host`][Host header] header.
 
 > **Note**: The `Host` and `:authority` headers contain host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
 
