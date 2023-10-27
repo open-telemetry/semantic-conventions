@@ -31,7 +31,7 @@ release.
 - BREAKING: Remove `total` from list of well-known values of `system.memory.state` attribute.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Remove `url.path` default value.
-  ([#999](https://github.com/open-telemetry/semantic-conventions/pull/999))
+  ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
 
 ### Features
 
