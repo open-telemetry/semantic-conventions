@@ -32,7 +32,7 @@ described on this page.
 | `server.port`           | `27017` |
 | `network.peer.address`  | `"192.0.2.14"` |
 | `network.peer.port`     | `27017` |
-| `network.transport`     | `"IP.TCP"` |
+| `network.transport`     | `"tcp"` |
 | `db.name`               | `"shopDb"` |
 | `db.statement`          | not set |
 | `db.operation`          | `"findAndModify"` |

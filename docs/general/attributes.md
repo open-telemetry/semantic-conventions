@@ -358,8 +358,8 @@ a thread that started a span.
 <!-- semconv thread -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `thread.id` | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
-| `thread.name` | string | Current thread name. | `main` | Recommended |
+| [`thread.id`](../attributes-registry/thread.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
+| [`thread.name`](../attributes-registry/thread.md) | string | Current thread name. | `main` | Recommended |
 <!-- endsemconv -->
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
@@ -384,11 +384,11 @@ about the span.
 <!-- semconv code -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `code.column` | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | Recommended |
-| `code.filepath` | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | Recommended |
-| `code.function` | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
-| `code.lineno` | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
-| `code.namespace` | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
+| [`code.column`](../attributes-registry/code.md) | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | Recommended |
+| [`code.filepath`](../attributes-registry/code.md) | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | Recommended |
+| [`code.function`](../attributes-registry/code.md) | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
+| [`code.lineno`](../attributes-registry/code.md) | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
+| [`code.namespace`](../attributes-registry/code.md) | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
