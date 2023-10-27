@@ -27,7 +27,7 @@ described on this page.
 
 ## Example
 
-In this example, Redis is connected using a unix domain socket and therefore the connection string and `server.address` are left out.
+In this example, Redis is connected using a unix domain socket and therefore the connection string is left out.
 Furthermore, `db.name` is not specified as there is no database name in Redis and `db.redis.database_index` is set instead.
 
 | Key                       | Value |
@@ -36,7 +36,7 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 | `db.system`               | `"redis"` |
 | `db.connection_string`    | not set |
 | `db.user`                 | not set |
-| `server.socket.address`   | `"/tmp/redis.sock"` |
+| `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |
 | `db.name`                 | not set |
 | `db.statement`            | `"HMSET myhash field1 'Hello' field2 'World"` |
