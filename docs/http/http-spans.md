@@ -399,8 +399,9 @@ Span name: `GET`
 | `network.protocol.version` | `"1.1"`                                           |
 | `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1"`     |
 | `server.address`     | `example.com`                                           |
-| `server.port`        | 8080                                                    |
-| `server.socket.address` | `"192.0.2.5"`                                        |
+| `server.port`        | `8080`                                                  |
+| `network.peer.address` | `"192.0.2.5"`                                         |
+| `network.peer.port`    | `8080`                                                |
 | `http.response.status_code` | `200`                                            |
 
 The corresponding server Span may look like this:
