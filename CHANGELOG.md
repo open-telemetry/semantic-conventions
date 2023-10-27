@@ -41,6 +41,9 @@ release.
   ([#460](https://github.com/open-telemetry/semantic-conventions/pull/460))
 - Clarify that `client.port` is the port of whichever client was captured in `client.address`.
   ([#471](https://github.com/open-telemetry/semantic-conventions/pull/471))
+- BREAKING: Make `url.scheme` opt_in for HTTP client and remove default value for
+  `server.port` making it required on the client.
+  ([#459](https://github.com/open-telemetry/semantic-conventions/pull/459))
 
 ### Features
 
