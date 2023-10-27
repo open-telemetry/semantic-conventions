@@ -96,8 +96,6 @@ groups:
         type:
           allow_custom_values: true
           members:
-            - id: total
-              value: 'total'
             - id: used
               value: 'used'
             - id: free
@@ -114,11 +112,23 @@ groups:
   - id: metric.system.memory.usage
     type: metric
     metric_name: system.memory.usage
-    brief: ""
+    brief: "Reports memory in use by state."
+    note: |
+      The sum over all `system.memory.state` values SHOULD equal the total memory
+      available on the system, that is `system.memory.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
       - ref: system.memory.state
+
+  - id: metric.system.memory.limit
+    type: metric
+    metric_name: system.memory.limit
+    brief: "Total memory available in the system."
+    note: |
+      Its value SHOULD equal the sum of `system.memory.state` over all states.
+    instrument: updowncounter
+    unit: "By"
 
   - id: metric.system.memory.utilization
     type: metric
