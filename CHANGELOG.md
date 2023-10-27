@@ -51,7 +51,7 @@ release.
   ([#413](https://github.com/open-telemetry/semantic-conventions/pull/413))
 - Clarify HTTP server definitions and `server.address|port` notes.
   ([#423](https://github.com/open-telemetry/semantic-conventions/pull/423))
-- Change pthe recedence between `:authority` and `Host` headers when populating
+- Change the precedence between `:authority` and `Host` headers when populating
   `server.address` and `server.port` attributes.
   ([#455](https://github.com/open-telemetry/semantic-conventions/pull/455))
 
