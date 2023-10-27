@@ -24,7 +24,7 @@ groups:
     extends: attributes.http.client
     attributes:
       - ref: url.scheme
-        requirement_level: required
+        requirement_level: opt_in
         examples: ["http", "https"]
 
   - id: metric.http.server.request.duration
