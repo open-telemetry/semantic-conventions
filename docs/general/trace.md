@@ -26,7 +26,7 @@ The following semantic conventions for spans are defined:
 * [Cloud Providers](/docs/cloud-providers/README.md): Semantic Conventions for cloud providers spans.
 * [Database](/docs/database/database-spans.md): For SQL and NoSQL client call spans.
 * [Exceptions](/docs/exceptions/exceptions-spans.md): For recording exceptions associated with a span.
-* [FaaS](/docs/faas/faas-spans.md): For [Function as a Service](https://en.wikipedia.org/wiki/Function_as_a_service) (e.g., AWS Lambda) spans.
+* [FaaS](/docs/faas/faas-spans.md): For [Function as a Service](https://wikipedia.org/wiki/Function_as_a_service) (e.g., AWS Lambda) spans.
 * [Feature Flags](/docs/feature-flags/feature-flags-spans.md): For recording feature flag evaluations associated with a span.
 * [HTTP](/docs/http/http-spans.md): For HTTP client and server spans.
 * [Messaging](/docs/messaging/messaging-spans.md): For messaging systems (queues, publish/subscribe, etc.) spans.
@@ -34,7 +34,7 @@ The following semantic conventions for spans are defined:
 * [RPC/RMI](/docs/rpc/rpc-spans.md): For remote procedure call (e.g., gRPC) spans.
 
 Apart from semantic conventions for traces, [metrics](metrics.md), [logs](logs.md), and [events](events.md),
-OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/resource/sdk.md) with their own
+OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

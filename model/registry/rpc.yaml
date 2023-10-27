@@ -1,0 +1,190 @@
+groups:
+  - id: registry.rpc
+    prefix: rpc
+    type: attribute_group
+    brief: 'This document defines attributes for remote procedure calls.'
+    attributes:
+      - id: connect_rpc.error_code
+        type:
+          members:
+            - id: cancelled
+              value: cancelled
+            - id: unknown
+              value: unknown
+            - id: invalid_argument
+              value: invalid_argument
+            - id: deadline_exceeded
+              value: deadline_exceeded
+            - id: not_found
+              value: not_found
+            - id: already_exists
+              value: already_exists
+            - id: permission_denied
+              value: permission_denied
+            - id: resource_exhausted
+              value: resource_exhausted
+            - id: failed_precondition
+              value: failed_precondition
+            - id: aborted
+              value: aborted
+            - id: out_of_range
+              value: out_of_range
+            - id: unimplemented
+              value: unimplemented
+            - id: internal
+              value: internal
+            - id: unavailable
+              value: unavailable
+            - id: data_loss
+              value: data_loss
+            - id: unauthenticated
+              value: unauthenticated
+        brief: "The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
+      - id: connect_rpc.request.metadata
+        type: template[string[]]
+        brief: >
+          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
+      - id: connect_rpc.response.metadata
+        type: template[string[]]
+        brief: >
+          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
+      - id: grpc.status_code
+        type:
+          members:
+            - id: ok
+              brief: OK
+              value: 0
+            - id: cancelled
+              brief: CANCELLED
+              value: 1
+            - id: unknown
+              brief: UNKNOWN
+              value: 2
+            - id: invalid_argument
+              brief: INVALID_ARGUMENT
+              value: 3
+            - id: deadline_exceeded
+              brief: DEADLINE_EXCEEDED
+              value: 4
+            - id: not_found
+              brief: NOT_FOUND
+              value: 5
+            - id: already_exists
+              brief: ALREADY_EXISTS
+              value: 6
+            - id: permission_denied
+              brief: PERMISSION_DENIED
+              value: 7
+            - id: resource_exhausted
+              brief: RESOURCE_EXHAUSTED
+              value: 8
+            - id: failed_precondition
+              brief: FAILED_PRECONDITION
+              value: 9
+            - id: aborted
+              brief: ABORTED
+              value: 10
+            - id: out_of_range
+              brief: OUT_OF_RANGE
+              value: 11
+            - id: unimplemented
+              brief: UNIMPLEMENTED
+              value: 12
+            - id: internal
+              brief: INTERNAL
+              value: 13
+            - id: unavailable
+              brief: UNAVAILABLE
+              value: 14
+            - id: data_loss
+              brief: DATA_LOSS
+              value: 15
+            - id: unauthenticated
+              brief: UNAUTHENTICATED
+              value: 16
+        brief: "The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request."
+      - id: grpc.request.metadata
+        type: template[string[]]
+        brief: >
+          gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
+      - id: grpc.response.metadata
+        type: template[string[]]
+        brief: >
+          gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
+      - id: jsonrpc.error_code
+        type: int
+        brief: "`error.code` property of response if it is an error response."
+        examples: [-32700, 100]
+      - id: jsonrpc.error_message
+        type: string
+        brief: "`error.message` property of response if it is an error response."
+        examples: ['Parse error', 'User already exists']
+      - id: jsonrpc.request_id
+        type: string
+        brief: >
+          `id` property of request or response.
+          Since protocol allows id to be int, string, `null` or missing (for notifications),
+          value is expected to be cast to string for simplicity.
+          Use empty string in case of `null` value. Omit entirely if this is a notification.
+        examples: ['10', 'request-7', '']
+      - id: jsonrpc.version
+        type: string
+        brief: "Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted."
+        examples: ['2.0', '1.0']
+      - id: method
+        type: string
+        brief: 'The name of the (logical) method being called, must be equal to the $method part in the span name.'
+        note: >
+          This is the logical name of the method from the RPC interface perspective,
+          which can be different from the name of any implementing method/function.
+          The `code.function` attribute may be used to store the latter
+          (e.g., method actually executing the call on the server side,
+          RPC client stub method on the client side).
+        examples: "exampleMethod"
+      - id: service
+        type: string
+        brief: 'The full (logical) name of the service being called, including its package name, if applicable.'
+        note: >
+          This is the logical name of the service from the RPC interface perspective,
+          which can be different from the name of any implementing class.
+          The `code.namespace` attribute may be used to store the latter
+          (despite the attribute name, it may include a class name;
+          e.g., class with method actually executing the call on the server side,
+          RPC client stub class on the client side).
+        examples: "myservice.EchoService"
+      - id: system
+        brief: 'A string identifying the remoting system. See below for a list of well-known identifiers.'
+        type:
+          allow_custom_values: true
+          members:
+            - id: grpc
+              value: 'grpc'
+              brief: 'gRPC'
+            - id: java_rmi
+              value: 'java_rmi'
+              brief: 'Java RMI'
+            - id: dotnet_wcf
+              value: 'dotnet_wcf'
+              brief: '.NET WCF'
+            - id: apache_dubbo
+              value: 'apache_dubbo'
+              brief: 'Apache Dubbo'
+            - id: connect_rpc
+              value: 'connect_rpc'
+              brief: 'Connect RPC'
