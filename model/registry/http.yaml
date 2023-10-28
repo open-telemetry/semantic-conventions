@@ -8,7 +8,7 @@ groups:
         type: int
         brief: Size of the HTTP request body.
         examples: 3495
-        stability: experimental # this should not be marked stable with other HTTP attributes
+        stability: experimental  # this should not be marked stable with other HTTP attributes
         note: >
           This is the same as the `Content-Length` header value when that header is present and when the request body was fully transferred.
       - id: request.header
@@ -94,7 +94,7 @@ groups:
         type: int
         brief: Size of the HTTP response body.
         examples: 3495
-        stability: experimental # this should not be marked stable with other HTTP attributes
+        stability: experimental  # this should not be marked stable with other HTTP attributes
         note: >
           This is the same as the `Content-Length` header value when that header is present and when the response body was fully transferred.
       - id: response.header
