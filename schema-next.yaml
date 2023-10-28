@@ -10,6 +10,9 @@ versions:
               thread.daemon: jvm.thread.daemon
             apply_to_metrics:
               - jvm.thread.count
+        # https://github.com/open-telemetry/semantic-conventions/pull/465
+        - rename_metrics:
+            http.server.active_requests: http.server.current_requests
   1.22.0:
     spans:
       changes:

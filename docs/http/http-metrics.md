@@ -16,7 +16,7 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 
 - [HTTP Server](#http-server)
   * [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
-  * [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
+  * [Metric: `http.server.current_requests`](#metric-httpservercurrent_requests)
   * [Metric: `http.server.request.body.size`](#metric-httpserverrequestbodysize)
   * [Metric: `http.server.response.body.size`](#metric-httpserverresponsebodysize)
 - [HTTP Client](#http-client)
@@ -159,19 +159,19 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
 <!-- endsemconv -->
 
-### Metric: `http.server.active_requests`
+### Metric: `http.server.current_requests`
 
 **Status**: [Experimental][DocumentStatus]
 
 This metric is optional.
 
-<!-- semconv metric.http.server.active_requests(metric_table) -->
+<!-- semconv metric.http.server.current_requests(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `http.server.active_requests` | UpDownCounter | `{request}` | Number of active HTTP server requests. |
+| `http.server.current_requests` | UpDownCounter | `{request}` | Number of current HTTP server requests. |
 <!-- endsemconv -->
 
-<!-- semconv metric.http.server.active_requests(full) -->
+<!-- semconv metric.http.server.current_requests(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |

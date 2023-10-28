@@ -32,6 +32,8 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Remove `url.path` default value.
   ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
+- Rename `http.server.active_requests` metric to `http.server.current_requests`.
+  ([#465](https://github.com/open-telemetry/semantic-conventions/pull/465))
 
 ### Features
 

@@ -35,10 +35,10 @@ groups:
     unit: "s"
     extends: metric_attributes.http.server
 
-  - id: metric.http.server.active_requests
+  - id: metric.http.server.current_requests
     type: metric
-    metric_name: http.server.active_requests
-    brief: "Number of active HTTP server requests."
+    metric_name: http.server.current_requests
+    brief: "Number of current HTTP server requests."
     instrument: updowncounter
     unit: "{request}"
     attributes:
