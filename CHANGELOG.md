@@ -32,7 +32,7 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Remove `url.path` default value.
   ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
-- Make `client.address` and `client.port` sampling relevant on HTTP server spans.
+- Make `client.address` sampling relevant on HTTP server spans.
   ([#469](https://github.com/open-telemetry/semantic-conventions/pull/469))
 
 ### Features
