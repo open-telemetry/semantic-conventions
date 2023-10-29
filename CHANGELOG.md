@@ -32,6 +32,9 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Remove `url.path` default value.
   ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
+- Make `user_agent.original` and `http.request.header.*` sampling relevant
+  on HTTP server spans.
+  ([#467](https://github.com/open-telemetry/semantic-conventions/pull/467))
 
 ### Features
 
