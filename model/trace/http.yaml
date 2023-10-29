@@ -74,10 +74,7 @@ groups:
             Otherwise, the immediate client peer address.
         examples: ['83.164.160.102']
       - ref: client.port
-        brief: >
-            The port of the original client behind all proxies, if
-            known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded) or a similar header).
-            Otherwise, the immediate client peer port.
+        brief: The port of whichever client was captured in `client.address`.
       - ref: network.peer.address
       - ref: network.peer.port
       - ref: url.path

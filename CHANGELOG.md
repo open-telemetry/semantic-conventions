@@ -32,6 +32,8 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Remove `url.path` default value.
   ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
+- Clarify that `client.port` is the port of whichever client was captured in `client.address`.
+  ([#471](https://github.com/open-telemetry/semantic-conventions/pull/471))
 
 ### Features
 
