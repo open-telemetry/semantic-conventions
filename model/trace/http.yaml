@@ -11,8 +11,6 @@ groups:
         requirement_level:
           conditionally_required: If and only if it's different than `http.request.method`.
       - ref: http.request.body.size
-      - ref: http.request.header
-        requirement_level: opt_in
       - ref: http.response.body.size
       - ref: http.response.header
         requirement_level: opt_in
@@ -24,7 +22,6 @@ groups:
         note: >
           Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
           Other obscure implementations are possible.
-      - ref: user_agent.original
 
   - id: trace.http.client
     type: span
@@ -35,6 +32,8 @@ groups:
       - ref: http.request.resend_count
         requirement_level:
           recommended: if and only if request was retried.
+      - ref: http.request.header
+        requirement_level: opt_in
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
@@ -48,6 +47,7 @@ groups:
       - ref: url.full
         sampling_relevant: true
         requirement_level: required
+      - ref: user_agent.original
 
   - id: trace.http.server
     type: span
@@ -56,6 +56,9 @@ groups:
     brief: 'Semantic Convention for HTTP Server'
     attributes:
       - ref: http.route
+      - ref: http.request.header
+        sampling_relevant: true
+        requirement_level: opt_in
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
@@ -88,4 +91,6 @@ groups:
           conditionally_required: If and only if one was received/sent.
         sampling_relevant: true
       - ref: url.scheme
+        sampling_relevant: true
+      - ref: user_agent.original
         sampling_relevant: true
