@@ -32,6 +32,8 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Remove `url.path` default value.
   ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
+- Change `client.port` from recommended to opt-in on HTTP server spans
+  ([#472](https://github.com/open-telemetry/semantic-conventions/pull/472))
 
 ### Features
 
