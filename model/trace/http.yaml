@@ -67,6 +67,7 @@ groups:
         requirement_level: opt_in
         brief: Local socket port. Useful in case of a multi-port host.
       - ref: client.address
+        sampling_relevant: true
         note: >
             The IP address of the original client behind all proxies, if
             known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded),
@@ -74,6 +75,7 @@ groups:
             Otherwise, the immediate client peer address.
         examples: ['83.164.160.102']
       - ref: client.port
+        sampling_relevant: true
         brief: >
             The port of the original client behind all proxies, if
             known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded) or a similar header).
