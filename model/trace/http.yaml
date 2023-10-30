@@ -28,7 +28,6 @@ groups:
         note: >
           Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
           Other obscure implementations are possible.
-      - ref: user_agent.original
 
   - id: trace.http.client
     type: span
@@ -46,6 +45,8 @@ groups:
       - ref: url.full
         sampling_relevant: true
         requirement_level: required
+      - ref: user_agent.original
+        requirement_level: opt_in
 
   - id: trace.http.server
     type: span
@@ -85,3 +86,4 @@ groups:
         sampling_relevant: true
       - ref: url.scheme
         sampling_relevant: true
+      - ref: user_agent.original
