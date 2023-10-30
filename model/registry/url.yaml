@@ -25,7 +25,6 @@ groups:
         type: string
         brief: 'The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component'
         examples: ['/search']
-        note: When missing, the value is assumed to be `/`
       - id: query
         type: string
         brief: 'The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component'

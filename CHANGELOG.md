@@ -28,6 +28,14 @@ release.
   ([#429](https://github.com/open-telemetry/semantic-conventions/pull/429))
 - Use seconds as default duration for FaaS duration histograms
   ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
+- BREAKING: Remove `total` from list of well-known values of `system.memory.state` attribute.
+  ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
+- Remove `url.path` default value.
+  ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
+- Remove conditional requirement on `network.peer.address` and `network.peer.port`
+  ([#449](https://github.com/open-telemetry/semantic-conventions/pull/449))
+- Change `user_agent.original` from recommended to opt-in on HTTP client spans.
+  ([#468](https://github.com/open-telemetry/semantic-conventions/pull/468))
 
 ### Features
 
@@ -35,6 +43,8 @@ release.
   ([#348](https://github.com/open-telemetry/semantic-conventions/pull/348))
 - Metric namespaces SHOULD NOT be pluralized.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
+- Add opt-in `system.memory.limit` metric.
+  ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 
 ### Fixes
 
@@ -51,6 +61,9 @@ release.
   ([#413](https://github.com/open-telemetry/semantic-conventions/pull/413))
 - Clarify HTTP server definitions and `server.address|port` notes.
   ([#423](https://github.com/open-telemetry/semantic-conventions/pull/423))
+- Change the precedence between `:authority` and `Host` headers when populating
+  `server.address` and `server.port` attributes.
+  ([#455](https://github.com/open-telemetry/semantic-conventions/pull/455))
 
 ## v1.22.0 (2023-10-12)
 

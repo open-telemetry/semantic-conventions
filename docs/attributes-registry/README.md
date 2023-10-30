@@ -28,9 +28,13 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 * [Cloud](cloud.md)
+* [Code](code.md)
+* [Container](container.md)
 * [HTTP](http.md)
 * [Network](network.md)
+* [OCI](oci.md)
 * [RPC](rpc.md)
+* [Thread](thread.md)
 * [URL](url.md)
 * [User agent](user-agent.md)
 
