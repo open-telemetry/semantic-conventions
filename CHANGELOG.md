@@ -50,6 +50,8 @@ release.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 - Add opt-in `system.memory.limit` metric.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
+- Add fields from ECS to cloud registry.
+  ([#479](https://github.com/open-telemetry/semantic-conventions/pull/476))
 
 ### Fixes
 
@@ -74,7 +76,7 @@ release.
 
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
 - Adds `session.id` and session.md to general docs and model
-([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
+  ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
   ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
