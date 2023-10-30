@@ -9,24 +9,7 @@ groups:
         type: string
         requirement_level: required
         brief: >
-          The name identifies the event.
-        examples: ['click', 'exception']
-      - id: domain
-        brief: >
-          The domain identifies the business context for the events.
-        type:
-          allow_custom_values: true
-          members:
-            - id: browser
-              value: 'browser'
-              brief: 'Events from browser apps'
-            - id: device
-              value: 'device'
-              brief: 'Events from mobile apps'
-            - id: k8s
-              value: 'k8s'
-              brief: 'Events from Kubernetes'
-        requirement_level: required
-        note: >
-          Events across different domains may have same `event.name`, yet be
-          unrelated events.
+          The name identifies the event and includes a prefixed namespace. The namespace
+          and name are separated by a period. Events across different namespaces may have
+          the same name, yet be unrelated events.
+        examples: ['browser.pointer.click', 'device.exception']
