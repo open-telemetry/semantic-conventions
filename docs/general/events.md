@@ -18,18 +18,19 @@ The following semantic conventions for events are defined:
 ## General event attributes
 
 Events are recorded as LogRecords that are shaped
-in a special way: Event LogRecords have the attributes `event.domain`
-and `event.name` (and possibly other LogRecord attributes).
+in a special way: Event LogRecords have the attribute
+`event.name` consisting of a `namespace` and `name` that
+uniquely identifies the event (and possibly other LogRecord attributes).
 
-The `event.domain` attribute is used to logically separate events from different
+The `namespace` portion is used to logically separate events from different
 systems. For example, to record Events from browser apps, mobile apps and
-Kubernetes, we could use `browser`, `device` and `k8s` as the domain for their
+Kubernetes, we could use `browser`, `device` and `k8s` as the `namespace` for their
 Events. This provides a clean separation of semantics for events in each of the
 domains.
 
-Within a particular domain, the `event.name` attribute identifies the event.
-Events with same domain and name are structurally similar to one another. For
-example, some domains could have well-defined schema for their events based on
+Within a particular `namespace`, the `name` portion identifies the event.
+Events with same `namespace` and `name` are structurally similar to one another. For
+example, some namespaces could have well-defined schema for their events based on
 event names.
 
 When recording events from an existing system as OpenTelemetry Events, it is
@@ -43,18 +44,20 @@ that identify the class of Events but not the instance of the Event.
 <!-- semconv event -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `event.domain` | string | The domain identifies the business context for the events. [1] | `browser` | Required |
-| `event.name` | string | The name identifies the event. | `click`; `exception` | Required |
+| `event.name` | string | Consisting of a `namespace` and `name`; uniquely identifies the event. | `browser.mouse.click`; `browser.exception` | Required |
 
-**[1]:** Events across different domains may have same `event.name`, yet be unrelated events.
+**[1]:** Events across different namespaces may have same name, yet be unrelated events.
 
-`event.domain` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+The `namespace` portion of the name has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
 | `browser` | Events from browser apps |
 | `device` | Events from mobile apps |
 | `k8s` | Events from Kubernetes |
+
+The `namespace` and `name` portions of `event.name` MUST be separated by a period (`.`). Periods MUST NOT be used in the `name` portion of the `event.name`
+value. Instead, for multi-word `name` portions, each word SHOULD be separated by underscores (i.e. use snake_case). See [Attribute Naming](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/common/attribute-naming.md) for details on namespaces and names.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
