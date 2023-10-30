@@ -39,6 +39,8 @@ release.
 - Change `http.request.body.size` and `http.response.body.size`
   from recommended to opt-in.
   ([#460](https://github.com/open-telemetry/semantic-conventions/pull/460))
+- Clarify that `client.port` is the port of whichever client was captured in `client.address`.
+  ([#471](https://github.com/open-telemetry/semantic-conventions/pull/471))
 
 ### Features
 
