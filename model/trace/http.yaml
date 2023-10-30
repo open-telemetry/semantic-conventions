@@ -68,14 +68,14 @@ groups:
       - ref: client.address
         note: >
             The IP address of the original client behind all proxies, if
-            known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded),
+            known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for),
             [X-Forwarded-For](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header).
             Otherwise, the immediate client peer address.
         examples: ['83.164.160.102']
       - ref: client.port
         brief: >
             The port of the original client behind all proxies, if
-            known (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded) or a similar header).
+            known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for) or a similar header).
             Otherwise, the immediate client peer port.
       - ref: url.path
         requirement_level: required
