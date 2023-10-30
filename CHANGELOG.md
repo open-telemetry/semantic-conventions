@@ -36,6 +36,10 @@ release.
   ([#449](https://github.com/open-telemetry/semantic-conventions/pull/449))
 - Change `user_agent.original` from recommended to opt-in on HTTP client spans.
   ([#468](https://github.com/open-telemetry/semantic-conventions/pull/468))
+- BREAKING: Remove `event.domain` from log event attributes.
+  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
+- BREAKING: Chance `event.name` definition to include `namespace`.
+  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
 
 ### Features
 
