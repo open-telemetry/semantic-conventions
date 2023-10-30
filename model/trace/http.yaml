@@ -10,10 +10,8 @@ groups:
       - ref: http.request.method_original
         requirement_level:
           conditionally_required: If and only if it's different than `http.request.method`.
-      - ref: http.request.body.size
       - ref: http.request.header
         requirement_level: opt_in
-      - ref: http.response.body.size
       - ref: http.response.header
         requirement_level: opt_in
       - ref: http.request.method

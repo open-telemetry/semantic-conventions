@@ -36,6 +36,9 @@ release.
   ([#449](https://github.com/open-telemetry/semantic-conventions/pull/449))
 - Change `user_agent.original` from recommended to opt-in on HTTP client spans.
   ([#468](https://github.com/open-telemetry/semantic-conventions/pull/468))
+- Change `http.request.body.size` and `http.response.body.size`
+  from recommended to opt-in.
+  ([#460](https://github.com/open-telemetry/semantic-conventions/pull/460))
 
 ### Features
 
