@@ -48,7 +48,6 @@ release.
 - Add `host.mac` resource attribute convention.
   ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
 
-
 ### Fixes
 
 - Clarify that `error.type` should be the fully-qualified exception class name
