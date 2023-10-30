@@ -32,6 +32,10 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Remove `url.path` default value.
   ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
+- Remove conditional requirement on `network.peer.address` and `network.peer.port`
+  ([#449](https://github.com/open-telemetry/semantic-conventions/pull/449))
+- Change `user_agent.original` from recommended to opt-in on HTTP client spans.
+  ([#468](https://github.com/open-telemetry/semantic-conventions/pull/468))
 
 ### Features
 
