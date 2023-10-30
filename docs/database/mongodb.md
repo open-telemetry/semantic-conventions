@@ -29,9 +29,10 @@ described on this page.
 | `db.connection_string`  | not set |
 | `db.user`               | `"the_user"` |
 | `server.address`        | `"mongodb0.example.com"` |
-| `server.socket.address` | `"192.0.2.14"` |
 | `server.port`           | `27017` |
-| `network.transport`     | `"IP.TCP"` |
+| `network.peer.address`  | `"192.0.2.14"` |
+| `network.peer.port`     | `27017` |
+| `network.transport`     | `"tcp"` |
 | `db.name`               | `"shopDb"` |
 | `db.statement`          | not set |
 | `db.operation`          | `"findAndModify"` |
