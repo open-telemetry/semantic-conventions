@@ -78,7 +78,7 @@ groups:
         examples: ["http", "https"]
         note: >
           The scheme of the original client request, if known
-          (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded),
+          (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto),
           [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto),
           or a similar header).
           Otherwise, the scheme of the immediate peer request.

@@ -174,8 +174,6 @@ groups:
         requirement_level:
           conditionally_required: If available.
       - ref: network.peer.address
-        requirement_level:
-          recommended: If different than `server.address`.
         tag: connection-level
       - ref: network.peer.port
         requirement_level:

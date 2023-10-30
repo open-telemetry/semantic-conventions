@@ -30,6 +30,12 @@ release.
   ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
 - BREAKING: Remove `total` from list of well-known values of `system.memory.state` attribute.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
+- Remove `url.path` default value.
+  ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
+- Remove conditional requirement on `network.peer.address` and `network.peer.port`
+  ([#449](https://github.com/open-telemetry/semantic-conventions/pull/449))
+- Change `user_agent.original` from recommended to opt-in on HTTP client spans.
+  ([#468](https://github.com/open-telemetry/semantic-conventions/pull/468))
 - Change `http.request.body.size` and `http.response.body.size`
   from recommended to opt-in.
   ([#460](https://github.com/open-telemetry/semantic-conventions/pull/460))
