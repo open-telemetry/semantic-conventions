@@ -9,11 +9,18 @@
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `cloud.account.id` | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` |
+| `cloud.account.name` | string | The cloud account name or alias used to identify different entities in a multi-tenant environment. | `elastic-dev`; `aws-prod` |
 | `cloud.availability_zone` | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` |
+| `cloud.instance.id` | string | Instance ID of the host machine. | `i-1234567890abcdef0` |
+| `cloud.instance.name` | string | Instance name of the host machine. | `jenkins-1` |
+| `cloud.machine.type` | string | Machine type of the host machine. | `t2.medium` |
 | `cloud.platform` | string | The cloud platform in use. [2] | `alibaba_cloud_ecs` |
+| `cloud.project.id` | string | The cloud project identifier. | `my-project` |
+| `cloud.project.name` | string | The cloud project name. | `project` |
 | `cloud.provider` | string | Name of the cloud provider. | `alibaba_cloud` |
 | `cloud.region` | string | The geographical region the resource is running. [3] | `us-central1`; `us-east-1` |
 | `cloud.resource_id` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
+| `cloud.service.name` | string | The cloud service name is intended to distinguish services running on different platforms within a provider, eg AWS EC2 vs Lambda, GCP GCE vs App Engine, Azure VM vs App Server. | `ec2`; `lambda` |
 
 **[1]:** Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
 

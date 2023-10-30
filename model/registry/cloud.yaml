@@ -177,3 +177,34 @@ groups:
           The cloud platform in use.
         note: >
           The prefix of the service SHOULD match the one specified in `cloud.provider`.
+      - id: account.name
+        type: string
+        brief: The cloud account name or alias used to identify different entities in a multi-tenant environment.
+        examples: [ 'elastic-dev', 'aws-prod' ]
+      - id: service.name
+        type: string
+        brief: >
+          The cloud service name is intended to distinguish services running on
+          different platforms within a provider, eg AWS EC2 vs Lambda, GCP GCE
+          vs App Engine, Azure VM vs App Server.
+        examples: [ 'ec2', 'lambda' ]
+      - id: instance.id
+        type: string
+        brief: Instance ID of the host machine.
+        examples: [ 'i-1234567890abcdef0' ]
+      - id: instance.name
+        type: string
+        brief: Instance name of the host machine.
+        examples: [ 'jenkins-1' ]
+      - id: machine.type
+        type: string
+        brief: Machine type of the host machine.
+        examples: [ 't2.medium' ]
+      - id: project.id
+        type: string
+        brief: The cloud project identifier.
+        examples: [ 'my-project' ]
+      - id: project.name
+        type: string
+        brief: The cloud project name.
+        examples: [ 'project' ]
