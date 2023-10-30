@@ -7,6 +7,67 @@ release.
 
 ## Unreleased
 
+### Breaking
+
+- BREAKING: Rename http.resend_count to http.request.resend_count.
+  ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
+- BREAKING: Change `network.protocol.name` from recommended to opt-in in HTTP semconv.
+  ([#398](https://github.com/open-telemetry/semantic-conventions/pull/398))
+- BREAKING: Define url.scheme in terms of logical operation in HTTP server semconv.
+  ([#376](https://github.com/open-telemetry/semantic-conventions/pull/376))
+- BREAKING: Change `network.transport` from recommended to opt-in in HTTP semconv.
+  ([#402](https://github.com/open-telemetry/semantic-conventions/pull/402))
+- BREAKING: Change `network.type` from recommended to opt-in in HTTP semconv.
+  ([#410](https://github.com/open-telemetry/semantic-conventions/pull/410))
+- BREAKING: Factor in `X-Forwarded-Host` / `Forwarded` when capturing `server.address` and `server.port`.
+  ([#411](https://github.com/open-telemetry/semantic-conventions/pull/411))
+- Remove `thread.daemon`, and introduce `jvm.thread.daemon` instead.
+  Introduce `jvm.thread.state` attribute and add it to `jvm.thread.count` metric.
+  ([#297](https://github.com/open-telemetry/semantic-conventions/pull/297))
+- Fix `server.port` to be not required when `server.address` is not set.
+  ([#429](https://github.com/open-telemetry/semantic-conventions/pull/429))
+- Use seconds as default duration for FaaS duration histograms
+  ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
+- BREAKING: Remove `total` from list of well-known values of `system.memory.state` attribute.
+  ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
+- Remove `url.path` default value.
+  ([#462](https://github.com/open-telemetry/semantic-conventions/pull/462))
+- Remove conditional requirement on `network.peer.address` and `network.peer.port`
+  ([#449](https://github.com/open-telemetry/semantic-conventions/pull/449))
+- Change `user_agent.original` from recommended to opt-in on HTTP client spans.
+  ([#468](https://github.com/open-telemetry/semantic-conventions/pull/468))
+
+### Features
+
+- Adds `session.previous_id` to session.md
+  ([#348](https://github.com/open-telemetry/semantic-conventions/pull/348))
+- Metric namespaces SHOULD NOT be pluralized.
+  ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
+- Add opt-in `system.memory.limit` metric.
+  ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
+
+### Fixes
+
+- Clarify that `error.type` should be the fully-qualified exception class name
+  when it represents an exception type.
+  ([#387](https://github.com/open-telemetry/semantic-conventions/pull/387))
+- Add cardinality warning about two opt-in HTTP metric attributes
+  ([#401](https://github.com/open-telemetry/semantic-conventions/pull/401))
+- Change `server.port` from recommended to conditionally required on HTTP server semconv.
+  ([#399](https://github.com/open-telemetry/semantic-conventions/pull/399))
+- Add cardinality warning about two opt-in HTTP metric attributes to all HTTP metrics.
+  ([#412](https://github.com/open-telemetry/semantic-conventions/pull/412))
+- Remove outdated note about not recording HTTP `server.address` when only IP address available.
+  ([#413](https://github.com/open-telemetry/semantic-conventions/pull/413))
+- Clarify HTTP server definitions and `server.address|port` notes.
+  ([#423](https://github.com/open-telemetry/semantic-conventions/pull/423))
+- Change the precedence between `:authority` and `Host` headers when populating
+  `server.address` and `server.port` attributes.
+  ([#455](https://github.com/open-telemetry/semantic-conventions/pull/455))
+
+## v1.22.0 (2023-10-12)
+
+- Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
 - Adds `session.id` and session.md to general docs and model
 ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
@@ -129,9 +190,26 @@ release.
   ([#350](https://github.com/open-telemetry/semantic-conventions/pull/350))
 - Improve network attribute briefs.
   ([#352](https://github.com/open-telemetry/semantic-conventions/pull/352))
+- Document the difference between host and system metrics
+  ([#324](https://github.com/open-telemetry/semantic-conventions/pull/324))
 - BREAKING: Rename `telemetry.auto.version` resource attribute to `telemetry.distro.version`
   and add `telemetry.distro.name` resource attribute
   ([#178](https://github.com/open-telemetry/semantic-conventions/pull/178))
+- Add `system.cpu.frequency` metric.
+  ([#337](https://github.com/open-telemetry/semantic-conventions/pull/337))
+- Improve HTTP metric briefs.
+  ([#366](https://github.com/open-telemetry/semantic-conventions/pull/366))
+- Add `host.ip` resource attribute convention.
+  ([#203](https://github.com/open-telemetry/semantic-conventions/pull/203))
+- BREAKING: remove `-` to `_` normalization from http header and rpc metadata
+  attribute keys.
+  ([#369](https://github.com/open-telemetry/semantic-conventions/pull/369))
+- BREAKING: Rename/replace `(client|server).socket.(address|port)` attributes
+  with `network.(peer|local).(address|port)`.
+  ([#342](https://github.com/open-telemetry/semantic-conventions/pull/342))
+- Make `network.protocol.name|version` description consistent between HTTP
+  spans and metrics.
+  ([#367](https://github.com/open-telemetry/semantic-conventions/pull/367))
 
 ## v1.21.0 (2023-07-13)
 

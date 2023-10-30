@@ -15,7 +15,7 @@ All of these attributes can be provided by the user agent itself in the form of 
 | `browser.language` | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | Recommended |
 | `browser.mobile` | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | Recommended |
 | `browser.platform` | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | Recommended |
-| `user_agent.original` | string | Full user-agent string provided by the browser [5] | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | Recommended |
+| [`user_agent.original`](../attributes-registry/user-agent.md) | string | Full user-agent string provided by the browser [5] | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | Recommended |
 
 **[1]:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
@@ -29,4 +29,4 @@ The list of possible values is defined in the [W3C User-Agent Client Hints speci
 **[5]:** The user-agent value SHOULD be provided only from browsers that do not have a mechanism to retrieve brands and platform individually from the User-Agent Client Hints API. To retrieve the value, the legacy `navigator.userAgent` API can be used.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

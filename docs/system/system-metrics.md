@@ -26,8 +26,10 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   * [Metric: `system.cpu.utilization`](#metric-systemcpuutilization)
   * [Metric: `system.cpu.physical.count`](#metric-systemcpuphysicalcount)
   * [Metric: `system.cpu.logical.count`](#metric-systemcpulogicalcount)
+  * [Metric: `system.cpu.frequency`](#metric-systemcpufrequency)
 - [Memory Metrics](#memory-metrics)
   * [Metric: `system.memory.usage`](#metric-systemmemoryusage)
+  * [Metric: `system.memory.limit`](#metric-systemmemorylimit)
   * [Metric: `system.memory.utilization`](#metric-systemmemoryutilization)
 - [Paging/Swap Metrics](#pagingswap-metrics)
   * [Metric: `system.paging.usage`](#metric-systempagingusage)
@@ -145,6 +147,22 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.cpu.logical.count(full) -->
 <!-- endsemconv -->
 
+### Metric: `system.cpu.frequency`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.system.cpu.frequency(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.cpu.frequency` | Gauge | `{Hz}` | Reports the current frequency of the CPU in Hz |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.cpu.frequency(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | Recommended |
+<!-- endsemconv -->
+
 ## Memory Metrics
 
 **Description:** System level memory metrics capture under the namespace `system.memory`.
@@ -157,7 +175,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.memory.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.memory.usage` | UpDownCounter | `By` |  |
+| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. [1] |
+
+**[1]:** The sum over all `system.memory.state` values SHOULD equal the total memory
+available on the system, that is `system.memory.limit`.
 <!-- endsemconv -->
 
 <!-- semconv metric.system.memory.usage(full) -->
@@ -169,12 +190,26 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description |
 |---|---|
-| `total` | total |
 | `used` | used |
 | `free` | free |
 | `shared` | shared |
 | `buffers` | buffers |
 | `cached` | cached |
+<!-- endsemconv -->
+
+### Metric: `system.memory.limit`
+
+This metric is [opt-in][MetricOptIn].
+
+<!-- semconv metric.system.memory.limit(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `system.memory.limit` | UpDownCounter | `By` | Total memory available in the system. [1] |
+
+**[1]:** Its value SHOULD equal the sum of `system.memory.state` over all states.
+<!-- endsemconv -->
+
+<!-- semconv metric.system.memory.limit(full) -->
 <!-- endsemconv -->
 
 ### Metric: `system.memory.utilization`
@@ -196,7 +231,6 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description |
 |---|---|
-| `total` | total |
 | `used` | used |
 | `free` | free |
 | `shared` | shared |
@@ -373,7 +407,7 @@ This metric is [recommended][MetricRecommended].
 
 - Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
 - Windows: The complement of
-  ["Disk\% Idle Time"](https://learn.microsoft.com/en-us/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
+  ["Disk\% Idle Time"](https://learn.microsoft.com/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
   performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
 <!-- endsemconv -->
 
@@ -534,8 +568,8 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Measured as:
 
 - Linux: the `drop` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
-- Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
-  from [`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2)
+- Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+  from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2)
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.dropped(full) -->
@@ -588,8 +622,8 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Measured as:
 
 - Linux: the `errs` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
-- Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
-  from [`GetIfEntry2`](https://docs.microsoft.com/en-us/windows/win32/api/netioapi/nf-netioapi-getifentry2).
+- Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+  from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2).
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.errors(full) -->
@@ -643,14 +677,14 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.transport`](../general/attributes.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
 | `system.network.state` | string | A stateless protocol MUST NOT set this attribute | `close_wait` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport, for example
+a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
@@ -659,7 +693,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|
 | `tcp` | TCP |
 | `udp` | UDP |
-| `pipe` | Named or anonymous pipe. See note below. |
+| `pipe` | Named or anonymous pipe. |
 | `unix` | Unix domain socket |
 
 `system.network.state` MUST be one of the following:
@@ -730,7 +764,7 @@ follow the hierarchies listed above for different entities like CPU, memory,
 and network.
 
 For example, [UNIX load
-average](https://en.wikipedia.org/wiki/Load_(computing)) over a given
+average](https://wikipedia.org/wiki/Load_(computing)) over a given
 interval is not well standardized and its value across different UNIX like
 OSes may vary despite being under similar load:
 
@@ -750,8 +784,9 @@ An instrument for load average over 1 minute on Linux could be named
 `system.linux.cpu.load_1m`, reusing the `cpu` name proposed above and having
 an `{os}` prefix to split this metric across OSes.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/metrics/metric-requirement-level.md#recommended
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
+[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md#opt-in
 
 ### Metric: `system.linux.memory.available`
 
