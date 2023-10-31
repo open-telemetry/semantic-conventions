@@ -91,7 +91,7 @@ Examples of span names:
 | [`rpc.service`](../attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | Recommended |
 | [`rpc.system`](../attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
 | [`server.address`](../general/attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../general/attributes.md) | int | Server port number. [6] | `80`; `8080`; `443` | Conditionally Required: See below |
+| [`server.port`](../general/attributes.md) | int | Server port number. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -108,6 +108,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 **[5]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
 **[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[7]:** if the port is supported by the network transport used for communication.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -135,9 +137,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `apache_dubbo` | Apache Dubbo |
 | `connect_rpc` | Connect RPC |
 <!-- endsemconv -->
-
-For client-side spans `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).
-For server-side spans `client.socket.port` is optional (it describes the port the client is connecting from).
 
 #### Service name
 

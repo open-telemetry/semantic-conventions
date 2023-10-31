@@ -22,10 +22,6 @@ groups:
     type: attribute_group
     brief: 'HTTP client attributes'
     extends: attributes.http.client
-    attributes:
-      - ref: url.scheme
-        requirement_level: required
-        examples: ["http", "https"]
 
   - id: metric.http.server.request.duration
     type: metric
