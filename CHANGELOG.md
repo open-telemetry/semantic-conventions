@@ -41,6 +41,8 @@ release.
   ([#460](https://github.com/open-telemetry/semantic-conventions/pull/460))
 - Clarify that `client.port` is the port of whichever client was captured in `client.address`.
   ([#471](https://github.com/open-telemetry/semantic-conventions/pull/471))
+- Change `client.port` from recommended to opt-in on HTTP server spans
+  ([#472](https://github.com/open-telemetry/semantic-conventions/pull/472))
 - Make `client.address` sampling relevant on HTTP server spans.
   ([#469](https://github.com/open-telemetry/semantic-conventions/pull/469))
 
