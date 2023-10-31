@@ -71,6 +71,7 @@ groups:
             Otherwise, the immediate client peer address.
         examples: ['83.164.160.102']
       - ref: client.port
+        requirement_level: opt_in
         brief: The port of whichever client was captured in `client.address`.
       - ref: url.path
         requirement_level: required
