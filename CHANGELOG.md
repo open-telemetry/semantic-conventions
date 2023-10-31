@@ -43,6 +43,9 @@ release.
   ([#471](https://github.com/open-telemetry/semantic-conventions/pull/471))
 - Change `client.port` from recommended to opt-in on HTTP server spans
   ([#472](https://github.com/open-telemetry/semantic-conventions/pull/472))
+- BREAKING: Make `url.scheme` opt_in for HTTP client and remove default value for
+  `server.port` making it required on the client.
+  ([#459](https://github.com/open-telemetry/semantic-conventions/pull/459))
 - Make `client.address` sampling relevant on HTTP server spans.
   ([#469](https://github.com/open-telemetry/semantic-conventions/pull/469))
 

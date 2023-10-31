@@ -45,6 +45,7 @@ groups:
         requirement_level: required
       - ref: user_agent.original
         requirement_level: opt_in
+      - ref: url.scheme
 
   - id: trace.http.server
     type: span
