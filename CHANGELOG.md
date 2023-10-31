@@ -38,7 +38,7 @@ release.
   ([#468](https://github.com/open-telemetry/semantic-conventions/pull/468))
 - BREAKING: Remove `event.domain` from log event attributes.
   ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
-- BREAKING: Chance `event.name` definition to include `namespace`.
+- BREAKING: Change `event.name` definition to include `namespace`.
   ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
 
 ### Features
