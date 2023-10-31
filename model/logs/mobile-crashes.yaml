@@ -5,43 +5,51 @@ groups:
       This document defines attributes for crashes represented using Log Record Events.
       `event.domain` is 'device' and `event.name` is 'crash
     attributes:
-      - id: platform
+      - id: os.name
         requirement_level: "required"
         brief: >
             This attribute indicates the operating system name of the device on which the crash event occurred.
-        type:
-          allow_custom_values: false
-          members:
-            - id: android
-              value: 'android'
-              brief: 'Value if crash happened on an android device.'
-            - id: ios
-              value: 'ios'
-              brief: 'Value if crash happened on an ios device.'
-      - id: foreground
-        requirement_level: "required"
+        type: string
+        examples: ['iOS', 'Android']
+      - id: ios.state
+        requirement_level: recommended
         brief: >
-          This attribute indicates whether the app was in the foreground or not during the crash.
-        type: boolean
-      - id: stacktrace
+          This attribute represents the state the application has transitioned into at the occurrence of the event
+          For ios crashes
+        type: string
+        examples: ['active', 'inactive', 'background', 'foreground', 'terminate']
+      - id: android.state
+        requirement_level: recommended
+        brief: >
+          This attribute represents the state the application has transitioned into at the occurrence of the event
+          For android crashes
+        type: string
+        examples: ['created', 'foreground', 'background']
+      - id: exception.stacktrace
         requirement_level: recommended
         brief: >
           The contents of printStackTrace() being called on the throwable
           For android crashes
         type: string
-      - id: thread
+      - id: thread.id
         requirement_level: recommended
         brief: >
-          A string representation of this thread. Including the thread's name, priority, and thread group
+          The id of the thread as output by Thread.currentThread().getId()
           For android crashes
         type: string
-      - id: throwableMessage
+      - id: thread.name
         requirement_level: recommended
         brief: >
-          The message within the throwable object
+          The name of the thread as output by Thread.currentThread().getName()
           For android crashes
         type: string
-      - id: crashReport
+      - id: exception.message
+        requirement_level: recommended
+        brief: >
+          The message within the exception object
+          For android crashes
+        type: string
+      - id: crash.report
         requirement_level: recommended
         brief: >
           The contents from PLCrashReporter
