@@ -19,7 +19,7 @@ The following semantic conventions for events are defined:
 
 Events are recorded as LogRecords that are shaped
 in a special way: Event LogRecords have the attribute
-`event.name` consisting of a `namespace` and `name` that
+`event.name` consisting of a dot-separated `namespace` and `name` that
 uniquely identifies the event (and possibly other LogRecord attributes).
 
 The `namespace` portion is used to logically separate events from different
