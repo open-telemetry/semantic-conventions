@@ -368,6 +368,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
+* [`client.address`](../general/attributes.md)
 * [`server.address`](../general/attributes.md)
 * [`server.port`](../general/attributes.md)
 * [`url.path`](../attributes-registry/url.md)
