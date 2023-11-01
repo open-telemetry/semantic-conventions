@@ -256,8 +256,6 @@ Following attributes MUST be provided **at span creation time** (when provided a
 * [`url.full`](../attributes-registry/url.md)
 <!-- endsemconv -->
 
-Note that in some cases host and port identifiers in the `Host` header might be different from the `server.address` and `server.port`, in this case instrumentation MAY populate `Host` header on `http.request.header.host` attribute even if it's not enabled by user.
-
 ### HTTP client span duration
 
 There are some minimal constraints that SHOULD be honored:
@@ -379,8 +377,6 @@ Following attributes MUST be provided **at span creation time** (when provided a
 <!-- endsemconv -->
 
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
-
-Note that in some cases host and port identifiers in the `Host` header might be different from the `server.address` and `server.port`, in this case instrumentation MAY populate `Host` header on `http.request.header.host` attribute even if it's not enabled by user.
 
 ## Examples
 
