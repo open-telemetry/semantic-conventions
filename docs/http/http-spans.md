@@ -4,7 +4,7 @@ linkTitle: Spans
 
 # Semantic Conventions for HTTP Spans
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
