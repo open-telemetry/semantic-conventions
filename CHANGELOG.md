@@ -48,6 +48,8 @@ release.
   ([#459](https://github.com/open-telemetry/semantic-conventions/pull/459))
 - Make `client.address` sampling relevant on HTTP server spans.
   ([#469](https://github.com/open-telemetry/semantic-conventions/pull/469))
+- Change `network.protocol.name` from opt-in to conditionally required.
+  ([#478](https://github.com/open-telemetry/semantic-conventions/pull/478))
 - Remove outdated `http.request.header.host` guidance
   ([#479](https://github.com/open-telemetry/semantic-conventions/pull/479))
 
