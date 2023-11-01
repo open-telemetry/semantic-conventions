@@ -7,6 +7,8 @@ release.
 
 ## Unreleased
 
+ - Explain `deployment.environment` impact on service identity. ([#481](https://github.com/open-telemetry/semantic-conventions/pull/481))
+
 ### Breaking
 
 - BREAKING: Rename http.resend_count to http.request.resend_count.
