@@ -7,14 +7,13 @@ groups:
     brief: "Describes RPC metric attributes."
     attributes:
       - ref: rpc.system
+        requirement_level: required
       - ref: rpc.service
       - ref: rpc.method
       - ref: network.transport
       - ref: network.type
       - ref: server.address
       - ref: server.port
-      - ref: server.socket.address
-      - ref: server.socket.port
 
   # RPC Server metrics
   - id: metric.rpc.server.duration

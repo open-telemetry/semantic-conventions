@@ -27,7 +27,7 @@ Kubernetes object, but "name" is usually more user friendly so can be also set.
 | `k8s.cluster.name` | string | The name of the cluster. | `opentelemetry-cluster` | Recommended |
 | `k8s.cluster.uid` | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | Recommended |
 
-**[1]:** K8s does not have support for obtaining a cluster ID. If this is ever
+**[1]:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
 official APIs. In the meantime, we are able to use the `uid` of the
 `kube-system` namespace as a proxy for cluster ID. Read on for the
@@ -91,8 +91,8 @@ containers on your cluster.
 <!-- semconv k8s.pod -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `k8s.pod.uid` | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 | `k8s.pod.name` | string | The name of the Pod. | `opentelemetry-pod-autoconf` | Recommended |
+| `k8s.pod.uid` | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 <!-- endsemconv -->
 
 ## Container
@@ -127,8 +127,8 @@ any given time.
 <!-- semconv k8s.replicaset -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `k8s.replicaset.uid` | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 | `k8s.replicaset.name` | string | The name of the ReplicaSet. | `opentelemetry` | Recommended |
+| `k8s.replicaset.uid` | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 <!-- endsemconv -->
 
 ## Deployment
@@ -144,8 +144,8 @@ distributed among the nodes of a cluster.
 <!-- semconv k8s.deployment -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `k8s.deployment.uid` | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 | `k8s.deployment.name` | string | The name of the Deployment. | `opentelemetry` | Recommended |
+| `k8s.deployment.uid` | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 <!-- endsemconv -->
 
 ## StatefulSet
@@ -160,8 +160,8 @@ about the ordering and uniqueness of these Pods.
 <!-- semconv k8s.statefulset -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `k8s.statefulset.uid` | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 | `k8s.statefulset.name` | string | The name of the StatefulSet. | `opentelemetry` | Recommended |
+| `k8s.statefulset.uid` | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 <!-- endsemconv -->
 
 ## DaemonSet
@@ -175,8 +175,8 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 <!-- semconv k8s.daemonset -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `k8s.daemonset.uid` | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 | `k8s.daemonset.name` | string | The name of the DaemonSet. | `opentelemetry` | Recommended |
+| `k8s.daemonset.uid` | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 <!-- endsemconv -->
 
 ## Job
@@ -191,8 +191,8 @@ successfully terminate.
 <!-- semconv k8s.job -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `k8s.job.uid` | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 | `k8s.job.name` | string | The name of the Job. | `opentelemetry` | Recommended |
+| `k8s.job.uid` | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 <!-- endsemconv -->
 
 ## CronJob
@@ -206,8 +206,8 @@ A CronJob creates Jobs on a repeating schedule.
 <!-- semconv k8s.cronjob -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `k8s.cronjob.uid` | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 | `k8s.cronjob.name` | string | The name of the CronJob. | `opentelemetry` | Recommended |
+| `k8s.cronjob.uid` | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
