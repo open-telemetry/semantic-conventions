@@ -54,6 +54,9 @@ release.
   ([#479](https://github.com/open-telemetry/semantic-conventions/pull/479))
 - Change sampling relevant from `MUST` to `SHOULD`
   ([#486](https://github.com/open-telemetry/semantic-conventions/pull/486))
+- Make `user_agent.original` and `http.request.header.*` sampling relevant
+  on HTTP server spans.
+  ([#467](https://github.com/open-telemetry/semantic-conventions/pull/467))
 
 ### Features
 
