@@ -52,6 +52,11 @@ release.
   ([#478](https://github.com/open-telemetry/semantic-conventions/pull/478))
 - Remove outdated `http.request.header.host` guidance
   ([#479](https://github.com/open-telemetry/semantic-conventions/pull/479))
+- Change sampling relevant from `MUST` to `SHOULD`
+  ([#486](https://github.com/open-telemetry/semantic-conventions/pull/486))
+- Make `user_agent.original` and `http.request.header.*` sampling relevant
+  on HTTP server spans.
+  ([#467](https://github.com/open-telemetry/semantic-conventions/pull/467))
 
 ### Features
 
@@ -61,6 +66,8 @@ release.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 - Add opt-in `system.memory.limit` metric.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
+- Add `host.mac` resource attribute convention.
+  ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
 - Mark HTTP semantic conventions as stable.
   ([#377](https://github.com/open-telemetry/semantic-conventions/pull/377))
 
