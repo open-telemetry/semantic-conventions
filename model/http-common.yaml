@@ -31,7 +31,8 @@ groups:
           If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
       - ref: network.protocol.name
         examples: ['http', 'spdy']
-        requirement_level: opt_in
+        requirement_level:
+          conditionally_required: If not `http` and `network.protocol.version` is set.
       - ref: network.protocol.version
         examples: ['1.0', '1.1', '2', '3']
 
@@ -48,10 +49,12 @@ groups:
           If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
           `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
       - ref: server.port
-        requirement_level:
-          conditionally_required: If not default (`80` for `http` scheme, `443` for `https`).
+        requirement_level: required
         brief: >
           Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+      - ref: url.scheme
+        requirement_level: opt_in
+        examples: ["http", "https"]
 
   - id: attributes.http.server
     type: attribute_group
@@ -72,13 +75,13 @@ groups:
         note: >
           See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
         requirement_level:
-          conditionally_required: If `server.address` is set and the port is not default (`80` for `http` scheme, `443` for `https`).
+          conditionally_required: If `server.address` is set.
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]
         note: >
           The scheme of the original client request, if known
-          (e.g. from [Forwarded](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded),
+          (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto),
           [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto),
           or a similar header).
           Otherwise, the scheme of the immediate peer request.

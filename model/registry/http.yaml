@@ -11,6 +11,7 @@ groups:
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
+        stability: experimental  # this should not be marked stable with other HTTP attributes
       - id: request.header
         type: template[string[]]
         brief: >
@@ -97,6 +98,7 @@ groups:
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
+        stability: experimental  # this should not be marked stable with other HTTP attributes
       - id: response.header
         type: template[string[]]
         brief: >
