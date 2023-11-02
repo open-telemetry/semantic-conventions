@@ -66,6 +66,8 @@ release.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 - Add opt-in `system.memory.limit` metric.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
+- Add `host.mac` resource attribute convention.
+  ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
 
 ### Fixes
 
