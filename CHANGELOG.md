@@ -36,6 +36,24 @@ release.
   ([#449](https://github.com/open-telemetry/semantic-conventions/pull/449))
 - Change `user_agent.original` from recommended to opt-in on HTTP client spans.
   ([#468](https://github.com/open-telemetry/semantic-conventions/pull/468))
+- Change `http.request.body.size` and `http.response.body.size`
+  from recommended to opt-in.
+  ([#460](https://github.com/open-telemetry/semantic-conventions/pull/460))
+- Clarify that `client.port` is the port of whichever client was captured in `client.address`.
+  ([#471](https://github.com/open-telemetry/semantic-conventions/pull/471))
+- Change `client.port` from recommended to opt-in on HTTP server spans
+  ([#472](https://github.com/open-telemetry/semantic-conventions/pull/472))
+- BREAKING: Make `url.scheme` opt_in for HTTP client and remove default value for
+  `server.port` making it required on the client.
+  ([#459](https://github.com/open-telemetry/semantic-conventions/pull/459))
+- Make `client.address` sampling relevant on HTTP server spans.
+  ([#469](https://github.com/open-telemetry/semantic-conventions/pull/469))
+- Change `network.protocol.name` from opt-in to conditionally required.
+  ([#478](https://github.com/open-telemetry/semantic-conventions/pull/478))
+- Remove outdated `http.request.header.host` guidance
+  ([#479](https://github.com/open-telemetry/semantic-conventions/pull/479))
+- Change sampling relevant from `MUST` to `SHOULD`
+  ([#486](https://github.com/open-telemetry/semantic-conventions/pull/486))
 
 ### Features
 

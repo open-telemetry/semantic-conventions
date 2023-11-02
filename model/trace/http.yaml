@@ -10,10 +10,8 @@ groups:
       - ref: http.request.method_original
         requirement_level:
           conditionally_required: If and only if it's different than `http.request.method`.
-      - ref: http.request.body.size
       - ref: http.request.header
         requirement_level: opt_in
-      - ref: http.response.body.size
       - ref: http.response.header
         requirement_level: opt_in
       - ref: http.request.method
@@ -47,6 +45,7 @@ groups:
         requirement_level: required
       - ref: user_agent.original
         requirement_level: opt_in
+      - ref: url.scheme
 
   - id: trace.http.server
     type: span
@@ -66,6 +65,7 @@ groups:
         requirement_level: opt_in
         brief: Local socket port. Useful in case of a multi-port host.
       - ref: client.address
+        sampling_relevant: true
         note: >
             The IP address of the original client behind all proxies, if
             known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for),
@@ -73,10 +73,8 @@ groups:
             Otherwise, the immediate client peer address.
         examples: ['83.164.160.102']
       - ref: client.port
-        brief: >
-            The port of the original client behind all proxies, if
-            known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for) or a similar header).
-            Otherwise, the immediate client peer port.
+        requirement_level: opt_in
+        brief: The port of whichever client was captured in `client.address`.
       - ref: url.path
         requirement_level: required
         sampling_relevant: true
