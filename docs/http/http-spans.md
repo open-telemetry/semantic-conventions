@@ -180,7 +180,7 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[9]:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
-Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
+The following attributes can be important for making sampling decisions and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`http.request.method`](../attributes-registry/http.md)
 
@@ -249,7 +249,7 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed) and SHOULD NOT be validated or modified except for sanitizing purposes.
 
-Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
+The following attributes can be important for making sampling decisions and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`server.address`](../general/attributes.md)
 * [`server.port`](../general/attributes.md)
@@ -366,7 +366,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[7]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
-Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
+The following attributes can be important for making sampling decisions and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`client.address`](../general/attributes.md)
 * [`server.address`](../general/attributes.md)
