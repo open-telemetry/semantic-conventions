@@ -87,6 +87,10 @@ release.
 - Change the precedence between `:authority` and `Host` headers when populating
   `server.address` and `server.port` attributes.
   ([#455](https://github.com/open-telemetry/semantic-conventions/pull/455))
+- Clarify HTTP server definitions and `server.address|port` notes.
+  ([#423](https://github.com/open-telemetry/semantic-conventions/pull/423))
+- Remove misleading pluralization wording related to count metrics
+  ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
 
 ## v1.22.0 (2023-10-12)
 

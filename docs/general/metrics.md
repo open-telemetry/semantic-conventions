@@ -124,7 +124,6 @@ should be pluralized, even if only a single data point is recorded.
 
 If the value being recorded represents the count of concepts signified
 by the namespace then the metric should be named `count` (within its namespace).
-The pluralization rule does not apply in this case.
 
 For example if we have a namespace `system.processes` which contains all metrics related
 to the processes then to represent the count of the processes we can have a metric named
