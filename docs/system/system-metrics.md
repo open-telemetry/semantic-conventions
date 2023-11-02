@@ -52,8 +52,8 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   * [Metric: `system.network.io`](#metric-systemnetworkio)
   * [Metric: `system.network.connections`](#metric-systemnetworkconnections)
 - [Aggregate System Process Metrics](#aggregate-system-process-metrics)
-  * [Metric: `system.process.count`](#metric-systemprocessescount)
-  * [Metric: `system.process.created_total`](#metric-systemprocessescreated)
+  * [Metric: `system.process.count`](#metric-systemprocesscount)
+  * [Metric: `system.process.created_total`](#metric-systemprocesscreated_total)
 - [`system.{os}.` - OS Specific System Metrics](#systemos---os-specific-system-metrics)
   * [Metric: `system.linux.memory.available`](#metric-systemlinuxmemoryavailable)
 
