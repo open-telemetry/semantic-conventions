@@ -10,6 +10,15 @@ versions:
               thread.daemon: jvm.thread.daemon
             apply_to_metrics:
               - jvm.thread.count
+        # https://github.com/open-telemetry/semantic-conventions/pull/484
+        - rename_attributes:
+            attribute_map:
+              system.processes.status: system.process.status
+            apply_to_metrics:
+              - system.processes.count
+        - rename_metrics:
+            system.processes.count: system.process.count
+            system.processes.created: system.process.created_total
   1.22.0:
     spans:
       changes:

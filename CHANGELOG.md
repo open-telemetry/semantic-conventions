@@ -28,6 +28,10 @@ release.
   ([#429](https://github.com/open-telemetry/semantic-conventions/pull/429))
 - Use seconds as default duration for FaaS duration histograms
   ([#384](https://github.com/open-telemetry/semantic-conventions/pull/384))
+- Rename `system.processes.*` namespace to `system.process.*`
+  ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
+- Rename `system.processes.created` to `system.process.created_total`
+  ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
 
 ### Features
 
