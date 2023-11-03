@@ -32,4 +32,4 @@ These are the attributes for a full chat completion (no streaming).
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `llm.anthropic.stop_reason` | string | The reason why the model stopped sampling. | `stop_sequence` | Required |
-| `llm.ahtropic.model` | string | The name of the model used for the completion. | `claude-instant-1` | Recommended |
+| `llm.anthropic.model` | string | The name of the model used for the completion. | `claude-instant-1` | Recommended |
