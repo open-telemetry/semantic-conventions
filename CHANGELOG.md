@@ -68,6 +68,8 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Add `host.mac` resource attribute convention.
   ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
+- Mark HTTP semantic conventions as stable.
+  ([#377](https://github.com/open-telemetry/semantic-conventions/pull/377))
 
 ### Fixes
 
