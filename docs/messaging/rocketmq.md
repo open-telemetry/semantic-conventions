@@ -16,18 +16,18 @@ described on this page.
 
 Specific attributes for Apache RocketMQ are defined below.
 
-<!-- semconv messaging.rocketmq -->
+<!-- semconv messaging.rocketmq(full,tag=tech-specific-rocketmq) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `messaging.rocketmq.client_group` | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | Required |
-| `messaging.rocketmq.consumption_model` | string | Model of message consumption. This only applies to consumer spans. | `clustering` | Recommended |
-| `messaging.rocketmq.message.delay_time_level` | int | The delay time level for delay message, which determines the message delay time. | `3` | Conditionally Required: [1] |
-| `messaging.rocketmq.message.delivery_timestamp` | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | Conditionally Required: [2] |
-| `messaging.rocketmq.message.group` | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | Conditionally Required: If the message type is FIFO. |
-| `messaging.rocketmq.message.keys` | string[] | Key(s) of message, another way to mark message besides message id. | `[keyA, keyB]` | Recommended |
-| `messaging.rocketmq.message.tag` | string | The secondary classifier of message besides topic. | `tagA` | Recommended |
-| `messaging.rocketmq.message.type` | string | Type of message. | `normal` | Recommended |
-| `messaging.rocketmq.namespace` | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | Required |
+| [`messaging.rocketmq.client_group`](../attributes-registry/messaging.md) | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | Required |
+| [`messaging.rocketmq.consumption_model`](../attributes-registry/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering` | Recommended |
+| [`messaging.rocketmq.message.delay_time_level`](../attributes-registry/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | Conditionally Required: [1] |
+| [`messaging.rocketmq.message.delivery_timestamp`](../attributes-registry/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | Conditionally Required: [2] |
+| [`messaging.rocketmq.message.group`](../attributes-registry/messaging.md) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | Conditionally Required: If the message type is FIFO. |
+| [`messaging.rocketmq.message.keys`](../attributes-registry/messaging.md) | string[] | Key(s) of message, another way to mark message besides message id. | `[keyA, keyB]` | Recommended |
+| [`messaging.rocketmq.message.tag`](../attributes-registry/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | Recommended |
+| [`messaging.rocketmq.message.type`](../attributes-registry/messaging.md) | string | Type of message. | `normal` | Recommended |
+| [`messaging.rocketmq.namespace`](../attributes-registry/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | Required |
 
 **[1]:** If the message type is delay and delivery timestamp is not specified.
 
