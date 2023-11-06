@@ -9,6 +9,20 @@ release.
 
 ### Breaking
 
+### Features
+
+- Add Semantic conventions for TLS/SSL encrypted communication.
+  ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+
+### Fixes
+
+## v1.23.0 (2023-11-03)
+
+This release marks the first where the core of HTTP semantic conventions have
+stabilized.
+
+### Breaking
+
 - BREAKING: Rename http.resend_count to http.request.resend_count.
   ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
 - BREAKING: Change `network.protocol.name` from recommended to opt-in in HTTP semconv.
@@ -36,6 +50,27 @@ release.
   ([#449](https://github.com/open-telemetry/semantic-conventions/pull/449))
 - Change `user_agent.original` from recommended to opt-in on HTTP client spans.
   ([#468](https://github.com/open-telemetry/semantic-conventions/pull/468))
+- Change `http.request.body.size` and `http.response.body.size`
+  from recommended to opt-in.
+  ([#460](https://github.com/open-telemetry/semantic-conventions/pull/460))
+- Clarify that `client.port` is the port of whichever client was captured in `client.address`.
+  ([#471](https://github.com/open-telemetry/semantic-conventions/pull/471))
+- Change `client.port` from recommended to opt-in on HTTP server spans
+  ([#472](https://github.com/open-telemetry/semantic-conventions/pull/472))
+- BREAKING: Make `url.scheme` opt_in for HTTP client and remove default value for
+  `server.port` making it required on the client.
+  ([#459](https://github.com/open-telemetry/semantic-conventions/pull/459))
+- Make `client.address` sampling relevant on HTTP server spans.
+  ([#469](https://github.com/open-telemetry/semantic-conventions/pull/469))
+- Change `network.protocol.name` from opt-in to conditionally required.
+  ([#478](https://github.com/open-telemetry/semantic-conventions/pull/478))
+- Remove outdated `http.request.header.host` guidance
+  ([#479](https://github.com/open-telemetry/semantic-conventions/pull/479))
+- Change sampling relevant from `MUST` to `SHOULD`
+  ([#486](https://github.com/open-telemetry/semantic-conventions/pull/486))
+- Make `user_agent.original` and `http.request.header.*` sampling relevant
+  on HTTP server spans.
+  ([#467](https://github.com/open-telemetry/semantic-conventions/pull/467))
 
 ### Features
 
@@ -45,8 +80,10 @@ release.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 - Add opt-in `system.memory.limit` metric.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
-- Add Semantic conventions for TLS/SSL encrypted communication.
-  ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+- Add `host.mac` resource attribute convention.
+  ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
+- Mark HTTP semantic conventions as stable.
+  ([#377](https://github.com/open-telemetry/semantic-conventions/pull/377))
 
 ### Fixes
 

@@ -9,14 +9,14 @@
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| `http.request.header.<key>` | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` |
-| `http.request.method` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` |
-| `http.request.method_original` | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` |
-| `http.request.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` |
+| `http.request.header.<key>` | string[] | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` |
+| `http.request.method` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>HTTP request method. [2] | `GET`; `POST`; `HEAD` |
+| `http.request.method_original` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` |
+| `http.request.resend_count` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| `http.response.header.<key>` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` |
-| `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
-| `http.route` | string | The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` |
+| `http.response.header.<key>` | string[] | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` |
+| `http.response.status_code` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
+| `http.route` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` |
 
 **[1]:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 The `User-Agent` header is already captured in the `user_agent.original` attribute. Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
@@ -68,8 +68,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `http.method` | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` |
-| `http.request_content_length` | int | Deprecated, use `http.request.body.size` instead. | `3495` |
-| `http.response_content_length` | int | Deprecated, use `http.response.body.size` instead. | `3495` |
+| `http.request_content_length` | int | Deprecated, use `http.request.header.content-length` instead. | `3495` |
+| `http.response_content_length` | int | Deprecated, use `http.response.header.content-length` instead. | `3495` |
 | `http.scheme` | string | Deprecated, use `url.scheme` instead. | `http`; `https` |
 | `http.status_code` | int | Deprecated, use `http.response.status_code` instead. | `200` |
 | `http.target` | string | Deprecated, use `url.path` and `url.query` instead. | `/search?q=OpenTelemetry#SemConv` |
