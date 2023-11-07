@@ -10,6 +10,8 @@ release.
 ### Breaking
 
 ### Features
+- Adds `labels` attribute to `k8s.pod` resource
+  ([#494](https://github.com/open-telemetry/semantic-conventions/pull/494))
 
 ### Fixes
 
