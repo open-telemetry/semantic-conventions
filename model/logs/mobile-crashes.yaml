@@ -20,7 +20,8 @@ groups:
         type: string
         examples: ['active', 'inactive', 'background', 'foreground', 'terminate']
       - id: android.state
-        requirement_level: recommended
+        requirement_level: 
+            recommended: If it is a crash on Android.
         brief: >
           This attribute represents the state the application has transitioned into at the occurrence of the event
           For android crashes
