@@ -102,6 +102,7 @@ stabilized.
 - Change the precedence between `:authority` and `Host` headers when populating
   `server.address` and `server.port` attributes.
   ([#455](https://github.com/open-telemetry/semantic-conventions/pull/455))
+- Explain `deployment.environment` impact on service identity. ([#481](https://github.com/open-telemetry/semantic-conventions/pull/481))
 
 ## v1.22.0 (2023-10-12)
 
