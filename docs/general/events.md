@@ -44,15 +44,6 @@ that identify the class of Events but not the instance of the Event.
 |---|---|---|---|---|
 | `event.name` | string | Consisting of a `namespace` and `name`; uniquely identifies the event. | `browser.mouse.click`; `browser.exception` | Required |
 
-
-The `namespace` portion of the name has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `browser` | Events from browser apps |
-| `device` | Events from mobile apps |
-| `k8s` | Events from Kubernetes |
-
 The `namespace` and `name` portions of `event.name` MUST be separated by a period (`.`). Periods MUST NOT be used in the `name` portion of the `event.name`
 value. Instead, for multi-word `name` portions, each word SHOULD be separated by underscores (i.e. use snake_case). See [Attribute Naming](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/common/attribute-naming.md) for details on namespaces and names.
 <!-- endsemconv -->
