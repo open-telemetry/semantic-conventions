@@ -9,6 +9,17 @@ release.
 
 ### Breaking
 
+### Features
+
+### Fixes
+
+## v1.23.0 (2023-11-03)
+
+This release marks the first where the core of HTTP semantic conventions have
+stabilized.
+
+### Breaking
+
 - BREAKING: Rename http.resend_count to http.request.resend_count.
   ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
 - BREAKING: Change `network.protocol.name` from recommended to opt-in in HTTP semconv.
@@ -68,6 +79,8 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Add `host.mac` resource attribute convention.
   ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
+- Mark HTTP semantic conventions as stable.
+  ([#377](https://github.com/open-telemetry/semantic-conventions/pull/377))
 
 ### Fixes
 
