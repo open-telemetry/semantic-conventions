@@ -17,19 +17,10 @@ The following semantic conventions for events are defined:
 
 ## General event attributes
 
-Events are recorded as LogRecords that are shaped
-in a special way: Event LogRecords have the attribute
-`event.name` consisting of a dot-separated `namespace` and `name` that
-uniquely identifies the event. Events may also have other LogRecord attributes.
-
-The `namespace` portion is used to logically separate events from different
-systems. For example, to record Events from browser apps, mobile apps and
-Kubernetes, we could use `browser`, `device` and `k8s` as the `namespace` for their
-Events. This provides a clean separation of semantics for events in each of the
-domains.
-
-Within a particular `namespace`, the `name` portion identifies the event.
-Events with same `event.name` are structurally similar to one another.
+Events are recorded as LogRecords that are shaped in a special way: Event
+LogRecords have the attribute `event.name` that uniquely identifies the event.
+Events with same `event.name` are structurally similar to one another. Events
+may also have other LogRecord attributes.
 
 When recording events from an existing system as OpenTelemetry Events, it is
 possible that the existing system does not have the equivalent of a name or
@@ -42,10 +33,12 @@ that identify the class of Events but not the instance of the Event.
 <!-- semconv event -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `event.name` | string | Consisting of a `namespace` and `name`; uniquely identifies the event. | `browser.mouse.click`; `browser.exception` | Required |
+| `event.name` | string | Uniquely identifies the event. | `browser.mouse.click`; `browser.exception` | Required |
 
-The `namespace` and `name` portions of `event.name` MUST be separated by a period (`.`). Periods MUST NOT be used in the `name` portion of the `event.name`
-value. Instead, for multi-word `name` portions, each word SHOULD be separated by underscores (i.e. use snake_case). See [Attribute Naming](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/common/attribute-naming.md) for details on namespaces and names.
+Event names are subject to the same rules as [attribute names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/common/attribute-naming.md).
+Notably, event names are namespaced to avoid collisions and provide a clean
+separation of semantics for events in separate domains like browser, mobile, and
+kubernetes.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
