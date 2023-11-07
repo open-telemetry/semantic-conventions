@@ -58,7 +58,7 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - id: process.disk.io.direction
+      - id: process.disk.io_direction
         brief: "The direction of the data transfer for this data point."
         type:
           allow_custom_values: true
@@ -75,7 +75,7 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - id: process.network.io.direction
+      - id: process.network.io_direction
         brief: "The direction of the data transfer for this data point."
         type:
           allow_custom_values: true
@@ -85,15 +85,15 @@ groups:
             - id: transmit
               value: 'transmit'
 
-  - id: metric.process.threads
+  - id: metric.process.thread.count
     type: metric
-    metric_name: process.threads
+    metric_name: process.thread.count
     brief: "Process threads count."
     instrument: updowncounter
     unit: "{thread}"
     attributes: []
 
-  - id: metric.process.open_file_descriptors
+  - id: metric.process.open_file_descriptor.count
     type: metric
     metric_name: process.open_file_descriptors
     brief: "Number of file descriptors in use by the process."
@@ -108,7 +108,7 @@ groups:
     instrument: counter
     unit: "{count}"
     attributes:
-      - id: process.context_switches.type
+      - id: process.context_switch_type
         brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
         type:
           allow_custom_values: true
@@ -125,7 +125,7 @@ groups:
     instrument: counter
     unit: "{fault}"
     attributes:
-      - id: process.paging.faults.type
+      - id: process.paging.fault_type
         brief: "The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults."
         type:
           allow_custom_values: true
