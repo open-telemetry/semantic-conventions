@@ -5,6 +5,7 @@ groups:
     brief: "Describes user-agent attributes."
     attributes:
       - id: original
+        stability: stable
         type: string
         brief: >
           Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client.
