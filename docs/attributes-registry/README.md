@@ -35,6 +35,7 @@ Currently, the following namespaces exist:
 * [OCI](oci.md)
 * [RPC](rpc.md)
 * [Thread](thread.md)
+* [TLS](tls.md)
 * [URL](url.md)
 * [User agent](user-agent.md)
 
