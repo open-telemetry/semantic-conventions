@@ -43,7 +43,7 @@ groups:
     prefix: enduser
     type: span
     brief: >
-      These attributes may be used for any operation with an authenticated and/or authorized enduser.
+      These attributes may be used for any operation with an authenticated or anonymous enduser.
     attributes:
       - id: id
         type: string
@@ -52,6 +52,11 @@ groups:
           [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)
           header in the inbound request from outside the system.
         examples: 'username'
+      - id: anon_id
+        type: string
+        brief: >
+          Randomly generated id of an anonymous user that is persisted throughout the lifetime of the visits.
+        examples: 'V1StGXR8_Z5jdHi6B-myT'
       - id: role
         type: string
         brief: 'Actual/assumed role the client is making the request under extracted from token or application security context.'
