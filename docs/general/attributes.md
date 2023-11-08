@@ -69,8 +69,8 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `server.address` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `server.port` | int | Server port number. [2] | `80`; `8080`; `443` | Recommended |
+| `server.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `server.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Server port number. [2] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -106,8 +106,8 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `client.address` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `client.port` | int | Client port number. [2] | `65123` | Recommended |
+| `client.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `client.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Client port number. [2] | `65123` | Recommended |
 
 **[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
@@ -364,14 +364,14 @@ a thread that started a span.
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
 
-| Language or platform | `thread.id`                            | `thread.name`                      |
-|-----------------------|----------------------------------------|------------------------------------|
-| JVM                   | `Thread.currentThread().getId()`       | `Thread.currentThread().getName()` |
-| .NET                  | `Thread.CurrentThread.ManagedThreadId` | `Thread.CurrentThread.Name`        |
-| Python                | `threading.current_thread().ident`     | `threading.current_thread().name`  |
-| Ruby                  | `Thread.current.object_id`             | `Thread.current.name`              |
-| C++                   | `std::this_thread::get_id()`             |                                    |
-| Erlang               | `erlang:system_info(scheduler_id)` |                                  |
+| Language or platform  | `thread.id`                            | `thread.name`                                  |
+|-----------------------|----------------------------------------|------------------------------------------------|
+| JVM                   | `Thread.currentThread().getId()`       | `Thread.currentThread().getName()`             |
+| .NET                  | `Thread.CurrentThread.ManagedThreadId` | `Thread.CurrentThread.Name`                    |
+| Python                | `threading.current_thread().ident`     | `threading.current_thread().name`              |
+| Ruby                  | `Thread.current.object_id`             | `Thread.current.name`                          |
+| C++                   | `std::this_thread::get_id()`           |                                                |
+| Erlang                | `erlang:self()`                        | `erlang:process_info(self(), registered_name)` |
 
 ## Source Code Attributes
 

@@ -4,7 +4,7 @@ linkTitle: Metrics
 
 # Semantic Conventions for HTTP Metrics
 
-**Status**: [Experimental, partial feature-freeze][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 The conventions described in this section are HTTP specific. When HTTP operations occur,
 metric events about those operations will be generated and reported to provide insight into the
@@ -57,7 +57,7 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 
 ### Metric: `http.server.request.duration`
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This metric is required.
 
@@ -430,7 +430,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 ### Metric: `http.client.request.duration`
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This metric is required.
 

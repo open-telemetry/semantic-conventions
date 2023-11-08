@@ -9,6 +9,17 @@ release.
 
 ### Breaking
 
+### Features
+
+### Fixes
+
+## v1.23.0 (2023-11-03)
+
+This release marks the first where the core of HTTP semantic conventions have
+stabilized.
+
+### Breaking
+
 - BREAKING: Rename http.resend_count to http.request.resend_count.
   ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
 - BREAKING: Change `network.protocol.name` from recommended to opt-in in HTTP semconv.
@@ -54,6 +65,9 @@ release.
   ([#479](https://github.com/open-telemetry/semantic-conventions/pull/479))
 - Change sampling relevant from `MUST` to `SHOULD`
   ([#486](https://github.com/open-telemetry/semantic-conventions/pull/486))
+- Make `user_agent.original` and `http.request.header.*` sampling relevant
+  on HTTP server spans.
+  ([#467](https://github.com/open-telemetry/semantic-conventions/pull/467))
 
 ### Features
 
@@ -65,6 +79,8 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Add `host.mac` resource attribute convention.
   ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
+- Mark HTTP semantic conventions as stable.
+  ([#377](https://github.com/open-telemetry/semantic-conventions/pull/377))
 
 ### Fixes
 
@@ -84,6 +100,7 @@ release.
 - Change the precedence between `:authority` and `Host` headers when populating
   `server.address` and `server.port` attributes.
   ([#455](https://github.com/open-telemetry/semantic-conventions/pull/455))
+- Explain `deployment.environment` impact on service identity. ([#481](https://github.com/open-telemetry/semantic-conventions/pull/481))
 
 ## v1.22.0 (2023-10-12)
 
