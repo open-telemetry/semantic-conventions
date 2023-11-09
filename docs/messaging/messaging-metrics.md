@@ -6,16 +6,15 @@
 
 <!-- toc -->
 
-- [Semantic Conventions for Messaging Metrics](#semantic-conventions-for-messaging-metrics)
-  - [Common attributes](#common-attributes)
-  - [Producer metrics](#producer-metrics)
-    - [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
-    - [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
-  - [Consumer metrics](#consumer-metrics)
-    - [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
-    - [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
-    - [Metric: `messaging.deliver.duration`](#metric-messagingdeliverduration)
-    - [Metric: `messaging.deliver.messages`](#metric-messagingdelivermessages)
+- [Common attributes](#common-attributes)
+- [Producer metrics](#producer-metrics)
+  * [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
+  * [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
+- [Consumer metrics](#consumer-metrics)
+  * [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
+  * [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
+  * [Metric: `messaging.deliver.duration`](#metric-messagingdeliverduration)
+  * [Metric: `messaging.deliver.messages`](#metric-messagingdelivermessages)
 
 <!-- tocstop -->
 
