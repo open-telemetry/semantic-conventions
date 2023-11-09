@@ -10,6 +10,7 @@ release.
 ### Breaking
 
 ### Features
+
 - Add remaining ECS fields to the url namespace
   ([#496](https://github.com/open-telemetry/semantic-conventions/pull/496/))
 
