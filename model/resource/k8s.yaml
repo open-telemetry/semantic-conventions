@@ -88,7 +88,7 @@ groups:
       - id: labels
         type: template[string]
         brief: >
-          Pod's labels, the `<key>` being the label name, the value being the label value.
+          The labels placed on the Pod, the `<key>` being the label name, the value being the label value.
         examples: ['pod.labels.app=my-app,pod.labels.mycompany.io/arch=x64']
 
   - id: k8s.container
