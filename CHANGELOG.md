@@ -11,6 +11,9 @@ release.
 
 ### Features
 
+- Move host namespace to the registry
+  ([#498](https://github.com/open-telemetry/semantic-conventions/pull/498/))
+
 ### Fixes
 
 ## v1.23.0 (2023-11-03)

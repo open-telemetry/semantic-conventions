@@ -30,6 +30,7 @@ Currently, the following namespaces exist:
 * [Cloud](cloud.md)
 * [Code](code.md)
 * [Container](container.md)
+* [Host](host.md)
 * [HTTP](http.md)
 * [Network](network.md)
 * [OCI](oci.md)
