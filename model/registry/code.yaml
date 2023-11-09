@@ -31,3 +31,11 @@ groups:
         brief: >
           The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
         examples: 16
+      - id: stacktrace
+        type: string
+        brief: >
+          A stacktrace as a string in the natural representation for the language runtime.
+          The representation is to be determined and documented by each language SIG.
+        examples: 'at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n
+        at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n
+        at com.example.GenerateTrace.main(GenerateTrace.java:5)'
