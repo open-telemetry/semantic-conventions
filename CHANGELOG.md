@@ -10,6 +10,8 @@ release.
 ### Breaking
 
 ### Features
+- Add remaining ECS fields to the user-agent namespace
+  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
 
 ### Fixes
 
@@ -81,8 +83,6 @@ stabilized.
   ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
 - Mark HTTP semantic conventions as stable.
   ([#377](https://github.com/open-telemetry/semantic-conventions/pull/377))
-- Add remaining ECS fields to the user-agent namespace
-  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
 
 ### Fixes
 
