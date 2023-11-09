@@ -1,4 +1,4 @@
-# Attribute Requirement Levels for Semantic Conventions
+# Attribute Requirement Levels
 
 **Status**: [Stable](../document-status.md)
 
@@ -35,7 +35,7 @@ For example, Metric attributes that may have high cardinality can only be define
 A semantic convention that refers to an attribute from another semantic convention MAY modify the requirement level within its own scope. Otherwise, requirement level from the referred semantic convention applies.
 
 <!-- TODO(jsuereth) - make examples not break on changes to semconv -->
-For example, [Database semantic convention](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/database/README.md) references `network.transport` attribute defined in [General attributes](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/README.md) with `Conditionally Required` level on it.
+For example, [Database semantic convention](../database/README.md) references `network.transport` attribute defined in [General attributes](./README.md) with `Conditionally Required` level on it.
 
 ## Required
 
@@ -52,7 +52,7 @@ All instrumentations MUST populate the attribute when the given condition is sat
 When a `Conditionally Required` attribute's condition is not satisfied, and there is no requirement to populate the attribute, semantic conventions MAY provide special instructions on how to handle it. If no instructions are given and if instrumentation can populate the attribute, instrumentation SHOULD use the `Opt-In` requirement level on the attribute.
 
 <!-- TODO(jsuereth) - make examples not break on changes to semconv -->
-For example, `server.address` is `Conditionally Required` by the [Database convention](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/database/README.md) when available. When `network.peer.address` is available instead, instrumentation can do a DNS lookup, cache and populate `server.address`, but only if the user explicitly enables the instrumentation to do so, considering the performance issues that DNS lookups introduce.
+For example, `server.address` is `Conditionally Required` by the [Database convention](../database/README.md) when available. When `network.peer.address` is available instead, instrumentation can do a DNS lookup, cache and populate `server.address`, but only if the user explicitly enables the instrumentation to do so, considering the performance issues that DNS lookups introduce.
 
 ## Recommended
 
