@@ -22,8 +22,9 @@ If the operation has completed successfully, instrumentations SHOULD NOT set `er
 
 If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
 it's RECOMMENDED to:
-  * Use a domain-specific attribute
-  * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+* Use a domain-specific attribute
+* Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
