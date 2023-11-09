@@ -55,7 +55,7 @@ groups:
     extends: messaging.attributes.common
     attributes:
       - ref: messaging.operation
-        requirement_level: required      
+        requirement_level: required
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
