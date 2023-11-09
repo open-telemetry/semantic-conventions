@@ -5,55 +5,51 @@ groups:
       This document defines attributes for crashes represented using Log Record Events.
       `event.domain` is 'device' and `event.name` is 'crash
     attributes:
-      - id: os.name
+      - ref: os.name
         requirement_level: "required"
         brief: >
             This attribute indicates the operating system name of the device on which the crash event occurred.
-        type: string
         examples: ['iOS', 'Android']
-      - id: ios.state
+      - ref: ios.state
         requirement_level: recommended
         brief: >
           This attribute represents the state the application has transitioned into at the occurrence of the event
           For ios crashes
-        type: string
         examples: ['active', 'inactive', 'background', 'foreground', 'terminate']
-      - id: android.state
+      - ref: android.state
         requirement_level: recommended
         brief: >
           This attribute represents the state the application has transitioned into at the occurrence of the event
           For android crashes
-        type: string
         examples: ['created', 'foreground', 'background']
-      - id: exception.stacktrace
+      - ref: exception.stacktrace
         requirement_level: recommended
         brief: >
           The contents of printStackTrace() being called on the throwable
           For android crashes
-        type: string
-      - id: thread.id
+      - ref: thread.id
         requirement_level: recommended
         brief: >
           The id of the thread as output by Thread.currentThread().getId()
           For android crashes
-        type: string
-      - id: thread.name
+      - ref: thread.name
         requirement_level: recommended
         brief: >
           The name of the thread as output by Thread.currentThread().getName()
           For android crashes
-        type: string
       - id: exception.message
         requirement_level: recommended
         brief: >
           The message within the exception object
           For android crashes
         type: string
-      - id: crash.report
+        examples: ['java.lang.ArithmeticException: / by zero']
+      - id: ios.crash_report
         requirement_level: recommended
         brief: >
           The contents from PLCrashReporter
           Contains three primary elements. "images", "threads" and "signal". These could be broken out as individual elements
           For ios crashes
         type: string
+        examples: ['*Contents of PL CrashReporter crash report*']
 
