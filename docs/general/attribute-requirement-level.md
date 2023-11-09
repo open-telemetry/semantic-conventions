@@ -1,6 +1,6 @@
 # Attribute Requirement Levels
 
-**Status**: [Stable](../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 <details>
 <summary>Table of Contents</summary>
@@ -19,7 +19,7 @@
 
 _This section applies to Log, Metric, Resource, and Span, and describes requirement levels for attributes defined in semantic conventions._
 
-Attribute requirement levels apply to the [instrumentation library](../glossary.md#instrumentation-library).
+Attribute requirement levels apply to the [instrumentation library](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/glossary.md#instrumentation-library).
 
 The following attribute requirement levels are specified:
 
@@ -74,3 +74,5 @@ Here are several examples of expensive operations to be avoided by default:
 - DNS lookups to populate `server.address` when only an IP address is available to the instrumentation. Caching lookup results does not solve the issue for all possible cases and should be avoided by default too.
 - forcing an `http.route` calculation before the HTTP framework calculates it
 - reading response stream to find `http.response.body.size` when `Content-Length` header is not available
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
