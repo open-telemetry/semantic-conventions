@@ -1,7 +1,8 @@
 groups:
-  - id: attributes.process.runtime.jvm.memory
+  - id: attributes.jvm.memory
     type: attribute_group
     brief: "Describes JVM memory metric attributes."
+    prefix: jvm.memory
     attributes:
       - id: type
         type:
@@ -16,7 +17,7 @@ groups:
         requirement_level: recommended
         brief: The type of memory.
         examples: ["heap", "non_heap"]
-      - id: pool
+      - id: pool.name
         type: string
         requirement_level: recommended
         brief: Name of the memory pool.
@@ -25,46 +26,47 @@ groups:
           Pool names are generally obtained via
           [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-  - id: metric.process.runtime.jvm.memory.usage
+  - id: metric.jvm.memory.usage
     type: metric
-    metric_name: process.runtime.jvm.memory.usage
-    extends: attributes.process.runtime.jvm.memory
+    metric_name: jvm.memory.usage
+    extends: attributes.jvm.memory
     brief: "Measure of memory used."
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.process.runtime.jvm.memory.committed
+  - id: metric.jvm.memory.committed
     type: metric
-    metric_name: process.runtime.jvm.memory.committed
-    extends: attributes.process.runtime.jvm.memory
+    metric_name: jvm.memory.committed
+    extends: attributes.jvm.memory
     brief: "Measure of memory committed."
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.process.runtime.jvm.memory.limit
+  - id: metric.jvm.memory.limit
     type: metric
-    metric_name: process.runtime.jvm.memory.limit
-    extends: attributes.process.runtime.jvm.memory
+    metric_name: jvm.memory.limit
+    extends: attributes.jvm.memory
     brief: "Measure of max obtainable memory."
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.process.runtime.jvm.memory.usage_after_last_gc
+  - id: metric.jvm.memory.usage_after_last_gc
     type: metric
-    metric_name: process.runtime.jvm.memory.usage_after_last_gc
-    extends: attributes.process.runtime.jvm.memory
+    metric_name: jvm.memory.usage_after_last_gc
+    extends: attributes.jvm.memory
     brief: "Measure of memory used, as measured after the most recent garbage collection event on this pool."
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.process.runtime.jvm.gc.duration
+  - id: metric.jvm.gc.duration
     type: metric
-    metric_name: process.runtime.jvm.gc.duration
+    metric_name: jvm.gc.duration
     brief: "Duration of JVM garbage collection actions."
     instrument: histogram
     unit: "s"
+    prefix: jvm.gc
     attributes:
-      - id: gc
+      - id: name
         type: string
         requirement_level: recommended
         brief: Name of the garbage collector.
@@ -81,49 +83,81 @@ groups:
           Garbage collector action is generally obtained via
           [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
-  - id: metric.process.runtime.jvm.threads.count
+  - id: metric.jvm.thread.count
     type: metric
-    metric_name: process.runtime.jvm.threads.count
+    metric_name: jvm.thread.count
     brief: "Number of executing platform threads."
     instrument: updowncounter
     unit: "{thread}"
     attributes:
-      - id: daemon
-        brief: "Whether the thread is daemon or not."
+      - id: jvm.thread.daemon
         type: boolean
         requirement_level: recommended
+        brief: "Whether the thread is daemon or not."
+      - id: jvm.thread.state
+        requirement_level: recommended
+        type:
+          allow_custom_values: false
+          members:
+            - id: new
+              value: 'new'
+              brief: 'A thread that has not yet started is in this state.'
+            - id: runnable
+              value: 'runnable'
+              brief: 'A thread executing in the Java virtual machine is in this state.'
+            - id: blocked
+              value: 'blocked'
+              brief: 'A thread that is blocked waiting for a monitor lock is in this state.'
+            - id: waiting
+              value: 'waiting'
+              brief: 'A thread that is waiting indefinitely for another thread to perform a particular action is in this state.'
+            - id: timed_waiting
+              value: 'timed_waiting'
+              brief: 'A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.'
+            - id: terminated
+              value: 'terminated'
+              brief: 'A thread that has exited is in this state.'
+        brief: "State of the thread."
+        examples: ["runnable", "blocked"]
 
-  - id: metric.process.runtime.jvm.classes.loaded
+  - id: metric.jvm.class.loaded
     type: metric
-    metric_name: process.runtime.jvm.classes.loaded
+    metric_name: jvm.class.loaded
     brief: "Number of classes loaded since JVM start."
     instrument: counter
     unit: "{class}"
 
-  - id: metric.process.runtime.jvm.classes.unloaded
+  - id: metric.jvm.class.unloaded
     type: metric
-    metric_name: process.runtime.jvm.classes.unloaded
+    metric_name: jvm.class.unloaded
     brief: "Number of classes unloaded since JVM start."
     instrument: counter
     unit: "{class}"
 
-  - id: metric.process.runtime.jvm.classes.current_loaded
+  - id: metric.jvm.class.count
     type: metric
-    metric_name: process.runtime.jvm.classes.current_loaded
+    metric_name: jvm.class.count
     brief: "Number of classes currently loaded."
     instrument: updowncounter
     unit: "{class}"
 
-  - id: metric.process.runtime.jvm.cpu.time
+  - id: metric.jvm.cpu.count
     type: metric
-    metric_name: process.runtime.jvm.cpu.time
+    metric_name: jvm.cpu.count
+    brief: "Number of processors available to the Java virtual machine."
+    instrument: updowncounter
+    unit: "{cpu}"
+
+  - id: metric.jvm.cpu.time
+    type: metric
+    metric_name: jvm.cpu.time
     brief: "CPU time used by the process as reported by the JVM."
     instrument: counter
     unit: "s"
 
-  - id: metric.process.runtime.jvm.cpu.recent_utilization
+  - id: metric.jvm.cpu.recent_utilization
     type: metric
-    metric_name: process.runtime.jvm.cpu.recent_utilization
+    metric_name: jvm.cpu.recent_utilization
     brief: "Recent CPU utilization for the process as reported by the JVM."
     note: >
       The value range is [0.0,1.0].

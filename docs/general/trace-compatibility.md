@@ -36,7 +36,7 @@ between a child Span and a parent Span, as defined by
 | Value  | Description |
 |---|---|
 | `child_of` | The parent Span depends on the child Span in some capacity |
-| `follows_from` | The parent Span does not depend in any way on the result of the child Span |
+| `follows_from` | The parent Span doesn't depend in any way on the result of the child Span |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

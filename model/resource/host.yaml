@@ -70,3 +70,68 @@ groups:
           The version string of the VM image or host OS as defined in
           [Version Attributes](README.md#version-attributes).
         examples: ['0.1']
+      - id: ip
+        type: string[]
+        requirement_level: opt_in
+        brief: >
+          Available IP addresses of the host, excluding loopback interfaces.
+        note: >
+          IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses
+          MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
+        examples: ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]
+      - id: mac
+        type: string[]
+        requirement_level: opt_in
+        brief: >
+          Available MAC addresses of the host, excluding loopback interfaces.
+        note: >
+          MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+          as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+        examples: ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
+
+  - id: host.cpu
+    prefix: host.cpu
+    type: resource
+    brief: >
+      A host's CPU information
+    attributes:
+      - id: vendor.id
+        requirement_level: opt_in
+        type: string
+        brief: >
+          Processor manufacturer identifier. A maximum 12-character string.
+        note: >
+          [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers.
+          Writing these to memory in this order results in a 12-character string.
+        examples: [ 'GenuineIntel' ]
+      - id: family
+        requirement_level: opt_in
+        type: int
+        brief: >
+          Numeric value specifying the family or generation of the CPU.
+        examples: [ 6 ]
+      - id: model.id
+        requirement_level: opt_in
+        type: int
+        brief: >
+          Model identifier. It provides more granular information about the CPU, distinguishing it from
+          other CPUs within the same family.
+        examples: [ 6 ]
+      - id: model.name
+        requirement_level: opt_in
+        type: string
+        brief: >
+          Model designation of the processor.
+        examples: [ '11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz' ]
+      - id: stepping
+        requirement_level: opt_in
+        type: int
+        brief: >
+          Stepping or core revisions.
+        examples: [ 1 ]
+      - id: cache.l2.size
+        requirement_level: opt_in
+        type: int
+        brief: >
+          The amount of level 2 memory cache available to the processor (in Bytes).
+        examples: [ 12288000 ]

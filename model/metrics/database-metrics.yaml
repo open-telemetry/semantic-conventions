@@ -1,0 +1,107 @@
+groups:
+  - id: attributes.db
+    type: attribute_group
+    brief: Describes Database attributes
+    attributes:
+      - id: state
+        type:
+          allow_custom_values: false
+          members:
+            - id: idle
+              value: 'idle'
+            - id: used
+              value: 'used'
+        requirement_level: required
+        brief: "The state of a connection in the pool"
+        examples: ["idle"]
+      - id: pool.name
+        type: string
+        requirement_level: required
+        brief: >
+          The name of the connection pool; unique within the instrumented application.
+          In case the connection pool implementation doesn't provide a name,
+          then the [db.connection_string](/docs/database/database-spans.md#connection-level-attributes)
+          should be used
+        examples: ["myDataSource"]
+
+  - id: metric.db.client.connections.usage
+    type: metric
+    metric_name: db.client.connections.usage
+    brief: "The number of connections that are currently in state described by the `state` attribute"
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: state
+      - ref: pool.name
+
+  - id: metric.db.client.connections.idle.max
+    type: metric
+    metric_name: db.client.connections.idle.max
+    brief: "The maximum number of idle open connections allowed"
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: pool.name
+
+  - id: metric.db.client.connections.idle.min
+    type: metric
+    metric_name: db.client.connections.idle.min
+    brief: "The minimum number of idle open connections allowed"
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: pool.name
+
+  - id: metric.db.client.connections.max
+    type: metric
+    metric_name: db.client.connections.max
+    brief: "The maximum number of open connections allowed"
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: pool.name
+
+  - id: metric.db.client.connections.pending_requests
+    type: metric
+    metric_name: db.client.connections.pending_requests
+    brief: "The number of pending requests for an open connection, cumulative for the entire pool"
+    instrument: updowncounter
+    unit: "{request}"
+    attributes:
+      - ref: pool.name
+
+  - id: metric.db.client.connections.timeouts
+    type: metric
+    metric_name: db.client.connections.timeouts
+    brief: "The number of connection timeouts that have occurred trying to obtain a connection from the pool"
+    instrument: counter
+    unit: "{timeout}"
+    attributes:
+      - ref: pool.name
+
+  - id: metric.db.client.connections.create_time
+    type: metric
+    metric_name: db.client.connections.create_time
+    brief: "The time it took to create a new connection"
+    instrument: histogram
+    unit: "ms"
+    attributes:
+      - ref: pool.name
+
+  - id: metric.db.client.connections.wait_time
+    type: metric
+    metric_name: db.client.connections.wait_time
+    brief: "The time it took to obtain an open connection from the pool"
+    instrument: histogram
+    unit: "ms"
+    attributes:
+      - ref: pool.name
+
+  - id: metric.db.client.connections.use_time
+    type: metric
+    metric_name: db.client.connections.use_time
+    brief: "The time between borrowing a connection and returning it to the pool"
+    instrument: histogram
+    unit: "ms"
+    attributes:
+      - ref: pool.name

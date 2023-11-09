@@ -1,0 +1,81 @@
+groups:
+  - id: metric.faas.invoke_duration
+    type: metric
+    metric_name: faas.invoke_duration
+    brief: "Measures the duration of the function's logic execution"
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: faas.trigger
+
+  - id: metric.faas.init_duration
+    type: metric
+    metric_name: faas.init_duration
+    brief: "Measures the duration of the function's initialization, such as a cold start"
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: faas.trigger
+
+  - id: metric.faas.coldstarts
+    type: metric
+    metric_name: faas.coldstarts
+    brief: "Number of invocation cold starts"
+    instrument: counter
+    unit: "{coldstart}"
+    attributes:
+      - ref: faas.trigger
+
+  - id: metric.faas.errors
+    type: metric
+    metric_name: faas.errors
+    brief: "Number of invocation errors"
+    instrument: counter
+    unit: "{error}"
+    attributes:
+      - ref: faas.trigger
+
+  - id: metric.faas.invocations
+    type: metric
+    metric_name: faas.invocations
+    brief: "Number of successful invocations"
+    instrument: counter
+    unit: "{invocation}"
+    attributes:
+      - ref: faas.trigger
+
+  - id: metric.faas.timeouts
+    type: metric
+    metric_name: faas.timeouts
+    brief: "Number of invocation timeouts"
+    instrument: counter
+    unit: "{timeout}"
+    attributes:
+      - ref: faas.trigger
+
+  - id: metric.faas.mem_usage
+    type: metric
+    metric_name: faas.mem_usage
+    brief: "Distribution of max memory usage per invocation"
+    instrument: histogram
+    unit: "By"
+    attributes:
+      - ref: faas.trigger
+
+  - id: metric.faas.cpu_usage
+    type: metric
+    metric_name: faas.cpu_usage
+    brief: "Distribution of CPU usage per invocation"
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: faas.trigger
+
+  - id: metric.faas.net_io
+    type: metric
+    metric_name: faas.net_io
+    brief: "Distribution of net I/O usage per invocation"
+    instrument: histogram
+    unit: "By"
+    attributes:
+      - ref: faas.trigger
