@@ -33,6 +33,7 @@ Currently, the following namespaces exist:
 * [HTTP](http.md)
 * [Network](network.md)
 * [OCI](oci.md)
+* [OS](os.md)
 * [RPC](rpc.md)
 * [Thread](thread.md)
 * [URL](url.md)
