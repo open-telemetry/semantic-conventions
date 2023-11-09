@@ -91,7 +91,7 @@ containers on your cluster.
 <!-- semconv k8s.pod -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `k8s.pod.labels.<key>` | string | Pod's labels, the `<key>` being the label name, the value being the label value. | `pod.labels.app=my-app,pod.labels.mycompany.io/arch=x64` | Recommended |
+| `k8s.pod.labels.<key>` | string | The labels placed on the Pod, the `<key>` being the label name, the value being the label value. | `pod.labels.app=my-app,pod.labels.mycompany.io/arch=x64` | Recommended |
 | `k8s.pod.name` | string | The name of the Pod. | `opentelemetry-pod-autoconf` | Recommended |
 | `k8s.pod.uid` | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 <!-- endsemconv -->
