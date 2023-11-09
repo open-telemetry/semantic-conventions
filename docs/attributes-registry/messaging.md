@@ -36,7 +36,7 @@
 | `messaging.rocketmq.message.tag` | string | The secondary classifier of message besides topic. | `tagA` |
 | `messaging.rocketmq.message.type` | string | Type of message. | `normal` |
 | `messaging.rocketmq.namespace` | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` |
-| `messaging.system` | string | A string identifying the messaging system. | `kafka`; `rabbitmq`; `rocketmq`; `activemq`; `AmazonSQS`; `gcp_pubsub` |
+| `messaging.system` | string | A string identifying the messaging system. | `kafka`; `rabbitmq`; `rocketmq`; `activemq` |
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
