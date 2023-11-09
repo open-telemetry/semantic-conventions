@@ -6,15 +6,16 @@
 
 <!-- toc -->
 
-- [Common attributes](#common-attributes)
-- [Producer metrics](#producer-metrics)
-  * [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
-  * [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
-- [Consumer metrics](#consumer-metrics)
-  * [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
-  * [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
-  * [Metric: `messaging.deliver.duration`](#metric-messagingdeliverduration)
-  * [Metric: `messaging.deliver.messages`](#metric-messagingdelivermessages)
+- [Semantic Conventions for Messaging Metrics](#semantic-conventions-for-messaging-metrics)
+  - [Common attributes](#common-attributes)
+  - [Producer metrics](#producer-metrics)
+    - [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
+    - [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
+  - [Consumer metrics](#consumer-metrics)
+    - [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
+    - [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
+    - [Metric: `messaging.deliver.duration`](#metric-messagingdeliverduration)
+    - [Metric: `messaging.deliver.messages`](#metric-messagingdelivermessages)
 
 <!-- tocstop -->
 
@@ -124,8 +125,8 @@ This metric is [required][MetricRequired].
 When this metric is reported alongside a messaging publish span, the metric value SHOULD be the same as the corresponding span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.21.0/specification/metrics/api.md#instrument-advice)
-of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.messaging.publish.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -152,6 +153,10 @@ For example, RabbitMQ does not support batch publishing and corresponding instru
 
 This metric is [required][MetricRequired] when messaging system supports poll-based receive operations.
 
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+
 When this metric is reported alongside a messaging receive span, the metric value SHOULD be the same as the corresponding span duration.
 
 <!-- semconv metric.messaging.receive.duration(metric_table) -->
@@ -176,7 +181,11 @@ _Note: The need to report `messaging.receive.messages` depends on the messaging 
 
 This metric is [required][MetricRequired] when messaging system supports poll-based receive operations.
 
-When this metric is reported alongside a messaging receive span, the metric value SHOULD be the same as the corresponding span duration.
+When this metric is reported alongside a messaging deliver span, the metric value SHOULD be the same as the corresponding span duration.
+
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.messaging.deliver.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
