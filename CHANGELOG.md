@@ -11,9 +11,6 @@ release.
 
 ### Features
 
-- Move device namespace to the registry
-  ([#497](https://github.com/open-telemetry/semantic-conventions/pull/497/))
-
 ### Fixes
 
 ## v1.23.0 (2023-11-03)
