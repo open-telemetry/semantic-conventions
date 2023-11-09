@@ -1,6 +1,6 @@
 # Attribute Naming
 
-**Status**: [Stable](../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 <details>
 <summary>Table of Contents</summary>
@@ -154,3 +154,5 @@ and protocols.
 
 Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
