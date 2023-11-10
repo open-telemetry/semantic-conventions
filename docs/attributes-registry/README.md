@@ -33,6 +33,7 @@ Currently, the following namespaces exist:
 * [Container](container.md)
 * [Destination](destination.md)
 * [Device](device.md)
+* [Error](error.md)
 * [HTTP](http.md)
 * [Network](network.md)
 * [OCI](oci.md)
