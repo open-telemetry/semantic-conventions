@@ -210,7 +210,6 @@
 | `db.redis.database_index` | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute. | `0`; `1`; `15` |
 <!-- endsemconv -->
 
-
 ## SQL Attributes
 
 <!-- semconv registry.db(omit_requirement_level,tag=tech-specific-sql) -->
