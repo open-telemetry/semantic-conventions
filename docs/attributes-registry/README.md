@@ -36,6 +36,7 @@ Currently, the following namespaces exist:
 * [HTTP](http.md)
 * [Network](network.md)
 * [OCI](oci.md)
+* [Process](process.md)
 * [RPC](rpc.md)
 * [Server](server.md)
 * [Source](source.md)
