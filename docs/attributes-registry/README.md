@@ -32,6 +32,8 @@ Currently, the following namespaces exist:
 * [Code](code.md)
 * [Container](container.md)
 * [Destination](destination.md)
+* [Device](device.md)
+* [Error](error.md)
 * [HTTP](http.md)
 * [DB](db.md)
 * [Network](network.md)
