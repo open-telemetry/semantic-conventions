@@ -20,8 +20,8 @@ This also covers UDP network interactions where one side initiates the interacti
 | `client.geo.continent_name` | string | Name of the continent. | `North America`; `Europe` |
 | `client.geo.country_iso_code` | string | Two-letter ISO Country Code (ISO 3166-1 alpha2). | `CA` |
 | `client.geo.country_name` | string | Country name. | `Canada` |
-| `client.geo.location.lat` | double | Latitude of the geo location. | `45.505918` |
-| `client.geo.location.lon` | double | Longitude of the geo location. | `-73.61483` |
+| `client.geo.location.lat` | double | Latitude of the geo location in WGS84. | `45.505918` |
+| `client.geo.location.lon` | double | Longitude of the geo location in WGS84. | `-73.61483` |
 | `client.geo.name` | string | User-defined description of a location. [2] | `boston-dc` |
 | `client.geo.postal_code` | string | Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country. | `94040` |
 | `client.geo.region_iso_code` | string | Region ISO code (ISO 3166-2). | `CA-QC` |

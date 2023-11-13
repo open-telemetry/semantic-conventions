@@ -16,6 +16,8 @@ release.
 
 ### Features
 
+- Add `geo` fields into general attribute.
+  ([#351](https://github.com/open-telemetry/semantic-conventions/pull/351))
 - Add `code.stacktrace` attribute
   ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
 - Add `http.flavor` and `http.user_agent` to list of deprecated attributes
@@ -119,6 +121,8 @@ stabilized.
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
 - Adds `session.id` and session.md to general docs and model
   ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
+- Add `container.labels.<key>` attributes.
+  ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
   ([#285](https://github.com/open-telemetry/semantic-conventions/pull/285))
 - Fix the unit of metric.process.runtime.jvm.system.cpu.load_1m to be {run_queue_item}
@@ -226,10 +230,6 @@ stabilized.
   ([#328](https://github.com/open-telemetry/semantic-conventions/pull/328))
 - Added `os.build_id` resource attribute.
   ([#293](https://github.com/open-telemetry/semantic-conventions/pull/293))
-<<<<<<< HEAD
-- Add `geo` fields into general attribute.
-  ([#351](https://github.com/open-telemetry/semantic-conventions/pull/351))
-=======
 - BREAKING: Remove the zero bucket boundary from `http.server.request.duration`
   and `http.client.request.duration`.
   ([#318](https://github.com/open-telemetry/semantic-conventions/pull/318))
@@ -261,7 +261,6 @@ stabilized.
 - Make `network.protocol.name|version` description consistent between HTTP
   spans and metrics.
   ([#367](https://github.com/open-telemetry/semantic-conventions/pull/367))
->>>>>>> upstream/main
 
 ## v1.21.0 (2023-07-13)
 

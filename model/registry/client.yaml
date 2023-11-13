@@ -76,12 +76,12 @@ groups:
       - id: geo.location.lon
         type: double
         brief: >
-          Longitude of the geo location.
+          Longitude of the geo location in WGS84.
         examples: [ -73.614830 ]
       - id: geo.location.lat
         type: double
         brief: >
-          Latitude of the geo location.
+          Latitude of the geo location in WGS84.
         examples: [ 45.505918 ]
       - id: geo.name
         type: string
