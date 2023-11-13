@@ -34,6 +34,7 @@ Currently, the following namespaces exist:
 * [Destination](destination.md)
 * [Device](device.md)
 * [Error](error.md)
+* [Host](host.md)
 * [HTTP](http.md)
 * [Network](network.md)
 * [OCI](oci.md)
