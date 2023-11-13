@@ -9,6 +9,29 @@ release.
 
 ### Breaking
 
+- Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
+  ([#317](https://github.com/open-telemetry/semantic-conventions/pull/317))
+- BREAKING: Change type of `host.cpu.model.id` and `host.cpu.model.family` to string.
+  ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
+
+### Features
+
+- Add `code.stacktrace` attribute
+  ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
+- Add `http.flavor` and `http.user_agent` to list of deprecated attributes
+  ([#503](https://github.com/open-telemetry/semantic-conventions/pull/503))
+- Add Semantic conventions for TLS/SSL encrypted communication.
+  ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+
+### Fixes
+
+## v1.23.0 (2023-11-03)
+
+This release marks the first where the core of HTTP semantic conventions have
+stabilized.
+
+### Breaking
+
 - BREAKING: Rename http.resend_count to http.request.resend_count.
   ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
 - BREAKING: Change `network.protocol.name` from recommended to opt-in in HTTP semconv.
@@ -68,6 +91,8 @@ release.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
 - Add `host.mac` resource attribute convention.
   ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
+- Mark HTTP semantic conventions as stable.
+  ([#377](https://github.com/open-telemetry/semantic-conventions/pull/377))
 
 ### Fixes
 
@@ -87,6 +112,7 @@ release.
 - Change the precedence between `:authority` and `Host` headers when populating
   `server.address` and `server.port` attributes.
   ([#455](https://github.com/open-telemetry/semantic-conventions/pull/455))
+- Explain `deployment.environment` impact on service identity. ([#481](https://github.com/open-telemetry/semantic-conventions/pull/481))
 
 ## v1.22.0 (2023-10-12)
 

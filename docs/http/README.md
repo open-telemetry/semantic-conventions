@@ -7,7 +7,7 @@ path_base_for_github_subdir:
 
 # Semantic Conventions for HTTP
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 This document defines semantic conventions for HTTP spans, metrics and logs.
 They can be used for http and https schemes
