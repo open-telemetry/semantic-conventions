@@ -1,0 +1,165 @@
+groups:
+  - id: registry.tls
+    prefix: tls
+    type: attribute_group
+    brief: "This document defines semantic convention attributes in the TLS namespace."
+    attributes:
+      - id: cipher
+        brief: >
+          String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5) used during the current connection.
+        type: string
+        note: >
+          The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the
+          [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
+        examples:
+          [
+            "TLS_RSA_WITH_3DES_EDE_CBC_SHA",
+            "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
+          ]
+      - id: client.certificate
+        type: string
+        brief: >
+          PEM-encoded stand-alone certificate offered by the client. This is usually mutually-exclusive of `client.certificate_chain` since this value also exists in that list.
+        examples: ["MII..."]
+      - id: client.certificate_chain
+        type: string[]
+        brief: >
+          Array of PEM-encoded certificates that make up the certificate chain offered by the client.
+          This is usually mutually-exclusive of `client.certificate` since that value should be the first certificate in the chain.
+        examples: ["MII...", "MI..."]
+      - id: client.hash.md5
+        type: string
+        brief: >
+          Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the client.
+          For consistency with other hash values, this value should be formatted as an uppercase hash.
+        examples: ["0F76C7F2C55BFD7D8E8B8F4BFBF0C9EC"]
+      - id: client.hash.sha1
+        type: string
+        brief: >
+          Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the client.
+          For consistency with other hash values, this value should be formatted as an uppercase hash.
+        examples: ["9E393D93138888D288266C2D915214D1D1CCEB2A"]
+      - id: client.hash.sha256
+        type: string
+        brief: >
+          Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the client.
+          For consistency with other hash values, this value should be formatted as an uppercase hash.
+        examples:
+          ["0687F666A054EF17A08E2F2162EAB4CBC0D265E1D7875BE74BF3C712CA92DAF0"]
+      - id: client.issuer
+        type: string
+        brief: "Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client."
+        examples:
+          ["CN=Example Root CA, OU=Infrastructure Team, DC=example, DC=com"]
+      - id: client.ja3
+        type: string
+        brief: "A hash that identifies clients based on how they perform an SSL/TLS handshake."
+        examples: ["d4e5b18d6b55c71272893221c96ba240"]
+      - id: client.not_after
+        type: string
+        brief: "Date/Time indicating when client certificate is no longer considered valid."
+        examples: ["2021-01-01T00:00:00.000Z"]
+      - id: client.not_before
+        type: string
+        brief: "Date/Time indicating when client certificate is first considered valid."
+        examples: ["1970-01-01T00:00:00.000Z"]
+      - id: client.server_name
+        type: string
+        brief: "Also called an SNI, this tells the server which hostname to which the client is attempting to connect to."
+        examples: ["opentelemetry.io"]
+      - id: client.subject
+        type: string
+        brief: "Distinguished name of subject of the x.509 certificate presented by the client."
+        examples: ["CN=myclient, OU=Documentation Team, DC=example, DC=com"]
+      - id: client.supported_ciphers
+        type: string[]
+        brief: Array of ciphers offered by the client during the client hello.
+        examples:
+          [
+            '"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", "..."',
+          ]
+      - id: curve
+        brief: "String indicating the curve used for the given cipher, when applicable"
+        type: string
+        examples: ["secp256r1"]
+      - id: established
+        brief: "Boolean flag indicating if the TLS negotiation was successful and transitioned to an encrypted tunnel."
+        type: boolean
+        examples: [true]
+      - id: next_protocol
+        brief: >
+          String indicating the protocol being tunneled.
+          Per the values in the [IANA registry](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids),
+          this string should be lower case.
+        type: string
+        examples: ["http/1.1"]
+      - id: protocol.name
+        brief: >
+          Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES)
+        type:
+          allow_custom_values: true
+          members:
+            - id: ssl
+              value: ssl
+            - id: tls
+              value: tls
+      - id: protocol.version
+        brief: >
+          Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES)
+        type: string
+        examples: ["1.2", "3"]
+      - id: resumed
+        brief: "Boolean flag indicating if this TLS connection was resumed from an existing TLS negotiation."
+        type: boolean
+        examples: [true]
+      - id: server.certificate
+        type: string
+        brief: >
+          PEM-encoded stand-alone certificate offered by the server. This is usually mutually-exclusive of `server.certificate_chain` since this value also exists in that list.
+        examples: ["MII..."]
+      - id: server.certificate_chain
+        type: string[]
+        brief: >
+          Array of PEM-encoded certificates that make up the certificate chain offered by the server.
+          This is usually mutually-exclusive of `server.certificate` since that value should be the first certificate in the chain.
+        examples: ["MII...", "MI..."]
+      - id: server.hash.md5
+        type: string
+        brief: >
+          Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the server.
+          For consistency with other hash values, this value should be formatted as an uppercase hash.
+        examples: ["0F76C7F2C55BFD7D8E8B8F4BFBF0C9EC"]
+      - id: server.hash.sha1
+        type: string
+        brief: >
+          Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the server.
+          For consistency with other hash values, this value should be formatted as an uppercase hash.
+        examples: ["9E393D93138888D288266C2D915214D1D1CCEB2A"]
+      - id: server.hash.sha256
+        type: string
+        brief: >
+          Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the server.
+          For consistency with other hash values, this value should be formatted as an uppercase hash.
+        examples:
+          ["0687F666A054EF17A08E2F2162EAB4CBC0D265E1D7875BE74BF3C712CA92DAF0"]
+      - id: server.issuer
+        type: string
+        brief: "Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client."
+        examples:
+          ["CN=Example Root CA, OU=Infrastructure Team, DC=example, DC=com"]
+      - id: server.ja3s
+        type: string
+        brief: "A hash that identifies servers based on how they perform an SSL/TLS handshake."
+        examples: ["d4e5b18d6b55c71272893221c96ba240"]
+      - id: server.not_after
+        type: string
+        brief: "Date/Time indicating when server certificate is no longer considered valid."
+        examples: ["2021-01-01T00:00:00.000Z"]
+      - id: server.not_before
+        type: string
+        brief: "Date/Time indicating when server certificate is first considered valid."
+        examples: ["1970-01-01T00:00:00.000Z"]
+      - id: server.subject
+        type: string
+        brief: "Distinguished name of subject of the x.509 certificate presented by the server."
+        examples: ["CN=myserver, OU=Documentation Team, DC=example, DC=com"]

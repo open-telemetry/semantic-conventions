@@ -34,6 +34,7 @@ Currently, the following namespaces exist:
 * [Destination](destination.md)
 * [Device](device.md)
 * [Error](error.md)
+* [Host](host.md)
 * [HTTP](http.md)
 * [Network](network.md)
 * [OCI](oci.md)
@@ -43,6 +44,7 @@ Currently, the following namespaces exist:
 * [Server](server.md)
 * [Source](source.md)
 * [Thread](thread.md)
+* [TLS](tls.md)
 * [URL](url.md)
 * [User agent](user-agent.md)
 
