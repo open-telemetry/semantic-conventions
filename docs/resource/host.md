@@ -45,12 +45,12 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 <!-- semconv host.cpu -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`host.cpu.cache.l2.size`](../attributes-registry/host.md) | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | Opt-In |
-| [`host.cpu.family`](../attributes-registry/host.md) | int | Numeric value specifying the family or generation of the CPU. | `6` | Opt-In |
-| [`host.cpu.model.id`](../attributes-registry/host.md) | int | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6` | Opt-In |
-| [`host.cpu.model.name`](../attributes-registry/host.md) | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | Opt-In |
-| [`host.cpu.stepping`](../attributes-registry/host.md) | int | Stepping or core revisions. | `1` | Opt-In |
-| [`host.cpu.vendor.id`](../attributes-registry/host.md) | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | Opt-In |
+| `host.cpu.cache.l2.size` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | Opt-In |
+| `host.cpu.family` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` | Opt-In |
+| `host.cpu.model.id` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` | Opt-In |
+| `host.cpu.model.name` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | Opt-In |
+| `host.cpu.stepping` | int | Stepping or core revisions. | `1` | Opt-In |
+| `host.cpu.vendor.id` | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | Opt-In |
 
 **[1]:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 <!-- endsemconv -->

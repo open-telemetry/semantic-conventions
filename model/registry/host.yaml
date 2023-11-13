@@ -95,16 +95,16 @@ groups:
           Writing these to memory in this order results in a 12-character string.
         examples: [ 'GenuineIntel' ]
       - id: cpu.family
-        type: int
+        type: string
         brief: >
-          Numeric value specifying the family or generation of the CPU.
-        examples: [ 6 ]
+          Family or generation of the CPU.
+        examples: [ '6', 'PA-RISC 1.1e' ]
       - id: cpu.model.id
-        type: int
+        type: string
         brief: >
           Model identifier. It provides more granular information about the CPU, distinguishing it from
           other CPUs within the same family.
-        examples: [ 6 ]
+        examples: [ '6', '9000/778/B180L' ]
       - id: cpu.model.name
         type: string
         brief: >
