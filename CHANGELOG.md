@@ -11,6 +11,8 @@ release.
 
 - Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
   ([#317](https://github.com/open-telemetry/semantic-conventions/pull/317))
+- BREAKING: Change type of `host.cpu.model.id` and `host.cpu.model.family` to string.
+  ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
 
 ### Features
 
