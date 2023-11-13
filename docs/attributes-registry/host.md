@@ -9,8 +9,8 @@
 |---|---|---|---|
 | `host.arch` | string | The CPU architecture the host system is running on. | `amd64` |
 | `host.cpu.cache.l2.size` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
-| `host.cpu.family` | int | Numeric value specifying the family or generation of the CPU. | `6` |
-| `host.cpu.model.id` | int | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6` |
+| `host.cpu.family` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
+| `host.cpu.model.id` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
 | `host.cpu.model.name` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
 | `host.cpu.stepping` | int | Stepping or core revisions. | `1` |
 | `host.cpu.vendor.id` | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` |
