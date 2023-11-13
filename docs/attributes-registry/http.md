@@ -67,7 +67,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 <!-- semconv attributes.http.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `http.flavor` | string | Deprecated, use `network.procol.name` instead. | `1.0` |
+| `http.flavor` | string | Deprecated, use `network.protocol.name` instead. | `1.0` |
 | `http.method` | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` |
 | `http.request_content_length` | int | Deprecated, use `http.request.header.content-length` instead. | `3495` |
 | `http.response_content_length` | int | Deprecated, use `http.response.header.content-length` instead. | `3495` |
