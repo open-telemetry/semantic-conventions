@@ -163,7 +163,7 @@ This metric is obtained by subscribing to
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
-of `[]` (single bucket histogram capturing count, sum, min, max).
+of `[ 0.01, 0.1, 1, 10 ]`.
 
 <!-- semconv metric.jvm.gc.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
