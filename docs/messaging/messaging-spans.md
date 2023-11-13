@@ -30,6 +30,7 @@
 - [Examples](#examples)
   * [Topic with multiple consumers](#topic-with-multiple-consumers)
   * [Batch receiving](#batch-receiving)
+  * [Batch publishing](#batch-publishing)
 - [Semantic Conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies)
 
 <!-- tocstop -->
