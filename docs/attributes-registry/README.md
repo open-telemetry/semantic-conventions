@@ -43,6 +43,7 @@ Currently, the following namespaces exist:
 * [Server](server.md)
 * [Source](source.md)
 * [Thread](thread.md)
+* [TLS](tls.md)
 * [URL](url.md)
 * [User agent](user-agent.md)
 
