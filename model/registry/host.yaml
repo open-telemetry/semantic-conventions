@@ -86,7 +86,7 @@ groups:
           MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
           as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
         examples: ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
-      - id: vendor.id
+      - id: cpu.vendor.id
         type: string
         brief: >
           Processor manufacturer identifier. A maximum 12-character string.
@@ -94,28 +94,28 @@ groups:
           [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers.
           Writing these to memory in this order results in a 12-character string.
         examples: [ 'GenuineIntel' ]
-      - id: family
+      - id: cpu.family
         type: int
         brief: >
           Numeric value specifying the family or generation of the CPU.
         examples: [ 6 ]
-      - id: model.id
+      - id: cpu.model.id
         type: int
         brief: >
           Model identifier. It provides more granular information about the CPU, distinguishing it from
           other CPUs within the same family.
         examples: [ 6 ]
-      - id: model.name
+      - id: cpu.model.name
         type: string
         brief: >
           Model designation of the processor.
         examples: [ '11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz' ]
-      - id: stepping
+      - id: cpu.stepping
         type: int
         brief: >
           Stepping or core revisions.
         examples: [ 1 ]
-      - id: cache.l2.size
+      - id: cpu.cache.l2.size
         type: int
         brief: >
           The amount of level 2 memory cache available to the processor (in Bytes).

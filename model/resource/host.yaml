@@ -12,7 +12,9 @@ groups:
       - ref: host.image.id
       - ref: host.image.version
       - ref: host.ip
+        requirement_level: opt_in
       - ref: host.mac
+        requirement_level: opt_in
 
   - id: host.cpu
     prefix: host.cpu
@@ -20,15 +22,15 @@ groups:
     brief: >
       A host's CPU information
     attributes:
-      - ref: host.vendor.id
+      - ref: host.cpu.vendor.id
         requirement_level: opt_in
-      - ref: host.family
+      - ref: host.cpu.family
         requirement_level: opt_in
-      - ref: host.model.id
+      - ref: host.cpu.model.id
         requirement_level: opt_in
-      - ref: host.model.name
+      - ref: host.cpu.model.name
         requirement_level: opt_in
-      - ref: host.stepping
+      - ref: host.cpu.stepping
         requirement_level: opt_in
-      - ref: host.cache.l2.size
+      - ref: host.cpu.cache.l2.size
         requirement_level: opt_in
