@@ -1,0 +1,208 @@
+groups:
+  - id: registry.messaging
+    prefix: messaging
+    type: attribute_group
+    brief: 'Attributes describing telemetry around messaging systems and messaging activities.'
+    attributes:
+      - id: batch.message_count
+        type: int
+        brief: The number of messages sent, received, or processed in the scope of the batching operation.
+        note: >
+            Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message.
+            When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD
+            use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+        examples: [0, 1, 2]
+      - id: client_id
+        type: string
+        brief: >
+          A unique identifier for the client that consumes or produces a message.
+        examples: ['client-5', 'myhost@8742@s8083jm']
+      - id: destination.name
+        type: string
+        brief: 'The message destination name'
+        note: |
+          Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+          the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+        examples: ['MyQueue', 'MyTopic']
+      - id: destination.template
+        type: string
+        brief: Low cardinality representation of the messaging destination name
+        note: >
+          Destination names could be constructed from templates.
+          An example would be a destination name involving a user name or product id.
+          Although the destination name in this case is of high cardinality,
+          the underlying template is of low cardinality and can be effectively
+          used for grouping and aggregation.
+        examples: ['/customers/{customerId}']
+      - id: destination.anonymous
+        type: boolean
+        brief: 'A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name).'
+      - id: destination.temporary
+        type: boolean
+        brief: 'A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed.'
+      - id: destination_publish.anonymous
+        type: boolean
+        brief: 'A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name).'
+      - id: destination_publish.name
+        type: string
+        brief: 'The name of the original destination the message was published to'
+        note: |
+          The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
+          the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
+        examples: ['MyQueue', 'MyTopic']
+      - id: kafka.consumer.group
+        type: string
+        brief: >
+          Name of the Kafka Consumer Group that is handling the message.
+          Only applies to consumers, not producers.
+        examples: 'my-group'
+      - id: kafka.destination.partition
+        type: int
+        brief: >
+          Partition the message is sent to.
+        examples: 2
+      - id: kafka.message.key
+        type: string
+        brief: >
+          Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition.
+          They differ from `messaging.message.id` in that they're not unique.
+          If the key is `null`, the attribute MUST NOT be set.
+        note: >
+          If the key type is not string, it's string representation has to be supplied for the attribute.
+          If the key has no unambiguous, canonical string form, don't include its value.
+        examples: 'myKey'
+      - id: kafka.message.offset
+        type: int
+        brief: >
+          The offset of a record in the corresponding Kafka partition.
+        examples: 42
+      - id: kafka.message.tombstone
+        type: boolean
+        brief: 'A boolean that is true if the message is a tombstone.'
+      - id: message.conversation_id
+        type: string
+        brief: >
+          The conversation ID identifying the conversation to which the message belongs,
+          represented as a string. Sometimes called "Correlation ID".
+        examples: 'MyConversationId'
+      - id: message.envelope.size
+        type: int
+        brief: >
+          The size of the message body and metadata in bytes.
+        note: |
+          This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+          size should be used.
+        examples: 2738
+      - id: message.id
+        type: string
+        brief: 'A value used by the messaging system as an identifier for the message, represented as a string.'
+        examples: '452a7c7c7c7048c2f887f61572b18fc2'
+      - id: message.body.size
+        type: int
+        brief: >
+          The size of the message body in bytes.
+        note: |
+          This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+          body size should be used.
+        examples: 1439
+      - id: operation
+        type:
+          allow_custom_values: true
+          members:
+            - id: publish
+              value: "publish"
+              brief: >
+                One or more messages are provided for publishing to an intermediary.
+                If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created.
+            - id: create
+              value: "create"
+              brief: >
+                A message is created.
+                "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios.
+            - id: receive
+              value: "receive"
+              brief: >
+                One or more messages are requested by a consumer.
+                This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.
+            - id: deliver
+              value: "deliver"
+              brief: >
+                One or more messages are passed to a consumer.
+                This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs.
+        brief: >
+          A string identifying the kind of messaging operation.
+        note: If a custom value is used, it MUST be of low cardinality.
+      - id: rabbitmq.destination.routing_key
+        type: string
+        brief: >
+          RabbitMQ message routing key.
+        examples: 'myKey'
+      - id: rocketmq.client_group
+        type: string
+        brief: >
+          Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind.
+        examples: 'myConsumerGroup'
+      - id: rocketmq.consumption_model
+        type:
+          allow_custom_values: false
+          members:
+            - id: clustering
+              value: 'clustering'
+              brief: 'Clustering consumption model'
+            - id: broadcasting
+              value: 'broadcasting'
+              brief: 'Broadcasting consumption model'
+        brief: >
+          Model of message consumption. This only applies to consumer spans.
+      - id: rocketmq.message.delay_time_level
+        type: int
+        brief: >
+          The delay time level for delay message, which determines the message delay time.
+        examples: 3
+      - id: rocketmq.message.delivery_timestamp
+        type: int
+        brief: >
+          The timestamp in milliseconds that the delay message is expected to be delivered to consumer.
+        examples: 1665987217045
+      - id: rocketmq.message.group
+        type: string
+        brief: >
+          It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group.
+        examples: 'myMessageGroup'
+      - id: rocketmq.message.keys
+        type: string[]
+        brief: >
+          Key(s) of message, another way to mark message besides message id.
+        examples: ['keyA', 'keyB']
+      - id: rocketmq.message.tag
+        type: string
+        brief: >
+          The secondary classifier of message besides topic.
+        examples: tagA
+      - id: rocketmq.message.type
+        type:
+          allow_custom_values: false
+          members:
+            - id: normal
+              value: 'normal'
+              brief: "Normal message"
+            - id: fifo
+              value: 'fifo'
+              brief: 'FIFO message'
+            - id: delay
+              value: 'delay'
+              brief: 'Delay message'
+            - id: transaction
+              value: 'transaction'
+              brief: 'Transaction message'
+        brief: >
+          Type of message.
+      - id: rocketmq.namespace
+        type: string
+        brief: >
+          Namespace of RocketMQ resources, resources in different namespaces are individual.
+        examples: 'myNamespace'
+      - id: system
+        type: string
+        brief: 'A string identifying the messaging system.'
+        examples: ['kafka', 'rabbitmq', 'rocketmq', 'activemq']

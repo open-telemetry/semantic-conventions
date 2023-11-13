@@ -230,29 +230,22 @@ groups:
         examples: ['findAndModify', 'HMSET', 'SELECT']
       - ref: server.address
         tag: connection-level
-        requirement_level:
-          conditionally_required: See alternative attributes below.
         brief: >
           Name of the database host.
       - ref: server.port
         tag: connection-level
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
-      - ref: server.socket.address
+      - ref: network.peer.address
         tag: connection-level
-      - ref: server.socket.port
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
         tag: connection-level
       - ref: network.transport
         tag: connection-level
       - ref: network.type
         tag: connection-level
-      - ref: server.socket.domain
-        requirement_level:
-          recommended: If different than `server.address` and if `server.socket.address` is set.
-    constraints:
-      - any_of:
-          - 'server.address'
-          - 'server.socket.address'
 
   - id: db.mssql
     prefix: db.mssql
@@ -268,7 +261,7 @@ groups:
           If setting a `db.mssql.instance_name`, `server.port` is no longer
           required (but still recommended if non-standard).
         brief: >
-          The Microsoft SQL Server [instance name](https://docs.microsoft.com/en-us/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15)
+          The Microsoft SQL Server [instance name](https://docs.microsoft.com/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15)
           connecting to. This name is used to determine the port of a named instance.
         examples: 'MSSQLSERVER'
 
@@ -472,6 +465,19 @@ groups:
         brief: >
           Represents the human-readable identifier of the node/instance to which a request was routed.
         examples: ["instance-0000000001"]
+      - id: path_parts
+        type: template[string]
+        requirement_level:
+          conditionally_required: when the url has dynamic values
+        tag: call-level-tech-specific
+        brief: >
+          A dynamic value in the url path.
+        note: >
+          Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format
+          `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD
+          reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
+          in order to map the path part values to their names.
+        examples: ['db.elasticsearch.path_parts.index=test-index', 'db.elasticsearch.path_parts.doc_id=123']
 
   - id: db.sql
     prefix: 'db.sql'

@@ -4,7 +4,7 @@ groups:
     metric_name: faas.invoke_duration
     brief: "Measures the duration of the function's logic execution"
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     attributes:
       - ref: faas.trigger
 
@@ -13,7 +13,7 @@ groups:
     metric_name: faas.init_duration
     brief: "Measures the duration of the function's initialization, such as a cold start"
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     attributes:
       - ref: faas.trigger
 
@@ -67,7 +67,7 @@ groups:
     metric_name: faas.cpu_usage
     brief: "Distribution of CPU usage per invocation"
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     attributes:
       - ref: faas.trigger
 

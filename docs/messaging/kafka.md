@@ -24,14 +24,14 @@ described on this page.
 
 For Apache Kafka, the following additional attributes are defined:
 
-<!-- semconv messaging.kafka -->
+<!-- semconv messaging.kafka(full,tag=tech-specific-kafka) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `messaging.kafka.message.key` | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [1] | `myKey` | Recommended |
-| `messaging.kafka.consumer.group` | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` | Recommended |
-| `messaging.kafka.destination.partition` | int | Partition the message is sent to. | `2` | Recommended |
-| `messaging.kafka.message.offset` | int | The offset of a record in the corresponding Kafka partition. | `42` | Recommended |
-| `messaging.kafka.message.tombstone` | boolean | A boolean that is true if the message is a tombstone. |  | Conditionally Required: [2] |
+| [`messaging.kafka.consumer.group`](../attributes-registry/messaging.md) | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` | Recommended |
+| [`messaging.kafka.destination.partition`](../attributes-registry/messaging.md) | int | Partition the message is sent to. | `2` | Recommended |
+| [`messaging.kafka.message.key`](../attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [1] | `myKey` | Recommended |
+| [`messaging.kafka.message.offset`](../attributes-registry/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | Recommended |
+| [`messaging.kafka.message.tombstone`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | Conditionally Required: [2] |
 
 **[1]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
@@ -84,4 +84,4 @@ Process CB:                           | Span Rcv2 |
 | `messaging.kafka.partition` | `"1"` | `"1"` | `"1"` | `"3"` | `"3"` |
 | `messaging.kafka.message.offset` | `"12"` | `"12"` | `"12"` | `"32"` | `"32"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

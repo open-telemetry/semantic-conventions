@@ -10,7 +10,9 @@ useAssigneeGroups: true
 # A list of assignees, split into different groups, to be added to pull requests (GitHub user name)
 assigneeGroups:
     maintainers:
+        - AlexanderWert
         - arminru
+        - joaopgrassi
         - jsuereth
         - reyang
 

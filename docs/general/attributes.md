@@ -15,26 +15,32 @@ Particular operations may refer to or require some of these attributes.
 
 <!-- toc -->
 
-- [Server and client attributes](#server-and-client-attributes)
+- [Server, client and shared network attributes](#server-client-and-shared-network-attributes)
+  * [Address and port attributes](#address-and-port-attributes)
   * [Server attributes](#server-attributes)
     + [`server.address`](#serveraddress)
-    + [`server.socket.*` attributes](#serversocket-attributes)
   * [Client attributes](#client-attributes)
-    + [Connecting through intermediary](#connecting-through-intermediary)
-- [Network attributes](#network-attributes)
   * [Source and destination attributes](#source-and-destination-attributes)
     + [Source](#source)
     + [Destination](#destination)
-  * [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
+  * [Other network attributes](#other-network-attributes)
+    + [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
+      - [Client/server examples using `network.peer.*`](#clientserver-examples-using--networkpeer)
+        * [Simple client/server example](#simple-clientserver-example)
+        * [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
+        * [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
+    + [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
 - [General remote service attributes](#general-remote-service-attributes)
 - [General identity attributes](#general-identity-attributes)
 - [General thread attributes](#general-thread-attributes)
 - [Source Code Attributes](#source-code-attributes)
-- [General geo attributes](#general-geo-attributes)
 
 <!-- tocstop -->
 
-## Server and client attributes
+<!-- Keep old anchor IDs -->
+<a name="server-and-client-attributes"></a>
+
+## Server, client and shared network attributes
 
 These attributes may be used to describe the client and server in a connection-based network interaction
 where there is one side that initiates the connection (the client is the side that initiates the connection).
@@ -46,6 +52,13 @@ This also covers UDP network interactions where one side initiates the interacti
 In an ideal situation, not accounting for proxies, multiple IP addresses or host names,
 the `server.*` attributes are the same on the client and server.
 
+### Address and port attributes
+
+For all IP-based protocols, the "address" should be just the IP-level address.
+Protocol-specific parts of an address are split into other attributes (when applicable) such as "port" attributes for
+TCP and UDP. If such transport-specific information is collected and the attribute name does not already uniquely
+identify the transport, then setting [`network.transport`](#other-network-attributes) is especially encouraged.
+
 ### Server attributes
 
 > **Warning**
@@ -53,33 +66,19 @@ the `server.*` attributes are the same on the client and server.
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
 
-<!-- semconv server -->
+<!-- semconv general.server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `server.address` | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com` | Recommended |
-| `server.port` | int | Server port number [2] | `80`; `8080`; `443` | Recommended |
-| `server.socket.domain` | string | Immediate server peer's domain name if available without reverse DNS lookup [3] | `proxy.example.com` | Recommended: If different than `server.address`. |
-| `server.socket.address` | string | Server address of the socket connection - IP address or Unix domain socket name. [4] | `10.5.3.2` | Recommended: If different than `server.address`. |
-| `server.socket.port` | int | Server port number of the socket connection. [5] | `16456` | Recommended: If different than `server.port`. |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | Recommended |
 
-**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
-the server address behind any intermediaries (e.g. proxies) if it's available.
+**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
-
-**[3]:** Typically observed from the client side, and represents a proxy or other intermediary domain name.
-
-**[4]:** When observed from the client side, this SHOULD represent the immediate server peer address.
-When observed from the server side, this SHOULD represent the physical server address.
-
-**[5]:** When observed from the client side, this SHOULD represent the immediate server peer port.
-When observed from the server side, this SHOULD represent the physical server port.
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
 
 `server.address` and `server.port` represent logical server name and port. Semantic conventions that refer to these attributes SHOULD
 specify what these attributes mean in their context.
-
-Semantic conventions and instrumentations that populate both logical (`server.address` and `server.port`) and socket-level (`server.socket.*`) attributes SHOULD set socket-level attributes only when they don't match logical ones. For example, when direct connection to the remote destination is established and `server.address` is populated, `server.socket.domain` SHOULD NOT be set. Check out [Connecting through intermediary](#connecting-through-intermediary) for more information.
 
 #### `server.address`
 
@@ -97,28 +96,6 @@ the name should explicitly be set to the empty string to distinguish it from the
 
 For Unix domain socket, `server.address` attribute represents remote endpoint address on the client side and local endpoint address on the server side.
 
-#### `server.socket.*` attributes
-
-_Note: this section applies to socket connections visible to instrumentations. Instrumentations have limited knowledge about intermediaries communications goes through such as [transparent proxies](https://www.rfc-editor.org/rfc/rfc3040.html#section-2.5) or VPN servers. Higher-level instrumentations such as HTTP don't always have access to the socket-level information and may not be able to populate socket-level attributes._
-
-Socket-level attributes identify peer and host that are directly connected to each other. Since instrumentations may have limited knowledge on network information, instrumentations SHOULD populate such attributes to the best of their knowledge when populate them at all.
-
-_Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
-
-For IP-based communication, `server.socket.domain` represents either fully qualified domain name of immediate peer and `server.socket.address` to the IP address (or one specific to network family).
-
-`server.socket.domain`, `server.socket.address`, and `server.socket.port` describe server side of socket communication. For example, when connecting using `connect(2)`
-on [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect)
-with `AF_INET` address family, they represent `sin_addr` and `sin_port` fields of [`sockaddr_in`](https://man7.org/linux/man-pages/man7/ip.7.html) structure.
-
-On client side, address and port can be obtained by calling `getpeername` method on [Linux](https://man7.org/linux/man-pages/man2/getpeername.2.html) or
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername).
-
-On server side address and port can be obtained by calling `getsockname` method on [Linux](https://man7.org/linux/man-pages/man2/getsockname.2.html) or
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname).
-
-`server.socket.port` SHOULD only be populated for families that have notion of port.
-
 ### Client attributes
 
 > **Warning**
@@ -126,88 +103,15 @@ On server side address and port can be obtained by calling `getsockname` method 
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
 
-<!-- semconv client -->
+<!-- semconv general.client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `client.address` | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `/tmp/my.sock`; `10.1.2.80` | Recommended |
-| `client.port` | int | Client port number. [2] | `65123` | Recommended |
-| `client.socket.address` | string | Client address of the socket connection - IP address or Unix domain socket name. [3] | `/tmp/my.sock`; `127.0.0.1` | Recommended: If different than `client.address`. |
-| `client.socket.port` | int | Client port number of the socket connection. [4] | `35555` | Recommended: If different than `client.port`. |
+| [`client.address`](../attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`client.port`](../attributes-registry/client.md) | int | Client port number. [2] | `65123` | Recommended |
 
-**[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries (e.g. proxies) if it's available.
+**[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
-**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
-
-**[3]:** When observed from the server side, this SHOULD represent the immediate client peer address.
-When observed from the client side, this SHOULD represent the physical client address.
-
-**[4]:** When observed from the server side, this SHOULD represent the immediate client peer port.
-When observed from the client side, this SHOULD represent the physical client port.
-<!-- endsemconv -->
-
-`client.socket.address` and `client.socket.port` represent physical client name and port.
-
-For IP-based communication, the `client.socket.address` should be a IP address, Unix domain name, or another address specific to network type.
-
-On server side, `client.socket.address` identifies the direct peer endpoint socket address. For example, when using `bind(2)`
-on [Linux](https://man7.org/linux/man-pages/man2/bind.2.html) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind)
-with `AF_INET` address family, represent `sin_addr` and `sin_port` fields of `sockaddr_in` structure.
-
-On client side it represents local socket address and port can be obtained by calling `getsockname` method on [Linux](https://man7.org/linux/man-pages/man2/getsockname.2.html),
-[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname).
-
-#### Connecting through intermediary
-
-When connecting to the remote destination through an intermediary (e.g. proxy), client instrumentations SHOULD set `server.address` and `server.port` to logical remote destination address and `server.socket.name`, `server.socket.address` and `server.socket.port` to the socket peer connection is established with - the intermediary.
-
-`server.socket.domain` SHOULD be set to the DNS name used to resolve `server.socket.address` if it's readily available. Instrumentations
-SHOULD NOT do DNS lookups to obtain `server.socket.address`. If peer information available to instrumentation
-can represent DNS name or IP address, instrumentation SHOULD NOT attempt to parse it and SHOULD only set `server.socket.domain`.
-
-_Note: Telemetry consumers can obtain IP address from telemetry item by first checking `server.socket.address` and if not present, falling back to `server.socket.domain`._
-
-For example, [URL Host component](https://www.rfc-editor.org/rfc/rfc3986#section-3.2.2) can contain IP address or DNS name and
-instrumentations that don't have access to socket-level communication can only populate `server.socket.domain`.
-Instrumentations that have access to socket connection, may be able to populate valid `server.socket.address` instead of or
-in addition to DNS name.
-
-Server instrumentations that leverage `client.address` and `client.port` attributes SHOULD set them to originating client address and port behind all proxies if this information is available.
-The `client.socket.address` and `client.socket.port` attributes then SHOULD contain immediate client peer address and port.
-
-If only immediate peer information is available, it should be set on `client.address` and `client.port` and `client.socket.*` attributes SHOULD NOT be set.
-
-## Network attributes
-
-> **Warning**
-> Attributes in this section are in use by the HTTP semantic conventions.
-Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
-if they do not cause breaking changes to HTTP semantic conventions.
-
-<!-- semconv network-core -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `network.transport` | string | [OSI Transport Layer](https://osi-model.com/transport-layer/) or [Inter-process Communication method](https://en.wikipedia.org/wiki/Inter-process_communication). The value SHOULD be normalized to lowercase. | `tcp`; `udp` | Recommended |
-| `network.type` | string | [OSI Network Layer](https://osi-model.com/network-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `ipv4`; `ipv6` | Recommended |
-| `network.protocol.name` | string | [OSI Application Layer](https://osi-model.com/application-layer/) or non-OSI equivalent. The value SHOULD be normalized to lowercase. | `amqp`; `http`; `mqtt` | Recommended |
-| `network.protocol.version` | string | Version of the application layer protocol used. See note below. [1] | `3.1.1` | Recommended |
-
-**[1]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `tcp` | TCP |
-| `udp` | UDP |
-| `pipe` | Named or anonymous pipe. See note below. |
-| `unix` | Unix domain socket |
-
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `ipv4` | IPv4 |
-| `ipv6` | IPv6 |
+**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 <!-- endsemconv -->
 
 ### Source and destination attributes
@@ -221,51 +125,128 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 
 #### Source
 
-<!-- semconv source -->
+<!-- semconv general.source -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `source.domain` | string | The domain name of the source system. [1] | `foo.example.com` | Recommended |
-| `source.address` | string | Source address, for example IP address or Unix socket name. | `10.5.3.2` | Recommended |
-| `source.port` | int | Source port number | `3389`; `2888` | Recommended |
+| [`source.address`](../attributes-registry/source.md) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`source.port`](../attributes-registry/source.md) | int | Source port number | `3389`; `2888` | Recommended |
 
-**[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
+**[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
 
 #### Destination
 
 Destination fields capture details about the receiver of a network exchange/packet.
 
-<!-- semconv destination -->
+<!-- semconv general.destination -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `destination.domain` | string | The domain name of the destination system. [1] | `foo.example.com` | Recommended |
-| `destination.address` | string | Destination address, for example IP address or UNIX socket name. | `10.5.3.2` | Recommended |
-| `destination.port` | int | Destination port number | `3389`; `2888` | Recommended |
+| [`destination.address`](../attributes-registry/destination.md) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`destination.port`](../attributes-registry/destination.md) | int | Destination port number | `3389`; `2888` | Recommended |
 
-**[1]:** This value may be a host name, a fully qualified domain name, or another host naming format.
+**[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
 
-### Network connection and carrier attributes
+<a name="network-attributes"></a>
 
-<!-- semconv network-connection-and-carrier -->
+### Other network attributes
+
+> **Warning**
+> Attributes in this section are in use by the HTTP semantic conventions.
+Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
+if they do not cause breaking changes to HTTP semantic conventions.
+
+<!-- semconv network-core(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `network.connection.type` | string | The internet connection type. | `wifi` | Recommended |
-| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | Recommended |
-| `network.carrier.name` | string | The name of the mobile carrier. | `sprint` | Recommended |
-| `network.carrier.mcc` | string | The mobile carrier country code. | `310` | Recommended |
-| `network.carrier.mnc` | string | The mobile carrier network code. | `001` | Recommended |
-| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | Recommended |
+| [`network.local.address`](../attributes-registry/network.md) | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.local.port`](../attributes-registry/network.md) | int | Local port number of the network connection. | `65123` | Recommended |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | Recommended |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` | Recommended |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | Recommended |
+| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended |
 
-`network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+**[1]:** The value SHOULD be normalized to lowercase.
+
+**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+**[3]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport. For example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[4]:** The value SHOULD be normalized to lowercase.
+
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
-| `wifi` | wifi |
-| `wired` | wired |
-| `cell` | cell |
-| `unavailable` | unavailable |
-| `unknown` | unknown |
+| `tcp` | TCP |
+| `udp` | UDP |
+| `pipe` | Named or anonymous pipe. |
+| `unix` | Unix domain socket |
+
+`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `ipv4` | IPv4 |
+| `ipv6` | IPv6 |
+<!-- endsemconv -->
+
+#### `network.peer.*` and `network.local.*` attributes
+
+These attributes identify network peers that are directly connected to each other.
+
+`network.peer.address` and `network.local.address` should be IP addresses, Unix domain socket names, or other addresses specific to network type.
+
+_Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
+
+When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect))
+or `bind(2)`([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/bind.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind))
+with `AF_INET` address family, `network.peer.address` and `network.peer.port` represent `sin_addr` and `sin_port` fields
+of `sockaddr_in` structure.
+
+`network.peer.address` and `network.peer.port` can be obtained by calling `getpeername` method
+([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getpeername.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername)).
+
+`network.local.address` and `network.local.port` can be obtained by calling `getsockname` method
+([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getsockname.2.html) /
+[Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname)).
+
+##### Client/server examples using  `network.peer.*`
+
+Note that `network.local.*` attributes are not included in these examples since they are typically Opt-In.
+
+###### Simple client/server example
+
+![simple.png](simple.png)
+
+###### Client/server example with reverse proxy
+
+![reverse-proxy.png](reverse-proxy.png)
+
+###### Client/server example with forward proxy
+
+![forward-proxy.png](forward-proxy.png)
+
+#### Network connection and carrier attributes
+
+<!-- semconv network-connection-and-carrier(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`network.carrier.icc`](../attributes-registry/network.md) | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | Recommended |
+| [`network.carrier.mcc`](../attributes-registry/network.md) | string | The mobile carrier country code. | `310` | Recommended |
+| [`network.carrier.mnc`](../attributes-registry/network.md) | string | The mobile carrier network code. | `001` | Recommended |
+| [`network.carrier.name`](../attributes-registry/network.md) | string | The name of the mobile carrier. | `sprint` | Recommended |
+| [`network.connection.subtype`](../attributes-registry/network.md) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | Recommended |
+| [`network.connection.type`](../attributes-registry/network.md) | string | The internet connection type. | `wifi` | Recommended |
 
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -292,6 +273,16 @@ Destination fields capture details about the receiver of a network exchange/pack
 | `nr` | 5G NR (New Radio) |
 | `nrnsa` | 5G NRNSA (New Radio Non-Standalone) |
 | `lte_ca` | LTE CA |
+
+`network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `wifi` | wifi |
+| `wired` | wired |
+| `cell` | cell |
+| `unavailable` | unavailable |
+| `unknown` | unknown |
 <!-- endsemconv -->
 
 For `Unix` and `pipe`, since the connection goes over the file system instead of being directly to a known peer, `server.address` is the only attribute that usually makes sense (see description of `server.address` below).
@@ -353,7 +344,7 @@ Examples of where the `enduser.id` value is extracted from:
 [OpenID Connect 1.0 IDToken]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [Kerberos]: https://tools.ietf.org/html/rfc4120
 [JavaEE/JakartaEE Servlet]: https://jakarta.ee/specifications/platform/8/apidocs/javax/servlet/http/HttpServletRequest.html
-[Windows Communication Foundation]: https://docs.microsoft.com/en-us/dotnet/api/system.servicemodel.servicesecuritycontext?view=netframework-4.8
+[Windows Communication Foundation]: https://docs.microsoft.com/dotnet/api/system.servicemodel.servicesecuritycontext?view=netframework-4.8
 
 Given the sensitive nature of this information, SDKs and exporters SHOULD drop these attributes by
 default and then provide a configuration parameter to turn on retention for use cases where the
@@ -367,21 +358,20 @@ a thread that started a span.
 <!-- semconv thread -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `thread.id` | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
-| `thread.name` | string | Current thread name. | `main` | Recommended |
-| `thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
+| [`thread.id`](../attributes-registry/thread.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
+| [`thread.name`](../attributes-registry/thread.md) | string | Current thread name. | `main` | Recommended |
 <!-- endsemconv -->
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
 
-| Language or platform | `thread.id`                            | `thread.name`                      |
-|-----------------------|----------------------------------------|------------------------------------|
-| JVM                   | `Thread.currentThread().getId()`       | `Thread.currentThread().getName()` |
-| .NET                  | `Thread.CurrentThread.ManagedThreadId` | `Thread.CurrentThread.Name`        |
-| Python                | `threading.current_thread().ident`     | `threading.current_thread().name`  |
-| Ruby                  | `Thread.current.object_id`             | `Thread.current.name`              |
-| C++                   | `std::this_thread::get_id()`             |                                    |
-| Erlang               | `erlang:system_info(scheduler_id)` |                                  |
+| Language or platform  | `thread.id`                            | `thread.name`                                  |
+|-----------------------|----------------------------------------|------------------------------------------------|
+| JVM                   | `Thread.currentThread().getId()`       | `Thread.currentThread().getName()`             |
+| .NET                  | `Thread.CurrentThread.ManagedThreadId` | `Thread.CurrentThread.Name`                    |
+| Python                | `threading.current_thread().ident`     | `threading.current_thread().name`              |
+| Ruby                  | `Thread.current.object_id`             | `Thread.current.name`                          |
+| C++                   | `std::this_thread::get_id()`           |                                                |
+| Erlang                | `erlang:self()`                        | `erlang:process_info(self(), registered_name)` |
 
 ## Source Code Attributes
 
@@ -394,47 +384,10 @@ about the span.
 <!-- semconv code -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `code.function` | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
-| `code.namespace` | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
-| `code.filepath` | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | Recommended |
-| `code.lineno` | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
-| `code.column` | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | Recommended |
+| [`code.column`](../attributes-registry/code.md) | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | Recommended |
+| [`code.filepath`](../attributes-registry/code.md) | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | Recommended |
+| [`code.function`](../attributes-registry/code.md) | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
+| [`code.lineno`](../attributes-registry/code.md) | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
+| [`code.namespace`](../attributes-registry/code.md) | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
+| [`code.stacktrace`](../attributes-registry/code.md) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | Opt-In |
 <!-- endsemconv -->
-
-## General geo attributes
-
-These attributes may be used to carry data about a specific location related to an event. 
-This geolocation information can be derived from techniques such as Geo IP, or be user-supplied.
-
-<!-- semconv geo -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `geo.city_name` | string | City name. | `Montreal`; `Berlin` | Recommended |
-| `geo.continent_code` | string | Two-letter code representing continent’s name. | `AF` | Recommended |
-| `geo.continent_name` | string | Name of the continent. | `North America`; `Europe` | Recommended |
-| `geo.country_iso_code` | string | Two-letter ISO Country Code (ISO 3166-1 alpha2). | `CA` | Recommended |
-| `geo.country_name` | string | Country name. | `Canada` | Recommended |
-| `geo.location.lon` | double | Longitude of the geo location. | `-73.61483` | Recommended |
-| `geo.location.lat` | double | Latitude of the geo location. | `45.505918` | Recommended |
-| `geo.name` | string | User-defined description of a location. [1] | `boston-dc` | Recommended |
-| `geo.postal_code` | string | Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country. | `94040` | Recommended |
-| `geo.region_iso_code` | string | Region ISO code (ISO 3166-2). | `CA-QC` | Recommended |
-| `geo.region_name` | string | Region name. | `Quebec` | Recommended |
-| `geo.timezone` | string | The time zone of the location, such as IANA time zone name. | `America/Argentina/Buenos_Aires` | Recommended |
-
-**[1]:** User-defined description of a location, at the level of granularity they care about. Could be the name of their data centers, the floor number, if this describes a local physical entity, city names. Not typically used in automated geolocation.
-
-`geo.continent_code` MUST be one of the following:
-
-| Value  | Description |
-|---|---|
-| `AF` | Africa |
-| `AN` | Antarctica |
-| `AS` | Asia |
-| `EU` | Europe |
-| `NA` | North America |
-| `OC` | Oceania |
-| `SA` | South America |
-<!-- endsemconv -->
-
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

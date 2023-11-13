@@ -7,7 +7,7 @@ path_base_for_github_subdir:
 
 # Semantic Conventions for HTTP
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 This document defines semantic conventions for HTTP spans, metrics and logs.
 They can be used for http and https schemes
@@ -45,4 +45,4 @@ Semantic conventions for HTTP are defined for the following signals:
 * [HTTP Spans](http-spans.md): Semantic Conventions for HTTP client and server *spans*.
 * [HTTP Metrics](http-metrics.md): Semantic Conventions for HTTP client and server *metrics*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

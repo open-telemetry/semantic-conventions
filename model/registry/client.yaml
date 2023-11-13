@@ -1,0 +1,115 @@
+groups:
+  - id: client
+    prefix: client
+    type: attribute_group
+    brief: >
+      These attributes may be used to describe the client in a connection-based network interaction
+      where there is one side that initiates the connection (the client is the side that initiates the connection).
+      This covers all TCP network interactions since TCP is connection-based and one side initiates the
+      connection (an exception is made for peer-to-peer communication over TCP where the "user-facing" surface of the
+      protocol / API doesn't expose a clear notion of client and server).
+      This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
+    attributes:
+      - id: address
+        stability: stable
+        type: string
+        brief: "Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
+        note: >
+          When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent
+          the client address behind any intermediaries,  for example proxies, if it's available.
+        examples: ['client.example.com', '10.1.2.80', '/tmp/my.sock']
+      - id: port
+        stability: stable
+        type: int
+        brief: Client port number.
+        examples: [65123]
+        note: >
+          When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent
+          the client port behind any intermediaries,  for example proxies, if it's available.
+      - id: geo.city_name
+        type: string
+        brief: >
+          City name.
+        examples: [ 'Montreal', 'Berlin' ]
+      - id: geo.continent_code
+        brief: >
+          Two-letter code representing continent’s name.
+        type:
+          allow_custom_values: false
+          members:
+            - id: 'af'
+              value: 'AF'
+              brief: 'Africa'
+            - id: 'an'
+              value: 'AN'
+              brief: 'Antarctica'
+            - id: 'as'
+              value: 'AS'
+              brief: 'Asia'
+            - id: 'eu'
+              value: 'EU'
+              brief: 'Europe'
+            - id: 'na'
+              value: 'NA'
+              brief: 'North America'
+            - id: 'oc'
+              value: 'OC'
+              brief: 'Oceania'
+            - id: 'sa'
+              value: 'SA'
+              brief: 'South America'
+      - id: geo.continent_name
+        type: string
+        brief: >
+          Name of the continent.
+        examples: [ 'North America', 'Europe' ]
+      - id: geo.country_iso_code
+        type: string
+        brief: >
+          Two-letter ISO Country Code (ISO 3166-1 alpha2).
+        examples: [ 'CA' ]
+      - id: geo.country_name
+        type: string
+        brief: >
+          Country name.
+        examples: [ 'Canada' ]
+      - id: geo.location.lon
+        type: double
+        brief: >
+          Longitude of the geo location.
+        examples: [ -73.614830 ]
+      - id: geo.location.lat
+        type: double
+        brief: >
+          Latitude of the geo location.
+        examples: [ 45.505918 ]
+      - id: geo.name
+        type: string
+        brief: >
+          User-defined description of a location.
+        note: >
+          User-defined description of a location, at the level of granularity they care about.
+          Could be the name of their data centers, the floor number, if this describes a local physical entity, city names.
+          Not typically used in automated geolocation.
+        examples: [ 'boston-dc' ]
+      - id: geo.postal_code
+        type: string
+        brief: >
+          Postal code associated with the location.
+          Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country.
+        examples: [ '94040' ]
+      - id: geo.region_iso_code
+        type: string
+        brief: >
+          Region ISO code (ISO 3166-2).
+        examples: [ 'CA-QC' ]
+      - id: geo.region_name
+        type: string
+        brief: >
+          Region name.
+        examples: [ 'Quebec' ]
+      - id: geo.timezone
+        type: string
+        brief: >
+          The time zone of the location, such as IANA time zone name.
+        examples: [ 'America/Argentina/Buenos_Aires' ]
