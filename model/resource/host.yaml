@@ -106,17 +106,17 @@ groups:
         examples: [ 'GenuineIntel' ]
       - id: family
         requirement_level: opt_in
-        type: int
+        type: string
         brief: >
-          Numeric value specifying the family or generation of the CPU.
-        examples: [ 6 ]
+          Family or generation of the CPU.
+        examples: [ '6', 'PA-RISC 1.1e' ]
       - id: model.id
         requirement_level: opt_in
-        type: int
+        type: string
         brief: >
           Model identifier. It provides more granular information about the CPU, distinguishing it from
           other CPUs within the same family.
-        examples: [ 6 ]
+        examples: [ '6', '9000/778/B180L' ]
       - id: model.name
         requirement_level: opt_in
         type: string
