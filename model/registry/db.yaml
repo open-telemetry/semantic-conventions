@@ -80,6 +80,7 @@ groups:
           The connection string used to connect to the database.
           It is recommended to remove embedded credentials.
         examples: 'Server=(localdb)\v11.0;Integrated Security=true;'
+        tag: db-generic
       - id: cosmosdb.client_id
         type: string
         brief: Unique Cosmos client instance id.
