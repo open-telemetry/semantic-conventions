@@ -19,6 +19,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | [`host.image.version`](../attributes-registry/host.md) | string | The version string of the VM image or host OS as defined in [Version Attributes](../resource/README.md#version-attributes). | `0.1` | Recommended |
 | [`host.ip`](../attributes-registry/host.md) | string[] | Available IP addresses of the host, excluding loopback interfaces. [1] | `[192.168.1.140, fe80::abc2:4a28:737a:609e]` | Opt-In |
 | [`host.mac`](../attributes-registry/host.md) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [2] | `[AC-DE-48-23-45-67, AC-DE-48-23-45-67-01-9F]` | Opt-In |
+| [`host.name`](../attributes-registry/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | Recommended |
 | [`host.type`](../attributes-registry/host.md) | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | Recommended |
 
 **[1]:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
