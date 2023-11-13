@@ -16,7 +16,7 @@ release.
 
 ### Features
 
-- Add `geo` fields into general attribute.
+- Add `geo` fields for client and server attribute.
   ([#351](https://github.com/open-telemetry/semantic-conventions/pull/351))
 - Add `code.stacktrace` attribute
   ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
