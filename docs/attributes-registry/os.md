@@ -3,7 +3,7 @@ linkTitle: OS
 --->
 # OS
 
-## Operating system Attributes
+## Operating System Attributes
 
 <!-- semconv registry.os(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
