@@ -555,6 +555,51 @@ flowchart LR;
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
 
+### Batch publishing
+
+Given is a publisher that publishes a batch with two messages to a topic "Q" on
+Kafka, and two different consumers receiving one of the messages.
+
+```mermaid
+flowchart LR;
+  subgraph PRODUCER
+  direction TB
+  P[Span Publish]
+  CA[Span Create A]
+  CB[Span Create B]
+  end
+  subgraph CONSUMER1
+  direction TB
+  D1[Span Receive A]
+  end
+  subgraph CONSUMER2
+  direction TB
+  D2[Span Receive B]
+  end
+  P-- parent -->CA;
+  P-- parent -->CB;
+  CA-. link .-D1;
+  CB-. link .-D2;
+
+  classDef normal fill:green
+  class P,CA,CB,D1,D2 normal
+  linkStyle 0,1,2,3 color:green,stroke:green
+```
+
+| Field or Attribute | Span Publish | Span Create A | Span Create B | Span Receive A | Span Receive B |
+|-|-|-|-|-|-|
+| Span name | `Q publish` | `Q create` | `Q create` | `Q receive` | `Q receive` |
+| Parent |  | Span Publish | Span Publish | | |
+| Links |  |  |  | Span Create A | Span Create B |
+| SpanKind |  | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` |
+| Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
+| `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
+| `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
+| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
+| `messaging.operation` | `"publish"` | `"create"` | `"create"` | `"receive"` | `"receive"` |
+| `messaging.message.id` |  | `"a1"` | `"a2"` | `"a1"` | `"a2"` |
+
 ## Semantic Conventions for specific messaging technologies
 
 More specific Semantic Conventions are defined for the following messaging technologies:
