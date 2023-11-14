@@ -45,4 +45,17 @@
 /docs/mobile/        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 /model/logs/mobile*  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 
-# TODO - Add semconv area experts
+# K8s semantic conventions approvers
+/docs/resource/k8s.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/attributes-registry/k8s.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/resource/k8s.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/registry/k8s.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+
+# Container semantic conventions approvers
+/docs/resource/container.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/docs/attributes-registry/container.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/docs/attributes-registry/oci.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/model/resource/container.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/model/registry/container.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/model/registry/oci.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+
