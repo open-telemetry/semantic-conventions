@@ -6,15 +6,15 @@
 
 **Description:** A cloud infrastructure (e.g. GCP, Azure, AWS).
 
-<!-- semconv cloud -->
+<!-- semconv cloud(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `cloud.account.id` | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | Recommended |
-| `cloud.availability_zone` | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | Recommended |
-| `cloud.platform` | string | The cloud platform in use. [2] | `alibaba_cloud_ecs` | Recommended |
-| `cloud.provider` | string | Name of the cloud provider. | `alibaba_cloud` | Recommended |
-| `cloud.region` | string | The geographical region the resource is running. [3] | `us-central1`; `us-east-1` | Recommended |
-| `cloud.resource_id` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
+| [`cloud.account.id`](../attributes-registry/cloud.md) | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | Recommended |
+| [`cloud.availability_zone`](../attributes-registry/cloud.md) | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | Recommended |
+| [`cloud.platform`](../attributes-registry/cloud.md) | string | The cloud platform in use. [2] | `alibaba_cloud_ecs` | Recommended |
+| [`cloud.provider`](../attributes-registry/cloud.md) | string | Name of the cloud provider. | `alibaba_cloud` | Recommended |
+| [`cloud.region`](../attributes-registry/cloud.md) | string | The geographical region the resource is running. [3] | `us-central1`; `us-east-1` | Recommended |
+| [`cloud.resource_id`](../attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
 
 **[1]:** Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
 

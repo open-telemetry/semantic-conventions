@@ -2,6 +2,7 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+  1.23.0:
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/20

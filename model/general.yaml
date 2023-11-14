@@ -1,4 +1,32 @@
 groups:
+  - id: general.client
+    type: attribute_group
+    brief: >
+      General client attributes.
+    attributes:
+      - ref: client.address
+      - ref: client.port
+  - id: general.server
+    type: attribute_group
+    brief: >
+      General server attributes.
+    attributes:
+      - ref: server.address
+      - ref: server.port
+  - id: general.source
+    type: attribute_group
+    brief: >
+      General source attributes.
+    attributes:
+      - ref: source.address
+      - ref: source.port
+  - id: general.destination
+    type: attribute_group
+    brief: >
+      General destination attributes.
+    attributes:
+      - ref: destination.address
+      - ref: destination.port
   - id: peer
     prefix: peer
     type: span
@@ -37,50 +65,21 @@ groups:
           or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html).
         examples: 'read:message, write:files'
   - id: thread
-    prefix: thread
     type: span
     brief: >
       These attributes may be used for any operation to store information about a thread that started a span.
     attributes:
-      - id: id
-        type: int
-        brief: >
-          Current "managed" thread ID (as opposed to OS thread ID).
-        examples: 42
-      - id: name
-        type: string
-        brief: >
-          Current thread name.
-        examples: main
+      - ref: thread.id
+      - ref: thread.name
   - id: code
-    prefix: code
     type: span
     brief: >
       These attributes allow to report this unit of code and therefore to provide more context about the span.
     attributes:
-      - id: function
-        type: string
-        brief: >
-          The method or function name, or equivalent (usually rightmost part of the code unit's name).
-        examples: serveRequest
-      - id: namespace
-        type: string
-        brief: >
-          The "namespace" within which `code.function` is defined. Usually the qualified class or module name,
-          such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit.
-        examples: com.example.MyHttpService
-      - id: filepath
-        type: string
-        brief: >
-          The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path).
-        examples: /usr/local/MyApplication/content_root/app/index.php
-      - id: lineno
-        type: int
-        brief: >
-          The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
-        examples: 42
-      - id: column
-        type: int
-        brief: >
-          The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
-        examples: 16
+      - ref: code.function
+      - ref: code.namespace
+      - ref: code.filepath
+      - ref: code.lineno
+      - ref: code.column
+      - ref: code.stacktrace
+        requirement_level: opt_in

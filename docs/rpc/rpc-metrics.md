@@ -225,8 +225,8 @@ measurements.
 | [`rpc.method`](../attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [3] | `exampleMethod` | Recommended |
 | [`rpc.service`](../attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | Recommended |
 | [`rpc.system`](../attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
-| [`server.address`](../general/attributes.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| [`server.port`](../general/attributes.md) | int | Server port number. [6] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -270,10 +270,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `apache_dubbo` | Apache Dubbo |
 | `connect_rpc` | Connect RPC |
 <!-- endsemconv -->
-
-To avoid high cardinality, implementations should prefer the most stable of `server.address` or
-`server.socket.address`, depending on expected deployment profile.  For many cloud applications, this is likely
-`server.address` as names can be recycled even across re-instantiation of a server with a different `ip`.
 
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).
 For server-side spans `server.port` is optional (it describes the port the client is connecting from).

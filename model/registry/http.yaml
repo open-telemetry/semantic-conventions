@@ -11,7 +11,9 @@ groups:
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
+        stability: experimental  # this should not be marked stable with other HTTP attributes
       - id: request.header
+        stability: stable
         type: template[string[]]
         brief: >
           HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
@@ -27,6 +29,7 @@ groups:
           the HTTP library provides access to headers.
         examples: ['http.request.header.content-type=["application/json"]', 'http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]']
       - id: request.method
+        stability: stable
         type:
           allow_custom_values: true
           members:
@@ -78,10 +81,12 @@ groups:
           Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
           Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
       - id: request.method_original
+        stability: stable
         type: string
         brief: Original HTTP method sent by the client in the request line.
         examples: ["GeT", "ACL", "foo"]
       - id: request.resend_count
+        stability: stable
         type: int
         brief: >
           The ordinal number of request resending attempt (for any reason, including redirects).
@@ -97,7 +102,9 @@ groups:
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
+        stability: experimental  # this should not be marked stable with other HTTP attributes
       - id: response.header
+        stability: stable
         type: template[string[]]
         brief: >
           HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
@@ -112,10 +119,12 @@ groups:
           the HTTP library provides access to headers.
         examples: ['http.response.header.content-type=["application/json"]', 'http.response.header.my-custom-header=["abc", "def"]']
       - id: response.status_code
+        stability: stable
         type: int
         brief: '[HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).'
         examples: [200]
       - id: route
+        stability: stable
         type: string
         brief: >
             The matched route, that is, the path template in the format used by the respective server framework.
