@@ -211,8 +211,8 @@ groups:
             - id: activemq
               value: 'activemq'
               brief: 'Apache ActiveMQ'
-            - id: amazon_sqs
-              value: 'amazon_sqs'
+            - id: aws_sqs
+              value: 'aws_sqs'
               brief: 'Amazon Simple Queue Service (SQS)'
             - id: gcp_pubsub
               value: 'gcp_pubsub'

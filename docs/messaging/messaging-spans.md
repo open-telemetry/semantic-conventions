@@ -357,7 +357,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description |
 |---|---|
 | `activemq` | Apache ActiveMQ |
-| `amazon_sqs` | Amazon Simple Queue Service (SQS) |
+| `aws_sqs` | Amazon Simple Queue Service (SQS) |
 | `gcp_pubsub` | Google Cloud Pub/Sub |
 | `jms` | Java Message Service |
 | `kafka` | Apache Kafka |
