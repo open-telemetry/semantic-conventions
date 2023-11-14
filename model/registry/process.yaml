@@ -58,3 +58,21 @@ groups:
         brief: >
           The username of the user that owns the process.
         examples: 'root'
+      - id: runtime.name
+        type: string
+        brief: >
+          The name of the runtime of this process. For compiled native binaries,
+          this SHOULD be the name of the compiler.
+        examples: ['OpenJDK Runtime Environment']
+      - id: runtime.version
+        type: string
+        brief: >
+          The version of the runtime of this process, as returned by the runtime
+          without modification.
+        examples: '14.0.2'
+      - id: runtime.description
+        type: string
+        brief: >
+          An additional description about the runtime of the process, for example
+          a specific vendor customization of the runtime environment.
+        examples: 'Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0'
