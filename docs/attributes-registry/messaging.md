@@ -88,7 +88,7 @@ size should be used.
 | Value  | Description |
 |---|---|
 | `activemq` | Apache ActiveMQ |
-| `AmazonSQS` | Amazon Simple Queue Service (SQS) |
+| `amazon_sqs` | Amazon Simple Queue Service (SQS) |
 | `gcp_pubsub` | Google Cloud Pub/Sub |
 | `jms` | Java Message Service |
 | `kafka` | Apache Kafka |
