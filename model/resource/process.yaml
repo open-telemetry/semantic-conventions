@@ -37,21 +37,6 @@ groups:
     brief: >
       The single (language) runtime instance which is monitored.
     attributes:
-      - id: name
-        type: string
-        brief: >
-          The name of the runtime of this process. For compiled native binaries,
-          this SHOULD be the name of the compiler.
-        examples: ['OpenJDK Runtime Environment']
-      - id: version
-        type: string
-        brief: >
-          The version of the runtime of this process, as returned by the runtime
-          without modification.
-        examples: '14.0.2'
-      - id: description
-        type: string
-        brief: >
-          An additional description about the runtime of the process, for example
-          a specific vendor customization of the runtime environment.
-        examples: 'Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0'
+      - ref: process.runtime.name
+      - ref: process.runtime.version
+      - ref: process.runtime.description
