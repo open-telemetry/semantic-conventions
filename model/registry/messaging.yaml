@@ -203,6 +203,29 @@ groups:
           Namespace of RocketMQ resources, resources in different namespaces are individual.
         examples: 'myNamespace'
       - id: system
-        type: string
-        brief: 'A string identifying the messaging system.'
-        examples: ['kafka', 'rabbitmq', 'rocketmq', 'activemq']
+        brief: >
+          An identifier for the messaging system being used. See below for a list of well-known identifiers.
+        type:
+          allow_custom_values: true
+          members:
+            - id: activemq
+              value: 'activemq'
+              brief: 'ActiveMQ'
+            - id: amazonsqs
+              value: 'AmazonSQS'
+              brief: 'Amazon Simple Queue Service (SQS)'
+            - id: gcp_pubsub
+              value: 'gcp_pubsub'
+              brief: 'Google Cloud Pub/Sub'
+            - id: jms
+              value: 'jms'
+              brief: 'Java Message Service'
+            - id: kafka
+              value: 'kafka'
+              brief: 'Kafka'
+            - id: rabbitmq
+              value: 'rabbitmq'
+              brief: 'RabbitMQ'
+            - id: rocketmq
+              value: 'rocketmq'
+              brief: 'RocketMQ'
