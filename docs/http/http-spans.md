@@ -118,7 +118,7 @@ sections below.
 <!-- semconv trace.http.common(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
 | [`http.request.method_original`](../attributes-registry/http.md) | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | Conditionally Required: [3] |
 | [`http.response.header.<key>`](../attributes-registry/http.md) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` | Opt-In |
