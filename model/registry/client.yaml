@@ -66,7 +66,7 @@ groups:
       - id: geo.country_iso_code
         type: string
         brief: >
-          Two-letter ISO Country Code (ISO 3166-1 alpha2).
+          Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://en.wikipedia.org/wiki/ISO_3166-1#Codes)).
         examples: [ 'CA' ]
       - id: geo.country_name
         type: string
@@ -76,12 +76,12 @@ groups:
       - id: geo.location.lon
         type: double
         brief: >
-          Longitude of the geo location in WGS84.
+          Longitude of the geo location in [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ -73.614830 ]
       - id: geo.location.lat
         type: double
         brief: >
-          Latitude of the geo location in WGS84.
+          Latitude of the geo location in [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ 45.505918 ]
       - id: geo.name
         type: string
@@ -101,7 +101,7 @@ groups:
       - id: geo.region_iso_code
         type: string
         brief: >
-          Region ISO code (ISO 3166-2).
+          Region ISO code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
         examples: [ 'CA-QC' ]
       - id: geo.region_name
         type: string
@@ -111,5 +111,5 @@ groups:
       - id: geo.timezone
         type: string
         brief: >
-          The time zone of the location, such as IANA time zone name.
+          The time zone of the location, such as [IANA time zone name](https://nodatime.org/TimeZones).
         examples: [ 'America/Argentina/Buenos_Aires' ]
