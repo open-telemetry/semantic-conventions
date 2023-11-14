@@ -61,7 +61,7 @@ groups:
             - id: quic
               value: 'QUIC'
               brief: 'QUIC protocol.'
-        brief: 'Deprecated, use `network.procol.name` instead.'
+        brief: 'Deprecated, use `network.protocol.name` instead.'
         stability: deprecated
       - id: user_agent
         type: string

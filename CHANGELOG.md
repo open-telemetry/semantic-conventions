@@ -20,6 +20,8 @@ release.
   ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
 - Add `http.flavor` and `http.user_agent` to list of deprecated attributes
   ([#503](https://github.com/open-telemetry/semantic-conventions/pull/503))
+- Add Semantic conventions for TLS/SSL encrypted communication.
+  ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
 
 ### Fixes
 
