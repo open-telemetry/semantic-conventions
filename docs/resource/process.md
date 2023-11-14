@@ -62,9 +62,9 @@ In that case it MUST be interpreted as if it was `process.command_args`.
 <!-- semconv process.runtime -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `process.runtime.description` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | Recommended |
-| `process.runtime.name` | string | The name of the runtime of this process. For compiled native binaries, this SHOULD be the name of the compiler. | `OpenJDK Runtime Environment` | Recommended |
-| `process.runtime.version` | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | Recommended |
+| [`process.runtime.description`](../attributes-registry/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | Recommended |
+| [`process.runtime.name`](../attributes-registry/process.md) | string | The name of the runtime of this process. For compiled native binaries, this SHOULD be the name of the compiler. | `OpenJDK Runtime Environment` | Recommended |
+| [`process.runtime.version`](../attributes-registry/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | Recommended |
 <!-- endsemconv -->
 
 How to set these attributes for particular runtime kinds is described in the following subsections.
