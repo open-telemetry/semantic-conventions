@@ -205,4 +205,4 @@ groups:
       - id: system
         type: string
         brief: 'A string identifying the messaging system.'
-        examples: ['kafka', 'rabbitmq', 'rocketmq', 'activemq']
+        examples: ['kafka', 'rabbitmq', 'rocketmq']
