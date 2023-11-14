@@ -8,14 +8,14 @@
 
 In case of virtualized environments, this is the operating system as it is observed by the process, i.e., the virtualized guest rather than the underlying host.
 
-<!-- semconv os -->
+<!-- semconv os(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `os.build_id` | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | Recommended |
-| `os.description` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | Recommended |
-| `os.name` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | Recommended |
-| `os.type` | string | The operating system type. | `windows` | Required |
-| `os.version` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | Recommended |
+| [`os.build_id`](../attributes-registry/os.md) | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | Recommended |
+| [`os.description`](../attributes-registry/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | Recommended |
+| [`os.name`](../attributes-registry/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | Recommended |
+| [`os.type`](../attributes-registry/os.md) | string | The operating system type. | `windows` | Required |
+| [`os.version`](../attributes-registry/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | Recommended |
 
 `os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
