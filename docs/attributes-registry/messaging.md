@@ -87,11 +87,11 @@ size should be used.
 
 | Value  | Description |
 |---|---|
-| `activemq` | ActiveMQ |
+| `activemq` | Apache ActiveMQ |
 | `AmazonSQS` | Amazon Simple Queue Service (SQS) |
 | `gcp_pubsub` | Google Cloud Pub/Sub |
 | `jms` | Java Message Service |
-| `kafka` | Kafka |
+| `kafka` | Apache Kafka |
 | `rabbitmq` | RabbitMQ |
-| `rocketmq` | RocketMQ |
+| `rocketmq` | Apache RocketMQ |
 <!-- endsemconv -->

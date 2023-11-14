@@ -356,13 +356,13 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description |
 |---|---|
-| `activemq` | ActiveMQ |
+| `activemq` | Apache ActiveMQ |
 | `AmazonSQS` | Amazon Simple Queue Service (SQS) |
 | `gcp_pubsub` | Google Cloud Pub/Sub |
 | `jms` | Java Message Service |
-| `kafka` | Kafka |
+| `kafka` | Apache Kafka |
 | `rabbitmq` | RabbitMQ |
-| `rocketmq` | RocketMQ |
+| `rocketmq` | Apache RocketMQ |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
