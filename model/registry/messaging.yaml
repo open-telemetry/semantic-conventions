@@ -210,7 +210,7 @@ groups:
           members:
             - id: activemq
               value: 'activemq'
-              brief: 'ActiveMQ'
+              brief: 'Apache ActiveMQ'
             - id: amazonsqs
               value: 'AmazonSQS'
               brief: 'Amazon Simple Queue Service (SQS)'
@@ -222,10 +222,10 @@ groups:
               brief: 'Java Message Service'
             - id: kafka
               value: 'kafka'
-              brief: 'Kafka'
+              brief: 'Apache Kafka'
             - id: rabbitmq
               value: 'rabbitmq'
               brief: 'RabbitMQ'
             - id: rocketmq
               value: 'rocketmq'
-              brief: 'RocketMQ'
+              brief: 'Apache RocketMQ'
