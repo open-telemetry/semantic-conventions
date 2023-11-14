@@ -58,25 +58,19 @@ groups:
         brief: >
           The username of the user that owns the process.
         examples: 'root'
-  - id: registry.process.runtime
-    prefix: process.runtime
-    type: resource
-    brief: >
-      The single (language) runtime instance which is monitored.
-    attributes:
-      - id: name
+      - id: runtime.name
         type: string
         brief: >
           The name of the runtime of this process. For compiled native binaries,
           this SHOULD be the name of the compiler.
         examples: ['OpenJDK Runtime Environment']
-      - id: version
+      - id: runtime.version
         type: string
         brief: >
           The version of the runtime of this process, as returned by the runtime
           without modification.
         examples: '14.0.2'
-      - id: description
+      - id: runtime.description
         type: string
         brief: >
           An additional description about the runtime of the process, for example
