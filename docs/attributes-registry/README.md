@@ -35,6 +35,7 @@ Currently, the following namespaces exist:
 * [Device](device.md)
 * [Error](error.md)
 * [HTTP](http.md)
+* [K8s](k8s.md)
 * [Network](network.md)
 * [OCI](oci.md)
 * [Process](process.md)
