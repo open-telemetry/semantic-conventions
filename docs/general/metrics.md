@@ -156,15 +156,14 @@ something should be called `entity.limit`. For example, `system.memory.limit`
 for the total amount of memory on a system.
 
 - **usage** - an instrument that measures an amount used out of a known total
-(**limit**) amount should be called `entity.usage`. For example,
-`system.memory.usage` with attribute `state = used | cached | free | ...` for the
-amount of memory in a each state. Where appropriate, the sum of **usage**
-over all attribute values SHOULD be equal to the **limit**.
+(**limit**) and has dimensions which add up to the **limit** should be called
+`entity.usage`. For example, `system.memory.usage` with attribute
+`state = used | cached | free | ...` for the amount of memory in a each state.
 
-  A measure of the amount consumed of an unlimited resource, or of a resource
-  whose limit is unknowable, is differentiated from **usage**. For example, the
-  maximum possible amount of virtual memory that a process may consume may
-  fluctuate over time and is not typically known.
+- **used** - an instrument that measures an amount used but does not have
+a limit (or the limit is unknowable) should be called `entity.used`.
+For example, the maximum possible amount of virtual memory that a process
+may consume may fluctuate over time and is not typically known.
 
 - **utilization** - an instrument that measures the *fraction* of **usage**
 out of its **limit** should be called `entity.utilization`. For example,
