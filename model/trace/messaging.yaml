@@ -179,4 +179,4 @@ groups:
       - ref: messaging.gcp_pubsub.message.ordering_key
         tag: tech-specific-gcp-pubsub
         requirement_level:
-          conditionally_required: If the message type has an ordering key set. 
+          conditionally_required: If the message type has an ordering key set.
