@@ -158,7 +158,7 @@ for the total amount of memory on a system.
 - **usage** - an instrument that measures an amount used out of a known total
 (**limit**) and has dimensions which add up to the **limit** should be called
 `<entity>.usage`. For example, `system.memory.usage` with attribute
-`state = used | cached | free | ...` for the amount of memory in a each state.
+`<entity.state> = used | cached | free | ...` for the amount of memory in a each state.
 
 - **used** - an instrument that measures an amount used but does not have
 a limit (or the limit is unknowable) should be called `<entity>.used`.
