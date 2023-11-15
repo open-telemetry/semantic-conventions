@@ -13,21 +13,21 @@ This document defines semantic conventions for OpenAI client metrics.
 <!-- toc -->
 
 - [Chat completions](#chat-completions)
-  * [Metric: `openai.chat_completions.tokens`](#metric-openaichat_completionstokens)
-  * [Metric: `openai.chat_completions.choices`](#metric-openaichat_completionschoices)
-  * [Metric: `openai.chat_completions.duration`](#metric-openaichat_completionsduration)
+  * [Metric: `llm.openai.chat_completions.tokens`](#metric-openaichat_completionstokens)
+  * [Metric: `llm.openai.chat_completions.choices`](#metric-openaichat_completionschoices)
+  * [Metric: `llm.openai.chat_completions.duration`](#metric-openaichat_completionsduration)
 - [Embeddings](#embeddings)
-  * [Metric: `openai.embeddings.tokens`](#metric-openaiembeddingstokens)
-  * [Metric: `openai.embeddings.vector_size`](#metric-openaiembeddingsvector_size)
-  * [Metric: `openai.embeddings.duration`](#metric-openaiembeddingsduration)
+  * [Metric: `llm.openai.embeddings.tokens`](#metric-openaiembeddingstokens)
+  * [Metric: `llm.openai.embeddings.vector_size`](#metric-openaiembeddingsvector_size)
+  * [Metric: `llm.openai.embeddings.duration`](#metric-openaiembeddingsduration)
 - [Image generation](#image-generation)
-  * [Metric: `openai.image_generations.duration`](#metric-openaiimage_generationsduration)
+  * [Metric: `llm.openai.image_generations.duration`](#metric-openaiimage_generationsduration)
 
 <!-- tocstop -->
 
 ## Chat completions
 
-### Metric: `openai.chat_completions.tokens`
+### Metric: `llm.openai.chat_completions.tokens`
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -36,15 +36,15 @@ This metric is required.
 <!-- semconv metric.openai.chat_completions.tokens(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `openai.chat_completions.tokens` | Counter | `{token}` | Number of tokens used in prompt and completions |
+| `llm.openai.chat_completions.tokens` | Counter | `{token}` | Number of tokens used in prompt and completions |
 <!-- endsemconv -->
 
 <!-- semconv metric.openai.chat_completions.tokens(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `openai.model` | string | Model name | `text-davinci-003` | Required |
+| `llm.openai.model` | string | Model name | `text-davinci-003` | Required |
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: if and only if operation has ended with an error |
-| `openai.usage.type` | string | Describes if tokens were used in prompt or completion | `prompt`; `completion` | Required |
+| `llm.openai.usage.type` | string | Describes if tokens were used in prompt or completion | `prompt`; `completion` | Required |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Required |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
@@ -67,7 +67,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 <!-- endsemconv -->
 
-### Metric: `openai.chat_completions.choices`
+### Metric: `llm.openai.chat_completions.choices`
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -76,16 +76,16 @@ This metric is required.
 <!-- semconv metric.openai.chat_completions.choices(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `openai.chat_completions.choices` | Counter | `{choice}` | Number of choices returned by chat completions call |
+| `llm.openai.chat_completions.choices` | Counter | `{choice}` | Number of choices returned by chat completions call |
 <!-- endsemconv -->
 
 <!-- semconv metric.openai.chat_completions.choices(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `openai.model` | string | Model name | `text-davinci-003` | Required |
+| `llm.openai.model` | string | Model name | `text-davinci-003` | Required |
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: if and only if operation has ended with an error |
-| `openai.choice.finish_reason` | string | Finish reason for single chat completion choice | `stop`; `length`; `content_filter` | Conditionally Required: if and only if it was returned. |
-| `openai.usage.type` | string | Describes if tokens were used in prompt or completion | `prompt`; `completion` | Required |
+| `llm.openai.choice.finish_reason` | string | Finish reason for single chat completion choice | `stop`; `length`; `content_filter` | Conditionally Required: if and only if it was returned. |
+| `llm.openai.usage.type` | string | Describes if tokens were used in prompt or completion | `prompt`; `completion` | Required |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Required |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
@@ -109,7 +109,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 <!-- endsemconv -->
 
 
-### Metric: `openai.chat_completions.duration`
+### Metric: `llm.openai.chat_completions.duration`
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -122,13 +122,13 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 <!-- semconv metric.openai.chat_completions.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `openai.chat_completions.duration` | Histogram | `s` | Duration of chat completion operation |
+| `llm.openai.chat_completions.duration` | Histogram | `s` | Duration of chat completion operation |
 <!-- endsemconv -->
 
 <!-- semconv metric.openai.chat_completions.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `openai.model` | string | Model name | `text-davinci-003` | Required |
+| `llm.openai.model` | string | Model name | `text-davinci-003` | Required |
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: if and only if operation has ended with an error |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Required |
 
@@ -154,7 +154,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 
 ## Embeddings
 
-### Metric: `openai.embeddings.tokens`
+### Metric: `llm.openai.embeddings.tokens`
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -163,15 +163,15 @@ This metric is required.
 <!-- semconv metric.openai.embeddings.tokens(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `openai.embeddings.tokens` | Counter | `{token}` | Number of tokens used in prompt. |
+| `llm.openai.embeddings.tokens` | Counter | `{token}` | Number of tokens used in prompt. |
 <!-- endsemconv -->
 
 <!-- semconv metric.openai.embeddings.tokens(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `openai.model` | string | Model name | `text-davinci-003` | Required |
+| `llm.openai.model` | string | Model name | `text-davinci-003` | Required |
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: if and only if operation has ended with an error |
-| `openai.usage.type` | string | Describes if tokens were used in prompt or completion | `prompt` | Recommended |
+| `llm.openai.usage.type` | string | Describes if tokens were used in prompt or completion | `prompt` | Recommended |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Required |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
@@ -194,7 +194,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 <!-- endsemconv -->
 
-### Metric: `openai.embeddings.vector_size`
+### Metric: `llm.openai.embeddings.vector_size`
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -203,13 +203,13 @@ This metric is required.
 <!-- semconv metric.openai.embeddings.vector_size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `openai.embeddings.vector_size` | Counter | `{element}` | The size of returned vector. |
+| `llm.openai.embeddings.vector_size` | Counter | `{element}` | The size of returned vector. |
 <!-- endsemconv -->
 
 <!-- semconv metric.openai.embeddings.vector_size(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `openai.model` | string | Model name | `text-davinci-003` | Required |
+| `llm.openai.model` | string | Model name | `text-davinci-003` | Required |
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: if and only if operation has ended with an error |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Required |
 
@@ -233,7 +233,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 | `_OTHER` | A fallback error value to be used when the instrumentation does not define a custom value for it. |
 <!-- endsemconv -->
 
-### Metric: `openai.embeddings.duration`
+### Metric: `llm.openai.embeddings.duration`
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -246,13 +246,13 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 <!-- semconv metric.openai.embeddings.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `openai.embeddings.duration` | Histogram | `s` | Duration of embeddings operation |
+| `llm.openai.embeddings.duration` | Histogram | `s` | Duration of embeddings operation |
 <!-- endsemconv -->
 
 <!-- semconv metric.openai.embeddings.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `openai.model` | string | Model name | `text-davinci-003` | Required |
+| `llm.openai.model` | string | Model name | `text-davinci-003` | Required |
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: if and only if operation has ended with an error |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Required |
 
@@ -280,7 +280,7 @@ the server address behind any intermediaries (e.g. proxies) if it's available.
 
 ## Image generation
 
-### Metric: `openai.image_generations.duration`
+### Metric: `llm.openai.image_generations.duration`
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -293,13 +293,13 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 <!-- semconv metric.openai.image_generations.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `openai.image_generations.duration` | Histogram | `s` | Duration of image generations operation |
+| `llm.openai.image_generations.duration` | Histogram | `s` | Duration of image generations operation |
 <!-- endsemconv -->
 
 <!-- semconv metric.openai.image_generations.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `openai.model` | string | Model name | `text-davinci-003` | Required |
+| `llm.openai.model` | string | Model name | `text-davinci-003` | Required |
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: if and only if operation has ended with an error |
 | [`server.address`](../general/attributes.md) | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [2] | `example.com` | Required |
 
