@@ -170,3 +170,11 @@ groups:
         tag: tech-specific-rocketmq
       - ref: messaging.rocketmq.consumption_model
         tag: tech-specific-rocketmq
+  - id: messaging.gcp_pubsub
+    type: attribute_group
+    extends: messaging
+    brief: >
+      Attributes for Google Cloud Pub/Sub
+    attributes:
+      - ref: messaging.gcp_pubsub.message.ordering_key
+        tag: tech-specific-gcp-pubsub
