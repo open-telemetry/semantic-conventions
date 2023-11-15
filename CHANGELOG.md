@@ -22,6 +22,9 @@ release.
   ([#503](https://github.com/open-telemetry/semantic-conventions/pull/503))
 - Add Semantic conventions for TLS/SSL encrypted communication.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+- Move faas attributes to the registry.
+  ([#21](https://github.com/open-telemetry/semantic-conventions/pull/525))
+
 
 ### Fixes
 

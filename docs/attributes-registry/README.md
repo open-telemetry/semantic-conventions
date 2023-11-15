@@ -34,6 +34,7 @@ Currently, the following namespaces exist:
 * [Destination](destination.md)
 * [Device](device.md)
 * [Error](error.md)
+* [FaaS](faas.md)
 * [Host](host.md)
 * [HTTP](http.md)
 * [K8s](k8s.md)
