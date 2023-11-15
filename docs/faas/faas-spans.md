@@ -42,8 +42,8 @@ If Spans following this convention are produced, a Resource of type `faas` MUST 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`cloud.resource_id`](../attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
-| `faas.invocation_id` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | Recommended |
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. [2] | `datasource` | Recommended |
+| [`faas.invocation_id`](../attributes-registry/faas.md) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [2] | `datasource` | Recommended |
 
 **[1]:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -122,8 +122,8 @@ For incoming FaaS spans, the span kind MUST be `Server`.
 <!-- semconv faas_span.in -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.coldstart` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | Recommended |
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. [1] | `datasource` | Required |
+| [`faas.coldstart`](../attributes-registry/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [1] | `datasource` | Required |
 
 **[1]:** For the server/consumer span on the incoming side,
 `faas.trigger` MUST be set.
@@ -161,17 +161,15 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 <!-- semconv faas_span.out(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.invoked_name` | string | The name of the invoked function. [1] | `my-function` | Required |
-| `faas.invoked_provider` | string | The cloud provider of the invoked function. [2] | `alibaba_cloud` | Required |
-| `faas.invoked_region` | string | The cloud region of the invoked function. [3] | `eu-central-1` | Conditionally Required: [4] |
+| [`faas.invoked_name`](../attributes-registry/faas.md) | string | The name of the invoked function. [1] | `my-function` | Recommended |
+| [`faas.invoked_provider`](../attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud` | Recommended |
+| [`faas.invoked_region`](../attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | Recommended |
 
 **[1]:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
 **[2]:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
 **[3]:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
-
-**[4]:** For some cloud providers, like AWS or GCP, the region in which a function is hosted is essential to uniquely identify the function and also part of its endpoint. Since it's part of the endpoint being called, the region is always known to clients. In these cases, `faas.invoked_region` MUST be set accordingly. If the region is unknown to the client or not required for identifying the invoked function, setting `faas.invoked_region` is optional.
 
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -196,13 +194,13 @@ This section describes how to handle the span creation and additional attributes
 A datasource function is triggered as a response to some data source operation such as a database or filesystem read/write.
 FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOULD use the following set of attributes.
 
-<!-- semconv faas_span.datasource -->
+<!-- semconv faas_span.datasource(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.document.collection` | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | Required |
-| `faas.document.name` | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | Recommended |
-| `faas.document.operation` | string | Describes the type of the operation that was performed on the data. | `insert` | Required |
-| `faas.document.time` | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | Recommended |
+| [`faas.document.collection`](../attributes-registry/faas.md) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | Required |
+| [`faas.document.name`](../attributes-registry/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | Recommended |
+| [`faas.document.operation`](../attributes-registry/faas.md) | string | Describes the type of the operation that was performed on the data. | `insert` | Required |
+| [`faas.document.time`](../attributes-registry/faas.md) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | Recommended |
 
 `faas.document.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -232,8 +230,8 @@ A function is scheduled to be executed regularly. The following additional attri
 <!-- semconv faas_span.timer -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.cron` | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | Recommended |
-| `faas.time` | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | Recommended |
+| [`faas.cron`](../attributes-registry/faas.md) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | Recommended |
+| [`faas.time`](../attributes-registry/faas.md) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | Recommended |
 <!-- endsemconv -->
 
 ### Other

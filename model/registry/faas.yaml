@@ -1,6 +1,6 @@
 groups:
   - id: registry.faas
-    brief: A serverless instance attributes
+    brief: FaaS attributes
     type: attribute_group
     prefix: faas
     attributes:
@@ -58,3 +58,122 @@ groups:
           On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE`
           provides this information (which must be multiplied by 1,048,576).
         examples: 134217728
+      - id: trigger
+        brief: >
+          Type of the trigger which caused this function invocation.
+        type:
+          allow_custom_values: false
+          members:
+            - id: datasource
+              value: 'datasource'
+              brief: 'A response to some data source operation such as a database or filesystem read/write'
+            - id: http
+              value: 'http'
+              brief: 'To provide an answer to an inbound HTTP request'
+            - id: pubsub
+              value: 'pubsub'
+              brief: 'A function is set to be executed when messages are sent to a messaging system'
+            - id: timer
+              value: 'timer'
+              brief: 'A function is scheduled to be executed regularly'
+            - id: other
+              value: 'other'
+              brief: 'If none of the others apply'
+      - id: invoked_name
+        type: string
+        brief: >
+          The name of the invoked function.
+        note: >
+          SHOULD be equal to the `faas.name` resource attribute of the
+          invoked function.
+        examples: 'my-function'
+      - id: invoked_provider
+        type:
+          allow_custom_values: true
+          members:
+            - id: 'alibaba_cloud'
+              value: 'alibaba_cloud'
+              brief: 'Alibaba Cloud'
+            - id: 'aws'
+              value: 'aws'
+              brief: 'Amazon Web Services'
+            - id: 'azure'
+              value: 'azure'
+              brief: 'Microsoft Azure'
+            - id: 'gcp'
+              value: 'gcp'
+              brief: 'Google Cloud Platform'
+            - id: 'tencent_cloud'
+              value: 'tencent_cloud'
+              brief: 'Tencent Cloud'
+        brief: >
+          The cloud provider of the invoked function.
+        note: >
+          SHOULD be equal to the `cloud.provider` resource attribute of the
+          invoked function.
+      - id: invoked_region
+        type: string
+        brief: >
+          The cloud region of the invoked function.
+        note: >
+          SHOULD be equal to the `cloud.region` resource attribute of the
+          invoked function.
+        examples: 'eu-central-1'
+      - id: invocation_id
+        type: string
+        brief: >
+          The invocation ID of the current function invocation.
+        examples: 'af9d5aa4-a685-4c5f-a22b-444f80b3cc28'
+      - id: time
+        type: string
+        brief: >
+          A string containing the function invocation time in the
+          [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+          format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
+        examples: "2020-01-23T13:47:06Z"
+      - id: cron
+        type: string
+        brief: >
+          A string containing the schedule period as
+          [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
+        examples: "0/5 * * * ? *"
+      - id: coldstart
+        type: boolean
+        brief: >
+          A boolean that is true if the serverless function is executed for the
+          first time (aka cold-start).
+      - id: document.collection
+        type: string
+        brief: >
+          The name of the source on which the triggering operation was performed.
+          For example, in Cloud Storage or S3 corresponds to the bucket name,
+          and in Cosmos DB to the database name.
+        examples: ['myBucketName', 'myDbName']
+      - id: document.operation
+        type:
+          allow_custom_values: true
+          members:
+            - id: insert
+              value: 'insert'
+              brief: 'When a new object is created.'
+            - id: edit
+              value: 'edit'
+              brief: 'When an object is modified.'
+            - id: delete
+              value: 'delete'
+              brief: 'When an object is deleted.'
+        brief: 'Describes the type of the operation that was performed on the data.'
+      - id: document.time
+        type: string
+        brief: >
+          A string containing the time when the data was accessed in the
+          [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+          format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
+        examples: "2020-01-23T13:47:06Z"
+      - id: document.name
+        type: string
+        brief: >
+          The document name/table subjected to the operation.
+          For example, in Cloud Storage or S3 is the name of
+          the file, and in Cosmos DB the table name.
+        examples: ["myFile.txt", "myTableName"]

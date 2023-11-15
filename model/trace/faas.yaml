@@ -18,10 +18,7 @@ groups:
           trigger that corresponding incoming would have (i.e., this has
           nothing to do with the underlying transport used to make the API
           call to invoke the lambda, which is often HTTP).
-      - id: invocation_id
-        type: string
-        brief: 'The invocation ID of the current function invocation.'
-        examples: 'af9d5aa4-a685-4c5f-a22b-444f80b3cc28'
+      - ref: faas.invocation_id
       - ref: cloud.resource_id
 
   - id: faas_span.datasource
@@ -31,43 +28,12 @@ groups:
       Semantic Convention for FaaS triggered as a response to some data
       source operation such as a database or filesystem read/write.
     attributes:
-      - id: collection
-        type: string
+      - ref: faas.document.collection
         requirement_level: required
-        brief: >
-          The name of the source on which the triggering operation was performed.
-          For example, in Cloud Storage or S3 corresponds to the bucket name,
-          and in Cosmos DB to the database name.
-        examples: ['myBucketName', 'myDbName']
-      - id: operation
+      - ref: faas.document.operation
         requirement_level: required
-        type:
-          allow_custom_values: true
-          members:
-            - id: insert
-              value: 'insert'
-              brief: 'When a new object is created.'
-            - id: edit
-              value: 'edit'
-              brief: 'When an object is modified.'
-            - id: delete
-              value: 'delete'
-              brief: 'When an object is deleted.'
-        brief: 'Describes the type of the operation that was performed on the data.'
-      - id: time
-        type: string
-        brief: >
-          A string containing the time when the data was accessed in the
-          [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
-          format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
-        examples: "2020-01-23T13:47:06Z"
-      - id: name
-        type: string
-        brief: >
-          The document name/table subjected to the operation.
-          For example, in Cloud Storage or S3 is the name of
-          the file, and in Cosmos DB the table name.
-        examples: ["myFile.txt", "myTableName"]
+      - ref: faas.document.time
+      - ref: faas.document.name
 
   - id: faas_span.http
     type: span
@@ -93,19 +59,8 @@ groups:
     brief: >
       Semantic Convention for FaaS scheduled to be executed regularly.
     attributes:
-      - id: time
-        type: string
-        brief: >
-          A string containing the function invocation time in the
-          [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
-          format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
-        examples: "2020-01-23T13:47:06Z"
-      - id: cron
-        type: string
-        brief: >
-          A string containing the schedule period as
-          [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
-        examples: "0/5 * * * ? *"
+      - ref: faas.time
+      - ref: faas.cron
 
   - id: faas_span.in
     span_kind: server
@@ -114,11 +69,7 @@ groups:
     brief: >
       Contains additional attributes for incoming FaaS spans.
     attributes:
-      - id: coldstart
-        type: boolean
-        brief: >
-          A boolean that is true if the serverless function is executed for the
-          first time (aka cold-start).
+      - ref: faas.coldstart
       - ref: faas.trigger
         requirement_level: required
         note: |
