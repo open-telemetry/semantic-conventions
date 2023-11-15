@@ -25,7 +25,6 @@ release.
 - Move faas attributes to the registry.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/525))
 
-
 ### Fixes
 
 ## v1.23.0 (2023-11-03)
