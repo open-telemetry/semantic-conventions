@@ -508,7 +508,6 @@ flowchart LR;
 | Parent | | | |
 | Links |  | `T publish` | `T publish` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
-| Status | `Ok` | `Ok` | `Ok` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
@@ -547,7 +546,6 @@ flowchart LR;
 | Link attributes |  |  | Span Publish A: `messaging.message.id`: `"a1"`  |
 |                 |  |  | Span Publish B: `messaging.message.id`: `"a2"`  |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |
-| Status | `Ok` | `Ok` | `Ok` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
@@ -593,7 +591,6 @@ flowchart LR;
 | Parent |  | Span Publish | Span Publish | | |
 | Links |  |  |  | Span Create A | Span Create B |
 | SpanKind |  | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` |
-| Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
