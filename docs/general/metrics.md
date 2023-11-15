@@ -163,7 +163,8 @@ for the total amount of memory on a system.
 - **used** - an instrument that measures an amount used but does not have
 a limit (or the limit is unknowable) should be called `<entity>.used`.
 For example, the maximum possible amount of virtual memory that a process
-may consume may fluctuate over time and is not typically known.
+may consume may fluctuate over time and is not typically known,
+so only the currently used memory is reported as `*.memory.used`.
 
 - **utilization** - an instrument that measures the *fraction* of **usage**
 out of its **limit** should be called `entity.utilization`. For example,
