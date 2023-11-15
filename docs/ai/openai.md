@@ -53,6 +53,7 @@ record.
 Message event name SHOULD be `llm.openai.message`. 
 
 | `role` | string | The role of the messages author, can be one of `system`, `user`, `assistant`, or `tool` | `system` | Required |
+|---|---|---|---|---|
 | `content` | string | The content for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. | `Why did the developer stop using OpenTelemetry? Because they couldn't trace their steps!` | Required |
 | `tool_call_id` | string | If role is `tool`, then this tool call that this message is responding to. | `call_BP08xxEhU60txNjnz3z9R4h9` | Conditionally Required: If `role` is `tool`. |
 
@@ -61,6 +62,7 @@ Message event name SHOULD be `llm.openai.message`.
 Tools event name SHOULD be `llm.openai.tool`.
 
 | `type` | string | They type of the tool. Currently, only `function` is supported. | `function` | Required |
+|---|---|---|---|---|
 | `function.name` | string | The name of the function to be called. | `get_weather` | Required !
 | `function.description` | string | A description of what the function does, used by the model to choose when and how to call the function. | `` | Required |
 | `function.parameters` | string | JSON-encoded string of the parameter object for the function. | `{"type": "object", "properties": {}}` | Required | 
@@ -90,6 +92,7 @@ Choice event name SHOULD be `llm.openai.choice`.
 If there is more than one `tool_call`, separate events SHOULD be used.
 
 | `type` | string | Either `delta` or `message`. | `message` | Required |
+|---|---|---|---|---|
 | `finish_reason` | string | The reason the OpenAI model stopped generating tokens for this chunk. | `stop` | Recommended |
 | `role` | string | The assigned role for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. | `system` | Required |
 | `content` | string | The content for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. | `Why did the developer stop using OpenTelemetry? Because they couldn't trace their steps!` | Required |
