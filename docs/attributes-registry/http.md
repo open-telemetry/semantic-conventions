@@ -67,6 +67,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 <!-- semconv attributes.http.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
+| `http.flavor` | string | Deprecated, use `network.protocol.name` instead. | `1.0` |
 | `http.method` | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` |
 | `http.request_content_length` | int | Deprecated, use `http.request.header.content-length` instead. | `3495` |
 | `http.response_content_length` | int | Deprecated, use `http.response.header.content-length` instead. | `3495` |
@@ -74,4 +75,16 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `http.status_code` | int | Deprecated, use `http.response.status_code` instead. | `200` |
 | `http.target` | string | Deprecated, use `url.path` and `url.query` instead. | `/search?q=OpenTelemetry#SemConv` |
 | `http.url` | string | Deprecated, use `url.full` instead. | `https://www.foo.bar/search?q=OpenTelemetry#SemConv` |
+| `http.user_agent` | string | Deprecated, use `user_agent.original` instead. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` |
+
+`http.flavor` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `1.0` | HTTP/1.0 |
+| `1.1` | HTTP/1.1 |
+| `2.0` | HTTP/2 |
+| `3.0` | HTTP/3 |
+| `SPDY` | SPDY protocol. |
+| `QUIC` | QUIC protocol. |
 <!-- endsemconv -->
