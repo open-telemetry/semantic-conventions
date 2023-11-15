@@ -89,6 +89,9 @@ size should be used.
 |---|---|
 | `activemq` | Apache ActiveMQ |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) |
+| `azure_eventgrid` | Azure Event Grid |
+| `azure_eventhubs` | Azure Event Hubs |
+| `azure_servicebus` | Azure Service Bus |
 | `gcp_pubsub` | Google Cloud Pub/Sub |
 | `jms` | Java Message Service |
 | `kafka` | Apache Kafka |
