@@ -95,7 +95,10 @@ groups:
         requirement_level:
           recommended: If `network.peer.address` is set.
         tag: connection-level
-
+      - ref: network.transport
+        tag: connection-level
+      - ref: network.type
+        tag: connection-level
 
   - id: messaging.rabbitmq
     type: attribute_group

@@ -21,7 +21,3 @@ groups:
         tag: connection-level
       - ref: network.protocol.version
         tag: connection-level
-      - ref: network.transport
-        tag: connection-level
-      - ref: network.type
-        tag: connection-level

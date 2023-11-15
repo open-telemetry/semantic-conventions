@@ -20,7 +20,7 @@
 
 ## Common attributes
 
-All messaging metric share the same set of attributes:
+All messaging metrics share the same set of attributes:
 
 <!-- semconv metric.messaging.attributes(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -31,10 +31,8 @@ All messaging metric share the same set of attributes:
 | [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
 | [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `amqp`; `mqtt` | Recommended |
 | [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `3.1.1` | Recommended |
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp` | Recommended |
-| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [9] | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [11] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -65,17 +63,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[8]:** The value SHOULD be normalized to lowercase.
+**[8]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
-
-**[9]:** The value SHOULD be normalized to lowercase.
-
-**[10]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
-
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -97,22 +87,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `kafka` | Apache Kafka |
 | `rabbitmq` | RabbitMQ |
 | `rocketmq` | Apache RocketMQ |
-
-`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `tcp` | TCP |
-| `udp` | UDP |
-| `pipe` | Named or anonymous pipe. |
-| `unix` | Unix domain socket |
-
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `ipv4` | IPv4 |
-| `ipv6` | IPv6 |
 <!-- endsemconv -->
 
 ## Producer metrics
@@ -135,10 +109,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 ### Metric: `messaging.publish.messages`
 
-This metric is [required][MetricRequired] when messaging system supports batch publishing. It's [opt-in][MetricOptIn] when messaging system does not support batch publishing since message count can be derived from `messaging.publish.duration` histogram.
+This metric is [required][MetricRequired] when the messaging system supports batch publishing. It's [opt-in][MetricOptIn] when the messaging system does not support batch publishing, since the message count can be derived from the `messaging.publish.duration` histogram.
 
-_Note: The need to report `messaging.publish.messages` depends on the messaging system capabilities and not application scenarios or client library limitations.
-For example, RabbitMQ does not support batch publishing and corresponding instrumentations don't need to report `messaging.publish.messages`. Kafka supports both, single and batch publishing, and instrumentations MUST report `messaging.publish.messages` counter regardless of application scenarios or APIs available in the client library.
+_Note: The need to report `messaging.publish.messages` depends on the messaging system capabilities and not application scenarios or client library limitations. For example, RabbitMQ does not support batch publishing and corresponding instrumentations don't need to report `messaging.publish.messages`. Kafka supports both, single and batch publishing, and instrumentations MUST report `messaging.publish.messages` counter regardless of application scenarios or APIs available in the client library._
 
 <!-- semconv metric.messaging.publish.messages(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -150,7 +123,7 @@ For example, RabbitMQ does not support batch publishing and corresponding instru
 
 ### Metric: `messaging.receive.duration`
 
-This metric is [required][MetricRequired] when messaging system supports poll-based receive operations.
+This metric is [required][MetricRequired] for poll-based receive operations.
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
@@ -166,9 +139,9 @@ When this metric is reported alongside a messaging receive span, the metric valu
 
 ### Metric: `messaging.receive.messages`
 
-This metric is [required][MetricRequired] when messaging system supports batch receive. It's [opt-in][MetricOptIn] when messaging system does not support batch receive since message count can be derived from `messaging.receive.duration` histogram.
+This metric is [required][MetricRequired] for batch receive operations. It's [opt-in][MetricOptIn] when the messaging system does not support batch receive since the message count can be derived from the `messaging.receive.duration` histogram.
 
-_Note: The need to report `messaging.receive.messages` depends on the messaging system capabilities and not application scenarios or client library limitations.
+_Note: The need to report `messaging.receive.messages` depends on the messaging system capabilities and not application scenarios or client library limitations._
 
 <!-- semconv metric.messaging.receive.messages(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -178,7 +151,7 @@ _Note: The need to report `messaging.receive.messages` depends on the messaging 
 
 ### Metric: `messaging.deliver.duration`
 
-This metric is [required][MetricRequired] when messaging system supports poll-based receive operations.
+This metric is [required][MetricRequired] for push-based deliver operations.
 
 When this metric is reported alongside a messaging deliver span, the metric value SHOULD be the same as the corresponding span duration.
 
@@ -194,9 +167,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 ### Metric: `messaging.deliver.messages`
 
-This metric is [required][MetricRequired] when messaging system supports batch delivery. It's [opt-in][MetricOptIn] when messaging system does not support batch delivery since message count can be derived from `messaging.deliver.duration` histogram.
+This metric is [required][MetricRequired] for batch delivery operations. It's [opt-in][MetricOptIn] when the messaging system does not support batch delivery since the message count can be derived from the `messaging.deliver.duration` histogram.
 
-_Note: The need to report `messaging.deliver.messages` depends on the messaging system capabilities and not application scenarios or client library limitations.
+_Note: The need to report `messaging.deliver.messages` depends on the messaging system capabilities and not application scenarios or client library limitations._
 
 <!-- semconv metric.messaging.deliver.messages(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
