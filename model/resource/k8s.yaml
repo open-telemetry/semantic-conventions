@@ -5,40 +5,8 @@ groups:
     brief: >
       A Kubernetes Cluster.
     attributes:
-      - id: name
-        type: string
-        brief: >
-          The name of the cluster.
-        examples: ['opentelemetry-cluster']
-      - id: uid
-        type: string
-        brief: >
-          A pseudo-ID for the cluster, set to the UID of the `kube-system`
-          namespace.
-        note: |
-          K8s doesn't have support for obtaining a cluster ID. If this is ever
-          added, we will recommend collecting the `k8s.cluster.uid` through the
-          official APIs. In the meantime, we are able to use the `uid` of the
-          `kube-system` namespace as a proxy for cluster ID. Read on for the
-          rationale.
-
-          Every object created in a K8s cluster is assigned a distinct UID. The
-          `kube-system` namespace is used by Kubernetes itself and will exist
-          for the lifetime of the cluster. Using the `uid` of the `kube-system`
-          namespace is a reasonable proxy for the K8s ClusterID as it will only
-          change if the cluster is rebuilt. Furthermore, Kubernetes UIDs are
-          UUIDs as standardized by
-          [ISO/IEC 9834-8 and ITU-T X.667](https://www.itu.int/ITU-T/studygroups/com17/oid.html).
-          Which states:
-
-          > If generated according to one of the mechanisms defined in Rec.
-            ITU-T X.667 | ISO/IEC 9834-8, a UUID is either guaranteed to be
-            different from all other UUIDs generated before 3603 A.D., or is
-            extremely likely to be different (depending on the mechanism chosen).
-
-          Therefore, UIDs between clusters should be extremely unlikely to
-          conflict.
-        examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
+      - ref: k8s.cluster.name
+      - ref: k8s.cluster.uid
 
   - id: k8s.node
     prefix: k8s.node
@@ -46,16 +14,8 @@ groups:
     brief: >
       A Kubernetes Node object.
     attributes:
-      - id: name
-        type: string
-        brief: >
-          The name of the Node.
-        examples: ['node-1']
-      - id: uid
-        type: string
-        brief: >
-          The UID of the Node.
-        examples: ['1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2']
+      - ref: k8s.node.name
+      - ref: k8s.node.uid
 
   - id: k8s.namespace
     prefix: k8s.namespace
@@ -63,11 +23,7 @@ groups:
     brief: >
       A Kubernetes Namespace.
     attributes:
-      - id: name
-        type: string
-        brief: >
-          The name of the namespace that the pod is running in.
-        examples: ['default']
+      - ref: k8s.namespace.name
 
   - id: k8s.pod
     prefix: k8s.pod
@@ -75,16 +31,8 @@ groups:
     brief: >
       A Kubernetes Pod object.
     attributes:
-      - id: uid
-        type: string
-        brief: >
-          The UID of the Pod.
-        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
-      - id: name
-        type: string
-        brief: >
-          The name of the Pod.
-        examples: ['opentelemetry-pod-autoconf']
+      - ref: k8s.pod.uid
+      - ref: k8s.pod.name
       - id: labels
         type: template[string]
         brief: >
@@ -97,20 +45,8 @@ groups:
     brief: >
       A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
     attributes:
-      - id: name
-        type: string
-        brief: >
-          The name of the Container from Pod specification, must be unique
-          within a Pod. Container runtime usually uses different globally unique
-          name (`container.name`).
-        examples: ['redis']
-      - id: restart_count
-        type: int
-        brief: >
-          Number of times the container was restarted. This attribute can be
-          used to identify a particular container (running or stopped) within a
-          container spec.
-        examples: [0, 2]
+      - ref: k8s.container.name
+      - ref: k8s.container.restart_count
 
   - id: k8s.replicaset
     prefix: k8s.replicaset
@@ -118,16 +54,8 @@ groups:
     brief: >
       A Kubernetes ReplicaSet object.
     attributes:
-      - id: uid
-        type: string
-        brief: >
-          The UID of the ReplicaSet.
-        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
-      - id: name
-        type: string
-        brief: >
-          The name of the ReplicaSet.
-        examples: ['opentelemetry']
+      - ref: k8s.replicaset.uid
+      - ref: k8s.replicaset.name
 
   - id: k8s.deployment
     prefix: k8s.deployment
@@ -135,16 +63,8 @@ groups:
     brief: >
       A Kubernetes Deployment object.
     attributes:
-      - id: uid
-        type: string
-        brief: >
-          The UID of the Deployment.
-        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
-      - id: name
-        type: string
-        brief: >
-          The name of the Deployment.
-        examples: ['opentelemetry']
+      - ref: k8s.deployment.uid
+      - ref: k8s.deployment.name
 
   - id: k8s.statefulset
     prefix: k8s.statefulset
@@ -152,16 +72,8 @@ groups:
     brief: >
       A Kubernetes StatefulSet object.
     attributes:
-      - id: uid
-        type: string
-        brief: >
-          The UID of the StatefulSet.
-        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
-      - id: name
-        type: string
-        brief: >
-          The name of the StatefulSet.
-        examples: ['opentelemetry']
+      - ref: k8s.statefulset.uid
+      - ref: k8s.statefulset.name
 
   - id: k8s.daemonset
     prefix: k8s.daemonset
@@ -169,16 +81,8 @@ groups:
     brief: >
       A Kubernetes DaemonSet object.
     attributes:
-      - id: uid
-        type: string
-        brief: >
-          The UID of the DaemonSet.
-        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
-      - id: name
-        type: string
-        brief: >
-          The name of the DaemonSet.
-        examples: ['opentelemetry']
+      - ref: k8s.daemonset.uid
+      - ref: k8s.daemonset.name
 
   - id: k8s.job
     prefix: k8s.job
@@ -186,16 +90,8 @@ groups:
     brief: >
       A Kubernetes Job object.
     attributes:
-      - id: uid
-        type: string
-        brief: >
-          The UID of the Job.
-        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
-      - id: name
-        type: string
-        brief: >
-          The name of the Job.
-        examples: ['opentelemetry']
+      - ref: k8s.job.uid
+      - ref: k8s.job.name
 
   - id: k8s.cronjob
     prefix: k8s.cronjob
@@ -203,13 +99,5 @@ groups:
     brief: >
       A Kubernetes CronJob object.
     attributes:
-      - id: uid
-        type: string
-        brief: >
-          The UID of the CronJob.
-        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
-      - id: name
-        type: string
-        brief: >
-          The name of the CronJob.
-        examples: ['opentelemetry']
+      - ref: k8s.cronjob.uid
+      - ref: k8s.cronjob.name

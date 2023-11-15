@@ -36,6 +36,7 @@ Currently, the following namespaces exist:
 * [Error](error.md)
 * [Host](host.md)
 * [HTTP](http.md)
+* [K8s](k8s.md)
 * [Network](network.md)
 * [OCI](oci.md)
 * [OS](os.md)
