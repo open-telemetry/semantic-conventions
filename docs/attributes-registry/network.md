@@ -16,14 +16,14 @@ These attributes may be used for any network related operation.
 | `network.carrier.name` | string | The name of the mobile carrier. | `sprint` |
 | `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` |
 | `network.connection.type` | string | The internet connection type. | `wifi` |
-| `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
-| `network.local.port` | int | Local port number of the network connection. | `65123` |
-| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
-| `network.peer.port` | int | Peer port number of the network connection. | `65123` |
-| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` |
-| `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` |
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` |
+| `network.local.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| `network.local.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Local port number of the network connection. | `65123` |
+| `network.peer.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| `network.peer.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Peer port number of the network connection. | `65123` |
+| `network.protocol.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` |
+| `network.protocol.version` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` |
+| `network.transport` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` |
+| `network.type` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 

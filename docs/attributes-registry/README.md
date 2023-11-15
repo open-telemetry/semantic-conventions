@@ -27,14 +27,25 @@ All registered attributes are listed by namespace in this registry.
 
 Currently, the following namespaces exist:
 
+* [Client](client.md)
 * [Cloud](cloud.md)
 * [Code](code.md)
 * [Container](container.md)
+* [Destination](destination.md)
+* [Device](device.md)
+* [Error](error.md)
+* [Host](host.md)
 * [HTTP](http.md)
+* [K8s](k8s.md)
 * [Network](network.md)
 * [OCI](oci.md)
+* [OS](os.md)
+* [Process](process.md)
 * [RPC](rpc.md)
+* [Server](server.md)
+* [Source](source.md)
 * [Thread](thread.md)
+* [TLS](tls.md)
 * [URL](url.md)
 * [User agent](user-agent.md)
 

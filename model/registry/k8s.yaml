@@ -1,0 +1,140 @@
+groups:
+  - id: registry.k8s
+    prefix: k8s
+    type: resource
+    brief: >
+      Kubernetes resource attributes.
+    attributes:
+      - id: cluster.name
+        type: string
+        brief: >
+          The name of the cluster.
+        examples: ['opentelemetry-cluster']
+      - id: cluster.uid
+        type: string
+        brief: >
+          A pseudo-ID for the cluster, set to the UID of the `kube-system`
+          namespace.
+        note: |
+          K8s doesn't have support for obtaining a cluster ID. If this is ever
+          added, we will recommend collecting the `k8s.cluster.uid` through the
+          official APIs. In the meantime, we are able to use the `uid` of the
+          `kube-system` namespace as a proxy for cluster ID. Read on for the
+          rationale.
+
+          Every object created in a K8s cluster is assigned a distinct UID. The
+          `kube-system` namespace is used by Kubernetes itself and will exist
+          for the lifetime of the cluster. Using the `uid` of the `kube-system`
+          namespace is a reasonable proxy for the K8s ClusterID as it will only
+          change if the cluster is rebuilt. Furthermore, Kubernetes UIDs are
+          UUIDs as standardized by
+          [ISO/IEC 9834-8 and ITU-T X.667](https://www.itu.int/ITU-T/studygroups/com17/oid.html).
+          Which states:
+
+          > If generated according to one of the mechanisms defined in Rec.
+            ITU-T X.667 | ISO/IEC 9834-8, a UUID is either guaranteed to be
+            different from all other UUIDs generated before 3603 A.D., or is
+            extremely likely to be different (depending on the mechanism chosen).
+
+          Therefore, UIDs between clusters should be extremely unlikely to
+          conflict.
+        examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
+      - id: node.name
+        type: string
+        brief: >
+          The name of the Node.
+        examples: ['node-1']
+      - id: node.uid
+        type: string
+        brief: >
+          The UID of the Node.
+        examples: ['1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2']
+      - id: namespace.name
+        type: string
+        brief: >
+          The name of the namespace that the pod is running in.
+        examples: ['default']
+      - id: pod.uid
+        type: string
+        brief: >
+          The UID of the Pod.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: pod.name
+        type: string
+        brief: >
+          The name of the Pod.
+        examples: ['opentelemetry-pod-autoconf']
+      - id: container.name
+        type: string
+        brief: >
+          The name of the Container from Pod specification, must be unique
+          within a Pod. Container runtime usually uses different globally unique
+          name (`container.name`).
+        examples: ['redis']
+      - id: container.restart_count
+        type: int
+        brief: >
+          Number of times the container was restarted. This attribute can be
+          used to identify a particular container (running or stopped) within a
+          container spec.
+        examples: [0, 2]
+      - id: replicaset.uid
+        type: string
+        brief: >
+          The UID of the ReplicaSet.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: replicaset.name
+        type: string
+        brief: >
+          The name of the ReplicaSet.
+        examples: ['opentelemetry']
+      - id: deployment.uid
+        type: string
+        brief: >
+          The UID of the Deployment.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: deployment.name
+        type: string
+        brief: >
+          The name of the Deployment.
+        examples: ['opentelemetry']
+      - id: statefulset.uid
+        type: string
+        brief: >
+          The UID of the StatefulSet.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: statefulset.name
+        type: string
+        brief: >
+          The name of the StatefulSet.
+        examples: ['opentelemetry']
+      - id: daemonset.uid
+        type: string
+        brief: >
+          The UID of the DaemonSet.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: daemonset.name
+        type: string
+        brief: >
+          The name of the DaemonSet.
+        examples: ['opentelemetry']
+      - id: job.uid
+        type: string
+        brief: >
+          The UID of the Job.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: job.name
+        type: string
+        brief: >
+          The name of the Job.
+        examples: ['opentelemetry']
+      - id: cronjob.uid
+        type: string
+        brief: >
+          The UID of the CronJob.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: cronjob.name
+        type: string
+        brief: >
+          The name of the CronJob.
+        examples: ['opentelemetry']

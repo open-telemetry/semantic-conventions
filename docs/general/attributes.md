@@ -66,11 +66,11 @@ identify the transport, then setting [`network.transport`](#other-network-attrib
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
 
-<!-- semconv server -->
+<!-- semconv general.server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `server.address` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `server.port` | int | Server port number. [2] | `80`; `8080`; `443` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -103,11 +103,11 @@ For Unix domain socket, `server.address` attribute represents remote endpoint ad
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
 
-<!-- semconv client -->
+<!-- semconv general.client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `client.address` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `client.port` | int | Client port number. [2] | `65123` | Recommended |
+| [`client.address`](../attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`client.port`](../attributes-registry/client.md) | int | Client port number. [2] | `65123` | Recommended |
 
 **[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
@@ -125,11 +125,11 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 
 #### Source
 
-<!-- semconv source -->
+<!-- semconv general.source -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `source.address` | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `source.port` | int | Source port number | `3389`; `2888` | Recommended |
+| [`source.address`](../attributes-registry/source.md) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`source.port`](../attributes-registry/source.md) | int | Source port number | `3389`; `2888` | Recommended |
 
 **[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
@@ -138,11 +138,11 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 
 Destination fields capture details about the receiver of a network exchange/packet.
 
-<!-- semconv destination -->
+<!-- semconv general.destination -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `destination.address` | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| `destination.port` | int | Destination port number | `3389`; `2888` | Recommended |
+| [`destination.address`](../attributes-registry/destination.md) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`destination.port`](../attributes-registry/destination.md) | int | Destination port number | `3389`; `2888` | Recommended |
 
 **[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
@@ -364,14 +364,14 @@ a thread that started a span.
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
 
-| Language or platform | `thread.id`                            | `thread.name`                      |
-|-----------------------|----------------------------------------|------------------------------------|
-| JVM                   | `Thread.currentThread().getId()`       | `Thread.currentThread().getName()` |
-| .NET                  | `Thread.CurrentThread.ManagedThreadId` | `Thread.CurrentThread.Name`        |
-| Python                | `threading.current_thread().ident`     | `threading.current_thread().name`  |
-| Ruby                  | `Thread.current.object_id`             | `Thread.current.name`              |
-| C++                   | `std::this_thread::get_id()`             |                                    |
-| Erlang               | `erlang:system_info(scheduler_id)` |                                  |
+| Language or platform  | `thread.id`                            | `thread.name`                                  |
+|-----------------------|----------------------------------------|------------------------------------------------|
+| JVM                   | `Thread.currentThread().getId()`       | `Thread.currentThread().getName()`             |
+| .NET                  | `Thread.CurrentThread.ManagedThreadId` | `Thread.CurrentThread.Name`                    |
+| Python                | `threading.current_thread().ident`     | `threading.current_thread().name`              |
+| Ruby                  | `Thread.current.object_id`             | `Thread.current.name`                          |
+| C++                   | `std::this_thread::get_id()`           |                                                |
+| Erlang                | `erlang:self()`                        | `erlang:process_info(self(), registered_name)` |
 
 ## Source Code Attributes
 
@@ -389,6 +389,7 @@ about the span.
 | [`code.function`](../attributes-registry/code.md) | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
 | [`code.lineno`](../attributes-registry/code.md) | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
 | [`code.namespace`](../attributes-registry/code.md) | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
+| [`code.stacktrace`](../attributes-registry/code.md) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | Opt-In |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
