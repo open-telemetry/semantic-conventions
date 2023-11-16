@@ -1,15 +1,4 @@
 groups:
-  - id: tls
-    prefix: tls.protocol
-    type: attribute_group
-    brief: TLS attributes
-    attributes:
-      - id: version
-        type: string
-        brief: TLS protocol version.
-        examples: ["1.2", "1.3"]
-        requirement_level:
-          conditionally_required: if the connection is secured with TLS.
   - id: common.kestrel.attributes
     type: attribute_group
     brief: 'Common kestrel attributes'

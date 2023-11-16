@@ -19,6 +19,10 @@ This article defines semantic conventions for DNS metrics emitted by .NET.
 
 ### Metric: `dns.lookup.duration`
 
+this metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+
 <!-- semconv metric.dotnet.dns.lookup.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -31,7 +35,7 @@ This article defines semantic conventions for DNS metrics emitted by .NET.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `dns.question.name` | string | The name being queried. [1] | `www.example.com`; `dot.net` | Required |
-| `error.type` | string | One of the resolution errors or the full name of exception type. [2] | `host_not_found`; `no_recovery`; `System.Net.Sockets.SocketException` | Conditionally Required: if and only if an error has occurred. |
+| [`error.type`](../attributes-registry/error.md) | string | One of the resolution errors or the full name of exception type. [2] | `host_not_found`; `no_recovery`; `System.Net.Sockets.SocketException` | Conditionally Required: if and only if an error has occurred. |
 
 **[1]:** The name being queried.
 If the name field contains non-printable characters (below 32 or above 126), those characters should be represented as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped. Tabs, carriage returns, and line feeds should be converted to \t, \r, and \n respectively.

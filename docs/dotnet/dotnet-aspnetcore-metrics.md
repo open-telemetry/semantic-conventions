@@ -77,7 +77,7 @@ Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 |---|---|---|---|---|
 | `aspnetcore.diagnostics.exception.result` | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | Required |
 | `aspnetcore.diagnostics.handler.type` | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | Conditionally Required: [1] |
-| `error.type` | string | The full name of exception type. [2] | `System.OperationCanceledException`; `Contoso.MyException` | Required |
+| [`error.type`](../attributes-registry/error.md) | string | The full name of exception type. [2] | `System.OperationCanceledException`; `Contoso.MyException` | Required |
 
 **[1]:** if and only if the exception was handled by this handler.
 
@@ -137,6 +137,10 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 
 ### Metric: `aspnetcore.rate_limiting.request_lease.duration`
 
+this metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+
 <!-- semconv metric.aspnetcore.rate_limiting.request_lease.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -172,6 +176,10 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 <!-- endsemconv -->
 
 ### Metric: `aspnetcore.rate_limiting.request.time_in_queue`
+
+this metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.aspnetcore.rate_limiting.request.time_in_queue(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |

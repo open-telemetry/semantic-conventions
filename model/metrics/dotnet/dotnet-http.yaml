@@ -43,8 +43,6 @@ groups:
     attributes:
       - ref: url.scheme
         examples: ['http', 'https', 'ftp']
-      - ref: network.protocol.version
-        examples: ["1.1", "2"]
       - ref: server.address
         requirement_level: required
         brief: >
@@ -80,7 +78,7 @@ groups:
   - id: metric.dotnet.http.client.open_connections
     type: metric
     metric_name: http.client.open_connections
-    brief: "Number of outbound HTTP connections that are currently active or idle on the client"
+    brief: "Number of outbound HTTP connections that are currently active or idle on the client."
     instrument: updowncounter
     unit: "{connection}"
     note: >
@@ -102,6 +100,8 @@ groups:
       - ref: network.peer.address
         brief: Remote IP address of the socket connection.
         examples: ["10.1.2.80"]
+      - ref: network.protocol.version
+        examples: ["1.1", "2"]
 
   - id: metric.dotnet.http.client.connection.duration
     type: metric
@@ -114,8 +114,8 @@ groups:
     extends: dotnet.http.client.connection.attributes
     attributes:
       - ref: network.peer.address
-        brief: Remote IP address of the socket connection.
-        examples: ["10.1.2.80"]
+      - ref: network.protocol.version
+        examples: ["1.1", "2"]
 
   - id: metric.dotnet.http.client.active_requests
     type: metric
@@ -136,3 +136,6 @@ groups:
     note: >
       Meter name: `System.Net.Http`; Added in: .NET 8.0
     extends: dotnet.http.client.request.attributes
+    attributes:
+      - ref: network.protocol.version
+        examples: ["1.1", "2"]
