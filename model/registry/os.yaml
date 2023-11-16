@@ -1,7 +1,7 @@
 groups:
   - id: registry.os
     prefix: os
-    type: attribute_group
+    type: resource
     brief: >
         The operating system (OS) on which the process represented by this resource is running.
     note: >

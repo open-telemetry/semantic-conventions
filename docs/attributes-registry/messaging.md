@@ -37,7 +37,7 @@
 | `messaging.rocketmq.message.tag` | string | The secondary classifier of message besides topic. | `tagA` |
 | `messaging.rocketmq.message.type` | string | Type of message. | `normal` |
 | `messaging.rocketmq.namespace` | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` |
-| `messaging.system` | string | A string identifying the messaging system. | `kafka`; `rabbitmq`; `rocketmq`; `activemq` |
+| `messaging.system` | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` |
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -83,4 +83,19 @@ size should be used.
 | `fifo` | FIFO message |
 | `delay` | Delay message |
 | `transaction` | Transaction message |
+
+`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `activemq` | Apache ActiveMQ |
+| `aws_sqs` | Amazon Simple Queue Service (SQS) |
+| `azure_eventgrid` | Azure Event Grid |
+| `azure_eventhubs` | Azure Event Hubs |
+| `azure_servicebus` | Azure Service Bus |
+| `gcp_pubsub` | Google Cloud Pub/Sub |
+| `jms` | Java Message Service |
+| `kafka` | Apache Kafka |
+| `rabbitmq` | RabbitMQ |
+| `rocketmq` | Apache RocketMQ |
 <!-- endsemconv -->
