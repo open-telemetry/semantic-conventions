@@ -34,6 +34,21 @@
 # HTTP semantic conventions approvers
 /model/metrics/http.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/trace/http.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/http.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/server.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/client.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/network.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/error.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/url.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/user-agent.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/http/   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/http.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/server.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/client.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/network.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/error.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/url.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/user-agent.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 
 # System semantic conventions approvers
 /docs/system/             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
