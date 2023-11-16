@@ -4,7 +4,7 @@ linkTitle: SignalR
 
 # Semantic Conventions for SignalR server metrics
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This article defines semantic conventions for SignalR metrics emitted by .NET components and runtime.
 
@@ -85,4 +85,4 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `web_sockets` | WebSockets protocol |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

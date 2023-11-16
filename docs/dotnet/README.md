@@ -7,7 +7,7 @@ path_base_for_github_subdir:
 
 # Semantic Conventions for .NET metrics
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This article documents semantic conventions for metrics emitted by the .NET runtime and individual components in the .NET ecosystem.
 
@@ -19,4 +19,4 @@ The following metrics are currently supported:
 * [Kestrel](dotnet-kestrel-metrics.md): Semantic Conventions for Kestrel web server *metrics*.
 * [SignalR](dotnet-signalr-metrics.md): Semantic Conventions for SignalR server *metrics*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

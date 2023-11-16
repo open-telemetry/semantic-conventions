@@ -4,7 +4,7 @@ linkTitle: ASP.NET Core
 
 # Semantic Conventions for ASP.NET Core metrics
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This article defines semantic conventions for ASP.NET Core metrics.
 
@@ -240,4 +240,4 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 | `request_canceled` | Lease request was canceled |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

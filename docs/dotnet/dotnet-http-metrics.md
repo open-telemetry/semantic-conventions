@@ -4,7 +4,7 @@ linkTitle: HTTP client and server
 
 # Semantic Conventions for HTTP client and server metrics emitted by .NET
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This article defines semantic conventions for HTTP metrics emitted by .NET components and runtime.
 
@@ -37,6 +37,9 @@ Notes:
 - Meter name is `System.Net.Http`
 - Metric added in .NET 8.0
 - When the `error.type` attribute is reported, it contains one of [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, a full exception type, or a string representation of received status code.
+- `network.protocol.name` is not reported and should always be assumed to match `http`.
+- `server.port` is not reported when it matches a default one for provided scheme (`443` for `https` and `80` for `http`)
+- `url.scheme` is always reported.
 
 ### Metric: `http.client.open_connections`
 
@@ -229,4 +232,4 @@ Notes:
 - Opt-in `server.address` and `server.port` attributes are not reported
 - Metric added in ASP.NET Core 8.0
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

@@ -4,7 +4,7 @@ linkTitle: Kestrel
 
 # Semantic Conventions for Kestrel web server metrics
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This article defines semantic conventions for Kestrel web server.
 
@@ -449,4 +449,4 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `ipv6` | IPv6 |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

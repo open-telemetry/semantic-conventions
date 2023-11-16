@@ -4,7 +4,7 @@ linkTitle: DNS
 
 # Semantic Conventions for DNS metrics emitted by .NET
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This article defines semantic conventions for DNS metrics emitted by .NET.
 
@@ -57,4 +57,4 @@ for more details.
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
