@@ -37,7 +37,7 @@ groups:
         type: template[string]
         brief: >
           The labels placed on the Pod, the `<key>` being the label name, the value being the label value.
-        examples: ['k8s.pod.labels.app=my-app,k8s.pod.labels.mycompany.io/arch=x64,k8s.pod.labels.data=']
+        examples: ['k8s.pod.labels.app=my-app','k8s.pod.labels.mycompany.io/arch=x64','k8s.pod.labels.data=']
 
   - id: k8s.container
     prefix: k8s.container
