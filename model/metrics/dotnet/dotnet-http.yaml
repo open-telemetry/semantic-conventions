@@ -65,7 +65,7 @@ groups:
         brief: HTTP protocol version of the connection in the connection pool.
         note: >
           HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`.
-          So, the `network.protocol.version` value reported on connection metrics is different than one reported
+          So, the `network.protocol.version` value reported on connection metrics is different than the one reported
           on request-level metrics or spans for HTTP 1.0 requests.
         examples: ["1.1", "2", "3"]
 

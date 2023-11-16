@@ -61,7 +61,7 @@ Notes:
 | [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
-**[1]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than one reported on request-level metrics or spans for HTTP 1.0 requests.
+**[1]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
 
 **[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
@@ -100,7 +100,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
-**[1]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than one reported on request-level metrics or spans for HTTP 1.0 requests.
+**[1]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
 
 **[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
@@ -114,7 +114,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 this metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
-
 
 <!-- semconv metric.dotnet.http.client.request.time_in_queue(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
