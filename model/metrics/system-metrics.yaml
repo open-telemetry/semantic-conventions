@@ -213,12 +213,14 @@ groups:
       - ref: system.paging.direction
 
   # system.disk.* metrics and attribute group
-  - id: attributes.system.disk
-    prefix: system.disk
+
+  # General disk attributes
+  - id: attributes.disk
+    prefix: disk
     type: attribute_group
-    brief: "Describes System Disk metric attributes"
+    brief: "Describes attributes used in disk-related metrics"
     attributes:
-      - id: direction
+      - id: io.direction
         type:
           allow_custom_values: false
           members:
@@ -226,7 +228,7 @@ groups:
               value: 'read'
             - id: write
               value: 'write'
-        brief: "The disk operation direction"
+        brief: "The disk IO operation direction"
         examples: ["read"]
 
   - id: metric.system.disk.io
@@ -237,7 +239,7 @@ groups:
     unit: "By"
     attributes:
       - ref: system.device
-      - ref: system.disk.direction
+      - ref: disk.io.direction
 
   - id: metric.system.disk.operations
     type: metric
@@ -247,7 +249,7 @@ groups:
     unit: "{operation}"
     attributes:
       - ref: system.device
-      - ref: system.disk.direction
+      - ref: disk.io.direction
 
   - id: metric.system.disk.io_time
     type: metric
@@ -278,7 +280,7 @@ groups:
        - Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes)
     attributes:
       - ref: system.device
-      - ref: system.disk.direction
+      - ref: disk.io.direction
 
   - id: metric.system.disk.merged
     type: metric
@@ -288,7 +290,7 @@ groups:
     unit: "{operation}"
     attributes:
       - ref: system.device
-      - ref: system.disk.direction
+      - ref: disk.io.direction
 
   # system.filesystem.* metrics and attribute group
   - id: attributes.system.filesystem
@@ -361,22 +363,31 @@ groups:
       - ref: system.filesystem.mode
       - ref: system.filesystem.mountpoint
 
-  # system.network.* metrics and attribute group
+  # system.network.* metrics and attribute group  
+  
+  # General network attributes
+  - id: attributes.network
+    prefix: network
+    type: attribute_group
+    brief: "Describes attributes used in network-related metrics"
+    attributes:
+      - id: io.direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: send
+              value: 'send'
+            - id: receive
+              value: 'receive'
+        brief: "The network IO operation direction"
+        examples: ["send"]
+  
+  # System-specific network attributes
   - id: attributes.system.network
     prefix: system.network
     type: attribute_group
     brief: "Describes Network metric attributes"
     attributes:
-      - id: direction
-        type:
-          allow_custom_values: false
-          members:
-            - id: transmit
-              value: 'transmit'
-            - id: receive
-              value: 'receive'
-        brief: ""
-        examples: ["transmit"]
       - id: state
         type:
           allow_custom_values: false
@@ -422,7 +433,7 @@ groups:
         from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2)
     attributes:
       - ref: system.device
-      - ref: system.network.direction
+      - ref: network.io.direction
 
   - id: metric.system.network.packets
     type: metric
@@ -432,7 +443,7 @@ groups:
     unit: "{packet}"
     attributes:
       - ref: system.device
-      - ref: system.network.direction
+      - ref: network.io.direction
 
   - id: metric.system.network.errors
     type: metric
@@ -448,7 +459,7 @@ groups:
         from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2).
     attributes:
       - ref: system.device
-      - ref: system.network.direction
+      - ref: network.io.direction
 
   - id: metric.system.network.io
     type: metric
@@ -458,7 +469,7 @@ groups:
     unit: "By"
     attributes:
       - ref: system.device
-      - ref: system.network.direction
+      - ref: network.io.direction
 
   - id: metric.system.network.connections
     type: metric
