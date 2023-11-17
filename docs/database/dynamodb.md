@@ -19,7 +19,7 @@ These attributes are filled in for all DynamoDB request types.
 <!-- semconv dynamodb.all -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`db.system`](database-spans.md) | string | The value `dynamodb`. | `dynamodb` | Required |
+| [`db.system`](../attributes-registry/db.md) | string | The value `dynamodb`. | `dynamodb` | Required |
 <!-- endsemconv -->
 
 ## DynamoDB.BatchGetItem
