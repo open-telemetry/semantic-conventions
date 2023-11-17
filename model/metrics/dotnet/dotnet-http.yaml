@@ -80,7 +80,6 @@ groups:
           and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
           If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`.
-
           It's not possible at the moment to override the list of known HTTP methods.
 
   - id: metric.dotnet.http.client.open_connections
@@ -139,7 +138,12 @@ groups:
     unit: "s"
     note: >
       Meter name: `System.Net.Http`; Added in: .NET 8.0
-    extends: dotnet.http.client.request.attributes
+    extends: dotnet.http.client.connection.attributes
     attributes:
-      - ref: network.protocol.version
-        examples: ["1.1", "2"]
+      - ref: http.request.method
+        note: >
+          HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+          If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`.
+          It's not possible at the moment to override the list of known HTTP methods.
