@@ -29,7 +29,7 @@ groups:
         brief: Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
         examples: ["acquired", "request_canceled"]
         requirement_level: required
-      - id: routing.is_fallback_route
+      - id: routing.is_fallback
         type: boolean
         brief: A value that indicates whether the matched route is a fallback route.
         examples: [true]
@@ -62,7 +62,7 @@ groups:
       - ref: http.route
         requirement_level:
           conditionally_required: if and only if a route was successfully matched.
-      - ref: aspnetcore.routing.is_fallback_route
+      - ref: aspnetcore.routing.is_fallback
         requirement_level:
           conditionally_required: if and only if a route was successfully matched.
       - id: aspnetcore.routing.match_status

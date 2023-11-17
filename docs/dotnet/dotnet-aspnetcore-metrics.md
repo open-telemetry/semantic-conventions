@@ -43,7 +43,7 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 <!-- semconv metric.aspnetcore.routing.match_attempts(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aspnetcore.routing.is_fallback_route` | boolean | A value that indicates whether the matched route is a fallback route. | `True` | Conditionally Required: if and only if a route was successfully matched. |
+| `aspnetcore.routing.is_fallback` | boolean | A value that indicates whether the matched route is a fallback route. | `True` | Conditionally Required: if and only if a route was successfully matched. |
 | `aspnetcore.routing.match_status` | string | Match result - success or failure | `success`; `failure` | Required |
 | [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: if and only if a route was successfully matched. |
 
