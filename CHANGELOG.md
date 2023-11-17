@@ -24,6 +24,8 @@ release.
   ([#503](https://github.com/open-telemetry/semantic-conventions/pull/503))
 - Add Semantic conventions for TLS/SSL encrypted communication.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+- Add `messaging.gcp_pubsub.message.ordering_key` attribute.
+  ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
 
 ### Fixes
 
