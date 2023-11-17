@@ -1,7 +1,7 @@
 groups:
   - id: registry.oci.manifest
     prefix: oci.manifest
-    type: attribute_group
+    type: resource
     brief: >
       An OCI image manifest.
     attributes:
