@@ -213,24 +213,6 @@ groups:
       - ref: system.paging.direction
 
   # system.disk.* metrics and attribute group
-
-  # General disk attributes
-  - id: attributes.disk
-    prefix: disk
-    type: attribute_group
-    brief: "Describes attributes used in disk-related metrics"
-    attributes:
-      - id: io.direction
-        type:
-          allow_custom_values: false
-          members:
-            - id: read
-              value: 'read'
-            - id: write
-              value: 'write'
-        brief: "The disk IO operation direction"
-        examples: ["read"]
-
   - id: metric.system.disk.io
     type: metric
     metric_name: system.disk.io
@@ -364,23 +346,6 @@ groups:
       - ref: system.filesystem.mountpoint
 
   # system.network.* metrics and attribute group  
-  
-  # General network attributes
-  - id: attributes.network
-    prefix: network
-    type: attribute_group
-    brief: "Describes attributes used in network-related metrics"
-    attributes:
-      - id: io.direction
-        type:
-          allow_custom_values: false
-          members:
-            - id: send
-              value: 'send'
-            - id: receive
-              value: 'receive'
-        brief: "The network IO operation direction"
-        examples: ["send"]
   
   # System-specific network attributes
   - id: attributes.system.network
