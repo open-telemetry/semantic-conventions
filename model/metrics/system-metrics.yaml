@@ -345,8 +345,8 @@ groups:
       - ref: system.filesystem.mode
       - ref: system.filesystem.mountpoint
 
-  # system.network.* metrics and attribute group  
-  
+  # system.network.* metrics and attribute group
+
   # System-specific network attributes
   - id: attributes.system.network
     prefix: system.network
