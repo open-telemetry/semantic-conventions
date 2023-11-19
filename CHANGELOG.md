@@ -30,6 +30,9 @@ release.
 
 ### Fixes
 
+- Remove misleading pluralization wording related to count metrics
+  ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
+
 ## v1.23.0 (2023-11-03)
 
 This release marks the first where the core of HTTP semantic conventions have

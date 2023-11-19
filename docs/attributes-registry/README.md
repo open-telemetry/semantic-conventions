@@ -31,6 +31,7 @@ Currently, the following namespaces exist:
 * [Cloud](cloud.md)
 * [Code](code.md)
 * [Container](container.md)
+* [DB](db.md) (database)
 * [Destination](destination.md)
 * [Device](device.md)
 * [Error](error.md)
