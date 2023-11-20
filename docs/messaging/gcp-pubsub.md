@@ -20,7 +20,6 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 | [`messaging.gcp_pubsub.message.ordering_key`](../attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | Conditionally Required: If the message type has an ordering key set. |
 <!-- endsemconv -->
 
-
 ## Examples
 
 ### Asynchronous Batch Publish Example
