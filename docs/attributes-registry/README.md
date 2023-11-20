@@ -31,6 +31,7 @@ Currently, the following namespaces exist:
 * [Cloud](cloud.md)
 * [Code](code.md)
 * [Container](container.md)
+* [DB](db.md) (database)
 * [Destination](destination.md)
 * [Device](device.md)
 * [Error](error.md)
@@ -50,4 +51,4 @@ Currently, the following namespaces exist:
 * [URL](url.md)
 * [User agent](user-agent.md)
 
-[developers recommendations]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/common/attribute-naming.md#recommendations-for-application-developers
+[developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

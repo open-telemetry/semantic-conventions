@@ -161,14 +161,14 @@ make misspell-correction
 
 A PR (pull request) is considered to be **ready to merge** when:
 
-* It has received at least two approvals from the [code
+- It has received at least two approvals from the [code
   owners](./.github/CODEOWNERS) (if approvals are from only one company, they
   won't count).
-* There is no `request changes` from the [code owners](./.github/CODEOWNERS).
-* It has been at least two working days since the last modification (except for
+- There is no `request changes` from the [code owners](./.github/CODEOWNERS).
+- It has been at least two working days since the last modification (except for
   the trivial updates, such like typo, cosmetic, rebase, etc.). This gives
   people reasonable time to review.
-* Trivial changes (typos, cosmetic changes, CI improvements, etc.) don't have to
+- Trivial changes (typos, cosmetic changes, CI improvements, etc.) don't have to
   wait for two days.
 
 Any [maintainer](./README.md#contributing) can merge the PR once it is **ready
