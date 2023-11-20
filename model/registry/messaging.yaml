@@ -207,6 +207,11 @@ groups:
         brief: >
          The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
         examples: 'ordering_key'
+      - id: gcp_pubsub.message.link
+        type: int
+        brief: >
+         An identifier for the link. This is *not* the message id. The number will be in between 0 and the max batch size.
+        examples: 1
       - id: system
         brief: >
           An identifier for the messaging system being used. See below for a list of well-known identifiers.
