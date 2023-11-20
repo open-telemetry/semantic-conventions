@@ -202,6 +202,11 @@ groups:
         brief: >
           Namespace of RocketMQ resources, resources in different namespaces are individual.
         examples: 'myNamespace'
+      - id: gcp_pubsub.message.ordering_key
+        type: string
+        brief: >
+         The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
+        examples: 'ordering_key'
       - id: system
         brief: >
           An identifier for the messaging system being used. See below for a list of well-known identifiers.
