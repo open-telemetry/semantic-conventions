@@ -33,7 +33,7 @@ that identify the class of Events but not the instance of the Event.
 <!-- semconv event -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `event.name` | string | Uniquely identifies the event. | `browser.mouse.click`; `browser.exception` | Required |
+| `event.name` | string | Identifies the class / type of event. | `browser.mouse.click`; `browser.exception` | Required |
 
 Event names are subject to the same rules as [attribute names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/common/attribute-naming.md).
 Notably, event names are namespaced to avoid collisions and provide a clean
