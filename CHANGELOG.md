@@ -9,6 +9,11 @@ release.
 
 ### Breaking
 
+- BREAKING: Remove `event.domain` from log event attributes.
+  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
+- BREAKING: Change `event.name` definition to include `namespace`.
+  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
+
 ### Features
 
 ### Fixes
@@ -68,10 +73,6 @@ stabilized.
 - Make `user_agent.original` and `http.request.header.*` sampling relevant
   on HTTP server spans.
   ([#467](https://github.com/open-telemetry/semantic-conventions/pull/467))
-- BREAKING: Remove `event.domain` from log event attributes.
-  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
-- BREAKING: Change `event.name` definition to include `namespace`.
-  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
 
 ### Features
 
