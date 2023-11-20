@@ -39,3 +39,33 @@ groups:
         brief: 'Deprecated, use `http.response.header.content-length` instead.'
         stability: deprecated
         examples: 3495
+      - id: flavor
+        type:
+          allow_custom_values: true
+          members:
+            - id: http_1_0
+              value: '1.0'
+              brief: 'HTTP/1.0'
+            - id: http_1_1
+              value: '1.1'
+              brief: 'HTTP/1.1'
+            - id: http_2_0
+              value: '2.0'
+              brief: 'HTTP/2'
+            - id: http_3_0
+              value: '3.0'
+              brief: 'HTTP/3'
+            - id: spdy
+              value: 'SPDY'
+              brief: 'SPDY protocol.'
+            - id: quic
+              value: 'QUIC'
+              brief: 'QUIC protocol.'
+        brief: 'Deprecated, use `network.protocol.name` instead.'
+        stability: deprecated
+      - id: user_agent
+        type: string
+        brief: 'Deprecated, use `user_agent.original` instead.'
+        examples: ['CERN-LineMode/2.15 libwww/2.17b3',
+                   'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1']
+        stability: deprecated

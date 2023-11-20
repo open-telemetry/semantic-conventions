@@ -9,6 +9,12 @@ release.
 
 ### Breaking
 
+- Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
+  ([#317](https://github.com/open-telemetry/semantic-conventions/pull/317))
+- BREAKING: Change type of `host.cpu.model.id` and `host.cpu.model.family` to string.
+  ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
+- Changed `messaging.system` attribute type to an open enum
+  ([#517](https://github.com/open-telemetry/semantic-conventions/pull/517))
 - BREAKING: Remove `event.domain` from log event attributes.
   ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
 - BREAKING: Change `event.name` definition to include `namespace`.
@@ -16,7 +22,19 @@ release.
 
 ### Features
 
+- Add `code.stacktrace` attribute
+  ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
+- Add `http.flavor` and `http.user_agent` to list of deprecated attributes
+  ([#503](https://github.com/open-telemetry/semantic-conventions/pull/503))
+- Add Semantic conventions for TLS/SSL encrypted communication.
+  ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+- Add `messaging.gcp_pubsub.message.ordering_key` attribute.
+  ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
+
 ### Fixes
+
+- Remove misleading pluralization wording related to count metrics
+  ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
 
 ## v1.23.0 (2023-11-03)
 
@@ -111,7 +129,7 @@ stabilized.
 
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
 - Adds `session.id` and session.md to general docs and model
-([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
+  ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
   ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
