@@ -15,6 +15,9 @@ release.
   ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
 - Changed `messaging.system` attribute type to an open enum
   ([#517](https://github.com/open-telemetry/semantic-conventions/pull/517))
+- Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
+  to `jvm.memory.used_after_last_gc`
+  ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
 - BREAKING: Remove `event.domain` from log event attributes.
   ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
 - BREAKING: Change `event.name` definition to include `namespace`.

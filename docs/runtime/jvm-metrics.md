@@ -13,10 +13,10 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
 <!-- toc -->
 
 - [JVM Memory](#jvm-memory)
-  * [Metric: `jvm.memory.usage`](#metric-jvmmemoryusage)
+  * [Metric: `jvm.memory.used`](#metric-jvmmemoryused)
   * [Metric: `jvm.memory.committed`](#metric-jvmmemorycommitted)
   * [Metric: `jvm.memory.limit`](#metric-jvmmemorylimit)
-  * [Metric: `jvm.memory.usage_after_last_gc`](#metric-jvmmemoryusage_after_last_gc)
+  * [Metric: `jvm.memory.used_after_last_gc`](#metric-jvmmemoryused_after_last_gc)
 - [JVM Garbage Collection](#jvm-garbage-collection)
   * [Metric: `jvm.gc.duration`](#metric-jvmgcduration)
 - [JVM Threads](#jvm-threads)
@@ -43,18 +43,18 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
 
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.memory.*`
 
-### Metric: `jvm.memory.usage`
+### Metric: `jvm.memory.used`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryPoolMXBean.html#getUsage--).
 
-<!-- semconv metric.jvm.memory.usage(metric_table) -->
+<!-- semconv metric.jvm.memory.used(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.memory.usage` | UpDownCounter | `By` | Measure of memory used. |
+| `jvm.memory.used` | UpDownCounter | `By` | Measure of memory used. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.memory.usage(full) -->
+<!-- semconv metric.jvm.memory.used(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
@@ -124,18 +124,18 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | `non_heap` | Non-heap memory |
 <!-- endsemconv -->
 
-### Metric: `jvm.memory.usage_after_last_gc`
+### Metric: `jvm.memory.used_after_last_gc`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryPoolMXBean.html#getCollectionUsage--).
 
-<!-- semconv metric.jvm.memory.usage_after_last_gc(metric_table) -->
+<!-- semconv metric.jvm.memory.used_after_last_gc(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.memory.usage_after_last_gc` | UpDownCounter | `By` | Measure of memory used, as measured after the most recent garbage collection event on this pool. |
+| `jvm.memory.used_after_last_gc` | UpDownCounter | `By` | Measure of memory used, as measured after the most recent garbage collection event on this pool. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.memory.usage_after_last_gc(full) -->
+<!-- semconv metric.jvm.memory.used_after_last_gc(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
