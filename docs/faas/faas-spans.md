@@ -161,15 +161,17 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 <!-- semconv faas_span.out(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`faas.invoked_name`](../attributes-registry/faas.md) | string | The name of the invoked function. [1] | `my-function` | Recommended |
-| [`faas.invoked_provider`](../attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud` | Recommended |
-| [`faas.invoked_region`](../attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | Recommended |
+| [`faas.invoked_name`](../attributes-registry/faas.md) | string | The name of the invoked function. [1] | `my-function` | Required |
+| [`faas.invoked_provider`](../attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud` | Required |
+| [`faas.invoked_region`](../attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | Conditionally Required: [4] |
 
 **[1]:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
 **[2]:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
 **[3]:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
+
+**[4]:** For some cloud providers, like AWS or GCP, the region in which a function is hosted is essential to uniquely identify the function and also part of its endpoint. Since it's part of the endpoint being called, the region is always known to clients. In these cases, `faas.invoked_region` MUST be set accordingly. If the region is unknown to the client or not required for identifying the invoked function, setting `faas.invoked_region` is optional.
 
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
