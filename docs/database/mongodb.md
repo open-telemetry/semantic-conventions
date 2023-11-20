@@ -14,10 +14,10 @@ described on this page.
 
 ## Call-level attributes
 
-<!-- semconv db.mongodb(tag=call-level-tech-specific) -->
+<!-- semconv db.mongodb(full,tag=call-level-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `db.mongodb.collection` | string | The collection being accessed within the database stated in `db.name`. | `customers`; `products` | Required |
+| [`db.mongodb.collection`](../attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. | `customers`; `products` | Required |
 <!-- endsemconv -->
 
 ## Example
