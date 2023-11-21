@@ -20,7 +20,7 @@ groups:
         brief: >
           Virtual process identifier.
         note: >
-          The process PID within a PID namespace. This is not necessarily unique
+          The process ID within a PID namespace. This is not necessarily unique
           across all processes on the host but it is unique within the process
           namespace that the process exists within.
         examples: [12]
@@ -80,8 +80,8 @@ groups:
           The username of the user that owns the process.
         note: >
           This is intended to be used with Windows only. On POSIX systems, processes
-          can have multiple owners (effective, real and saved). To avoid confusion
-          about which owner is being referenced, this field should not be used with
+          can have multiple users (effective, real and saved). To avoid confusion
+          about which user is being referenced, this field should not be used with
           POSIX systems.
         examples: ['root']
       - id: real_user.id
