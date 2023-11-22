@@ -190,5 +190,5 @@ groups:
               value: 'transmit'
             - id: receive
               value: 'receive'
-        brief: "The network IO operation direction"
+        brief: "The network IO operation direction."
         examples: ["transmit"]
