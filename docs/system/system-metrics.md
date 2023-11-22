@@ -435,7 +435,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.operation_time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `disk.io.direction` | string | The disk IO operation direction | `read` | Recommended |
+| `disk.io.direction` | string | The disk IO operation direction. | `read` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
 
 `disk.io.direction` MUST be one of the following:
