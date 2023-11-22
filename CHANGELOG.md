@@ -15,6 +15,9 @@ release.
   ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
 - Changed `messaging.system` attribute type to an open enum
   ([#517](https://github.com/open-telemetry/semantic-conventions/pull/517))
+- Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
+  to `jvm.memory.used_after_last_gc`
+  ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
 
 ### Features
 
@@ -24,6 +27,8 @@ release.
   ([#503](https://github.com/open-telemetry/semantic-conventions/pull/503))
 - Add Semantic conventions for TLS/SSL encrypted communication.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+- Add `messaging.gcp_pubsub.message.ordering_key` attribute.
+  ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
 
 ### Fixes
 
@@ -123,7 +128,7 @@ stabilized.
 
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
 - Adds `session.id` and session.md to general docs and model
-([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
+  ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
   ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.
