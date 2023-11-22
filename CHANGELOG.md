@@ -34,6 +34,8 @@ release.
 
 - Remove misleading pluralization wording related to count metrics
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
+- Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
 
 ## v1.23.0 (2023-11-03)
 
