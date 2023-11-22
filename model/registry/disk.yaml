@@ -13,5 +13,5 @@ groups:
               value: 'read'
             - id: write
               value: 'write'
-        brief: "The disk IO operation direction"
+        brief: "The disk IO operation direction."
         examples: ["read"]
