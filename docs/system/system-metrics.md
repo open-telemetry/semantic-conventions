@@ -575,7 +575,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.dropped(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction | `transmit` | Recommended |
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
 
 `network.io.direction` MUST be one of the following:
