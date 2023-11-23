@@ -1,11 +1,14 @@
 # OpenTelemetry Semantic Conventions
 
-Welcome to the new repository!
+[![Checks](https://github.com/open-telemetry/semantic-conventions/workflows/Checks/badge.svg?branch=main)](https://github.com/open-telemetry/semantic-conventions/actions?query=workflow%3A%22Checks%22+branch%3Amain)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/open-telemetry/semantic-conventions.svg?logo=opentelemetry&&color=f5a800&label=Latest%20release)
+![Specification Version](https://img.shields.io/badge/Specification_version-v1.26.0-blue?logo=opentelemetry&color=f5a800)
 
-This is currently a direct copy/filter-branch of the Specification repository
-with only semantic conventions included.
+![OpenTelemetry Logo](https://opentelemetry.io/img/logos/opentelemetry-horizontal-color.png)
 
-This repository is currently using [this specification version][SpecificationVersion].
+The **[Semantic Conventions][]** define a contract between the signals that
+instrumentation will provide and analysis tools that consumes
+the instrumentation (e.g. dashboards, alerts, queries, etc.).
 
 ## Read the docs
 
@@ -34,6 +37,4 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Josh Suereth](https://github.com/jsuereth), Google
 - [Reiley Yang](https://github.com/reyang), Microsoft
 
-_Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer)._
-
-[SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0
+_Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer).
