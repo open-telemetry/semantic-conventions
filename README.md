@@ -7,12 +7,13 @@
 ![OpenTelemetry Logo](https://opentelemetry.io/img/logos/opentelemetry-horizontal-color.png)
 
 Semantic Conventions define a contract between the signals that
-instrumentation will provide and analysis tools that consumes
+instrumentation will provide and analysis tools that consume
 the instrumentation (e.g. dashboards, alerts, queries, etc.).
 
 ## Read the docs
 
 The human-readable version of the semantic conventions resides in the [docs](docs/README.md) folder.
+Major parts of these Markdown documents are generated from the YAML definitions located in the [model](model/) folder.
 
 ## Contributing
 
