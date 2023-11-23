@@ -6,7 +6,7 @@
 
 ![OpenTelemetry Logo](https://opentelemetry.io/img/logos/opentelemetry-horizontal-color.png)
 
-The **[Semantic Conventions][]** define a contract between the signals that
+Semantic Conventions define a contract between the signals that
 instrumentation will provide and analysis tools that consumes
 the instrumentation (e.g. dashboards, alerts, queries, etc.).
 
