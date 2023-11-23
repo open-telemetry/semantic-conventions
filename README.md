@@ -12,7 +12,7 @@ the instrumentation (e.g. dashboards, alerts, queries, etc.).
 
 ## Read the docs
 
-The documentation currently resides in the [docs](docs/README.md) folder.
+The human-readable version of the semantic conventions resides in the [docs](docs/README.md) folder.
 
 ## Contributing
 
