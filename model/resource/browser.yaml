@@ -54,3 +54,19 @@ groups:
           to retrieve brands and platform individually from the User-Agent Client Hints API.
           To retrieve the value, the legacy `navigator.userAgent` API can be used.
         examples: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36']
+      - id: page.url
+        type: string
+        brief: 'Full URL of a page'
+        note: >
+          Represents the url of the current page in the browser.
+        examples: ["https://www.netflix.com/Login"]
+      - id: page.instance.id
+        type: string
+        brief: 'Represents an instance of a page in the browser'
+        note: >
+          The same page when visited at a different time represents a new instance and should get a new id.
+        examples: ["4e58989a-4e4d-4f62-bf4f-ac5cd49b4b9a"]
+      - id: instance.id
+        type: string
+        brief: 'Represents a browser instance, either a window or a tab'
+        examples: ["ec34d777-1daf-416b-98b0-05beddfaa199"]
