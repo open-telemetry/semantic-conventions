@@ -1,0 +1,23 @@
+groups:
+  - id: origin
+    prefix: origin
+    type: resource
+    brief: >
+      A telemetry source.
+    attributes:
+      - id: name
+        type: string
+        requirement_level: required
+        brief: >
+          Logical name of the telemetry source.
+        note: >
+          For services, it MUST be the same for all instances of horizontally scaled services.
+          If the value was not specified, SDKs MUST fallback to `unknown_origin:` concatenated
+          with [`process.executable.name`](process.md#process), e.g. `unknown_origin:bash`.
+          If `process.executable.name` is not available, the value MUST be set to `unknown_origin`.
+        examples: ["shoppingcart"]
+      - id: version
+        type: string
+        brief: >
+          The version string of the source of telemetry. The format is not defined by these conventions.
+        examples: ["2.0.0", "a01dbef8a"]
