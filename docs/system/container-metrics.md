@@ -23,7 +23,7 @@ This metric is optional.
 <!-- semconv metric.container.cpu.utilization(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`container.id`](../resource/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
+| [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
 <!-- endsemconv -->
 
 ### Metric: `container.memory.utilization`
@@ -41,28 +41,28 @@ This metric is optional.
 <!-- semconv metric.container.memory.utilization(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`container.id`](../resource/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
+| [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
 <!-- endsemconv -->
 
-### Metric: `container.disk.io.bytes`
+### Metric: `container.disk.io`
 
 This metric is optional.
 
-<!-- semconv metric.container.disk.io.bytes(metric_table) -->
+<!-- semconv metric.container.disk.io(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `container.disk.io.bytes` | Counter | `By` | Disk bytes for the container. [1] |
+| `container.disk.io` | Counter | `By` | Disk bytes for the container. [1] |
 
 **[1]:** The total number of bytes read/written successfully (aggregated from all disks).
 <!-- endsemconv -->
 
-<!-- semconv metric.container.disk.io.bytes(full) -->
+<!-- semconv metric.container.disk.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `container.disk.io.direction` | string | The disk IO operation's direction | `read`; `write` | Recommended |
-| [`container.id`](../resource/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
+| [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
+| `disk.io.direction` | string | The disk IO operation direction. | `read` | Recommended |
 
-`container.disk.io.direction` MUST be one of the following:
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -70,30 +70,30 @@ This metric is optional.
 | `write` | write |
 <!-- endsemconv -->
 
-### Metric: `container.network.io.bytes`
+### Metric: `container.network.io`
 
 This metric is optional.
 
-<!-- semconv metric.container.network.io.bytes(metric_table) -->
+<!-- semconv metric.container.network.io(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `container.disk.io.bytes` | Counter | `By` | Network bytes for the container. [1] |
+| `container.network.io` | Counter | `By` | Network bytes for the container. [1] |
 
 **[1]:** The number of bytes sent/received on all network interfaces by the container.
 <!-- endsemconv -->
 
-<!-- semconv metric.container.network.io.bytes(full) -->
+<!-- semconv metric.container.network.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`container.id`](../resource/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
-| `container.network.io.direction` | string | The Network IO direction | `ingress`; `egress` | Recommended |
+| [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 
-`container.network.io.direction` MUST be one of the following:
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
-| `ingress` | ingress |
-| `egress` | egress |
+| `transmit` | transmit |
+| `receive` | receive |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

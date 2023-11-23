@@ -23,24 +23,9 @@ groups:
       - ref: container.id
 
   # container.disk.io.* metrics and attribute group
-  - id: attributes.container.disk.io
-    prefix: container.disk.io
-    type: attribute_group
-    brief: "Describes Container Disk IO metric attributes"
-    attributes:
-      - id: direction
-        type:
-          allow_custom_values: false
-          members:
-            - id: read
-              value: 'read'
-            - id: write
-              value: 'write'
-        brief: "The disk IO operation's direction"
-        examples: [ "read", "write" ]
-  - id: metric.container.disk.io.bytes
+  - id: metric.container.disk.io
     type: metric
-    metric_name: container.disk.io.bytes
+    metric_name: container.disk.io
     brief: "Disk bytes for the container."
     note: >
       The total number of bytes read/written
@@ -49,27 +34,12 @@ groups:
     unit: "By"
     attributes:
       - ref: container.id
-      - ref: container.disk.io.direction
+      - ref: disk.io.direction
 
   # container.network.io.* metrics and attribute group
-  - id: attributes.container.network.io
-    prefix: container.network.io
-    type: attribute_group
-    brief: "Describes Container Network IO metric attributes"
-    attributes:
-      - id: direction
-        type:
-          allow_custom_values: false
-          members:
-            - id: ingress
-              value: 'ingress'
-            - id: egress
-              value: 'egress'
-        brief: "The Network IO direction"
-        examples: [ "ingress", "egress" ]
-  - id: metric.container.network.io.bytes
+  - id: metric.container.network.io
     type: metric
-    metric_name: container.disk.io.bytes
+    metric_name: container.network.io
     brief: "Network bytes for the container."
     note: >
       The number of bytes sent/received
@@ -79,4 +49,4 @@ groups:
     unit: "By"
     attributes:
       - ref: container.id
-      - ref: container.network.io.direction
+      - ref: network.io.direction
