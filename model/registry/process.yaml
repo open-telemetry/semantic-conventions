@@ -74,6 +74,14 @@ groups:
           null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based
           executables, this would be the full argv vector passed to `main`.
         examples: ['cmd/otecol', '--config=config.yaml']
+      - id: env_vars
+        type: string[]
+        brief: >
+          Array of environment variable bindings.
+        note: >
+          As environment variables may change during a process's lifespan, this should be
+          captured as a snapshot when the event occurred.
+        examples: ['PATH=/usr/local/bin;/usr/bin', 'USER=ubuntu']
       - id: owner
         type: string
         brief: >
@@ -84,21 +92,36 @@ groups:
           about which user is being referenced, this field should not be used with
           POSIX systems.
         examples: ['root']
+      - id: user.id
+        type: int
+        brief: >
+          The effective user ID (EUID) of the process.
+        examples: [1001]
+      - id: user.name
+        type: string
+        brief: >
+          The username of the effective user of the process.
+        examples: ['root']
       - id: real_user.id
         type: int
         brief: >
           The real user ID (RUID) of the process.
         examples: [1000]
-      - id: effective_user.id
-        type: int
+      - id: real_user.name
+        type: string
         brief: >
-          The effective user ID (EUID) of the process.
-        examples: [1001]
+          The username of the real user of the process.
+        examples: ['operator']
       - id: saved_user.id
         type: int
         brief: >
           The saved user ID (SUID) of the process.
         examples: [1002]
+      - id: saved_user.name
+        type: string
+        brief: >
+          The username of the saved user.
+        examples: ['operator']
       - id: runtime.name
         type: string
         brief: >
@@ -120,12 +143,12 @@ groups:
       - id: start
         type: string
         brief: >
-          The time the process started.
+          The date and time the process started.
         examples: ['2023-11-21T09:25:34.853Z']
       - id: end
         type: string
         brief: >
-          The time the process ended.
+          The date and time the process ended.
         examples: ['2023-11-21T09:26:12.315Z']
       - id: exit_code
         type: int
@@ -136,4 +159,3 @@ groups:
         type: boolean
         brief: >
           Whether the process is connected to an interactive shell.
-        examples: [true]

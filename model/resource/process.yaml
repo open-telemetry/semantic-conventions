@@ -6,7 +6,7 @@ groups:
         An operating system process.
     attributes:
       - ref: process.pid
-      - ref: process.parent_pid
+      - ref: process.parent.pid
       - ref: process.executable.name
         requirement_level:
           conditionally_required: See alternative attributes below.
