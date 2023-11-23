@@ -13,7 +13,7 @@ the instrumentation (e.g. dashboards, alerts, queries, etc.).
 ## Read the docs
 
 The human-readable version of the semantic conventions resides in the [docs](docs/README.md) folder.
-Major parts of these Markdown documents are generated from the YAML definitions located in the [model](model/) folder.
+Major parts of these Markdown documents are generated from the YAML definitions located in the [model](model/README.md) folder.
 
 ## Contributing
 
