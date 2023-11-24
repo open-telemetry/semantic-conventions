@@ -210,7 +210,7 @@ The following operations related to messages are defined for these semantic conv
 
 ### Span kind
 
-[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind)
+[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#spankind)
 SHOULD be set according to the following table, based on the operation a span describes.
 
 | Operation name | Span kind|
@@ -221,7 +221,7 @@ SHOULD be set according to the following table, based on the operation a span de
 | `deliver`      | `CONSUMER` |
 
 For cases not covered by the table above, the span kind should be set according
-to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind),
+to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#spankind),
 e. g. it should be set to CLIENT for the "Publish" span if its context is not
 used as creation context and if the "Publish" span models a synchronous call to
 the intermediary.
