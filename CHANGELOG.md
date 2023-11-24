@@ -18,9 +18,7 @@ release.
 - Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
   to `jvm.memory.used_after_last_gc`
   ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
-- BREAKING: Remove `event.domain` from log event attributes.
-  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
-- BREAKING: Change `event.name` definition to include `namespace`.
+- BREAKING: Change `event.name` definition to include `namespace` and remove `event.domain` from log event attributes.
   ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
 
 ### Features
