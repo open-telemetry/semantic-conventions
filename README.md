@@ -1,14 +1,11 @@
-# OpenTelemetry Semantic Conventions
+# <img src="https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png" alt="OpenTelemetry Icon" width="45" height=""> OpenTelemetry Semantic Conventions
 
 [![Checks](https://github.com/open-telemetry/semantic-conventions/workflows/Checks/badge.svg?branch=main)](https://github.com/open-telemetry/semantic-conventions/actions?query=workflow%3A%22Checks%22+branch%3Amain)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/open-telemetry/semantic-conventions.svg?logo=opentelemetry&&color=f5a800&label=Latest%20release)](https://github.com/open-telemetry/semantic-conventions/releases/latest)
 [![Specification Version](https://img.shields.io/badge/OTel_specification_version-v1.26.0-blue?logo=opentelemetry&color=f5a800)](https://github.com/open-telemetry/opentelemetry-specification/releases/tag/v1.26.0)
 
-![OpenTelemetry Logo](https://opentelemetry.io/img/logos/opentelemetry-horizontal-color.png)
-
-Semantic Conventions define a contract between the signals that
-instrumentation will provide and analysis tools that consume
-the instrumentation (e.g. dashboards, alerts, queries, etc.).
+Semantic Conventions define a common set of (semantic) attributes which
+provide meaning to data when collecting, producing and consuming it.
 
 ## Read the docs
 
