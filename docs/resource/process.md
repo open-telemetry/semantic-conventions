@@ -156,13 +156,19 @@ Examples for some JavaScript runtimes
 
 ### .NET Runtimes
 
-TODO(<https://github.com/open-telemetry/opentelemetry-dotnet/issues/1281>): Confirm the contents here
+.NET instrumentation should fill in the values by following values:
 
-| Value | Description |
-| --- | --- |
-| `dotnet-core` | .NET Core, .NET 5+ |
-| `dotnet-framework` | .NET Framework |
-| `mono` | Mono |
+- `process.runtime.name` - Fill in the value by the name of runtime.
+- `process.runtime.version` - Fill in the value of `System.Environment.Version`.
+- `process.runtime.description` - Fill in the values of `System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription`.
+
+Examples for some .NET runtimes
+
+| Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
+| --- | --- | --- | --- |
+| .NET Framework | .NET Framework | 4.0.30319.42000 | .NET Framework 4.8.9195.0 |
+| .NET Core | .NET Core | 3.1.32 | .NET Core 3.1.32 |
+| .NET | .NET | 7.0.14 | .NET 7.0.14 |
 
 ### Python Runtimes
 
