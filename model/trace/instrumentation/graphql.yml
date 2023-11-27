@@ -75,7 +75,7 @@ groups:
       - id: selection.field.declaringType
         brief: "The type that declares the field that is beeing resolved."
         type: string
-        examples: "Book"
+        examples: "Query"
       - id: selection.field.coordinate
         brief: "The coordinate of the field that is beeing resolved."
         type: string
