@@ -23,7 +23,7 @@ versions:
               - system.processes.count
         - rename_metrics:
             system.processes.count: system.process.count
-            system.processes.created: system.process.created_total
+            system.processes.created: system.process.created.count
   1.22.0:
     spans:
       changes:

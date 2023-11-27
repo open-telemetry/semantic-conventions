@@ -743,17 +743,17 @@ This metric is [recommended][MetricRecommended].
 | `defunct` | defunct |
 <!-- endsemconv -->
 
-### Metric: `system.process.created_total`
+### Metric: `system.process.created.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.system.process.created_total(metric_table) -->
+<!-- semconv metric.system.process.created.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.process.created_total` | Counter | `{process}` | Total number of processes created over uptime of the host |
+| `system.process.created.count` | Counter | `{process}` | Total number of processes created over uptime of the host |
 <!-- endsemconv -->
 
-<!-- semconv metric.system.process.created_total(full) -->
+<!-- semconv metric.system.process.created.count(full) -->
 <!-- endsemconv -->
 
 ## `system.{os}.` - OS Specific System Metrics

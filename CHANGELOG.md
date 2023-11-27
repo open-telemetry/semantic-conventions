@@ -93,7 +93,7 @@ stabilized.
   ([#479](https://github.com/open-telemetry/semantic-conventions/pull/479))
 - Rename `system.processes.*` namespace to `system.process.*`
   ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
-- Rename `system.processes.created` to `system.process.created_total`
+- Rename `system.processes.created` to `system.process.created.count`
   ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
 - Change sampling relevant from `MUST` to `SHOULD`
   ([#486](https://github.com/open-telemetry/semantic-conventions/pull/486))

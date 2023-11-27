@@ -479,9 +479,9 @@ groups:
     attributes:
       - ref: system.process.status
 
-  - id: metric.system.process.created_total
+  - id: metric.system.process.created.count
     type: metric
-    metric_name: system.process.created_total
+    metric_name: system.process.created.count
     brief: "Total number of processes created over uptime of the host"
     instrument: counter
     unit: "{process}"
