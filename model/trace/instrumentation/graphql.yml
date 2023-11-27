@@ -63,7 +63,7 @@ groups:
       - id: selection.type # selection.field.type ?
         brief: "The type of the field that is beeing resolved"
         type: string
-        examples: "Query"
+        examples: "Book"
       - id: selection.path
         brief: "The path of the selection that is beeing resolved."
         type: string
