@@ -111,19 +111,19 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 This metric is [required][MetricRequired] when the messaging system supports batch publishing. It's [opt-in][MetricOptIn] when the messaging system does not support batch publishing, since the message count can be derived from the `messaging.publish.duration` histogram.
 
-_Note: The need to report `messaging.publish.messages` depends on the messaging system capabilities and not application scenarios or client library limitations. For example, RabbitMQ does not support batch publishing and corresponding instrumentations don't need to report `messaging.publish.messages`. Kafka supports both, single and batch publishing, and instrumentations MUST report `messaging.publish.messages` counter regardless of application scenarios or APIs available in the client library._
-
 <!-- semconv metric.messaging.publish.messages(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `messaging.publish.messages` | Counter | `{message}` | Measures the number of published messages. |
 <!-- endsemconv -->
 
+> The need to report `messaging.publish.messages` depends on the messaging system capabilities and not application scenarios or client library limitations. For example, RabbitMQ does not support batch publishing and corresponding instrumentations don't need to report `messaging.publish.messages`. Kafka supports both, single and batch publishing, and instrumentations MUST report `messaging.publish.messages` counter regardless of application scenarios or APIs available in the client library.
+
 ## Consumer metrics
 
 ### Metric: `messaging.receive.duration`
 
-This metric is [required][MetricRequired] for poll-based receive operations.
+This metric is [required][MetricRequired] for operations that are initiated by the application code (pull-based).
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
@@ -151,7 +151,7 @@ _Note: The need to report `messaging.receive.messages` depends on the messaging 
 
 ### Metric: `messaging.deliver.duration`
 
-This metric is [required][MetricRequired] for push-based deliver operations.
+This metric is [required][MetricRequired] for operations are not initiated by the application code (push-based deliver).
 
 When this metric is reported alongside a messaging deliver span, the metric value SHOULD be the same as the corresponding span duration.
 
