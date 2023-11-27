@@ -7,41 +7,41 @@ groups:
       GraphQL operations to attributes on a Span.
     attributes:
       - id: operation.name
-        brief: 'The name of the operation being executed.'
+        brief: "The name of the operation being executed."
         type: string
-        examples: 'findBookById'
+        examples: "findBookById"
       - id: operation.type
-        brief: 'The type of the operation being executed.'
+        brief: "The type of the operation being executed."
         type:
           allow_custom_values: false
           members:
             - id: query
-              value: 'query'
-              brief: 'GraphQL query'
+              value: "query"
+              brief: "GraphQL query"
             - id: mutation
-              value: 'mutation'
-              brief: 'GraphQL mutation'
+              value: "mutation"
+              brief: "GraphQL mutation"
             - id: subscription
-              value: 'subscription'
-              brief: 'GraphQL subscription'
-        examples: ['query', 'mutation', 'subscription']
+              value: "subscription"
+              brief: "GraphQL subscription"
+        examples: ["query", "mutation", "subscription"]
       - id: document.content
-        brief: 'The content of the GraphQL document being executed.'
+        brief: "The content of the GraphQL document being executed."
         type: string
         note: The value may be sanitized to exclude sensitive information.
-        examples: 'query findBookById { bookById(id: ?) { name } }'
+        examples: "query findBookById { bookById(id: ?) { name } }"
       - id: document.sha256
-        brief: 'The SHA256 hash of the document.content'
+        brief: "The SHA256 hash of the document.content"
         type: string
-        examples: '400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c'
+        examples: "400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c"
       - id: document.id
         brief: >
           The id of the document beeing executed. This is a hash of the document provided by the user to identitfy 
           persisted queries.
         type: string
-        examples: 'aa3e37c1bf54708e93f12c137afba004'
+        examples: "aa3e37c1bf54708e93f12c137afba004"
       - id: error.count
-        brief: 'The number of errors that occurred during the operation.'
+        brief: "The number of errors that occurred during the operation."
         type: int
         examples: 3
     # TODO should we have something like outcome (success, failure)
@@ -57,30 +57,30 @@ groups:
       They map GraphQL resolvers to attributes on a Span.
     attributes:
       - id: selection.name
-        brief: 'The name of the selection that is being resolved. Either the field name or an alias.'
+        brief: "The name of the selection that is being resolved. Either the field name or an alias."
         type: string
-        examples: 'findBookById'
+        examples: "findBookById"
       - id: selection.type # selection.field.type ?
-        brief: 'The type of the field that is beeing resolved'
+        brief: "The type of the field that is beeing resolved"
         type: string
-        examples: 'Query'
+        examples: "Query"
       - id: selection.path
-        brief: 'The path of the selection that is beeing resolved.'
+        brief: "The path of the selection that is beeing resolved."
         type: string
-        examples: '/foo/bar/0/baz'
+        examples: "/foo/bar/0/baz"
       - id: selection.field.name
-        brief: 'The name of the field that is beeing resolved.'
+        brief: "The name of the field that is beeing resolved."
         type: string
-        examples: 'findBookById'
+        examples: "findBookById"
       - id: selection.field.declaringType
-        brief: 'The type that declares the field that is beeing resolved.'
+        brief: "The type that declares the field that is beeing resolved."
         type: string
-        examples: 'Book'
+        examples: "Book"
       - id: selection.field.coordinate
-        brief: 'The coordinate of the field that is beeing resolved.'
+        brief: "The coordinate of the field that is beeing resolved."
         type: string
-        examples: 'Query.findBookById'
+        examples: "Query.findBookById"
       - id: selection.field.isDeprecated
-        brief: 'Whether the field that is beeing resolved is deprecated.'
+        brief: "Whether the field that is beeing resolved is deprecated."
         type: bool
         examples: true
