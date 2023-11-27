@@ -30,6 +30,10 @@ groups:
         type: string
         note: The value may be sanitized to exclude sensitive information.
         examples: "query findBookById { bookById(id: ?) { name } }"
+      - id: document.sha256
+        brief: "The SHA256 hash of the document.content"
+        type: string
+        examples: "400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c"
       - id: document.id
         brief: >
           The id of the document beeing executed. This is a hash of the document provided by the user to identitfy 
@@ -41,7 +45,9 @@ groups:
         type: int
         examples: 3
     # TODO should we have something like outcome (success, failure)
+    # TODO how do we specify errors?
     # TODO Should we ref network.transport, network.type, server.address etc?
+    # TODO There are more spans like validation, parsing, variable coercion and response formatting. Should we add them as separate span types?
 
   - id: graphql.server.resolver
     prefix: graphql
