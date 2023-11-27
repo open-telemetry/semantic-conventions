@@ -2,8 +2,9 @@
 
 **Status**: [Experimental][DocumentStatus]
 
-This document defines semantic conventions for instrumentations that emit events on mobile platforms.
-All mobile events MUST set `event.domain` as `device`.
+This document defines semantic conventions for instrumentations that emit
+events on mobile platforms. All mobile events MUST use a namespace of
+`device` in the `event.name` property.
 
 <!-- toc -->
 
@@ -15,13 +16,15 @@ All mobile events MUST set `event.domain` as `device`.
 
 ## Lifecycle instrumentation
 
-This section defines how to apply semantic conventions when instrumenting application lifecycle.
-This event is meant to be used in conjunction with `os.name` [resource semantic convention](/docs/resource/os.md) to identify the mobile operating system (e.g. Android, iOS).
+This section defines how to apply semantic conventions when instrumenting
+application lifecycle. This event is meant to be used in conjunction with
+`os.name` [resource semantic convention](/docs/resource/os.md) to identify the
+mobile operating system (e.g. Android, iOS).
 
 ### iOS
 
 <!-- semconv ios.lifecycle.events -->
-The event name MUST be `app.lifecycle`.
+The event name MUST be `device.app.lifecycle`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
@@ -43,7 +46,7 @@ The event name MUST be `app.lifecycle`.
 ### Android
 
 <!-- semconv android.lifecycle.events -->
-The event name MUST be `app.lifecycle`.
+The event name MUST be `device.app.lifecycle`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|

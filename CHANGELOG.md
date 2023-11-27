@@ -18,6 +18,8 @@ release.
 - Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
   to `jvm.memory.used_after_last_gc`
   ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
+- BREAKING: Change `event.name` definition to include `namespace` and remove `event.domain` from log event attributes.
+  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
 
 ### Features
 
@@ -36,6 +38,8 @@ release.
 
 - Remove misleading pluralization wording related to count metrics
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
+- Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
 
 ## v1.23.0 (2023-11-03)
 
