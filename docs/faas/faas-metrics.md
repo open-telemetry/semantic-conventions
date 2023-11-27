@@ -45,10 +45,14 @@ The following metrics are recorded by the FaaS instance.
 
 This metric is [recommended][MetricRecommended].
 
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+
 <!-- semconv metric.faas.invoke_duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `faas.invoke_duration` | Histogram | `ms` | Measures the duration of the function's logic execution |
+| `faas.invoke_duration` | Histogram | `s` | Measures the duration of the function's logic execution |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.invoke_duration(full) -->
@@ -71,10 +75,14 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+
 <!-- semconv metric.faas.init_duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `faas.init_duration` | Histogram | `ms` | Measures the duration of the function's initialization, such as a cold start |
+| `faas.init_duration` | Histogram | `s` | Measures the duration of the function's initialization, such as a cold start |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.init_duration(full) -->
@@ -227,10 +235,14 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+
 <!-- semconv metric.faas.cpu_usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `faas.cpu_usage` | Histogram | `ms` | Distribution of CPU usage per invocation |
+| `faas.cpu_usage` | Histogram | `s` | Distribution of CPU usage per invocation |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.cpu_usage(full) -->
@@ -288,5 +300,5 @@ FaaS providers. This list is not exhaustive.
 * [Google CloudFunctions Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudfunctions)
 * [OpenFaas Metrics](https://docs.openfaas.com/architecture/metrics/)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/metrics/metric-requirement-level.md#recommended
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended

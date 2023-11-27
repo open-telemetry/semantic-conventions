@@ -14,10 +14,10 @@ described on this page.
 
 ## Call-level attributes
 
-<!-- semconv db.mongodb(tag=call-level-tech-specific) -->
+<!-- semconv db.mongodb(full,tag=call-level-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `db.mongodb.collection` | string | The collection being accessed within the database stated in `db.name`. | `customers`; `products` | Required |
+| [`db.mongodb.collection`](../attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. | `customers`; `products` | Required |
 <!-- endsemconv -->
 
 ## Example
@@ -29,12 +29,13 @@ described on this page.
 | `db.connection_string`  | not set |
 | `db.user`               | `"the_user"` |
 | `server.address`        | `"mongodb0.example.com"` |
-| `server.socket.address` | `"192.0.2.14"` |
 | `server.port`           | `27017` |
-| `network.transport`     | `"IP.TCP"` |
+| `network.peer.address`  | `"192.0.2.14"` |
+| `network.peer.port`     | `27017` |
+| `network.transport`     | `"tcp"` |
 | `db.name`               | `"shopDb"` |
 | `db.statement`          | not set |
 | `db.operation`          | `"findAndModify"` |
 | `db.mongodb.collection` | `"products"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

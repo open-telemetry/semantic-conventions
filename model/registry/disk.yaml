@@ -1,0 +1,17 @@
+groups:
+  - id: registry.disk
+    prefix: disk
+    type: attribute_group
+    brief: >
+        These attributes may be used for any disk related operation.
+    attributes:
+      - id: io.direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: read
+              value: 'read'
+            - id: write
+              value: 'write'
+        brief: "The disk IO operation direction."
+        examples: ["read"]

@@ -14,12 +14,12 @@ described on this page.
 
 ## Call-level attributes
 
-<!-- semconv db.hbase(tag=call-level-tech-specific) -->
+<!-- semconv db.hbase(full,tag=call-level-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`db.name`](database-spans.md) | string | The HBase namespace. [1] | `mynamespace` | Conditionally Required: If applicable. |
+| [`db.name`](../attributes-registry/db.md) | string | The HBase namespace. [1] | `mynamespace` | Conditionally Required: If applicable. |
 
 **[1]:** For HBase the `db.name` should be set to the HBase namespace.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

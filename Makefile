@@ -8,7 +8,7 @@ MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
-SEMCONVGEN_VERSION=0.20.0
+SEMCONVGEN_VERSION=0.23.0
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -90,13 +90,13 @@ yamllint:
 .PHONY: table-generation
 table-generation:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
+		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-use-badges --md-stable
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions
 .PHONY: table-check
 table-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check
+		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check --md-use-badges --md-stable
 
 .PHONY: schema-check
 schema-check:

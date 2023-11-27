@@ -21,18 +21,20 @@ key, but non-obvious, aspects:
 - All descriptions, normative language are defined in the `docs/`
   directory.
   - We provide tooling to generate Markdown documentation from the formal
-    YAML definitons.  See [Yaml to Markdown](#yaml-to-markdown).
+    YAML definitons. See [Yaml to Markdown](#yaml-to-markdown).
   - We use Hugo to render [semantic conventions on our website](https://opentelemetry.io/docs/specs/semconv/).
     You will see `<!--- Hugo front matter used to generate ...` sections
-    in markdown.  See [Hugo frontmatter](#hugo-frontmatter) for details.
+    in markdown. See [Hugo frontmatter](#hugo-frontmatter) for details.
 - All changes to existing attributes, metrics, etc. MUST be allowed as
-  per our [stability guarantees](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/versioning-and-stability.md#semantic-conventions-stability) and
-  defined in a schema file.  As part of any contribution, you should
+  per our [stability guarantees][stability guarantees] and
+  defined in a schema file. As part of any contribution, you should
   include attribute changes defined in the `schema-next.yaml` file.
   For details, please read [the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
+- Links to the specification repository MUST point to a tag and **not** to the `main` branch.
+  The tag version MUST match with the one defined in [README](README.md).
 - After creating a pull request, please update the [CHANGELOG](CHANGELOG.md) file with
   a description of your changes.
-  
+
 Please make sure all Pull Requests are compliant with these rules!
 
 ### Hugo frontmatter
@@ -157,6 +159,23 @@ To quickly fix typos, use
 make misspell-correction
 ```
 
+### How to get your PR merged
+
+A PR (pull request) is considered to be **ready to merge** when:
+
+- It has received at least two approvals from the [code
+  owners](./.github/CODEOWNERS) (if approvals are from only one company, they
+  won't count).
+- There is no `request changes` from the [code owners](./.github/CODEOWNERS).
+- It has been at least two working days since the last modification (except for
+  the trivial updates, such like typo, cosmetic, rebase, etc.). This gives
+  people reasonable time to review.
+- Trivial changes (typos, cosmetic changes, CI improvements, etc.) don't have to
+  wait for two days.
+
+Any [maintainer](./README.md#contributing) can merge the PR once it is **ready
+to merge**.
+
 ## Updating the referenced specification version
 
 1. Open the `./internal/tools/update_specification_version.sh` script.
@@ -181,3 +200,4 @@ make misspell-correction
 - Create a tag `v{version}` on the merged PR and push remote.
 
 [nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
+[stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/versioning-and-stability.md#semantic-conventions-stability
