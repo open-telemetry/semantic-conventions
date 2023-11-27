@@ -2,6 +2,11 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    # https://github.com/open-telemetry/semantic-conventions/pull/536
+    - rename_metrics:
+        jvm.memory.usage: jvm.memory.used
+        jvm.memory.usage_after_last_gc: jvm.memory.used_after_last_gc
+  1.23.0:
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/20

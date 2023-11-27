@@ -26,9 +26,9 @@ groups:
           Pool names are generally obtained via
           [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-  - id: metric.jvm.memory.usage
+  - id: metric.jvm.memory.used
     type: metric
-    metric_name: jvm.memory.usage
+    metric_name: jvm.memory.used
     extends: attributes.jvm.memory
     brief: "Measure of memory used."
     instrument: updowncounter
@@ -50,9 +50,9 @@ groups:
     instrument: updowncounter
     unit: "By"
 
-  - id: metric.jvm.memory.usage_after_last_gc
+  - id: metric.jvm.memory.used_after_last_gc
     type: metric
-    metric_name: jvm.memory.usage_after_last_gc
+    metric_name: jvm.memory.used_after_last_gc
     extends: attributes.jvm.memory
     brief: "Measure of memory used, as measured after the most recent garbage collection event on this pool."
     instrument: updowncounter

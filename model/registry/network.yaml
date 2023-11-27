@@ -107,27 +107,33 @@ groups:
         brief: 'The internet connection type.'
         examples: 'wifi'
       - id: local.address
+        stability: stable
         type: string
         brief: Local address of the network connection - IP address or Unix domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
       - id: local.port
+        stability: stable
         type: int
         brief: Local port number of the network connection.
         examples: [65123]
       - id: peer.address
+        stability: stable
         type: string
         brief: Peer address of the network connection - IP address or Unix domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
       - id: peer.port
+        stability: stable
         type: int
         brief: Peer port number of the network connection.
         examples: [65123]
       - id: protocol.name
+        stability: stable
         type: string
         brief: '[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['amqp', 'http', 'mqtt']
       - id: protocol.version
+        stability: stable
         type: string
         brief: Version of the protocol specified in `network.protocol.name`.
         examples: '3.1.1'
@@ -136,6 +142,7 @@ groups:
           different from the protocol client's version. If the HTTP client has a version
           of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
       - id: transport
+        stability: stable
         type:
           allow_custom_values: true
           members:
@@ -162,6 +169,7 @@ groups:
           different processes could be listening on TCP port 12345 and UDP port 12345.
         examples: ['tcp', 'udp']
       - id: type
+        stability: stable
         type:
           allow_custom_values: true
           members:
@@ -174,3 +182,13 @@ groups:
         brief: '[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['ipv4', 'ipv6']
+      - id: io.direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: transmit
+              value: 'transmit'
+            - id: receive
+              value: 'receive'
+        brief: "The network IO operation direction."
+        examples: ["transmit"]

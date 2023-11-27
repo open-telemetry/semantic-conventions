@@ -49,8 +49,7 @@ This document defines how to describe remote procedure calls
 >   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version (stable
->   next major version SHOULD NOT be released prior to October 1, 2023).
+> * SHOULD drop the environment variable in the next major version.
 
 ## Common remote procedure call conventions
 
@@ -90,8 +89,8 @@ Examples of span names:
 | [`rpc.method`](../attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [3] | `exampleMethod` | Recommended |
 | [`rpc.service`](../attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | Recommended |
 | [`rpc.system`](../attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
-| [`server.address`](../general/attributes.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../general/attributes.md) | int | Server port number. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
+| [`server.address`](../attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -166,8 +165,8 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 <!-- semconv rpc.server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`client.address`](../general/attributes.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| [`client.port`](../general/attributes.md) | int | Client port number. [2] | `65123` | Recommended |
+| [`client.address`](../attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`client.port`](../attributes-registry/client.md) | int | Client port number. [2] | `65123` | Recommended |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
 | [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | Recommended |

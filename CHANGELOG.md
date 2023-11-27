@@ -9,6 +9,45 @@ release.
 
 ### Breaking
 
+- Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
+  ([#317](https://github.com/open-telemetry/semantic-conventions/pull/317))
+- BREAKING: Change type of `host.cpu.model.id` and `host.cpu.model.family` to string.
+  ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
+- Changed `messaging.system` attribute type to an open enum
+  ([#517](https://github.com/open-telemetry/semantic-conventions/pull/517))
+- Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
+  to `jvm.memory.used_after_last_gc`
+  ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
+- BREAKING: Change `event.name` definition to include `namespace` and remove `event.domain` from log event attributes.
+  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
+
+### Features
+
+- Adds `labels` attribute to `k8s.pod` resource
+  ([#494](https://github.com/open-telemetry/semantic-conventions/pull/494))
+- Add `code.stacktrace` attribute
+  ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
+- Add `http.flavor` and `http.user_agent` to list of deprecated attributes
+  ([#503](https://github.com/open-telemetry/semantic-conventions/pull/503))
+- Add Semantic conventions for TLS/SSL encrypted communication.
+  ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+- Add `messaging.gcp_pubsub.message.ordering_key` attribute.
+  ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
+
+### Fixes
+
+- Remove misleading pluralization wording related to count metrics
+  ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
+- Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
+
+## v1.23.0 (2023-11-03)
+
+This release marks the first where the core of HTTP semantic conventions have
+stabilized.
+
+### Breaking
+
 - BREAKING: Rename http.resend_count to http.request.resend_count.
   ([#374](https://github.com/open-telemetry/semantic-conventions/pull/374))
 - BREAKING: Change `network.protocol.name` from recommended to opt-in in HTTP semconv.
@@ -56,6 +95,11 @@ release.
   ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
 - Rename `system.processes.created` to `system.process.created_total`
   ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
+- Change sampling relevant from `MUST` to `SHOULD`
+  ([#486](https://github.com/open-telemetry/semantic-conventions/pull/486))
+- Make `user_agent.original` and `http.request.header.*` sampling relevant
+  on HTTP server spans.
+  ([#467](https://github.com/open-telemetry/semantic-conventions/pull/467))
 
 ### Features
 
@@ -65,6 +109,10 @@ release.
   ([#267](https://github.com/open-telemetry/opentelemetry-specification/pull/267))
 - Add opt-in `system.memory.limit` metric.
   ([#409](https://github.com/open-telemetry/semantic-conventions/pull/409))
+- Add `host.mac` resource attribute convention.
+  ([#340](https://github.com/open-telemetry/semantic-conventions/pull/340))
+- Mark HTTP semantic conventions as stable.
+  ([#377](https://github.com/open-telemetry/semantic-conventions/pull/377))
 
 ### Fixes
 
@@ -84,12 +132,13 @@ release.
 - Change the precedence between `:authority` and `Host` headers when populating
   `server.address` and `server.port` attributes.
   ([#455](https://github.com/open-telemetry/semantic-conventions/pull/455))
+- Explain `deployment.environment` impact on service identity. ([#481](https://github.com/open-telemetry/semantic-conventions/pull/481))
 
 ## v1.22.0 (2023-10-12)
 
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
 - Adds `session.id` and session.md to general docs and model
-([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
+  ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
   ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.

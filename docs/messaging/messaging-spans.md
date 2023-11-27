@@ -59,8 +59,7 @@
 >   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version (stable
->   next major version SHOULD NOT be released prior to October 1, 2023).
+> * SHOULD drop the environment variable in the next major version.
 
 ## Definitions
 
@@ -211,7 +210,7 @@ The following operations related to messages are defined for these semantic conv
 
 ### Span kind
 
-[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind)
+[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#spankind)
 SHOULD be set according to the following table, based on the operation a span describes.
 
 | Operation name | Span kind|
@@ -222,7 +221,7 @@ SHOULD be set according to the following table, based on the operation a span de
 | `deliver`      | `CONSUMER` |
 
 For cases not covered by the table above, the span kind should be set according
-to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind),
+to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#spankind),
 e. g. it should be set to CLIENT for the "Publish" span if its context is not
 used as creation context and if the "Publish" span models a synchronous call to
 the intermediary.
@@ -273,28 +272,28 @@ messages were received). For each message it accounts for, the "Deliver" or
 
 ## Messaging attributes
 
-<!-- semconv messaging -->
+<!-- semconv messaging(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `messaging.batch.message_count` | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` | Conditionally Required: [2] |
-| `messaging.client_id` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | Recommended: If a client id is available |
-| `messaging.destination.anonymous` | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | Conditionally Required: [3] |
-| `messaging.destination.name` | string | The message destination name [4] | `MyQueue`; `MyTopic` | Conditionally Required: [5] |
-| `messaging.destination.template` | string | Low cardinality representation of the messaging destination name [6] | `/customers/{customerId}` | Conditionally Required: [7] |
-| `messaging.destination.temporary` | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [8] |
-| `messaging.message.body.size` | int | The size of the message body in bytes. [9] | `1439` | Recommended: [10] |
-| `messaging.message.conversation_id` | string | The [conversation ID](#conversations) identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [11] |
-| `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [12] | `2738` | Recommended: [13] |
-| `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [14] |
-| `messaging.operation` | string | A string identifying the kind of messaging operation as defined in the [Operation names](#operation-names) section above. [15] | `publish` | Required |
-| `messaging.system` | string | A string identifying the messaging system. | `kafka`; `rabbitmq`; `rocketmq`; `activemq`; `AmazonSQS` | Required |
+| [`messaging.batch.message_count`](../attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` | Conditionally Required: [2] |
+| [`messaging.client_id`](../attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | Recommended: If a client id is available |
+| [`messaging.destination.anonymous`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | Conditionally Required: [3] |
+| [`messaging.destination.name`](../attributes-registry/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | Conditionally Required: [5] |
+| [`messaging.destination.template`](../attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [6] | `/customers/{customerId}` | Conditionally Required: [7] |
+| [`messaging.destination.temporary`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [8] |
+| [`messaging.message.body.size`](../attributes-registry/messaging.md) | int | The size of the message body in bytes. [9] | `1439` | Recommended: [10] |
+| [`messaging.message.conversation_id`](../attributes-registry/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [11] |
+| [`messaging.message.envelope.size`](../attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [12] | `2738` | Recommended: [13] |
+| [`messaging.message.id`](../attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [14] |
+| [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [15] | `publish` | Required |
+| [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
 | [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [16] | `amqp`; `mqtt` | Recommended |
 | [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [17] | `3.1.1` | Recommended |
 | [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [18] | `tcp`; `udp` | Recommended |
 | [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [19] | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../general/attributes.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -347,9 +346,41 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description |
 |---|---|
-| `publish` | publish |
-| `receive` | receive |
-| `process` | process |
+| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
+| `deliver` | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
+
+`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `activemq` | Apache ActiveMQ |
+| `aws_sqs` | Amazon Simple Queue Service (SQS) |
+| `azure_eventgrid` | Azure Event Grid |
+| `azure_eventhubs` | Azure Event Hubs |
+| `azure_servicebus` | Azure Service Bus |
+| `gcp_pubsub` | Google Cloud Pub/Sub |
+| `jms` | Java Message Service |
+| `kafka` | Apache Kafka |
+| `rabbitmq` | RabbitMQ |
+| `rocketmq` | Apache RocketMQ |
+
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `tcp` | TCP |
+| `udp` | UDP |
+| `pipe` | Named or anonymous pipe. |
+| `unix` | Unix domain socket |
+
+`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `ipv4` | IPv4 |
+| `ipv6` | IPv6 |
 <!-- endsemconv -->
 
 Additionally `server.port` from the [network attributes][] is recommended.
@@ -387,8 +418,8 @@ under the namespace `messaging.destination_publish.*`
 <!-- semconv messaging.destination_publish -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `messaging.destination_publish.anonymous` | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name). |  | Recommended |
-| `messaging.destination_publish.name` | string | The name of the original destination the message was published to [1] | `MyQueue`; `MyTopic` | Recommended |
+| [`messaging.destination_publish.anonymous`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name). |  | Recommended |
+| [`messaging.destination_publish.name`](../attributes-registry/messaging.md) | string | The name of the original destination the message was published to [1] | `MyQueue`; `MyTopic` | Recommended |
 
 **[1]:** The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
 the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.

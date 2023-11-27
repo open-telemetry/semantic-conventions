@@ -7,7 +7,7 @@ path_base_for_github_subdir:
 
 # Semantic Conventions for HTTP
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 This document defines semantic conventions for HTTP spans, metrics and logs.
 They can be used for http and https schemes
@@ -37,8 +37,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 >   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version (stable
->   next major version SHOULD NOT be released prior to October 1, 2023).
+> * SHOULD drop the environment variable in the next major version.
 
 Semantic conventions for HTTP are defined for the following signals:
 
