@@ -18,9 +18,13 @@ release.
 - Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
   to `jvm.memory.used_after_last_gc`
   ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
+- BREAKING: Change `event.name` definition to include `namespace` and remove `event.domain` from log event attributes.
+  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
 
 ### Features
 
+- Adds `labels` attribute to `k8s.pod` resource
+  ([#494](https://github.com/open-telemetry/semantic-conventions/pull/494))
 - Add `code.stacktrace` attribute
   ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
 - Add `http.flavor` and `http.user_agent` to list of deprecated attributes
@@ -34,6 +38,8 @@ release.
 
 - Remove misleading pluralization wording related to count metrics
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
+- Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
 
 ## v1.23.0 (2023-11-03)
 

@@ -2,9 +2,9 @@ groups:
   - id: ios.lifecycle.events
     type: event
     prefix: ios
-    name: app.lifecycle
+    name: device.app.lifecycle
     brief: >
-      This event represents an occurrence of a lifecycle transition on the iOS platform. `event.domain` MUST be `device`.
+      This event represents an occurrence of a lifecycle transition on the iOS platform.
     attributes:
       - id: state
         requirement_level: "required"
@@ -41,10 +41,9 @@ groups:
   - id: android.lifecycle.events
     type: event
     prefix: android
-    name: app.lifecycle
+    name: device.app.lifecycle
     brief: >
       This event represents an occurrence of a lifecycle transition on the Android platform.
-      `event.domain` MUST be `device`.
     attributes:
       - id: state
         requirement_level: required
