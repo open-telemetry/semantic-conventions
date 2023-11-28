@@ -143,12 +143,12 @@ groups:
       - id: start
         type: string
         brief: >
-          The date and time the process started.
+          The date and time the process started, in ISO 8601 format.
         examples: ['2023-11-21T09:25:34.853Z']
       - id: end
         type: string
         brief: >
-          The date and time the process ended.
+          The date and time the process ended, in ISO 8601 format.
         examples: ['2023-11-21T09:26:12.315Z']
       - id: exit_code
         type: int

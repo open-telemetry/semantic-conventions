@@ -33,7 +33,7 @@
 | [`process.executable.name`](../attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | Conditionally Required: See alternative attributes below. |
 | [`process.executable.path`](../attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | Conditionally Required: See alternative attributes below. |
 | [`process.owner`](../attributes-registry/process.md) | string | The username of the user that owns the process. [1] | `root` | Recommended |
-| [`process.parent_pid`](../attributes-registry/process.md) | int | Parent Process identifier (PPID). | `111` | Recommended |
+| [`process.parent.pid`](../attributes-registry/process.md) | int | Parent Process identifier (PPID). | `111` | Recommended |
 | [`process.pid`](../attributes-registry/process.md) | int | Process identifier (PID). | `1234` | Recommended |
 
 **[1]:** This is intended to be used with Windows only. On POSIX systems, processes can have multiple users (effective, real and saved). To avoid confusion about which user is being referenced, this field should not be used with POSIX systems.
