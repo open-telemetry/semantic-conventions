@@ -6,6 +6,12 @@ versions:
     - rename_metrics:
         jvm.memory.usage: jvm.memory.used
         jvm.memory.usage_after_last_gc: jvm.memory.used_after_last_gc
+    resources:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/564
+        - rename_attributes:
+          attribute_map:
+            process.parent_pid: process.parent.pid
   1.23.0:
     metrics:
       changes:
