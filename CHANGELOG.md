@@ -20,6 +20,8 @@ release.
   ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
 - BREAKING: Change `event.name` definition to include `namespace` and remove `event.domain` from log event attributes.
   ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
+- Rename `process.parent_pid` to `process.parent.pid` in process resource and registry.
+  ([#564](https://github.com/open-telemetry/semantic-conventions/pull/564))
 
 ### Features
 
@@ -33,6 +35,8 @@ release.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
 - Add `messaging.gcp_pubsub.message.ordering_key` attribute.
   ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
+- Add additional attributes to process attribute registry.
+  ([#564](https://github.com/open-telemetry/semantic-conventions/pull/564))
 
 ### Fixes
 
