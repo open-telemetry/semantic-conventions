@@ -53,7 +53,7 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   * [Metric: `system.network.connections`](#metric-systemnetworkconnections)
 - [Aggregate System Process Metrics](#aggregate-system-process-metrics)
   * [Metric: `system.process.count`](#metric-systemprocesscount)
-  * [Metric: `system.process.created_total`](#metric-systemprocesscreated_total)
+  * [Metric: `system.process.created`](#metric-systemprocesscreated)
 - [`system.{os}.` - OS Specific System Metrics](#systemos---os-specific-system-metrics)
   * [Metric: `system.linux.memory.available`](#metric-systemlinuxmemoryavailable)
 
@@ -743,17 +743,17 @@ This metric is [recommended][MetricRecommended].
 | `defunct` | defunct |
 <!-- endsemconv -->
 
-### Metric: `system.process.created.count`
+### Metric: `system.process.created`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.system.process.created.count(metric_table) -->
+<!-- semconv metric.system.process.created(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.process.created.count` | Counter | `{process}` | Total number of processes created over uptime of the host |
+| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host |
 <!-- endsemconv -->
 
-<!-- semconv metric.system.process.created.count(full) -->
+<!-- semconv metric.system.process.created(full) -->
 <!-- endsemconv -->
 
 ## `system.{os}.` - OS Specific System Metrics
