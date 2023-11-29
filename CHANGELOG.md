@@ -29,8 +29,7 @@ release.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
 - Add `messaging.gcp_pubsub.message.ordering_key` attribute.
   ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
-- Add `messaging.gcp_pubsub.message.link` attribute and an example for gcp_pubsub
-  asynchronous batch publish
+- Add an example for gcp_pubsub asynchronous batch publish
   ([#548](https://github.com/open-telemetry/semantic-conventions/pull/545)).
 
 ### Fixes
