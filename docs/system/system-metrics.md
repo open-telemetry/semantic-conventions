@@ -359,10 +359,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
 
-`system.disk.direction` MUST be one of the following:
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -383,10 +383,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.operations(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
 
-`system.disk.direction` MUST be one of the following:
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -435,10 +435,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.operation_time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
 
-`system.disk.direction` MUST be one of the following:
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -459,10 +459,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.merged(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
 
-`system.disk.direction` MUST be one of the following:
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -575,10 +575,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.dropped(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.direction` | string |  | `transmit` | Recommended |
 
-`system.network.direction` MUST be one of the following:
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -599,10 +599,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.packets(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.direction` | string |  | `transmit` | Recommended |
 
-`system.network.direction` MUST be one of the following:
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -629,10 +629,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.errors(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.direction` | string |  | `transmit` | Recommended |
 
-`system.network.direction` MUST be one of the following:
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -653,10 +653,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.direction` | string |  | `transmit` | Recommended |
 
-`system.network.direction` MUST be one of the following:
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
