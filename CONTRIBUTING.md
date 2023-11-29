@@ -209,7 +209,7 @@ exists in some form in ECS, consider the following guidelines:
   - If proposing a name that differs from the ECS convention, provide usage
     data, user issue reports, feature requests, examples of prior work on a
     different standard or comparable evidence about the alternatives.
-  - When no suitable alternatives are provided, altering an ECS name solely 
+  - When no suitable alternatives are provided, altering an ECS name solely
     for the purpose of complying with [Name Pluralization guidelines](https://opentelemetry.io/docs/specs/otel/common/attribute-naming/#name-pluralization-guidelines)
     MAY BE avoided.
 - Do not use an existing ECS name as a namespace. If the name must differ, use a
