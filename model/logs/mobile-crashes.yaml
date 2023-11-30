@@ -18,7 +18,8 @@ groups:
         brief: >
           The contents of printStackTrace() being called on the throwable
       - ref: thread.id
-        requirement_level: recommended
+        requirement_level:
+          recommended: If the crash occurred on an Android device.
         brief: >
           The id of the thread as output by Thread.currentThread().getId()
           For android crashes
