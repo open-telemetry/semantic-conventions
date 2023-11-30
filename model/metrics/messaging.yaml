@@ -1,0 +1,62 @@
+groups:
+  - id: metric.messaging.attributes
+    type: attribute_group
+    brief: "Common messaging metrics attributes."
+    extends: messaging.attributes.common
+    attributes:
+      - ref: messaging.destination.name
+        requirement_level:
+          conditionally_required: if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
+      - ref: messaging.destination.template
+        requirement_level:
+          conditionally_required: if available.
+
+  # durations
+  - id: metric.messaging.publish.duration
+    type: metric
+    metric_name: messaging.publish.duration
+    brief: "Measures the duration of publish operation."
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.receive.duration
+    type: metric
+    metric_name: messaging.receive.duration
+    brief: "Measures the duration of receive operation."
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.deliver.duration
+    type: metric
+    metric_name: messaging.deliver.duration
+    brief: "Measures the duration of deliver operation."
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
+
+  # counters
+  - id: metric.messaging.publish.messages
+    type: metric
+    metric_name: messaging.publish.messages
+    brief: "Measures the number of published messages."
+    instrument: counter
+    unit: "{message}"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.receive.messages
+    type: metric
+    metric_name: messaging.receive.messages
+    brief: "Measures the number of received messages."
+    instrument: counter
+    unit: "{message}"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.deliver.messages
+    type: metric
+    metric_name: messaging.deliver.messages
+    brief: "Measures the number of delivered messages."
+    instrument: counter
+    unit: "{message}"
+    extends: metric.messaging.attributes
