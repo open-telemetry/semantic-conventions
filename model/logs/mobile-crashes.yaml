@@ -14,7 +14,6 @@ groups:
       - ref: ios.state
         requirement_level:
           recommended: If the crash occurred on an iOS device.
-          This attribute represents the state the application has transitioned into at the occurrence of the event
           For ios crashes
         examples: ['active', 'inactive', 'background', 'foreground', 'terminate']
       - ref: android.state
