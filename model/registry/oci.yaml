@@ -1,5 +1,5 @@
 groups:
-  - id: oci.manifest
+  - id: registry.oci.manifest
     prefix: oci.manifest
     type: resource
     brief: >

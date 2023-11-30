@@ -1,0 +1,194 @@
+groups:
+  - id: registry.network
+    prefix: network
+    type: attribute_group
+    brief: >
+        These attributes may be used for any network related operation.
+    attributes:
+      - id: carrier.icc
+        type: string
+        brief: "The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network."
+        examples: "DE"
+      - id: carrier.mcc
+        type: string
+        brief: "The mobile carrier country code."
+        examples: "310"
+      - id: carrier.mnc
+        type: string
+        brief: "The mobile carrier network code."
+        examples: "001"
+      - id: carrier.name
+        type: string
+        brief: "The name of the mobile carrier."
+        examples: "sprint"
+      - id: connection.subtype
+        type:
+          allow_custom_values: true
+          members:
+            - id: gprs
+              brief: GPRS
+              value: "gprs"
+            - id: edge
+              brief: EDGE
+              value: "edge"
+            - id: umts
+              brief: UMTS
+              value: "umts"
+            - id: cdma
+              brief: CDMA
+              value: "cdma"
+            - id: evdo_0
+              brief: EVDO Rel. 0
+              value: "evdo_0"
+            - id: evdo_a
+              brief: "EVDO Rev. A"
+              value: "evdo_a"
+            - id: cdma2000_1xrtt
+              brief: CDMA2000 1XRTT
+              value: "cdma2000_1xrtt"
+            - id: hsdpa
+              brief: HSDPA
+              value: "hsdpa"
+            - id: hsupa
+              brief: HSUPA
+              value: "hsupa"
+            - id: hspa
+              brief: HSPA
+              value: "hspa"
+            - id: iden
+              brief: IDEN
+              value: "iden"
+            - id: evdo_b
+              brief: "EVDO Rev. B"
+              value: "evdo_b"
+            - id: lte
+              brief: LTE
+              value: "lte"
+            - id: ehrpd
+              brief: EHRPD
+              value: "ehrpd"
+            - id: hspap
+              brief: HSPAP
+              value: "hspap"
+            - id: gsm
+              brief: GSM
+              value: "gsm"
+            - id: td_scdma
+              brief: TD-SCDMA
+              value: "td_scdma"
+            - id: iwlan
+              brief: IWLAN
+              value: "iwlan"
+            - id: nr
+              brief: "5G NR (New Radio)"
+              value: "nr"
+            - id: nrnsa
+              brief: "5G NRNSA (New Radio Non-Standalone)"
+              value: "nrnsa"
+            - id: lte_ca
+              brief: LTE CA
+              value: "lte_ca"
+        brief: 'This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.'
+        examples: 'LTE'
+      - id: connection.type
+        type:
+          allow_custom_values: true
+          members:
+            - id: wifi
+              value: "wifi"
+            - id: wired
+              value: "wired"
+            - id: cell
+              value: "cell"
+            - id: unavailable
+              value: "unavailable"
+            - id: unknown
+              value: "unknown"
+        brief: 'The internet connection type.'
+        examples: 'wifi'
+      - id: local.address
+        stability: stable
+        type: string
+        brief: Local address of the network connection - IP address or Unix domain socket name.
+        examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: local.port
+        stability: stable
+        type: int
+        brief: Local port number of the network connection.
+        examples: [65123]
+      - id: peer.address
+        stability: stable
+        type: string
+        brief: Peer address of the network connection - IP address or Unix domain socket name.
+        examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: peer.port
+        stability: stable
+        type: int
+        brief: Peer port number of the network connection.
+        examples: [65123]
+      - id: protocol.name
+        stability: stable
+        type: string
+        brief: '[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent.'
+        note: The value SHOULD be normalized to lowercase.
+        examples: ['amqp', 'http', 'mqtt']
+      - id: protocol.version
+        stability: stable
+        type: string
+        brief: Version of the protocol specified in `network.protocol.name`.
+        examples: '3.1.1'
+        note: >
+          `network.protocol.version` refers to the version of the protocol used and might be
+          different from the protocol client's version. If the HTTP client has a version
+          of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+      - id: transport
+        stability: stable
+        type:
+          allow_custom_values: true
+          members:
+            - id: tcp
+              value: 'tcp'
+              brief: "TCP"
+            - id: udp
+              value: 'udp'
+              brief: "UDP"
+            - id: pipe
+              value: "pipe"
+              brief: 'Named or anonymous pipe.'
+            - id: unix
+              value: 'unix'
+              brief: "Unix domain socket"
+        brief: >
+          [OSI transport layer](https://osi-model.com/transport-layer/) or
+          [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
+        note: |
+          The value SHOULD be normalized to lowercase.
+
+          Consider always setting the transport when setting a port number, since
+          a port number is ambiguous without knowing the transport. For example
+          different processes could be listening on TCP port 12345 and UDP port 12345.
+        examples: ['tcp', 'udp']
+      - id: type
+        stability: stable
+        type:
+          allow_custom_values: true
+          members:
+            - id: ipv4
+              value: 'ipv4'
+              brief: "IPv4"
+            - id: ipv6
+              value: 'ipv6'
+              brief: "IPv6"
+        brief: '[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent.'
+        note: The value SHOULD be normalized to lowercase.
+        examples: ['ipv4', 'ipv6']
+      - id: io.direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: transmit
+              value: 'transmit'
+            - id: receive
+              value: 'receive'
+        brief: "The network IO operation direction."
+        examples: ["transmit"]

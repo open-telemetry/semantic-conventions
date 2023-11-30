@@ -1,0 +1,72 @@
+groups:
+  - id: ios.lifecycle.events
+    type: event
+    prefix: ios
+    name: device.app.lifecycle
+    brief: >
+      This event represents an occurrence of a lifecycle transition on the iOS platform.
+    attributes:
+      - id: state
+        requirement_level: "required"
+        note: >
+          The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
+          and from which the `OS terminology` column values are derived.
+        brief: >
+          This attribute represents the state the application has transitioned into at the occurrence of the event.
+        type:
+          allow_custom_values: false
+          members:
+            - id: active
+              value: 'active'
+              brief: >
+                The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
+            - id: inactive
+              value: 'inactive'
+              brief: >
+                The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`.
+            - id: background
+              value: 'background'
+              brief: >
+                The app is now in the background.
+                This value is associated with UIKit notification `applicationDidEnterBackground`.
+            - id: foreground
+              value: 'foreground'
+              brief: >
+                The app is now in the foreground.
+                This value is associated with UIKit notification `applicationWillEnterForeground`.
+            - id: terminate
+              value: 'terminate'
+              brief: >
+                The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
+  - id: android.lifecycle.events
+    type: event
+    prefix: android
+    name: device.app.lifecycle
+    brief: >
+      This event represents an occurrence of a lifecycle transition on the Android platform.
+    attributes:
+      - id: state
+        requirement_level: required
+        brief: >
+          This attribute represents the state the application has transitioned into at the occurrence of the event.
+        note: >
+          The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
+          and from which the `OS identifiers` are derived.
+        type:
+          allow_custom_values: false
+          members:
+            - id: created
+              value: 'created'
+              brief: >
+                Any time before Activity.onResume() or, if the app has no Activity, Context.startService()
+                has been called in the app for the first time.
+            - id: background
+              value: 'background'
+              brief: >
+                Any time after Activity.onPause() or, if the app has no Activity,
+                Context.stopService() has been called when the app was in the foreground state.
+            - id: foreground
+              value: 'foreground'
+              brief: >
+                Any time after Activity.onResume() or, if the app has no Activity,
+                Context.startService() has been called when the app was in either the created or background states.

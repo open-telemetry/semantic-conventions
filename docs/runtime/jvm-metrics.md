@@ -13,10 +13,10 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
 <!-- toc -->
 
 - [JVM Memory](#jvm-memory)
-  * [Metric: `jvm.memory.usage`](#metric-jvmmemoryusage)
+  * [Metric: `jvm.memory.used`](#metric-jvmmemoryused)
   * [Metric: `jvm.memory.committed`](#metric-jvmmemorycommitted)
   * [Metric: `jvm.memory.limit`](#metric-jvmmemorylimit)
-  * [Metric: `jvm.memory.usage_after_last_gc`](#metric-jvmmemoryusage_after_last_gc)
+  * [Metric: `jvm.memory.used_after_last_gc`](#metric-jvmmemoryused_after_last_gc)
 - [JVM Garbage Collection](#jvm-garbage-collection)
   * [Metric: `jvm.gc.duration`](#metric-jvmgcduration)
 - [JVM Threads](#jvm-threads)
@@ -43,18 +43,18 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
 
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.memory.*`
 
-### Metric: `jvm.memory.usage`
+### Metric: `jvm.memory.used`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryPoolMXBean.html#getUsage--).
 
-<!-- semconv metric.jvm.memory.usage(metric_table) -->
+<!-- semconv metric.jvm.memory.used(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.memory.usage` | UpDownCounter | `By` | Measure of memory used. |
+| `jvm.memory.used` | UpDownCounter | `By` | Measure of memory used. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.memory.usage(full) -->
+<!-- semconv metric.jvm.memory.used(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
@@ -124,18 +124,18 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | `non_heap` | Non-heap memory |
 <!-- endsemconv -->
 
-### Metric: `jvm.memory.usage_after_last_gc`
+### Metric: `jvm.memory.used_after_last_gc`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryPoolMXBean.html#getCollectionUsage--).
 
-<!-- semconv metric.jvm.memory.usage_after_last_gc(metric_table) -->
+<!-- semconv metric.jvm.memory.used_after_last_gc(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `jvm.memory.usage_after_last_gc` | UpDownCounter | `By` | Measure of memory used, as measured after the most recent garbage collection event on this pool. |
+| `jvm.memory.used_after_last_gc` | UpDownCounter | `By` | Measure of memory used, as measured after the most recent garbage collection event on this pool. |
 <!-- endsemconv -->
 
-<!-- semconv metric.jvm.memory.usage_after_last_gc(full) -->
+<!-- semconv metric.jvm.memory.used_after_last_gc(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
@@ -162,8 +162,8 @@ This metric is obtained by subscribing to
 [`GarbageCollectionNotificationInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GarbageCollectionNotificationInfo.html) events provided by [`GarbageCollectorMXBean`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/GarbageCollectorMXBean.html). The duration value is obtained from [`GcInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GcInfo.html#getDuration--)
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
-of `[]` (single bucket histogram capturing count, sum, min, max).
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
+of `[ 0.01, 0.1, 1, 10 ]`.
 
 <!-- semconv metric.jvm.gc.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -189,8 +189,13 @@ of `[]` (single bucket histogram capturing count, sum, min, max).
 ### Metric: `jvm.thread.count`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from [`ThreadMXBean#getDaemonThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getDaemonThreadCount--) and
-[`ThreadMXBean#getThreadCount()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--).
+This metric is obtained from a combination of
+
+* [`ThreadMXBean#getAllThreadIds()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getAllThreadIds--)
+* [`ThreadMXBean#getThreadInfo()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadInfo-long:A-)
+* [`ThreadInfo#getThreadState()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadInfo.html#getThreadState--)
+* [`ThreadInfo#isDaemon()`](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/ThreadInfo.html#isDaemon()) (requires Java 9+)
+
 Note that this is the number of platform threads (as opposed to virtual threads).
 
 <!-- semconv metric.jvm.thread.count(metric_table) -->
@@ -202,7 +207,19 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 <!-- semconv metric.jvm.thread.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`thread.daemon`](../general/attributes.md) | boolean | Whether the thread is daemon or not. |  | Recommended |
+| `jvm.thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
+| `jvm.thread.state` | string | State of the thread. | `runnable`; `blocked` | Recommended |
+
+`jvm.thread.state` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `new` | A thread that has not yet started is in this state. |
+| `runnable` | A thread executing in the Java virtual machine is in this state. |
+| `blocked` | A thread that is blocked waiting for a monitor lock is in this state. |
+| `waiting` | A thread that is waiting indefinitely for another thread to perform a particular action is in this state. |
+| `timed_waiting` | A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state. |
+| `terminated` | A thread that has exited is in this state. |
 <!-- endsemconv -->
 
 ## JVM Classes

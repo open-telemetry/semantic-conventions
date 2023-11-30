@@ -6,13 +6,13 @@
 #
 # Learn about membership in OpenTelemetry community:
 #  https://github.com/open-telemetry/community/blob/main/community-membership.md
-# 
 #
-# Learn about CODEOWNERS file format: 
-#  https://help.github.com/en/articles/about-code-owners
+#
+# Learn about CODEOWNERS file format:
+#  https://help.github.com/articles/about-code-owners
 #
 
-# Global owners, will be the owners for everything in the repo. Membership is tracked via https://github.com/open-telemetry/community/blob/main/community-members.md 
+# Global owners, will be the owners for everything in the repo. Membership is tracked via https://github.com/open-telemetry/community/blob/main/community-members.md
 *   @open-telemetry/specs-semconv-maintainers @open-telemetry/specs-semconv-approvers
 
 # Schemas and schema file tooling
@@ -34,6 +34,21 @@
 # HTTP semantic conventions approvers
 /model/metrics/http.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/trace/http.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/http.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/server.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/client.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/network.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/error.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/url.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/registry/user-agent.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/http/   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/http.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/server.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/client.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/network.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/error.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/url.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/attribute-registry/user-agent.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 
 # System semantic conventions approvers
 /docs/system/             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
@@ -45,4 +60,17 @@
 /docs/mobile/        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 /model/logs/mobile*  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 
-# TODO - Add semconv area experts
+# K8s semantic conventions approvers
+/docs/resource/k8s.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/attributes-registry/k8s.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/resource/k8s.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/registry/k8s.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+
+# Container semantic conventions approvers
+/docs/resource/container.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/docs/attributes-registry/container.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/docs/attributes-registry/oci.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/model/resource/container.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/model/registry/container.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/model/registry/oci.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+
