@@ -1,5 +1,6 @@
 groups:
   - id: mobile-crash-event
+    prefix: hello
     type: event
     brief: >
       This document defines attributes for crashes represented using Log Record Events.
@@ -49,6 +50,11 @@ groups:
         brief: >
           The contents from PLCrashReporter
           Contains three primary elements. "images", "threads" and "signal". These could be broken out as individual elements
+          Given that crash reports are only sent on the subsequent execution of the app, both the customer app or the phone os may have been upgraded.   
+          As such both the original app version and os version should be sent.
+          "appMinorVersionAtCrash" - minor version of customer app at crash
+          "appMajorVersionAtCrash" - major version of customer app at crash
+          "osVersionAtCrash" - version of iOS at crash
           For ios crashes
         type: string
         examples: ['*Contents of PL CrashReporter crash report*']
