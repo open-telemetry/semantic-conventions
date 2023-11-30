@@ -6,7 +6,6 @@ groups:
       This document defines attributes for crashes represented using Log Record Events.
       `event.domain` is 'device' and `event.name` is 'crash'.
     attributes:
-      - ref: os.name
         brief: >
         examples: ['iOS', 'Android']
       - ref: ios.state
