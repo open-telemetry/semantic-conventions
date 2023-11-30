@@ -159,14 +159,16 @@ Examples for some JavaScript runtimes
 .NET instrumentation SHOULD fill in the values by following values:
 
 - `process.runtime.name` - Fill in the value by the name of runtime.
-- `process.runtime.version` - Fill in the value of `System.Environment.Version`.
+- `process.runtime.version` - Fill in the value of `System.Environment.Version` for .NET,
+  Use version part from `System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription`
+  for .NET Framework.
 - `process.runtime.description` - Fill in the values of `System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription`.
 
 Examples for some .NET runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
-| .NET Framework | .NET Framework | 4.0.30319.42000 | .NET Framework 4.8.9195.0 |
+| .NET Framework | .NET Framework | 4.8.9195.0 | .NET Framework 4.8.9195.0 |
 | .NET | .NET | 7.0.14 | .NET 7.0.14 |
 
 ### Python Runtimes
