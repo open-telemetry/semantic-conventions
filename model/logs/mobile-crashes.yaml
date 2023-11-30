@@ -28,7 +28,8 @@ groups:
         brief: >
           The name of the thread as output by Thread.currentThread().getName()
       - ref: exception.message
-        requirement_level: recommended
+        requirement_level:
+          recommended: If the crash occurred on an Android device.
         brief: >
           The message within the exception object
           For android crashes
