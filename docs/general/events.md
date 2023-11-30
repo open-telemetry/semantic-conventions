@@ -10,7 +10,7 @@ aliases: [docs/specs/semconv/general/events-general]
 This document describes the characteristics of standalone Events that are represented
 in the data model by `LogRecord`s.
 
-Semantically, an Event is a named occurrence at an instant in time. It simply signals that
+Semantically, an Event is a named occurrence at an instant in time. It signals that
 "this thing happened at this time" and provides additional specifics about the occurrence.
 Examples of Events might include things like uncaught exceptions, button clicks, user logout,
 network connection severed, etc.
