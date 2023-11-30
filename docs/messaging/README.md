@@ -14,6 +14,7 @@ This document defines semantic conventions for messaging systems spans, metrics 
 Semantic conventions for messaging systems are defined for the following signals:
 
 * [Messaging Spans](messaging-spans.md): Semantic Conventions for messaging *spans*.
+* [Messaging Metrics](messaging-metrics.md): Semantic Conventions for messaging *metrics*.
 
 Technology specific semantic conventions are defined for the following messaging systems:
 
