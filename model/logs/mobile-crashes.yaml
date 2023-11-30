@@ -22,7 +22,6 @@ groups:
           recommended: If the crash occurred on an Android device.
         brief: >
           The id of the thread as output by Thread.currentThread().getId()
-          For android crashes
       - ref: thread.name
         requirement_level: recommended
         brief: >
