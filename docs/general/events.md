@@ -12,22 +12,22 @@ in the data model by `LogRecord`s.
 
 Semantically, an Event is a named occurrence at an instant in time. It simply signals that
 "this thing happened at this time" and provides additional specifics about the occurrence.
-Examples of Events might include things like uncaught exceptions, button clicks, user logout, 
-network connection severed, etc. 
+Examples of Events might include things like uncaught exceptions, button clicks, user logout,
+network connection severed, etc.
 
-In OpenTelemetry, Events are implemented as a specific type of `LogRecord` that conforms to 
-the conventions included here, and Events 
+In OpenTelemetry, Events are implemented as a specific type of `LogRecord` that conforms to
+the conventions included here, and Events
 [have their own api](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md).
 The api abstracts away knowledge of `LogRecord` so that users are merely dealing with Event
-semantics. 
+semantics.
 
-In addition to a required name, an Event may contain a _payload_, which can be either structured or unstructured. 
+In addition to a required name, an Event may contain a _payload_, which can be either structured or unstructured.
 In its implementation, the Event _payload_ will constitute the `Body` of the `LogRecord`.
 Like all other OpenTelemetry signals, an Event has optional attribute metadata that helps describe
 the event context.
 
 Over time, some Events will be specified by OpenTelemetry and will have documented payload structure,
-field semantics, and stability and requirement levels. Other events may be user-defined and carry 
+field semantics, and stability and requirement levels. Other events may be user-defined and carry
 bespoke user semantics. The name of the Event determines if an established payload structure is applicable
 or not.
 
