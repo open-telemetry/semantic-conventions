@@ -6,7 +6,6 @@ groups:
       This document defines attributes for crashes represented using Log Record Events.
       `event.domain` is 'device' and `event.name` is 'crash'.
     attributes:
-        brief: >
       - ref: ios.state
         requirement_level:
           recommended: If the crash occurred on an iOS device.
