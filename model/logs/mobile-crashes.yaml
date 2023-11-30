@@ -43,7 +43,8 @@ groups:
         type: string
         examples: ['java.lang.ArithmeticException: / by zero']
       - id: ios.crash_report
-        requirement_level: recommended
+        requirement_level:
+          recommended: If the crash occurred on an iOS device.
         brief: >
           The contents from PLCrashReporter
           Contains three primary elements. "images", "threads" and "signal". These could be broken out as individual elements
