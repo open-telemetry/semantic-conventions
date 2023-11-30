@@ -12,7 +12,6 @@ groups:
       - ref: android.state
         requirement_level:
           recommended: If the crash occurred on an Android device.
-          This attribute represents the state the application has transitioned into at the occurrence of the event
           For android crashes
         examples: ['created', 'foreground', 'background']
       - ref: exception.stacktrace
