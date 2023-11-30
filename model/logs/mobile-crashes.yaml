@@ -7,7 +7,6 @@ groups:
       `event.domain` is 'device' and `event.name` is 'crash'.
     attributes:
       - ref: os.name
-        requirement_level: "required"
         brief: >
             This attribute indicates the operating system name of the device on which the crash event occurred.
         examples: ['iOS', 'Android']
