@@ -20,6 +20,9 @@ release.
   ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
 - BREAKING: Change `event.name` definition to include `namespace` and remove `event.domain` from log event attributes.
   ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
+- BREAKING: Change `system.disk.io.direction` and `system.network.io.direction`
+  to global attributes `disk.io.direction` and `network.io.direction`
+  ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
 
 ### Features
 
