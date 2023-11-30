@@ -4,7 +4,7 @@ groups:
     type: event
     brief: >
       This document defines attributes for crashes represented using Log Record Events.
-      `event.domain` is 'device' and `event.name` is 'crash
+      `event.domain` is 'device' and `event.name` is 'crash'.
     attributes:
       - ref: os.name
         requirement_level: "required"
