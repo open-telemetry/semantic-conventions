@@ -12,7 +12,6 @@ groups:
       - ref: android.state
         requirement_level:
           recommended: If the crash occurred on an Android device.
-        examples: ['created', 'foreground', 'background']
       - ref: exception.stacktrace
         requirement_level: recommended
         brief: >
