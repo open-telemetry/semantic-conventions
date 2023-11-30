@@ -4,7 +4,7 @@ linkTitle: Runtime Environment
 
 # Semantic Conventions for JVM Metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 This document describes semantic conventions for JVM metrics in OpenTelemetry.
 
@@ -29,7 +29,7 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
   * [Metric: `jvm.cpu.time`](#metric-jvmcputime)
   * [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   * [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
-- [Very experimental](#very-experimental)
+- [Experimental](#very-experimental)
   * [Metric: `jvm.memory.init`](#metric-jvmmemoryinit)
   * [Metric: `jvm.system.cpu.utilization`](#metric-jvmsystemcpuutilization)
   * [Metric: `jvm.system.cpu.load_1m`](#metric-jvmsystemcpuload_1m)
@@ -40,6 +40,8 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
 <!-- tocstop -->
 
 ## JVM Memory
+
+**Status**: [Stable][DocumentStatus]
 
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.memory.*`
 
@@ -152,6 +154,8 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 <!-- endsemconv -->
 
 ## JVM Garbage Collection
+
+**Status**: [Stable][DocumentStatus]
 
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.gc.*`
 
@@ -270,6 +274,8 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 
 ## JVM CPU
 
+**Status**: [Stable][DocumentStatus]
+
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.cpu.*`
 
 ### Metric: `jvm.cpu.time`
@@ -321,7 +327,9 @@ Note that the JVM does not provide a definition of what "recent" means.
 <!-- semconv metric.jvm.cpu.recent_utilization(full) -->
 <!-- endsemconv -->
 
-## Very experimental
+## Experimental
+
+**Status**: [Experimental][DocumentStatus]
 
 **Description:** Very experimental Java Virtual Machine (JVM) metrics captured under `jvm.`
 

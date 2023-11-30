@@ -40,6 +40,8 @@ release.
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
 - Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
+- JVM metrics marked stable
+  ([#569](https://github.com/open-telemetry/semantic-conventions/pull/569))
 
 ## v1.23.0 (2023-11-03)
 
