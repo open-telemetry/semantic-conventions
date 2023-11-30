@@ -30,7 +30,6 @@ groups:
       - ref: exception.message
         requirement_level:
           recommended: If the crash occurred on an Android device.
-        brief: >
           The message within the exception object
           For android crashes
         type: string
