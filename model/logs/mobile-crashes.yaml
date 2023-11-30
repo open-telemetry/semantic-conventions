@@ -7,7 +7,6 @@ groups:
       `event.domain` is 'device' and `event.name` is 'crash'.
     attributes:
         brief: >
-        examples: ['iOS', 'Android']
       - ref: ios.state
         requirement_level:
           recommended: If the crash occurred on an iOS device.
