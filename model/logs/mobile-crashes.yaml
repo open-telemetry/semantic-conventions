@@ -12,7 +12,8 @@ groups:
             This attribute indicates the operating system name of the device on which the crash event occurred.
         examples: ['iOS', 'Android']
       - ref: ios.state
-        requirement_level: recommended
+        requirement_level:
+          recommended: If the crash occurred on an iOS device.
         brief: >
           This attribute represents the state the application has transitioned into at the occurrence of the event
           For ios crashes
