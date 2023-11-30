@@ -9,7 +9,6 @@ groups:
       - ref: ios.state
         requirement_level:
           recommended: If the crash occurred on an iOS device.
-        examples: ['active', 'inactive', 'background', 'foreground', 'terminate']
       - ref: android.state
         requirement_level: recommended
         brief: >
