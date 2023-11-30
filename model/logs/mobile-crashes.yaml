@@ -30,7 +30,6 @@ groups:
       - ref: exception.message
         requirement_level:
           recommended: If the crash occurred on an Android device.
-          For android crashes
         type: string
         examples: ['java.lang.ArithmeticException: / by zero']
       - id: ios.crash_report
