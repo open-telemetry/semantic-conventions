@@ -33,6 +33,8 @@ release.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
 - Add `messaging.gcp_pubsub.message.ordering_key` attribute.
   ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
+- Add messaging metrics
+  ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
 - Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
   ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
 
