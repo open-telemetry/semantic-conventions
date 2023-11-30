@@ -17,7 +17,7 @@ network connection severed, etc.
 
 In OpenTelemetry, Events are implemented as a specific type of `LogRecord` that conforms to
 the conventions included here, and Events
-[have their own api](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md).
+[have their own API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md).
 The api abstracts away knowledge of `LogRecord` so that users are merely dealing with Event
 semantics.
 
