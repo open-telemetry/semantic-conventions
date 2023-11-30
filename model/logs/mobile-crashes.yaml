@@ -13,7 +13,8 @@ groups:
         requirement_level:
           recommended: If the crash occurred on an Android device.
       - ref: exception.stacktrace
-        requirement_level: recommended
+        requirement_level:
+          recommended: If the crash occurred on an Android device.
         brief: >
           The contents of printStackTrace() being called on the throwable
           For android crashes
