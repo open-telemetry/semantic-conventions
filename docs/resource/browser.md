@@ -13,6 +13,7 @@ All of these attributes can be provided by the user agent itself in the form of 
 |---|---|---|---|---|
 | `browser.brands` | string[] | Array of brand name and version separated by a space [1] | `[ Not A;Brand 99, Chromium 99, Chrome 99]` | Recommended |
 | `browser.instance.id` | string | Represents a browser instance, either a window or a tab | `ec34d777-1daf-416b-98b0-05beddfaa199` | Recommended |
+| `browser.instance.visibility_state` | string | Visibility status of the browser instance | `visible`; `hidden` | Recommended |
 | `browser.language` | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | Recommended |
 | `browser.mobile` | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | Recommended |
 | `browser.page.instance.id` | string | Represents an instance of a page in the browser [4] | `4e58989a-4e4d-4f62-bf4f-ac5cd49b4b9a` | Recommended |
@@ -34,6 +35,13 @@ All of these attributes can be provided by the user agent itself in the form of 
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
 
 **[7]:** The user-agent value SHOULD be provided only from browsers that do not have a mechanism to retrieve brands and platform individually from the User-Agent Client Hints API. To retrieve the value, the legacy `navigator.userAgent` API can be used.
+
+`browser.instance.visibility_state` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `visible` | Browser instance is visible |
+| `hidden` | Browser instance is hidden |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

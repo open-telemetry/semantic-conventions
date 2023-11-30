@@ -70,3 +70,15 @@ groups:
         type: string
         brief: 'Represents a browser instance, either a window or a tab'
         examples: ["ec34d777-1daf-416b-98b0-05beddfaa199"]
+      - id: instance.visibility_state
+        type:
+          allow_custom_values: false
+          members:
+            - id: 'visible'
+              value: 'visible'
+              brief: 'Browser instance is visible'
+            - id: 'hidden'
+              value: 'hidden'
+              brief: 'Browser instance is hidden'
+        brief: 'Visibility status of the browser instance'
+        examples: ["visible", "hidden"]
