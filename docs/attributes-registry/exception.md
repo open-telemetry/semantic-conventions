@@ -29,9 +29,9 @@ It follows that an exception may still escape the scope of the span
 even if the `exception.escaped` attribute was not set or set to false,
 since the event might have been recorded at a time where it was not
 clear whether the exception will escape.
-
-**Additional attribute requirements:** At least one of the following sets of attributes is required:
-
-* `exception.type`
-* `exception.message`
 <!-- endsemconv -->
+
+### Recording An Exception
+
+The `exception.escaped` attribute has special semantics in the context of
+a span. Please read the [details here](../exceptions/exceptions-spans.md#recording-an-exception).
