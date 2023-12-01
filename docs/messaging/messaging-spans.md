@@ -204,8 +204,8 @@ The following operations related to messages are defined for these semantic conv
 
 | Operation name | Description |
 | -------------- | ----------- |
+| `create`       | A message is created or passed to a client library for publishing. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
 | `publish`      | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
-| `create`       | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
 | `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
 | `deliver`      | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
 | `settle`       | One or more messages are settled. |
@@ -217,8 +217,8 @@ SHOULD be set according to the following table, based on the operation a span de
 
 | Operation name | Span kind|
 |----------------|-------------|
-| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context. |
 | `create`       | `PRODUCER` |
+| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context. |
 | `receive`      | `CONSUMER` |
 | `deliver`      | `CONSUMER` |
 
@@ -241,16 +241,17 @@ interpret linked traces without the need for additional semantic hints.
 sending or publishing to an intermediary. A single "Publish" span can account
 for a single message, or for multiple messages (in the case of providing
 messages in batches). "Create" spans MAY be created. A single "Create" span
-SHOULD account only for a single message. "Create" spans SHOULD be links of the
-related "Publish" span.
+SHOULD account only for a single message.
 
 If a user provides a custom creation context in a message, this context SHOULD
-NOT be modified, a "Create" span SHOULD NOT be created, and the "Publish" span
-SHOULD link to the custom creation context.  Otherwise, if a "Create" span
-exists for a message, its context SHOULD be injected into the message. If no
-"Create" span exists and no custom creation context is injected into the
-message, the context of the related "Publish" span SHOULD be injected into the
-message.
+NOT be modified and a "Create" span SHOULD NOT be created.  Otherwise, if a
+"Create" span exists for a message, its context SHOULD be injected into the
+message. If no "Create" span exists and no custom creation context is injected
+into the message, the context of the related "Publish" span SHOULD be injected
+into the message.
+
+The "Publish" span SHOULD always link to the creation context that was injected
+into a message either from a "Create" span or as a custom creation context. 
 
 #### Consumer spans
 
