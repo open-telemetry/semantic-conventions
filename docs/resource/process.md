@@ -175,7 +175,7 @@ Examples for some .NET runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
-| .NET Framework | .NET Framework | 4.8.9195.0 | .NET Framework 4.8.9195.0 |
+| .NET Framework | .NET Framework | 4.8 | .NET Framework 4.8.9195.0 |
 | .NET | .NET | 7.0.14 | .NET 7.0.14 |
 
 ### Python Runtimes
