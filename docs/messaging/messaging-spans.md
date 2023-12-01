@@ -241,8 +241,8 @@ interpret linked traces without the need for additional semantic hints.
 sending or publishing to an intermediary. A single "Publish" span can account
 for a single message, or for multiple messages (in the case of providing
 messages in batches). "Create" spans MAY be created. A single "Create" span
-SHOULD account only for a single message. "Create" spans SHOULD either be
-children or links of the related "Publish" span.
+SHOULD account only for a single message. "Create" spans SHOULD be links of the
+related "Publish" span.
 
 If a user provides a custom creation context in a message, this context SHOULD
 NOT be modified, a "Create" span SHOULD NOT be created, and the "Publish" span
@@ -563,9 +563,9 @@ Kafka, and two different consumers receiving one of the messages.
 flowchart LR;
   subgraph PRODUCER
   direction TB
-  P[Span Publish]
   CA[Span Create A]
   CB[Span Create B]
+  P[Span Publish]
   end
   subgraph CONSUMER1
   direction TB
@@ -575,8 +575,8 @@ flowchart LR;
   direction TB
   D2[Span Receive B]
   end
-  P-- parent -->CA;
-  P-- parent -->CB;
+  CA-. link .-P;
+  CB-. link .-P;
   CA-. link .-D1;
   CB-. link .-D2;
 
