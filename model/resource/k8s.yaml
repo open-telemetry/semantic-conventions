@@ -34,6 +34,7 @@ groups:
       - ref: k8s.pod.uid
       - ref: k8s.pod.name
       - ref: k8s.pod.labels
+      - ref: k8s.pod.annotations
 
   - id: k8s.container
     prefix: k8s.container
