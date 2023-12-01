@@ -101,10 +101,13 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 |---|---|---|---|---|
 | `service.instance.id` | string | The string ID of the service instance. [1] | `my-k8s-pod-deployment-1`; `627cc493-f310-47de-96bd-71410b7dec09` | Recommended |
 | `service.namespace` | string | A namespace for `service.name`. [2] | `Shop` | Recommended |
+| `service.type` | string | The service type in reverse domain name notation. [3] | `io.opentelemetry.collector`; `io.redis`; `org.apache.kafka` | Recommended |
 
 **[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent and stay the same for the lifetime of the service instance, however it is acceptable that the ID is ephemeral and changes during important lifetime events for the service (e.g. service restarts). If the service has no inherent unique ID that can be used as the value of this attribute it is recommended to generate a random Version 1 or Version 4 RFC 4122 UUID (services aiming for reproducible UUIDs may also use Version 5, see RFC 4122 for more recommendations).
 
 **[2]:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
+**[3]:** The `service.type` identifies the product that is deployed as the service. The same product may be simultaneously deployed multiple times on the same observable infrastructure. In this case each of these deployments will typically have a distinct `service.name` to help identify the logical role of the particular deployment, however their `service.type` will be the same and will help identify the deployed product.
 <!-- endsemconv -->
 
 Note: `service.namespace` and `service.name` are not intended to be concatenated for the purpose of forming a single globally unique name for the service. For example the following 2 sets of attributes actually describe 2 different services (despite the fact that the concatenation would result in the same string):

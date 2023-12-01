@@ -38,6 +38,8 @@ release.
   ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
 - Add an example for gcp_pubsub asynchronous batch publish
   ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545))
+- Add `service.type` experimental Resource attribute
+  ([#575](https://github.com/open-telemetry/semantic-conventions/pull/575))
 
 ### Fixes
 

@@ -35,3 +35,15 @@ groups:
           (services aiming for reproducible UUIDs may also use Version 5, see RFC 4122
           for more recommendations).
         examples: ["my-k8s-pod-deployment-1", "627cc493-f310-47de-96bd-71410b7dec09"]
+      - id: type
+        type: string
+        brief: >
+          The service type in reverse domain name notation.
+        note: >
+          The `service.type` identifies the product that is deployed as the service.
+          The same product may be simultaneously deployed multiple times on the
+          same observable infrastructure. In this case each of these deployments
+          will typically have a distinct `service.name` to help identify the
+          logical role of the particular deployment, however their
+          `service.type` will be the same and will help identify the deployed product.
+        examples: ["io.opentelemetry.collector", "io.redis", "org.apache.kafka"]
