@@ -164,6 +164,13 @@ Examples for some JavaScript runtimes
   for .NET Framework
 - `process.runtime.description` - Fill in the values of `System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription`.
 
+`process.runtime.name` has the following list of well-known values. If one of them applies, then the respective value SHOULD be used, otherwise a custom value SHOULD be used.
+
+- .NET Framework
+- .NET
+- .NET Core
+- .NET Native
+
 Examples for some .NET runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
