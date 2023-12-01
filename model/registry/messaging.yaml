@@ -273,3 +273,39 @@ groups:
               value: 'rocketmq'
               brief: 'Apache RocketMQ'
         tag: messaging-generic
+      - id: azure_servicebus.message.delivery_count
+        type: int
+        brief: >
+          Number of deliveries that have been attempted for this message.
+        examples: 2
+        tag: tech-specific-servicebus
+      - id: azure_servicebus.message.enqueued_time
+        type: int
+        brief: >
+          The UTC epoch seconds at which the message has been accepted and stored in the entity.
+        examples: 1701393730
+        tag: tech-specific-servicebus
+      - id: azure_servicebus.destination.subscription_name
+        type: string
+        brief: >
+          The name of the subscription in the topic messages are received from.
+        examples: "mySubscription"
+        tag: tech-specific-servicebus
+      - id: azure_eventhubs.message.enqueued_time
+        type: int
+        brief: >
+          The UTC epoch seconds at which the message has been accepted and stored in the entity.
+        examples: 1701393730
+        tag: tech-specific-eventhubs
+      - id: azure_eventhubs.destination.partition.id
+        type: string
+        brief: >
+          The identifier of the partition messages are sent to or received from, unique to the Event Hub which contains it.
+        examples: '1'
+        tag: tech-specific-eventhubs
+      - id: azure_eventhubs.consumer.group
+        type: string
+        brief: >
+          The name of the consumer group the event consumer is associated with.
+        examples: 'indexer'
+        tag: tech-specific-eventhubs

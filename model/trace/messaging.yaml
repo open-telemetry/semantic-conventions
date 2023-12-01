@@ -164,3 +164,29 @@ groups:
         tag: tech-specific-gcp-pubsub
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
+  - id: messaging.azure_servicebus
+    type: attribute_group
+    extends: messaging
+    brief: >
+      Attributes for Azure Service Bus
+    attributes:
+      - ref: messaging.azure_servicebus.message.delivery_count
+        requirement_level:
+          conditionally_required: If delivery count is available and is bigger than 0.
+      - ref: messaging.azure_servicebus.message.enqueued_time
+      - ref: messaging.azure_servicebus.destination.subscription_name
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
+  - id: messaging.azure_eventhubs
+    type: attribute_group
+    extends: messaging
+    brief: >
+      Attributes for Azure Event Hubs
+    attributes:
+      - ref: messaging.azure_eventhubs.message.enqueued_time
+      - ref: messaging.azure_eventhubs.destination.partition.id
+        requirement_level:
+          conditionally_required: If available.
+      - ref: messaging.azure_eventhubs.consumer.group
+        requirement_level:
+          conditionally_required: If not default ("$Default").
