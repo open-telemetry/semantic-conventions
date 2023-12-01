@@ -21,7 +21,8 @@ the conventions included here, and Events
 The API abstracts away knowledge of `LogRecord` so that users only deal with Event
 semantics.
 
-In addition to a required name, an Event may contain a _payload_, which can be either structured or unstructured.
+In addition to a required name, an Event may contain a _payload_ of any type permitted by the
+[LogRecord body](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body).
 In its implementation, the Event _payload_ will constitute the `Body` of the `LogRecord`.
 Like all other OpenTelemetry signals, an Event has optional attribute metadata that helps describe
 the event context.
