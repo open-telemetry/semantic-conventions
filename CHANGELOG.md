@@ -46,6 +46,8 @@
   ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
 - Add Azure Service Bus and Event Hubs messaging attributes
   ([#572](https://github.com/open-telemetry/semantic-conventions/pull/572))
+- Add fallback for `host.id` in Cloud
+  ([#576](https://github.com/open-telemetry/semantic-conventions/pull/576))
 
 ### Fixes
 
