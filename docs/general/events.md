@@ -29,8 +29,8 @@ the event context.
 
 Over time, some Events will be specified by OpenTelemetry and will have documented payload structure,
 field semantics, and stability and requirement levels. Other events may be user-defined and carry
-bespoke user semantics. The name of the Event determines if an established payload structure is applicable
-or not.
+bespoke user semantics. When an Event name exists in the semantic conventions, its _payload_
+structure and semantics will also be defined.
 
 The following semantic conventions for events are defined:
 
