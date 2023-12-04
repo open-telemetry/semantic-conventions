@@ -20,6 +20,9 @@ release.
   ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
 - BREAKING: Change `event.name` definition to include `namespace` and remove `event.domain` from log event attributes.
   ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
+- BREAKING: Change `system.disk.io.direction` and `system.network.io.direction`
+  to global attributes `disk.io.direction` and `network.io.direction`
+  ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
 
 ### Features
 
@@ -33,6 +36,11 @@ release.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
 - Add `messaging.gcp_pubsub.message.ordering_key` attribute.
   ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
+- Define how to set `process.runtime.name`, `process.runtime.version`,
+  `process.runtime.description` for .NET runtime.
+  ([#561](https://github.com/open-telemetry/semantic-conventions/pull/561))
+- Add `db.instance.id` attribute.
+  ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
 - Add messaging metrics
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
 - Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
