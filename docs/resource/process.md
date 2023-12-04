@@ -85,7 +85,7 @@ Example:
 
 ### Go Runtimes
 
-Go Runtimes should fill in the as follows:
+Go Runtimes SHOULD fill in the as follows:
 
 - `process.runtime.name` - Fill in an interpretation of Go's [`runtime.Compiler`](https://pkg.go.dev/runtime#Compiler) constant, according to the following rule:
   If the value is `gc`, fill in `go`. Otherwise, fill in the exact value of `runtime.Compiler`.
@@ -116,7 +116,7 @@ Examples for some Go compilers/runtimes:
 
 ### Java runtimes
 
-Java instrumentation should fill in the values by copying from system properties.
+Java instrumentation SHOULD fill in the values by copying from system properties.
 
 - `process.runtime.name` - Fill in the value of `java.runtime.name` as is
 - `process.runtime.version` - Fill in the value of `java.runtime.version` as is
@@ -138,7 +138,7 @@ Examples for some Java runtimes
 
 ### JavaScript runtimes
 
-JavaScript instrumentation should fill in the values by copying from built-in runtime constants.
+JavaScript instrumentation SHOULD fill in the values by copying from built-in runtime constants.
 
 - `process.runtime.name`:
   - When the runtime is Node.js, fill in the constant value `nodejs`.
@@ -156,17 +156,31 @@ Examples for some JavaScript runtimes
 
 ### .NET Runtimes
 
-TODO(<https://github.com/open-telemetry/opentelemetry-dotnet/issues/1281>): Confirm the contents here
+.NET instrumentation SHOULD fill in the values by following values:
 
-| Value | Description |
-| --- | --- |
-| `dotnet-core` | .NET Core, .NET 5+ |
-| `dotnet-framework` | .NET Framework |
-| `mono` | Mono |
+- `process.runtime.name` - Fill in the value by the name of runtime.
+- `process.runtime.version` - Fill in the value of `System.Environment.Version` for .NET,
+  determine version based on the [registry values](https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed#query-the-registry-using-code)
+  for .NET Framework
+- `process.runtime.description` - Fill in the values of `System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription`.
+
+`process.runtime.name` has the following list of well-known values. If one of them applies, then the respective value SHOULD be used, otherwise a custom value SHOULD be used.
+
+- .NET Framework
+- .NET
+- .NET Core
+- .NET Native
+
+Examples for some .NET runtimes
+
+| Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
+| --- | --- | --- | --- |
+| .NET Framework | .NET Framework | 4.8 | .NET Framework 4.8.9195.0 |
+| .NET | .NET | 7.0.14 | .NET 7.0.14 |
 
 ### Python Runtimes
 
-Python instrumentation should fill in the values as follows:
+Python instrumentation SHOULD fill in the values as follows:
 
 - `process.runtime.name` -
   Fill in the value of [`sys.implementation.name`][py_impl]
@@ -207,7 +221,7 @@ Pypy provided a CPython-compatible version in `sys.implementation.version` inste
 
 ### Ruby Runtimes
 
-Ruby instrumentation should fill in the values by copying from built-in runtime constants.
+Ruby instrumentation SHOULD fill in the values by copying from built-in runtime constants.
 
 - `process.runtime.name` - Fill in the value of `RUBY_ENGINE` as is
 - `process.runtime.version` - Fill in the value of `RUBY_VERSION` as is

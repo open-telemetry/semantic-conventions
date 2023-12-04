@@ -30,6 +30,8 @@ key, but non-obvious, aspects:
   defined in a schema file. As part of any contribution, you should
   include attribute changes defined in the `schema-next.yaml` file.
   For details, please read [the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
+- Links to the specification repository MUST point to a tag and **not** to the `main` branch.
+  The tag version MUST match with the one defined in [README](README.md).
 - After creating a pull request, please update the [CHANGELOG](CHANGELOG.md) file with
   a description of your changes.
 
