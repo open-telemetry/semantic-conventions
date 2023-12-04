@@ -422,3 +422,11 @@ groups:
           Username for accessing the database.
         examples: ['readonly_user', 'reporting_user']
         tag: db-generic
+      - id: instance.id
+        tag: db-generic
+        type: string
+        brief: >
+          An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection.
+          This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query.
+          The client may obtain this value in databases like MySQL using queries like `select @@hostname`.
+        examples: 'mysql-e26b99z.example.com'
