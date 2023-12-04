@@ -28,7 +28,7 @@ The following semantic conventions surrounding metrics are defined:
 
 * **[General Guidelines](#general-guidelines): General metrics guidelines.**
 * [Database](/docs/database/database-metrics.md): For SQL and NoSQL client metrics.
-* [FaaS](/docs/faas/faas-metrics.md): For [Function as a Service](https://en.wikipedia.org/wiki/Function_as_a_service) metrics.
+* [FaaS](/docs/faas/faas-metrics.md): For [Function as a Service](https://wikipedia.org/wiki/Function_as_a_service) metrics.
 * [HTTP](/docs/http/http-metrics.md): For HTTP client and server metrics.
 * [RPC](/docs/rpc/rpc-metrics.md): For RPC client and server metrics.
 * **System metrics**
@@ -109,7 +109,7 @@ Metric namespaces SHOULD NOT be pluralized.
 
 Metric names SHOULD NOT be pluralized, unless the value being recorded
 represents discrete instances of a
-[countable quantity](https://en.wikipedia.org/wiki/Count_noun).
+[countable quantity](https://wikipedia.org/wiki/Count_noun).
 Generally, the name SHOULD be pluralized only if the unit of the metric in
 question is a non-unit (like `{fault}` or `{operation}`).
 
@@ -124,12 +124,10 @@ should be pluralized, even if only a single data point is recorded.
 
 If the value being recorded represents the count of concepts signified
 by the namespace then the metric should be named `count` (within its namespace).
-The pluralization rule does not apply in this case.
 
-For example if we have a namespace `system.processes` which contains all metrics related
+For example if we have a namespace `system.process` which contains all metrics related
 to the processes then to represent the count of the processes we can have a metric named
-`system.processes.count`. The suffix `count` here indicates that it is the count of
-`system.processes`.
+`system.process.count`.
 
 #### Do not use `total`
 

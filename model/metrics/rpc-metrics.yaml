@@ -7,6 +7,7 @@ groups:
     brief: "Describes RPC metric attributes."
     attributes:
       - ref: rpc.system
+        requirement_level: required
       - ref: rpc.service
       - ref: rpc.method
       - ref: network.transport

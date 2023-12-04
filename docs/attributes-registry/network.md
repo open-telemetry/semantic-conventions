@@ -16,23 +16,24 @@ These attributes may be used for any network related operation.
 | `network.carrier.name` | string | The name of the mobile carrier. | `sprint` |
 | `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` |
 | `network.connection.type` | string | The internet connection type. | `wifi` |
-| `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
-| `network.local.port` | int | Local port number of the network connection. | `65123` |
-| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
-| `network.peer.port` | int | Peer port number of the network connection. | `65123` |
-| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` |
-| `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` |
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` |
+| `network.io.direction` | string | The network IO operation direction. | `transmit` |
+| `network.local.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| `network.local.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Local port number of the network connection. | `65123` |
+| `network.peer.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| `network.peer.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Peer port number of the network connection. | `65123` |
+| `network.protocol.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` |
+| `network.protocol.version` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` |
+| `network.transport` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` |
+| `network.type` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
-**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client used has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 **[3]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport, for example
+a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[4]:** The value SHOULD be normalized to lowercase.
@@ -73,13 +74,20 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unavailable` | unavailable |
 | `unknown` | unknown |
 
+`network.io.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `transmit` | transmit |
+| `receive` | receive |
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
 | `tcp` | TCP |
 | `udp` | UDP |
-| `pipe` | Named or anonymous pipe. See note below. |
+| `pipe` | Named or anonymous pipe. |
 | `unix` | Unix domain socket |
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.

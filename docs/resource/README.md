@@ -47,7 +47,7 @@ This document defines standard attributes for resources. These attributes are ty
 
 Attributes are grouped logically by the type of the concept that they described. Attributes in the same group have a common prefix that ends with a dot. For example all attributes that describe Kubernetes properties start with "k8s."
 
-See [Attribute Requirement Levels](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/common/attribute-requirement-level.md) for details on when attributes
+See [Attribute Requirement Levels](../general/attribute-requirement-level.md) for details on when attributes
 should be included.
 
 ## Attributes with Special Handling

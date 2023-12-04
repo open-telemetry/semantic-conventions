@@ -2,6 +2,24 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    # https://github.com/open-telemetry/semantic-conventions/pull/536
+    - rename_metrics:
+        jvm.memory.usage: jvm.memory.used
+        jvm.memory.usage_after_last_gc: jvm.memory.used_after_last_gc
+    # https://github.com/open-telemetry/semantic-conventions/pull/530
+    - rename_attributes:
+        attribute_map:
+          system.network.io.direction: network.io.direction
+          system.disk.io.direction: disk.io.direction
+  1.23.0:
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/20
+        - rename_attributes:
+            attribute_map:
+              thread.daemon: jvm.thread.daemon
+            apply_to_metrics:
+              - jvm.thread.count
   1.22.0:
     spans:
       changes:
