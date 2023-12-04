@@ -75,7 +75,7 @@
 /model/registry/oci.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 
 # .NET semantic conventions approvers
-/model/metrics/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approvers  @open-telemetry/semconv-http-approvers
-/docs/dotnet/          @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approvers  @open-telemetry/semconv-http-approvers
+/model/metrics/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
+/docs/dotnet/          @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
 
 # TODO - Add semconv area experts
