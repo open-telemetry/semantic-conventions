@@ -48,7 +48,7 @@ flowchart LR;
 | Span name | `T create` | `T create` | `publish` |
 | Parent |  |  |  |
 | Links |  |  | Span Create A, Span Create B |
-| SpanKind | `PRODUCER` | `PRODUCER` | `PRODUCER` |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT |
 | Status | `Ok` | `Ok` | `Ok` |
 | `messaging.batch.message_count` |  |  | 2 |
 | `messaging.destination.name` | `"T"` | `"T"` |  |
