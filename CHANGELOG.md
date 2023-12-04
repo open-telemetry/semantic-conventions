@@ -22,6 +22,9 @@ release.
   ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
 - Rename `process.parent_pid` to `process.parent.pid` in process resource and registry.
   ([#564](https://github.com/open-telemetry/semantic-conventions/pull/564))
+- BREAKING: Change `system.disk.io.direction` and `system.network.io.direction`
+  to global attributes `disk.io.direction` and `network.io.direction`
+  ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
 
 ### Features
 
@@ -37,6 +40,13 @@ release.
   ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
 - Add additional attributes to process attribute registry.
   ([#564](https://github.com/open-telemetry/semantic-conventions/pull/564))
+- Define how to set `process.runtime.name`, `process.runtime.version`,
+  `process.runtime.description` for .NET runtime.
+  ([#561](https://github.com/open-telemetry/semantic-conventions/pull/561))
+- Add `db.instance.id` attribute.
+  ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
+- Add messaging metrics
+  ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
 
 ### Fixes
 

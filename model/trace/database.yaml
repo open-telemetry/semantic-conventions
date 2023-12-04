@@ -46,6 +46,10 @@ groups:
         tag: connection-level
       - ref: network.type
         tag: connection-level
+      - ref: db.instance.id
+        tag: connection-level
+        requirement_level:
+          recommended: If different from the `server.address`
 
   - id: db.mssql
     type: span
