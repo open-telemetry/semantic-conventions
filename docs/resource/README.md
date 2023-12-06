@@ -112,18 +112,18 @@ the ID is ephemeral and changes during important lifetime events for the service
 
 If the instance has no inherent unique ID that can be used as the value of this attribute,
 implementations MAY to generate a random Version 1 or Version 4
-[RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. When enough data is available, 
-implementations SHOULD use Version 5 and MUST use the following UUID as the namespace: 
+[RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. When enough data is available,
+implementations SHOULD use Version 5 and MUST use the following UUID as the namespace:
 `4d63009a-8d0f-11ee-aad7-4c796ed8e320`.
 
 UUIDs are typically recommended, as we only need an opaque yet reproducible value for
 the purposes of identifying a service instance. Similar to what can be seen in the man page for the
-[`/etc/machine-id`](https://www.freedesktop.org/software/systemd/man/machine-id.html) file, 
+[`/etc/machine-id`](https://www.freedesktop.org/software/systemd/man/machine-id.html) file,
 the underlying data, such as pod name and namespace should be treated as
 confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
 
 When a UUID v5 is generated, the input MUST be prefixed with
-`${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}`, followed by the 
+`${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}`, followed by the
 the workload identifier, which should tentatively stable. This means that the same service yields the
 same UUID if the same identifier (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still
 yield different results for different services on the same host or namespace. When no namespaces or equivalent fields
@@ -142,11 +142,12 @@ SDKs MUST use the following algorithm when generating `service.instance.id`:
 - When any of the below combinations of resource attribute are provided, they MUST be used as the input
   for generating a UUID v5 following the prefix mentioned above. The values within each combination MUST be separated with dots:
   * `container.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${container.id}`
-  * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${k8s.namespace.name}.${service.name}.${k8s.pod.name}.${k8s.container.name}`
+  * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`, resulting in the input
+  `${telemetry.sdk.name}.${telemetry.sdk.language}.${k8s.namespace.name}.${service.name}.${k8s.pod.name}.${k8s.container.name}`
   * `host.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${host.id}`
 - When the SDK is running in an environment where a `/etc/machine-id`
   (see [MACHINE-ID(5)](https://www.freedesktop.org/software/systemd/man/machine-id.html))
-  is available, the machine-id should be used in the input for generating a UUID v5: 
+  is available, the machine-id should be used in the input for generating a UUID v5:
   `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${machine.id}`
 - When the SDK is running on a Windows environment and there's a reasonable way to read
   registry keys for the SDK, the registry key
