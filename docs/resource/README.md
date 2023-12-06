@@ -109,37 +109,45 @@ The ID helps to distinguish instances of the same service that exist at the same
 and stay the same for the lifetime of the service instance, however it is acceptable that
 the ID is ephemeral and changes during important lifetime events for the service
 (e.g. service instance restarts).
-If the instance has no inherent unique ID that can be used as the value of this attribute
-it is recommended to generate a random Version 1 or Version 4
-[RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. Services aiming for reproducible UUIDs may also
-use Version 5. UUIDs are typically recommended, as we only need an opaque yet reproducible value for
+
+If the instance has no inherent unique ID that can be used as the value of this attribute,
+implementations MAY to generate a random Version 1 or Version 4
+[RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. When enough data is available, 
+implementations SHOULD use Version 5 and MUST use the following UUID as the namespace: 
+`4d63009a-8d0f-11ee-aad7-4c796ed8e320`.
+
+UUIDs are typically recommended, as we only need an opaque yet reproducible value for
 the purposes of identifying a service instance. Similar to what can be seen in the man page for the
-[`/etc/machine-id`](https://www.freedesktop.org/software/systemd/man/machine-id.html) file, the underlying data, such as pod name and namespace should be treated as
+[`/etc/machine-id`](https://www.freedesktop.org/software/systemd/man/machine-id.html) file, 
+the underlying data, such as pod name and namespace should be treated as
 confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
 
-When a UUID v5 is generated, the UUID's namespace MUST be set to:
-`${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`, so that the same service yields the
-same ID if the same value (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still
-yield different results for different services on the same host.
+When a UUID v5 is generated, the input MUST be prefixed with
+`${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}`, followed by the 
+the workload identifier, which should tentatively stable. This means that the same service yields the
+same UUID if the same identifier (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still
+yield different results for different services on the same host or namespace. When no namespaces or equivalent fields
+are available, the prefix MUST then be `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`.
 
 Users running their services on platforms such as Kubernetes are encouraged to explicitly set the
 `service.instance.id` using their existing automation, or by setting a value that can be used for a
 consistent value, such as `container.id`. Similarly, users of application servers such as `unicorn`
 are encouraged to set the `service.instance.id` on a per-worker basis.
 
-SDKs are required to use the following algorithm when generating `service.instance.id`:
+SDKs MUST use the following algorithm when generating `service.instance.id`:
 
 - If the user has provided a `service.instance.id`, via environment
   variable, configuration or custom resource detection, this will
   always be used and honored over generated IDs.
-- When any of the below combinations of resource attribute are provided, they should be used as the input
-  for generating a UUID v5. The values within each combination should be separated with dots:
-  * `container.id`
-  * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`
-  * `host.id`
+- When any of the below combinations of resource attribute are provided, they MUST be used as the input
+  for generating a UUID v5 following the prefix mentioned above. The values within each combination MUST be separated with dots:
+  * `container.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${container.id}`
+  * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${k8s.namespace.name}.${service.name}.${k8s.pod.name}.${k8s.container.name}`
+  * `host.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${host.id}`
 - When the SDK is running in an environment where a `/etc/machine-id`
   (see [MACHINE-ID(5)](https://www.freedesktop.org/software/systemd/man/machine-id.html))
-  is available, the machine-id should be used as the input for generating a UUID v5.
+  is available, the machine-id should be used in the input for generating a UUID v5: 
+  `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${machine.id}`
 - When the SDK is running on a Windows environment and there's a reasonable way to read
   registry keys for the SDK, the registry key
   `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid` can be used in a
@@ -152,6 +160,45 @@ SDKs are required to use the following algorithm when generating `service.instan
   containers, which is not desirable. And given that the services are ephemeral on
   Kubernetes, the `service.instance.id` would change on each restart, being therefore
   no different than a completely new UUID per process.
+
+Examples in Go, using the package "github.com/google/uuid" to generate the UUIDs:
+```go
+package main
+
+import (
+  "fmt"
+
+  "github.com/google/uuid"
+)
+
+func main() {
+  // fixed namespace for the purposes of this OTEP
+  ns := uuid.MustParse("4d63009a-8d0f-11ee-aad7-4c796ed8e320")
+
+  // prefix when no namespace is available
+  prefix := "${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}"
+
+  // prefix when a namespace is available
+  prefix = "${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}"
+
+  // actual prefix for the OTel Go SDK, for a service named "customers"
+  prefix = "opentelemetry.go.customers"
+
+  // the generated service.instance.id where a host.id is used
+  host := "graviola"
+  id := uuid.NewSHA1(ns, []byte(fmt.Sprintf("%s.%s", prefix, host))) // 17ffc8fd-6ed7-5069-a5fb-2fed78f5455f
+  fmt.Printf("v5 host id: %v\n", id)
+
+  // the generated service.instance.id where a typical kubernetes values are available
+  namespace := "accounting"
+  name := "vendors" // typically, the deployment name
+  pod := "vendors-pqr-jh7d2"
+  container := "some-sidecar"
+  input := fmt.Sprintf("opentelemetry.go.%s.%s.%s.%s", namespace, name, pod, container)
+  id = uuid.NewSHA1(ns, []byte(input)) // f3a5f61b-9fff-5707-8d41-d3a9d2423b7d
+  fmt.Printf("v5 id: %v\n", id)
+}
+```
 
 **[2]:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
 <!-- endsemconv -->
