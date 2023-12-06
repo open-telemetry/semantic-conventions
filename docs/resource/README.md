@@ -163,6 +163,7 @@ SDKs MUST use the following algorithm when generating `service.instance.id`:
   no different than a completely new UUID per process.
 
 Examples in Go, using the package "github.com/google/uuid" to generate the UUIDs:
+
 ```go
 package main
 
