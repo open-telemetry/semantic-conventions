@@ -53,6 +53,18 @@ release.
 - Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
 
+## v1.23.1 (2023-11-17)
+
+### Breaking
+
+### Features
+
+### Fixes
+
+- [backport to 1.23.x] Temp fix for separation of resource and semantic attributes
+  ([#524](https://github.com/open-telemetry/semantic-conventions/pull/524)) via
+  ([#537](https://github.com/open-telemetry/semantic-conventions/pull/537))
+
 ## v1.23.0 (2023-11-03)
 
 This release marks the first where the core of HTTP semantic conventions have
