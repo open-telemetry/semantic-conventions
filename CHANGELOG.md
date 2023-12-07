@@ -56,6 +56,7 @@ release.
 ### Breaking
 
 ### Features
+
 - Add remaining ECS fields to the user-agent namespace
   ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
 
