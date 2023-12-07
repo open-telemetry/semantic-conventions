@@ -18,7 +18,7 @@
 | `process.exit_code` | int | The exit code of the process. | `127` |
 | `process.group_leader.pid` | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` |
 | `process.interactive` | boolean | Whether the process is connected to an interactive shell. |  |
-| `process.owner` | string | The username of the user that owns the process. [2] | `root` |
+| `process.owner` | string | The username of the user that owns the process. | `root` |
 | `process.parent_pid` | int | Parent Process identifier (PPID). | `111` |
 | `process.pid` | int | Process identifier (PID). | `1234` |
 | `process.real_user.id` | int | The real user ID (RUID) of the process. | `1000` |
@@ -32,12 +32,10 @@
 | `process.start` | string | The date and time the process started, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` |
 | `process.user.id` | int | The effective user ID (EUID) of the process. | `1001` |
 | `process.user.name` | string | The username of the effective user of the process. | `root` |
-| `process.vpid` | int | Virtual process identifier. [3] | `12` |
+| `process.vpid` | int | Virtual process identifier. [2] | `12` |
 
 **[1]:** As environment variables may change during a process's lifespan, this should be captured as a snapshot when the event occurred.
 May be filtered to protect sensitive information.
 
-**[2]:** This is intended to be used with Windows only. On POSIX systems, processes can have multiple users (effective, real and saved). To avoid confusion about which user is being referenced, this field should not be used with POSIX systems.
-
-**[3]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+**[2]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 <!-- endsemconv -->

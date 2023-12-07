@@ -88,11 +88,6 @@ groups:
         type: string
         brief: >
           The username of the user that owns the process.
-        note: >
-          This is intended to be used with Windows only. On POSIX systems, processes
-          can have multiple users (effective, real and saved). To avoid confusion
-          about which user is being referenced, this field should not be used with
-          POSIX systems.
         examples: ['root']
       - id: user.id
         type: int
