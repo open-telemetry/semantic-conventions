@@ -58,7 +58,7 @@ release.
   be consistent with markdown.
   ([#587](https://github.com/open-telemetry/semantic-conventions/pull/587))
 - Use `deprecated` property to mark attributes as deprecated instead of `stability`
-  ([#TODO](https://github.com/open-telemetry/semantic-conventions/pull/TODO))
+  ([#588](https://github.com/open-telemetry/semantic-conventions/pull/588))
 
 ## v1.23.1 (2023-11-17)
 
