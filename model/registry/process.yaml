@@ -10,7 +10,7 @@ groups:
         brief: >
           Process identifier (PID).
         examples: [1234]
-      - id: parent.pid
+      - id: parent_pid
         type: int
         brief: >
           Parent Process identifier (PPID).
@@ -81,6 +81,8 @@ groups:
         note: >
           As environment variables may change during a process's lifespan, this should be
           captured as a snapshot when the event occurred.
+
+          May be filtered to protect sensitive information.
         examples: ['PATH=/usr/local/bin;/usr/bin', 'USER=ubuntu']
       - id: owner
         type: string

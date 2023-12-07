@@ -11,10 +11,6 @@ versions:
         attribute_map:
           system.network.io.direction: network.io.direction
           system.disk.io.direction: disk.io.direction
-    # https://github.com/open-telemetry/semantic-conventions/pull/564
-    - rename_attributes:
-        attribute_map:
-          process.parent_pid: process.parent.pid
   1.23.0:
     metrics:
       changes:

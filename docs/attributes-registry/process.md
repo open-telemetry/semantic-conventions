@@ -19,7 +19,7 @@
 | `process.group_leader.pid` | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` |
 | `process.interactive` | boolean | Whether the process is connected to an interactive shell. |  |
 | `process.owner` | string | The username of the user that owns the process. [2] | `root` |
-| `process.parent.pid` | int | Parent Process identifier (PPID). | `111` |
+| `process.parent_pid` | int | Parent Process identifier (PPID). | `111` |
 | `process.pid` | int | Process identifier (PID). | `1234` |
 | `process.real_user.id` | int | The real user ID (RUID) of the process. | `1000` |
 | `process.real_user.name` | string | The username of the real user of the process. | `operator` |
@@ -35,6 +35,7 @@
 | `process.vpid` | int | Virtual process identifier. [3] | `12` |
 
 **[1]:** As environment variables may change during a process's lifespan, this should be captured as a snapshot when the event occurred.
+May be filtered to protect sensitive information.
 
 **[2]:** This is intended to be used with Windows only. On POSIX systems, processes can have multiple users (effective, real and saved). To avoid confusion about which user is being referenced, this field should not be used with POSIX systems.
 
