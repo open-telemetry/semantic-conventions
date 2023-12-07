@@ -63,7 +63,7 @@ as specified in [OpenTelemetry Environment Variable Specification](https://githu
 
 - [`service.name`](#service)
 
-## Semantic Attributes with SDK-provided Default Value
+### Semantic Attributes with SDK-provided Default Value
 
 These are the attributes which MUST be provided by the SDK
 as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
