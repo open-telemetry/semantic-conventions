@@ -64,6 +64,11 @@ groups:
         brief: >
           The name of the Pod.
         examples: ['opentelemetry-pod-autoconf']
+      - id: pod.labels
+        type: template[string]
+        brief: >
+          The labels placed on the Pod, the `<key>` being the label name, the value being the label value.
+        examples: ['k8s.pod.labels.app=my-app', 'k8s.pod.labels.mycompany.io/arch=x64', 'k8s.pod.labels.data=']
       - id: container.name
         type: string
         brief: >

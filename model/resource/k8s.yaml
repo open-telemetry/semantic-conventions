@@ -33,6 +33,7 @@ groups:
     attributes:
       - ref: k8s.pod.uid
       - ref: k8s.pod.name
+      - ref: k8s.pod.labels
 
   - id: k8s.container
     prefix: k8s.container
