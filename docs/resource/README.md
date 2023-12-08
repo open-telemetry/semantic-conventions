@@ -137,8 +137,7 @@ are encouraged to set the `service.instance.id` on a per-worker basis.
 SDKs MUST use the following algorithm when generating `service.instance.id`:
 
 - If the user has provided a `service.instance.id`, via environment
-  variable, configuration or custom resource detection, this will
-  always be used and honored over generated IDs.
+  variable, configuration or custom resource detection, this MUST take priority over generated IDs.
 - When any of the below combinations of resource attribute are provided, they MUST be used as the input
   for generating a UUID v5 following the prefix mentioned above. The values within each combination MUST be separated with dots:
   * `container.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${container.id}`
