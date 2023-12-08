@@ -1,11 +1,6 @@
 # Android
 
-**Status**: [Experimental][DocumentStatus]
-
-**type:** `android`
-
-**Description**: The Android platform on which the Android application is running.
-
+## Android Attributes
 <!-- semconv registry.android -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
