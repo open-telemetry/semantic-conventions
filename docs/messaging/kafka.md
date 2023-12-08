@@ -81,7 +81,7 @@ Process CB:                           | Span Rcv2 |
 | `messaging.client_id` |  | `"5"` | `"5"` | `"5"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | `"anotherKey"` | `"anotherKey"` |
 | `messaging.kafka.consumer.group` |  | `"my-group"` | `"my-group"` |  | `"another-group"` |
-| `messaging.kafka.partition` | `"1"` | `"1"` | `"1"` | `"3"` | `"3"` |
+| `messaging.kafka.destination.partition` | `"1"` | `"1"` | `"1"` | `"3"` | `"3"` |
 | `messaging.kafka.message.offset` | `"12"` | `"12"` | `"12"` | `"32"` | `"32"` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

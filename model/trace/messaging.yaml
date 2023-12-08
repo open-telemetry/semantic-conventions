@@ -52,9 +52,8 @@ groups:
     brief: >
         This document defines general attributes used in
         messaging systems.
+    extends: messaging.attributes.common
     attributes:
-      - ref: messaging.system
-        requirement_level: required
       - ref: messaging.operation
         requirement_level: required
       - ref: messaging.batch.message_count
@@ -90,10 +89,6 @@ groups:
         requirement_level:
           recommended: Only if span represents operation on a single message.
       - ref: server.address
-        note: >
-          This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
-        requirement_level:
-          conditionally_required: If available.
       - ref: network.peer.address
         tag: connection-level
       - ref: network.peer.port
@@ -104,9 +99,6 @@ groups:
         tag: connection-level
       - ref: network.type
         tag: connection-level
-      - ref: network.protocol.name
-        examples: ['amqp', 'mqtt']
-      - ref: network.protocol.version
 
   - id: messaging.rabbitmq
     type: attribute_group
@@ -170,3 +162,13 @@ groups:
         tag: tech-specific-rocketmq
       - ref: messaging.rocketmq.consumption_model
         tag: tech-specific-rocketmq
+  - id: messaging.gcp_pubsub
+    type: attribute_group
+    extends: messaging
+    brief: >
+      Attributes for Google Cloud Pub/Sub
+    attributes:
+      - ref: messaging.gcp_pubsub.message.ordering_key
+        tag: tech-specific-gcp-pubsub
+        requirement_level:
+          conditionally_required: If the message type has an ordering key set.

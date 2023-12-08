@@ -16,6 +16,7 @@ These attributes may be used for any network related operation.
 | `network.carrier.name` | string | The name of the mobile carrier. | `sprint` |
 | `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` |
 | `network.connection.type` | string | The internet connection type. | `wifi` |
+| `network.io.direction` | string | The network IO operation direction. | `transmit` |
 | `network.local.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | `network.local.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Local port number of the network connection. | `65123` |
 | `network.peer.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
@@ -72,6 +73,13 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `cell` | cell |
 | `unavailable` | unavailable |
 | `unknown` | unknown |
+
+`network.io.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `transmit` | transmit |
+| `receive` | receive |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

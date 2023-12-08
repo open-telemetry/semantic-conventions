@@ -13,17 +13,57 @@ release.
   ([#317](https://github.com/open-telemetry/semantic-conventions/pull/317))
 - BREAKING: Change type of `host.cpu.model.id` and `host.cpu.model.family` to string.
   ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
+- Changed `messaging.system` attribute type to an open enum
+  ([#517](https://github.com/open-telemetry/semantic-conventions/pull/517))
+- Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
+  to `jvm.memory.used_after_last_gc`
+  ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
+- BREAKING: Change `event.name` definition to include `namespace` and remove `event.domain` from log event attributes.
+  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
+- BREAKING: Change `system.disk.io.direction` and `system.network.io.direction`
+  to global attributes `disk.io.direction` and `network.io.direction`
+  ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
 
 ### Features
 
+- Adds `labels` attribute to `k8s.pod` resource
+  ([#494](https://github.com/open-telemetry/semantic-conventions/pull/494))
 - Add `code.stacktrace` attribute
   ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
 - Add `http.flavor` and `http.user_agent` to list of deprecated attributes
   ([#503](https://github.com/open-telemetry/semantic-conventions/pull/503))
+- Add Semantic conventions for TLS/SSL encrypted communication.
+  ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
+- Add `messaging.gcp_pubsub.message.ordering_key` attribute.
+  ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
+- Define how to set `process.runtime.name`, `process.runtime.version`,
+  `process.runtime.description` for .NET runtime.
+  ([#561](https://github.com/open-telemetry/semantic-conventions/pull/561))
+- Add `db.instance.id` attribute.
+  ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
+- Add messaging metrics
+  ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
 - Add remaining ECS fields to the url namespace
   ([#496](https://github.com/open-telemetry/semantic-conventions/pull/496/))
 
 ### Fixes
+
+- Remove misleading pluralization wording related to count metrics
+  ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
+- Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
+
+## v1.23.1 (2023-11-17)
+
+### Breaking
+
+### Features
+
+### Fixes
+
+- [backport to 1.23.x] Temp fix for separation of resource and semantic attributes
+  ([#524](https://github.com/open-telemetry/semantic-conventions/pull/524)) via
+  ([#537](https://github.com/open-telemetry/semantic-conventions/pull/537))
 
 ## v1.23.0 (2023-11-03)
 
@@ -118,7 +158,7 @@ stabilized.
 
 - Remove experimental Kafka metrics ([#338](https://github.com/open-telemetry/semantic-conventions/pull/338))
 - Adds `session.id` and session.md to general docs and model
-([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
+  ([#215](https://github.com/open-telemetry/semantic-conventions/pull/215))
 - Add `container.labels.<key>` attributes.
   ([#125](https://github.com/open-telemetry/semantic-conventions/pull/125))
 - Add `cluster.name` and `node.name` attributes to Elasticsearch semantic conventions.

@@ -182,3 +182,13 @@ groups:
         brief: '[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['ipv4', 'ipv6']
+      - id: io.direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: transmit
+              value: 'transmit'
+            - id: receive
+              value: 'receive'
+        brief: "The network IO operation direction."
+        examples: ["transmit"]
