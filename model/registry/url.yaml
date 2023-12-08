@@ -53,11 +53,6 @@ groups:
           `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`.
           In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.
         examples: ["https://www.foo.bar/search?q=OpenTelemetry#SemConv", "search?q=OpenTelemetry"]
-      - id: password
-        type: string
-        examples: ["password"]
-        brief: >
-          Password of the request.
       - id: path
         stability: stable
         type: string

@@ -13,7 +13,6 @@ linkTitle: URL
 | `url.fragment` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component | `SemConv` |
 | `url.full` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` |
 | `url.original` | string | Unmodified original URL as seen in the event source. [4] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `search?q=OpenTelemetry` |
-| `url.password` | string | Password of the request. | `password` |
 | `url.path` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component | `/search` |
 | `url.port` | int | Port of the request | `443` |
 | `url.query` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [5] | `q=OpenTelemetry` |
