@@ -20,6 +20,7 @@
 | `k8s.namespace.name` | string | The name of the namespace that the pod is running in. | `default` | Recommended |
 | `k8s.node.name` | string | The name of the Node. | `node-1` | Recommended |
 | `k8s.node.uid` | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | Recommended |
+| `k8s.pod.labels.<key>` | string | The labels placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.labels.app=my-app`; `k8s.pod.labels.mycompany.io/arch=x64`; `k8s.pod.labels.data=` | Recommended |
 | `k8s.pod.name` | string | The name of the Pod. | `opentelemetry-pod-autoconf` | Recommended |
 | `k8s.pod.uid` | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
 | `k8s.replicaset.name` | string | The name of the ReplicaSet. | `opentelemetry` | Recommended |

@@ -34,6 +34,7 @@ Currently, the following namespaces exist:
 * [DB](db.md) (database)
 * [Destination](destination.md)
 * [Device](device.md)
+* [Disk](disk.md)
 * [Error](error.md)
 * [FaaS](faas.md)
 * [Host](host.md)
