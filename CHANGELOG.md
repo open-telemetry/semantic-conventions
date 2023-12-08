@@ -43,6 +43,8 @@ release.
   ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
 - Add messaging metrics
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
+- Add remaining ECS fields to the user-agent namespace
+  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
 
 ### Fixes
 
@@ -56,9 +58,6 @@ release.
 ### Breaking
 
 ### Features
-
-- Add remaining ECS fields to the user-agent namespace
-  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
 
 ### Fixes
 
