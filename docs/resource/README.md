@@ -140,13 +140,16 @@ SDKs MUST use the following algorithm when generating `service.instance.id`:
   variable, configuration or custom resource detection, this MUST take priority over generated IDs.
 - When any of the below combinations of resource attribute are provided, they MUST be used as the input
   for generating a UUID v5 following the prefix mentioned above. The values within each combination MUST be separated with dots:
-  * `container.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${container.id}`
+  * `container.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${container.id}`, 
+  possibly without the namespace.
   * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`, resulting in the input
-  `${telemetry.sdk.name}.${telemetry.sdk.language}.${k8s.namespace.name}.${service.name}.${k8s.pod.name}.${k8s.container.name}`
-  * `host.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${host.id}`
+  `${telemetry.sdk.name}.${telemetry.sdk.language}.${k8s.namespace.name}.${service.name}.${k8s.pod.name}.${k8s.container.name}`. In this case,
+  the namespace MUST be used.
+  * `host.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${host.id}`,
+  possibly without the namespace.
 - When the SDK is running in an environment where a `/etc/machine-id`
   (see [MACHINE-ID(5)](https://www.freedesktop.org/software/systemd/man/machine-id.html))
-  is available, the machine-id should be used in the input for generating a UUID v5:
+  is available, the machine-id should be used in the input for generating a UUID v5 (possibly without the namespace):
   `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${machine.id}`
 - When the SDK is running on a Windows environment and there's a reasonable way to read
   registry keys for the SDK, the registry key
