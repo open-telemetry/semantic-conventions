@@ -43,6 +43,8 @@ release.
   ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
 - Add messaging metrics
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
+- Add `aws.ecs.task.id` attribute
+  ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
 
 ### Fixes
 
