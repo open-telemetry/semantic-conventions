@@ -55,6 +55,6 @@ flowchart LR;
 | `messaging.operation` | `"create"` | `"create"` | `"publish"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.message.envelope.size` | `1` | `1` | |
-| `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | |
+| `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
