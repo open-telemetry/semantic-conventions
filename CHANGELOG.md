@@ -46,6 +46,8 @@ release.
   ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
 - Add messaging metrics
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
+- Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
+  ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
 
 ### Fixes
 
@@ -53,6 +55,18 @@ release.
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
 - Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
+
+## v1.23.1 (2023-11-17)
+
+### Breaking
+
+### Features
+
+### Fixes
+
+- [backport to 1.23.x] Temp fix for separation of resource and semantic attributes
+  ([#524](https://github.com/open-telemetry/semantic-conventions/pull/524)) via
+  ([#537](https://github.com/open-telemetry/semantic-conventions/pull/537))
 
 ## v1.23.0 (2023-11-03)
 
