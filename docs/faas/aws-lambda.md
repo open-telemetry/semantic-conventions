@@ -15,6 +15,8 @@ use cases.
 
 - [All triggers](#all-triggers)
   * [AWS X-Ray Active Tracing Considerations](#aws-x-ray-active-tracing-considerations)
+    + [`xray-lambda` Propagator Functionality](#xray-lambda-propagator-functionality)
+    + [`xray-lambda` Propagator Configuration](#xray-lambda-propagator-configuration)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
   * [SQS Event](#sqs-event)
@@ -83,7 +85,6 @@ To avoid broken traces, if OpenTelemetry is reporting traces to another system b
 `OTEL_PROPAGATORS=xray-lambda,tracecontext,baggage,xray`
 
 *Note: The `xray-lambda` propagator can only `extract` context. The `inject` operation MUST be a no-op.*
-
 
 ## API Gateway
 
