@@ -1,1 +1,20 @@
-DO NOT REVIEW
+groups:
+  - id: metric.otel.{stage}.{component}.items
+    type: metric
+    metric_name: otel.exporter.spans
+    brief: "Measures the number of items in a pipeline."
+    instrument: counter
+    unit: "{item}"
+    attributes:
+      - id: exporter.dropped
+        type: boolean
+        requirement_level: required
+        brief: "Whether the Span was dropped or not."
+        note: >
+          Spans may be dropped in case of failed ingestion, e.g. network problem
+          or the exported endpoint being down.
+      - id: exporter.type
+        type: string
+        requirement_level: recommended
+        brief: "Type of exporter being used."
+        examples: ["OtlpGrpcSpanExporter"]
