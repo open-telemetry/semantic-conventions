@@ -37,25 +37,35 @@ groups:
           implementations SHOULD use Version 5 and MUST use the following UUID as the namespace:
           `4d63009a-8d0f-11ee-aad7-4c796ed8e320`.
 
-          UUIDs are typically recommended, as we only need an opaque yet reproducible value for
-          the purposes of identifying a service instance. Similar to what can be seen in the man page for the
+          UUIDs are typically recommended, as only an opaque yet reproducible value for
+          the purposes of identifying a service instance is needed. Similar to what can be seen in the man page for the
           [`/etc/machine-id`](https://www.freedesktop.org/software/systemd/man/machine-id.html) file,
           the underlying data, such as pod name and namespace should be treated as
           confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
 
           When a UUID v5 is generated, the input MUST be prefixed with
           `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}`, followed by the
-          the workload identifier, which should tentatively stable. This means that the same service yields the
+          the workload identifier, which should tentatively stable. The workload identifier is the final piece of
+          information making the source of telemetry to be uniquely idenfiable. For instance, it might be the `container.id`
+          or `container.name` in containerized or Kubernetes environments. This means that the same service yields the
           same UUID if the same identifier (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still
           yield different results for different services on the same host or namespace. When no namespaces or equivalent fields
           are available, the prefix MUST then be `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`.
 
-          Users running their services on platforms such as Kubernetes are encouraged to explicitly set the
-          `service.instance.id` using their existing automation, or by setting a value that can be used for a
-          consistent value, such as `container.id`. Similarly, users of application servers such as `unicorn`
-          are encouraged to set the `service.instance.id` on a per-worker basis.
+          Users are encouraged to explicitly set the `service.instance.id` themselves, given they are in the best position
+          to determine what's a service instance. For instance, in some cases, all containers in a given pod might be part
+          of the same service, while in other cases, each container would independently generate their own telemetry. When
+          it's not possible or desirable to explicitly generate a `service.instance.id`, users are encouraged to set set
+          enough information via their workload automation, such as Helm. In that case, SDKs would have enough information to
+          generate a `service.instance.id`. Future versions of the OpenTelemetry Operator might also have the ability to
+          generate the `service.instance.id` and set container-specific labels, given it is in a position to know all that
+          metadata. When SDKs don't have sufficient information to generate a stable UUID, a random one is generated.
 
-          SDKs MUST use the following algorithm when generating `service.instance.id`:
+          In more concrete terms: users running their services on platforms such as Kubernetes are encouraged to explicitly
+          set the `service.instance.id` using their existing automation, or set a value that can be used for a
+          consistent value, such as `container.id`. Similarly, users of application servers such as `unicorn`
+          are encouraged to set the `service.instance.id` on a per-worker basis. SDKs MUST use the following algorithm when
+          generating `service.instance.id`:
 
           - If the user has provided a `service.instance.id`, via environment
             variable, configuration or custom resource detection, this MUST take priority over generated IDs.
