@@ -1,0 +1,59 @@
+groups:
+  - id: signalr.common_attributes
+    prefix: signalr
+    type: attribute_group
+    brief: SignalR attributes
+    attributes:
+      - id: connection.status
+        type:
+          members:
+            - id: normal_closure
+              value: 'normal_closure'
+              brief: "The connection was closed normally."
+            - id: timeout
+              value: 'timeout'
+              brief: "The connection was closed due to a timeout."
+            - id: app_shutdown
+              value: 'app_shutdown'
+              brief: "The connection was closed because the app is shutting down."
+        brief: SignalR HTTP connection closure status.
+        examples: ["app_shutdown", "timeout"]
+      - id: transport
+        brief: "[SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)"
+        type:
+          allow_custom_values: true
+          members:
+            - id: server_sent_events
+              value: 'server_sent_events'
+              brief: "ServerSentEvents protocol"
+            - id: long_polling
+              value: 'long_polling'
+              brief: "LongPolling protocol"
+            - id: web_sockets
+              value: 'web_sockets'
+              brief: "WebSockets protocol"
+        examples: ["web_sockets", "long_polling"]
+
+  - id: metric.signalr.server.connection.duration
+    type: metric
+    metric_name: signalr.server.connection.duration
+    brief: The duration of connections on the server.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: signalr.connection.status
+      - ref: signalr.transport
+
+  - id: metric.signalr.server.active_connections
+    type: metric
+    metric_name: signalr.server.active_connections
+    brief: Number of connections that are currently active on the server.
+    instrument: updowncounter
+    unit: "{connection}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: signalr.connection.status
+      - ref: signalr.transport
