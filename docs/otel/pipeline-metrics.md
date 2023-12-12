@@ -1,15 +1,26 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: OpenTelemetry Export
+linkTitle: OpenTelemetry Pipeline Metrics
 --->
 
-# Semantic Conventions for OpenTelemetry Export Metrics
+# Semantic Conventions for OpenTelemetry Pipeline Metrics
 
 **Status**: [Experimental][DocumentStatus]
 
 This document describes instruments and attributes for OpenTelemetry
-export-level metrics. Consider the [general metric semantic
-conventions](README.md#general-metric-semantic-conventions) when creating
-instruments not explicitly defined in the specification.
+Pipeline metrics, including SDK and Collector components that form a
+delivery network for telemetry data.  These metrics are applied to a
+reduced set of general-purpose component names, as they are known in
+the OpenTelemetry Collector:
+
+- Receiver: a producer of telemetry data that places data into a local pipeline
+- Processor: an interior component of a local pipeline
+- Exporter: a consumer of telemetry data that sends data into a remote pipeline.
+
+The distinction between local and remote is helpful because as
+telemetry data passes through multiple stages in a pipeline, for
+example an SDK followed by one or more Collectors, success and failure
+depends on both the configuration of the pipeline as well as external
+factors.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
@@ -31,6 +42,34 @@ view](https://opentelemetry.io/docs/specs/otel/metrics/sdk/#view).  We
 rely on a conservation principle for pipelines, which states generally
 that what goes in, comes out.
 
+OpenTelemetry specifies two sets of metric names having similar
+definitions, one for SDKs and one for Collectors.  Taken as a whole,
+these conventions enable comparison of success and failure between
+stages of the pipeline.  For example, the total success rate for a
+pipeline is defined as the number of data items (i.e., trace spans,
+metric data points, log records, etc.)  received at the end of the
+pipeline deivided by the of data items produced at the start of the
+pipeline
+
+### General-purpose names
+
+The three primary metric name components are `receiver`, `processor`,
+and `exporter`.  One of these three should be applied whether or not
+it is the actual component type name, considering its logical purpose.
+
+For OpenTelemetry Collectors, the `connector` component should be
+described by two sets of pipeline metrics, one `exporter` and one
+`receiver`.
+
+For SDKs, the distinction between exporter and processor is documented
+in the in the [library
+guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/library-guidelines.md#requirements).
+SDKs do not have receiver metrics, only `processor` and `exporter`
+definitions apply.
+
+- the Metric Reader pipeline component is described as a `processor`, 
+- the Trace Sampler pipeline component is described as a `processor`.
+
 ### Signal-independent metric names
 
 OpenTelemetry currently has 3 signal types, but it may add more.
@@ -43,19 +82,6 @@ records, and metric data points.  An attribute to distinguish the
 
 Users are expected to understand that the data item for traces is a
 span, for logs is a record, and for metrics is a point.
-
-### Distinguishing Collectors from SDKs
-
-SDKs and Collectors process the same data in a pipeline, and both
-OpenTelemetry Collector and SDKs are recommended to use the metric
-names specified here.  An attribute to distinguish the `domain` is
-used, with values like `sdk`, `collector`.
-
-In a multi-level collection pipeline, each layer is expected to use a
-unique domain.  This enables calculating aggregates at each level in
-the collection pipeline and comparing them, as a measure of aggregate
-leakage.  Multi-level colletor topologies should allow configuration
-of distinct domains (e.g., `agent` and `gateway`).
 
 ### Basic level of detail
 
@@ -117,23 +143,30 @@ were two `batch` processors in a collection pipeline (e.g., one for
 error spans and one for non-error spans) they might use the names
 `batch/error` and `batch/noerror`.
 
+### Multi-Collector pipelines
+
+When more than one OpenTelemetry Collector is used in a pipeline,
+users are recommended to apply resource-level attributes to the
+telemetry emitted in different stages so that stages can be easily
+distinguished when applying aggregation.  TODO: see #554.
+
 ## Metric Instruments
 
-### Metric: `otel.processor.items`
+### Metric: `otelsdk.processor.items`, `otelcol.processor.items`
 
 This metric is [required][MetricRequired].
 
 <!-- semconv metric.otel.processor.items(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `otel.processor.items` | Counter | `{items}` | Measures the number of processed items (signal specific). |
+| `otelsdk.processor.items` | Counter | `{items}` | Measures the number of processed items (signal specific) in an OpenTelemetry SDK. |
+| `otelcol.processor.items` | Counter | `{items}` | Measures the number of processed items (signal specific) in an OpenTelemetry Collector. |
 <!-- endsemconv -->
 
 
 <!-- semconv metric.otel.processor.items(full) -->
 | Attribute           | Type    | Description                                              | Examples                                           | Requirement Level |
 |---------------------|---------|----------------------------------------------------------|----------------------------------------------------|-------------------|
-| `processor.domain`  | string  | Domain of the pipeline with this exporter                | `sdk`, `collector`                                 | Required          |
 | `processor.name`    | string  | Type and optional name of this exporter.                 | `batch`, `batch/errors`                            | Required          |
 | `processor.signal`  | string  | Type of signal being described.                          | `trace`, `logs`, `metrics`                         | Required          |
 | `processor.success` | boolean | Whether the item was successful or not. [1]              | true, false                                        | Recommended       |
@@ -142,20 +175,20 @@ This metric is [required][MetricRequired].
 **[1]:** Consider `success=false` a stronger signal than `success=true`
 <!-- endsemconv -->
 
-### Metric: `otel.exporter.items`
+### Metric: `otelsdk.exporter.items`
 
 This metric is [required][MetricRequired].
 
 <!-- semconv metric.otel.exporter.items(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `otel.exporter.items` | Counter | `{items}` | Measures the number of exported items (signal specific). |
+| `otelcol.exporter.items` | Counter | `{items}` | Measures the number of exported items (signal specific) in an OpenTelemetry SDK. |
+| `otelsdk.exporter.items` | Counter | `{items}` | Measures the number of exported items (signal specific) in an OpenTelemetry Collector. |
 <!-- endsemconv -->
 
 <!-- semconv metric.otel.exporter.items(full) -->
 | Attribute          | Type    | Description                                              | Examples                                           | Requirement Level |
 |--------------------|---------|----------------------------------------------------------|----------------------------------------------------|-------------------|
-| `exporter.domain`  | string  | Domain of the pipeline with this exporter                | `sdk`, `collector`                                 | Required          |
 | `exporter.name`    | string  | Type and optional name of this exporter.                 | `otlp/http`, `otlp/grpc`                           | Required          |
 | `exporter.signal`  | string  | Type of signal being described.                          | `trace`, `logs`, `metrics`                         | Required          |
 | `exporter.success` | boolean | Whether the item was successful or not. [1]              | true, false                                        | Recommended       |

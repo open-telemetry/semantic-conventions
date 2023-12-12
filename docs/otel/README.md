@@ -1,17 +1,11 @@
-# OTel Components semantic conventions
+# OpenTelemetry Pipeline Components semantic conventions
 
 **Status**: [Experimental][DocumentStatus]
 
-This document defines semantic conventions for OpenTelemetry
-data-reporting components such as processors, exporters.  These
-components are generally specified an OpenTelemetry SDK specification,
-for example [Span
-Processor](https://opentelemetry.io/docs/specs/otel/trace/sdk/#span-processor)
-and [Span
-Exporter](https://opentelemetry.io/docs/specs/otel/trace/sdk/#span-exporter).
+This document defines semantic conventions covering delivery of
+telemetry data, specifically as it passes through OpenTelemetry SDKs
+and Collectors.
 
-OTel Component semantic conventions are defined for the following metrics:
-
-* [Export](export-metrics.md): For export-level metrics.
+* [Pipeline](export-metrics.md): Success, failure and associated metrics.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.22.0/specification/document-status.md
