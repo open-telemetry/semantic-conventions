@@ -78,7 +78,9 @@ groups:
           The highest registered url domain, stripped of the subdomain.
         examples: ["example.com", "foo.co.uk"]
         note: >
-          This value can be determined precisely with the [public suffix list](http://publicsuffix.org)
+          This value can be determined precisely with the [public suffix list](http://publicsuffix.org).
+          For example, the registered domain for "foo.example.com" is "example.com".
+          Trying to approximate this by simply taking the last two labels will not work well for TLDs such as "co.uk".
       - id: scheme
         stability: stable
         type: string
