@@ -152,6 +152,24 @@ distinguished when applying aggregation.  TODO: see #554.
 
 ## Metric Instruments
 
+### Metric: `otelsdk.exporter.items`
+
+This metric is [required][MetricRequired] for OpenTelemetry Collectors.
+
+<!-- semconv metric.otel.exporter.items(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `otelcol.receiver.items` | Counter | `{items}` | Measures the number of received items (signal specific) in an OpenTelemetry Collector. |
+<!-- endsemconv -->
+
+<!-- semconv metric.otel.exporter.items(full) -->
+| Attribute          | Type    | Description                                              | Examples                                           | Requirement Level |
+|--------------------|---------|----------------------------------------------------------|----------------------------------------------------|-------------------|
+| `exporter.name`    | string  | Type and optional name of this exporter.                 | `otlp/http`, `otlp/grpc`                           | Required          |
+| `exporter.signal`  | string  | Type of signal being described.                          | `trace`, `logs`, `metrics`                         | Required          |
+| `exporter.success` | boolean | Whether the item was successful or not. [1]              | true, false                                        | Recommended       |
+| `exporter.reason`  | string  | Short string explaining category of success and failure. | `ok`, `queue_full`, `timeout`, `permission_denied` | Detailed          |
+
 ### Metric: `otelsdk.processor.items`, `otelcol.processor.items`
 
 This metric is [required][MetricRequired].
