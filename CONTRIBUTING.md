@@ -30,6 +30,8 @@ key, but non-obvious, aspects:
   defined in a schema file. As part of any contribution, you should
   include attribute changes defined in the `schema-next.yaml` file.
   For details, please read [the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
+- Links to the specification repository MUST point to a tag and **not** to the `main` branch.
+  The tag version MUST match with the one defined in [README](README.md).
 - After creating a pull request, please update the [CHANGELOG](CHANGELOG.md) file with
   a description of your changes.
 
@@ -161,14 +163,14 @@ make misspell-correction
 
 A PR (pull request) is considered to be **ready to merge** when:
 
-* It has received at least two approvals from the [code
+- It has received at least two approvals from the [code
   owners](./.github/CODEOWNERS) (if approvals are from only one company, they
   won't count).
-* There is no `request changes` from the [code owners](./.github/CODEOWNERS).
-* It has been at least two working days since the last modification (except for
+- There is no `request changes` from the [code owners](./.github/CODEOWNERS).
+- It has been at least two working days since the last modification (except for
   the trivial updates, such like typo, cosmetic, rebase, etc.). This gives
   people reasonable time to review.
-* Trivial changes (typos, cosmetic changes, CI improvements, etc.) don't have to
+- Trivial changes (typos, cosmetic changes, CI improvements, etc.) don't have to
   wait for two days.
 
 Any [maintainer](./README.md#contributing) can merge the PR once it is **ready

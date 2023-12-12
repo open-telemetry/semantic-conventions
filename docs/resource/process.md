@@ -27,22 +27,22 @@
 <!-- semconv process -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `process.command` | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | Conditionally Required: See alternative attributes below. |
-| `process.command_args` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `[cmd/otecol, --config=config.yaml]` | Conditionally Required: See alternative attributes below. |
-| `process.command_line` | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` | Conditionally Required: See alternative attributes below. |
-| `process.executable.name` | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | Conditionally Required: See alternative attributes below. |
-| `process.executable.path` | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | Conditionally Required: See alternative attributes below. |
-| `process.owner` | string | The username of the user that owns the process. | `root` | Recommended |
-| `process.parent_pid` | int | Parent Process identifier (PID). | `111` | Recommended |
-| `process.pid` | int | Process identifier (PID). | `1234` | Recommended |
+| [`process.command`](../attributes-registry/process.md) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | Conditionally Required: See alternative attributes below. |
+| [`process.command_args`](../attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `[cmd/otecol, --config=config.yaml]` | Conditionally Required: See alternative attributes below. |
+| [`process.command_line`](../attributes-registry/process.md) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` | Conditionally Required: See alternative attributes below. |
+| [`process.executable.name`](../attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | Conditionally Required: See alternative attributes below. |
+| [`process.executable.path`](../attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | Conditionally Required: See alternative attributes below. |
+| [`process.owner`](../attributes-registry/process.md) | string | The username of the user that owns the process. | `root` | Recommended |
+| [`process.parent_pid`](../attributes-registry/process.md) | int | Parent Process identifier (PID). | `111` | Recommended |
+| [`process.pid`](../attributes-registry/process.md) | int | Process identifier (PID). | `1234` | Recommended |
 
 **Additional attribute requirements:** At least one of the following sets of attributes is required:
 
-* `process.executable.name`
-* `process.executable.path`
-* `process.command`
-* `process.command_line`
-* `process.command_args`
+* [`process.executable.name`](../attributes-registry/process.md)
+* [`process.executable.path`](../attributes-registry/process.md)
+* [`process.command`](../attributes-registry/process.md)
+* [`process.command_line`](../attributes-registry/process.md)
+* [`process.command_args`](../attributes-registry/process.md)
 <!-- endsemconv -->
 
 Between `process.command_args` and `process.command_line`, usually `process.command_args` should be preferred.
@@ -62,9 +62,9 @@ In that case it MUST be interpreted as if it was `process.command_args`.
 <!-- semconv process.runtime -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `process.runtime.description` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | Recommended |
-| `process.runtime.name` | string | The name of the runtime of this process. For compiled native binaries, this SHOULD be the name of the compiler. | `OpenJDK Runtime Environment` | Recommended |
-| `process.runtime.version` | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | Recommended |
+| [`process.runtime.description`](../attributes-registry/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | Recommended |
+| [`process.runtime.name`](../attributes-registry/process.md) | string | The name of the runtime of this process. For compiled native binaries, this SHOULD be the name of the compiler. | `OpenJDK Runtime Environment` | Recommended |
+| [`process.runtime.version`](../attributes-registry/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | Recommended |
 <!-- endsemconv -->
 
 How to set these attributes for particular runtime kinds is described in the following subsections.
@@ -85,7 +85,7 @@ Example:
 
 ### Go Runtimes
 
-Go Runtimes should fill in the as follows:
+Go Runtimes SHOULD fill in the as follows:
 
 - `process.runtime.name` - Fill in an interpretation of Go's [`runtime.Compiler`](https://pkg.go.dev/runtime#Compiler) constant, according to the following rule:
   If the value is `gc`, fill in `go`. Otherwise, fill in the exact value of `runtime.Compiler`.
@@ -116,7 +116,7 @@ Examples for some Go compilers/runtimes:
 
 ### Java runtimes
 
-Java instrumentation should fill in the values by copying from system properties.
+Java instrumentation SHOULD fill in the values by copying from system properties.
 
 - `process.runtime.name` - Fill in the value of `java.runtime.name` as is
 - `process.runtime.version` - Fill in the value of `java.runtime.version` as is
@@ -138,7 +138,7 @@ Examples for some Java runtimes
 
 ### JavaScript runtimes
 
-JavaScript instrumentation should fill in the values by copying from built-in runtime constants.
+JavaScript instrumentation SHOULD fill in the values by copying from built-in runtime constants.
 
 - `process.runtime.name`:
   - When the runtime is Node.js, fill in the constant value `nodejs`.
@@ -156,17 +156,31 @@ Examples for some JavaScript runtimes
 
 ### .NET Runtimes
 
-TODO(<https://github.com/open-telemetry/opentelemetry-dotnet/issues/1281>): Confirm the contents here
+.NET instrumentation SHOULD fill in the values by following values:
 
-| Value | Description |
-| --- | --- |
-| `dotnet-core` | .NET Core, .NET 5+ |
-| `dotnet-framework` | .NET Framework |
-| `mono` | Mono |
+- `process.runtime.name` - Fill in the value by the name of runtime.
+- `process.runtime.version` - Fill in the value of `System.Environment.Version` for .NET,
+  determine version based on the [registry values](https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed#query-the-registry-using-code)
+  for .NET Framework
+- `process.runtime.description` - Fill in the values of `System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription`.
+
+`process.runtime.name` has the following list of well-known values. If one of them applies, then the respective value SHOULD be used, otherwise a custom value SHOULD be used.
+
+- .NET Framework
+- .NET
+- .NET Core
+- .NET Native
+
+Examples for some .NET runtimes
+
+| Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
+| --- | --- | --- | --- |
+| .NET Framework | .NET Framework | 4.8 | .NET Framework 4.8.9195.0 |
+| .NET | .NET | 7.0.14 | .NET 7.0.14 |
 
 ### Python Runtimes
 
-Python instrumentation should fill in the values as follows:
+Python instrumentation SHOULD fill in the values as follows:
 
 - `process.runtime.name` -
   Fill in the value of [`sys.implementation.name`][py_impl]
@@ -207,7 +221,7 @@ Pypy provided a CPython-compatible version in `sys.implementation.version` inste
 
 ### Ruby Runtimes
 
-Ruby instrumentation should fill in the values by copying from built-in runtime constants.
+Ruby instrumentation SHOULD fill in the values by copying from built-in runtime constants.
 
 - `process.runtime.name` - Fill in the value of `RUBY_ENGINE` as is
 - `process.runtime.version` - Fill in the value of `RUBY_VERSION` as is
