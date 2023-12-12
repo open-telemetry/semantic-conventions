@@ -1,0 +1,16 @@
+groups:
+  - id: aws.ec2
+    prefix: aws.ec2
+    type: resource
+    brief: >
+      Resources used by Amazon Elastic Compute Cloud (Amazon EC2).
+    attributes:
+      - id: instance.id
+        type: string
+        brief: >
+          The instance id of an AWS EC2 instance. This is the value
+          provided by the EC2 Metadata endpoint under `instance-id`.
+        note: >
+          When both `host.id` and `aws.ec2.instance.id` are present,
+          they SHOULD be equal.
+        examples: ['i-1234567890abcdef0']
