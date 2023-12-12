@@ -19,7 +19,7 @@
 | `process.group_leader.pid` | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` |
 | `process.interactive` | boolean | Whether the process is connected to an interactive shell. |  |
 | `process.owner` | string | The username of the user that owns the process. | `root` |
-| `process.parent_pid` | int | Parent Process identifier (PID). | `111` |
+| `process.parent_pid` | int | Parent Process identifier (PPID). | `111` |
 | `process.pid` | int | Process identifier (PID). | `1234` |
 | `process.real_user.id` | int | The real user ID (RUID) of the process. | `1000` |
 | `process.real_user.name` | string | The username of the real user of the process. | `operator` |

@@ -13,7 +13,7 @@ groups:
       - id: parent_pid
         type: int
         brief: >
-          Parent Process identifier (PID).
+          Parent Process identifier (PPID).
         examples: [111]
       - id: vpid
         type: int

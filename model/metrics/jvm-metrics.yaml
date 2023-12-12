@@ -5,6 +5,7 @@ groups:
     prefix: jvm.memory
     attributes:
       - id: type
+        stability: stable
         type:
           allow_custom_values: false
           members:
@@ -18,6 +19,7 @@ groups:
         brief: The type of memory.
         examples: ["heap", "non_heap"]
       - id: pool.name
+        stability: stable
         type: string
         requirement_level: recommended
         brief: Name of the memory pool.
@@ -67,6 +69,7 @@ groups:
     prefix: jvm.gc
     attributes:
       - id: name
+        stability: stable
         type: string
         requirement_level: recommended
         brief: Name of the garbage collector.
@@ -75,6 +78,7 @@ groups:
           Garbage collector name is generally obtained via
           [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
       - id: action
+        stability: stable
         type: string
         requirement_level: recommended
         brief: Name of the garbage collector action.
@@ -91,10 +95,12 @@ groups:
     unit: "{thread}"
     attributes:
       - id: jvm.thread.daemon
+        stability: stable
         type: boolean
         requirement_level: recommended
         brief: "Whether the thread is daemon or not."
       - id: jvm.thread.state
+        stability: stable
         requirement_level: recommended
         type:
           allow_custom_values: false
