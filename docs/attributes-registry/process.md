@@ -34,8 +34,8 @@
 | `process.user.name` | string | The username of the effective user of the process. | `root` |
 | `process.vpid` | int | Virtual process identifier. [2] | `12` |
 
-**[1]:** As environment variables may change during a process's lifespan, this should be captured as a snapshot when the event occurred.
-May be filtered to protect sensitive information.
+**[1]:** As environment variables may change during a process's lifespan, this SHOULD be captured as a snapshot when the event occurred.
+This SHOULD be filtered to protect sensitive information.
 
 **[2]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 <!-- endsemconv -->

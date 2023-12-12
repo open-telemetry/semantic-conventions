@@ -79,10 +79,10 @@ groups:
         brief: >
           Array of environment variable bindings.
         note: >
-          As environment variables may change during a process's lifespan, this should be
+          As environment variables may change during a process's lifespan, this SHOULD be
           captured as a snapshot when the event occurred.
 
-          May be filtered to protect sensitive information.
+          This SHOULD be filtered to protect sensitive information.
         examples: ['PATH=/usr/local/bin;/usr/bin', 'USER=ubuntu']
       - id: owner
         type: string
