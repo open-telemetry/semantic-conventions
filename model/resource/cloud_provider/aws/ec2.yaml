@@ -9,7 +9,8 @@ groups:
         type: string
         brief: >
           The instance id of an AWS EC2 instance. This is the value
-          provided by the EC2 Metadata endpoint under `instance-id`.
+          provided by the [EC2 Metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html)
+          endpoint under `instance-id`.
         note: >
           When both `host.id` and `aws.ec2.instance.id` are present,
           they SHOULD be equal.
