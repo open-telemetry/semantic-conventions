@@ -63,16 +63,32 @@ the runtime will automatically generate a span based on configured sampling rate
 via the `_X_AMZN_TRACE_ID` environment variable (and the `com.amazonaws.xray.traceHeader` system property for Java Lambda functions).
 This span context is encoded using the [X-Ray Tracing Header Format](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader).
 
-Users MUST be able to configure the propagator to prioritize propagating this X-Ray "Active Tracing" span context.
-(Users probably want this enabled if OpenTelemetry is configured to report spans to AWS X-Ray so their trace is linked together properly.)
+Users MUST be able to [configure the propagator](#xray-lambda-propagator-configuration) to prioritize propagating this X-Ray "Active Tracing" span context.
+(FYI: Users probably want this enabled if OpenTelemetry is configured to report spans to AWS X-Ray so their trace is linked together properly.)
 
 #### `xray-lambda` Propagator Functionality
 
-Implementations MUST provide an additional propagator configurable via the `OTEL_PROPAGATORS` environment variable setting as `xray-lambda`.
+SDK's that have instrumentation for AWS Lambda SHOULD provide an additional propagator alongside the X-Ray propagator
+that can [be configured](#xray-lambda-propagator-configuration) via the `OTEL_PROPAGATORS` environment variable setting as `xray-lambda`.
 This propagator ignores the provided carrier instance and instead attempts to propagate the span context from the `_X_AMZN_TRACE_ID` environment variable
 (and the `com.amazonaws.xray.traceHeader` system property for Java Lambda functions with priority given to the system property if set).
 
 To avoid potential issues when extracting with an active span context, the `xray-lambda` propagator SHOULD check if the provided context already has an active span context. If found, the propagator SHOULD return the provided context unmodified.
+
+Example pseudo implementation:
+
+```
+extract(context, carrier) {
+    if (Span.fromContext(context).getSpanContext().isValid())
+      return context
+
+    traceHeader = getEnvironment("_X_AMZN_TRACE_ID");
+    if (isEmptyOrNull(traceHeader))
+      return context
+
+    return xrayPropagator.extract(context, ["_X_AMZN_TRACE_ID": traceHeader])
+}
+```
 
 #### `xray-lambda` Propagator Configuration
 
