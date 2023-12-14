@@ -45,6 +45,8 @@ release.
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
 - Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
   ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
+- JVM metrics marked stable
+  ([#569](https://github.com/open-telemetry/semantic-conventions/pull/569))
 
 ### Fixes
 
@@ -52,6 +54,11 @@ release.
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
 - Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
+- Update stability definitions of HTTP client and server duration metrics to
+  be consistent with markdown.
+  ([#587](https://github.com/open-telemetry/semantic-conventions/pull/587))
+- Use `deprecated` property to mark attributes as deprecated instead of `stability`
+  ([#588](https://github.com/open-telemetry/semantic-conventions/pull/588))
 
 ## v1.23.1 (2023-11-17)
 
