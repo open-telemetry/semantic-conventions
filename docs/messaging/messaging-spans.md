@@ -586,18 +586,19 @@ flowchart LR;
   linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Publish | Span Create A | Span Create B | Span Receive A | Span Receive B |
+| Field or Attribute | Span Create A | Span Create B | Span Publish | Span Receive A | Span Receive B |
 |-|-|-|-|-|-|
-| Span name | `Q publish` | `Q create` | `Q create` | `Q receive` | `Q receive` |
-| Parent |  | Span Publish | Span Publish | | |
+| Span name | `Q create` | `Q create` | `Q publish` | `Q receive` | `Q receive` |
+| Parent |  | | | | |
 | Links |  |  |  | Span Create A | Span Create B |
-| SpanKind |  | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CONSUMER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation` | `"publish"` | `"create"` | `"create"` | `"receive"` | `"receive"` |
-| `messaging.message.id` |  | `"a1"` | `"a2"` | `"a1"` | `"a2"` |
+| `messaging.operation` | `"create"` | `"create"` | `"publish"` | `"receive"` | `"receive"` |
+| `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
+| `messaging.batch.message_count` | | | 2 | | |
 
 ## Semantic Conventions for specific messaging technologies
 
