@@ -1,10 +1,9 @@
 # HTTP semantic convention stability migration guide
 
 Due to the significant number of modifications and the extensive user base
-affected by them, we require existing HTTP instrumentations published by
-OpenTelemetry to implement a migration plan that will assist users in
-transitioning to the stable HTTP semantic conventions. We plan to use a similar
-migration plan when stabilizing other semantic conventions.
+affected by them, existing HTTP instrumentations published by
+OpenTelemetry are required to implement a migration plan that will assist users in
+transitioning to the stable HTTP semantic conventions.
 
 Specifically, when existing HTTP instrumentations published by OpenTelemetry are
 updated to the stable HTTP semantic conventions, they:
@@ -27,7 +26,7 @@ updated to the stable HTTP semantic conventions, they:
 
 ## Summary of changes
 
-In this section, we summarize the changes made to the HTTP semantic conventions
+This section summarizes the changes made to the HTTP semantic conventions
 from
 [v1.20.0](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
 to
