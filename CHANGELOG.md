@@ -7,6 +7,9 @@ release.
 
 ## Unreleased
 
+- Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
+  ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
+
 ### Breaking
 
 - Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
@@ -36,10 +39,17 @@ release.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
 - Add `messaging.gcp_pubsub.message.ordering_key` attribute.
   ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
+- Define how to set `process.runtime.name`, `process.runtime.version`,
+  `process.runtime.description` for .NET runtime.
+  ([#561](https://github.com/open-telemetry/semantic-conventions/pull/561))
 - Add `db.instance.id` attribute.
   ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
 - Add messaging metrics
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
+- Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
+  ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
+- JVM metrics marked stable
+  ([#569](https://github.com/open-telemetry/semantic-conventions/pull/569))
 
 ### Fixes
 
@@ -47,6 +57,23 @@ release.
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
 - Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
+- Update stability definitions of HTTP client and server duration metrics to
+  be consistent with markdown.
+  ([#587](https://github.com/open-telemetry/semantic-conventions/pull/587))
+- Use `deprecated` property to mark attributes as deprecated instead of `stability`
+  ([#588](https://github.com/open-telemetry/semantic-conventions/pull/588))
+
+## v1.23.1 (2023-11-17)
+
+### Breaking
+
+### Features
+
+### Fixes
+
+- [backport to 1.23.x] Temp fix for separation of resource and semantic attributes
+  ([#524](https://github.com/open-telemetry/semantic-conventions/pull/524)) via
+  ([#537](https://github.com/open-telemetry/semantic-conventions/pull/537))
 
 ## v1.23.0 (2023-11-03)
 
