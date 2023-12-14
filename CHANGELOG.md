@@ -9,6 +9,8 @@ release.
 
 - Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
   ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
+- Move Exceptions to attribute registry
+  ([#574](https://github.com/open-telemetry/semantic-conventions/pull/574))
 
 ### Breaking
 
