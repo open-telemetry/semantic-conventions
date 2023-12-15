@@ -11,6 +11,7 @@ release.
   ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
 - Move Exceptions to attribute registry
   ([#574](https://github.com/open-telemetry/semantic-conventions/pull/574))
+- Add `azure_container_apps` to `cloud.platform` semantic conventions
 
 ### Breaking
 
