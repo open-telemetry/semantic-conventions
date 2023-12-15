@@ -15,11 +15,6 @@ release.
 
 ## v1.24.0 (2023-12-15)
 
-- Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
-  ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
-- Move Exceptions to attribute registry
-  ([#574](https://github.com/open-telemetry/semantic-conventions/pull/574))
-
 ### Breaking
 
 - Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
@@ -70,6 +65,8 @@ release.
   ([#569](https://github.com/open-telemetry/semantic-conventions/pull/569))
 - Add attribute for k8s pod annotations
   ([#573](https://github.com/open-telemetry/semantic-conventions/pull/573))
+- Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
+  ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
 
 ### Fixes
 
