@@ -7,6 +7,14 @@ release.
 
 ## Unreleased
 
+### Breaking
+
+### Features
+
+### Fixes
+
+## v1.24.0 (2023-12-15)
+
 - Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
   ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
 - Move Exceptions to attribute registry
