@@ -7,6 +7,11 @@ release.
 
 ## Unreleased
 
+- Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
+  ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
+- Move Exceptions to attribute registry
+  ([#574](https://github.com/open-telemetry/semantic-conventions/pull/574))
+
 ### Breaking
 
 - Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
@@ -28,6 +33,8 @@ release.
 
 - Adds `labels` attribute to `k8s.pod` resource
   ([#494](https://github.com/open-telemetry/semantic-conventions/pull/494))
+- Adds `annotation` attribute to `k8s.pod` resource
+  ([#494](https://github.com/open-telemetry/semantic-conventions/pull/573))
 - Add `code.stacktrace` attribute
   ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
 - Add `http.flavor` and `http.user_agent` to list of deprecated attributes
@@ -47,6 +54,8 @@ release.
   ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
 - Add `aws.ecs.task.id` attribute, corrected description for `aws.ecs.task.arn`.
   ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
+- JVM metrics marked stable
+  ([#569](https://github.com/open-telemetry/semantic-conventions/pull/569))
 
 ### Fixes
 
@@ -54,6 +63,11 @@ release.
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
 - Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
+- Update stability definitions of HTTP client and server duration metrics to
+  be consistent with markdown.
+  ([#587](https://github.com/open-telemetry/semantic-conventions/pull/587))
+- Use `deprecated` property to mark attributes as deprecated instead of `stability`
+  ([#588](https://github.com/open-telemetry/semantic-conventions/pull/588))
 
 ## v1.23.1 (2023-11-17)
 
