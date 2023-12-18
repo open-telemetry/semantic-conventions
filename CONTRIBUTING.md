@@ -199,5 +199,24 @@ to merge**.
   - Send staging tag as PR for review.
 - Create a tag `v{version}` on the merged PR and push remote.
 
+## Merging existing ECS conventions
+
+The Elastic Common Schema (ECS) is being merged into OpenTelemetry Semantic
+Conventions per [OTEP 222][otep222]. When adding a semantic convention that
+exists in some form in ECS, consider the following guidelines:
+
+- Prefer using the existing ECS name when possible. In particular:
+  - If proposing a name that differs from the ECS convention, provide usage
+    data, user issue reports, feature requests, examples of prior work on a
+    different standard or comparable evidence about the alternatives.
+  - When no suitable alternatives are provided, altering an ECS name solely
+    for the purpose of complying with [Name Pluralization guidelines](docs/general/attribute-naming.md#name-pluralization-guidelines)
+    MAY BE avoided.
+- Do not use an existing ECS name as a namespace. If the name must differ, use a
+  different namespace name to avoid clashes or avoid using the namespace
+  entirely. See the [ECS field reference] for existing namespaces.
+
 [nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
 [stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/versioning-and-stability.md#semantic-conventions-stability
+[otep222]: https://github.com/open-telemetry/oteps/pull/222
+[ECS field reference]: https://www.elastic.co/guide/en/ecs/current/ecs-field-reference.html
