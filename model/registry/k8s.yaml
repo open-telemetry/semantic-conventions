@@ -69,6 +69,11 @@ groups:
         brief: >
           The labels placed on the Pod, the `<key>` being the label name, the value being the label value.
         examples: ['k8s.pod.labels.app=my-app', 'k8s.pod.labels.mycompany.io/arch=x64', 'k8s.pod.labels.data=']
+      - id: pod.annotation
+        type: template[string]
+        brief: >
+          The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
+        examples: [ 'k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true', 'k8s.pod.annotation.mycompany.io/arch=x64', 'k8s.pod.annotation.data=' ]
       - id: container.name
         type: string
         brief: >
