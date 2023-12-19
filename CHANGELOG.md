@@ -9,6 +9,12 @@ release.
 
 ### Breaking
 
+- Update `db.client.connections.create_time` unit to `s` ([#???](https://github.com/open-telemetry/semantic-conventions/pull/???))
+- Update `db.client.connections.wait_time` unit to `s` ([#???](https://github.com/open-telemetry/semantic-conventions/pull/???))
+- Update `db.client.connections.use_time` unit to `s` ([#???](https://github.com/open-telemetry/semantic-conventions/pull/???))
+- Update `rpc.server.duration` unit to `s` ([#???](https://github.com/open-telemetry/semantic-conventions/pull/???))
+- Update `rpc.client.duration` unit to `s` ([#???](https://github.com/open-telemetry/semantic-conventions/pull/???))
+
 ### Features
 
 ### Fixes
