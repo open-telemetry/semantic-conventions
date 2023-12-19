@@ -1,19 +1,6 @@
 file_format: 1.1.0
-schema_url: https://opentelemetry.io/schemas/next
+schema_url: https://opentelemetry.io/schemas/1.23.1
 versions:
-  next:
-  1.24.0:
-    metrics:
-      changes:
-        # https://github.com/open-telemetry/semantic-conventions/pull/536
-        - rename_metrics:
-            jvm.memory.usage: jvm.memory.used
-            jvm.memory.usage_after_last_gc: jvm.memory.used_after_last_gc
-        # https://github.com/open-telemetry/semantic-conventions/pull/530
-        - rename_attributes:
-            attribute_map:
-              system.network.io.direction: network.io.direction
-              system.disk.io.direction: disk.io.direction
   1.23.1:
   1.23.0:
     metrics:
@@ -24,15 +11,6 @@ versions:
               thread.daemon: jvm.thread.daemon
             apply_to_metrics:
               - jvm.thread.count
-        # https://github.com/open-telemetry/semantic-conventions/pull/484
-        - rename_attributes:
-            attribute_map:
-              system.processes.status: system.process.status
-            apply_to_metrics:
-              - system.processes.count
-        - rename_metrics:
-            system.processes.count: system.process.count
-            system.processes.created: system.process.created
   1.22.0:
     spans:
       changes:
