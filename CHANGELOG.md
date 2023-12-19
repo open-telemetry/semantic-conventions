@@ -9,6 +9,9 @@ release.
 
 ### Breaking
 
+- Rename `system.processes.*` namespace to `system.process.*`
+  ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
+
 ### Features
 
 ### Fixes
@@ -144,8 +147,6 @@ stabilized.
   ([#478](https://github.com/open-telemetry/semantic-conventions/pull/478))
 - Remove outdated `http.request.header.host` guidance
   ([#479](https://github.com/open-telemetry/semantic-conventions/pull/479))
-- Rename `system.processes.*` namespace to `system.process.*`
-  ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
 - Change sampling relevant from `MUST` to `SHOULD`
   ([#486](https://github.com/open-telemetry/semantic-conventions/pull/486))
 - Make `user_agent.original` and `http.request.header.*` sampling relevant
