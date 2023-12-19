@@ -142,7 +142,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.db.client.connections.create_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.create_time` | Histogram | `ms` | The time it took to create a new connection |
+| `db.client.connections.create_time` | Histogram | `s` | The time it took to create a new connection |
 <!-- endsemconv -->
 
 <!-- semconv metric.db.client.connections.create_time(full) -->
@@ -158,7 +158,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.db.client.connections.wait_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.wait_time` | Histogram | `ms` | The time it took to obtain an open connection from the pool |
+| `db.client.connections.wait_time` | Histogram | `s` | The time it took to obtain an open connection from the pool |
 <!-- endsemconv -->
 
 <!-- semconv metric.db.client.connections.wait_time(full) -->
@@ -174,7 +174,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.db.client.connections.use_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.connections.use_time` | Histogram | `ms` | The time between borrowing a connection and returning it to the pool |
+| `db.client.connections.use_time` | Histogram | `s` | The time between borrowing a connection and returning it to the pool |
 <!-- endsemconv -->
 
 <!-- semconv metric.db.client.connections.use_time(full) -->

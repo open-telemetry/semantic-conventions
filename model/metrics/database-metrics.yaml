@@ -84,7 +84,7 @@ groups:
     metric_name: db.client.connections.create_time
     brief: "The time it took to create a new connection"
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     attributes:
       - ref: pool.name
 
@@ -93,7 +93,7 @@ groups:
     metric_name: db.client.connections.wait_time
     brief: "The time it took to obtain an open connection from the pool"
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     attributes:
       - ref: pool.name
 
@@ -102,6 +102,6 @@ groups:
     metric_name: db.client.connections.use_time
     brief: "The time between borrowing a connection and returning it to the pool"
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     attributes:
       - ref: pool.name
