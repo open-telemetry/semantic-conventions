@@ -251,7 +251,7 @@ into the message, the context of the related "Publish" span SHOULD be injected
 into the message.
 
 The "Publish" span SHOULD always link to the creation context that was injected
-into a message either from a "Create" span or as a custom creation context. 
+into a message either from a "Create" span or as a custom creation context.
 
 #### Consumer spans
 
