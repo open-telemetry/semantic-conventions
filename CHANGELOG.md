@@ -7,17 +7,23 @@ release.
 
 ## Unreleased
 
-- Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
-  ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
-- Move Exceptions to attribute registry
-  ([#574](https://github.com/open-telemetry/semantic-conventions/pull/574))
+### Breaking
+
+- Rename `system.processes.*` namespace to `system.process.*`
+  ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
+
+### Features
+
+### Fixes
+
+## v1.24.0 (2023-12-15)
 
 ### Breaking
 
 - Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
   ([#317](https://github.com/open-telemetry/semantic-conventions/pull/317))
 - BREAKING: Change type of `host.cpu.model.id` and `host.cpu.model.family` to string.
-  ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
+  ([#499](https://github.com/open-telemetry/semantic-conventions/pull/499))
 - Changed `messaging.system` attribute type to an open enum
   ([#517](https://github.com/open-telemetry/semantic-conventions/pull/517))
 - Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
@@ -28,11 +34,17 @@ release.
 - BREAKING: Change `system.disk.io.direction` and `system.network.io.direction`
   to global attributes `disk.io.direction` and `network.io.direction`
   ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
+- BREAKING: Change `messaging.kafka.partition` to `messaging.kafka.destination.partition`
+  ([#547](https://github.com/open-telemetry/semantic-conventions/pull/547))
 
 ### Features
 
 - Adds `labels` attribute to `k8s.pod` resource
   ([#494](https://github.com/open-telemetry/semantic-conventions/pull/494))
+- Change Erlang managed thread attribute to be the Erlang process
+  ([#491](https://github.com/open-telemetry/semantic-conventions/pull/491))
+- Add gcp_pubsub as a messaging system
+  ([#490](https://github.com/open-telemetry/semantic-conventions/pull/490))
 - Adds `annotation` attribute to `k8s.pod` resource
   ([#494](https://github.com/open-telemetry/semantic-conventions/pull/573))
 - Add `code.stacktrace` attribute
@@ -52,8 +64,14 @@ release.
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
 - Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
   ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
+- Add system shared IO direction attributes
+  ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
 - JVM metrics marked stable
   ([#569](https://github.com/open-telemetry/semantic-conventions/pull/569))
+- Add attribute for k8s pod annotations
+  ([#573](https://github.com/open-telemetry/semantic-conventions/pull/573))
+- Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
+  ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
 
 ### Fixes
 
