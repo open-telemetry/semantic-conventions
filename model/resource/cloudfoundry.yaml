@@ -1,0 +1,48 @@
+groups:
+  - id: cloudfoundry
+    prefix: cloudfoundry
+    type: resource
+    brief: >
+      A CloudFoundry application or sytem component.
+    attributes:
+      - ref: cloudfoundry.source_id
+        requirement_level: required
+        tag: generic
+      - ref: cloudfoundry.instance_id
+        requirement_level: required
+        tag: generic
+      - ref: cloudfoundry.source_type
+        requirement_level: recommended
+        tag: source_type
+  - id: cloudfoundry.app
+    prefix: cloudfoundry.app
+    type: resource
+    brief: >
+      The application which is monitored.
+    attributes:
+      - ref: cloudfoundry.app.id
+      - ref: cloudfoundry.app.name
+  - id: cloudfoundry.space
+    prefix: cloudfoundry.space
+    type: resource
+    brief: >
+      The space of the application which is monitored.
+    attributes:
+      - ref: cloudfoundry.space.id
+      - ref: cloudfoundry.space.name
+  - id: cloudfoundry.org
+    prefix: cloudfoundry.org
+    type: resource
+    brief: >
+      The organization of the application which is monitored.
+    attributes:
+      - ref: cloudfoundry.org.id
+      - ref: cloudfoundry.org.name
+  - id: cloudfoundry.process
+    prefix: cloudfoundry.process
+    type: resource
+    brief: >
+      The process of the application which is monitored.
+    attributes:
+      - ref: cloudfoundry.process.id
+      - ref: cloudfoundry.process.type

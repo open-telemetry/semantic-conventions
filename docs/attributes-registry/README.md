@@ -30,6 +30,7 @@ Currently, the following namespaces exist:
 * [Browser](browser.md)
 * [Client](client.md)
 * [Cloud](cloud.md)
+* [CloudFoundry](cloudfoundry.md)
 * [Code](code.md)
 * [Container](container.md)
 * [DB](db.md) (database)
