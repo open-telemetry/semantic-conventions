@@ -103,7 +103,7 @@ See note if [migrating from `<= v1.17.0`](#migrating-from--v1170).
 References:
 
 - [HTTP client and server span names v1.20.0](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md#name)
-- [HTTP client and server span names v1.23.0 (stable)](http-spans.md#name)
+- [HTTP client and server span names v1.23.1 (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.23.1/docs/http/http-spans.md#metric-httpserverrequestduration)
 
 ### HTTP client duration metric
 
