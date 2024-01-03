@@ -166,7 +166,14 @@ References:
 - [Metric `http.server.duration` v1.20.0](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/metrics/semantic_conventions/http-metrics.md#metric-httpserverduration)
 - [Metric `http.server.request.duration` v1.23.1 (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.23.1/docs/http/http-metrics.md#metric-httpserverrequestduration)
 
-## Migrating from a version earlier than v1.20.0?
+## Migrating from a version prior to v1.20.0?
+
+In addition to the changes made to the HTTP semantic conventions
+from
+[v1.20.0](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
+to
+[v1.23.1 (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.23.1/README.md),
+there are additional changes if you are migrating to v1.23.1 from a version prior to v1.20.0.
 
 ### Migrating from `<= v1.19.0`
 
@@ -195,6 +202,10 @@ which case `{summary}` is `HTTP`.
 
 Where `{summary}` is `{http.method}`, unless `{http.method}` is `_OTHER`, in
 which case `{summary}` is `HTTP`.
+
+### Migrating from `<= v1.16.0`
+
+This document does not cover these versions.
 
 [Host header]: https://tools.ietf.org/html/rfc7230#section-5.4
 [HTTP/2 authority]: https://tools.ietf.org/html/rfc9113#section-8.3.1
