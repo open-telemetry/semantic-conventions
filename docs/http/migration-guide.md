@@ -164,7 +164,7 @@ Metric changes:
 References:
 
 - [Metric `http.server.duration` v1.20.0](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/metrics/semantic_conventions/http-metrics.md#metric-httpserverduration)
-- [Metric `http.server.request.duration` v1.23.0 (stable)](http-metrics.md#metric-httpserverrequestduration)
+- [Metric `http.server.request.duration` v1.23.1 (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.23.1/docs/http/http-metrics.md#metric-httpserverrequestduration)
 
 ## Migrating from a version earlier than v1.20.0?
 
