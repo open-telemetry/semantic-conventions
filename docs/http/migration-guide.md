@@ -73,7 +73,7 @@ References:
 References:
 
 - [HTTP client span attributes v1.20.0](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md#http-client)
-- [HTTP client span attributes v1.23.0 (stable)](http-spans.md#http-client)
+- [HTTP client span attributes v1.23.1 (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.23.1/docs/http/http-spans.md#metric-httpserverrequestduration)
 
 ### HTTP server span attributes
 
