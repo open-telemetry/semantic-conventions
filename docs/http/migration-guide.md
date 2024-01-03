@@ -30,7 +30,7 @@ This section summarizes the changes made to the HTTP semantic conventions
 from
 [v1.20.0](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
 to
-[v1.23.0 (stable)](README.md).
+[v1.23.1 (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.23.1/README.md).
 
 ### Common attributes across HTTP client and server spans
 
