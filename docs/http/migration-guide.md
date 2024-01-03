@@ -57,7 +57,7 @@ to
 References:
 
 - [Common attributes v1.20.0](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md#common-attributes)
-- [Common attributes v1.23.0 (stable)](http-spans.md#common-attributes)
+- [Common attributes v1.23.1 (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.23.1/docs/http/http-spans.md#common-attributes)
 
 ### HTTP client span attributes
 
