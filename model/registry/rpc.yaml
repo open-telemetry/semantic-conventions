@@ -56,77 +56,6 @@ groups:
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
         examples: ['rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
-      - id: grpc.status_code
-        type:
-          members:
-            - id: ok
-              brief: OK
-              value: 0
-            - id: cancelled
-              brief: CANCELLED
-              value: 1
-            - id: unknown
-              brief: UNKNOWN
-              value: 2
-            - id: invalid_argument
-              brief: INVALID_ARGUMENT
-              value: 3
-            - id: deadline_exceeded
-              brief: DEADLINE_EXCEEDED
-              value: 4
-            - id: not_found
-              brief: NOT_FOUND
-              value: 5
-            - id: already_exists
-              brief: ALREADY_EXISTS
-              value: 6
-            - id: permission_denied
-              brief: PERMISSION_DENIED
-              value: 7
-            - id: resource_exhausted
-              brief: RESOURCE_EXHAUSTED
-              value: 8
-            - id: failed_precondition
-              brief: FAILED_PRECONDITION
-              value: 9
-            - id: aborted
-              brief: ABORTED
-              value: 10
-            - id: out_of_range
-              brief: OUT_OF_RANGE
-              value: 11
-            - id: unimplemented
-              brief: UNIMPLEMENTED
-              value: 12
-            - id: internal
-              brief: INTERNAL
-              value: 13
-            - id: unavailable
-              brief: UNAVAILABLE
-              value: 14
-            - id: data_loss
-              brief: DATA_LOSS
-              value: 15
-            - id: unauthenticated
-              brief: UNAUTHENTICATED
-              value: 16
-        brief: "The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request."
-      - id: grpc.request.metadata
-        type: template[string[]]
-        brief: >
-          gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
-        note: >
-          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
-      - id: grpc.response.metadata
-        type: template[string[]]
-        brief: >
-          gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
-        note: >
-          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
       - id: jsonrpc.error_code
         type: int
         brief: "`error.code` property of response if it is an error response."
@@ -173,9 +102,6 @@ groups:
         type:
           allow_custom_values: true
           members:
-            - id: grpc
-              value: 'grpc'
-              brief: 'gRPC'
             - id: java_rmi
               value: 'java_rmi'
               brief: 'Java RMI'

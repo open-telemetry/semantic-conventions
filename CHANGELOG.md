@@ -11,6 +11,8 @@ release.
 
 - Rename `system.processes.*` namespace to `system.process.*`
   ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
+- Link to proposal for gRPC metrics
+  ([#627](https://github.com/open-telemetry/semantic-conventions/pull/627))
 
 ### Features
 
