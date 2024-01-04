@@ -4,7 +4,7 @@ linkTitle: Spans
 
 # Semantic Conventions for Exceptions on Spans
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This document defines semantic conventions for recording application
 exceptions associated with spans.

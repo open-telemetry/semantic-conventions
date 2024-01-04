@@ -8,6 +8,7 @@ groups:
     attributes:
       - id: type
         type: string
+        stability: stable
         brief: >
           The type of the exception (its fully-qualified class name, if applicable).
           The dynamic type of the exception should be preferred over the static type
@@ -15,10 +16,12 @@ groups:
         examples: ["java.net.ConnectException", "OSError"]
       - id: message
         type: string
+        stability: stable
         brief: The exception message.
         examples: ["Division by zero", "Can't convert 'int' object to str implicitly"]
       - id: stacktrace
         type: string
+        stability: stable
         brief: >
           A stacktrace as a string in the natural representation for the language runtime.
           The representation is to be determined and documented by each language SIG.
@@ -28,6 +31,7 @@ groups:
         at com.example.GenerateTrace.main(GenerateTrace.java:5)'
       - id: escaped
         type: boolean
+        stability: stable
         brief: >
           SHOULD be set to true if the exception event is recorded at a point where
           it is known that the exception is escaping the scope of the span.
