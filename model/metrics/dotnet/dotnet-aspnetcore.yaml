@@ -97,7 +97,7 @@ groups:
       - ref: aspnetcore.header_parsing.header.name
       - ref: error.type
         brief: The error message.
-        examples: [`Unable to parse media type value.`]
+        examples: ["Unable to parse media type value."]
         requirement_level: required
 
   - id: metric.aspnetcore.header_parsing.cache_accesses
