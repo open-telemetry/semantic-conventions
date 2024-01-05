@@ -35,4 +35,4 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Josh Suereth](https://github.com/jsuereth), Google
 - [Reiley Yang](https://github.com/reyang), Microsoft
 
-_Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer).
+_Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer)._
