@@ -48,6 +48,11 @@ groups:
         examples: [true]
         requirement_level:
           conditionally_required: if and only if the request was not handled.
+      - id: aspnetcore.header_parsing.header.name
+        type: string
+        brief: The header name.
+        examples: ["Content-Type"]
+        requirement_level: required
 
   # routing
   - id: metric.aspnetcore.routing.match_attempts
@@ -78,6 +83,46 @@ groups:
         requirement_level: required
         brief: Match result - success or failure
         examples: ["success", "failure"]
+
+  # header parsing
+  - id: metric.aspnetcore.header_parsing.parse_errors
+    type: metric
+    metric_name: aspnetcore.header_parsing.parse_errors
+    brief: Number of errors that occurred when parsing HTTP request headers.
+    instrument: counter
+    unit: "{parse_error}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.HeaderParsing`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: aspnetcore.header_parsing.header.name
+      - ref: error.type
+        brief: The error message.
+        examples: [`Unable to parse media type value.`]
+        requirement_level: required
+
+  - id: metric.aspnetcore.header_parsing.cache_accesses
+    type: metric
+    metric_name: aspnetcore.header_parsing.cache_accesses
+    brief: Number of times a cache storing parsed header values was accessed.
+    instrument: counter
+    unit: "{cache_access}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.HeaderParsing`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: aspnetcore.header_parsing.header.name
+      - id: aspnetcore.header_parsing.cache_access.type
+        type:
+          allow_custom_values: true
+          members:
+            - id: hit
+              value: 'Hit'
+              brief: 'The header's value was found in the cache.'
+            - id: miss
+              value: 'Miss'
+              brief: 'The header's value wasn't found in the cache.'
+        brief: A value indicating whether the header's value was found in the cache or not.
+        examples: ["Hit", "Miss"]
+        requirement_level: required
 
   # diagnostics
   - id: metric.aspnetcore.diagnostics.exceptions

@@ -1,0 +1,49 @@
+groups:
+  - id: health_checks
+    prefix: health_checks
+    type: attribute_group
+    brief: Health Check attributes
+    attributes:
+      - id: dotnet.health_check.status
+        type:
+          allow_custom_values: true
+          members:
+            - id: degraded
+              value: 'Degraded'
+              brief: "An application was in degraded state."
+            - id: healthy
+              value: 'Healthy'
+              brief: "An application was healthy."
+            - id: unhealthy
+              value: 'Unhealthy'
+              brief: "An application was unhealthy."
+        brief: The health status of an application.
+        examples: ["Healthy", "Unhealthy"]
+        requirement_level: required
+
+  - id: metric.dotnet.health_check.reports
+    type: metric
+    metric_name: dotnet.health_check.reports
+    brief: Number of times a health report reported the health status of an application.
+    instrument: counter
+    unit: "{report}"
+    note: |
+      Meter name: `Microsoft.Extensions.Diagnostics.HealthChecks`; Added in: .NET 8.0
+    attributes:
+      - ref: dotnet.health_check.status
+
+  - id: metric.dotnet.health_check.reports
+    type: metric
+    metric_name: dotnet.health_check.reports
+    brief: Number of times a health report reported the health status of an application.
+    instrument: counter
+    unit: "{report}"
+    note: |
+      Meter name: `Microsoft.Extensions.Diagnostics.HealthChecks`; Added in: .NET 8.0
+    attributes:
+      - id: dotnet.health_check.name
+        type: string
+        brief: The name of the health check.
+        requirement_level: required
+        examples: ["ApplicationLifecycle"]
+      - ref: dotnet.health_check.status
