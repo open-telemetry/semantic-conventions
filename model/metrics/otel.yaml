@@ -1,4 +1,66 @@
 groups:
+  - id: attributes.otel.common
+    type: attribute_group
+    brief: "Describes OTel pipeline monitoring common attributes."
+    prefix: otel
+    attributes:
+      - id: signal
+        type: string
+        requirement_level: required
+        brief: "The OpenTelemetry signal name."
+        examples: ["traces", "metrics", "logs"]
+      - id: success
+        type: boolean
+        requirement_level: required
+        brief: "When the item succeeded or not."
+        note: >
+          Items may fail because the a queue is full or export
+          failures.  Check `otel.outcome` for more detail.
+      - id: outcome
+        requirement_level: recommended
+        brief: "Reason for a success or failure outcome."
+        examples: ["consumed", "queue_full", "rejected"]
+        type:
+          allow_custom_values: false
+          members:
+            - id: consumed
+              value: 'consumed'
+              brief: 'Item was consumed (success=true).'
+            - id: unsampled
+              value: 'unsampled'
+              brief: 'Item was not sampled (success=true).'
+            - id: queued
+              value: 'queued'
+              brief: 'Item was queued (success=true), future status is unknown.'
+            - id: timeout
+              value: 'timeout'
+              brief: 'Item timed out (success=false).'
+            - id: queue_full
+              value: 'queue_full'
+              brief: 'Item dropped due to full queue (success=false).'
+            - id: resource_exhausted
+              value: 'resource_exhausted'
+              brief: 'Item refused due to downstream resource exhausted response (success=false).'
+            - id: rejected
+              value: 'rejected'
+              brief: 'Item refused by consumer, see error messages (success=false).'
+            - id: transient
+              value: 'transient'
+              brief: 'Item refused for transient reasons (success=false).'
+            - id: permanent
+              value: 'permanent'
+              brief: 'Item refused for permanent reasons (success=false).'
+      - id: name
+        type: string
+        requirement_level: required
+        brief: "Name of the receiver component."
+        examples: ["otlp", "prometheus"]
+      - id: pipeline
+        type: string
+        requirement_level: required
+        brief: "Name of the pipeline."
+        examples: ["traces/otel", "metrics/k8s"]
+
   - id: metric.otelsdk.producer.items
     type: metric
     metric_name: otelsdk.producer.items
@@ -6,23 +68,9 @@ groups:
     instrument: counter
     unit: "{item}"
     attributes:
-      - id: otel.signal
-        type: string
-        requirement_level: required
-        brief: "The OpenTelemetry signal name."
-        examples: ["traces", "metrics", "logs"]
-      - id: otel.success
-        type: boolean
-        requirement_level: required
-        brief: "When the item succeeded or not."
-        note: >
-          Items may fail because the a queue is full or export
-          failures.  Check `otel.outcome` for more detail.
-      - id: otel.outcome
-        type: string
-        requirement_level: recommended
-        brief: "Reason for a success or failure outcome."
-        examples: ["consumed", "queue_full", "rejected"]
+      - ref: otel.signal
+      - ref: otel.success
+      - ref: otel.outcome
   - id: metric.otelcol.receiver.items
     type: metric
     metric_name: otelcol.receiver.items
@@ -30,33 +78,11 @@ groups:
     instrument: counter
     unit: "{item}"
     attributes:
-      - id: otel.signal
-        type: string
-        requirement_level: required
-        brief: "The OpenTelemetry signal name."
-        examples: ["traces", "metrics", "logs"]
-      - id: otel.success
-        type: boolean
-        requirement_level: required
-        brief: "When the item succeeded or not."
-        note: >
-          Items may fail because the a queue is full or export
-          failures.  Check `otel.outcome` for more detail.
-      - id: otel.outcome
-        type: string
-        requirement_level: recommended
-        brief: "Reason for a success or failure outcome."
-        examples: ["consumed", "queue_full", "rejected"]
-      - id: otel.name
-        type: string
-        requirement_level: required
-        brief: "Name of the receiver component."
-        examples: ["otlp", "prometheus"]
-      - id: otel.pipeline
-        type: string
-        requirement_level: required
-        brief: "Name of the pipeline."
-        examples: ["traces/otel", "metrics/k8s"]
+      - ref: otel.signal
+      - ref: otel.success
+      - ref: otel.outcome
+      - ref: otel.name
+      - ref: otel.pipeline
   - id: metric.otelcol.processor.items
     type: metric
     metric_name: otelcol.processor.items
@@ -64,33 +90,11 @@ groups:
     instrument: counter
     unit: "{item}"
     attributes:
-      - id: otel.signal
-        type: string
-        requirement_level: required
-        brief: "The OpenTelemetry signal name."
-        examples: ["traces", "metrics", "logs"]
-      - id: otel.success
-        type: boolean
-        requirement_level: required
-        brief: "When the item succeeded or not."
-        note: >
-          Items may fail because the a queue is full or export
-          failures.  Check `otel.outcome` for more detail.
-      - id: otel.outcome
-        type: string
-        requirement_level: recommended
-        brief: "Reason for a success or failure outcome."
-        examples: ["consumed", "queue_full", "rejected"]
-      - id: otel.name
-        type: string
-        requirement_level: required
-        brief: "Name of the processor component."
-        examples: ["otlp", "prometheus"]
-      - id: otel.pipeline
-        type: string
-        requirement_level: required
-        brief: "Name of the pipeline."
-        examples: ["traces/otel", "metrics/k8s"]
+      - ref: otel.signal
+      - ref: otel.success
+      - ref: otel.outcome
+      - ref: otel.name
+      - ref: otel.pipeline
   - id: metric.otelcol.exporter.items
     type: metric
     metric_name: otelcol.exporter.items
@@ -98,30 +102,8 @@ groups:
     instrument: counter
     unit: "{item}"
     attributes:
-      - id: otel.signal
-        type: string
-        requirement_level: required
-        brief: "The OpenTelemetry signal name."
-        examples: ["traces", "metrics", "logs"]
-      - id: otel.success
-        type: boolean
-        requirement_level: required
-        brief: "When the item succeeded or not."
-        note: >
-          Items may fail because the a queue is full or export
-          failures.  Check `otel.outcome` for more detail.
-      - id: otel.outcome
-        type: string
-        requirement_level: recommended
-        brief: "Reason for a success or failure outcome."
-        examples: ["consumed", "queue_full", "rejected"]
-      - id: otel.name
-        type: string
-        requirement_level: required
-        brief: "Name of the exporter component."
-        examples: ["otlp", "prometheus"]
-      - id: otel.pipeline
-        type: string
-        requirement_level: required
-        brief: "Name of the pipeline."
-        examples: ["traces/otel", "metrics/k8s"]
+      - ref: otel.signal
+      - ref: otel.success
+      - ref: otel.outcome
+      - ref: otel.name
+      - ref: otel.pipeline
