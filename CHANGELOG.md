@@ -9,6 +9,9 @@ release.
 
 ### Breaking
 
+- Rename `system.processes.*` namespace to `system.process.*`
+  ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
+
 ### Features
 
 ### Fixes
