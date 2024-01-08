@@ -82,8 +82,8 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 <!-- semconv service -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `service.name` | string | Logical name of the service. [1] | `shoppingcart` | Required |
-| `service.version` | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | Recommended |
+| `service.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Logical name of the service. [1] | `shoppingcart` | Required |
+| `service.version` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | Recommended |
 
 **[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md#process), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 <!-- endsemconv -->
@@ -132,9 +132,9 @@ service.name = Shop.shoppingcart
 <!-- semconv telemetry -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `telemetry.sdk.language` | string | The language of the telemetry SDK. | `cpp` | Required |
-| `telemetry.sdk.name` | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | Required |
-| `telemetry.sdk.version` | string | The version string of the telemetry SDK. | `1.2.3` | Required |
+| `telemetry.sdk.language` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The language of the telemetry SDK. | `cpp` | Required |
+| `telemetry.sdk.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The name of the telemetry SDK as defined above. [1] | `opentelemetry` | Required |
+| `telemetry.sdk.version` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The version string of the telemetry SDK. | `1.2.3` | Required |
 
 **[1]:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
