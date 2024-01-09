@@ -11,7 +11,7 @@ release.
 
 - Rename `system.processes.*` namespace to `system.process.*`
   ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
-- Add `azure_container_apps` to `cloud.platform` semantic conventions 
+- Add `azure_container_apps` to `cloud.platform` semantic conventions
   ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
 
 ### Features
