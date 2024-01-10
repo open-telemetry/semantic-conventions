@@ -18,8 +18,11 @@ release.
 
 - Add `azure_container_apps` to `cloud.platform` semantic conventions
   ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
+- Add `aws.ecs.task.id` attribute, corrected description for `aws.ecs.task.arn`.
+  ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
 - Add an example for gcp_pubsub asynchronous batch publish
   ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545)).
+
 
 ### Fixes
 
@@ -74,8 +77,6 @@ release.
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
 - Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
   ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
-- Add `aws.ecs.task.id` attribute, corrected description for `aws.ecs.task.arn`.
-  ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
 - Add system shared IO direction attributes
   ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
 - JVM metrics marked stable
