@@ -211,7 +211,7 @@ groups:
         type: string
         brief: >
          The ack id for a given message.
-        examples: 'ack_id'   
+        examples: 'ack_id'
       - id: gcp_pubsub.ack_deadline_seconds
         type: int
         brief: >
@@ -219,7 +219,7 @@ groups:
         examples: 10
       - id: gcp_pubsub.message.delivery_attempt
         type: int
-        brief: > 
+        brief: >
           The delivery attempt for a given message.
         examples: 2
       - id: system

@@ -182,4 +182,3 @@ groups:
         tag: tech-specific-gcp-pubsub
         requirement_level:
           recommended: Only if settle span represents operation on a single message.
-  

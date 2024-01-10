@@ -108,10 +108,9 @@ flowchart TD;
   linkStyle 3 color:#0560f2,stroke:#0560f2
 ```
 
-
 | Field or Attribute | Span Create A | Span Publish A | Span Receive A | Span Extend A | Span Settle A |
 |-|-|-|-|-|-|
-| Span name | `T create` | `publish` |  `S receive` | `S extend` |`S settle` | 
+| Span name | `T create` | `publish` |  `S receive` | `S extend` |`S settle` |
 | Parent |  |  |  | |  |
 | Links |  | Span Create A | Span Create A | Span Receive A | Span Receive A |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
