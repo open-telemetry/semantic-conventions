@@ -3,10 +3,16 @@ groups:
     prefix: service
     type: resource
     brief: >
-      A service instance.
+      A telemetry source. OpenTelemetry has adopted a broad interpretation such that every
+      telemetry source is a service. Examples include, but are not limited to: web services,
+      hosts, mobile applications, browser application, edge computing devices, functions as
+      a service, databases, message brokers, etc. Specific types of telemetry sources may have
+      additional conventions defining domain specific information, but the `service`
+      conventions are applicable to all telemetry sources.
     attributes:
       - id: name
         type: string
+        stability: stable
         requirement_level: required
         brief: >
           Logical name of the service.
@@ -18,6 +24,7 @@ groups:
         examples: ["shoppingcart"]
       - id: version
         type: string
+        stability: stable
         brief: >
           The version string of the service API or implementation. The format is not defined by these conventions.
         examples: ["2.0.0", "a01dbef8a"]
