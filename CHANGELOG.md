@@ -11,6 +11,8 @@ release.
 
 - Rename `system.processes.*` namespace to `system.process.*`
   ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
+- Depluralize labels for pod (`k8s.pod.labels.*`) and container (`container.labels.*`) resources
+  ([#625](https://github.com/open-telemetry/semantic-conventions/pull/625))
 - Add `azure_container_apps` to `cloud.platform` semantic conventions
   ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
 
