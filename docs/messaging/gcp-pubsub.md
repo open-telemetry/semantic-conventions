@@ -16,7 +16,14 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 <!-- semconv messaging.gcp_pubsub(full,tag=tech-specific-gcp-pubsub) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`messaging.gcp_pubsub.ack_deadline_seconds`](../attributes-registry/messaging.md) | int | The ack deadline set for the modify ack deadline request | `10` | Recommended |
+| [`messaging.gcp_pubsub.message.ack_id`](../attributes-registry/messaging.md) | string | The ack id for a given message. | `ack_id` | Recommended: [1] |
+| [`messaging.gcp_pubsub.message.delivery_attempt`](../attributes-registry/messaging.md) | int | The delivery attempt for a given message. | `2` | Recommended: [2] |
 | [`messaging.gcp_pubsub.message.ordering_key`](../attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | Conditionally Required: If the message type has an ordering key set. |
+
+**[1]:** Only if settle span represents operation on a single message.
+
+**[2]:** Only if settle span represents operation on a single message.
 <!-- endsemconv -->
 
 ## Examples
@@ -51,10 +58,71 @@ flowchart LR;
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |
 | `messaging.batch.message_count` |  |  | 2 |
-| `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
+| `messaging.destination.template` | `"projects/P/topics/T"` | `"projects/P/topics/T"` | `"projects/P/topics/T"` |
 | `messaging.operation` | `"create"` | `"create"` | `"publish"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.message.envelope.size` | `1` | `1` | |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
+
+### Unary Pull Example
+
+```mermaid
+flowchart TD;
+  subgraph CONSUMER
+  direction LR
+  R1[Receive m1]
+  SM1[Settle m1]
+  EM1[Extend m1]
+  end
+  subgraph PRODUCER
+  direction LR
+  CM1[Create m1]
+  PM1[Publish]
+  end
+  %% Link 0
+  CM1-. link .-PM1;
+  %% Link 1
+  CM1-. link .-R1;
+  %% Link 2
+  R1-. link .-SM1;
+  %% Link 3
+  R1-. link .-EM1;
+
+  %% Style the node and corresponding link
+  %% Producer links and nodes
+  classDef producer fill:green
+  class PM1,CM1 producer
+  linkStyle 0 color:green,stroke:green
+
+  %% Consumer links and nodes
+  classDef consumer fill:#032a61
+  class R1 consumer
+  linkStyle 1 color:#032a61,stroke:#032a61
+
+  classDef ack fill:#577eb5
+  class SM1 ack
+  linkStyle 2 color:#577eb5,stroke:#577eb5
+
+  classDef extend fill:#0560f2
+  class EM1 extend
+  linkStyle 3 color:#0560f2,stroke:#0560f2
+```
+
+
+| Field or Attribute | Span Create A | Span Publish A | Span Receive A | Span Extend A | Span Settle A |
+|-|-|-|-|-|-|
+| Span name | `T create` | `publish` |  `S receive` | `S extend` |`S settle` | 
+| Parent |  |  |  | |  |
+| Links |  | Span Create A | Span Create A | Span Receive A | Span Receive A |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
+| Status | `Ok` | `Ok` | `Ok` |`Ok` | `Ok` |
+| `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
+| `messaging.destination.template` | `"projects/P/topics/T"`| `"projects/P/topics/T"`| `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` |
+| `messaging.operation` | `"create"` | `"publish"` | `"receive"` |  `"extend"` |  `"settle"` |
+| `messaging.message.id` | `"a1"` | | `"a1"` | | |
+| `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
+| `messaging.gcp_pubsub.message.ack_id` | | |  | `"ack_id1"` |`"ack_id1"` |
+| `messaging.gcp_pubsub.message.delivery_attempt` | | |  | `0` |  |
+| `messaging.gcp_pubsub.ack_deadline_seconds` | | |  | | `0` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

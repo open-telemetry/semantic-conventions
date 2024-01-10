@@ -207,6 +207,21 @@ groups:
         brief: >
          The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
         examples: 'ordering_key'
+      - id: gcp_pubsub.message.ack_id
+        type: string
+        brief: >
+         The ack id for a given message.
+        examples: 'ack_id'   
+      - id: gcp_pubsub.ack_deadline_seconds
+        type: int
+        brief: >
+          The ack deadline set for the modify ack deadline request
+        examples: 10
+      - id: gcp_pubsub.message.delivery_attempt
+        type: int
+        brief: > 
+          The delivery attempt for a given message.
+        examples: 2
       - id: system
         brief: >
           An identifier for the messaging system being used. See below for a list of well-known identifiers.
