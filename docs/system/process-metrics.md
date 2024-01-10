@@ -19,17 +19,17 @@ metrics](/docs/runtime/README.md#metrics).
 
 <!-- toc -->
 
-- [Metric Instruments](#metric-instruments)
-  * [Metric: `process.cpu.time`](#metric-processcputime)
-  * [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
-  * [Metric: `process.memory.usage`](#metric-processmemoryusage)
-  * [Metric: `process.memory.virtual`](#metric-processmemoryvirtual)
-  * [Metric: `process.disk.io`](#metric-processdiskio)
-  * [Metric: `process.network.io`](#metric-processnetworkio)
-  * [Metric: `process.thread.count`](#metric-processthreadcount)
-  * [Metric: `process.open_file_descriptor.count`](#metric-processopen_file_descriptorcount)
-  * [Metric: `process.context_switches`](#metric-processcontext_switches)
-  * [Metric: `process.paging.faults`](#metric-processpagingfaults)
+- [Process Metrics](#process-metrics)
+  - [Metric: `process.cpu.time`](#metric-processcputime)
+  - [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
+  - [Metric: `process.memory.usage`](#metric-processmemoryusage)
+  - [Metric: `process.memory.virtual`](#metric-processmemoryvirtual)
+  - [Metric: `process.disk.io`](#metric-processdiskio)
+  - [Metric: `process.network.io`](#metric-processnetworkio)
+  - [Metric: `process.thread.count`](#metric-processthreadcount)
+  - [Metric: `process.open_file_descriptor.count`](#metric-processopen_file_descriptorcount)
+  - [Metric: `process.context_switches`](#metric-processcontext_switches)
+  - [Metric: `process.paging.faults`](#metric-processpagingfaults)
 
 <!-- tocstop -->
 
@@ -43,7 +43,7 @@ metrics](/docs/runtime/README.md#metrics).
 > * SHOULD introduce a control mechanism to allow users to opt-in to the new
 >   conventions once the migration plan is finalized.
 
-## Metric Instruments
+## Process Metrics
 
 ### Metric: `process.cpu.time`
 
@@ -122,9 +122,9 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- semconv metric.process.disk.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `process.disk.process.disk.io_direction` | string | The direction of the data transfer for this data point. | `read` | Recommended |
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
 
-`process.disk.process.disk.io_direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -143,14 +143,14 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- semconv metric.process.network.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `process.network.io_direction` | string | The direction of the data transfer for this data point. | `receive` | Recommended |
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 
-`process.network.io_direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
-| `receive` | receive |
 | `transmit` | transmit |
+| `receive` | receive |
 <!-- endsemconv -->
 
 ### Metric: `process.thread.count`
@@ -169,7 +169,7 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- semconv metric.process.open_file_descriptor.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `process.open_file_descriptors` | UpDownCounter | `{count}` | Number of file descriptors in use by the process. |
+| `process.open_file_descriptor.count` | UpDownCounter | `{count}` | Number of file descriptors in use by the process. |
 <!-- endsemconv -->
 
 <!-- semconv metric.process.open_file_descriptor.count(full) -->

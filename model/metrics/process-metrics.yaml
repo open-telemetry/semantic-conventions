@@ -92,7 +92,7 @@ groups:
     instrument: counter
     unit: "{count}"
     attributes:
-      - id: process.context_switches.type
+      - id: process.context_switch_type
         brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
         type:
           allow_custom_values: true
@@ -109,7 +109,7 @@ groups:
     instrument: counter
     unit: "{fault}"
     attributes:
-      - id: process.paging.faults.type
+      - id: process.paging.fault_type
         brief: "The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults."
         type:
           allow_custom_values: true
