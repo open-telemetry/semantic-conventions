@@ -18,6 +18,8 @@ release.
 
 - Add `azure_container_apps` to `cloud.platform` semantic conventions
   ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
+- Add an example for gcp_pubsub asynchronous batch publish
+  ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545)).
 
 ### Fixes
 
@@ -63,8 +65,6 @@ release.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
 - Add `messaging.gcp_pubsub.message.ordering_key` attribute.
   ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
-- Add an example for gcp_pubsub asynchronous batch publish
-  ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545)).
 - Define how to set `process.runtime.name`, `process.runtime.version`,
   `process.runtime.description` for .NET runtime.
   ([#561](https://github.com/open-telemetry/semantic-conventions/pull/561))
