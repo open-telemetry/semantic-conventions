@@ -18,6 +18,8 @@ release.
 
 - Add `azure_container_apps` to `cloud.platform` semantic conventions
   ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
+- Add an example for gcp_pubsub asynchronous batch publish
+  ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545)).
 
 ### Fixes
 
