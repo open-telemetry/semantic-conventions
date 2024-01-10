@@ -41,7 +41,9 @@ groups:
       - id: task.id
         type: string
         brief: >
-          The ID of a running ECS task, extracted from its ARN.
+          The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
+        requirement_level:
+          conditionally_required: If and only `task.arn` is populated.
         examples: [ '10838bed-421f-43ef-870a-f43feacbbb5b', '23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd' ]
       - id: task.revision
         type: string
