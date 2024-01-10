@@ -21,10 +21,20 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 | [`messaging.gcp_pubsub.message.delivery_attempt`](../attributes-registry/messaging.md) | int | The delivery attempt for a given message. | `2` | Recommended: [2] |
 | [`messaging.gcp_pubsub.message.ordering_key`](../attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | Conditionally Required: If the message type has an ordering key set. |
 
-**[1]:** Only if settle span represents operation on a single message.
+**[1]:** Only if span represents operation on a single message.
 
-**[2]:** Only if settle span represents operation on a single message.
+**[2]:** Only if span represents operation on a single message.
 <!-- endsemconv -->
+
+## GCP operation names
+
+In addition to the types `messaging.operation` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `subscribe` | Streaming pull for a single message. Represents the time from after the message was received to when the message is acknowledged, negatively acknowledged, or expires. |
+| `extend` | Extends the lease for a single message or batch of messages |
+| `settle` | Acknowledges (acks) or negatively acknowledges (nacks) a single message or batch of messages |
 
 ## Examples
 
