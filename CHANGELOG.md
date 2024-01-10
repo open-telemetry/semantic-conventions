@@ -16,6 +16,9 @@ release.
 
 ### Features
 
+- Add `azure_container_apps` to `cloud.platform` semantic conventions
+  ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
+
 ### Fixes
 
 - Clarify that `service.*` attributes apply to all telemetry sources.
