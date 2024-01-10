@@ -23,7 +23,6 @@ release.
 - Add an example for gcp_pubsub asynchronous batch publish
   ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545)).
 
-
 ### Fixes
 
 - Clarify that `service.*` attributes apply to all telemetry sources.
