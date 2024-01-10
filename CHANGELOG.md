@@ -21,7 +21,7 @@ release.
 - Add an example for gcp_pubsub asynchronous batch publish
   ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545)).
 - Add an example for gcp_pubsub unary pull
-  ([#X](https://github.com/open-telemetry/semantic-conventions/pull/X)).
+  ([#634](https://github.com/open-telemetry/semantic-conventions/pull/634)).
 
 ### Fixes
 
