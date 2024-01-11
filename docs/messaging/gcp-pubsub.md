@@ -105,9 +105,9 @@ flowchart TD;
   linkStyle 0 color:green,stroke:green
 
   %% Consumer links and nodes
-  classDef consumer fill:#032a61
+  classDef consumer fill:#49fcdc
   class R1 consumer
-  linkStyle 1 color:#032a61,stroke:#032a61
+  linkStyle 1 color:#49fcdc,stroke:#49fcdc
 
   classDef ack fill:#577eb5
   class SM1 ack
