@@ -28,7 +28,7 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 
 ## GCP operation names
 
-In addition to the types `messaging.operation` MUST be one of the following:
+In addition to the [Operation names](messaging-spans.md#operation-names), `messaging.operation` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
