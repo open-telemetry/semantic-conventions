@@ -3,8 +3,15 @@ ALL_DOCS := $(shell find . -type f -name '*.md' -not -path './.github/*' -not -p
 PWD := $(shell pwd)
 
 TOOLS_DIR := ./internal/tools
+
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
+
+CHLOGGEN_BINARY=bin/chloggen
+CHLOGGEN = $(TOOLS_DIR)/$(CHLOGGEN_BINARY)
+CHLOGGEN_CONFIG  := .chloggen/config.yaml
+
+VERSION=$(shell git describe --always --match "v[0-9]*" HEAD)
 
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
@@ -124,3 +131,23 @@ fix: table-generation misspell-correction fix-format
 install-tools: $(MISSPELL)
 	npm install
 	@echo "All tools installed"
+
+$(CHLOGGEN):
+	cd $(TOOLS_DIR) && go build -o $(CHLOGGEN_BINARY) go.opentelemetry.io/build-tools/chloggen
+
+FILENAME?=$(shell git branch --show-current)
+.PHONY: chlog-new
+chlog-new: $(CHLOGGEN)
+	$(CHLOGGEN) new --config $(CHLOGGEN_CONFIG) --filename $(FILENAME)
+
+.PHONY: chlog-validate
+chlog-validate: $(CHLOGGEN)
+	$(CHLOGGEN) validate --config $(CHLOGGEN_CONFIG)
+
+.PHONY: chlog-preview
+chlog-preview: $(CHLOGGEN)
+	$(CHLOGGEN) update --config $(CHLOGGEN_CONFIG) --dry
+
+.PHONY: chlog-update
+chlog-update: $(CHLOGGEN)
+	$(CHLOGGEN) update --config $(CHLOGGEN_CONFIG) --version $(VERSION)
