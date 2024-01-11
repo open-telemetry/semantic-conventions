@@ -46,4 +46,4 @@ groups:
           will typically have a distinct `service.name` to help identify the
           logical role of the particular deployment, however their
           `service.type` will be the same and will help identify the deployed product.
-        examples: ["io.opentelemetry.collector", "io.redis", "org.apache.kafka"]
+        examples: ["io.opentelemetry.collector", "io.redis", "org.apache.kafka", "com.yourcompany.productname"]
