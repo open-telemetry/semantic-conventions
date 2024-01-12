@@ -33,8 +33,9 @@ In addition to the [Operation names](messaging-spans.md#operation-names), `messa
 | Value  | Description |
 |---|---|
 | `subscribe` | Streaming pull for a single message. Represents the time from after the message was received to when the message is acknowledged, negatively acknowledged, or expires. |
-| `extend` | Extends the lease for a single message or batch of messages |
-| `settle` | Acknowledges (acks) or negatively acknowledges (nacks) a single message or batch of messages |
+| `modack` | Extends the lease for a single message or batch of messages |
+| `ack` | Acknowledges (acks) a single message or batch of messages |
+| `nack` | Negatively acknowledges (nacks) by sending a modack with a deadline of 0 seconds a single message or batch of messages |
 
 ## Examples
 
@@ -67,8 +68,9 @@ flowchart LR;
 | Links |  |  | Span Create A, Span Create B |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |
+| `gcp.project_id` | `"P"` | `"P"` | `"P"` |
 | `messaging.batch.message_count` |  |  | 2 |
-| `messaging.destination.template` | `"projects/P/topics/T"` | `"projects/P/topics/T"` | `"projects/P/topics/T"` |
+| `messaging.destination.name` | `"projects/P/topics/T"` | `"projects/P/topics/T"` | `"projects/P/topics/T"` |
 | `messaging.operation` | `"create"` | `"create"` | `"publish"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.message.envelope.size` | `1` | `1` | |
@@ -125,8 +127,9 @@ flowchart TD;
 | Links |  | Span Create A | Span Create A | Span Receive A | Span Receive A |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |`Ok` | `Ok` |
+| `gcp.project_id` | `"P"` | `"P"` | `"P"` |  `"P"` |  `"P"` |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
-| `messaging.destination.template` | `"projects/P/topics/T"`| `"projects/P/topics/T"`| `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` |
+| `messaging.destination.name` | `"projects/P/topics/T"`| `"projects/P/topics/T"`| `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` |
 | `messaging.operation` | `"create"` | `"publish"` | `"receive"` |  `"extend"` |  `"settle"` |
 | `messaging.message.id` | `"a1"` | | `"a1"` | | |
 | `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
