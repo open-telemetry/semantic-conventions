@@ -77,7 +77,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 
 **type:** `service`
 
-**Description:** A telemetry source. OpenTelemetry has adopted a broad interpretation such that every telemetry source is a service. Examples include, but are not limited to: web services, hosts, mobile applications, browser application, edge computing devices, functions as a service, databases, message brokers, etc. Specific types of telemetry sources may have additional conventions defining domain specific information, but the `service` conventions are applicable to all telemetry sources.
+**Description:** A service instance.
 
 <!-- semconv service -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -94,7 +94,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 
 **type:** `service`
 
-**Description:** Experimental additions to service.
+**Description:** Additions to service instance.
 
 <!-- semconv service_experimental -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
