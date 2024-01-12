@@ -4,7 +4,7 @@ groups:
     brief: >
       A request to an LLM is modeled as a span in a trace. The span name should be a low cardinality value representing the request made to an LLM, like the name of the API endpoint being called.
     attributes:
-      - ref: llm.request.vendor
+      - ref: llm.system
         requirement_level: recommended
         note: >
           The name of the LLM foundation model vendor, if applicable. If not using a vendor-supplied model, this field is left blank.
@@ -18,7 +18,7 @@ groups:
         requirement_level: recommended
       - ref: llm.request.top_p
         requirement_level: recommended
-      - ref: llm.request.stream
+      - ref: llm.request.is_stream
         requirement_level: recommended
       - ref: llm.request.stop_sequences
         requirement_level: recommended
@@ -65,9 +65,9 @@ groups:
   - id: llm.openai
     type: span
     brief: >
-      These are the attributes when instrumenting OpenAI LLM requests with the `/chat/completions` endpoint.
+      A span representing a request to OpenAI's API, providing additional information on top of the generic llm.request.
     attributes:
-      - ref: llm.request.vendor
+      - ref: llm.system
         requirement_level: recommended
         examples: ['openai', 'microsoft']
         tag: tech-specific-openai-request
@@ -82,7 +82,7 @@ groups:
         tag: tech-specific-openai-request
       - ref: llm.request.top_p
         tag: tech-specific-openai-request
-      - ref: llm.request.stream
+      - ref: llm.request.is_stream
         tag: tech-specific-openai-request
       - ref: llm.request.stop_sequences
         tag: tech-specific-openai-request
@@ -119,7 +119,7 @@ groups:
     name: llm.content.openai.prompt
     type: event
     brief: >
-      These are the attributes when instrumenting OpenAI LLM requests and recording prompts in the request.
+      This event is fired when a completion request is sent to OpenAI, specifying the prompt that was sent.
     attributes:
       - ref: llm.openai.role
         requirement_level: required
@@ -134,7 +134,7 @@ groups:
     name: llm.content.openai.tool
     type: event
     brief: >
-      These are the attributes when instrumenting OpenAI LLM requests that specify tools (or functions) the LLM can use.
+      This event is fired when a completion request is sent to OpenAI, specifying tools that the LLM can use.
     attributes:
       - ref: llm.openai.tool.type
         requirement_level: required
@@ -149,7 +149,7 @@ groups:
     name: llm.content.openai.completion.choice
     type: event
     brief: >
-      These are the attributes when instrumenting OpenAI LLM requests and recording choices in the result.
+      This event is fired when a completion response is returned from OpenAI, specifying one possibile completion returned by the LLM.
     attributes:
       - ref: llm.openai.choice.type
         requirement_level: required

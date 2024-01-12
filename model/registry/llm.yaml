@@ -5,7 +5,7 @@ groups:
     brief: >
       This document defines the attributes used to describe telemetry in the context of LLM (Large Language Models) requests and responses.
     attributes:
-      - id: request.vendor
+      - id: system
         type: string
         brief: The name of the LLM foundation model vendor, if applicable.
         examples: 'openai'
@@ -30,7 +30,7 @@ groups:
         brief: The top_p sampling setting for the LLM request.
         examples: [1.0]
         tag: llm-generic-request
-      - id: request.stream
+      - id: request.is_stream
         type: boolean
         brief: Whether the LLM responds with a stream.
         examples: [false]
@@ -41,7 +41,7 @@ groups:
         examples: ["stop1"]
         tag: llm-generic-request
       - id: response.id
-        type: string
+        type: string[]
         brief: The unique identifier for the completion.
         examples: ['chatcmpl-123']
         tag: llm-generic-response

@@ -21,4 +21,4 @@ Technology specific semantic conventions are defined for the following LLM provi
 
 * [OpenAI](openai.md): Semantic Conventions for *OpenAI*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
