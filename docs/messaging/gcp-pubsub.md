@@ -83,8 +83,8 @@ flowchart TD;
   subgraph CONSUMER
   direction LR
   R1[Receive m1]
-  SM1[Settle m1]
-  EM1[Extend m1]
+  SM1[ack m1]
+  EM1[modack m1]
   end
   subgraph PRODUCER
   direction LR
@@ -115,14 +115,14 @@ flowchart TD;
   class SM1 ack
   linkStyle 2 color:#577eb5,stroke:#577eb5
 
-  classDef extend fill:#0560f2
-  class EM1 extend
+  classDef modack fill:#0560f2
+  class EM1 modack
   linkStyle 3 color:#0560f2,stroke:#0560f2
 ```
 
-| Field or Attribute | Span Create A | Span Publish A | Span Receive A | Span Extend A | Span Settle A |
+| Field or Attribute | Span Create A | Span Publish A | Span Receive A | Span Modack A | Span Ack A |
 |-|-|-|-|-|-|
-| Span name | `T create` | `publish` |  `S receive` | `S extend` |`S settle` |
+| Span name | `T create` | `publish` |  `S receive` | `S modack` |`S ack` |
 | Parent |  |  |  | |  |
 | Links |  | Span Create A | Span Create A | Span Receive A | Span Receive A |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
@@ -130,7 +130,7 @@ flowchart TD;
 | `gcp.project_id` | `"P"` | `"P"` | `"P"` |  `"P"` |  `"P"` |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
 | `messaging.destination.name` | `"projects/P/topics/T"`| `"projects/P/topics/T"`| `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` |
-| `messaging.operation` | `"create"` | `"publish"` | `"receive"` |  `"extend"` |  `"settle"` |
+| `messaging.operation` | `"create"` | `"publish"` | `"receive"` |  `"modack"` |  `"ack"` |
 | `messaging.message.id` | `"a1"` | | `"a1"` | | |
 | `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
 | `messaging.gcp_pubsub.message.ack_id` | | |  | `"ack_id1"` |`"ack_id1"` |
