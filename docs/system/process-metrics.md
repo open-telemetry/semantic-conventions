@@ -47,6 +47,8 @@ metrics](/docs/runtime/README.md#metrics).
 
 ### Metric: `process.cpu.time`
 
+This metric is [recommended][MetricRecommended].
+
 <!-- semconv metric.process.cpu.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -68,6 +70,8 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- endsemconv -->
 
 ### Metric: `process.cpu.utilization`
+
+This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.process.cpu.utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -91,6 +95,8 @@ metrics](/docs/runtime/README.md#metrics).
 
 ### Metric: `process.memory.usage`
 
+This metric is [recommended][MetricRecommended].
+
 <!-- semconv metric.process.memory.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -102,6 +108,8 @@ metrics](/docs/runtime/README.md#metrics).
 
 ### Metric: `process.memory.virtual`
 
+This metric is [recommended][MetricRecommended].
+
 <!-- semconv metric.process.memory.virtual(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -112,6 +120,8 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- endsemconv -->
 
 ### Metric: `process.disk.io`
+
+This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.process.disk.io(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -134,6 +144,8 @@ metrics](/docs/runtime/README.md#metrics).
 
 ### Metric: `process.network.io`
 
+This metric is [recommended][MetricRecommended].
+
 <!-- semconv metric.process.network.io(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -155,6 +167,8 @@ metrics](/docs/runtime/README.md#metrics).
 
 ### Metric: `process.thread.count`
 
+This metric is [recommended][MetricRecommended].
+
 <!-- semconv metric.process.thread.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -166,6 +180,8 @@ metrics](/docs/runtime/README.md#metrics).
 
 ### Metric: `process.open_file_descriptor.count`
 
+This metric is [recommended][MetricRecommended].
+
 <!-- semconv metric.process.open_file_descriptor.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -176,6 +192,8 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- endsemconv -->
 
 ### Metric: `process.context_switches`
+
+This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.process.context_switches(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -197,6 +215,8 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- endsemconv -->
 
 ### Metric: `process.paging.faults`
+
+This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.process.paging.faults(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
