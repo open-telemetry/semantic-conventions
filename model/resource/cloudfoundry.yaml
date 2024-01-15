@@ -5,15 +5,16 @@ groups:
     brief: >
       A CloudFoundry application or sytem component.
     attributes:
-      - ref: cloudfoundry.source_id
+      - ref: cloudfoundry.source.id
         requirement_level: required
         tag: generic
-      - ref: cloudfoundry.instance_id
+      - ref: cloudfoundry.instance.id
         requirement_level: required
         tag: generic
-      - ref: cloudfoundry.source_type
-        requirement_level: recommended
-        tag: source_type
+      - ref: cloudfoundry.source.type
+        requirement_level:
+          conditionally_required: if the the event is a log message
+        tag: source.type
   - id: cloudfoundry.app
     prefix: cloudfoundry.app
     type: resource
