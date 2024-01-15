@@ -32,7 +32,7 @@ groups:
           (e.g. service instance restarts).
 
           If the instance has no inherent unique ID that can be used as the value of this attribute,
-          implementations MAY to generate a random Version 1 or Version 4
+          implementations MAY generate a random Version 1 or Version 4
           [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. When enough data is available,
           implementations SHOULD use Version 5 and MUST use the following UUID as the namespace:
           `4d63009a-8d0f-11ee-aad7-4c796ed8e320`.
@@ -45,7 +45,7 @@ groups:
 
           When a UUID v5 is generated, the input MUST be prefixed with
           `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}`, followed by the
-          the workload identifier, which should tentatively stable. The workload identifier is the final piece of
+          the workload identifier, which should tentatively be stable. The workload identifier is the final piece of
           information making the source of telemetry to be uniquely idenfiable. For instance, it might be the `container.id`
           or `container.name` in containerized or Kubernetes environments. This means that the same service yields the
           same UUID if the same identifier (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still
@@ -55,11 +55,11 @@ groups:
           Users are encouraged to explicitly set the `service.instance.id` themselves, given they are in the best position
           to determine what's a service instance. For instance, in some cases, all containers in a given pod might be part
           of the same service, while in other cases, each container would independently generate their own telemetry. When
-          it's not possible or desirable to explicitly generate a `service.instance.id`, users are encouraged to set set
-          enough information via their workload automation, such as Helm. In that case, SDKs would have enough information to
+          it's not possible or desirable to explicitly generate a `service.instance.id`, users are encouraged to set
+          enough information via their workload automation, such as Helm. In that case, SDKs would have enough data to
           generate a `service.instance.id`. Future versions of the OpenTelemetry Operator might also have the ability to
           generate the `service.instance.id` and set container-specific labels, given it is in a position to know all that
-          metadata. When SDKs don't have sufficient information to generate a stable UUID, a random one is generated.
+          metadata. When SDKs don't have sufficient data to generate a stable UUID, a random one is generated.
 
           In more concrete terms: users running their services on platforms such as Kubernetes are encouraged to explicitly
           set the `service.instance.id` using their existing automation, or set a value that can be used for a
@@ -80,7 +80,7 @@ groups:
             possibly without the namespace.
           - When the SDK is running in an environment where a `/etc/machine-id`
             (see [MACHINE-ID(5)](https://www.freedesktop.org/software/systemd/man/machine-id.html))
-            is available, the machine-id should be used in the input for generating a UUID v5 (possibly without the namespace):
+            is available, the machine-id SHOULD be used in the input for generating a UUID v5 (possibly without the namespace):
             `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${machine.id}`
           - When the SDK is running on a Windows environment and there's a reasonable way to read
             registry keys for the SDK, the registry key
