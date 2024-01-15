@@ -6,7 +6,7 @@
 <!-- toc -->
 
 - [Generic Messaging Attributes](#generic-messaging-attributes)
-- [GCP Pub/Sub Attributes](#gcp-pub-sub-attributes)
+- [GCP Pub/Sub Attributes](#gcp-pubsub-attributes)
 - [Kafka Attributes](#kafka-attributes)
 - [RabbitMQ Attributes](#rabbitmq-attributes)
 - [RocketMQ Attributes](#rocketmq-attributes)
