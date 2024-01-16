@@ -3,7 +3,7 @@ groups:
     prefix: service
     type: resource
     brief: >
-      Experimental additions to service.
+      A service instance.
     attributes:
       - id: namespace
         type: string

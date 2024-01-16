@@ -25,9 +25,6 @@ release.
 
 ### Fixes
 
-- Clarify that `service.*` attributes apply to all telemetry sources.
-  ([#630](https://github.com/open-telemetry/semantic-conventions/pull/630))
-
 ## v1.24.0 (2023-12-15)
 
 ### Breaking
