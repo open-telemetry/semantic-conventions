@@ -54,6 +54,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `aws_app_runner` | AWS App Runner |
 | `aws_openshift` | Red Hat OpenShift on AWS (ROSA) |
 | `azure_vm` | Azure Virtual Machines |
+| `azure_container_apps` | Azure Container Apps |
 | `azure_container_instances` | Azure Container Instances |
 | `azure_aks` | Azure Kubernetes Service |
 | `azure_functions` | Azure Functions |

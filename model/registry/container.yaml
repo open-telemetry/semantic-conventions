@@ -79,8 +79,8 @@ groups:
         brief: >
           All the command arguments (including the command/executable itself) run by the container. [2]
         examples: [ 'otelcontribcol, --config, config.yaml' ]
-      - id: labels
+      - id: label
         type: template[string]
         brief: >
           Container labels, `<key>` being the label name, the value being the label value.
-        examples: [ 'container.labels.app=nginx' ]
+        examples: [ 'container.label.app=nginx' ]
