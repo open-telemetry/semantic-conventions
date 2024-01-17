@@ -479,6 +479,14 @@ All attributes that are specific for a messaging system SHOULD be populated in `
 
 ## Examples
 
+This section contains a list of examples illustrating the use of the
+conventions outlined above. Green boxes denote spans that are required to exist
+in order to conform to those conventions. Other boxes denote spans that are not
+required and covered by the conventions, but are hopefully helpful in
+understanding how messaging spans can be integrated into an overall trace flow.
+Solid arrows denote parent/child relationships, dotted arrows denote link
+relationships.
+
 ### Topic with multiple consumers
 
 Given is a publisher that publishes a message to a topic exchange "T" on RabbitMQ, and two consumers which both get the message delivered.
