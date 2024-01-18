@@ -179,8 +179,8 @@ The name of your file must be unique since the last release.
 During the release process, all `./chloggen/*.yaml` files are transcribed into
 `CHANGELOG.md` and then deleted.
 
-1. Create an entry file using `make chlog-new`. This generates a file based
-   on your current branch (e.g. `./.chloggen/my-branch.yaml`)
+1. Create an entry file using `make chlog-new`. The command generates a new file,
+   with its name based on the current branch (e.g. `./.chloggen/my-feature-xyz.yaml`)
 2. Fill in all fields in the new file
 3. Run `make chlog-validate` to ensure the new file is valid
 4. Commit and push the file
