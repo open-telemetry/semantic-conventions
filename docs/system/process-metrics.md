@@ -20,16 +20,16 @@ metrics](/docs/runtime/README.md#metrics).
 <!-- toc -->
 
 - [Process Metrics](#process-metrics)
-  - [Metric: `process.cpu.time`](#metric-processcputime)
-  - [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
-  - [Metric: `process.memory.usage`](#metric-processmemoryusage)
-  - [Metric: `process.memory.virtual`](#metric-processmemoryvirtual)
-  - [Metric: `process.disk.io`](#metric-processdiskio)
-  - [Metric: `process.network.io`](#metric-processnetworkio)
-  - [Metric: `process.thread.count`](#metric-processthreadcount)
-  - [Metric: `process.open_file_descriptor.count`](#metric-processopen_file_descriptorcount)
-  - [Metric: `process.context_switches`](#metric-processcontext_switches)
-  - [Metric: `process.paging.faults`](#metric-processpagingfaults)
+  * [Metric: `process.cpu.time`](#metric-processcputime)
+  * [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
+  * [Metric: `process.memory.usage`](#metric-processmemoryusage)
+  * [Metric: `process.memory.virtual`](#metric-processmemoryvirtual)
+  * [Metric: `process.disk.io`](#metric-processdiskio)
+  * [Metric: `process.network.io`](#metric-processnetworkio)
+  * [Metric: `process.thread.count`](#metric-processthreadcount)
+  * [Metric: `process.open_file_descriptor.count`](#metric-processopen_file_descriptorcount)
+  * [Metric: `process.context_switches`](#metric-processcontext_switches)
+  * [Metric: `process.paging.faults`](#metric-processpagingfaults)
 
 <!-- tocstop -->
 
