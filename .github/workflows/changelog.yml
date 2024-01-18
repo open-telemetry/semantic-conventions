@@ -17,7 +17,7 @@ concurrency:
 jobs:
   changelog:
     runs-on: ubuntu-latest
-    if: >
+    if: >-
       ${{
         !contains(github.event.pull_request.labels.*.name, 'dependencies') &&
         !contains(github.event.pull_request.labels.*.name, 'Skip Changelog') &&
