@@ -17,8 +17,12 @@ concurrency:
 jobs:
   changelog:
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'Skip Changelog') && !contains(github.event.pull_request.title, '[chore]')}}
-
+    if: >
+      ${{
+        !contains(github.event.pull_request.labels.*.name, 'dependencies') &&
+        !contains(github.event.pull_request.labels.*.name, 'Skip Changelog') &&
+        !contains(github.event.pull_request.title, '[chore]')
+      }}
     env:
       PR_HEAD: ${{ github.event.pull_request.head.sha }}
     steps:
@@ -46,7 +50,7 @@ jobs:
           echo "CHANGELOG.md should not be directly modified."
             echo "Please add a .yaml file to the ./.chloggen/ directory."
             echo "See CONTRIBUTING.md for more details."
-            echo "Alternately, add either \"[chore]\" to the title of the pull request or add the \"Skip Changelog\" label if this job should be skipped."
+            echo "Alternately, add either \"[chore]\" to the title of the pull \ request or add the \"Skip Changelog\" label if this job should be skipped."
             false
           else
           echo "CHANGELOG.md was not modified."
