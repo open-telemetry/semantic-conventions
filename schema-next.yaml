@@ -22,8 +22,6 @@ versions:
         - rename_metrics:
             process.threads: process.thread.count
             process.open_file_descriptors: process.open_file_descriptor.count
-            process.context_switches: process.context_switch.count
-            process.paging.faults: process.paging.fault.count
         - rename_attributes:
             attribute_map:
               state: process.cpu.state
