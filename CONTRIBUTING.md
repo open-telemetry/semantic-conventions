@@ -166,7 +166,7 @@ No changelog entry:
 - Typical documentation/editorial updates (e.g. grammar fixes, restructuring)
 - Changes in internal tooling (e.g. make file, GH actions, etc)
 - Refactorings with no meaningful change in functionality
-- Chores, such as enabling linters, or minor changes to the CI process
+- Chores, such as enabling linters, updating dependencies
 
 #### Adding a Changelog Entry
 
@@ -317,8 +317,10 @@ make markdown-link-check
     - Ensure the `next` version is appropriately configured as the `{version}`.
     - Copy `schema-next.yaml` to `schemas/{version}`.
     - Add `next` as a version in `schema-next.yaml` version.
-  - Update `CHANGELOG.md` for the latest version.
-    - Add `## v{version} ({date})` under `## Unreleased`
+  - Run `make chlog-update VERSION=v{version}`
+    - `make chlog-update` will clean up all the current `.yaml` files inside the
+    `.chloggen` folder automatically
+    - Double check that `CONTRIBUTING.md` is updated with the proper `v{version}`
   - Send staging tag as PR for review.
 - Create a tag `v{version}` on the merged PR and push remote.
 
