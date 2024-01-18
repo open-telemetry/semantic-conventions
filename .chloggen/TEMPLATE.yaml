@@ -3,7 +3,7 @@
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
 change_type:
 
-# The name of the area of concern, (e.g. trace-http, metrics-http, registry)
+# The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
 component:
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
@@ -19,9 +19,7 @@ subtext:
 
 # If your change doesn't affect end users or the exported elements of any package,
 # you should instead start your pull request title with [chore] or use the "Skip Changelog" label.
-# Optional: The change log or logs in which this entry should be included.
-# e.g. '[user]' or '[user, api]'
-# Include 'user' if the change is relevant to end users.
-# Include 'api' if there is a change to a library API.
+# Optional: The change log in which this entry should be included. In the semconv repo
+# we only have user-facing changes, so it should always be 'user' for this field.
 # Default: '[user]'
 change_logs: []
