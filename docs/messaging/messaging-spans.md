@@ -239,11 +239,10 @@ interpret linked traces without the need for additional semantic hints.
 
 "Create" spans MAY be created when a message is created or passed to the client
 library or other component responsible for publishing.  A single "Create" span
-SHOULD account only for a single message.  "Publish" spans SHOULD be created
+SHOULD account only for a single message. "Publish" spans SHOULD be created
 for operations of sending or publishing a message to an intermediary. A single
 "Publish" span can account for a single message, or for multiple messages (in
-the case of sending messages in batches).  "Publish" spans SHOULD link to the
-message creation contexts.
+the case of sending messages in batches).
 
 If a user provides a custom creation context in a message, this context SHOULD
 NOT be modified and a "Create" span SHOULD NOT be created.  Otherwise, if a
