@@ -14,3 +14,4 @@ groups:
       - ref: os.name
       - ref: os.version
       - ref: os.build_id
+      - ref: os.kernel

@@ -10,6 +10,7 @@ linkTitle: OS
 |---|---|---|---|
 | `os.build_id` | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` |
 | `os.description` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
+| `os.kernel` | string | The version string of the kernel as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `6.7.0-arch3-1` |
 | `os.name` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
 | `os.type` | string | The operating system type. | `windows` |
 | `os.version` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |

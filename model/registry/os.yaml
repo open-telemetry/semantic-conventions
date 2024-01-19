@@ -63,6 +63,12 @@ groups:
           The version string of the operating system as defined in
           [Version Attributes](/docs/resource/README.md#version-attributes).
         examples: ['14.2.1', '18.04.1']
+      - id: kernel
+        type: string
+        brief: >
+          The version string of the kernel as defined in
+          [Version Attributes](/docs/resource/README.md#version-attributes).
+        examples: ['6.7.0-arch3-1']
       - id: build_id
         type: string
         brief: 'Unique identifier for a particular build or compilation of the operating system.'

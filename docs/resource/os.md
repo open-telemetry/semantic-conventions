@@ -13,6 +13,7 @@ In case of virtualized environments, this is the operating system as it is obser
 |---|---|---|---|---|
 | [`os.build_id`](../attributes-registry/os.md) | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | Recommended |
 | [`os.description`](../attributes-registry/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | Recommended |
+| [`os.kernel`](../attributes-registry/os.md) | string | The version string of the kernel as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `6.7.0-arch3-1` | Recommended |
 | [`os.name`](../attributes-registry/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | Recommended |
 | [`os.type`](../attributes-registry/os.md) | string | The operating system type. | `windows` | Required |
 | [`os.version`](../attributes-registry/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | Recommended |

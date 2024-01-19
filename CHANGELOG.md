@@ -34,6 +34,8 @@ release.
   ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
 - Add an example for gcp_pubsub asynchronous batch publish
   ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545)).
+- Add `os.kernel` to `os` resource semantic conventions
+  ([#655](https://github.com/open-telemetry/semantic-conventions/pull/655))
 
 ### Fixes
 
