@@ -9,10 +9,30 @@ release.
 
 ### Breaking
 
+- Rename `system.processes.*` namespace to `system.process.*`
+  ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
+- Depluralize labels for pod (`k8s.pod.labels.*`) and container (`container.labels.*`) resources
+  ([#625](https://github.com/open-telemetry/semantic-conventions/pull/625))
+
+### Features
+
+- Add `azure_container_apps` to `cloud.platform` semantic conventions
+  ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
+- Add remaining ECS fields to the user-agent namespace
+  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
+- Add an example for gcp_pubsub asynchronous batch publish
+  ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545))
+
+### Fixes
+
+## v1.24.0 (2023-12-15)
+
+### Breaking
+
 - Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
   ([#317](https://github.com/open-telemetry/semantic-conventions/pull/317))
 - BREAKING: Change type of `host.cpu.model.id` and `host.cpu.model.family` to string.
-  ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
+  ([#499](https://github.com/open-telemetry/semantic-conventions/pull/499))
 - Changed `messaging.system` attribute type to an open enum
   ([#517](https://github.com/open-telemetry/semantic-conventions/pull/517))
 - Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
@@ -23,11 +43,19 @@ release.
 - BREAKING: Change `system.disk.io.direction` and `system.network.io.direction`
   to global attributes `disk.io.direction` and `network.io.direction`
   ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
+- BREAKING: Change `messaging.kafka.partition` to `messaging.kafka.destination.partition`
+  ([#547](https://github.com/open-telemetry/semantic-conventions/pull/547))
 
 ### Features
 
 - Adds `labels` attribute to `k8s.pod` resource
   ([#494](https://github.com/open-telemetry/semantic-conventions/pull/494))
+- Change Erlang managed thread attribute to be the Erlang process
+  ([#491](https://github.com/open-telemetry/semantic-conventions/pull/491))
+- Add gcp_pubsub as a messaging system
+  ([#490](https://github.com/open-telemetry/semantic-conventions/pull/490))
+- Adds `annotation` attribute to `k8s.pod` resource
+  ([#494](https://github.com/open-telemetry/semantic-conventions/pull/573))
 - Add `code.stacktrace` attribute
   ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
 - Add `http.flavor` and `http.user_agent` to list of deprecated attributes
@@ -43,8 +71,16 @@ release.
   ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
 - Add messaging metrics
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
-- Add remaining ECS fields to the user-agent namespace
-  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
+- Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
+  ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
+- Add system shared IO direction attributes
+  ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
+- JVM metrics marked stable
+  ([#569](https://github.com/open-telemetry/semantic-conventions/pull/569))
+- Add attribute for k8s pod annotations
+  ([#573](https://github.com/open-telemetry/semantic-conventions/pull/573))
+- Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
+  ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
 
 ### Fixes
 
@@ -52,6 +88,11 @@ release.
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
 - Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
   ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
+- Update stability definitions of HTTP client and server duration metrics to
+  be consistent with markdown.
+  ([#587](https://github.com/open-telemetry/semantic-conventions/pull/587))
+- Use `deprecated` property to mark attributes as deprecated instead of `stability`
+  ([#588](https://github.com/open-telemetry/semantic-conventions/pull/588))
 
 ## v1.23.1 (2023-11-17)
 

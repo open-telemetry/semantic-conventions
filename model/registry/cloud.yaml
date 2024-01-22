@@ -125,6 +125,9 @@ groups:
             - id: azure_vm
               value: 'azure_vm'
               brief: Azure Virtual Machines
+            - id: azure_container_apps
+              value: 'azure_container_apps'
+              brief: Azure Container Apps
             - id: azure_container_instances
               value: 'azure_container_instances'
               brief: Azure Container Instances
