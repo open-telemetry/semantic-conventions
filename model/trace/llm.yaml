@@ -1,0 +1,164 @@
+groups:
+  - id: llm.request
+    type: span
+    brief: >
+      A request to an LLM is modeled as a span in a trace. The span name should be a low cardinality value representing the request made to an LLM, like the name of the API endpoint being called.
+    attributes:
+      - ref: llm.vendor
+        requirement_level: recommended
+        note: >
+          The name of the LLM foundation model vendor, if applicable. If not using a vendor-supplied model, this field is left blank.
+      - ref: llm.request.model
+        requirement_level: required
+        note: >
+            The name of the LLM a request is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model requested. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: llm.request.max_tokens
+        requirement_level: recommended
+      - ref: llm.temperature
+        requirement_level: recommended
+      - ref: llm.top_p
+        requirement_level: recommended
+      - ref: llm.stream
+        requirement_level: recommended
+      - ref: llm.stop_sequences
+        requirement_level: recommended
+
+  - id: llm.response
+    type: span
+    brief: >
+      These attributes track output data and metadata for a response from an LLM. Each attribute represents a concept that is common to most LLMs.
+    attributes:
+      - ref: llm.response.id
+        requirement_level: recommended
+      - ref: llm.response.model
+        requirement_level: required
+        note: >
+          The name of the LLM a response is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model actually used. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: llm.response.finish_reason
+        requirement_level: recommended
+      - ref: llm.usage.prompt_tokens
+        requirement_level: recommended
+      - ref: llm.usage.completion_tokens
+        requirement_level: recommended
+      - ref: llm.usage.total_tokens
+        requirement_level: recommended
+
+  - id: llm.events
+    type: span
+    brief: >
+      In the lifetime of an LLM span, events for prompts sent and completions received may be created, depending on the configuration of the instrumentation.
+    attributes:
+      - ref: llm.prompt
+        requirement_level: recommended
+        note: >
+          The full prompt string sent to an LLM in a request. If the LLM accepts a more complex input like a JSON object, this field is blank, and the response is instead captured in an event determined by the specific LLM technology semantic convention.
+      - ref: llm.completion
+        requirement_level: recommended
+        note: >
+          The full response string from an LLM. If the LLM responds with a more complex output like a JSON object made up of several pieces (such as OpenAI's message choices), this field is the content of the response. If the LLM produces multiple responses, then this field is left blank, and each response is instead captured in an event determined by the specific LLM technology semantic convention.
+
+  - id: llm.openai
+    type: span
+    brief: >
+      These are the attributes when instrumenting OpenAI LLM requests with the `/chat/completions` endpoint.
+    attributes:
+      - ref: llm.vendor
+        requirement_level: recommended
+        examples: ['openai', 'microsoft']
+        tag: tech-specific-openai-request
+      - ref: llm.request.model
+        requirement_level: required
+        note: >
+            The name of the LLM a request is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model requested. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+        tag: tech-specific-openai-request
+      - ref: llm.request.max_tokens
+        tag: tech-specific-openai-request
+      - ref: llm.temperature
+        tag: tech-specific-openai-request
+      - ref: llm.top_p
+        tag: tech-specific-openai-request
+      - ref: llm.stream
+        tag: tech-specific-openai-request
+      - ref: llm.stop_sequences
+        tag: tech-specific-openai-request
+      - ref: llm.openai.presence_penalty
+        tag: tech-specific-openai-request
+      - ref: llm.openai.logit_bias
+        tag: tech-specific-openai-request
+      - ref: llm.openai.user
+        tag: tech-specific-openai-request
+      - ref: llm.openai.response_format
+        tag: tech-specific-openai-request
+      - ref: llm.openai.seed
+        tag: tech-specific-openai-response
+      - ref: llm.response.id
+        tag: tech-specific-openai-response
+      - ref: llm.response.finish_reason
+        tag: tech-specific-openai-response
+      - ref: llm.usage.prompt_tokens
+        tag: tech-specific-openai-response
+      - ref: llm.usage.completion_tokens
+        tag: tech-specific-openai-response
+      - ref: llm.usage.total_tokens
+        tag: tech-specific-openai-response
+      - ref: llm.openai.created
+        tag: tech-specific-openai-response
+      - ref: llm.openai.system_fingerprint
+        tag: tech-sepecifc-openai-response
+
+  - id: llm.openai.prompt
+    type: span
+    brief: >
+      These are the attributes when instrumenting OpenAI LLM requests and recording prompts in the request.
+    attributes:
+      - ref: llm.openai.role
+        requirement_level: required
+      - ref: llm.openai.content
+        requirement_level: required
+      - ref: llm.openai.tool_call.id
+        requirement_level: 
+          conditionally_required: >
+            Required if the prompt role is `tool`.
+
+  - id: llm.openai.tool
+    type: span
+    brief: >
+      These are the attributes when instrumenting OpenAI LLM requests that specify tools (or functions) the LLM can use.
+    attributes:
+      - ref: llm.openai.tool_call.type
+        requirement_level: required
+      - ref: llm.openai.function.name
+        requirement_level: required
+      - ref: llm.openai.function.description
+        requirement_level: required
+      - ref: llm.openai.function.parameters
+        requirement_level: required
+
+  - id: llm.openai.choice
+    type: span
+    brief: >
+      These are the attributes when instrumenting OpenAI LLM requests and recording choices in the result.
+    attributes:
+      - ref: llm.openai.choice.type
+        requirement_level: required
+      - ref: llm.response.finish_reason
+      - ref: llm.openai.role
+        requirement_level: required
+      - ref: llm.openai.content
+        requirement_level: required
+      - ref: llm.openai.tool_call.id
+        requirement_level: 
+          conditionally_required: >
+            Required if the choice is the result of a tool call.
+      - ref: llm.openai.tool_call.type
+        requirement_level: 
+          conditionally_required: >
+            Required if the choice is the result of a tool call.
+      - ref: llm.openai.function.name
+        requirement_level: 
+          conditionally_required: >
+            Required if the choice is the result of a tool call of type `function`.
+      - ref: llm.openai.function.arguments
+        requirement_level: 
+          conditionally_required: >
+            Required if the choice is the result of a tool call of type `function`.
