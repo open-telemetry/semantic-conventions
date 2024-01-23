@@ -5,7 +5,7 @@ groups:
     brief: >
       This document defines the attributes used to describe telemetry in the context of LLM (Large Language Models) requests and responses.
     attributes:
-      - id: vendor
+      - id: request.vendor
         type: string
         brief: The name of the LLM foundation model vendor, if applicable.
         examples: 'openai'
@@ -20,22 +20,22 @@ groups:
         brief: The maximum number of tokens the LLM generates for a request.
         examples: [100]
         tag: llm-generic-request
-      - id: temperature
+      - id: request.temperature
         type: double
         brief: The temperature setting for the LLM request.
         examples: [0.0]
         tag: llm-generic-request
-      - id: top_p
+      - id: request.top_p
         type: double
         brief: The top_p sampling setting for the LLM request.
         examples: [1.0]
         tag: llm-generic-request
-      - id: stream
+      - id: request.stream
         type: boolean
         brief: Whether the LLM responds with a stream.
         examples: [false]
         tag: llm-generic-request
-      - id: stop_sequences
+      - id: request.stop_sequences
         type: string
         brief: Array of strings the LLM uses as a stop sequence.
         examples: ["stop1"]
@@ -80,27 +80,27 @@ groups:
         brief: The full response string from an LLM in a response.
         examples: ['Why did the developer stop using OpenTelemetry? Because they couldnt trace their steps!']
         tag: llm-generic-events
-      - id: openai.presence_penalty
+      - id: request.openai.presence_penalty
         type: double
         brief: If present, the `presence_penalty` used in an OpenAI request. Value is between -2.0 and 2.0.
         examples: -0.5
         tag: tech-specific-openai-request
-      - id: openai.frequency_penalty
+      - id: request.openai.frequency_penalty
         type: double
         brief: If present, the `frequency_penalty` used in an OpenAI request. Value is between -2.0 and 2.0.
         examples: -0.5
         tag: tech-specific-openai-request
-      - id: openai.logit_bias
+      - id: request.openai.logit_bias
         type: string
         brief: If present, the JSON-encoded string of a `logit_bias` used in an OpenAI request
         examples: ['{2435:-100, 640:-100}']
         tag: tech-specific-openai-request
-      - id: openai.user
+      - id: request.openai.user
         type: string
         brief: If present, the `user` used in an OpenAI request.
         examples: ['bob']
         tag: tech-specific-openai-request
-      - id: openai.response_format
+      - id: request.openai.response_format
         type:
           members:
             - id: text
@@ -110,17 +110,17 @@ groups:
         brief: An object specifying the format that the model must output. Either `text` or `json_object`
         examples: 'text'
         tag: tech-specific-openai-request
-      - id: openai.seed
+      - id: request.openai.seed
         type: int
         brief: Seed used in request to improve determinism.
         examples: 1234
         tag: tech-specific-openai-request
-      - id: openai.created
+      - id: response.openai.created
         type: int
         brief: The UNIX timestamp (in seconds) if when the completion was created.
         examples: 1677652288
         tag: tech-specific-openai-response
-      - id: openai.system_fingerprint
+      - id: response.openai.system_fingerprint
         type: string
         brief: This fingerprint represents the backend configuration that the model runs with.
         examples: 'asdf987123'
@@ -139,10 +139,13 @@ groups:
         brief: The role of the prompt author, can be one of `system`, `user`, `assistant`, or `tool`
         examples: 'user'
         tag: tech-specific-openai-events
-      - id: openai.content
-        type: string
-        brief: The content for a given OpenAI response.
-        examples: 'Why did the developer stop using OpenTelemetry? Because they couldn''t trace their steps!'
+      - id: openai.tool.type
+        type:
+          members:
+            - id: function
+              value: 'function'
+        brief: The type of the tool. Currently, only `function` is supported.
+        examples: 'function'
         tag: tech-specific-openai-events
       - id: openai.function.name
         type: string
@@ -159,28 +162,20 @@ groups:
         brief: JSON-encoded string of the parameter object for the function.
         examples: '{"type": "object", "properties": {}}'
         tag: tech-specific-openai-events
-      - id: openai.function.arguments
+      - id: openai.content
         type: string
-        brief: If exists, the arguments to call a function call with for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. 
-        examples: '{"type": "object", "properties": {"some":"data"}}'
-        tag: tech-specific-openai-events
-      - id: openai.finish_reason
-        type: string
-        brief: The reason the OpenAI model stopped generating tokens for this chunk.
-        examples: 'stop'
+        brief: The content for a given OpenAI response.
+        examples: 'Why did the developer stop using OpenTelemetry? Because they couldn''t trace their steps!'
         tag: tech-specific-openai-events
       - id: openai.tool_call.id
         type: string
         brief: If role is `tool` or `function`, then this tool call that this message is responding to.
         examples: 'get_current_weather'
         tag: tech-specific-openai-events
-      - id: openai.tool_call.type
-        type:
-          members:
-            - id: function
-              value: 'function'
-        brief: The type of the tool. Currently, only `function` is supported.
-        examples: 'function'
+      - id: openai.function.arguments
+        type: string
+        brief: If exists, the arguments to call a function call with for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. 
+        examples: '{"type": "object", "properties": {"some":"data"}}'
         tag: tech-specific-openai-events
       - id: openai.choice.type
         type:
