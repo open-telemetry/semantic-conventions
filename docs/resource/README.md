@@ -131,17 +131,19 @@ same UUID if the same identifier (`host.id`, `/etc/machine-id`, and so on) remai
 yield different results for different services on the same host or namespace. When no namespaces or equivalent fields
 are available, the prefix MUST then be `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`.
 
-SDKs MUST provide a `service.instance.id`. SDKs SHOULD use the following algorithm when generating `service.instance.id`:
+SDKs SHOULD use the following algorithm when generating `service.instance.id`:
 
 - If the user has provided a `service.instance.id`, via environment
   variable, configuration or custom resource detection, this MUST take priority over generated IDs.
+- When the language, framework, or platform has a native mechanism allowing workloads to be uniquely idenfiable, like Erlang's
+  clustering identity, this mechanism MAY be used.
 - When any of the below combinations of resource attribute are provided, they MUST be used as the input
   for generating a UUID v5 following the prefix mentioned above. The values within each combination MUST be separated with dots:
   * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`, resulting in the input
   `${telemetry.sdk.name}.${telemetry.sdk.language}.${k8s.namespace.name}.${service.name}.${k8s.pod.name}.${k8s.container.name}`. In this case,
   the namespace MUST be used.
   * `container.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${container.id}`,
-  possibly without the namespace.
+  possibly without the `${service.namespace}`.
   * `host.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${host.id}`,
   possibly without `${service.namespace}`.
 - When the SDK is running in an environment where a `/etc/machine-id`
@@ -153,13 +155,12 @@ SDKs MUST provide a `service.instance.id`. SDKs SHOULD use the following algorit
   `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid` can be used in a
   similar way to Linux' machine-id above.
 - When no other source is available the SDK MUST generate a value using UUID v1 or v4.
-  This would typically be the case for service instances running on Kubernetes,
-  given that the pod's name and namespace are not unique enough to determine a service
-  instance's identity and the container name cannot easily be inferred: on pods with
-  multiple containers, the `service.instance.id` would yield the same results for all
-  containers, which is not desirable. And given that the services are ephemeral on
-  Kubernetes, the `service.instance.id` would change on each restart, being therefore
-  no different than a completely new UUID per process.
+  For service instances running on Kubernetes, this is typically the case where a pod's name +
+  namespace are not unique enough to determine a service instance's identity and the container name
+  cannot easily be inferred. If we created a UUID without `container.name`, on pods with multiple
+  containers, the `service.instance.id` would yield the same results for all containers, which is undesirable.
+  Given that services are ephemeral on Kubernetes, the `service.instance.id` would change on each
+  restart, therefore being no different than a completely new UUID per process.
 
 Examples in Go, using the package "github.com/google/uuid" to generate the UUIDs:
 
