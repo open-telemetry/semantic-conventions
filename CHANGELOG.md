@@ -13,6 +13,20 @@ release.
   ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
 - Depluralize labels for pod (`k8s.pod.labels.*`) and container (`container.labels.*`) resources
   ([#625](https://github.com/open-telemetry/semantic-conventions/pull/625))
+- BREAKING: Generate process metrics from YAML
+  ([#330](https://github.com/open-telemetry/semantic-conventions/pull/330))
+  - Rename `process.threads` to `process.thread.count`
+  - Rename `process.open_file_descriptors` to `process.open_file_descriptor.count`
+  - Rename attributes for `process.cpu.*`
+    - `state` to `process.cpu.state`
+  - Change attributes for `process.disk.io`
+    - Instead of `direction` use `disk.io.direction` from global registry
+  - Change attributes for `process.network.io`
+    - Instead of `direction` use `network.io.direction` from global registry
+  - Rename attributes for `process.context_switches`
+    - `type` to `process.context_switch_type`
+  - Rename attributes for `process.paging.faults`
+    - `type` to `process.paging.fault_type`
 
 ### Features
 
@@ -22,9 +36,6 @@ release.
   ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545)).
 
 ### Fixes
-
-- Clarify that `service.*` attributes apply to all telemetry sources.
-  ([#630](https://github.com/open-telemetry/semantic-conventions/pull/630))
 
 ## v1.24.0 (2023-12-15)
 
