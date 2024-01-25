@@ -46,6 +46,10 @@ groups:
         tag: connection-level
       - ref: network.type
         tag: connection-level
+      - ref: db.instance.id
+        tag: connection-level
+        requirement_level:
+          recommended: If different from the `server.address`
 
   - id: db.mssql
     type: span
@@ -112,7 +116,7 @@ groups:
           the target REST route according to the API reference documentation.
           For example, when retrieving a document, `db.operation` would be set to
           (literally, i.e., without replacing the placeholders with concrete values):
-          [`GET /{db}/{docid}`](http://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
+          [`GET /{db}/{docid}`](https://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
 
   - id: db.redis
     type: span

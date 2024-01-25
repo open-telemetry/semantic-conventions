@@ -33,6 +33,9 @@ groups:
     attributes:
       - ref: k8s.pod.uid
       - ref: k8s.pod.name
+      - ref: k8s.pod.label
+      - ref: k8s.pod.annotation
+        requirement_level: opt_in
 
   - id: k8s.container
     prefix: k8s.container

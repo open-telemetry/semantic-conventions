@@ -27,6 +27,7 @@ All registered attributes are listed by namespace in this registry.
 
 Currently, the following namespaces exist:
 
+* [Browser](browser.md)
 * [Client](client.md)
 * [Cloud](cloud.md)
 * [Code](code.md)
@@ -34,7 +35,9 @@ Currently, the following namespaces exist:
 * [DB](db.md) (database)
 * [Destination](destination.md)
 * [Device](device.md)
+* [Disk](disk.md)
 * [Error](error.md)
+* [Exception](exception.md)
 * [Host](host.md)
 * [HTTP](http.md)
 * [K8s](k8s.md)

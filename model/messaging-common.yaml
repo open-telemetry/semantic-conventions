@@ -1,0 +1,25 @@
+groups:
+  - id: messaging.attributes.common
+    type: attribute_group
+    brief: "Common messaging attributes."
+    prefix: messaging
+    attributes:
+      - ref: messaging.system
+        requirement_level: required
+      - ref: error.type
+        examples: ['amqp:decode-error', 'KAFKA_STORAGE_ERROR', 'channel-error']
+        requirement_level:
+          conditionally_required: If and only if the messaging operation has failed.
+      - ref: server.address
+        note: >
+          This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+        requirement_level:
+          conditionally_required: If available.
+      - ref: server.port
+      - ref: network.protocol.name
+        examples: ['amqp', 'mqtt']
+        requirement_level:
+          conditionally_required: Only for messaging systems and frameworks that support more than one protocol.
+        tag: connection-level
+      - ref: network.protocol.version
+        tag: connection-level

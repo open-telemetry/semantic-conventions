@@ -7,5 +7,3 @@ groups:
     attributes:
       - ref: event.name
         requirement_level: required
-      - ref: event.domain
-        requirement_level: required

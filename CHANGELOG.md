@@ -9,15 +9,69 @@ release.
 
 ### Breaking
 
-- Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
-  ([#317](https://github.com/open-telemetry/semantic-conventions/pull/317))
-- BREAKING: Change type of `host.cpu.model.id` and `host.cpu.model.family` to string.
-  ([#495](https://github.com/open-telemetry/semantic-conventions/issues/495))
-- Changed `messaging.system` attribute type to an open enum
-  ([#517](https://github.com/open-telemetry/semantic-conventions/pull/517))
+- Rename `system.processes.*` namespace to `system.process.*`
+  ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
+- Depluralize labels for pod (`k8s.pod.labels.*`) and container (`container.labels.*`) resources
+  ([#625](https://github.com/open-telemetry/semantic-conventions/pull/625))
+- Make `network.protocol.name` conditionally required for messaging
+  ([#644](https://github.com/open-telemetry/semantic-conventions/pull/644))
+- BREAKING: Generate process metrics from YAML
+  ([#330](https://github.com/open-telemetry/semantic-conventions/pull/330))
+  - Rename `process.threads` to `process.thread.count`
+  - Rename `process.open_file_descriptors` to `process.open_file_descriptor.count`
+  - Rename attributes for `process.cpu.*`
+    - `state` to `process.cpu.state`
+  - Change attributes for `process.disk.io`
+    - Instead of `direction` use `disk.io.direction` from global registry
+  - Change attributes for `process.network.io`
+    - Instead of `direction` use `network.io.direction` from global registry
+  - Rename attributes for `process.context_switches`
+    - `type` to `process.context_switch_type`
+  - Rename attributes for `process.paging.faults`
+    - `type` to `process.paging.fault_type`
 
 ### Features
 
+- Add `azure_container_apps` to `cloud.platform` semantic conventions
+  ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
+- Add `user_agent.name` and `user_agent.version` attributes
+  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
+- Add an example for gcp_pubsub asynchronous batch publish
+  ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545))
+
+### Fixes
+
+## v1.24.0 (2023-12-15)
+
+### Breaking
+
+- Update `jvm.gc.duration` histogram buckets to `[ 0.01, 0.1, 1, 10 ]`
+  ([#317](https://github.com/open-telemetry/semantic-conventions/pull/317))
+- BREAKING: Change type of `host.cpu.model.id` and `host.cpu.model.family` to string.
+  ([#499](https://github.com/open-telemetry/semantic-conventions/pull/499))
+- Changed `messaging.system` attribute type to an open enum
+  ([#517](https://github.com/open-telemetry/semantic-conventions/pull/517))
+- Rename metrics `jvm.memory.usage` to `jvm.memory.used` and `jvm.memory.usage_after_last_gc`
+  to `jvm.memory.used_after_last_gc`
+  ([#536](https://github.com/open-telemetry/semantic-conventions/pull/536))
+- BREAKING: Change `event.name` definition to include `namespace` and remove `event.domain` from log event attributes.
+  ([#473](https://github.com/open-telemetry/semantic-conventions/pull/473))
+- BREAKING: Change `system.disk.io.direction` and `system.network.io.direction`
+  to global attributes `disk.io.direction` and `network.io.direction`
+  ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
+- BREAKING: Change `messaging.kafka.partition` to `messaging.kafka.destination.partition`
+  ([#547](https://github.com/open-telemetry/semantic-conventions/pull/547))
+
+### Features
+
+- Adds `labels` attribute to `k8s.pod` resource
+  ([#494](https://github.com/open-telemetry/semantic-conventions/pull/494))
+- Change Erlang managed thread attribute to be the Erlang process
+  ([#491](https://github.com/open-telemetry/semantic-conventions/pull/491))
+- Add gcp_pubsub as a messaging system
+  ([#490](https://github.com/open-telemetry/semantic-conventions/pull/490))
+- Adds `annotation` attribute to `k8s.pod` resource
+  ([#494](https://github.com/open-telemetry/semantic-conventions/pull/573))
 - Add `code.stacktrace` attribute
   ([#435](https://github.com/open-telemetry/semantic-conventions/pull/435))
 - Add `http.flavor` and `http.user_agent` to list of deprecated attributes
@@ -26,11 +80,47 @@ release.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
 - Add `messaging.gcp_pubsub.message.ordering_key` attribute.
   ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
+- Define how to set `process.runtime.name`, `process.runtime.version`,
+  `process.runtime.description` for .NET runtime.
+  ([#561](https://github.com/open-telemetry/semantic-conventions/pull/561))
+- Add `db.instance.id` attribute.
+  ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
+- Add messaging metrics
+  ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
+- Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
+  ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
+- Add system shared IO direction attributes
+  ([#530](https://github.com/open-telemetry/semantic-conventions/pull/530))
+- JVM metrics marked stable
+  ([#569](https://github.com/open-telemetry/semantic-conventions/pull/569))
+- Add attribute for k8s pod annotations
+  ([#573](https://github.com/open-telemetry/semantic-conventions/pull/573))
+- Replace AWS X-Ray Environment Span Link section with AWS X-Ray Active Tracing Considerations
+  ([#354](https://github.com/open-telemetry/semantic-conventions/pull/354))
 
 ### Fixes
 
 - Remove misleading pluralization wording related to count metrics
   ([#488](https://github.com/open-telemetry/semantic-conventions/pull/488))
+- Remove no longer relevant Oct 1 mention from `OTEL_SEMCONV_STABILITY_OPT_IN`
+  ([#541](https://github.com/open-telemetry/semantic-conventions/pull/541))
+- Update stability definitions of HTTP client and server duration metrics to
+  be consistent with markdown.
+  ([#587](https://github.com/open-telemetry/semantic-conventions/pull/587))
+- Use `deprecated` property to mark attributes as deprecated instead of `stability`
+  ([#588](https://github.com/open-telemetry/semantic-conventions/pull/588))
+
+## v1.23.1 (2023-11-17)
+
+### Breaking
+
+### Features
+
+### Fixes
+
+- [backport to 1.23.x] Temp fix for separation of resource and semantic attributes
+  ([#524](https://github.com/open-telemetry/semantic-conventions/pull/524)) via
+  ([#537](https://github.com/open-telemetry/semantic-conventions/pull/537))
 
 ## v1.23.0 (2023-11-03)
 

@@ -8,18 +8,9 @@ aliases: [docs/specs/semconv/general/events-general]
 <!-- semconv registry.event -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `event.domain` | string | The domain identifies the business context for the events. [1] | `browser` | Recommended |
-| `event.name` | string | The name identifies the event. | `click`; `exception` | Recommended |
+| `event.name` | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | Required |
 
-**[1]:** Events across different domains may have same `event.name`, yet be unrelated events.
-
-`event.domain` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `browser` | Events from browser apps |
-| `device` | Events from mobile apps |
-| `k8s` | Events from Kubernetes |
+**[1]:** Event names are subject to the same rules as [attribute names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/common/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

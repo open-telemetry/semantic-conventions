@@ -61,8 +61,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 >   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version (stable
->   next major version SHOULD NOT be released prior to October 1, 2023).
+> * SHOULD drop the environment variable in the next major version.
 
 ## Name
 
@@ -389,7 +388,7 @@ The following attributes can be important for making sampling decisions and SHOU
 
 ### HTTP client-server example
 
-As an example, if a browser request for `https://example.com:8080/webshop/articles/4?s=1` is invoked from a host with IP 192.0.2.4, we may have the following Span on the client side:
+As an example, if a browser request for `https://example.com:8080/webshop/articles/4?s=1&t=2` is invoked from a host with IP 192.0.2.4, we may have the following Span on the client side:
 
 Span name: `GET`
 
@@ -397,7 +396,7 @@ Span name: `GET`
 | :------------------- | :-------------------------------------------------------|
 | `http.request.method`| `"GET"`                                                 |
 | `network.protocol.version` | `"1.1"`                                           |
-| `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1"`     |
+| `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1&t=2"` |
 | `server.address`     | `example.com`                                           |
 | `server.port`        | `8080`                                                  |
 | `network.peer.address` | `"192.0.2.5"`                                         |
@@ -413,7 +412,7 @@ Span name: `GET /webshop/articles/:article_id`.
 | `http.request.method`| `"GET"`                                         |
 | `network.protocol.version` | `"1.1"`                                   |
 | `url.path`           | `"/webshop/articles/4"`                         |
-| `url.query`          | `"?s=1"`                                        |
+| `url.query`          | `"s=1&t=2"`                                     |
 | `server.address`     | `"example.com"`                                 |
 | `server.port`        | `8080`                                          |
 | `url.scheme`         | `"https"`                                       |

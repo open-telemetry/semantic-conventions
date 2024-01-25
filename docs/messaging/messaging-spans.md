@@ -1,4 +1,4 @@
-# Messaging Systems
+# Semantic Conventions for Messaging Spans
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -24,7 +24,6 @@
     + [Producer spans](#producer-spans)
     + [Consumer spans](#consumer-spans)
 - [Messaging attributes](#messaging-attributes)
-  * [Attribute namespaces](#attribute-namespaces)
   * [Consumer attributes](#consumer-attributes)
   * [Per-message attributes](#per-message-attributes)
   * [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems)
@@ -59,8 +58,7 @@
 >   * Note: `http/dup` has higher precedence than `http` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version (stable
->   next major version SHOULD NOT be released prior to October 1, 2023).
+> * SHOULD drop the environment variable in the next major version.
 
 ## Definitions
 
@@ -211,7 +209,7 @@ The following operations related to messages are defined for these semantic conv
 
 ### Span kind
 
-[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind)
+[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#spankind)
 SHOULD be set according to the following table, based on the operation a span describes.
 
 | Operation name | Span kind|
@@ -222,7 +220,7 @@ SHOULD be set according to the following table, based on the operation a span de
 | `deliver`      | `CONSUMER` |
 
 For cases not covered by the table above, the span kind should be set according
-to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind),
+to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#spankind),
 e. g. it should be set to CLIENT for the "Publish" span if its context is not
 used as creation context and if the "Publish" span models a synchronous call to
 the intermediary.
@@ -273,75 +271,110 @@ messages were received). For each message it accounts for, the "Deliver" or
 
 ## Messaging attributes
 
+Messaging attributes are organized into the following namespaces:
+
+- `messaging.message`: Contains [per-message attributes](#per-message-attributes) that describe individual messages. Those attributes are relevant only for spans or links that represent a single message.
+- `messaging.destination`: Contains attributes that describe the logical entity messages are published to. See [Destinations](#destinations) for more details.
+- `messaging.destination_publish`: Contains attributes that describe the logical entity messages were originally published to. See [Destinations](#destinations) for more details.
+- `messaging.batch`: Contains attributes that describe batch operations.
+- `messaging.consumer`: Contains [consumer attributes](#consumer-attributes) that describe the application instance that consumes a message. See [consumer](#consumer) for more details.
+
+The communication with the intermediary is described with general [network attributes].
+
+Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace
+as described in [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems).
+
 <!-- semconv messaging(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`messaging.batch.message_count`](../attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` | Conditionally Required: [2] |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | Conditionally Required: [2] |
+| [`messaging.batch.message_count`](../attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | Conditionally Required: [4] |
 | [`messaging.client_id`](../attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | Recommended: If a client id is available |
-| [`messaging.destination.anonymous`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | Conditionally Required: [3] |
-| [`messaging.destination.name`](../attributes-registry/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | Conditionally Required: [5] |
-| [`messaging.destination.template`](../attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [6] | `/customers/{customerId}` | Conditionally Required: [7] |
-| [`messaging.destination.temporary`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [8] |
-| [`messaging.message.body.size`](../attributes-registry/messaging.md) | int | The size of the message body in bytes. [9] | `1439` | Recommended: [10] |
-| [`messaging.message.conversation_id`](../attributes-registry/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended: [11] |
-| [`messaging.message.envelope.size`](../attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [12] | `2738` | Recommended: [13] |
-| [`messaging.message.id`](../attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended: [14] |
-| [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [15] | `publish` | Required |
+| [`messaging.destination.anonymous`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | Conditionally Required: [5] |
+| [`messaging.destination.name`](../attributes-registry/messaging.md) | string | The message destination name [6] | `MyQueue`; `MyTopic` | Conditionally Required: [7] |
+| [`messaging.destination.template`](../attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` | Conditionally Required: [9] |
+| [`messaging.destination.temporary`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [10] |
+| [`messaging.message.body.size`](../attributes-registry/messaging.md) | int | The size of the message body in bytes. [11] | `1439` | Recommended |
+| [`messaging.message.conversation_id`](../attributes-registry/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | Recommended |
+| [`messaging.message.envelope.size`](../attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [12] | `2738` | Recommended |
+| [`messaging.message.id`](../attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended |
+| [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [13] | `publish` | Required |
 | [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [16] | `amqp`; `mqtt` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [17] | `3.1.1` | Recommended |
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [18] | `tcp`; `udp` | Recommended |
-| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [19] | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [14] | `amqp`; `mqtt` | Conditionally Required: [15] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [16] | `3.1.1` | Recommended |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` | Recommended |
+| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [18] | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [19] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [20] | `80`; `8080`; `443` | Recommended |
 
-**[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
 
-**[2]:** If the span describes an operation on a batch of messages.
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
 
-**[3]:** If value is `true`. When missing, the value is assumed to be `false`.
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[4]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+* Use a domain-specific attribute
+* Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+**[2]:** If and only if the messaging operation has failed.
+
+**[3]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+
+**[4]:** If the span describes an operation on a batch of messages.
+
+**[5]:** If value is `true`. When missing, the value is assumed to be `false`.
+
+**[6]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[5]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[7]:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[6]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[8]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[7]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
+**[9]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[8]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[10]:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[9]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[11]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
-
-**[10]:** Only if span represents operation on a single message.
-
-**[11]:** Only if span represents operation on a single message.
 
 **[12]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[13]:** Only if span represents operation on a single message.
+**[13]:** If a custom value is used, it MUST be of low cardinality.
 
-**[14]:** Only for spans that represent an operation on a single message.
+**[14]:** The value SHOULD be normalized to lowercase.
 
-**[15]:** If a custom value is used, it MUST be of low cardinality.
+**[15]:** Only for messaging systems and frameworks that support more than one protocol.
 
-**[16]:** The value SHOULD be normalized to lowercase.
+**[16]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[17]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[18]:** The value SHOULD be normalized to lowercase.
+**[17]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[19]:** The value SHOULD be normalized to lowercase.
+**[18]:** The value SHOULD be normalized to lowercase.
 
-**[20]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[19]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+
+**[20]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -387,19 +420,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 Additionally `server.port` from the [network attributes][] is recommended.
 Furthermore, it is strongly recommended to add the [`network.transport`][] attribute and follow its guidelines, especially for in-process queueing systems (like [Hangfire][], for example).
 These attributes should be set to the broker to which the message is sent/from which it is received.
-
-### Attribute namespaces
-
-- `messaging.message`: Contains attributes that describe individual messages
-- `messaging.destination`: Contains attributes that describe the logical entity messages are published to. See [Destinations](#destinations) for more details
-- `messaging.destination_publish`: Contains attributes that describe the logical entity messages were originally published to. See [Destinations](#destinations) for more details
-- `messaging.batch`: Contains attributes that describe batch operations
-- `messaging.consumer`: Contains attributes that describe application instance that consumes a message. See [consumer](#consumer) for more details
-
-Communication with broker is described with general [network attributes].
-
-Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace
-as described in [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems).
 
 [network attributes]: /docs/general/attributes.md#server-and-client-attributes
 [`network.transport`]: /docs/general/attributes.md#network-attributes

@@ -52,12 +52,22 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   * [Metric: `system.network.io`](#metric-systemnetworkio)
   * [Metric: `system.network.connections`](#metric-systemnetworkconnections)
 - [Aggregate System Process Metrics](#aggregate-system-process-metrics)
-  * [Metric: `system.processes.count`](#metric-systemprocessescount)
-  * [Metric: `system.processes.created`](#metric-systemprocessescreated)
+  * [Metric: `system.process.count`](#metric-systemprocesscount)
+  * [Metric: `system.process.created`](#metric-systemprocesscreated)
 - [`system.{os}.` - OS Specific System Metrics](#systemos---os-specific-system-metrics)
   * [Metric: `system.linux.memory.available`](#metric-systemlinuxmemoryavailable)
 
 <!-- tocstop -->
+
+> **Warning** Existing instrumentations and collector that are using<!-- markdown-link-check-disable-next-line -->
+> [v1.21.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.21.0/docs/system/system-metrics.md)
+> (or prior):
+>
+> * SHOULD NOT adopt any breaking changes from document until the system
+>   semantic conventions are marked stable. Conventions include, but are not
+>   limited to, attributes, metric names, and unit of measure.
+> * SHOULD introduce a control mechanism to allow users to opt-in to the new
+>   conventions once the migration plan is finalized.
 
 ## Processor Metrics
 
@@ -359,10 +369,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
 
-`system.disk.direction` MUST be one of the following:
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -383,10 +393,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.operations(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
 
-`system.disk.direction` MUST be one of the following:
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -435,10 +445,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.operation_time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
 
-`system.disk.direction` MUST be one of the following:
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -459,10 +469,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.merged(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.disk.direction` | string | The disk operation direction | `read` | Recommended |
 
-`system.disk.direction` MUST be one of the following:
+`disk.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -575,10 +585,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.dropped(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.direction` | string |  | `transmit` | Recommended |
 
-`system.network.direction` MUST be one of the following:
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -599,10 +609,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.packets(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.direction` | string |  | `transmit` | Recommended |
 
-`system.network.direction` MUST be one of the following:
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -629,10 +639,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.errors(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.direction` | string |  | `transmit` | Recommended |
 
-`system.network.direction` MUST be one of the following:
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -653,10 +663,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.network.io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
 | `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.direction` | string |  | `transmit` | Recommended |
 
-`system.network.direction` MUST be one of the following:
+`network.io.direction` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
@@ -718,22 +728,22 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 **Description:** System level aggregate process metrics captured under the namespace `system.process`.
 For metrics at the individual process level, see [process metrics](process-metrics.md).
 
-### Metric: `system.processes.count`
+### Metric: `system.process.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.system.processes.count(metric_table) -->
+<!-- semconv metric.system.process.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.processes.count` | UpDownCounter | `{process}` | Total number of processes in each state |
+| `system.process.count` | UpDownCounter | `{process}` | Total number of processes in each state |
 <!-- endsemconv -->
 
-<!-- semconv metric.system.processes.count(full) -->
+<!-- semconv metric.system.process.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `system.processes.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | Recommended |
+| `system.process.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | Recommended |
 
-`system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
@@ -743,17 +753,17 @@ This metric is [recommended][MetricRecommended].
 | `defunct` | defunct |
 <!-- endsemconv -->
 
-### Metric: `system.processes.created`
+### Metric: `system.process.created`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.system.processes.created(metric_table) -->
+<!-- semconv metric.system.process.created(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `system.processes.created` | Counter | `{process}` | Total number of processes created over uptime of the host |
+| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host |
 <!-- endsemconv -->
 
-<!-- semconv metric.system.processes.created(full) -->
+<!-- semconv metric.system.process.created(full) -->
 <!-- endsemconv -->
 
 ## `system.{os}.` - OS Specific System Metrics

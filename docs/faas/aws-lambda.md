@@ -14,7 +14,9 @@ use cases.
 <!-- toc -->
 
 - [All triggers](#all-triggers)
-  * [AWS X-Ray Environment Span Link](#aws-x-ray-environment-span-link)
+  * [AWS X-Ray Active Tracing Considerations](#aws-x-ray-active-tracing-considerations)
+    + [`xray-lambda` Propagator Functionality](#xray-lambda-propagator-functionality)
+    + [`xray-lambda` Propagator Configuration](#xray-lambda-propagator-configuration)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
   * [SQS Event](#sqs-event)
@@ -54,21 +56,51 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 [faasres]: /docs/resource/faas.md (FaaS resource conventions)
 [cloud]: /docs/resource/cloud.md (Cloud resource conventions)
 
-### AWS X-Ray Environment Span Link
+### AWS X-Ray Active Tracing Considerations
 
-If the `_X_AMZN_TRACE_ID` environment variable is set, instrumentation SHOULD try to parse an
-OpenTelemetry `Context` out of it using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/context/api-propagators.md). If the
-resulting `Context` is [valid](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#isvalid) then a [Span Link][] SHOULD be added to the new Span's
-[start options](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#specifying-links) with an associated attribute of `source=x-ray-env` to
-indicate the source of the linked span.
-Instrumentation MUST check if the context is valid before using it because the `_X_AMZN_TRACE_ID` environment variable can
-contain an incomplete trace context which indicates X-Ray isn’t enabled. The environment variable will be set and the
-`Context` will be valid and sampled only if AWS X-Ray has been enabled for the Lambda function. A user can
-disable AWS X-Ray for the function if the X-Ray Span Link is not desired.
+When [AWS X-Ray Active Tracing](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html) is enabled for a Lambda,
+the runtime will automatically generate a span based on configured sampling rates and propagate the span context
+via the `_X_AMZN_TRACE_ID` environment variable (and the `com.amazonaws.xray.traceHeader` system property for Java Lambda functions).
+This span context is encoded using the [X-Ray Tracing Header Format](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader).
 
-**Note**: When instrumenting a Java AWS Lambda, instrumentation SHOULD first try to parse an OpenTelemetry `Context` out of the system property `com.amazonaws.xray.traceHeader` using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/api-propagators.md) before checking and attempting to parse the environment variable above.
+Users MUST be able to [configure the propagator](#xray-lambda-propagator-configuration) to prioritize propagating this X-Ray "Active Tracing" span context.
+(FYI: Users probably want this enabled if OpenTelemetry is configured to report spans to AWS X-Ray so their trace is linked together properly.)
 
-[Span Link]: https://opentelemetry.io/docs/concepts/signals/traces/#span-links
+#### `xray-lambda` Propagator Functionality
+
+SDK's that have instrumentation for AWS Lambda SHOULD provide an additional propagator alongside the X-Ray propagator
+that can [be configured](#xray-lambda-propagator-configuration) via the `OTEL_PROPAGATORS` environment variable setting as `xray-lambda`.
+This propagator ignores the provided carrier instance and instead attempts to propagate the span context from the `_X_AMZN_TRACE_ID` environment variable
+(and the `com.amazonaws.xray.traceHeader` system property for Java Lambda functions with priority given to the system property if set).
+
+To avoid potential issues when extracting with an active span context, the `xray-lambda` propagator SHOULD check if the provided context already has an active span context. If found, the propagator SHOULD return the provided context unmodified.
+
+Example pseudo implementation:
+
+```
+extract(context, carrier) {
+    if (Span.fromContext(context).getSpanContext().isValid())
+      return context
+
+    traceHeader = getEnvironment("_X_AMZN_TRACE_ID");
+    if (isEmptyOrNull(traceHeader))
+      return context
+
+    return xrayPropagator.extract(context, ["_X_AMZN_TRACE_ID": traceHeader])
+}
+```
+
+#### `xray-lambda` Propagator Configuration
+
+Since propagators are invoked in order, users would give priority to X-Ray's "Active Tracing" span context by setting the environment variable:
+
+`OTEL_PROPAGATORS=tracecontext,baggage,xray,xray-lambda`
+
+To avoid broken traces, if OpenTelemetry is reporting traces to another system besides AWS X-Ray, users should either omit `xray-lambda` or add it to the beginning:
+
+`OTEL_PROPAGATORS=xray-lambda,tracecontext,baggage,xray`
+
+*Note: The `xray-lambda` propagator can only `extract` context. The `inject` operation MUST be a no-op.*
 
 ## API Gateway
 

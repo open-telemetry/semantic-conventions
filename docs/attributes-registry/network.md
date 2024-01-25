@@ -16,6 +16,7 @@ These attributes may be used for any network related operation.
 | `network.carrier.name` | string | The name of the mobile carrier. | `sprint` |
 | `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` |
 | `network.connection.type` | string | The internet connection type. | `wifi` |
+| `network.io.direction` | string | The network IO operation direction. | `transmit` |
 | `network.local.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | `network.local.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Local port number of the network connection. | `65123` |
 | `network.peer.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
@@ -73,6 +74,13 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unavailable` | unavailable |
 | `unknown` | unknown |
 
+`network.io.direction` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `transmit` | transmit |
+| `receive` | receive |
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
@@ -95,19 +103,19 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 <!-- semconv network-deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `net.host.name` | string | Deprecated, use `server.address`. | `example.com` |
-| `net.host.port` | int | Deprecated, use `server.port`. | `8080` |
-| `net.peer.name` | string | Deprecated, use `server.address` on client spans and `client.address` on server spans. | `example.com` |
-| `net.peer.port` | int | Deprecated, use `server.port` on client spans and `client.port` on server spans. | `8080` |
-| `net.protocol.name` | string | Deprecated, use `network.protocol.name`. | `amqp`; `http`; `mqtt` |
-| `net.protocol.version` | string | Deprecated, use `network.protocol.version`. | `3.1.1` |
-| `net.sock.family` | string | Deprecated, use `network.transport` and `network.type`. | `inet` |
-| `net.sock.host.addr` | string | Deprecated, use `network.local.address`. | `/var/my.sock` |
-| `net.sock.host.port` | int | Deprecated, use `network.local.port`. | `8080` |
-| `net.sock.peer.addr` | string | Deprecated, use `network.peer.address`. | `192.168.0.1` |
-| `net.sock.peer.name` | string | Deprecated, no replacement at this time. | `/var/my.sock` |
-| `net.sock.peer.port` | int | Deprecated, use `network.peer.port`. | `65531` |
-| `net.transport` | string | Deprecated, use `network.transport`. | `ip_tcp` |
+| `net.host.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.address`. | `example.com` |
+| `net.host.port` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.port`. | `8080` |
+| `net.peer.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.address` on client spans and `client.address` on server spans. | `example.com` |
+| `net.peer.port` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.port` on client spans and `client.port` on server spans. | `8080` |
+| `net.protocol.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `network.protocol.name`. | `amqp`; `http`; `mqtt` |
+| `net.protocol.version` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `network.protocol.version`. | `3.1.1` |
+| `net.sock.family` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `network.transport` and `network.type`. | `inet` |
+| `net.sock.host.addr` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `network.local.address`. | `/var/my.sock` |
+| `net.sock.host.port` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `network.local.port`. | `8080` |
+| `net.sock.peer.addr` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `network.peer.address`. | `192.168.0.1` |
+| `net.sock.peer.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. | `/var/my.sock` |
+| `net.sock.peer.port` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `network.peer.port`. | `65531` |
+| `net.transport` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `network.transport`. | `ip_tcp` |
 
 `net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

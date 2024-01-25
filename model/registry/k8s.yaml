@@ -64,6 +64,16 @@ groups:
         brief: >
           The name of the Pod.
         examples: ['opentelemetry-pod-autoconf']
+      - id: pod.label
+        type: template[string]
+        brief: >
+          The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value.
+        examples: ['k8s.pod.label.app=my-app', 'k8s.pod.label.mycompany.io/arch=x64', 'k8s.pod.label.data=']
+      - id: pod.annotation
+        type: template[string]
+        brief: >
+          The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
+        examples: [ 'k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true', 'k8s.pod.annotation.mycompany.io/arch=x64', 'k8s.pod.annotation.data=' ]
       - id: container.name
         type: string
         brief: >
