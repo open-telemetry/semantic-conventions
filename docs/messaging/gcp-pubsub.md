@@ -79,8 +79,8 @@ flowchart TD;
   subgraph CONSUMER
   direction LR
   R1[Receive m1]
-  SM1[ack m1]
-  EM1[modack m1]
+  SM1[Ack m1]
+  EM1[Modack m1]
   end
   subgraph PRODUCER
   direction LR
@@ -124,8 +124,8 @@ flowchart TD;
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |`Ok` | `Ok` |
 | `gcp.project_id` | `"P"` | `"P"` | `"P"` |  `"P"` |  `"P"` |
+| `messaging.destination.name` | `"T"`| `"T"`| `"S"` | `"S"` |`"S"` |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
-| `messaging.destination.name` | `"projects/P/topics/T"`| `"projects/P/topics/T"`| `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` | `"projects/P/subscriptions/S"` |
 | `messaging.operation` | `"create"` | `"publish"` | `"receive"` |  `"modack"` |  `"ack"` |
 | `messaging.message.id` | `"a1"` | | `"a1"` | | |
 | `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
