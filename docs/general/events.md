@@ -30,7 +30,7 @@ such that the name identifies the event structurally. It is also recommended tha
 the event names have low-cardinality, so care must be taken to use fields
 that identify the class of Events but not the instance of the Event.
 
-<!-- semconv event(full) -->
+<!-- semconv event -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`event.name`](../attributes-registry/events.md) | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | Required |
