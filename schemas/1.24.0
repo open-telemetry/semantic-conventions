@@ -1,54 +1,6 @@
 file_format: 1.1.0
-schema_url: https://opentelemetry.io/schemas/next
+schema_url: https://opentelemetry.io/schemas/1.24.0
 versions:
-  next:
-    metrics:
-      changes:
-        # https://github.com/open-telemetry/semantic-conventions/pull/484
-        - rename_attributes:
-            attribute_map:
-              system.processes.status: system.process.status
-            apply_to_metrics:
-              - system.processes.count
-        - rename_metrics:
-            system.processes.count: system.process.count
-            system.processes.created: system.process.created
-        # https://github.com/open-telemetry/semantic-conventions/pull/625
-        - rename_attributes:
-            attribute_map:
-              container.labels: container.label
-              k8s.pod.labels: k8s.pod.label
-        # https://github.com/open-telemetry/semantic-conventions/pull/330
-        - rename_metrics:
-            process.threads: process.thread.count
-            process.open_file_descriptors: process.open_file_descriptor.count
-        - rename_attributes:
-            attribute_map:
-              state: process.cpu.state
-            apply_to_metrics:
-              - process.cpu.time
-              - process.cpu.utilization
-        - rename_attributes:
-            attribute_map:
-              direction: disk.io.direction
-            apply_to_metrics:
-              - process.disk.io
-        - rename_attributes:
-            attribute_map:
-              type: process.context_switch_type
-            apply_to_metrics:
-              - process.context_switches
-        - rename_attributes:
-            attribute_map:
-              direction: network.io.direction
-            apply_to_metrics:
-              - process.network.io
-        - rename_attributes:
-            attribute_map:
-              type: process.paging.fault_type
-            apply_to_metrics:
-              - process.paging.faults
-
   1.24.0:
     metrics:
       changes:
