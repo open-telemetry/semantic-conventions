@@ -299,15 +299,15 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 | [`messaging.message.envelope.size`](../attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [12] | `2738` | Recommended |
 | [`messaging.message.id`](../attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended |
 | [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [13] | `publish` | Required |
-| [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
+| [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. [14] | `kafka`; `rabbitmq` | Required |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [14] | `amqp`; `mqtt` | Conditionally Required: [15] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [16] | `3.1.1` | Recommended |
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` | Recommended |
-| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [18] | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [19] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [20] | `80`; `8080`; `443` | Recommended |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [15] | `amqp`; `mqtt` | Conditionally Required: [16] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [17] | `3.1.1` | Recommended |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [18] | `tcp`; `udp` | Recommended |
+| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [19] | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [21] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -352,23 +352,25 @@ size should be used.
 
 **[13]:** If a custom value is used, it MUST be of low cardinality.
 
-**[14]:** The value SHOULD be normalized to lowercase.
+**[14]:** Messaging instrumentations MUST use applicable value from the [list of known messaging systems](/docs/messaging/README.md#technology-specific-semantic-conventions) when it is available. When instrumenting a new messaging system, instrumentation authors should document the new system name and add it to the [list](/docs/messaging/README.md#technology-specific-semantic-conventions).
 
-**[15]:** Only for messaging systems and frameworks that support more than one protocol.
+**[15]:** The value SHOULD be normalized to lowercase.
 
-**[16]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[16]:** Only for messaging systems and frameworks that support more than one protocol.
 
-**[17]:** The value SHOULD be normalized to lowercase.
+**[17]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+**[18]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[18]:** The value SHOULD be normalized to lowercase.
+**[19]:** The value SHOULD be normalized to lowercase.
 
-**[19]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[20]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
-**[20]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[21]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -384,21 +386,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
 | `deliver` | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
-
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `activemq` | Apache ActiveMQ |
-| `aws_sqs` | Amazon Simple Queue Service (SQS) |
-| `azure_eventgrid` | Azure Event Grid |
-| `azure_eventhubs` | Azure Event Hubs |
-| `azure_servicebus` | Azure Service Bus |
-| `gcp_pubsub` | Google Cloud Pub/Sub |
-| `jms` | Java Message Service |
-| `kafka` | Apache Kafka |
-| `rabbitmq` | RabbitMQ |
-| `rocketmq` | Apache RocketMQ |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

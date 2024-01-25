@@ -146,8 +146,8 @@ added as a link to the span. This means the span may have as many links as messa
 See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `AmazonSQS`.
+- [`messaging.operation`](/docs/messaging/messaging-spans.md) MUST be set to `deliver`.
+- [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `aws_sqs`.
 
 ### SQS Message
 
@@ -159,8 +159,8 @@ added as a link to the span.
 See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `AmazonSQS`.
+- [`messaging.operation`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `deliver`.
+- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `aws_sqs`.
 
 Other [Messaging attributes](/docs/messaging/messaging-spans.md#messaging-attributes) SHOULD be set based on the available information in the SQS message
 event.
@@ -239,9 +239,9 @@ Function F:                      | Span ProcBatch |
 | Links |  |  |  | Span Prod1 | Span Prod2 |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
-| `messaging.system` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` |
+| `messaging.system` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` |
 | `messaging.destination.name` | `Q` | `Q` | `Q` | `Q` | `Q` |
-| `messaging.operation` |  |  | `process` | `process` | `process` |
+| `messaging.operation` | `publish` | `publish` | `deliver` | `deliver` | `deliver` |
 | `messaging.message.id` | | | | `"a1"` | `"a2"` |
 
 Note that if Span Prod1 and Span Prod2 were sent to different queues, Span ProcBatch would not have

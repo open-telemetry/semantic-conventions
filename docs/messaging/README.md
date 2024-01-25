@@ -16,11 +16,28 @@ Semantic conventions for messaging systems are defined for the following signals
 * [Messaging Spans](messaging-spans.md): Semantic Conventions for messaging *spans*.
 * [Messaging Metrics](messaging-metrics.md): Semantic Conventions for messaging *metrics*.
 
-Technology specific semantic conventions are defined for the following messaging systems:
+## Technology specific semantic conventions
 
-* [Kafka](kafka.md): Semantic Conventions for *Apache Kafka*.
-* [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
-* [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
-* [Google Cloud Pub/Sub](gcp-pubsub.md): Semantic Conventions for *Google Cloud Pub/Sub*.
+**Status**: [Experimental][DocumentStatus]
+<!-- Individual messaging systems may be declared stable along with the corresponding messaging.system value, but this list as a whole is not intended to be stabilized. -->
+
+Messaging system name is recorded on telemetry signals with `messaging.system` attribute.
+
+`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used.
+
+| Value  | Description | Semantic Conventions |
+|---|---|---|
+| `activemq` | Apache ActiveMQ |  |
+| `aws_sqs` | Amazon Simple Queue Service (SQS) |  |
+| `azure_eventgrid` | Azure Event Grid |  |
+| `azure_eventhubs` | Azure Event Hubs |  |
+| `azure_servicebus` | Azure Service Bus |  |
+| `gcp_pubsub` | Google Cloud Pub/Sub | [Google Cloud Pub/Sub](gcp-pubsub.md) |
+| `jms` | Java Message Service |
+| `kafka` | Apache Kafka | [Kafka](kafka.md)|
+| `rabbitmq` | RabbitMQ | [RabbitMQ](rabbitmq.md) |
+| `rocketmq` | Apache RocketMQ | [RocketMQ](rocketmq.md) |
+
+If none of these values apply, consider submitting a proposal to this specification to add a new system.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
