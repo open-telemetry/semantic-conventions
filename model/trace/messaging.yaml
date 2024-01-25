@@ -77,17 +77,9 @@ groups:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
       - ref: messaging.message.id
-        requirement_level:
-          recommended: Only for spans that represent an operation on a single message.
       - ref: messaging.message.conversation_id
-        requirement_level:
-          recommended: Only if span represents operation on a single message.
       - ref: messaging.message.envelope.size
-        requirement_level:
-          recommended: Only if span represents operation on a single message.
       - ref: messaging.message.body.size
-        requirement_level:
-          recommended: Only if span represents operation on a single message.
       - ref: server.address
       - ref: network.peer.address
         tag: connection-level
