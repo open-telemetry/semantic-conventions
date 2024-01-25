@@ -26,16 +26,7 @@
 | `messaging.destination.temporary` | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  |
 | `messaging.destination_publish.anonymous` | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name). |  |
 | `messaging.destination_publish.name` | string | The name of the original destination the message was published to [4] | `MyQueue`; `MyTopic` |
-| `messaging.gcp_pubsub.ack_deadline_seconds` | int | The ack deadline set for the modify ack deadline request | `10` |
-| `messaging.gcp_pubsub.message.ack_id` | string | The ack id for a given message. | `ack_id` |
-| `messaging.gcp_pubsub.message.delivery_attempt` | int | The delivery attempt for a given message. | `2` |
-| `messaging.gcp_pubsub.message.ordering_key` | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` |
-| `messaging.kafka.consumer.group` | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` |
-| `messaging.kafka.destination.partition` | int | Partition the message is sent to. | `2` |
-| `messaging.kafka.message.key` | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [5] | `myKey` |
-| `messaging.kafka.message.offset` | int | The offset of a record in the corresponding Kafka partition. | `42` |
-| `messaging.kafka.message.tombstone` | boolean | A boolean that is true if the message is a tombstone. |  |
-| `messaging.message.body.size` | int | The size of the message body in bytes. [6] | `1439` |
+| `messaging.message.body.size` | int | The size of the message body in bytes. [5] | `1439` |
 | `messaging.message.conversation_id` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
 | `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [6] | `2738` |
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
@@ -90,7 +81,7 @@ size should be used.
 <!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-gcp-pubsub) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `messaging.gcp_pubsub.message.ordering_key` | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` |
+| `messaging.gcp_pubsub.message.delivery_attempt` | int | The delivery attempt for a given message. | `2` |
 <!-- endsemconv -->
 
 ## Kafka Attributes

@@ -166,9 +166,9 @@ groups:
           conditionally_required: If the message type has an ordering key set.
       - ref: messaging.gcp_pubsub.message.delivery_attempt
         tag: tech-specific-gcp-pubsub
-        requirement_level: required     
+        requirement_level: required 
       - ref: messaging.gcp_pubsub.ack_deadline_seconds
         tag: tech-specific-gcp-pubsub
       - ref: messaging.gcp_pubsub.message.ack_id
         tag: tech-specific-gcp-pubsub
-        requirement_level: required     
+        requirement_level: required
