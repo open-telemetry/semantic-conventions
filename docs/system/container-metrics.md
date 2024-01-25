@@ -12,33 +12,42 @@ linkTitle: Container
 
 This metric is optional.
 
-<!-- semconv metric.container.cpu.utilization(metric_table) -->
+<!-- semconv metric.container.cpu.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `container.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the container. [1] |
+| `container.cpu.time` | Counter | `ns` | Total CPU time consumed [1] |
 
-**[1]:** CPU usage percentage normalized by the number of CPU cores. The value range is [0.0,1.0].
+**[1]:** Total CPU time consumed by the specific container.
 <!-- endsemconv -->
 
-<!-- semconv metric.container.cpu.utilization(full) -->
+<!-- semconv metric.container.cpu.time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| `container.cpu.state` | string | The state of the CPU | `user`; `kernel` | Opt-In |
 | [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
+
+`container.cpu.state` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `user` | user |
+| `system` | system |
+| `kernel` | kernel |
 <!-- endsemconv -->
 
 ### Metric: `container.memory.utilization`
 
 This metric is optional.
 
-<!-- semconv metric.container.memory.utilization(metric_table) -->
+<!-- semconv metric.container.memory.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `container.memory.utilization` | Gauge | `1` | Recent memory utilization for the container. [1] |
+| `container.memory.usage` | Counter | `By` | Memory usage of the container. [1] |
 
-**[1]:** Memory usage percentage. The value range is [0.0,1.0].
+**[1]:** Memory usage of the container.
 <!-- endsemconv -->
 
-<!-- semconv metric.container.memory.utilization(full) -->
+<!-- semconv metric.container.memory.usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |

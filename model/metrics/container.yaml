@@ -1,24 +1,44 @@
 groups:
-  - id: metric.container.cpu.utilization
-    type: metric
-    metric_name: container.cpu.utilization
-    brief: "Recent CPU utilization for the container."
-    note: >
-      CPU usage percentage normalized by the number of CPU cores.
-      The value range is [0.0,1.0].
-    instrument: gauge
-    unit: "1"
+  # container.cpu.* metrics and attribute group
+  - id: attributes.container.cpu
+    prefix: container.cpu
+    type: attribute_group
+    brief: "Describes Container CPU metric attributes"
     attributes:
-      - ref: container.id
-  - id: metric.container.memory.utilization
+      - id: state
+        type:
+          allow_custom_values: false
+          members:
+            - id: user
+              value: 'user'
+            - id: system
+              value: 'system'
+            - id: kernel
+              value: 'kernel'
+        brief: "The state of the CPU"
+        examples: ["user", "kernel"]
+  - id: metric.container.cpu.time
     type: metric
-    metric_name: container.memory.utilization
-    brief: "Recent memory utilization for the container."
+    metric_name: container.cpu.time
+    brief: "Total CPU time consumed"
     note: >
-      Memory usage percentage.
-      The value range is [0.0,1.0].
-    instrument: gauge
-    unit: "1"
+      Total CPU time consumed by the specific container.
+    instrument: counter
+    unit: "ns"
+    attributes:
+      - ref: container.cpu.state
+        requirement_level: opt_in
+      - ref: container.id
+
+    # container.memory.* metrics and attribute group
+  - id: metric.container.memory.usage
+    type: metric
+    metric_name: container.memory.usage
+    brief: "Memory usage of the container."
+    note: >
+      Memory usage of the container.
+    instrument: counter
+    unit: "By"
     attributes:
       - ref: container.id
 
