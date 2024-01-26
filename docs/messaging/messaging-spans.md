@@ -184,17 +184,18 @@ If the destination name is dynamic, such as a [conversation ID](#conversations) 
 In these cases, an artificial destination name that best expresses the destination, or a generic, static fallback like `"(anonymous)"` for [anonymous destinations](#temporary-and-anonymous-destinations) SHOULD be used instead.
 
 The values allowed for `<operation name>` are defined in the section [Operation names](#operation-names) below.
-If the format above is used, the operation name MUST match the `messaging.operation` attribute defined for message consumer spans below.
 
 Examples:
 
 * `shop.orders publish`
 * `shop.orders receive`
-* `shop.orders process`
+* `shop.orders settle`
 * `print_jobs publish`
-* `topic with spaces process`
-* `AuthenticationRequest-Conversations process`
+* `topic with spaces deliver`
+* `AuthenticationRequest-Conversations settle`
 * `(anonymous) publish` (`(anonymous)` being a stable identifier for an unnamed destination)
+
+Messaging system specific adaptions to span naming MUST be documented in [semantic conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies).
 
 ### Operation names
 
