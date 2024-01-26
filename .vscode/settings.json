@@ -11,7 +11,7 @@
     },
     "yaml.schemas": {
         "https://raw.githubusercontent.com/open-telemetry/build-tools/v0.24.0/semantic-conventions/semconv.schema.json": [
-            "model/**/*.yaml",
+            "model/**/*.yaml"
         ]
     },
     "json.schemaDownload.enable": true
