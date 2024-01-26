@@ -1,13 +1,20 @@
 groups:
-  - id: ios.lifecycle.events
+  - id: device.app.lifecycle
     type: event
-    prefix: ios
     name: device.app.lifecycle
     brief: >
-      This event represents an occurrence of a lifecycle transition on the iOS platform.
+      This event represents an occurrence of a lifecycle transition on Android or iOS platform.
+    note: >
+      This events identifies the fields that are common to all lifecycle events for android and iOS using
+      the `android.state` and `ios.state` attributes. The `android.state` and `ios.state` attributes are
+      mutually exclusive.
+
+  - id: device.app.lifecycle.payload
+    type: attribute_group
+    brief: >
+      This defines the content of the Log Body for the device.app.lifecycle event.
     attributes:
-      - id: state
-        requirement_level: "required"
+      - id: ios.state
         note: >
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
           and from which the `OS terminology` column values are derived.
@@ -37,16 +44,8 @@ groups:
             - id: terminate
               value: 'terminate'
               brief: >
-                The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
-  - id: android.lifecycle.events
-    type: event
-    prefix: android
-    name: device.app.lifecycle
-    brief: >
-      This event represents an occurrence of a lifecycle transition on the Android platform.
-    attributes:
-      - id: state
-        requirement_level: required
+                The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.    
+      - id: android.state
         brief: >
           This attribute represents the state the application has transitioned into at the occurrence of the event.
         note: >
@@ -70,3 +69,7 @@ groups:
               brief: >
                 Any time after Activity.onResume() or, if the app has no Activity,
                 Context.startService() has been called when the app was in either the created or background states.
+    constraints:
+      - any_of:
+          - "ios.state"
+          - "android.state"

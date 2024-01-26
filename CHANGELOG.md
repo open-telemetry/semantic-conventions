@@ -41,6 +41,10 @@ release.
 
 ### Fixes
 
+- Reformat and update the `device.app.lifecycle` event description adds
+  constraints for the possible values of the `android.state` and `ios.state`.
+  ([#673](https://github.com/open-telemetry/semantic-conventions/pull/673))
+
 ## v1.24.0 (2023-12-15)
 
 ### Breaking
