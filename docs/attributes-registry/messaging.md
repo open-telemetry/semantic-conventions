@@ -10,6 +10,8 @@
 - [Kafka Attributes](#kafka-attributes)
 - [RabbitMQ Attributes](#rabbitmq-attributes)
 - [RocketMQ Attributes](#rocketmq-attributes)
+- [Azure Event Hubs Attributes](#azure-event-hubs-attributes)
+- [Azure Service Bus Attributes](#azure-service-bus-attributes)
 
 <!-- tocstop -->
 
