@@ -113,8 +113,13 @@ groups:
       Attributes for Apache Kafka
     attributes:
       - ref: messaging.system
-        brief: >
-          MUST be set to `"kafka"`
+        type:
+          allow_custom_values: false
+          members:
+            - id: kafka
+              value: 'kafka'
+              brief: "Apache kafka"
+        examples: 'kafka'
       - ref: messaging.kafka.message.key
         tag: tech-specific-kafka
       - ref: messaging.kafka.consumer.group
@@ -135,8 +140,13 @@ groups:
       Attributes for Apache RocketMQ
     attributes:
       - ref: messaging.system
-        brief: >
-          MUST be set to `"rocketmq"`
+        type:
+          allow_custom_values: false
+          members:
+            - id: rocketmq
+              value: 'rocketmq'
+              brief: "Rocket MQ"
+        examples: 'rocketmq'
       - ref: messaging.rocketmq.namespace
         requirement_level: required
         tag: tech-specific-rocketmq
@@ -170,9 +180,58 @@ groups:
       Attributes for Google Cloud Pub/Sub
     attributes:
       - ref: messaging.system
-        brief: >
-          MUST be set to `"gcp_pubsub"`
+        type:
+          allow_custom_values: false
+          members:
+            - id: gcp_pubsub
+              value: 'gcp_pubsub'
+              brief: "Google Pub/Sub"
+        examples: 'gcp_pubsub'
       - ref: messaging.gcp_pubsub.message.ordering_key
         tag: tech-specific-gcp-pubsub
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
+  - id: messaging.activemq
+    type: attribute_group
+    extends: messaging
+    brief: >
+      Attributes for ActiveMQ
+    attributes:
+      - ref: messaging.system
+        type:
+          allow_custom_values: false
+          members:
+            - id: activemq
+              value: 'activemq'
+              brief: "Active MQ"
+        examples: 'activemq'
+
+  - id: messaging.aws_sqs
+    type: attribute_group
+    extends: messaging
+    brief: >
+      Attributes for AWS SQS
+    attributes:
+      - ref: messaging.system
+        type:
+          allow_custom_values: false
+          members:
+            - id: aws_sqs
+              value: 'aws_sqs'
+              brief: "AWS SQS"
+        examples: 'aws_sqs'
+
+  - id: messaging.servicebus
+    type: attribute_group
+    extends: messaging
+    brief: >
+      Attributes for Azure ServiceBus
+    attributes:
+      - ref: messaging.system
+        type:
+          allow_custom_values: false
+          members:
+            - id: servicebus
+              value: 'servicebus'
+              brief: "Azure ServiceBus"
+        examples: 'servicebus'

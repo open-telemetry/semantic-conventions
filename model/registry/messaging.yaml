@@ -239,10 +239,19 @@ groups:
       - id: system
         brief: >
           An identifier for the messaging system being used.
-        type: string
+        type:
+          allow_custom_values: true
+          members:
+            - id: kafka
+              value: 'kafka'
+              brief: "Apache kafka"
+            - id: rabbitmq
+              value: 'rabbitmq'
+              brief: 'RabbitMQ'
         examples: ['kafka', 'rabbitmq']
         note: >
-          Messaging instrumentations MUST use applicable value from the
+          Semantic convention extensions MUST override value with their own identifier.
+          Instrumentation MUST use applicable value from the
           [list of known messaging systems](/docs/messaging/README.md#technology-specific-semantic-conventions) when it is available.
           When instrumenting a new messaging system, instrumentation authors should document the new system name and add it to the
           [list](/docs/messaging/README.md#technology-specific-semantic-conventions).

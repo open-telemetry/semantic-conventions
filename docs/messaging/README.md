@@ -25,6 +25,7 @@ Messaging system name is recorded on telemetry signals with `messaging.system` a
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used.
 
+<!-- TODO this could be auto-generated if is implemented https://github.com/open-telemetry/build-tools/issues/192 -->
 | Value  | Description | Semantic Conventions |
 |---|---|---|
 | `activemq` | Apache ActiveMQ |  |
