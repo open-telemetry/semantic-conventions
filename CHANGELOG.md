@@ -13,6 +13,8 @@ release.
   ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
 - Depluralize labels for pod (`k8s.pod.labels.*`) and container (`container.labels.*`) resources
   ([#625](https://github.com/open-telemetry/semantic-conventions/pull/625))
+- Make `network.protocol.name` conditionally required for messaging
+  ([#644](https://github.com/open-telemetry/semantic-conventions/pull/644))
 - BREAKING: Generate process metrics from YAML
   ([#330](https://github.com/open-telemetry/semantic-conventions/pull/330))
   - Rename `process.threads` to `process.thread.count`
@@ -32,8 +34,10 @@ release.
 
 - Add `azure_container_apps` to `cloud.platform` semantic conventions
   ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
+- Add `user_agent.name` and `user_agent.version` attributes
+  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
 - Add an example for gcp_pubsub asynchronous batch publish
-  ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545)).
+  ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545))
 
 ### Fixes
 
