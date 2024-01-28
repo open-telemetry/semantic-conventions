@@ -1,0 +1,109 @@
+groups:
+  - id: metric.openai.chat_completions.tokens
+    type: metric
+    metric_name: llm.openai.chat_completions.tokens
+    brief: "Number of tokens used in prompt and completions."
+    instrument: counter
+    unit: "token"
+    stability: experimental
+    attributes:
+      - ref: llm.response.model
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in error"
+      - ref: llm.usage.token_type
+      - ref: server.address
+        requirement_level: required
+  - id: metric.openai.chat_completions.choices
+    type: metric
+    metric_name: llm.openai.chat_completions.choices
+    brief: "Number of choices returned by chat completions call"
+    instrument: counter
+    unit: "choice"
+    stability: experimental
+    attributes:
+      - ref: llm.response.model
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in error"
+      - ref: llm.response.finish_reason
+      - ref: server.address
+        requirement_level: required
+  - id: metric.openai.chat_completions.duration
+    type: metric
+    metric_name: llm.openai.chat_completions.duration
+    brief: "Duration of chat completion operation"
+    instrument: histogram
+    unit: 's'
+    stability: experimental
+    attributes:
+      - ref: llm.response.model
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in error"
+      - ref: llm.response.finish_reason
+      - ref: server.address
+        requirement_level: required
+  - id: metric.openai.embeddings.tokens
+    type: metric
+    metric_name: llm.openai.embeddings.tokens
+    brief: "Number of tokens used in prompt and completions."
+    instrument: counter
+    unit: "token"
+    stability: experimental
+    attributes:
+      - ref: llm.response.model
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in error"
+      - ref: llm.usage.token_type
+      - ref: server.address
+        requirement_level: required
+  - id: metric.openai.embeddings.vector_size
+    type: metric
+    metric_name: llm.openai.embeddings.vector_size
+    brief: "he size of returned vector."
+    instrument: counter
+    unit: "element"
+    stability: experimental
+    attributes:
+      - ref: llm.response.model
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in error"
+      - ref: server.address
+        requirement_level: required
+  - id: metric.openai.embeddings.duration
+    type: metric
+    metric_name: llm.openai.embeddings.duration
+    brief: "Duration of embeddings operation"
+    instrument: histogram
+    unit: 's'
+    stability: experimental
+    attributes:
+      - ref: llm.response.model
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in error"
+      - ref: server.address
+        requirement_level: required
+  - id: metric.openai.image_generations.duration
+    type: metric
+    metric_name: llm.openai.image_generations.duration
+    brief: "Duration of image generations operation"
+    instrument: histogram
+    unit: 's'
+    stability: experimental
+    attributes:
+      - ref: llm.response.model
+        requirement_level: required
+      - ref: error.type
+          conditionally_required: "if the operation ended in error"
+      - ref: server.address
+        requirement_level: required
