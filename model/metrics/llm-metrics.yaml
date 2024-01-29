@@ -102,8 +102,8 @@ groups:
     stability: experimental
     attributes:
       - ref: llm.response.model
-        requirement_level: required
-      - ref: error.type
+        requirement_level:
           conditionally_required: "if the operation ended in error"
+      - ref: error.type
       - ref: server.address
         requirement_level: required

@@ -11,7 +11,9 @@ groups:
       - ref: llm.request.model
         requirement_level: required
         note: >
-            The name of the LLM a request is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model requested. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+            The name of the LLM a request is being made to. If the LLM is supplied by a vendor,
+            then the value must be the exact name of the model requested. If the LLM is a fine-tuned
+            custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: llm.request.max_tokens
         requirement_level: recommended
       - ref: llm.request.temperature
@@ -27,7 +29,9 @@ groups:
       - ref: llm.response.model
         requirement_level: required
         note: >
-          The name of the LLM a response is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model actually used. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+          The name of the LLM a response is being made to. If the LLM is supplied by a vendor,
+          then the value must be the exact name of the model actually used. If the LLM is a
+          fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: llm.response.finish_reason
         requirement_level: recommended
       - ref: llm.usage.prompt_tokens
@@ -44,13 +48,16 @@ groups:
     name: llm.content.prompt
     type: event
     brief: >
-      In the lifetime of an LLM span, events for prompts sent and completions received may be created, depending on the configuration of the instrumentation.
+      In the lifetime of an LLM span, events for prompts sent and completions received
+      may be created, depending on the configuration of the instrumentation.
     attributes:
       - ref: llm.prompt
         requirement_level: recommended
         note: >
-          The full prompt string sent to an LLM in a request. If the LLM accepts a more complex input like a JSON object, this field is blank, and the response is instead captured in an event determined by the specific LLM technology semantic convention.
-      
+          The full prompt string sent to an LLM in a request. If the LLM accepts a more
+          complex input like a JSON object, this field is blank, and the response is
+          instead captured in an event determined by the specific LLM technology semantic convention.
+
   - id: llm.content.completion
     name: llm.content.completion
     type: event
@@ -60,7 +67,11 @@ groups:
       - ref: llm.completion
         requirement_level: recommended
         note: >
-          The full response string from an LLM. If the LLM responds with a more complex output like a JSON object made up of several pieces (such as OpenAI's message choices), this field is the content of the response. If the LLM produces multiple responses, then this field is left blank, and each response is instead captured in an event determined by the specific LLM technology semantic convention.
+          The full response string from an LLM. If the LLM responds with a more
+          complex output like a JSON object made up of several pieces (such as OpenAI's message choices),
+          this field is the content of the response. If the LLM produces multiple responses, then this
+          field is left blank, and each response is instead captured in an event determined by the specific
+          LLM technology semantic convention.
 
   - id: llm.openai
     type: span
@@ -74,7 +85,10 @@ groups:
       - ref: llm.request.model
         requirement_level: required
         note: >
-            The name of the LLM a request is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model requested. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+            The name of the LLM a request is being made to. If the LLM is supplied by a
+            vendor, then the value must be the exact name of the model requested. If the
+            LLM is a fine-tuned custom model, the value should have a more specific name
+            than the base model that's been fine-tuned.
         tag: tech-specific-openai-request
       - ref: llm.request.max_tokens
         tag: tech-specific-openai-request
@@ -126,7 +140,7 @@ groups:
       - ref: llm.openai.content
         requirement_level: required
       - ref: llm.openai.tool_call.id
-        requirement_level: 
+        requirement_level:
           conditionally_required: >
             Required if the prompt role is `tool`.
 
@@ -159,18 +173,18 @@ groups:
       - ref: llm.openai.content
         requirement_level: required
       - ref: llm.openai.tool_call.id
-        requirement_level: 
+        requirement_level:
           conditionally_required: >
             Required if the choice is the result of a tool call.
       - ref: llm.openai.tool.type
-        requirement_level: 
+        requirement_level:
           conditionally_required: >
             Required if the choice is the result of a tool call.
       - ref: llm.openai.function.name
-        requirement_level: 
+        requirement_level:
           conditionally_required: >
             Required if the choice is the result of a tool call of type `function`.
       - ref: llm.openai.function.arguments
-        requirement_level: 
+        requirement_level:
           conditionally_required: >
             Required if the choice is the result of a tool call of type `function`.
