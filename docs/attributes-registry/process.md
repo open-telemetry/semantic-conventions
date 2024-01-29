@@ -12,7 +12,6 @@
 | `process.command_args` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `[cmd/otecol, --config=config.yaml]` |
 | `process.command_line` | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` |
 | `process.end` | string | The date and time the process ended, in ISO 8601 format. | `2023-11-21T09:26:12.315Z` |
-| `process.env_vars` | string[] | Array of environment variable bindings. [1] | `[PATH=/usr/local/bin;/usr/bin, USER=ubuntu]` |
 | `process.executable.name` | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
 | `process.executable.path` | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
 | `process.exit_code` | int | The exit code of the process. | `127` |
@@ -32,10 +31,7 @@
 | `process.start` | string | The date and time the process started, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` |
 | `process.user.id` | int | The effective user ID (EUID) of the process. | `1001` |
 | `process.user.name` | string | The username of the effective user of the process. | `root` |
-| `process.vpid` | int | Virtual process identifier. [2] | `12` |
+| `process.vpid` | int | Virtual process identifier. [1] | `12` |
 
-**[1]:** As environment variables may change during a process's lifespan, this SHOULD be captured as a snapshot when the event occurred.
-This SHOULD be filtered to protect sensitive information.
-
-**[2]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+**[1]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 <!-- endsemconv -->

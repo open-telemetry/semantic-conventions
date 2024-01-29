@@ -74,16 +74,6 @@ groups:
           null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based
           executables, this would be the full argv vector passed to `main`.
         examples: ['cmd/otecol', '--config=config.yaml']
-      - id: env_vars
-        type: string[]
-        brief: >
-          Array of environment variable bindings.
-        note: >
-          As environment variables may change during a process's lifespan, this SHOULD be
-          captured as a snapshot when the event occurred.
-
-          This SHOULD be filtered to protect sensitive information.
-        examples: ['PATH=/usr/local/bin;/usr/bin', 'USER=ubuntu']
       - id: owner
         type: string
         brief: >
