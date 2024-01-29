@@ -124,7 +124,6 @@ it's RECOMMENDED to:
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
-
 ### Metric: `openai.chat_completions.duration`
 
 **Status**: [Experimental][DocumentStatus]
@@ -319,8 +318,6 @@ it's RECOMMENDED to:
 |---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
-
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
 
 ## Image generation
 

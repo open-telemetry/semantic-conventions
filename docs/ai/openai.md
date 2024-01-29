@@ -6,22 +6,22 @@ linkTitle: OpenAI
 
 **Status**: [Experimental][DocumentStatus]
 
-This document outlines the Semantic Conventions specific to 
-[OpenAI](https://platform.openai.com/) spans, extending the general semantics 
-found in the [LLM Semantic Conventions](llm-spans.md). These conventions are 
-designed to standardize telemetry data for OpenAI interactions, particularly 
-focusing on the `/chat/completions` endpoint. By following to these guidelines, 
+This document outlines the Semantic Conventions specific to
+[OpenAI](https://platform.openai.com/) spans, extending the general semantics
+found in the [LLM Semantic Conventions](llm-spans.md). These conventions are
+designed to standardize telemetry data for OpenAI interactions, particularly
+focusing on the `/chat/completions` endpoint. By following to these guidelines,
 developers can ensure consistent, meaningful, and easily interpretable telemetry
 data across different applications and platforms.
 
 ## Chat Completions
 
-The span name for OpenAI chat completions SHOULD be `openai.chat` 
+The span name for OpenAI chat completions SHOULD be `openai.chat`
 to maintain consistency and clarity in telemetry data.
 
 ## Request Attributes
 
-These are the attributes when instrumenting OpenAI LLM requests with the 
+These are the attributes when instrumenting OpenAI LLM requests with the
 `/chat/completions` endpoint.
 
 <!-- semconv llm.openai(tag=llm-request-tech-specific) -->
@@ -67,7 +67,7 @@ Because OpenAI uses a more complex prompt structure, these events will be used i
 
 ### Prompt Events
 
-Prompt event name SHOULD be `llm.openai.prompt`. 
+Prompt event name SHOULD be `llm.openai.prompt`.
 
 <!-- semconv llm.openai(tag=llm-prompt-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
@@ -87,15 +87,15 @@ Tools event name SHOULD be `llm.openai.tool`, specifying potential tools or func
 | `type` | string | They type of the tool. Currently, only `function` is supported. | `function` | Required |
 | `function.name` | string | The name of the function to be called. | `get_weather` | Required !
 | `function.description` | string | A description of what the function does, used by the model to choose when and how to call the function. | `` | Required |
-| `function.parameters` | string | JSON-encoded string of the parameter object for the function. | `{"type": "object", "properties": {}}` | Required | 
+| `function.parameters` | string | JSON-encoded string of the parameter object for the function. | `{"type": "object", "properties": {}}` | Required |
 <!-- endsemconv -->
 
 ### Choice Events
 
-Recording details about Choices in each response MAY be included as 
-Span Events. 
+Recording details about Choices in each response MAY be included as
+Span Events.
 
-Choice event name SHOULD be `llm.openai.choice`. 
+Choice event name SHOULD be `llm.openai.choice`.
 
 If there is more than one `tool_call`, separate events SHOULD be used.
 
