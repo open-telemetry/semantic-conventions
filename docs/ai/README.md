@@ -19,6 +19,7 @@ Semantic conventions for LLM operations are defined for the following signals:
 
 Technology specific semantic conventions are defined for the following LLM providers:
 
-* [OpenAI](openai.md): Semantic Conventions for *OpenAI*.
+* [OpenAI](openai.md): Semantic Conventions for *OpenAI* spans.
+* [OpenAI Metrics](openai-metrics.md): Semantic Conventions for *OpenAI* metrics.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

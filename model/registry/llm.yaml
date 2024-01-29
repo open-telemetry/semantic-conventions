@@ -55,6 +55,15 @@ groups:
         brief: The reason the model stopped generating tokens.
         examples: ['stop']
         tag: llm-generic-response
+      - id: usage.token_type
+        type:
+          members:
+            - id: prompt
+              value: 'prompt'
+            - id: completion
+              value: 'completion'
+        brief: The type of token.
+        examples: ['prompt']
       - id: usage.prompt_tokens
         type: int
         brief: The number of tokens used in the LLM prompt.
@@ -174,7 +183,7 @@ groups:
         tag: tech-specific-openai-events
       - id: openai.function.arguments
         type: string
-        brief: If exists, the arguments to call a function call with for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message. 
+        brief: If exists, the arguments to call a function call with for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message.
         examples: '{"type": "object", "properties": {"some":"data"}}'
         tag: tech-specific-openai-events
       - id: openai.choice.type
