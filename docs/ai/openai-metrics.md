@@ -341,7 +341,7 @@ of `[ 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Recommended |
-| [`llm.response.model`](../attributes-registry/llm.md) | string | The name of the LLM a response is being made to. | `gpt-4-0613` | Required |
+| [`llm.response.model`](../attributes-registry/llm.md) | string | The name of the LLM a response is being made to. | `gpt-4-0613` | Conditionally Required: if the operation ended in error |
 | [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.

@@ -23,13 +23,13 @@
 <!-- semconv registry.llm(omit_requirement_level,tag=llm-generic-request) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
+| `llm.request.is_stream` | boolean | Whether the LLM responds with a stream. | `False` |
 | `llm.request.max_tokens` | int | The maximum number of tokens the LLM generates for a request. | `100` |
 | `llm.request.model` | string | The name of the LLM a request is being made to. | `gpt-4` |
 | `llm.request.stop_sequences` | string | Array of strings the LLM uses as a stop sequence. | `stop1` |
-| `llm.request.stream` | boolean | Whether the LLM responds with a stream. | `False` |
 | `llm.request.temperature` | double | The temperature setting for the LLM request. | `0.0` |
 | `llm.request.top_p` | double | The top_p sampling setting for the LLM request. | `1.0` |
-| `llm.request.vendor` | string | The name of the LLM foundation model vendor, if applicable. | `openai` |
+| `llm.system` | string | The name of the LLM foundation model vendor, if applicable. | `openai` |
 <!-- endsemconv -->
 
 ### Response Attributes
@@ -38,7 +38,7 @@
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `llm.response.finish_reason` | string | The reason the model stopped generating tokens. | `stop` |
-| `llm.response.id` | string | The unique identifier for the completion. | `chatcmpl-123` |
+| `llm.response.id` | string[] | The unique identifier for the completion. | `[chatcmpl-123]` |
 | `llm.response.model` | string | The name of the LLM a response is being made to. | `gpt-4-0613` |
 | `llm.usage.completion_tokens` | int | The number of tokens used in the LLM response (completion). | `180` |
 | `llm.usage.prompt_tokens` | int | The number of tokens used in the LLM prompt. | `100` |
