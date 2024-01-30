@@ -30,7 +30,7 @@ release.
   - Rename attributes for `process.paging.faults`
     - `type` to `process.paging.fault_type`
   - Link to proposal for gRPC metrics
-  ([#627](https://github.com/open-telemetry/semantic-conventions/pull/627))
+    ([#627](https://github.com/open-telemetry/semantic-conventions/pull/627))
 
 ### Features
 
