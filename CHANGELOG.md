@@ -40,6 +40,8 @@ release.
   ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545))
 - Add `aws.ecs.task.id` attribute, corrected description for `aws.ecs.task.arn`.
   ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
+- Add additional attributes to process attribute registry.
+  ([#564](https://github.com/open-telemetry/semantic-conventions/pull/564))
 
 ### Fixes
 
@@ -82,8 +84,6 @@ release.
   ([#21](https://github.com/open-telemetry/semantic-conventions/pull/21))
 - Add `messaging.gcp_pubsub.message.ordering_key` attribute.
   ([#528](https://github.com/open-telemetry/semantic-conventions/pull/528))
-- Add additional attributes to process attribute registry.
-  ([#564](https://github.com/open-telemetry/semantic-conventions/pull/564))
 - Define how to set `process.runtime.name`, `process.runtime.version`,
   `process.runtime.description` for .NET runtime.
   ([#561](https://github.com/open-telemetry/semantic-conventions/pull/561))
