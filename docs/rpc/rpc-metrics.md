@@ -61,11 +61,12 @@ metrics can be filtered for finer grain analysis.
 >   for at least six months after it starts emitting both sets of conventions.
 > * SHOULD drop the environment variable in the next major version.
 
-Maintainers of gRPC have decided to create a different
-[spec](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md) due to
-limitations on what information can be recorded by the various implementations
-of gRPC and differences in concepts such as a `call` and an `attempt` compared
-to other RPC systems.
+> [!NOTE]
+> Maintainers of gRPC have decided to create a different
+> [spec](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md) due to
+> limitations on what information can be recorded by the various implementations
+> of gRPC and differences in concepts such as a `call` and an `attempt` compared
+> to other RPC systems.
 
 ## Metric instruments
 
@@ -291,6 +292,10 @@ More specific Semantic Conventions are defined for the following RPC technologie
 
 * [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
 * [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
+
+Specifications defined by maintainers of RPC systems:
+
+* [gRPC](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md): Semantic Conventions for *gRPC*.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
 [MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
