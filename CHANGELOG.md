@@ -27,6 +27,8 @@ release.
     - `type` to `process.context_switch_type`
   - Rename attributes for `process.paging.faults`
     - `type` to `process.paging.fault_type`
+- BREAKING: Change type of `host.cpu.stepping` to string.
+  ([#665](https://github.com/open-telemetry/semantic-conventions/pull/665))
 
 ### Features
 
