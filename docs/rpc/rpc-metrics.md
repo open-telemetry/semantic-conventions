@@ -61,7 +61,7 @@ metrics can be filtered for finer grain analysis.
 >   for at least six months after it starts emitting both sets of conventions.
 > * SHOULD drop the environment variable in the next major version.
 >
-> [!NOTE]
+> **Note**
 > Maintainers of gRPC have decided to create a different
 > [spec](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md) due to
 > limitations on what information can be recorded by the various implementations
