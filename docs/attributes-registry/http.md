@@ -16,7 +16,7 @@
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
 | `http.response.header.<key>` | string[] | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` |
 | `http.response.status_code` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
-| `http.route` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The matched route, that is, the path template in the format used by the respective server framework, or the path template associated with outgoing HTTP request. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` |
+| `http.route` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` |
 
 **[1]:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 The `User-Agent` header is already captured in the `user_agent.original` attribute. Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
@@ -43,7 +43,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
 The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
 
-**[5]:** MUST NOT be populated when this is not supported by the HTTP server or HTTP client framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[5]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
