@@ -1,21 +1,4 @@
 groups:
-  - id: attributes.process.cpu
-    prefix: process.cpu
-    type: attribute_group
-    brief: "Attributes for process CPU metrics."
-    attributes:
-      - id: state
-        brief: "The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
-        type:
-          allow_custom_values: true
-          members:
-            - id: system
-              value: 'system'
-            - id: user
-              value: 'user'
-            - id: wait
-              value: 'wait'
-
   - id: metric.process.cpu.time
     type: metric
     metric_name: process.cpu.time

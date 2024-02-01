@@ -76,3 +76,20 @@ groups:
           An additional description about the runtime of the process, for example
           a specific vendor customization of the runtime environment.
         examples: 'Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0'
+  - id: registry.process.attributes
+    prefix: process
+    type: attribute_group
+    brief: >
+        Metric attributes that appear on some process metrics.
+    attributes:
+      - id: cpu.state
+        brief: "The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
+        type:
+          allow_custom_values: true
+          members:
+            - id: system
+              value: 'system'
+            - id: user
+              value: 'user'
+            - id: wait
+              value: 'wait'
