@@ -30,7 +30,7 @@ release.
   - Rename attributes for `process.paging.faults`
     - `type` to `process.paging.fault_type`
 - Fix JVM buffer metric schema translations
-  ([#999](https://github.com/open-telemetry/semantic-conventions/pull/999))
+  ([#683](https://github.com/open-telemetry/semantic-conventions/pull/683))
 
 ### Features
 
