@@ -23,16 +23,16 @@ This metric is optional.
 <!-- semconv metric.container.cpu.time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `container.cpu.state` | string | The state of the CPU | `user`; `kernel` | Opt-In |
+| `container.cpu.state` | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `kernel` | Opt-In |
 | [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
 
 `container.cpu.state` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
-| `user` | user |
-| `system` | system |
-| `kernel` | kernel |
+| `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). |
+| `system` | When CPU is used by the system |
+| `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). |
 <!-- endsemconv -->
 
 ### Metric: `container.memory.utilization`

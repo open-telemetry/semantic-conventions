@@ -6,16 +6,19 @@ groups:
     brief: "Describes Container CPU metric attributes"
     attributes:
       - id: state
+        brief: "The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
         type:
           allow_custom_values: false
           members:
             - id: user
               value: 'user'
+              brief: "When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows)."
             - id: system
               value: 'system'
+              brief: "When CPU is used by the system"
             - id: kernel
               value: 'kernel'
-        brief: "The state of the CPU"
+              brief: "When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows)."
         examples: ["user", "kernel"]
   - id: metric.container.cpu.time
     type: metric
