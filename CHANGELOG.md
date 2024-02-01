@@ -29,7 +29,8 @@ release.
     - `type` to `process.context_switch_type`
   - Rename attributes for `process.paging.faults`
     - `type` to `process.paging.fault_type`
-  - Move `process.cpu.state` to process registry
+- Move `process.cpu.state` to process registry
+  ([#681](https://github.com/open-telemetry/semantic-conventions/pull/681))
 
 ### Features
 
