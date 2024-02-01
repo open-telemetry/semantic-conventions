@@ -93,3 +93,21 @@ groups:
               value: 'user'
             - id: wait
               value: 'wait'
+      - id: paging.fault_type
+        brief: "The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults."
+        type:
+          allow_custom_values: true
+          members:
+            - id: major
+              value: 'major'
+            - id: minor
+              value: 'minor'
+      - id: context_switch_type
+        brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
+        type:
+          allow_custom_values: true
+          members:
+            - id: voluntary
+              value: 'voluntary'
+            - id: involuntary
+              value: 'involuntary'
