@@ -79,8 +79,8 @@ versions:
             attribute_map:
               pool: jvm.buffer.pool.name
             apply_to_metrics:
-              - jvm.buffer.memory.usage
-              - jvm.buffer.memory.limit
+              - jvm.buffer.usage
+              - jvm.buffer.limit
               - jvm.buffer.count
         # https://github.com/open-telemetry/semantic-conventions/pull/89
         - rename_attributes:
