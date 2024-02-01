@@ -37,6 +37,8 @@
   ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
 - Add an example for gcp_pubsub asynchronous batch publish
   ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545))
+- Add `aws.ecs.task.id` attribute, corrected description for `aws.ecs.task.arn`.
+  ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
 
 ### Fixes
 
