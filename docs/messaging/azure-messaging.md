@@ -86,7 +86,7 @@ This metric follows the common [messaging.deliver.duration](./messaging-metrics.
 
 **Notes:**
 
-- Azure ServiceBus client libraries don't provide batch processing clients, therefore processed message count can be derived from `messaging.deliver.duration` metric and is not reported.
+- Azure Service Bus client libraries don't provide batch processing clients, therefore count of processed messages can be derived from `messaging.deliver.duration` metric and is not reported.
 - In addition to generic attributes defined for the metric, Service Bus instrumentation SHOULD report following attributes:
   * `messaging.servicebus.destination.subscription_name` when processing messages from topic subscriptions
 

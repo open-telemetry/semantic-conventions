@@ -74,7 +74,7 @@ This metric follows the common [messaging.publish.messages](./messaging-metrics.
 
 ### Metric: `messaging.receive.duration`
 
-Measures duration of receiver client call that polls messages.
+Measures duration of consumer client call that polls messages.
 
 This metric is [required][MetricRequired].
 
