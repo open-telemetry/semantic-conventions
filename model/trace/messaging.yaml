@@ -177,6 +177,33 @@ groups:
       - ref: messaging.servicebus.destination.subscription_name
         requirement_level:
           conditionally_required: If messages are received from the subscription.
+      - ref: network.protocol.name
+        requirement_level:
+          conditionally_required: If not default (`amqp`).
+        examples: ["amqp"]
+      - ref: network.protocol.version
+        requirement_level:
+          conditionally_required: If not default (`1.0`).
+        examples: ["1.0"]
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (`5672`).
+        examples: ["5672"]
+      - ref: error.type
+        note: >
+          When available, SHOULD match [AMQP error condition](https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#type-error) or
+          string representation of a [management response status code](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-amqp-request-response).
+          Otherwise SHOULD match full name of the exception type.
+        examples:
+          ["amqp:resource-limit-exceeded", "com.microsoft:message-lock-lost", "503", "System.OperationCanceledException"]
+      - ref: messaging.batch.message_count
+      - ref: messaging.destination.name
+      - ref: messaging.message.conversation_id
+        brief: Service Bus [Session Id](https://learn.microsoft.com/azure/service-bus-messaging/message-sessions)
+      - ref: messaging.message.id
+      - ref: messaging.operation
+      - ref: server.address
+
   - id: messaging.eventhubs
     type: attribute_group
     extends: messaging
@@ -190,3 +217,27 @@ groups:
       - ref: messaging.eventhubs.consumer.group
         requirement_level:
           conditionally_required: If not default ("$Default").
+      - ref: network.protocol.name
+        requirement_level:
+          conditionally_required: If not default (`amqp`).
+        examples: ["amqp"]
+      - ref: network.protocol.version
+        requirement_level:
+          conditionally_required: If not default (`1.0`).
+        examples: ["1.0"]
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (`5672`).
+        examples: ["5672"]
+      - ref: error.type
+        note: >
+          When available, SHOULD match [AMQP error condition](https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#type-error) or
+          string representation of a [management response status code](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-amqp-request-response).
+          Otherwise SHOULD match full name of the exception type.
+        examples:
+          ["amqp:resource-limit-exceeded", "com.microsoft:server-busy", "503", "System.OperationCanceledException"]
+      - ref: messaging.batch.message_count
+      - ref: messaging.destination.name
+      - ref: messaging.message.id
+      - ref: messaging.operation
+      - ref: server.address

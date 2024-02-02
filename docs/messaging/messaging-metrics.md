@@ -179,6 +179,6 @@ _Note: The need to report `messaging.deliver.messages` depends on the messaging 
 | `messaging.deliver.messages` | Counter | `{message}` | Measures the number of delivered messages. |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
-[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#required
-[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#opt-in
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/document-status.md
+[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md#required
+[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md#opt-in
