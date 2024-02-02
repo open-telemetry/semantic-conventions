@@ -60,7 +60,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 ### Metrics
 
-### Metric: `messaging.publish.duration`
+#### Metric: `messaging.publish.duration`
 
 Measures time it takes to publish message or a batch of messages to Azure Service Bus including all retries.
 
@@ -68,7 +68,7 @@ This metric is [required][MetricRequired]
 
 This metric follows the common [messaging.publish.duration](./messaging-metrics.md#metric-messagingpublishduration) definition.
 
-### Metric: `messaging.publish.messages`
+#### Metric: `messaging.publish.messages`
 
 Measures the number of published messages.
 
@@ -76,7 +76,7 @@ This metric is [required][MetricRequired]
 
 This metric follows the common [messaging.publish.messages](./messaging-metrics.md#metric-messagingpublishmessages) definition.
 
-### Metric: `messaging.deliver.duration`
+#### Metric: `messaging.deliver.duration`
 
 Measures duration of processor client callback that processes a message.
 
@@ -84,13 +84,13 @@ This metric is [required][MetricRequired] when processor client is used by the a
 
 This metric follows the common [messaging.deliver.duration](./messaging-metrics.md#metric-messagingdeliverduration) definition.
 
-Notes:
+**Notes:**
 
 - Azure ServiceBus client libraries don't provide batch processing clients, therefore processed message count can be derived from `messaging.deliver.duration` metric and is not reported.
 - In addition to generic attributes defined for the metric, Service Bus instrumentation SHOULD report following attributes:
   * `messaging.servicebus.destination.subscription_name` when processing messages from topic subscriptions
 
-### Metric: `messaging.receive.duration`
+#### Metric: `messaging.receive.duration`
 
 Measures duration of receiver client call that receives (or awaits) messages.
 
@@ -104,7 +104,7 @@ This metric follows the common [messaging.receive.duration](./messaging-metrics.
 - In addition to generic attributes defined for the metric, Service Bus instrumentation SHOULD report following attributes:
   * `messaging.servicebus.destination.subscription_name` when processing  messages from topic subscriptions
 
-### Metric: `messaging.receive.messages`
+#### Metric: `messaging.receive.messages`
 
 Measures the number of received messages.
 
@@ -166,7 +166,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 ### Metrics
 
-### Metric: `messaging.publish.duration`
+#### Metric: `messaging.publish.duration`
 
 Measures time it takes to publish event or a batch of events to Azure Event Hubs including all retries.
 
@@ -174,7 +174,7 @@ This metric is [required][MetricRequired]
 
 This metric follows the common [messaging.publish.duration](./messaging-metrics.md#metric-messagingpublishduration) definition.
 
-### Metric: `messaging.publish.messages`
+#### Metric: `messaging.publish.messages`
 
 Measures the number of published events.
 
@@ -187,7 +187,7 @@ This metric follows the common [messaging.publish.messages](./messaging-metrics.
 - In addition to generic attributes defined for the metric, Event Hubs Bus instrumentation SHOULD report following attributes:
   * `messaging.eventhubs.destination.partition.id` when partition Id is provided to the producer client by the application.
 
-### Metric: `messaging.deliver.duration`
+#### Metric: `messaging.deliver.duration`
 
 Measures duration of processor client callback that processes an event or a batch of events.
 
@@ -201,7 +201,7 @@ This metric follows the common [messaging.deliver.duration](./messaging-metrics.
   * `messaging.eventhubs.destination.partition.id`
   * `messaging.eventhubs.consumer.group`
 
-### Metric: `messaging.deliver.messages`
+#### Metric: `messaging.deliver.messages`
 
 This metric is [required][MetricRequired] when processor client is used by the application.
 
@@ -213,7 +213,7 @@ This metric follows the common [messaging.deliver.messages](./messaging-metrics.
   * `messaging.eventhubs.destination.partition.id`
   * `messaging.eventhubs.consumer.group`
 
-### Metric: `messaging.receive.duration`
+#### Metric: `messaging.receive.duration`
 
 Measures duration of consumer client call that receives (or awaits) events.
 
@@ -228,7 +228,7 @@ This metric follows the common [messaging.receive.duration](./messaging-metrics.
   * `messaging.eventhubs.destination.partition.id`
   * `messaging.eventhubs.consumer.group`
 
-### Metric: `messaging.receive.messages`
+#### Metric: `messaging.receive.messages`
 
 Measures the number of received events.
 
