@@ -1,4 +1,7 @@
 # Use this changelog template to create an entry for release notes.
+#
+# If your change doesn't affect end users you should instead start
+# your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
 change_type:
@@ -16,10 +19,3 @@ issues: []
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext:
-
-# If your change doesn't affect end users or the exported elements of any package,
-# you should instead start your pull request title with [chore] or use the "Skip Changelog" label.
-# Optional: The change log in which this entry should be included. In the semconv repo
-# we only have user-facing changes, so it should always be 'user' for this field.
-# Default: '[user]'
-change_logs: []
