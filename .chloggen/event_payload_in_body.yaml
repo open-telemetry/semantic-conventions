@@ -13,7 +13,7 @@ component: events
 note: Add clarification that the body of an Event will live in the LogRecord body field.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
-issues: [ '#566']
+issues: [ 566]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
