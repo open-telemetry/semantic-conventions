@@ -40,6 +40,8 @@ release.
   ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545))
 - Add `aws.ecs.task.id` attribute, corrected description for `aws.ecs.task.arn`.
   ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
+- Add Azure Service Bus and Event Hubs messaging attributes
+  ([#572](https://github.com/open-telemetry/semantic-conventions/pull/572))
 
 ### Fixes
 
