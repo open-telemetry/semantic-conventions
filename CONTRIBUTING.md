@@ -6,6 +6,38 @@ Before you start - see OpenTelemetry general
 [contributing](https://github.com/open-telemetry/community/blob/main/CONTRIBUTING.md)
 requirements and recommendations.
 
+<details>
+<summary>Table of Contents</summary>
+
+<!-- toc -->
+
+- [Sign the CLA](#sign-the-cla)
+- [How to Contribute](#how-to-contribute)
+  * [Prerequisites](#prerequisites)
+  * [1. Modify the YAML model](#1-modify-the-yaml-model)
+    + [Schema files](#schema-files)
+  * [2. Update the markdown files](#2-update-the-markdown-files)
+    + [Hugo frontmatter](#hugo-frontmatter)
+  * [3. Verify the changes before committing](#3-verify-the-changes-before-committing)
+  * [4. Changelog](#4-changelog)
+    + [When to add a Changelog Entry](#when-to-add-a-changelog-entry)
+      - [Examples](#examples)
+    + [Adding a Changelog Entry](#adding-a-changelog-entry)
+  * [5. Getting your PR merged](#5-getting-your-pr-merged)
+- [Automation](#automation)
+  * [Consistency Checks](#consistency-checks)
+  * [Auto formatting](#auto-formatting)
+  * [Markdown style](#markdown-style)
+  * [Misspell check](#misspell-check)
+  * [Markdown link check](#markdown-link-check)
+- [Updating the referenced specification version](#updating-the-referenced-specification-version)
+- [Making a Release](#making-a-release)
+- [Merging existing ECS conventions](#merging-existing-ecs-conventions)
+
+<!-- tocstop -->
+
+</details>
+
 ## Sign the CLA
 
 Before you can contribute, you will need to sign the [Contributor License
@@ -18,51 +50,21 @@ key, but non-obvious, aspects:
 
 - All attributes, metrics, etc. are formally defined in YAML files under
   the `model/` directory.
-- All descriptions, normative language are defined in the `docs/`
-  directory.
-  - We provide tooling to generate Markdown documentation from the formal
-    YAML definitons. See [Yaml to Markdown](#yaml-to-markdown).
-  - We use Hugo to render [semantic conventions on our website](https://opentelemetry.io/docs/specs/semconv/).
-    You will see `<!--- Hugo front matter used to generate ...` sections
-    in markdown. See [Hugo frontmatter](#hugo-frontmatter) for details.
+- All descriptions, normative language are defined in the `docs/` directory.
 - All changes to existing attributes, metrics, etc. MUST be allowed as
   per our [stability guarantees][stability guarantees] and
   defined in a schema file. As part of any contribution, you should
   include attribute changes defined in the `schema-next.yaml` file.
-  For details, please read [the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
 - Links to the specification repository MUST point to a tag and **not** to the `main` branch.
   The tag version MUST match with the one defined in [README](README.md).
-- After creating a pull request, please update the [CHANGELOG](CHANGELOG.md) file with
-  a description of your changes.
 
 Please make sure all Pull Requests are compliant with these rules!
 
-### Hugo frontmatter
+### Prerequisites
 
-At the top of all Markdown files under the `docs/` directory, you will see
-headers like the following:
-
-```
-<!--- Hugo front matter used to generate the website version of this page:
-linkTitle: HTTP
-path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/http/_index.md
-  to: http/README.md
---->
-```
-
-When creating new pages, you should provide the `linkTitle` attribute. This is used
-to generate the navigation bar on the website, and will be listed relative to the
-"parent" document.
-
-## Automation
-
-Semantic Conventions provides a set of automated tools for general development.
-
-### Consistency Checks
-
-The Specification has a number of tools it uses to check things like style,
-spelling and link validity. Before using the tools:
+The Specification uses several tools to check things like style,
+spelling and link validity. Before contributing, make sure to have your
+environment configured:
 
 - Install the latest LTS release of **[Node](https://nodejs.org/)**.
   For example, using **[nvm][]** under Linux run:
@@ -71,11 +73,147 @@ spelling and link validity. Before using the tools:
   nvm install --lts
   ```
 
-- Install tooling packages:
+- Then from the root of the project, install the tooling packages:
 
   ```bash
   npm install
   ```
+
+### 1. Modify the YAML model
+
+Refer to the
+[Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.23.0/semantic-conventions/syntax.md)
+to learn how to make changes to the YAML files.
+
+#### Schema files
+
+When making changes to existing semantic conventions (attributes, metrics, etc)
+you MUST also update the `schema-next.yaml` file with the changes.
+
+For details, please read
+[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
+
+You can also take examples from past changes inside the `schemas` folder.
+
+> [!WARNING]
+> DO NOT add your changes to files inside the `schemas` folder. Always add your
+> changes to the `schema-next.yaml` file.
+
+### 2. Update the markdown files
+
+After updating the YAML file(s), you need to update
+the respective markdown files. For this, run the following command:
+
+```bash
+make table-generation
+```
+
+#### Hugo frontmatter
+
+At the top of all Markdown files under the `docs/` directory, you will see
+headers like the following:
+
+```md
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: HTTP
+path_base_for_github_subdir:
+  from: content/en/docs/specs/semconv/http/_index.md
+  to: http/README.md
+--->
+```
+
+When creating new markdown files, you should provide the `linkTitle` attribute.
+This is used to generate the navigation bar on the website,
+and will be listed relative to the "parent" document.
+
+### 3. Verify the changes before committing
+
+Before sending a PR with your changes, make sure to run the automated checks:
+
+```bash
+make check
+```
+
+Alternatively, you can run each check individually.
+Refer to the [Automation](#automation) section for more details.
+
+### 4. Changelog
+
+#### When to add a Changelog Entry
+
+Pull requests that contain user-facing changes will require a changelog entry.
+Keep in mind the following types of users (not limited to):
+
+1. Those who are consuming the data following these conventions (e.g., in alerts, dashboards, queries)
+2. Those who are using the conventions in instrumentations (e.g., library authors)
+3. Those who are using the conventions to derive heuristics, predictions and automatic analyses (e.g., observability products/back-ends)
+
+If a changelog entry is not required (e.g. editorial or trivial changes),
+a maintainer or approver will add the `Skip Changelog` label to the pull request.
+
+##### Examples
+
+Changelog entry required:
+
+- Any modification to existing conventions with change in functionality/behavior
+- New semantic conventions
+- Changes on definitions, normative language (in `/docs`)
+
+No changelog entry:
+
+- Typical documentation/editorial updates (e.g. grammar fixes, restructuring)
+- Changes in internal tooling (e.g. make file, GH actions, etc)
+- Refactorings with no meaningful change in functionality
+- Chores, such as enabling linters, updating dependencies
+
+#### Adding a Changelog Entry
+
+The [CHANGELOG.md](./CHANGELOG.md) files in this repo is autogenerated
+from `.yaml` files in the [/.chloggen](/.chloggen) directory.
+
+Your pull request should add a new `.yaml` file to this directory.
+The name of your file can be arbitrary but must be unique since the last release.
+
+During the release process, all `./chloggen/*.yaml` files are transcribed into
+`CHANGELOG.md` and then deleted.
+
+1. Create an entry file using `make chlog-new`. The command generates a new file,
+   with its name based on the current branch (e.g. `./.chloggen/my-feature-xyz.yaml`)
+2. Fill in all the fields in the generated file
+3. The value for the `component` field MUST match a filename (without type) in the
+   [registry](https://github.com/open-telemetry/semantic-conventions/tree/main/model/registry)
+   (e.g. `browser`, `http`)
+4. Run `make chlog-validate` to ensure the new file is valid
+5. Commit and push the file
+
+Alternately, copy `./.chloggen/TEMPLATE.yaml`, or just create your file from scratch.
+
+### 5. Getting your PR merged
+
+A PR (pull request) is considered to be **ready to merge** when:
+
+- It has received at least two approvals from the [code
+  owners](./.github/CODEOWNERS) (if approvals are from only one company, they
+  won't count)
+- There is no `request changes` from the [code owners](./.github/CODEOWNERS)
+- There is no open discussions
+- It has been at least two working days since the last modification (except for
+  the trivial updates, such like typo, cosmetic, rebase, etc.). This gives
+  people reasonable time to review
+- Trivial changes (typos, cosmetic changes, CI improvements, etc.) don't have to
+  wait for two days
+
+Any [maintainer](./README.md#contributing) can merge the PR once it is **ready
+to merge**.
+
+## Automation
+
+Semantic Conventions provides a set of automated tools for general development.
+
+### Consistency Checks
+
+The Specification has a number of tools it uses to check things like style,
+spelling and link validity.
 
 You can perform all checks locally using this command:
 
@@ -83,23 +221,18 @@ You can perform all checks locally using this command:
 make check
 ```
 
-Note: This can take a long time as it checks all links. You should use this
-prior to submitting a PR to ensure validity. However, you can run individual
-checks directly.
+> Note: `make check` can take a long time as it checks all links.
+> You should use this prior to submitting a PR to ensure validity.
+> However, you can run individual checks directly.
 
-See:
+For more information on each check, see:
 
-- [MarkdownStyle](#markdown-style)
-- [Misspell Check](#misspell-check)
-- Markdown link checking (docs TODO)
+- [Markdown style](#markdown-style)
+- [Misspell check](#misspell-check)
+- [Markdown link check](#markdown-link-check)
 - Prettier formatting
 
-### YAML to Markdown
-
-Semantic conventions are declared in YAML files and markdown tables are
-generated from these files. Read about semantic convention updates [here](./model/README.md).
-
-### Autoformatting
+### Auto formatting
 
 Semantic conventions have some autogenerated components and additionally can do
 automatic style/spell correction. You can run all of this via:
@@ -113,7 +246,7 @@ You can also run these fixes individually.
 See:
 
 - [Misspell Correction](#misspell-check)
-- Table Generation (docs TODO)
+- [Update the markdown files](#2-update-the-markdown-files)
 
 ### Markdown style
 
@@ -159,22 +292,13 @@ To quickly fix typos, use
 make misspell-correction
 ```
 
-### How to get your PR merged
+### Markdown link check
 
-A PR (pull request) is considered to be **ready to merge** when:
+To check the validity of links in all markdown files, run the following command:
 
-- It has received at least two approvals from the [code
-  owners](./.github/CODEOWNERS) (if approvals are from only one company, they
-  won't count).
-- There is no `request changes` from the [code owners](./.github/CODEOWNERS).
-- It has been at least two working days since the last modification (except for
-  the trivial updates, such like typo, cosmetic, rebase, etc.). This gives
-  people reasonable time to review.
-- Trivial changes (typos, cosmetic changes, CI improvements, etc.) don't have to
-  wait for two days.
-
-Any [maintainer](./README.md#contributing) can merge the PR once it is **ready
-to merge**.
+```bash
+make markdown-link-check
+```
 
 ## Updating the referenced specification version
 
@@ -194,8 +318,10 @@ to merge**.
     - Ensure the `next` version is appropriately configured as the `{version}`.
     - Copy `schema-next.yaml` to `schemas/{version}`.
     - Add `next` as a version in `schema-next.yaml` version.
-  - Update `CHANGELOG.md` for the latest version.
-    - Add `## v{version} ({date})` under `## Unreleased`
+  - Run `make chlog-update VERSION=v{version}`
+    - `make chlog-update` will clean up all the current `.yaml` files inside the
+    `.chloggen` folder automatically
+    - Double check that `CONTRIBUTING.md` is updated with the proper `v{version}`
   - Send staging tag as PR for review.
 - Create a tag `v{version}` on the merged PR and push remote.
 
