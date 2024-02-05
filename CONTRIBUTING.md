@@ -23,7 +23,7 @@ requirements and recommendations.
     + [When to add a Changelog Entry](#when-to-add-a-changelog-entry)
       - [Examples](#examples)
     + [Adding a Changelog Entry](#adding-a-changelog-entry)
-  * [4. Getting your PR merged](#4-getting-your-pr-merged)
+  * [5. Getting your PR merged](#5-getting-your-pr-merged)
 - [Automation](#automation)
   * [Consistency Checks](#consistency-checks)
   * [Auto formatting](#auto-formatting)
