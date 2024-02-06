@@ -1,7 +1,7 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Feature Flags
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/feature-flags/_index.md
+  from: tmp/semconv/docs/feature-flags/_index.md
   to: feature-flags/README.md
 --->
 

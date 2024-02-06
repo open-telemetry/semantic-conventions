@@ -1,7 +1,7 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Resource
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/resource/_index.md
+  from: tmp/semconv/docs/resource/_index.md
   to: resource/README.md
 --->
 

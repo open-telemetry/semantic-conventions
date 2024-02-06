@@ -1,7 +1,7 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: .NET
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/dotnet/_index.md
+  from: tmp/semconv/docs/dotnet/_index.md
   to: dotnet/README.md
 --->
 
