@@ -184,17 +184,18 @@ If the destination name is dynamic, such as a [conversation ID](#conversations) 
 In these cases, an artificial destination name that best expresses the destination, or a generic, static fallback like `"(anonymous)"` for [anonymous destinations](#temporary-and-anonymous-destinations) SHOULD be used instead.
 
 The values allowed for `<operation name>` are defined in the section [Operation names](#operation-names) below.
-If the format above is used, the operation name MUST match the `messaging.operation` attribute defined for message consumer spans below.
 
 Examples:
 
 * `shop.orders publish`
 * `shop.orders receive`
-* `shop.orders process`
+* `shop.orders settle`
 * `print_jobs publish`
-* `topic with spaces process`
-* `AuthenticationRequest-Conversations process`
+* `topic with spaces deliver`
+* `AuthenticationRequest-Conversations settle`
 * `(anonymous) publish` (`(anonymous)` being a stable identifier for an unnamed destination)
+
+Messaging system specific adaptions to span naming MUST be documented in [semantic conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies).
 
 ### Operation names
 
@@ -206,6 +207,7 @@ The following operations related to messages are defined for these semantic conv
 | `create`       | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
 | `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
 | `deliver`      | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
+| `settle`       | One or more messages are settled. |
 
 ### Span kind
 
@@ -268,6 +270,12 @@ A single "Deliver" or "Receive" span can account for a single message, for a
 batch of messages, or for no message at all (if it is signalled that no
 messages were received). For each message it accounts for, the "Deliver" or
 "Receive" span SHOULD link to the message's creation context.
+
+"Settle" spans SHOULD be created for every manually or automatically triggered
+settlement operation. A single "Settle" span can account for a single message
+or for multiple messages (in case messages are passed for settling as batches).
+For each message it accounts for, the "Settle" span MAY link to the creation
+context of the message.
 
 ## Messaging attributes
 
