@@ -31,6 +31,8 @@
     - `type` to `process.context_switch_type`
   - Rename attributes for `process.paging.faults`
     - `type` to `process.paging.fault_type`
+- Fix JVM buffer metric schema translations
+  ([#683](https://github.com/open-telemetry/semantic-conventions/pull/683))
 
 ### Features
 
