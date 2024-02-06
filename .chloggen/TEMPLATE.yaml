@@ -13,6 +13,7 @@ component:
 note:
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
+# The values here must be integers.
 issues: []
 
 # (Optional) One or more lines of additional information to render under the primary note.

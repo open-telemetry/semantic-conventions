@@ -174,7 +174,7 @@ from `.yaml` files in the [/.chloggen](/.chloggen) directory.
 Your pull request should add a new `.yaml` file to this directory.
 The name of your file can be arbitrary but must be unique since the last release.
 
-During the release process, all `./chloggen/*.yaml` files are transcribed into
+During the release process, all `./.chloggen/*.yaml` files are transcribed into
 `CHANGELOG.md` and then deleted.
 
 1. Create an entry file using `make chlog-new`. The command generates a new file,
