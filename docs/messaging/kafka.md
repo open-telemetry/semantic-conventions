@@ -27,15 +27,15 @@ For Apache Kafka, the following additional attributes are defined:
 <!-- semconv messaging.kafka(full,tag=tech-specific-kafka) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`messaging.kafka.message.tombstone`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | Conditionally Required: [1] |
 | [`messaging.kafka.consumer.group`](../attributes-registry/messaging.md) | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` | Recommended |
 | [`messaging.kafka.destination.partition`](../attributes-registry/messaging.md) | int | Partition the message is sent to. | `2` | Recommended |
-| [`messaging.kafka.message.key`](../attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [1] | `myKey` | Recommended |
+| [`messaging.kafka.message.key`](../attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [2] | `myKey` | Recommended |
 | [`messaging.kafka.message.offset`](../attributes-registry/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | Recommended |
-| [`messaging.kafka.message.tombstone`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | Conditionally Required: [2] |
 
-**[1]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[1]:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[2]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[2]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 <!-- endsemconv -->
 
 For Apache Kafka producers, [`peer.service`](/docs/general/attributes.md#general-remote-service-attributes) SHOULD be set to the name of the broker or service the message will be sent to.

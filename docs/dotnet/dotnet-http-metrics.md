@@ -55,19 +55,19 @@ Notes:
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | Required |
+| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | Conditionally Required: [3] |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Remote IP address of the socket connection. | `10.1.2.80` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | HTTP protocol version of the connection in the connection pool. [1] | `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | HTTP protocol version of the connection in the connection pool. [4] | `1.1`; `2`; `3` | Recommended |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
-**[1]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
+**[1]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3]:** If not the default (`80` for `http` scheme, `443` for `https`).
 
-**[4]:** If not the default (`80` for `http` scheme, `443` for `https`).
+**[4]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
 
 `http.connection.state` MUST be one of the following:
 
@@ -94,19 +94,19 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 <!-- semconv metric.dotnet.http.client.connection.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | Conditionally Required: [3] |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | HTTP protocol version of the connection in the connection pool. [1] | `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | HTTP protocol version of the connection in the connection pool. [4] | `1.1`; `2`; `3` | Recommended |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
-**[1]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
+**[1]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3]:** If not the default (`80` for `http` scheme, `443` for `https`).
 
-**[4]:** If not the default (`80` for `http` scheme, `443` for `https`).
+**[4]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
 <!-- endsemconv -->
 
 ### Metric: `http.client.request.time_in_queue`
@@ -126,22 +126,22 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- semconv metric.dotnet.http.client.request.time_in_queue(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | HTTP protocol version of the connection in the connection pool. [2] | `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
+| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | Conditionally Required: [3] |
+| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [4] | `GET`; `POST`; `HEAD` | Recommended |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | HTTP protocol version of the connection in the connection pool. [5] | `1.1`; `2`; `3` | Recommended |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
-**[1]:** HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods) and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+**[1]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[3]:** If not the default (`80` for `http` scheme, `443` for `https`).
+
+**[4]:** HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods) and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`. It's not possible at the moment to override the list of known HTTP methods.
 
-**[2]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
-
-**[3]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[5]:** If not the default (`80` for `http` scheme, `443` for `https`).
+**[5]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -172,19 +172,19 @@ If the HTTP request method isn't known, it sets the `http.request.method` attrib
 <!-- semconv metric.dotnet.http.client.active_requests(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
+| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | Conditionally Required: [3] |
+| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [4] | `GET`; `POST`; `HEAD` | Recommended |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
-**[1]:** HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods) and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+**[1]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[3]:** If not the default (`80` for `http` scheme, `443` for `https`).
+
+**[4]:** HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods) and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`. It's not possible at the moment to override the list of known HTTP methods.
-
-**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[4]:** If not the default (`80` for `http` scheme, `443` for `https`).
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

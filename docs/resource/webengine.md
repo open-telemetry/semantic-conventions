@@ -9,8 +9,8 @@
 <!-- semconv webengine_resource -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `webengine.description` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | Recommended |
 | `webengine.name` | string | The name of the web engine. | `WildFly` | Required |
+| `webengine.description` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | Recommended |
 | `webengine.version` | string | The version of the web engine. | `21.0.0` | Recommended |
 <!-- endsemconv -->
 

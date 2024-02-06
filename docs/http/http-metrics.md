@@ -75,17 +75,34 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- semconv metric.http.server.request.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [2] | `http`; `https` | Required |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `http`; `spdy` | Conditionally Required: [5] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [6] | `1.0`; `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
-| [`server.port`](../attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [8] | `80`; `8080`; `443` | Opt-In |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [9] | `http`; `https` | Required |
+| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [4] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | Conditionally Required: [6] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
+| [`server.port`](../attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` | Opt-In |
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+
+**[3]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -102,47 +119,24 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
-
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[3]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[4]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[4]:** The value SHOULD be normalized to lowercase.
+**[5]:** The value SHOULD be normalized to lowercase.
 
-**[5]:** If not `http` and `network.protocol.version` is set.
+**[6]:** If not `http` and `network.protocol.version` is set.
 
-**[6]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[7]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-> **Warning**
-> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-> to trigger cardinality limits, degrading the usefulness of the metric.
+**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 **[8]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 > **Warning**
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
+**[9]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -158,6 +152,12 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
 ### Metric: `http.server.active_requests`
@@ -176,9 +176,9 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 | [`server.address`](../attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
 | [`server.port`](../attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [3] | `80`; `8080`; `443` | Opt-In |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Required |
 
 **[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -238,17 +238,34 @@ This metric is optional.
 <!-- semconv metric.http.server.request.body.size(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [2] | `http`; `https` | Required |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `http`; `spdy` | Conditionally Required: [5] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [6] | `1.0`; `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
-| [`server.port`](../attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [8] | `80`; `8080`; `443` | Opt-In |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [9] | `http`; `https` | Required |
+| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [4] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | Conditionally Required: [6] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
+| [`server.port`](../attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` | Opt-In |
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+
+**[3]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -265,47 +282,24 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
-
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[3]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[4]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[4]:** The value SHOULD be normalized to lowercase.
+**[5]:** The value SHOULD be normalized to lowercase.
 
-**[5]:** If not `http` and `network.protocol.version` is set.
+**[6]:** If not `http` and `network.protocol.version` is set.
 
-**[6]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[7]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-> **Warning**
-> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-> to trigger cardinality limits, degrading the usefulness of the metric.
+**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 **[8]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 > **Warning**
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
+**[9]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -321,6 +315,12 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
 ### Metric: `http.server.response.body.size`
@@ -340,17 +340,34 @@ This metric is optional.
 <!-- semconv metric.http.server.response.body.size(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [2] | `http`; `https` | Required |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [3] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [4] | `http`; `spdy` | Conditionally Required: [5] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [6] | `1.0`; `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
-| [`server.port`](../attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [8] | `80`; `8080`; `443` | Opt-In |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [9] | `http`; `https` | Required |
+| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [4] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: If and only if it's available |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | Conditionally Required: [6] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Opt-In |
+| [`server.port`](../attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` | Opt-In |
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+
+**[3]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -367,47 +384,24 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
-
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[3]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[4]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[4]:** The value SHOULD be normalized to lowercase.
+**[5]:** The value SHOULD be normalized to lowercase.
 
-**[5]:** If not `http` and `network.protocol.version` is set.
+**[6]:** If not `http` and `network.protocol.version` is set.
 
-**[6]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[7]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-> **Warning**
-> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-> to trigger cardinality limits, degrading the usefulness of the metric.
+**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 **[8]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 > **Warning**
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
+**[9]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -423,6 +417,12 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
 ## HTTP Client
@@ -448,16 +448,35 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- semconv metric.http.client.request.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
+| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Required |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `http`; `spdy` | Conditionally Required: [4] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `1.0`; `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [7] | `80`; `8080`; `443` | Required |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | Conditionally Required: [6] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Opt-In |
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[4]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -474,36 +493,11 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+**[5]:** The value SHOULD be normalized to lowercase.
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+**[6]:** If not `http` and `network.protocol.version` is set.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[3]:** The value SHOULD be normalized to lowercase.
-
-**[4]:** If not `http` and `network.protocol.version` is set.
-
-**[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[6]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
+**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -519,6 +513,12 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
 ### Metric: `http.client.request.body.size`
@@ -538,16 +538,35 @@ This metric is optional.
 <!-- semconv metric.http.client.request.body.size(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
+| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Required |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `http`; `spdy` | Conditionally Required: [4] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `1.0`; `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [7] | `80`; `8080`; `443` | Required |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | Conditionally Required: [6] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Opt-In |
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[4]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -564,36 +583,11 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+**[5]:** The value SHOULD be normalized to lowercase.
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+**[6]:** If not `http` and `network.protocol.version` is set.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[3]:** The value SHOULD be normalized to lowercase.
-
-**[4]:** If not `http` and `network.protocol.version` is set.
-
-**[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[6]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
+**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -609,6 +603,12 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
 ### Metric: `http.client.response.body.size`
@@ -628,16 +628,35 @@ This metric is optional.
 <!-- semconv metric.http.client.response.body.size(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Required |
+| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Required |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | Conditionally Required: If request has ended with an error. |
 | [`http.response.status_code`](../attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | Conditionally Required: If and only if one was received/sent. |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [3] | `http`; `spdy` | Conditionally Required: [4] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [5] | `1.0`; `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [7] | `80`; `8080`; `443` | Required |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | Conditionally Required: [6] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Opt-In |
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[4]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -654,36 +673,11 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+**[5]:** The value SHOULD be normalized to lowercase.
 
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+**[6]:** If not `http` and `network.protocol.version` is set.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[3]:** The value SHOULD be normalized to lowercase.
-
-**[4]:** If not `http` and `network.protocol.version` is set.
-
-**[5]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[6]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
+**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -699,6 +693,12 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

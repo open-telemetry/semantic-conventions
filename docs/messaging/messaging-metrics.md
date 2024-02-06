@@ -25,13 +25,13 @@ All messaging metrics share the same set of attributes:
 <!-- semconv metric.messaging.attributes(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
 | [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | Conditionally Required: [2] |
 | [`messaging.destination.name`](../attributes-registry/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | Conditionally Required: [4] |
 | [`messaging.destination.template`](../attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | Conditionally Required: if available. |
-| [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
 | [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `amqp`; `mqtt` | Conditionally Required: [7] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [8] | `3.1.1` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [9] | `3.1.1` | Recommended |
 | [`server.port`](../attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
@@ -63,17 +63,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[7]:** Only for messaging systems and frameworks that support more than one protocol.
 
-**[8]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[8]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
-**[9]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[9]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
 **[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -89,6 +83,12 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `kafka` | Apache Kafka |
 | `rabbitmq` | RabbitMQ |
 | `rocketmq` | Apache RocketMQ |
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 <!-- endsemconv -->
 
 ## Producer metrics
