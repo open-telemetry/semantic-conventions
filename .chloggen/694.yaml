@@ -7,7 +7,7 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: 
+component: all
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: Sort attribute tables by requirement level and name
