@@ -144,7 +144,7 @@ chlog-validate: $(CHLOGGEN)
 
 .PHONY: chlog-preview
 chlog-preview: $(CHLOGGEN)
-	$(CHLOGGEN) update --config $(CHLOGGEN_CONFIG) --dry --version $(VERSION)
+	$(CHLOGGEN) update --config $(CHLOGGEN_CONFIG) --dry
 
 .PHONY: chlog-update
 chlog-update: $(CHLOGGEN)
