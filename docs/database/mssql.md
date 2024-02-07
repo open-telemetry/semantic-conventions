@@ -6,7 +6,7 @@ linkTitle: MSSQL
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for the [Microsoft SQL Server](https://www.microsoft.com/sql-server) extend and override the [Database Semantic Conventions](database-spans.md)
+The Semantic Conventions for the [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server) extend and override the [Database Semantic Conventions](database-spans.md)
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
