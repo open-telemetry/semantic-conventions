@@ -184,17 +184,18 @@ If the destination name is dynamic, such as a [conversation ID](#conversations) 
 In these cases, an artificial destination name that best expresses the destination, or a generic, static fallback like `"(anonymous)"` for [anonymous destinations](#temporary-and-anonymous-destinations) SHOULD be used instead.
 
 The values allowed for `<operation name>` are defined in the section [Operation names](#operation-names) below.
-If the format above is used, the operation name MUST match the `messaging.operation` attribute defined for message consumer spans below.
 
 Examples:
 
 * `shop.orders publish`
 * `shop.orders receive`
-* `shop.orders process`
+* `shop.orders settle`
 * `print_jobs publish`
-* `topic with spaces process`
-* `AuthenticationRequest-Conversations process`
+* `topic with spaces deliver`
+* `AuthenticationRequest-Conversations settle`
 * `(anonymous) publish` (`(anonymous)` being a stable identifier for an unnamed destination)
+
+Messaging system specific adaptions to span naming MUST be documented in [semantic conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies).
 
 ### Operation names
 
@@ -206,6 +207,7 @@ The following operations related to messages are defined for these semantic conv
 | `create`       | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
 | `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
 | `deliver`      | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
+| `settle`       | One or more messages are settled. |
 
 ### Span kind
 
@@ -269,6 +271,12 @@ batch of messages, or for no message at all (if it is signalled that no
 messages were received). For each message it accounts for, the "Deliver" or
 "Receive" span SHOULD link to the message's creation context.
 
+"Settle" spans SHOULD be created for every manually or automatically triggered
+settlement operation. A single "Settle" span can account for a single message
+or for multiple messages (in case messages are passed for settling as batches).
+For each message it accounts for, the "Settle" span MAY link to the creation
+context of the message.
+
 ## Messaging attributes
 
 Messaging attributes are organized into the following namespaces:
@@ -302,12 +310,12 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 | [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [14] | `amqp`; `mqtt` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [15] | `3.1.1` | Recommended |
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [16] | `tcp`; `udp` | Recommended |
-| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [17] | `ipv4`; `ipv6` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [18] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [19] | `80`; `8080`; `443` | Recommended |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [14] | `amqp`; `mqtt` | Conditionally Required: [15] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [16] | `3.1.1` | Recommended |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` | Recommended |
+| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [18] | `ipv4`; `ipv6` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [19] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [20] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -354,19 +362,21 @@ size should be used.
 
 **[14]:** The value SHOULD be normalized to lowercase.
 
-**[15]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[15]:** Only for messaging systems and frameworks that support more than one protocol.
 
-**[16]:** The value SHOULD be normalized to lowercase.
+**[16]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+
+**[17]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[17]:** The value SHOULD be normalized to lowercase.
+**[18]:** The value SHOULD be normalized to lowercase.
 
-**[18]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[19]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
-**[19]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[20]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -389,9 +399,9 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|
 | `activemq` | Apache ActiveMQ |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) |
-| `azure_eventgrid` | Azure Event Grid |
-| `azure_eventhubs` | Azure Event Hubs |
-| `azure_servicebus` | Azure Service Bus |
+| `eventgrid` | Azure Event Grid |
+| `eventhubs` | Azure Event Hubs |
+| `servicebus` | Azure Service Bus |
 | `gcp_pubsub` | Google Cloud Pub/Sub |
 | `jms` | Java Message Service |
 | `kafka` | Apache Kafka |

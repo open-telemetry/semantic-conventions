@@ -18,6 +18,8 @@ groups:
       - ref: server.port
       - ref: network.protocol.name
         examples: ['amqp', 'mqtt']
+        requirement_level:
+          conditionally_required: Only for messaging systems and frameworks that support more than one protocol.
         tag: connection-level
       - ref: network.protocol.version
         tag: connection-level
