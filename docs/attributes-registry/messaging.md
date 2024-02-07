@@ -157,7 +157,7 @@ size should be used.
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `messaging.servicebus.destination.subscription_name` | string | The name of the subscription in the topic messages are received from. | `mySubscription` |
-| `messaging.servicebus.disposition_status` | string | Describes [settlement type](https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete` |
+| `messaging.servicebus.disposition_status` | string | Describes [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete` |
 | `messaging.servicebus.message.delivery_count` | int | Number of deliveries that have been attempted for this message. | `2` |
 | `messaging.servicebus.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 

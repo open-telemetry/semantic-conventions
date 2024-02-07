@@ -29,7 +29,7 @@ The following additional attributes are defined:
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`messaging.servicebus.destination.subscription_name`](../attributes-registry/messaging.md) | string | The name of the subscription in the topic messages are received from. | `mySubscription` | Conditionally Required: If messages are received from the subscription. |
-| [`messaging.servicebus.disposition_status`](../attributes-registry/messaging.md) | string | Describes [settlement type](https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete` | Conditionally Required: if and only if `messaging.operation` is `settle`. |
+| [`messaging.servicebus.disposition_status`](../attributes-registry/messaging.md) | string | Describes [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete` | Conditionally Required: if and only if `messaging.operation` is `settle`. |
 | [`messaging.servicebus.message.delivery_count`](../attributes-registry/messaging.md) | int | Number of deliveries that have been attempted for this message. | `2` | Conditionally Required: [1] |
 | [`messaging.servicebus.message.enqueued_time`](../attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | Recommended |
 
