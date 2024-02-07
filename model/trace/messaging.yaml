@@ -81,12 +81,6 @@ groups:
       - ref: messaging.message.envelope.size
       - ref: messaging.message.body.size
       - ref: server.address
-      - ref: network.peer.address
-      - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
-      - ref: network.transport
-      - ref: network.type
 
   - id: messaging.rabbitmq
     type: attribute_group
