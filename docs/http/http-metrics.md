@@ -493,7 +493,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[7]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[8]:** MUST NOT be populated when this is not supported by the HTTP client framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[8]:** The `http.route` MUST have low cardinality. It is not usually available on HTTP clients, but maybe known by the application or specialized HTTP instrumentation.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -584,7 +584,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[7]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[8]:** MUST NOT be populated when this is not supported by the HTTP client framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[8]:** The `http.route` MUST have low cardinality. It is not usually available on HTTP clients, but maybe known by the application or specialized HTTP instrumentation.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -675,7 +675,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[7]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[8]:** MUST NOT be populated when this is not supported by the HTTP client framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[8]:** The `http.route` MUST have low cardinality. It is not usually available on HTTP clients, but maybe known by the application or specialized HTTP instrumentation.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
