@@ -179,6 +179,33 @@ _Note: The need to report `messaging.deliver.messages` depends on the messaging 
 | `messaging.deliver.messages` | Counter | `{message}` | Measures the number of delivered messages. |
 <!-- endsemconv -->
 
+### Metric: `messaging.process.duration`
+
+This metric is [recommended][MetricRecommended] for processing operations that are initiated by application code.
+
+When this metric is reported alongside a messaging process span, the metric value SHOULD be the same as the corresponding span duration.
+
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+
+<!-- semconv metric.messaging.process.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `messaging.process.duration` | Histogram | `s` | Measures the duration of process operation. |
+<!-- endsemconv -->
+
+### Metric: `messaging.process.messages`
+
+This metric is [recommended][MetricRecommended] for batch process operations.
+
+<!-- semconv metric.messaging.process.messages(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `messaging.process.messages` | Counter | `{message}` | Measures the number of processed messages. |
+<!-- endsemconv -->
+
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
 [MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#required
+[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
 [MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#opt-in

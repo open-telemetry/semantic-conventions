@@ -207,6 +207,7 @@ The following operations related to messages are defined for these semantic conv
 | `create`       | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
 | `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
 | `deliver`      | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
+| `process`      | One or more messages are processed by consumer. |
 | `settle`       | One or more messages are settled. |
 
 ### Span kind
@@ -270,6 +271,11 @@ A single "Deliver" or "Receive" span can account for a single message, for a
 batch of messages, or for no message at all (if it is signalled that no
 messages were received). For each message it accounts for, the "Deliver" or
 "Receive" span SHOULD link to the message's creation context.
+
+"Process" spans MAY be created in addition to "Deliver" and "Receive" spans,
+for operations of processing a single message or a batch of messages. For each
+message it accounts for, the "Process" span MAY link to the creation context of
+the message.
 
 "Settle" spans SHOULD be created for every manually or automatically triggered
 settlement operation. A single "Settle" span can account for a single message
