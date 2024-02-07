@@ -298,6 +298,25 @@ groups:
           The name of the subscription in the topic messages are received from.
         examples: "mySubscription"
         tag: tech-specific-servicebus
+      - id: servicebus.disposition_status
+        brief: >
+          Describes [settlement type](https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
+        type:
+          allow_custom_values: true
+          members:
+            - id: complete
+              value: 'complete'
+              brief: 'Message is completed'
+            - id: abandon
+              value: 'abandon'
+              brief: 'Message is abandoned'
+            - id: dead_letter
+              value: 'dead_letter'
+              brief: 'Message is sent to dead letter queue'
+            - id: defer
+              value: 'defer'
+              brief: 'Message is deferred'
+        tag: tech-specific-servicebus
       - id: eventhubs.message.enqueued_time
         type: int
         brief: >
