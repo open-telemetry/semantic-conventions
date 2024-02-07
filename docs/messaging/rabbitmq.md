@@ -35,7 +35,7 @@ This metric follows the common [messaging.publish.duration](./messaging-metrics.
 
 **Notes:**
 - `messaging.publish.messages` metric is not reported: RabbitMQ doesn't support batch publish, therefore the count of published messages can be derived from `messaging.publish.duration` metric.
-- In addition to generic attributes defined for the metric, RabbitMQ instrumentation SHOULD report following attributes:
+- In addition to generic attributes defined for the metric, RabbitMQ instrumentations SHOULD report the following attributes (according to their [requirement levels](#rabbitmq-attributes)):
   * `messaging.rabbitmq.destination.routing_key`
 
 ### Metric: `messaging.deliver.duration`

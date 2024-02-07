@@ -12,7 +12,7 @@ The Semantic Conventions for [Azure Service Bus](https://learn.microsoft.com/azu
 
 `messaging.system` MUST be set to `"servicebus"`.
 
-### Attributes
+### Service Bus Attributes
 
 The following attributes are defined or reused:
 <!-- semconv messaging.servicebus -->
@@ -87,8 +87,8 @@ This metric follows the common [messaging.deliver.duration](./messaging-metrics.
 **Notes:**
 
 - Azure Service Bus client libraries don't provide batch processing clients, therefore count of processed messages can be derived from `messaging.deliver.duration` metric and is not reported.
-- In addition to generic attributes defined for the metric, Service Bus instrumentation SHOULD report following attributes:
-  * `messaging.servicebus.destination.subscription_name` when processing messages from topic subscriptions
+- In addition to generic attributes defined for the metric, Service Bus instrumentations SHOULD report the following attributes (according to their [requirement levels](#service-bus-attributes)):
+  * `messaging.servicebus.destination.subscription_name`
 
 #### Metric: `messaging.receive.duration`
 
@@ -101,8 +101,8 @@ This metric follows the common [messaging.receive.duration](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Service Bus instrumentation SHOULD report following attributes:
-  * `messaging.servicebus.destination.subscription_name` when processing  messages from topic subscriptions
+- In addition to generic attributes defined for the metric, Service Bus instrumentations SHOULD report the following attributes (according to their [requirement levels](#service-bus-attributes)):
+  * `messaging.servicebus.destination.subscription_name`
 
 #### Metric: `messaging.receive.messages`
 
@@ -114,14 +114,14 @@ This metric follows the common [messaging.receive.messages](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Service Bus instrumentation SHOULD report following attributes:
-  * `messaging.servicebus.destination.subscription_name` when processing  messages from topic subscriptions
+- In addition to generic attributes defined for the metric, Service Bus instrumentations SHOULD report the following attributes (according to their [requirement levels](#service-bus-attributes)):
+  * `messaging.servicebus.destination.subscription_name`
 
 ## Azure Event Hubs
 
 `messaging.system` MUST be set to `"eventhubs"`.
 
-### Attributes
+### Event Hubs Attributes
 
 The following attributes are defined or overridden:
 <!-- semconv messaging.eventhubs -->
@@ -184,8 +184,8 @@ This metric follows the common [messaging.publish.messages](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Event Hubs Bus instrumentation SHOULD report following attributes:
-  * `messaging.eventhubs.destination.partition.id` when partition Id is provided to the producer client by the application.
+- In addition to generic attributes defined for the metric, Event Hubs instrumentations SHOULD report the following attributes (according to their [requirement levels](#event-hubs-attributes)):
+  * `messaging.eventhubs.destination.partition.id`
 
 #### Metric: `messaging.deliver.duration`
 
@@ -197,7 +197,7 @@ This metric follows the common [messaging.deliver.duration](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Event Hubs instrumentation SHOULD report following attributes:
+- In addition to generic attributes defined for the metric, Event Hubs instrumentations SHOULD report the following attributes (according to their [requirement levels](#event-hubs-attributes)):
   * `messaging.eventhubs.destination.partition.id`
   * `messaging.eventhubs.consumer.group`
 
@@ -209,7 +209,7 @@ This metric follows the common [messaging.deliver.messages](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Event Hubs instrumentation SHOULD report following attributes:
+- In addition to generic attributes defined for the metric, Event Hubs instrumentations SHOULD report the following attributes (according to their [requirement levels](#event-hubs-attributes)):
   * `messaging.eventhubs.destination.partition.id`
   * `messaging.eventhubs.consumer.group`
 
@@ -224,7 +224,7 @@ This metric follows the common [messaging.receive.duration](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Event Hubs instrumentation SHOULD report following attributes:
+- In addition to generic attributes defined for the metric, Event Hubs instrumentations SHOULD report the following attributes (according to their [requirement levels](#event-hubs-attributes)):
   * `messaging.eventhubs.destination.partition.id`
   * `messaging.eventhubs.consumer.group`
 
@@ -238,7 +238,7 @@ This metric follows the common [messaging.receive.messages](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Event Hubs instrumentation SHOULD report following attributes:
+- In addition to generic attributes defined for the metric, Event Hubs instrumentations SHOULD report the following attributes (according to their [requirement levels](#event-hubs-attributes)):
   * `messaging.eventhubs.destination.partition.id`
   * `messaging.eventhubs.consumer.group`
 
