@@ -490,7 +490,7 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** MUST NOT be populated when this is not supported by the HTTP client framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[3]:** The `http.route` MUST have low cardinality. It is not usually available on HTTP clients, but maybe known by the application or specialized HTTP instrumentation.
 
 **[4]:** The value SHOULD be normalized to lowercase.
 
@@ -583,7 +583,7 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** MUST NOT be populated when this is not supported by the HTTP client framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[3]:** The `http.route` MUST have low cardinality. It is not usually available on HTTP clients, but maybe known by the application or specialized HTTP instrumentation.
 
 **[4]:** The value SHOULD be normalized to lowercase.
 
@@ -676,7 +676,7 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** MUST NOT be populated when this is not supported by the HTTP client framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[3]:** The `http.route` MUST have low cardinality. It is not usually available on HTTP clients, but maybe known by the application or specialized HTTP instrumentation.
 
 **[4]:** The value SHOULD be normalized to lowercase.
 
