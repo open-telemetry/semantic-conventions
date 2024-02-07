@@ -8,7 +8,12 @@ linkTitle: Kafka
 
 <!-- toc -->
 
-- [Span attributes](#span-attributes)
+- [Attributes](#attributes)
+- [Metrics](#metrics)
+  * [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
+  * [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
+  * [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
+  * [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
 - [Examples](#examples)
   * [Apache Kafka with Quarkus or Spring Boot Example](#apache-kafka-with-quarkus-or-spring-boot-example)
 
@@ -100,7 +105,7 @@ This metric follows the common [messaging.receive.messages](./messaging-metrics.
   * `messaging.kafka.destination.partition`
   * `messaging.kafka.consumer.group`
 
-## Span examples
+## Examples
 
 ### Apache Kafka with Quarkus or Spring Boot Example
 

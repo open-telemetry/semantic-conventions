@@ -1,10 +1,32 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Google Cloud Pub/Sub
+linkTitle: Azure Messaging Systems
 --->
 
-# Semantic Conventions for Azure Messaging systems
+# Semantic Conventions for Azure Messaging Systems
 
 **Status**: [Experimental][DocumentStatus]
+
+<!-- toc -->
+
+- [Azure Service Bus](#azure-service-bus)
+  * [Service Bus Attributes](#service-bus-attributes)
+  * [Service Bus Metrics](#service-bus-metrics)
+    + [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
+    + [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
+    + [Metric: `messaging.deliver.duration`](#metric-messagingdeliverduration)
+    + [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
+    + [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
+- [Azure Event Hubs](#azure-event-hubs)
+  * [Event Hubs Attributes](#event-hubs-attributes)
+  * [Event Hubs Metrics](#event-hubs-metrics)
+    + [Metric: `messaging.publish.duration`](#metric-messagingpublishduration-1)
+    + [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages-1)
+    + [Metric: `messaging.deliver.duration`](#metric-messagingdeliverduration-1)
+    + [Metric: `messaging.deliver.messages`](#metric-messagingdelivermessages)
+    + [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration-1)
+    + [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages-1)
+
+<!-- tocstop -->
 
 The Semantic Conventions for [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview) and [Azure Event Hubs](https://learn.microsoft.com/azure/event-hubs/event-hubs-about) extend and override the [Messaging Semantic Conventions](README.md) that describe common messaging operations attributes in addition to the Semantic Conventions described on this page.
 
@@ -58,7 +80,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 **[12]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
 
-### Metrics
+### Service Bus Metrics
 
 #### Metric: `messaging.publish.duration`
 
@@ -164,7 +186,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 **[11]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
 
-### Metrics
+### Event Hubs Metrics
 
 #### Metric: `messaging.publish.duration`
 
