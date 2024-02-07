@@ -1,0 +1,7 @@
+change_type: breaking
+
+component: messaging
+
+note: Remove `network.*` attributes from general messaging and database semantic conventions.
+
+issues: [690, 698]
