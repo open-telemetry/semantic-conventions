@@ -246,7 +246,7 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[5]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
-`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed) and SHOULD NOT be validated or modified except for sanitizing purposes.
+`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).  Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
 The following attributes can be important for making sampling decisions and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -366,9 +366,9 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[6]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
-**[7]:** `url.path` SHOULD NOT be validated or modified except for sanitizing purposes.
+**[7]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
-**[8]:** Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
+**[8]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
 
 **[9]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
