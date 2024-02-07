@@ -61,7 +61,7 @@ This metric follows the common [messaging.publish.duration](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Apache Kafka instrumentations SHOULD report the following attributes (according to their [requirement levels](#attributes)):
+- The following attributes (with corresponding [requirement levels](#attributes)) are defined in addition to generic attributes for this metric:
   * `messaging.kafka.destination.partition`
 
 ### Metric: `messaging.publish.messages`
@@ -74,7 +74,7 @@ This metric follows the common [messaging.publish.messages](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Apache Kafka instrumentations SHOULD report the following attributes (according to their [requirement levels](#attributes)):
+- The following attributes (with corresponding [requirement levels](#attributes)) are defined in addition to generic attributes for this metric:
   * `messaging.kafka.destination.partition`
 
 ### Metric: `messaging.receive.duration`
@@ -87,7 +87,7 @@ This metric follows the common [messaging.receive.duration](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Apache Kafka instrumentations SHOULD report the following attributes (according to their [requirement levels](#attributes)):
+- The following attributes (with corresponding [requirement levels](#attributes)) are defined in addition to generic attributes for this metric:
   * `messaging.kafka.destination.partition`
   * `messaging.kafka.consumer.group`
 
@@ -101,7 +101,7 @@ This metric follows the common [messaging.receive.messages](./messaging-metrics.
 
 **Notes:**
 
-- In addition to generic attributes defined for the metric, Apache Kafka instrumentations SHOULD report the following attributes (according to their [requirement levels](#attributes)):
+- The following attributes (with corresponding [requirement levels](#attributes)) are defined in addition to generic attributes for this metric:
   * `messaging.kafka.destination.partition`
   * `messaging.kafka.consumer.group`
 
