@@ -31,7 +31,7 @@ This metric is optional.
 | Value  | Description |
 |---|---|
 | `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). |
-| `system` | When CPU is used by the system |
+| `system` | When CPU is used by the system (host OS) |
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). |
 <!-- endsemconv -->
 
