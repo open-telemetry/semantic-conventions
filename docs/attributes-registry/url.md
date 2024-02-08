@@ -9,19 +9,18 @@ linkTitle: URL
 <!-- semconv registry.url(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `url.domain` | string | Domain of the url, such as "opentelemetry.io". [1] | `www.foo.bar`; `opentelemetry.io`; `3.12.167.2`; `[1080:0:0:0:8:800:200C:417A]` |
-| `url.extension` | string | The file extension from the original request url, excluding the leading dot. [2] | `png`; `gz` |
+| `url.domain` | string | Domain extracted from the `url.full`, such as "opentelemetry.io". [1] | `www.foo.bar`; `opentelemetry.io`; `3.12.167.2`; `[1080:0:0:0:8:800:200C:417A]` |
+| `url.extension` | string | The file extension extracted from the `url.full`, excluding the leading dot. [2] | `png`; `gz` |
 | `url.fragment` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component | `SemConv` |
 | `url.full` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` |
 | `url.original` | string | Unmodified original URL as seen in the event source. [4] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `search?q=OpenTelemetry` |
 | `url.path` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component | `/search` |
-| `url.port` | int | Port of the request | `443` |
+| `url.port` | int | Port extracted from the `url.full` | `443` |
 | `url.query` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [5] | `q=OpenTelemetry` |
 | `url.registered_domain` | string | The highest registered url domain, stripped of the subdomain. [6] | `example.com`; `foo.co.uk` |
 | `url.scheme` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` |
 | `url.subdomain` | string | The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain. [7] | `east`; `sub2.sub1` |
 | `url.top_level_domain` | string | The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`. [8] | `com`; `co.uk` |
-| `url.username` | string | Username of the request. | `username` |
 
 **[1]:** In some cases a URL may refer to an IP and/or port directly, without a domain name. In this case, the IP address would go to the domain field. If the URL contains a [literal IPv6 address](https://www.rfc-editor.org/rfc/rfc2732#section-2) enclosed by `[` and `]`, the `[` and `]` characters should also be captured in the domain field.
 

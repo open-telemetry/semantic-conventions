@@ -7,7 +7,7 @@ groups:
       - id: domain
         type: string
         brief: >
-          Domain of the url, such as "opentelemetry.io".
+          Domain extracted from the `url.full`, such as "opentelemetry.io".
         note: >
           In some cases a URL may refer to an IP and/or port directly,
           without a domain name. In this case, the IP address would go to the domain field.
@@ -17,7 +17,7 @@ groups:
       - id: extension
         type: string
         brief: >
-          The file extension from the original request url, excluding the leading dot.
+          The file extension extracted from the `url.full`, excluding the leading dot.
         note: >
           The file extension is only set if it exists, as not every url has a file extension.
           When the file name has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
@@ -62,7 +62,7 @@ groups:
       - id: port
         type: int
         brief: >
-          Port of the request
+          Port extracted from the `url.full`
         examples: [443]
       - id: query
         stability: stable
@@ -105,8 +105,3 @@ groups:
         examples: ["com", "co.uk"]
         note: >
            This value can be determined precisely with the [public suffix list](http://publicsuffix.org).
-      - id: username
-        type: string
-        brief: >
-          Username of the request.
-        examples: ["username"]

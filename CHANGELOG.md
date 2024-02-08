@@ -95,8 +95,6 @@
   ([#345](https://github.com/open-telemetry/semantic-conventions/pull/345))
 - Add messaging metrics
   ([#163](https://github.com/open-telemetry/semantic-conventions/pull/163))
-- Add remaining ECS fields to the url namespace
-  ([#496](https://github.com/open-telemetry/semantic-conventions/pull/496/))
 - Add .NET 8.0 metrics for HTTP client, ASP.NET Core, SignalR server and Kestrel.
   ([#283](https://github.com/open-telemetry/semantic-conventions/pull/283))
 - Add system shared IO direction attributes
