@@ -177,14 +177,6 @@ groups:
       - ref: messaging.servicebus.destination.subscription_name
         requirement_level:
           conditionally_required: If messages are received from the subscription.
-      - ref: network.protocol.name
-        requirement_level:
-          conditionally_required: If not default (`amqp`).
-        examples: ["amqp"]
-      - ref: network.protocol.version
-        requirement_level:
-          conditionally_required: If not default (`1.0`).
-        examples: ["1.0"]
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (`5672`).
@@ -217,14 +209,6 @@ groups:
       - ref: messaging.eventhubs.consumer.group
         requirement_level:
           conditionally_required: If not default ("$Default").
-      - ref: network.protocol.name
-        requirement_level:
-          conditionally_required: If not default (`amqp`).
-        examples: ["amqp"]
-      - ref: network.protocol.version
-        requirement_level:
-          conditionally_required: If not default (`1.0`).
-        examples: ["1.0"]
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (`5672`).

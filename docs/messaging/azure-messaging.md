@@ -49,10 +49,8 @@ The following attributes are defined or reused:
 | [`messaging.servicebus.destination.subscription_name`](../attributes-registry/messaging.md) | string | The name of the subscription in the topic messages are received from. | `mySubscription` | Conditionally Required: If messages are received from the subscription. |
 | [`messaging.servicebus.message.delivery_count`](../attributes-registry/messaging.md) | int | Number of deliveries that have been attempted for this message. | `2` | Conditionally Required: [8] |
 | [`messaging.servicebus.message.enqueued_time`](../attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | Recommended |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [9] | `amqp` | Conditionally Required: If not default (`amqp`). |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [10] | `1.0` | Conditionally Required: If not default (`1.0`). |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [12] | `5672` | Conditionally Required: If not default (`5672`). |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [10] | `5672` | Conditionally Required: If not default (`5672`). |
 
 **[1]:** When available, SHOULD match [AMQP error condition](https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#type-error) or string representation of a [management response status code](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-amqp-request-response). Otherwise SHOULD match full name of the exception type.
 
@@ -71,13 +69,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8]:** If delivery count is available and is bigger than 0.
 
-**[9]:** The value SHOULD be normalized to lowercase.
+**[9]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
-**[10]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[11]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
-
-**[12]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
 
 ### Service Bus Metrics
@@ -157,10 +151,8 @@ The following attributes are defined or overridden:
 | [`messaging.eventhubs.message.enqueued_time`](../attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | Recommended |
 | [`messaging.message.id`](../attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended |
 | [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [7] | `publish` | Required |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [8] | `amqp` | Conditionally Required: If not default (`amqp`). |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [9] | `1.0` | Conditionally Required: If not default (`1.0`). |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [11] | `5672` | Conditionally Required: If not default (`5672`). |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [9] | `5672` | Conditionally Required: If not default (`5672`). |
 
 **[1]:** When available, SHOULD match [AMQP error condition](https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#type-error) or string representation of a [management response status code](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-amqp-request-response). Otherwise SHOULD match full name of the exception type.
 
@@ -177,13 +169,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[7]:** If a custom value is used, it MUST be of low cardinality.
 
-**[8]:** The value SHOULD be normalized to lowercase.
+**[8]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
 
-**[9]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
-
-**[10]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
-
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
 
 ### Event Hubs Metrics
