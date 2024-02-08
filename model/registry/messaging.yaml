@@ -248,14 +248,14 @@ groups:
             - id: aws_sqs
               value: 'aws_sqs'
               brief: 'Amazon Simple Queue Service (SQS)'
-            - id: azure_eventgrid
-              value: 'azure_eventgrid'
+            - id: eventgrid
+              value: 'eventgrid'
               brief: 'Azure Event Grid'
-            - id: azure_eventhubs
-              value: 'azure_eventhubs'
+            - id: eventhubs
+              value: 'eventhubs'
               brief: 'Azure Event Hubs'
-            - id: azure_servicebus
-              value: 'azure_servicebus'
+            - id: servicebus
+              value: 'servicebus'
               brief: 'Azure Service Bus'
             - id: gcp_pubsub
               value: 'gcp_pubsub'
@@ -273,3 +273,39 @@ groups:
               value: 'rocketmq'
               brief: 'Apache RocketMQ'
         tag: messaging-generic
+      - id: servicebus.message.delivery_count
+        type: int
+        brief: >
+          Number of deliveries that have been attempted for this message.
+        examples: 2
+        tag: tech-specific-servicebus
+      - id: servicebus.message.enqueued_time
+        type: int
+        brief: >
+          The UTC epoch seconds at which the message has been accepted and stored in the entity.
+        examples: 1701393730
+        tag: tech-specific-servicebus
+      - id: servicebus.destination.subscription_name
+        type: string
+        brief: >
+          The name of the subscription in the topic messages are received from.
+        examples: "mySubscription"
+        tag: tech-specific-servicebus
+      - id: eventhubs.message.enqueued_time
+        type: int
+        brief: >
+          The UTC epoch seconds at which the message has been accepted and stored in the entity.
+        examples: 1701393730
+        tag: tech-specific-eventhubs
+      - id: eventhubs.destination.partition.id
+        type: string
+        brief: >
+          The identifier of the partition messages are sent to or received from, unique to the Event Hub which contains it.
+        examples: '1'
+        tag: tech-specific-eventhubs
+      - id: eventhubs.consumer.group
+        type: string
+        brief: >
+          The name of the consumer group the event consumer is associated with.
+        examples: 'indexer'
+        tag: tech-specific-eventhubs

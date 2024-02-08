@@ -13,6 +13,7 @@
 // limitations under the License.
 //
 
+//go:build tools
 // +build tools
 
 package tools
@@ -24,4 +25,5 @@ package tools
 
 import (
 	_ "github.com/client9/misspell/cmd/misspell"
+	_ "go.opentelemetry.io/build-tools/chloggen"
 )

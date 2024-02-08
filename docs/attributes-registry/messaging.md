@@ -10,6 +10,8 @@
 - [Kafka Attributes](#kafka-attributes)
 - [RabbitMQ Attributes](#rabbitmq-attributes)
 - [RocketMQ Attributes](#rocketmq-attributes)
+- [Azure Event Hubs Attributes](#azure-event-hubs-attributes)
+- [Azure Service Bus Attributes](#azure-service-bus-attributes)
 
 <!-- tocstop -->
 
@@ -66,9 +68,9 @@ size should be used.
 |---|---|
 | `activemq` | Apache ActiveMQ |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) |
-| `azure_eventgrid` | Azure Event Grid |
-| `azure_eventhubs` | Azure Event Hubs |
-| `azure_servicebus` | Azure Service Bus |
+| `eventgrid` | Azure Event Grid |
+| `eventhubs` | Azure Event Hubs |
+| `servicebus` | Azure Service Bus |
 | `gcp_pubsub` | Google Cloud Pub/Sub |
 | `jms` | Java Message Service |
 | `kafka` | Apache Kafka |
@@ -136,4 +138,24 @@ size should be used.
 | `fifo` | FIFO message |
 | `delay` | Delay message |
 | `transaction` | Transaction message |
+<!-- endsemconv -->
+
+## Azure Event Hubs Attributes
+
+<!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-eventhubs) -->
+| Attribute  | Type | Description  | Examples  |
+|---|---|---|---|
+| `messaging.eventhubs.consumer.group` | string | The name of the consumer group the event consumer is associated with. | `indexer` |
+| `messaging.eventhubs.destination.partition.id` | string | The identifier of the partition messages are sent to or received from, unique to the Event Hub which contains it. | `1` |
+| `messaging.eventhubs.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
+<!-- endsemconv -->
+
+## Azure Service Bus Attributes
+
+<!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-servicebus) -->
+| Attribute  | Type | Description  | Examples  |
+|---|---|---|---|
+| `messaging.servicebus.destination.subscription_name` | string | The name of the subscription in the topic messages are received from. | `mySubscription` |
+| `messaging.servicebus.message.delivery_count` | int | Number of deliveries that have been attempted for this message. | `2` |
+| `messaging.servicebus.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 <!-- endsemconv -->

@@ -1,7 +1,7 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: FaaS
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/faas/_index.md
+  from: tmp/semconv/docs/faas/_index.md
   to: faas/README.md
 --->
 

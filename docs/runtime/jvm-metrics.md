@@ -188,6 +188,8 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 ## JVM Threads
 
+**Status**: [Stable][DocumentStatus]
+
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.thread.*`
 
 ### Metric: `jvm.thread.count`
@@ -227,6 +229,8 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 <!-- endsemconv -->
 
 ## JVM Classes
+
+**Status**: [Stable][DocumentStatus]
 
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.class.*`
 
