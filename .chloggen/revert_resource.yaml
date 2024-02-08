@@ -7,7 +7,7 @@
 change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component:
+component: cloud, container, device, host, oci, os, process
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: Revert back temporary fix for resource attributes in registry
