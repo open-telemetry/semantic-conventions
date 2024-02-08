@@ -1,7 +1,7 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Resource
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/resource/_index.md
+  from: tmp/semconv/docs/resource/_index.md
   to: resource/README.md
 --->
 
@@ -20,7 +20,7 @@ This document defines standard attributes for resources. These attributes are ty
 - [Document Conventions](#document-conventions)
 - [Attributes with Special Handling](#attributes-with-special-handling)
   * [Semantic Attributes with Dedicated Environment Variable](#semantic-attributes-with-dedicated-environment-variable)
-- [Semantic Attributes with SDK-provided Default Value](#semantic-attributes-with-sdk-provided-default-value)
+  * [Semantic Attributes with SDK-provided Default Value](#semantic-attributes-with-sdk-provided-default-value)
 - [Service](#service)
 - [Service (Experimental)](#service-experimental)
 - [Telemetry SDK](#telemetry-sdk)
@@ -63,7 +63,7 @@ as specified in [OpenTelemetry Environment Variable Specification](https://githu
 
 - [`service.name`](#service)
 
-## Semantic Attributes with SDK-provided Default Value
+### Semantic Attributes with SDK-provided Default Value
 
 These are the attributes which MUST be provided by the SDK
 as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
