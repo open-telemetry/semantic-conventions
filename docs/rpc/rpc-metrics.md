@@ -219,11 +219,11 @@ measurements.
 <!-- semconv attributes.metrics.rpc(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`rpc.system`](../attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
 | [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
 | [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended |
 | [`rpc.method`](../attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [3] | `exampleMethod` | Recommended |
 | [`rpc.service`](../attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | Recommended |
-| [`rpc.system`](../attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
 | [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`server.port`](../attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | Recommended |
 
@@ -243,6 +243,16 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
+`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `grpc` | gRPC |
+| `java_rmi` | Java RMI |
+| `dotnet_wcf` | .NET WCF |
+| `apache_dubbo` | Apache Dubbo |
+| `connect_rpc` | Connect RPC |
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
@@ -258,16 +268,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|
 | `ipv4` | IPv4 |
 | `ipv6` | IPv6 |
-
-`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `grpc` | gRPC |
-| `java_rmi` | Java RMI |
-| `dotnet_wcf` | .NET WCF |
-| `apache_dubbo` | Apache Dubbo |
-| `connect_rpc` | Connect RPC |
 <!-- endsemconv -->
 
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).

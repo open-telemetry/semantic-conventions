@@ -17,11 +17,11 @@ described on this page.
 <!-- semconv rpc.jsonrpc(full,tag=jsonrpc-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`rpc.method`](../attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | Required |
 | [`rpc.jsonrpc.error_code`](../attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | Conditionally Required: If response is not successful. |
+| [`rpc.jsonrpc.version`](../attributes-registry/rpc.md) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | Conditionally Required: If other than the default version (`1.0`) |
 | [`rpc.jsonrpc.error_message`](../attributes-registry/rpc.md) | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | Recommended |
 | [`rpc.jsonrpc.request_id`](../attributes-registry/rpc.md) | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | Recommended |
-| [`rpc.jsonrpc.version`](../attributes-registry/rpc.md) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | Conditionally Required: If other than the default version (`1.0`) |
-| [`rpc.method`](../attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | Required |
 
 **[1]:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
 <!-- endsemconv -->

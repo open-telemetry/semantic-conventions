@@ -26,27 +26,19 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 <!-- semconv db.elasticsearch(full,tag=call-level-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`db.elasticsearch.cluster.name`](../attributes-registry/db.md) | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | Recommended: [1] |
-| [`db.elasticsearch.node.name`](../attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | Recommended: [2] |
-| [`db.elasticsearch.path_parts.<key>`](../attributes-registry/db.md) | string | A dynamic value in the url path. [3] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | Conditionally Required: when the url has dynamic values |
-| [`db.operation`](../attributes-registry/db.md) | string | The endpoint identifier for the request. [4] | `search`; `ml.close_job`; `cat.aliases` | Required |
-| [`db.statement`](../attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [5] |
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [6] | `GET`; `POST`; `HEAD` | Required |
-| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | Conditionally Required: [9] |
-| [`url.full`](../attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [10] | `https://localhost:9200/index/_search?q=user.id:kimchy` | Required |
+| [`db.operation`](../attributes-registry/db.md) | string | The endpoint identifier for the request. [1] | `search`; `ml.close_job`; `cat.aliases` | Required |
+| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | Required |
+| [`url.full`](../attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` | Required |
+| [`db.elasticsearch.path_parts.<key>`](../attributes-registry/db.md) | string | A dynamic value in the url path. [4] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | Conditionally Required: when the url has dynamic values |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | Conditionally Required: [6] |
+| [`db.elasticsearch.cluster.name`](../attributes-registry/db.md) | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | Recommended: [7] |
+| [`db.elasticsearch.node.name`](../attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | Recommended: [8] |
+| [`db.statement`](../attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [9] |
+| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 
-**[1]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+**[1]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL statement has an ambiguous operation, or performs more than one operation, this value may be omitted.
 
-**[2]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
-
-**[3]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
-
-**[4]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL statement has an ambiguous operation, or performs more than one operation, this value may be omitted.
-
-**[5]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
-
-**[6]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -61,15 +53,23 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-
-**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[9]:** If using a port other than the default port for this DBMS and if `server.address` is set.
-
-**[10]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
+**[3]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed) and SHOULD NOT be validated or modified except for sanitizing purposes.
+
+**[4]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
+
+**[5]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[6]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+
+**[7]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+
+**[8]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+
+**[9]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
+
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
