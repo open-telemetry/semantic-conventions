@@ -181,5 +181,5 @@ _Note: The need to report `messaging.process.messages` depends on the messaging 
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
 [MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#required
-[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
 [MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#opt-in
