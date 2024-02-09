@@ -38,6 +38,7 @@ Currently, the following namespaces exist:
 * [Disk](disk.md)
 * [Error](error.md)
 * [Exception](exception.md)
+* [File](file.md)
 * [Host](host.md)
 * [HTTP](http.md)
 * [K8s](k8s.md)
