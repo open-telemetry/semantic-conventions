@@ -191,7 +191,7 @@ Examples:
 * `shop.orders receive`
 * `shop.orders settle`
 * `print_jobs publish`
-* `topic with spaces deliver`
+* `topic with spaces process`
 * `AuthenticationRequest-Conversations settle`
 * `(anonymous) publish` (`(anonymous)` being a stable identifier for an unnamed destination)
 
@@ -206,8 +206,7 @@ The following operations related to messages are defined for these semantic conv
 | `publish`      | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
 | `create`       | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
 | `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
-| `deliver`      | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
-| `process`      | One or more messages are processed by consumer. |
+| `process`      | One or more messages are delivered to or processed by a consumer. |
 | `settle`       | One or more messages are settled. |
 
 ### Span kind
@@ -220,7 +219,7 @@ SHOULD be set according to the following table, based on the operation a span de
 | `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context. |
 | `create`       | `PRODUCER` |
 | `receive`      | `CONSUMER` |
-| `deliver`      | `CONSUMER` |
+| `process`      | `CONSUMER` for push-based scenarios where no `receive` span exists. |
 
 For cases not covered by the table above, the span kind should be set according
 to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#spankind),
@@ -254,28 +253,27 @@ message.
 
 #### Consumer spans
 
-"Deliver" spans SHOULD be created for operations of passing messages to the
-application when those operations are not initiated by the application code
-(push-based scenarios). A "Deliver" span covers the duration of such an
-operation, which is usually a callback or handler.
-
 "Receive" spans SHOULD be created for operations of passing messages to the
 application when those operations are initiated by the application code
 (pull-based scenarios).
 
-"Deliver" or "Receive" spans MUST NOT be created for messages that are
+"Process" spans SHOULD be created for operations of passing messages to the
+application when those operations are not initiated by the application code
+(push-based scenarios). Such "Process" span covers the duration of such an
+operation, which is usually a callback or handler.
+
+"Process" spans MAY be created in addition to "Receive" spans for pull-based
+scenarios for operations of processing messages. Such spans could be created by
+application code, or by abstraction layers built on top of messaging SDKs.
+
+"Receive" or "Process" spans MUST NOT be created for messages that are
 pre-fetched or cached by messaging libraries or SDKs until they are forwarded
 to the caller.
 
-A single "Deliver" or "Receive" span can account for a single message, for a
+A single "Process" or "Receive" span can account for a single message, for a
 batch of messages, or for no message at all (if it is signalled that no
-messages were received). For each message it accounts for, the "Deliver" or
+messages were received). For each message it accounts for, the "Process" or
 "Receive" span SHOULD link to the message's creation context.
-
-"Process" spans MAY be created in addition to "Deliver" and "Receive" spans,
-for operations of processing a single message or a batch of messages. For each
-message it accounts for, the "Process" span MAY link to the creation context of
-the message.
 
 "Settle" spans SHOULD be created for every manually or automatically triggered
 settlement operation. A single "Settle" span can account for a single message
@@ -392,12 +390,13 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
-| `deliver` | One or more messages are passed to a consumer. This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs. |
+| Operation name | Description |
+| -------------- | ----------- |
+| `publish`      | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
+| `create`       | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
+| `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
+| `process`      | One or more messages are delivered to or processed by a consumer. |
+| `settle`       | One or more messages are settled. |
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -493,11 +492,11 @@ flowchart LR;
   end
   subgraph CONSUMER1
   direction TB
-  R1[Span Deliver A 1]
+  R1[Span Process A 1]
   end
   subgraph CONSUMER2
   direction TB
-  R2[Span Deliver A 2]
+  R2[Span Process A 2]
   end
   P-. link .-R1;
   P-. link .-R2;
@@ -507,9 +506,9 @@ flowchart LR;
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Publish A | Span Deliver A 1| Span Deliver A 2 |
+| Field or Attribute | Span Publish A | Span Process A 1| Span Process A 2 |
 |-|-|-|-|
-| Span name | `T publish` | `T deliver` | `T deliver` |
+| Span name | `T publish` | `T process` | `T process` |
 | Parent | | | |
 | Links |  | `T publish` | `T publish` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
@@ -518,7 +517,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
-| `messaging.operation` | `"publish"` | `"deliver"` | `"deliver"` |
+| `messaging.operation` | `"publish"` | `"process"` | `"process"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
 ### Batch receiving
