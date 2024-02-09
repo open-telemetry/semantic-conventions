@@ -240,18 +240,18 @@ groups:
       - id: sql.table
         type: string
         brief: The name of the primary table that the operation is acting upon, including the database name (if applicable).
-        note: >
-          It is not recommended to attempt any client-side parsing of
-          `db.statement` just to get this property, but it should be set if
-          it is provided by the library being instrumented.
-          If the operation is acting upon an anonymous table, or more than one table, this
-          value MUST NOT be set.
         examples: ['public.users', 'customers']
         tag: tech-specific-sql
       - id: statement
         type: string
         brief: >
           The database statement being executed.
+        note: >
+          It is not recommended to attempt any client-side parsing of
+          `db.statement` just to get this property, but it should be set if
+          it is provided by the library being instrumented.
+          If the operation is acting upon an anonymous table, or more than one table, this
+          value MUST NOT be set.
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
         tag: db-generic
       - id: system
