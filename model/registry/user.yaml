@@ -23,7 +23,7 @@ groups:
         type: string
         brief: >
           Unique user hash to correlate information for a user in anonymized form.
-        note: > 
+        note: >
           Useful if `user.id` or `user.name` contain confidential information and cannot be used.
         examples: ['364fc68eaf4c8acec74a4e52d7d1feaa']
       - id: id
