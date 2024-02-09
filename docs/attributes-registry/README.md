@@ -51,6 +51,7 @@ Currently, the following namespaces exist:
 * [Thread](thread.md)
 * [TLS](tls.md)
 * [URL](url.md)
+* [User](user.md)
 * [User agent](user-agent.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
