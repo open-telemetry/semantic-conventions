@@ -4,7 +4,7 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: new_component
+change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
 component: url
