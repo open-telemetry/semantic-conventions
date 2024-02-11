@@ -29,10 +29,10 @@ All messaging metrics share the same set of attributes:
 | [`messaging.destination.name`](../attributes-registry/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | Conditionally Required: [4] |
 | [`messaging.destination.template`](../attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | Conditionally Required: if available. |
 | [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `amqp`; `mqtt` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `3.1.1` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | Recommended |
+| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `amqp`; `mqtt` | Conditionally Required: [7] |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [8] | `3.1.1` | Recommended |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -61,11 +61,13 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[6]:** The value SHOULD be normalized to lowercase.
 
-**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[7]:** Only for messaging systems and frameworks that support more than one protocol.
 
-**[8]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+**[8]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[9]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -79,9 +81,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 |---|---|
 | `activemq` | Apache ActiveMQ |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) |
-| `azure_eventgrid` | Azure Event Grid |
-| `azure_eventhubs` | Azure Event Hubs |
-| `azure_servicebus` | Azure Service Bus |
+| `eventgrid` | Azure Event Grid |
+| `eventhubs` | Azure Event Hubs |
+| `servicebus` | Azure Service Bus |
 | `gcp_pubsub` | Google Cloud Pub/Sub |
 | `jms` | Java Message Service |
 | `kafka` | Apache Kafka |
