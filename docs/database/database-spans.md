@@ -23,8 +23,7 @@ linkTitle: Client Calls
 > (or prior) SHOULD NOT change the version of the database conventions that they emit
 > until a transition plan to the (future) stable semantic conventions has been published.
 > Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
-
-
+>
 > **Warning**
 > Existing Database instrumentations that are using
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/database.md)
