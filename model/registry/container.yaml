@@ -1,7 +1,7 @@
 groups:
   - id: registry.container
     prefix: container
-    type: resource
+    type: attribute_group
     brief: >
       A container instance.
     attributes:
