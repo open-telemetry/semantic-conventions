@@ -60,7 +60,9 @@ groups:
           - If the user has provided a `service.instance.id`, via environment
             variable, configuration or custom resource detection, this MUST take priority over generated IDs. The special value `uuidv4` means
             that a UUID v4 should be generated.
-          - When the language, framework, or platform has a native mechanism allowing workloads to be uniquely idenfiable, this mechanism MAY be used.
+          - When the language, framework, or platform has a native mechanism allowing workloads to be uniquely idenfiable, this mechanism MAY be used,
+            either directly or as an input when generating UUID v5. A generated UUID v5 is preferable if the provided identifier isn't opaque and can
+            leak unwanted information about the workload (like a node name). An example of such native mechanism is Erlang's `erlang:node()`.
           - When any of the below combinations of resource attribute are provided, they MUST be used as the input
             for generating a UUID v5 following the prefix mentioned above. The values within each combination MUST be separated with dots:
             * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`, resulting in the input
