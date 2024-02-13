@@ -46,8 +46,6 @@
   ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
 - Add Azure Service Bus and Event Hubs messaging attributes
   ([#572](https://github.com/open-telemetry/semantic-conventions/pull/572))
-- Define a common algorithm for `service.instance.id`.
-  ([#312](https://github.com/open-telemetry/semantic-conventions/pull/312))
 
 ### Fixes
 
