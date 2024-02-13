@@ -131,12 +131,15 @@ same UUID if the same identifier (`host.id`, `/etc/machine-id`, and so on) remai
 yield different results for different services on the same host or namespace. When no namespaces or equivalent fields
 are available, the prefix MUST then be `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`.
 
+For applications running behind an application server, such as unicorn, a stable identifier is not desirable, as
+each worker thread typically is seen as a different instance.
+
 SDKs SHOULD use the following algorithm when generating `service.instance.id`:
 
 - If the user has provided a `service.instance.id`, via environment
-  variable, configuration or custom resource detection, this MUST take priority over generated IDs.
-- When the language, framework, or platform has a native mechanism allowing workloads to be uniquely idenfiable, like Erlang's
-  clustering identity, this mechanism MAY be used.
+  variable, configuration or custom resource detection, this MUST take priority over generated IDs. The special value `uuidv4` means
+  that a UUID v4 should be generated.
+- When the language, framework, or platform has a native mechanism allowing workloads to be uniquely idenfiable, this mechanism MAY be used.
 - When any of the below combinations of resource attribute are provided, they MUST be used as the input
   for generating a UUID v5 following the prefix mentioned above. The values within each combination MUST be separated with dots:
   * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`, resulting in the input
