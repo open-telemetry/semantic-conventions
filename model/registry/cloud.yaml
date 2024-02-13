@@ -1,7 +1,7 @@
 groups:
   - id: registry.cloud
     prefix: cloud
-    type: resource
+    type: attribute_group
     brief: >
       A cloud environment (e.g. GCP, Azure, AWS).
     attributes:
