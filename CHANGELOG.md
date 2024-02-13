@@ -47,7 +47,7 @@
 - Add Azure Service Bus and Event Hubs messaging attributes
   ([#572](https://github.com/open-telemetry/semantic-conventions/pull/572))
 - Add `messaging.gcp_pubsub.message.ack_result` span attribute
-  ([add PR link])
+  ([737](https://github.com/open-telemetry/semantic-conventions/pull/737))
 
 ### Fixes
 
