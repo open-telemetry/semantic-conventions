@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
+
 # Host
 
 ## Host Attributes
@@ -12,7 +13,7 @@
 | `host.cpu.family` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
 | `host.cpu.model.id` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
 | `host.cpu.model.name` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
-| `host.cpu.stepping` | int | Stepping or core revisions. | `1` |
+| `host.cpu.stepping` | string | Stepping or core revisions. | `1`; `r1p1` |
 | `host.cpu.vendor.id` | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` |
 | `host.id` | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` |
 | `host.image.id` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` |

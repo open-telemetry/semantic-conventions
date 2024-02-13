@@ -29,6 +29,7 @@ groups:
     brief: "Duration of HTTP server requests."
     instrument: histogram
     unit: "s"
+    stability: stable
     extends: metric_attributes.http.server
 
   - id: metric.http.server.active_requests
@@ -92,6 +93,7 @@ groups:
     brief: "Duration of HTTP client requests."
     instrument: histogram
     unit: "s"
+    stability: stable
     extends: metric_attributes.http.client
 
   - id: metric.http.client.request.body.size
