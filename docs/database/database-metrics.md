@@ -15,8 +15,8 @@ and attributes but more may be added in the future.
 
 <!-- toc -->
 
-- [Database call](#database-call)
-  * [Metric: `db.client.call.duration`](#metric-dbclientcallduration)
+- [Database operation](#database-operation)
+  * [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
 - [Connection pools](#connection-pools)
   * [Metric: `db.client.connections.usage`](#metric-dbclientconnectionsusage)
   * [Metric: `db.client.connections.idle.max`](#metric-dbclientconnectionsidlemax)
@@ -37,9 +37,9 @@ and attributes but more may be added in the future.
 > until a transition plan to the (future) stable semantic conventions has been published.
 > Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
 
-## Database call
+## Database operation
 
-### Metric: `db.client.call.duration`
+### Metric: `db.client.operation.duration`
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -51,21 +51,19 @@ This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.db.client.call.duration(metric_table) -->
+<!-- semconv metric.db.client.operation.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `db.client.call.duration` | Histogram | `s` | Duration of database client calls. |
+| `db.client.operation.duration` | Histogram | `s` | Duration of database client operations. |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.call.duration(full) -->
+<!-- semconv metric.db.client.operation.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`db.connection_string`](../attributes-registry/db.md) | string | The connection string used to connect to the database. It is recommended to remove embedded credentials. | `Server=(localdb)\v11.0;Integrated Security=true;` | Recommended |
 | [`db.instance.id`](../attributes-registry/db.md) | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | Recommended: If different from the `server.address` |
 | [`db.name`](../attributes-registry/db.md) | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [1] | `customers`; `main` | Conditionally Required: If applicable. |
 | [`db.operation`](../attributes-registry/db.md) | string | The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations) such as `findAndModify`, or the SQL keyword. [2] | `findAndModify`; `HMSET`; `SELECT` | Conditionally Required: If available. |
 | [`db.system`](../attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | Required |
-| [`db.user`](../attributes-registry/db.md) | string | Username for accessing the database. | `readonly_user`; `reporting_user` | Recommended |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
 | [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | Recommended |

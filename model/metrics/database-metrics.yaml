@@ -4,10 +4,10 @@ groups:
     brief: 'Database client attributes'
     extends: attributes.db.client
 
-  - id: metric.db.client.call.duration
+  - id: metric.db.client.operation.duration
     type: metric
-    metric_name: db.client.call.duration
-    brief: "Duration of database client calls."
+    metric_name: db.client.operation.duration
+    brief: "Duration of database client operations."
     instrument: histogram
     unit: "s"
     stability: experimental

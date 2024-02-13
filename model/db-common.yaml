@@ -11,8 +11,6 @@ groups:
     brief: 'Database Client attributes'
     extends: attributes.db.common
     attributes:
-      - ref: db.connection_string
-      - ref: db.user
       - ref: db.name
         requirement_level:
           conditionally_required: If applicable.
