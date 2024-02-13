@@ -164,6 +164,22 @@ groups:
         tag: tech-specific-gcp-pubsub
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
+      - id: messaging.gcp_pubsub.message.ack_result
+        tag: tech-specific-gcp-pubsub
+        brief: >
+          The subscriber's acknowledgement of a message. If missing, the subscriber did not chose whether or not to acknowledge the message.
+        requirement_level:
+          conditionally_required: If the subscriber ACKs or NACKs the message.
+        examples: ['ack', 'nack']
+        type:
+          allow_custom_values: false
+          members:
+            - id: ack
+              value: 'ack'
+              brief: The subscriber chose to acknowledge the message.
+            - id: nack
+              value: 'nack'
+              brief: The subscriber chose to NOT acknowledge the message.
   - id: messaging.servicebus
     type: attribute_group
     extends: messaging

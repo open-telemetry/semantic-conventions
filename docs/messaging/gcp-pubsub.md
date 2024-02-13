@@ -16,7 +16,15 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 <!-- semconv messaging.gcp_pubsub(full,tag=tech-specific-gcp-pubsub) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| `messaging.gcp_pubsub.message.ack_result` | string | The subscriber's acknowledgement of a message. If missing, the subscriber did not chose whether or not to acknowledge the message. | `ack`; `nack` | Conditionally Required: If the subscriber ACKs or NACKs the message. |
 | [`messaging.gcp_pubsub.message.ordering_key`](../attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | Conditionally Required: If the message type has an ordering key set. |
+
+`messaging.gcp_pubsub.message.ack_result` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `ack` | The subscriber chose to acknowledge the message. |
+| `nack` | The subscriber chose to NOT acknowledge the message. |
 <!-- endsemconv -->
 
 ## Examples
