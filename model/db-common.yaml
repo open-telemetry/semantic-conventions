@@ -1,0 +1,36 @@
+groups:
+  - id: attributes.db.common
+    type: attribute_group
+    brief: 'Describes Database attributes.'
+    attributes:
+      - ref: db.system
+        requirement_level: required
+
+  - id: attributes.db.client
+    type: attribute_group
+    brief: 'Database Client attributes'
+    extends: attributes.db.common
+    attributes:
+      - ref: db.connection_string
+      - ref: db.user
+      - ref: db.name
+        requirement_level:
+          conditionally_required: If applicable.
+      - ref: db.operation
+        requirement_level:
+          conditionally_required: If available.
+      - ref: server.address
+        brief: >
+          Name of the database host.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+      - ref: network.peer.address
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
+      - ref: network.transport
+      - ref: network.type
+      - ref: db.instance.id
+        requirement_level:
+          recommended: If different from the `server.address`

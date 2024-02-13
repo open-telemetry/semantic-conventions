@@ -1,4 +1,18 @@
 groups:
+  - id: metric_attributes.db.client
+    type: attribute_group
+    brief: 'Database client attributes'
+    extends: attributes.db.client
+
+  - id: metric.db.client.call.duration
+    type: metric
+    metric_name: db.client.call.duration
+    brief: "Duration of database client calls."
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    extends: metric_attributes.db.client
+
   - id: attributes.db
     type: attribute_group
     brief: Describes Database attributes
