@@ -153,7 +153,7 @@ _Note: The need to report `messaging.receive.messages` depends on the messaging 
 
 ### Metric: `messaging.process.duration`
 
-This metric is [required][MetricRequired] for operations are not initiated by the application code (push-based deliver), and [recommended](MetricRecommended) for processing operations instrumented for pull-based scenarios.
+This metric is [required][MetricRequired] for operations are not initiated by the application code (push-based deliver), and [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
 
 When this metric is reported alongside a messaging process span, the metric value SHOULD be the same as the corresponding span duration.
 
@@ -169,7 +169,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 ### Metric: `messaging.process.messages`
 
-This metric is [required][MetricRequired] for batch process operations, and [recommended](MetricRecommended) for batch processing operations instrumented for pull-based scenarios. It's [opt-in][MetricOptIn] when the messaging system does not support batch processing since the message count can be derived from the `messaging.process.duration` histogram.
+This metric is [required][MetricRequired] for batch process operations, and [recommended][MetricRecommended] for batch processing operations instrumented for pull-based scenarios. It's [opt-in][MetricOptIn] when the messaging system does not support batch processing since the message count can be derived from the `messaging.process.duration` histogram.
 
 _Note: The need to report `messaging.process.messages` depends on the messaging system capabilities and not application scenarios or client library limitations._
 
