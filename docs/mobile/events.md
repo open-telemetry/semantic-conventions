@@ -8,11 +8,26 @@ events on mobile platforms. All mobile events MUST use a namespace of
 
 <!-- toc -->
 
+- [Application unresponsive UI](#application-unresponsive-ui)
 - [Lifecycle instrumentation](#lifecycle-instrumentation)
   * [iOS](#ios)
   * [Android](#android)
 
 <!-- tocstop -->
+
+## Application unresponsive UI
+
+This event denotes when an application's UI "freezes", making users unable to interact with the app. It happens when the
+main thread (which is in charge of rendering the UI) gets blocked by a long-running task for a certain amount of time.
+
+The amount of time the UI must be frozen to trigger this event is implementation-specific, however, for Android applications
+it is recommended to be 5 seconds.
+
+The event name MUST be `device.app.unresponsive_ui`.
+
+| Attribute              | Type | Description                        | Examples                                                                                                                 | Requirement Level |
+|------------------------|---|------------------------------------|--------------------------------------------------------------------------------------------------------------------------|-------------------|
+| `stacktrace` | string | The stacktrace of the main thread. | `com.example.Type.aMethod(Type.java:39)\njava.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)` | Recommended       |
 
 ## Lifecycle instrumentation
 
