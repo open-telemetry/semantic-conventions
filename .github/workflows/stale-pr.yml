@@ -14,5 +14,5 @@ jobs:
           close-pr-message: 'Closed as inactive. Feel free to reopen if this PR is still being worked on.'
           exempt-pr-labels: 'bug,work in progress,experts needed'
           exempt-draft-pr: true
-          days-before-stale: 15
-          days-before-close: 7
+          days-before-pr-stale: 15
+          days-before-pr-close: 7
