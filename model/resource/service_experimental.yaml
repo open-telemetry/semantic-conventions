@@ -23,108 +23,30 @@ groups:
         brief: >
           The string ID of the service instance.
         note: |
-          MUST be unique for each instance of the same `service.namespace,service.name` pair
-          (in other words `service.namespace,service.name,service.instance.id` triplet MUST be globally unique).
-          The ID helps to distinguish instances of the same service that exist at the same time
-          (e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent
-          and stay the same for the lifetime of the service instance, however it is acceptable that
-          the ID is ephemeral and changes during important lifetime events for the service
-          (e.g. service instance restarts).
+          MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
+          `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
+          distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled
+          service).
 
-          If the instance has no inherent unique ID that can be used as the value of this attribute,
-          implementations MAY generate a random Version 1 or Version 4
-          [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID. When enough data is available,
-          implementations SHOULD use Version 5 and SHOULD use the following UUID as the namespace:
-          `4d63009a-8d0f-11ee-aad7-4c796ed8e320`.
+          Implementations are recommended to generate a random Version 1 or Version 4 [RFC
+          4122](https://www.ietf.org/rfc/rfc4122.txt) UUID, but are free to use an inherent unique ID as the source of
+          this value if stability is desirable. In that case, the ID SHOULD be used as source of a UUID Version 5 and
+          SHOULD use the following UUID as the namespace: `4d63009a-8d0f-11ee-aad7-4c796ed8e320`.
 
-          UUIDs are typically recommended, as only an opaque yet reproducible value for
-          the purposes of identifying a service instance is needed. Similar to what can be seen in the man page for the
-          [`/etc/machine-id`](https://www.freedesktop.org/software/systemd/man/machine-id.html) file,
-          the underlying data, such as pod name and namespace should be treated as
-          confidential by this algorithm, being the user's choice to expose it or not via another resource attribute.
+          UUIDs are typically recommended, as only an opaque value for the purposes of identifying a service instance is
+          needed. Similar to what can be seen in the man page for the
+          [`/etc/machine-id`](https://www.freedesktop.org/software/systemd/man/machine-id.html) file, the underlying
+          data, such as pod name and namespace should be treated as confidential, being the user's choice to expose it
+          or not via another resource attribute.
 
-          When a UUID v5 is generated, the input SHOULD be prefixed with
-          `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}`, followed by the
-          the workload identifier, which should tentatively be stable. The workload identifier is the final piece of
-          information making the source of telemetry to be uniquely idenfiable. For instance, it might be the `container.name`
-          in containerized or Kubernetes environments. This means that the same service yields the
-          same UUID if the same identifier (`host.id`, `/etc/machine-id`, and so on) remains the same. It would still
-          yield different results for different services on the same host or namespace. When no namespaces or equivalent fields
-          are available, the prefix MUST then be `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}`.
+          For applications running behind an application server, such as unicorn, a stable identifier is not desirable,
+          as each worker thread typically is seen as a different instance. For those cases, a UUID v1/v4 is always
+          recommended.
 
-          For applications running behind an application server, such as unicorn, a stable identifier is not desirable, as
-          each worker thread typically is seen as a different instance.
-
-          SDKs SHOULD use the following algorithm when generating `service.instance.id`:
-
-          - If the user has provided a `service.instance.id`, via environment
-            variable, configuration or custom resource detection, this MUST take priority over generated IDs. The special value `uuidv4` means
-            that a UUID v4 should be generated.
-          - When the language, framework, or platform has a native mechanism allowing workloads to be uniquely idenfiable, this mechanism MAY be used,
-            either directly or as an input when generating UUID v5. A generated UUID v5 is preferable if the provided identifier isn't opaque and can
-            leak unwanted information about the workload (like a node name). An example of such native mechanism is Erlang's `erlang:node()`.
-          - When any of the below combinations of resource attribute are provided, they MUST be used as the input
-            for generating a UUID v5 following the prefix mentioned above. The values within each combination MUST be separated with dots:
-            * `k8s.namespace.name`/`k8s.pod.name`/`k8s.container.name`, resulting in the input
-            `${telemetry.sdk.name}.${telemetry.sdk.language}.${k8s.namespace.name}.${service.name}.${k8s.pod.name}.${k8s.container.name}`. In this case,
-            the namespace MUST be used.
-            * `container.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${container.id}`,
-            possibly without the `${service.namespace}`.
-            * `host.id`, resulting in the input `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${host.id}`,
-            possibly without `${service.namespace}`.
-          - When the SDK is running in an environment where a `/etc/machine-id`
-            (see [MACHINE-ID(5)](https://www.freedesktop.org/software/systemd/man/machine-id.html))
-            is available, the machine-id SHOULD be used in the input for generating a UUID v5 (possibly without the namespace):
-            `${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}.${machine.id}`
-          - When the SDK is running on a Windows environment and there's a reasonable way to read
-            registry keys for the SDK, the registry key
-            `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid` can be used in a
-            similar way to Linux' machine-id above.
-          - When no other source is available the SDK MUST generate a value using UUID v1 or v4.
-            For service instances running on Kubernetes, this is typically the case where a pod's name +
-            namespace are not unique enough to determine a service instance's identity and the container name
-            cannot easily be inferred. If we created a UUID without `container.name`, on pods with multiple
-            containers, the `service.instance.id` would yield the same results for all containers, which is undesirable.
-            Given that services are ephemeral on Kubernetes, the `service.instance.id` would change on each
-            restart, therefore being no different than a completely new UUID per process.
-
-          Examples in Go, using the package "github.com/google/uuid" to generate the UUIDs:
-
-          ```go
-          package main
-
-          import (
-            "fmt"
-
-            "github.com/google/uuid"
-          )
-
-          func main() {
-            // fixed namespace for the purposes of this OTEP
-            ns := uuid.MustParse("4d63009a-8d0f-11ee-aad7-4c796ed8e320")
-
-            // prefix when no namespace is available
-            prefix := "${telemetry.sdk.name}.${telemetry.sdk.language}.${service.name}"
-
-            // prefix when a namespace is available
-            prefix = "${telemetry.sdk.name}.${telemetry.sdk.language}.${service.namespace}.${service.name}"
-
-            // actual prefix for the OTel Go SDK, for a service named "customers"
-            prefix = "opentelemetry.go.customers"
-
-            // the generated service.instance.id where a host.id is used
-            host := "graviola"
-            id := uuid.NewSHA1(ns, []byte(fmt.Sprintf("%s.%s", prefix, host))) // 17ffc8fd-6ed7-5069-a5fb-2fed78f5455f
-            fmt.Printf("v5 host id: %v\n", id)
-
-            // the generated service.instance.id where a typical kubernetes values are available
-            namespace := "accounting"
-            name := "vendors" // typically, the deployment name
-            pod := "vendors-pqr-jh7d2"
-            container := "some-sidecar"
-            input := fmt.Sprintf("opentelemetry.go.%s.%s.%s.%s", namespace, name, pod, container)
-            id = uuid.NewSHA1(ns, []byte(input)) // f3a5f61b-9fff-5707-8d41-d3a9d2423b7d
-            fmt.Printf("v5 id: %v\n", id)
-          }
-          ```
-        examples: ["my-k8s-pod-deployment-1", "627cc493-f310-47de-96bd-71410b7dec09"]
+          Collectors aren't recommended to set a `service.instance.id`: any identifying information that the Collector
+          can infer should be added as a regular resource attribute, and it's unlikely that the Collector will have all
+          the information to be certain from which instance of a service a data point originated. As an example, a
+          Kubernetes pod might have multiple containers, and a Collector may not be able to confidently infer from which
+          container the telemetry is coming from. However, if the Collector can confidently infer the source of
+          telemetry unambiguously, it MAY use the information at its disposal and generate a UUID Version 5 with it.
+        examples: ["627cc493-f310-47de-96bd-71410b7dec09"]
