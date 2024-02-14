@@ -166,6 +166,16 @@
 | `ExecuteJavaScript` | execute_javascript |
 <!-- endsemconv -->
 
+<!-- semconv registry.db(omit_requirement_level,tag=tech-specific-cosmosdb) -->
+| Attribute  | Type | Description  | Examples  |
+|---|---|---|---|
+| [`rntbd.url`](../attributes-registry/db.md) | string | CosmosDB server url contacted | `rntbd://some-url/` |
+| [`rntbd.status_code`](../attributes-registry/db.md) | string | Status Code returned by cosmos DB server | `200` `404` etc. |
+| [`rntbd.sub_status_code`](../attributes-registry/db.md) | string | Sub Status Code which tells more about the failure | `20001` `20002` etc |
+| [`rntbd.*`](../attributes-registry/db.md) | string | Cosmos DB specific information, it can vary with different flavours of SDK |  |
+| [`rntbd.pipeline.*`](../attributes-registry/db.md) | double | Cosmos specific attribute with detailed information about the request pipeline | |
+<!-- endsemconv -->
+
 ## Elasticsearch Attributes
 
 <!-- semconv registry.db(omit_requirement_level,tag=tech-specific-elasticsearch) -->

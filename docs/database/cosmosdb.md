@@ -90,4 +90,20 @@ In addition to Cosmos DB attributes, all spans include
 | `db.cosmosdb.sub_status_code`        | `0` |
 | `db.cosmosdb.request_charge`         | `7.43` |
 
+## Network-level attributes
+
+<!-- semconv db.cosmosdb(full,tag=network-level-tech-specific) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`rntbd.url`](../attributes-registry/db.md) | string | CosmosDB server url contacted | `rntbd://some-url/` | Required |
+| [`rntbd.status_code`](../attributes-registry/db.md) | string | Status Code returned by cosmos DB server | `200` `404` etc. | Required |
+| [`rntbd.sub_status_code`](../attributes-registry/db.md) | string | Sub Status Code which tells more about the failure | `20001` `20002` etc | Required |
+| [`rntbd.*`](../attributes-registry/db.md) | string | Cosmos DB specific information, it can vary with different flavours of SDK |  | Optional: [1] |
+| [`rntbd.pipeline.*`](../attributes-registry/db.md) | double | Cosmos specific attribute with detailed information about the request pipeline | | Optional: [2] |
+
+**[1]:** Any cosmosdb specific attribute which would be available for informational purpose. This information can be different in different flavor of SDK.
+
+**[2]:** Any cosmosdb specific attribute which would give more information about the request states. This information can be different in different flavor of SDK.
+<!-- endsemconv -->
+
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

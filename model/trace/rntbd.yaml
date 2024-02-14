@@ -1,0 +1,28 @@
+groups:
+  - id: rntbd
+    type: span
+    span_kind: client
+    brief: >
+      Network-level attributes for Cosmos DB. It is Microsoft proprietry protocol for Cosmos DB.
+    attributes:
+      - ref: rntbd.url
+        tag: network-level-tech-specific
+        requirement_level: required
+
+      - ref: rntbd.status_code
+        tag: network-level-tech-specific
+        requirement_level: required
+
+      - ref: rntbd.sub_status_code
+        tag: network-level-tech-specific
+        requirement_level: required
+
+      - ref: rntbd.*
+        tag: network-level-tech-specific
+        requirement_level: 
+          conditionally_required: If and only if its available in that flavor of SDK
+
+      - ref: rntbd.pipeline.*
+        tag: network-level-tech-specific
+        requirement_level: 
+          conditionally_required: If and only if its available in that flavor of SDK
