@@ -12,6 +12,10 @@ described on this page.
 
 `db.system` MUST be set to `"mongodb"`.
 
+## Span name
+
+MongoDB spans SHOULD be named according to the following pattern: `{db.name}.{db.mongodb.collection} {db.operation}`
+
 ## Call-level attributes
 
 <!-- semconv db.mongodb(full,tag=call-level-tech-specific) -->
@@ -24,7 +28,7 @@ described on this page.
 
 | Key | Value |
 | :---------------------- | :----------------------------------------------------------- |
-| Span name               | `"products.findAndModify"` |
+| Span name               | `"shopDb.products findAndModify"` |
 | `db.system`             | `"mongodb"` |
 | `db.connection_string`  | not set |
 | `db.user`               | `"the_user"` |

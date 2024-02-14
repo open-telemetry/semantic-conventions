@@ -105,7 +105,7 @@
 | `db.cassandra.speculative_execution_count` | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` |
 | `db.cassandra.table` | string | The name of the primary Cassandra table that the operation is acting upon, including the keyspace name (if applicable). [1] | `mytable` |
 
-**[1]:** This mirrors the db.sql.table attribute but references cassandra rather than sql. It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
+**[1]:** This mirrors the `db.sql.table` attribute but references `cassandra` rather than `sql`. It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
 
 `db.cassandra.consistency_level` MUST be one of the following:
 

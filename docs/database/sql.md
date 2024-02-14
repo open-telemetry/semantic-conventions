@@ -10,6 +10,15 @@ The SQL databases Semantic Conventions extend and override the [Database Semanti
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
+## Span name
+
+SQL spans SHOULD be named the following way:
+- `{db.name} {db.statement}` if `db.statement` without variable arguments is available and know to be of a low cardinality.
+- `{db.name}.{db.sql.table} {db.operation}`, provided that `db.operation` and `db.sql.table` are available.
+  - If `db.sql.table` is not available due to its semantics, the span SHOULD be named `{db.name} {db.operation}`
+  - If `db.operation` is not available, the span SHOULD be named `{db.name}`
+  - If no information is available, the span SHOULD be named `{db.system}`
+
 ## Call-level attributes
 
 <!-- semconv db.sql(full,tag=call-level-tech-specific) -->
@@ -22,11 +31,11 @@ described on this page.
 
 ## Example
 
-This is an example of attributes for a MySQL database span:
+This is an example of attributes for a MySQL database span when `db.statement` contains variable arguments:
 
 | Key                     | Value |
 |:------------------------| :----------------------------------------------------------- |
-| Span name               | `"SELECT ShopDb.orders"` |
+| Span name               | `"ShopDb.orders SELECT"` |
 | `db.system`             | `"mysql"` |
 | `db.connection_string`  | `"Server=shopdb.example.com;Database=ShopDb;Uid=billing_user;TableCache=true;UseCompression=True;MinimumPoolSize=10;MaximumPoolSize=50;"` |
 | `db.user`               | `"billing_user"` |
@@ -37,6 +46,24 @@ This is an example of attributes for a MySQL database span:
 | `network.transport`     | `"tcp"` |
 | `db.name`               | `"ShopDb"` |
 | `db.statement`          | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
+| `db.operation`          | `"SELECT"` |
+| `db.sql.table`          | `"orders"` |
+
+This is an example of attributes for a MySQL database span when `db.statement` is available without variable arguments:
+
+| Key                     | Value |
+|:------------------------| :----------------------------------------------------------- |
+| Span name               | `"ShopDb SELECT * FROM orders WHERE order_id = ?"` |
+| `db.system`             | `"mysql"` |
+| `db.connection_string`  | `"Server=shopdb.example.com;Database=ShopDb;Uid=billing_user;TableCache=true;UseCompression=True;MinimumPoolSize=10;MaximumPoolSize=50;"` |
+| `db.user`               | `"billing_user"` |
+| `server.address`        | `"shopdb.example.com"` |
+| `server.port`           | `3306` |
+| `network.peer.address`  | `"192.0.2.12"` |
+| `network.peer.port`     | `3306` |
+| `network.transport`     | `"tcp"` |
+| `db.name`               | `"ShopDb"` |
+| `db.statement`          | `"SELECT * FROM orders WHERE order_id = ?"` |
 | `db.operation`          | `"SELECT"` |
 | `db.sql.table`          | `"orders"` |
 

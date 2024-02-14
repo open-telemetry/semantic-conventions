@@ -12,6 +12,10 @@ described on this page.
 
 `db.system` MUST be set to `"cassandra"`.
 
+## Span name
+
+Cassandra spans SHOULD be named according to the following pattern: `{db.name}.{db.cassandra.table} {db.operation}`
+
 ## Call-level attributes
 
 <!-- semconv db.cassandra(full,tag=call-level-tech-specific-cassandra) -->
@@ -26,7 +30,7 @@ described on this page.
 | [`db.cassandra.table`](../attributes-registry/db.md) | string | The name of the primary Cassandra table that the operation is acting upon, including the keyspace name (if applicable). [1] | `mytable` | Recommended |
 | [`db.name`](../attributes-registry/db.md) | string | The keyspace name in Cassandra. [2] | `mykeyspace` | Conditionally Required: If applicable. |
 
-**[1]:** This mirrors the db.sql.table attribute but references cassandra rather than sql. It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
+**[1]:** This mirrors the `db.sql.table` attribute but references `cassandra` rather than `sql`. It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
 
 **[2]:** For Cassandra the `db.name` should be set to the Cassandra keyspace name.
 

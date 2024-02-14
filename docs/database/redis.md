@@ -12,6 +12,12 @@ described on this page.
 
 `db.system` MUST be set to `"redis"`.
 
+## Span name
+
+Redis spans SHOULD be named the following way:
+- `{db.redis.database_index} {db.statement}` if `db.statement` without variable arguments is available and know to be of a low cardinality.
+- `{db.redis.database_index}` otherwise.
+
 ## Call-level attributes
 
 <!-- semconv db.redis(full,tag=call-level-tech-specific) -->
@@ -32,7 +38,7 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 
 | Key                       | Value |
 |:--------------------------| :-------------------------------------------- |
-| Span name                 | `"HMSET myhash"` |
+| Span name                 | `"15 HMSET myhash"` |
 | `db.system`               | `"redis"` |
 | `db.connection_string`    | not set |
 | `db.user`                 | not set |

@@ -59,6 +59,8 @@ groups:
     attributes:
       - ref: db.mssql.instance_name
         tag: connection-level-tech-specific
+      - ref: db.sql.table
+        tag: connection-level-tech-specific
 
   - id: db.cassandra
     type: span

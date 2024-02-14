@@ -52,15 +52,23 @@ linkTitle: Client Calls
 
 **Span kind:** MUST always be `CLIENT`.
 
-The **span name** SHOULD be set to a low cardinality value representing the statement executed on the database.
+## Span name
+
+Database spans MUST follow the overall guidelines for [span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/trace/api.md#span).
+
+The span name SHOULD include database name, table or container name and the operation being performed in the following format:
+`{db.name}.{table name} {operation}`
+
+The `{table name}` is not applicable to some databases and SHOULD be specified in tech-specific database conventions. For example, it matches `db.sql.table` for SQL database, `db.cassandra.table` for Cassandra and `db.mongodb.collection` for MongoDB.
+
+The `{operation}` SHOULD be set to a low cardinality value representing the operation executed on the database.
 It MAY be a stored procedure name (without arguments), DB statement without variable arguments, operation name, etc.
-Since SQL statements may have very high cardinality even without arguments, SQL spans SHOULD be named the
-following way, unless the statement is known to be of low cardinality:
-`<db.operation> <db.name>.<db.sql.table>`, provided that `db.operation` and `db.sql.table` are available.
-If `db.sql.table` is not available due to its semantics, the span SHOULD be named `<db.operation> <db.name>`.
-It is not recommended to attempt any client-side parsing of `db.statement` just to get these properties,
+
+It is NOT RECOMMENDED to attempt any client-side parsing of `db.statement` to get span name components,
 they should only be used if the library being instrumented already provides them.
-When it's otherwise impossible to get any meaningful span name, `db.name` or the tech-specific database name MAY be used.
+
+When it's otherwise impossible to get any meaningful span name, `db.name`, or the tech-specific database name SHOULD be used.
+If no low-cardinality information is available, `db.system` SHOULD be used as a fallback.
 
 ## Connection-level attributes
 
