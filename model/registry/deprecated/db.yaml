@@ -16,3 +16,8 @@ groups:
         brief: 'Removed, no replacement at this time.'
         deprecated: 'Removed as not used.'
         examples: ['org.postgresql.Driver', 'com.microsoft.sqlserver.jdbc.SQLServerDriver']
+      - id: elasticsearch.node.name
+        type: string
+        brief: 'Deprecated, use `db.instance.id` instead.'
+        deprecated: "Replaced by `db.instance.id`."
+        examples: ["instance-0000000001"]
