@@ -39,8 +39,7 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 | Span name                 | `"HMSET myhash"` |
 | `db.system`               | `"redis"` |
 | `db.user`                 | not set |
-| `network.peer.address`    | `"/tmp/redis.sock"` |
-| `network.transport`       | `"unix"` |
+| `server.address`          | `"/tmp/redis.sock"` |
 | `db.name`                 | not set |
 | `db.statement`            | `"HMSET myhash field1 'Hello' field2 'World"` |
 | `db.operation`            | not set |
