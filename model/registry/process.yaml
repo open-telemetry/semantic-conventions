@@ -1,7 +1,7 @@
 groups:
   - id: registry.process
     prefix: process
-    type: resource
+    type: attribute_group
     brief: >
         An operating system process.
     attributes:
