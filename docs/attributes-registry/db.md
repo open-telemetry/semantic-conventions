@@ -168,11 +168,11 @@
 ## Elasticsearch Attributes
 
 <!-- semconv registry.db(omit_requirement_level,tag=tech-specific-elasticsearch) -->
-| Attribute  | Type | Description  | Examples  |
-|---|---|---|---|
-| `db.elasticsearch.cluster.name` | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` |
-| `db.elasticsearch.node.name` | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` |
-| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [1] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` |
+| Attribute  | Type | Description                                                                                 | Examples  |
+|---|---|---------------------------------------------------------------------------------------------|---|
+| `db.elasticsearch.cluster.name` | string | Represents the identifier of an Elasticsearch cluster.                                      | `e9106fc68e3044f0b1475b04bf4ffd5f` |
+| `db.elasticsearch.node.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `db.instance.id` instead. | `instance-0000000001` |
+| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [1]                                                        | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` |
 
 **[1]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 <!-- endsemconv -->
