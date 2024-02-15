@@ -12,6 +12,13 @@ path_base_for_github_subdir:
 This document defines semantic conventions for database client spans as well as
 database metrics and logs.
 
+> **Warning**
+> Existing database instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/README.md)
+> (or prior) SHOULD NOT change the version of the database conventions that they emit
+> until a transition plan to the (future) stable semantic conventions has been published.
+> Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
+
 Semantic conventions for database operations are defined for the following signals:
 
 * [DB Spans](database-spans.md): Semantic Conventions for database client *spans*.
