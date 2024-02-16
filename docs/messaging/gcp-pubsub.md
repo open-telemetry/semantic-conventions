@@ -16,9 +16,9 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 <!-- semconv messaging.gcp_pubsub(full,tag=tech-specific-gcp-pubsub) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`messaging.gcp_pubsub.ack_deadline_seconds`](../attributes-registry/messaging.md) | int | The ack deadline set for the modify ack deadline request | `10` | Recommended |
-| [`messaging.gcp_pubsub.message.ack_id`](../attributes-registry/messaging.md) | string | The ack id for a given message. | `ack_id` | Required |
-| [`messaging.gcp_pubsub.message.delivery_attempt`](../attributes-registry/messaging.md) | int | The delivery attempt for a given message. | `2` | Required |
+| [`messaging.gcp_pubsub.message.ack_deadline`](../attributes-registry/messaging.md) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | Recommended |
+| [`messaging.gcp_pubsub.message.ack_id`](../attributes-registry/messaging.md) | string | The ack id for a given message. | `ack_id` | Recommended |
+| [`messaging.gcp_pubsub.message.delivery_attempt`](../attributes-registry/messaging.md) | int | The delivery attempt for a given message. | `2` | Recommended |
 | [`messaging.gcp_pubsub.message.ordering_key`](../attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | Conditionally Required: If the message type has an ordering key set. |
 <!-- endsemconv -->
 
