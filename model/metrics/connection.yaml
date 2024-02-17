@@ -1,0 +1,47 @@
+groups:
+  - id: metric_attributes.connection.client
+    type: span
+    brief: >
+      Describes attributes that are common to all connection metrics.
+    extends: common_attributes.connection.client
+    attributes:
+      - ref: network.peer.address
+        requirement_level:
+          recommended: see the note below
+        note: >
+          The `network.peer.address` could be of a high cardinality. In practice, however, its cardinality is limited
+          to the number of distinct IP addresses for the given domain name, which is small
+          when destination service is behind a load balancer or NAT.
+
+          Connection instrumentations MAY set `network.peer.address` by default, or let users opt into collecting it.
+          If instrumentation collects `network.peer.address` by default, it MUST allow users to opt-out
+          of `network.peer.address` collection or disable collection of all connection metrics that set the attribute.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if `network.peer.address` is set.`
+      - ref: network.transport
+      - ref: network.type
+
+  - id: metric.connection.client.open_connections
+    type: metric
+    metric_name: connection.client.open_connections
+    brief: "Number of outbound connections that are currently open (active or idle) on the client."
+    instrument: updowncounter
+    unit: "{connection}"
+    extends: metric_attributes.connection.client
+
+  - id: metric.connection.client.duration
+    type: metric
+    metric_name: connection.client.duration
+    brief: "The duration of the successfully established outbound connection."
+    instrument: histogram
+    unit: "s"
+    extends: metric_attributes.connection.client
+
+  - id: metric.connection.client.connect_duration
+    type: metric
+    metric_name: connection.client.connect_duration
+    brief: "The duration of the attempt to establish connection."
+    instrument: histogram
+    unit: "s"
+    extends: metric_attributes.connection.client
