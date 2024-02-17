@@ -13,12 +13,12 @@ groups:
           to the number of distinct IP addresses for the given domain name, which is small
           when destination service is behind a load balancer or NAT.
 
-          Connection instrumentations MAY set `network.peer.address` by default, or let users opt into collecting it.
+          Connection instrumentations MAY set `network.peer.address` by default or let users opt into collecting it.
           If instrumentation collects `network.peer.address` by default, it MUST allow users to opt-out
           of `network.peer.address` collection or disable collection of all connection metrics that set the attribute.
       - ref: network.peer.port
         requirement_level:
-          recommended: if `network.peer.address` is set.`
+          recommended: if `network.peer.address` is set.
       - ref: network.transport
       - ref: network.type
 

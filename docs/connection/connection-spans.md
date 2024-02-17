@@ -18,6 +18,7 @@ This document defines semantic conventions to apply when instrumenting client si
   * [Successful connection](#successful-connection)
   * [Successful connect, but connection terminates with an error](#successful-connect-but-connection-terminates-with-an-error)
   * [Can't establish connection](#cant-establish-connection)
+  * [Relationship with application protocols such as HTTP](#relationship-with-application-protocols-such-as-http)
   * [Connection retry example](#connection-retry-example)
 
 <!-- tocstop -->
@@ -53,7 +54,7 @@ The `connect` and `connection` span share the same list of attributes:
 | [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: if available without reverse DNS lookup |
 
-**[1]:** It's REQUIRED to document error types instrumentation produces. It's RECOMMENDED to use a connection error code if it's provided by the socket library, runtime, or the OS (such as `connect` method error code on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html#ERRORS) / [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value)).
+**[1]:** It's REQUIRED to document error types instrumentation produces. It's RECOMMENDED to use error codes provided by the socket library, runtime, or the OS (such as `connect` method error codes on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html#ERRORS) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value)).
 
 **[2]:** If and only if a connection (attempt) ended with an error.
 

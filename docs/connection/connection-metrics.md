@@ -28,17 +28,17 @@ All connection metrics share the same set of attributes:
 |---|---|---|---|---|
 | [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `econnreset`; `econnrefused`; `address_family_not_supported`; `java.net.SocketException` | Conditionally Required: [2] |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [3] | `10.1.2.80`; `/tmp/my.sock` | Recommended: see the note below |
-| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: if `network.peer.address` is set.` |
+| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: if `network.peer.address` is set. |
 | [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | Recommended |
 | [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | Recommended |
 | [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: if available without reverse DNS lookup |
 
-**[1]:** It's REQUIRED to document error types instrumentation produces. It's RECOMMENDED to use a connection error code if it's provided by the socket library, runtime, or the OS (such as `connect` method error code on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html#ERRORS) / [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value)).
+**[1]:** It's REQUIRED to document error types instrumentation produces. It's RECOMMENDED to use error codes provided by the socket library, runtime, or the OS (such as `connect` method error codes on [Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html#ERRORS) or [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value)).
 
 **[2]:** If and only if a connection (attempt) ended with an error.
 
 **[3]:** The `network.peer.address` could be of a high cardinality. In practice, however, its cardinality is limited to the number of distinct IP addresses for the given domain name, which is small when destination service is behind a load balancer or NAT.
-Connection instrumentations MAY set `network.peer.address` by default, or let users opt into collecting it. If instrumentation collects `network.peer.address` by default, it MUST allow users to opt-out of `network.peer.address` collection or disable collection of all connection metrics that set the attribute.
+Connection instrumentations MAY set `network.peer.address` by default or let users opt into collecting it. If instrumentation collects `network.peer.address` by default, it MUST allow users to opt-out of `network.peer.address` collection or disable collection of all connection metrics that set the attribute.
 
 **[4]:** The value SHOULD be normalized to lowercase.
 
