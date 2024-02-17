@@ -23,6 +23,7 @@ This document defines semantic conventions to apply when instrumenting client si
 <!-- tocstop -->
 
 this convention defines two types of spans:
+
 - `connect` span: describes the process of establishing a connection. It corresponds to `connect` function ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html) /
 [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect)).
 - `connection` span: describes the connection lifetime: it starts right after the connection is successfully established and ends when connection terminates.
@@ -148,6 +149,13 @@ Successful connection attempt to `example.com` results in the following span:
 | `network.type`         | `"ipv4"`            |
 | `error.type`           | `econnrefused`      |
 
+### Relationship with application protocols such as HTTP
+
+It could be impossible to record any relationships between HTTP spans and connection-level spans when connections are pooled and reused.
+
+The following picture demonstrates an ideal example when recording such relationships (via span links) is possible.
+
+![connection-spans-and-application-protocols.png](connection-spans-and-application-protocols.png)
 
 ### Connection retry example
 

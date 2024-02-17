@@ -12,10 +12,10 @@ This document defines semantic conventions to apply when instrumenting client si
 
 <!-- toc -->
 
-* [Common attributes](#common-attributes)
-* [Metric: `connection.client.connect_duration`](#metric-connectionclientconnect_duration)
-* [Metric: `connection.client.open_connections`](#metric-connectionclientopen_connections)
-* [Metric: `connection.client.duration`](#metric-connectionclientduration)
+- [Common attributes](#common-attributes)
+- [Metric: `connection.client.connect_duration`](#metric-connectionclientconnect_duration)
+- [Metric: `connection.client.duration`](#metric-connectionclientduration)
+- [Metric: `connection.client.open_connections`](#metric-connectionclientopen_connections)
 
 <!-- tocstop -->
 
@@ -80,17 +80,7 @@ This metric is [recommended][MetricRequirementLevel].
 <!-- semconv metric.connection.client.connect_duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `connection.client.connect_duration` | Histogram | `s` | The duration of the connection attempt. |
-<!-- endsemconv -->
-
-## Metric: `connection.client.open_connections`
-
-This metric is [recommended][MetricRequired].
-
-<!-- semconv metric.connection.client.open_connections(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `connection.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound connections that are currently open (active or idle) on the client. |
+| `connection.client.connect_duration` | Histogram | `s` | The duration of the attempt to establish connection. |
 <!-- endsemconv -->
 
 ## Metric: `connection.client.duration`
@@ -100,7 +90,17 @@ This metric is [recommended][MetricRequirementLevel].
 <!-- semconv metric.connection.client.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `connection.client.duration` | Histogram | `s` | The duration of the successfully established outbound connections. |
+| `connection.client.duration` | Histogram | `s` | The duration of the successfully established outbound connection. |
+<!-- endsemconv -->
+
+## Metric: `connection.client.open_connections`
+
+This metric is [recommended][MetricRequirementLevel].
+
+<!-- semconv metric.connection.client.open_connections(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `connection.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound connections that are currently open (active or idle) on the client. |
 <!-- endsemconv -->
 
 [MetricRequirementLevel]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md

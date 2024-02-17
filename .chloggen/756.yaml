@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: connection
+
+note: Add semantic conventions for client connections
+
+issues: [454, 756]
+
+subtext:
