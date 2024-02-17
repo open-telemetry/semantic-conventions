@@ -137,15 +137,16 @@ But then after some packet exchange, the connection is reset:
 | `network.transport`    | `"ipv4"`            |
 | `error.type`           | `econnreset`        |
 
-### Can't establish connection
+### Attempt to establish connection ends with `econnrefused` error
 
-Successful connection attempt to `example.com` results in the following span:
+An attempt to establish connection to `127.0.0.1:8080` without any application
+listening on this port results in the following span:
 
 |   Attribute name       |         Value       |
 | :--------------------- | :-------------------|
 | name                   | `"connect"`         |
-| `network.peer.address` | `"93.184.216.34"`   |
-| `network.peer.port`    | `443`               |
+| `network.peer.address` | `"127.0.0.1"`   |
+| `network.peer.port`    | `8080`               |
 | `network.transport`    | `"tcp"`             |
 | `network.type`         | `"ipv4"`            |
 | `error.type`           | `econnrefused`      |
