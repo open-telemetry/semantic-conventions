@@ -12,12 +12,12 @@ This document defines semantic conventions to apply when instrumenting client si
 
 <!-- toc -->
 
-- [Span name](#span-name)
-- [Attributes](#attributes)
-- [Examples](#examples)
+* [Span name](#span-name)
+* [Attributes](#attributes)
+* [Examples](#examples)
   * [Successful connection](#successful-connection)
   * [Successful connect, but connection terminates with an error](#successful-connect-but-connection-terminates-with-an-error)
-  * [Can't establish connection](#cant-establish-connection)
+  * [Attempt to establish connection ends with `econnrefused` error](#attempt-to-establish-connection-ends-with-econnrefused-error)
   * [Relationship with application protocols such as HTTP](#relationship-with-application-protocols-such-as-http)
   * [Connection retry example](#connection-retry-example)
 
