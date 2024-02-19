@@ -22,14 +22,6 @@ groups:
       - ref: network.transport
       - ref: network.type
 
-  - id: metric.connection.client.open_connections
-    type: metric
-    metric_name: connection.client.open_connections
-    brief: "Number of outbound connections that are currently open (active or idle) on the client."
-    instrument: updowncounter
-    unit: "{connection}"
-    extends: metric_attributes.connection.client
-
   - id: metric.connection.client.duration
     type: metric
     metric_name: connection.client.duration
@@ -45,3 +37,15 @@ groups:
     instrument: histogram
     unit: "s"
     extends: metric_attributes.connection.client
+
+  - id: metric.connection.client.open_connections
+    type: metric
+    metric_name: connection.client.open_connections
+    brief: "Number of outbound connections that are currently open."
+    instrument: updowncounter
+    unit: "{connection}"
+    extends: metric_attributes.connection.client
+    attributes:
+      - ref: connection.state
+        requirement_level:
+          conditionally_required: if connection is pooled and state is available.

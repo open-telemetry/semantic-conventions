@@ -100,7 +100,7 @@ This metric is [recommended][MetricRequirementLevel].
 <!-- semconv metric.connection.client.open_connections(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `connection.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound connections that are currently open (active or idle) on the client. |
+| `connection.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound connections that are currently open. |
 <!-- endsemconv -->
 
 [MetricRequirementLevel]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md
