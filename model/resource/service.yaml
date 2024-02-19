@@ -7,6 +7,4 @@ groups:
     attributes:
       - ref: service.name
         requirement_level: required
-        stability: stable
       - ref: service.version
-        stability: stable
