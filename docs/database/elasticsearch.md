@@ -105,6 +105,6 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
 | `db.elasticsearch.path_parts.index` | `"my-index-000001"`                                                                                                                 |
 | `db.elasticsearch.cluster.name`     | `"e9106fc68e3044f0b1475b04bf4ffd5f"`                                                                                                |
-| `db.elasticsearch.node.name` | `"instance-0000000001"`                                                                                                             |
+| `db.elasticsearch.instance.id`      | `"instance-0000000001"`                                                                                                             |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
