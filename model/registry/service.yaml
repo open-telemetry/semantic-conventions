@@ -22,12 +22,6 @@ groups:
           The version string of the service API or implementation. The format is not defined by these conventions.
         examples: ["2.0.0", "a01dbef8a"]
         stability: stable
-  - id: registry.service_experimental
-    prefix: service
-    type: attribute_group
-    brief: >
-      A service instance.
-    attributes:
       - id: namespace
         type: string
         stability: experimental
