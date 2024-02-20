@@ -18,6 +18,13 @@ linkTitle: Client Calls
 <!-- tocstop -->
 
 > **Warning**
+> Existing database instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
+> (or prior) SHOULD NOT change the version of the database conventions that they emit
+> until a transition plan to the (future) stable semantic conventions has been published.
+> Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
+>
+> **Warning**
 > Existing Database instrumentations that are using
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/database.md)
 > (or prior):
@@ -208,7 +215,6 @@ More specific Semantic Conventions are defined for the following database techno
 * [Cosmos DB](cosmosdb.md): Semantic Conventions for *Microsoft Cosmos DB*.
 * [CouchDB](couchdb.md): Semantic Conventions for *CouchDB*.
 * [Elasticsearch](elasticsearch.md): Semantic Conventions for *Elasticsearch*.
-* [GraphQL](graphql.md): Semantic Conventions for *GraphQL Server*.
 * [HBase](hbase.md): Semantic Conventions for *HBase*.
 * [MongoDB](mongodb.md): Semantic Conventions for *MongoDB*.
 * [MSSQL](mssql.md): Semantic Conventions for *MSSQL*.

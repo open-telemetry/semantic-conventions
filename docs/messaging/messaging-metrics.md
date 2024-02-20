@@ -18,6 +18,13 @@
 
 <!-- tocstop -->
 
+> **Warning**
+> Existing messaging instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-metrics.md)
+> (or prior) SHOULD NOT change the version of the messaging conventions that they emit
+> until a transition plan to the (future) stable semantic conventions has been published.
+> Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
+
 ## Common attributes
 
 All messaging metrics share the same set of attributes:
@@ -81,9 +88,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 |---|---|
 | `activemq` | Apache ActiveMQ |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) |
-| `azure_eventgrid` | Azure Event Grid |
-| `azure_eventhubs` | Azure Event Hubs |
-| `azure_servicebus` | Azure Service Bus |
+| `eventgrid` | Azure Event Grid |
+| `eventhubs` | Azure Event Hubs |
+| `servicebus` | Azure Service Bus |
 | `gcp_pubsub` | Google Cloud Pub/Sub |
 | `jms` | Java Message Service |
 | `kafka` | Apache Kafka |
