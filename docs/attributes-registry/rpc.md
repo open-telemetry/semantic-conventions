@@ -22,7 +22,7 @@ RPC attributes are intended to be used in the context of events related to remot
 | `rpc.jsonrpc.version` | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` |
 | `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [5] | `exampleMethod` |
 | `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [6] | `myservice.EchoService` |
-| `rpc.system` | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `java_rmi` |
+| `rpc.system` | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` |
 
 **[1]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
@@ -83,6 +83,7 @@ RPC attributes are intended to be used in the context of events related to remot
 
 | Value  | Description |
 |---|---|
+| `grpc` | gRPC |
 | `java_rmi` | Java RMI |
 | `dotnet_wcf` | .NET WCF |
 | `apache_dubbo` | Apache Dubbo |

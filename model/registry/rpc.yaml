@@ -173,6 +173,9 @@ groups:
         type:
           allow_custom_values: true
           members:
+            - id: grpc
+              value: 'grpc'
+              brief: 'gRPC'
             - id: java_rmi
               value: 'java_rmi'
               brief: 'Java RMI'

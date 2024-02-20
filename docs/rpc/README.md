@@ -20,6 +20,7 @@ Semantic conventions for RPC are defined for the following signals:
 Technology specific semantic conventions are defined for the following RPC systems:
 
 * [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
+* [gRPC](grpc.md): Semantic Conventions for *gRPC*.
 * [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
 
 Specifications defined by maintainers of RPC systems:
