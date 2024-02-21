@@ -107,7 +107,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled
 service).
 
-Implementations are recommended to generate a random Version 1 or Version 4 [RFC
+Implementations, such as SDKs, are recommended to generate a random Version 1 or Version 4 [RFC
 4122](https://www.ietf.org/rfc/rfc4122.txt) UUID, but are free to use an inherent unique ID as the source of
 this value if stability is desirable. In that case, the ID SHOULD be used as source of a UUID Version 5 and
 SHOULD use the following UUID as the namespace: `4d63009a-8d0f-11ee-aad7-4c796ed8e320`.
@@ -118,16 +118,16 @@ needed. Similar to what can be seen in the man page for the
 data, such as pod name and namespace should be treated as confidential, being the user's choice to expose it
 or not via another resource attribute.
 
-For applications running behind an application server, such as unicorn, a stable identifier is not desirable,
-as each worker thread typically is seen as a different instance. For those cases, a UUID v1/v4 is always
-recommended.
+For applications running behind an application server (like unicorn), we do not recommend using one identifier
+for all processes participating in the application. Instead, it's recommended each division (e.g. a worker
+thread in unicorn) to have its own instance.id.
 
-Collectors aren't recommended to set a `service.instance.id`: any identifying information that the Collector
-can infer should be added as a regular resource attribute, and it's unlikely that the Collector will have all
-the information to be certain from which instance of a service a data point originated. As an example, a
-Kubernetes pod might have multiple containers, and a Collector may not be able to confidently infer from which
-container the telemetry is coming from. However, if the Collector can confidently infer the source of
-telemetry unambiguously, it MAY use the information at its disposal and generate a UUID Version 5 with it.
+It's not recommended for a Collector to set `service.instance.id` if it can't unambiguously determine the
+service instance that is generating that telemetry. For instance, creating an UUID based on `pod.name` will
+likely be wrong, as the Collector likely doesn't know whether there are multiple containers within that pod.
+However, Collectors can set the `service.instance.id` if they can unambiguously determine the service instance
+for that telemetry. This is typically the case for scraping receivers, as they know the target address and
+port.
 
 **[2]:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
 <!-- endsemconv -->
