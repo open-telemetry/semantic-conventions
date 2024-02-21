@@ -233,7 +233,7 @@
 
 ### Deprecated Elasticsearch Attributes
 
-<!-- semconv attributes.db.deprecated(omit_requirement_level,tag=call-level-tech-specific) -->
+<!-- semconv attributes.db.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `db.elasticsearch.node.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `db.instance.id` instead. | `instance-0000000001` |
