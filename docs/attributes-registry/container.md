@@ -28,3 +28,17 @@ The ID is assinged by the container runtime and can vary in different environmen
 
 **[3]:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 <!-- endsemconv -->
+
+<!-- semconv registry.container.cpu(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  |
+|---|---|---|---|
+| `container.cpu.state` | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `kernel` |
+
+`container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). |
+| `system` | When CPU is used by the system (host OS) |
+| `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). |
+<!-- endsemconv -->

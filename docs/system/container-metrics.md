@@ -8,7 +8,7 @@ linkTitle: Container
 
 ## Container Metrics
 
-### Metric: `container.cpu.utilization`
+### Metric: `container.cpu.time`
 
 This metric is optional.
 
@@ -23,10 +23,10 @@ This metric is optional.
 <!-- semconv metric.container.cpu.time(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `container.cpu.state` | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `kernel` | Opt-In |
+| [`container.cpu.state`](../attributes-registry/container.md) | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `kernel` | Opt-In |
 | [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
 
-`container.cpu.state` MUST be one of the following:
+`container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
@@ -35,7 +35,7 @@ This metric is optional.
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). |
 <!-- endsemconv -->
 
-### Metric: `container.memory.utilization`
+### Metric: `container.memory.usage`
 
 This metric is optional.
 
@@ -70,6 +70,7 @@ This metric is optional.
 |---|---|---|---|---|
 | [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
 | [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
 
 `disk.io.direction` MUST be one of the following:
 
@@ -96,6 +97,7 @@ This metric is optional.
 |---|---|---|---|---|
 | [`container.id`](../attributes-registry/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | Recommended |
 | [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
+| `system.device` | string | The device identifier | `(identifier)` | Recommended |
 
 `network.io.direction` MUST be one of the following:
 

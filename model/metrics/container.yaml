@@ -1,25 +1,5 @@
 groups:
   # container.cpu.* metrics and attribute group
-  - id: attributes.container.cpu
-    prefix: container.cpu
-    type: attribute_group
-    brief: "Describes Container CPU metric attributes"
-    attributes:
-      - id: state
-        brief: "The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
-        type:
-          allow_custom_values: false
-          members:
-            - id: user
-              value: 'user'
-              brief: "When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows)."
-            - id: system
-              value: 'system'
-              brief: "When CPU is used by the system (host OS)"
-            - id: kernel
-              value: 'kernel'
-              brief: "When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows)."
-        examples: ["user", "kernel"]
   - id: metric.container.cpu.time
     type: metric
     metric_name: container.cpu.time
@@ -58,6 +38,7 @@ groups:
     attributes:
       - ref: container.id
       - ref: disk.io.direction
+      - ref: system.device
 
   # container.network.io.* metrics and attribute group
   - id: metric.container.network.io
@@ -73,3 +54,4 @@ groups:
     attributes:
       - ref: container.id
       - ref: network.io.direction
+      - ref: system.device
