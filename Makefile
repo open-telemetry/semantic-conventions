@@ -15,9 +15,11 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 # Keep links in model/README.md and .vscode/settings.json in sync!
 SEMCONVGEN_VERSION=0.24.0
 
+LASTEST_RELEASED_SEMCONV_VERSION=1.24.0
+
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint markdown-link-check misspell table-check schema-check \
+all: install-tools markdownlint markdown-link-check misspell table-check compatibility-check schema-check \
 		 check-file-and-folder-names-in-docs
 
 .PHONY: check-file-and-folder-names-in-docs
@@ -102,6 +104,11 @@ table-generation:
 table-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check
+
+.PHONY: compatibility-check
+compatibility-check:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source compatibility --previous-version ${LASTEST_RELEASED_SEMCONV_VERSION} --ignore-warnings
 
 .PHONY: schema-check
 schema-check:
