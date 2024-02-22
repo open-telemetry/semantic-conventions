@@ -124,7 +124,7 @@ thread in unicorn) to have its own instance.id.
 
 It's not recommended for a Collector to set `service.instance.id` if it can't unambiguously determine the
 service instance that is generating that telemetry. For instance, creating an UUID based on `pod.name` will
-likely be wrong, as the Collector likely doesn't know whether there are multiple containers within that pod.
+likely be wrong, as the Collector might not know from which container within that pod the telemetry originated.
 However, Collectors can set the `service.instance.id` if they can unambiguously determine the service instance
 for that telemetry. This is typically the case for scraping receivers, as they know the target address and
 port.
