@@ -16,10 +16,9 @@ The Semantic Conventions for [Azure Service Bus](https://learn.microsoft.com/azu
 
 The span name SHOULD follow [general messaging span name pattern](../messaging/azure-messaging.md): it SHOULD start with the messaging destination name (Event Hubs queue or topic name) and
 contain a low-cardinality name of an operation span describes:
-
-- Spans for `deliver` operation SHOULD follow `<destination name> process` pattern (matching terminology used in Azure client libraries)
-- Spans for `settle` operation SHOULD follow `<destination name> <disposition status>` pattern. Disposition status MUST match the value of `messaging.servicebus.disposition_status` attribute.
+- Spans names for `settle` operation SHOULD follow `<destination name> {messaging.servicebus.disposition_status}` pattern.
   For example, `my-queue complete` or `my-queue abandon`
+- Spans names for `publish` operation SHOULD follow `<destination name> send` pattern.
 - Spans for `create`, `receive`, and `publish` operations SHOULD follow general `<destination name> <operation name>` pattern
 
 ### Span attributes
@@ -45,8 +44,8 @@ The following additional attributes are defined:
 The span name SHOULD follow [general messaging span name pattern](../messaging/azure-messaging.md): it SHOULD start with the messaging destination name (Event Hubs namespace) and
 contain a low-cardinality name of an operation span describes:
 
-- Spans for `deliver` operation SHOULD follow  `<destination name> process` pattern (matching terminology used in Azure client libraries)
 - Spans for `settle` operation SHOULD follow  `<destination name> checkpoint` (matching Event Hubs terminology)
+- Spans names for `publish` operation SHOULD follow `<destination name> send` pattern
 - Spans for `create`, `receive`, and `publish` operations SHOULD follow general `<destination name> <operation name>` pattern
 
 ### Span attributes
