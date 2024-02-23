@@ -160,7 +160,7 @@ _Note: The need to report `messaging.receive.messages` depends on the messaging 
 
 ### Metric: `messaging.process.duration`
 
-This metric is [required][MetricRequired] for operations are not initiated by the application code (push-based deliver), and [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
+This metric is [required][MetricRequired] for operations that are not initiated by the application code (push-based deliver), and [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
 
 When this metric is reported alongside a messaging process span, the metric value SHOULD be the same as the corresponding span duration.
 
