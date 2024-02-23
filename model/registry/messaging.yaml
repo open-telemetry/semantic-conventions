@@ -156,6 +156,13 @@ groups:
           RabbitMQ message routing key.
         examples: 'myKey'
         tag: tech-specific-rabbitmq
+      - id: rabbitmq.message.delivery_tag
+        type: int
+        brief: >
+          RabbitMQ message delivery tag
+        examples: 123
+        tag: tech-specific-rabbitmq
+
       - id: rocketmq.client_group
         type: string
         brief: >

@@ -106,6 +106,7 @@ size should be used.
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey` |
+| `messaging.rabbitmq.message.delivery_tag` | int | RabbitMQ message delivery tag | `123` |
 <!-- endsemconv -->
 
 ## RocketMQ Attributes

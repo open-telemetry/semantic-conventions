@@ -102,6 +102,10 @@ groups:
         requirement_level:
           conditionally_required: If not empty.
         tag: tech-specific-rabbitmq
+      - ref: messaging.rabbitmq.message.delivery_tag
+        requirement_level:
+          conditionally_required: When available.
+        tag: tech-specific-rabbitmq
 
   - id: messaging.kafka
     type: attribute_group
