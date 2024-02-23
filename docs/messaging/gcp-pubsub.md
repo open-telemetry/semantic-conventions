@@ -131,6 +131,6 @@ flowchart TD;
 | `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
 | `messaging.gcp_pubsub.message.ack_id` | | |  | `"ack_id1"` |`"ack_id1"` |
 | `messaging.gcp_pubsub.message.delivery_attempt` | | |  | `0` |  |
-| `messaging.gcp_pubsub.message.ack_deadline_seconds` | | |  | | `0` |
+| `messaging.gcp_pubsub.message.ack_deadline` | | |  | | `0` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
