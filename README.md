@@ -18,6 +18,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/open-telemetry/teams/specs-semconv-approvers)):
 
+- [Alexandra Konrad](https://github.com/trisch-me), Elastic
 - [Christian Neumüller](https://github.com/Oberon00), Dynatrace
 - [James Moessis](https://github.com/jamesmoessis), Atlassian
 - [Johannes Tax](https://github.com/pyohannes), Grafana Labs
