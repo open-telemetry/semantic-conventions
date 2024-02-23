@@ -96,6 +96,10 @@ groups:
         requirement_level:
           conditionally_required: When available.
         tag: tech-specific-rabbitmq
+      - ref: network.peer.address
+        tag: tech-specific-rabbitmq
+      - ref: network.peer.port
+        tag: tech-specific-rabbitmq
 
   - id: messaging.kafka
     type: attribute_group
