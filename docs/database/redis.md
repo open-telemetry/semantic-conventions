@@ -34,7 +34,6 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 |:--------------------------| :-------------------------------------------- |
 | Span name                 | `"HMSET myhash"` |
 | `db.system`               | `"redis"` |
-| `db.connection_string`    | not set |
 | `db.user`                 | not set |
 | `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |

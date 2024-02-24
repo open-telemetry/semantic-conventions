@@ -29,7 +29,6 @@ This is an example of attributes for a MySQL database span:
 |:------------------------| :----------------------------------------------------------- |
 | Span name               | `"SELECT ShopDb.orders"` |
 | `db.system`             | `"mysql"` |
-| `db.connection_string`  | `"Server=shopdb.example.com;Database=ShopDb;Uid=billing_user;TableCache=true;UseCompression=True;MinimumPoolSize=10;MaximumPoolSize=50;"` |
 | `db.user`               | `"billing_user"` |
 | `server.address`        | `"shopdb.example.com"` |
 | `server.port`           | `3306` |

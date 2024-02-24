@@ -26,7 +26,6 @@ described on this page.
 | :---------------------- | :----------------------------------------------------------- |
 | Span name               | `"products.findAndModify"` |
 | `db.system`             | `"mongodb"` |
-| `db.connection_string`  | not set |
 | `db.user`               | `"the_user"` |
 | `server.address`        | `"mongodb0.example.com"` |
 | `server.port`           | `27017` |
