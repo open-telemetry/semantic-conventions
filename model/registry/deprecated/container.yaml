@@ -1,5 +1,5 @@
 groups:
-  - id: deprecated.container.attributes
+  - id: attributes.container.deprecated
     type: attribute_group
     brief: "Describes deprecated container attributes."
     attributes:

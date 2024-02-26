@@ -1,5 +1,5 @@
 groups:
-  - id: deprecated.k8s.attributes
+  - id: attributes.k8s.deprecated
     type: attribute_group
     brief: "Describes deprecated k8s attributes."
     attributes:
