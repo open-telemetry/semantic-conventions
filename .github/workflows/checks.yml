@@ -97,3 +97,12 @@ jobs:
     - uses: actions/checkout@v1
     - name: verify schemas
       run: make schema-check
+
+  areas-dropdown-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Components dropdown in issue templates
+      run: |
+        make generate-gh-issue-templates
+        git diff --exit-code '.github/ISSUE_TEMPLATE' || (echo 'Dropdowns in issue templates are out of date, please run "make generate-gh-issue-templates" and commit the changes in this PR.' && exit 1)

@@ -149,3 +149,9 @@ chlog-preview: $(CHLOGGEN)
 .PHONY: chlog-update
 chlog-update: $(CHLOGGEN)
 	$(CHLOGGEN) update --config $(CHLOGGEN_CONFIG) --version $(VERSION)
+
+# Updates the areas (registry yaml file names) on all ISSUE_TEMPLATE
+# files that have the "area" dropdown field
+.PHONY: generate-gh-issue-templates
+generate-gh-issue-templates:
+	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh
