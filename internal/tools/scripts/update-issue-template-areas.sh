@@ -21,17 +21,17 @@ AREAS=$(sh "${GITHUB_DIR}/workflows/scripts/get-registry-areas.sh")
 START_AREA_LIST="# Start semconv area list"
 END_AREA_LIST="# End semconv area list"
 
-replacement="      ${START_AREA_LIST}"
+replacement="        ${START_AREA_LIST}"
 
 for AREA in ${AREAS}; do
     LABEL_NAME=$(basename "${AREA}" .yaml)
-   replacement="${replacement}\n      - area:${LABEL_NAME}"
+   replacement="${replacement}\n        - area:${LABEL_NAME}"
 done
 
 echo -e "\nStarting to replace areas in ISSUE_TEMPLATES:"
 echo -e "---------------------------------------------\n"
 
-replacement="${replacement}\n      ${END_AREA_LIST}"
+replacement="${replacement}\n        ${END_AREA_LIST}"
 
 echo -e "The replacement text will be:"
 echo -e "---------------------------------------------\n"

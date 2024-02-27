@@ -3,6 +3,9 @@ extends: default
 ignore-from-file:
   - .gitignore
 
+ignore: |
+  node_modules/*
+
 rules:
   document-start: disable
   octal-values: enable
@@ -10,6 +13,8 @@ rules:
     allowed-values: ['true', 'false', 'on']  # 'on' for GH action trigger
   line-length:
     max: 200
+    ignore: |
+      .github/*
   indentation:
     check-multi-line-strings: false
     indent-sequences: consistent
