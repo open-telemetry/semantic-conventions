@@ -17,7 +17,7 @@ This metric is optional.
 | -------- | --------------- | ----------- | -------------- |
 | `container.cpu.time` | Counter | `s` | Total CPU time consumed [1] |
 
-**[1]:** Total CPU time consumed by the specific container.
+**[1]:** Total CPU time consumed by the specific container on all available CPU cores
 <!-- endsemconv -->
 
 <!-- semconv metric.container.cpu.time(full) -->

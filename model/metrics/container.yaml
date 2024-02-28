@@ -5,7 +5,7 @@ groups:
     metric_name: container.cpu.time
     brief: "Total CPU time consumed"
     note: >
-      Total CPU time consumed by the specific container.
+      Total CPU time consumed by the specific container on all available CPU cores
     instrument: counter
     unit: "s"
     attributes:
