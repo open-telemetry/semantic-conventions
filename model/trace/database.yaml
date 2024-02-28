@@ -38,13 +38,11 @@ groups:
 
   - id: db.mssql
     type: span
-    extends: db
+    extends: db.sql
     brief: >
       Attributes for Microsoft SQL Server
     attributes:
       - ref: db.mssql.instance_name
-        tag: tech-specific
-      - ref: db.jdbc.driver_classname
         tag: tech-specific
 
   - id: db.cassandra
