@@ -11,7 +11,6 @@ groups:
     attributes:
       - ref: container.cpu.state
         requirement_level: opt_in
-      - ref: container.id
 
     # container.memory.* metrics and attribute group
   - id: metric.container.memory.usage
@@ -22,8 +21,6 @@ groups:
       Memory usage of the container.
     instrument: counter
     unit: "By"
-    attributes:
-      - ref: container.id
 
   # container.disk.io.* metrics and attribute group
   - id: metric.container.disk.io
@@ -36,7 +33,6 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: container.id
       - ref: disk.io.direction
       - ref: system.device
 
@@ -52,6 +48,5 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: container.id
       - ref: network.io.direction
       - ref: system.device
