@@ -7,16 +7,19 @@ groups:
     attributes:
       - id: pid
         type: int
+        stability: experimental
         brief: >
           Process identifier (PID).
         examples: [1234]
       - id: parent_pid
         type: int
+        stability: experimental
         brief: >
           Parent Process identifier (PPID).
         examples: [111]
       - id: executable.name
         type: string
+        stability: experimental
         brief: >
           The name of the process executable. On Linux based systems, can be set
           to the `Name` in `proc/[pid]/status`. On Windows, can be set to the
@@ -24,6 +27,7 @@ groups:
         examples: ['otelcol']
       - id: executable.path
         type: string
+        stability: experimental
         brief: >
           The full path to the process executable. On Linux based systems, can
           be set to the target of `proc/[pid]/exe`. On Windows, can be set to the
@@ -31,6 +35,7 @@ groups:
         examples: ['/usr/bin/cmd/otelcol']
       - id: command
         type: string
+        stability: experimental
         brief: >
           The command used to launch the process (i.e. the command name). On Linux
           based systems, can be set to the zeroth string in `proc/[pid]/cmdline`.
@@ -38,6 +43,7 @@ groups:
         examples: ['cmd/otelcol']
       - id: command_line
         type: string
+        stability: experimental
         brief: >
           The full command used to launch the process as a single string representing
           the full command. On Windows, can be set to the result of `GetCommandLineW`.
@@ -46,6 +52,7 @@ groups:
         examples: ['C:\cmd\otecol --config="my directory\config.yaml"']
       - id: command_args
         type: string[]
+        stability: experimental
         brief: >
           All the command arguments (including the command/executable itself) as
           received by the process. On Linux-based systems (and some other Unixoid
@@ -55,23 +62,27 @@ groups:
         examples: ['cmd/otecol', '--config=config.yaml']
       - id: owner
         type: string
+        stability: experimental
         brief: >
           The username of the user that owns the process.
         examples: 'root'
       - id: runtime.name
         type: string
+        stability: experimental
         brief: >
           The name of the runtime of this process. For compiled native binaries,
           this SHOULD be the name of the compiler.
         examples: ['OpenJDK Runtime Environment']
       - id: runtime.version
         type: string
+        stability: experimental
         brief: >
           The version of the runtime of this process, as returned by the runtime
           without modification.
         examples: '14.0.2'
       - id: runtime.description
         type: string
+        stability: experimental
         brief: >
           An additional description about the runtime of the process, for example
           a specific vendor customization of the runtime environment.

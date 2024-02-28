@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: job.execution
         type: string
+        stability: experimental
         brief: >
           The name of the Cloud Run
           [execution](https://cloud.google.com/run/docs/managing/job-executions)
@@ -16,6 +17,7 @@ groups:
         examples: ['job-name-xxxx', 'sample-job-mdw84']
       - id: job.task_index
         type: int
+        stability: experimental
         brief: >
           The index for a task within an execution as provided by the
           [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars)

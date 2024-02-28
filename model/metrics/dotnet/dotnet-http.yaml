@@ -2,6 +2,7 @@ groups:
   - id: metric.dotnet.dns.lookup.duration
     type: metric
     metric_name: dns.lookup.duration
+    stability: experimental
     brief: Measures the time taken to perform a DNS lookup.
     instrument: histogram
     unit: "s"
@@ -10,6 +11,7 @@ groups:
     attributes:
       - id: dns.question.name
         type: string
+        stability: experimental
         brief: The name being queried.
         requirement_level: required
         examples: ["www.example.com", "dot.net"]
@@ -85,6 +87,7 @@ groups:
   - id: metric.dotnet.http.client.open_connections
     type: metric
     metric_name: http.client.open_connections
+    stability: experimental
     brief: "Number of outbound HTTP connections that are currently active or idle on the client."
     instrument: updowncounter
     unit: "{connection}"
@@ -101,6 +104,7 @@ groups:
             - id: idle
               value: "idle"
               brief: 'idle state.'
+        stability: experimental
         brief: State of the HTTP connection in the HTTP connection pool.
         requirement_level: required
         examples: ["active", "idle"]
@@ -111,6 +115,7 @@ groups:
   - id: metric.dotnet.http.client.connection.duration
     type: metric
     metric_name: http.client.connection.duration
+    stability: experimental
     brief: "The duration of the successfully established outbound HTTP connections."
     instrument: histogram
     unit: "s"
@@ -123,6 +128,7 @@ groups:
   - id: metric.dotnet.http.client.active_requests
     type: metric
     metric_name: http.client.active_requests
+    stability: experimental
     brief: "Number of active HTTP requests."
     instrument: updowncounter
     unit: "{request}"
@@ -133,6 +139,7 @@ groups:
   - id: metric.dotnet.http.client.request.time_in_queue
     type: metric
     metric_name: http.client.request.time_in_queue
+    stability: experimental
     brief: "The amount of time requests spent on a queue waiting for an available connection."
     instrument: histogram
     unit: "s"

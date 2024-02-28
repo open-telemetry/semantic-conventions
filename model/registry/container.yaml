@@ -7,11 +7,13 @@ groups:
     attributes:
       - id: name
         type: string
+        stability: experimental
         brief: >
           Container name used by container runtime.
         examples: ['opentelemetry-autoconf']
       - id: id
         type: string
+        stability: experimental
         brief: >
           Container ID. Usually a UUID, as for example used to
           [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification).
@@ -19,16 +21,19 @@ groups:
         examples: ['a3bf90e006b2']
       - id: runtime
         type: string
+        stability: experimental
         brief: >
           The container runtime managing this container.
         examples: ['docker', 'containerd', 'rkt']
       - id: image.name
         type: string
+        stability: experimental
         brief: >
           Name of the image the container was built on.
         examples: ['gcr.io/opentelemetry/operator']
       - id: image.tags
         type: string[]
+        stability: experimental
         brief: >
           Container image tags. An example can be found in
           [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect).
@@ -37,6 +42,7 @@ groups:
         examples: ['v1.27.1', '3.5.7-0']
       - id: image.id
         type: string
+        stability: experimental
         brief: >
           Runtime specific image identifier. Usually a hash algorithm followed by a UUID.
         note: >
@@ -53,6 +59,7 @@ groups:
         examples: ['sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f']
       - id: image.repo_digests
         type: string[]
+        stability: experimental
         brief: >
           Repo digests of the container image as provided by the container runtime.
         note: >
@@ -64,6 +71,7 @@ groups:
           - 'internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578'
       - id: command
         type: string
+        stability: experimental
         note: >
           If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
         brief: >
@@ -71,16 +79,19 @@ groups:
         examples: [ 'otelcontribcol' ]
       - id: command_line
         type: string
+        stability: experimental
         brief: >
           The full command run by the container as a single string representing the full command. [2]
         examples: [ 'otelcontribcol --config config.yaml' ]
       - id: command_args
         type: string[]
+        stability: experimental
         brief: >
           All the command arguments (including the command/executable itself) run by the container. [2]
         examples: [ 'otelcontribcol, --config, config.yaml' ]
       - id: label
         type: template[string]
+        stability: experimental
         brief: >
           Container labels, `<key>` being the label name, the value being the label value.
         examples: [ 'container.label.app=nginx' ]

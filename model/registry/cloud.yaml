@@ -30,16 +30,18 @@ groups:
             - id: 'tencent_cloud'
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
-
+        stability: experimental
         brief: >
           Name of the cloud provider.
       - id: account.id
         type: string
+        stability: experimental
         brief: >
           The cloud account ID the resource is assigned to.
         examples: ['111111111111', 'opentelemetry']
       - id: region
         type: string
+        stability: experimental
         brief: >
           The geographical region the resource is running.
         note: >
@@ -52,6 +54,7 @@ groups:
         examples: ['us-central1', 'us-east-1']
       - id: resource_id
         type: string
+        stability: experimental
         brief: >
           Cloud provider-specific native identifier of the monitored cloud resource
           (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS,
@@ -81,6 +84,7 @@ groups:
           - '/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>'
       - id: availability_zone
         type: string
+        stability: experimental
         brief: >
           Cloud regions often have multiple, isolated locations known as zones
           to increase availability. Availability zone represents the
@@ -176,6 +180,7 @@ groups:
             - id: tencent_cloud_scf
               value: 'tencent_cloud_scf'
               brief: Tencent Cloud Serverless Cloud Function (SCF)
+        stability: experimental
         brief: >
           The cloud platform in use.
         note: >

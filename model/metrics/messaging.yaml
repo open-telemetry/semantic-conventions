@@ -1,6 +1,7 @@
 groups:
   - id: metric.messaging.attributes
     type: attribute_group
+    stability: experimental
     brief: "Common messaging metrics attributes."
     extends: messaging.attributes.common
     attributes:
@@ -16,6 +17,7 @@ groups:
     type: metric
     metric_name: messaging.publish.duration
     brief: "Measures the duration of publish operation."
+    stability: experimental
     instrument: histogram
     unit: "s"
     extends: metric.messaging.attributes
@@ -24,6 +26,7 @@ groups:
     type: metric
     metric_name: messaging.receive.duration
     brief: "Measures the duration of receive operation."
+    stability: experimental
     instrument: histogram
     unit: "s"
     extends: metric.messaging.attributes
@@ -32,6 +35,7 @@ groups:
     type: metric
     metric_name: messaging.process.duration
     brief: "Measures the duration of process operation."
+    stability: experimental
     instrument: histogram
     unit: "s"
     extends: metric.messaging.attributes
@@ -41,6 +45,7 @@ groups:
     type: metric
     metric_name: messaging.publish.messages
     brief: "Measures the number of published messages."
+    stability: experimental
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.attributes
@@ -49,6 +54,7 @@ groups:
     type: metric
     metric_name: messaging.receive.messages
     brief: "Measures the number of received messages."
+    stability: experimental
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.attributes
@@ -57,6 +63,7 @@ groups:
     type: metric
     metric_name: messaging.process.messages
     brief: "Measures the number of processed messages."
+    stability: experimental
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.attributes

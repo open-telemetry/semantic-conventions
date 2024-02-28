@@ -7,18 +7,22 @@ groups:
     attributes:
       - id: carrier.icc
         type: string
+        stability: experimental
         brief: "The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network."
         examples: "DE"
       - id: carrier.mcc
         type: string
+        stability: experimental
         brief: "The mobile carrier country code."
         examples: "310"
       - id: carrier.mnc
         type: string
+        stability: experimental
         brief: "The mobile carrier network code."
         examples: "001"
       - id: carrier.name
         type: string
+        stability: experimental
         brief: "The name of the mobile carrier."
         examples: "sprint"
       - id: connection.subtype
@@ -88,6 +92,7 @@ groups:
             - id: lte_ca
               brief: LTE CA
               value: "lte_ca"
+        stability: experimental
         brief: 'This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.'
         examples: 'LTE'
       - id: connection.type
@@ -104,6 +109,7 @@ groups:
               value: "unavailable"
             - id: unknown
               value: "unknown"
+        stability: experimental
         brief: 'The internet connection type.'
         examples: 'wifi'
       - id: local.address
@@ -190,5 +196,6 @@ groups:
               value: 'transmit'
             - id: receive
               value: 'receive'
+        stability: experimental
         brief: "The network IO operation direction."
         examples: ["transmit"]
