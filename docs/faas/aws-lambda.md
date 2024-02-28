@@ -80,7 +80,7 @@ extract(context, carrier) {
     if (Span.fromContext(context).getSpanContext().isValid())
       return xrayPropagator.extract(context, carrier)
 
-    // Update context with the extract result from xray propagator.
+    // Update context with the extracted result from xray propagator.
     context = xrayPropagator.extract(context, carrier)
 
     // If xray-lambda environment variable not set, return.
@@ -113,7 +113,7 @@ Example invalid configurations:
 
 Example valid configuration when OpenTelemetry is reporting traces to another system besides AWS X-Ray:
 
-- `OTEL_PROPAGATORS=xray-lambda,tracecontext,baggage,xray`
+- `OTEL_PROPAGATORS=tracecontext,baggage,xray`
 
 ## API Gateway
 
