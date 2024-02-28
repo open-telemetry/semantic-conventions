@@ -24,12 +24,6 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
-      - ref: network.peer.address
-      - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
-      - ref: network.transport
-      - ref: network.type
       - ref: db.instance.id
         requirement_level:
           recommended: If different from the `server.address`
@@ -68,6 +62,13 @@ groups:
       - ref: db.cassandra.coordinator.id
         tag: tech-specific
       - ref: db.cassandra.coordinator.dc
+        tag: tech-specific
+      - ref: network.peer.address
+        note: >
+          If a database operation involved multiple network calls (for example retries),
+          the address of the last contacted node SHOULD be used.
+        tag: tech-specific
+      - ref: network.peer.port
         tag: tech-specific
 
   - id: db.hbase
@@ -119,6 +120,13 @@ groups:
         note: >
           For **Redis**, the value provided for `db.statement` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.statement`.
+      - ref: network.peer.address
+        note: >
+          If a database operation involved multiple network calls (for example retries),
+          the address of the last contacted node SHOULD be used.
+        tag: call-level-tech-specific
+      - ref: network.peer.port
+        tag: call-level-tech-specific
 
   - id: db.mongodb
     type: span
@@ -173,6 +181,13 @@ groups:
       - ref: db.elasticsearch.path_parts
         requirement_level:
           conditionally_required: when the url has dynamic values
+        tag: tech-specific
+      - ref: network.peer.address
+        note: >
+          If a database operation involved multiple network calls (for example retries),
+          the address of the last contacted node SHOULD be used.
+        tag: tech-specific
+      - ref: network.peer.port
         tag: tech-specific
 
   - id: db.sql

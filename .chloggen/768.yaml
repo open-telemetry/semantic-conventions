@@ -1,0 +1,7 @@
+change_type: breaking
+
+component: db
+
+note: Remove `network.*` attributes from general database semantic conventions.
+
+issues: [690, 768]
