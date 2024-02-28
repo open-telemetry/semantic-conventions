@@ -7,7 +7,7 @@ groups:
     note: >
       Total CPU time consumed by the specific container.
     instrument: counter
-    unit: "ns"
+    unit: "s"
     attributes:
       - ref: container.cpu.state
         requirement_level: opt_in

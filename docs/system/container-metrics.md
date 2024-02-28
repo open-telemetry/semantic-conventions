@@ -15,7 +15,7 @@ This metric is optional.
 <!-- semconv metric.container.cpu.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `container.cpu.time` | Counter | `ns` | Total CPU time consumed [1] |
+| `container.cpu.time` | Counter | `s` | Total CPU time consumed [1] |
 
 **[1]:** Total CPU time consumed by the specific container.
 <!-- endsemconv -->
