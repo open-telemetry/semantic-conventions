@@ -89,7 +89,7 @@ extract(context, carrier) {
       return context
 
     // Apply the xray propagator using the span context contained in the xray-lambda environment variable.
-    return xrayPropagator.extract(context, ["_X_AMZN_TRACE_ID": traceHeader])
+    return xrayPropagator.extract(context, ["X-Amzn-Trace-Id": traceHeader])
 }
 ```
 
@@ -109,7 +109,7 @@ Example invalid configurations:
 - `OTEL_PROPAGATORS=tracecontext,baggage,xray,xray-lambda`
 - `OTEL_PROPAGATORS=tracecontext,baggage,xray-lambda,xray`
 
-**When OpenTelemetry is reporting traces to another system besides AWS X-Ray**, users SHOULD NOT use `xray-lambda` or reported traces will be broken:
+**When OpenTelemetry is reporting traces to another system besides AWS X-Ray**, users SHOULD NOT use `xray-lambda` or reported traces will be broken.
 
 Example valid configuration when OpenTelemetry is reporting traces to another system besides AWS X-Ray:
 
