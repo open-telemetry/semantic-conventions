@@ -35,9 +35,9 @@ linkTitle: URL
 
 **[5]:** Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
 
-**[6]:** This value can be determined precisely with the [public suffix list](http://publicsuffix.org). For example, the registered domain for "foo.example.com" is "example.com". Trying to approximate this by simply taking the last two labels will not work well for TLDs such as "co.uk".
+**[6]:** This value can be determined precisely with the [public suffix list](http://publicsuffix.org). For example, the registered domain for `foo.example.com` is `example.com`. Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
 
-**[7]:** The subdomain portion of "www.east.mydomain.co.uk" is "east". If the domain has multiple levels of subdomain, such as "sub2.sub1.example.com", the subdomain field should contain "sub2.sub1", with no trailing period.
+**[7]:** The subdomain portion of `www.east.mydomain.co.uk` is `east`. If the domain has multiple levels of subdomain, such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
 
 **[8]:** This value can be determined precisely with the [public suffix list](http://publicsuffix.org).
 <!-- endsemconv -->

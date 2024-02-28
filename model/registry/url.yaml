@@ -79,8 +79,8 @@ groups:
         examples: ["example.com", "foo.co.uk"]
         note: >
           This value can be determined precisely with the [public suffix list](http://publicsuffix.org).
-          For example, the registered domain for "foo.example.com" is "example.com".
-          Trying to approximate this by simply taking the last two labels will not work well for TLDs such as "co.uk".
+          For example, the registered domain for `foo.example.com` is `example.com`.
+          Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
       - id: scheme
         stability: stable
         type: string
@@ -95,8 +95,8 @@ groups:
           full name cannot be determined, subdomain contains all of the names below the registered domain.
         examples: ["east", "sub2.sub1"]
         note: >
-           The subdomain portion of "www.east.mydomain.co.uk" is "east". If the domain has multiple levels of subdomain,
-           such as "sub2.sub1.example.com", the subdomain field should contain "sub2.sub1", with no trailing period.
+           The subdomain portion of `www.east.mydomain.co.uk` is `east`. If the domain has multiple levels of subdomain,
+           such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
       - id: top_level_domain
         type: string
         brief: >
