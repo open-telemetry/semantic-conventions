@@ -12,9 +12,9 @@ described on this page.
 
 `db.system` MUST be set to `"mssql"`.
 
-## Connection-level attributes
+## Attributes
 
-<!-- semconv db.mssql(full,tag=connection-level-tech-specific) -->
+<!-- semconv db.mssql(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.jdbc.driver_classname`](../attributes-registry/db.md) | string | The fully-qualified class name of the [Java Database Connectivity (JDBC)](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/) driver used to connect. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | Recommended |
