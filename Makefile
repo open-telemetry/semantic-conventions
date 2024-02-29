@@ -62,7 +62,7 @@ markdown-toc:
 	@for f in $(ALL_DOCS); do \
 		if grep -q '<!-- tocstop -->' $$f; then \
 			echo markdown-toc: processing $$f; \
-			npx --no -- markdown-toc --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
+			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
 		else \
 			echo markdown-toc: no TOC markers, skipping $$f; \
 		fi; \

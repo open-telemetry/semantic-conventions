@@ -11,7 +11,7 @@ linkTitle: Client Calls
 <!-- toc -->
 
 - [Connection-level attributes](#connection-level-attributes)
-  * [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
+  - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Call-level attributes](#call-level-attributes)
 - [Semantic Conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 

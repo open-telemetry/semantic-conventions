@@ -12,15 +12,15 @@ This article defines semantic conventions for ASP.NET Core metrics.
 
 - [Server](#server)
 - [Routing](#routing)
-  * [Metric: `aspnetcore.routing.match_attempts`](#metric-aspnetcoreroutingmatch_attempts)
+  - [Metric: `aspnetcore.routing.match_attempts`](#metric-aspnetcoreroutingmatch_attempts)
 - [Exceptions](#exceptions)
-  * [Metric: `aspnetcore.diagnostics.exceptions`](#metric-aspnetcorediagnosticsexceptions)
+  - [Metric: `aspnetcore.diagnostics.exceptions`](#metric-aspnetcorediagnosticsexceptions)
 - [Rate-limiting](#rate-limiting)
-  * [Metric: `aspnetcore.rate_limiting.active_request_leases`](#metric-aspnetcorerate_limitingactive_request_leases)
-  * [Metric: `aspnetcore.rate_limiting.request_lease.duration`](#metric-aspnetcorerate_limitingrequest_leaseduration)
-  * [Metric: `aspnetcore.rate_limiting.queued_requests`](#metric-aspnetcorerate_limitingqueued_requests)
-  * [Metric: `aspnetcore.rate_limiting.request.time_in_queue`](#metric-aspnetcorerate_limitingrequesttime_in_queue)
-  * [Metric: `aspnetcore.rate_limiting.requests`](#metric-aspnetcorerate_limitingrequests)
+  - [Metric: `aspnetcore.rate_limiting.active_request_leases`](#metric-aspnetcorerate_limitingactive_request_leases)
+  - [Metric: `aspnetcore.rate_limiting.request_lease.duration`](#metric-aspnetcorerate_limitingrequest_leaseduration)
+  - [Metric: `aspnetcore.rate_limiting.queued_requests`](#metric-aspnetcorerate_limitingqueued_requests)
+  - [Metric: `aspnetcore.rate_limiting.request.time_in_queue`](#metric-aspnetcorerate_limitingrequesttime_in_queue)
+  - [Metric: `aspnetcore.rate_limiting.requests`](#metric-aspnetcorerate_limitingrequests)
 
 <!-- tocstop -->
 

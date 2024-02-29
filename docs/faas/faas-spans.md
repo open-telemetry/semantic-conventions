@@ -16,18 +16,18 @@ See also the [additional instructions for instrumenting AWS Lambda](aws-lambda.m
 <!-- toc -->
 
 - [General Attributes](#general-attributes)
-  * [Function Name](#function-name)
-  * [Difference between invocation and instance](#difference-between-invocation-and-instance)
+  - [Function Name](#function-name)
+  - [Difference between invocation and instance](#difference-between-invocation-and-instance)
 - [Incoming Invocations](#incoming-invocations)
-  * [Incoming FaaS Span attributes](#incoming-faas-span-attributes)
-  * [Resource attributes as incoming FaaS span attributes](#resource-attributes-as-incoming-faas-span-attributes)
+  - [Incoming FaaS Span attributes](#incoming-faas-span-attributes)
+  - [Resource attributes as incoming FaaS span attributes](#resource-attributes-as-incoming-faas-span-attributes)
 - [Outgoing Invocations](#outgoing-invocations)
 - [Function Trigger Type](#function-trigger-type)
-  * [Datasource](#datasource)
-  * [HTTP](#http)
-  * [PubSub](#pubsub)
-  * [Timer](#timer)
-  * [Other](#other)
+  - [Datasource](#datasource)
+  - [HTTP](#http)
+  - [PubSub](#pubsub)
+  - [Timer](#timer)
+  - [Other](#other)
 - [Example](#example)
 
 <!-- tocstop -->

@@ -10,7 +10,7 @@ linkTitle: Kafka
 
 - [Span attributes](#span-attributes)
 - [Examples](#examples)
-  * [Apache Kafka with Quarkus or Spring Boot Example](#apache-kafka-with-quarkus-or-spring-boot-example)
+  - [Apache Kafka with Quarkus or Spring Boot Example](#apache-kafka-with-quarkus-or-spring-boot-example)
 
 <!-- tocstop -->
 

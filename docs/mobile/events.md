@@ -9,8 +9,8 @@ events on mobile platforms. All mobile events MUST use a namespace of
 <!-- toc -->
 
 - [Lifecycle instrumentation](#lifecycle-instrumentation)
-  * [iOS](#ios)
-  * [Android](#android)
+  - [iOS](#ios)
+  - [Android](#android)
 
 <!-- tocstop -->
 
