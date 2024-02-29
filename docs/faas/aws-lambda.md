@@ -74,22 +74,21 @@ This propagator is expected to replace the `xray` propagator in the `OTEL_PROPAG
 
 ```
 extract(context, carrier) {
+    xrayContext = xrayPropagator.extract(context, carrier)
+
     // To avoid potential issues when extracting with an active span context (such as with a span link),
     // the `xray-lambda` propagator SHOULD check if the provided context already has an active span context.
     // If found, the propagator SHOULD just return the extract result of the `xray` propagator.
     if (Span.fromContext(context).getSpanContext().isValid())
-      return xrayPropagator.extract(context, carrier)
+      return xrayContext
 
-    // Update context with the extracted result from xray propagator.
-    context = xrayPropagator.extract(context, carrier)
-
-    // If xray-lambda environment variable not set, return.
+    // If xray-lambda environment variable not set, return the xray extract result.
     traceHeader = getEnvironment("_X_AMZN_TRACE_ID")
     if (isEmptyOrNull(traceHeader))
-      return context
+      return xrayContext
 
     // Apply the xray propagator using the span context contained in the xray-lambda environment variable.
-    return xrayPropagator.extract(context, ["X-Amzn-Trace-Id": traceHeader])
+    return xrayPropagator.extract(xrayContext, ["X-Amzn-Trace-Id": traceHeader])
 }
 ```
 
