@@ -8,10 +8,12 @@ groups:
         type: string
         brief: The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP).
         examples: ['io.opentelemetry.contrib.mongodb']
+        stability: stable
       - id: version
         type: string
         brief: The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
         examples: ['1.0.0']
+        stability: stable
   - id: otel.library
     prefix: otel.library
     type: resource
