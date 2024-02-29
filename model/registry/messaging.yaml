@@ -300,7 +300,7 @@ groups:
         tag: tech-specific-servicebus
       - id: servicebus.disposition_status
         brief: >
-          Describes [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
+          Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
         type:
           allow_custom_values: true
           members:
