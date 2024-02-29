@@ -16,7 +16,6 @@ groups:
             - id: app_shutdown
               value: 'app_shutdown'
               brief: "The connection was closed because the app is shutting down."
-        stability: experimental
         brief: SignalR HTTP connection closure status.
         examples: ["app_shutdown", "timeout"]
       - id: transport
@@ -33,13 +32,11 @@ groups:
             - id: web_sockets
               value: 'web_sockets'
               brief: "WebSockets protocol"
-        stability: experimental
         examples: ["web_sockets", "long_polling"]
 
   - id: metric.signalr.server.connection.duration
     type: metric
     metric_name: signalr.server.connection.duration
-    stability: experimental
     brief: The duration of connections on the server.
     instrument: histogram
     unit: "s"
@@ -52,7 +49,6 @@ groups:
   - id: metric.signalr.server.active_connections
     type: metric
     metric_name: signalr.server.active_connections
-    stability: experimental
     brief: Number of connections that are currently active on the server.
     instrument: updowncounter
     unit: "{connection}"
