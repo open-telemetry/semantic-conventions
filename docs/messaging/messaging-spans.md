@@ -36,30 +36,11 @@
 <!-- tocstop -->
 
 > **Warning**
-> Existing Messaging instrumentations that are using
-> [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/messaging.md)
-> (or prior):
->
-> * SHOULD NOT change the version of the networking conventions that they emit
->   until the HTTP semantic conventions are marked stable (HTTP stabilization will
->   include stabilization of a core set of networking conventions which are also used
->   in Messaging instrumentations). Conventions include, but are not limited to, attributes,
->   metric and span names, and unit of measure.
-> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The only values defined so far are:
->   * `http` - emit the new, stable networking conventions,
->     and stop emitting the old experimental networking conventions
->     that the instrumentation emitted previously.
->   * `http/dup` - emit both the old and the stable networking conventions,
->     allowing for a seamless transition.
->   * The default behavior (in the absence of one of these values) is to continue
->     emitting whatever version of the old experimental networking conventions
->     the instrumentation was emitting previously.
->   * Note: `http/dup` has higher precedence than `http` in case both values are present
-> * SHOULD maintain (security patching at a minimum) the existing major version
->   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version.
+> Existing messaging instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
+> (or prior) SHOULD NOT change the version of the messaging conventions that they emit
+> until a transition plan to the (future) stable semantic conventions has been published.
+> Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
 
 ## Definitions
 

@@ -63,12 +63,12 @@ When collecting `host.id` for non-containerized systems non-privileged lookups
 of the machine id are preferred. SDK detector implementations MUST use the
 sources listed below to obtain the machine id.
 
-| OS      | Primary                                                                             | Fallback                               |
-|---------|-------------------------------------------------------------------------------------|----------------------------------------|
-| Linux   | contents of `/etc/machine-id`                                                       | contents of `/var/lib/dbus/machine-id` |
-| BSD     | contents of `/etc/hostid`                                                           | output of `kenv -q smbios.system.uuid` |
-| MacOS   | `IOPlatformUUID` line from the output of `ioreg -rd1 -c "IOPlatformExpertDevice"`   | -                                      |
-| Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography` | -                                      |
+| OS      | Primary                                                                           | Fallback                               |
+|---------|-----------------------------------------------------------------------------------|----------------------------------------|
+| Linux   | contents of `/etc/machine-id`                                                     | contents of `/var/lib/dbus/machine-id` |
+| BSD     | contents of `/etc/hostid`                                                         | output of `kenv -q smbios.system.uuid` |
+| MacOS   | `IOPlatformUUID` line from the output of `ioreg -rd1 -c "IOPlatformExpertDevice"` | -                                      |
+| Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography`  | -                                      |
 
 ### Privileged Machine ID Lookup
 
