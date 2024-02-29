@@ -32,7 +32,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`dns.question.name`](../attributes-registry/dns.md) | string | The name being queried. [1] | `www.example.com`; `dot.net` | Required |
+| `dns.question.name` | string | The name being queried. [1] | `www.example.com`; `dot.net` | Required |
 | [`error.type`](../attributes-registry/error.md) | string | One of the resolution errors or the full name of exception type. [2] | `host_not_found`; `no_recovery`; `System.Net.Sockets.SocketException` | Conditionally Required: if and only if an error has occurred. |
 
 **[1]:** The name being queried.
