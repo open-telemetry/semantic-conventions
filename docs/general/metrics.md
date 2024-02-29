@@ -11,6 +11,7 @@ aliases: [docs/specs/semconv/general/metrics-general]
 
 - [General Guidelines](#general-guidelines)
   * [Name Reuse Prohibition](#name-reuse-prohibition)
+  * [Metric attributes](#metric-attributes)
   * [Units](#units)
   * [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     + [Pluralization](#pluralization)
