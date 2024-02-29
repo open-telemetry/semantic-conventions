@@ -316,6 +316,7 @@ groups:
             - id: defer
               value: 'defer'
               brief: 'Message is deferred'
+        stability: experimental
         tag: tech-specific-servicebus
       - id: eventhubs.message.enqueued_time
         type: int
