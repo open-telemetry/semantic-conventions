@@ -89,6 +89,28 @@ When introducing a new metric name check all existing schema files to make sure
 the name does not appear as a key of any "rename_metrics" section (keys denote
 old metric names in rename operations).
 
+### Metric attributes
+
+Metric attributes MUST follow the general [attribute naming rules](attribute-naming.md).
+In particular, metric attributes MUST have a namespace.
+
+Metric attributes SHOULD be added under the metric namespace when their usage and
+semantics are exclusive to the metric.
+
+Examples:
+
+Metric `system.filesystem.usage` with attributes `mode` and `mountpoint`
+should be namespace as: `system.filesystem.mode` and `system.filesystem.mountpoint`.
+
+When metric attributes apply to other signals, these do not need
+to be namespace under the metric and SHOULD be added to the
+[attributes registry](../attributes-registry/README.md).
+
+Examples:
+
+Metric `http.server.request.duration` uses attributes from the registry such as
+`server.port`, `error.type`
+
 ### Units
 
 Conventional metrics or metrics that have their units included in
