@@ -1,4 +1,5 @@
 /.github
+/.chloggen
 
 # for the first iteration, we only reformat /docs/cloud* and will add the rest in individual PRs
 /docs/**
