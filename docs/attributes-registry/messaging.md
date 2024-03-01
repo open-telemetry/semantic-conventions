@@ -157,6 +157,16 @@ size should be used.
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `messaging.servicebus.destination.subscription_name` | string | The name of the subscription in the topic messages are received from. | `mySubscription` |
+| `messaging.servicebus.disposition_status` | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete` |
 | `messaging.servicebus.message.delivery_count` | int | Number of deliveries that have been attempted for this message. | `2` |
 | `messaging.servicebus.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
+
+`messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `complete` | Message is completed |
+| `abandon` | Message is abandoned |
+| `dead_letter` | Message is sent to dead letter queue |
+| `defer` | Message is deferred |
 <!-- endsemconv -->
