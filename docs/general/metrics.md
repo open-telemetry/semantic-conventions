@@ -92,7 +92,7 @@ old metric names in rename operations).
 
 ### Metric attributes
 
-Metric attributes MUST follow the general [attribute naming rules](attribute-naming.md).
+Metric attributes SHOULD follow the general [attribute naming rules](attribute-naming.md).
 In particular, metric attributes MUST have a namespace.
 
 Metric attributes SHOULD be added under the metric namespace when their usage and
@@ -100,8 +100,8 @@ semantics are exclusive to the metric.
 
 Examples:
 
-Metric `system.filesystem.usage` with attributes `mode` and `mountpoint`
-should be namespace as: `system.filesystem.mode` and `system.filesystem.mountpoint`.
+Attributes `mode` and `mountpoint` for metric `system.filesystem.usage`
+should be namespaced as `system.filesystem.mode` and `system.filesystem.mountpoint`.
 
 When metric attributes apply to other signals, these do not need
 to be namespace under the metric and SHOULD be added to the
@@ -110,7 +110,7 @@ to be namespace under the metric and SHOULD be added to the
 Examples:
 
 Metric `http.server.request.duration` uses attributes from the registry such as
-`server.port`, `error.type`
+`server.port`, `error.type`.
 
 ### Units
 
