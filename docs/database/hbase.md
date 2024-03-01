@@ -12,6 +12,10 @@ described on this page.
 
 `db.system` MUST be set to `"hbase"`.
 
+## Span name
+
+HBase spans SHOULD be named according to the following pattern: `{db.name}`
+
 ## Call-level attributes
 
 <!-- semconv db.hbase(full,tag=call-level-tech-specific) -->

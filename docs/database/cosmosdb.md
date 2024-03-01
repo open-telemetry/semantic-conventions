@@ -11,6 +11,10 @@ extend and override the [Database Semantic Conventions](database-spans.md)
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
+## Span name
+
+CosmosDB spans SHOULD be named according to the following pattern: `{db.name}.{db.cosmosdb.container} {db.operation}`
+
 ## Call-level attributes
 
 `db.system` MUST be set to `"cosmosdb"`.
@@ -73,18 +77,18 @@ In addition to Cosmos DB attributes, all spans include
 
 | Key                                  | Value |
 |:-------------------------------------| :------------------- |
-| Span name                            | `"ReadItemsAsync"` |
+| Span name                            | `"shopDb.products ReadItemsAsync"` |
 | `kind`                               | `"internal"` |
 | `az.namespace`                       | `"Microsoft.DocumentDB"` |
 | `db.system`                          | `"cosmosdb"` |
-| `db.name`                            | `"database name"` |
+| `db.name`                            | `"shopDb"` |
 | `db.operation`                       | `"ReadItemsAsync"` |
-| `server.address`                     |  `"account.documents.azure.com"`  |
+| `server.address`                     | `"account.documents.azure.com"` |
 | `db.cosmosdb.client_id`              | `3ba4827d-4422-483f-b59f-85b74211c11d` |
 | `db.cosmosdb.operation_type`         | `Read` |
 | `user_agent.original`                | `cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|` |
 | `db.cosmosdb.connection_mode`        | `"Direct"` |
-| `db.cosmosdb.container`              | `"container name"` |
+| `db.cosmosdb.container`              | `"products"` |
 | `db.cosmosdb.request_content_length` | `20` |
 | `db.cosmosdb.status_code`            | `201` |
 | `db.cosmosdb.sub_status_code`        | `0` |
