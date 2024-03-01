@@ -181,6 +181,9 @@ groups:
       - ref: messaging.servicebus.destination.subscription_name
         requirement_level:
           conditionally_required: If messages are received from the subscription.
+      - ref: messaging.servicebus.disposition_status
+        requirement_level:
+          conditionally_required: if and only if `messaging.operation` is `settle`.
   - id: messaging.eventhubs
     type: attribute_group
     extends: messaging
