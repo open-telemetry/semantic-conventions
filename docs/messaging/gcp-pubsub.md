@@ -10,7 +10,7 @@ The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pub
 
 `messaging.system` MUST be set to `"gcp_pubsub"`.
 
-## Span attributes
+## Attributes
 
 For Google Cloud Pub/Sub, the following additional attributes are defined:
 <!-- semconv messaging.gcp_pubsub(full,tag=tech-specific-gcp-pubsub) -->
@@ -31,7 +31,7 @@ flowchart LR;
   direction LR
   CA[Span Create A]
   CB[Span Create B]
-  P[Span Publish A B] 
+  P[Span Publish A B]
   end
   CA-. link .-P;
   CB-. link .-P;

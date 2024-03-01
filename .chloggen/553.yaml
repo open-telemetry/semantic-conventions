@@ -1,0 +1,7 @@
+change_type: enhancement
+
+component: messaging
+
+note: Extends generic messaging metrics for RabbitMQ, Kafka, and Azure messaging services
+
+issues: [553]

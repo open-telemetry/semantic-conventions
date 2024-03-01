@@ -8,7 +8,12 @@ linkTitle: Kafka
 
 <!-- toc -->
 
-- [Span attributes](#span-attributes)
+- [Attributes](#attributes)
+- [Metrics](#metrics)
+  * [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
+  * [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
+  * [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
+  * [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
 - [Examples](#examples)
   * [Apache Kafka with Quarkus or Spring Boot Example](#apache-kafka-with-quarkus-or-spring-boot-example)
 
@@ -20,7 +25,7 @@ described on this page.
 
 `messaging.system` MUST be set to `"kafka"`.
 
-## Span attributes
+## Attributes
 
 For Apache Kafka, the following additional attributes are defined:
 
@@ -43,6 +48,62 @@ The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of t
 If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
 
 `messaging.client_id` SHOULD be set to the `client-id` of consumers, or to the `client.id` property of producers.
+
+## Metrics
+
+### Metric: `messaging.publish.duration`
+
+Measures time it takes to publish message or a batch of messages to Apache Kafka including all retries.
+
+This metric is [required][MetricRequired]
+
+This metric follows the common [messaging.publish.duration](./messaging-metrics.md#metric-messagingpublishduration) definition.
+
+**Notes:**
+
+- The following attributes (with corresponding [requirement levels](#attributes)) are defined in addition to generic attributes for this metric:
+  * `messaging.kafka.destination.partition`
+
+### Metric: `messaging.publish.messages`
+
+Measures the number of published messages.
+
+This metric is [required][MetricRequired]
+
+This metric follows the common [messaging.publish.messages](./messaging-metrics.md#metric-messagingpublishmessages) definition.
+
+**Notes:**
+
+- The following attributes (with corresponding [requirement levels](#attributes)) are defined in addition to generic attributes for this metric:
+  * `messaging.kafka.destination.partition`
+
+### Metric: `messaging.receive.duration`
+
+Measures duration of consumer client call that polls messages.
+
+This metric is [required][MetricRequired].
+
+This metric follows the common [messaging.receive.duration](./messaging-metrics.md#metric-messagingdeliverduration) definition.
+
+**Notes:**
+
+- The following attributes (with corresponding [requirement levels](#attributes)) are defined in addition to generic attributes for this metric:
+  * `messaging.kafka.destination.partition`
+  * `messaging.kafka.consumer.group`
+
+### Metric: `messaging.receive.messages`
+
+Measures the number of received messages.
+
+This metric is [required][MetricRequired].
+
+This metric follows the common [messaging.receive.messages](./messaging-metrics.md#metric-messagingreceivemessages) definition.
+
+**Notes:**
+
+- The following attributes (with corresponding [requirement levels](#attributes)) are defined in addition to generic attributes for this metric:
+  * `messaging.kafka.destination.partition`
+  * `messaging.kafka.consumer.group`
 
 ## Examples
 
@@ -85,3 +146,4 @@ Process CB:                           | Span Rcv2 |
 | `messaging.kafka.message.offset` | `"12"` | `"12"` | `"12"` | `"32"` | `"32"` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md#required
