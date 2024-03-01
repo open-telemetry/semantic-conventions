@@ -21,9 +21,9 @@ name, as the path could contain dynamic values. The endpoint id is the `name` fi
 [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json).
 If the endpoint id is not available, the span name SHOULD be the `http.request.method`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.elasticsearch(full,tag=call-level-tech-specific) -->
+<!-- semconv db.elasticsearch(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.elasticsearch.cluster.name`](../attributes-registry/db.md) | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | Recommended: [1] |
