@@ -49,6 +49,9 @@
 
 ### Fixes
 
+- Make `process.command`, `process.command_line`, and `process.command_args` optional.
+  ([#789](https://github.com/open-telemetry/semantic-conventions/pull/789))
+
 ## v1.24.0 (2023-12-15)
 
 ### Breaking
