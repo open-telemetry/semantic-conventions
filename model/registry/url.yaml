@@ -39,8 +39,8 @@ groups:
           `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`.
           In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 
-          `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed)
-          and SHOULD NOT be validated or modified except for sanitizing purposes.
+          `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+          Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
         examples: ['https://www.foo.bar/search?q=OpenTelemetry#SemConv', '//localhost']
       - id: original
         type: string
@@ -59,6 +59,8 @@ groups:
         brief: >
           The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component
         examples: ["/search"]
+        note: >
+          Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
       - id: port
         type: int
         brief: >
@@ -71,7 +73,7 @@ groups:
           The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component
         examples: ["q=OpenTelemetry"]
         note: >
-          Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
+          Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
       - id: registered_domain
         type: string
         brief: >
