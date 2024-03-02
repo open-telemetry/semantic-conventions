@@ -98,7 +98,7 @@ groups:
         tag: tech-specific-rabbitmq
       - ref: network.peer.address
         note: >
-          If a database operation involved multiple network calls (for example retries),
+          If an operation involved multiple network calls (for example retries),
           the address of the last contacted node SHOULD be used.
         tag: tech-specific-rabbitmq
       - ref: network.peer.port

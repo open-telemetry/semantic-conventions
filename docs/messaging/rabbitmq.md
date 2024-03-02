@@ -25,7 +25,7 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [1] | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended |
 
-**[1]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[1]:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
