@@ -1,0 +1,20 @@
+groups:
+  - id: attributes.system.deprecated
+    type: attribute_group
+    brief: "Deprecated system attributes."
+    attributes:
+      - id: system.processes.status
+        type:
+          allow_custom_values: true
+          members:
+            - id: running
+              value: 'running'
+            - id: sleeping
+              value: 'sleeping'
+            - id: stopped
+              value: 'stopped'
+            - id: defunct
+              value: 'defunct'
+        brief: "Deprecated, use `system.process.status` instead."
+        deprecated: "Replaced by `system.process.status`."
+        examples: ["running"]

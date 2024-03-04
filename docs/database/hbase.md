@@ -12,9 +12,9 @@ described on this page.
 
 `db.system` MUST be set to `"hbase"`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.hbase(full,tag=call-level-tech-specific) -->
+<!-- semconv db.hbase(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.name`](../attributes-registry/db.md) | string | The HBase namespace. [1] | `mynamespace` | Conditionally Required: If applicable. |

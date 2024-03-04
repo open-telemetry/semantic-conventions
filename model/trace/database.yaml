@@ -6,95 +6,80 @@ groups:
     span_kind: client
     attributes:
       - ref: db.system
-        tag: connection-level
         requirement_level: required
 
       - ref: db.connection_string
-        tag: connection-level
       - ref: db.user
-        tag: connection-level
-      - ref: db.jdbc.driver_classname
-        tag: connection-level-tech-specific
       - ref: db.name
-        tag: call-level
         requirement_level:
           conditionally_required: If applicable.
       - ref: db.statement
-        tag: call-level
         requirement_level:
           recommended: >
             Should be collected by default only if there is sanitization that excludes sensitive information.
       - ref: db.operation
-        tag: call-level
         requirement_level:
           conditionally_required: If `db.statement` is not applicable.
       - ref: server.address
-        tag: connection-level
         brief: >
           Name of the database host.
       - ref: server.port
-        tag: connection-level
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
       - ref: network.peer.address
-        tag: connection-level
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
-        tag: connection-level
       - ref: network.transport
-        tag: connection-level
       - ref: network.type
-        tag: connection-level
       - ref: db.instance.id
-        tag: connection-level
         requirement_level:
           recommended: If different from the `server.address`
 
   - id: db.mssql
     type: span
-    extends: db
+    extends: db.sql
     brief: >
-      Connection-level attributes for Microsoft SQL Server
+      Attributes for Microsoft SQL Server
     attributes:
       - ref: db.mssql.instance_name
-        tag: connection-level-tech-specific
+        tag: tech-specific
 
   - id: db.cassandra
     type: span
     extends: db
     brief: >
-      Call-level attributes for Cassandra
+      Attributes for Cassandra
     attributes:
       - ref: db.name
-        tag: call-level-tech-specific-cassandra
+        tag: tech-specific
         brief: >
           The keyspace name in Cassandra.
         examples: ["mykeyspace"]
         note: For Cassandra the `db.name` should be set to the Cassandra keyspace name.
       - ref: db.cassandra.page_size
-        tag: call-level-tech-specific-cassandra
+        tag: tech-specific
       - ref: db.cassandra.consistency_level
-        tag: call-level-tech-specific-cassandra
+        tag: tech-specific
       - ref: db.cassandra.table
-        tag: call-level-tech-specific-cassandra
+        tag: tech-specific
       - ref: db.cassandra.idempotence
-        tag: call-level-tech-specific-cassandra
+        tag: tech-specific
       - ref: db.cassandra.speculative_execution_count
-        tag: call-level-tech-specific-cassandra
+        tag: tech-specific
       - ref: db.cassandra.coordinator.id
-        tag: call-level-tech-specific-cassandra
+        tag: tech-specific
       - ref: db.cassandra.coordinator.dc
-        tag: call-level-tech-specific-cassandra
+        tag: tech-specific
 
   - id: db.hbase
     type: span
     extends: db
     brief: >
-      Call-level attributes for HBase
+      Attributes for HBase
     attributes:
       - ref: db.name
-        tag: call-level-tech-specific
+        tag: tech-specific
         brief: >
           The HBase namespace.
         examples: ['mynamespace']
@@ -104,10 +89,10 @@ groups:
     type: span
     extends: db
     brief: >
-      Call-level attributes for CouchDB
+      Attributes for CouchDB
     attributes:
       - ref: db.operation
-        tag: call-level-tech-specific
+        tag: tech-specific
         brief: >
           The HTTP method + the target REST route.
         examples: ['GET /{db}/{docid}']
@@ -122,14 +107,14 @@ groups:
     type: span
     extends: db
     brief: >
-      Call-level attributes for Redis
+      Attributes for Redis
     attributes:
       - ref: db.redis.database_index
         requirement_level:
           conditionally_required: If other than the default database (`0`).
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.statement
-        tag: call-level-tech-specific
+        tag: tech-specific
         brief: >
           The full syntax of the Redis CLI command.
         examples: ["HMSET myhash field1 'Hello' field2 'World'"]
@@ -141,30 +126,30 @@ groups:
     type: span
     extends: db
     brief: >
-      Call-level attributes for MongoDB
+      Attributes for MongoDB
     attributes:
       - ref: db.mongodb.collection
         requirement_level: required
-        tag: call-level-tech-specific
+        tag: tech-specific
 
   - id: db.elasticsearch
     type: span
     extends: db
     brief: >
-      Call-level attributes for Elasticsearch
+      Attributes for Elasticsearch
     attributes:
       - ref: http.request.method
         requirement_level: required
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.operation
         requirement_level: required
         brief: The endpoint identifier for the request.
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: url.full
         requirement_level: required
         examples: [ 'https://localhost:9200/index/_search?q=user.id:kimchy' ]
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.statement
         requirement_level:
           recommended: >
@@ -172,48 +157,50 @@ groups:
             sensitive information.
         brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: server.address
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: server.port
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.elasticsearch.cluster.name
         requirement_level:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.elasticsearch.node.name
         requirement_level:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.elasticsearch.path_parts
         requirement_level:
           conditionally_required: when the url has dynamic values
-        tag: call-level-tech-specific
+        tag: tech-specific
 
   - id: db.sql
     type: span
     extends: 'db'
     brief: >
-      Call-level attributes for SQL databases
+      Attributes for SQL databases
     attributes:
       - ref: db.sql.table
-        tag: call-level-tech-specific
+        tag: tech-specific
+      - ref: db.jdbc.driver_classname
+        tag: tech-specific
 
   - id: db.cosmosdb
     type: span
     extends: db
     prefix: db.cosmosdb
     brief: >
-      Call-level attributes for Cosmos DB.
+      Attributes for Cosmos DB.
     attributes:
       - ref: db.cosmosdb.client_id
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.cosmosdb.operation_type
         requirement_level:
           conditionally_required: when performing one of the operations in this list
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: user_agent.original
         brief: 'Full user-agent string is generated by Cosmos DB SDK'
         note: >
@@ -228,36 +215,26 @@ groups:
              Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
              Default value is "NS".
         examples: ['cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|']
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.cosmosdb.connection_mode
         requirement_level:
           conditionally_required: if not `direct` (or pick gw as default)
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.cosmosdb.container
         requirement_level:
           conditionally_required: if available
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.cosmosdb.request_content_length
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.cosmosdb.status_code
         requirement_level:
           conditionally_required: if response was received
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.cosmosdb.sub_status_code
         requirement_level:
           conditionally_required: when response was received and contained sub-code.
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: db.cosmosdb.request_charge
         requirement_level:
           conditionally_required: when available
-        tag: call-level-tech-specific
-
-  - id: db.tech
-    type: span
-    brief: "Semantic convention group for specific technologies"
-    constraints:
-      - include: 'db.cassandra'
-      - include: 'db.redis'
-      - include: 'db.mongodb'
-      - include: 'db.sql'
-      - include: 'db.cosmosdb'
+        tag: tech-specific

@@ -12,9 +12,9 @@ described on this page.
 
 `db.system` MUST be set to `"redis"`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.redis(full,tag=call-level-tech-specific) -->
+<!-- semconv db.redis(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.redis.database_index`](../attributes-registry/db.md) | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute. | `0`; `1`; `15` | Conditionally Required: If other than the default database (`0`). |

@@ -28,10 +28,10 @@ groups:
     unit: "s"
     extends: metric.messaging.attributes
 
-  - id: metric.messaging.deliver.duration
+  - id: metric.messaging.process.duration
     type: metric
-    metric_name: messaging.deliver.duration
-    brief: "Measures the duration of deliver operation."
+    metric_name: messaging.process.duration
+    brief: "Measures the duration of process operation."
     instrument: histogram
     unit: "s"
     extends: metric.messaging.attributes
@@ -53,10 +53,10 @@ groups:
     unit: "{message}"
     extends: metric.messaging.attributes
 
-  - id: metric.messaging.deliver.messages
+  - id: metric.messaging.process.messages
     type: metric
-    metric_name: messaging.deliver.messages
-    brief: "Measures the number of delivered messages."
+    metric_name: messaging.process.messages
+    brief: "Measures the number of processed messages."
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.attributes

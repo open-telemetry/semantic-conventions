@@ -39,8 +39,8 @@ groups:
           `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`.
           In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 
-          `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed)
-          and SHOULD NOT be validated or modified except for sanitizing purposes.
+          `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+          Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
         examples: ['https://www.foo.bar/search?q=OpenTelemetry#SemConv', '//localhost']
       - id: original
         type: string
@@ -59,6 +59,8 @@ groups:
         brief: >
           The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component
         examples: ["/search"]
+        note: >
+          Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
       - id: port
         type: int
         brief: >
@@ -71,7 +73,7 @@ groups:
           The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component
         examples: ["q=OpenTelemetry"]
         note: >
-          Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
+          Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
       - id: registered_domain
         type: string
         brief: >
@@ -79,8 +81,8 @@ groups:
         examples: ["example.com", "foo.co.uk"]
         note: >
           This value can be determined precisely with the [public suffix list](http://publicsuffix.org).
-          For example, the registered domain for "foo.example.com" is "example.com".
-          Trying to approximate this by simply taking the last two labels will not work well for TLDs such as "co.uk".
+          For example, the registered domain for `foo.example.com` is `example.com`.
+          Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
       - id: scheme
         stability: stable
         type: string
@@ -95,8 +97,8 @@ groups:
           full name cannot be determined, subdomain contains all of the names below the registered domain.
         examples: ["east", "sub2.sub1"]
         note: >
-           The subdomain portion of "www.east.mydomain.co.uk" is "east". If the domain has multiple levels of subdomain,
-           such as "sub2.sub1.example.com", the subdomain field should contain "sub2.sub1", with no trailing period.
+           The subdomain portion of `www.east.mydomain.co.uk` is `east`. If the domain has multiple levels of subdomain,
+           such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
       - id: top_level_domain
         type: string
         brief: >
