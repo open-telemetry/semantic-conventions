@@ -104,7 +104,7 @@ Attributes `mode` and `mountpoint` for metric `system.filesystem.usage`
 should be namespaced as `system.filesystem.mode` and `system.filesystem.mountpoint`.
 
 When metric attributes apply to other signals, these do not need
-to be namespace under the metric and SHOULD be added to the
+to be namespaced under the metric and SHOULD be added to the
 [attributes registry](../attributes-registry/README.md).
 
 Examples:
