@@ -1,0 +1,4 @@
+change_type: 'enhancement'
+component: resource
+note: Define a common algorithm for `service.instance.id`.
+issues: [312]

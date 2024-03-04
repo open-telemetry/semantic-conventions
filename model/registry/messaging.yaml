@@ -142,10 +142,13 @@ groups:
                 One or more messages are requested by a consumer.
                 This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.
             - id: deliver
-              value: "deliver"
+              value: "process"
               brief: >
-                One or more messages are passed to a consumer.
-                This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs.
+                One or more messages are delivered to or processed by a consumer.
+            - id: settle
+              value: "settle"
+              brief: >
+                One or more messages are settled.
         brief: >
           A string identifying the kind of messaging operation.
         note: If a custom value is used, it MUST be of low cardinality.
@@ -156,6 +159,13 @@ groups:
           RabbitMQ message routing key.
         examples: 'myKey'
         tag: tech-specific-rabbitmq
+      - id: rabbitmq.message.delivery_tag
+        type: int
+        brief: >
+          RabbitMQ message delivery tag
+        examples: 123
+        tag: tech-specific-rabbitmq
+
       - id: rocketmq.client_group
         type: string
         brief: >
@@ -290,6 +300,26 @@ groups:
         brief: >
           The name of the subscription in the topic messages are received from.
         examples: "mySubscription"
+        tag: tech-specific-servicebus
+      - id: servicebus.disposition_status
+        brief: >
+          Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
+        type:
+          allow_custom_values: true
+          members:
+            - id: complete
+              value: 'complete'
+              brief: 'Message is completed'
+            - id: abandon
+              value: 'abandon'
+              brief: 'Message is abandoned'
+            - id: dead_letter
+              value: 'dead_letter'
+              brief: 'Message is sent to dead letter queue'
+            - id: defer
+              value: 'defer'
+              brief: 'Message is deferred'
+        stability: experimental
         tag: tech-specific-servicebus
       - id: eventhubs.message.enqueued_time
         type: int
