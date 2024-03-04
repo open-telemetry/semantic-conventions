@@ -82,15 +82,11 @@ groups:
       - ref: messaging.message.body.size
       - ref: server.address
       - ref: network.peer.address
-        tag: connection-level
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
-        tag: connection-level
       - ref: network.transport
-        tag: connection-level
       - ref: network.type
-        tag: connection-level
 
   - id: messaging.rabbitmq
     type: attribute_group
@@ -101,6 +97,10 @@ groups:
       - ref: messaging.rabbitmq.destination.routing_key
         requirement_level:
           conditionally_required: If not empty.
+        tag: tech-specific-rabbitmq
+      - ref: messaging.rabbitmq.message.delivery_tag
+        requirement_level:
+          conditionally_required: When available.
         tag: tech-specific-rabbitmq
 
   - id: messaging.kafka
@@ -177,6 +177,9 @@ groups:
       - ref: messaging.servicebus.destination.subscription_name
         requirement_level:
           conditionally_required: If messages are received from the subscription.
+      - ref: messaging.servicebus.disposition_status
+        requirement_level:
+          conditionally_required: if and only if `messaging.operation` is `settle`.
   - id: messaging.eventhubs
     type: attribute_group
     extends: messaging
