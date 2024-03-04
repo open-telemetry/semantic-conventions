@@ -99,7 +99,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 <!-- semconv service_experimental -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`service.instance.id`](../attributes-registry/service.md) | string | The string ID of the service instance. [1] | `my-k8s-pod-deployment-1`; `627cc493-f310-47de-96bd-71410b7dec09` | Recommended |
+| [`service.instance.id`](../attributes-registry/service.md) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | Recommended |
 | [`service.namespace`](../attributes-registry/service.md) | string | A namespace for `service.name`. [2] | `Shop` | Recommended |
 
 **[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
