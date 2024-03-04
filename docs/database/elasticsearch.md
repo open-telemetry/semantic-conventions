@@ -21,9 +21,9 @@ name, as the path could contain dynamic values. The endpoint id is the `name` fi
 [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json).
 If the endpoint id is not available, the span name SHOULD be the `http.request.method`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.elasticsearch(full,tag=call-level-tech-specific) -->
+<!-- semconv db.elasticsearch(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.elasticsearch.cluster.name`](../attributes-registry/db.md) | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | Recommended: [1] |
@@ -69,7 +69,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[10]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
-`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed) and SHOULD NOT be validated or modified except for sanitizing purposes.
+`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed). Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

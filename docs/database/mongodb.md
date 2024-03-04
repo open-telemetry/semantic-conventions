@@ -12,9 +12,9 @@ described on this page.
 
 `db.system` MUST be set to `"mongodb"`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.mongodb(full,tag=call-level-tech-specific) -->
+<!-- semconv db.mongodb(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.mongodb.collection`](../attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. | `customers`; `products` | Required |
