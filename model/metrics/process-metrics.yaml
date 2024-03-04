@@ -1,21 +1,4 @@
 groups:
-  - id: attributes.process.cpu
-    prefix: process.cpu
-    type: attribute_group
-    brief: "Attributes for process CPU metrics."
-    attributes:
-      - id: state
-        brief: "The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
-        type:
-          allow_custom_values: true
-          members:
-            - id: system
-              value: 'system'
-            - id: user
-              value: 'user'
-            - id: wait
-              value: 'wait'
-
   - id: metric.process.cpu.time
     type: metric
     metric_name: process.cpu.time
@@ -92,15 +75,7 @@ groups:
     instrument: counter
     unit: "{count}"
     attributes:
-      - id: process.context_switch_type
-        brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
-        type:
-          allow_custom_values: true
-          members:
-            - id: voluntary
-              value: 'voluntary'
-            - id: involuntary
-              value: 'involuntary'
+      - ref: process.context_switch_type
 
   - id: metric.process.paging.faults
     type: metric
@@ -109,12 +84,4 @@ groups:
     instrument: counter
     unit: "{fault}"
     attributes:
-      - id: process.paging.fault_type
-        brief: "The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults."
-        type:
-          allow_custom_values: true
-          members:
-            - id: major
-              value: 'major'
-            - id: minor
-              value: 'minor'
+      - ref: process.paging.fault_type
