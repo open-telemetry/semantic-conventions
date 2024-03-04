@@ -1,0 +1,4 @@
+change_type: enhancement
+component: messaging
+note: Add `messaging.rabbitmq.message.delivery_tag`` to the list of RabbitMQ specific tags
+issues: [433]

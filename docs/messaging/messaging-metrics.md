@@ -13,10 +13,17 @@
 - [Consumer metrics](#consumer-metrics)
   * [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
   * [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
-  * [Metric: `messaging.deliver.duration`](#metric-messagingdeliverduration)
-  * [Metric: `messaging.deliver.messages`](#metric-messagingdelivermessages)
+  * [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
+  * [Metric: `messaging.process.messages`](#metric-messagingprocessmessages)
 
 <!-- tocstop -->
+
+> **Warning**
+> Existing messaging instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-metrics.md)
+> (or prior) SHOULD NOT change the version of the messaging conventions that they emit
+> until a transition plan to the (future) stable semantic conventions has been published.
+> Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
 
 ## Common attributes
 
@@ -151,34 +158,35 @@ _Note: The need to report `messaging.receive.messages` depends on the messaging 
 | `messaging.receive.messages` | Counter | `{message}` | Measures the number of received messages. |
 <!-- endsemconv -->
 
-### Metric: `messaging.deliver.duration`
+### Metric: `messaging.process.duration`
 
-This metric is [required][MetricRequired] for operations are not initiated by the application code (push-based deliver).
+This metric is [required][MetricRequired] for operations that are not initiated by the application code (push-based deliver), and [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
 
-When this metric is reported alongside a messaging deliver span, the metric value SHOULD be the same as the corresponding span duration.
+When this metric is reported alongside a messaging process span, the metric value SHOULD be the same as the corresponding span duration.
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.messaging.deliver.duration(metric_table) -->
+<!-- semconv metric.messaging.process.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `messaging.deliver.duration` | Histogram | `s` | Measures the duration of deliver operation. |
+| `messaging.process.duration` | Histogram | `s` | Measures the duration of process operation. |
 <!-- endsemconv -->
 
-### Metric: `messaging.deliver.messages`
+### Metric: `messaging.process.messages`
 
-This metric is [required][MetricRequired] for batch delivery operations. It's [opt-in][MetricOptIn] when the messaging system does not support batch delivery since the message count can be derived from the `messaging.deliver.duration` histogram.
+This metric is [required][MetricRequired] for batch process operations, and [recommended][MetricRecommended] for batch processing operations instrumented for pull-based scenarios. It's [opt-in][MetricOptIn] when the messaging system does not support batch processing since the message count can be derived from the `messaging.process.duration` histogram.
 
-_Note: The need to report `messaging.deliver.messages` depends on the messaging system capabilities and not application scenarios or client library limitations._
+_Note: The need to report `messaging.process.messages` depends on the messaging system capabilities and not application scenarios or client library limitations._
 
-<!-- semconv metric.messaging.deliver.messages(metric_table) -->
+<!-- semconv metric.messaging.process.messages(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `messaging.deliver.messages` | Counter | `{message}` | Measures the number of delivered messages. |
+| `messaging.process.messages` | Counter | `{message}` | Measures the number of processed messages. |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
 [MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#required
+[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
 [MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#opt-in
