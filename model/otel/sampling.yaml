@@ -1,0 +1,51 @@
+groups:
+  - id: sampling.common
+    type: attribute_group
+    brief: 'Semantic conventions describing sampling in OpenTelemetry.'
+    prefix: sampling
+    attributes:
+      - id: priority
+        type: int
+        brief: Enables prioritizing and de-prioritizing collection of telemetry. 
+        note: >
+          This attribute is useful to express the user's desire to
+          collect telemetry, despite the sampling configuration in
+          place.  Non-zero values MAY prioritize the item for
+          collection independent of probability sampling.  Zero values
+          have the reverse effect and MAY cause telemetry not to be
+          collected.  This convention derives from a conventional tag
+          with the same name in the OpenTracing specification.
+        examples: [1, 0]
+        tag: otel-span-attributes
+
+      - id: randomness
+        type: string
+        brief: The source of randomness for making probability sampling decisions, when it is not otherwise recorded.
+        note: >
+          This attribute is an optional way to express trace
+          randomness, especially for cases where the TraceID is
+          missing or known to be not random.  This value is a
+          hex-coded string containing 14 hex digits (56 bits) of
+          randomness.  Setting this attribute indicates the source of
+          randomness that was used (and may be used again) for
+          probability sampling.  This field is taken to have the same
+          meaning as the OpenTelemetry tracestate "R-value" for
+          probability sampling, which is an alternative to deriving
+          trace randomness from the TraceID [specified in OTEP
+          235](https://github.com/open-telemetry/oteps/blob/main/text/trace/0235-sampling-threshold-in-trace-state.md).
+        examples: ["ce929d0e0e4736"]
+
+      - id: threshold
+        type: string
+        brief: Sampling probability as specified by OpenTelemetry.
+        note: >
+          This attribute is set to convey sampling probability from
+          samplers to consumers of spans and log records, taken to
+          have the same meaning as the OpenTelemetry tracestate
+          "T-value" for probability sampling.  This attribute contains
+          a hexadecimal-coded value containing 1 to 14 hex digits of
+          precision, defining the threshold used to reject, depending
+          on the random variable.  This value can be converted into
+          sampling probability as [specified in OTEP
+          235](https://github.com/open-telemetry/oteps/blob/main/text/trace/0235-sampling-threshold-in-trace-state.md).
+        examples: ["c", "ff8"]
