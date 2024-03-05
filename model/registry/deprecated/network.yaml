@@ -1,5 +1,5 @@
 groups:
-  - id: network-deprecated
+  - id: attributes.network.deprecated
     prefix: net
     type: attribute_group
     brief: >
@@ -7,47 +7,47 @@ groups:
     attributes:
       - id: sock.peer.name
         type: string
-        stability: deprecated
+        deprecated: "Removed."
         brief: Deprecated, no replacement at this time.
         examples: ['/var/my.sock']
       - id: sock.peer.addr
         type: string
-        stability: deprecated
+        deprecated: "Replaced by `network.peer.address`."
         brief: Deprecated, use `network.peer.address`.
         examples: ['192.168.0.1']
       - id: sock.peer.port
         type: int
-        stability: deprecated
+        deprecated: "Replaced by `network.peer.port`."
         examples: [65531]
         brief: Deprecated, use `network.peer.port`.
       - id: peer.name
         type: string
-        stability: deprecated
+        deprecated: "Replaced by `server.address` on client spans and `client.address` on server spans."
         brief: Deprecated, use `server.address` on client spans and `client.address` on server spans.
         examples: ['example.com']
       - id: peer.port
         type: int
-        stability: deprecated
+        deprecated: "Replaced by `server.port` on client spans and `client.port` on server spans."
         brief: Deprecated, use `server.port` on client spans and `client.port` on server spans.
         examples: [8080]
       - id: host.name
         type: string
-        stability: deprecated
+        deprecated: "Replaced by `server.address`."
         brief: Deprecated, use `server.address`.
         examples: ['example.com']
       - id: host.port
         type: int
-        stability: deprecated
+        deprecated: "Replaced by `server.port`."
         brief: Deprecated, use `server.port`.
         examples: [8080]
       - id: sock.host.addr
         type: string
-        stability: deprecated
+        deprecated: "Replaced by `network.local.address`."
         brief: Deprecated, use `network.local.address`.
         examples: ['/var/my.sock']
       - id: sock.host.port
         type: int
-        stability: deprecated
+        deprecated: "Replaced by `network.local.port`."
         brief: Deprecated, use `network.local.port`.
         examples: [8080]
       - id: transport
@@ -71,16 +71,16 @@ groups:
             - id: other
               value: "other"
               brief: 'Something else (non IP-based).'
-        stability: deprecated
+        deprecated: "Replaced by `network.transport`."
         brief: Deprecated, use `network.transport`.
       - id: protocol.name
         type: string
-        stability: deprecated
+        deprecated: "Replaced by `network.protocol.name`."
         brief: Deprecated, use `network.protocol.name`.
         examples: ['amqp', 'http', 'mqtt']
       - id: protocol.version
         type: string
-        stability: deprecated
+        deprecated: "Replaced by `network.protocol.version`."
         brief: Deprecated, use `network.protocol.version`.
         examples: '3.1.1'
       - id: sock.family
@@ -96,5 +96,5 @@ groups:
             - id: unix
               value: 'unix'
               brief: "Unix domain socket path"
-        stability: deprecated
+        deprecated: "Split to `network.transport` and `network.type`."
         brief: Deprecated, use `network.transport` and `network.type`.

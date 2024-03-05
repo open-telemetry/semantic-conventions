@@ -232,7 +232,7 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 | [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Required |
 | [`url.full`](../attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [5] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Opt-In |
-| [`user_agent.original`](../attributes-registry/user-agent.md) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` | Opt-In |
+| [`user_agent.original`](../attributes-registry/user-agent.md) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | Opt-In |
 
 **[1]:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 The `User-Agent` header is already captured in the `user_agent.original` attribute. Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
@@ -246,7 +246,7 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[5]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
-`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed) and SHOULD NOT be validated or modified except for sanitizing purposes.
+`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed). Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
 The following attributes can be important for making sampling decisions and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -277,7 +277,7 @@ Retries and redirects cause more than one physical HTTP request to be sent.
 A request is resent when an HTTP client library sends more than one HTTP request to satisfy the same API call.
 This may happen due to following redirects, authorization challenges, 503 Server Unavailable, network issues, or any other.
 
-Each time an HTTP request is resent, the `http.resend_count` attribute SHOULD be added to each repeated span and set to the ordinal number of the request resend attempt.
+Each time an HTTP request is resent, the `http.request.resend_count` attribute SHOULD be added to each repeated span and set to the ordinal number of the request resend attempt.
 
 See the examples for more details about:
 
@@ -346,10 +346,10 @@ For an HTTP server span, `SpanKind` MUST be `Server`.
 | [`network.local.port`](../attributes-registry/network.md) | int | Local socket port. Useful in case of a multi-port host. | `65123` | Opt-In |
 | [`server.address`](../attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`server.port`](../attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [6] | `80`; `8080`; `443` | Conditionally Required: If `server.address` is set. |
-| [`url.path`](../attributes-registry/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component | `/search` | Required |
-| [`url.query`](../attributes-registry/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [7] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [8] | `http`; `https` | Required |
-| [`user_agent.original`](../attributes-registry/user-agent.md) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` | Recommended |
+| [`url.path`](../attributes-registry/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [7] | `/search` | Required |
+| [`url.query`](../attributes-registry/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [9] | `http`; `https` | Required |
+| [`user_agent.original`](../attributes-registry/user-agent.md) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | Recommended |
 
 **[1]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for), [X-Forwarded-For](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
 
@@ -366,9 +366,11 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[6]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
-**[7]:** Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
+**[7]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
-**[8]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[8]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
+
+**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
 The following attributes can be important for making sampling decisions and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -388,7 +390,7 @@ The following attributes can be important for making sampling decisions and SHOU
 
 ### HTTP client-server example
 
-As an example, if a browser request for `https://example.com:8080/webshop/articles/4?s=1` is invoked from a host with IP 192.0.2.4, we may have the following Span on the client side:
+As an example, if a browser request for `https://example.com:8080/webshop/articles/4?s=1&t=2` is invoked from a host with IP 192.0.2.4, we may have the following Span on the client side:
 
 Span name: `GET`
 
@@ -396,7 +398,7 @@ Span name: `GET`
 | :------------------- | :-------------------------------------------------------|
 | `http.request.method`| `"GET"`                                                 |
 | `network.protocol.version` | `"1.1"`                                           |
-| `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1"`     |
+| `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1&t=2"` |
 | `server.address`     | `example.com`                                           |
 | `server.port`        | `8080`                                                  |
 | `network.peer.address` | `"192.0.2.5"`                                         |
@@ -412,7 +414,7 @@ Span name: `GET /webshop/articles/:article_id`.
 | `http.request.method`| `"GET"`                                         |
 | `network.protocol.version` | `"1.1"`                                   |
 | `url.path`           | `"/webshop/articles/4"`                         |
-| `url.query`          | `"?s=1"`                                        |
+| `url.query`          | `"s=1&t=2"`                                     |
 | `server.address`     | `"example.com"`                                 |
 | `server.port`        | `8080`                                          |
 | `url.scheme`         | `"https"`                                       |
@@ -433,11 +435,11 @@ request (SERVER, trace=t1, span=s1)
   |   |
   |   --- server (SERVER, trace=t1, span=s3)
   |
-  -- GET / - 500 (CLIENT, trace=t1, span=s4, http.resend_count=1)
+  -- GET / - 500 (CLIENT, trace=t1, span=s4, http.request.resend_count=1)
   |   |
   |   --- server (SERVER, trace=t1, span=s5)
   |
-  -- GET / - 200 (CLIENT, trace=t1, span=s6, http.resend_count=2)
+  -- GET / - 200 (CLIENT, trace=t1, span=s6, http.request.resend_count=2)
       |
       --- server (SERVER, trace=t1, span=s7)
 ```
@@ -449,11 +451,11 @@ GET / - 500 (CLIENT, trace=t1, span=s1)
  |
  --- server (SERVER, trace=t1, span=s2)
 
-GET / - 500 (CLIENT, trace=t2, span=s1, http.resend_count=1)
+GET / - 500 (CLIENT, trace=t2, span=s1, http.request.resend_count=1)
  |
  --- server (SERVER, trace=t2, span=s2)
 
-GET / - 200 (CLIENT, trace=t3, span=s1, http.resend_count=2)
+GET / - 200 (CLIENT, trace=t3, span=s1, http.request.resend_count=2)
  |
  --- server (SERVER, trace=t3, span=s1)
 ```
@@ -469,7 +471,7 @@ request (SERVER, trace=t1, span=s1)
   |   |
   |   --- server (SERVER, trace=t1, span=s3)
   |
-  -- GET /hello - 200 (CLIENT, trace=t1, span=s4, http.resend_count=1)
+  -- GET /hello - 200 (CLIENT, trace=t1, span=s4, http.request.resend_count=1)
       |
       --- server (SERVER, trace=t1, span=s5)
 ```
@@ -481,7 +483,7 @@ GET /hello - 401 (CLIENT, trace=t1, span=s1)
  |
  --- server (SERVER, trace=t1, span=s2)
 
-GET /hello - 200 (CLIENT, trace=t2, span=s1, http.resend_count=1)
+GET /hello - 200 (CLIENT, trace=t2, span=s1, http.request.resend_count=1)
  |
  --- server (SERVER, trace=t2, span=s2)
 ```
@@ -497,7 +499,7 @@ request (SERVER, trace=t1, span=s1)
   |   |
   |   --- server (SERVER, trace=t1, span=s3)
   |
-  -- GET /hello - 200 (CLIENT, trace=t1, span=s4, http.resend_count=1)
+  -- GET /hello - 200 (CLIENT, trace=t1, span=s4, http.request.resend_count=1)
       |
       --- server (SERVER, trace=t1, span=s5)
 ```
@@ -509,7 +511,7 @@ GET / - 302 (CLIENT, trace=t1, span=s1)
  |
  --- server (SERVER, trace=t1, span=s2)
 
-GET /hello - 200 (CLIENT, trace=t2, span=s1, http.resend_count=1)
+GET /hello - 200 (CLIENT, trace=t2, span=s1, http.request.resend_count=1)
  |
  --- server (SERVER, trace=t2, span=s2)
 ```

@@ -4,7 +4,7 @@ linkTitle: Runtime Environment
 
 # Semantic Conventions for JVM Metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 This document describes semantic conventions for JVM metrics in OpenTelemetry.
 
@@ -29,7 +29,7 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
   * [Metric: `jvm.cpu.time`](#metric-jvmcputime)
   * [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   * [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
-- [Very experimental](#very-experimental)
+- [Experimental](#experimental)
   * [Metric: `jvm.memory.init`](#metric-jvmmemoryinit)
   * [Metric: `jvm.system.cpu.utilization`](#metric-jvmsystemcpuutilization)
   * [Metric: `jvm.system.cpu.load_1m`](#metric-jvmsystemcpuload_1m)
@@ -40,6 +40,8 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
 <!-- tocstop -->
 
 ## JVM Memory
+
+**Status**: [Stable][DocumentStatus]
 
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.memory.*`
 
@@ -57,8 +59,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.used(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -84,8 +86,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.committed(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -111,8 +113,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.limit(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -138,8 +140,8 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 <!-- semconv metric.jvm.memory.used_after_last_gc(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -152,6 +154,8 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 <!-- endsemconv -->
 
 ## JVM Garbage Collection
+
+**Status**: [Stable][DocumentStatus]
 
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.gc.*`
 
@@ -174,8 +178,8 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 <!-- semconv metric.jvm.gc.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.gc.action` | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` | Recommended |
-| `jvm.gc.name` | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` | Recommended |
+| `jvm.gc.action` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` | Recommended |
+| `jvm.gc.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` | Recommended |
 
 **[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
@@ -183,6 +187,8 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 <!-- endsemconv -->
 
 ## JVM Threads
+
+**Status**: [Stable][DocumentStatus]
 
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.thread.*`
 
@@ -207,8 +213,8 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 <!-- semconv metric.jvm.thread.count(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.thread.daemon` | boolean | Whether the thread is daemon or not. |  | Recommended |
-| `jvm.thread.state` | string | State of the thread. | `runnable`; `blocked` | Recommended |
+| `jvm.thread.daemon` | boolean | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Whether the thread is daemon or not. |  | Recommended |
+| `jvm.thread.state` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>State of the thread. | `runnable`; `blocked` | Recommended |
 
 `jvm.thread.state` MUST be one of the following:
 
@@ -223,6 +229,8 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 <!-- endsemconv -->
 
 ## JVM Classes
+
+**Status**: [Stable][DocumentStatus]
 
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.class.*`
 
@@ -270,6 +278,8 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 
 ## JVM CPU
 
+**Status**: [Stable][DocumentStatus]
+
 **Description:** Java Virtual Machine (JVM) metrics captured under the namespace `jvm.cpu.*`
 
 ### Metric: `jvm.cpu.time`
@@ -277,7 +287,7 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 This metric is [recommended][MetricRecommended].
 
 This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuTime()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime()) on HotSpot
-and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuTime--) on J9.
+and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuTime--) on OpenJ9.
 
 <!-- semconv metric.jvm.cpu.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -307,7 +317,7 @@ Note that this is always an integer value (i.e. fractional or millicores are not
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()) on HotSpot
-and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuLoad--) on J9.
+and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuLoad--) on OpenJ9.
 Note that the JVM does not provide a definition of what "recent" means.
 
 <!-- semconv metric.jvm.cpu.recent_utilization(metric_table) -->
@@ -321,9 +331,11 @@ Note that the JVM does not provide a definition of what "recent" means.
 <!-- semconv metric.jvm.cpu.recent_utilization(full) -->
 <!-- endsemconv -->
 
-## Very experimental
+## Experimental
 
-**Description:** Very experimental Java Virtual Machine (JVM) metrics captured under `jvm.`
+**Status**: [Experimental][DocumentStatus]
+
+**Description:** Experimental Java Virtual Machine (JVM) metrics captured under `jvm.`
 
 ### Metric: `jvm.memory.init`
 
@@ -339,8 +351,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- semconv metric.jvm.memory.init(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | Recommended |
+| `jvm.memory.pool.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | Recommended |
+| `jvm.memory.type` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The type of memory. | `heap`; `non_heap` | Recommended |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -356,7 +368,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 This metric is [Opt-In][MetricOptIn].
 This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad()) on Java version 8..13, [`com.sun.management.OperatingSystemMXBean#getCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()) on Java version 14+,
-and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html) on J9.
+and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html) on OpenJ9.
 
 <!-- semconv metric.jvm.system.cpu.utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
