@@ -9,13 +9,68 @@ linkTitle: Sampling
 <!-- toc -->
 <!-- tocstop -->
 
-These attributes may be modified by components in a collection
-pipeline to convey the amount of sampling that has been carried out
-for a particular item of telemetry.
+These attributes reflect the effect of sampling in a telemetry
+collection pipeline.  These attributes describe how items of telemetry
+was collected, making it possible to define Span-to-Metrics pipelines
+and Logs-to-Metrics pipelines, which accurately count items of
+telemetry, despite sampling.
+
+These attributes MAY be modified by components in a collection pipeline
+to convey the amount of sampling that has been carried out for a
+particular item of telemetry.
+
+## Probability sampling
+
+For more information on how to perform and interpret probability
+sampling based on these attributes, [consult OTEP
+235](https://github.com/open-telemetry/oteps/blob/main/text/trace/0235-sampling-threshold-in-trace-state.md).
+
+### Sampling threshold
+
+The OpenTelemetry sampling decision is defined in terms in terms of a
+threshold and a source of randomness.  The threshold expresses how
+many traces out of `1<<56` (i.e., `math.Pow(2, 56)`) are rejected by
+the sampler, and forms the basis of a rejection test defined by `T <=
+R`.  An item is sampled when the item's sampling threshold is less or
+equal to its randomness.
+
+When determining sampling randomness from a span, implementations
+SHOULD:
+
+- use the `tracestate` OpenTelemetry T-value field (`rh`) if it is present, or
+- use the `sampling.threshold` attribute value if it is present.
+
+Otherwise, no information is available about what sampling was
+performed.
+
+### Sampling randomness
+
+When determining sampling randomness from a span, implementations
+SHOULD:
+
+- use the `tracestate` OpenTelemetry R-value field (`rv`) if it is present, or
+- use the `sampling.randomness` attribute value if it is present, or
+- use the least significant 56 bits of the W3C Trace Context TraceID, as described in the W3C Trace Context Level 2 specification.
+
+Callers SHOULD NOT require trace flags to have the Trace Context Level
+2 Random flag set, in case the Trace ID is used as the source of
+randomness, because it is not reliable information at this time.
+Additionally, the W3C Trace Context Level 2 specification was based on
+the widespread use of at least 56 bits of randomness.
+
+In case the user knowingly creates TraceIDs that do not conform to the
+W3C Trace Context Level 2 specification and they wish to perform
+sampling, they SHOULD synthesize a random R-value and store it in the
+`tracestate` (Spans) or the `sampling.randomness` (Log Records)
+attribute value.
 
 ## Span attributes
 
-The following attributes are recognized for Spans.
+The following attributes are recognized for Spans.  Since probability
+sampling is tightly coordinated through Context propagation and
+reflected in the W3C Trace Context `tracestate`, which is included in
+the Span data model, it is not common to express sampling randomness
+and threshold using attributes.
 
 <!-- semconv sampling.common(full,tag=otel-span-attributes) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |

@@ -5,12 +5,12 @@ path_base_for_github_subdir:
   to: otel/README.md
 --->
 
-# Semantic Conventions for OpenTelemetry systems
+# Semantic Conventions for OpenTelemetry collection systems
 
 **Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for attributes that are common
-across signals in OpenTelemetry.
+across signals, describing how data was collected in OpenTelemetry.
 
 * [Sampling](sampling.md): Semantic Conventions for sampling.
 
