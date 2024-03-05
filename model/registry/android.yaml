@@ -1,7 +1,7 @@
 groups:
   - id: registry.android
     prefix: android
-    type: resource
+    type: attribute_group
     brief: >
       The Android platform on which the Android application is running.
     attributes:
