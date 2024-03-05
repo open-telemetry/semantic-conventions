@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: priority
         type: int
-        brief: Enables prioritizing and de-prioritizing collection of telemetry. 
+        brief: Enables prioritizing and de-prioritizing collection of telemetry.
         note: >
           This attribute is useful to express the user's desire to
           collect telemetry, despite the sampling configuration in
@@ -31,8 +31,7 @@ groups:
           probability sampling.  This field is taken to have the same
           meaning as the OpenTelemetry tracestate "R-value" for
           probability sampling, which is an alternative to deriving
-          trace randomness from the TraceID [specified in OTEP
-          235](https://github.com/open-telemetry/oteps/blob/main/text/trace/0235-sampling-threshold-in-trace-state.md).
+          trace randomness from the TraceID specified in OTEP 235.
         examples: ["ce929d0e0e4736"]
 
       - id: threshold
@@ -46,6 +45,5 @@ groups:
           a hexadecimal-coded value containing 1 to 14 hex digits of
           precision, defining the threshold used to reject, depending
           on the random variable.  This value can be converted into
-          sampling probability as [specified in OTEP
-          235](https://github.com/open-telemetry/oteps/blob/main/text/trace/0235-sampling-threshold-in-trace-state.md).
+          sampling probability as specified in OTEP 235.
         examples: ["c", "ff8"]
