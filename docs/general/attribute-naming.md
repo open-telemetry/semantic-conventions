@@ -31,6 +31,8 @@ particular programming language or wire format._
 
 Names SHOULD follow these rules:
 
+- Names SHOULD be lowercase.
+
 - Use namespacing to avoid name clashes. Delimit the namespaces using a dot
   character. For example `service.version` denotes the service version where
   `service` is the namespace and `version` is an attribute in that namespace.
