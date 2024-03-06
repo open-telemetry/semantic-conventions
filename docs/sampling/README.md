@@ -144,7 +144,7 @@ The zero Threshold value (encoded by a single `0`) corresponds with
 100% sampling.
 
 When Threshold is not provided, no information about probability
-sampling is available and
+sampling is available.
 
 ### Sampling randomness
 
