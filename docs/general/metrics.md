@@ -103,9 +103,8 @@ Examples:
 Attributes `mode` and `mountpoint` for metric `system.filesystem.usage`
 should be namespaced as `system.filesystem.mode` and `system.filesystem.mountpoint`.
 
-When metric attributes apply to other signals, these do not need
-to be namespaced under the metric and SHOULD be added to the
-[attributes registry](../attributes-registry/README.md).
+Metrics can also have attributes outside the metric namespace when these come
+from the attributes registry.
 
 Examples:
 
