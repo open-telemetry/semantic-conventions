@@ -18,7 +18,7 @@ Records of telemetry, before sampling, in a probabilistic sense.
 These attributes MAY be modified by components in a collection
 pipeline to convey successive sampling that has been carried out for a
 particular item of telemetry, using the conventions for consistent
-sampling described here.  In that sense, producers and consumers
+sampling described here.  In that sense, telemetry consumers
 should see these attributes as telemetry metadata.
 
 ## Probability sampling

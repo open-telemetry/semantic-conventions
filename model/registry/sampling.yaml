@@ -12,6 +12,7 @@ groups:
           the trace. If 0, a hint to the Tracer to not-capture the trace. If
           absent, the Tracer should use its default sampling mechanism.
         examples: [10, 1, 0]
+        sampling_relevant: true
 
       - id: randomness
         type: string
