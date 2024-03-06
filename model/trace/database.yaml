@@ -124,9 +124,9 @@ groups:
         note: >
           If a database operation involved multiple network calls (for example retries),
           the address of the last contacted node SHOULD be used.
-        tag: call-level-tech-specific
+        tag: tech-specific
       - ref: network.peer.port
-        tag: call-level-tech-specific
+        tag: tech-specific
 
   - id: db.mongodb
     type: span
