@@ -1,0 +1,4 @@
+change_type: deprecation
+component: db
+note: Deprecate `db.jdbc.driver_classname`` attribute
+issues: [796]
