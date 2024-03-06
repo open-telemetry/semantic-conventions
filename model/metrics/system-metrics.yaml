@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: device
         type: string
+        stability: experimental
         brief: "The device identifier"
         examples: ["(identifier)"]
 
@@ -34,16 +35,19 @@ groups:
               value: 'interrupt'
             - id: steal
               value: 'steal'
+        stability: experimental
         brief: "The state of the CPU"
         examples: ["idle", "interrupt"]
       - id: logical_number
         type: int
+        stability: experimental
         brief: "The logical CPU number [0..n-1]"
         examples: [1]
 
   - id: metric.system.cpu.time
     type: metric
     metric_name: system.cpu.time
+    stability: experimental
     brief: "Seconds each logical CPU spent on each mode"
     instrument: counter
     unit: "s"
@@ -54,6 +58,7 @@ groups:
   - id: metric.system.cpu.utilization
     type: metric
     metric_name: system.cpu.utilization
+    stability: experimental
     brief: "Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs"
     instrument: gauge
     unit: "1"
@@ -64,6 +69,7 @@ groups:
   - id: metric.system.cpu.frequency
     type: metric
     metric_name: system.cpu.frequency
+    stability: experimental
     brief: "Reports the current frequency of the CPU in Hz"
     instrument: gauge
     unit: "{Hz}"
@@ -73,6 +79,7 @@ groups:
   - id: metric.system.cpu.physical.count
     type: metric
     metric_name: system.cpu.physical.count
+    stability: experimental
     brief: "Reports the number of actual physical processor cores on the hardware"
     instrument: updowncounter
     unit: "{cpu}"
@@ -81,6 +88,7 @@ groups:
   - id: metric.system.cpu.logical.count
     type: metric
     metric_name: system.cpu.logical.count
+    stability: experimental
     brief: "Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking"
     instrument: updowncounter
     unit: "{cpu}"
@@ -106,12 +114,14 @@ groups:
               value: 'buffers'
             - id: cached
               value: 'cached'
+        stability: experimental
         brief: "The memory state"
         examples: ["free", "cached"]
 
   - id: metric.system.memory.usage
     type: metric
     metric_name: system.memory.usage
+    stability: experimental
     brief: "Reports memory in use by state."
     note: |
       The sum over all `system.memory.state` values SHOULD equal the total memory
@@ -124,6 +134,7 @@ groups:
   - id: metric.system.memory.limit
     type: metric
     metric_name: system.memory.limit
+    stability: experimental
     brief: "Total memory available in the system."
     note: |
       Its value SHOULD equal the sum of `system.memory.state` over all states.
@@ -133,6 +144,7 @@ groups:
   - id: metric.system.memory.utilization
     type: metric
     metric_name: system.memory.utilization
+    stability: experimental
     brief: ""
     instrument: gauge
     unit: "1"
@@ -153,6 +165,7 @@ groups:
               value: 'used'
             - id: free
               value: 'free'
+        stability: experimental
         brief: "The memory paging state"
         examples: ["free"]
       - id: type
@@ -163,6 +176,7 @@ groups:
               value: 'major'
             - id: minor
               value: 'minor'
+        stability: experimental
         brief: "The memory paging type"
         examples: ["minor"]
       - id: direction
@@ -173,11 +187,13 @@ groups:
               value: 'in'
             - id: out
               value: 'out'
+        stability: experimental
         brief: "The paging access direction"
         examples: ["in"]
   - id: metric.system.paging.usage
     type: metric
     metric_name: system.paging.usage
+    stability: experimental
     brief: "Unix swap or windows pagefile usage"
     instrument: updowncounter
     unit: "By"
@@ -187,6 +203,7 @@ groups:
   - id: metric.system.paging.utilization
     type: metric
     metric_name: system.paging.utilization
+    stability: experimental
     brief: ""
     instrument: gauge
     unit: "1"
@@ -196,6 +213,7 @@ groups:
   - id: metric.system.paging.faults
     type: metric
     metric_name: system.paging.faults
+    stability: experimental
     brief: ""
     instrument: counter
     unit: "{fault}"
@@ -205,6 +223,7 @@ groups:
   - id: metric.system.paging.operations
     type: metric
     metric_name: system.paging.operations
+    stability: experimental
     brief: ""
     instrument: counter
     unit: "{operation}"
@@ -216,6 +235,7 @@ groups:
   - id: metric.system.disk.io
     type: metric
     metric_name: system.disk.io
+    stability: experimental
     brief: ""
     instrument: counter
     unit: "By"
@@ -226,6 +246,7 @@ groups:
   - id: metric.system.disk.operations
     type: metric
     metric_name: system.disk.operations
+    stability: experimental
     brief: ""
     instrument: counter
     unit: "{operation}"
@@ -236,6 +257,7 @@ groups:
   - id: metric.system.disk.io_time
     type: metric
     metric_name: system.disk.io_time
+    stability: experimental
     brief: "Time disk spent activated"
     instrument: counter
     unit: "s"
@@ -252,6 +274,7 @@ groups:
   - id: metric.system.disk.operation_time
     type: metric
     metric_name: system.disk.operation_time
+    stability: experimental
     brief: "Sum of the time each operation took to complete"
     instrument: counter
     unit: "s"
@@ -267,6 +290,7 @@ groups:
   - id: metric.system.disk.merged
     type: metric
     metric_name: system.disk.merged
+    stability: experimental
     brief: ""
     instrument: counter
     unit: "{operation}"
@@ -291,6 +315,7 @@ groups:
               value: 'free'
             - id: reserved
               value: 'reserved'
+        stability: experimental
         examples: ["used"]
       - id: type
         type:
@@ -308,20 +333,24 @@ groups:
               value: 'hfsplus'
             - id: ext4
               value: 'ext4'
+        stability: experimental
         brief: "The filesystem type"
         examples: ["ext4"]
       - id: mode
         type: string
+        stability: experimental
         brief: "The filesystem mode"
         examples: ["rw, ro"]
       - id: mountpoint
         type: string
+        stability: experimental
         brief: "The filesystem mount path"
         examples: ["/mnt/data"]
 
   - id: metric.system.filesystem.usage
     type: metric
     metric_name: system.filesystem.usage
+    stability: experimental
     brief: ""
     instrument: updowncounter
     unit: "By"
@@ -335,6 +364,7 @@ groups:
   - id: metric.system.filesystem.utilization
     type: metric
     metric_name: system.filesystem.utilization
+    stability: experimental
     brief: ""
     instrument: gauge
     unit: "1"
@@ -381,12 +411,14 @@ groups:
               value: 'syn_sent'
             - id: time_wait
               value: 'time_wait'
+        stability: experimental
         brief: "A stateless protocol MUST NOT set this attribute"
         examples: ["close_wait"]
 
   - id: metric.system.network.dropped
     type: metric
     metric_name: system.network.dropped
+    stability: experimental
     brief: "Count of packets that are dropped or discarded even though there was no error"
     instrument: counter
     unit: "{packet}"
@@ -403,6 +435,7 @@ groups:
   - id: metric.system.network.packets
     type: metric
     metric_name: system.network.packets
+    stability: experimental
     brief: ""
     instrument: counter
     unit: "{packet}"
@@ -413,6 +446,7 @@ groups:
   - id: metric.system.network.errors
     type: metric
     metric_name: system.network.errors
+    stability: experimental
     brief: "Count of network errors detected"
     instrument: counter
     unit: "{error}"
@@ -429,6 +463,7 @@ groups:
   - id: metric.system.network.io
     type: metric
     metric_name: system.network.io
+    stability: experimental
     brief: ""
     instrument: counter
     unit: "By"
@@ -439,6 +474,7 @@ groups:
   - id: metric.system.network.connections
     type: metric
     metric_name: system.network.connections
+    stability: experimental
     brief: ""
     instrument: updowncounter
     unit: "{connection}"
@@ -465,6 +501,7 @@ groups:
               value: 'stopped'
             - id: defunct
               value: 'defunct'
+        stability: experimental
         brief: >
           The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
         examples: ["running"]
@@ -473,6 +510,7 @@ groups:
   - id: metric.system.process.count
     type: metric
     metric_name: system.process.count
+    stability: experimental
     brief: "Total number of processes in each state"
     instrument: updowncounter
     unit: "{process}"
@@ -482,6 +520,7 @@ groups:
   - id: metric.system.process.created
     type: metric
     metric_name: system.process.created
+    stability: experimental
     brief: "Total number of processes created over uptime of the host"
     instrument: counter
     unit: "{process}"
@@ -490,6 +529,7 @@ groups:
   - id: metric.system.linux.memory.available
     type: metric
     metric_name: system.linux.memory.available
+    stability: experimental
     brief: "An estimate of how much memory is available for starting new applications, without causing swapping"
     note: |
       This is an alternative to `system.memory.usage` metric with `state=free`.

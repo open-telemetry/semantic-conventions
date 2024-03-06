@@ -14,18 +14,18 @@ use cases.
 <!-- toc -->
 
 - [All triggers](#all-triggers)
-  * [AWS X-Ray Active Tracing Considerations](#aws-x-ray-active-tracing-considerations)
-    + [`xray-lambda` Propagator Functionality](#xray-lambda-propagator-functionality)
-    + [`xray-lambda` Propagator Configuration](#xray-lambda-propagator-configuration)
+  - [AWS X-Ray Active Tracing Considerations](#aws-x-ray-active-tracing-considerations)
+    - [`xray-lambda` Propagator Functionality](#xray-lambda-propagator-functionality)
+    - [`xray-lambda` Propagator Configuration](#xray-lambda-propagator-configuration)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
-  * [SQS Event](#sqs-event)
-  * [SQS Message](#sqs-message)
+  - [SQS Event](#sqs-event)
+  - [SQS Message](#sqs-message)
 - [Examples](#examples)
-  * [API Gateway Request Proxy (Lambda tracing passive)](#api-gateway-request-proxy-lambda-tracing-passive)
-  * [API Gateway Request Proxy (Lambda tracing active)](#api-gateway-request-proxy-lambda-tracing-active)
-  * [SQS (Lambda tracing passive)](#sqs-lambda-tracing-passive)
-  * [SQS (Lambda tracing active)](#sqs-lambda-tracing-active)
+  - [API Gateway Request Proxy (Lambda tracing passive)](#api-gateway-request-proxy-lambda-tracing-passive)
+  - [API Gateway Request Proxy (Lambda tracing active)](#api-gateway-request-proxy-lambda-tracing-active)
+  - [SQS (Lambda tracing passive)](#sqs-lambda-tracing-passive)
+  - [SQS (Lambda tracing active)](#sqs-lambda-tracing-active)
 - [Resource Detector](#resource-detector)
 
 <!-- tocstop -->

@@ -14,7 +14,7 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 
 - [Recording an Exception](#recording-an-exception)
 - [Attributes](#attributes)
-  * [Stacktrace Representation](#stacktrace-representation)
+  - [Stacktrace Representation](#stacktrace-representation)
 
 <!-- tocstop -->
 

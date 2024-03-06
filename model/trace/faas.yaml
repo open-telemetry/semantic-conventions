@@ -20,6 +20,7 @@ groups:
           call to invoke the lambda, which is often HTTP).
       - id: invocation_id
         type: string
+        stability: experimental
         brief: 'The invocation ID of the current function invocation.'
         examples: 'af9d5aa4-a685-4c5f-a22b-444f80b3cc28'
       - ref: cloud.resource_id
@@ -33,6 +34,7 @@ groups:
     attributes:
       - id: collection
         type: string
+        stability: experimental
         requirement_level: required
         brief: >
           The name of the source on which the triggering operation was performed.
@@ -40,6 +42,7 @@ groups:
           and in Cosmos DB to the database name.
         examples: ['myBucketName', 'myDbName']
       - id: operation
+        stability: experimental
         requirement_level: required
         type:
           allow_custom_values: true
@@ -56,6 +59,7 @@ groups:
         brief: 'Describes the type of the operation that was performed on the data.'
       - id: time
         type: string
+        stability: experimental
         brief: >
           A string containing the time when the data was accessed in the
           [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
@@ -63,6 +67,7 @@ groups:
         examples: "2020-01-23T13:47:06Z"
       - id: name
         type: string
+        stability: experimental
         brief: >
           The document name/table subjected to the operation.
           For example, in Cloud Storage or S3 is the name of
@@ -76,7 +81,6 @@ groups:
       source operation such as a database or filesystem read/write.
     constraints:
       - include: trace.http.server
-    attributes: []
 
   - id: faas_span.pubsub
     type: span
@@ -85,7 +89,6 @@ groups:
       sent to a messaging system.
     constraints:
       - include: messaging
-    attributes: []
 
   - id: faas_span.timer
     prefix: faas
@@ -95,6 +98,7 @@ groups:
     attributes:
       - id: time
         type: string
+        stability: experimental
         brief: >
           A string containing the function invocation time in the
           [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
@@ -102,6 +106,7 @@ groups:
         examples: "2020-01-23T13:47:06Z"
       - id: cron
         type: string
+        stability: experimental
         brief: >
           A string containing the schedule period as
           [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
@@ -116,6 +121,7 @@ groups:
     attributes:
       - id: coldstart
         type: boolean
+        stability: experimental
         brief: >
           A boolean that is true if the serverless function is executed for the
           first time (aka cold-start).

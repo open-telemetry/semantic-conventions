@@ -14,13 +14,13 @@ This document defines how to describe remote procedure calls
 <!-- toc -->
 
 - [Common remote procedure call conventions](#common-remote-procedure-call-conventions)
-  * [Span name](#span-name)
-  * [Common attributes](#common-attributes)
-    + [Service name](#service-name)
-  * [Client attributes](#client-attributes)
-  * [Server attributes](#server-attributes)
-  * [Events](#events)
-  * [Distinction from HTTP spans](#distinction-from-http-spans)
+  - [Span name](#span-name)
+  - [Common attributes](#common-attributes)
+    - [Service name](#service-name)
+  - [Client attributes](#client-attributes)
+  - [Server attributes](#server-attributes)
+  - [Events](#events)
+  - [Distinction from HTTP spans](#distinction-from-http-spans)
 - [Semantic Conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
 
 <!-- tocstop -->

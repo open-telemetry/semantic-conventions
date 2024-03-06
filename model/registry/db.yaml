@@ -7,12 +7,14 @@ groups:
     attributes:
       - id: cassandra.coordinator.dc
         type: string
+        stability: experimental
         brief: >
           The data center of the coordinating node for a query.
         examples: 'us-west-2'
         tag: tech-specific-cassandra
       - id: cassandra.coordinator.id
         type: string
+        stability: experimental
         brief: >
           The ID of the coordinating node for a query.
         examples: 'be13faa2-8574-4d71-926d-27f16cf8a7af'
@@ -44,26 +46,31 @@ groups:
               value: 'serial'
             - id: local_serial
               value: 'local_serial'
+        stability: experimental
         tag: tech-specific-cassandra
       - id: cassandra.idempotence
         type: boolean
+        stability: experimental
         brief: >
           Whether or not the query is idempotent.
         tag: tech-specific-cassandra
       - id: cassandra.page_size
         type: int
+        stability: experimental
         brief: >
           The fetch size used for paging, i.e. how many rows will be returned at once.
         examples: [5000]
         tag: tech-specific-cassandra
       - id: cassandra.speculative_execution_count
         type: int
+        stability: experimental
         brief: >
           The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
         examples: [0, 2]
         tag: tech-specific-cassandra
       - id: cassandra.table
         type: string
+        stability: experimental
         brief: The name of the primary Cassandra table that the operation is acting upon, including the keyspace name (if applicable).
         note: >
           This mirrors the db.sql.table attribute but references cassandra rather than sql.
@@ -76,6 +83,7 @@ groups:
         tag: tech-specific-cassandra
       - id: connection_string
         type: string
+        stability: experimental
         brief: >
           The connection string used to connect to the database.
           It is recommended to remove embedded credentials.
@@ -83,6 +91,7 @@ groups:
         tag: db-generic
       - id: cosmosdb.client_id
         type: string
+        stability: experimental
         brief: Unique Cosmos client instance id.
         examples: '3ba4827d-4422-483f-b59f-85b74211c11d'
         tag: tech-specific-cosmosdb
@@ -96,10 +105,12 @@ groups:
             - id: direct
               value: 'direct'
               brief: Direct connection.
+        stability: experimental
         brief: Cosmos client connection mode.
         tag: tech-specific-cosmosdb
       - id: cosmosdb.container
         type: string
+        stability: experimental
         brief: Cosmos DB container name.
         examples: 'anystring'
         tag: tech-specific-cosmosdb
@@ -137,41 +148,49 @@ groups:
               value: 'QueryPlan'
             - id: execute_javascript
               value: 'ExecuteJavaScript'
+        stability: experimental
         brief: CosmosDB Operation Type.
         tag: tech-specific-cosmosdb
       - id: cosmosdb.request_charge
         type: double
+        stability: experimental
         brief: RU consumed for that operation
         examples: [46.18, 1.0]
         tag: tech-specific-cosmosdb
       - id: cosmosdb.request_content_length
         type: int
+        stability: experimental
         brief: Request payload size in bytes
         tag: tech-specific-cosmosdb
       - id: cosmosdb.status_code
         type: int
+        stability: experimental
         brief: Cosmos DB status code.
         examples: [200, 201]
         tag: tech-specific-cosmosdb
       - id: cosmosdb.sub_status_code
         type: int
+        stability: experimental
         brief: Cosmos DB sub status code.
         examples: [1000, 1002]
         tag: tech-specific-cosmosdb
       - id: elasticsearch.cluster.name
         type: string
+        stability: experimental
         brief: >
           Represents the identifier of an Elasticsearch cluster.
         examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
         tag: tech-specific-elasticsearch
       - id: elasticsearch.node.name
         type: string
+        stability: experimental
         brief: >
           Represents the human-readable identifier of the node/instance to which a request was routed.
         examples: ["instance-0000000001"]
         tag: tech-specific-elasticsearch
       - id: elasticsearch.path_parts
         type: template[string]
+        stability: experimental
         brief: >
           A dynamic value in the url path.
         note: >
@@ -183,18 +202,21 @@ groups:
         tag: tech-specific-elasticsearch
       - id: jdbc.driver_classname
         type: string
+        stability: experimental
         brief: >
           The fully-qualified class name of the [Java Database Connectivity (JDBC)](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/) driver used to connect.
         examples: ['org.postgresql.Driver', 'com.microsoft.sqlserver.jdbc.SQLServerDriver']
         tag: tech-specific-jdbc
       - id: mongodb.collection
         type: string
+        stability: experimental
         brief: >
           The MongoDB collection being accessed within the database stated in `db.name`.
         examples: [ 'customers', 'products' ]
         tag: tech-specific-mongodb
       - id: mssql.instance_name
         type: string
+        stability: experimental
         note: >
           If setting a `db.mssql.instance_name`, `server.port` is no longer
           required (but still recommended if non-standard).
@@ -205,6 +227,7 @@ groups:
         tag: tech-specific-mssql
       - id: name
         type: string
+        stability: experimental
         brief: >
           This attribute is used to report the name of the database being accessed.
           For commands that switch the database, this should be set to the target database
@@ -218,6 +241,7 @@ groups:
         tag: db-generic
       - id: operation
         type: string
+        stability: experimental
         brief: >
           The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations)
           such as `findAndModify`, or the SQL keyword.
@@ -232,6 +256,7 @@ groups:
         tag: db-generic
       - id: redis.database_index
         type: int
+        stability: experimental
         brief: >
           The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer.
           To be used instead of the generic `db.name` attribute.
@@ -239,6 +264,7 @@ groups:
         tag: tech-specific-redis
       - id: sql.table
         type: string
+        stability: experimental
         brief: The name of the primary table that the operation is acting upon, including the database name (if applicable).
         note: >
           It is not recommended to attempt any client-side parsing of
@@ -250,6 +276,7 @@ groups:
         tag: tech-specific-sql
       - id: statement
         type: string
+        stability: experimental
         brief: >
           The database statement being executed.
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
@@ -415,9 +442,11 @@ groups:
             - id: trino
               value: 'trino'
               brief: 'Trino'
+        stability: experimental
         tag: db-generic
       - id: user
         type: string
+        stability: experimental
         brief: >
           Username for accessing the database.
         examples: ['readonly_user', 'reporting_user']
@@ -425,6 +454,7 @@ groups:
       - id: instance.id
         tag: db-generic
         type: string
+        stability: experimental
         brief: >
           An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection.
           This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query.

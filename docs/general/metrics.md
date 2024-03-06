@@ -10,18 +10,18 @@ aliases: [docs/specs/semconv/general/metrics-general]
 <!-- toc -->
 
 - [General Guidelines](#general-guidelines)
-  * [Name Reuse Prohibition](#name-reuse-prohibition)
-  * [Metric attributes](#metric-attributes)
-  * [Units](#units)
-  * [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
-    + [Pluralization](#pluralization)
-    + [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
-    + [Do not use `total`](#do-not-use-total)
+  - [Name Reuse Prohibition](#name-reuse-prohibition)
+  - [Metric attributes](#metric-attributes)
+  - [Units](#units)
+  - [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
+    - [Pluralization](#pluralization)
+    - [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
+    - [Do not use `total`](#do-not-use-total)
 - [General Metric Semantic Conventions](#general-metric-semantic-conventions)
-  * [Instrument Naming](#instrument-naming)
-  * [Instrument Units](#instrument-units)
-  * [Instrument Types](#instrument-types)
-  * [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
+  - [Instrument Naming](#instrument-naming)
+  - [Instrument Units](#instrument-units)
+  - [Instrument Types](#instrument-types)
+  - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
 <!-- tocstop -->
 
