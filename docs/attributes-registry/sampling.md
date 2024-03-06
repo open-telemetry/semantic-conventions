@@ -11,7 +11,7 @@ The following attributes are recognized for telemetry in general.
 <!-- semconv registry.sampling(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| [`sampling.priority`](../sampling/README.md) | int | Enables prioritizing and de-prioritizing collection of telemetry. [1] | `10`; `1`; `0` |
+| [`sampling.priority`](../sampling/README.md) | int | Allows users to prioritize and de-prioritize items of telemetry. [1] | `10`; `1`; `0` |
 | [`sampling.randomness`](../sampling/README.md) | string | The source of randomness for making probability sampling decisions, when it is not otherwise recorded. [2] | `ce929d0e0e4736` |
 | [`sampling.threshold`](../sampling/README.md) | string | Sampling probability as specified by OpenTelemetry. [3] | `c`; `ff8` |
 

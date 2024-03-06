@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: priority
         type: int
-        brief: Enables prioritizing and de-prioritizing collection of telemetry.
+        brief: Allows users to prioritize and de-prioritize items of telemetry.
         note: >
           This attribute is useful to express a user's desire to
           collect an item of telemetry, in spite of the default
