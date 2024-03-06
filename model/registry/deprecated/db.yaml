@@ -1,0 +1,13 @@
+groups:
+  - id: attributes.db.deprecated
+    prefix: db
+    type: attribute_group
+    brief: >
+      "Describes deprecated db attributes."
+    attributes:
+      - id: connection_string
+        type: string
+        brief: 'Deprecated, use `server.address`, `server.port` attributes instead.'
+        deprecated: >
+          "Removed in favor of `server.address` and `server.port`."
+        examples: Server=(localdb)\v11.0;Integrated Security=true;

@@ -22,8 +22,8 @@ groups:
         brief: >
           The name of the connection pool; unique within the instrumented application.
           In case the connection pool implementation doesn't provide a name,
-          then the [db.connection_string](/docs/database/database-spans.md#common-attributes)
-          should be used
+          instrumentation should use a combination of `server.address` and `server.port` attributes
+          formatted as `server.address:server.port`.
         examples: ["myDataSource"]
 
   - id: metric.db.client.connections.usage

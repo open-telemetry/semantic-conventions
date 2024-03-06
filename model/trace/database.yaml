@@ -7,8 +7,6 @@ groups:
     attributes:
       - ref: db.system
         requirement_level: required
-
-      - ref: db.connection_string
       - ref: db.user
       - ref: db.name
         requirement_level:
