@@ -183,8 +183,6 @@ groups:
     attributes:
       - ref: db.sql.table
         tag: tech-specific
-      - ref: db.jdbc.driver_classname
-        tag: tech-specific
 
   - id: db.cosmosdb
     type: span

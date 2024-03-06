@@ -178,14 +178,6 @@
 **[1]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 <!-- endsemconv -->
 
-## JDBC Attributes
-
-<!-- semconv registry.db(omit_requirement_level,tag=tech-specific-jdbc) -->
-| Attribute  | Type | Description  | Examples  |
-|---|---|---|---|
-| `db.jdbc.driver_classname` | string | The fully-qualified class name of the [Java Database Connectivity (JDBC)](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/) driver used to connect. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` |
-<!-- endsemconv -->
-
 ## MongoDB Attributes
 
 <!-- semconv registry.db(omit_requirement_level,tag=tech-specific-mongodb) -->
@@ -228,4 +220,5 @@
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `db.connection_string` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` |
+| `db.jdbc.driver_classname` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` |
 <!-- endsemconv -->
