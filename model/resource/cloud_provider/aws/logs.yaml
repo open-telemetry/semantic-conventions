@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: group.names
         type: string[]
+        stability: experimental
         brief: >
           The name(s) of the AWS log group(s) an application is writing to.
         examples: ['/aws/lambda/my-function', 'opentelemetry-service']
@@ -16,6 +17,7 @@ groups:
           group.
       - id: group.arns
         type: string[]
+        stability: experimental
         brief: >
           The Amazon Resource Name(s) (ARN) of the AWS log group(s).
         examples: ['arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*']
@@ -24,11 +26,13 @@ groups:
           [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
       - id: stream.names
         type: string[]
+        stability: experimental
         brief: >
           The name(s) of the AWS log stream(s) an application is writing to.
         examples: ['logs/main/10838bed-421f-43ef-870a-f43feacbbb5b']
       - id: stream.arns
         type: string[]
+        stability: experimental
         brief: >
           The ARN(s) of the AWS log stream(s).
         examples: ['arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b']

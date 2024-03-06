@@ -7,6 +7,7 @@ groups:
       This event represents an occurrence of a lifecycle transition on the iOS platform.
     attributes:
       - id: state
+        stability: experimental
         requirement_level: "required"
         note: >
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
@@ -46,6 +47,7 @@ groups:
       This event represents an occurrence of a lifecycle transition on the Android platform.
     attributes:
       - id: state
+        stability: experimental
         requirement_level: required
         brief: >
           This attribute represents the state the application has transitioned into at the occurrence of the event.

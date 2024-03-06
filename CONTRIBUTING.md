@@ -320,7 +320,7 @@ make markdown-link-check
     - Add `next` as a version in `schema-next.yaml` version.
   - Run `make chlog-update VERSION=v{version}`
     - `make chlog-update` will clean up all the current `.yaml` files inside the
-    `.chloggen` folder automatically
+      `.chloggen` folder automatically
     - Double check that `CONTRIBUTING.md` is updated with the proper `v{version}`
   - Send staging tag as PR for review.
 - Create a tag `v{version}` on the merged PR and push remote.

@@ -7,17 +7,20 @@ groups:
     attributes:
       - id: name
         type: string
+        stability: experimental
         requirement_level: required
         brief: >
           The name of the web engine.
         examples: ['WildFly']
       - id: version
         type: string
+        stability: experimental
         brief: >
           The version of the web engine.
         examples: ['21.0.0']
       - id: description
         type: string
+        stability: experimental
         brief: >
           Additional description of the web engine (e.g. detailed version and edition information).
         examples: ['WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final']

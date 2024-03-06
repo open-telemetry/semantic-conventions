@@ -24,8 +24,10 @@ groups:
             - id: other
               value: 'other'
               brief: 'If none of the others apply'
+        stability: experimental
       - id: invoked_name
         type: string
+        stability: experimental
         requirement_level: required
         brief: >
           The name of the invoked function.
@@ -52,6 +54,7 @@ groups:
             - id: 'tencent_cloud'
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
+        stability: experimental
         requirement_level: required
         brief: >
           The cloud provider of the invoked function.
@@ -60,6 +63,7 @@ groups:
           invoked function.
       - id: invoked_region
         type: string
+        stability: experimental
         requirement_level:
           conditionally_required: >
             For some cloud providers, like AWS or GCP, the region in which a
