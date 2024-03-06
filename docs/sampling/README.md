@@ -130,7 +130,7 @@ attribute.
 ### Sampling threshold
 
 When determining the Threshold value from an item of telemetry,
-implementations SHOULD:
+sampler implementations SHOULD:
 
 - use the OpenTelemetry T-value field (`th`) in `tracestate` (spans only)
 - use the `sampling.threshold` attribute value, if present in the record attributes (logs only)
@@ -149,7 +149,7 @@ sampling is available and
 ### Sampling randomness
 
 When determining the Randomness value from an item of telemetry,
-implementations SHOULD:
+sampler implementations SHOULD:
 
 - use the `tracestate` OpenTelemetry R-value field (`rv`) if it is present (spans only), or
 - use the `sampling.randomness` attribute value if it is present (logs only), or
@@ -158,7 +158,7 @@ implementations SHOULD:
 In the first two cases, where Randomness is explicitly encoded, the
 value is represented by exactly 14 hexadecimal digits.
 
-Implementations SHOULD NOT require trace flags to have the Trace
+Sampler implementations SHOULD NOT require trace flags to have the Trace
 Context Level 2 Random flag set, in case the Trace ID is used as the
 source of randomness.  Because the Random flag is not widely available
 at this time, and because the W3C Trace Context Level 2 specification
