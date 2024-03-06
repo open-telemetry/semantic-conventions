@@ -155,8 +155,9 @@ sampler implementations SHOULD:
 - use the `sampling.randomness` attribute value if it is present (logs only), or
 - use the least significant 56 bits of the W3C Trace Context TraceID, as described in the W3C Trace Context Level 2 specification.
 
-In the first two cases, where Randomness is explicitly encoded, the
-value is represented by exactly 14 hexadecimal digits.
+Only one of these cases should be true for an item of telemetry.  In
+the first two cases, where Randomness is explicitly encoded, the value
+is represented by exactly 14 hexadecimal digits.
 
 Sampler implementations SHOULD NOT require trace flags to have the Trace
 Context Level 2 Random flag set, in case the Trace ID is used as the
