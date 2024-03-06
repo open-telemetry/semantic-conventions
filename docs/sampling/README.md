@@ -21,13 +21,6 @@ particular item of telemetry, using the conventions for consistent
 sampling described here.  In that sense, producers and consumers
 should see these attributes as telemetry metadata.
 
-The attributes described here use non-standard naming conventions.
-Sampling relies on an ecosystem, and these specifications incorporate
-features of W3C Trace Context and from the OpenTracing project, in
-place before OpenTelemetry.  Therefore, these attributes use
-`sampling` as the prefix, instead of an OpenTelemetry-scope (e.g.,
-`otel.sampling`).
-
 ## Probability sampling
 
 The OpenTelemetry sampling decision is defined in terms of a Threshold
@@ -77,15 +70,7 @@ sampling based on these properties, [consult OTEP 235][OTEP235].
 
 Instrumentation authors and end-users that wish to prioritize an item
 of telemetry for collection in spite of sampling can add a
-`sampling.priority` attribute.  This attribute is inherited as a
-legacy from the OpenTracing project, which gave the following
-definition.
-
-> If greater than 0, a hint to the Tracer to do its best to capture
-> the trace. If 0, a hint to the Tracer to not-capture the trace. If
-> absent, the Tracer should use its default sampling mechanism.
-
-OpenTelemetry users can think of this attribute as a suggestion, a way
+`sampling.priority` attribute.  This attribute is a suggestion, a way
 of recognizing the importance of a certain event and requesting
 additional consideration from the collection pipeline.  For example, a
 user could write this code snippet:

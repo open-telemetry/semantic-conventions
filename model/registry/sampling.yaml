@@ -6,15 +6,11 @@ groups:
     attributes:
       - id: priority
         type: int
-        brief: Allows users to prioritize and de-prioritize items of telemetry.
+        brief: Allows users and instrumentations to prioritize collection of reported telemetry items.
         note: >
-          This attribute is useful to express a user's desire to
-          collect an item of telemetry, in spite of the default
-          sampling mechanism.  Developers and instrumentation
-          libraries set this attriubute on spans and log records.
-          Samplers SHOULD export items with a non-zero value,
-          independent of probability sampling.  Samplers SHOULD NOT
-          export items with this attribute set to zero.
+          If greater than 0, a hint to the Tracer to do its best to capture
+          the trace. If 0, a hint to the Tracer to not-capture the trace. If
+          absent, the Tracer should use its default sampling mechanism.
         examples: [10, 1, 0]
 
       - id: randomness
