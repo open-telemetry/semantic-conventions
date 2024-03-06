@@ -1,4 +1,4 @@
 change_type: enhancement
-component: dotnet
+component: dns
 note: Introduces common DNS lookup duration metric and attributes.
 issues: [404]
