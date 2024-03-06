@@ -46,6 +46,7 @@ Currently, the following namespaces exist:
 * [OS](os.md)
 * [Process](process.md)
 * [RPC](rpc.md)
+* [Sampling](sampling.md)
 * [Server](server.md)
 * [Source](source.md)
 * [Thread](thread.md)

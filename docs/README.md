@@ -32,6 +32,7 @@ Semantic Conventions are defined for the following areas:
 * [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.
 * [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
 * [RPC](rpc/README.md): Semantic Conventions for RPC client and server operations.
+* [Sampling](sampling/README.md): Sampling Semantic Conventions.
 * [System](system/README.md): System Semantic Conventions.
 
 Semantic Conventions by signals:

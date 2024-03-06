@@ -1,7 +1,7 @@
 groups:
-  - id: sampling.common
+  - id: registry.sampling
     type: attribute_group
-    brief: 'Semantic conventions describing sampling in OpenTelemetry.'
+    brief: Semantic conventions describing Sampling for telemetry data.
     prefix: sampling
     attributes:
       - id: priority
@@ -14,7 +14,7 @@ groups:
           non-zero value, independent of probability sampling.
           Samplers SHOULD NOT export items with this attribute set to
           zero.
-        examples: [1, 0]
+        examples: [10, 1, 0]
 
       - id: randomness
         type: string
