@@ -13,7 +13,7 @@ This document defines semantic conventions to apply when instrumenting DNS queri
 <!-- toc -->
 
 - [Metrics](#metrics)
-  * [Metric: `dns.lookup.duration`](#metric-dnslookupduration)
+  - [Metric: `dns.lookup.duration`](#metric-dnslookupduration)
 
 <!-- tocstop -->
 
