@@ -8,15 +8,13 @@ groups:
         type: int
         brief: Enables prioritizing and de-prioritizing collection of telemetry.
         note: >
-          This attribute is useful to express the user's desire to
-          collect telemetry, despite the sampling configuration in
-          place.  Non-zero values MAY prioritize the item for
-          collection independent of probability sampling.  Zero values
-          have the reverse effect and MAY cause telemetry not to be
-          collected.  This convention derives from a conventional tag
-          with the same name in the OpenTracing specification.
+          This attribute is useful to express a user's desire to
+          collect an item of telemetry, in spite of the default
+          sampling mechanism.  Samplers SHOULD export items with a
+          non-zero value, independent of probability sampling.
+          Samplers SHOULD NOT export items with this attribute set to
+          zero.
         examples: [1, 0]
-        tag: otel-span-attributes
 
       - id: randomness
         type: string
