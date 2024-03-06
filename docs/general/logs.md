@@ -16,8 +16,8 @@ They may be used in any Log Record they apply to.
 
 - [General log identification attributes](#general-log-identification-attributes)
 - [Log Media](#log-media)
-  * [Log File](#log-file)
-  * [I/O Stream](#io-stream)
+  - [Log File](#log-file)
+  - [I/O Stream](#io-stream)
 
 <!-- tocstop -->
 
