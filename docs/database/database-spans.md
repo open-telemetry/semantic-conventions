@@ -11,7 +11,7 @@ linkTitle: Client Calls
 <!-- toc -->
 
 - [Common attributes](#common-attributes)
-  * [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
+  - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Semantic Conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->

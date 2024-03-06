@@ -16,15 +16,15 @@ and attributes but more may be added in the future.
 <!-- toc -->
 
 - [Connection pools](#connection-pools)
-  * [Metric: `db.client.connections.usage`](#metric-dbclientconnectionsusage)
-  * [Metric: `db.client.connections.idle.max`](#metric-dbclientconnectionsidlemax)
-  * [Metric: `db.client.connections.idle.min`](#metric-dbclientconnectionsidlemin)
-  * [Metric: `db.client.connections.max`](#metric-dbclientconnectionsmax)
-  * [Metric: `db.client.connections.pending_requests`](#metric-dbclientconnectionspending_requests)
-  * [Metric: `db.client.connections.timeouts`](#metric-dbclientconnectionstimeouts)
-  * [Metric: `db.client.connections.create_time`](#metric-dbclientconnectionscreate_time)
-  * [Metric: `db.client.connections.wait_time`](#metric-dbclientconnectionswait_time)
-  * [Metric: `db.client.connections.use_time`](#metric-dbclientconnectionsuse_time)
+  - [Metric: `db.client.connections.usage`](#metric-dbclientconnectionsusage)
+  - [Metric: `db.client.connections.idle.max`](#metric-dbclientconnectionsidlemax)
+  - [Metric: `db.client.connections.idle.min`](#metric-dbclientconnectionsidlemin)
+  - [Metric: `db.client.connections.max`](#metric-dbclientconnectionsmax)
+  - [Metric: `db.client.connections.pending_requests`](#metric-dbclientconnectionspending_requests)
+  - [Metric: `db.client.connections.timeouts`](#metric-dbclientconnectionstimeouts)
+  - [Metric: `db.client.connections.create_time`](#metric-dbclientconnectionscreate_time)
+  - [Metric: `db.client.connections.wait_time`](#metric-dbclientconnectionswait_time)
+  - [Metric: `db.client.connections.use_time`](#metric-dbclientconnectionsuse_time)
 
 <!-- tocstop -->
 

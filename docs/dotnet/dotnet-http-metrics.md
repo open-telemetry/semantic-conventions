@@ -11,14 +11,14 @@ This article defines semantic conventions for HTTP metrics emitted by .NET compo
 <!-- toc -->
 
 - [HTTP client](#http-client)
-  * [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
-  * [Metric: `http.client.open_connections`](#metric-httpclientopen_connections)
-  * [Metric: `http.client.connection.duration`](#metric-httpclientconnectionduration)
-  * [Metric: `http.client.request.time_in_queue`](#metric-httpclientrequesttime_in_queue)
-  * [Metric: `http.client.active_requests`](#metric-httpclientactive_requests)
+  - [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
+  - [Metric: `http.client.open_connections`](#metric-httpclientopen_connections)
+  - [Metric: `http.client.connection.duration`](#metric-httpclientconnectionduration)
+  - [Metric: `http.client.request.time_in_queue`](#metric-httpclientrequesttime_in_queue)
+  - [Metric: `http.client.active_requests`](#metric-httpclientactive_requests)
 - [HTTP server](#http-server)
-  * [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
-  * [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
+  - [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
+  - [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
 
 <!-- tocstop -->
 

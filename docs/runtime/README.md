@@ -14,7 +14,7 @@ runtime environment spans, metrics and logs.
 <!-- toc -->
 
 - [Metrics](#metrics)
-  * [Attributes](#attributes)
+  - [Attributes](#attributes)
 
 <!-- tocstop -->
 
