@@ -6,6 +6,7 @@ groups:
     attributes:
       - id: domain
         type: string
+        stability: experimental
         brief: >
           Domain extracted from the `url.full`, such as "opentelemetry.io".
         note: >
@@ -16,6 +17,7 @@ groups:
         examples: ["www.foo.bar", "opentelemetry.io", "3.12.167.2", "[1080:0:0:0:8:800:200C:417A]"]
       - id: extension
         type: string
+        stability: experimental
         brief: >
           The file extension extracted from the `url.full`, excluding the leading dot.
         note: >
@@ -44,6 +46,7 @@ groups:
         examples: ['https://www.foo.bar/search?q=OpenTelemetry#SemConv', '//localhost']
       - id: original
         type: string
+        stability: experimental
         brief: >
           Unmodified original URL as seen in the event source.
         note: >
@@ -63,6 +66,7 @@ groups:
           Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
       - id: port
         type: int
+        stability: experimental
         brief: >
           Port extracted from the `url.full`
         examples: [443]
@@ -76,6 +80,7 @@ groups:
           Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
       - id: registered_domain
         type: string
+        stability: experimental
         brief: >
           The highest registered url domain, stripped of the subdomain.
         examples: ["example.com", "foo.co.uk"]
@@ -91,6 +96,7 @@ groups:
         examples: ["https", "ftp", "telnet"]
       - id: subdomain
         type: string
+        stability: experimental
         brief: >
           The subdomain portion of a fully qualified domain name includes all of the names except the host name
           under the registered_domain. In a partially qualified domain, or if the the qualification level of the
@@ -101,6 +107,7 @@ groups:
            such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
       - id: top_level_domain
         type: string
+        stability: experimental
         brief: >
           The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name.
           For example, the top level domain for example.com is `com`.

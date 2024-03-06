@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: name
         type: string
+        stability: experimental
         requirement_level: required
         brief: >
           The name of the single function that this runtime instance executes.
@@ -30,6 +31,7 @@ groups:
         examples: ['my-function', 'myazurefunctionapp/some-function-name']
       - id: version
         type: string
+        stability: experimental
         brief: The immutable version of the function being executed.
         note: |
           Depending on the cloud provider and platform, use:
@@ -44,6 +46,7 @@ groups:
         examples: ['26', 'pinkfroid-00002']
       - id: instance
         type: string
+        stability: experimental
         brief: >
           The execution environment ID as a string, that will be potentially reused
           for other invocations to the same function/function version.
@@ -52,6 +55,7 @@ groups:
         examples: ['2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de']
       - id: max_memory
         type: int
+        stability: experimental
         brief: >
           The amount of memory available to the serverless function converted to Bytes.
         note: >

@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: distro.name
         type: string
+        stability: experimental
         brief: >
           The name of the auto instrumentation agent or distribution, if used.
         note: |
@@ -15,6 +16,7 @@ groups:
         examples: ["parts-unlimited-java"]
       - id: distro.version
         type: string
+        stability: experimental
         brief: >
           The version string of the auto instrumentation agent or distribution, if used.
         examples: ["1.2.3"]

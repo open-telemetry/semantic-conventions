@@ -35,6 +35,7 @@ groups:
   - id: metric.http.server.active_requests
     type: metric
     metric_name: http.server.active_requests
+    stability: experimental
     brief: "Number of active HTTP server requests."
     instrument: updowncounter
     unit: "{request}"
@@ -66,6 +67,7 @@ groups:
   - id: metric.http.server.request.body.size
     type: metric
     metric_name: http.server.request.body.size
+    stability: experimental
     brief: "Size of HTTP server request bodies."
     instrument: histogram
     unit: "By"
@@ -78,6 +80,7 @@ groups:
   - id: metric.http.server.response.body.size
     type: metric
     metric_name: http.server.response.body.size
+    stability: experimental
     brief: "Size of HTTP server response bodies."
     instrument: histogram
     unit: "By"
@@ -99,6 +102,7 @@ groups:
   - id: metric.http.client.request.body.size
     type: metric
     metric_name: http.client.request.body.size
+    stability: experimental
     brief: "Size of HTTP client request bodies."
     instrument: histogram
     unit: "By"
@@ -111,6 +115,7 @@ groups:
   - id: metric.http.client.response.body.size
     type: metric
     metric_name: http.client.response.body.size
+    stability: experimental
     brief: "Size of HTTP client response bodies."
     instrument: histogram
     unit: "By"
