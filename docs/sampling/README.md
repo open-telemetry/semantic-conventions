@@ -7,6 +7,19 @@ linkTitle: Sampling
 **Status**: [Experimental][DocumentStatus]
 
 <!-- toc -->
+
+- [Probability sampling](#probability-sampling)
+  * [Overriding sampling decisions](#overriding-sampling-decisions)
+  * [Overriding sampling randomness](#overriding-sampling-randomness)
+  * [Sampling threshold](#sampling-threshold)
+  * [Sampling randomness](#sampling-randomness)
+  * [No definition for Scope and Resource attributes](#no-definition-for-scope-and-resource-attributes)
+- [Span sampling attributes](#span-sampling-attributes)
+- [Logs sampling attributes](#logs-sampling-attributes)
+- [Examples](#examples)
+  * [Head sampling](#head-sampling)
+  * [Tail sampling](#tail-sampling)
+
 <!-- tocstop -->
 
 These attributes reflect the effect of sampling in a telemetry
