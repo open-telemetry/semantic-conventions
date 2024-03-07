@@ -34,7 +34,7 @@ exclusive upper limit of these values.
 Logically, both Threshold (`T`) and Randomness (`R`) are represented
 as unsigned integers in the range `0` through `0xffffffffffffff` or
 `MaxAdjustedCount - 1`.  Items of telemetry are selected (i.e.,
-"sampled") when their Threshold value is less than or equal to
+"sampled") when their Threshold value is less than or equal to their
 Randomness value, or `T <= R`.
 
 Sampling probability is defined by the following expression:
@@ -140,9 +140,8 @@ sampler implementations SHOULD:
 - use the `sampling.randomness` attribute value if it is present (logs only), or
 - use the least significant 56 bits of the W3C Trace Context TraceID, as described in the W3C Trace Context Level 2 specification.
 
-Only one of these cases should be true for an item of telemetry.  In
-the first two cases, where Randomness is explicitly encoded, the value
-is represented by exactly 14 hexadecimal digits.
+In the first two cases, where Randomness is explicitly encoded, the
+value is represented by exactly 14 hexadecimal digits.
 
 Sampler implementations SHOULD NOT require trace flags to have the Trace
 Context Level 2 Random flag set, in case the Trace ID is used as the
@@ -167,29 +166,45 @@ defined for use as Scope or Resource attributes in the present
 specification, because it would lead to ambiguity when
 `sampling.priority` is also used.
 
-## Sampling attributes
+## Span sampling attributes
 
-The following attributes are recognized for Spans and Log Records.
-Since probability sampling is tightly coordinated through Context
-propagation and reflected in the W3C Trace Context `tracestate`, which
-is included in the Span data model, it is not common to express
-sampling randomness and threshold using attributes.
+The following attributes are recognized for Spans.  Note that the
+equivalents for `sampling.threshold` and `sampling.randomness` are
+stored in the `tracestate` for Spans.
 
-<!-- semconv registry.sampling(omit_requirement_level) -->
-| Attribute  | Type | Description  | Examples  |
-|---|---|---|---|
-| `sampling.priority` | int | Allows users to prioritize and de-prioritize items of telemetry. [1] | `10`; `1`; `0` |
-| `sampling.randomness` | string | The source of randomness for making probability sampling decisions, when it is not otherwise recorded. [2] | `ce929d0e0e4736` |
-| `sampling.threshold` | string | Sampling probability as specified by OpenTelemetry. [3] | `c`; `ff8` |
+<!-- semconv traces.sampling(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`sampling.priority`](../attributes-registry/sampling.md) | int | Allows users and instrumentations to prioritize collection of reported telemetry items. [1] | `10`; `1`; `0` | Opt-In |
 
-**[1]:** This attribute is useful to express a user's desire to collect an item of telemetry, in spite of the default sampling mechanism.  Developers and instrumentation libraries set this attriubute on spans and log records. Samplers SHOULD export items with a non-zero value, independent of probability sampling.  Samplers SHOULD NOT export items with this attribute set to zero.
+**[1]:** If greater than 0, a hint to the Tracer to do its best to capture the trace. If 0, a hint to the Tracer to not-capture the trace. If absent, the Tracer should use its default sampling mechanism.
+<!-- endsemconv -->
+
+## Logs sampling attributes
+
+The following attributes are recognized for Logs.
+
+<!-- semconv logs.sampling(full) -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`sampling.priority`](../attributes-registry/sampling.md) | int | Allows users and instrumentations to prioritize collection of reported telemetry items. [1] | `10`; `1`; `0` | Opt-In |
+| [`sampling.randomness`](../attributes-registry/sampling.md) | string | The source of randomness for making probability sampling decisions, when it is not otherwise recorded. [2] | `ce929d0e0e4736` | Conditionally Required: [3] |
+| [`sampling.threshold`](../attributes-registry/sampling.md) | string | Sampling probability as specified by OpenTelemetry. [4] | `c`; `ff8` | Conditionally Required: [5] |
+
+**[1]:** If greater than 0, a hint to the Tracer to do its best to capture the trace. If 0, a hint to the Tracer to not-capture the trace. If absent, the Tracer should use its default sampling mechanism.
 
 **[2]:** This attribute is an optional way to express trace randomness, especially for cases where the TraceID is missing or known to be not random.  Sampler components set and consume this value.  The value is a hex-coded string containing 14 hex digits (56 bits) of randomness.  Setting this attribute indicates the source of randomness that was used (and may be used again) for probability sampling.  This field is taken to have the same meaning as the OpenTelemetry tracestate "R-value" for probability sampling, which is an alternative to deriving trace randomness from the TraceID specified in OTEP 235.
 
-**[3]:** This attribute is set to convey sampling probability. Sampler components set and consume this value, which is taken to have the same meaning as the OpenTelemetry tracestate "T-value" for probability sampling.  This attribute contains a hexadecimal-coded value containing 1 to 14 hex digits of precision, defining the threshold used to reject, depending on the random variable.  This value can be converted into sampling probability as specified in OTEP 235.
+**[3]:** When a `sampling.threshold` is provided, the corresponding 56-bit randomness value is also recorded.
+
+**[4]:** This attribute is set to convey sampling probability. Sampler components set and consume this value, which is taken to have the same meaning as the OpenTelemetry tracestate "T-value" for probability sampling.  This attribute contains a hexadecimal-coded value containing 1 to 14 hex digits of precision, defining the threshold used to reject, depending on the random variable.  This value can be converted into sampling probability as specified in OTEP 235.
+
+**[5]:** When a 56-bit consistent probability sampler is used.
 <!-- endsemconv -->
 
-## Example
+## Examples
+
+### Head sampling
 
 For example, a span that was selected by a 25% probability sampler
 using randomness from the TraceID, has selected field values like:
@@ -223,6 +238,32 @@ probability sampler requires explicit randomness.  For example:
     sampling.threshold: c
     sampling.randomness: ce929d0e0e4736
 ```
+
+### Tail sampling
+
+A span is received with no sampling information (i.e., no `tracestate`
+field) is selected by a tail sampler at 10% probability.  A
+`tracestate` entry is created.
+
+```
+  trace_id: 4bf92f3577b34da6a3fe929d0e0e4736
+  tracestate: ot=th:e66
+```
+
+A log record containing a TraceID is received with no sampling
+attributes and is selected by a tail sampler at 10% probability.  A
+sampling threshold is inserted
+
+```
+  trace_id: 4bf92f3577b34da6a3fe929d0e0e4736
+  attributes:
+    sampling.threshold: e66
+```
+
+In both cases, the Threshold value e66 corresponds with rejecting a
+fraction equal to `0xe66 / 0x1000` or 0.10009765625.  Had 5 digits of
+precision been used (`e6666`), the exact sampling probability would be
+0.10000038147.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
 [OTEP235]: https://github.com/open-telemetry/oteps/blob/main/text/trace/0235-sampling-threshold-in-trace-state.md
