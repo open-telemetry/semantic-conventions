@@ -12,6 +12,15 @@ The Semantic Conventions for [Azure Service Bus](https://learn.microsoft.com/azu
 
 `messaging.system` MUST be set to `"servicebus"`.
 
+### Span names
+
+The span name SHOULD follow [the general messaging span name pattern](../messaging/azure-messaging.md): it SHOULD start with the messaging destination name (Event Hubs queue or topic name) and contain a low-cardinality name of the operation the span describes:
+
+- Spans names for `settle` operations SHOULD follow the `<destination name> {messaging.servicebus.disposition_status}` pattern.
+  For example, `my-queue complete` or `my-queue abandon`.
+- Spans names for `publish` operations SHOULD follow the `<destination name> send` pattern.
+- Spans for `create`, `receive`, and `publish` operations SHOULD follow the general `<destination name> <operation name>` pattern.
+
 ### Span attributes
 
 The following additional attributes are defined:
@@ -19,6 +28,7 @@ The following additional attributes are defined:
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`messaging.servicebus.destination.subscription_name`](../attributes-registry/messaging.md) | string | The name of the subscription in the topic messages are received from. | `mySubscription` | Conditionally Required: If messages are received from the subscription. |
+| [`messaging.servicebus.disposition_status`](../attributes-registry/messaging.md) | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete` | Conditionally Required: if and only if `messaging.operation` is `settle`. |
 | [`messaging.servicebus.message.delivery_count`](../attributes-registry/messaging.md) | int | Number of deliveries that have been attempted for this message. | `2` | Conditionally Required: [1] |
 | [`messaging.servicebus.message.enqueued_time`](../attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | Recommended |
 
@@ -28,6 +38,15 @@ The following additional attributes are defined:
 ## Azure Event Hubs
 
 `messaging.system` MUST be set to `"eventhubs"`.
+
+### Span names
+
+The span name SHOULD follow the [general messaging span name pattern](../messaging/azure-messaging.md): it SHOULD start with the messaging destination name (Event Hubs namespace) and
+contain a low-cardinality name of an operation the span describes:
+
+- Spans for `settle` operations SHOULD follow the `<destination name> checkpoint` pattern (matching Event Hubs terminology).
+- Spans names for `publish` operations SHOULD follow the `<destination name> send` pattern.
+- Spans for `create`, `receive`, and `publish` operations SHOULD follow the general `<destination name> <operation name>` pattern.
 
 ### Span attributes
 

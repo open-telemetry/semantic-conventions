@@ -6,6 +6,7 @@ groups:
     attributes:
       - id: name
         type: string
+        stability: experimental
         brief: >
           The name of the single function that this runtime instance executes.
         note: |
@@ -28,6 +29,7 @@ groups:
         examples: ['my-function', 'myazurefunctionapp/some-function-name']
       - id: version
         type: string
+        stability: experimental
         brief: The immutable version of the function being executed.
         note: |
           Depending on the cloud provider and platform, use:
@@ -42,6 +44,7 @@ groups:
         examples: ['26', 'pinkfroid-00002']
       - id: instance
         type: string
+        stability: experimental
         brief: >
           The execution environment ID as a string, that will be potentially reused
           for other invocations to the same function/function version.
@@ -50,6 +53,7 @@ groups:
         examples: ['2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de']
       - id: max_memory
         type: int
+        stability: experimental
         brief: >
           The amount of memory available to the serverless function converted to Bytes.
         note: >
@@ -59,6 +63,7 @@ groups:
           provides this information (which must be multiplied by 1,048,576).
         examples: 134217728
       - id: trigger
+        stability: experimental
         brief: >
           Type of the trigger which caused this function invocation.
         type:
@@ -81,6 +86,7 @@ groups:
               brief: 'If none of the others apply'
       - id: invoked_name
         type: string
+        stability: experimental
         brief: >
           The name of the invoked function.
         note: >
@@ -88,6 +94,7 @@ groups:
           invoked function.
         examples: 'my-function'
       - id: invoked_provider
+        stability: experimental
         type:
           allow_custom_values: true
           members:
@@ -113,6 +120,7 @@ groups:
           invoked function.
       - id: invoked_region
         type: string
+        stability: experimental
         brief: >
           The cloud region of the invoked function.
         note: >
@@ -121,11 +129,13 @@ groups:
         examples: 'eu-central-1'
       - id: invocation_id
         type: string
+        stability: experimental
         brief: >
           The invocation ID of the current function invocation.
         examples: 'af9d5aa4-a685-4c5f-a22b-444f80b3cc28'
       - id: time
         type: string
+        stability: experimental
         brief: >
           A string containing the function invocation time in the
           [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
@@ -133,23 +143,27 @@ groups:
         examples: "2020-01-23T13:47:06Z"
       - id: cron
         type: string
+        stability: experimental
         brief: >
           A string containing the schedule period as
           [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
         examples: "0/5 * * * ? *"
       - id: coldstart
         type: boolean
+        stability: experimental
         brief: >
           A boolean that is true if the serverless function is executed for the
           first time (aka cold-start).
       - id: document.collection
         type: string
+        stability: experimental
         brief: >
           The name of the source on which the triggering operation was performed.
           For example, in Cloud Storage or S3 corresponds to the bucket name,
           and in Cosmos DB to the database name.
         examples: ['myBucketName', 'myDbName']
       - id: document.operation
+        stability: experimental
         type:
           allow_custom_values: true
           members:
@@ -165,6 +179,7 @@ groups:
         brief: 'Describes the type of the operation that was performed on the data.'
       - id: document.time
         type: string
+        stability: experimental
         brief: >
           A string containing the time when the data was accessed in the
           [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
@@ -172,6 +187,7 @@ groups:
         examples: "2020-01-23T13:47:06Z"
       - id: document.name
         type: string
+        stability: experimental
         brief: >
           The document name/table subjected to the operation.
           For example, in Cloud Storage or S3 is the name of

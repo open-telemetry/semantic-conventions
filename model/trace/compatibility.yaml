@@ -8,6 +8,7 @@ groups:
     attributes:
       - id: ref_type
         brief: 'Parent-child Reference type'
+        stability: experimental
         note: >
             The causal relationship between a child Span and a parent Span.
         type:

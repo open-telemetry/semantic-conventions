@@ -42,7 +42,6 @@ groups:
       source operation such as a database or filesystem read/write.
     constraints:
       - include: trace.http.server
-    attributes: []
 
   - id: faas_span.pubsub
     type: span
@@ -51,7 +50,6 @@ groups:
       sent to a messaging system.
     constraints:
       - include: messaging
-    attributes: []
 
   - id: faas_span.timer
     prefix: faas

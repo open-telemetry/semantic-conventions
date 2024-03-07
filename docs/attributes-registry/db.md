@@ -14,6 +14,7 @@
 - [MSSQL Attributes](#mssql-attributes)
 - [Redis Attributes](#redis-attributes)
 - [SQL Attributes](#sql-attributes)
+- [Deprecated DB Attributes](#deprecated-db-attributes)
 
 <!-- tocstop -->
 
@@ -22,7 +23,6 @@
 <!-- semconv registry.db(omit_requirement_level,tag=db-generic) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `db.connection_string` | string | The connection string used to connect to the database. It is recommended to remove embedded credentials. | `Server=(localdb)\v11.0;Integrated Security=true;` |
 | `db.instance.id` | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` |
 | `db.name` | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [1] | `customers`; `main` |
 | `db.operation` | string | The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations) such as `findAndModify`, or the SQL keyword. [2] | `findAndModify`; `HMSET`; `SELECT` |
@@ -220,4 +220,12 @@
 | `db.sql.table` | string | The name of the primary table that the operation is acting upon, including the database name (if applicable). [1] | `public.users`; `customers` |
 
 **[1]:** It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
+<!-- endsemconv -->
+
+## Deprecated DB Attributes
+
+<!-- semconv attributes.db.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  |
+|---|---|---|---|
+| `db.connection_string` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` |
 <!-- endsemconv -->
