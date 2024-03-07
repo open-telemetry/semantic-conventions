@@ -12,6 +12,7 @@
 - [RocketMQ Attributes](#rocketmq-attributes)
 - [Azure Event Hubs Attributes](#azure-event-hubs-attributes)
 - [Azure Service Bus Attributes](#azure-service-bus-attributes)
+- [Deprecated Messaging Attributes](#deprecated-messaging-attributes)
 
 <!-- tocstop -->
 
@@ -24,6 +25,7 @@
 | `messaging.client_id` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | `messaging.destination.anonymous` | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  |
 | `messaging.destination.name` | string | The message destination name [2] | `MyQueue`; `MyTopic` |
+| `messaging.destination.partition.id` | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | `messaging.destination.template` | string | Low cardinality representation of the messaging destination name [3] | `/customers/{customerId}` |
 | `messaging.destination.temporary` | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  |
 | `messaging.destination_publish.anonymous` | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name). |  |
@@ -93,7 +95,6 @@ size should be used.
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `messaging.kafka.consumer.group` | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` |
-| `messaging.kafka.destination.partition` | int | Partition the message is sent to. | `2` |
 | `messaging.kafka.message.key` | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [1] | `myKey` |
 | `messaging.kafka.message.offset` | int | The offset of a record in the corresponding Kafka partition. | `42` |
 | `messaging.kafka.message.tombstone` | boolean | A boolean that is true if the message is a tombstone. |  |
@@ -148,7 +149,6 @@ size should be used.
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `messaging.eventhubs.consumer.group` | string | The name of the consumer group the event consumer is associated with. | `indexer` |
-| `messaging.eventhubs.destination.partition.id` | string | The identifier of the partition messages are sent to or received from, unique to the Event Hub which contains it. | `1` |
 | `messaging.eventhubs.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 <!-- endsemconv -->
 
@@ -170,4 +170,12 @@ size should be used.
 | `abandon` | Message is abandoned |
 | `dead_letter` | Message is sent to dead letter queue |
 | `defer` | Message is deferred |
+<!-- endsemconv -->
+
+## Deprecated Messaging Attributes
+
+<!-- semconv attributes.messaging.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  |
+|---|---|---|---|
+| `messaging.kafka.destination.partition` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Partition the message is sent to. | `2` |
 <!-- endsemconv -->
