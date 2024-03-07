@@ -103,7 +103,7 @@ Examples:
 Attributes `mode` and `mountpoint` for metric `system.filesystem.usage`
 should be namespaced as `system.filesystem.mode` and `system.filesystem.mountpoint`.
 
-Metrics can also have attributes outside of its namespace.
+Metrics can also have attributes outside of their namespace.
 
 Examples:
 
