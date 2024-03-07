@@ -177,5 +177,5 @@ size should be used.
 <!-- semconv attributes.messaging.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `messaging.kafka.destination.partition` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Partition the message is sent to. | `2` |
+| `messaging.kafka.destination.partition` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>"Deprecated, use `messaging.destination.partition.id` instead." | `2` |
 <!-- endsemconv -->
