@@ -93,7 +93,7 @@ old metric names in rename operations).
 ### Metric attributes
 
 Metric attributes SHOULD follow the general [attribute naming rules](attribute-naming.md).
-In particular, metric attributes MUST have a namespace.
+In particular, metric attributes SHOULD have a namespace.
 
 Metric attributes SHOULD be added under the metric namespace when their usage and
 semantics are exclusive to the metric.
