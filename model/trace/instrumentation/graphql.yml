@@ -9,9 +9,11 @@ groups:
       - id: operation.name
         brief: "The name of the operation being executed."
         type: string
+        stability: experimental
         examples: 'findBookById'
       - id: operation.type
         brief: "The type of the operation being executed."
+        stability: experimental
         type:
           allow_custom_values: false
           members:
@@ -28,5 +30,6 @@ groups:
       - id: document
         brief: "The GraphQL document being executed."
         type: string
+        stability: experimental
         note: The value may be sanitized to exclude sensitive information.
         examples: 'query findBookById { bookById(id: ?) { name } }'
