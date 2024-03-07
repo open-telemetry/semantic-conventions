@@ -4,7 +4,7 @@ versions:
   next:
     spans:
       changes:
-        # https://github.com/open-telemetry/TODO
+        # https://github.com/open-telemetry/semantic-conventions/pull/798
         - rename_attributes:
             attribute_map:
               messaging.kafka.destination.partition: messaging.destination.partition.id
