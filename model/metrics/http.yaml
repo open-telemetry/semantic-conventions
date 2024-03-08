@@ -137,31 +137,16 @@ groups:
         requirement_level: required
       - ref: network.peer.address
         requirement_level: recommended
-        brief: Remote IP address of the socket connection.
-        examples: ["10.1.2.80"]
       - ref: network.protocol.version
         requirement_level: recommended
-        brief: HTTP protocol version of the connection in the connection pool.
-        note: >
-          HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`.
-          So, the `network.protocol.version` value reported on connection metrics is different than the one reported
-          on request-level metrics or spans for HTTP 1.0 requests.
-        examples: ["1.1", "2", "3"]
       - ref: server.address
-        requirement_level: required
-        brief: >
-          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
-        note: >
-          If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-          `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
       - ref: server.port
-        requirement_level:
-          conditionally_required: If not the default (`80` for `http` scheme, `443` for `https`).
+        requirement_level: required
         brief: >
           Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
       - ref: url.scheme
-        requirement_level: recommended
-        examples: ['http', 'https', 'ftp']
+        requirement_level: opt_in
+        examples: ["http", "https"]
 
   - id: metric.http.client.connection.duration
     type: metric
@@ -175,27 +160,14 @@ groups:
         requirement_level: recommended
       - ref: network.protocol.version
         requirement_level: recommended
-        brief: HTTP protocol version of the connection in the connection pool.
-        note: >
-          HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`.
-          So, the `network.protocol.version` value reported on connection metrics is different than the one reported
-          on request-level metrics or spans for HTTP 1.0 requests.
-        examples: ["1.1", "2", "3"]
       - ref: server.address
-        requirement_level: required
-        brief: >
-          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
-        note: >
-          If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-          `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
       - ref: server.port
-        requirement_level:
-          conditionally_required: If not the default (`80` for `http` scheme, `443` for `https`).
+        requirement_level: required
         brief: >
           Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
       - ref: url.scheme
-        requirement_level: recommended
-        examples: ['http', 'https', 'ftp']
+        requirement_level: opt_in
+        examples: ["http", "https"]
 
   - id: metric.http.client.request.time_in_queue
     type: metric
@@ -207,35 +179,16 @@ groups:
     attributes:
       - ref: http.request.method
         requirement_level: recommended
-        note: >
-          HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-          and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-          If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`.
-          It's not possible at the moment to override the list of known HTTP methods.
       - ref: network.protocol.version
         requirement_level: recommended
-        brief: HTTP protocol version of the connection in the connection pool.
-        note: >
-          HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`.
-          So, the `network.protocol.version` value reported on connection metrics is different than the one reported
-          on request-level metrics or spans for HTTP 1.0 requests.
-        examples: ["1.1", "2", "3"]
       - ref: server.address
-        requirement_level: required
-        brief: >
-          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
-        note: >
-          If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-          `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
       - ref: server.port
-        requirement_level:
-          conditionally_required: If not the default (`80` for `http` scheme, `443` for `https`).
+        requirement_level: required
         brief: >
           Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
       - ref: url.scheme
-        requirement_level: recommended
-        examples: ['http', 'https', 'ftp']
+        requirement_level: opt_in
+        examples: ["http", "https"]
 
   - id: metric.http.client.active_requests
     type: metric
@@ -247,24 +200,11 @@ groups:
     attributes:
       - ref: http.request.method
         requirement_level: recommended
-        note: >
-          HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-          and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-          If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`.
-          It's not possible at the moment to override the list of known HTTP methods.
       - ref: server.address
-        requirement_level: required
-        brief: >
-          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
-        note: >
-          If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-          `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
       - ref: server.port
-        requirement_level:
-          conditionally_required: If not the default (`80` for `http` scheme, `443` for `https`).
+        requirement_level: required
         brief: >
           Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
       - ref: url.scheme
-        requirement_level: recommended
-        examples: ['http', 'https', 'ftp']
+        requirement_level: opt_in
+        examples: ["http", "https"]
