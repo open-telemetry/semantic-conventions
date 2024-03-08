@@ -20,17 +20,13 @@ application lifecycle. This event is meant to be used in conjunction with
 `os.name` [resource semantic convention](/docs/resource/os.md) to identify the
 mobile operating system (e.g. Android, iOS).
 
-Payload attributes MUST be used to describe the state of the application at the
-time of the event. The following table describes the payload attributes that MUST
+Payload field MUST be used to describe the state of the application at the
+time of the event. The following table describes the payload fields that MUST
 be used to describe the state of the application at the time of the event.
 
-The `android.state` and `ios.state` attributes are mutually exclusive and MUST
-NOT be used together, each attribute MUST be used with it's corresponding
-`os.name` [resource semantic convention](/docs/resource/os.md) value. For
-example, if the `os.name` attribute is set to `android` then the
-`android.state` attribute MUST be used and the `ios.state` attribute MUST NOT
-be used. If the `os.name` attribute is set to `ios` then the `ios.state`
-attribute MUST be used and the `android.state` attribute MUST NOT be used.
+The `android.state` and `ios.state` fields are mutually exclusive and MUST
+NOT be used together, each field MUST be used with its corresponding
+`os.name` [resource semantic convention](/docs/resource/os.md) value.
 
 ### Event details
 
@@ -42,8 +38,8 @@ The event name MUST be `device.app.lifecycle`.
 <!-- Manually adding the markdown table until the body definition is available in the build tools -->
 | Body Field | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `android.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | See below |
-| `ios.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [2] | `active` | See below |
+| `android.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | `Conditionally Required`: if and only if `os.name` is `android` |
+| `ios.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [2] | `active` | `Conditionally Required`: if and only if `os.name` is `ios` |
 
 **[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 

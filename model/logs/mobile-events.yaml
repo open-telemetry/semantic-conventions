@@ -7,13 +7,17 @@ groups:
     brief: >
       This event represents an occurrence of a lifecycle transition on Android or iOS platform.
     note: >
-      This events identifies the fields that are common to all lifecycle events for android and iOS using
-      the `android.state` and `ios.state` attributes. The `android.state` and `ios.state` attributes are
+      This event identifies the fields that are common to all lifecycle events for android and iOS using
+      the `android.state` and `ios.state` fields. The `android.state` and `ios.state` attributes are
       mutually exclusive.
+    # Future Note: When the build tools support this definition please uncomment and validate the details
+    # included here and what has been added to the manual markdown table
     # body:
     #   fields:
     #     - id: ios.state
     #       stability: experimental
+    #       requirement_level:
+    #         conditional_required: if and only if `os.name` is `ios`
     #       note: >
     #         The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
     #         and from which the `OS terminology` column values are derived.
@@ -46,6 +50,8 @@ groups:
     #               The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
     #     - id: android.state
     #       stability: experimental
+    #       requirement_level:
+    #         conditional_required: if and only if `os.name` is `android`
     #       brief: >
     #         This attribute represents the state the application has transitioned into at the occurrence of the event.
     #       note: >
@@ -69,7 +75,3 @@ groups:
     #             brief: >
     #               Any time after Activity.onResume() or, if the app has no Activity,
     #               Context.startService() has been called when the app was in either the created or background states.
-    #   constraints:
-    #     - any_of:
-    #         - "ios.state"
-    #         - "android.state"
