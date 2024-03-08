@@ -4,7 +4,7 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: bug_fix
+change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
 component: device.app.lifecycle
@@ -19,4 +19,4 @@ issues: [794]
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
-subtext:
+subtext: Removes the `ios.lifecycle.events` and `android.lifecycle.events` attributes from the global registry and adds constraints for the possible values of the `android.state` and `ios.state` attributes.
