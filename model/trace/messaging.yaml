@@ -80,29 +80,55 @@ groups:
       - ref: messaging.message.conversation_id
       - ref: messaging.message.envelope.size
       - ref: messaging.message.body.size
-      - ref: server.address
+      - ref: network.peer.address
+        brief: Peer address of the messaging intermediary node operation was performed on.
+        requirement_level:
+          recommended: If available and known to represent the address of specific intermediary node.
+        note: >
+          Network peer address and port are important when the application interacts with individual intermediary nodes directly,
+          for example, when messaging intermediary is self-hosted.
+          Fully managed messaging systems that don't expose information about individual nodes SHOULD NOT set this attribute.
+          Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes should be captured.
+          If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+
+  - id: messaging.tech_specific.network.attributes
+    type: attribute_group
+    brief: Attributes that describe messaging operation along with network information.
+    extends: messaging
+    attributes:
+      - ref: network.peer.address
+        requirement_level: recommended
+        note: >
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+        tag: tech-specific
+      - ref: network.peer.port
+        requirement_level: recommended
+        tag: tech-specific
 
   - id: messaging.rabbitmq
     type: attribute_group
-    extends: messaging
+    extends: messaging.tech_specific.network.attributes
     brief: >
       Attributes for RabbitMQ
     attributes:
       - ref: messaging.rabbitmq.destination.routing_key
         requirement_level:
           conditionally_required: If not empty.
-        tag: tech-specific-rabbitmq
+        tag: tech-specific
       - ref: messaging.rabbitmq.message.delivery_tag
         requirement_level:
           conditionally_required: When available.
-        tag: tech-specific-rabbitmq
+        tag: tech-specific
       - ref: network.peer.address
         note: >
           If an operation involved multiple network calls (for example retries),
           the address of the last contacted node SHOULD be used.
-        tag: tech-specific-rabbitmq
+        tag: tech-specific
       - ref: network.peer.port
-        tag: tech-specific-rabbitmq
+        tag: tech-specific
 
   - id: messaging.kafka
     type: attribute_group
@@ -115,15 +141,15 @@ groups:
           "String representation of the partition id the message  (or batch) is sent to or received from.""
         tag: tech-specific-kafka
       - ref: messaging.kafka.message.key
-        tag: tech-specific-kafka
+        tag: tech-specific
       - ref: messaging.kafka.consumer.group
-        tag: tech-specific-kafka
+        tag: tech-specific
       - ref: messaging.kafka.message.offset
-        tag: tech-specific-kafka
+        tag: tech-specific
       - ref: messaging.kafka.message.tombstone
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
-        tag: tech-specific-kafka
+        tag: tech-specific
 
   - id: messaging.rocketmq
     type: attribute_group
@@ -133,30 +159,30 @@ groups:
     attributes:
       - ref: messaging.rocketmq.namespace
         requirement_level: required
-        tag: tech-specific-rocketmq
+        tag: tech-specific
       - ref: messaging.rocketmq.client_group
         requirement_level: required
-        tag: tech-specific-rocketmq
+        tag: tech-specific
       - ref: messaging.rocketmq.message.delivery_timestamp
         requirement_level:
           conditionally_required: If the message type is delay and delay time level is not specified.
-        tag: tech-specific-rocketmq
+        tag: tech-specific
       - ref: messaging.rocketmq.message.delay_time_level
         requirement_level:
           conditionally_required: If the message type is delay and delivery timestamp is not specified.
-        tag: tech-specific-rocketmq
+        tag: tech-specific
       - ref: messaging.rocketmq.message.group
         requirement_level:
           conditionally_required: If the message type is FIFO.
-        tag: tech-specific-rocketmq
+        tag: tech-specific
       - ref: messaging.rocketmq.message.type
-        tag: tech-specific-rocketmq
+        tag: tech-specific
       - ref: messaging.rocketmq.message.tag
-        tag: tech-specific-rocketmq
+        tag: tech-specific
       - ref: messaging.rocketmq.message.keys
-        tag: tech-specific-rocketmq
+        tag: tech-specific
       - ref: messaging.rocketmq.consumption_model
-        tag: tech-specific-rocketmq
+        tag: tech-specific
   - id: messaging.gcp_pubsub
     type: attribute_group
     extends: messaging
@@ -164,7 +190,7 @@ groups:
       Attributes for Google Cloud Pub/Sub
     attributes:
       - ref: messaging.gcp_pubsub.message.ordering_key
-        tag: tech-specific-gcp-pubsub
+        tag: tech-specific
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
   - id: messaging.servicebus

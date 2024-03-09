@@ -2,6 +2,6 @@ change_type: breaking
 
 component: messaging
 
-note: Remove `network.*` attributes from general messaging semantic conventions.
+note: Remove `network.transport` and `network.type` attributes from messaging semantic conventions, clarify when `network.peer.address|port` should be populated.
 
 issues: [690, 698]
