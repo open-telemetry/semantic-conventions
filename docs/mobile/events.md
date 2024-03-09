@@ -9,7 +9,7 @@ events on mobile platforms. All mobile events MUST use a namespace of
 <!-- toc -->
 
 - [Lifecycle instrumentation](#lifecycle-instrumentation)
-  * [Event details](#event-details)
+  - [Event details](#event-details)
 
 <!-- tocstop -->
 

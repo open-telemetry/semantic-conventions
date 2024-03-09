@@ -1,7 +1,6 @@
 groups:
   - id: device.app.lifecycle
     stability: experimental
-    requirement_level: "required"
     type: event
     name: device.app.lifecycle
     brief: >
