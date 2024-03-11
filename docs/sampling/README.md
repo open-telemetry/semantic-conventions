@@ -99,9 +99,18 @@ user could write this code snippet:
 
 Samplers and sampling processors SHOULD pass items of telemetry to the
 exporter, independent of their default sampling mechanism, when the
-`sampling.priority` attribute is present and non-zero.  Although the
-priority is an integer, mathematical weight is not prescribed and no
-other specific behaviors are required.
+`sampling.priority` attribute is present and non-zero.
+
+Samplers and sampling processors SHOULD NOT pass items of telemetry to
+the exporter, unconditionally, when the `sampling.priority` attribute
+is present and zero.
+
+Samplers and sampling processors SHOULD apply their default behavior
+when the `sampling.priority` attribute is not present.
+
+Faced with collection limits, samplers and sampling processors SHOULD
+prioritize collecting telemetry with higher `sampling.priority` values
+above telemetry with lower `sampling.priority` values.
 
 ### Overriding sampling randomness
 
