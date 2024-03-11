@@ -99,7 +99,7 @@ groups:
         stability: experimental
         brief: >
           The subdomain portion of a fully qualified domain name includes all of the names except the host name
-          under the registered_domain. In a partially qualified domain, or if the the qualification level of the
+          under the registered_domain. In a partially qualified domain, or if the qualification level of the
           full name cannot be determined, subdomain contains all of the names below the registered domain.
         examples: ["east", "sub2.sub1"]
         note: >
