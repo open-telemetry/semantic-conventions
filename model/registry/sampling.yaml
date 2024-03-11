@@ -27,8 +27,8 @@ groups:
           used (and may be used again) for probability sampling.  This
           field is taken to have the same meaning as the OpenTelemetry
           tracestate "R-value" for probability sampling, which is an
-          alternative to deriving trace randomness from the TraceID
-          specified in OTEP 235.
+          alternative to deriving trace randomness from the TraceID.
+          For details, see OTEP 235.
         examples: ["ce929d0e0e4736"]
 
       - id: threshold
@@ -42,6 +42,6 @@ groups:
           attribute contains a hexadecimal-coded value containing 1 to
           14 hex digits of precision, defining the threshold used to
           reject, depending on the random variable.  This value can be
-          converted into sampling probability as specified in OTEP
+          converted into sampling probability.  For details, see OTEP
           235.
         examples: ["c", "ff8"]

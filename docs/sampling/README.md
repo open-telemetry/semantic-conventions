@@ -206,11 +206,11 @@ The following attributes are recognized for Logs.
 
 **[1]:** If greater than 0, a hint to the Tracer to do its best to capture the trace. If 0, a hint to the Tracer to not-capture the trace. If absent, the Tracer should use its default sampling mechanism.
 
-**[2]:** This attribute is an optional way to express trace randomness, especially for cases where the TraceID is missing or known to be not random.  Sampler components set and consume this value.  The value is a hex-coded string containing 14 hex digits (56 bits) of randomness.  Setting this attribute indicates the source of randomness that was used (and may be used again) for probability sampling.  This field is taken to have the same meaning as the OpenTelemetry tracestate "R-value" for probability sampling, which is an alternative to deriving trace randomness from the TraceID specified in OTEP 235.
+**[2]:** This attribute is an optional way to express trace randomness, especially for cases where the TraceID is missing or known to be not random.  Sampler components set and consume this value.  The value is a hex-coded string containing 14 hex digits (56 bits) of randomness.  Setting this attribute indicates the source of randomness that was used (and may be used again) for probability sampling.  This field is taken to have the same meaning as the OpenTelemetry tracestate "R-value" for probability sampling, which is an alternative to deriving trace randomness from the TraceID. For details, see OTEP 235.
 
 **[3]:** When a `sampling.threshold` is provided, the corresponding 56-bit randomness value is also recorded.
 
-**[4]:** This attribute is set to convey sampling probability. Sampler components set and consume this value, which is taken to have the same meaning as the OpenTelemetry tracestate "T-value" for probability sampling.  This attribute contains a hexadecimal-coded value containing 1 to 14 hex digits of precision, defining the threshold used to reject, depending on the random variable.  This value can be converted into sampling probability as specified in OTEP 235.
+**[4]:** This attribute is set to convey sampling probability. Sampler components set and consume this value, which is taken to have the same meaning as the OpenTelemetry tracestate "T-value" for probability sampling.  This attribute contains a hexadecimal-coded value containing 1 to 14 hex digits of precision, defining the threshold used to reject, depending on the random variable.  This value can be converted into sampling probability.  For details, see OTEP 235.
 
 **[5]:** When a 56-bit consistent probability sampler is used.
 <!-- endsemconv -->
