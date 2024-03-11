@@ -140,7 +140,7 @@ attribute.
 When determining the Threshold value from an item of telemetry,
 sampler implementations SHOULD:
 
-- use the OpenTelemetry T-value field (`th`) in `tracestate` (spans only)
+- use the OpenTelemetry T-value field (`th`) in `tracestate` from the SpanContext (spans and logs)
 - use the `sampling.threshold` attribute value, if present in the record attributes (logs only)
 
 In both cases, the Threshold value is represented by one to 14
