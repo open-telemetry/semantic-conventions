@@ -317,7 +317,7 @@ groups:
       - id: table_count
         type: int
         stability: experimental
-        brief: "The the number of items in the `TableNames` response parameter."
+        brief: "The number of items in the `TableNames` response parameter."
         examples:
           - 20
       - ref: aws.dynamodb.limit
@@ -427,7 +427,7 @@ groups:
       - id: global_secondary_index_updates
         type: string[]
         stability: experimental
-        brief: "The JSON-serialized value of each item in the the `GlobalSecondaryIndexUpdates` request field."
+        brief: "The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field."
         examples:
           - '{
               "Create": {
