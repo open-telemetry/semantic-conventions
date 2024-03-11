@@ -12,9 +12,9 @@ described on this page.
 
 `db.system` MUST be set to `"cassandra"`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.cassandra(full,tag=call-level-tech-specific-cassandra) -->
+<!-- semconv db.cassandra(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.cassandra.consistency_level`](../attributes-registry/db.md) | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all` | Recommended |

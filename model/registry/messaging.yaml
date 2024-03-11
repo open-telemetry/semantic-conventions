@@ -6,6 +6,7 @@ groups:
     attributes:
       - id: batch.message_count
         type: int
+        stability: experimental
         brief: The number of messages sent, received, or processed in the scope of the batching operation.
         note: >
             Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message.
@@ -15,12 +16,14 @@ groups:
         tag: messaging-generic
       - id: client_id
         type: string
+        stability: experimental
         brief: >
           A unique identifier for the client that consumes or produces a message.
         examples: ['client-5', 'myhost@8742@s8083jm']
         tag: messaging-generic
       - id: destination.name
         type: string
+        stability: experimental
         brief: 'The message destination name'
         note: |
           Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
@@ -29,6 +32,7 @@ groups:
         tag: messaging-generic
       - id: destination.template
         type: string
+        stability: experimental
         brief: Low cardinality representation of the messaging destination name
         note: >
           Destination names could be constructed from templates.
@@ -40,18 +44,22 @@ groups:
         tag: messaging-generic
       - id: destination.anonymous
         type: boolean
+        stability: experimental
         brief: 'A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name).'
         tag: messaging-generic
       - id: destination.temporary
         type: boolean
+        stability: experimental
         brief: 'A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed.'
         tag: messaging-generic
       - id: destination_publish.anonymous
         type: boolean
+        stability: experimental
         brief: 'A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name).'
         tag: messaging-generic
       - id: destination_publish.name
         type: string
+        stability: experimental
         brief: 'The name of the original destination the message was published to'
         note: |
           The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
@@ -60,6 +68,7 @@ groups:
         tag: messaging-generic
       - id: kafka.consumer.group
         type: string
+        stability: experimental
         brief: >
           Name of the Kafka Consumer Group that is handling the message.
           Only applies to consumers, not producers.
@@ -67,12 +76,14 @@ groups:
         tag: tech-specific-kafka
       - id: kafka.destination.partition
         type: int
+        stability: experimental
         brief: >
           Partition the message is sent to.
         examples: 2
         tag: tech-specific-kafka
       - id: kafka.message.key
         type: string
+        stability: experimental
         brief: >
           Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition.
           They differ from `messaging.message.id` in that they're not unique.
@@ -84,16 +95,19 @@ groups:
         tag: tech-specific-kafka
       - id: kafka.message.offset
         type: int
+        stability: experimental
         brief: >
           The offset of a record in the corresponding Kafka partition.
         examples: 42
         tag: tech-specific-kafka
       - id: kafka.message.tombstone
         type: boolean
+        stability: experimental
         brief: 'A boolean that is true if the message is a tombstone.'
         tag: tech-specific-kafka
       - id: message.conversation_id
         type: string
+        stability: experimental
         brief: >
           The conversation ID identifying the conversation to which the message belongs,
           represented as a string. Sometimes called "Correlation ID".
@@ -101,6 +115,7 @@ groups:
         tag: messaging-generic
       - id: message.envelope.size
         type: int
+        stability: experimental
         brief: >
           The size of the message body and metadata in bytes.
         note: |
@@ -110,11 +125,13 @@ groups:
         tag: messaging-generic
       - id: message.id
         type: string
+        stability: experimental
         brief: 'A value used by the messaging system as an identifier for the message, represented as a string.'
         examples: '452a7c7c7c7048c2f887f61572b18fc2'
         tag: messaging-generic
       - id: message.body.size
         type: int
+        stability: experimental
         brief: >
           The size of the message body in bytes.
         note: |
@@ -142,22 +159,28 @@ groups:
                 One or more messages are requested by a consumer.
                 This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.
             - id: deliver
-              value: "deliver"
+              value: "process"
               brief: >
-                One or more messages are passed to a consumer.
-                This operation refers to push-based scenarios, where consumer register callbacks which get called by messaging SDKs.
+                One or more messages are delivered to or processed by a consumer.
+            - id: settle
+              value: "settle"
+              brief: >
+                One or more messages are settled.
+        stability: experimental
         brief: >
           A string identifying the kind of messaging operation.
         note: If a custom value is used, it MUST be of low cardinality.
         tag: messaging-generic
       - id: rabbitmq.destination.routing_key
         type: string
+        stability: experimental
         brief: >
           RabbitMQ message routing key.
         examples: 'myKey'
         tag: tech-specific-rabbitmq
       - id: rabbitmq.message.delivery_tag
         type: int
+        stability: experimental
         brief: >
           RabbitMQ message delivery tag
         examples: 123
@@ -165,6 +188,7 @@ groups:
 
       - id: rocketmq.client_group
         type: string
+        stability: experimental
         brief: >
           Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind.
         examples: 'myConsumerGroup'
@@ -179,35 +203,41 @@ groups:
             - id: broadcasting
               value: 'broadcasting'
               brief: 'Broadcasting consumption model'
+        stability: experimental
         brief: >
           Model of message consumption. This only applies to consumer spans.
         tag: tech-specific-rocketmq
       - id: rocketmq.message.delay_time_level
         type: int
+        stability: experimental
         brief: >
           The delay time level for delay message, which determines the message delay time.
         examples: 3
         tag: tech-specific-rocketmq
       - id: rocketmq.message.delivery_timestamp
         type: int
+        stability: experimental
         brief: >
           The timestamp in milliseconds that the delay message is expected to be delivered to consumer.
         examples: 1665987217045
         tag: tech-specific-rocketmq
       - id: rocketmq.message.group
         type: string
+        stability: experimental
         brief: >
           It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group.
         examples: 'myMessageGroup'
         tag: tech-specific-rocketmq
       - id: rocketmq.message.keys
         type: string[]
+        stability: experimental
         brief: >
           Key(s) of message, another way to mark message besides message id.
         examples: ['keyA', 'keyB']
         tag: tech-specific-rocketmq
       - id: rocketmq.message.tag
         type: string
+        stability: experimental
         brief: >
           The secondary classifier of message besides topic.
         examples: tagA
@@ -228,17 +258,20 @@ groups:
             - id: transaction
               value: 'transaction'
               brief: 'Transaction message'
+        stability: experimental
         brief: >
           Type of message.
         tag: tech-specific-rocketmq
       - id: rocketmq.namespace
         type: string
+        stability: experimental
         brief: >
           Namespace of RocketMQ resources, resources in different namespaces are individual.
         examples: 'myNamespace'
         tag: tech-specific-rocketmq
       - id: gcp_pubsub.message.ordering_key
         type: string
+        stability: experimental
         brief: >
          The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
         examples: 'ordering_key'
@@ -279,39 +312,66 @@ groups:
             - id: rocketmq
               value: 'rocketmq'
               brief: 'Apache RocketMQ'
+        stability: experimental
         tag: messaging-generic
       - id: servicebus.message.delivery_count
         type: int
+        stability: experimental
         brief: >
           Number of deliveries that have been attempted for this message.
         examples: 2
         tag: tech-specific-servicebus
       - id: servicebus.message.enqueued_time
         type: int
+        stability: experimental
         brief: >
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
         tag: tech-specific-servicebus
       - id: servicebus.destination.subscription_name
         type: string
+        stability: experimental
         brief: >
           The name of the subscription in the topic messages are received from.
         examples: "mySubscription"
         tag: tech-specific-servicebus
+      - id: servicebus.disposition_status
+        brief: >
+          Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
+        type:
+          allow_custom_values: true
+          members:
+            - id: complete
+              value: 'complete'
+              brief: 'Message is completed'
+            - id: abandon
+              value: 'abandon'
+              brief: 'Message is abandoned'
+            - id: dead_letter
+              value: 'dead_letter'
+              brief: 'Message is sent to dead letter queue'
+            - id: defer
+              value: 'defer'
+              brief: 'Message is deferred'
+        stability: experimental
+        tag: tech-specific-servicebus
       - id: eventhubs.message.enqueued_time
         type: int
+        stability: experimental
         brief: >
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
         tag: tech-specific-eventhubs
       - id: eventhubs.destination.partition.id
         type: string
+        stability: experimental
         brief: >
           The identifier of the partition messages are sent to or received from, unique to the Event Hub which contains it.
         examples: '1'
         tag: tech-specific-eventhubs
       - id: eventhubs.consumer.group
         type: string
+        stability: experimental
         brief: >
           The name of the consumer group the event consumer is associated with.
         examples: 'indexer'

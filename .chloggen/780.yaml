@@ -1,0 +1,4 @@
+change_type: enhancement
+component: db
+note: Merge DB connection-level and call-level attributes tables
+issues: [780]

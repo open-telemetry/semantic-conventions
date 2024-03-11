@@ -10,17 +10,18 @@ aliases: [docs/specs/semconv/general/metrics-general]
 <!-- toc -->
 
 - [General Guidelines](#general-guidelines)
-  * [Name Reuse Prohibition](#name-reuse-prohibition)
-  * [Units](#units)
-  * [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
-    + [Pluralization](#pluralization)
-    + [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
-    + [Do not use `total`](#do-not-use-total)
+  - [Name Reuse Prohibition](#name-reuse-prohibition)
+  - [Metric attributes](#metric-attributes)
+  - [Units](#units)
+  - [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
+    - [Pluralization](#pluralization)
+    - [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
+    - [Do not use `total`](#do-not-use-total)
 - [General Metric Semantic Conventions](#general-metric-semantic-conventions)
-  * [Instrument Naming](#instrument-naming)
-  * [Instrument Units](#instrument-units)
-  * [Instrument Types](#instrument-types)
-  * [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
+  - [Instrument Naming](#instrument-naming)
+  - [Instrument Units](#instrument-units)
+  - [Instrument Types](#instrument-types)
+  - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
 <!-- tocstop -->
 
@@ -88,6 +89,26 @@ the past but was renamed (with a corresponding schema file).
 When introducing a new metric name check all existing schema files to make sure
 the name does not appear as a key of any "rename_metrics" section (keys denote
 old metric names in rename operations).
+
+### Metric attributes
+
+Metric attributes SHOULD follow the general [attribute naming rules](attribute-naming.md).
+In particular, metric attributes SHOULD have a namespace.
+
+Metric attributes SHOULD be added under the metric namespace when their usage and
+semantics are exclusive to the metric.
+
+Examples:
+
+Attributes `mode` and `mountpoint` for metric `system.filesystem.usage`
+should be namespaced as `system.filesystem.mode` and `system.filesystem.mountpoint`.
+
+Metrics can also have attributes outside of their namespace.
+
+Examples:
+
+Metric `http.server.request.duration` uses attributes from the registry such as
+`server.port`, `error.type`.
 
 ### Units
 

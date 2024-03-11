@@ -1,0 +1,7 @@
+change_type: enhancement
+
+component: messaging
+
+note: Clarifies span names for Azure messaging systems and adds `messaging.servicebus.disposition_status attribute`.
+
+issues: [697]

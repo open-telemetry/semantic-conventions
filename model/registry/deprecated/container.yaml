@@ -1,0 +1,10 @@
+groups:
+  - id: attributes.container.deprecated
+    type: attribute_group
+    brief: "Describes deprecated container attributes."
+    attributes:
+      - id: container.labels
+        type: template[string]
+        examples: [ 'container.label.app=nginx' ]
+        brief: "Deprecated, use `container.label` instead."
+        deprecated: "Replaced by `container.label`."

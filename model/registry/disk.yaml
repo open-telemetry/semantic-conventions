@@ -13,5 +13,6 @@ groups:
               value: 'read'
             - id: write
               value: 'write'
+        stability: experimental
         brief: "The disk IO operation direction."
         examples: ["read"]
