@@ -114,9 +114,9 @@ above telemetry with lower `sampling.priority` values.
 
 ### Overriding sampling randomness
 
-Sampling system designers are able to override sampling randomness on
-an item-by-item basis, which may be done for several reasons, including
-situations where there is no TraceID defined.
+Sampling system designers are able to override sampling randomness,
+which may be done for several reasons, including situations where
+there is no TraceID defined.
 
 When a tracing system purposely uses TraceIDs that do not follow the
 W3C Trace Context Level 2 specification for TraceID randomness, and
@@ -130,7 +130,8 @@ can be given the same randomness value to ensure that either all or
 none of them are sampled consistently.
 
 In the tracing signal, sampling randomness can be overridden by
-setting an R-value in the tracestate.  In the logging signal, sampling
+setting an R-value in the tracestate, however the R-value should not
+be modified, once set, in a Context.  In the logging signal, sampling
 randomness can be overridden by setting the `sampling.randomness`
 attribute.
 
