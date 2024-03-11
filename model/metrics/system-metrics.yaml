@@ -35,8 +35,8 @@ groups:
               value: 'interrupt'
             - id: steal
               value: 'steal'
+        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
         stability: experimental
-        brief: "The state of the CPU"
         examples: ["idle", "interrupt"]
       - id: logical_number
         type: int
