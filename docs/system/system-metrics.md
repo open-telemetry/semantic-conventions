@@ -87,7 +87,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | Recommended |
-| `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
+| `system.cpu.state` | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `idle`; `interrupt` | Recommended |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
@@ -116,7 +116,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | Recommended |
-| `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
+| `system.cpu.state` | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `idle`; `interrupt` | Recommended |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
