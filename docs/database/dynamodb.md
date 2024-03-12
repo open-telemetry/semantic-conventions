@@ -99,7 +99,7 @@ These attributes are filled in for all DynamoDB request types.
 |---|---|---|---|---|
 | `aws.dynamodb.exclusive_start_table` | string | The value of the `ExclusiveStartTableName` request parameter. | `Users`; `CatsTable` | Recommended |
 | `aws.dynamodb.limit` | int | The value of the `Limit` request parameter. | `10` | Recommended |
-| `aws.dynamodb.table_count` | int | The the number of items in the `TableNames` response parameter. | `20` | Recommended |
+| `aws.dynamodb.table_count` | int | The number of items in the `TableNames` response parameter. | `20` | Recommended |
 <!-- endsemconv -->
 
 ## DynamoDB.PutItem
@@ -164,7 +164,7 @@ These attributes are filled in for all DynamoDB request types.
 |---|---|---|---|---|
 | `aws.dynamodb.attribute_definitions` | string[] | The JSON-serialized value of each item in the `AttributeDefinitions` request field. | `[{ "AttributeName": "string", "AttributeType": "string" }]` | Recommended |
 | `aws.dynamodb.consumed_capacity` | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `[{ "CapacityUnits": number, "GlobalSecondaryIndexes": { "string" : { "CapacityUnits": number, "ReadCapacityUnits": number, "WriteCapacityUnits": number } }, "LocalSecondaryIndexes": { "string" : { "CapacityUnits": number, "ReadCapacityUnits": number, "WriteCapacityUnits": number } }, "ReadCapacityUnits": number, "Table": { "CapacityUnits": number, "ReadCapacityUnits": number, "WriteCapacityUnits": number }, "TableName": "string", "WriteCapacityUnits": number }]` | Recommended |
-| `aws.dynamodb.global_secondary_index_updates` | string[] | The JSON-serialized value of each item in the the `GlobalSecondaryIndexUpdates` request field. | `[{ "Create": { "IndexName": "string", "KeySchema": [ { "AttributeName": "string", "KeyType": "string" } ], "Projection": { "NonKeyAttributes": [ "string" ], "ProjectionType": "string" }, "ProvisionedThroughput": { "ReadCapacityUnits": number, "WriteCapacityUnits": number } }]` | Recommended |
+| `aws.dynamodb.global_secondary_index_updates` | string[] | The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field. | `[{ "Create": { "IndexName": "string", "KeySchema": [ { "AttributeName": "string", "KeyType": "string" } ], "Projection": { "NonKeyAttributes": [ "string" ], "ProjectionType": "string" }, "ProvisionedThroughput": { "ReadCapacityUnits": number, "WriteCapacityUnits": number } }]` | Recommended |
 | `aws.dynamodb.provisioned_read_capacity` | double | The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter. | `1.0`; `2.0` | Recommended |
 | `aws.dynamodb.provisioned_write_capacity` | double | The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter. | `1.0`; `2.0` | Recommended |
 | `aws.dynamodb.table_names` | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | Recommended |
