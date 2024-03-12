@@ -20,8 +20,7 @@ application lifecycle. This event is meant to be used in conjunction with
 `os.name` [resource semantic convention](/docs/resource/os.md) to identify the
 mobile operating system (e.g. Android, iOS).
 
-Payload field MUST be used to describe the state of the application at the
-time of the event. The following table describes the payload fields that MUST
+The following table describes the payload fields that MUST
 be used to describe the state of the application at the time of the event.
 
 The `android.state` and `ios.state` fields are mutually exclusive and MUST
