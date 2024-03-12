@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: invoked_arn
         type: string
+        stability: experimental
         brief: >
           The full invoked ARN as provided on the `Context` passed to the function
           (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).

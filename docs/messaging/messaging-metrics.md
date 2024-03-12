@@ -8,13 +8,13 @@
 
 - [Common attributes](#common-attributes)
 - [Producer metrics](#producer-metrics)
-  * [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
-  * [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
+  - [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
+  - [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
 - [Consumer metrics](#consumer-metrics)
-  * [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
-  * [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
-  * [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
-  * [Metric: `messaging.process.messages`](#metric-messagingprocessmessages)
+  - [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
+  - [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
+  - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
+  - [Metric: `messaging.process.messages`](#metric-messagingprocessmessages)
 
 <!-- tocstop -->
 
