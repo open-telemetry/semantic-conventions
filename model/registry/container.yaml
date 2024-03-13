@@ -95,12 +95,7 @@ groups:
         brief: >
           Container labels, `<key>` being the label name, the value being the label value.
         examples: [ 'container.label.app=nginx' ]
-  - id: registry.container.cpu
-    prefix: container.cpu
-    type: attribute_group
-    brief: "Describes Container CPU metric attributes"
-    attributes:
-      - id: state
+      - id: cpu.state
         brief: "The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
         type:
           allow_custom_values: true
