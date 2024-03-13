@@ -85,7 +85,9 @@ References:
 | `http.scheme` &rarr; `url.scheme` | Now factors in [X-Forwarded-Proto][], [Forwarded#proto][] headers |
 | `http.client_ip` &rarr; `client.address` | If `http.client_ip` was unknown (i.e., no [X-Forwarded-For][], [Forwarded#for][] headers), then `net.sock.peer.addr` &rarr; `client.address`; now must be provided to sampler |
 | `net.host.name` &rarr; `server.address` | Now based only on [Host][Host header], [:authority][HTTP/2 authority], [X-Forwarded-Host][], [Forwarded#host][] headers |
-| `net.host.port` &rarr; `server.port` | Now based only on [Host][Host header], [:authority][HTTP/2 authority], [X-Forwarded-Host][X-Forwarded-Host], [Forwarded#host][] headers |
+| `net.host.port` &rarr; `server.port` | &bullet; Now based only on [Host][Host header], [:authority][HTTP/2 authority], [X-Forwarded-Host][X-Forwarded-Host], [Forwarded#host][] headers<br>&bullet; Now captured even when same as default port for scheme |
+| `net.sock.host.addr` &rarr; `network.local.address` | |
+| `net.sock.host.port` &rarr; `network.local.port` | No longer defaults to `server.port` when `network.local.address` is set. |
 <!-- prettier-ignore-end -->
 
 References:
