@@ -286,6 +286,7 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 | [`messaging.client_id`](../attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | Recommended: If a client id is available |
 | [`messaging.destination.anonymous`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | Conditionally Required: [5] |
 | [`messaging.destination.name`](../attributes-registry/messaging.md) | string | The message destination name [6] | `MyQueue`; `MyTopic` | Conditionally Required: [7] |
+| [`messaging.destination.partition.id`](../attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | Recommended |
 | [`messaging.destination.template`](../attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` | Conditionally Required: [9] |
 | [`messaging.destination.temporary`](../attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | Conditionally Required: [10] |
 | [`messaging.message.body.size`](../attributes-registry/messaging.md) | int | The size of the message body in bytes. [11] | `1439` | Recommended |

@@ -134,7 +134,7 @@ groups:
     attributes:
       - ref: messaging.destination.partition.id
         brief: >
-          "String representation of the partition id the message  (or batch) is sent to or received from.""
+          String representation of the partition id the message (or batch) is sent to or received from.
         tag: tech-specific
       - ref: messaging.kafka.message.key
         tag: tech-specific

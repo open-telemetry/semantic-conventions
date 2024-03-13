@@ -6,6 +6,7 @@ groups:
     attributes:
       - ref: messaging.system
         requirement_level: required
+      - ref: messaging.destination.partition.id
       - ref: error.type
         examples: ['amqp:decode-error', 'KAFKA_STORAGE_ERROR', 'channel-error']
         requirement_level:
