@@ -11,6 +11,10 @@ groups:
       - ref: messaging.destination.template
         requirement_level:
           conditionally_required: if available.
+      - ref: messaging.destination.partition.id
+        requirement_level:
+          conditionally_required: if available.
+
 
   # durations
   - id: metric.messaging.publish.duration
