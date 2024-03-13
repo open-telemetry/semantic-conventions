@@ -1,0 +1,4 @@
+change_type: breaking
+component: messaging
+note: Introduce common `messaging.destination.partition.id` instead of `messaging.kafka.destination.partition`
+issues: [798]

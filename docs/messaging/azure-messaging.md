@@ -54,8 +54,8 @@ The following additional attributes are defined:
 <!-- semconv messaging.eventhubs -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`messaging.destination.partition.id`](../attributes-registry/messaging.md) | string | "String representation of the partition id messages are sent to or received from, unique within the Event Hub." | `1` | Conditionally Required: If available. |
 | [`messaging.eventhubs.consumer.group`](../attributes-registry/messaging.md) | string | The name of the consumer group the event consumer is associated with. | `indexer` | Conditionally Required: If not default ("$Default"). |
-| [`messaging.eventhubs.destination.partition.id`](../attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique to the Event Hub which contains it. | `1` | Conditionally Required: If available. |
 | [`messaging.eventhubs.message.enqueued_time`](../attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | Recommended |
 <!-- endsemconv -->
 
