@@ -140,6 +140,7 @@ groups:
       - ref: network.protocol.version
         requirement_level: recommended
       - ref: server.address
+        requirement_level: required
       - ref: server.port
         requirement_level: required
         brief: >
@@ -161,6 +162,7 @@ groups:
       - ref: network.protocol.version
         requirement_level: recommended
       - ref: server.address
+        requirement_level: required
       - ref: server.port
         requirement_level: required
         brief: >
@@ -180,6 +182,7 @@ groups:
       - ref: http.request.method
         requirement_level: recommended
       - ref: server.address
+        requirement_level: required
       - ref: server.port
         requirement_level: required
         brief: >
