@@ -9,5 +9,10 @@ groups:
         type: string
         brief: 'Deprecated, use `server.address`, `server.port` attributes instead.'
         deprecated: >
-          "Removed in favor of `server.address` and `server.port`."
+          "Replaced by `server.address` and `server.port`."
         examples: Server=(localdb)\v11.0;Integrated Security=true;
+      - id: jdbc.driver_classname
+        type: string
+        brief: 'Removed, no replacement at this time.'
+        deprecated: 'Removed as not used.'
+        examples: ['org.postgresql.Driver', 'com.microsoft.sqlserver.jdbc.SQLServerDriver']
