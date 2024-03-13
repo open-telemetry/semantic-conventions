@@ -31,7 +31,6 @@ Technology specific semantic conventions are defined for the following databases
 * [Cosmos DB](cosmosdb.md): Semantic Conventions for *Microsoft Cosmos DB*.
 * [CouchDB](couchdb.md): Semantic Conventions for *CouchDB*.
 * [Elasticsearch](elasticsearch.md): Semantic Conventions for *Elasticsearch*.
-* [GraphQL](graphql.md): Semantic Conventions for *GraphQL Server*.
 * [HBase](hbase.md): Semantic Conventions for *HBase*.
 * [MongoDB](mongodb.md): Semantic Conventions for *MongoDB*.
 * [MSSQL](mssql.md): Semantic Conventions for *MSSQL*.

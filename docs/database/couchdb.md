@@ -12,9 +12,9 @@ described on this page.
 
 `db.system` MUST be set to `"couchdb"`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.couchdb(full,tag=call-level-tech-specific) -->
+<!-- semconv db.couchdb(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.operation`](../attributes-registry/db.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | Conditionally Required: If `db.statement` is not applicable. |
