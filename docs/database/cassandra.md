@@ -25,7 +25,7 @@ described on this page.
 | [`db.cassandra.speculative_execution_count`](../attributes-registry/db.md) | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | Recommended |
 | [`db.cassandra.table`](../attributes-registry/db.md) | string | The name of the primary Cassandra table that the operation is acting upon, including the keyspace name (if applicable). [1] | `mytable` | Recommended |
 | [`db.name`](../attributes-registry/db.md) | string | The keyspace name in Cassandra. [2] | `mykeyspace` | Conditionally Required: If applicable. |
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node operation was performed on. [3] | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [3] | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: if and only if `network.peer.address` is set. |
 
 **[1]:** This mirrors the db.sql.table attribute but references cassandra rather than sql. It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.

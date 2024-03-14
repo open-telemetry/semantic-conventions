@@ -32,7 +32,7 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 | [`db.operation`](../attributes-registry/db.md) | string | The endpoint identifier for the request. [4] | `search`; `ml.close_job`; `cat.aliases` | Required |
 | [`db.statement`](../attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | Recommended: [5] |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [6] | `GET`; `POST`; `HEAD` | Required |
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node operation was performed on. [7] | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [7] | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: if and only if `network.peer.address` is set. |
 | [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`server.port`](../attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | Conditionally Required: [10] |
