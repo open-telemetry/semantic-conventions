@@ -10,9 +10,9 @@ The SQL databases Semantic Conventions extend and override the [Database Semanti
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.sql(full,tag=call-level-tech-specific) -->
+<!-- semconv db.sql(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.sql.table`](../attributes-registry/db.md) | string | The name of the primary table that the operation is acting upon, including the database name (if applicable). [1] | `public.users`; `customers` | Recommended |
@@ -28,7 +28,6 @@ This is an example of attributes for a MySQL database span:
 |:------------------------| :----------------------------------------------------------- |
 | Span name               | `"SELECT ShopDb.orders"` |
 | `db.system`             | `"mysql"` |
-| `db.connection_string`  | `"Server=shopdb.example.com;Database=ShopDb;Uid=billing_user;TableCache=true;UseCompression=True;MinimumPoolSize=10;MaximumPoolSize=50;"` |
 | `db.user`               | `"billing_user"` |
 | `server.address`        | `"shopdb.example.com"` |
 | `server.port`           | `3306` |

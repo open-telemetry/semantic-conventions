@@ -11,13 +11,13 @@ extend and override the [Database Semantic Conventions](database-spans.md)
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-## Call-level attributes
+## Attributes
 
 `db.system` MUST be set to `"cosmosdb"`.
 
 Cosmos DB instrumentation includes call-level (public API) surface spans and network spans. Depending on the connection mode (Gateway or Direct), network-level spans may also be created.
 
-<!-- semconv db.cosmosdb(full,tag=call-level-tech-specific) -->
+<!-- semconv db.cosmosdb(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.cosmosdb.client_id`](../attributes-registry/db.md) | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | Recommended |

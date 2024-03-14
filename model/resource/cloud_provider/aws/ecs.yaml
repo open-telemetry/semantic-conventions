@@ -7,11 +7,13 @@ groups:
     attributes:
       - id: container.arn
         type: string
+        stability: experimental
         brief: >
           The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
         examples: ['arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9']
       - id: cluster.arn
         type: string
+        stability: experimental
         brief: >
           The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
         examples: ['arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster']
@@ -23,10 +25,12 @@ groups:
               value: "ec2"
             - id: fargate
               value: "fargate"
+        stability: experimental
         brief: >
           The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
       - id: task.arn
         type: string
+        stability: experimental
         brief: >
           The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids).
         examples: [
@@ -35,11 +39,13 @@ groups:
         ]
       - id: task.family
         type: string
+        stability: experimental
         brief: >
           The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task.
         examples: ['opentelemetry-family']
       - id: task.id
         type: string
+        stability: experimental
         brief: >
           The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
         requirement_level:
@@ -47,6 +53,7 @@ groups:
         examples: [ '10838bed-421f-43ef-870a-f43feacbbb5b', '23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd' ]
       - id: task.revision
         type: string
+        stability: experimental
         brief: >
           The revision for the task definition used to create the ECS task.
         examples: ["8", "26"]

@@ -8,13 +8,13 @@
 
 - [Process](#process)
 - [Process runtimes](#process-runtimes)
-  * [Erlang Runtimes](#erlang-runtimes)
-  * [Go Runtimes](#go-runtimes)
-  * [Java runtimes](#java-runtimes)
-  * [JavaScript runtimes](#javascript-runtimes)
-  * [.NET Runtimes](#net-runtimes)
-  * [Python Runtimes](#python-runtimes)
-  * [Ruby Runtimes](#ruby-runtimes)
+  - [Erlang Runtimes](#erlang-runtimes)
+  - [Go Runtimes](#go-runtimes)
+  - [Java runtimes](#java-runtimes)
+  - [JavaScript runtimes](#javascript-runtimes)
+  - [.NET Runtimes](#net-runtimes)
+  - [Python Runtimes](#python-runtimes)
+  - [Ruby Runtimes](#ruby-runtimes)
 
 <!-- tocstop -->
 
