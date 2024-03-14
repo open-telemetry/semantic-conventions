@@ -8,6 +8,7 @@
 <!-- semconv registry.http(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
+| `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
 | `http.request.header.<key>` | string[] | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` |
 | `http.request.method` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>HTTP request method. [2] | `GET`; `POST`; `HEAD` |
@@ -47,6 +48,13 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[5]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+
+`http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `active` | active state. |
+| `idle` | idle state. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
