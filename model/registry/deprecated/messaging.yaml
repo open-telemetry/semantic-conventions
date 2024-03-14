@@ -10,14 +10,14 @@ groups:
         examples: 2
         deprecated: >
           Replaced by `messaging.destination.partition.id`.
-      - id: kafka.consumer.group
+      - id: messaging.kafka.consumer.group
         type: string
         brief: >
           Deprecated, use `messaging.consumer.group.name` instead.
         deprecated: >
           Replaced by `messaging.consumer.group.name`.
         examples: 'my-group'
-      - id: rocketmq.client_group
+      - id: messaging.rocketmq.client_group
         type: string
         brief: >
           Deprecated, use `messaging.consumer.group.name` instead.

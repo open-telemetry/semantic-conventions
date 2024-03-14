@@ -174,7 +174,7 @@ size should be used.
 <!-- semconv attributes.messaging.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `kafka.consumer.group` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `messaging.consumer.group.name` instead. | `my-group` |
+| `messaging.kafka.consumer.group` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `messaging.consumer.group.name` instead. | `my-group` |
 | `messaging.kafka.destination.partition` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `messaging.destination.partition.id` instead. | `2` |
-| `rocketmq.client_group` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `messaging.consumer.group.name` instead. | `myConsumerGroup` |
+| `messaging.rocketmq.client_group` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `messaging.consumer.group.name` instead. | `myConsumerGroup` |
 <!-- endsemconv -->
