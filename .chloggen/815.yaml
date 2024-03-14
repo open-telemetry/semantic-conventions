@@ -1,0 +1,4 @@
+change_type: breaking
+component: messaging
+note: Introduce common `messaging.consumer.group.name`` instead of per-system ones
+issues: [ 815 ]
