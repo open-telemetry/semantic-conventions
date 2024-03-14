@@ -81,16 +81,13 @@ groups:
       - ref: messaging.message.envelope.size
       - ref: messaging.message.body.size
       - ref: network.peer.address
-        brief: Peer address of the messaging intermediary node operation was performed on.
+        brief: Peer address of the messaging intermediary node where the operation was performed.
         requirement_level:
           recommended: If applicable for this messaging system.
         note: >
           Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 
-          Network peer address and port are important when the application interacts with individual intermediary nodes directly,
-          for example, when messaging intermediary is self-hosted.
-
-          Instrumentations for messaging systems that don't provide self-hosted mode SHOULD NOT set this attribute.
+          Network peer address and port are important when the application interacts with individual intermediary nodes directly
 
           If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
       - ref: network.peer.port

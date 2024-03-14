@@ -294,7 +294,7 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 | [`messaging.message.id`](../attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | Recommended |
 | [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [13] | `publish` | Required |
 | [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the messaging intermediary node operation was performed on. [14] | `10.1.2.80`; `/tmp/my.sock` | Recommended: If applicable for this messaging system. |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` | Recommended: If applicable for this messaging system. |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: if and only if `network.peer.address` is set. |
 | [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
 | [`server.port`](../attributes-registry/server.md) | int | Server port number. [16] | `80`; `8080`; `443` | Recommended |
@@ -343,8 +343,7 @@ size should be used.
 **[13]:** If a custom value is used, it MUST be of low cardinality.
 
 **[14]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
-Network peer address and port are important when the application interacts with individual intermediary nodes directly, for example, when messaging intermediary is self-hosted.
-Instrumentations for messaging systems that don't provide self-hosted mode SHOULD NOT set this attribute.
+Network peer address and port are important when the application interacts with individual intermediary nodes directly
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[15]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
