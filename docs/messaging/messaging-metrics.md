@@ -11,6 +11,7 @@
   - [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
   - [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
 - [Consumer metrics](#consumer-metrics)
+  - [Consumer attributes](#consumer-attributes)
   - [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
   - [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
   - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
@@ -27,9 +28,9 @@
 
 ## Common attributes
 
-All messaging metrics share the same set of attributes:
+The following attributes are applicable to all messaging metrics:
 
-<!-- semconv metric.messaging.attributes(full) -->
+<!-- semconv metric.messaging.common.attributes(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | Conditionally Required: [2] |
@@ -129,6 +130,16 @@ This metric is [required][MetricRequired] when the messaging system supports bat
 > The need to report `messaging.publish.messages` depends on the messaging system capabilities and not application scenarios or client library limitations. For example, RabbitMQ does not support batch publishing and corresponding instrumentations don't need to report `messaging.publish.messages`. Kafka supports both, single and batch publishing, and instrumentations MUST report `messaging.publish.messages` counter regardless of application scenarios or APIs available in the client library.
 
 ## Consumer metrics
+
+## Consumer attributes
+
+The following attributes are reported in addition to [common attributes](#common-attributes) on consumer metrics.
+
+<!-- semconv metric.messaging.consumer.attributes -->
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`messaging.consumer.group.name`](../attributes-registry/messaging.md) | string | The name of the consumer group message or batch consumer is associated with. | `my-group`; `indexer` | Conditionally Required: if available. |
+<!-- endsemconv -->
 
 ### Metric: `messaging.receive.duration`
 

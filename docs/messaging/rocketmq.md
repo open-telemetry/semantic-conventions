@@ -19,7 +19,7 @@ Specific attributes for Apache RocketMQ are defined below.
 <!-- semconv messaging.rocketmq(full,tag=tech-specific-rocketmq) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`messaging.rocketmq.client_group`](../attributes-registry/messaging.md) | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | Required |
+| [`messaging.consumer.group.name`](../attributes-registry/messaging.md) | string | The name of the consumer group message or batch consumer is associated with. | `my-group`; `indexer` | Conditionally Required: On consumer spans. |
 | [`messaging.rocketmq.consumption_model`](../attributes-registry/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering` | Recommended |
 | [`messaging.rocketmq.message.delay_time_level`](../attributes-registry/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | Conditionally Required: [1] |
 | [`messaging.rocketmq.message.delivery_timestamp`](../attributes-registry/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | Conditionally Required: [2] |

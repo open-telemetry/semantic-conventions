@@ -1,5 +1,5 @@
 groups:
-  - id: metric.messaging.attributes
+  - id: metric.messaging.common.attributes
     type: attribute_group
     stability: experimental
     brief: "Common messaging metrics attributes."
@@ -12,6 +12,16 @@ groups:
         requirement_level:
           conditionally_required: if available.
 
+  - id: metric.messaging.consumer.attributes
+    type: attribute_group
+    stability: experimental
+    brief: "Messaging consumer metrics attributes."
+    extends: metric.messaging.common.attributes
+    attributes:
+      - ref: messaging.consumer.group.name
+        requirement_level:
+          conditionally_required: if available.
+
   # durations
   - id: metric.messaging.publish.duration
     type: metric
@@ -20,7 +30,7 @@ groups:
     stability: experimental
     instrument: histogram
     unit: "s"
-    extends: metric.messaging.attributes
+    extends: metric.messaging.common.attributes
 
   - id: metric.messaging.receive.duration
     type: metric
@@ -29,7 +39,7 @@ groups:
     stability: experimental
     instrument: histogram
     unit: "s"
-    extends: metric.messaging.attributes
+    extends: metric.messaging.consumer.attributes
 
   - id: metric.messaging.process.duration
     type: metric
@@ -38,7 +48,7 @@ groups:
     stability: experimental
     instrument: histogram
     unit: "s"
-    extends: metric.messaging.attributes
+    extends: metric.messaging.consumer.attributes
 
   # counters
   - id: metric.messaging.publish.messages
@@ -48,7 +58,7 @@ groups:
     stability: experimental
     instrument: counter
     unit: "{message}"
-    extends: metric.messaging.attributes
+    extends: metric.messaging.common.attributes
 
   - id: metric.messaging.receive.messages
     type: metric
@@ -57,7 +67,7 @@ groups:
     stability: experimental
     instrument: counter
     unit: "{message}"
-    extends: metric.messaging.attributes
+    extends: metric.messaging.consumer.attributes
 
   - id: metric.messaging.process.messages
     type: metric
@@ -66,4 +76,4 @@ groups:
     stability: experimental
     instrument: counter
     unit: "{message}"
-    extends: metric.messaging.attributes
+    extends: metric.messaging.consumer.attributes

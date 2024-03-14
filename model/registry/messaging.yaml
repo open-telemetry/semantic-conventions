@@ -21,6 +21,13 @@ groups:
           A unique identifier for the client that consumes or produces a message.
         examples: ['client-5', 'myhost@8742@s8083jm']
         tag: messaging-generic
+      - id: consumer.group.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the consumer group message or batch consumer is associated with.
+        examples: ['my-group', 'indexer']
+        tag: messaging-generic
       - id: destination.name
         type: string
         stability: experimental
@@ -73,14 +80,6 @@ groups:
           The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`.
         examples: '1'
         tag: messaging-generic
-      - id: kafka.consumer.group
-        type: string
-        stability: experimental
-        brief: >
-          Name of the Kafka Consumer Group that is handling the message.
-          Only applies to consumers, not producers.
-        examples: 'my-group'
-        tag: tech-specific-kafka
       - id: kafka.message.key
         type: string
         stability: experimental
@@ -185,14 +184,6 @@ groups:
           RabbitMQ message delivery tag
         examples: 123
         tag: tech-specific-rabbitmq
-
-      - id: rocketmq.client_group
-        type: string
-        stability: experimental
-        brief: >
-          Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind.
-        examples: 'myConsumerGroup'
-        tag: tech-specific-rocketmq
       - id: rocketmq.consumption_model
         type:
           allow_custom_values: false
@@ -328,13 +319,6 @@ groups:
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
         tag: tech-specific-servicebus
-      - id: servicebus.destination.subscription_name
-        type: string
-        stability: experimental
-        brief: >
-          The name of the subscription in the topic messages are received from.
-        examples: "mySubscription"
-        tag: tech-specific-servicebus
       - id: servicebus.disposition_status
         brief: >
           Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
@@ -361,11 +345,4 @@ groups:
         brief: >
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
-        tag: tech-specific-eventhubs
-      - id: eventhubs.consumer.group
-        type: string
-        stability: experimental
-        brief: >
-          The name of the consumer group the event consumer is associated with.
-        examples: 'indexer'
         tag: tech-specific-eventhubs
