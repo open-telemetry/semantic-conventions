@@ -1,0 +1,4 @@
+change_type: bug_fix
+component: network
+note: Clarifies that network.protocol.version represents negotiated version
+issues: [ 686 ]
