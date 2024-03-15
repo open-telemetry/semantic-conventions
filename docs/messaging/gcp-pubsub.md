@@ -126,7 +126,7 @@ flowchart TD;
 | `gcp.project_id` | `"P"` | `"P"` | `"P"` |  `"P"` |  `"P"` |
 | `messaging.destination.name` | `"T"`| `"T"`| `"S"` | `"S"` |`"S"` |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
-| `messaging.operation` | `"create"` | `"publish"` | `"receive"` |  `"modack"` |  `"ack"` |
+| `messaging.operation` | `"create"` | `"publish"` | `"receive"` |  `"extend"` |  `"settle"` |
 | `messaging.message.id` | `"a1"` | | `"a1"` | | |
 | `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
 | `messaging.gcp_pubsub.message.ack_id` | | |  | `"ack_id1"` |`"ack_id1"` |
