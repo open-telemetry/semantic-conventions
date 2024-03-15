@@ -7,12 +7,12 @@
 **Description:** Log attributes for Amazon Web Services.
 
 <!-- semconv aws.log -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `aws.log.group.arns` | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `[arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*]` | Recommended |
-| `aws.log.group.names` | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `[/aws/lambda/my-function, opentelemetry-service]` | Recommended |
-| `aws.log.stream.arns` | string[] | The ARN(s) of the AWS log stream(s). [3] | `[arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b]` | Recommended |
-| `aws.log.stream.names` | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `[logs/main/10838bed-421f-43ef-870a-f43feacbbb5b]` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `aws.log.group.arns` | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `[arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws.log.group.names` | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `[/aws/lambda/my-function, opentelemetry-service]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws.log.stream.arns` | string[] | The ARN(s) of the AWS log stream(s). [3] | `[arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws.log.stream.names` | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `[logs/main/10838bed-421f-43ef-870a-f43feacbbb5b]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 

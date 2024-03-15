@@ -20,12 +20,15 @@ groups:
             - id: query
               value: "query"
               brief: "GraphQL query"
+              stability: experimental
             - id: mutation
               value: "mutation"
               brief: "GraphQL mutation"
+              stability: experimental
             - id: subscription
               value: "subscription"
               brief: "GraphQL subscription"
+              stability: experimental
         examples: ['query', 'mutation', 'subscription']
       - id: document
         brief: "The GraphQL document being executed."

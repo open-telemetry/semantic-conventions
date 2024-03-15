@@ -17,6 +17,8 @@ groups:
             - id: child_of
               value: 'child_of'
               brief: "The parent Span depends on the child Span in some capacity"
+              stability: experimental
             - id: follows_from
               value: 'follows_from'
               brief: "The parent Span doesn't depend in any way on the result of the child Span"
+              stability: experimental

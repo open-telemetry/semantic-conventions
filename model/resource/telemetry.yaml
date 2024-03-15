@@ -25,28 +25,40 @@ groups:
           members:
             - id: cpp
               value: "cpp"
+              stability: experimental
             - id: dotnet
               value: "dotnet"
+              stability: experimental
             - id: erlang
               value: "erlang"
+              stability: experimental
             - id: go
               value: "go"
+              stability: experimental
             - id: java
               value: "java"
+              stability: experimental
             - id: nodejs
               value: "nodejs"
+              stability: experimental
             - id: php
               value: "php"
+              stability: experimental
             - id: python
               value: "python"
+              stability: experimental
             - id: ruby
               value: "ruby"
+              stability: experimental
             - id: rust
               value: "rust"
+              stability: experimental
             - id: swift
               value: "swift"
+              stability: experimental
             - id: webjs
               value: "webjs"
+              stability: experimental
         stability: stable
         requirement_level: required
         brief: >

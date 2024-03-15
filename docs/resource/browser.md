@@ -9,13 +9,13 @@
 All of these attributes can be provided by the user agent itself in the form of an HTTP header (e.g. Sec-CH-UA, Sec-CH-Platform, User-Agent). However, the headers could be removed by proxy servers, and are tied to calls from individual clients. In order to support batching through services like the Collector and to prevent loss of data (e.g. due to proxy servers removing headers), these attributes should be used when possible.
 
 <!-- semconv browser -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`browser.brands`](../attributes-registry/browser.md) | string[] | Array of brand name and version separated by a space [1] | `[ Not A;Brand 99, Chromium 99, Chrome 99]` | Recommended |
-| [`browser.language`](../attributes-registry/browser.md) | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | Recommended |
-| [`browser.mobile`](../attributes-registry/browser.md) | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | Recommended |
-| [`browser.platform`](../attributes-registry/browser.md) | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | Recommended |
-| [`user_agent.original`](../attributes-registry/user-agent.md) | string | Full user-agent string provided by the browser [5] | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`browser.brands`](../attributes-registry/browser.md) | string[] | Array of brand name and version separated by a space [1] | `[ Not A;Brand 99, Chromium 99, Chrome 99]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`browser.language`](../attributes-registry/browser.md) | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`browser.mobile`](../attributes-registry/browser.md) | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`browser.platform`](../attributes-registry/browser.md) | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`user_agent.original`](../attributes-registry/user-agent.md) | string | Full user-agent string provided by the browser [5] | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
