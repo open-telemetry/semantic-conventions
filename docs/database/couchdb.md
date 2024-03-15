@@ -15,9 +15,9 @@ described on this page.
 ## Attributes
 
 <!-- semconv db.couchdb(full,tag=tech-specific) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`db.operation`](../attributes-registry/db.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | Conditionally Required: If `db.statement` is not applicable. |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`db.operation`](../attributes-registry/db.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | `Conditionally Required` If `db.statement` is not applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** In **CouchDB**, `db.operation` should be set to the HTTP method + the target REST route according to the API reference documentation. For example, when retrieving a document, `db.operation` would be set to (literally, i.e., without replacing the placeholders with concrete values): [`GET /{db}/{docid}`](https://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
 <!-- endsemconv -->

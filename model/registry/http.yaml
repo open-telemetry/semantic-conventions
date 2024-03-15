@@ -36,33 +36,43 @@ groups:
             - id: connect
               value: "CONNECT"
               brief: 'CONNECT method.'
+              stability: experimental
             - id: delete
               value: "DELETE"
               brief: 'DELETE method.'
+              stability: experimental
             - id: get
               value: "GET"
               brief: 'GET method.'
+              stability: experimental
             - id: head
               value: "HEAD"
               brief: 'HEAD method.'
+              stability: experimental
             - id: options
               value: "OPTIONS"
               brief: 'OPTIONS method.'
+              stability: experimental
             - id: patch
               value: "PATCH"
               brief: 'PATCH method.'
+              stability: experimental
             - id: post
               value: "POST"
               brief: 'POST method.'
+              stability: experimental
             - id: put
               value: "PUT"
               brief: 'PUT method.'
+              stability: experimental
             - id: trace
               value: "TRACE"
               brief: 'TRACE method.'
+              stability: experimental
             - id: other
               value: "_OTHER"
               brief: 'Any HTTP method that the instrumentation has no prior knowledge of.'
+              stability: experimental
         brief: 'HTTP request method.'
         examples: ["GET", "POST", "HEAD"]
         note: |
@@ -154,9 +164,11 @@ groups:
             - id: active
               value: "active"
               brief: 'active state.'
+              stability: experimental
             - id: idle
               value: "idle"
               brief: 'idle state.'
+              stability: experimental
         brief: State of the HTTP connection in the HTTP connection pool.
         stability: experimental
         examples: ["active", "idle"]

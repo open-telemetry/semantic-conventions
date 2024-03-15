@@ -14,6 +14,7 @@ groups:
           members:
             - id: other
               value: "_OTHER"
+              stability: experimental
               brief: >
                 A fallback error value to be used when the instrumentation doesn't define a custom value.
         examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', '500']

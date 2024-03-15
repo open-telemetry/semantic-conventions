@@ -23,10 +23,12 @@ groups:
       - id: name
         type: string
         deprecated: use the `otel.scope.name` attribute.
+        stability: experimental
         brief:
         examples: ['io.opentelemetry.contrib.mongodb']
       - id: version
         type: string
         deprecated: use the `otel.scope.version` attribute.
+        stability: experimental
         brief:
         examples: ['1.0.0']

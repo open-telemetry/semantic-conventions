@@ -12,24 +12,31 @@ groups:
             - id: 'alibaba_cloud'
               value: 'alibaba_cloud'
               brief: 'Alibaba Cloud'
+              stability: experimental
             - id: 'aws'
               value: 'aws'
               brief: 'Amazon Web Services'
+              stability: experimental
             - id: 'azure'
               value: 'azure'
               brief: 'Microsoft Azure'
+              stability: experimental
             - id: 'gcp'
               value: 'gcp'
               brief: 'Google Cloud Platform'
+              stability: experimental
             - id: 'heroku'
               value: 'heroku'
               brief: 'Heroku Platform as a Service'
+              stability: experimental
             - id: 'ibm_cloud'
               value: 'ibm_cloud'
               brief: 'IBM Cloud'
+              stability: experimental
             - id: 'tencent_cloud'
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
+              stability: experimental
         stability: experimental
         brief: >
           Name of the cloud provider.
@@ -99,87 +106,115 @@ groups:
             - id: alibaba_cloud_ecs
               value: 'alibaba_cloud_ecs'
               brief: Alibaba Cloud Elastic Compute Service
+              stability: experimental
             - id: alibaba_cloud_fc
               value: 'alibaba_cloud_fc'
               brief: Alibaba Cloud Function Compute
+              stability: experimental
             - id: alibaba_cloud_openshift
               value: 'alibaba_cloud_openshift'
               brief: Red Hat OpenShift on Alibaba Cloud
+              stability: experimental
             - id: aws_ec2
               value: 'aws_ec2'
               brief: AWS Elastic Compute Cloud
+              stability: experimental
             - id: aws_ecs
               value: 'aws_ecs'
               brief: AWS Elastic Container Service
+              stability: experimental
             - id: aws_eks
               value: 'aws_eks'
               brief: AWS Elastic Kubernetes Service
+              stability: experimental
             - id: aws_lambda
               value: 'aws_lambda'
               brief: AWS Lambda
+              stability: experimental
             - id: aws_elastic_beanstalk
               value: 'aws_elastic_beanstalk'
               brief: AWS Elastic Beanstalk
+              stability: experimental
             - id: aws_app_runner
               value: 'aws_app_runner'
               brief: AWS App Runner
+              stability: experimental
             - id: aws_openshift
               value: 'aws_openshift'
               brief: Red Hat OpenShift on AWS (ROSA)
+              stability: experimental
             - id: azure_vm
               value: 'azure_vm'
               brief: Azure Virtual Machines
+              stability: experimental
             - id: azure_container_apps
               value: 'azure_container_apps'
               brief: Azure Container Apps
+              stability: experimental
             - id: azure_container_instances
               value: 'azure_container_instances'
               brief: Azure Container Instances
+              stability: experimental
             - id: azure_aks
               value: 'azure_aks'
               brief: Azure Kubernetes Service
+              stability: experimental
             - id: azure_functions
               value: 'azure_functions'
               brief: Azure Functions
+              stability: experimental
             - id: azure_app_service
               value: 'azure_app_service'
               brief: Azure App Service
+              stability: experimental
             - id: azure_openshift
               value: 'azure_openshift'
               brief: Azure Red Hat OpenShift
+              stability: experimental
             - id: gcp_bare_metal_solution
               value: 'gcp_bare_metal_solution'
               brief: Google Bare Metal Solution (BMS)
+              stability: experimental
             - id: gcp_compute_engine
               value: 'gcp_compute_engine'
               brief: Google Cloud Compute Engine (GCE)
+              stability: experimental
             - id: gcp_cloud_run
               value: 'gcp_cloud_run'
               brief: Google Cloud Run
+              stability: experimental
             - id: gcp_kubernetes_engine
               value: 'gcp_kubernetes_engine'
               brief: Google Cloud Kubernetes Engine (GKE)
+              stability: experimental
             - id: gcp_cloud_functions
               value: 'gcp_cloud_functions'
               brief: Google Cloud Functions (GCF)
+              stability: experimental
             - id: gcp_app_engine
               value: 'gcp_app_engine'
               brief: Google Cloud App Engine (GAE)
+              stability: experimental
             - id: gcp_openshift
               value: 'gcp_openshift'
               brief: Red Hat OpenShift on Google Cloud
+              stability: experimental
             - id: ibm_cloud_openshift
               value: 'ibm_cloud_openshift'
               brief: Red Hat OpenShift on IBM Cloud
+              stability: experimental
             - id: tencent_cloud_cvm
               value: 'tencent_cloud_cvm'
               brief: Tencent Cloud Cloud Virtual Machine (CVM)
+              stability: experimental
             - id: tencent_cloud_eks
               value: 'tencent_cloud_eks'
               brief: Tencent Cloud Elastic Kubernetes Service (EKS)
+              stability: experimental
             - id: tencent_cloud_scf
               value: 'tencent_cloud_scf'
               brief: Tencent Cloud Serverless Cloud Function (SCF)
+              stability: experimental
         stability: experimental
         brief: >
           The cloud platform in use.
