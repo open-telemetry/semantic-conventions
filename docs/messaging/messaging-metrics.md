@@ -87,7 +87,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 | Value  | Description | Stability |
 |---|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 ## Producer metrics

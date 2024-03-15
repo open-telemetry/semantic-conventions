@@ -184,10 +184,10 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `tcp` | TCP | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `udp` | UDP | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pipe` | Named or anonymous pipe. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unix` | Unix domain socket | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

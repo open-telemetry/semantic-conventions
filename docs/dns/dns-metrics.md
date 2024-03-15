@@ -21,8 +21,6 @@ This document defines semantic conventions to apply when instrumenting DNS queri
 
 ### Metric: `dns.lookup.duration`
 
-**Status**: [Experimental][DocumentStatus]
-
 This metric is optional.
 
 This metric SHOULD be specified with
@@ -49,7 +47,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Value  | Description | Stability |
 |---|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
