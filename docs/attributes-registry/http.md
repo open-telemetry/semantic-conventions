@@ -60,16 +60,16 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Value  | Description | Stability |
 |---|---|---|
-| `CONNECT` | CONNECT method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `DELETE` | DELETE method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `GET` | GET method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HEAD` | HEAD method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `OPTIONS` | OPTIONS method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `PATCH` | PATCH method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `POST` | POST method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `PUT` | PUT method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `TRACE` | TRACE method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `CONNECT` | CONNECT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `DELETE` | DELETE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `GET` | GET method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `HEAD` | HEAD method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `OPTIONS` | OPTIONS method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 ## Deprecated HTTP Attributes

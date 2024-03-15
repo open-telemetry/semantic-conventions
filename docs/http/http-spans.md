@@ -182,31 +182,31 @@ The following attributes can be important for making sampling decisions and SHOU
 
 | Value  | Description | Stability |
 |---|---|---|
-| `CONNECT` | CONNECT method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `DELETE` | DELETE method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `GET` | GET method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HEAD` | HEAD method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `OPTIONS` | OPTIONS method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `PATCH` | PATCH method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `POST` | POST method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `PUT` | PUT method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `TRACE` | TRACE method. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `CONNECT` | CONNECT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `DELETE` | DELETE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `GET` | GET method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `HEAD` | HEAD method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `OPTIONS` | OPTIONS method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `tcp` | TCP | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `udp` | UDP | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pipe` | Named or anonymous pipe. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unix` | Unix domain socket | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 ## HTTP client

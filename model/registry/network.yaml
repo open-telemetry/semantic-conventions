@@ -181,19 +181,19 @@ groups:
             - id: tcp
               value: 'tcp'
               brief: "TCP"
-              stability: experimental
+              stability: stable
             - id: udp
               value: 'udp'
               brief: "UDP"
-              stability: experimental
+              stability: stable
             - id: pipe
               value: "pipe"
               brief: 'Named or anonymous pipe.'
-              stability: experimental
+              stability: stable
             - id: unix
               value: 'unix'
               brief: "Unix domain socket"
-              stability: experimental
+              stability: stable
         brief: >
           [OSI transport layer](https://osi-model.com/transport-layer/) or
           [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
