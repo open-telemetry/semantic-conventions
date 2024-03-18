@@ -343,7 +343,7 @@ size should be used.
 **[13]:** If a custom value is used, it MUST be of low cardinality.
 
 **[14]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
-Network peer address and port are important when the application interacts with individual intermediary nodes directly
+Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[15]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.

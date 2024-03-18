@@ -27,6 +27,7 @@ For Apache Kafka, the following additional attributes are defined:
 <!-- semconv messaging.kafka(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`messaging.destination.partition.id`](../attributes-registry/messaging.md) | string | "String representation of the partition id the message  (or batch) is sent to or received from."" | `1` | Recommended |
 | [`messaging.kafka.consumer.group`](../attributes-registry/messaging.md) | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` | Recommended |
 | [`messaging.kafka.message.key`](../attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [1] | `myKey` | Recommended |
 | [`messaging.kafka.message.offset`](../attributes-registry/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | Recommended |

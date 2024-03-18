@@ -87,7 +87,7 @@ groups:
         note: >
           Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 
-          Network peer address and port are important when the application interacts with individual intermediary nodes directly
+          Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 
           If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
       - ref: network.peer.port
@@ -102,11 +102,9 @@ groups:
       - ref: network.peer.address
         requirement_level: recommended
         note: >
-          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
-        tag: tech-specific
+          If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
       - ref: network.peer.port
         requirement_level: recommended
-        tag: tech-specific
 
   - id: messaging.rabbitmq
     type: attribute_group
@@ -123,9 +121,6 @@ groups:
           conditionally_required: When available.
         tag: tech-specific
       - ref: network.peer.address
-        note: >
-          If an operation involved multiple network calls (for example retries),
-          the address of the last contacted node SHOULD be used.
         tag: tech-specific
       - ref: network.peer.port
         tag: tech-specific
@@ -139,7 +134,7 @@ groups:
       - ref: messaging.destination.partition.id
         brief: >
           "String representation of the partition id the message  (or batch) is sent to or received from.""
-        tag: tech-specific-kafka
+        tag: tech-specific
       - ref: messaging.kafka.message.key
         tag: tech-specific
       - ref: messaging.kafka.consumer.group
