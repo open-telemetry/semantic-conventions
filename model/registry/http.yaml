@@ -133,3 +133,16 @@ groups:
           MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 
           SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+      - id: connection.state
+        type:
+          allow_custom_values: true
+          members:
+            - id: active
+              value: "active"
+              brief: 'active state.'
+            - id: idle
+              value: "idle"
+              brief: 'idle state.'
+        brief: State of the HTTP connection in the HTTP connection pool.
+        stability: experimental
+        examples: ["active", "idle"]
