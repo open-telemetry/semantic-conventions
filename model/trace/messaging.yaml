@@ -91,6 +91,7 @@ groups:
 
           If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
       - ref: network.peer.port
+        brief: Peer port of the messaging intermediary node where the operation was performed.
         requirement_level:
           recommended: if and only if `network.peer.address` is set.
 

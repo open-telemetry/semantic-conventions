@@ -295,7 +295,7 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 | [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [13] | `publish` | Required |
 | [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` | Recommended: If applicable for this messaging system. |
-| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: if and only if `network.peer.address` is set. |
+| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` | Recommended: if and only if `network.peer.address` is set. |
 | [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
 | [`server.port`](../attributes-registry/server.md) | int | Server port number. [16] | `80`; `8080`; `443` | Recommended |
 
