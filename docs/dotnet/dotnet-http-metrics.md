@@ -43,15 +43,13 @@ Notes:
 
 ### Metric: `http.client.open_connections`
 
-<!-- semconv metric.dotnet.http.client.open_connections(metric_table) -->
+<!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `http.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound HTTP connections that are currently active or idle on the client. [1] |
 
 **[1]:** Meter name: `System.Net.Http`; Added in: .NET 8.0
-<!-- endsemconv -->
 
-<!-- semconv metric.dotnet.http.client.open_connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | Required |
@@ -75,7 +73,6 @@ Notes:
 |---|---|
 | `active` | active state. |
 | `idle` | idle state. |
-<!-- endsemconv -->
 
 ### Metric: `http.client.connection.duration`
 
@@ -83,15 +80,13 @@ this metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
-<!-- semconv metric.dotnet.http.client.connection.duration(metric_table) -->
+<!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. [1] |
 
 **[1]:** Meter name: `System.Net.Http`; Added in: .NET 8.0
-<!-- endsemconv -->
 
-<!-- semconv metric.dotnet.http.client.connection.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
@@ -107,7 +102,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 **[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[4]:** If not the default (`80` for `http` scheme, `443` for `https`).
-<!-- endsemconv -->
 
 ### Metric: `http.client.request.time_in_queue`
 
@@ -115,15 +109,13 @@ this metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.dotnet.http.client.request.time_in_queue(metric_table) -->
+<!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `http.client.request.time_in_queue` | Histogram | `s` | The amount of time requests spent on a queue waiting for an available connection. [1] |
 
 **[1]:** Meter name: `System.Net.Http`; Added in: .NET 8.0
-<!-- endsemconv -->
 
-<!-- semconv metric.dotnet.http.client.request.time_in_queue(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Recommended |
@@ -157,19 +149,16 @@ If the HTTP request method isn't known, it sets the `http.request.method` attrib
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
-<!-- endsemconv -->
 
 ### Metric: `http.client.active_requests`
 
-<!-- semconv metric.dotnet.http.client.active_requests(metric_table) -->
+<!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `http.client.active_requests` | UpDownCounter | `{request}` | Number of active HTTP requests. [1] |
 
 **[1]:** Meter name: `System.Net.Http`; Added in: .NET 8.0
-<!-- endsemconv -->
 
-<!-- semconv metric.dotnet.http.client.active_requests(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Recommended |
@@ -200,7 +189,6 @@ If the HTTP request method isn't known, it sets the `http.request.method` attrib
 | `PUT` | PUT method. |
 | `TRACE` | TRACE method. |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |
-<!-- endsemconv -->
 
 ## HTTP server
 
