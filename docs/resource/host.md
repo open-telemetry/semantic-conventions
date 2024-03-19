@@ -49,7 +49,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | [`host.cpu.family`](../attributes-registry/host.md) | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` | Opt-In |
 | [`host.cpu.model.id`](../attributes-registry/host.md) | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` | Opt-In |
 | [`host.cpu.model.name`](../attributes-registry/host.md) | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | Opt-In |
-| [`host.cpu.stepping`](../attributes-registry/host.md) | int | Stepping or core revisions. | `1` | Opt-In |
+| [`host.cpu.stepping`](../attributes-registry/host.md) | string | Stepping or core revisions. | `1`; `r1p1` | Opt-In |
 | [`host.cpu.vendor.id`](../attributes-registry/host.md) | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | Opt-In |
 
 **[1]:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
@@ -63,12 +63,12 @@ When collecting `host.id` for non-containerized systems non-privileged lookups
 of the machine id are preferred. SDK detector implementations MUST use the
 sources listed below to obtain the machine id.
 
-| OS      | Primary                                                                             | Fallback                               |
-|---------|-------------------------------------------------------------------------------------|----------------------------------------|
-| Linux   | contents of `/etc/machine-id`                                                       | contents of `/var/lib/dbus/machine-id` |
-| BSD     | contents of `/etc/hostid`                                                           | output of `kenv -q smbios.system.uuid` |
-| MacOS   | `IOPlatformUUID` line from the output of `ioreg -rd1 -c "IOPlatformExpertDevice"`   | -                                      |
-| Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography` | -                                      |
+| OS      | Primary                                                                           | Fallback                               |
+|---------|-----------------------------------------------------------------------------------|----------------------------------------|
+| Linux   | contents of `/etc/machine-id`                                                     | contents of `/var/lib/dbus/machine-id` |
+| BSD     | contents of `/etc/hostid`                                                         | output of `kenv -q smbios.system.uuid` |
+| MacOS   | `IOPlatformUUID` line from the output of `ioreg -rd1 -c "IOPlatformExpertDevice"` | -                                      |
+| Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography`  | -                                      |
 
 ### Privileged Machine ID Lookup
 

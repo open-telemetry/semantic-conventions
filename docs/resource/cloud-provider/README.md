@@ -1,7 +1,7 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Resource Cloud Provider
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/resource/cloud-provider/_index.md
+  from: tmp/semconv/docs/resource/cloud-provider/_index.md
   to: resource/cloud-provider/README.md
 --->
 

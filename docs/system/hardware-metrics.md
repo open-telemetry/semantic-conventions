@@ -14,22 +14,22 @@ when creating instruments not explicitly defined in the specification.
 
 - [Common hardware attributes](#common-hardware-attributes)
 - [Metric Instruments](#metric-instruments)
-  * [`hw.` - Common hardware metrics](#hw---common-hardware-metrics)
-  * [`hw.host.` - Physical host metrics](#hwhost---physical-host-metrics)
-  * [`hw.battery.` - Battery metrics](#hwbattery---battery-metrics)
-  * [`hw.cpu.` - Physical processor metrics](#hwcpu---physical-processor-metrics)
-  * [`hw.disk_controller.` - Disk controller metrics](#hwdisk_controller---disk-controller-metrics)
-  * [`hw.enclosure.` - Enclosure metrics](#hwenclosure---enclosure-metrics)
-  * [`hw.fan.` - Fan metrics](#hwfan---fan-metrics)
-  * [`hw.gpu.` - GPU metrics](#hwgpu---gpu-metrics)
-  * [`hw.logical_disk.`- Logical disk metrics](#hwlogical_disk--logical-disk-metrics)
-  * [`hw.memory.` - Memory module metrics](#hwmemory---memory-module-metrics)
-  * [`hw.network.` - Network adapter metrics](#hwnetwork---network-adapter-metrics)
-  * [`hw.physical_disk.`- Physical disk metrics](#hwphysical_disk--physical-disk-metrics)
-  * [`hw.power_supply.` - Power supply metrics](#hwpower_supply---power-supply-metrics)
-  * [`hw.tape_drive.` - Tape drive metrics](#hwtape_drive---tape-drive-metrics)
-  * [`hw.temperature.` - Temperature sensor metrics](#hwtemperature---temperature-sensor-metrics)
-  * [`hw.voltage.` - Voltage sensor metrics](#hwvoltage---voltage-sensor-metrics)
+  - [`hw.` - Common hardware metrics](#hw---common-hardware-metrics)
+  - [`hw.host.` - Physical host metrics](#hwhost---physical-host-metrics)
+  - [`hw.battery.` - Battery metrics](#hwbattery---battery-metrics)
+  - [`hw.cpu.` - Physical processor metrics](#hwcpu---physical-processor-metrics)
+  - [`hw.disk_controller.` - Disk controller metrics](#hwdisk_controller---disk-controller-metrics)
+  - [`hw.enclosure.` - Enclosure metrics](#hwenclosure---enclosure-metrics)
+  - [`hw.fan.` - Fan metrics](#hwfan---fan-metrics)
+  - [`hw.gpu.` - GPU metrics](#hwgpu---gpu-metrics)
+  - [`hw.logical_disk.`- Logical disk metrics](#hwlogical_disk--logical-disk-metrics)
+  - [`hw.memory.` - Memory module metrics](#hwmemory---memory-module-metrics)
+  - [`hw.network.` - Network adapter metrics](#hwnetwork---network-adapter-metrics)
+  - [`hw.physical_disk.`- Physical disk metrics](#hwphysical_disk--physical-disk-metrics)
+  - [`hw.power_supply.` - Power supply metrics](#hwpower_supply---power-supply-metrics)
+  - [`hw.tape_drive.` - Tape drive metrics](#hwtape_drive---tape-drive-metrics)
+  - [`hw.temperature.` - Temperature sensor metrics](#hwtemperature---temperature-sensor-metrics)
+  - [`hw.voltage.` - Voltage sensor metrics](#hwvoltage---voltage-sensor-metrics)
 
 <!-- tocstop -->
 
@@ -309,7 +309,7 @@ Additional **Recommended** attributes:
 |                                          |                                                                                             |         |                                                   |            | `hw.type` (**Required**)        | `physical_disk`                                 |
 | `hw.physical_disk.endurance_utilization` | Endurance remaining for this SSD disk                                                       | 1       | Gauge                                             | Double     | `state` (**Required**)          | `remaining`                                     |
 | `hw.physical_disk.size`                  | Size of the disk                                                                            | By      | UpDownCounter                                     | Int64      |                                 |                                                 |
-| `hw.physical_disk.smart`                 | Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) attribute | 1       | Gauge                                             | Int        | `smart_attribute` (Recommended) | `Seek Error Rate`, `Spin Retry Count`, etc.     |
+| `hw.physical_disk.smart`                 | Value of the corresponding [S.M.A.R.T.](https://en.wikipedia.org/wiki/S.M.A.R.T.) attribute | 1       | Gauge                                             | Int        | `smart_attribute` (Recommended) | `Seek Error Rate`, `Spin Retry Count`, etc.     |
 | `hw.status`                              | Operational status: `1` (true) or `0` (false) for each of the possible states               |         | UpDownCounter                                     | Int        | `state` (**Required**)          | `ok`, `degraded`, `failed`, `predicted_failure` |
 |                                          |                                                                                             |         |                                                   |            | `hw.type` (**Required**)        | `physical_disk`                                 |
 

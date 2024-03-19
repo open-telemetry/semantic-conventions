@@ -5,10 +5,10 @@ cascade:
   body_class: otel-docs-spec
   github_repo: &repo https://github.com/open-telemetry/semantic-conventions
   github_subdir: docs
-  path_base_for_github_subdir: content/en/docs/specs/semconv/
+  path_base_for_github_subdir: tmp/semconv/docs/
   github_project_repo: *repo
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/_index.md
+  from: tmp/semconv/docs/_index.md
   to: README.md
 --->
 
@@ -27,6 +27,7 @@ Semantic Conventions are defined for the following areas:
 * [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
 * [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
 * [Feature Flags](feature-flags/README.md): Semantic Conventions for feature flag evaluations.
+* [GraphQL](graphql/graphql-spans.md): Semantic Conventions for GraphQL implementations.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.
 * [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
