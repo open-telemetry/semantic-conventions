@@ -1,6 +1,6 @@
 groups:
   - id: registry.llm
-    prefix: llm
+    prefix: gen_ai.llm
     type: attribute_group
     brief: >
       This document defines the attributes used to describe telemetry in the context of LLM (Large Language Models) requests and responses.
@@ -30,18 +30,8 @@ groups:
         brief: The top_p sampling setting for the LLM request.
         examples: [1.0]
         tag: llm-generic-request
-      - id: request.is_stream
-        type: boolean
-        brief: Whether the LLM responds with a stream.
-        examples: [false]
-        tag: llm-generic-request
-      - id: request.stop_sequences
-        type: string
-        brief: Array of strings the LLM uses as a stop sequence.
-        examples: ["stop1"]
-        tag: llm-generic-request
       - id: response.id
-        type: string[]
+        type: string
         brief: The unique identifier for the completion.
         examples: ['chatcmpl-123']
         tag: llm-generic-response
@@ -51,19 +41,10 @@ groups:
         examples: ['gpt-4-0613']
         tag: llm-generic-response
       - id: response.finish_reason
-        type: string
-        brief: The reason the model stopped generating tokens.
-        examples: ['stop']
+        type: string[]
+        brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
+        examples: [['stop']]
         tag: llm-generic-response
-      - id: usage.token_type
-        type:
-          members:
-            - id: prompt
-              value: 'prompt'
-            - id: completion
-              value: 'completion'
-        brief: The type of token.
-        examples: ['prompt']
       - id: usage.prompt_tokens
         type: int
         brief: The number of tokens used in the LLM prompt.
@@ -73,11 +54,6 @@ groups:
         type: int
         brief: The number of tokens used in the LLM response (completion).
         examples: [180]
-        tag: llm-generic-response
-      - id: usage.total_tokens
-        type: int
-        brief: The total number of tokens used in the LLM prompt and response.
-        examples: [280]
         tag: llm-generic-response
       - id: prompt
         type: string
@@ -89,110 +65,3 @@ groups:
         brief: The full response string from an LLM in a response.
         examples: ['Why did the developer stop using OpenTelemetry? Because they couldnt trace their steps!']
         tag: llm-generic-events
-      - id: request.openai.presence_penalty
-        type: double
-        brief: If present, the `presence_penalty` used in an OpenAI request. Value is between -2.0 and 2.0.
-        examples: -0.5
-        tag: tech-specific-openai-request
-      - id: request.openai.frequency_penalty
-        type: double
-        brief: If present, the `frequency_penalty` used in an OpenAI request. Value is between -2.0 and 2.0.
-        examples: -0.5
-        tag: tech-specific-openai-request
-      - id: request.openai.logit_bias
-        type: string
-        brief: If present, the JSON-encoded string of a `logit_bias` used in an OpenAI request
-        examples: ['{2435:-100, 640:-100}']
-        tag: tech-specific-openai-request
-      - id: request.openai.user
-        type: string
-        brief: If present, the `user` used in an OpenAI request.
-        examples: ['bob']
-        tag: tech-specific-openai-request
-      - id: request.openai.response_format
-        type:
-          members:
-            - id: text
-              value: 'text'
-            - id: json_object
-              value: 'json_object'
-        brief: An object specifying the format that the model must output. Either `text` or `json_object`
-        examples: 'text'
-        tag: tech-specific-openai-request
-      - id: request.openai.seed
-        type: int
-        brief: Seed used in request to improve determinism.
-        examples: 1234
-        tag: tech-specific-openai-request
-      - id: response.openai.created
-        type: int
-        brief: The UNIX timestamp (in seconds) if when the completion was created.
-        examples: 1677652288
-        tag: tech-specific-openai-response
-      - id: response.openai.system_fingerprint
-        type: string
-        brief: This fingerprint represents the backend configuration that the model runs with.
-        examples: 'asdf987123'
-        tag: tech-specific-openai-response
-      - id: openai.role
-        type:
-          members:
-            - id: system
-              value: 'system'
-            - id: user
-              value: 'user'
-            - id: assistant
-              value: 'assistant'
-            - id: tool
-              value: 'tool'
-        brief: The role of the prompt author, can be one of `system`, `user`, `assistant`, or `tool`
-        examples: 'user'
-        tag: tech-specific-openai-events
-      - id: openai.tool.type
-        type:
-          members:
-            - id: function
-              value: 'function'
-        brief: The type of the tool. Currently, only `function` is supported.
-        examples: 'function'
-        tag: tech-specific-openai-events
-      - id: openai.function.name
-        type: string
-        brief: The name of the function to be called.
-        examples: 'get_weather'
-        tag: tech-specific-openai-events
-      - id: openai.function.description
-        type: string
-        brief: A description of what the function does, used by the model to choose when and how to call the function.
-        examples: 'Gets the current weather for a location'
-        tag: tech-specific-openai-events
-      - id: openai.function.parameters
-        type: string
-        brief: JSON-encoded string of the parameter object for the function.
-        examples: '{"type": "object", "properties": {}}'
-        tag: tech-specific-openai-events
-      - id: openai.content
-        type: string
-        brief: The content for a given OpenAI response.
-        examples: 'Why did the developer stop using OpenTelemetry? Because they couldn''t trace their steps!'
-        tag: tech-specific-openai-events
-      - id: openai.tool_call.id
-        type: string
-        brief: If role is `tool` or `function`, then this tool call that this message is responding to.
-        examples: 'get_current_weather'
-        tag: tech-specific-openai-events
-      - id: openai.function.arguments
-        type: string
-        brief: If exists, the arguments to call a function call with for a given OpenAI response, denoted by `<index>`. The value for `<index>` starts with 0, where 0 is the first message.
-        examples: '{"type": "object", "properties": {"some":"data"}}'
-        tag: tech-specific-openai-events
-      - id: openai.choice.type
-        type:
-          members:
-            - id: delta
-              value: 'delta'
-            - id: message
-              value: 'message'
-        brief: The type of the choice, either `delta` or `message`.
-        examples: 'message'
-        tag: tech-specific-openai-events
