@@ -57,11 +57,11 @@ groups:
         tag: llm-generic-response
       - id: prompt
         type: string
-        brief: The full prompt string sent to an LLM in a request.
-        examples: ['\\n\\nHuman:You are an AI assistant that tells jokes. Can you tell me a joke about OpenTelemetry?\\n\\nAssistant:']
+        brief: The full prompt sent to an LLM, as a stringified JSON in OpenAI's format.
+        examples: ["[{'role': 'user', 'content': 'What is the capital of France?'}]"]
         tag: llm-generic-events
       - id: completion
         type: string
-        brief: The full response string from an LLM in a response.
-        examples: ['Why did the developer stop using OpenTelemetry? Because they couldnt trace their steps!']
+        brief:  The full response received from the LLM, as a stringified JSON in OpenAI's format.
+        examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
         tag: llm-generic-events

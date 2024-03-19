@@ -9,10 +9,6 @@
   * [Request Attributes](#request-attributes)
   * [Response Attributes](#response-attributes)
   * [Event Attributes](#event-attributes)
-- [OpenAI Attributes](#openai-attributes)
-  * [Request Attributes](#request-attributes-1)
-  * [Response Attributes](#response-attributes-1)
-  * [Event Attributes](#event-attributes-1)
 
 <!-- tocstop -->
 
@@ -47,6 +43,6 @@
 <!-- semconv registry.llm(omit_requirement_level,tag=llm-generic-events) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `gen_ai.llm.completion` | string | The full response string from an LLM in a response. | `Why did the developer stop using OpenTelemetry? Because they couldnt trace their steps!` |
-| `gen_ai.llm.prompt` | string | The full prompt string sent to an LLM in a request. | `\\n\\nHuman:You are an AI assistant that tells jokes. Can you tell me a joke about OpenTelemetry?\\n\\nAssistant:` |
+| `gen_ai.llm.completion` | string | The full response received from the LLM, as a stringified JSON in OpenAI's format. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` |
+| `gen_ai.llm.prompt` | string | The full prompt sent to an LLM, as a stringified JSON in OpenAI's format. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` |
 <!-- endsemconv -->

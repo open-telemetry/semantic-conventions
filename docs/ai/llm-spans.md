@@ -65,7 +65,7 @@ The event name MUST be `gen_ai.llm.content.prompt`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`gen_ai.llm.prompt`](../attributes-registry/llm.md) | string | The full prompt string sent to an LLM in a request. [1] | `\\n\\nHuman:You are an AI assistant that tells jokes. Can you tell me a joke about OpenTelemetry?\\n\\nAssistant:` | Recommended |
+| [`gen_ai.llm.prompt`](../attributes-registry/llm.md) | string | The full prompt sent to an LLM, as a stringified JSON in OpenAI's format. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | Recommended |
 
 **[1]:** The full prompt sent to an LLM in a request, structured as a JSON in OpenAI's format.
 <!-- endsemconv -->
@@ -75,7 +75,7 @@ The event name MUST be `gen_ai.llm.content.completion`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`gen_ai.llm.completion`](../attributes-registry/llm.md) | string | The full response string from an LLM in a response. [1] | `Why did the developer stop using OpenTelemetry? Because they couldnt trace their steps!` | Recommended |
+| [`gen_ai.llm.completion`](../attributes-registry/llm.md) | string | The full response received from the LLM, as a stringified JSON in OpenAI's format. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | Recommended |
 
 **[1]:** The full response from an LLM, structured as a JSON in OpenAI's format.
 <!-- endsemconv -->
