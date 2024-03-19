@@ -100,7 +100,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ## Deprecated Network Attributes
 
-<!-- semconv network-deprecated(omit_requirement_level) -->
+<!-- semconv attributes.network.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `net.host.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.address`. | `example.com` |
