@@ -1,0 +1,567 @@
+groups:
+  - id: metric.beam.system.wordsize
+    type: metric
+    metric_name: beam.system.wordsize
+    stability: experimental
+    instrument: updowncounter
+    unit: By
+    brief: "The size of Erlang term words in bytes."
+
+
+  # beam.memory.allocators.* metrics and attribute group
+  - id: attributes.beam.memory.allocators
+    prefix: beam.memory.allocators
+    type: attribute_group
+    brief: "Describes Beam Memory Allocators metric attributes"
+    attributes:
+      - id: instance
+        type: int
+        stability: experimental
+        brief: "The logical instance number [0..n]"
+        examples: [1]
+      - id: kind
+        type:
+          allow_custom_values: false
+          members:
+            - id: sbcs
+              value: 'sbcs'
+              stability: experimental
+            - id: mbcs
+              value: 'mbcs'
+              stability: experimental
+            - id: mbcs_pool
+              value: 'mbcs_pool'
+              stability: experimental
+        stability: experimental
+        brief: "The allocation kind."
+        examples: ["mbcs"]
+      - id: alloc
+        type:
+          allow_custom_values: false
+          members:
+            - id: temp_alloc
+              value: 'temp_alloc'
+              brief: "Allocator used for temporary allocations."
+              stability: experimental
+            - id: eheap_alloc
+              value: 'eheap_alloc'
+              brief: "Allocator used for Erlang heap data, such as Erlang process heaps."
+              stability: experimental
+            - id: binary_alloc
+              value: 'binary_alloc'
+              brief: "Allocator used for Erlang binary data."
+              stability: experimental
+            - id: ets_alloc
+              value: 'ets_alloc'
+              brief: "Allocator used for ets data."
+              stability: experimental
+            - id: driver_alloc
+              value: 'driver_alloc'
+              brief: "Allocator used for driver data."
+              stability: experimental
+            - id: literal_alloc
+              value: 'literal_alloc'
+              brief: "Allocator used for constant terms in Erlang code."
+              stability: experimental
+            - id: sl_alloc
+              value: 'sl_alloc'
+              brief: "Allocator used for memory blocks that are expected to be short-lived."
+              stability: experimental
+            - id: ll_alloc
+              value: 'll_alloc'
+              brief: "Allocator used for memory blocks that are expected to be long-lived, for example, Erlang code."
+              stability: experimental
+            - id: fix_alloc
+              value: 'fix_alloc'
+              brief: "A fast allocator used for some frequently used fixed size data types."
+              stability: experimental
+            - id: std_alloc
+              value: 'std_alloc'
+              brief: "Allocator used for most memory blocks not allocated through any of the other allocators described above."
+              stability: experimental
+            - id: sys_alloc
+              value: 'sys_alloc'
+              brief: "This is normally the default malloc implementation used on the specific OS."
+              stability: experimental
+            - id: mseg_alloc
+              value: 'mseg_alloc'
+              brief: "A memory segment allocator."
+              stability: experimental
+        stability: experimental
+        brief: "The allocation type."
+        examples: ["sys_alloc"]
+
+  - id: metric.beam.memory.allocators.carrier.count
+    type: metric
+    metric_name: beam.memory.allocators.carrier.count
+    stability: experimental
+    instrument: updowncounter
+    unit: "{carriers}"
+    brief: "Number of allocated carriers for the different allocators in the VM. See erts_alloc(3)."
+    attributes:
+      - ref: beam.memory.allocators.instance
+      - ref: beam.memory.allocators.kind
+      - ref: beam.memory.allocators.alloc
+
+  - id: metric.beam.memory.allocators.carrier.size
+    type: metric
+    metric_name: beam.memory.allocators.carrier.size
+    stability: experimental
+    instrument: updowncounter
+    unit: "By"
+    brief: "Total size of the memory carriers for the different allocators in the VM. See erts_alloc(3)."
+    attributes:
+      - ref: beam.memory.allocators.instance
+      - ref: beam.memory.allocators.kind
+      - ref: beam.memory.allocators.alloc
+
+  - id: metric.beam.memory.allocators.block.count
+    type: metric
+    metric_name: beam.memory.allocators.block.count
+    stability: experimental
+    instrument: updowncounter
+    unit: "{block}"
+    brief: "Count of allocated blocks for the different allocators in the VM. See erts_alloc(3)."
+    attributes:
+      - ref: beam.memory.allocators.instance
+      - ref: beam.memory.allocators.kind
+      - ref: beam.memory.allocators.alloc
+
+  - id: metric.beam.memory.allocators.block.size
+    type: metric
+    metric_name: beam.memory.allocators.block.size
+    stability: experimental
+    instrument: updowncounter
+    unit: "By"
+    brief: "Total size of the memory blocks for the different allocators in the VM. See erts_alloc(3)."
+    attributes:
+      - ref: beam.memory.allocators.instance
+      - ref: beam.memory.allocators.kind
+      - ref: beam.memory.allocators.alloc
+
+  - id: metric.beam.memory.garbage_collection.count
+    type: metric
+    metric_name: beam.memory.garbage_collection.count
+    stability: experimental
+    instrument: counter
+    unit: "{garbage_collection}"
+    brief: "Garbage collection: number of GCs."
+
+  - id: metric.beam.memory.garbage_collection.bytes_reclaimed
+    type: metric
+    metric_name: beam.memory.garbage_collection.bytes_reclaimed
+    stability: experimental
+    instrument: counter
+    unit: "By"
+    brief: "Garbage collection: bytes reclaimed."
+
+  - id: metric.beam.memory.garbage_collection.words_reclaimed
+    type: metric
+    metric_name: beam.memory.garbage_collection.words_reclaimed
+    stability: experimental
+    instrument: counter
+    unit: "{words}"
+    brief: "Garbage collection: words reclaimed."
+
+  - id: metric.beam.memory.atoms
+    type: metric
+    metric_name: beam.memory.atoms
+    stability: experimental
+    instrument: updowncounter
+    unit: By
+    brief: "The total amount of memory currently allocated for atoms."
+    note: >
+      This memory is part of the memory presented as system memory.
+
+  - id: metric.beam.memory.allocated
+    type: metric
+    metric_name: beam.memory.allocated
+    stability: experimental
+    instrument: updowncounter
+    unit: By
+    brief: "The total amount of memory currently allocated."
+    note: >
+      This is the same as the sum of the memory size for processes and system.
+
+  - id: metric.beam.memory.processes
+    type: metric
+    metric_name: beam.memory.processes
+    stability: experimental
+    instrument: updowncounter
+    unit: By
+    brief: "The total amount of memory currently allocated for the Erlang processes."
+
+  - id: metric.beam.memory.system
+    type: metric
+    metric_name: beam.memory.system
+    stability: experimental
+    instrument: updowncounter
+    unit: By
+    brief: "The total amount of memory currently allocated for the emulator that is not directly related to any Erlang process."
+    note: >
+      Memory presented as processes is not included in this memory.
+
+  - id: metric.beam.process.reductions
+    type: metric
+    metric_name: beam.process.reductions
+    stability: experimental
+    instrument: counter
+    unit: "{reductions}"
+    brief: Total reductions.
+
+  - id: metric.beam.process.context_switches
+    type: metric
+    metric_name: beam.process.context_switches
+    stability: experimental
+    instrument: counter
+    unit: "{context_switch}"
+    brief: Total number of context switches since the system started.
+
+  - id: metric.beam.process.cpu.time
+    type: metric
+    metric_name: beam.process.cpu.time
+    stability: experimental
+    brief: "The sum of the runtime for all threads in the Erlang runtime system."
+    instrument: counter
+    unit: "s"
+    attributes:
+      - id: beam.process.cpu.state
+        type:
+          allow_custom_values: false
+          members:
+            - id: user
+              value: 'user'
+              stability: experimental
+            - id: wall
+              value: 'wall'
+              stability: experimental
+        stability: experimental
+        brief: "The CPU state for this data point."
+        examples: ["user"]
+
+  - id: metric.beam.process.count
+    type: metric
+    metric_name: beam.process.count
+    stability: experimental
+    instrument: updowncounter
+    unit: "{process}"
+    brief: "The number of processes currently existing at the local node."
+
+  - id: metric.beam.process.limit
+    type: metric
+    metric_name: beam.process.limit
+    stability: experimental
+    instrument: updowncounter
+    unit: "{process}"
+    brief: "The maximum number of simultaneously existing processes at the local node."
+
+  - id: metric.beam.cpu.logical_processors.count
+    type: metric
+    metric_name: beam.cpu.logical_processors.count
+    stability: experimental
+    instrument: updowncounter
+    unit: "{cpu}"
+    brief: "The detected number of logical processors configured in the system."
+
+  - id: metric.beam.cpu.logical_processors.available
+    type: metric
+    metric_name: beam.logical_processors.available
+    stability: experimental
+    instrument: updowncounter
+    unit: "{cpu}"
+    brief: "The detected number of logical processors available to the Erlang runtime system."
+
+  - id: metric.beam.cpu.logical_processors.online
+    type: metric
+    metric_name: beam.logical_processors.online
+    stability: experimental
+    instrument: updowncounter
+    unit: "{cpu}"
+    brief: "The detected number of logical processors online on the system."
+
+  - id: metric.beam.cpu.thread_pool_size
+    type: metric
+    metric_name: beam.cpu.thread_pool_size
+    stability: experimental
+    instrument: updowncounter
+    unit: "{thread}"
+    brief: "The number of async threads in the async thread pool used for asynchronous driver calls."
+
+  - id: metric.beam.cpu.scheduler.run_queues_length
+    type: metric
+    metric_name: beam.cpu.scheduler.run_queues_length
+    stability: experimental
+    instrument: updowncounter
+    unit: "{process}"
+    brief: Length of the normal run-queue.
+
+  - id: metric.beam.cpu.scheduler.count
+    type: metric
+    metric_name: beam.cpu.scheduler.count
+    stability: experimental
+    instrument: updowncounter
+    unit: "{scheduler}"
+    brief: "The number of scheduler threads used by the emulator."
+
+  - id: metric.beam.cpu.scheduler.online
+    type: metric
+    metric_name: beam.cpu.scheduler.online
+    stability: experimental
+    instrument: updowncounter
+    unit: "{scheduler}"
+    brief: "The number of schedulers online."
+
+  - id: metric.beam.cpu.dirty_cpu_scheduler.run_queue_length
+    type: metric
+    metric_name: beam.cpu.dirty_cpu_scheduler_run_queue_length
+    stability: experimental
+    instrument: updowncounter
+    unit: "{process}"
+    brief: Length of the dirty CPU run-queue.
+
+  - id: metric.beam.cpu.dirty_cpu_scheduler.count
+    type: metric
+    metric_name: beam.cpu.dirty_cpu_scheduler.count
+    stability: experimental
+    instrument: updowncounter
+    unit: "{scheduler}"
+    brief: "The number of scheduler dirty CPU scheduler threads used by the emulator."
+
+  - id: metric.beam.cpu.dirty_cpu_scheduler.online
+    type: metric
+    metric_name: beam.cpu.dirty_cpu_scheduler.online
+    stability: experimental
+    instrument: updowncounter
+    unit: "{scheduler}"
+    brief: "The number of dirty CPU scheduler threads online."
+
+  - id: metric.beam.cpu.dirty_io_scheduler.run_queue_length
+    type: metric
+    metric_name: beam.cpu.dirty_io_scheduler_run_queue_length
+    stability: experimental
+    instrument: updowncounter
+    unit: "{process}"
+    brief: Length of the dirty I/O run-queue.
+
+  - id: metric.beam.cpu.dirty_io_scheduler.count
+    type: metric
+    metric_name: beam.cpu.dirty_io_scheduler.count
+    stability: experimental
+    instrument: updowncounter
+    unit: "{scheduler}"
+    brief: "The number of scheduler dirty I/O scheduler threads used by the emulator."
+
+  - id: metric.beam.cpu.dirty_io_scheduler.online
+    type: metric
+    metric_name: beam.cpu.dirty_io_scheduler.online
+    stability: experimental
+    instrument: updowncounter
+    unit: "{scheduler}"
+    brief: "The number of scheduler dirty I/O scheduler threads online."
+
+  - id: metric.beam.port.io
+    type: metric
+    metric_name: beam.port.io
+    stability: experimental
+    instrument: counter
+    unit: "By"
+    brief: Total number of bytes read and written to/from ports.
+    attributes:
+      - id: port.io.direction
+        type:
+          allow_custom_values: false
+          members:
+            - id: read
+              value: 'read'
+              stability: experimental
+            - id: write
+              value: 'write'
+              stability: experimental
+        stability: experimental
+        brief: "The port I/O operation direction."
+        examples: ["read"]
+
+  - id: metric.beam.port.count
+    type: metric
+    metric_name: beam.port.count
+    stability: experimental
+    instrument: updowncounter
+    unit: "{port}"
+    brief: "The number of ports currently existing at the local node."
+
+  - id: metric.beam.port.limit
+    type: metric
+    metric_name: beam.port.limit
+    stability: experimental
+    instrument: updowncounter
+    unit: "{port}"
+    brief: "The maximum number of simultaneously existing ports at the local node."
+
+  - id: metric.beam.atom.count
+    type: metric
+    metric_name: beam.atom.count
+    stability: experimental
+    instrument: updowncounter
+    unit: "{atom}"
+    brief: "The number of atom currently existing at the local node."
+
+  - id: metric.beam.atom.limit
+    type: metric
+    metric_name: beam.atom.limit
+    stability: experimental
+    instrument: updowncounter
+    unit: "{atom}"
+    brief: "The maximum number of simultaneously existing atoms at the local node."
+
+  - id: metric.beam.ets.limit
+    type: metric
+    metric_name: beam.ets.limit
+    stability: experimental
+    instrument: updowncounter
+    unit: "{table}"
+    brief: "The maximum number of ETS tables allowed."
+
+  # Metrics only available if Microstate Accounting has been enabled
+  - id: attributes.beam.cpu
+    prefix: beam.cpu
+    type: attribute_group
+    brief: "Describes BEAM thread CPU metric attributes"
+    attributes:
+      - id: work
+        type:
+          allow_custom_values: true
+          members:
+            - id: aux
+              value: 'aux'
+              brief: "Time spent handling auxiliary jobs."
+              stability: experimental
+            - id: check_io
+              value: 'check_io'
+              brief: "Time spent checking for new I/O events."
+              stability: experimental
+            - id: emulator
+              value: 'emulator'
+              brief: "Time spent executing Erlang processes."
+              stability: experimental
+            - id: gc
+              value: 'gc'
+              brief: "Time spent doing garbage collection. When extra states are enabled this is the time spent doing non-fullsweep garbage collections."
+              stability: experimental
+            - id: other
+              value: 'other'
+              brief: "Time spent doing unaccounted things."
+              stability: experimental
+            - id: port
+              value: 'port'
+              brief: "Time spent executing ports."
+              stability: experimental
+            - id: sleep
+              value: 'sleep'
+              brief: "Time spent sleeping."
+              stability: experimental
+            - id: alloc
+              value: 'alloc'
+              brief: "Time spent managing memory. Without extra states this time is spread out over all other states."
+              stability: experimental
+            - id: bif
+              value: 'bif'
+              brief: "Time spent in BIFs. Without extra states this time is part of the emulator state."
+              stability: experimental
+            - id: busy_wait
+              value: 'busy_wait'
+              brief: "Time spent busy waiting."
+              stability: experimental
+            - id: ets
+              value: 'ets'
+              brief: "Time spent executing ETS BIFs. Without extra states this time is part of the emulator state."
+              stability: experimental
+            - id: gc_full
+              value: 'gc_full'
+              brief: "Time spent doing fullsweep garbage collection. Without extra states this time is part of the gc state."
+              stability: experimental
+            - id: nif
+              value: 'nif'
+              brief: "Time spent in NIFs. Without extra states this time is part of the emulator state."
+              stability: experimental
+            - id: send
+              value: 'send'
+              brief: "Time spent sending messages (processes only). Without extra states this time is part of the emulator state."
+              stability: experimental
+            - id: timers
+              value: 'timers'
+              brief: "Time spent managing timers. Without extra states this time is part of the other state."
+              stability: experimental
+        brief: "The work performed for this data point."
+        stability: experimental
+        examples: ["gc"]
+      - id: logical_number
+        type: int
+        stability: experimental
+        brief: "The logical thread number [0..n-1]"
+        examples: [1]
+
+  - id: metric.beam.cpu.scheduler.time
+    type: metric
+    metric_name: beam.cpu.scheduler.time
+    stability: experimental
+    brief: "The main execution threads that do most of the work. See erl +S for more details."
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: beam.cpu.work
+      - ref: beam.cpu.logical_number
+
+  - id: metric.beam.cpu.dirty_cpu_scheduler.time
+    type: metric
+    metric_name: beam.cpu.dirty_cpu_scheduler.time
+    stability: experimental
+    brief: "The threads for long running cpu intensive work. See erl +SDcpu for more details."
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: beam.cpu.work
+      - ref: beam.cpu.logical_number
+
+  - id: metric.beam.cpu.dirty_io_scheduler.time
+    type: metric
+    metric_name: beam.cpu.dirty_io_scheduler.time
+    stability: experimental
+    brief: "The threads for long running I/O work. See erl +SDio for more details."
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: beam.cpu.work
+      - ref: beam.cpu.logical_number
+
+  - id: metric.beam.cpu.async.time
+    type: metric
+    metric_name: beam.cpu.async.time
+    stability: experimental
+    brief: "Async threads are used by various linked-in drivers (mainly the file drivers) do offload non-CPU intensive work. See erl +A for more details."
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: beam.cpu.work
+      - ref: beam.cpu.logical_number
+
+  - id: metric.beam.cpu.aux.time
+    type: metric
+    metric_name: beam.cpu.aux.time
+    stability: experimental
+    brief: "Takes care of any work that is not specifically assigned to a scheduler."
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: beam.cpu.work
+      - ref: beam.cpu.logical_number
+
+  - id: metric.beam.cpu.poll.time
+    type: metric
+    metric_name: beam.cpu.poll.time
+    stability: experimental
+    brief: "Does the IO polling for the emulator. See erl +IOt for more details."
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: beam.cpu.work
+      - ref: beam.cpu.logical_number
