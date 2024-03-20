@@ -50,6 +50,7 @@ semantic conventions when instrumenting runtime environments.
 - [Go](go-metrics.md)
 - [JVM](jvm-metrics.md)
 - [Node.js](nodejs-metrics.md)
+- [BEAM](beam-metrics.md)
 
 ### Attributes
 
