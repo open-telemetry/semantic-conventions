@@ -17,10 +17,10 @@ See also:
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`cloud.resource_id`](../attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | Recommended |
-| `faas.instance` | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [2] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | Recommended |
-| `faas.max_memory` | int | The amount of memory available to the serverless function converted to Bytes. [3] | `134217728` | Recommended |
-| `faas.name` | string | The name of the single function that this runtime instance executes. [4] | `my-function`; `myazurefunctionapp/some-function-name` | Required |
-| `faas.version` | string | The immutable version of the function being executed. [5] | `26`; `pinkfroid-00002` | Recommended |
+| [`faas.instance`](../attributes-registry/faas.md) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [2] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | Recommended |
+| [`faas.max_memory`](../attributes-registry/faas.md) | int | The amount of memory available to the serverless function converted to Bytes. [3] | `134217728` | Recommended |
+| [`faas.name`](../attributes-registry/faas.md) | string | The name of the single function that this runtime instance executes. [4] | `my-function`; `myazurefunctionapp/some-function-name` | Required |
+| [`faas.version`](../attributes-registry/faas.md) | string | The immutable version of the function being executed. [5] | `26`; `pinkfroid-00002` | Recommended |
 
 **[1]:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.

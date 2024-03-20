@@ -8,13 +8,16 @@
 <!-- semconv registry.http(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
+| `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
 | `http.request.header.<key>` | string[] | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` |
 | `http.request.method` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>HTTP request method. [2] | `GET`; `POST`; `HEAD` |
 | `http.request.method_original` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` |
 | `http.request.resend_count` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` |
+| `http.request.size` | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` |
 | `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
 | `http.response.header.<key>` | string[] | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` |
+| `http.response.size` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
 | `http.response.status_code` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
 | `http.route` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` |
 
@@ -45,6 +48,13 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[5]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+
+`http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `active` | active state. |
+| `idle` | idle state. |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

@@ -1,0 +1,4 @@
+change_type: deprecation
+component: db
+note: Deprecate `db.connection_string` attribute in favor of `server.address` and `server.port`
+issues: [724, 769]

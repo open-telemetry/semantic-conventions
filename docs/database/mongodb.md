@@ -12,9 +12,9 @@ described on this page.
 
 `db.system` MUST be set to `"mongodb"`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.mongodb(full,tag=call-level-tech-specific) -->
+<!-- semconv db.mongodb(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`db.mongodb.collection`](../attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. | `customers`; `products` | Required |
@@ -26,7 +26,6 @@ described on this page.
 | :---------------------- | :----------------------------------------------------------- |
 | Span name               | `"products.findAndModify"` |
 | `db.system`             | `"mongodb"` |
-| `db.connection_string`  | not set |
 | `db.user`               | `"the_user"` |
 | `server.address`        | `"mongodb0.example.com"` |
 | `server.port`           | `27017` |
