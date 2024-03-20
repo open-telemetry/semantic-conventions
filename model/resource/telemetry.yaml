@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: sdk.name
         type: string
+        stability: stable
         requirement_level: required
         brief: >
           The name of the telemetry SDK as defined above.
@@ -46,11 +47,13 @@ groups:
               value: "swift"
             - id: webjs
               value: "webjs"
+        stability: stable
         requirement_level: required
         brief: >
           The language of the telemetry SDK.
       - id: sdk.version
         type: string
+        stability: stable
         requirement_level: required
         brief: >
           The version string of the telemetry SDK.

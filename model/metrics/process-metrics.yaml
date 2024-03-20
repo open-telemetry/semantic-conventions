@@ -1,0 +1,120 @@
+groups:
+  - id: attributes.process.cpu
+    prefix: process.cpu
+    type: attribute_group
+    brief: "Attributes for process CPU metrics."
+    attributes:
+      - id: state
+        brief: "The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
+        type:
+          allow_custom_values: true
+          members:
+            - id: system
+              value: 'system'
+            - id: user
+              value: 'user'
+            - id: wait
+              value: 'wait'
+
+  - id: metric.process.cpu.time
+    type: metric
+    metric_name: process.cpu.time
+    brief: "Total CPU seconds broken down by different states."
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: process.cpu.state
+
+  - id: metric.process.cpu.utilization
+    type: metric
+    metric_name: process.cpu.utilization
+    brief: "Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process."
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: process.cpu.state
+
+  - id: metric.process.memory.usage
+    type: metric
+    metric_name: process.memory.usage
+    brief: "The amount of physical memory in use."
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+
+  - id: metric.process.memory.virtual
+    type: metric
+    metric_name: process.memory.virtual
+    brief: "The amount of committed virtual memory."
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+
+  - id: metric.process.disk.io
+    type: metric
+    metric_name: process.disk.io
+    prefix: process.disk
+    brief: "Disk bytes transferred."
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: disk.io.direction
+
+  - id: metric.process.network.io
+    type: metric
+    metric_name: process.network.io
+    brief: "Network bytes transferred."
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: network.io.direction
+
+  - id: metric.process.thread.count
+    type: metric
+    metric_name: process.thread.count
+    brief: "Process threads count."
+    instrument: updowncounter
+    unit: "{thread}"
+    attributes: []
+
+  - id: metric.process.open_file_descriptor.count
+    type: metric
+    metric_name: process.open_file_descriptor.count
+    brief: "Number of file descriptors in use by the process."
+    instrument: updowncounter
+    unit: "{count}"
+    attributes: []
+
+  - id: metric.process.context_switches
+    type: metric
+    metric_name: process.context_switches
+    brief: "Number of times the process has been context switched."
+    instrument: counter
+    unit: "{count}"
+    attributes:
+      - id: process.context_switch_type
+        brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
+        type:
+          allow_custom_values: true
+          members:
+            - id: voluntary
+              value: 'voluntary'
+            - id: involuntary
+              value: 'involuntary'
+
+  - id: metric.process.paging.faults
+    type: metric
+    metric_name: process.paging.faults
+    brief: "Number of page faults the process has made."
+    instrument: counter
+    unit: "{fault}"
+    attributes:
+      - id: process.paging.fault_type
+        brief: "The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults."
+        type:
+          allow_custom_values: true
+          members:
+            - id: major
+              value: 'major'
+            - id: minor
+              value: 'minor'

@@ -1,7 +1,7 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Cloud Providers
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/cloud-providers/_index.md
+  from: tmp/semconv/docs/cloud-providers/_index.md
   to: cloud-providers/README.md
 --->
 

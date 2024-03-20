@@ -33,6 +33,17 @@ when creating instruments not explicitly defined in the specification.
 
 <!-- tocstop -->
 
+> **Warning**
+> Existing instrumentations and collector that are using<!-- markdown-link-check-disable-next-line -->
+> [v1.21.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.21.0/docs/system/hardware-metrics.md)
+> (or prior):
+>
+> * SHOULD NOT adopt any breaking changes from document until the system
+>   semantic conventions are marked stable. Conventions include, but are not
+>   limited to, attributes, metric names, and unit of measure.
+> * SHOULD introduce a control mechanism to allow users to opt-in to the new
+>   conventions once the migration plan is finalized.
+
 ## Common hardware attributes
 
 All metrics in `hw.` instruments should be attached to a [Host Resource](/docs/resource/host.md)
@@ -298,7 +309,7 @@ Additional **Recommended** attributes:
 |                                          |                                                                                             |         |                                                   |            | `hw.type` (**Required**)        | `physical_disk`                                 |
 | `hw.physical_disk.endurance_utilization` | Endurance remaining for this SSD disk                                                       | 1       | Gauge                                             | Double     | `state` (**Required**)          | `remaining`                                     |
 | `hw.physical_disk.size`                  | Size of the disk                                                                            | By      | UpDownCounter                                     | Int64      |                                 |                                                 |
-| `hw.physical_disk.smart`                 | Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) attribute | 1       | Gauge                                             | Int        | `smart_attribute` (Recommended) | `Seek Error Rate`, `Spin Retry Count`, etc.     |
+| `hw.physical_disk.smart`                 | Value of the corresponding [S.M.A.R.T.](https://en.wikipedia.org/wiki/S.M.A.R.T.) attribute | 1       | Gauge                                             | Int        | `smart_attribute` (Recommended) | `Seek Error Rate`, `Spin Retry Count`, etc.     |
 | `hw.status`                              | Operational status: `1` (true) or `0` (false) for each of the possible states               |         | UpDownCounter                                     | Int        | `state` (**Required**)          | `ok`, `degraded`, `failed`, `predicted_failure` |
 |                                          |                                                                                             |         |                                                   |            | `hw.type` (**Required**)        | `physical_disk`                                 |
 

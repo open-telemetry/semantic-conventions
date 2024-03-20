@@ -1,7 +1,7 @@
 groups:
   - id: registry.device
     prefix: device
-    type: resource
+    type: attribute_group
     brief: >
         Describes device attributes.
     attributes:

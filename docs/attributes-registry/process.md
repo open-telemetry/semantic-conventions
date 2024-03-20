@@ -14,7 +14,7 @@
 | `process.executable.name` | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
 | `process.executable.path` | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
 | `process.owner` | string | The username of the user that owns the process. | `root` |
-| `process.parent_pid` | int | Parent Process identifier (PID). | `111` |
+| `process.parent_pid` | int | Parent Process identifier (PPID). | `111` |
 | `process.pid` | int | Process identifier (PID). | `1234` |
 | `process.runtime.description` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` |
 | `process.runtime.name` | string | The name of the runtime of this process. For compiled native binaries, this SHOULD be the name of the compiler. | `OpenJDK Runtime Environment` |

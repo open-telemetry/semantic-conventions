@@ -1,0 +1,120 @@
+groups:
+  - id: common.kestrel.attributes
+    type: attribute_group
+    brief: 'Common kestrel attributes'
+    attributes:
+      - ref: server.address
+      - ref: server.port
+      - ref: network.type
+        requirement_level:
+          recommended: if the transport is `tcp` or `udp`
+      - ref: network.transport
+        examples: ['tcp', 'unix']
+
+  - id: metric.kestrel.active_connections
+    type: metric
+    metric_name: kestrel.active_connections
+    brief: Number of connections that are currently active on the server.
+    instrument: updowncounter
+    unit: "{connection}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
+    extends: common.kestrel.attributes
+
+  - id: metric.kestrel.connection.duration
+    type: metric
+    metric_name: kestrel.connection.duration
+    brief: The duration of connections on the server.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
+    extends: common.kestrel.attributes
+    attributes:
+      - ref: network.protocol.name
+        examples: ['http', 'web_sockets']
+      - ref: network.protocol.version
+        examples: ["1.1", "2"]
+      - ref: tls.protocol.version
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: "Captures the exception type when a connection fails."
+        examples: ['System.OperationCanceledException', 'Contoso.MyException']
+
+  - id: metric.kestrel.rejected_connections
+    type: metric
+    metric_name: kestrel.rejected_connections
+    brief: Number of connections rejected by the server.
+    instrument: counter
+    unit: "{connection}"
+    note: |
+      Connections are rejected when the currently active count exceeds the value configured with `MaxConcurrentConnections`.
+      Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
+    extends: common.kestrel.attributes
+
+  - id: metric.kestrel.queued_connections
+    type: metric
+    metric_name: kestrel.queued_connections
+    brief: Number of connections that are currently queued and are waiting to start.
+    instrument: updowncounter
+    unit: "{connection}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
+    extends: common.kestrel.attributes
+
+  - id: metric.kestrel.queued_requests
+    type: metric
+    metric_name: kestrel.queued_requests
+    brief: Number of HTTP requests on multiplexed connections (HTTP/2 and HTTP/3) that are currently queued and are waiting to start.
+    instrument: updowncounter
+    unit: "{request}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
+    extends: common.kestrel.attributes
+    attributes:
+      - ref: network.protocol.name
+        examples: ['http', 'web_sockets']
+      - ref: network.protocol.version
+        examples: ["1.1", "2"]
+
+  - id: metric.kestrel.upgraded_connections
+    type: metric
+    metric_name: kestrel.upgraded_connections
+    brief: Number of connections that are currently upgraded (WebSockets). .
+    instrument: updowncounter
+    unit: "{connection}"
+    note: |
+      The counter only tracks HTTP/1.1 connections.
+
+      Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
+    extends: common.kestrel.attributes
+
+  - id: metric.kestrel.tls_handshake.duration
+    type: metric
+    metric_name: kestrel.tls_handshake.duration
+    brief: The duration of TLS handshakes on the server.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
+    extends: common.kestrel.attributes
+    attributes:
+      - ref: tls.protocol.version
+      - ref: error.type
+        brief: The full name of exception type.
+        note: "Captures the exception type when a TLS handshake fails."
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException', 'Contoso.MyException']
+
+  - id: metric.kestrel.active_tls_handshakes
+    type: metric
+    metric_name: kestrel.active_tls_handshakes
+    brief: Number of TLS handshakes that are currently in progress on the server.
+    instrument: updowncounter
+    unit: "{handshake}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
+    extends: common.kestrel.attributes

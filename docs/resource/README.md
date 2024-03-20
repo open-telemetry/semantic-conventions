@@ -1,7 +1,7 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Resource
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/resource/_index.md
+  from: tmp/semconv/docs/resource/_index.md
   to: resource/README.md
 --->
 
@@ -20,7 +20,7 @@ This document defines standard attributes for resources. These attributes are ty
 - [Document Conventions](#document-conventions)
 - [Attributes with Special Handling](#attributes-with-special-handling)
   * [Semantic Attributes with Dedicated Environment Variable](#semantic-attributes-with-dedicated-environment-variable)
-- [Semantic Attributes with SDK-provided Default Value](#semantic-attributes-with-sdk-provided-default-value)
+  * [Semantic Attributes with SDK-provided Default Value](#semantic-attributes-with-sdk-provided-default-value)
 - [Service](#service)
 - [Service (Experimental)](#service-experimental)
 - [Telemetry SDK](#telemetry-sdk)
@@ -63,7 +63,7 @@ as specified in [OpenTelemetry Environment Variable Specification](https://githu
 
 - [`service.name`](#service)
 
-## Semantic Attributes with SDK-provided Default Value
+### Semantic Attributes with SDK-provided Default Value
 
 These are the attributes which MUST be provided by the SDK
 as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
@@ -82,8 +82,8 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 <!-- semconv service -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `service.name` | string | Logical name of the service. [1] | `shoppingcart` | Required |
-| `service.version` | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | Recommended |
+| `service.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Logical name of the service. [1] | `shoppingcart` | Required |
+| `service.version` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | Recommended |
 
 **[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md#process), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 <!-- endsemconv -->
@@ -132,9 +132,9 @@ service.name = Shop.shoppingcart
 <!-- semconv telemetry -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `telemetry.sdk.language` | string | The language of the telemetry SDK. | `cpp` | Required |
-| `telemetry.sdk.name` | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | Required |
-| `telemetry.sdk.version` | string | The version string of the telemetry SDK. | `1.2.3` | Required |
+| `telemetry.sdk.language` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The language of the telemetry SDK. | `cpp` | Required |
+| `telemetry.sdk.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The name of the telemetry SDK as defined above. [1] | `opentelemetry` | Required |
+| `telemetry.sdk.version` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The version string of the telemetry SDK. | `1.2.3` | Required |
 
 **[1]:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the

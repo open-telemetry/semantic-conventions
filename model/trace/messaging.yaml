@@ -77,17 +77,9 @@ groups:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
       - ref: messaging.message.id
-        requirement_level:
-          recommended: Only for spans that represent an operation on a single message.
       - ref: messaging.message.conversation_id
-        requirement_level:
-          recommended: Only if span represents operation on a single message.
       - ref: messaging.message.envelope.size
-        requirement_level:
-          recommended: Only if span represents operation on a single message.
       - ref: messaging.message.body.size
-        requirement_level:
-          recommended: Only if span represents operation on a single message.
       - ref: server.address
       - ref: network.peer.address
         tag: connection-level
@@ -172,3 +164,29 @@ groups:
         tag: tech-specific-gcp-pubsub
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
+  - id: messaging.servicebus
+    type: attribute_group
+    extends: messaging
+    brief: >
+      Attributes for Azure Service Bus
+    attributes:
+      - ref: messaging.servicebus.message.delivery_count
+        requirement_level:
+          conditionally_required: If delivery count is available and is bigger than 0.
+      - ref: messaging.servicebus.message.enqueued_time
+      - ref: messaging.servicebus.destination.subscription_name
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
+  - id: messaging.eventhubs
+    type: attribute_group
+    extends: messaging
+    brief: >
+      Attributes for Azure Event Hubs
+    attributes:
+      - ref: messaging.eventhubs.message.enqueued_time
+      - ref: messaging.eventhubs.destination.partition.id
+        requirement_level:
+          conditionally_required: If available.
+      - ref: messaging.eventhubs.consumer.group
+        requirement_level:
+          conditionally_required: If not default ("$Default").

@@ -1,0 +1,177 @@
+groups:
+  - id: aspnetcore
+    prefix: aspnetcore
+    type: attribute_group
+    brief: ASP.NET Core attributes
+    attributes:
+      - id: rate_limiting.policy
+        type: string
+        brief: Rate limiting policy name.
+        examples: ["fixed", "sliding", "token"]
+        requirement_level:
+          conditionally_required: if the matched endpoint for the request had a rate-limiting policy.
+      - id: rate_limiting.result
+        type:
+          allow_custom_values: true
+          members:
+            - id: acquired
+              value: 'acquired'
+              brief: "Lease was acquired"
+            - id: endpoint_limiter
+              value: 'endpoint_limiter'
+              brief: "Lease request was rejected by the endpoint limiter"
+            - id: global_limiter
+              value: 'global_limiter'
+              brief: "Lease request was rejected by the global limiter"
+            - id: request_canceled
+              value: 'request_canceled'
+              brief: "Lease request was canceled"
+        brief: Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
+        examples: ["acquired", "request_canceled"]
+        requirement_level: required
+      - id: routing.is_fallback
+        type: boolean
+        brief: A value that indicates whether the matched route is a fallback route.
+        examples: [true]
+        requirement_level:
+          conditionally_required: If and only if a route was successfully matched.
+      - id: diagnostics.handler.type
+        type: string
+        brief: Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler)
+          implementation that handled the exception.
+        examples: ["Contoso.MyHandler"]
+        requirement_level:
+          conditionally_required: if and only if the exception was handled by this handler.
+      - id: request.is_unhandled
+        type: boolean
+        brief: Flag indicating if request was handled by the application pipeline.
+        examples: [true]
+        requirement_level:
+          conditionally_required: if and only if the request was not handled.
+
+  # routing
+  - id: metric.aspnetcore.routing.match_attempts
+    type: metric
+    metric_name: aspnetcore.routing.match_attempts
+    brief: Number of requests that were attempted to be matched to an endpoint.
+    instrument: counter
+    unit: "{match_attempt}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Routing`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: http.route
+        requirement_level:
+          conditionally_required: if and only if a route was successfully matched.
+      - ref: aspnetcore.routing.is_fallback
+        requirement_level:
+          conditionally_required: if and only if a route was successfully matched.
+      - id: aspnetcore.routing.match_status
+        type:
+          allow_custom_values: true
+          members:
+            - id: success
+              value: 'success'
+              brief: 'Match succeeded'
+            - id: failure
+              value: 'failure'
+              brief: 'Match failed'
+        requirement_level: required
+        brief: Match result - success or failure
+        examples: ["success", "failure"]
+
+  # diagnostics
+  - id: metric.aspnetcore.diagnostics.exceptions
+    type: metric
+    metric_name: aspnetcore.diagnostics.exceptions
+    brief: Number of exceptions caught by exception handling middleware.
+    instrument: counter
+    unit: "{exception}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Diagnostics`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: error.type
+        brief: The full name of exception type.
+        examples: ['System.OperationCanceledException', 'Contoso.MyException']
+        requirement_level: required
+      - ref: aspnetcore.diagnostics.handler.type
+      - id: aspnetcore.diagnostics.exception.result
+        type:
+          members:
+            - id: handled
+              value: 'handled'
+              brief: "Exception was handled by the exception handling middleware."
+            - id: unhandled
+              value: 'unhandled'
+              brief: "Exception was not handled by the exception handling middleware."
+            - id: skipped
+              value: 'skipped'
+              brief: "Exception handling was skipped because the response had started."
+            - id: aborted
+              value: 'aborted'
+              brief: "Exception handling didn't run because the request was aborted."
+        requirement_level: required
+        brief: ASP.NET Core exception middleware handling result
+        examples: ["handled", "unhandled"]
+
+  # rate_limiting
+  - id: metric.aspnetcore.rate_limiting.active_request_leases
+    type: metric
+    metric_name: aspnetcore.rate_limiting.active_request_leases
+    brief: Number of requests that are currently active on the server that hold a rate limiting lease.
+    instrument: updowncounter
+    unit: "{request}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: aspnetcore.rate_limiting.policy
+
+  - id: metric.aspnetcore.rate_limiting.request_lease.duration
+    type: metric
+    metric_name: aspnetcore.rate_limiting.request_lease.duration
+    brief: The duration of rate limiting lease held by requests on the server.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: aspnetcore.rate_limiting.policy
+
+  - id: metric.aspnetcore.rate_limiting.request.time_in_queue
+    type: metric
+    metric_name: aspnetcore.rate_limiting.request.time_in_queue
+    brief: The time the request spent in a queue waiting to acquire a rate limiting lease.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: aspnetcore.rate_limiting.policy
+      - ref: aspnetcore.rate_limiting.result
+
+  - id: metric.aspnetcore.rate_limiting.queued_requests
+    type: metric
+    metric_name: aspnetcore.rate_limiting.queued_requests
+    brief: Number of requests that are currently queued, waiting to acquire a rate limiting lease.
+    instrument: updowncounter
+    unit: "{request}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: aspnetcore.rate_limiting.policy
+
+  - id: metric.aspnetcore.rate_limiting.requests
+    type: metric
+    metric_name: aspnetcore.rate_limiting.requests
+    brief: Number of requests that tried to acquire a rate limiting lease.
+    instrument: counter
+    unit: "{request}"
+    note: |
+      Requests could be:
+
+      * Rejected by global or endpoint rate limiting policies
+      * Canceled while waiting for the lease.
+
+      Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+    attributes:
+      - ref: aspnetcore.rate_limiting.policy
+      - ref: aspnetcore.rate_limiting.result

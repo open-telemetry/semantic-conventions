@@ -7,37 +7,37 @@ groups:
       - id: method
         type: string
         brief: 'Deprecated, use `http.request.method` instead.'
-        stability: deprecated
+        deprecated: "Replaced by `http.request.method`."
         examples: ["GET", "POST", "HEAD"]
       - id: status_code
         type: int
         brief: 'Deprecated, use `http.response.status_code` instead.'
-        stability: deprecated
+        deprecated: "Replaced by `http.response.status_code`."
         examples: [200]
       - id: scheme
         type: string
         brief: 'Deprecated, use `url.scheme` instead.'
-        stability: deprecated
+        deprecated: "Replaced by `url.scheme` instead."
         examples: ['http', 'https']
       - id: url
         type: string
         brief: 'Deprecated, use `url.full` instead.'
-        stability: deprecated
+        deprecated: "Replaced by `url.full`."
         examples: ['https://www.foo.bar/search?q=OpenTelemetry#SemConv']
       - id: target
         type: string
         brief: 'Deprecated, use `url.path` and `url.query` instead.'
-        stability: deprecated
+        deprecated: "Split to `url.path` and `url.query."
         examples: ['/search?q=OpenTelemetry#SemConv']
       - id: request_content_length
         type: int
         brief: 'Deprecated, use `http.request.header.content-length` instead.'
-        stability: deprecated
+        deprecated: "Replaced by `http.request.header.content-length`."
         examples: 3495
       - id: response_content_length
         type: int
         brief: 'Deprecated, use `http.response.header.content-length` instead.'
-        stability: deprecated
+        deprecated: "Replaced by `http.response.header.content-length`."
         examples: 3495
       - id: flavor
         type:
@@ -62,10 +62,10 @@ groups:
               value: 'QUIC'
               brief: 'QUIC protocol.'
         brief: 'Deprecated, use `network.protocol.name` instead.'
-        stability: deprecated
+        deprecated: "Replaced by `network.protocol.name`."
       - id: user_agent
         type: string
         brief: 'Deprecated, use `user_agent.original` instead.'
         examples: ['CERN-LineMode/2.15 libwww/2.17b3',
                    'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1']
-        stability: deprecated
+        deprecated: "Replaced by `user_agent.original`."

@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: name
         type: string
+        stability: stable
         requirement_level: required
         brief: >
           Logical name of the service.
@@ -18,6 +19,7 @@ groups:
         examples: ["shoppingcart"]
       - id: version
         type: string
+        stability: stable
         brief: >
           The version string of the service API or implementation. The format is not defined by these conventions.
         examples: ["2.0.0", "a01dbef8a"]

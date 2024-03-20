@@ -1,0 +1,149 @@
+groups:
+  - id: metric.dotnet.dns.lookup.duration
+    type: metric
+    metric_name: dns.lookup.duration
+    brief: Measures the time taken to perform a DNS lookup.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `System.Net.NameResolution`; Added in: .NET 8.0
+    attributes:
+      - id: dns.question.name
+        type: string
+        brief: The name being queried.
+        requirement_level: required
+        examples: ["www.example.com", "dot.net"]
+        note: >
+          The name being queried.
+
+          If the name field contains non-printable
+          characters (below 32 or above 126), those characters should be represented
+          as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped.
+          Tabs, carriage returns, and line feeds should be converted to \t, \r, and
+          \n respectively.
+      - ref: error.type
+        brief: One of the resolution errors or the full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: |
+          The following errors codes are reported:
+
+          - "host_not_found"
+          - "try_again"
+          - "address_family_not_supported"
+          - "no_recovery"
+
+          See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror)
+          for more details.
+        examples: ["host_not_found", "no_recovery", "System.Net.Sockets.SocketException"]
+
+  - id: dotnet.http.client.common.attributes
+    type: attribute_group
+    brief: "Common HTTP client attributes"
+    attributes:
+      - ref: url.scheme
+        examples: ['http', 'https', 'ftp']
+      - ref: server.address
+        requirement_level: required
+        brief: >
+          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: >
+          If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
+          `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not the default (`80` for `http` scheme, `443` for `https`).
+        brief: >
+          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+
+  - id: dotnet.http.client.connection.attributes
+    type: attribute_group
+    brief: "Common HTTP client attributes"
+    extends: dotnet.http.client.common.attributes
+    attributes:
+      - ref: network.protocol.version
+        brief: HTTP protocol version of the connection in the connection pool.
+        note: >
+          HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`.
+          So, the `network.protocol.version` value reported on connection metrics is different than the one reported
+          on request-level metrics or spans for HTTP 1.0 requests.
+        examples: ["1.1", "2", "3"]
+
+  - id: dotnet.http.client.request.attributes
+    type: attribute_group
+    brief: "Common HTTP client attributes"
+    extends: dotnet.http.client.common.attributes
+    attributes:
+      - ref: http.request.method
+        note: >
+          HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+          If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`.
+          It's not possible at the moment to override the list of known HTTP methods.
+
+  - id: metric.dotnet.http.client.open_connections
+    type: metric
+    metric_name: http.client.open_connections
+    brief: "Number of outbound HTTP connections that are currently active or idle on the client."
+    instrument: updowncounter
+    unit: "{connection}"
+    note: >
+      Meter name: `System.Net.Http`; Added in: .NET 8.0
+    extends: dotnet.http.client.connection.attributes
+    attributes:
+      - id: http.connection.state
+        type:
+          members:
+            - id: active
+              value: "active"
+              brief: 'active state.'
+            - id: idle
+              value: "idle"
+              brief: 'idle state.'
+        brief: State of the HTTP connection in the HTTP connection pool.
+        requirement_level: required
+        examples: ["active", "idle"]
+      - ref: network.peer.address
+        brief: Remote IP address of the socket connection.
+        examples: ["10.1.2.80"]
+
+  - id: metric.dotnet.http.client.connection.duration
+    type: metric
+    metric_name: http.client.connection.duration
+    brief: "The duration of the successfully established outbound HTTP connections."
+    instrument: histogram
+    unit: "s"
+    note: >
+      Meter name: `System.Net.Http`; Added in: .NET 8.0
+    extends: dotnet.http.client.connection.attributes
+    attributes:
+      - ref: network.peer.address
+
+  - id: metric.dotnet.http.client.active_requests
+    type: metric
+    metric_name: http.client.active_requests
+    brief: "Number of active HTTP requests."
+    instrument: updowncounter
+    unit: "{request}"
+    note: >
+      Meter name: `System.Net.Http`; Added in: .NET 8.0
+    extends: dotnet.http.client.request.attributes
+
+  - id: metric.dotnet.http.client.request.time_in_queue
+    type: metric
+    metric_name: http.client.request.time_in_queue
+    brief: "The amount of time requests spent on a queue waiting for an available connection."
+    instrument: histogram
+    unit: "s"
+    note: >
+      Meter name: `System.Net.Http`; Added in: .NET 8.0
+    extends: dotnet.http.client.connection.attributes
+    attributes:
+      - ref: http.request.method
+        note: >
+          HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+          and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+          If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`.
+          It's not possible at the moment to override the list of known HTTP methods.

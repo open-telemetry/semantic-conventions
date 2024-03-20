@@ -18,5 +18,5 @@ groups:
         requirement_level: opt_in
       - ref: container.command_args
         requirement_level: opt_in
-      - ref: container.labels
+      - ref: container.label
       - ref: oci.manifest.digest

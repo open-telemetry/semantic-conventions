@@ -10,7 +10,7 @@
       "replacement": "{{BASEURL}}/"
     },
     {
-      "pattern": "^https://github.com/open-telemetry/semantic-conventions/(blob|tree)/[^/]+/docs/",
+      "pattern": "^https://github.com/open-telemetry/semantic-conventions/(blob|tree)/main/docs/",
       "replacement": "LINK-CHECK-ERROR-USE-LOCAL-PATH-TO-DOC-PAGE-NOT-EXTERNAL-URL/"
     }
   ],
