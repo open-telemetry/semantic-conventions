@@ -44,4 +44,3 @@ groups:
           For ios crashes
         type: string
         examples: ['*Contents of PL CrashReporter crash report*']
-
