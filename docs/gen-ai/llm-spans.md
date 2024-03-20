@@ -38,16 +38,16 @@ These attributes track input data and metadata for a request to an LLM. Each att
 <!-- semconv gen_ai.llm.request -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`gen_ai.llm.request.max_tokens`](../attributes-registry/llm.md) | int | The maximum number of tokens the LLM generates for a request. | `100` | Recommended |
-| [`gen_ai.llm.request.model`](../attributes-registry/llm.md) | string | The name of the LLM a request is being made to. [1] | `gpt-4` | Required |
-| [`gen_ai.llm.request.temperature`](../attributes-registry/llm.md) | double | The temperature setting for the LLM request. | `0.0` | Recommended |
-| [`gen_ai.llm.request.top_p`](../attributes-registry/llm.md) | double | The top_p sampling setting for the LLM request. | `1.0` | Recommended |
-| [`gen_ai.llm.response.finish_reason`](../attributes-registry/llm.md) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `[['stop']]` | Recommended |
-| [`gen_ai.llm.response.id`](../attributes-registry/llm.md) | string | The unique identifier for the completion. | `chatcmpl-123` | Recommended |
-| [`gen_ai.llm.response.model`](../attributes-registry/llm.md) | string | The name of the LLM a response is being made to. [2] | `gpt-4-0613` | Required |
-| [`gen_ai.llm.system`](../attributes-registry/llm.md) | string | The name of the LLM foundation model vendor, if applicable. [3] | `openai` | Recommended |
-| [`gen_ai.llm.usage.completion_tokens`](../attributes-registry/llm.md) | int | The number of tokens used in the LLM response (completion). | `180` | Recommended |
-| [`gen_ai.llm.usage.prompt_tokens`](../attributes-registry/llm.md) | int | The number of tokens used in the LLM prompt. | `100` | Recommended |
+| [`gen_ai.llm.request.max_tokens`](../attributes-registry/gen-ai.md) | int | The maximum number of tokens the LLM generates for a request. | `100` | Recommended |
+| [`gen_ai.llm.request.model`](../attributes-registry/gen-ai.md) | string | The name of the LLM a request is being made to. [1] | `gpt-4` | Required |
+| [`gen_ai.llm.request.temperature`](../attributes-registry/gen-ai.md) | double | The temperature setting for the LLM request. | `0.0` | Recommended |
+| [`gen_ai.llm.request.top_p`](../attributes-registry/gen-ai.md) | double | The top_p sampling setting for the LLM request. | `1.0` | Recommended |
+| [`gen_ai.llm.response.finish_reason`](../attributes-registry/gen-ai.md) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `[['stop']]` | Recommended |
+| [`gen_ai.llm.response.id`](../attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | Recommended |
+| [`gen_ai.llm.response.model`](../attributes-registry/gen-ai.md) | string | The name of the LLM a response is being made to. [2] | `gpt-4-0613` | Required |
+| [`gen_ai.llm.system`](../attributes-registry/gen-ai.md) | string | The name of the LLM foundation model vendor, if applicable. [3] | `openai` | Recommended |
+| [`gen_ai.llm.usage.completion_tokens`](../attributes-registry/gen-ai.md) | int | The number of tokens used in the LLM response (completion). | `180` | Recommended |
+| [`gen_ai.llm.usage.prompt_tokens`](../attributes-registry/gen-ai.md) | int | The number of tokens used in the LLM prompt. | `100` | Recommended |
 
 **[1]:** The name of the LLM a request is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model requested. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
@@ -65,7 +65,7 @@ The event name MUST be `gen_ai.llm.content.prompt`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`gen_ai.llm.prompt`](../attributes-registry/llm.md) | string | The full prompt sent to an LLM, as a stringified JSON in OpenAI's format. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | Recommended |
+| [`gen_ai.llm.prompt`](../attributes-registry/gen-ai.md) | string | The full prompt sent to an LLM, as a stringified JSON in OpenAI's format. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | Recommended |
 
 **[1]:** The full prompt sent to an LLM in a request, structured as a JSON in OpenAI's format.
 <!-- endsemconv -->
@@ -75,7 +75,7 @@ The event name MUST be `gen_ai.llm.content.completion`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`gen_ai.llm.completion`](../attributes-registry/llm.md) | string | The full response received from the LLM, as a stringified JSON in OpenAI's format. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | Recommended |
+| [`gen_ai.llm.completion`](../attributes-registry/gen-ai.md) | string | The full response received from the LLM, as a stringified JSON in OpenAI's format. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | Recommended |
 
 **[1]:** The full response from an LLM, structured as a JSON in OpenAI's format.
 <!-- endsemconv -->

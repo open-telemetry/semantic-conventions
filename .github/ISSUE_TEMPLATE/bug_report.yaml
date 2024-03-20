@@ -33,10 +33,10 @@ body:
         - area:error
         - area:exception
         - area:faas
+        - area:gen-ai
         - area:host
         - area:http
         - area:k8s
-        - area:llm
         - area:messaging
         - area:network
         - area:oci
