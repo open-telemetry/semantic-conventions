@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: instance.name
         type: string
+        stability: experimental
         brief: >
           The instance name of a GCE instance. This is the value
           provided by `host.name`, the visible name of the instance in
@@ -17,6 +18,7 @@ groups:
         examples: ['instance-1', 'my-vm-name']
       - id: instance.hostname
         type: string
+        stability: experimental
         brief: >
           The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
         examples: ['my-host1234.example.com', 'sample-vm.us-west1-b.c.my-project.internal']

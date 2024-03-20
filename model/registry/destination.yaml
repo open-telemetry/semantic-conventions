@@ -12,6 +12,7 @@ groups:
     attributes:
       - id: address
         type: string
+        stability: experimental
         brief: "Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
         note: >
           When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent
@@ -19,5 +20,6 @@ groups:
         examples: ['destination.example.com', '10.1.2.80', '/tmp/my.sock']
       - id: port
         type: int
+        stability: experimental
         brief: 'Destination port number'
         examples: [3389, 2888]

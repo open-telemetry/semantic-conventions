@@ -1,0 +1,7 @@
+change_type: breaking
+
+component: db
+
+note: Remove `network.transport` and `network.type` attributes from database semantic conventions, clarify when `network.peer.address|port` should be populated.
+
+issues: [690, 768]

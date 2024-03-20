@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: name
         type: string
+        stability: experimental
         requirement_level: required
         brief: >
           Identifies the class / type of event.

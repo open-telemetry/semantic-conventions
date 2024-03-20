@@ -82,15 +82,11 @@ groups:
       - ref: messaging.message.body.size
       - ref: server.address
       - ref: network.peer.address
-        tag: connection-level
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
-        tag: connection-level
       - ref: network.transport
-        tag: connection-level
       - ref: network.type
-        tag: connection-level
 
   - id: messaging.rabbitmq
     type: attribute_group
@@ -113,11 +109,13 @@ groups:
     brief: >
       Attributes for Apache Kafka
     attributes:
+      - ref: messaging.destination.partition.id
+        brief: >
+          "String representation of the partition id the message  (or batch) is sent to or received from.""
+        tag: tech-specific-kafka
       - ref: messaging.kafka.message.key
         tag: tech-specific-kafka
       - ref: messaging.kafka.consumer.group
-        tag: tech-specific-kafka
-      - ref: messaging.kafka.destination.partition
         tag: tech-specific-kafka
       - ref: messaging.kafka.message.offset
         tag: tech-specific-kafka
@@ -181,16 +179,21 @@ groups:
       - ref: messaging.servicebus.destination.subscription_name
         requirement_level:
           conditionally_required: If messages are received from the subscription.
+      - ref: messaging.servicebus.disposition_status
+        requirement_level:
+          conditionally_required: if and only if `messaging.operation` is `settle`.
   - id: messaging.eventhubs
     type: attribute_group
     extends: messaging
     brief: >
       Attributes for Azure Event Hubs
     attributes:
-      - ref: messaging.eventhubs.message.enqueued_time
-      - ref: messaging.eventhubs.destination.partition.id
+      - ref: messaging.destination.partition.id
+        brief: >
+          "String representation of the partition id messages are sent to or received from, unique within the Event Hub."
         requirement_level:
           conditionally_required: If available.
+      - ref: messaging.eventhubs.message.enqueued_time
       - ref: messaging.eventhubs.consumer.group
         requirement_level:
           conditionally_required: If not default ("$Default").

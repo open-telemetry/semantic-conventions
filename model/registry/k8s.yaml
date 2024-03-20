@@ -7,11 +7,13 @@ groups:
     attributes:
       - id: cluster.name
         type: string
+        stability: experimental
         brief: >
           The name of the cluster.
         examples: ['opentelemetry-cluster']
       - id: cluster.uid
         type: string
+        stability: experimental
         brief: >
           A pseudo-ID for the cluster, set to the UID of the `kube-system`
           namespace.
@@ -41,41 +43,49 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: node.name
         type: string
+        stability: experimental
         brief: >
           The name of the Node.
         examples: ['node-1']
       - id: node.uid
         type: string
+        stability: experimental
         brief: >
           The UID of the Node.
         examples: ['1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2']
       - id: namespace.name
         type: string
+        stability: experimental
         brief: >
           The name of the namespace that the pod is running in.
         examples: ['default']
       - id: pod.uid
         type: string
+        stability: experimental
         brief: >
           The UID of the Pod.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: pod.name
         type: string
+        stability: experimental
         brief: >
           The name of the Pod.
         examples: ['opentelemetry-pod-autoconf']
       - id: pod.label
         type: template[string]
+        stability: experimental
         brief: >
           The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value.
         examples: ['k8s.pod.label.app=my-app', 'k8s.pod.label.mycompany.io/arch=x64', 'k8s.pod.label.data=']
       - id: pod.annotation
         type: template[string]
+        stability: experimental
         brief: >
           The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
         examples: [ 'k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true', 'k8s.pod.annotation.mycompany.io/arch=x64', 'k8s.pod.annotation.data=' ]
       - id: container.name
         type: string
+        stability: experimental
         brief: >
           The name of the Container from Pod specification, must be unique
           within a Pod. Container runtime usually uses different globally unique
@@ -83,6 +93,7 @@ groups:
         examples: ['redis']
       - id: container.restart_count
         type: int
+        stability: experimental
         brief: >
           Number of times the container was restarted. This attribute can be
           used to identify a particular container (running or stopped) within a
@@ -90,61 +101,73 @@ groups:
         examples: [0, 2]
       - id: replicaset.uid
         type: string
+        stability: experimental
         brief: >
           The UID of the ReplicaSet.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: replicaset.name
         type: string
+        stability: experimental
         brief: >
           The name of the ReplicaSet.
         examples: ['opentelemetry']
       - id: deployment.uid
         type: string
+        stability: experimental
         brief: >
           The UID of the Deployment.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: deployment.name
         type: string
+        stability: experimental
         brief: >
           The name of the Deployment.
         examples: ['opentelemetry']
       - id: statefulset.uid
         type: string
+        stability: experimental
         brief: >
           The UID of the StatefulSet.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: statefulset.name
         type: string
+        stability: experimental
         brief: >
           The name of the StatefulSet.
         examples: ['opentelemetry']
       - id: daemonset.uid
         type: string
+        stability: experimental
         brief: >
           The UID of the DaemonSet.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: daemonset.name
         type: string
+        stability: experimental
         brief: >
           The name of the DaemonSet.
         examples: ['opentelemetry']
       - id: job.uid
         type: string
+        stability: experimental
         brief: >
           The UID of the Job.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: job.name
         type: string
+        stability: experimental
         brief: >
           The name of the Job.
         examples: ['opentelemetry']
       - id: cronjob.uid
         type: string
+        stability: experimental
         brief: >
           The UID of the CronJob.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: cronjob.name
         type: string
+        stability: experimental
         brief: >
           The name of the CronJob.
         examples: ['opentelemetry']
