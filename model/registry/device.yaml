@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: id
         type: string
+        stability: experimental
         brief: >
           A unique identifier representing the device
         note: >
@@ -21,6 +22,7 @@ groups:
         examples: ['2ab2916d-a51f-4ac8-80ee-45ac31a28092']
       - id: manufacturer
         type: string
+        stability: experimental
         brief: >
           The name of the device manufacturer
         note: >
@@ -29,6 +31,7 @@ groups:
         examples: ['Apple', 'Samsung']
       - id: model.identifier
         type: string
+        stability: experimental
         brief: >
           The model identifier for the device
         note: >
@@ -38,6 +41,7 @@ groups:
         examples: ['iPhone3,4', 'SM-G920F']
       - id: model.name
         type: string
+        stability: experimental
         brief: >
           The marketing name for the device model
         note: >

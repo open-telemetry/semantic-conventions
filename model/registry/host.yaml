@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: id
         type: string
+        stability: experimental
         brief: >
           Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider.
           For non-containerized systems, this should be the `machine-id`. See the table below for
@@ -14,6 +15,7 @@ groups:
         examples: ['fdbf79e8af94cb7f9e8df36789187052']
       - id: name
         type: string
+        stability: experimental
         brief: >
           Name of the host. On Unix systems, it may contain what the hostname
           command returns, or the fully qualified hostname, or another name
@@ -21,6 +23,7 @@ groups:
         examples: ['opentelemetry-test']
       - id: type
         type: string
+        stability: experimental
         brief: >
           Type of host. For Cloud, this must be the machine type.
         examples: ['n1-standard-1']
@@ -52,25 +55,30 @@ groups:
             - id: x86
               value: 'x86'
               brief: "32-bit x86"
+        stability: experimental
         brief: >
             The CPU architecture the host system is running on.
       - id: image.name
         type: string
+        stability: experimental
         brief: >
           Name of the VM image or OS install the host was instantiated from.
         examples: ['infra-ami-eks-worker-node-7d4ec78312', 'CentOS-8-x86_64-1905']
       - id: image.id
+        stability: experimental
         type: string
         brief: >
           VM image ID or host OS image ID. For Cloud, this value is from the provider.
         examples: ['ami-07b06b442921831e5']
       - id: image.version
+        stability: experimental
         type: string
         brief: >
           The version string of the VM image or host OS as defined in
           [Version Attributes](/docs/resource/README.md#version-attributes).
         examples: ['0.1']
       - id: ip
+        stability: experimental
         type: string[]
         brief: >
           Available IP addresses of the host, excluding loopback interfaces.
@@ -79,6 +87,7 @@ groups:
           MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
         examples: ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]
       - id: mac
+        stability: experimental
         type: string[]
         brief: >
           Available MAC addresses of the host, excluding loopback interfaces.
@@ -87,6 +96,7 @@ groups:
           as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
         examples: ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
       - id: cpu.vendor.id
+        stability: experimental
         type: string
         brief: >
           Processor manufacturer identifier. A maximum 12-character string.
@@ -95,27 +105,32 @@ groups:
           Writing these to memory in this order results in a 12-character string.
         examples: [ 'GenuineIntel' ]
       - id: cpu.family
+        stability: experimental
         type: string
         brief: >
           Family or generation of the CPU.
         examples: [ '6', 'PA-RISC 1.1e' ]
       - id: cpu.model.id
+        stability: experimental
         type: string
         brief: >
           Model identifier. It provides more granular information about the CPU, distinguishing it from
           other CPUs within the same family.
         examples: [ '6', '9000/778/B180L' ]
       - id: cpu.model.name
+        stability: experimental
         type: string
         brief: >
           Model designation of the processor.
         examples: [ '11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz' ]
       - id: cpu.stepping
+        stability: experimental
         type: string
         brief: >
           Stepping or core revisions.
         examples: ["1", "r1p1"]
       - id: cpu.cache.l2.size
+        stability: experimental
         type: int
         brief: >
           The amount of level 2 memory cache available to the processor (in Bytes).

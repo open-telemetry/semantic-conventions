@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: namespace
         type: string
+        stability: experimental
         brief: >
           A namespace for `service.name`.
         note: >
@@ -20,6 +21,7 @@ groups:
         examples: ["Shop"]
       - id: instance.id
         type: string
+        stability: experimental
         brief: >
           The string ID of the service instance.
         note: |

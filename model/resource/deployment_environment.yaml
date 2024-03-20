@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: environment
         type: string
+        stability: experimental
         brief: >
           Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
           (aka deployment tier).
