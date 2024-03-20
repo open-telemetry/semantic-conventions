@@ -6,9 +6,9 @@
 <!-- toc -->
 
 - [Generic LLM Attributes](#generic-llm-attributes)
-  * [Request Attributes](#request-attributes)
-  * [Response Attributes](#response-attributes)
-  * [Event Attributes](#event-attributes)
+  - [Request Attributes](#request-attributes)
+  - [Response Attributes](#response-attributes)
+  - [Event Attributes](#event-attributes)
 
 <!-- tocstop -->
 

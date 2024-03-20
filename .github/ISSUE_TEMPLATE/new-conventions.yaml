@@ -38,6 +38,7 @@ body:
         - area:host
         - area:http
         - area:k8s
+        - area:llm
         - area:messaging
         - area:network
         - area:oci

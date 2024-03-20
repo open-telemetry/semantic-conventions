@@ -54,7 +54,7 @@ groups:
     name: gen_ai.llm.content.completion
     type: event
     brief: >
-      In the lifetime of an LLM span, events for prompts sent and completions received 
+      In the lifetime of an LLM span, events for prompts sent and completions received
       may be created, depending on the configuration of the instrumentation.
     attributes:
       - ref: gen_ai.llm.completion

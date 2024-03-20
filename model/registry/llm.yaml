@@ -62,6 +62,6 @@ groups:
         tag: llm-generic-events
       - id: completion
         type: string
-        brief:  The full response received from the LLM, as a stringified JSON in OpenAI's format.
+        brief: The full response received from the LLM, as a stringified JSON in OpenAI's format.
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
         tag: llm-generic-events
