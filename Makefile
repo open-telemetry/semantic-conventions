@@ -62,7 +62,7 @@ markdown-toc:
 	@for f in $(ALL_DOCS); do \
 		if grep -q '<!-- tocstop -->' $$f; then \
 			echo markdown-toc: processing $$f; \
-			npx --no -- markdown-toc --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
+			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
 		else \
 			echo markdown-toc: no TOC markers, skipping $$f; \
 		fi; \
@@ -117,12 +117,13 @@ fix-format:
 
 # Run all checks in order of speed / likely failure.
 .PHONY: check
-check: misspell markdownlint markdown-link-check check-format
+check: misspell markdownlint check-format markdown-toc markdown-link-check
+	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation misspell-correction fix-format
+fix: table-generation misspell-correction fix-format markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
@@ -149,3 +150,9 @@ chlog-preview: $(CHLOGGEN)
 .PHONY: chlog-update
 chlog-update: $(CHLOGGEN)
 	$(CHLOGGEN) update --config $(CHLOGGEN_CONFIG) --version $(VERSION)
+
+# Updates the areas (registry yaml file names) on all ISSUE_TEMPLATE
+# files that have the "area" dropdown field
+.PHONY: generate-gh-issue-templates
+generate-gh-issue-templates:
+	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh

@@ -13,10 +13,10 @@ linkTitle: CloudEvents Spans
 - [Definitions](#definitions)
 - [Overview](#overview)
 - [Conventions](#conventions)
-  * [Spans](#spans)
-    + [Creation](#creation)
-    + [Processing](#processing)
-  * [Attributes](#attributes)
+  - [Spans](#spans)
+    - [Creation](#creation)
+    - [Processing](#processing)
+  - [Attributes](#attributes)
 
 <!-- tocstop -->
 

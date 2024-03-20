@@ -11,7 +11,7 @@ This article defines semantic conventions for DNS metrics emitted by .NET.
 <!-- toc -->
 
 - [DNS metrics](#dns-metrics)
-  * [Metric: `dns.lookup.duration`](#metric-dnslookupduration)
+  - [Metric: `dns.lookup.duration`](#metric-dnslookupduration)
 
 <!-- tocstop -->
 
@@ -19,19 +19,17 @@ This article defines semantic conventions for DNS metrics emitted by .NET.
 
 ### Metric: `dns.lookup.duration`
 
-this metric SHOULD be specified with
+This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.dotnet.dns.lookup.duration(metric_table) -->
+<!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `dns.lookup.duration` | Histogram | `s` | Measures the time taken to perform a DNS lookup. [1] |
 
 **[1]:** Meter name: `System.Net.NameResolution`; Added in: .NET 8.0
-<!-- endsemconv -->
 
-<!-- semconv metric.dotnet.dns.lookup.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `dns.question.name` | string | The name being queried. [1] | `www.example.com`; `dot.net` | Required |
@@ -55,6 +53,5 @@ for more details.
 | Value  | Description |
 |---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
-<!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

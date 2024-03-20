@@ -19,10 +19,14 @@ described on this page.
 |---|---|---|---|---|
 | [`db.redis.database_index`](../attributes-registry/db.md) | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute. | `0`; `1`; `15` | Conditionally Required: If other than the default database (`0`). |
 | [`db.statement`](../attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [1] | `HMSET myhash field1 'Hello' field2 'World'` | Recommended: [2] |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [3] | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: if and only if `network.peer.address` is set. |
 
 **[1]:** For **Redis**, the value provided for `db.statement` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.statement`.
 
 **[2]:** Should be collected by default only if there is sanitization that excludes sensitive information.
+
+**[3]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 <!-- endsemconv -->
 
 ## Example
@@ -34,7 +38,6 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 |:--------------------------| :-------------------------------------------- |
 | Span name                 | `"HMSET myhash"` |
 | `db.system`               | `"redis"` |
-| `db.connection_string`    | not set |
 | `db.user`                 | not set |
 | `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |
