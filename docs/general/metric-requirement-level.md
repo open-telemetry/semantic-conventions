@@ -1,4 +1,4 @@
-# Metric Requirement Levels for Semantic Conventions
+# Metric Requirement Levels
 
 **Status**: [Stable][DocumentStatus]
 
