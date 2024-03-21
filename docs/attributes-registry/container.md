@@ -11,7 +11,7 @@
 | `container.command` | string | The command used to run the container (i.e. the command name). [1] | `otelcontribcol` |
 | `container.command_args` | string[] | All the command arguments (including the command/executable itself) run by the container. [2] | `[otelcontribcol, --config, config.yaml]` |
 | `container.command_line` | string | The full command run by the container as a single string representing the full command. [2] | `otelcontribcol --config config.yaml` |
-| `container.cpu.state` | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `kernel` |
+| `container.cpu.state` | string | The CPU state for this data point. | `user`; `kernel` |
 | `container.id` | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` |
 | `container.image.id` | string | Runtime specific image identifier. Usually a hash algorithm followed by a UUID. [2] | `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` |
 | `container.image.name` | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` |

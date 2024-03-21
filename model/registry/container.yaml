@@ -96,7 +96,7 @@ groups:
           Container labels, `<key>` being the label name, the value being the label value.
         examples: [ 'container.label.app=nginx' ]
       - id: cpu.state
-        brief: "The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
+        brief: "The CPU state for this data point."
         type:
           allow_custom_values: true
           members:

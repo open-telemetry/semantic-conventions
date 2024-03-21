@@ -10,7 +10,7 @@ linkTitle: Container
 
 ### Metric: `container.cpu.time`
 
-This metric is optional.
+This metric is [opt-in][MetricOptIn].
 
 <!-- semconv metric.container.cpu.time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -36,7 +36,7 @@ This metric is optional.
 
 ### Metric: `container.memory.usage`
 
-This metric is optional.
+This metric is [opt-in][MetricOptIn].
 
 <!-- semconv metric.container.memory.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -51,7 +51,7 @@ This metric is optional.
 
 ### Metric: `container.disk.io`
 
-This metric is optional.
+This metric is [opt-in][MetricOptIn].
 
 <!-- semconv metric.container.disk.io(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -77,7 +77,7 @@ This metric is optional.
 
 ### Metric: `container.network.io`
 
-This metric is optional.
+This metric is [opt-in][MetricOptIn].
 
 <!-- semconv metric.container.network.io(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -102,3 +102,4 @@ This metric is optional.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md#opt-in
