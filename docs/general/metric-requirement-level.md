@@ -1,6 +1,6 @@
 # Metric Requirement Levels for Semantic Conventions
 
-**Status**: [Stable](../document-status.md)
+**Status**: [Stable][DocumentStatus]
 
 <details>
 <summary>Table of Contents</summary>
@@ -38,3 +38,6 @@ Instrumentations SHOULD emit the metric if and only if the user configures the i
 Instrumentation that doesn't support configuration MUST NOT emit `Opt-In` metrics.
 
 This attribute requirement level is recommended for metrics that are particularly expensive to retrieve or might pose a security or privacy risk. These should therefore only be enabled deliberately by a user making an informed decision.
+
+[DocumentStatus]:
+  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
