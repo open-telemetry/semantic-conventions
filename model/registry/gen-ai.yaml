@@ -1,12 +1,17 @@
 groups:
   - id: registry.llm
-    prefix: gen_ai.llm
+    prefix: gen_ai
     type: attribute_group
     brief: >
       This document defines the attributes used to describe telemetry in the context of LLM (Large Language Models) requests and responses.
     attributes:
       - id: system
-        type: string
+        type:
+          allow_custom_values: true
+          members:
+            - id: openai
+              value: "OpenAI"
+              brief: 'OpenAI models like GPT, DALL-E, Sora, etc.'
         brief: The name of the LLM foundation model vendor, if applicable.
         examples: 'openai'
         tag: llm-generic-request
@@ -40,7 +45,7 @@ groups:
         brief: The name of the LLM a response is being made to.
         examples: ['gpt-4-0613']
         tag: llm-generic-response
-      - id: response.finish_reason
+      - id: response.finish_reasons
         type: string[]
         brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
         examples: [['stop']]
