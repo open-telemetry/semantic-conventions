@@ -48,7 +48,7 @@ groups:
       - id: response.finish_reasons
         type: string[]
         brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
-        examples: [['stop']]
+        examples: ['stop']
         tag: llm-generic-response
       - id: usage.prompt_tokens
         type: int
