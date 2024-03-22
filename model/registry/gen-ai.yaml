@@ -11,7 +11,7 @@ groups:
           members:
             - id: openai
               value: "OpenAI"
-              brief: 'OpenAI models like GPT, DALL-E, Sora, etc.'
+              brief: 'OpenAI'
         brief: The name of the LLM foundation model vendor, if applicable.
         examples: 'openai'
         tag: llm-generic-request
