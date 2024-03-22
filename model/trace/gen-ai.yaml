@@ -7,7 +7,6 @@ groups:
       - ref: gen_ai.system
         requirement_level: required
         note: >
-          The name of the LLM foundation model vendor, if applicable.
           If not using a vendor-supplied model, provide a custom friendly name, such as a name of the company or project.
           If the instrumetnation reports any attributes specific to a custom model, the value provided in the `gen_ai.system` SHOULD match the custom attribute namespace segment.
           For example, if `gen_ai.system` is set to `the_best_llm`, custom attributes should be added in the `gen_ai.the_best_llm.*` namespace.
