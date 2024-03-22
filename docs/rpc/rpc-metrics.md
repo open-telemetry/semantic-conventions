@@ -289,4 +289,4 @@ More specific Semantic Conventions are defined for the following RPC technologie
 * [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
