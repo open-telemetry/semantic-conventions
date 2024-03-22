@@ -29,7 +29,7 @@ groups:
         requirement_level:
           conditionally_required: if response was received
         note: >
-          The name of the LLM a response is being made to. If the LLM is supplied by a vendor,
+          The name of the LLM serving a response. If the LLM is supplied by a vendor,
           then the value must be the exact name of the model actually used. If the LLM is a
           fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: gen_ai.response.finish_reasons
