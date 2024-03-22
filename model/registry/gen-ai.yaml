@@ -1,5 +1,5 @@
 groups:
-  - id: registry.llm
+  - id: registry.gen_ai
     prefix: gen_ai
     type: attribute_group
     brief: >
