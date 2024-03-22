@@ -52,7 +52,7 @@ groups:
       - ref: gen_ai.prompt
         requirement_level: recommended
         note: >
-          The full prompt sent to an LLM in a request, structured as a JSON in OpenAI's format.
+          The full prompt sent to an LLM in a request, structured as JSON in OpenAI's format.
 
   - id: gen_ai.content.completion
     name: gen_ai.content.completion
