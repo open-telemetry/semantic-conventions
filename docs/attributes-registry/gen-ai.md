@@ -5,7 +5,7 @@
 
 <!-- toc -->
 
-- [Generic GenAI Attributes](#generic-llm-attributes)
+- [Generic LLM Attributes](#generic-llm-attributes)
   - [Request Attributes](#request-attributes)
   - [Response Attributes](#response-attributes)
   - [Event Attributes](#event-attributes)
@@ -16,7 +16,7 @@
 
 ### Request Attributes
 
-<!-- semconv registry.llm(omit_requirement_level,tag=llm-generic-request) -->
+<!-- semconv registry.gen_ai(omit_requirement_level,tag=llm-generic-request) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `gen_ai.request.max_tokens` | int | The maximum number of tokens the LLM generates for a request. | `100` |
@@ -34,7 +34,7 @@
 
 ### Response Attributes
 
-<!-- semconv registry.llm(omit_requirement_level,tag=llm-generic-response) -->
+<!-- semconv registry.gen_ai(omit_requirement_level,tag=llm-generic-response) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `gen_ai.response.finish_reasons` | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `[stop]` |
@@ -46,7 +46,7 @@
 
 ### Event Attributes
 
-<!-- semconv registry.llm(omit_requirement_level,tag=llm-generic-events) -->
+<!-- semconv registry.gen_ai(omit_requirement_level,tag=llm-generic-events) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `gen_ai.completion` | string | The full response received from the LLM. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` |
