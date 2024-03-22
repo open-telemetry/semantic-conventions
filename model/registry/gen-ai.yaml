@@ -10,7 +10,7 @@ groups:
           allow_custom_values: true
           members:
             - id: openai
-              value: "OpenAI"
+              value: "openai"
               brief: 'OpenAI'
         brief: The name of the LLM foundation model vendor.
         examples: 'openai'
