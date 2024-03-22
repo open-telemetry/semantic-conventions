@@ -65,4 +65,4 @@ groups:
       - ref: gen_ai.completion
         requirement_level: recommended
         note: >
-          The full response from an LLM, structured as a JSON in OpenAI's format.
+          The full response from an LLM, structured as JSON in OpenAI's format.
