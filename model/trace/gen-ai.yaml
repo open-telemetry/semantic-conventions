@@ -50,7 +50,8 @@ groups:
       may be created, depending on the configuration of the instrumentation.
     attributes:
       - ref: gen_ai.prompt
-        requirement_level: recommended
+        requirement_level: 
+          conditionally_required: if and only if corresponding event is enabled
         note: >
           It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 
@@ -62,6 +63,7 @@ groups:
       may be created, depending on the configuration of the instrumentation.
     attributes:
       - ref: gen_ai.completion
-        requirement_level: recommended
+        requirement_level: 
+          conditionally_required: if and only if corresponding event is enabled
         note: >
           It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)

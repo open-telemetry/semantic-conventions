@@ -66,7 +66,7 @@ The event name MUST be `gen_ai.content.prompt`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`gen_ai.prompt`](../attributes-registry/gen-ai.md) | string | The full prompt sent to an LLM. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | Recommended |
+| [`gen_ai.prompt`](../attributes-registry/gen-ai.md) | string | The full prompt sent to an LLM. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | Conditionally Required: if and only if corresponding event is enabled |
 
 **[1]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 <!-- endsemconv -->
@@ -76,7 +76,7 @@ The event name MUST be `gen_ai.content.completion`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`gen_ai.completion`](../attributes-registry/gen-ai.md) | string | The full response received from the LLM. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | Recommended |
+| [`gen_ai.completion`](../attributes-registry/gen-ai.md) | string | The full response received from the LLM. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | Conditionally Required: if and only if corresponding event is enabled |
 
 **[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 <!-- endsemconv -->
