@@ -23,6 +23,7 @@
 |---|---|---|---|
 | `messaging.batch.message_count` | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` |
 | `messaging.client_id` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
+| `messaging.consumer.group.name` | string | The name of the consumer group message or batch consumer is associated with. | `my-group`; `indexer` |
 | `messaging.destination.anonymous` | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  |
 | `messaging.destination.name` | string | The message destination name [2] | `MyQueue`; `MyTopic` |
 | `messaging.destination.partition.id` | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
@@ -94,7 +95,6 @@ size should be used.
 <!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-kafka) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `messaging.kafka.consumer.group` | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` |
 | `messaging.kafka.message.key` | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [1] | `myKey` |
 | `messaging.kafka.message.offset` | int | The offset of a record in the corresponding Kafka partition. | `42` |
 | `messaging.kafka.message.tombstone` | boolean | A boolean that is true if the message is a tombstone. |  |
@@ -116,7 +116,6 @@ size should be used.
 <!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-rocketmq) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `messaging.rocketmq.client_group` | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` |
 | `messaging.rocketmq.consumption_model` | string | Model of message consumption. This only applies to consumer spans. | `clustering` |
 | `messaging.rocketmq.message.delay_time_level` | int | The delay time level for delay message, which determines the message delay time. | `3` |
 | `messaging.rocketmq.message.delivery_timestamp` | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` |
@@ -148,7 +147,6 @@ size should be used.
 <!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-eventhubs) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `messaging.eventhubs.consumer.group` | string | The name of the consumer group the event consumer is associated with. | `indexer` |
 | `messaging.eventhubs.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 <!-- endsemconv -->
 
@@ -157,7 +155,6 @@ size should be used.
 <!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-servicebus) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `messaging.servicebus.destination.subscription_name` | string | The name of the subscription in the topic messages are received from. | `mySubscription` |
 | `messaging.servicebus.disposition_status` | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete` |
 | `messaging.servicebus.message.delivery_count` | int | Number of deliveries that have been attempted for this message. | `2` |
 | `messaging.servicebus.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
@@ -177,5 +174,7 @@ size should be used.
 <!-- semconv attributes.messaging.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `messaging.kafka.destination.partition` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>"Deprecated, use `messaging.destination.partition.id` instead." | `2` |
+| `messaging.kafka.consumer.group` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `messaging.consumer.group.name` instead. | `my-group` |
+| `messaging.kafka.destination.partition` | int | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `messaging.destination.partition.id` instead. | `2` |
+| `messaging.rocketmq.client_group` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `messaging.consumer.group.name` instead. | `myConsumerGroup` |
 <!-- endsemconv -->

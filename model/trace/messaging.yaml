@@ -47,15 +47,18 @@ groups:
       - ref: messaging.destination_publish.name
       - ref: messaging.destination_publish.anonymous
 
-  - id: messaging
-    type: span
+  - id: messaging.span.attributes
+    type: attribute_group
     brief: >
-        This document defines general attributes used in
+        This document defines span attributes used in
         messaging systems.
     extends: messaging.attributes.common
     attributes:
       - ref: messaging.operation
         requirement_level: required
+      - ref: messaging.consumer.group.name
+        requirement_level:
+          conditionally_required: On consumer spans.
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
@@ -88,9 +91,29 @@ groups:
       - ref: network.transport
       - ref: network.type
 
+  - id: messaging
+    type: span
+    brief: >
+        This document defines general attributes used in
+        messaging systems.
+    extends: messaging.span.attributes
+    attributes:
+        # TODO: merge messaging group with messaging.span.attributes
+        # and move the note to the registry once
+        # https://github.com/open-telemetry/build-tools/issues/299 is resolved
+      - ref: messaging.consumer.group.name
+        note:
+          Consumer groups are used to distribute messages to one or more consumer instances and
+          are commonly used in fan-out (aka one-to-many) scenarios.
+          When multiple consumer groups are used, message is delivered to each group separately, allowing different applications
+          to consume the same message at their own pace.
+
+          Some messaging systems such as Apache Pulsar, GCP PubSub or Azure Service Bus use the term "subscription"
+          instead of "consumer group".
+
   - id: messaging.rabbitmq
     type: attribute_group
-    extends: messaging
+    extends: messaging.span.attributes
     brief: >
       Attributes for RabbitMQ
     attributes:
@@ -105,17 +128,17 @@ groups:
 
   - id: messaging.kafka
     type: attribute_group
-    extends: messaging
+    extends: messaging.span.attributes
     brief: >
       Attributes for Apache Kafka
     attributes:
+      - ref: messaging.consumer.group.name
+        tag: tech-specific-kafka
       - ref: messaging.destination.partition.id
         brief: >
           "String representation of the partition id the message  (or batch) is sent to or received from.""
         tag: tech-specific-kafka
       - ref: messaging.kafka.message.key
-        tag: tech-specific-kafka
-      - ref: messaging.kafka.consumer.group
         tag: tech-specific-kafka
       - ref: messaging.kafka.message.offset
         tag: tech-specific-kafka
@@ -126,14 +149,13 @@ groups:
 
   - id: messaging.rocketmq
     type: attribute_group
-    extends: messaging
+    extends: messaging.span.attributes
     brief: >
       Attributes for Apache RocketMQ
     attributes:
-      - ref: messaging.rocketmq.namespace
-        requirement_level: required
+      - ref: messaging.consumer.group.name
         tag: tech-specific-rocketmq
-      - ref: messaging.rocketmq.client_group
+      - ref: messaging.rocketmq.namespace
         requirement_level: required
         tag: tech-specific-rocketmq
       - ref: messaging.rocketmq.message.delivery_timestamp
@@ -158,42 +180,48 @@ groups:
         tag: tech-specific-rocketmq
   - id: messaging.gcp_pubsub
     type: attribute_group
-    extends: messaging
+    extends: messaging.span.attributes
     brief: >
       Attributes for Google Cloud Pub/Sub
     attributes:
+      - ref: messaging.consumer.group.name
+        brief: >
+          The name of the Pub/Sub topic subscription.
+        tag: tech-specific-gcp-pubsub
       - ref: messaging.gcp_pubsub.message.ordering_key
         tag: tech-specific-gcp-pubsub
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
   - id: messaging.servicebus
     type: attribute_group
-    extends: messaging
+    extends: messaging.span.attributes
     brief: >
       Attributes for Azure Service Bus
     attributes:
+      - ref: messaging.consumer.group.name
+        brief: >
+          The name of the Service Bus topic subscription.
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
       - ref: messaging.servicebus.message.delivery_count
         requirement_level:
           conditionally_required: If delivery count is available and is bigger than 0.
       - ref: messaging.servicebus.message.enqueued_time
-      - ref: messaging.servicebus.destination.subscription_name
-        requirement_level:
-          conditionally_required: If messages are received from the subscription.
       - ref: messaging.servicebus.disposition_status
         requirement_level:
           conditionally_required: if and only if `messaging.operation` is `settle`.
   - id: messaging.eventhubs
     type: attribute_group
-    extends: messaging
+    extends: messaging.span.attributes
     brief: >
       Attributes for Azure Event Hubs
     attributes:
+      - ref: messaging.consumer.group.name
+        requirement_level:
+          conditionally_required: On consumer spans and if not default (`$Default``).
       - ref: messaging.destination.partition.id
         brief: >
           "String representation of the partition id messages are sent to or received from, unique within the Event Hub."
         requirement_level:
           conditionally_required: If available.
       - ref: messaging.eventhubs.message.enqueued_time
-      - ref: messaging.eventhubs.consumer.group
-        requirement_level:
-          conditionally_required: If not default ("$Default").

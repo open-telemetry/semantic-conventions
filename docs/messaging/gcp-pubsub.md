@@ -16,6 +16,7 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 <!-- semconv messaging.gcp_pubsub(full,tag=tech-specific-gcp-pubsub) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
+| [`messaging.consumer.group.name`](../attributes-registry/messaging.md) | string | The name of the Pub/Sub topic subscription. | `my-group`; `indexer` | Conditionally Required: On consumer spans. |
 | [`messaging.gcp_pubsub.message.ordering_key`](../attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | Conditionally Required: If the message type has an ordering key set. |
 <!-- endsemconv -->
 
