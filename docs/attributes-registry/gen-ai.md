@@ -23,13 +23,13 @@
 | `gen_ai.request.model` | string | The name of the LLM a request is being made to. | `gpt-4` |
 | `gen_ai.request.temperature` | double | The temperature setting for the LLM request. | `0.0` |
 | `gen_ai.request.top_p` | double | The top_p sampling setting for the LLM request. | `1.0` |
-| `gen_ai.system` | string | The name of the LLM foundation model vendor, if applicable. | `openai` |
+| `gen_ai.system` | string | The name of the LLM foundation model vendor. | `openai` |
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
 |---|---|
-| `OpenAI` | OpenAI models like GPT, DALL-E, Sora, etc. |
+| `openai` | OpenAI |
 <!-- endsemconv -->
 
 ### Response Attributes
@@ -37,7 +37,7 @@
 <!-- semconv registry.llm(omit_requirement_level,tag=llm-generic-response) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `gen_ai.response.finish_reasons` | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `[['stop']]` |
+| `gen_ai.response.finish_reasons` | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `[stop]` |
 | `gen_ai.response.id` | string | The unique identifier for the completion. | `chatcmpl-123` |
 | `gen_ai.response.model` | string | The name of the LLM a response is being made to. | `gpt-4-0613` |
 | `gen_ai.usage.completion_tokens` | int | The number of tokens used in the LLM response (completion). | `180` |
@@ -49,6 +49,10 @@
 <!-- semconv registry.llm(omit_requirement_level,tag=llm-generic-events) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `gen_ai.completion` | string | The full response received from the LLM, as a stringified JSON in OpenAI's format. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` |
-| `gen_ai.prompt` | string | The full prompt sent to an LLM, as a stringified JSON in OpenAI's format. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` |
+| `gen_ai.completion` | string | The full response received from the LLM. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` |
+| `gen_ai.prompt` | string | The full prompt sent to an LLM. [2] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` |
+
+**[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+
+**[2]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 <!-- endsemconv -->
