@@ -12,7 +12,7 @@ groups:
             - id: openai
               value: "OpenAI"
               brief: 'OpenAI'
-        brief: The name of the LLM foundation model vendor, if applicable.
+        brief: The name of the LLM foundation model vendor.
         examples: 'openai'
         tag: llm-generic-request
       - id: request.model
