@@ -9,7 +9,7 @@ path_base_for_github_subdir:
 
 **Status**: [Experimental][DocumentStatus]
 
-This document defines semantic conventions for the following kind of AI systems:
+This document defines semantic conventions for the following kind of Generative AI systems:
 
 * LLMs
 
