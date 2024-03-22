@@ -2,7 +2,7 @@
 linkTitle: AI
 path_base_for_github_subdir:
   from: content/en/docs/specs/semconv/ai/_index.md
-  to: database/README.md
+  to: gen-ai/README.md
 --->
 
 # Semantic Conventions for AI systems
