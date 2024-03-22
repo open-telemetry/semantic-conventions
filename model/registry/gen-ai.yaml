@@ -62,7 +62,8 @@ groups:
         tag: llm-generic-response
       - id: prompt
         type: string
-        brief: The full prompt sent to an LLM, as a stringified JSON in OpenAI's format.
+        brief: The full prompt sent to an LLM.
+        note: It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
         examples: ["[{'role': 'user', 'content': 'What is the capital of France?'}]"]
         tag: llm-generic-events
       - id: completion
