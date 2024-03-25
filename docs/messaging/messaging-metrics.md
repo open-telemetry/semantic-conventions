@@ -179,6 +179,6 @@ _Note: The need to report `messaging.process.messages` depends on the messaging 
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
-[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#required
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#recommended
-[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#opt-in
+[MetricRequired]: /docs/general/metric-requirement-level.md#required
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[MetricOptIn]: /docs/general/metric-requirement-level.md#opt-in
