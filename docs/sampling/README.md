@@ -24,8 +24,8 @@ linkTitle: Sampling
 
 These attributes reflect the effect of sampling in a telemetry
 collection pipeline.  These attributes describe how items of telemetry
-were collected, making it possible to define Span-to-Metrics pipelines
-and Logs-to-Metrics pipelines, which accurately count Spans and Log
+were collected, making it possible for Span-to-Metrics pipelines
+and Logs-to-Metrics pipelines to accurately count Spans and Log
 Records of telemetry, before sampling, in a probabilistic sense.
 
 These attributes MAY be modified by components in a collection
@@ -216,7 +216,7 @@ using randomness from the TraceID, has selected field values like:
 
 ```
   trace_id: 4bf92f3577b34da6a3ce929d0e0e4736
-  tracestate: ot=tv:c
+  tracestate: ot=th:c
 ```
 
 We can verify that the sampling decision was made correctly as follows.
@@ -257,7 +257,7 @@ field) is selected by a tail sampler at 10% probability.  A
 
 A log record containing a TraceID is received with no sampling
 attributes and is selected by a tail sampler at 10% probability.  A
-sampling threshold is inserted
+sampling threshold is inserted:
 
 ```
   trace_id: 4bf92f3577b34da6a3fe929d0e0e4736
