@@ -35,6 +35,7 @@ body:
         - area:error
         - area:exception
         - area:faas
+        - area:file
         - area:host
         - area:http
         - area:k8s
