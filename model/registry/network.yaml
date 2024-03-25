@@ -7,18 +7,22 @@ groups:
     attributes:
       - id: carrier.icc
         type: string
+        stability: experimental
         brief: "The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network."
         examples: "DE"
       - id: carrier.mcc
         type: string
+        stability: experimental
         brief: "The mobile carrier country code."
         examples: "310"
       - id: carrier.mnc
         type: string
+        stability: experimental
         brief: "The mobile carrier network code."
         examples: "001"
       - id: carrier.name
         type: string
+        stability: experimental
         brief: "The name of the mobile carrier."
         examples: "sprint"
       - id: connection.subtype
@@ -88,6 +92,7 @@ groups:
             - id: lte_ca
               brief: LTE CA
               value: "lte_ca"
+        stability: experimental
         brief: 'This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.'
         examples: 'LTE'
       - id: connection.type
@@ -104,6 +109,7 @@ groups:
               value: "unavailable"
             - id: unknown
               value: "unknown"
+        stability: experimental
         brief: 'The internet connection type.'
         examples: 'wifi'
       - id: local.address
@@ -135,12 +141,12 @@ groups:
       - id: protocol.version
         stability: stable
         type: string
-        brief: Version of the protocol specified in `network.protocol.name`.
-        examples: '3.1.1'
+        brief: The actual version of the protocol used for network communication.
+        examples: ['1.1', '2']
         note: >
-          `network.protocol.version` refers to the version of the protocol used and might be
-          different from the protocol client's version. If the HTTP client has a version
-          of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+          If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)),
+          this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known,
+          this attribute SHOULD NOT be set.
       - id: transport
         stability: stable
         type:
@@ -190,5 +196,6 @@ groups:
               value: 'transmit'
             - id: receive
               value: 'receive'
+        stability: experimental
         brief: "The network IO operation direction."
         examples: ["transmit"]

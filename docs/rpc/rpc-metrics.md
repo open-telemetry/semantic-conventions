@@ -17,20 +17,20 @@ metrics can be filtered for finer grain analysis.
 <!-- toc -->
 
 - [Metric instruments](#metric-instruments)
-  * [RPC Server](#rpc-server)
-    + [Metric: `rpc.server.duration`](#metric-rpcserverduration)
-    + [Metric: `rpc.server.request.size`](#metric-rpcserverrequestsize)
-    + [Metric: `rpc.server.response.size`](#metric-rpcserverresponsesize)
-    + [Metric: `rpc.server.requests_per_rpc`](#metric-rpcserverrequests_per_rpc)
-    + [Metric: `rpc.server.responses_per_rpc`](#metric-rpcserverresponses_per_rpc)
-  * [RPC Client](#rpc-client)
-    + [Metric: `rpc.client.duration`](#metric-rpcclientduration)
-    + [Metric: `rpc.client.request.size`](#metric-rpcclientrequestsize)
-    + [Metric: `rpc.client.response.size`](#metric-rpcclientresponsesize)
-    + [Metric: `rpc.client.requests_per_rpc`](#metric-rpcclientrequests_per_rpc)
-    + [Metric: `rpc.client.responses_per_rpc`](#metric-rpcclientresponses_per_rpc)
+  - [RPC Server](#rpc-server)
+    - [Metric: `rpc.server.duration`](#metric-rpcserverduration)
+    - [Metric: `rpc.server.request.size`](#metric-rpcserverrequestsize)
+    - [Metric: `rpc.server.response.size`](#metric-rpcserverresponsesize)
+    - [Metric: `rpc.server.requests_per_rpc`](#metric-rpcserverrequests_per_rpc)
+    - [Metric: `rpc.server.responses_per_rpc`](#metric-rpcserverresponses_per_rpc)
+  - [RPC Client](#rpc-client)
+    - [Metric: `rpc.client.duration`](#metric-rpcclientduration)
+    - [Metric: `rpc.client.request.size`](#metric-rpcclientrequestsize)
+    - [Metric: `rpc.client.response.size`](#metric-rpcclientresponsesize)
+    - [Metric: `rpc.client.requests_per_rpc`](#metric-rpcclientrequests_per_rpc)
+    - [Metric: `rpc.client.responses_per_rpc`](#metric-rpcclientresponses_per_rpc)
 - [Attributes](#attributes)
-  * [Service name](#service-name)
+  - [Service name](#service-name)
 - [Semantic Conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
 
 <!-- tocstop -->
@@ -289,4 +289,4 @@ More specific Semantic Conventions are defined for the following RPC technologie
 * [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

@@ -18,22 +18,22 @@ and various HTTP versions like 1.1, 2 and SPDY.
 - [Status](#status)
 - [Common Attributes](#common-attributes)
 - [HTTP client](#http-client)
-  * [HTTP client span duration](#http-client-span-duration)
-  * [HTTP request retries and redirects](#http-request-retries-and-redirects)
+  - [HTTP client span duration](#http-client-span-duration)
+  - [HTTP request retries and redirects](#http-request-retries-and-redirects)
 - [HTTP server](#http-server)
-  * [HTTP server definitions](#http-server-definitions)
-    + [Setting `server.address` and `server.port` attributes](#setting-serveraddress-and-serverport-attributes)
-    + [Simple client/server example](#simple-clientserver-example)
-    + [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
-  * [HTTP Server semantic conventions](#http-server-semantic-conventions)
+  - [HTTP server definitions](#http-server-definitions)
+    - [Setting `server.address` and `server.port` attributes](#setting-serveraddress-and-serverport-attributes)
+    - [Simple client/server example](#simple-clientserver-example)
+    - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
+  - [HTTP Server semantic conventions](#http-server-semantic-conventions)
 - [Examples](#examples)
-  * [HTTP client-server example](#http-client-server-example)
-  * [HTTP client retries examples](#http-client-retries-examples)
-  * [HTTP client authorization retry examples](#http-client-authorization-retry-examples)
-  * [HTTP client redirects examples](#http-client-redirects-examples)
-  * [HTTP client call: DNS error](#http-client-call-dns-error)
-  * [HTTP client call: Internal Server Error](#http-client-call-internal-server-error)
-  * [HTTP server call: connection dropped before response body was sent](#http-server-call-connection-dropped-before-response-body-was-sent)
+  - [HTTP client-server example](#http-client-server-example)
+  - [HTTP client retries examples](#http-client-retries-examples)
+  - [HTTP client authorization retry examples](#http-client-authorization-retry-examples)
+  - [HTTP client redirects examples](#http-client-redirects-examples)
+  - [HTTP client call: DNS error](#http-client-call-dns-error)
+  - [HTTP client call: Internal Server Error](#http-client-call-internal-server-error)
+  - [HTTP server call: connection dropped before response body was sent](#http-server-call-connection-dropped-before-response-body-was-sent)
 
 <!-- tocstop -->
 
@@ -125,7 +125,7 @@ sections below.
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
 | [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | Conditionally Required: [6] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
+| [`network.protocol.version`](../attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [7] | `1.0`; `1.1`; `2`; `3` | Recommended |
 | [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp` | Opt-In |
 
 **[1]:** If the request fails with an error before response status code was sent or received,
@@ -170,7 +170,7 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[6]:** If not `http` and `network.protocol.version` is set.
 
-**[7]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[7]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 **[8]:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
@@ -246,7 +246,7 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[5]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
-`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed) and SHOULD NOT be validated or modified except for sanitizing purposes.
+`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed). Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
 The following attributes can be important for making sampling decisions and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -346,9 +346,9 @@ For an HTTP server span, `SpanKind` MUST be `Server`.
 | [`network.local.port`](../attributes-registry/network.md) | int | Local socket port. Useful in case of a multi-port host. | `65123` | Opt-In |
 | [`server.address`](../attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`server.port`](../attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [6] | `80`; `8080`; `443` | Conditionally Required: If `server.address` is set. |
-| [`url.path`](../attributes-registry/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component | `/search` | Required |
-| [`url.query`](../attributes-registry/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [7] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [8] | `http`; `https` | Required |
+| [`url.path`](../attributes-registry/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [7] | `/search` | Required |
+| [`url.query`](../attributes-registry/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [8] | `q=OpenTelemetry` | Conditionally Required: If and only if one was received/sent. |
+| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [9] | `http`; `https` | Required |
 | [`user_agent.original`](../attributes-registry/user-agent.md) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | Recommended |
 
 **[1]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for), [X-Forwarded-For](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
@@ -366,9 +366,11 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[6]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
-**[7]:** Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
+**[7]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
-**[8]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[8]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
+
+**[9]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
 The following attributes can be important for making sampling decisions and SHOULD be provided **at span creation time** (if provided at all):
 

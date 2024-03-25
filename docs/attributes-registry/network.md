@@ -22,13 +22,13 @@ These attributes may be used for any network related operation.
 | `network.peer.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | `network.peer.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Peer port number of the network connection. | `65123` |
 | `network.protocol.name` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` |
-| `network.protocol.version` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` |
+| `network.protocol.version` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The actual version of the protocol used for network communication. [2] | `1.1`; `2` |
 | `network.transport` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` |
 | `network.type` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
-**[2]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+**[2]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 **[3]:** The value SHOULD be normalized to lowercase.
 
@@ -100,7 +100,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ## Deprecated Network Attributes
 
-<!-- semconv network-deprecated(omit_requirement_level) -->
+<!-- semconv attributes.network.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `net.host.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.address`. | `example.com` |

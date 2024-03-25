@@ -39,9 +39,11 @@ groups:
               value: data_loss
             - id: unauthenticated
               value: unauthenticated
+        stability: experimental
         brief: "The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
       - id: connect_rpc.request.metadata
         type: template[string[]]
+        stability: experimental
         brief: >
           Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         note: >
@@ -50,6 +52,7 @@ groups:
         examples: ['rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
       - id: connect_rpc.response.metadata
         type: template[string[]]
+        stability: experimental
         brief: >
           Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         note: >
@@ -110,9 +113,11 @@ groups:
             - id: unauthenticated
               brief: UNAUTHENTICATED
               value: 16
+        stability: experimental
         brief: "The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request."
       - id: grpc.request.metadata
         type: template[string[]]
+        stability: experimental
         brief: >
           gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
         note: >
@@ -121,6 +126,7 @@ groups:
         examples: ['rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
       - id: grpc.response.metadata
         type: template[string[]]
+        stability: experimental
         brief: >
           gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
         note: >
@@ -129,14 +135,17 @@ groups:
         examples: ['rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
       - id: jsonrpc.error_code
         type: int
+        stability: experimental
         brief: "`error.code` property of response if it is an error response."
         examples: [-32700, 100]
       - id: jsonrpc.error_message
         type: string
+        stability: experimental
         brief: "`error.message` property of response if it is an error response."
         examples: ['Parse error', 'User already exists']
       - id: jsonrpc.request_id
         type: string
+        stability: experimental
         brief: >
           `id` property of request or response.
           Since protocol allows id to be int, string, `null` or missing (for notifications),
@@ -145,10 +154,12 @@ groups:
         examples: ['10', 'request-7', '']
       - id: jsonrpc.version
         type: string
+        stability: experimental
         brief: "Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted."
         examples: ['2.0', '1.0']
       - id: method
         type: string
+        stability: experimental
         brief: 'The name of the (logical) method being called, must be equal to the $method part in the span name.'
         note: >
           This is the logical name of the method from the RPC interface perspective,
@@ -159,6 +170,7 @@ groups:
         examples: "exampleMethod"
       - id: service
         type: string
+        stability: experimental
         brief: 'The full (logical) name of the service being called, including its package name, if applicable.'
         note: >
           This is the logical name of the service from the RPC interface perspective,
@@ -188,3 +200,4 @@ groups:
             - id: connect_rpc
               value: 'connect_rpc'
               brief: 'Connect RPC'
+        stability: experimental

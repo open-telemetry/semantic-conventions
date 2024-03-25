@@ -18,18 +18,18 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
 <!-- toc -->
 
 - [Metric Instruments](#metric-instruments)
-  * [FaaS Instance](#faas-instance)
-    + [Metric: `faas.invoke_duration`](#metric-faasinvoke_duration)
-    + [Metric: `faas.init_duration`](#metric-faasinit_duration)
-    + [Metric: `faas.coldstarts`](#metric-faascoldstarts)
-    + [Metric: `faas.errors`](#metric-faaserrors)
-    + [Metric: `faas.invocations`](#metric-faasinvocations)
-    + [Metric: `faas.timeouts`](#metric-faastimeouts)
-    + [Metric: `faas.mem_usage`](#metric-faasmem_usage)
-    + [Metric: `faas.cpu_usage`](#metric-faascpu_usage)
-    + [Metric: `faas.net_io`](#metric-faasnet_io)
+  - [FaaS Instance](#faas-instance)
+    - [Metric: `faas.invoke_duration`](#metric-faasinvoke_duration)
+    - [Metric: `faas.init_duration`](#metric-faasinit_duration)
+    - [Metric: `faas.coldstarts`](#metric-faascoldstarts)
+    - [Metric: `faas.errors`](#metric-faaserrors)
+    - [Metric: `faas.invocations`](#metric-faasinvocations)
+    - [Metric: `faas.timeouts`](#metric-faastimeouts)
+    - [Metric: `faas.mem_usage`](#metric-faasmem_usage)
+    - [Metric: `faas.cpu_usage`](#metric-faascpu_usage)
+    - [Metric: `faas.net_io`](#metric-faasnet_io)
 - [References](#references)
-  * [Metric References](#metric-references)
+  - [Metric References](#metric-references)
 
 <!-- tocstop -->
 
@@ -58,7 +58,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- semconv metric.faas.invoke_duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
 `faas.trigger` MUST be one of the following:
 
@@ -88,7 +88,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- semconv metric.faas.init_duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
 `faas.trigger` MUST be one of the following:
 
@@ -114,7 +114,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.coldstarts(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
 `faas.trigger` MUST be one of the following:
 
@@ -140,7 +140,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.errors(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
 `faas.trigger` MUST be one of the following:
 
@@ -166,7 +166,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.invocations(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
 `faas.trigger` MUST be one of the following:
 
@@ -192,7 +192,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.timeouts(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
 `faas.trigger` MUST be one of the following:
 
@@ -218,7 +218,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.mem_usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
 `faas.trigger` MUST be one of the following:
 
@@ -248,7 +248,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- semconv metric.faas.cpu_usage(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
 `faas.trigger` MUST be one of the following:
 
@@ -274,7 +274,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.net_io(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
 
 `faas.trigger` MUST be one of the following:
 
@@ -301,4 +301,4 @@ FaaS providers. This list is not exhaustive.
 * [OpenFaas Metrics](https://docs.openfaas.com/architecture/metrics/)
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

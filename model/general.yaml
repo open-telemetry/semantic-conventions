@@ -34,6 +34,7 @@ groups:
     attributes:
       - id: service
         type: string
+        stability: experimental
         brief: >
           The [`service.name`](/docs/resource/README.md#service)
           of the remote service. SHOULD be equal to the actual `service.name`
@@ -47,6 +48,7 @@ groups:
     attributes:
       - id: id
         type: string
+        stability: experimental
         brief: >
           Username or client_id extracted from the access token or
           [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)
@@ -54,10 +56,12 @@ groups:
         examples: 'username'
       - id: role
         type: string
+        stability: experimental
         brief: 'Actual/assumed role the client is making the request under extracted from token or application security context.'
         examples: 'admin'
       - id: scope
         type: string
+        stability: experimental
         brief: >
           Scopes or granted authorities the client currently possesses extracted from token
           or application security context. The value would come from the scope associated

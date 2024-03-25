@@ -27,6 +27,7 @@ All registered attributes are listed by namespace in this registry.
 
 Currently, the following namespaces exist:
 
+* [Android](android.md)
 * [Browser](browser.md)
 * [Client](client.md)
 * [Cloud](cloud.md)
@@ -38,6 +39,7 @@ Currently, the following namespaces exist:
 * [Disk](disk.md)
 * [Error](error.md)
 * [Exception](exception.md)
+* [FaaS](faas.md)
 * [File](file.md)
 * [Host](host.md)
 * [HTTP](http.md)

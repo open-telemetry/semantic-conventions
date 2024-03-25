@@ -14,6 +14,7 @@ groups:
                    'YourApp/1.0.0 grpc-java-okhttp/1.27.2']
       - id: name
         type: string
+        stability: experimental
         brief: >
           Name of the user-agent extracted from original. Usually refers to the browser's name.
         examples: ['Safari', 'YourApp']
@@ -24,6 +25,7 @@ groups:
           `user_agent.version`
       - id: version
         type: string
+        stability: experimental
         brief: >
           Version of the user-agent extracted from original. Usually refers to the browser's version
         examples: ['14.1.2', '1.0.0']
