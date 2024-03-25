@@ -172,18 +172,18 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cpp` | cpp | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet` | dotnet | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `erlang` | erlang | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `go` | go | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java` | java | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejs` | nodejs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `php` | php | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `python` | python | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ruby` | ruby | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cpp` | cpp | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `dotnet` | dotnet | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `erlang` | erlang | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `go` | go | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `java` | java | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `nodejs` | nodejs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `php` | php | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `python` | python | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ruby` | ruby | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `rust` | rust | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `swift` | swift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `webjs` | webjs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `swift` | swift | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `webjs` | webjs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 ## Telemetry SDK (Experimental)
