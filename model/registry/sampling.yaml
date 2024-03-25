@@ -4,17 +4,6 @@ groups:
     brief: Semantic conventions describing Sampling for telemetry data.
     prefix: sampling
     attributes:
-      - id: priority
-        type: int
-        brief: Allows users and instrumentations to prioritize collection of reported telemetry items.
-        note: >
-          If greater than 0, a hint to the Sampler to do its best to
-          capture the telemetry. If 0, a hint to the Sampler to
-          not-capture the telemetry. If absent, the Sampler should use
-          its default mechanism.
-        examples: [10, 1, 0]
-        sampling_relevant: true
-
       - id: randomness
         type: string
         brief: The source of randomness for making probability sampling decisions, when it is not otherwise recorded.

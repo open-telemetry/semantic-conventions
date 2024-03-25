@@ -81,36 +81,16 @@ sampling based on these properties, [consult OTEP 235][OTEP235].
 
 ### Overriding sampling decisions
 
-Instrumentation authors and end-users that wish to prioritize an item
-of telemetry for collection in spite of sampling can add a
-`sampling.priority` attribute.  This attribute is a suggestion, a way
-of recognizing the importance of a certain event and requesting
-additional consideration from the collection pipeline.  For example, a
-user could write this code snippet:
+Samplers and sampler delgates are encouraged to force a sampling
+decision by configuring a 100% sampling threshold, rather than bypass
+sampling logic.  Forced sampling decisions will have T-value "0",
+indicating 100% sampling.
 
-```
-   if err := doSomething(); err != nil {
-     if err == VERY_SERIOUS {
-       span.SetAttribute("sampling.priority", 10000)
-     }
-     return err
-   }
-```
-
-Samplers and sampling processors SHOULD pass items of telemetry to the
-exporter, independent of their default sampling mechanism, when the
-`sampling.priority` attribute is present and non-zero.
-
-Samplers and sampling processors SHOULD NOT pass items of telemetry to
-the exporter, unconditionally, when the `sampling.priority` attribute
-is present and zero.
-
-Samplers and sampling processors SHOULD apply their default behavior
-when the `sampling.priority` attribute is not present.
-
-Faced with collection limits, samplers and sampling processors SHOULD
-prioritize collecting telemetry with higher `sampling.priority` values
-above telemetry with lower `sampling.priority` values.
+To force sampling decisions in the other direction, a threshold
+corresponding with zero probability can be used.  However, since the
+"do not sample" threshold indicates a record should not be exported,
+there is no specified way to encode "zero probability".  Ultimately,
+the decision not to sample is not a probabilistic decision.
 
 ### Overriding sampling randomness
 
@@ -140,8 +120,9 @@ attribute.
 When determining the Threshold value from an item of telemetry,
 sampler implementations SHOULD:
 
-- use the OpenTelemetry T-value field (`th`) in `tracestate` from the SpanContext (spans and logs)
-- use the `sampling.threshold` attribute value, if present in the record attributes (logs only)
+- use the OpenTelemetry T-value field (`th`) in `tracestate` from a live SpanContext (in context)
+- use the OpenTelemetry T-value field (`th`) in `tracestate` from a Span tracestate (spans data)
+- use the `sampling.threshold` attribute value, if present in the record attributes (logs data)
 
 In both cases, the Threshold value is represented by one to 14
 hexadecimal digits, allowing the use of variable-precision sampling
@@ -159,9 +140,10 @@ sampling is available.
 When determining the Randomness value from an item of telemetry,
 sampler implementations SHOULD:
 
-- use the `tracestate` OpenTelemetry R-value field (`rv`) if it is present (spans only), or
-- use the `sampling.randomness` attribute value if it is present (logs only), or
-- use the least significant 56 bits of the W3C Trace Context TraceID, as described in the W3C Trace Context Level 2 specification.
+- use the OpenTelemetry R-value field (`rv`) in `tracestate` from a live SpanContext (in context)
+- use the OpenTelemetry R-value field (`rv`) in `tracestate` from a Span tracestate (spans data)
+- use the `sampling.randomness` attribute value if it is present (logs data), or
+- use the least significant 56 bits of the W3C Trace Context TraceID, as described in the W3C Trace Context Level 2 specification (in context, spans data, and logs data)
 
 In the first two cases, where Randomness is explicitly encoded, the
 value is represented by exactly 14 hexadecimal digits.
@@ -186,8 +168,8 @@ even sampling randomness may be set to a constant value.
 
 The `sampling.threshold` and `sampling.randomness` attributes are not
 defined for use as Scope or Resource attributes in the present
-specification, because it would lead to ambiguity when
-`sampling.priority` is also used.
+specification, because there is an existing need to encode per-item
+sampling probability, stemming from prioritization schemes.
 
 ## Span sampling attributes
 
