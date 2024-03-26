@@ -31,6 +31,7 @@ Currently, the following namespaces exist:
 * [Browser](browser.md)
 * [Client](client.md)
 * [Cloud](cloud.md)
+* [CloudEvents](cloud-events.md)
 * [Code](code.md)
 * [Container](container.md)
 * [DB](db.md) (database)
