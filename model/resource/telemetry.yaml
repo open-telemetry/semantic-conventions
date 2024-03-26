@@ -52,7 +52,7 @@ groups:
               stability: stable
             - id: rust
               value: "rust"
-              stability: experimental
+              stability: stable
             - id: swift
               value: "swift"
               stability: stable
