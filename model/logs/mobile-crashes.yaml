@@ -1,0 +1,46 @@
+groups:
+  - id: mobile-crash-event
+    prefix: hello
+    type: event
+    brief: >
+      This document defines attributes for crashes represented using Log Record Events.
+      `event.domain` is 'device' and `event.name` is 'crash'.
+    attributes:
+      - ref: ios.state
+        requirement_level:
+          recommended: If the crash occurred on an iOS device.
+      - ref: android.state
+        requirement_level:
+          recommended: If the crash occurred on an Android device.
+      - ref: exception.stacktrace
+        requirement_level:
+          recommended: If the crash occurred on an Android device.
+        brief: >
+          The contents of printStackTrace() being called on the throwable
+      - ref: thread.id
+        requirement_level:
+          recommended: If the crash occurred on an Android device.
+        brief: >
+          The id of the thread as output by Thread.currentThread().getId()
+      - ref: thread.name
+        requirement_level:
+          recommended: If the crash occurred on an Android device.
+        brief: >
+          The name of the thread as output by Thread.currentThread().getName()
+      - ref: exception.message
+        requirement_level:
+          recommended: If the crash occurred on an Android device.
+      - id: ios.crash_report
+        requirement_level:
+          recommended: If the crash occurred on an iOS device.
+        brief: >
+          The contents from PLCrashReporter
+          Contains three primary elements. "images", "threads" and "signal". These could be broken out as individual elements
+          Given that crash reports are only sent on the subsequent execution of the app, both the customer app or the phone os may have been upgraded.   
+          As such both the original app version and os version should be sent.
+          "appMinorVersionAtCrash" - minor version of customer app at crash
+          "appMajorVersionAtCrash" - major version of customer app at crash
+          "osVersionAtCrash" - version of iOS at crash
+          For ios crashes
+        type: string
+        examples: ['*Contents of PL CrashReporter crash report*']
