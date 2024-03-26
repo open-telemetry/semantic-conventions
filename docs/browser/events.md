@@ -8,33 +8,20 @@
 
 <!-- toc -->
 
-- [Browser Events](#events)
-  * [PageView](#pageview)
-  * [PageNavigationTiming](#pagenavigationtiming)
-  * [ResourceTiming](#resourcetiming)
-  * [Exception](#exception)
-  * [UserAction](#useraction)
-  * [WebVital](#webvital)
+- [PageView](#pageview)
+- [PageNavigationTiming](#pagenavigationtiming)
+- [ResourceTiming](#resourcetiming)
+- [Exception](#exception)
+- [UserAction](#useraction)
+- [WebVital](#webvital)
 
 <!-- tocstop -->
 
 </details>
 
-This document describes the semantic conventions for instrumentations that events on browser platform. All browser events MUST use a namespace of `browser` in the `event.name` property.
+This document describes the semantic conventions for events on browser platform. All browser events MUST use a namespace of `browser` in the `event.name` property.
 
-## Events
-
-The events may be represented either as Span Events or Log Events.
-
-All events have the following three high-level attributes. The event name is specified at the beginning of each section below. The payload of the event goes in an attribute called `event.data` of whose value is of type `map`. The contents of the `event.data` map for each event is listed in the sections below.
-
-| Key  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `event.domain` | string | Fixed value: browser ||Required|
-| `event.name` | string | Described in each section below||Required|
-| `event.data` | map | A map of key/value pairs, with the keys for each event described in following sections||Recommended|
-
-### PageView
+## PageView
 
 The event name MUST be `browser.page_view`.
 
@@ -61,55 +48,7 @@ The following table describes the payload fields that MUST be used to describe t
 | `0` | physical_page - Initial page load within the browser and will generally also precede a PageNavigationTiming event.|
 | `1` | virtual_page - This is for Single Page Applications (SPA) where the framework provides the ability to perform client side only page "navigation", the exact definition of what a virtual page change is determined by the SPA and the framework it is using.|
 
-<details>
-<summary>Sample PageView Event</summary>
-
-```json
-    "log_record": {
-        "timeUnixNano":"1581452773000000789",
-        "attributes": [
-            {
-                "key": "event.name",
-                "value": {
-                "stringValue": "browser.page_view"
-                }
-            }
-        ]
-
-        "body": {
-                "kvlistValue": [
-                    {
-                        "key": "type",
-                        "value": {
-                        "intValue": "0"
-                        }
-                    },
-                    {
-                        "key": "url",
-                        "value": {
-                        "stringValue": "https://www.guidgenerator.com/online-guid-generator.aspx"
-                        }
-                    },
-                    {
-                        "key": "referrer",
-                        "value": {
-                        "stringValue": "https://wwww.google.com"
-                        }
-                    },
-                    {
-                        "key": "title",
-                        "value": {
-                        "stringValue": "Free Online GUID Generator"
-                        }
-                    },
-                ]
-        }
-    }
-```
-
-</details>
-
-### PageNavigationTiming
+## PageNavigationTiming
 
 The event name MUST be`page_navigation_timing`.
 
@@ -134,7 +73,7 @@ The following table describes the payload fields that MUST be used to describe t
 | firstPaint | long | || Recommended |
 | firstContentfulPaint | long | || Recommended |
 
-### ResourceTiming
+## ResourceTiming
 
 The event name MUST be `resource_timing`.
 
@@ -157,7 +96,7 @@ The following table describes the payload fields that MUST be used to describe t
 |responseStart | long | || Recommended |
 |responseEnd | long | || Recommended |
 
-### Exception
+## Exception
 
 The event name MUST be `browser.exception`.
 
@@ -174,7 +113,7 @@ The following table describes the payload fields that MUST be used to describe t
 | `exception.stacktrace` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | Recommended |
 | `exception.type` | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | Recommended |
 
-### UserAction
+## UserAction
 
 The event name MUST be`user_action`.
 
@@ -196,7 +135,7 @@ The following table describes the payload fields that MUST be used to describe t
 |---|---|
 | `click` | click |
 
-### WebVital
+## WebVital
 
 The event name MUST be `web_vital`.
 
