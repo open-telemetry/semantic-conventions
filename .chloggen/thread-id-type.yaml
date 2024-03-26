@@ -1,4 +1,4 @@
 change_type: breaking
-component: general
+component: thread
 note: Change type of `thread.id` attribute from int to string
 issues: [546]

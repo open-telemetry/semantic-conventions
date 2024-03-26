@@ -6,7 +6,7 @@ groups:
       These attributes may be used for any operation to store information about a thread that started a span.
     attributes:
       - id: id
-        type: int
+        type: string
         stability: experimental
         brief: >
           Current "managed" thread ID (as opposed to OS thread ID).
