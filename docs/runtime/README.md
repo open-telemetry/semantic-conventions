@@ -48,6 +48,7 @@ Also consider the
 semantic conventions when instrumenting runtime environments.
 
 - [JVM](jvm-metrics.md)
+- [BEAM](beam-metrics.md)
 
 ### Attributes
 
