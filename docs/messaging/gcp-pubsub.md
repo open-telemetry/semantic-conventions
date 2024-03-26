@@ -19,7 +19,7 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 | [`messaging.gcp_pubsub.message.ordering_key`](../attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | Conditionally Required: If the message type has an ordering key set. |
 <!-- endsemconv -->
 
-### Span names
+## Span names
 
 The span name SHOULD follow the [general messaging span name pattern](../messaging/gcp-pubsub.md): it SHOULD start with the messaging destination name (Topic/Subscription) and contain a low-cardinality name of an operation the span describes:
 
