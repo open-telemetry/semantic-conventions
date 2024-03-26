@@ -219,6 +219,7 @@
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
 | `db.connection_string` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` |
+| `db.elasticsearch.node.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `db.instance.id` instead. | `instance-0000000001` |
 | `db.jdbc.driver_classname` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` |
 <!-- endsemconv -->
 
@@ -227,5 +228,7 @@
 <!-- semconv attributes.db.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
+| `db.connection_string` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` |
 | `db.elasticsearch.node.name` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `db.instance.id` instead. | `instance-0000000001` |
+| `db.jdbc.driver_classname` | string | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` |
 <!-- endsemconv -->
