@@ -16,7 +16,7 @@ described on this page.
 
 Specific attributes for Apache RocketMQ are defined below.
 
-<!-- semconv messaging.rocketmq(full,tag=tech-specific-rocketmq) -->
+<!-- semconv messaging.rocketmq(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`messaging.rocketmq.client_group`](../attributes-registry/messaging.md) | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | Required |

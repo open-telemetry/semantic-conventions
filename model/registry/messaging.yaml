@@ -66,6 +66,13 @@ groups:
           the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
         examples: ['MyQueue', 'MyTopic']
         tag: messaging-generic
+      - id: destination.partition.id
+        type: string
+        stability: experimental
+        brief: >
+          The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`.
+        examples: '1'
+        tag: messaging-generic
       - id: kafka.consumer.group
         type: string
         stability: experimental
@@ -73,13 +80,6 @@ groups:
           Name of the Kafka Consumer Group that is handling the message.
           Only applies to consumers, not producers.
         examples: 'my-group'
-        tag: tech-specific-kafka
-      - id: kafka.destination.partition
-        type: int
-        stability: experimental
-        brief: >
-          Partition the message is sent to.
-        examples: 2
         tag: tech-specific-kafka
       - id: kafka.message.key
         type: string
@@ -273,7 +273,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-         The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
+          The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
         examples: 'ordering_key'
       - id: gcp_pubsub.message.ack_id
         type: string
@@ -376,13 +376,6 @@ groups:
         brief: >
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
-        tag: tech-specific-eventhubs
-      - id: eventhubs.destination.partition.id
-        type: string
-        stability: experimental
-        brief: >
-          The identifier of the partition messages are sent to or received from, unique to the Event Hub which contains it.
-        examples: '1'
         tag: tech-specific-eventhubs
       - id: eventhubs.consumer.group
         type: string

@@ -124,3 +124,69 @@ groups:
       is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
       header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.client
+
+  - id: metric.http.client.open_connections
+    type: metric
+    metric_name: http.client.open_connections
+    stability: experimental
+    brief: "Number of outbound HTTP connections that are currently active or idle on the client."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: http.connection.state
+        requirement_level: required
+      - ref: network.peer.address
+        requirement_level: recommended
+      - ref: network.protocol.version
+        requirement_level: recommended
+      - ref: server.address
+        requirement_level: required
+      - ref: server.port
+        requirement_level: required
+        brief: >
+          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+      - ref: url.scheme
+        requirement_level: opt_in
+        examples: ["http", "https"]
+
+  - id: metric.http.client.connection.duration
+    type: metric
+    metric_name: http.client.connection.duration
+    stability: experimental
+    brief: "The duration of the successfully established outbound HTTP connections."
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: network.peer.address
+        requirement_level: recommended
+      - ref: network.protocol.version
+        requirement_level: recommended
+      - ref: server.address
+        requirement_level: required
+      - ref: server.port
+        requirement_level: required
+        brief: >
+          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+      - ref: url.scheme
+        requirement_level: opt_in
+        examples: ["http", "https"]
+
+  - id: metric.http.client.active_requests
+    type: metric
+    metric_name: http.client.active_requests
+    stability: experimental
+    brief: "Number of active HTTP requests."
+    instrument: updowncounter
+    unit: "{request}"
+    attributes:
+      - ref: http.request.method
+        requirement_level: recommended
+      - ref: server.address
+        requirement_level: required
+      - ref: server.port
+        requirement_level: required
+        brief: >
+          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+      - ref: url.scheme
+        requirement_level: opt_in
+        examples: ["http", "https"]

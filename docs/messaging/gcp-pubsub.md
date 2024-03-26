@@ -13,7 +13,7 @@ The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pub
 ## Span attributes
 
 For Google Cloud Pub/Sub, the following additional attributes are defined:
-<!-- semconv messaging.gcp_pubsub(full,tag=tech-specific-gcp-pubsub) -->
+<!-- semconv messaging.gcp_pubsub(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`messaging.gcp_pubsub.message.ack_deadline`](../attributes-registry/messaging.md) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | Recommended |
@@ -45,7 +45,7 @@ flowchart LR;
   direction LR
   CA[Span Create A]
   CB[Span Create B]
-  P[Span Publish A B] 
+  P[Span Publish A B]
   end
   CA-. link .-P;
   CB-. link .-P;

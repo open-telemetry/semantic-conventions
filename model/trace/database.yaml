@@ -1,9 +1,7 @@
 groups:
-  - id: db
-    type: span
-    brief: >
-      This document defines the attributes used to perform database client calls.
-    span_kind: client
+  - id: db.common.attributes
+    type: attribute_group
+    brief: This group defines the attributes used to perform database client calls.
     attributes:
       - ref: db.system
         requirement_level: required
@@ -24,15 +22,41 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
-      - ref: network.peer.address
-      - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
-      - ref: network.transport
-      - ref: network.type
       - ref: db.instance.id
         requirement_level:
           recommended: If different from the `server.address`
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+
+  - id: db.tech_specific.network.attributes
+    type: attribute_group
+    brief: This group documents attributes that describe database call along with network information.
+    extends: db.common.attributes
+    attributes:
+      - ref: network.peer.address
+        requirement_level:
+          recommended
+        note: >
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+        tag: tech-specific
+      - ref: network.peer.port
+        tag: tech-specific
+
+  - id: db
+    type: span
+    brief: This span defines the attributes used to perform database client calls.
+    span_kind: client
+    extends: db.common.attributes
 
   - id: db.mssql
     type: span
@@ -45,7 +69,7 @@ groups:
 
   - id: db.cassandra
     type: span
-    extends: db
+    extends: db.tech_specific.network.attributes
     brief: >
       Attributes for Cassandra
     attributes:
@@ -72,7 +96,7 @@ groups:
 
   - id: db.hbase
     type: span
-    extends: db
+    extends: db.common.attributes
     brief: >
       Attributes for HBase
     attributes:
@@ -85,7 +109,7 @@ groups:
 
   - id: db.couchdb
     type: span
-    extends: db
+    extends: db.common.attributes
     brief: >
       Attributes for CouchDB
     attributes:
@@ -103,7 +127,7 @@ groups:
 
   - id: db.redis
     type: span
-    extends: db
+    extends: db.tech_specific.network.attributes
     brief: >
       Attributes for Redis
     attributes:
@@ -122,7 +146,7 @@ groups:
 
   - id: db.mongodb
     type: span
-    extends: db
+    extends: db.common.attributes
     brief: >
       Attributes for MongoDB
     attributes:
@@ -132,7 +156,7 @@ groups:
 
   - id: db.elasticsearch
     type: span
-    extends: db
+    extends: db.tech_specific.network.attributes
     brief: >
       Attributes for Elasticsearch
     attributes:
@@ -165,7 +189,7 @@ groups:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
         tag: tech-specific
-      - ref: db.elasticsearch.node.name
+      - ref: db.instance.id
         requirement_level:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
@@ -177,7 +201,7 @@ groups:
 
   - id: db.sql
     type: span
-    extends: 'db'
+    extends: db.common.attributes
     brief: >
       Attributes for SQL databases
     attributes:
@@ -186,7 +210,7 @@ groups:
 
   - id: db.cosmosdb
     type: span
-    extends: db
+    extends: db.common.attributes
     prefix: db.cosmosdb
     brief: >
       Attributes for Cosmos DB.
