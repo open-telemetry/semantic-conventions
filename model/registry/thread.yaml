@@ -10,7 +10,7 @@ groups:
         stability: experimental
         brief: >
           Current "managed" thread ID (as opposed to OS thread ID).
-        examples: 42
+        examples: "42"
       - id: name
         type: string
         stability: experimental
