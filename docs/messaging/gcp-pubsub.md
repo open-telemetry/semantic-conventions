@@ -19,16 +19,18 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 | [`messaging.gcp_pubsub.message.ordering_key`](../attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | Conditionally Required: If the message type has an ordering key set. |
 <!-- endsemconv -->
 
-## GCP operation names
+### Span names
 
-In addition to the [Operation names](messaging-spans.md#operation-names), `messaging.operation` MUST be one of the following:
+The span name SHOULD follow the [general messaging span name pattern](../messaging/gcp-pubsub.md): it SHOULD start with the messaging destination name (Topic/Subscription) and contain a low-cardinality name of an operation the span describes:
 
-| Value  | Description |
-|---|---|
-| `subscribe` | Streaming pull for a single message. Represents the time from after the message was received to when the message is acknowledged, negatively acknowledged, or expires. |
-| `modack` | Extends the lease for a single message or batch of messages |
-| `ack` | Acknowledges (acks) a single message or batch of messages |
-| `nack` | Negatively acknowledges (nacks) by sending a modack with a deadline of 0 seconds a single message or batch of messages |
+- Spans for `settle` operations SHOULD follow the `<destination name> ack` or `<destination name> nack` pattern.
+- Spans names for `publish` operations SHOULD follow the `<destination name> send` pattern.
+- Spans for `create`, `receive`, and `publish` operations SHOULD follow the general `<destination name> <operation name>` pattern.
+
+In addition there are the following operations are GCP specific:
+
+- Spans that represents the time from after the message was received to when the message is acknowledged, negatively acknowledged, or expire (used by streaming pull) SHOULD follow the `<destination name> subscribe` pattern.
+- Spans that represent extending the lease for a single message or batch of messages SHOULD follow the`<destination name> modack` pattern.
 
 ## Examples
 
