@@ -181,7 +181,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | `php` | php | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `python` | python | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ruby` | ruby | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `rust` | rust | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rust` | rust | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `swift` | swift | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `webjs` | webjs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
