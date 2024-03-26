@@ -29,7 +29,6 @@ This event describes the details of the web page visited.
 
 The following table describes the payload fields that MUST be used to describe the details of event.
 
-
 | Body Field  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `referrer` | string | Referring Page URI (`document.referrer`) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | Recommended |
@@ -56,7 +55,6 @@ This event describes the timing metrics of a page navigation as provided by
 `PerformanceNavigationTiming` Performance API.
 
 The following table describes the payload fields that MUST be used to describe the details of event.
-
 
 | Body Field  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
