@@ -25,6 +25,7 @@ body:
         - area:browser
         - area:client
         - area:cloud
+        - area:cloudevents
         - area:code
         - area:container
         - area:db
