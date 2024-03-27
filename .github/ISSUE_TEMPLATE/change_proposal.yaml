@@ -13,6 +13,9 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:aws-ecs
+        - area:aws-eks
+        - area:aws-log
         - area:browser
         - area:client
         - area:cloud
