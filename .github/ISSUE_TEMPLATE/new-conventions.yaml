@@ -25,6 +25,7 @@ body:
         - area:browser
         - area:client
         - area:cloud
+        - area:cloudevents
         - area:code
         - area:container
         - area:db
@@ -33,9 +34,11 @@ body:
         - area:device
         - area:disk
         - area:dns
+        - area:enduser
         - area:error
         - area:exception
         - area:faas
+        - area:feature-flag
         - area:host
         - area:http
         - area:k8s
