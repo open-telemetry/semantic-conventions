@@ -20,8 +20,12 @@ RPC attributes are intended to be used in the context of events related to remot
 | `rpc.jsonrpc.error_message` | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` |
 | `rpc.jsonrpc.request_id` | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` |
 | `rpc.jsonrpc.version` | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` |
-| `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [5] | `exampleMethod` |
-| `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [6] | `myservice.EchoService` |
+| `rpc.message.compressed_size` | int | Compressed size of the message in bytes. |  |
+| `rpc.message.id` | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [5] |  |
+| `rpc.message.type` | string | Whether this is a received or sent message. | `SENT` |
+| `rpc.message.uncompressed_size` | int | Uncompressed size of the message in bytes. |  |
+| `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` |
+| `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` |
 | `rpc.system` | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` |
 
 **[1]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -32,9 +36,11 @@ RPC attributes are intended to be used in the context of events related to remot
 
 **[4]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-**[5]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[5]:** This way we guarantee that the values will be consistent between different implementations.
 
-**[6]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+**[6]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+
+**[7]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 `rpc.connect_rpc.error_code` MUST be one of the following:
 
@@ -78,6 +84,13 @@ RPC attributes are intended to be used in the context of events related to remot
 | `14` | UNAVAILABLE |
 | `15` | DATA_LOSS |
 | `16` | UNAUTHENTICATED |
+
+`rpc.message.type` MUST be one of the following:
+
+| Value  | Description |
+|---|---|
+| `SENT` | sent |
+| `RECEIVED` | received |
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 

@@ -201,3 +201,25 @@ groups:
               value: 'connect_rpc'
               brief: 'Connect RPC'
         stability: experimental
+      - id: message.type
+        type:
+          members:
+            - id: sent
+              value: "SENT"
+            - id: received
+              value: "RECEIVED"
+        stability: experimental
+        brief: "Whether this is a received or sent message."
+      - id: message.id
+        type: int
+        stability: experimental
+        brief: "MUST be calculated as two different counters starting from `1` one for sent messages and one for received message."
+        note: "This way we guarantee that the values will be consistent between different implementations."
+      - id: message.compressed_size
+        type: int
+        stability: experimental
+        brief: "Compressed size of the message in bytes."
+      - id: message.uncompressed_size
+        type: int
+        stability: experimental
+        brief: "Uncompressed size of the message in bytes."
