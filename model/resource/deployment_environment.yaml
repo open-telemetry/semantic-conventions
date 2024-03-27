@@ -1,22 +1,9 @@
 groups:
   - id: deployment
-    prefix: deployment
     type: resource
     brief: >
       The software deployment.
     attributes:
-      - id: environment
-        type: string
-        stability: experimental
-        brief: >
-          Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
-          (aka deployment tier).
-        note: |
-          `deployment.environment` does not affect the uniqueness constraints defined through
-          the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
-          This implies that resources carrying the following attribute combinations MUST be
-          considered to be identifying the same service:
+      - ref: deployment.environment
+        requirement_level: recommended
 
-          * `service.name=frontend`, `deployment.environment=production`
-          * `service.name=frontend`, `deployment.environment=staging`.
-        examples: ['staging', 'production']
