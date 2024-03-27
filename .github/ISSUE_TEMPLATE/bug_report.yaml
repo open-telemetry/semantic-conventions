@@ -42,6 +42,7 @@ body:
         - area:network
         - area:oci
         - area:os
+        - area:peer
         - area:process
         - area:rpc
         - area:server

@@ -296,7 +296,7 @@ Instrumentations SHOULD provide a way for users to configure this name.
 <!-- semconv peer -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `peer.service` | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | Recommended |
+| [`peer.service`](../attributes-registry/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | Recommended |
 <!-- endsemconv -->
 
 Examples of `peer.service` that users may specify:
