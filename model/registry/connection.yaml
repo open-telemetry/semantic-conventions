@@ -1,0 +1,19 @@
+groups:
+  - id: connection
+    prefix: connection
+    type: attribute_group
+    brief: >
+      These attributes may be used to describe the socket connection.
+    attributes:
+      - id: state
+        type:
+          allow_custom_values: true
+          members:
+            - id: active
+              value: "active"
+              brief: 'Connection is being used.'
+            - id: idle
+              value: "idle"
+              brief: 'Connection idle'
+        brief: "State of the connection in the connection pool."
+        examples: ['active']
