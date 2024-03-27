@@ -6,4 +6,3 @@ groups:
     attributes:
       - ref: deployment.environment
         requirement_level: recommended
-
