@@ -35,6 +35,7 @@ Currently, the following namespaces exist:
 * [Code](code.md)
 * [Container](container.md)
 * [DB](db.md) (database)
+* [Deployment](deployment.md)
 * [Destination](destination.md)
 * [Device](device.md)
 * [Disk](disk.md)

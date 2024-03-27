@@ -29,6 +29,7 @@ body:
         - area:code
         - area:container
         - area:db
+        - area:deployment
         - area:destination
         - area:device
         - area:disk
