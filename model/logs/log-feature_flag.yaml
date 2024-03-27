@@ -1,7 +1,7 @@
 groups:
   - id: log-feature_flag
     type: event
-    prefix: feature_flag
+    name: feature_flag
     brief: >
       This document defines attributes for feature flag evaluations
       represented using Log Records.
