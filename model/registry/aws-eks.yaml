@@ -1,0 +1,13 @@
+groups:
+  - id: registry.aws.eks
+    prefix: aws.eks
+    type: resource
+    brief: >
+      This document defines attributes for AWS Elastic Kubernetes Service (EKS).
+    attributes:
+      - id: cluster.arn
+        type: string
+        stability: experimental
+        brief: >
+          The ARN of an EKS cluster.
+        examples: ['arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster']

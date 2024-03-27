@@ -29,6 +29,7 @@ Currently, the following namespaces exist:
 
 * [Android](android.md)
 * [AWS ECS](aws-ecs.md)
+* [AWS EKS](aws-eks.md)
 * [Browser](browser.md)
 * [Client](client.md)
 * [Cloud](cloud.md)
