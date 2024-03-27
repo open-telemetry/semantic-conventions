@@ -20,6 +20,5 @@ issues: [793]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-        Adds `sampling.priority` from OpenTracing.
         Adds `sampling.randomness` and `sampling.threshold` from [OTEP 235][OTEP235].
         [OTEP235]: https://github.com/open-telemetry/oteps/blob/main/text/trace/0235-sampling-threshold-in-trace-state.md

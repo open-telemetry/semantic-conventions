@@ -1,7 +1,0 @@
-groups:
-  - id: traces.sampling
-    type: attribute_group
-    brief: 'Semantic convention describing trace attributes related to sampling.'
-    attributes:
-      - ref: sampling.priority
-        requirement_level: opt_in

@@ -3,8 +3,6 @@ groups:
     type: attribute_group
     brief: 'Semantic convention describing trace attributes related to sampling.'
     attributes:
-      - ref: sampling.priority
-        requirement_level: opt_in
       - ref: sampling.randomness
         requirement_level:
           conditionally_required: When a `sampling.threshold` is provided, the corresponding 56-bit randomness value is also recorded.
