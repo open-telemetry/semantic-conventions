@@ -95,3 +95,18 @@ groups:
         brief: >
           Container labels, `<key>` being the label name, the value being the label value.
         examples: [ 'container.label.app=nginx' ]
+      - id: cpu.state
+        brief: "The CPU state for this data point."
+        type:
+          allow_custom_values: true
+          members:
+            - id: user
+              value: 'user'
+              brief: "When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows)."
+            - id: system
+              value: 'system'
+              brief: "When CPU is used by the system (host OS)"
+            - id: kernel
+              value: 'kernel'
+              brief: "When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows)."
+        examples: ["user", "kernel"]
