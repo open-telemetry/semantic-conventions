@@ -9,10 +9,10 @@
 <!-- semconv aws.log -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aws.log.group.arns` | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `[arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*]` | Recommended |
-| `aws.log.group.names` | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `[/aws/lambda/my-function, opentelemetry-service]` | Recommended |
-| `aws.log.stream.arns` | string[] | The ARN(s) of the AWS log stream(s). [3] | `[arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b]` | Recommended |
-| `aws.log.stream.names` | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `[logs/main/10838bed-421f-43ef-870a-f43feacbbb5b]` | Recommended |
+| [`aws.log.group.arns`](../../../attributes-registry/aws-log.md) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `[arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*]` | Recommended |
+| [`aws.log.group.names`](../../../attributes-registry/aws-log.md) | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `[/aws/lambda/my-function, opentelemetry-service]` | Recommended |
+| [`aws.log.stream.arns`](../../../attributes-registry/aws-log.md) | string[] | The ARN(s) of the AWS log stream(s). [3] | `[arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b]` | Recommended |
+| [`aws.log.stream.names`](../../../attributes-registry/aws-log.md) | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `[logs/main/10838bed-421f-43ef-870a-f43feacbbb5b]` | Recommended |
 
 **[1]:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 
