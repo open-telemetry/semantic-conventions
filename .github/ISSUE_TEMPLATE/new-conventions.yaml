@@ -36,6 +36,8 @@ body:
         - area:error
         - area:exception
         - area:faas
+        - area:gcp-cloud-run
+        - area:gcp-gce
         - area:host
         - area:http
         - area:k8s
