@@ -66,7 +66,7 @@ identify the transport, then setting [`network.transport`](#other-network-attrib
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
 
-<!-- semconv general.server -->
+<!-- semconv server -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
@@ -103,7 +103,7 @@ For Unix domain socket, `server.address` attribute represents remote endpoint ad
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
 
-<!-- semconv general.client -->
+<!-- semconv client -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`client.address`](../attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
@@ -125,7 +125,7 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 
 #### Source
 
-<!-- semconv general.source -->
+<!-- semconv source -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`source.address`](../attributes-registry/source.md) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
@@ -138,7 +138,7 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 
 Destination fields capture details about the receiver of a network exchange/packet.
 
-<!-- semconv general.destination -->
+<!-- semconv destination -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`destination.address`](../attributes-registry/destination.md) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
