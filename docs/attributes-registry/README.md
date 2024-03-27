@@ -41,6 +41,7 @@ Currently, the following namespaces exist:
 * [Error](error.md)
 * [Exception](exception.md)
 * [FaaS](faas.md)
+* [Feature Flag](feature-flag.md)
 * [Host](host.md)
 * [HTTP](http.md)
 * [K8s](k8s.md)
