@@ -44,6 +44,8 @@ Currently, the following namespaces exist:
 * [Exception](exception.md)
 * [FaaS](faas.md)
 * [Feature Flag](feature-flag.md)
+* [Google Cloud Run](gcp-cloud-run.md)
+* [Google Compute Engine](gcp-gce.md)
 * [Host](host.md)
 * [HTTP](http.md)
 * [K8s](k8s.md)
