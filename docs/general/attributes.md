@@ -358,7 +358,7 @@ a thread that started a span.
 <!-- semconv thread -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`thread.id`](../attributes-registry/thread.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
+| [`thread.id`](../attributes-registry/thread.md) | string | Current "managed" thread ID (as opposed to OS thread ID). | `42` | Recommended |
 | [`thread.name`](../attributes-registry/thread.md) | string | Current thread name. | `main` | Recommended |
 <!-- endsemconv -->
 
