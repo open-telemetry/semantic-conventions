@@ -15,36 +15,47 @@ groups:
             - id: windows
               value: 'windows'
               brief: "Microsoft Windows"
+              stability: experimental
             - id: linux
               value: 'linux'
               brief: "Linux"
+              stability: experimental
             - id: darwin
               value: 'darwin'
               brief: "Apple Darwin"
+              stability: experimental
             - id: freebsd
               value: 'freebsd'
               brief: "FreeBSD"
+              stability: experimental
             - id: netbsd
               value: 'netbsd'
               brief: "NetBSD"
+              stability: experimental
             - id: openbsd
               value: 'openbsd'
               brief: "OpenBSD"
+              stability: experimental
             - id: dragonflybsd
               value: 'dragonflybsd'
               brief: "DragonFly BSD"
+              stability: experimental
             - id: hpux
               value: 'hpux'
               brief: "HP-UX (Hewlett Packard Unix)"
+              stability: experimental
             - id: aix
               value: 'aix'
               brief: "AIX (Advanced Interactive eXecutive)"
+              stability: experimental
             - id: solaris
               value: 'solaris'
               brief: "SunOS, Oracle Solaris"
+              stability: experimental
             - id: z_os
               value: 'z_os'
               brief: "IBM z/OS"
+              stability: experimental
         brief: >
           The operating system type.
         stability: experimental

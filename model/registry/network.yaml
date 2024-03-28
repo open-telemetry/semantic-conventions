@@ -32,66 +32,87 @@ groups:
             - id: gprs
               brief: GPRS
               value: "gprs"
+              stability: experimental
             - id: edge
               brief: EDGE
               value: "edge"
+              stability: experimental
             - id: umts
               brief: UMTS
               value: "umts"
+              stability: experimental
             - id: cdma
               brief: CDMA
               value: "cdma"
+              stability: experimental
             - id: evdo_0
               brief: EVDO Rel. 0
               value: "evdo_0"
+              stability: experimental
             - id: evdo_a
               brief: "EVDO Rev. A"
               value: "evdo_a"
+              stability: experimental
             - id: cdma2000_1xrtt
               brief: CDMA2000 1XRTT
               value: "cdma2000_1xrtt"
+              stability: experimental
             - id: hsdpa
               brief: HSDPA
               value: "hsdpa"
+              stability: experimental
             - id: hsupa
               brief: HSUPA
               value: "hsupa"
+              stability: experimental
             - id: hspa
               brief: HSPA
               value: "hspa"
+              stability: experimental
             - id: iden
               brief: IDEN
               value: "iden"
+              stability: experimental
             - id: evdo_b
               brief: "EVDO Rev. B"
               value: "evdo_b"
+              stability: experimental
             - id: lte
               brief: LTE
               value: "lte"
+              stability: experimental
             - id: ehrpd
               brief: EHRPD
               value: "ehrpd"
+              stability: experimental
             - id: hspap
               brief: HSPAP
               value: "hspap"
+              stability: experimental
             - id: gsm
               brief: GSM
               value: "gsm"
+              stability: experimental
             - id: td_scdma
               brief: TD-SCDMA
               value: "td_scdma"
+              stability: experimental
             - id: iwlan
               brief: IWLAN
               value: "iwlan"
+              stability: experimental
             - id: nr
               brief: "5G NR (New Radio)"
               value: "nr"
+              stability: experimental
             - id: nrnsa
               brief: "5G NRNSA (New Radio Non-Standalone)"
               value: "nrnsa"
+              stability: experimental
             - id: lte_ca
               brief: LTE CA
               value: "lte_ca"
+              stability: experimental
         stability: experimental
         brief: 'This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.'
         examples: 'LTE'
@@ -101,14 +122,19 @@ groups:
           members:
             - id: wifi
               value: "wifi"
+              stability: experimental
             - id: wired
               value: "wired"
+              stability: experimental
             - id: cell
               value: "cell"
+              stability: experimental
             - id: unavailable
               value: "unavailable"
+              stability: experimental
             - id: unknown
               value: "unknown"
+              stability: experimental
         stability: experimental
         brief: 'The internet connection type.'
         examples: 'wifi'
@@ -155,15 +181,19 @@ groups:
             - id: tcp
               value: 'tcp'
               brief: "TCP"
+              stability: stable
             - id: udp
               value: 'udp'
               brief: "UDP"
+              stability: stable
             - id: pipe
               value: "pipe"
               brief: 'Named or anonymous pipe.'
+              stability: stable
             - id: unix
               value: 'unix'
               brief: "Unix domain socket"
+              stability: stable
         brief: >
           [OSI transport layer](https://osi-model.com/transport-layer/) or
           [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
@@ -182,9 +212,11 @@ groups:
             - id: ipv4
               value: 'ipv4'
               brief: "IPv4"
+              stability: stable
             - id: ipv6
               value: 'ipv6'
               brief: "IPv6"
+              stability: stable
         brief: '[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['ipv4', 'ipv6']
@@ -194,8 +226,10 @@ groups:
           members:
             - id: transmit
               value: 'transmit'
+              stability: experimental
             - id: receive
               value: 'receive'
+              stability: experimental
         stability: experimental
         brief: "The network IO operation direction."
         examples: ["transmit"]

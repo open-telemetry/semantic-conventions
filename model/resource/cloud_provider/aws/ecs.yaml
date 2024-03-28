@@ -23,8 +23,10 @@ groups:
           members:
             - id: ec2
               value: "ec2"
+              stability: experimental
             - id: fargate
               value: "fargate"
+              stability: experimental
         stability: experimental
         brief: >
           The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.

@@ -34,27 +34,35 @@ groups:
             - id: amd64
               value: 'amd64'
               brief: "AMD64"
+              stability: experimental
             - id: arm32
               value: 'arm32'
               brief: "ARM32"
+              stability: experimental
             - id: arm64
               value: 'arm64'
               brief: "ARM64"
+              stability: experimental
             - id: ia64
               value: 'ia64'
               brief: "Itanium"
+              stability: experimental
             - id: ppc32
               value: 'ppc32'
               brief: "32-bit PowerPC"
+              stability: experimental
             - id: ppc64
               value: 'ppc64'
               brief: "64-bit PowerPC"
+              stability: experimental
             - id: s390x
               value: 's390x'
               brief: "IBM z/Architecture"
+              stability: experimental
             - id: x86
               value: 'x86'
               brief: "32-bit x86"
+              stability: experimental
         stability: experimental
         brief: >
             The CPU architecture the host system is running on.

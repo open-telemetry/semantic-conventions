@@ -117,8 +117,10 @@ groups:
           members:
             - id: ssl
               value: ssl
+              stability: experimental
             - id: tls
               value: tls
+              stability: experimental
         stability: experimental
       - id: protocol.version
         brief: >
