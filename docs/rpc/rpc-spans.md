@@ -191,19 +191,19 @@ In the lifetime of an RPC stream, an event for each message sent/received on
 client and server spans SHOULD be created. In case of unary calls only one sent
 and one received message will be recorded for both client and server spans.
 
-<!-- semconv rpc.message -->
-The event name MUST be `message`.
+<!-- semconv rpc.message(full) -->
+The event name MUST be `rpc.message`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `message.compressed_size` | int | Compressed size of the message in bytes. |  | Recommended |
-| `message.id` | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] |  | Recommended |
-| `message.type` | string | Whether this is a received or sent message. | `SENT` | Recommended |
-| `message.uncompressed_size` | int | Uncompressed size of the message in bytes. |  | Recommended |
+| [`rpc.message.compressed_size`](../attributes-registry/rpc.md) | int | Compressed size of the message in bytes. |  | Recommended |
+| [`rpc.message.id`](../attributes-registry/rpc.md) | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] |  | Recommended |
+| [`rpc.message.type`](../attributes-registry/rpc.md) | string | Whether this is a received or sent message. | `SENT` | Recommended |
+| [`rpc.message.uncompressed_size`](../attributes-registry/rpc.md) | int | Uncompressed size of the message in bytes. |  | Recommended |
 
 **[1]:** This way we guarantee that the values will be consistent between different implementations.
 
-`message.type` MUST be one of the following:
+`rpc.message.type` MUST be one of the following:
 
 | Value  | Description |
 |---|---|
