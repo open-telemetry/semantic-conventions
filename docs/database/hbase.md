@@ -15,9 +15,9 @@ described on this page.
 ## Attributes
 
 <!-- semconv db.hbase(full,tag=tech-specific) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`db.name`](../attributes-registry/db.md) | string | The HBase namespace. [1] | `mynamespace` | Conditionally Required: If applicable. |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`db.name`](../attributes-registry/db.md) | string | The HBase namespace. [1] | `mynamespace` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For HBase the `db.name` should be set to the HBase namespace.
 <!-- endsemconv -->

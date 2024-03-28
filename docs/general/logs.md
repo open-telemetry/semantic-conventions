@@ -36,9 +36,9 @@ OpenTelemetry also defines the concept of overarching [Resources](https://github
 These attributes may be used for identifying a Log Record.
 
 <!-- semconv log.record -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `log.record.uid` | string | A unique identifier for the Log Record. [1] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | Opt-In |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `log.record.uid` | string | A unique identifier for the Log Record. [1] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
 The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
@@ -57,12 +57,12 @@ As such, these should be recorded as Log Record attributes when applicable. They
 **Description:** A file to which log was emitted.
 
 <!-- semconv attributes.log.file -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `log.file.name` | string | The basename of the file. | `audit.log` | Recommended |
-| `log.file.name_resolved` | string | The basename of the file, with symlinks resolved. | `uuid.log` | Opt-In |
-| `log.file.path` | string | The full path to the file. | `/var/log/mysql/audit.log` | Opt-In |
-| `log.file.path_resolved` | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | Opt-In |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `log.file.name` | string | The basename of the file. | `audit.log` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `log.file.name_resolved` | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `log.file.path` | string | The full path to the file. | `/var/log/mysql/audit.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `log.file.path_resolved` | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### I/O Stream
@@ -70,16 +70,16 @@ As such, these should be recorded as Log Record attributes when applicable. They
 **Description:** The I/O stream to which the log was emitted.
 
 <!-- semconv attributes.log -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `log.iostream` | string | The stream associated with the log. See below for a list of well-known values. | `stdout` | Opt-In |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `log.iostream` | string | The stream associated with the log. See below for a list of well-known values. | `stdout` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `log.iostream` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `stdout` | Logs from stdout stream |
-| `stderr` | Events from stderr stream |
+| Value  | Description | Stability |
+|---|---|---|
+| `stdout` | Logs from stdout stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stderr` | Events from stderr stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

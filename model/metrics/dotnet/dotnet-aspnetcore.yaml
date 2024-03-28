@@ -18,15 +18,19 @@ groups:
             - id: acquired
               value: 'acquired'
               brief: "Lease was acquired"
+              stability: stable
             - id: endpoint_limiter
               value: 'endpoint_limiter'
               brief: "Lease request was rejected by the endpoint limiter"
+              stability: stable
             - id: global_limiter
               value: 'global_limiter'
               brief: "Lease request was rejected by the global limiter"
+              stability: stable
             - id: request_canceled
               value: 'request_canceled'
               brief: "Lease request was canceled"
+              stability: stable
         stability: stable
         brief: Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
         examples: ["acquired", "request_canceled"]
@@ -78,9 +82,11 @@ groups:
             - id: success
               value: 'success'
               brief: 'Match succeeded'
+              stability: stable
             - id: failure
               value: 'failure'
               brief: 'Match failed'
+              stability: stable
         stability: stable
         requirement_level: required
         brief: Match result - success or failure
@@ -108,15 +114,19 @@ groups:
             - id: handled
               value: 'handled'
               brief: "Exception was handled by the exception handling middleware."
+              stability: stable
             - id: unhandled
               value: 'unhandled'
               brief: "Exception was not handled by the exception handling middleware."
+              stability: stable
             - id: skipped
               value: 'skipped'
               brief: "Exception handling was skipped because the response had started."
+              stability: stable
             - id: aborted
               value: 'aborted'
               brief: "Exception handling didn't run because the request was aborted."
+              stability: stable
         stability: stable
         requirement_level: required
         brief: ASP.NET Core exception middleware handling result

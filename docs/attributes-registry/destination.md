@@ -12,10 +12,10 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 "user-facing" surface of the protocol / API does not expose a clear notion of client and server.
 
 <!-- semconv destination(omit_requirement_level) -->
-| Attribute  | Type | Description  | Examples  |
-|---|---|---|---|
-| `destination.address` | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| `destination.port` | int | Destination port number | `3389`; `2888` |
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `destination.address` | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `destination.port` | int | Destination port number | `3389`; `2888` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->

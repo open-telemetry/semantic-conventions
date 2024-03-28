@@ -11,10 +11,13 @@ groups:
           members:
             - id: system
               value: 'system'
+              stability: experimental
             - id: user
               value: 'user'
+              stability: experimental
             - id: wait
               value: 'wait'
+              stability: experimental
         stability: experimental
   - id: metric.process.cpu.time
     type: metric
@@ -106,8 +109,10 @@ groups:
           members:
             - id: voluntary
               value: 'voluntary'
+              stability: experimental
             - id: involuntary
               value: 'involuntary'
+              stability: experimental
         stability: experimental
   - id: metric.process.paging.faults
     type: metric
@@ -124,6 +129,8 @@ groups:
           members:
             - id: major
               value: 'major'
+              stability: experimental
             - id: minor
               value: 'minor'
+              stability: experimental
         stability: experimental
