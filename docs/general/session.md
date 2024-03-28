@@ -20,8 +20,8 @@ backends can link the two sessions.
 <!-- semconv session-id -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `session.id` | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | Opt-In |
-| `session.previous_id` | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | Opt-In |
+| [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | Opt-In |
+| [`session.previous_id`](../attributes-registry/session.md) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | Opt-In |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
