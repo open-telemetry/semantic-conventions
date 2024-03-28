@@ -9,6 +9,8 @@
 
 ## Unreleased
 
+- Add browser events and describe their payload [#838](https://github.com/open-telemetry/semantic-conventions/pull/838)
+
 ### Breaking
 
 - Rename `system.processes.*` namespace to `system.process.*`
