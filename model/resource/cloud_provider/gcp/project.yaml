@@ -1,0 +1,12 @@
+groups:
+  - id: gcp.project
+    prefix: gcp.project
+    type: resource
+    brief: >
+      Project related attributes.
+    attributes:
+      - id: gcp.project_id
+        type: string
+        brief: >
+          The name of a GCP Project.
+        examples: ['my-project']

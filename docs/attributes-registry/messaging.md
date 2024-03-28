@@ -86,7 +86,7 @@ size should be used.
 <!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-gcp-pubsub) -->
 | Attribute  | Type | Description  | Examples  |
 |---|---|---|---|
-| `messaging.gcp_pubsub.message.ordering_key` | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` |
+| `messaging.gcp_pubsub.message.delivery_attempt` | int | The delivery attempt for a given message. | `2` |
 <!-- endsemconv -->
 
 ## Kafka Attributes
