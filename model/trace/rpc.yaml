@@ -8,9 +8,13 @@ groups:
       - ref: rpc.system
         requirement_level: required
       - ref: rpc.service
+        requirement_level: recommended
       - ref: rpc.method
+        requirement_level: recommended
       - ref: network.transport
+        requirement_level: recommended
       - ref: network.type
+        requirement_level: recommended
       - ref: server.address
         requirement_level: required
         brief: >
@@ -29,6 +33,7 @@ groups:
     extends: rpc
     attributes:
       - ref: network.peer.address
+        requirement_level: recommended
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
@@ -40,13 +45,18 @@ groups:
     brief: 'Semantic Convention for RPC server spans'
     attributes:
       - ref: client.address
+        requirement_level: recommended
       - ref: client.port
+        requirement_level: recommended
       - ref: network.peer.address
+        requirement_level: recommended
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
       - ref: network.transport
+        requirement_level: recommended
       - ref: network.type
+        requirement_level: recommended
 
   - id: rpc.grpc
     type: span
@@ -75,12 +85,14 @@ groups:
           conditionally_required: If other than the default version (`1.0`)
       - ref: rpc.jsonrpc.request_id
         tag: jsonrpc-tech-specific
+        requirement_level: recommended
       - ref: rpc.jsonrpc.error_code
         tag: jsonrpc-tech-specific
         requirement_level:
           conditionally_required: If response is not successful.
       - ref: rpc.jsonrpc.error_message
         tag: jsonrpc-tech-specific
+        requirement_level: recommended
       - ref: rpc.method
         tag: jsonrpc-tech-specific
         requirement_level: required
@@ -94,9 +106,13 @@ groups:
     brief: "RPC received/sent message."
     attributes:
       - ref: rpc.message.type
+        requirement_level: recommended
       - ref: rpc.message.id
+        requirement_level: recommended
       - ref: rpc.message.compressed_size
+        requirement_level: recommended
       - ref: rpc.message.uncompressed_size
+        requirement_level: recommended
 
   - id: rpc.connect_rpc
     type: span
