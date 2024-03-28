@@ -33,6 +33,7 @@ groups:
     brief: "Operations that access some remote service."
     attributes:
       - ref: peer.service
+        requirement_level: recommended
   - id: identity
     type: span
     brief: >
