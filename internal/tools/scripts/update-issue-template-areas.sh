@@ -37,7 +37,7 @@ echo -e "The replacement text will be:"
 echo -e "---------------------------------------------\n"
 echo -e $replacement
 
-find ${TEMPLATES_DIR} -type f -name '*.yaml' -exec sed -i "/$START_AREA_LIST/,/$END_AREA_LIST/c\\$replacement" {} \;
+find ${TEMPLATES_DIR} -type f -name '*.yaml'  -print0 | xargs -0 sed -i "/$START_AREA_LIST/,/$END_AREA_LIST/c\\$replacement"
 
 echo -e "\nISSUE_TEMPLATES updated successfully"
 echo -e "---------------------------------------------"
