@@ -795,8 +795,8 @@ An instrument for load average over 1 minute on Linux could be named
 an `{os}` prefix to split this metric across OSes.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
-[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md#opt-in
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[MetricOptIn]: /docs/general/metric-requirement-level.md#opt-in
 
 ### Metric: `system.linux.memory.available`
 

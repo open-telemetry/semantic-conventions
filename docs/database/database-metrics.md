@@ -191,5 +191,5 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
-[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#required
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
+[MetricRequired]: /docs/general/metric-requirement-level.md#required
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

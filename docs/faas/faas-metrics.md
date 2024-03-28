@@ -301,4 +301,4 @@ FaaS providers. This list is not exhaustive.
 * [OpenFaas Metrics](https://docs.openfaas.com/architecture/metrics/)
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

@@ -32,8 +32,8 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 <!-- semconv metric.signalr.server.connection.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `signalr.connection.status` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | Recommended |
-| `signalr.transport` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Recommended |
+| `signalr.connection.status` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | Recommended |
+| `signalr.transport` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Recommended |
 
 `signalr.connection.status` MUST be one of the following:
 
@@ -65,8 +65,8 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 <!-- semconv metric.signalr.server.active_connections(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `signalr.connection.status` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | Recommended |
-| `signalr.transport` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Recommended |
+| `signalr.connection.status` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | Recommended |
+| `signalr.transport` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>[SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Recommended |
 
 `signalr.connection.status` MUST be one of the following:
 

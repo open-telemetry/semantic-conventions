@@ -11,6 +11,7 @@
 | `container.command` | string | The command used to run the container (i.e. the command name). [1] | `otelcontribcol` |
 | `container.command_args` | string[] | All the command arguments (including the command/executable itself) run by the container. [2] | `[otelcontribcol, --config, config.yaml]` |
 | `container.command_line` | string | The full command run by the container as a single string representing the full command. [2] | `otelcontribcol --config config.yaml` |
+| `container.cpu.state` | string | The CPU state for this data point. | `user`; `kernel` |
 | `container.id` | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` |
 | `container.image.id` | string | Runtime specific image identifier. Usually a hash algorithm followed by a UUID. [2] | `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` |
 | `container.image.name` | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` |
@@ -27,4 +28,12 @@ K8s defines a link to the container registry repository with digest `"imageID": 
 The ID is assinged by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
 
 **[3]:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
+
+`container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+
+| Value  | Description |
+|---|---|
+| `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). |
+| `system` | When CPU is used by the system (host OS) |
+| `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). |
 <!-- endsemconv -->

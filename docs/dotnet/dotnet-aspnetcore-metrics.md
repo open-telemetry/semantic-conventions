@@ -43,9 +43,9 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 <!-- semconv metric.aspnetcore.routing.match_attempts(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aspnetcore.routing.is_fallback` | boolean | A value that indicates whether the matched route is a fallback route. | `True` | Conditionally Required: if and only if a route was successfully matched. |
-| `aspnetcore.routing.match_status` | string | Match result - success or failure | `success`; `failure` | Required |
-| [`http.route`](../attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: if and only if a route was successfully matched. |
+| `aspnetcore.routing.is_fallback` | boolean | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>A value that indicates whether the matched route is a fallback route. | `True` | Conditionally Required: if and only if a route was successfully matched. |
+| `aspnetcore.routing.match_status` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Match result - success or failure | `success`; `failure` | Required |
+| [`http.route`](../attributes-registry/http.md) | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The matched route, that is, the path template in the format used by the respective server framework. [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | Conditionally Required: if and only if a route was successfully matched. |
 
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
@@ -75,9 +75,9 @@ Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 <!-- semconv metric.aspnetcore.diagnostics.exceptions(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aspnetcore.diagnostics.exception.result` | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | Required |
-| `aspnetcore.diagnostics.handler.type` | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | Conditionally Required: [1] |
-| [`error.type`](../attributes-registry/error.md) | string | The full name of exception type. [2] | `System.OperationCanceledException`; `Contoso.MyException` | Required |
+| `aspnetcore.diagnostics.exception.result` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>ASP.NET Core exception middleware handling result | `handled`; `unhandled` | Required |
+| `aspnetcore.diagnostics.handler.type` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | Conditionally Required: [1] |
+| [`error.type`](../attributes-registry/error.md) | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>The full name of exception type. [2] | `System.OperationCanceledException`; `Contoso.MyException` | Required |
 
 **[1]:** if and only if the exception was handled by this handler.
 
@@ -130,7 +130,7 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 <!-- semconv metric.aspnetcore.rate_limiting.active_request_leases(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
+| `aspnetcore.rate_limiting.policy` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
 <!-- endsemconv -->
@@ -152,7 +152,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- semconv metric.aspnetcore.rate_limiting.request_lease.duration(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
+| `aspnetcore.rate_limiting.policy` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
 <!-- endsemconv -->
@@ -170,7 +170,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- semconv metric.aspnetcore.rate_limiting.queued_requests(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
+| `aspnetcore.rate_limiting.policy` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
 <!-- endsemconv -->
@@ -192,8 +192,8 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- semconv metric.aspnetcore.rate_limiting.request.time_in_queue(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
-| `aspnetcore.rate_limiting.result` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | Required |
+| `aspnetcore.rate_limiting.policy` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
+| `aspnetcore.rate_limiting.result` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | Required |
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
 
@@ -225,8 +225,8 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 <!-- semconv metric.aspnetcore.rate_limiting.requests(full) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
-| `aspnetcore.rate_limiting.result` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | Required |
+| `aspnetcore.rate_limiting.policy` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Rate limiting policy name. | `fixed`; `sliding`; `token` | Conditionally Required: [1] |
+| `aspnetcore.rate_limiting.result` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | Required |
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
 

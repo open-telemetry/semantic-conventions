@@ -189,7 +189,7 @@ groups:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
         tag: tech-specific
-      - ref: db.elasticsearch.node.name
+      - ref: db.instance.id
         requirement_level:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.

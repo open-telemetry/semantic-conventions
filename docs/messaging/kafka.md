@@ -24,7 +24,7 @@ described on this page.
 
 For Apache Kafka, the following additional attributes are defined:
 
-<!-- semconv messaging.kafka(full,tag=tech-specific-kafka) -->
+<!-- semconv messaging.kafka(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`messaging.destination.partition.id`](../attributes-registry/messaging.md) | string | "String representation of the partition id the message  (or batch) is sent to or received from."" | `1` | Recommended |

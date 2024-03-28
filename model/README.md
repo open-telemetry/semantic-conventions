@@ -12,7 +12,7 @@ the generated markdown output in the [docs](../docs/README.md) folder.
 Semantic conventions for the spec MUST adhere to the
 [attribute naming](../docs/general/attribute-naming.md),
 [attribute requirement level](../docs/general/attribute-requirement-level.md),
-and [metric requirement level](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md) conventions.
+and [metric requirement level](../docs/general/metric-requirement-level.md) conventions.
 
 Refer to the [syntax](https://github.com/open-telemetry/build-tools/tree/v0.23.0/semantic-conventions/syntax.md)
 for how to write the YAML files for semantic conventions and what the YAML properties mean.
