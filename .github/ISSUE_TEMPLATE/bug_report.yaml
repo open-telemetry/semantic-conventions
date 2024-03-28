@@ -27,14 +27,19 @@ body:
         - area:code
         - area:container
         - area:db
+        - area:deployment
         - area:destination
         - area:device
         - area:disk
         - area:dns
+        - area:enduser
         - area:error
         - area:exception
         - area:faas
+        - area:feature-flag
         - area:file
+        - area:gcp-cloud-run
+        - area:gcp-gce
         - area:host
         - area:http
         - area:k8s
