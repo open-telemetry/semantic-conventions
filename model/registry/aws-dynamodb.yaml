@@ -1,0 +1,242 @@
+groups:
+  - id: registry.aws.dynamodb
+    prefix: aws.dynamodb
+    type: attribute_group
+    brief: >
+            This document defines attributes for AWS DynamoDB.
+    attributes:
+      - id: table_names
+        type: string[]
+        stability: experimental
+        brief: The keys in the `RequestItems` object field.
+        examples:
+          - Users
+          - Cats
+      - id: consumed_capacity
+        type: string[]
+        stability: experimental
+        brief: "The JSON-serialized value of each item in the `ConsumedCapacity` response field."
+        examples:
+          - '{
+              "CapacityUnits": number,
+              "GlobalSecondaryIndexes": {
+                 "string" : {
+                    "CapacityUnits": number,
+                    "ReadCapacityUnits": number,
+                    "WriteCapacityUnits": number
+                 }
+              },
+              "LocalSecondaryIndexes": {
+                 "string" : {
+                    "CapacityUnits": number,
+                    "ReadCapacityUnits": number,
+                    "WriteCapacityUnits": number
+                 }
+              },
+              "ReadCapacityUnits": number,
+              "Table": {
+                 "CapacityUnits": number,
+                 "ReadCapacityUnits": number,
+                 "WriteCapacityUnits": number
+              },
+              "TableName": "string",
+              "WriteCapacityUnits": number
+            }'
+      - id: item_collection_metrics
+        type: string
+        stability: experimental
+        brief: "The JSON-serialized value of the `ItemCollectionMetrics` response field."
+        examples:
+          - '{
+              "string" : [
+                 {
+                    "ItemCollectionKey": {
+                       "string" : {
+                          "B": blob,
+                          "BOOL": boolean,
+                          "BS": [ blob ],
+                          "L": [
+                             "AttributeValue"
+                          ],
+                          "M": {
+                             "string" : "AttributeValue"
+                          },
+                          "N": "string",
+                          "NS": [ "string" ],
+                          "NULL": boolean,
+                          "S": "string",
+                          "SS": [ "string" ]
+                       }
+                    },
+                    "SizeEstimateRangeGB": [ number ]
+                 }
+              ]
+             }'
+      - id: provisioned_read_capacity
+        type: double
+        stability: experimental
+        brief: "The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter."
+        examples:
+          - 1.0
+          - 2.0
+      - id: provisioned_write_capacity
+        type: double
+        stability: experimental
+        brief: "The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter."
+        examples:
+          - 1.0
+          - 2.0
+      - id: consistent_read
+        type: boolean
+        stability: experimental
+        brief: "The value of the `ConsistentRead` request parameter."
+      - id: projection
+        type: string
+        stability: experimental
+        brief: "The value of the `ProjectionExpression` request parameter."
+        examples:
+          - Title
+          - Title, Price, Color
+          - Title, Description, RelatedItems, ProductReviews
+      - id: limit
+        type: int
+        stability: experimental
+        brief: "The value of the `Limit` request parameter."
+        examples:
+          - 10
+      - id: attributes_to_get
+        type: string[]
+        stability: experimental
+        brief: "The value of the `AttributesToGet` request parameter."
+        examples:
+          - lives
+          - id
+      - id: index_name
+        type: string
+        stability: experimental
+        brief: "The value of the `IndexName` request parameter."
+        examples:
+          - name_to_group
+      - id: select
+        type: string
+        stability: experimental
+        brief: "The value of the `Select` request parameter."
+        examples:
+          - ALL_ATTRIBUTES
+          - COUNT
+      - id: global_secondary_indexes
+        type: string[]
+        stability: experimental
+        brief: "The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field"
+        examples:
+          - '{
+              "IndexName": "string",
+              "KeySchema": [
+                {
+                  "AttributeName": "string",
+                  "KeyType": "string"
+                }
+              ],
+              "Projection": {
+                "NonKeyAttributes": [ "string" ],
+                "ProjectionType": "string"
+              },
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": number,
+                "WriteCapacityUnits": number
+              }
+            }'
+      - id: local_secondary_indexes
+        type: string[]
+        stability: experimental
+        brief: "The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field."
+        examples:
+          - '{
+              "IndexArn": "string",
+              "IndexName": "string",
+              "IndexSizeBytes": number,
+              "ItemCount": number,
+              "KeySchema": [
+                {
+                  "AttributeName": "string",
+                  "KeyType": "string"
+                }
+              ],
+              "Projection": {
+                "NonKeyAttributes": [ "string" ],
+                "ProjectionType": "string"
+              }
+            }'
+      - id: exclusive_start_table
+        type: string
+        stability: experimental
+        brief: "The value of the `ExclusiveStartTableName` request parameter."
+        examples:
+          - Users
+          - CatsTable
+      - id: table_count
+        type: int
+        stability: experimental
+        brief: "The number of items in the `TableNames` response parameter."
+        examples:
+          - 20
+      - id: scan_forward
+        type: boolean
+        stability: experimental
+        brief: "The value of the `ScanIndexForward` request parameter."
+      - id: segment
+        type: int
+        stability: experimental
+        brief: "The value of the `Segment` request parameter."
+        examples:
+          - 10
+      - id: total_segments
+        type: int
+        stability: experimental
+        brief: "The value of the `TotalSegments` request parameter."
+        examples:
+          - 100
+      - id: count
+        type: int
+        stability: experimental
+        brief: "The value of the `Count` response parameter."
+        examples:
+          - 10
+      - id: scanned_count
+        type: int
+        stability: experimental
+        brief: "The value of the `ScannedCount` response parameter."
+        examples:
+          - 50
+      - id: attribute_definitions
+        type: string[]
+        stability: experimental
+        brief: "The JSON-serialized value of each item in the `AttributeDefinitions` request field."
+        examples:
+          - '{
+              "AttributeName": "string",
+              "AttributeType": "string"
+             }'
+      - id: global_secondary_index_updates
+        type: string[]
+        stability: experimental
+        brief: "The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field."
+        examples:
+          - '{
+              "Create": {
+                "IndexName": "string",
+                "KeySchema": [
+                  {
+                    "AttributeName": "string",
+                    "KeyType": "string"
+                  }
+                ],
+                "Projection": {
+                  "NonKeyAttributes": [ "string" ],
+                  "ProjectionType": "string"
+                },
+                "ProvisionedThroughput": {
+                  "ReadCapacityUnits": number,
+                  "WriteCapacityUnits": number
+                }
+              }'
