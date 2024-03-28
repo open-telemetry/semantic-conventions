@@ -30,6 +30,7 @@ body:
         - area:exception
         - area:faas
         - area:feature-flag
+        - area:file
         - area:gcp-cloud-run
         - area:gcp-gce
         - area:host
