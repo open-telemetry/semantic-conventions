@@ -1,7 +1,7 @@
 groups:
   - id: registry.k8s
     prefix: k8s
-    type: resource
+    type: attribute_group
     brief: >
       Kubernetes resource attributes.
     attributes:

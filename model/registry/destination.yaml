@@ -1,5 +1,5 @@
 groups:
-  - id: destination
+  - id: registry.destination
     prefix: destination
     type: attribute_group
     brief: >

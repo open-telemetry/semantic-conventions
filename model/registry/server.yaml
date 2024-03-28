@@ -1,5 +1,5 @@
 groups:
-  - id: server
+  - id: registry.server
     prefix: server
     type: attribute_group
     brief: >

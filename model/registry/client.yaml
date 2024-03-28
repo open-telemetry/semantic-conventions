@@ -1,5 +1,5 @@
 groups:
-  - id: client
+  - id: registry.client
     prefix: client
     type: attribute_group
     brief: >

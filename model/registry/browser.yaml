@@ -1,7 +1,7 @@
 groups:
   - id: registry.browser
     prefix: browser
-    type: resource
+    type: attribute_group
     brief: >
       The web browser attributes
     attributes:
