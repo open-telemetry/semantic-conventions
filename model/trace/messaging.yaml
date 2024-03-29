@@ -65,6 +65,9 @@ groups:
       - ref: messaging.destination.name
         requirement_level:
           conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
+      - ref: messaging.destination.partition.id
+        requirement_level:
+          recommended: When applicable.
       - ref: messaging.destination.template
         requirement_level:
           conditionally_required: >
@@ -134,7 +137,7 @@ groups:
     attributes:
       - ref: messaging.destination.partition.id
         brief: >
-          "String representation of the partition id the message  (or batch) is sent to or received from.""
+          String representation of the partition id the message (or batch) is sent to or received from.
         tag: tech-specific
       - ref: messaging.kafka.message.key
         tag: tech-specific

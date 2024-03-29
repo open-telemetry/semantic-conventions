@@ -16,7 +16,6 @@ described on this page.
 
 Specific attributes for Apache RocketMQ are defined below.
 
-<<<<<<< HEAD
 <!-- semconv messaging.rocketmq(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
