@@ -138,6 +138,7 @@ groups:
       - ref: messaging.destination.partition.id
         brief: >
           String representation of the partition id the message (or batch) is sent to or received from.
+        requirement_level: recommended
         tag: tech-specific
       - ref: messaging.kafka.message.key
         tag: tech-specific
@@ -216,7 +217,7 @@ groups:
     attributes:
       - ref: messaging.destination.partition.id
         brief: >
-          "String representation of the partition id messages are sent to or received from, unique within the Event Hub."
+          String representation of the partition id messages are sent to or received from, unique within the Event Hub.
         requirement_level:
           conditionally_required: If available.
       - ref: messaging.eventhubs.message.enqueued_time
