@@ -1,13 +1,18 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: AI
+linkTitle: Generative AI
 path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/ai/_index.md
+  from: tmp/semconv/docs/gen-ai/_index.md
   to: gen-ai/README.md
 --->
 
 # Semantic Conventions for Generative AI systems
 
 **Status**: [Experimental][DocumentStatus]
+
+**Warning**:
+The semantic conventions for GenAI and LLM are currently in development.
+We encourage instrumentation libraries and telemetry consumers developers to
+use the conventions in limited non-critical workloads and share the feedback
 
 This document defines semantic conventions for the following kind of Generative AI systems:
 

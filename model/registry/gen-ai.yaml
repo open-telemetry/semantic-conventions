@@ -42,7 +42,7 @@ groups:
         tag: llm-generic-response
       - id: response.model
         type: string
-        brief: The name of the LLM a response is being made to.
+        brief: The name of the LLM a response was generated from.
         examples: ['gpt-4-0613']
         tag: llm-generic-response
       - id: response.finish_reasons

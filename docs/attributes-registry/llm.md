@@ -1,7 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
+linkTitle: LLM
 --->
 
-# Large Language Model (LLM)
+# Large Language Model
 
 <!-- toc -->
 

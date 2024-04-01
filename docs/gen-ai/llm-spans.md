@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: LLM Calls
+linkTitle: LLM requests
 --->
 
 # Semantic Conventions for LLM requests
@@ -18,8 +18,10 @@ linkTitle: LLM Calls
 
 A request to an LLM is modeled as a span in a trace.
 
+**Span kind:** MUST always be `CLIENT`.
+
 The **span name** SHOULD be set to a low cardinality value describing an operation made to an LLM.
-For example, the API name such as [Create chat completion](https://platform.openai.com/docs/api-reference/chat/create)
+For example, the API name such as [Create chat completion](https://platform.openai.com/docs/api-reference/chat/create) could be represented as `ChatCompletions gpt-4` to include the API and the LLM.
 
 ## Configuration
 
@@ -78,7 +80,7 @@ The event name MUST be `gen_ai.content.completion`.
 |---|---|---|---|---|
 | [`gen_ai.completion`](../attributes-registry/gen-ai.md) | string | The full response received from the LLM. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | Conditionally Required: if and only if corresponding event is enabled |
 
-**[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+**[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation).
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
