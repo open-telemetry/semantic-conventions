@@ -77,9 +77,9 @@ Below is a list of RPC server metric instruments.
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.server.duration(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
@@ -92,9 +92,9 @@ to end-of-batch, it's hard to interpret in practice.
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.server.request.size(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** **Streaming**: Recorded per message in a streaming batch
 <!-- endsemconv -->
@@ -104,9 +104,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.server.response.size(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** **Streaming**: Recorded per response in a streaming batch
 <!-- endsemconv -->
@@ -116,9 +116,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.server.requests_per_rpc(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.server.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.server.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
 
@@ -130,9 +130,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.server.responses_per_rpc(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.server.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.server.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
 
@@ -149,9 +149,9 @@ These apply to traditional RPC usage, not streaming RPCs.
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.client.duration(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC. [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
@@ -164,9 +164,9 @@ to end-of-batch, it's hard to interpret in practice.
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.client.request.size(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** **Streaming**: Recorded per message in a streaming batch
 <!-- endsemconv -->
@@ -176,9 +176,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.client.response.size(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** **Streaming**: Recorded per response in a streaming batch
 <!-- endsemconv -->
@@ -188,9 +188,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.client.requests_per_rpc(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.client.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.client.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
 
@@ -202,9 +202,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.rpc.client.responses_per_rpc(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `rpc.client.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `rpc.client.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
 
@@ -217,15 +217,15 @@ Below is a table of attributes that SHOULD be included on client and server RPC
 measurements.
 
 <!-- semconv attributes.metrics.rpc(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
-| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | Recommended |
-| [`rpc.method`](../attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [3] | `exampleMethod` | Recommended |
-| [`rpc.service`](../attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | Recommended |
-| [`rpc.system`](../attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | Required |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`rpc.system`](../attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.type`](../attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`rpc.method`](../attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [3] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.service`](../attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -243,31 +243,31 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `tcp` | TCP |
-| `udp` | UDP |
-| `pipe` | Named or anonymous pipe. |
-| `unix` | Unix domain socket |
+| Value  | Description | Stability |
+|---|---|---|
+| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `ipv4` | IPv4 |
-| `ipv6` | IPv6 |
+| Value  | Description | Stability |
+|---|---|---|
+| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `grpc` | gRPC |
-| `java_rmi` | Java RMI |
-| `dotnet_wcf` | .NET WCF |
-| `apache_dubbo` | Apache Dubbo |
-| `connect_rpc` | Connect RPC |
+| Value  | Description | Stability |
+|---|---|---|
+| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).
@@ -287,6 +287,10 @@ More specific Semantic Conventions are defined for the following RPC technologie
 * [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
 * [gRPC](grpc.md): Semantic Conventions for *gRPC*.
 * [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
+
+Specifications defined by maintainers of RPC systems:
+
+* [gRPC](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md): Semantic Conventions for *gRPC*.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

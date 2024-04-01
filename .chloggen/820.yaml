@@ -1,0 +1,4 @@
+change_type: enhancement
+component: other
+note: Update build-tools version to 0.24.0 and make semantic conventions compatible with this version (add stability on enum members and deprecated attributes).
+issues: [ 807 ]

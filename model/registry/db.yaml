@@ -26,26 +26,37 @@ groups:
           members:
             - id: all
               value: 'all'
+              stability: experimental
             - id: each_quorum
               value: 'each_quorum'
+              stability: experimental
             - id: quorum
               value: 'quorum'
+              stability: experimental
             - id: local_quorum
               value: 'local_quorum'
+              stability: experimental
             - id: one
               value: 'one'
+              stability: experimental
             - id: two
               value: 'two'
+              stability: experimental
             - id: three
               value: 'three'
+              stability: experimental
             - id: local_one
               value: 'local_one'
+              stability: experimental
             - id: any
               value: 'any'
+              stability: experimental
             - id: serial
               value: 'serial'
+              stability: experimental
             - id: local_serial
               value: 'local_serial'
+              stability: experimental
         stability: experimental
         tag: tech-specific-cassandra
       - id: cassandra.idempotence
@@ -94,9 +105,11 @@ groups:
             - id: gateway
               value: 'gateway'
               brief: Gateway (HTTP) connections mode
+              stability: experimental
             - id: direct
               value: 'direct'
               brief: Direct connection.
+              stability: experimental
         stability: experimental
         brief: Cosmos client connection mode.
         tag: tech-specific-cosmosdb
@@ -112,34 +125,49 @@ groups:
           members:
             - id: invalid
               value: 'Invalid'
+              stability: experimental
             - id: create
               value: 'Create'
+              stability: experimental
             - id: patch
               value: 'Patch'
+              stability: experimental
             - id: read
               value: 'Read'
+              stability: experimental
             - id: read_feed
               value: 'ReadFeed'
+              stability: experimental
             - id: delete
               value: 'Delete'
+              stability: experimental
             - id: replace
               value: 'Replace'
+              stability: experimental
             - id: execute
               value: 'Execute'
+              stability: experimental
             - id: query
               value: 'Query'
+              stability: experimental
             - id: head
               value: 'Head'
+              stability: experimental
             - id: head_feed
               value: 'HeadFeed'
+              stability: experimental
             - id: upsert
               value: 'Upsert'
+              stability: experimental
             - id: batch
               value: 'Batch'
+              stability: experimental
             - id: query_plan
               value: 'QueryPlan'
+              stability: experimental
             - id: execute_javascript
               value: 'ExecuteJavaScript'
+              stability: experimental
         stability: experimental
         brief: CosmosDB Operation Type.
         tag: tech-specific-cosmosdb
@@ -172,13 +200,6 @@ groups:
         brief: >
           Represents the identifier of an Elasticsearch cluster.
         examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
-        tag: tech-specific-elasticsearch
-      - id: elasticsearch.node.name
-        type: string
-        stability: experimental
-        brief: >
-          Represents the human-readable identifier of the node/instance to which a request was routed.
-        examples: ["instance-0000000001"]
         tag: tech-specific-elasticsearch
       - id: elasticsearch.path_parts
         type: template[string]
@@ -274,159 +295,211 @@ groups:
             - id: other_sql
               value: 'other_sql'
               brief: 'Some other SQL database. Fallback only. See notes.'
+              stability: experimental
             - id: mssql
               value: 'mssql'
               brief: 'Microsoft SQL Server'
+              stability: experimental
             - id: mssqlcompact
               value: 'mssqlcompact'
               brief: 'Microsoft SQL Server Compact'
+              stability: experimental
             - id: mysql
               value: 'mysql'
               brief: 'MySQL'
+              stability: experimental
             - id: oracle
               value: 'oracle'
               brief: 'Oracle Database'
+              stability: experimental
             - id: db2
               value: 'db2'
               brief: 'IBM Db2'
+              stability: experimental
             - id: postgresql
               value: 'postgresql'
               brief: 'PostgreSQL'
+              stability: experimental
             - id: redshift
               value: 'redshift'
               brief: 'Amazon Redshift'
+              stability: experimental
             - id: hive
               value: 'hive'
               brief: 'Apache Hive'
+              stability: experimental
             - id: cloudscape
               value: 'cloudscape'
               brief: 'Cloudscape'
+              stability: experimental
             - id: hsqldb
               value: 'hsqldb'
               brief: 'HyperSQL DataBase'
+              stability: experimental
             - id: progress
               value: 'progress'
               brief: 'Progress Database'
+              stability: experimental
             - id: maxdb
               value: 'maxdb'
               brief: 'SAP MaxDB'
+              stability: experimental
             - id: hanadb
               value: 'hanadb'
               brief: 'SAP HANA'
+              stability: experimental
             - id: ingres
               value: 'ingres'
               brief: 'Ingres'
+              stability: experimental
             - id: firstsql
               value: 'firstsql'
               brief: 'FirstSQL'
+              stability: experimental
             - id: edb
               value: 'edb'
               brief: 'EnterpriseDB'
+              stability: experimental
             - id: cache
               value: 'cache'
               brief: 'InterSystems Caché'
+              stability: experimental
             - id: adabas
               value: 'adabas'
               brief: 'Adabas (Adaptable Database System)'
+              stability: experimental
             - id: firebird
               value: 'firebird'
               brief: 'Firebird'
+              stability: experimental
             - id: derby
               value: 'derby'
               brief: 'Apache Derby'
+              stability: experimental
             - id: filemaker
               value: 'filemaker'
               brief: 'FileMaker'
+              stability: experimental
             - id: informix
               value: 'informix'
               brief: 'Informix'
+              stability: experimental
             - id: instantdb
               value: 'instantdb'
               brief: 'InstantDB'
+              stability: experimental
             - id: interbase
               value: 'interbase'
               brief: 'InterBase'
+              stability: experimental
             - id: mariadb
               value: 'mariadb'
               brief: 'MariaDB'
+              stability: experimental
             - id: netezza
               value: 'netezza'
               brief: 'Netezza'
+              stability: experimental
             - id: pervasive
               value: 'pervasive'
               brief: 'Pervasive PSQL'
+              stability: experimental
             - id: pointbase
               value: 'pointbase'
               brief: 'PointBase'
+              stability: experimental
             - id: sqlite
               value: 'sqlite'
               brief: 'SQLite'
+              stability: experimental
             - id: sybase
               value: 'sybase'
               brief: 'Sybase'
+              stability: experimental
             - id: teradata
               value: 'teradata'
               brief: 'Teradata'
+              stability: experimental
             - id: vertica
               value: 'vertica'
               brief: 'Vertica'
+              stability: experimental
             - id: h2
               value: 'h2'
               brief: 'H2'
+              stability: experimental
             - id: coldfusion
               value: 'coldfusion'
               brief: 'ColdFusion IMQ'
+              stability: experimental
             - id: cassandra
               value: 'cassandra'
               brief: 'Apache Cassandra'
+              stability: experimental
             - id: hbase
               value: 'hbase'
               brief: 'Apache HBase'
+              stability: experimental
             - id: mongodb
               value: 'mongodb'
               brief: 'MongoDB'
+              stability: experimental
             - id: redis
               value: 'redis'
               brief: 'Redis'
+              stability: experimental
             - id: couchbase
               value: 'couchbase'
               brief: 'Couchbase'
+              stability: experimental
             - id: couchdb
               value: 'couchdb'
               brief: 'CouchDB'
+              stability: experimental
             - id: cosmosdb
               value: 'cosmosdb'
               brief: 'Microsoft Azure Cosmos DB'
+              stability: experimental
             - id: dynamodb
               value: 'dynamodb'
               brief: 'Amazon DynamoDB'
+              stability: experimental
             - id: neo4j
               value: 'neo4j'
               brief: 'Neo4j'
+              stability: experimental
             - id: geode
               value: 'geode'
               brief: 'Apache Geode'
+              stability: experimental
             - id: elasticsearch
               value: 'elasticsearch'
               brief: 'Elasticsearch'
+              stability: experimental
             - id: memcached
               value: 'memcached'
               brief: 'Memcached'
+              stability: experimental
             - id: cockroachdb
               value: 'cockroachdb'
               brief: 'CockroachDB'
+              stability: experimental
             - id: opensearch
               value: 'opensearch'
               brief: 'OpenSearch'
+              stability: experimental
             - id: clickhouse
               value: 'clickhouse'
               brief: 'ClickHouse'
+              stability: experimental
             - id: spanner
               value: 'spanner'
               brief: 'Cloud Spanner'
+              stability: experimental
             - id: trino
               value: 'trino'
               brief: 'Trino'
+              stability: experimental
         stability: experimental
         tag: db-generic
       - id: user

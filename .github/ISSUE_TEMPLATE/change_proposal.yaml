@@ -16,16 +16,23 @@ body:
         - area:browser
         - area:client
         - area:cloud
+        - area:cloudevents
         - area:code
         - area:container
         - area:db
+        - area:deployment
         - area:destination
         - area:device
         - area:disk
         - area:dns
+        - area:enduser
         - area:error
         - area:exception
         - area:faas
+        - area:feature-flag
+        - area:file
+        - area:gcp-cloud-run
+        - area:gcp-gce
         - area:gen-ai
         - area:host
         - area:http
