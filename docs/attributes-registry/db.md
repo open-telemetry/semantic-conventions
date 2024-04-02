@@ -26,13 +26,14 @@
 | `db.instance.id` | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.name` | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [1] | `customers`; `main` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.operation` | string | The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations) such as `findAndModify`, or the SQL keyword. [2] | `findAndModify`; `HMSET`; `SELECT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.statement` | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.query.parameter.<key>` | string | The query parameters, `<key>` being the parameter name (or index number), the value being the parameter value. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.query.text` | string | The database query being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.system` | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.user` | string | Username for accessing the database. | `readonly_user`; `reporting_user` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
 
-**[2]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL statement has an ambiguous operation, or performs more than one operation, this value may be omitted.
+**[2]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.query.text` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL query has an ambiguous operation, or performs more than one operation, this value may be omitted.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -105,7 +106,7 @@
 | `db.cassandra.speculative_execution_count` | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cassandra.table` | string | The name of the primary Cassandra table that the operation is acting upon, including the keyspace name (if applicable). [1] | `mytable` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This mirrors the db.sql.table attribute but references cassandra rather than sql. It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
+**[1]:** This mirrors the db.sql.table attribute but references cassandra rather than sql. It is not recommended to attempt any client-side parsing of `db.query.text` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
 
 `db.cassandra.consistency_level` MUST be one of the following:
 
@@ -210,7 +211,7 @@
 |---|---|---|---|---|
 | `db.sql.table` | string | The name of the primary table that the operation is acting upon, including the database name (if applicable). [1] | `public.users`; `customers` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
+**[1]:** It is not recommended to attempt any client-side parsing of `db.query.text` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
 <!-- endsemconv -->
 
 ## Deprecated DB Attributes
@@ -221,6 +222,7 @@
 | `db.connection_string` | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>"Replaced by `server.address` and `server.port`." |
 | `db.elasticsearch.node.name` | string | Deprecated, use `db.instance.id` instead. | `instance-0000000001` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.instance.id`. |
 | `db.jdbc.driver_classname` | string | Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed as not used. |
+| `db.statement` | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
 <!-- endsemconv -->
 
 ### Deprecated Elasticsearch Attributes
@@ -231,4 +233,5 @@
 | `db.connection_string` | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>"Replaced by `server.address` and `server.port`." |
 | `db.elasticsearch.node.name` | string | Deprecated, use `db.instance.id` instead. | `instance-0000000001` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.instance.id`. |
 | `db.jdbc.driver_classname` | string | Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed as not used. |
+| `db.statement` | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
 <!-- endsemconv -->

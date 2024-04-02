@@ -30,7 +30,7 @@ described on this page.
 
 **[1]:** For Cassandra the `db.name` should be set to the Cassandra keyspace name.
 
-**[2]:** This mirrors the db.sql.table attribute but references cassandra rather than sql. It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
+**[2]:** This mirrors the db.sql.table attribute but references cassandra rather than sql. It is not recommended to attempt any client-side parsing of `db.query.text` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
 
 **[3]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
