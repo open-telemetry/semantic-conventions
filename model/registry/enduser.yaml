@@ -1,0 +1,29 @@
+groups:
+  - id: registry.enduser
+    prefix: enduser
+    type: attribute_group
+    brief: >
+      This document defines attributes for operations with an authenticated and/or authorized enduser.
+    attributes:
+      - id: id
+        type: string
+        stability: experimental
+        brief: >
+          Username or client_id extracted from the access token or
+          [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)
+          header in the inbound request from outside the system.
+        examples: 'username'
+      - id: role
+        type: string
+        stability: experimental
+        brief: 'Actual/assumed role the client is making the request under extracted from token or application security context.'
+        examples: 'admin'
+      - id: scope
+        type: string
+        stability: experimental
+        brief: >
+          Scopes or granted authorities the client currently possesses extracted from token
+          or application security context. The value would come from the scope associated
+          with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3)
+          or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html).
+        examples: 'read:message, write:files'

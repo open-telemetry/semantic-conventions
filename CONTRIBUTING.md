@@ -82,7 +82,7 @@ environment configured:
 ### 1. Modify the YAML model
 
 Refer to the
-[Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.23.0/semantic-conventions/syntax.md)
+[Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.24.0/semantic-conventions/syntax.md)
 to learn how to make changes to the YAML files.
 
 #### Schema files

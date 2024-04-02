@@ -25,7 +25,7 @@ for AREA in ${AREAS}; do
         continue
     fi
     echo "area:${LABEL_NAME}"
-    gh label create "area:${LABEL_NAME}" -c "#425cc7"
+    gh label create "area:${LABEL_NAME}" -c "#425cc7" --force
 done
 
 echo -e "\nLabels created successfully"

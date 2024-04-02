@@ -15,9 +15,11 @@ groups:
             - id: stdout
               value: 'stdout'
               brief: 'Logs from stdout stream'
+              stability: experimental
             - id: stderr
               value: 'stderr'
               brief: 'Events from stderr stream'
+              stability: experimental
   - id: attributes.log.file
     prefix: log.file
     type: attribute_group
