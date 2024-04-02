@@ -1,4 +1,10 @@
-# AWS DynamoDB
+# AWS
+
+<!-- toc -->
+
+- [AWS DynamoDB Attributes](#aws-dynamodb-attributes)
+
+<!-- tocstop -->
 
 ## AWS DynamoDB Attributes
 <!-- semconv registry.aws.dynamodb(omit_requirement_level) -->

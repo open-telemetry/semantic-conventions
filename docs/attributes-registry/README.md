@@ -28,7 +28,7 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 * [Android](android.md)
-* [AWS DynamoDB](aws-dynamodb.md)
+* [AWS](aws.md)
 * [Browser](browser.md)
 * [Client](client.md)
 * [Cloud](cloud.md)
