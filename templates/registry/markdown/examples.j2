@@ -1,0 +1,7 @@
+{%- if attribute.examples %}
+{%- if attribute.examples is sequence %}
+- Examples: {{ attribute.examples | pprint }}
+{%- else %}
+- Examples: {{ attribute.examples }}
+{%- endif %}
+{%- endif %}

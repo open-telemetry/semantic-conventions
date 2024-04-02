@@ -1,0 +1,7 @@
+templates:
+  - pattern: attribute_group.md
+    filter: .groups[] | select(.type == "attribute_group") | select(.id | startswith("registry"))
+    application_mode: each
+# - pattern: groups_per_prefix.md
+#   filter: '.groups | map(select(.prefix != null and .prefix != "")) | group_by(.prefix) | map({prefix: .[0].prefix, groups: .})'
+#   application_mode: each

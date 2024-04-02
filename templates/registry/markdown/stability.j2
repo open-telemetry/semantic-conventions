@@ -1,0 +1,4 @@
+{%- if attribute.stability == "stable" %} ![Stable](https://img.shields.io/badge/-stable-lightgreen)
+{%- elif attribute.stability == "deprecated" %} ![Deprecated](https://img.shields.io/badge/-deprecated-red)
+{%- else %} ![Experimental](https://img.shields.io/badge/-experimental-blue)
+{%- endif %}

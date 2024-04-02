@@ -97,6 +97,24 @@ table-generation:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
 
+.PHONY: table-generation2
+table-generation2:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+		otel/weaver registry update-markdown \
+		--registry=/source \
+		--attribute-registry-base-url="/docs/attribute-registry" \
+		--dry-run \
+		/spec
+
+.PHONY: attribute-registry-generation
+attribute-registry-generation:
+#		  --registry=/source
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
+		otel/weaver registry generate \
+		  --templates=/weaver/templates \
+		  markdown \
+		  /spec/attributes-registry2/
+
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions
 .PHONY: table-check
 table-check:
