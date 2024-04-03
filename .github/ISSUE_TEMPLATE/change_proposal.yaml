@@ -46,6 +46,7 @@ body:
         - area:rpc
         - area:server
         - area:service
+        - area:session
         - area:source
         - area:thread
         - area:tls
