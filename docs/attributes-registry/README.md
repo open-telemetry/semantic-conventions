@@ -50,6 +50,7 @@ Currently, the following namespaces exist:
 * [Host](host.md)
 * [HTTP](http.md)
 * [K8s](k8s.md)
+* [Mobile events](mobile-events.md)
 * [Network](network.md)
 * [OCI](oci.md)
 * [OS](os.md)

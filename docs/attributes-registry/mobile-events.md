@@ -1,34 +1,21 @@
-# Semantic Conventions for mobile events
+<!--- Hugo front matter used to generate the website version of this page:
+--->
 
-**Status**: [Experimental][DocumentStatus]
-
-This document defines semantic conventions for instrumentations that emit
-events on mobile platforms. All mobile events MUST use a namespace of
-`device` in the `event.name` property.
+# Mobile Events
 
 <!-- toc -->
 
-- [Lifecycle instrumentation](#lifecycle-instrumentation)
-  - [iOS](#ios)
-  - [Android](#android)
+- [iOS Lifecycle Event Attributes](#ios-lifecycle-event-attributes)
+- [Android Lifecycle Event Attributes](#android-lifecycle-event-attributes)
 
 <!-- tocstop -->
 
-## Lifecycle instrumentation
+## iOS Lifecycle Event Attributes
 
-This section defines how to apply semantic conventions when instrumenting
-application lifecycle. This event is meant to be used in conjunction with
-`os.name` [resource semantic convention](/docs/resource/os.md) to identify the
-mobile operating system (e.g. Android, iOS).
-
-### iOS
-
-<!-- semconv ios.lifecycle.events(full) -->
-The event name MUST be `device.app.lifecycle`.
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`ios.state`](../attributes-registry/mobile-events.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `active` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- semconv registry.ios.lifecycle.events(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `ios.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `active` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902), and from which the `OS terminology` column values are derived.
 
@@ -43,14 +30,12 @@ The event name MUST be `device.app.lifecycle`.
 | `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Android
+## Android Lifecycle Event Attributes
 
-<!-- semconv android.lifecycle.events(full) -->
-The event name MUST be `device.app.lifecycle`.
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`android.state`](../attributes-registry/mobile-events.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- semconv registry.android.lifecycle.events(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `android.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
@@ -62,5 +47,3 @@ The event name MUST be `device.app.lifecycle`.
 | `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
-
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
