@@ -1,4 +1,4 @@
 change_type: breaking
 component: db
 note: Rename `db.operation` to `db.operation.name`.
-issues: [ ]
+issues: []
