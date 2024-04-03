@@ -54,6 +54,7 @@ Currently, the following namespaces exist:
 * [Network](network.md)
 * [OCI](oci.md)
 * [OS](os.md)
+* [Peer](peer.md)
 * [Process](process.md)
 * [RPC](rpc.md)
 * [Server](server.md)
