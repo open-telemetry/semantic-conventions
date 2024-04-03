@@ -1,26 +1,26 @@
 groups:
-  - id: general.client
+  - id: client
     type: attribute_group
     brief: >
       General client attributes.
     attributes:
       - ref: client.address
       - ref: client.port
-  - id: general.server
+  - id: server
     type: attribute_group
     brief: >
       General server attributes.
     attributes:
       - ref: server.address
       - ref: server.port
-  - id: general.source
+  - id: source
     type: attribute_group
     brief: >
       General source attributes.
     attributes:
       - ref: source.address
       - ref: source.port
-  - id: general.destination
+  - id: destination
     type: attribute_group
     brief: >
       General destination attributes.
