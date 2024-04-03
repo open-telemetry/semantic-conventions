@@ -1,4 +1,9 @@
+<!--- Hugo front matter used to generate the website version of this page:
+--->
+
 # Service
+
+## Service Attributes
 
 <!-- semconv registry.service(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
