@@ -44,6 +44,7 @@ body:
         - area:rpc
         - area:server
         - area:source
+        - area:telemetry
         - area:thread
         - area:tls
         - area:url
