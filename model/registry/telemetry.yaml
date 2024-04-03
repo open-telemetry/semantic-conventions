@@ -70,3 +70,18 @@ groups:
         brief: >
           The version string of the telemetry SDK.
         examples: ["1.2.3"]
+      - id: distro.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the auto instrumentation agent or distribution, if used.
+        note: |
+          Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
+          a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
+        examples: ["parts-unlimited-java"]
+      - id: distro.version
+        type: string
+        stability: experimental
+        brief: >
+          The version string of the auto instrumentation agent or distribution, if used.
+        examples: ["1.2.3"]

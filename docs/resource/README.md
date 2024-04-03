@@ -197,8 +197,8 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 <!-- semconv telemetry_experimental -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `telemetry.distro.name` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `telemetry.distro.version` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.distro.name`](../attributes-registry/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.distro.version`](../attributes-registry/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
