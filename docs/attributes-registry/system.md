@@ -1,5 +1,16 @@
 # System
 
+<!-- toc -->
+
+- [CPU attributes](#cpu-attributes)
+- [Memory attributes](#memory-attributes)
+- [Paging attributes](#paging-attributes)
+- [Filesystem attributes](#filesystem-attributes)
+- [Network attributes](#network-attributes)
+- [Process attributes](#process-attributes)
+
+<!-- tocstop -->
+
 <!-- semconv registry.system(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
