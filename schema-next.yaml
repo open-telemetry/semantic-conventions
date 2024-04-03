@@ -54,7 +54,7 @@ versions:
               type: process.paging.fault_type
             apply_to_metrics:
               - process.paging.faults
-    events:
+    all:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/854
         - rename_attributes:
