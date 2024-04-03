@@ -82,8 +82,8 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 <!-- semconv service -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `service.name` | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `service.version` | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`service.name`](../attributes-registry/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`service.version`](../attributes-registry/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md#process), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 <!-- endsemconv -->
@@ -99,8 +99,8 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 <!-- semconv service_experimental -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `service.instance.id` | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `service.namespace` | string | A namespace for `service.name`. [2] | `Shop` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`service.instance.id`](../attributes-registry/service.md) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`service.namespace`](../attributes-registry/service.md) | string | A namespace for `service.name`. [2] | `Shop` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to

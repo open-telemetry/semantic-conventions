@@ -28,6 +28,7 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 * [Android](android.md)
+* [AWS](aws.md)
 * [Browser](browser.md)
 * [Client](client.md)
 * [Cloud](cloud.md)
@@ -53,9 +54,12 @@ Currently, the following namespaces exist:
 * [Network](network.md)
 * [OCI](oci.md)
 * [OS](os.md)
+* [Peer](peer.md)
 * [Process](process.md)
 * [RPC](rpc.md)
 * [Server](server.md)
+* [Service](service.md)
+* [Session](session.md)
 * [Source](source.md)
 * [Telemetry](telemetry.md)
 * [Thread](thread.md)
