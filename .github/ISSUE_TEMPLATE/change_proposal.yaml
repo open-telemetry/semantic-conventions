@@ -13,6 +13,7 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:aws
         - area:browser
         - area:client
         - area:cloud
@@ -40,6 +41,7 @@ body:
         - area:network
         - area:oci
         - area:os
+        - area:peer
         - area:process
         - area:rpc
         - area:server
