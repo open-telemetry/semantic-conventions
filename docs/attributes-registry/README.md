@@ -51,7 +51,6 @@ Currently, the following namespaces exist:
 * [HTTP](http.md)
 * [iOS](ios.md)
 * [K8s](k8s.md)
-* [Mobile events](mobile-events.md)
 * [Network](network.md)
 * [OCI](oci.md)
 * [OS](os.md)
