@@ -47,6 +47,7 @@ Currently, the following namespaces exist:
 * [File](file.md)
 * [Google Cloud Run](gcp-cloud-run.md)
 * [Google Compute Engine](gcp-gce.md)
+* [Heroku](heroku.md)
 * [Host](host.md)
 * [HTTP](http.md)
 * [K8s](k8s.md)
