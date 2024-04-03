@@ -83,7 +83,8 @@ Some database systems may allow a connection to switch to a different `db.user`,
 | [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [6] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](../attributes-registry/db.md) | string | The query parameters, `<key>` being the parameter name (or index number), the value being the parameter value. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.parameter.<key>`](../attributes-registry/db.md) | string | The query parameters, `<key>` being the parameter name, the value being the parameter value.
+If there is no parameter name, then `<key>` SHOULD be the index of the parameter (starting from `0`). | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
 
