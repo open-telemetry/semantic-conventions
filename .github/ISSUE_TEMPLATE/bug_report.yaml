@@ -20,6 +20,7 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:aws
         - area:browser
         - area:client
         - area:cloud
