@@ -76,4 +76,3 @@ groups:
                 Any time after Activity.onResume() or, if the app has no Activity,
                 Context.startService() has been called when the app was in either the created or background states.
               stability: experimental
-
