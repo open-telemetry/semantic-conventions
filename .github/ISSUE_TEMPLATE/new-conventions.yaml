@@ -46,6 +46,7 @@ body:
         - area:http
         - area:k8s
         - area:messaging
+        - area:mobile-events
         - area:network
         - area:oci
         - area:os
