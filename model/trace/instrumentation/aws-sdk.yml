@@ -55,16 +55,27 @@ groups:
           - GetItem
           - PutItem
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
       - ref: aws.dynamodb.provisioned_read_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.provisioned_write_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.consistent_read
+        requirement_level: recommended
       - ref: aws.dynamodb.projection
+        requirement_level: recommended
       - ref: aws.dynamodb.limit
+        requirement_level: recommended
       - ref: aws.dynamodb.attributes_to_get
+        requirement_level: recommended
       - ref: aws.dynamodb.index_name
+        requirement_level: recommended
       - ref: aws.dynamodb.select
+        requirement_level: recommended
 
   - id: dynamodb.batchgetitem
     brief: DynamoDB.BatchGetItem
@@ -72,7 +83,9 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
 
   - id: dynamodb.batchwriteitem
     brief: DynamoDB.BatchWriteItem
@@ -80,8 +93,11 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
 
   - id: dynamodb.createtable
     brief: DynamoDB.CreateTable
@@ -89,15 +105,22 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.global_secondary_indexes
+        requirement_level: recommended
       - ref: aws.dynamodb.local_secondary_indexes
+        requirement_level: recommended
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
         brief: "A single-element array with the value of the TableName request parameter."
         examples:
           - Users
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
       - ref: aws.dynamodb.provisioned_read_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.provisioned_write_capacity
+        requirement_level: recommended
 
   - id: dynamodb.deleteitem
     brief: DynamoDB.DeleteItem
@@ -105,11 +128,14 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
         brief: "A single-element array with the value of the TableName request parameter."
         examples:
           - Users
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
 
   - id: dynamodb.deletetable
     brief: DynamoDB.DeleteTable
@@ -117,6 +143,7 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
         brief: "A single-element array with the value of the TableName request parameter."
         examples:
           - Users
@@ -127,6 +154,7 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
         brief: "A single-element array with the value of the TableName request parameter."
         examples:
           - Users
@@ -137,12 +165,16 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
         brief: "A single-element array with the value of the TableName request parameter."
         examples:
           - Users
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.consistent_read
+        requirement_level: recommended
       - ref: aws.dynamodb.projection
+        requirement_level: recommended
 
   - id: dynamodb.listtables
     brief: DynamoDB.ListTables
@@ -150,8 +182,11 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.exclusive_start_table
+        requirement_level: recommended
       - ref: aws.dynamodb.table_count
+        requirement_level: recommended
       - ref: aws.dynamodb.limit
+        requirement_level: recommended
 
   - id: dynamodb.putitem
     brief: DynamoDB.PutItem
@@ -159,8 +194,11 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
 
   - id: dynamodb.query
     brief: DynamoDB.Query
@@ -168,17 +206,26 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.scan_forward
+        requirement_level: recommended
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
         brief: "A single-element array with the value of the TableName request parameter."
         examples:
           - Users
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.consistent_read
+        requirement_level: recommended
       - ref: aws.dynamodb.limit
+        requirement_level: recommended
       - ref: aws.dynamodb.projection
+        requirement_level: recommended
       - ref: aws.dynamodb.attributes_to_get
+        requirement_level: recommended
       - ref: aws.dynamodb.index_name
+        requirement_level: recommended
       - ref: aws.dynamodb.select
+        requirement_level: recommended
 
   - id: dynamodb.scan
     brief: DynamoDB.Scan
@@ -186,20 +233,32 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.segment
+        requirement_level: recommended
       - ref: aws.dynamodb.total_segments
+        requirement_level: recommended
       - ref: aws.dynamodb.count
+        requirement_level: recommended
       - ref: aws.dynamodb.scanned_count
+        requirement_level: recommended
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
         brief: "A single-element array with the value of the TableName request parameter."
         examples:
           - Users
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.consistent_read
+        requirement_level: recommended
       - ref: aws.dynamodb.limit
+        requirement_level: recommended
       - ref: aws.dynamodb.projection
+        requirement_level: recommended
       - ref: aws.dynamodb.attributes_to_get
+        requirement_level: recommended
       - ref: aws.dynamodb.index_name
+        requirement_level: recommended
       - ref: aws.dynamodb.select
+        requirement_level: recommended
 
   - id: dynamodb.updateitem
     brief: DynamoDB.UpdateItem
@@ -207,11 +266,14 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
         brief: "A single-element array with the value of the TableName request parameter."
         examples:
           - Users
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
 
   - id: dynamodb.updatetable
     brief: DynamoDB.UpdateTable
@@ -219,14 +281,20 @@ groups:
     type: span
     attributes:
       - ref: aws.dynamodb.attribute_definitions
+        requirement_level: recommended
       - ref: aws.dynamodb.global_secondary_index_updates
+        requirement_level: recommended
       - ref: aws.dynamodb.table_names
+        requirement_level: recommended
         brief: "A single-element array with the value of the TableName request parameter."
         examples:
           - Users
       - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.provisioned_read_capacity
+        requirement_level: recommended
       - ref: aws.dynamodb.provisioned_write_capacity
+        requirement_level: recommended
 
   - id: aws.s3
     extends: aws
