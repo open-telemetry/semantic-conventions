@@ -33,6 +33,7 @@ body:
         - area:file
         - area:gcp-cloud-run
         - area:gcp-gce
+        - area:heroku
         - area:host
         - area:http
         - area:k8s
