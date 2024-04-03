@@ -38,7 +38,6 @@ groups:
       - ref: network.protocol.version
         examples: ["1.1", "2"]
       - ref: tls.protocol.version
-        stability: experimental
       - ref: error.type
         brief: The full name of exception type.
         requirement_level:
@@ -110,7 +109,6 @@ groups:
     extends: common.kestrel.attributes
     attributes:
       - ref: tls.protocol.version
-        stability: experimental
       - ref: error.type
         brief: The full name of exception type.
         note: "Captures the exception type when a TLS handshake fails."
