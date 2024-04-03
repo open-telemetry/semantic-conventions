@@ -157,4 +157,4 @@ Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
 
 [DocumentStatus]:
-  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
