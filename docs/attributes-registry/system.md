@@ -6,6 +6,8 @@
 | `system.device` | string | The device identifier | `(identifier)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
+## CPU attributes
+
 <!-- semconv registry.system.cpu(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
@@ -25,6 +27,8 @@
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
+## Memory attributes
+
 <!-- semconv registry.system.memory(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
@@ -40,6 +44,8 @@
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
+
+## Paging attributes
 
 <!-- semconv registry.system.paging(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
@@ -70,6 +76,8 @@
 | `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
+## Filesystem attributes
+
 <!-- semconv registry.system.filesystem(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
@@ -98,6 +106,8 @@
 | `ext4` | ext4 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
+## Network attributes
+
 <!-- semconv registry.system.network(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
@@ -120,6 +130,8 @@
 | `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
+
+## Process attributes
 
 <!-- semconv registry.system.process(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
