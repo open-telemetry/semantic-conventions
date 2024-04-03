@@ -49,6 +49,7 @@ Currently, the following namespaces exist:
 * [Google Compute Engine](gcp-gce.md)
 * [Host](host.md)
 * [HTTP](http.md)
+* [iOS](ios.md)
 * [K8s](k8s.md)
 * [Mobile events](mobile-events.md)
 * [Network](network.md)
