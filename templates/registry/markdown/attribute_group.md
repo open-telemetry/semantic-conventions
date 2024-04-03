@@ -6,7 +6,7 @@
 
 {%- macro add_note(note) %}
 {%- if note %}
-{%- set ns.notes = [[note], ns.notes] | flatten -%}
+{%- set ns.notes = [ns.notes, [note]] | flatten -%}
 [{{ ns.notes | length }}]
 {%- endif %}
 {%- endmacro %}
