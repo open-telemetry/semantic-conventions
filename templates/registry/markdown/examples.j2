@@ -1,7 +1,7 @@
 {%- if attribute.examples %}
 {%- if attribute.examples is sequence %}
-- Examples: {{ attribute.examples | pprint }}
+{%- for example in attribute.examples %}{%if loop.first == false %}; {% endif %}`{{ example }}`{%- endfor %}
 {%- else %}
-- Examples: {{ attribute.examples }}
+{{ attribute.examples }}
 {%- endif %}
 {%- endif %}

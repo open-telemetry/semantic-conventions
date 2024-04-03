@@ -9,7 +9,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 {%- for attribute in ctx.attributes %}
-| `{{ attribute.name }}` | {%- include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }} | {%- include "stability.j2" | trim %} |
+| `{{ attribute.name }}` | {%- include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }} | {%- include "examples.j2" | trim %} | {%- include "stability.j2" | trim %} |
 {%- endfor %}
 |---|---|---|---|---|
 
