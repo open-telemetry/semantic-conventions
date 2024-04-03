@@ -7,4 +7,5 @@ groups:
         type: template[string]
         examples: [ 'container.label.app=nginx' ]
         brief: "Deprecated, use `container.label` instead."
+        stability: experimental
         deprecated: "Replaced by `container.label`."
