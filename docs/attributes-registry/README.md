@@ -59,6 +59,7 @@ Currently, the following namespaces exist:
 * [RPC](rpc.md)
 * [Server](server.md)
 * [Service](service.md)
+* [Session](session.md)
 * [Source](source.md)
 * [Thread](thread.md)
 * [TLS](tls.md)
