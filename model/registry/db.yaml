@@ -292,7 +292,7 @@ groups:
         stability: experimental
         brief: >
           The query parameters, `<key>` being the parameter name, the value being the parameter value.
-          
+
           If there is no parameter name, then `<key>` SHOULD be the index of the parameter (starting from `0`).
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
         tag: db-generic
