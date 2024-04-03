@@ -1,1 +1,5 @@
-{%- if attribute.type is mapping %} Enum [{{ attribute.type.members | map(attribute="value") | join(", ") }}] {%- else %} {{ attribute.type }} {%- endif %}
+{%- if attribute.type is mapping %} 
+{%- if attribute.type.members[0].value is string %} string {%- endif %}
+{%- if attribute.type.members[0].value is int %} int {%- endif %}
+{%- if attribute.type.members[0].value is float %} double {%- endif %}
+{%- else %} {{ attribute.type }} {%- endif %}

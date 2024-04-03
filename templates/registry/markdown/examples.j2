@@ -1,7 +1,11 @@
+{%- if attribute.type is mapping %}
+{%- for member in attribute.type.members %}{%if loop.first == false %}; {% endif %}`{{ member.value }}`{%- endfor %}
+{%- else %}
 {%- if attribute.examples %}
 {%- if attribute.examples is sequence %}
 {%- for example in attribute.examples %}{%if loop.first == false %}; {% endif %}`{{ example }}`{%- endfor %}
 {%- else %}
 {{ attribute.examples }}
+{%- endif %}
 {%- endif %}
 {%- endif %}
