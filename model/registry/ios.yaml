@@ -3,7 +3,7 @@ groups:
     prefix: ios
     type: attribute_group
     brief: >
-        This document defines attributes that represents an occurrence of a lifecycle transition on the iOS platform.
+        The iOS platform on which the iOS application is running.
     attributes:
       - id: state
         stability: experimental
