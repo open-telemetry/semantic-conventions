@@ -61,6 +61,7 @@ Currently, the following namespaces exist:
 * [Service](service.md)
 * [Session](session.md)
 * [Source](source.md)
+* [Telemetry](telemetry.md)
 * [Thread](thread.md)
 * [TLS](tls.md)
 * [URL](url.md)
