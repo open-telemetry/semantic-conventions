@@ -12,10 +12,10 @@ protocol / API does not expose a clear notion of client and server).
 This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
 
 <!-- semconv registry.server(omit_requirement_level) -->
-| Attribute  | Type | Description  | Examples  |
-|---|---|---|---|
-| `server.address` | string | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| `server.port` | int | ![Stable](https://img.shields.io/badge/-stable-lightgreen)<br>Server port number. [2] | `80`; `8080`; `443` |
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `server.address` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `server.port` | int | Server port number. [2] | `80`; `8080`; `443` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
