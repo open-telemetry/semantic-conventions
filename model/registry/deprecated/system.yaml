@@ -9,12 +9,17 @@ groups:
           members:
             - id: running
               value: 'running'
+              stability: experimental
             - id: sleeping
               value: 'sleeping'
+              stability: experimental
             - id: stopped
               value: 'stopped'
+              stability: experimental
             - id: defunct
               value: 'defunct'
+              stability: experimental
         brief: "Deprecated, use `system.process.status` instead."
         deprecated: "Replaced by `system.process.status`."
+        stability: experimental
         examples: ["running"]

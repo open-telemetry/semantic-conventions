@@ -13,19 +13,27 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:aws
         - area:browser
         - area:client
         - area:cloud
+        - area:cloudevents
         - area:code
         - area:container
         - area:db
+        - area:deployment
         - area:destination
         - area:device
         - area:disk
         - area:dns
+        - area:enduser
         - area:error
         - area:exception
         - area:faas
+        - area:feature-flag
+        - area:file
+        - area:gcp-cloud-run
+        - area:gcp-gce
         - area:host
         - area:http
         - area:k8s
@@ -33,9 +41,11 @@ body:
         - area:network
         - area:oci
         - area:os
+        - area:peer
         - area:process
         - area:rpc
         - area:server
+        - area:service
         - area:session
         - area:source
         - area:thread
