@@ -42,9 +42,9 @@ body:
         - area:gcp-gce
         - area:host
         - area:http
+        - area:ios
         - area:k8s
         - area:messaging
-        - area:mobile-events
         - area:network
         - area:oci
         - area:os

@@ -28,7 +28,7 @@ The event name MUST be `device.app.lifecycle`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`ios.state`](../attributes-registry/mobile-events.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `active` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`ios.state`](../attributes-registry/ios.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `active` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902), and from which the `OS terminology` column values are derived.
 
@@ -50,7 +50,7 @@ The event name MUST be `device.app.lifecycle`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`android.state`](../attributes-registry/mobile-events.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`android.state`](../attributes-registry/android.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 

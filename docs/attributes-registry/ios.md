@@ -1,12 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# Mobile Events
+# iOS
 
 <!-- toc -->
 
 - [iOS Lifecycle Event Attributes](#ios-lifecycle-event-attributes)
-- [Android Lifecycle Event Attributes](#android-lifecycle-event-attributes)
 
 <!-- tocstop -->
 
@@ -30,20 +29,4 @@
 | `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-## Android Lifecycle Event Attributes
 
-<!-- semconv registry.android.lifecycle.events(omit_requirement_level) -->
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `android.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
-
-`android.state` MUST be one of the following:
-
-| Value  | Description | Stability |
-|---|---|---|
-| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-<!-- endsemconv -->
