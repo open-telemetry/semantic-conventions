@@ -58,6 +58,7 @@ body:
         - area:service
         - area:session
         - area:source
+        - area:telemetry
         - area:thread
         - area:tls
         - area:url
