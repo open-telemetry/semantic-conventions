@@ -98,8 +98,10 @@ groups:
           members:
             - id: sent
               value: "SENT"
+              stability: experimental
             - id: received
               value: "RECEIVED"
+              stability: experimental
         stability: experimental
         brief: "Whether this is a received or sent message."
       - id: id

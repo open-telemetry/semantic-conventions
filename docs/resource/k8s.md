@@ -22,10 +22,10 @@ Kubernetes object, but "name" is usually more user friendly so can be also set.
 **Description:** A Kubernetes Cluster.
 
 <!-- semconv k8s.cluster -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.cluster.name`](../attributes-registry/k8s.md) | string | The name of the cluster. | `opentelemetry-cluster` | Recommended |
-| [`k8s.cluster.uid`](../attributes-registry/k8s.md) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.cluster.name`](../attributes-registry/k8s.md) | string | The name of the cluster. | `opentelemetry-cluster` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.cluster.uid`](../attributes-registry/k8s.md) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
@@ -58,10 +58,10 @@ conflict.
 **Description:** A Kubernetes Node.
 
 <!-- semconv k8s.node -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.node.name`](../attributes-registry/k8s.md) | string | The name of the Node. | `node-1` | Recommended |
-| [`k8s.node.uid`](../attributes-registry/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.node.name`](../attributes-registry/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.node.uid`](../attributes-registry/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Namespace
@@ -74,9 +74,9 @@ a namespace, but not across namespaces.
 **Description:** A Kubernetes Namespace.
 
 <!-- semconv k8s.namespace -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.namespace.name`](../attributes-registry/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.namespace.name`](../attributes-registry/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Pod
@@ -89,12 +89,12 @@ containers on your cluster.
 **Description:** A Kubernetes Pod object.
 
 <!-- semconv k8s.pod -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.pod.annotation.<key>`](../attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | Opt-In |
-| [`k8s.pod.label.<key>`](../attributes-registry/k8s.md) | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | Recommended |
-| [`k8s.pod.name`](../attributes-registry/k8s.md) | string | The name of the Pod. | `opentelemetry-pod-autoconf` | Recommended |
-| [`k8s.pod.uid`](../attributes-registry/k8s.md) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.pod.label.<key>`](../attributes-registry/k8s.md) | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.pod.name`](../attributes-registry/k8s.md) | string | The name of the Pod. | `opentelemetry-pod-autoconf` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.pod.uid`](../attributes-registry/k8s.md) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.pod.annotation.<key>`](../attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Container
@@ -111,10 +111,10 @@ to a running container.
 **Description:** A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
 
 <!-- semconv k8s.container -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.container.name`](../attributes-registry/k8s.md) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | Recommended |
-| [`k8s.container.restart_count`](../attributes-registry/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | `0`; `2` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.container.name`](../attributes-registry/k8s.md) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.container.restart_count`](../attributes-registry/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | `0`; `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## ReplicaSet
@@ -127,10 +127,10 @@ any given time.
 **Description:** A Kubernetes ReplicaSet object.
 
 <!-- semconv k8s.replicaset -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.replicaset.name`](../attributes-registry/k8s.md) | string | The name of the ReplicaSet. | `opentelemetry` | Recommended |
-| [`k8s.replicaset.uid`](../attributes-registry/k8s.md) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.replicaset.name`](../attributes-registry/k8s.md) | string | The name of the ReplicaSet. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.replicaset.uid`](../attributes-registry/k8s.md) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Deployment
@@ -144,10 +144,10 @@ distributed among the nodes of a cluster.
 **Description:** A Kubernetes Deployment object.
 
 <!-- semconv k8s.deployment -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.deployment.name`](../attributes-registry/k8s.md) | string | The name of the Deployment. | `opentelemetry` | Recommended |
-| [`k8s.deployment.uid`](../attributes-registry/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.deployment.name`](../attributes-registry/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.deployment.uid`](../attributes-registry/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## StatefulSet
@@ -160,10 +160,10 @@ about the ordering and uniqueness of these Pods.
 **Description:** A Kubernetes StatefulSet object.
 
 <!-- semconv k8s.statefulset -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.statefulset.name`](../attributes-registry/k8s.md) | string | The name of the StatefulSet. | `opentelemetry` | Recommended |
-| [`k8s.statefulset.uid`](../attributes-registry/k8s.md) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.statefulset.name`](../attributes-registry/k8s.md) | string | The name of the StatefulSet. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.statefulset.uid`](../attributes-registry/k8s.md) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## DaemonSet
@@ -175,10 +175,10 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 **Description:** A Kubernetes DaemonSet object.
 
 <!-- semconv k8s.daemonset -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.daemonset.name`](../attributes-registry/k8s.md) | string | The name of the DaemonSet. | `opentelemetry` | Recommended |
-| [`k8s.daemonset.uid`](../attributes-registry/k8s.md) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.daemonset.name`](../attributes-registry/k8s.md) | string | The name of the DaemonSet. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.daemonset.uid`](../attributes-registry/k8s.md) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Job
@@ -191,10 +191,10 @@ successfully terminate.
 **Description:** A Kubernetes Job object.
 
 <!-- semconv k8s.job -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.job.name`](../attributes-registry/k8s.md) | string | The name of the Job. | `opentelemetry` | Recommended |
-| [`k8s.job.uid`](../attributes-registry/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.job.name`](../attributes-registry/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.job.uid`](../attributes-registry/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## CronJob
@@ -206,10 +206,10 @@ A CronJob creates Jobs on a repeating schedule.
 **Description:** A Kubernetes CronJob object.
 
 <!-- semconv k8s.cronjob -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`k8s.cronjob.name`](../attributes-registry/k8s.md) | string | The name of the CronJob. | `opentelemetry` | Recommended |
-| [`k8s.cronjob.uid`](../attributes-registry/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.cronjob.name`](../attributes-registry/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.cronjob.uid`](../attributes-registry/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
