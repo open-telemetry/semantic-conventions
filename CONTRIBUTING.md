@@ -321,8 +321,8 @@ make markdown-link-check
   - Run `make chlog-update VERSION=v{version}`
     - `make chlog-update` will clean up all the current `.yaml` files inside the
       `.chloggen` folder automatically
-    - Double check that `CONTRIBUTING.md` is updated with the proper `v{version}`
-  - Send staging tag as PR for review.
+    - Double check that `CHANGELOG.md` is updated with the proper `v{version}`
+  - Send staging branch as PR for review.
 - Create a tag `v{version}` on the merged PR and push remote.
 
 ## Merging existing ECS conventions
