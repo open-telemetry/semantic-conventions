@@ -9,7 +9,7 @@ path_base_for_github_subdir:
 
 **Status**: [Mixed][DocumentStatus]
 
-This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
+This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
@@ -59,14 +59,14 @@ Given their significance some resource attributes are treated specifically as de
 ### Semantic Attributes with Dedicated Environment Variable
 
 These are the attributes which MAY be configurable via a dedicated environment variable
-as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/configuration/sdk-environment-variables.md):
+as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/configuration/sdk-environment-variables.md):
 
 - [`service.name`](#service)
 
 ### Semantic Attributes with SDK-provided Default Value
 
 These are the attributes which MUST be provided by the SDK
-as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
+as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
 
 - [`service.name`](#service)
 - [`telemetry.sdk` group](#telemetry-sdk)
@@ -154,12 +154,12 @@ service.name = Shop.shoppingcart
 
 **Description:** The telemetry SDK used to capture data recorded by the instrumentation libraries.
 
-<!-- semconv telemetry -->
+<!-- semconv telemetry(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `telemetry.sdk.language` | string | The language of the telemetry SDK. | `cpp` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `telemetry.sdk.name` | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `telemetry.sdk.version` | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.language`](../attributes-registry/telemetry.md) | string | The language of the telemetry SDK. | `cpp` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.name`](../attributes-registry/telemetry.md) | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.version`](../attributes-registry/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
@@ -197,8 +197,8 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 <!-- semconv telemetry_experimental -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `telemetry.distro.name` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `telemetry.distro.version` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.distro.name`](../attributes-registry/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.distro.version`](../attributes-registry/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
@@ -261,4 +261,4 @@ Valid cloud providers are:
 - [Tencent Cloud](https://www.tencentcloud.com/) (`tencent_cloud`)
 - [Heroku dyno](./cloud-provider/heroku.md)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
