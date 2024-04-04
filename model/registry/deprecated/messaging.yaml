@@ -1,9 +1,10 @@
 groups:
   - id: registry.messaging.deprecated
+    prefix: messaging
     type: attribute_group
     brief: "Describes deprecated messaging attributes."
     attributes:
-      - id: messaging.kafka.destination.partition
+      - id: kafka.destination.partition
         type: int
         brief: >
           "Deprecated, use `messaging.destination.partition.id` instead."

@@ -1,0 +1,12 @@
+{%- set ns = namespace(notes=[]) -%}
+{%- macro add(note) %}
+{%- if note %}
+{%- set ns.notes = [ns.notes, [note]] | flatten -%}
+[{{ ns.notes | length }}]
+{%- endif %}
+{%- endmacro %}
+{%- macro render() %}
+{% for note in ns.notes %}
+[{{loop.index}}]: {{note}}
+{%- endfor -%}
+{%- endmacro %}
