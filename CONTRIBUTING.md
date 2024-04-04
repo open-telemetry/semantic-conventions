@@ -338,9 +338,6 @@ make compatibility-check
   - Send staging branch as PR for review.
 - Create a tag v{version} on the merged PR and push remote.
 
-New release is then auto-discovered by [opentelemetry.io](https://github.com/open-telemetry/opentelemetry.io) pipelines which (via bot-generated PR)
-eventually results in new version of schema file being published.
-
 ## Merging existing ECS conventions
 
 The Elastic Common Schema (ECS) is being merged into OpenTelemetry Semantic
