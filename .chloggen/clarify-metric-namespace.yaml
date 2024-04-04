@@ -1,5 +1,0 @@
-change_type: 'enhancement'
-component: metrics
-note: Clarify metric attributes should be namespaced.
-issues: [394]
-subtext:
