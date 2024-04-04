@@ -30,6 +30,7 @@ requirements and recommendations.
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
   - [Markdown link check](#markdown-link-check)
+  - [Version compatibility check](#version-compatibility-check)
 - [Updating the referenced specification version](#updating-the-referenced-specification-version)
 - [Making a Release](#making-a-release)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
