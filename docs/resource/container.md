@@ -34,4 +34,4 @@ An example can be found in [Example Image Manifest](https://docs.docker.com/regi
 **[4]:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
