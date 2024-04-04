@@ -15,7 +15,7 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 # Keep links in model/README.md and .vscode/settings.json in sync!
 SEMCONVGEN_VERSION=0.24.0
 
-LASTEST_RELEASED_SEMCONV_VERSION=1.24.0
+LASTEST_RELEASED_SEMCONV_VERSION=1.25.0
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all

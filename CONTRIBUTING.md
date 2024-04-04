@@ -300,6 +300,18 @@ To check the validity of links in all markdown files, run the following command:
 make markdown-link-check
 ```
 
+### Version compatibility check
+
+Semantic conventions are validated for backward compatibility with last released versions. Here's [the full list of compatibility checks](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#version-compatibility-check).
+Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
+It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
+
+You can run backward compatibility check in all yaml files with the following command:
+
+```bash
+make compatibility-check
+```
+
 ## Updating the referenced specification version
 
 1. Open the `./internal/tools/update_specification_version.sh` script.
@@ -313,6 +325,7 @@ make markdown-link-check
 - Ensure the referenced specification version is up to date. Use
   [tooling to update the spec](#updating-the-referenced-specification-version)
   if needed.
+- Update `LASTEST_RELEASED_SEMCONV_VERSION` in `Makefile` to the new version you're about to release.
 - Create a staging branch for the release.
   - Update `schema-next.yaml` file and move to `schemas/{version}`
     - Ensure the `next` version is appropriately configured as the `{version}`.
@@ -323,7 +336,10 @@ make markdown-link-check
       `.chloggen` folder automatically
     - Double check that `CHANGELOG.md` is updated with the proper `v{version}`
   - Send staging branch as PR for review.
-- Create a tag `v{version}` on the merged PR and push remote.
+- Create a tag v{version} on the merged PR and push remote.
+
+New release is then auto-discovered by [opentelemetry.io](https://github.com/open-telemetry/opentelemetry.io) pipelines which (via bot-generated PR)
+eventually results in new version of schema file being published.
 
 ## Merging existing ECS conventions
 
