@@ -17,7 +17,6 @@ described on this page.
 In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 `messaging.destination.name` MUST be set to the name of the exchange. This will be an empty string if the default exchange is used.
 
-<<<<<<< HEAD
 <!-- semconv messaging.rabbitmq(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

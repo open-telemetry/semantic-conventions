@@ -1,7 +1,7 @@
 groups:
   - id: registry.code
     prefix: code
-    type: span
+    type: attribute_group
     brief: >
       These attributes allow to report this unit of code and therefore to provide more context about the span.
     attributes:

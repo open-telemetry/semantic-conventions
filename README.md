@@ -21,7 +21,6 @@ Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/ope
 - [Alexandra Konrad](https://github.com/trisch-me), Elastic
 - [Christian Neumüller](https://github.com/Oberon00), Dynatrace
 - [James Moessis](https://github.com/jamesmoessis), Atlassian
-- [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Sean Marciniak](https://github.com/MovieStoreGuy), Atlassian
 - [Ted Young](https://github.com/tedsuo), Lightstep
 
@@ -32,6 +31,7 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Alexander Wert](https://github.com/AlexanderWert), Elastic
 - [Armin Ruech](https://github.com/arminru), Dynatrace
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
+- [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Josh Suereth](https://github.com/jsuereth), Google
 - [Liudmila Molkova](https://github.com/lmolkova), Microsoft
 - [Reiley Yang](https://github.com/reyang), Microsoft
