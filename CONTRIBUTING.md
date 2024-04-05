@@ -336,7 +336,7 @@ make compatibility-check
       `.chloggen` folder automatically
     - Double check that `CHANGELOG.md` is updated with the proper `v{version}`
   - Send staging branch as PR for review.
-- Create a tag v{version} on the merged PR and push remote.
+- Create a tag `v{version}` on the merged PR and push remote.
 
 ## Merging existing ECS conventions
 
