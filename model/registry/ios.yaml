@@ -13,7 +13,7 @@ groups:
         brief: >
           This attribute represents the state the application has transitioned into at the occurrence of the event.
         type:
-          allow_custom_values: false
+          allow_custom_values: true
           members:
             - id: active
               value: 'active'
