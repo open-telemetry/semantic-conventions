@@ -470,4 +470,3 @@ groups:
             and [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) operations.
             The `part_number` attribute corresponds to the `--part-number` parameter of the
             [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
-      
