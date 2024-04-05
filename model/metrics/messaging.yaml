@@ -40,6 +40,15 @@ groups:
     unit: "s"
     extends: metric.messaging.attributes
 
+  - id: metric.messaging.consumer.latency.duration
+    type: metric
+    metric_name: messaging.consumer.latency.duration
+    brief: "Measures the duration between message production and consumption."
+    stability: experimental
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
+
   # counters
   - id: metric.messaging.publish.messages
     type: metric

@@ -15,6 +15,7 @@
   - [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
   - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
   - [Metric: `messaging.process.messages`](#metric-messagingprocessmessages)
+  - [Metric: `messaging.consumer.latency.duration`](#metric-messagingconsumerlatencyduration)
 
 <!-- tocstop -->
 
@@ -177,6 +178,20 @@ _Note: The need to report `messaging.process.messages` depends on the messaging 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `messaging.process.messages` | Counter | `{message}` | Measures the number of processed messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `messaging.consumer.latency.duration`
+
+This metric is [recommended][MetricRecommended] for any consumer with the capability to extract these timings.
+
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10, 30, 60, 300, 600, 1800 ]`.
+
+<!-- semconv metric.messaging.consumer.latency.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `messaging.consumer.latency.duration` | Histogram | `s` | Measures the duration between message production and consumption. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
