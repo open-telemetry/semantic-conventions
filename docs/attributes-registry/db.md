@@ -35,7 +35,7 @@
 
 **[2]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.query.text` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL query has an ambiguous operation, or performs more than one operation, this value may be omitted.
 
-**[3]:** Query parameters should only be captured when `query.text` is a query that is parameterized with placeholders.
+**[3]:** Query parameters should only be captured when `query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

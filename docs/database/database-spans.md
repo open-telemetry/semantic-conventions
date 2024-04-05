@@ -100,7 +100,7 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[7]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[8]:** Query parameters should only be captured when `query.text` is a query that is parameterized with placeholders.
+**[8]:** Query parameters should only be captured when `query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
