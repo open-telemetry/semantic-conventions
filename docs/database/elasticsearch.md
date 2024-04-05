@@ -26,7 +26,7 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 <!-- semconv db.elasticsearch(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.operation`](../attributes-registry/db.md) | string | The endpoint identifier for the request. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](../attributes-registry/db.md) | string | The name of the operation or command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.full`](../attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.elasticsearch.path_parts.<key>`](../attributes-registry/db.md) | string | A dynamic value in the url path. [4] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | `Conditionally Required` when the url has dynamic values | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -38,7 +38,7 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL statement has an ambiguous operation, or performs more than one operation, this value may be omitted.
+**[1]:** This SHOULD be the endpoint identifier for the request.
 
 **[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
