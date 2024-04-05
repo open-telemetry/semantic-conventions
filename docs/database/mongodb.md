@@ -12,12 +12,12 @@ described on this page.
 
 `db.system` MUST be set to `"mongodb"`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.mongodb(full,tag=call-level-tech-specific) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`db.mongodb.collection`](../attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. | `customers`; `products` | Required |
+<!-- semconv db.mongodb(full,tag=tech-specific) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`db.mongodb.collection`](../attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. | `customers`; `products` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Example
@@ -26,7 +26,6 @@ described on this page.
 | :---------------------- | :----------------------------------------------------------- |
 | Span name               | `"products.findAndModify"` |
 | `db.system`             | `"mongodb"` |
-| `db.connection_string`  | not set |
 | `db.user`               | `"the_user"` |
 | `server.address`        | `"mongodb0.example.com"` |
 | `server.port`           | `27017` |
@@ -38,4 +37,4 @@ described on this page.
 | `db.operation`          | `"findAndModify"` |
 | `db.mongodb.collection` | `"products"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

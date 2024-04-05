@@ -10,17 +10,18 @@ aliases: [docs/specs/semconv/general/metrics-general]
 <!-- toc -->
 
 - [General Guidelines](#general-guidelines)
-  * [Name Reuse Prohibition](#name-reuse-prohibition)
-  * [Units](#units)
-  * [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
-    + [Pluralization](#pluralization)
-    + [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
-    + [Do not use `total`](#do-not-use-total)
+  - [Name Reuse Prohibition](#name-reuse-prohibition)
+  - [Metric attributes](#metric-attributes)
+  - [Units](#units)
+  - [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
+    - [Pluralization](#pluralization)
+    - [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
+    - [Do not use `total`](#do-not-use-total)
 - [General Metric Semantic Conventions](#general-metric-semantic-conventions)
-  * [Instrument Naming](#instrument-naming)
-  * [Instrument Units](#instrument-units)
-  * [Instrument Types](#instrument-types)
-  * [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
+  - [Instrument Naming](#instrument-naming)
+  - [Instrument Units](#instrument-units)
+  - [Instrument Types](#instrument-types)
+  - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
 <!-- tocstop -->
 
@@ -38,7 +39,7 @@ The following semantic conventions surrounding metrics are defined:
   * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
 
 Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md) with
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General Guidelines
@@ -89,6 +90,26 @@ When introducing a new metric name check all existing schema files to make sure
 the name does not appear as a key of any "rename_metrics" section (keys denote
 old metric names in rename operations).
 
+### Metric attributes
+
+Metric attributes SHOULD follow the general [attribute naming rules](attribute-naming.md).
+In particular, metric attributes SHOULD have a namespace.
+
+Metric attributes SHOULD be added under the metric namespace when their usage and
+semantics are exclusive to the metric.
+
+Examples:
+
+Attributes `mode` and `mountpoint` for metric `system.filesystem.usage`
+should be namespaced as `system.filesystem.mode` and `system.filesystem.mountpoint`.
+
+Metrics can also have attributes outside of their namespace.
+
+Examples:
+
+Metric `http.server.request.duration` uses attributes from the registry such as
+`server.port`, `error.type`.
+
 ### Units
 
 Conventional metrics or metrics that have their units included in
@@ -99,7 +120,7 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/compatibility/prometheus_and_openmetrics.md).
 
 ### Naming rules for Counters and UpDownCounters
 
@@ -238,4 +259,4 @@ For example, if you are tracking `active_requests` with an `UpDownCounter`, and 
 request starts and decrementing it each time a request ends, then any attributes which are not yet available when
 incrementing the counter at request start should not be used when decrementing the counter at request end.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

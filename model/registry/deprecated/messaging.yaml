@@ -1,0 +1,12 @@
+groups:
+  - id: attributes.messaging.deprecated
+    type: attribute_group
+    brief: "Describes deprecated messaging attributes."
+    attributes:
+      - id: messaging.kafka.destination.partition
+        type: int
+        brief: >
+          "Deprecated, use `messaging.destination.partition.id` instead."
+        examples: 2
+        deprecated: "Replaced by `messaging.destination.partition.id`."
+        stability: experimental

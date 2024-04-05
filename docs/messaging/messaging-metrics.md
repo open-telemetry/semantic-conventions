@@ -8,31 +8,37 @@
 
 - [Common attributes](#common-attributes)
 - [Producer metrics](#producer-metrics)
-  * [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
-  * [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
+  - [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
+  - [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
 - [Consumer metrics](#consumer-metrics)
-  * [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
-  * [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
-  * [Metric: `messaging.deliver.duration`](#metric-messagingdeliverduration)
-  * [Metric: `messaging.deliver.messages`](#metric-messagingdelivermessages)
+  - [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
+  - [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
+  - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
+  - [Metric: `messaging.process.messages`](#metric-messagingprocessmessages)
 
 <!-- tocstop -->
+
+> **Warning**
+> Existing messaging instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-metrics.md)
+> (or prior) SHOULD NOT change the version of the messaging conventions that they emit
+> until a transition plan to the (future) stable semantic conventions has been published.
+> Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
 
 ## Common attributes
 
 All messaging metrics share the same set of attributes:
 
 <!-- semconv metric.messaging.attributes(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | Conditionally Required: [2] |
-| [`messaging.destination.name`](../attributes-registry/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | Conditionally Required: [4] |
-| [`messaging.destination.template`](../attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | Conditionally Required: if available. |
-| [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | Required |
-| [`network.protocol.name`](../attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [6] | `amqp`; `mqtt` | Conditionally Required: [7] |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | Version of the protocol specified in `network.protocol.name`. [8] | `3.1.1` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Conditionally Required: If available. |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.destination.name`](../attributes-registry/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.template`](../attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.destination.partition.id`](../attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -59,36 +65,30 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[5]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[6]:** The value SHOULD be normalized to lowercase.
+**[6]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[7]:** Only for messaging systems and frameworks that support more than one protocol.
+**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8]:** `network.protocol.version` refers to the version of the protocol used and might be different from the protocol client's version. If the HTTP client has a version of `0.27.2`, but sends HTTP version `1.1`, this attribute should be set to `1.1`.
+`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-**[9]:** This should be the IP/hostname of the broker (or other network-level peer) this specific message is sent to/received from.
+| Value  | Description | Stability |
+|---|---|---|
+| `activemq` | Apache ActiveMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `eventgrid` | Azure Event Grid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `eventhubs` | Azure Event Hubs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_pubsub` | Google Cloud Pub/Sub | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `jms` | Java Message Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `kafka` | Apache Kafka | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
-
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `activemq` | Apache ActiveMQ |
-| `aws_sqs` | Amazon Simple Queue Service (SQS) |
-| `eventgrid` | Azure Event Grid |
-| `eventhubs` | Azure Event Hubs |
-| `servicebus` | Azure Service Bus |
-| `gcp_pubsub` | Google Cloud Pub/Sub |
-| `jms` | Java Message Service |
-| `kafka` | Apache Kafka |
-| `rabbitmq` | RabbitMQ |
-| `rocketmq` | Apache RocketMQ |
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 ## Producer metrics
@@ -100,13 +100,13 @@ This metric is [required][MetricRequired].
 When this metric is reported alongside a messaging publish span, the metric value SHOULD be the same as the corresponding span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.messaging.publish.duration(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `messaging.publish.duration` | Histogram | `s` | Measures the duration of publish operation. |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `messaging.publish.duration` | Histogram | `s` | Measures the duration of publish operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `messaging.publish.messages`
@@ -114,9 +114,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 This metric is [required][MetricRequired] when the messaging system supports batch publishing. It's [opt-in][MetricOptIn] when the messaging system does not support batch publishing, since the message count can be derived from the `messaging.publish.duration` histogram.
 
 <!-- semconv metric.messaging.publish.messages(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `messaging.publish.messages` | Counter | `{message}` | Measures the number of published messages. |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `messaging.publish.messages` | Counter | `{message}` | Measures the number of published messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 > The need to report `messaging.publish.messages` depends on the messaging system capabilities and not application scenarios or client library limitations. For example, RabbitMQ does not support batch publishing and corresponding instrumentations don't need to report `messaging.publish.messages`. Kafka supports both, single and batch publishing, and instrumentations MUST report `messaging.publish.messages` counter regardless of application scenarios or APIs available in the client library.
@@ -128,15 +128,15 @@ This metric is [required][MetricRequired] when the messaging system supports bat
 This metric is [required][MetricRequired] for operations that are initiated by the application code (pull-based).
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 When this metric is reported alongside a messaging receive span, the metric value SHOULD be the same as the corresponding span duration.
 
 <!-- semconv metric.messaging.receive.duration(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `messaging.receive.duration` | Histogram | `s` | Measures the duration of receive operation. |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `messaging.receive.duration` | Histogram | `s` | Measures the duration of receive operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `messaging.receive.messages`
@@ -146,39 +146,40 @@ This metric is [required][MetricRequired] for batch receive operations. It's [op
 _Note: The need to report `messaging.receive.messages` depends on the messaging system capabilities and not application scenarios or client library limitations._
 
 <!-- semconv metric.messaging.receive.messages(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `messaging.receive.messages` | Counter | `{message}` | Measures the number of received messages. |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `messaging.receive.messages` | Counter | `{message}` | Measures the number of received messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `messaging.deliver.duration`
+### Metric: `messaging.process.duration`
 
-This metric is [required][MetricRequired] for operations are not initiated by the application code (push-based deliver).
+This metric is [required][MetricRequired] for operations that are not initiated by the application code (push-based deliver), and [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
 
-When this metric is reported alongside a messaging deliver span, the metric value SHOULD be the same as the corresponding span duration.
+When this metric is reported alongside a messaging process span, the metric value SHOULD be the same as the corresponding span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.messaging.deliver.duration(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `messaging.deliver.duration` | Histogram | `s` | Measures the duration of deliver operation. |
+<!-- semconv metric.messaging.process.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `messaging.process.duration` | Histogram | `s` | Measures the duration of process operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `messaging.deliver.messages`
+### Metric: `messaging.process.messages`
 
-This metric is [required][MetricRequired] for batch delivery operations. It's [opt-in][MetricOptIn] when the messaging system does not support batch delivery since the message count can be derived from the `messaging.deliver.duration` histogram.
+This metric is [required][MetricRequired] for batch process operations, and [recommended][MetricRecommended] for batch processing operations instrumented for pull-based scenarios. It's [opt-in][MetricOptIn] when the messaging system does not support batch processing since the message count can be derived from the `messaging.process.duration` histogram.
 
-_Note: The need to report `messaging.deliver.messages` depends on the messaging system capabilities and not application scenarios or client library limitations._
+_Note: The need to report `messaging.process.messages` depends on the messaging system capabilities and not application scenarios or client library limitations._
 
-<!-- semconv metric.messaging.deliver.messages(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `messaging.deliver.messages` | Counter | `{message}` | Measures the number of delivered messages. |
+<!-- semconv metric.messaging.process.messages(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `messaging.process.messages` | Counter | `{message}` | Measures the number of processed messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md
-[MetricRequired]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#required
-[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/metrics/metric-requirement-level.md#opt-in
+[MetricRequired]: /docs/general/metric-requirement-level.md#required
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[MetricOptIn]: /docs/general/metric-requirement-level.md#opt-in

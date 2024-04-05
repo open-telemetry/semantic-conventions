@@ -31,6 +31,8 @@ particular programming language or wire format._
 
 Names SHOULD follow these rules:
 
+- Names SHOULD be lowercase.
+
 - Use namespacing to avoid name clashes. Delimit the namespaces using a dot
   character. For example `service.version` denotes the service version where
   `service` is the namespace and `version` is an attribute in that namespace.
@@ -155,4 +157,4 @@ Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
 
 [DocumentStatus]:
-  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

@@ -10,12 +10,12 @@ The SQL databases Semantic Conventions extend and override the [Database Semanti
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.sql(full,tag=call-level-tech-specific) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`db.sql.table`](../attributes-registry/db.md) | string | The name of the primary table that the operation is acting upon, including the database name (if applicable). [1] | `public.users`; `customers` | Recommended |
+<!-- semconv db.sql(full,tag=tech-specific) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`db.sql.table`](../attributes-registry/db.md) | string | The name of the primary table that the operation is acting upon, including the database name (if applicable). [1] | `public.users`; `customers` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
 <!-- endsemconv -->
@@ -28,7 +28,6 @@ This is an example of attributes for a MySQL database span:
 |:------------------------| :----------------------------------------------------------- |
 | Span name               | `"SELECT ShopDb.orders"` |
 | `db.system`             | `"mysql"` |
-| `db.connection_string`  | `"Server=shopdb.example.com;Database=ShopDb;Uid=billing_user;TableCache=true;UseCompression=True;MinimumPoolSize=10;MaximumPoolSize=50;"` |
 | `db.user`               | `"billing_user"` |
 | `server.address`        | `"shopdb.example.com"` |
 | `server.port`           | `3306` |
@@ -40,4 +39,4 @@ This is an example of attributes for a MySQL database span:
 | `db.operation`          | `"SELECT"` |
 | `db.sql.table`          | `"orders"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
