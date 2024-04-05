@@ -147,19 +147,19 @@ groups:
           An additional description about the runtime of the process, for example
           a specific vendor customization of the runtime environment.
         examples: 'Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0'
-      - id: start
+      - id: creation.time
         type: string
         stability: experimental
         brief: >
-          The date and time the process started, in ISO 8601 format.
+          The date and time the process was created, in ISO 8601 format.
         examples: ['2023-11-21T09:25:34.853Z']
-      - id: end
+      - id: exit.time
         type: string
         stability: experimental
         brief: >
-          The date and time the process ended, in ISO 8601 format.
+          The date and time the process exited, in ISO 8601 format.
         examples: ['2023-11-21T09:26:12.315Z']
-      - id: exit_code
+      - id: exit.code
         type: int
         stability: experimental
         brief: >
