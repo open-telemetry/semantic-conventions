@@ -336,7 +336,15 @@ make compatibility-check
       `.chloggen` folder automatically
     - Double check that `CHANGELOG.md` is updated with the proper `v{version}`
   - Send staging branch as PR for review.
-- Create a tag `v{version}` on the merged PR and push remote.
+- After the release PR is merged, create a [new release](https://github.com/open-telemetry/semantic-conventions/releases/new):
+  - Set title and tag to `v{version}`
+  - Set target to the commit of the merged release PR
+  - Copy changelog to the release notes
+  - Verify that the release looks like expected
+  - Publish release
+
+New release is then auto-discovered by [opentelemetry.io](https://github.com/open-telemetry/opentelemetry.io) pipelines which (via bot-generated PR)
+eventually results in new version of schema file being published.
 
 ## Merging existing ECS conventions
 
