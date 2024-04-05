@@ -291,9 +291,10 @@ groups:
         type: template[string]
         stability: experimental
         brief: >
-          The query parameters, `<key>` being the parameter name, the value being the parameter value.
+          The query parameters used in `db.query.text`, with `<key>` being the parameter name,
+          and the attribute value being the parameter value.
         note: >
-          Query parameters should only be captured when `query.text` is parameterized with placeholders.
+          Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
