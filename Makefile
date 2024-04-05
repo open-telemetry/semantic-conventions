@@ -123,7 +123,7 @@ fix-format:
 
 # Run all checks in order of speed / likely failure.
 .PHONY: check
-check: misspell markdownlint check-format markdown-toc markdown-link-check
+check: misspell markdownlint check-format markdown-toc compatibility-check markdown-link-check
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
