@@ -9,7 +9,6 @@ groups:
         requirement_level: "required"
   - id: android.lifecycle.events
     type: event
-    prefix: android
     name: device.app.lifecycle
     brief: >
       This event represents an occurrence of a lifecycle transition on the Android platform.
