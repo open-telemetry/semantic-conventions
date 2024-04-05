@@ -52,6 +52,7 @@ Currently, the following namespaces exist:
 * [Heroku](heroku.md)
 * [Host](host.md)
 * [HTTP](http.md)
+* [iOS](ios.md)
 * [K8s](k8s.md)
 * [Network](network.md)
 * [OCI](oci.md)
