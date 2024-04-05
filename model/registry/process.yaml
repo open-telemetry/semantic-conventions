@@ -19,6 +19,7 @@ groups:
         examples: [111]
       - id: vpid
         type: int
+        stability: experimental
         brief: >
           Virtual process identifier.
         note: >
@@ -28,12 +29,14 @@ groups:
         examples: [12]
       - id: session_leader.pid
         type: int
+        stability: experimental
         brief: >
           The PID of the process's session leader. This is also the session ID
           (SID) of the process.
         examples: [14]
       - id: group_leader.pid
         type: int
+        stability: experimental
         brief: >
           The PID of the process's group leader. This is also the process group
           ID (PGID) of the process.
@@ -89,31 +92,37 @@ groups:
         examples: ['root']
       - id: user.id
         type: int
+        stability: experimental
         brief: >
           The effective user ID (EUID) of the process.
         examples: [1001]
       - id: user.name
         type: string
+        stability: experimental
         brief: >
           The username of the effective user of the process.
         examples: ['root']
       - id: real_user.id
         type: int
+        stability: experimental
         brief: >
           The real user ID (RUID) of the process.
         examples: [1000]
       - id: real_user.name
         type: string
+        stability: experimental
         brief: >
           The username of the real user of the process.
         examples: ['operator']
       - id: saved_user.id
         type: int
+        stability: experimental
         brief: >
           The saved user ID (SUID) of the process.
         examples: [1002]
       - id: saved_user.name
         type: string
+        stability: experimental
         brief: >
           The username of the saved user.
         examples: ['operator']
@@ -140,20 +149,24 @@ groups:
         examples: 'Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0'
       - id: start
         type: string
+        stability: experimental
         brief: >
           The date and time the process started, in ISO 8601 format.
         examples: ['2023-11-21T09:25:34.853Z']
       - id: end
         type: string
+        stability: experimental
         brief: >
           The date and time the process ended, in ISO 8601 format.
         examples: ['2023-11-21T09:26:12.315Z']
       - id: exit_code
         type: int
+        stability: experimental
         brief: >
           The exit code of the process.
         examples: [127]
       - id: interactive
         type: boolean
+        stability: experimental
         brief: >
           Whether the process is connected to an interactive shell.
