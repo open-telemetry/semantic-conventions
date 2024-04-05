@@ -46,3 +46,16 @@ groups:
         brief: >
           The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
         examples: ['my-host1234.example.com', 'sample-vm.us-west1-b.c.my-project.internal']
+  - id: registry.gcp.project
+    prefix: gcp.project
+    type: attribute_group
+    stability: experimental
+    brief: >
+      Project related attributes.
+    attributes:
+      - id: id
+        type: string
+        stability: experimental
+        brief: >
+          The name of a GCP Project.
+        examples: ['my-project']

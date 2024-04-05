@@ -2,11 +2,11 @@ groups:
   - id: gcp.project
     prefix: gcp.project
     type: resource
+    stability: experimental
     brief: >
       Project related attributes.
     attributes:
-      - id: gcp.project_id
-        type: string
-        brief: >
-          The name of a GCP Project.
-        examples: ['my-project']
+      - ref: gcp.project.id
+        requirement_level: recommended
+
+
