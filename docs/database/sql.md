@@ -45,4 +45,4 @@ This is an example of attributes for a MySQL database span:
 | `db.operation`          | `"SELECT"` |
 | `db.sql.table`          | `"orders"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

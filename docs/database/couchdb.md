@@ -24,4 +24,4 @@ described on this page.
 **[2]:** If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
