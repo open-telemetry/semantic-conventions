@@ -71,90 +71,90 @@ These attributes will usually be the same for all operations performed over the 
 Some database systems may allow a connection to switch to a different `db.user`, for example, and other database systems may not even have the concept of a connection at all.
 
 <!-- semconv db(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`db.instance.id`](../attributes-registry/db.md) | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | Recommended: If different from the `server.address` |
-| [`db.name`](../attributes-registry/db.md) | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [1] | `customers`; `main` | Conditionally Required: If applicable. |
-| [`db.operation`](../attributes-registry/db.md) | string | The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations) such as `findAndModify`, or the SQL keyword. [2] | `findAndModify`; `HMSET`; `SELECT` | Conditionally Required: If `db.statement` is not applicable. |
-| [`db.statement`](../attributes-registry/db.md) | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | Recommended: [3] |
-| [`db.system`](../attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | Required |
-| [`db.user`](../attributes-registry/db.md) | string | Username for accessing the database. | `readonly_user`; `reporting_user` | Recommended |
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [4] | `10.1.2.80`; `/tmp/my.sock` | Recommended: If applicable for this database system. |
-| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | Recommended: if and only if `network.peer.address` is set. |
-| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | Conditionally Required: [7] |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`db.system`](../attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.name`](../attributes-registry/db.md) | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [1] | `customers`; `main` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](../attributes-registry/db.md) | string | The name of the operation or command being executed. | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.instance.id`](../attributes-registry/db.md) | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | `Recommended` If different from the `server.address` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.statement`](../attributes-registry/db.md) | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | `Recommended` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.user`](../attributes-registry/db.md) | string | Username for accessing the database. | `readonly_user`; `reporting_user` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [6] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
 
-**[2]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL statement has an ambiguous operation, or performs more than one operation, this value may be omitted.
+**[2]:** If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 
-**[3]:** Should be collected by default only if there is sanitization that excludes sensitive information.
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
+**[4]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+
+**[5]:** Should be collected by default only if there is sanitization that excludes sensitive information.
+
+**[6]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[5]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[7]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-**[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
-
-`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
-
-| Value  | Description |
-|---|---|
-| `other_sql` | Some other SQL database. Fallback only. See notes. |
-| `mssql` | Microsoft SQL Server |
-| `mssqlcompact` | Microsoft SQL Server Compact |
-| `mysql` | MySQL |
-| `oracle` | Oracle Database |
-| `db2` | IBM Db2 |
-| `postgresql` | PostgreSQL |
-| `redshift` | Amazon Redshift |
-| `hive` | Apache Hive |
-| `cloudscape` | Cloudscape |
-| `hsqldb` | HyperSQL DataBase |
-| `progress` | Progress Database |
-| `maxdb` | SAP MaxDB |
-| `hanadb` | SAP HANA |
-| `ingres` | Ingres |
-| `firstsql` | FirstSQL |
-| `edb` | EnterpriseDB |
-| `cache` | InterSystems Caché |
-| `adabas` | Adabas (Adaptable Database System) |
-| `firebird` | Firebird |
-| `derby` | Apache Derby |
-| `filemaker` | FileMaker |
-| `informix` | Informix |
-| `instantdb` | InstantDB |
-| `interbase` | InterBase |
-| `mariadb` | MariaDB |
-| `netezza` | Netezza |
-| `pervasive` | Pervasive PSQL |
-| `pointbase` | PointBase |
-| `sqlite` | SQLite |
-| `sybase` | Sybase |
-| `teradata` | Teradata |
-| `vertica` | Vertica |
-| `h2` | H2 |
-| `coldfusion` | ColdFusion IMQ |
-| `cassandra` | Apache Cassandra |
-| `hbase` | Apache HBase |
-| `mongodb` | MongoDB |
-| `redis` | Redis |
-| `couchbase` | Couchbase |
-| `couchdb` | CouchDB |
-| `cosmosdb` | Microsoft Azure Cosmos DB |
-| `dynamodb` | Amazon DynamoDB |
-| `neo4j` | Neo4j |
-| `geode` | Apache Geode |
-| `elasticsearch` | Elasticsearch |
-| `memcached` | Memcached |
-| `cockroachdb` | CockroachDB |
-| `opensearch` | OpenSearch |
-| `clickhouse` | ClickHouse |
-| `spanner` | Cloud Spanner |
-| `trino` | Trino |
+| Value  | Description | Stability |
+|---|---|---|
+| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssql` | Microsoft SQL Server | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssqlcompact` | Microsoft SQL Server Compact | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mysql` | MySQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db2` | IBM Db2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `postgresql` | PostgreSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudscape` | Cloudscape | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hsqldb` | HyperSQL DataBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `progress` | Progress Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firstsql` | FirstSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `edb` | EnterpriseDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `derby` | Apache Derby | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `filemaker` | FileMaker | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `informix` | Informix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mariadb` | MariaDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sqlite` | SQLite | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sybase` | Sybase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `coldfusion` | ColdFusion IMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dynamodb` | Amazon DynamoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `elasticsearch` | Elasticsearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cockroachdb` | CockroachDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Notes and well-known identifiers for `db.system`
@@ -190,4 +190,4 @@ More specific Semantic Conventions are defined for the following database techno
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

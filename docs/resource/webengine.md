@@ -7,11 +7,11 @@
 **Description:** Resource describing the packaged software running the application code. Web engines are typically executed using process.runtime.
 
 <!-- semconv webengine_resource -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `webengine.description` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | Recommended |
-| `webengine.name` | string | The name of the web engine. | `WildFly` | Required |
-| `webengine.version` | string | The version of the web engine. | `21.0.0` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `webengine.name` | string | The name of the web engine. | `WildFly` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `webengine.description` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `webengine.version` | string | The version of the web engine. | `21.0.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 Information describing the web engine SHOULD be captured using the values acquired from the API provided by the web engine, preferably during runtime, to avoid maintenance burden on engine version upgrades. As an example - Java engines are often but not always packaged as application servers. For Java application servers supporting Servlet API the required information MAY be captured by invoking `ServletContext.getServerInfo()` during runtime and parsing the result.
@@ -23,4 +23,4 @@ The situations where there are multiple candidates, it is up to instrumentation 
 * Either Apache HTTP Server or `mod_wsgi` MAY be chosen as `webengine`, depending on the decision made by the instrumentation authors.
 * Django SHOULD NOT be set as an `webengine` as the required information is already available in instrumentation library and setting this into `webengine` would duplicate the information.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

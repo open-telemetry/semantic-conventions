@@ -15,9 +15,14 @@ described on this page.
 ## Attributes
 
 <!-- semconv db.mongodb(full,tag=tech-specific) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`db.mongodb.collection`](../attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. | `customers`; `products` | Required |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`db.mongodb.collection`](../attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. | `customers`; `products` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](../attributes-registry/db.md) | string | The name of the command being executed. [1] | `findAndModify`; `getMore`; `update` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
+
+**[2]:** If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 <!-- endsemconv -->
 
 ## Example
@@ -37,4 +42,4 @@ described on this page.
 | `db.operation`          | `"findAndModify"` |
 | `db.mongodb.collection` | `"products"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

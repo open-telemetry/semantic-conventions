@@ -25,18 +25,18 @@ between a child Span and a parent Span, as defined by
 [OpenTracing](https://github.com/opentracing/specification/blob/master/specification.md).
 
 <!-- semconv opentracing -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `opentracing.ref_type` | string | Parent-child Reference type [1] | `child_of` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `opentracing.ref_type` | string | Parent-child Reference type [1] | `child_of` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The causal relationship between a child Span and a parent Span.
 
 `opentracing.ref_type` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `child_of` | The parent Span depends on the child Span in some capacity |
-| `follows_from` | The parent Span doesn't depend in any way on the result of the child Span |
+| Value  | Description | Stability |
+|---|---|---|
+| `child_of` | The parent Span depends on the child Span in some capacity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `follows_from` | The parent Span doesn't depend in any way on the result of the child Span | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
