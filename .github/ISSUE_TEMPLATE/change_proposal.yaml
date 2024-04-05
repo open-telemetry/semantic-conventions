@@ -32,8 +32,7 @@ body:
         - area:faas
         - area:feature-flag
         - area:file
-        - area:gcp-cloud-run
-        - area:gcp-gce
+        - area:gcp
         - area:graphql
         - area:heroku
         - area:host
