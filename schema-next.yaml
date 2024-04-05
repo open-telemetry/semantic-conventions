@@ -56,6 +56,15 @@ versions:
               type: process.paging.fault_type
             apply_to_metrics:
               - process.paging.faults
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/854
+        - rename_attributes:
+            attribute_map:
+              message.type: rpc.message.type
+              message.id: rpc.message.id
+              message.compressed_size: rpc.message.compressed_size
+              message.uncompressed_size: rpc.message.uncompressed_size
 
   1.24.0:
     metrics:
