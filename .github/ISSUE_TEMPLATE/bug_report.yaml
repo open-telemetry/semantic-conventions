@@ -41,6 +41,7 @@ body:
         - area:file
         - area:gcp-cloud-run
         - area:gcp-gce
+        - area:graphql
         - area:heroku
         - area:host
         - area:http
