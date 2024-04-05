@@ -48,6 +48,8 @@ Currently, the following namespaces exist:
 * [File](file.md)
 * [Google Cloud Run](gcp-cloud-run.md)
 * [Google Compute Engine](gcp-gce.md)
+* [GraphQl](graphql.md)
+* [Heroku](heroku.md)
 * [Host](host.md)
 * [HTTP](http.md)
 * [iOS](ios.md)
