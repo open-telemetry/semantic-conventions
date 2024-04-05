@@ -285,16 +285,19 @@ groups:
         stability: experimental
         brief: >
           The database query being executed.
-        examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
+        examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
         tag: db-generic
       - id: query.parameter
         type: template[string]
         stability: experimental
         brief: >
           The query parameters, `<key>` being the parameter name, the value being the parameter value.
+        note: >
+          Query parameters should only be captured when `query.text` is a query that is parameterized with placeholders.
 
-          If there is no parameter name, then `<key>` SHOULD be the index of the parameter (starting from `0`).
-        examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
+          If a parameter has no name and instead is referenced only by index,
+          then `<key>` SHOULD be the 0-based index.
+        examples: ['someval', '55']
         tag: db-generic
       - id: system
         brief: An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.
