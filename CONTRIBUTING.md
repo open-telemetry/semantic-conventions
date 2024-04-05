@@ -326,7 +326,6 @@ make compatibility-check
 - Ensure the referenced specification version is up to date. Use
   [tooling to update the spec](#updating-the-referenced-specification-version)
   if needed.
-- Update `LASTEST_RELEASED_SEMCONV_VERSION` in `Makefile` to the new version you're about to release.
 - Create a staging branch for the release.
   - Update `schema-next.yaml` file and move to `schemas/{version}`
     - Ensure the `next` version is appropriately configured as the `{version}`.
