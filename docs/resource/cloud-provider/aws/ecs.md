@@ -17,7 +17,7 @@
 | [`aws.ecs.task.family`](../../../attributes-registry/aws.md) | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`aws.ecs.task.revision`](../../../attributes-registry/aws.md) | string | The revision for the task definition used to create the ECS task. | `8`; `26` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`aws.ecs.launchtype` MUST be one of the following:
+`aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

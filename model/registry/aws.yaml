@@ -260,7 +260,7 @@ groups:
         examples: ['arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster']
       - id: launchtype
         type:
-          allow_custom_values: false
+          allow_custom_values: true
           members:
             - id: ec2
               value: "ec2"
