@@ -1,22 +1,10 @@
 groups:
   - id: telemetry_experimental
-    prefix: telemetry
     type: resource
     brief: >
       The telemetry SDK used to capture data recorded by the instrumentation libraries.
     attributes:
-      - id: distro.name
-        type: string
-        stability: experimental
-        brief: >
-          The name of the auto instrumentation agent or distribution, if used.
-        note: |
-          Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
-          a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
-        examples: ["parts-unlimited-java"]
-      - id: distro.version
-        type: string
-        stability: experimental
-        brief: >
-          The version string of the auto instrumentation agent or distribution, if used.
-        examples: ["1.2.3"]
+      - ref: telemetry.distro.name
+        requirement_level: recommended
+      - ref: telemetry.distro.version
+        requirement_level: recommended

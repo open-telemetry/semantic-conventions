@@ -54,9 +54,9 @@ The following additional attributes are defined:
 <!-- semconv messaging.eventhubs -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.destination.partition.id`](../attributes-registry/messaging.md) | string | "String representation of the partition id messages are sent to or received from, unique within the Event Hub." | `1` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.partition.id`](../attributes-registry/messaging.md) | string | String representation of the partition id messages are sent to or received from, unique within the Event Hub. | `1` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.eventhubs.consumer.group`](../attributes-registry/messaging.md) | string | The name of the consumer group the event consumer is associated with. | `indexer` | `Conditionally Required` If not default ("$Default"). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.eventhubs.message.enqueued_time`](../attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
