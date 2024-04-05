@@ -24,3 +24,9 @@ groups:
         deprecated: "Replaced by `db.instance.id`."
         stability: experimental
         examples: ["instance-0000000001"]
+      - id: user
+        type: string
+        brief: 'Deprecated, no replacement at this time.'
+        deprecated: "No replacement at this time."
+        stability: experimental
+        examples: ['readonly_user', 'reporting_user']
