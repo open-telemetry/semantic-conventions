@@ -30,6 +30,7 @@ requirements and recommendations.
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
   - [Markdown link check](#markdown-link-check)
+  - [Version compatibility check](#version-compatibility-check)
 - [Updating the referenced specification version](#updating-the-referenced-specification-version)
 - [Making a Release](#making-a-release)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
@@ -300,6 +301,18 @@ To check the validity of links in all markdown files, run the following command:
 make markdown-link-check
 ```
 
+### Version compatibility check
+
+Semantic conventions are validated for backward compatibility with last released versions. Here's [the full list of compatibility checks](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#version-compatibility-check).
+Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
+It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
+
+You can run backward compatibility check in all yaml files with the following command:
+
+```bash
+make compatibility-check
+```
+
 ## Updating the referenced specification version
 
 1. Open the `./internal/tools/update_specification_version.sh` script.
@@ -321,9 +334,17 @@ make markdown-link-check
   - Run `make chlog-update VERSION=v{version}`
     - `make chlog-update` will clean up all the current `.yaml` files inside the
       `.chloggen` folder automatically
-    - Double check that `CONTRIBUTING.md` is updated with the proper `v{version}`
-  - Send staging tag as PR for review.
-- Create a tag `v{version}` on the merged PR and push remote.
+    - Double check that `CHANGELOG.md` is updated with the proper `v{version}`
+  - Send staging branch as PR for review.
+- After the release PR is merged, create a [new release](https://github.com/open-telemetry/semantic-conventions/releases/new):
+  - Set title and tag to `v{version}`
+  - Set target to the commit of the merged release PR
+  - Copy changelog to the release notes
+  - Verify that the release looks like expected
+  - Publish release
+
+New release is then auto-discovered by [opentelemetry.io](https://github.com/open-telemetry/opentelemetry.io) pipelines which (via bot-generated PR)
+eventually results in new version of schema file being published.
 
 ## Merging existing ECS conventions
 

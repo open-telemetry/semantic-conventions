@@ -1,0 +1,16 @@
+groups:
+  - id: registry.otel.scope
+    prefix: otel.scope
+    type: resource
+    brief: Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
+    attributes:
+      - id: name
+        type: string
+        brief: The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP).
+        examples: ['io.opentelemetry.contrib.mongodb']
+        stability: stable
+      - id: version
+        type: string
+        brief: The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
+        examples: ['1.0.0']
+        stability: stable

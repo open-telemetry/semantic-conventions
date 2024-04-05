@@ -91,6 +91,13 @@ jobs:
     - name: verify semantic convention tables
       run: make table-check
 
+  semantic-conventions-compatibility:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify semantic convention compatibility with latest released version
+      run: make compatibility-check
+
   schemas-check:
     runs-on: ubuntu-latest
     steps:
@@ -105,4 +112,4 @@ jobs:
     - name: Components dropdown in issue templates
       run: |
         make generate-gh-issue-templates
-        git diff --exit-code '.github/ISSUE_TEMPLATE' || (echo 'Dropdowns in issue templates is out of date, please run "make generate-gh-issue-templates" and commit the changes in this PR.' && exit 1)
+        git diff --exit-code '.github/ISSUE_TEMPLATE' || (echo 'Dropdowns in issue templates is out of date, please run "make generate-gh-issue-templates" and commit the changes in this PR. Please note, if you are running it on Mac OS X, please make sure to use GNU version of sed instead of default "sed".' && exit 1)

@@ -191,19 +191,19 @@ In the lifetime of an RPC stream, an event for each message sent/received on
 client and server spans SHOULD be created. In case of unary calls only one sent
 and one received message will be recorded for both client and server spans.
 
-<!-- semconv rpc.message -->
-The event name MUST be `message`.
+<!-- semconv rpc.message(full) -->
+The event name MUST be `rpc.message`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `message.compressed_size` | int | Compressed size of the message in bytes. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `message.id` | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `message.type` | string | Whether this is a received or sent message. | `SENT` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `message.uncompressed_size` | int | Uncompressed size of the message in bytes. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.message.compressed_size`](../attributes-registry/rpc.md) | int | Compressed size of the message in bytes. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.message.id`](../attributes-registry/rpc.md) | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.message.type`](../attributes-registry/rpc.md) | string | Whether this is a received or sent message. | `SENT` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.message.uncompressed_size`](../attributes-registry/rpc.md) | int | Uncompressed size of the message in bytes. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This way we guarantee that the values will be consistent between different implementations.
 
-`message.type` MUST be one of the following:
+`rpc.message.type` MUST be one of the following:
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -225,4 +225,4 @@ More specific Semantic Conventions are defined for the following RPC technologie
 * [gRPC](grpc.md): Semantic Conventions for *gRPC*.
 * [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

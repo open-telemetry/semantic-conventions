@@ -9,7 +9,7 @@ path_base_for_github_subdir:
 
 **Status**: [Mixed][DocumentStatus]
 
-This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
+This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
@@ -59,14 +59,14 @@ Given their significance some resource attributes are treated specifically as de
 ### Semantic Attributes with Dedicated Environment Variable
 
 These are the attributes which MAY be configurable via a dedicated environment variable
-as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/configuration/sdk-environment-variables.md):
+as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/configuration/sdk-environment-variables.md):
 
 - [`service.name`](#service)
 
 ### Semantic Attributes with SDK-provided Default Value
 
 These are the attributes which MUST be provided by the SDK
-as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
+as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
 
 - [`service.name`](#service)
 - [`telemetry.sdk` group](#telemetry-sdk)
@@ -85,7 +85,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 | [`service.name`](../attributes-registry/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`service.version`](../attributes-registry/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md#process), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
+**[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 <!-- endsemconv -->
 
 ## Service (Experimental)
@@ -261,4 +261,4 @@ Valid cloud providers are:
 - [Tencent Cloud](https://www.tencentcloud.com/) (`tencent_cloud`)
 - [Heroku dyno](./cloud-provider/heroku.md)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

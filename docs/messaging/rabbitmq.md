@@ -28,4 +28,4 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 **[1]:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

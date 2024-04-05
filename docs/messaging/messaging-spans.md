@@ -159,7 +159,7 @@ The span name SHOULD be set to the message destination name and the operation be
 <destination name> <operation name>
 ```
 
-The destination name SHOULD only be used for the span name if it is known to be of low cardinality (cf. [general span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#span)).
+The destination name SHOULD only be used for the span name if it is known to be of low cardinality (cf. [general span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/trace/api.md#span)).
 This can be assumed if it is statically derived from application code or configuration.
 Wherever possible, the real destination names after resolving logical or aliased names SHOULD be used.
 If the destination name is dynamic, such as a [conversation ID](#conversations) or a value obtained from a `Reply-To` header, it SHOULD NOT be used for the span name.
@@ -193,7 +193,7 @@ The following operations related to messages are defined for these semantic conv
 
 ### Span kind
 
-[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#spankind)
+[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/trace/api.md#spankind)
 SHOULD be set according to the following table, based on the operation a span describes.
 
 | Operation name | Span kind|
@@ -204,7 +204,7 @@ SHOULD be set according to the following table, based on the operation a span de
 | `process`      | `CONSUMER` for push-based scenarios where no `receive` span exists. |
 
 For cases not covered by the table above, the span kind should be set according
-to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#spankind),
+to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/trace/api.md#spankind),
 e. g. it should be set to CLIENT for the "Publish" span if its context is not
 used as creation context and if the "Publish" span models a synchronous call to
 the intermediary.
@@ -564,4 +564,4 @@ More specific Semantic Conventions are defined for the following messaging techn
 * [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
 * [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
