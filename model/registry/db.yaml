@@ -254,7 +254,7 @@ groups:
         requirement_level:
           conditionally_required: >
             If readily available. Otherwise, when the instrumentation library supports parsing `db.statement` and it's enabled,
-            `db.operation.name` SHOULD be set to the first table name found in the CQL query.
+            `db.operation.name` SHOULD be set to the first operation name found in the query.
         examples: ['findAndModify', 'HMSET', 'SELECT']
         tag: db-generic
       - id: redis.database_index
