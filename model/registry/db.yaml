@@ -249,12 +249,10 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations)
+          The name of the operation being executed.
+        note: >
+          For example, the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations)
           such as `findAndModify`, or the SQL keyword.
-        requirement_level:
-          conditionally_required: >
-            If readily available. Otherwise, when the instrumentation library supports parsing `db.statement` and it's enabled,
-            `db.operation.name` SHOULD be set to the first operation name found in the query.
         examples: ['findAndModify', 'HMSET', 'SELECT']
         tag: db-generic
       - id: redis.database_index

@@ -16,8 +16,8 @@ groups:
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
-            If readily available. Otherwise, when the instrumentation library supports parsing `db.statement` and it's enabled,
-            `db.operation.name` SHOULD be set to the first operation name found in the query.
+            If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture
+            `db.operation.name`, then it SHOULD be the first operation name found in the query.
       - ref: server.address
         brief: >
           Name of the database host.
@@ -167,7 +167,7 @@ groups:
         tag: tech-specific
       - ref: db.operation.name
         requirement_level: required
-        brief: The endpoint identifier for the request.
+        note: This SHOULD be the endpoint identifier for the request.
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
         tag: tech-specific
       - ref: url.full
@@ -208,7 +208,12 @@ groups:
       Attributes for SQL databases
     attributes:
       - ref: db.operation.name
+        note: >
+          This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
+
+          In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
         examples: ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'mystoredproc']
+        tag: tech-specific
       - ref: db.sql.table
         tag: tech-specific
 

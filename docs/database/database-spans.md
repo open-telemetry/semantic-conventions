@@ -75,29 +75,31 @@ Some database systems may allow a connection to switch to a different `db.user`,
 |---|---|---|---|---|---|
 | [`db.system`](../attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.name`](../attributes-registry/db.md) | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [1] | `customers`; `main` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](../attributes-registry/db.md) | string | The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations) such as `findAndModify`, or the SQL keyword. | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](../attributes-registry/db.md) | string | The name of the operation being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.instance.id`](../attributes-registry/db.md) | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | `Recommended` If different from the `server.address` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.statement`](../attributes-registry/db.md) | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | `Recommended` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.statement`](../attributes-registry/db.md) | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | `Recommended` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.user`](../attributes-registry/db.md) | string | Username for accessing the database. | `readonly_user`; `reporting_user` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [6] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [7] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
 
-**[2]:** If readily available. Otherwise, when the instrumentation library supports parsing `db.statement` and it's enabled, `db.operation.name` SHOULD be set to the first operation name found in the query.
+**[2]:** For example, the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations) such as `findAndModify`, or the SQL keyword.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3]:** If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 
-**[4]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[5]:** Should be collected by default only if there is sanitization that excludes sensitive information.
+**[5]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[6]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
+**[6]:** Should be collected by default only if there is sanitization that excludes sensitive information.
+
+**[7]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[8]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
