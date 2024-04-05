@@ -293,7 +293,7 @@ groups:
         brief: >
           The query parameters, `<key>` being the parameter name, the value being the parameter value.
         note: >
-          Query parameters should only be captured when `query.text` is a query that is parameterized with placeholders.
+          Query parameters should only be captured when `query.text` is parameterized with placeholders.
 
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
