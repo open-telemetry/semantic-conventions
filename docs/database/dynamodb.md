@@ -170,4 +170,4 @@ These attributes are filled in for all DynamoDB request types.
 | [`aws.dynamodb.table_names`](../attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `[Users]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

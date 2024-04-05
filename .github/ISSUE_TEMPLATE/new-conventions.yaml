@@ -43,8 +43,11 @@ body:
         - area:file
         - area:gcp-cloud-run
         - area:gcp-gce
+        - area:graphql
+        - area:heroku
         - area:host
         - area:http
+        - area:ios
         - area:k8s
         - area:messaging
         - area:network
