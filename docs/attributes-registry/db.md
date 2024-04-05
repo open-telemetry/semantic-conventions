@@ -26,15 +26,17 @@
 | `db.instance.id` | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.name` | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [1] | `customers`; `main` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.operation` | string | The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations) such as `findAndModify`, or the SQL keyword. [2] | `findAndModify`; `HMSET`; `SELECT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.query.parameter.<key>` | string | The query parameters, `<key>` being the parameter name, the value being the parameter value.
-If there is no parameter name, then `<key>` SHOULD be the index of the parameter (starting from `0`). | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.query.text` | string | The database query being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.query.parameter.<key>` | string | The query parameters, `<key>` being the parameter name, the value being the parameter value. [3] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.query.text` | string | The database query being executed. | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.system` | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.user` | string | Username for accessing the database. | `readonly_user`; `reporting_user` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
 
 **[2]:** When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.query.text` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL query has an ambiguous operation, or performs more than one operation, this value may be omitted.
+
+**[3]:** Query parameters should only be captured when `query.text` is a query that is parameterized with placeholders.
+If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
