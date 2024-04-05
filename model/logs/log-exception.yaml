@@ -7,10 +7,9 @@ groups:
       Records.
     attributes:
       - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
       - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
       - ref: exception.stacktrace
-
-    constraints:
-      - any_of:
-          - "exception.type"
-          - "exception.message"
