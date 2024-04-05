@@ -249,10 +249,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the operation being executed.
-        note: >
-          For example, the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations)
-          such as `findAndModify`, or the SQL keyword.
+          The name of the operation or command being executed.
         examples: ['findAndModify', 'HMSET', 'SELECT']
         tag: db-generic
       - id: redis.database_index

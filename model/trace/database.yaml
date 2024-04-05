@@ -152,6 +152,13 @@ groups:
     brief: >
       Attributes for MongoDB
     attributes:
+      - ref: db.operation.name
+        brief: >
+          The name of the command being executed.
+        note: >
+          See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
+        examples: ['findAndModify', 'getMore', 'update']
+        tag: tech-specific
       - ref: db.mongodb.collection
         requirement_level: required
         tag: tech-specific
