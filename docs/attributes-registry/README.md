@@ -55,6 +55,7 @@ Currently, the following namespaces exist:
 * [K8s](k8s.md)
 * [Network](network.md)
 * [OCI](oci.md)
+* [OpenTelemetry](otel.md)
 * [OS](os.md)
 * [Peer](peer.md)
 * [Process](process.md)
