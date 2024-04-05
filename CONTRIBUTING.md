@@ -30,6 +30,7 @@ requirements and recommendations.
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
   - [Markdown link check](#markdown-link-check)
+  - [Version compatibility check](#version-compatibility-check)
 - [Updating the referenced specification version](#updating-the-referenced-specification-version)
 - [Making a Release](#making-a-release)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
@@ -298,6 +299,18 @@ To check the validity of links in all markdown files, run the following command:
 
 ```bash
 make markdown-link-check
+```
+
+### Version compatibility check
+
+Semantic conventions are validated for backward compatibility with last released versions. Here's [the full list of compatibility checks](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#version-compatibility-check).
+Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
+It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
+
+You can run backward compatibility check in all yaml files with the following command:
+
+```bash
+make compatibility-check
 ```
 
 ## Updating the referenced specification version
