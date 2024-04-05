@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.db.deprecated
+  - id: registry.db.deprecated
     prefix: db
     type: attribute_group
     brief: >

@@ -213,7 +213,7 @@
 
 ## Deprecated DB Attributes
 
-<!-- semconv attributes.db.deprecated(omit_requirement_level) -->
+<!-- semconv registry.db.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `db.connection_string` | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>"Replaced by `server.address` and `server.port`." |
@@ -224,7 +224,7 @@
 
 ### Deprecated Elasticsearch Attributes
 
-<!-- semconv attributes.db.deprecated(omit_requirement_level) -->
+<!-- semconv registry.db.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `db.connection_string` | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>"Replaced by `server.address` and `server.port`." |
