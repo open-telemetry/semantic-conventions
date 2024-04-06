@@ -17,16 +17,18 @@ described on this page.
 <!-- semconv db.redis(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.redis.database_index`](../attributes-registry/db.md) | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute. | `0`; `1`; `15` | `Conditionally Required` If other than the default database (`0`). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](../attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [1] | `HMSET myhash field1 'Hello' field2 'World'` | `Recommended` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [3] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.collection.namespace`](../attributes-registry/db.md) | string | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select). [1] | `0`; `1`; `15` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.text`](../attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [2] | `HMSET myhash field1 'Hello' field2 'World'` | `Recommended` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [4] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
+**[1]:** Instrumentations SHOULD NOT set this attribute if capturing it would require additional queries to the database. For commands that switch the database, this should be set to the target database (even if the command fails).
 
-**[2]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+**[2]:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
-**[3]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[3]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+
+**[4]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 <!-- endsemconv -->
 
 ## Example

@@ -13,19 +13,19 @@ groups:
             If the collection name is parsed from the query, it SHOULD match the value provided
             in the query and may be qualified with the schema and database name.
         examples: ['public.users', 'customers']
-      - id: name
+      - id: collection.namespace
         type: string
         stability: experimental
         brief: >
-          This attribute is used to report the name of the database being accessed.
-          For commands that switch the database, this should be set to the target database
-          (even if the command fails).
+          The namespace containing database objects, fully qualified within the server address and port.
         note: >
-          In some SQL databases, the database name to be used is called "schema name".
-          In case there are multiple layers that could be considered for database name
-          (e.g. Oracle instance name and schema name),
-          the database name to be used is the more specific layer (e.g. Oracle schema name).
-        examples: [ 'customers', 'main' ]
+          The namespace usually matches database (catalog, keyspace) names.
+          Some systems, such as MS SQL, allow to host multiple database engines on the same server,
+          in such case, the namespace should include additional qualifiers uniquely identifying the database.
+
+          Semantic conventions for individual database systems SHOULD document what `db.collection.namespace`
+          means in the context of that system.
+        examples: [ 'customers', 'test.users' ]
       - id: operation.name
         type: string
         stability: experimental

@@ -27,6 +27,11 @@ versions:
   1.25.0:
     spans:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/TODO
+        - rename_attributes:
+            attribute_map:
+              db.name: db.collection.namespace
+              db.redis.database_index: db.collection.namespace
         # https://github.com/open-telemetry/semantic-conventions/pull/870
         - rename_attributes:
             attribute_map:

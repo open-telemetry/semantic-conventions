@@ -24,8 +24,8 @@
 | `db.client.connections.pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.client.connections.state` | string | The state of a connection in the pool | `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.collection.name` | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.collection.namespace` | string | The namespace containing database objects, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.instance.id` | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.name` | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [2] | `customers`; `main` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.operation.name` | string | The name of the operation or command being executed. | `findAndModify`; `HMSET`; `SELECT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.parameter.<key>` | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [3] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.text` | string | The database query being executed. | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -33,7 +33,8 @@
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
-**[2]:** In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
+**[2]:** The namespace usually matches database (catalog, keyspace) names. Some systems, such as MS SQL, allow to host multiple database engines on the same server, in such case, the namespace should include additional qualifiers uniquely identifying the database.
+Semantic conventions for individual database systems SHOULD document what `db.collection.namespace` means in the context of that system.
 
 **[3]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
@@ -184,6 +185,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 **[1]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 <!-- endsemconv -->
 
+<<<<<<< HEAD
 ## MSSQL Attributes
 
 <!-- semconv registry.db.mssql(omit_requirement_level,full) -->
@@ -202,6 +204,8 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `db.redis.database_index` | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute. | `0`; `1`; `15` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
+=======
+>>>>>>> 667fb2e (Rename db.name to db.collection.namespace)
 ## Deprecated DB Attributes
 
 <!-- semconv registry.db.deprecated(omit_requirement_level) -->
@@ -223,7 +227,10 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 <!-- semconv registry.db.metrics.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
+| `mssql.instance_name` | string | Deprecated, use `db.collection.namespace` instead. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
+| `name` | string | Deprecated, use `db.collection.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.namespace`. |
 | `pool.name` | string | Deprecated, use `db.client.connections.pool.name` instead. | `myDataSource` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.pool.name`. |
+| `redis.database_index` | int | Deprecated, use `db.collection.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.namespace`. |
 | `state` | string | Deprecated, use `db.client.connections.state` instead. | `idle` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.state`. |
 
 `state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

@@ -92,3 +92,21 @@ groups:
         brief: "Deprecated, use `db.client.connections.pool.name` instead."
         deprecated: "Replaced by `db.client.connections.pool.name`."
         examples: ["myDataSource"]
+      - id: redis.database_index
+        type: int
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.namespace` instead.'
+        deprecated: "Replaced by `db.collection.namespace`."
+        examples: [0, 1, 15]
+      - id: name
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.namespace` instead.'
+        deprecated: "Replaced by `db.collection.namespace`."
+        examples: [ 'customers', 'main' ]
+      - id: mssql.instance_name
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.namespace` instead.'
+        deprecated: 'Deprecated, no replacement at this time.'
+        examples: 'MSSQLSERVER'
