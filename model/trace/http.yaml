@@ -25,6 +25,8 @@ groups:
       - ref: url.full
         sampling_relevant: true
         requirement_level: required
+      - ref: http.route
+        requirement_level: opt_in
       - ref: user_agent.original
         requirement_level: opt_in
       - ref: url.scheme
