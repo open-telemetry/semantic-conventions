@@ -66,3 +66,29 @@ groups:
         brief: 'Deprecated, use `db.collection.name` instead.'
         deprecated: "Replaced by `db.collection.name`."
         examples: 'mytable'
+
+  - id: registry.db.metrics.deprecated
+    type: attribute_group
+    brief: >
+      "Describes deprecated db metrics attributes."
+    attributes:
+      - id: state
+        stability: experimental
+        type:
+          allow_custom_values: true
+          members:
+            - id: idle
+              value: 'idle'
+              stability: experimental
+            - id: used
+              value: 'used'
+              stability: experimental
+        brief: "Deprecated, use `db.state` instead."
+        deprecated: "Replaced by `db.state`."
+        examples: ["idle"]
+      - id: pool.name
+        type: string
+        stability: experimental
+        brief: "Deprecated, use `db.pool.name` instead."
+        deprecated: "Replaced by `db.pool.name`."
+        examples: ["myDataSource"]

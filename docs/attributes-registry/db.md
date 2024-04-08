@@ -217,3 +217,18 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `db.statement` | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
 | `db.user` | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
 <!-- endsemconv -->
+
+## Deprecated DB Metrics Attributes
+<!-- semconv registry.db.metrics.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `pool.name` | string | Deprecated, use `db.pool.name` instead. | `myDataSource` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.pool.name`. |
+| `state` | string | Deprecated, use `db.state` instead. | `idle` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.state`. |
+
+`state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
