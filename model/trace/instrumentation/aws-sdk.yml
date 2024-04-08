@@ -44,7 +44,7 @@ groups:
     type: span
     brief: "Attributes that exist for multiple DynamoDB request types."
     attributes:
-      - ref: db.operation
+      - ref: db.operation.name
         brief: "The same value as `rpc.method`."
         examples:
           - GetItem
