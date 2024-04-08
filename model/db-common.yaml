@@ -14,9 +14,11 @@ groups:
       - ref: db.name
         requirement_level:
           conditionally_required: If applicable.
-      - ref: db.operation
+      - ref: db.operation.name
         requirement_level:
-          conditionally_required: If available.
+          conditionally_required: >
+            If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
+            `db.operation.name`, then it SHOULD be the first operation name found in the query.
       - ref: server.address
         brief: >
           Name of the database host.
