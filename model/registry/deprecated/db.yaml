@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.db.deprecated
+  - id: registry.db.deprecated
     prefix: db
     type: attribute_group
     brief: >
@@ -24,6 +24,12 @@ groups:
         deprecated: "Replaced by `db.instance.id`."
         stability: experimental
         examples: ["instance-0000000001"]
+      - id: operation
+        type: string
+        brief: 'Deprecated, use `db.operation.name` instead.'
+        stability: experimental
+        deprecated: "Replaced by `db.operation.name`."
+        examples: ['findAndModify', 'HMSET', 'SELECT']
       - id: user
         type: string
         brief: 'Deprecated, no replacement at this time.'

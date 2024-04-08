@@ -9,6 +9,7 @@ The attributes registry is the place where attributes are defined. An attribute 
 
 - the `id` (the fully qualified name) of the attribute
 - the `type` of the attribute
+- the `stability` of the attribute
 - a `brief` description of the attribute and optionally a longer `note`
 - example values
 
@@ -46,13 +47,16 @@ Currently, the following namespaces exist:
 * [FaaS](faas.md)
 * [Feature Flag](feature-flag.md)
 * [File](file.md)
-* [Google Cloud Run](gcp-cloud-run.md)
-* [Google Compute Engine](gcp-gce.md)
+* [Google Cloud Platform (GCP)](gcp.md)
+* [GraphQl](graphql.md)
+* [Heroku](heroku.md)
 * [Host](host.md)
 * [HTTP](http.md)
+* [iOS](ios.md)
 * [K8s](k8s.md)
 * [Network](network.md)
 * [OCI](oci.md)
+* [OpenTelemetry](otel.md)
 * [OS](os.md)
 * [Peer](peer.md)
 * [Process](process.md)

@@ -23,16 +23,16 @@ mobile operating system (e.g. Android, iOS).
 
 ### iOS
 
-<!-- semconv ios.lifecycle.events -->
+<!-- semconv ios.lifecycle.events(full) -->
 The event name MUST be `device.app.lifecycle`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `ios.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `active` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`ios.state`](../attributes-registry/ios.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `active` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902), and from which the `OS terminology` column values are derived.
 
-`ios.state` MUST be one of the following:
+`ios.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -45,16 +45,16 @@ The event name MUST be `device.app.lifecycle`.
 
 ### Android
 
-<!-- semconv android.lifecycle.events -->
+<!-- semconv android.lifecycle.events(full) -->
 The event name MUST be `device.app.lifecycle`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `android.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`android.state`](../attributes-registry/android.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
-`android.state` MUST be one of the following:
+`android.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
