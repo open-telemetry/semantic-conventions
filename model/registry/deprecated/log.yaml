@@ -16,4 +16,3 @@ groups:
         stability: experimental
         brief: "Deprecated, use `file.path` instead."
         deprecated: "Replaced by `file.path`."
-

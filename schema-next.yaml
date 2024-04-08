@@ -4,7 +4,7 @@ versions:
   next:
     logs:
       changes:
-        - # https://github.com/open-telemetry/semantic-conventions/pull/908
+        # https://github.com/open-telemetry/semantic-conventions/pull/908
         - rename_attributes:
             attribute_map:
               log.file.name: file.name
