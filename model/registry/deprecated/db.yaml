@@ -42,3 +42,27 @@ groups:
         deprecated: "Replaced by `db.query.text`."
         stability: experimental
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
+      - id: cassandra.table
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.name` instead.'
+        deprecated: "Replaced by `db.collection.name`."
+        examples: 'mytable'
+      - id: cosmosdb.container
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.name` instead.'
+        deprecated: "Replaced by `db.collection.name`."
+        examples: 'mytable'
+      - id: mongodb.collection
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.name` instead.'
+        deprecated: "Replaced by `db.collection.name`."
+        examples: 'mytable'
+      - id: sql.table
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.name` instead.'
+        deprecated: "Replaced by `db.collection.name`."
+        examples: 'mytable'
