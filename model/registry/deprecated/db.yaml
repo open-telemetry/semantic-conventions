@@ -30,3 +30,9 @@ groups:
         stability: experimental
         deprecated: "Replaced by `db.operation.name`."
         examples: ['findAndModify', 'HMSET', 'SELECT']
+      - id: user
+        type: string
+        brief: 'Deprecated, no replacement at this time.'
+        deprecated: "No replacement at this time."
+        stability: experimental
+        examples: ['readonly_user', 'reporting_user']

@@ -34,7 +34,6 @@ This is an example of attributes for a MySQL database span:
 |:------------------------| :----------------------------------------------------------- |
 | Span name               | `"SELECT ShopDb.orders"` |
 | `db.system`             | `"mysql"` |
-| `db.user`               | `"billing_user"` |
 | `server.address`        | `"shopdb.example.com"` |
 | `server.port`           | `3306` |
 | `network.peer.address`  | `"192.0.2.12"` |
