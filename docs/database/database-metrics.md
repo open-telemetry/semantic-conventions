@@ -16,7 +16,7 @@ and attributes but more may be added in the future.
 <!-- toc -->
 
 - [Database operation](#database-operation)
-  * [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
+  - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
 - [Connection pools](#connection-pools)
   - [Metric: `db.client.connections.usage`](#metric-dbclientconnectionsusage)
   - [Metric: `db.client.connections.idle.max`](#metric-dbclientconnectionsidlemax)
