@@ -21,7 +21,7 @@ groups:
               brief: 'Events from stderr stream'
               stability: experimental
 
-  - id: registry.log.file #TODO: replace with file namespace once re-use is implemented
+  - id: registry.log.file #TODO: should we move it to the file model?
     type: attribute_group
     prefix: log.file
     brief: >
