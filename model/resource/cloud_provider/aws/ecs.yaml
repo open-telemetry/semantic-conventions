@@ -1,52 +1,22 @@
 groups:
   - id: aws.ecs
-    prefix: aws.ecs
     type: resource
     brief: >
       Resources used by AWS Elastic Container Service (ECS).
     attributes:
-      - id: container.arn
-        type: string
-        brief: >
-          The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
-        examples: ['arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9']
-      - id: cluster.arn
-        type: string
-        brief: >
-          The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
-        examples: ['arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster']
-      - id: launchtype
-        type:
-          allow_custom_values: false
-          members:
-            - id: ec2
-              value: "ec2"
-            - id: fargate
-              value: "fargate"
-        brief: >
-          The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
-      - id: task.arn
-        type: string
-        brief: >
-          The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids).
-        examples: [
-          'arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b',
-          'arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd'
-        ]
-      - id: task.family
-        type: string
-        brief: >
-          The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task.
-        examples: ['opentelemetry-family']
-      - id: task.id
-        type: string
-        brief: >
-          The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
+      - ref: aws.ecs.container.arn
+        requirement_level: recommended
+      - ref: aws.ecs.cluster.arn
+        requirement_level: recommended
+      - ref: aws.ecs.launchtype
+        requirement_level: recommended
+      - ref: aws.ecs.task.arn
+        requirement_level: recommended
+      - ref: aws.ecs.task.family
+        requirement_level: recommended
+      - ref: aws.ecs.task.id
         requirement_level:
           conditionally_required: If and only if `task.arn` is populated.
         examples: [ '10838bed-421f-43ef-870a-f43feacbbb5b', '23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd' ]
-      - id: task.revision
-        type: string
-        brief: >
-          The revision for the task definition used to create the ECS task.
-        examples: ["8", "26"]
+      - ref: aws.ecs.task.revision
+        requirement_level: recommended

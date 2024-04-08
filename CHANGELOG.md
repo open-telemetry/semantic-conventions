@@ -6,19 +6,25 @@
 # Changelog
 
 <!-- next version -->
-
 ## Unreleased
 
 ### Breaking
 
-- Rename `system.processes.*` namespace to `system.process.*`
-  ([#484](https://github.com/open-telemetry/semantic-conventions/pull/484))
-- Depluralize labels for pod (`k8s.pod.labels.*`) and container (`container.labels.*`) resources
-  ([#625](https://github.com/open-telemetry/semantic-conventions/pull/625))
-- Make `network.protocol.name` conditionally required for messaging
-  ([#644](https://github.com/open-telemetry/semantic-conventions/pull/644))
-- BREAKING: Generate process metrics from YAML
-  ([#330](https://github.com/open-telemetry/semantic-conventions/pull/330))
+### Features
+
+### Fixes
+
+## v1.25.0
+
+### 🛑 Breaking changes 🛑
+
+- `messaging`: Remove `network.transport` and `network.type` attributes from messaging semantic conventions, clarify when `network.peer.address|port` should be populated. (#690, #698)
+- `db`: Remove `network.transport` and `network.type` attributes from database semantic conventions, clarify when `network.peer.address|port` should be populated. (#690, #768)
+- `messaging`: Introduce common `messaging.destination.partition.id` instead of `messaging.kafka.destination.partition` (#798)
+- `host`: [resource/host] Change type of host.cpu.stepping to string (#664, #665)
+- `system`: Rename `system.processes.*` namespace to `system.process.*`(#484)
+- `k8s`, `container`: Depluralize labels for pod (`k8s.pod.labels.*`) and container (`container.labels.*`) resources (#625)
+- `process`: Generate process metrics from YAML (#330):
   - Rename `process.threads` to `process.thread.count`
   - Rename `process.open_file_descriptors` to `process.open_file_descriptor.count`
   - Rename attributes for `process.cpu.*`
@@ -31,23 +37,51 @@
     - `type` to `process.context_switch_type`
   - Rename attributes for `process.paging.faults`
     - `type` to `process.paging.fault_type`
-- Fix JVM buffer metric schema translations
-  ([#683](https://github.com/open-telemetry/semantic-conventions/pull/683))
 
-### Features
+### 🚩 Deprecations 🚩
 
-- Add `azure_container_apps` to `cloud.platform` semantic conventions
-  ([#615](https://github.com/open-telemetry/semantic-conventions/pull/615))
-- Add `user_agent.name` and `user_agent.version` attributes
-  ([#452](https://github.com/open-telemetry/semantic-conventions/pull/452/))
-- Add an example for gcp_pubsub asynchronous batch publish
-  ([#545](https://github.com/open-telemetry/semantic-conventions/pull/545))
-- Add `aws.ecs.task.id` attribute, corrected description for `aws.ecs.task.arn`.
-  ([#597](https://github.com/open-telemetry/semantic-conventions/pull/597))
-- Add Azure Service Bus and Event Hubs messaging attributes
-  ([#572](https://github.com/open-telemetry/semantic-conventions/pull/572))
+- `db`: Deprecate `db.connection_string` attribute in favor of `server.address` and `server.port` (#724, #769)
+- `db`: Deprecate `db.jdbc.driver_classname` attribute (#796)
 
-### Fixes
+### 🚀 New components 🚀
+
+- `file`: Add new file namespace (#732)
+
+### 💡 Enhancements 💡
+
+- `messaging`: Add `messaging.rabbitmq.message.delivery_tag`` to the list of RabbitMQ specific tags (#433)
+- `messaging`: Clarify producer span relationships for messaging semantic conventions (#509)
+- `rpc`: Add link to specification for metrics defined by gRPC community. (#627)
+- `messaging`: Add messaging semantic conventions for settlement spans (#621)
+- `messaging`: Clarifies span names for Azure messaging systems and adds `messaging.servicebus.disposition_status attribute`. (#697)
+- `messaging`: Add a "Process" spans and metrics for messaging (#657)
+- `db`: Update Elasticsearch attributes to use db.instance.id instead of db.elasticsearch.node.name (#725)
+- `db`: Merge DB connection-level and call-level attributes tables (#780)
+- `dns`: Introduces common DNS lookup duration metric and attributes. (#404)
+- `other`: Update build-tools version to 0.24.0 and make semantic conventions compatible with this version (add stability on enum members and deprecated attributes). (#807)
+- `system`: Align `system.cpu.state`'s definition with this of `process.cpu.state`. (#563)
+- `container`: Add new container metrics for `cpu`, `memory`, `disk` and `network` (#282, #72)
+- `url`: Sensitive content provided in `url.full`, `url.path`, and `url.query` SHOULD be scrubbed when instrumentations can identify it. (#676)
+- `metrics`: Clarify metric attributes should be namespaced. (#394)
+- `events`: Add clarification that the body of an Event will live in the LogRecord body field. (#566)
+- `http`: Add `http.request.size` and `http.response.size` attributes for the total number of bytes in http messages (#38, #84)
+- `http`: Extracts common HTTP client metrics from .NET conventions. (#800)
+- `resource`: Define a common algorithm for `service.instance.id`. (#312)
+- `user-agent`: Update user_agent subfields wording to support it's usage for non-browser products with multiple names/versions (#680)
+- `url`: Add remaining ECS fields to the url namespace (#496)
+- `messaging`: Make `network.protocol.name` conditionally required for messaging (#644)
+- `cloud`: Add `azure_container_apps` to `cloud.platform` semantic conventions (#615)
+- `user_agent`: Add `user_agent.name` and `user_agent.version` attributes (#452)
+- `messaging`: Add an example for gcp_pubsub asynchronous batch publish (#545)
+- `aws`: Add `aws.ecs.task.id` attribute, corrected description for `aws.ecs.task.arn` (#597)
+- `messaging`: Add Azure Service Bus and Event Hubs messaging attributes (#572)
+
+### 🧰 Bug fixes 🧰
+
+- `aws-lambda`: Fix problem in `xray-lambda` propagator definition (#778)
+- `http`: Two fixes to the HTTP semconv migration guide (#802)
+- `network`: Clarifies that network.protocol.version represents negotiated version (#686)
+- `jvm`: Fix JVM buffer metric schema translations (#683)
 
 ## v1.24.0 (2023-12-15)
 

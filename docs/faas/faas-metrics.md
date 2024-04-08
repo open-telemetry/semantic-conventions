@@ -18,18 +18,18 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
 <!-- toc -->
 
 - [Metric Instruments](#metric-instruments)
-  * [FaaS Instance](#faas-instance)
-    + [Metric: `faas.invoke_duration`](#metric-faasinvoke_duration)
-    + [Metric: `faas.init_duration`](#metric-faasinit_duration)
-    + [Metric: `faas.coldstarts`](#metric-faascoldstarts)
-    + [Metric: `faas.errors`](#metric-faaserrors)
-    + [Metric: `faas.invocations`](#metric-faasinvocations)
-    + [Metric: `faas.timeouts`](#metric-faastimeouts)
-    + [Metric: `faas.mem_usage`](#metric-faasmem_usage)
-    + [Metric: `faas.cpu_usage`](#metric-faascpu_usage)
-    + [Metric: `faas.net_io`](#metric-faasnet_io)
+  - [FaaS Instance](#faas-instance)
+    - [Metric: `faas.invoke_duration`](#metric-faasinvoke_duration)
+    - [Metric: `faas.init_duration`](#metric-faasinit_duration)
+    - [Metric: `faas.coldstarts`](#metric-faascoldstarts)
+    - [Metric: `faas.errors`](#metric-faaserrors)
+    - [Metric: `faas.invocations`](#metric-faasinvocations)
+    - [Metric: `faas.timeouts`](#metric-faastimeouts)
+    - [Metric: `faas.mem_usage`](#metric-faasmem_usage)
+    - [Metric: `faas.cpu_usage`](#metric-faascpu_usage)
+    - [Metric: `faas.net_io`](#metric-faasnet_io)
 - [References](#references)
-  * [Metric References](#metric-references)
+  - [Metric References](#metric-references)
 
 <!-- tocstop -->
 
@@ -46,29 +46,29 @@ The following metrics are recorded by the FaaS instance.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.invoke_duration(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `faas.invoke_duration` | Histogram | `s` | Measures the duration of the function's logic execution |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `faas.invoke_duration` | Histogram | `s` | Measures the duration of the function's logic execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.invoke_duration(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.trigger` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write |
-| `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
-| `timer` | A function is scheduled to be executed regularly |
-| `other` | If none of the others apply |
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 #### Metric: `faas.init_duration`
@@ -76,29 +76,29 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.init_duration(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `faas.init_duration` | Histogram | `s` | Measures the duration of the function's initialization, such as a cold start |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `faas.init_duration` | Histogram | `s` | Measures the duration of the function's initialization, such as a cold start | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.init_duration(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.trigger` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write |
-| `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
-| `timer` | A function is scheduled to be executed regularly |
-| `other` | If none of the others apply |
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 #### Metric: `faas.coldstarts`
@@ -106,25 +106,25 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.faas.coldstarts(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `faas.coldstarts` | Counter | `{coldstart}` | Number of invocation cold starts |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `faas.coldstarts` | Counter | `{coldstart}` | Number of invocation cold starts | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.coldstarts(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.trigger` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write |
-| `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
-| `timer` | A function is scheduled to be executed regularly |
-| `other` | If none of the others apply |
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 #### Metric: `faas.errors`
@@ -132,25 +132,25 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.faas.errors(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `faas.errors` | Counter | `{error}` | Number of invocation errors |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `faas.errors` | Counter | `{error}` | Number of invocation errors | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.errors(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.trigger` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write |
-| `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
-| `timer` | A function is scheduled to be executed regularly |
-| `other` | If none of the others apply |
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 #### Metric: `faas.invocations`
@@ -158,25 +158,25 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.faas.invocations(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `faas.invocations` | Counter | `{invocation}` | Number of successful invocations |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `faas.invocations` | Counter | `{invocation}` | Number of successful invocations | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.invocations(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.trigger` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write |
-| `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
-| `timer` | A function is scheduled to be executed regularly |
-| `other` | If none of the others apply |
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 #### Metric: `faas.timeouts`
@@ -184,25 +184,25 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.faas.timeouts(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `faas.timeouts` | Counter | `{timeout}` | Number of invocation timeouts |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `faas.timeouts` | Counter | `{timeout}` | Number of invocation timeouts | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.timeouts(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.trigger` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write |
-| `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
-| `timer` | A function is scheduled to be executed regularly |
-| `other` | If none of the others apply |
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 #### Metric: `faas.mem_usage`
@@ -210,25 +210,25 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.faas.mem_usage(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `faas.mem_usage` | Histogram | `By` | Distribution of max memory usage per invocation |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `faas.mem_usage` | Histogram | `By` | Distribution of max memory usage per invocation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.mem_usage(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.trigger` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write |
-| `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
-| `timer` | A function is scheduled to be executed regularly |
-| `other` | If none of the others apply |
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 #### Metric: `faas.cpu_usage`
@@ -236,29 +236,29 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.cpu_usage(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `faas.cpu_usage` | Histogram | `s` | Distribution of CPU usage per invocation |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `faas.cpu_usage` | Histogram | `s` | Distribution of CPU usage per invocation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.cpu_usage(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.trigger` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write |
-| `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
-| `timer` | A function is scheduled to be executed regularly |
-| `other` | If none of the others apply |
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 #### Metric: `faas.net_io`
@@ -266,25 +266,25 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.faas.net_io(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `faas.net_io` | Histogram | `By` | Distribution of net I/O usage per invocation |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `faas.net_io` | Histogram | `By` | Distribution of net I/O usage per invocation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.faas.net_io(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.trigger` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write |
-| `http` | To provide an answer to an inbound HTTP request |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system |
-| `timer` | A function is scheduled to be executed regularly |
-| `other` | If none of the others apply |
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## References
@@ -300,5 +300,5 @@ FaaS providers. This list is not exhaustive.
 * [Google CloudFunctions Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudfunctions)
 * [OpenFaas Metrics](https://docs.openfaas.com/architecture/metrics/)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

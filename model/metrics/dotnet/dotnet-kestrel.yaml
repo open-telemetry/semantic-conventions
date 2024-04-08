@@ -14,6 +14,7 @@ groups:
   - id: metric.kestrel.active_connections
     type: metric
     metric_name: kestrel.active_connections
+    stability: stable
     brief: Number of connections that are currently active on the server.
     instrument: updowncounter
     unit: "{connection}"
@@ -24,6 +25,7 @@ groups:
   - id: metric.kestrel.connection.duration
     type: metric
     metric_name: kestrel.connection.duration
+    stability: stable
     brief: The duration of connections on the server.
     instrument: histogram
     unit: "s"
@@ -46,6 +48,7 @@ groups:
   - id: metric.kestrel.rejected_connections
     type: metric
     metric_name: kestrel.rejected_connections
+    stability: stable
     brief: Number of connections rejected by the server.
     instrument: counter
     unit: "{connection}"
@@ -57,6 +60,7 @@ groups:
   - id: metric.kestrel.queued_connections
     type: metric
     metric_name: kestrel.queued_connections
+    stability: stable
     brief: Number of connections that are currently queued and are waiting to start.
     instrument: updowncounter
     unit: "{connection}"
@@ -67,6 +71,7 @@ groups:
   - id: metric.kestrel.queued_requests
     type: metric
     metric_name: kestrel.queued_requests
+    stability: stable
     brief: Number of HTTP requests on multiplexed connections (HTTP/2 and HTTP/3) that are currently queued and are waiting to start.
     instrument: updowncounter
     unit: "{request}"
@@ -82,6 +87,7 @@ groups:
   - id: metric.kestrel.upgraded_connections
     type: metric
     metric_name: kestrel.upgraded_connections
+    stability: stable
     brief: Number of connections that are currently upgraded (WebSockets). .
     instrument: updowncounter
     unit: "{connection}"
@@ -94,6 +100,7 @@ groups:
   - id: metric.kestrel.tls_handshake.duration
     type: metric
     metric_name: kestrel.tls_handshake.duration
+    stability: stable
     brief: The duration of TLS handshakes on the server.
     instrument: histogram
     unit: "s"
@@ -112,6 +119,7 @@ groups:
   - id: metric.kestrel.active_tls_handshakes
     type: metric
     metric_name: kestrel.active_tls_handshakes
+    stability: stable
     brief: Number of TLS handshakes that are currently in progress on the server.
     instrument: updowncounter
     unit: "{handshake}"

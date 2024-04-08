@@ -1,0 +1,68 @@
+groups:
+  - id: registry.db.deprecated
+    prefix: db
+    type: attribute_group
+    brief: >
+      "Describes deprecated db attributes."
+    attributes:
+      - id: connection_string
+        type: string
+        brief: 'Deprecated, use `server.address`, `server.port` attributes instead.'
+        stability: experimental
+        deprecated: >
+          "Replaced by `server.address` and `server.port`."
+        examples: Server=(localdb)\v11.0;Integrated Security=true;
+      - id: jdbc.driver_classname
+        type: string
+        brief: 'Removed, no replacement at this time.'
+        stability: experimental
+        deprecated: 'Removed as not used.'
+        examples: ['org.postgresql.Driver', 'com.microsoft.sqlserver.jdbc.SQLServerDriver']
+      - id: elasticsearch.node.name
+        type: string
+        brief: 'Deprecated, use `db.instance.id` instead.'
+        deprecated: "Replaced by `db.instance.id`."
+        stability: experimental
+        examples: ["instance-0000000001"]
+      - id: operation
+        type: string
+        brief: 'Deprecated, use `db.operation.name` instead.'
+        stability: experimental
+        deprecated: "Replaced by `db.operation.name`."
+        examples: ['findAndModify', 'HMSET', 'SELECT']
+      - id: user
+        type: string
+        brief: 'Deprecated, no replacement at this time.'
+        deprecated: "No replacement at this time."
+        stability: experimental
+        examples: ['readonly_user', 'reporting_user']
+      - id: statement
+        type: string
+        brief: The database statement being executed.
+        deprecated: "Replaced by `db.query.text`."
+        stability: experimental
+        examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
+      - id: cassandra.table
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.name` instead.'
+        deprecated: "Replaced by `db.collection.name`."
+        examples: 'mytable'
+      - id: cosmosdb.container
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.name` instead.'
+        deprecated: "Replaced by `db.collection.name`."
+        examples: 'mytable'
+      - id: mongodb.collection
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.name` instead.'
+        deprecated: "Replaced by `db.collection.name`."
+        examples: 'mytable'
+      - id: sql.table
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.collection.name` instead.'
+        deprecated: "Replaced by `db.collection.name`."
+        examples: 'mytable'

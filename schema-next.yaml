@@ -2,6 +2,29 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+
+  1.25.0:
+    spans:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/870
+        - rename_attributes:
+            attribute_map:
+              db.sql.table: db.collection.name
+              db.mongodb.collection: db.collection.name
+              db.cosmosdb.container: db.collection.name
+              db.cassandra.table: db.collection.name
+        # https://github.com/open-telemetry/semantic-conventions/pull/798
+        - rename_attributes:
+            attribute_map:
+              messaging.kafka.destination.partition: messaging.destination.partition.id
+        # https://github.com/open-telemetry/semantic-conventions/pull/875
+        - rename_attributes:
+            attribute_map:
+              db.operation: db.operation.name
+        # https://github.com/open-telemetry/semantic-conventions/pull/866
+        - rename_attributes:
+            attribute_map:
+              db.statement: db.query.text
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/484
@@ -48,6 +71,15 @@ versions:
               type: process.paging.fault_type
             apply_to_metrics:
               - process.paging.faults
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/854
+        - rename_attributes:
+            attribute_map:
+              message.type: rpc.message.type
+              message.id: rpc.message.id
+              message.compressed_size: rpc.message.compressed_size
+              message.uncompressed_size: rpc.message.uncompressed_size
 
   1.24.0:
     metrics:

@@ -12,14 +12,14 @@ described on this page.
 
 `db.system` MUST be set to `"hbase"`.
 
-## Call-level attributes
+## Attributes
 
-<!-- semconv db.hbase(full,tag=call-level-tech-specific) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`db.name`](../attributes-registry/db.md) | string | The HBase namespace. [1] | `mynamespace` | Conditionally Required: If applicable. |
+<!-- semconv db.hbase(full,tag=tech-specific) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`db.name`](../attributes-registry/db.md) | string | The HBase namespace. [1] | `mynamespace` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For HBase the `db.name` should be set to the HBase namespace.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

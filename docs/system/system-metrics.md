@@ -22,40 +22,40 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
 <!-- toc -->
 
 - [Processor Metrics](#processor-metrics)
-  * [Metric: `system.cpu.time`](#metric-systemcputime)
-  * [Metric: `system.cpu.utilization`](#metric-systemcpuutilization)
-  * [Metric: `system.cpu.physical.count`](#metric-systemcpuphysicalcount)
-  * [Metric: `system.cpu.logical.count`](#metric-systemcpulogicalcount)
-  * [Metric: `system.cpu.frequency`](#metric-systemcpufrequency)
+  - [Metric: `system.cpu.time`](#metric-systemcputime)
+  - [Metric: `system.cpu.utilization`](#metric-systemcpuutilization)
+  - [Metric: `system.cpu.physical.count`](#metric-systemcpuphysicalcount)
+  - [Metric: `system.cpu.logical.count`](#metric-systemcpulogicalcount)
+  - [Metric: `system.cpu.frequency`](#metric-systemcpufrequency)
 - [Memory Metrics](#memory-metrics)
-  * [Metric: `system.memory.usage`](#metric-systemmemoryusage)
-  * [Metric: `system.memory.limit`](#metric-systemmemorylimit)
-  * [Metric: `system.memory.utilization`](#metric-systemmemoryutilization)
+  - [Metric: `system.memory.usage`](#metric-systemmemoryusage)
+  - [Metric: `system.memory.limit`](#metric-systemmemorylimit)
+  - [Metric: `system.memory.utilization`](#metric-systemmemoryutilization)
 - [Paging/Swap Metrics](#pagingswap-metrics)
-  * [Metric: `system.paging.usage`](#metric-systempagingusage)
-  * [Metric: `system.paging.utilization`](#metric-systempagingutilization)
-  * [Metric: `system.paging.faults`](#metric-systempagingfaults)
-  * [Metric: `system.paging.operations`](#metric-systempagingoperations)
+  - [Metric: `system.paging.usage`](#metric-systempagingusage)
+  - [Metric: `system.paging.utilization`](#metric-systempagingutilization)
+  - [Metric: `system.paging.faults`](#metric-systempagingfaults)
+  - [Metric: `system.paging.operations`](#metric-systempagingoperations)
 - [Disk Controller Metrics](#disk-controller-metrics)
-  * [Metric: `system.disk.io`](#metric-systemdiskio)
-  * [Metric: `system.disk.operations`](#metric-systemdiskoperations)
-  * [Metric: `system.disk.io_time`](#metric-systemdiskio_time)
-  * [Metric: `system.disk.operation_time`](#metric-systemdiskoperation_time)
-  * [Metric: `system.disk.merged`](#metric-systemdiskmerged)
+  - [Metric: `system.disk.io`](#metric-systemdiskio)
+  - [Metric: `system.disk.operations`](#metric-systemdiskoperations)
+  - [Metric: `system.disk.io_time`](#metric-systemdiskio_time)
+  - [Metric: `system.disk.operation_time`](#metric-systemdiskoperation_time)
+  - [Metric: `system.disk.merged`](#metric-systemdiskmerged)
 - [Filesystem Metrics](#filesystem-metrics)
-  * [Metric: `system.filesystem.usage`](#metric-systemfilesystemusage)
-  * [Metric: `system.filesystem.utilization`](#metric-systemfilesystemutilization)
+  - [Metric: `system.filesystem.usage`](#metric-systemfilesystemusage)
+  - [Metric: `system.filesystem.utilization`](#metric-systemfilesystemutilization)
 - [Network Metrics](#network-metrics)
-  * [Metric: `system.network.dropped`](#metric-systemnetworkdropped)
-  * [Metric: `system.network.packets`](#metric-systemnetworkpackets)
-  * [Metric: `system.network.errors`](#metric-systemnetworkerrors)
-  * [Metric: `system.network.io`](#metric-systemnetworkio)
-  * [Metric: `system.network.connections`](#metric-systemnetworkconnections)
+  - [Metric: `system.network.dropped`](#metric-systemnetworkdropped)
+  - [Metric: `system.network.packets`](#metric-systemnetworkpackets)
+  - [Metric: `system.network.errors`](#metric-systemnetworkerrors)
+  - [Metric: `system.network.io`](#metric-systemnetworkio)
+  - [Metric: `system.network.connections`](#metric-systemnetworkconnections)
 - [Aggregate System Process Metrics](#aggregate-system-process-metrics)
-  * [Metric: `system.process.count`](#metric-systemprocesscount)
-  * [Metric: `system.process.created`](#metric-systemprocesscreated)
+  - [Metric: `system.process.count`](#metric-systemprocesscount)
+  - [Metric: `system.process.created`](#metric-systemprocesscreated)
 - [`system.{os}.` - OS Specific System Metrics](#systemos---os-specific-system-metrics)
-  * [Metric: `system.linux.memory.available`](#metric-systemlinuxmemoryavailable)
+  - [Metric: `system.linux.memory.available`](#metric-systemlinuxmemoryavailable)
 
 <!-- tocstop -->
 
@@ -78,28 +78,28 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.cpu.time(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.cpu.time` | Counter | `s` | Seconds each logical CPU spent on each mode |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.cpu.time` | Counter | `s` | Seconds each logical CPU spent on each mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.cpu.time(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | Recommended |
-| `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.state` | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `idle`; `interrupt` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `user` | user |
-| `system` | system |
-| `nice` | nice |
-| `idle` | idle |
-| `iowait` | iowait |
-| `interrupt` | interrupt |
-| `steal` | steal |
+| Value  | Description | Stability |
+|---|---|---|
+| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.cpu.utilization`
@@ -107,28 +107,28 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.cpu.utilization(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.cpu.utilization` | Gauge | `1` | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.cpu.utilization` | Gauge | `1` | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.cpu.utilization(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | Recommended |
-| `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.state` | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `idle`; `interrupt` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `user` | user |
-| `system` | system |
-| `nice` | nice |
-| `idle` | idle |
-| `iowait` | iowait |
-| `interrupt` | interrupt |
-| `steal` | steal |
+| Value  | Description | Stability |
+|---|---|---|
+| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.cpu.physical.count`
@@ -136,9 +136,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.cpu.physical.count(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.cpu.physical.count(full) -->
@@ -149,9 +149,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.cpu.logical.count(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.cpu.logical.count(full) -->
@@ -162,15 +162,15 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.cpu.frequency(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.cpu.frequency` | Gauge | `{Hz}` | Reports the current frequency of the CPU in Hz |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.cpu.frequency` | Gauge | `{Hz}` | Reports the current frequency of the CPU in Hz | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.cpu.frequency(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Memory Metrics
@@ -183,28 +183,28 @@ This does not include [paging/swap memory](#pagingswap-metrics).
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.memory.usage(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The sum over all `system.memory.state` values SHOULD equal the total memory
 available on the system, that is `system.memory.limit`.
 <!-- endsemconv -->
 
 <!-- semconv metric.system.memory.usage(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.memory.state` | string | The memory state | `free`; `cached` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.memory.state` | string | The memory state | `free`; `cached` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `used` | used |
-| `free` | free |
-| `shared` | shared |
-| `buffers` | buffers |
-| `cached` | cached |
+| Value  | Description | Stability |
+|---|---|---|
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `shared` | shared | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.memory.limit`
@@ -212,9 +212,9 @@ available on the system, that is `system.memory.limit`.
 This metric is [opt-in][MetricOptIn].
 
 <!-- semconv metric.system.memory.limit(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.memory.limit` | UpDownCounter | `By` | Total memory available in the system. [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.memory.limit` | UpDownCounter | `By` | Total memory available in the system. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Its value SHOULD equal the sum of `system.memory.state` over all states.
 <!-- endsemconv -->
@@ -227,25 +227,25 @@ This metric is [opt-in][MetricOptIn].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.memory.utilization(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.memory.utilization` | Gauge | `1` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.memory.utilization` | Gauge | `1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.memory.utilization(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.memory.state` | string | The memory state | `free`; `cached` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.memory.state` | string | The memory state | `free`; `cached` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `used` | used |
-| `free` | free |
-| `shared` | shared |
-| `buffers` | buffers |
-| `cached` | cached |
+| Value  | Description | Stability |
+|---|---|---|
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `shared` | shared | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Paging/Swap Metrics
@@ -257,22 +257,22 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.paging.usage(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.paging.usage` | UpDownCounter | `By` | Unix swap or windows pagefile usage |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.paging.usage` | UpDownCounter | `By` | Unix swap or windows pagefile usage | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.paging.usage(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.paging.state` | string | The memory paging state | `free` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.paging.state` | string | The memory paging state | `free` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.paging.state` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `used` | used |
-| `free` | free |
+| Value  | Description | Stability |
+|---|---|---|
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.paging.utilization`
@@ -280,22 +280,22 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.paging.utilization(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.paging.utilization` | Gauge | `1` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.paging.utilization` | Gauge | `1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.paging.utilization(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.paging.state` | string | The memory paging state | `free` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.paging.state` | string | The memory paging state | `free` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.paging.state` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `used` | used |
-| `free` | free |
+| Value  | Description | Stability |
+|---|---|---|
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.paging.faults`
@@ -303,22 +303,22 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.paging.faults(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.paging.faults` | Counter | `{fault}` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.paging.faults` | Counter | `{fault}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.paging.faults(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.paging.type` | string | The memory paging type | `minor` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.paging.type` | string | The memory paging type | `minor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.paging.type` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `major` | major |
-| `minor` | minor |
+| Value  | Description | Stability |
+|---|---|---|
+| `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.paging.operations`
@@ -326,30 +326,30 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.paging.operations(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.paging.operations` | Counter | `{operation}` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.paging.operations` | Counter | `{operation}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.paging.operations(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.paging.direction` | string | The paging access direction | `in` | Recommended |
-| `system.paging.type` | string | The memory paging type | `minor` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.paging.direction` | string | The paging access direction | `in` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.paging.type` | string | The memory paging type | `minor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.paging.direction` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `in` | in |
-| `out` | out |
+| Value  | Description | Stability |
+|---|---|---|
+| `in` | in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `out` | out | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.paging.type` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `major` | major |
-| `minor` | minor |
+| Value  | Description | Stability |
+|---|---|---|
+| `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Disk Controller Metrics
@@ -361,23 +361,23 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.disk.io(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.disk.io` | Counter | `By` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.disk.io` | Counter | `By` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.disk.io(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `disk.io.direction` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `read` | read |
-| `write` | write |
+| Value  | Description | Stability |
+|---|---|---|
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.disk.operations`
@@ -385,23 +385,23 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.disk.operations(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.disk.operations` | Counter | `{operation}` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.disk.operations` | Counter | `{operation}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.disk.operations(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `disk.io.direction` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `read` | read |
-| `write` | write |
+| Value  | Description | Stability |
+|---|---|---|
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.disk.io_time`
@@ -409,9 +409,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.disk.io_time(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.disk.io_time` | Counter | `s` | Time disk spent activated [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.disk.io_time` | Counter | `s` | Time disk spent activated [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
 
@@ -422,9 +422,9 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 
 <!-- semconv metric.system.disk.io_time(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.disk.operation_time`
@@ -432,9 +432,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.disk.operation_time(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.disk.operation_time` | Counter | `s` | Sum of the time each operation took to complete [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.disk.operation_time` | Counter | `s` | Sum of the time each operation took to complete [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
 
@@ -443,17 +443,17 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 
 <!-- semconv metric.system.disk.operation_time(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `disk.io.direction` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `read` | read |
-| `write` | write |
+| Value  | Description | Stability |
+|---|---|---|
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.disk.merged`
@@ -461,23 +461,23 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.disk.merged(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.disk.merged` | Counter | `{operation}` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.disk.merged` | Counter | `{operation}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.disk.merged(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | Recommended |
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `disk.io.direction` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `read` | read |
-| `write` | write |
+| Value  | Description | Stability |
+|---|---|---|
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Filesystem Metrics
@@ -489,38 +489,38 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.filesystem.usage(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.filesystem.usage` | UpDownCounter | `By` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.filesystem.usage` | UpDownCounter | `By` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.filesystem.usage(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.filesystem.mode` | string | The filesystem mode | `rw, ro` | Recommended |
-| `system.filesystem.mountpoint` | string | The filesystem mount path | `/mnt/data` | Recommended |
-| `system.filesystem.state` | string | The filesystem state | `used` | Recommended |
-| `system.filesystem.type` | string | The filesystem type | `ext4` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.mode` | string | The filesystem mode | `rw, ro` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.mountpoint` | string | The filesystem mount path | `/mnt/data` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.state` | string | The filesystem state | `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.type` | string | The filesystem type | `ext4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.filesystem.state` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `used` | used |
-| `free` | free |
-| `reserved` | reserved |
+| Value  | Description | Stability |
+|---|---|---|
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `reserved` | reserved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `fat32` | fat32 |
-| `exfat` | exfat |
-| `ntfs` | ntfs |
-| `refs` | refs |
-| `hfsplus` | hfsplus |
-| `ext4` | ext4 |
+| Value  | Description | Stability |
+|---|---|---|
+| `fat32` | fat32 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `exfat` | exfat | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ntfs` | ntfs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `refs` | refs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hfsplus` | hfsplus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ext4` | ext4 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.filesystem.utilization`
@@ -528,38 +528,38 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.filesystem.utilization(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.filesystem.utilization` | Gauge | `1` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.filesystem.utilization` | Gauge | `1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.filesystem.utilization(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.filesystem.mode` | string | The filesystem mode | `rw, ro` | Recommended |
-| `system.filesystem.mountpoint` | string | The filesystem mount path | `/mnt/data` | Recommended |
-| `system.filesystem.state` | string | The filesystem state | `used` | Recommended |
-| `system.filesystem.type` | string | The filesystem type | `ext4` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.mode` | string | The filesystem mode | `rw, ro` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.mountpoint` | string | The filesystem mount path | `/mnt/data` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.state` | string | The filesystem state | `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.type` | string | The filesystem type | `ext4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.filesystem.state` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `used` | used |
-| `free` | free |
-| `reserved` | reserved |
+| Value  | Description | Stability |
+|---|---|---|
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `reserved` | reserved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `fat32` | fat32 |
-| `exfat` | exfat |
-| `ntfs` | ntfs |
-| `refs` | refs |
-| `hfsplus` | hfsplus |
-| `ext4` | ext4 |
+| Value  | Description | Stability |
+|---|---|---|
+| `fat32` | fat32 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `exfat` | exfat | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ntfs` | ntfs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `refs` | refs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hfsplus` | hfsplus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ext4` | ext4 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Network Metrics
@@ -571,9 +571,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.network.dropped(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.network.dropped` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.network.dropped` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Measured as:
 
@@ -583,17 +583,17 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.dropped(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.io.direction` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `transmit` | transmit |
-| `receive` | receive |
+| Value  | Description | Stability |
+|---|---|---|
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.network.packets`
@@ -601,23 +601,23 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.network.packets(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.network.packets` | Counter | `{packet}` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.network.packets` | Counter | `{packet}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.packets(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.io.direction` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `transmit` | transmit |
-| `receive` | receive |
+| Value  | Description | Stability |
+|---|---|---|
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.network.errors`
@@ -625,9 +625,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.network.errors(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.network.errors` | Counter | `{error}` | Count of network errors detected [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.network.errors` | Counter | `{error}` | Count of network errors detected [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Measured as:
 
@@ -637,17 +637,17 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.errors(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.io.direction` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `transmit` | transmit |
-| `receive` | receive |
+| Value  | Description | Stability |
+|---|---|---|
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.network.io`
@@ -655,23 +655,23 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.network.io(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.network.io` | Counter | `By` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.network.io` | Counter | `By` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.io(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | Recommended |
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`network.io.direction`](../attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.io.direction` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `transmit` | transmit |
-| `receive` | receive |
+| Value  | Description | Stability |
+|---|---|---|
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.network.connections`
@@ -679,17 +679,17 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.network.connections(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.network.connections` | UpDownCounter | `{connection}` |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.network.connections` | UpDownCounter | `{connection}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.network.connections(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | Recommended |
-| `system.device` | string | The device identifier | `(identifier)` | Recommended |
-| `system.network.state` | string | A stateless protocol MUST NOT set this attribute | `close_wait` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`network.transport`](../attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.network.state` | string | A stateless protocol MUST NOT set this attribute | `close_wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -697,31 +697,31 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `tcp` | TCP |
-| `udp` | UDP |
-| `pipe` | Named or anonymous pipe. |
-| `unix` | Unix domain socket |
+| Value  | Description | Stability |
+|---|---|---|
+| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 `system.network.state` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `close` | close |
-| `close_wait` | close_wait |
-| `closing` | closing |
-| `delete` | delete |
-| `established` | established |
-| `fin_wait_1` | fin_wait_1 |
-| `fin_wait_2` | fin_wait_2 |
-| `last_ack` | last_ack |
-| `listen` | listen |
-| `syn_recv` | syn_recv |
-| `syn_sent` | syn_sent |
-| `time_wait` | time_wait |
+| Value  | Description | Stability |
+|---|---|---|
+| `close` | close | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_recv` | syn_recv | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 ## Aggregate System Process Metrics
 
@@ -733,24 +733,24 @@ For metrics at the individual process level, see [process metrics](process-metri
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.process.count(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.process.count` | UpDownCounter | `{process}` | Total number of processes in each state |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.process.count` | UpDownCounter | `{process}` | Total number of processes in each state | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.process.count(full) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| `system.process.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `system.process.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
+`system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description |
-|---|---|
-| `running` | running |
-| `sleeping` | sleeping |
-| `stopped` | stopped |
-| `defunct` | defunct |
+| Value  | Description | Stability |
+|---|---|---|
+| `running` | running | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sleeping` | sleeping | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stopped` | stopped | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `defunct` | defunct | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.process.created`
@@ -758,9 +758,9 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.system.process.created(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.process.created(full) -->
@@ -794,16 +794,16 @@ An instrument for load average over 1 minute on Linux could be named
 `system.linux.cpu.load_1m`, reusing the `cpu` name proposed above and having
 an `{os}` prefix to split this metric across OSes.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
-[MetricRecommended]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/metrics/metric-requirement-level.md#recommended
-[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/metrics/metric-requirement-level.md#opt-in
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[MetricOptIn]: /docs/general/metric-requirement-level.md#opt-in
 
 ### Metric: `system.linux.memory.available`
 
 <!-- semconv metric.system.linux.memory.available(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `system.linux.memory.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping [1] |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.linux.memory.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This is an alternative to `system.memory.usage` metric with `state=free`.
 Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.

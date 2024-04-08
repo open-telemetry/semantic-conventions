@@ -14,22 +14,22 @@ when creating instruments not explicitly defined in the specification.
 
 - [Common hardware attributes](#common-hardware-attributes)
 - [Metric Instruments](#metric-instruments)
-  * [`hw.` - Common hardware metrics](#hw---common-hardware-metrics)
-  * [`hw.host.` - Physical host metrics](#hwhost---physical-host-metrics)
-  * [`hw.battery.` - Battery metrics](#hwbattery---battery-metrics)
-  * [`hw.cpu.` - Physical processor metrics](#hwcpu---physical-processor-metrics)
-  * [`hw.disk_controller.` - Disk controller metrics](#hwdisk_controller---disk-controller-metrics)
-  * [`hw.enclosure.` - Enclosure metrics](#hwenclosure---enclosure-metrics)
-  * [`hw.fan.` - Fan metrics](#hwfan---fan-metrics)
-  * [`hw.gpu.` - GPU metrics](#hwgpu---gpu-metrics)
-  * [`hw.logical_disk.`- Logical disk metrics](#hwlogical_disk--logical-disk-metrics)
-  * [`hw.memory.` - Memory module metrics](#hwmemory---memory-module-metrics)
-  * [`hw.network.` - Network adapter metrics](#hwnetwork---network-adapter-metrics)
-  * [`hw.physical_disk.`- Physical disk metrics](#hwphysical_disk--physical-disk-metrics)
-  * [`hw.power_supply.` - Power supply metrics](#hwpower_supply---power-supply-metrics)
-  * [`hw.tape_drive.` - Tape drive metrics](#hwtape_drive---tape-drive-metrics)
-  * [`hw.temperature.` - Temperature sensor metrics](#hwtemperature---temperature-sensor-metrics)
-  * [`hw.voltage.` - Voltage sensor metrics](#hwvoltage---voltage-sensor-metrics)
+  - [`hw.` - Common hardware metrics](#hw---common-hardware-metrics)
+  - [`hw.host.` - Physical host metrics](#hwhost---physical-host-metrics)
+  - [`hw.battery.` - Battery metrics](#hwbattery---battery-metrics)
+  - [`hw.cpu.` - Physical processor metrics](#hwcpu---physical-processor-metrics)
+  - [`hw.disk_controller.` - Disk controller metrics](#hwdisk_controller---disk-controller-metrics)
+  - [`hw.enclosure.` - Enclosure metrics](#hwenclosure---enclosure-metrics)
+  - [`hw.fan.` - Fan metrics](#hwfan---fan-metrics)
+  - [`hw.gpu.` - GPU metrics](#hwgpu---gpu-metrics)
+  - [`hw.logical_disk.`- Logical disk metrics](#hwlogical_disk--logical-disk-metrics)
+  - [`hw.memory.` - Memory module metrics](#hwmemory---memory-module-metrics)
+  - [`hw.network.` - Network adapter metrics](#hwnetwork---network-adapter-metrics)
+  - [`hw.physical_disk.`- Physical disk metrics](#hwphysical_disk--physical-disk-metrics)
+  - [`hw.power_supply.` - Power supply metrics](#hwpower_supply---power-supply-metrics)
+  - [`hw.tape_drive.` - Tape drive metrics](#hwtape_drive---tape-drive-metrics)
+  - [`hw.temperature.` - Temperature sensor metrics](#hwtemperature---temperature-sensor-metrics)
+  - [`hw.voltage.` - Voltage sensor metrics](#hwvoltage---voltage-sensor-metrics)
 
 <!-- tocstop -->
 
@@ -399,4 +399,4 @@ Additional **Recommended** attributes:
 | ----------------- | ---------------------- | ---------- |
 | `sensor_location` | Location of the sensor | `PS0 V3_3` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
