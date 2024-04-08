@@ -60,7 +60,7 @@ Names SHOULD follow these rules:
 ## Name Pluralization guidelines
 
 - When an attribute represents a single entity, the attribute name SHOULD be
-  singular. Examples: `host.name`, `db.user`, `container.id`.
+  singular. Examples: `host.name`, `container.id`.
 
 - When attribute can represent multiple entities, the attribute name SHOULD be
   pluralized and the value type SHOULD be an array. E.g. `process.command_args`

@@ -494,13 +494,6 @@ groups:
               stability: experimental
         stability: experimental
         tag: db-generic
-      - id: user
-        type: string
-        stability: experimental
-        brief: >
-          Username for accessing the database.
-        examples: ['readonly_user', 'reporting_user']
-        tag: db-generic
       - id: instance.id
         tag: db-generic
         type: string

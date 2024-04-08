@@ -31,7 +31,6 @@ described on this page.
 | :---------------------- | :----------------------------------------------------------- |
 | Span name               | `"products.findAndModify"` |
 | `db.system`             | `"mongodb"` |
-| `db.user`               | `"the_user"` |
 | `server.address`        | `"mongodb0.example.com"` |
 | `server.port`           | `27017` |
 | `network.peer.address`  | `"192.0.2.14"` |
