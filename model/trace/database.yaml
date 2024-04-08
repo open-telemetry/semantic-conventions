@@ -266,7 +266,8 @@ groups:
       - ref: db.collection.namespace
         brief: The current database name.
         note: >
-          Current database name can sometimes be obtained using database driver API such as [JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--)
+          Current database name can sometimes be obtained using database driver API such as
+          [JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--)
           or [.NET `SqlConnection.Database`](https://learn.microsoft.com/dotnet/api/system.data.sqlclient.sqlconnection.database).
 
           Instrumentations SHOULD NOT set this attribute if capturing it would require additional queries to the database.

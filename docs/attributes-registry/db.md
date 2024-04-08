@@ -9,8 +9,6 @@
 - [Cassandra Attributes](#cassandra-attributes)
 - [CosmosDB Attributes](#cosmosdb-attributes)
 - [Elasticsearch Attributes](#elasticsearch-attributes)
-- [MSSQL Attributes](#mssql-attributes)
-- [Redis Attributes](#redis-attributes)
 - [Deprecated DB Attributes](#deprecated-db-attributes)
 - [Deprecated DB Metrics Attributes](#deprecated-db-metrics-attributes)
 
