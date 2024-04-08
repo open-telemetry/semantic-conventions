@@ -245,19 +245,11 @@ groups:
           the database name to be used is the more specific layer (e.g. Oracle schema name).
         examples: [ 'customers', 'main' ]
         tag: db-generic
-      - id: operation
+      - id: operation.name
         type: string
         stability: experimental
         brief: >
-          The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations)
-          such as `findAndModify`, or the SQL keyword.
-        note: >
-          When setting this to an SQL keyword, it is not recommended to
-          attempt any client-side parsing of `db.query.text` just to get this
-          property, but it should be set if the operation name is provided by
-          the library being instrumented.
-          If the SQL query has an ambiguous operation, or performs more
-          than one operation, this value may be omitted.
+          The name of the operation or command being executed.
         examples: ['findAndModify', 'HMSET', 'SELECT']
         tag: db-generic
       - id: redis.database_index
