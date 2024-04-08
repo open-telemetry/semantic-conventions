@@ -8,10 +8,12 @@ groups:
       - ref: db.name
         requirement_level:
           conditionally_required: If applicable.
-      - ref: db.statement
+      - ref: db.query.text
         requirement_level:
           recommended: >
             Should be collected by default only if there is sanitization that excludes sensitive information.
+      - ref: db.query.parameter
+        requirement_level: opt_in
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
@@ -136,14 +138,14 @@ groups:
         requirement_level:
           conditionally_required: If other than the default database (`0`).
         tag: tech-specific
-      - ref: db.statement
+      - ref: db.query.text
         tag: tech-specific
         brief: >
           The full syntax of the Redis CLI command.
         examples: ["HMSET myhash field1 'Hello' field2 'World'"]
         note: >
-          For **Redis**, the value provided for `db.statement` SHOULD correspond to the syntax of the Redis CLI.
-          If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.statement`.
+          For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
+          If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
   - id: db.mongodb
     type: span
@@ -180,7 +182,7 @@ groups:
         requirement_level: required
         examples: [ 'https://localhost:9200/index/_search?q=user.id:kimchy' ]
         tag: tech-specific
-      - ref: db.statement
+      - ref: db.query.text
         requirement_level:
           recommended: >
             Should be collected by default for search-type queries and only if there is sanitization that excludes

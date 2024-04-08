@@ -23,7 +23,7 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 
 **[2]:** If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 
-**[3]:** It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
+**[3]:** It is not recommended to attempt any client-side parsing of `db.query.text` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
 <!-- endsemconv -->
 
 ## Example
