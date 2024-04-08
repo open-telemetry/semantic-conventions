@@ -47,7 +47,7 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 <!-- semconv aws.lambda -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `aws.lambda.invoked_arn` | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`aws.lambda.invoked_arn`](../attributes-registry/aws.md) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
 <!-- endsemconv -->
