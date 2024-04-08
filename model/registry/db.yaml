@@ -487,3 +487,27 @@ groups:
           This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query.
           The client may obtain this value in databases like MySQL using queries like `select @@hostname`.
         examples: 'mysql-e26b99z.example.com'
+      - id: state
+        tag: db-generic
+        stability: experimental
+        type:
+          allow_custom_values: true
+          members:
+            - id: idle
+              value: 'idle'
+              stability: experimental
+            - id: used
+              value: 'used'
+              stability: experimental
+        brief: "The state of a connection in the pool"
+        examples: ["idle"]
+      - id: pool.name
+        tag: db-generic
+        type: string
+        stability: experimental
+        brief: >
+          The name of the connection pool; unique within the instrumented application.
+          In case the connection pool implementation doesn't provide a name,
+          instrumentation should use a combination of `server.address` and `server.port` attributes
+          formatted as `server.address:server.port`.
+        examples: ["myDataSource"]
