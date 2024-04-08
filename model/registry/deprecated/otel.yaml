@@ -1,5 +1,5 @@
 groups:
-  - id: otel.library
+  - id: registry.otel.library
     prefix: otel.library
     type: resource
     brief: >
