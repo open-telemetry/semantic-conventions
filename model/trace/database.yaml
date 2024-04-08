@@ -5,7 +5,6 @@ groups:
     attributes:
       - ref: db.system
         requirement_level: required
-      - ref: db.user
       - ref: db.name
         requirement_level:
           conditionally_required: If applicable.

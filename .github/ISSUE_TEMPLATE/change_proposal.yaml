@@ -42,6 +42,7 @@ body:
         - area:messaging
         - area:network
         - area:oci
+        - area:opentracing
         - area:os
         - area:otel
         - area:peer

@@ -57,6 +57,7 @@ Currently, the following namespaces exist:
 * [Network](network.md)
 * [OCI](oci.md)
 * [OpenTelemetry](otel.md)
+* [OpenTracing](opentracing.md)
 * [OS](os.md)
 * [Peer](peer.md)
 * [Process](process.md)
