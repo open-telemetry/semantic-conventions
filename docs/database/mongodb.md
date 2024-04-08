@@ -24,7 +24,7 @@ described on this page.
 
 **[2]:** See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
 
-**[3]:** If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
+**[3]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 <!-- endsemconv -->
 
 ## Example

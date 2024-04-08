@@ -20,12 +20,12 @@ described on this page.
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
-**[2]:** If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
+**[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 
 **[3]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
 In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
 
-**[4]:** If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
+**[4]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 <!-- endsemconv -->
 
 ## Example

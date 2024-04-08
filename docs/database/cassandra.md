@@ -30,7 +30,7 @@ described on this page.
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
-**[2]:** If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
+**[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 
 **[3]:** For Cassandra the `db.name` should be set to the Cassandra keyspace name.
 
