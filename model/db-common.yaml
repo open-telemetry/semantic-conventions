@@ -34,8 +34,6 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
-      - ref: network.transport
-      - ref: network.type
       - ref: db.instance.id
         requirement_level:
           recommended: If different from the `server.address`
