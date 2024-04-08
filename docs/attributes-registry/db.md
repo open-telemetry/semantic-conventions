@@ -12,6 +12,7 @@
 - [MSSQL Attributes](#mssql-attributes)
 - [Redis Attributes](#redis-attributes)
 - [Deprecated DB Attributes](#deprecated-db-attributes)
+- [Deprecated DB Metrics Attributes](#deprecated-db-metrics-attributes)
 
 <!-- tocstop -->
 
