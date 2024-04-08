@@ -65,6 +65,7 @@ body:
         - area:tls
         - area:url
         - area:user-agent
+        - area:webengine
         # End semconv area list
   - type: textarea
     attributes:
