@@ -32,18 +32,18 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 
 This is an example of attributes for a MySQL database span:
 
-| Key                     | Value |
-|:------------------------| :----------------------------------------------------------- |
-| Span name               | `"SELECT ShopDb.orders"` |
-| `db.system`             | `"mysql"` |
-| `server.address`        | `"shopdb.example.com"` |
-| `server.port`           | `3306` |
-| `network.peer.address`  | `"192.0.2.12"` |
-| `network.peer.port`     | `3306` |
-| `network.transport`     | `"tcp"` |
-| `db.name`               | `"ShopDb"` |
-| `db.statement`          | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
-| `db.operation`          | `"SELECT"` |
-| `db.collection.name`    | `"orders"` |
+| Key                    | Value |
+|:-----------------------| :----------------------------------------------------------- |
+| Span name              | `"SELECT ShopDb.orders"` |
+| `db.system`            | `"mysql"` |
+| `server.address`       | `"shopdb.example.com"` |
+| `server.port`          | `3306` |
+| `network.peer.address` | `"192.0.2.12"` |
+| `network.peer.port`    | `3306` |
+| `network.transport`    | `"tcp"` |
+| `db.name`              | `"ShopDb"` |
+| `db.statement`         | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
+| `db.operation.name`    | `"SELECT"` |
+| `db.collection.name`   | `"orders"` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

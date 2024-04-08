@@ -42,7 +42,7 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 | `network.transport`       | `"unix"` |
 | `db.name`                 | not set |
 | `db.statement`            | `"HMSET myhash field1 'Hello' field2 'World"` |
-| `db.operation`            | not set |
+| `db.operation.name`       | not set |
 | `db.redis.database_index` | `15` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
