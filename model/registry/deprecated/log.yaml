@@ -1,0 +1,19 @@
+groups:
+  - id: registry.log.file.deprecated
+    prefix: log.file
+    type: attribute_group
+    brief: 'Deprecated log attributes.'
+    attributes:
+      - id: name
+        type: string
+        examples: ["audit.log"]
+        stability: experimental
+        brief: "Deprecated, use `file.name` instead."
+        deprecated: "Replaced by `file.name`."
+      - id: path
+        type: string
+        examples: [ "/var/log/mysql/audit.log"]
+        stability: experimental
+        brief: "Deprecated, use `file.path` instead."
+        deprecated: "Replaced by `file.path`."
+

@@ -38,7 +38,7 @@ These attributes may be used for identifying a Log Record.
 <!-- semconv log.record -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `log.record.uid` | string | A unique identifier for the Log Record. [1] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.record.uid`](../attributes-registry/log.md) | string | A unique identifier for the Log Record. [1] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
 The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
@@ -59,22 +59,22 @@ As such, these should be recorded as Log Record attributes when applicable. They
 <!-- semconv attributes.log.file -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `log.file.name` | string | The basename of the file. | `audit.log` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `log.file.name_resolved` | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `log.file.path` | string | The full path to the file. | `/var/log/mysql/audit.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `log.file.path_resolved` | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`file.name`](../attributes-registry/file.md) | string | Name of the file including the extension, without the directory. | `example.png` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`file.path`](../attributes-registry/file.md) | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.file.name_resolved`](../attributes-registry/log.md) | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.file.path_resolved`](../attributes-registry/log.md) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### I/O Stream
 
 **Description:** The I/O stream to which the log was emitted.
 
-<!-- semconv attributes.log -->
+<!-- semconv attributes.log(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `log.iostream` | string | The stream associated with the log. See below for a list of well-known values. | `stdout` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.iostream`](../attributes-registry/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`log.iostream` MUST be one of the following:
+`log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

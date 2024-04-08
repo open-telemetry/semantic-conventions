@@ -54,6 +54,7 @@ Currently, the following namespaces exist:
 * [HTTP](http.md)
 * [iOS](ios.md)
 * [K8s](k8s.md)
+* [Log](log.md)
 * [Network](network.md)
 * [OCI](oci.md)
 * [OpenTelemetry](otel.md)
