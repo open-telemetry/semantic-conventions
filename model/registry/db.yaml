@@ -86,7 +86,7 @@ groups:
         note: >
           This mirrors the db.sql.table attribute but references cassandra rather than sql.
           It is not recommended to attempt any client-side parsing of
-          `db.statement` just to get this property, but it should be set if
+          `db.query.text` just to get this property, but it should be set if
           it is provided by the library being instrumented.
           If the operation is acting upon an anonymous table, or more than one table, this
           value MUST NOT be set.
@@ -266,18 +266,31 @@ groups:
         brief: The name of the primary table that the operation is acting upon, including the database name (if applicable).
         note: >
           It is not recommended to attempt any client-side parsing of
-          `db.statement` just to get this property, but it should be set if
+          `db.query.text` just to get this property, but it should be set if
           it is provided by the library being instrumented.
           If the operation is acting upon an anonymous table, or more than one table, this
           value MUST NOT be set.
         examples: ['public.users', 'customers']
         tag: tech-specific-sql
-      - id: statement
+      - id: query.text
         type: string
         stability: experimental
         brief: >
-          The database statement being executed.
-        examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
+          The database query being executed.
+        examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
+        tag: db-generic
+      - id: query.parameter
+        type: template[string]
+        stability: experimental
+        brief: >
+          The query parameters used in `db.query.text`, with `<key>` being the parameter name,
+          and the attribute value being the parameter value.
+        note: >
+          Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+
+          If a parameter has no name and instead is referenced only by index,
+          then `<key>` SHOULD be the 0-based index.
+        examples: ['someval', '55']
         tag: db-generic
       - id: system
         brief: An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.

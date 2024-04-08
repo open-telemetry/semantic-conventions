@@ -36,3 +36,9 @@ groups:
         deprecated: "No replacement at this time."
         stability: experimental
         examples: ['readonly_user', 'reporting_user']
+      - id: statement
+        type: string
+        brief: The database statement being executed.
+        deprecated: "Replaced by `db.query.text`."
+        stability: experimental
+        examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
