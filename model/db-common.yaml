@@ -14,6 +14,11 @@ groups:
       - ref: db.name
         requirement_level:
           conditionally_required: If applicable.
+      - ref: db.collection.name
+        requirement_level:
+          conditionally_required: >
+            If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
+            `db.collection.name`, then it SHOULD be the first collection name found in the query.
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
