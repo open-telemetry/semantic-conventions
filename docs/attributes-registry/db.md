@@ -14,7 +14,6 @@
 - [Redis Attributes](#redis-attributes)
 - [SQL Attributes](#sql-attributes)
 - [Deprecated DB Attributes](#deprecated-db-attributes)
-  - [Deprecated Elasticsearch Attributes](#deprecated-elasticsearch-attributes)
 
 <!-- tocstop -->
 
