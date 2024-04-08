@@ -1,6 +1,13 @@
 # Kubernetes
 
-## Kubernetes Resource Attributes
+<!-- toc -->
+
+- [Kubernetes Attributes](#kubernetes-attributes)
+- [Deprecated Kubernetes Attributes](#deprecated-kubernetes-attributes)
+
+<!-- tocstop -->
+
+## Kubernetes Attributes
 
 <!-- semconv registry.k8s(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
@@ -51,4 +58,12 @@ Which states:
 
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
+<!-- endsemconv -->
+
+## Deprecated Kubernetes Attributes
+
+<!-- semconv registry.k8s.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `k8s.pod.labels.<key>` | string | Deprecated, use `k8s.pod.label` instead. | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. |
 <!-- endsemconv -->

@@ -3,6 +3,13 @@
 
 # Container
 
+<!-- toc -->
+
+- [Container Attributes](#container-attributes)
+- [Deprecated Container Attributes](#deprecated-container-attributes)
+
+<!-- tocstop -->
+
 ## Container Attributes
 
 <!-- semconv registry.container(omit_requirement_level) -->
@@ -36,4 +43,12 @@ The ID is assinged by the container runtime and can vary in different environmen
 | `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system` | When CPU is used by the system (host OS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+## Deprecated Container Attributes
+
+<!-- semconv registry.container.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `container.labels.<key>` | string | Deprecated, use `container.label` instead. | `container.label.app=nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. |
 <!-- endsemconv -->

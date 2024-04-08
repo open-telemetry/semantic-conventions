@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.container.deprecated
+  - id: registry.container.deprecated
     type: attribute_group
     brief: "Describes deprecated container attributes."
     attributes:
