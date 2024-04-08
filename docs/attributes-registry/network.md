@@ -5,6 +5,13 @@
 
 These attributes may be used for any network related operation.
 
+<!-- toc -->
+
+- [Network Attributes](#network-attributes)
+- [Deprecated Network Attributes](#deprecated-network-attributes)
+
+<!-- tocstop -->
+
 ## Network Attributes
 
 <!-- semconv registry.network(omit_requirement_level) -->
@@ -100,7 +107,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ## Deprecated Network Attributes
 
-<!-- semconv attributes.network.deprecated(omit_requirement_level) -->
+<!-- semconv registry.network.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `net.host.name` | string | Deprecated, use `server.address`. | `example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. |

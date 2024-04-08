@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.messaging.deprecated
+  - id: registry.messaging.deprecated
     type: attribute_group
     brief: "Describes deprecated messaging attributes."
     attributes:
