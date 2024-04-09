@@ -50,7 +50,7 @@
 
 ### Selecting process attributes
 
-Instrumentations MUST populate at least one of the following attributes:
+At least one of the following attributes is required:
 
 * [`process.executable.name`](../attributes-registry/process.md)
 * [`process.executable.path`](../attributes-registry/process.md)
