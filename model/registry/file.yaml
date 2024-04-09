@@ -4,12 +4,62 @@ groups:
     type: attribute_group
     brief: "Describes file attributes."
     attributes:
+      - id: accessed
+        type: string
+        brief: >
+          Time when the file was last accessed, in ISO 8601 format.
+        note: >
+          This attribute is not supported on all file systems.
+        stability: experimental
+        examples: ['2021-01-01T12:00:00Z']
+      - id: attributes
+        type: string[]
+        brief: >
+          Array of file attributes.
+        note: >
+          Attributes names will vary by platform. Here’s a non-exhaustive list of values that are expected in this
+          field: archive, compressed, directory, encrypted, execute, hidden, read, readonly, system, write.
+        stability: experimental
+        examples: ['readonly', 'hidden']
+      - id: created
+        type: string
+        brief: >
+          Time when the file was created, in ISO 8601 format.
+        note: >
+          This attribute is not supported on all file systems.
+        stability: experimental
+        examples: ['2021-01-01T12:00:00Z']
+      - id: ctime
+        type: string
+        brief: >
+          Time when the file attributes or metadata was last changed, in ISO 8601 format.
+        note: >
+          This attribute is not supported on all file systems. Note that changes to the 
+          file content will update `mtime`. This implies `ctime` will be adjusted at the same time, since
+          `mtime` is an attribute of the file.
+        stability: experimental
+        examples: ['2021-01-01T12:00:00Z']
+      - id: device
+        type: string
+        brief: >
+          Device ID of the file system where the file is located.
+        stability: experimental
+        examples: ['sda1']
       - id: directory
         type: string
         brief: >
           Directory where the file is located. It should include the drive letter, when appropriate.
         stability: experimental
         examples: ['/home/user', 'C:\Program Files\MyApp']
+      - id: drive_letter
+        type: string
+        brief: >
+          Drive letter where the file is located.
+        note: >
+          This attribute is only applicable to Windows systems.
+          The value should be uppercase, and not include the colon.
+        stability: experimental
+        examples: ['C']
       - id: extension
         type: string
         brief: >
@@ -19,12 +69,63 @@ groups:
         note: >
           When the file name has multiple extensions (example.tar.gz), only the last one should
           be captured ("gz", not "tar.gz").
+      - id: fork_name
+        type: string
+        brief: >
+          Name of the fork. A fork is additional data associated with a filesystem object.
+        note: >
+          On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at
+          least one fork for the data portion, and additional forks may exist.
+
+          On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is
+          just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet.
+          An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the
+          value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension`
+          should populate `file.extension`. The full path, `file.path`, will include the fork name.
+        stability: experimental
+        examples: ['Zone.Identifer']
+      - id: gid
+        type: string
+        brief: >
+          Primary Group ID (GID) of the file.
+        stability: experimental
+        examples: ["1000"]
+      - id: group
+        type: string
+        brief: >
+          Primary group name of the file.
+        stability: experimental
+        examples: ['users']
+      - id: inode
+        type: string
+        brief: >
+          Inode representing the file in the filesystem.
+        stability: experimental
+        examples: ['256383']
+      - id: mode
+        type: string
+        brief: >
+          Mode of the file in octal representation.
+        stability: experimental
+        examples: ['0640']
+      - id: mtime
+        type: string
+        brief: >
+          Time when the file content was last modified, in ISO 8601 format.
+        stability: experimental
+        examples: ['2021-01-01T12:00:00Z']
       - id: name
         type: string
         brief: >
           Name of the file including the extension, without the directory.
         stability: experimental
         examples: ['example.png']
+      - id: owner
+        type: string
+        brief: >
+          Username of the file owner.
+        stability: experimental
+        examples: ['root']
       - id: path
         type: string
         brief: >
@@ -36,3 +137,17 @@ groups:
         brief: >
           File size in bytes.
         stability: experimental
+      - id: target_path
+        type: string
+        brief: >
+          Path to the target of a symbolic link.
+        note: >
+          This attribute is only applicable to symbolic links.
+        stability: experimental
+        examples: ['/usr/bin/python3']
+      - id: uid
+        type: string
+        brief: >
+          The user ID (UID) or security identifier (SID) of the file owner.
+        stability: experimental
+        examples: ["1000"]
