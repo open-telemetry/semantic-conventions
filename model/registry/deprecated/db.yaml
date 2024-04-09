@@ -83,12 +83,12 @@ groups:
             - id: used
               value: 'used'
               stability: experimental
-        brief: "Deprecated, use `db.state` instead."
-        deprecated: "Replaced by `db.state`."
+        brief: "Deprecated, use `db.client.connections.state` instead."
+        deprecated: "Replaced by `db.client.connections.state`."
         examples: ["idle"]
       - id: pool.name
         type: string
         stability: experimental
-        brief: "Deprecated, use `db.pool.name` instead."
-        deprecated: "Replaced by `db.pool.name`."
+        brief: "Deprecated, use `db.client.connections.pool.name` instead."
+        deprecated: "Replaced by `db.client.connections.pool.name`."
         examples: ["myDataSource"]
