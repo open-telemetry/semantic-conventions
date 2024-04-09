@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.k8s.deprecated
+  - id: registry.k8s.deprecated
     type: attribute_group
     brief: "Describes deprecated k8s attributes."
     attributes:
@@ -7,4 +7,5 @@ groups:
         type: template[string]
         examples: ['k8s.pod.label.app=my-app']
         brief: "Deprecated, use `k8s.pod.label` instead."
+        stability: experimental
         deprecated: "Replaced by `k8s.pod.label`."

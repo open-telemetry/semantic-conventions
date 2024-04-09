@@ -21,7 +21,7 @@ _This section applies to Log, Metric, Resource, and Span, and describes
 requirement levels for attributes defined in semantic conventions._
 
 Attribute requirement levels apply to the
-[instrumentation library](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/glossary.md#instrumentation-library).
+[instrumentation library](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/glossary.md#instrumentation-library).
 
 The following attribute requirement levels are specified:
 
@@ -124,4 +124,4 @@ Here are several examples of expensive operations to be avoided by default:
   `Content-Length` header is not available
 
 [DocumentStatus]:
-  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
