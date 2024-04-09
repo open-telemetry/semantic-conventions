@@ -174,7 +174,7 @@ size should be used.
 
 ## Deprecated Messaging Attributes
 
-<!-- semconv attributes.messaging.deprecated(omit_requirement_level) -->
+<!-- semconv registry.messaging.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `messaging.kafka.destination.partition` | int | "Deprecated, use `messaging.destination.partition.id` instead." | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |

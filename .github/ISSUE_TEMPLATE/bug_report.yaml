@@ -49,6 +49,7 @@ body:
         - area:messaging
         - area:network
         - area:oci
+        - area:opentracing
         - area:os
         - area:otel
         - area:peer
@@ -63,6 +64,7 @@ body:
         - area:tls
         - area:url
         - area:user-agent
+        - area:webengine
         # End semconv area list
   - type: textarea
     attributes:
