@@ -10,7 +10,7 @@ change_type: breaking
 component: db
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Rename `pool.name` to `db.pool.name` and `state` to `db.state`.
+note: Rename `pool.name` to `db.client.connections.pool.name` and `state` to `db.client.connections.state`.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.

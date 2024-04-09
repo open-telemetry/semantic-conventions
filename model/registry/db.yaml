@@ -487,7 +487,7 @@ groups:
           This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query.
           The client may obtain this value in databases like MySQL using queries like `select @@hostname`.
         examples: 'mysql-e26b99z.example.com'
-      - id: state
+      - id: client.connections.state
         tag: db-generic
         stability: experimental
         type:
@@ -501,7 +501,7 @@ groups:
               stability: experimental
         brief: "The state of a connection in the pool"
         examples: ["idle"]
-      - id: pool.name
+      - id: client.connections.pool.name
         tag: db-generic
         type: string
         stability: experimental

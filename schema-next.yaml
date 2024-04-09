@@ -7,12 +7,12 @@ versions:
         # https://github.com/open-telemetry/semantic-conventions/pull/909
         - rename_attributes:
             attribute_map:
-              state: db.state
+              state: db.client.connections.state
             apply_to_metrics:
               - db.client.connections.usage
         - rename_attributes:
             attribute_map:
-              pool.name: db.pool.name
+              pool.name: db.client.connections.pool.name
             apply_to_metrics:
               - db.client.connections.usage
               - db.client.connections.idle.max
