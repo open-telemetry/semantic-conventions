@@ -281,7 +281,7 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 <!-- semconv messaging(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.operation`](../attributes-registry/messaging.md) | string | A string identifying the kind of messaging operation. [1] | `publish` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.name`](../attributes-registry/messaging.md) | string | A string identifying the name of the messaging operation. [1] | `publish` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.system`](../attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.batch.message_count`](../attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [4] | `0`; `1`; `2` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -351,7 +351,7 @@ If a messaging operation involved multiple network calls (for example retries), 
 
 **[16]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-`messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`messaging.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -469,7 +469,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
-| `messaging.operation` | `"publish"` | `"process"` | `"process"` |
+| `messaging.operation.name` | `"publish"` | `"process"` | `"process"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
 ### Batch receiving
@@ -507,7 +507,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation` | `"publish"` | `"publish"` | `"receive"` |
+| `messaging.operation.name` | `"publish"` | `"publish"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
 
@@ -552,7 +552,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation` | `"create"` | `"create"` | `"publish"` | `"receive"` | `"receive"` |
+| `messaging.operation.name` | `"create"` | `"create"` | `"publish"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | | | 2 | | |
 

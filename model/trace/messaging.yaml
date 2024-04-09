@@ -54,7 +54,7 @@ groups:
         messaging systems.
     extends: messaging.attributes.common
     attributes:
-      - ref: messaging.operation
+      - ref: messaging.operation.name
         requirement_level: required
       - ref: messaging.batch.message_count
         requirement_level:
