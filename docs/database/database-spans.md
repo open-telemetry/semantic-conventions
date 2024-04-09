@@ -55,11 +55,13 @@ The **span name** SHOULD be set to a low cardinality value representing the stat
 It MAY be a stored procedure name (without arguments), DB statement without variable arguments, operation name, etc.
 Since SQL statements may have very high cardinality even without arguments, SQL spans SHOULD be named the
 following way, unless the statement is known to be of low cardinality:
-`<db.operation.name> <db.name>.<db.collection.name>`, provided that `db.operation.name` and `db.collection.name` are available.
-If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.name>`.
+`<db.operation.name> <db.collection.namespace>.<db.collection.name>`, provided that `db.operation.name` and `db.collection.name` are available.
+If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.collection.namespace>`.
+
 It is not recommended to attempt any client-side parsing of `db.query.text` just to get these properties,
+
 they should only be used if the library being instrumented already provides them.
-When it's otherwise impossible to get any meaningful span name, `db.name` or the tech-specific database name MAY be used.
+When it's otherwise impossible to get any meaningful span name, `db.collection.namespace` or the tech-specific database name MAY be used.
 
 Span that describes database call SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
 For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation

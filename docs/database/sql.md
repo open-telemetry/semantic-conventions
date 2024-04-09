@@ -15,7 +15,7 @@ described on this page.
 <!-- semconv db.sql(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](../attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `public.users`; `customers` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](../attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `users`; `dbo.products` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.collection.namespace`](../attributes-registry/db.md) | string | The current database name. [3] | `customers`; `test.users` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](../attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -40,15 +40,14 @@ This is an example of attributes for a MySQL database span:
 | Key                    | Value |
 |:-----------------------| :----------------------------------------------------------- |
 | Span name              | `"SELECT ShopDb.orders"` |
+| `db.collection.name`   | `"orders"` |
+| `db.collection.namespace` | `"ShopDb"` |
 | `db.system`            | `"mysql"` |
 | `server.address`       | `"shopdb.example.com"` |
 | `server.port`          | `3306` |
 | `network.peer.address` | `"192.0.2.12"` |
 | `network.peer.port`    | `3306` |
 | `network.transport`    | `"tcp"` |
-| `db.name`              | `"ShopDb"` |
 | `db.query.text`        | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
 | `db.operation.name`    | `"SELECT"` |
-| `db.collection.name`   | `"orders"` |
-
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

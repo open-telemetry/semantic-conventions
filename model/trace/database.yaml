@@ -84,7 +84,7 @@ groups:
           `db.collection.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
 
           For commands that switch the database, this should be set to the target database (even if the command fails).
-        examples: ["products", "test.customers"]
+        examples: ["instance1.products", "customers"]
         tag: tech-specific
 
   - id: db.cassandra
@@ -137,6 +137,7 @@ groups:
           If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
         examples: ['mytable', 'ns:table']
         tag: tech-specific
+
   - id: db.couchdb
     type: span
     extends: trace.db.common
@@ -262,6 +263,7 @@ groups:
         tag: tech-specific
       - ref: db.collection.name
         brief: The name of the SQL table that the operation is acting upon.
+        examples: ['users', 'dbo.products']
         tag: tech-specific
       - ref: db.collection.namespace
         brief: The current database name.

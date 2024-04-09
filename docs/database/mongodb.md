@@ -41,9 +41,9 @@ described on this page.
 | `network.peer.address`  | `"192.0.2.14"` |
 | `network.peer.port`     | `27017` |
 | `network.transport`     | `"tcp"` |
-| `db.name`               | `"shopDb"` |
+| `db.collection.name` | `"products"` |
+| `db.collection.namespace` | `"shopDb"` |
 | `db.query.text`         | not set |
 | `db.operation.name`     | `"findAndModify"` |
-| `db.mongodb.collection` | `"products"` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

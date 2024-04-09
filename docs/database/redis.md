@@ -34,7 +34,6 @@ described on this page.
 ## Example
 
 In this example, Redis is connected using a unix domain socket and therefore the connection string is left out.
-Furthermore, `db.name` is not specified as there is no database name in Redis and `db.redis.database_index` is set instead.
 
 | Key                       | Value |
 |:--------------------------| :-------------------------------------------- |
@@ -42,9 +41,8 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 | `db.system`               | `"redis"` |
 | `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |
-| `db.name`                 | not set |
+| `db.collection.namespace` | `"15"` |
 | `db.query.text`           | `"HMSET myhash field1 'Hello' field2 'World"` |
 | `db.operation.name`       | not set |
-| `db.redis.database_index` | `15` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
