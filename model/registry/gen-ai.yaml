@@ -116,18 +116,6 @@ groups:
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
         examples: ['input', 'output']
-      - id: gen_ai.prompt
-        stability: experimental
-        type: string
-        brief: The full prompt sent to the GenAI model.
-        note: It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
-        examples: ["[{'role': 'user', 'content': 'What is the capital of France?'}]"]
-      - id: gen_ai.completion
-        stability: experimental
-        type: string
-        brief: The full response received from the GenAI model.
-        note: It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
-        examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
       - id: gen_ai.operation.name
         stability: experimental
         type:
@@ -145,3 +133,16 @@ groups:
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
           conventions for specific GenAI system and use system-specific name in the instrumentation.
           If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+      - id: gen_ai.event.content
+        stability: experimental
+        type: string
+        brief: >
+          The GenAI event payload serialized into JSON string. It's RECOMMENDED to record GenAI inputs and outputs as log-based events.
+          This attribute MAY only be used for experimentation and prototyping purposes while the Event API is not yet available
+          in the corresponding language.
+        note: |
+          GenAI inputs and outputs may be large and contain sensitive information. Depending on the content size and backend limitations,
+          content may be truncated by the telemetry backend.
+
+          <!-- TODO: Remove this attribute once Event API is widely available https://github.com/open-telemetry/semantic-conventions/issues/1278 -->
+        examples: ["[{'content': 'What is the capital of France?'}]", "plain string"]

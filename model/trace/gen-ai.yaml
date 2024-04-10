@@ -56,32 +56,53 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
-    events:
-      - gen_ai.content.prompt
-      - gen_ai.content.completion
 
-  - id: gen_ai.content.prompt
-    name: gen_ai.content.prompt
+  - id: gen_ai.common.event.attributes
+    type: attribute_group
+    brief: >
+      Describes common event Gen AI attributes.
+    attributes:
+      - ref: gen_ai.system
+
+  - id: gen_ai.system.message
+    name: gen_ai.system.message
     type: event
     brief: >
-      In the lifetime of an GenAI span, events for prompts sent and completions received
-      may be created, depending on the configuration of the instrumentation.
-    attributes:
-      - ref: gen_ai.prompt
-        requirement_level:
-          conditionally_required: if and only if corresponding event is enabled
-        note: >
-          It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+      This event describes the instructions passed to the GenAI system inside the prompt.
+    extends: gen_ai.common.event.attributes
 
-  - id: gen_ai.content.completion
-    name: gen_ai.content.completion
+  - id: gen_ai.user.message
+    name: gen_ai.user.message
     type: event
     brief: >
-      In the lifetime of an GenAI span, events for prompts sent and completions received
-      may be created, depending on the configuration of the instrumentation.
+      This event describes the prompt message specified by the user.
+    extends: gen_ai.common.event.attributes
+
+  - id: gen_ai.assistant.message
+    name: gen_ai.assistant.message
+    type: event
+    brief: >
+      This event describes the assistant message passed to GenAI system or received from it.
+    extends: gen_ai.common.event.attributes
+
+  - id: gen_ai.tool.message
+    name: gen_ai.tool.message
+    type: event
+    brief: >
+      This event describes the tool or function response message.
+    extends: gen_ai.common.event.attributes
+
+  - id: gen_ai.choice
+    name: gen_ai.choice
+    type: event
+    brief: >
+      This event describes the Gen AI response message.
+    extends: gen_ai.common.event.attributes
+
+  - id: gen_ai.span.event.content
+    type: attribute_group
+    brief: >
+      Describes the GenAI span event content.
     attributes:
-      - ref: gen_ai.completion
-        requirement_level:
-          conditionally_required: if and only if corresponding event is enabled
-        note: >
-          It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+      - ref: gen_ai.event.content
+        requirement_level: opt_in
