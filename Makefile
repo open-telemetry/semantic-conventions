@@ -102,7 +102,7 @@ table-generation2:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/weaver registry update-markdown \
 		--registry=/source \
-		--attribute-registry-base-url="/docs/attribute-registry" \
+		--attribute-registry-base-url="https://opentelemetry.io/docs/specs/semconv/attributes-registry" \
 		--dry-run \
 		/spec
 
