@@ -14,7 +14,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 {%- for attribute in ctx.attributes %}
-| `{{ attribute.name }}` | {%- include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }} {{ notes.add(attribute.note) }} | {%- include "examples.j2" | trim %} | {{ stability.badge(attribute.stability) | trim }} |
+| `{{ attribute.name }}` | {%- include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }} {{ notes.add(attribute.note or attribute.deprecated) }} | {%- include "examples.j2" | trim %} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {%- endfor %}
 |---|---|---|---|---|
 
