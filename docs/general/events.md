@@ -10,7 +10,7 @@ aliases: [docs/specs/semconv/general/events-general]
 This document describes the characteristics of standalone Events that are represented
 in the data model by `LogRecord`s.
 
-Semantically, an Event is a named occurrence at an instant in time. It signalsthat
+Semantically, an Event is a named occurrence at an instant in time. It signals that
 "this thing happened at this time" and provides additional specifics about the occurrence.
 Examples of Events might include things like uncaught exceptions, button clicks, user logout,
 network connection severed, etc.
@@ -45,7 +45,7 @@ structure and semantics will also be defined.
 ### General event semantics
 
 * An event MUST have an `event.name` attribute that uniquely identifies the event.
-* It MAY have other [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/main/specification/common#attribute)
+* It MAY have other [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/common#attribute)
   attributes that provide additional context about the event.
 * It MAY contain a _payload_ (data) that describes the specific details of the
   named event.
@@ -53,7 +53,7 @@ structure and semantics will also be defined.
   identifies
   * Whether the event contains a _payload_ (data), and the structure / type of
     the _payload_ (data).
-  * Whether there are any expected [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/main/specification/common#attribute)
+  * Whether there are any expected [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/common#attribute)
     attributes that are used to describe the event.
 * All OpenTelemetry defined events SHOULD be defined in the semantic conventions
   to highlight the expected structure of the event.
@@ -61,29 +61,30 @@ structure and semantics will also be defined.
   model for the log [body](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body)
   and the semantic conventions will define the expected structure of the _payload_
   (data) for the event.
-* The _payload_ (data) SHOULD be used to represent the details.
-* Events with the same `event.name` are structurally similar to one another and
-  MAY (depending on the event) be comparable.
+* The _payload_ (data) SHOULD be used to represent the structure of the event.
 
 Recommendations for defining events:
 
 * Use the _payload_ (data) to represent the details of the event instead of a
-  collection of  over [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/main/specification/common#attribute)
+  collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/common#attribute)
   attributes.
-* Generators of events SHOULD use the [Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md)
-  to create and emit events.
-  * While the data model is based on `LogRecord`, it should NOT be assumed that
-    ALL consumers will process events as `LogRecords`, some may choose to provide
-    their own Event API implementation.
+* Events SHOULD be generated / produced / recorded using the
+    [Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md)
+    to ensure that the event is created using the configured SDK instance.
+  * The Event API is not yet available in all OpenTelemetry SDKs.
+  * TODO: Add deep link to the [compliance matrix of the Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md)
+    when it exists.
 * The _payload_ (data) _fields_ SHOULD not be prefixed with the `event.name` to
   avoid redundancy and to keep the event definition clean.
 
 ### Event payload (data)
 
-* The yaml definition for OpenTelemetry defined events will support describing
-  individual _fields_
+* Common attribute naming conventions and [registry](../attributes-registry/README.md)
+  requirements don't apply to event payload fields.
+* The definition for OpenTelemetry defined events supports describing
+  individual _fields_ (Body Fields)
   * Any _fields_ are NOT added to the Global attribute registry for use by other
-    events and are NOT added to the Global attribute registry.
+    events.
   * The _fields_ are unique to the named event (`event.name`) and different events
     may use the same _field_ name to represent different data, due to the unique
     nature of the event.
