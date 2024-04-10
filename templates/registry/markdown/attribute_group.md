@@ -1,7 +1,7 @@
 {% import 'stability.j2' as stability %}
 {% import 'notes.j2' as notes %}
-{%- set my_file_name = ctx.prefix | file_name | lower -%}
-{%- set name = ctx.prefix | file_name | upper -%}
+{%- set my_file_name = ctx.id | split_id | list | reject("eq", "registry") | join("/") | file_name | lower -%}
+{%- set name = ctx.id | split_id | list | reject("eq", "registry") | join(" ") | upper -%}
 {{- template.set_file_name(my_file_name ~ ".md") -}}
 
 <!--- Hugo front matter used to generate the website version of this page:

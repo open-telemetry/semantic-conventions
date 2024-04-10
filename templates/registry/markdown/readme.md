@@ -28,9 +28,9 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 {% for group in ctx | sort(attribute="prefix") %}
-{%- set my_file_name = group.prefix | file_name | lower -%}
-{%- set my_name = group.prefix | file_name | upper -%}
-- [{{group.prefix}}]({{ my_file_name}}.md)
+{%- set my_file_name = group.id | split_id | list | reject("eq", "registry") | join("/") | file_name | lower -%}
+{%- set my_name = group.id | split_id | list | reject("eq", "registry") | join("_") -%}
+- [{{my_name}}]({{ my_file_name}}.md)
 {% endfor %}
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

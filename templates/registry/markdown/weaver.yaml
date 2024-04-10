@@ -1,14 +1,14 @@
 templates:
   - pattern: attribute_group.md
-    filter: .groups[] | select(.type == "attribute_group") | select(.id | startswith("registry"))
+    filter: .groups[] | select(.type == "attribute_group") | select(.id | startswith("registry")) | select(.id | endswith(".deprecated") | not)
     application_mode: each
   - pattern: deprecated_attribute_group.md
-    filter: .groups[] | select(.type == "attribute_group") | select(.id | endswith(".deprecated"))
+    filter: .groups[] | select(.type == "attribute_group") | select(.id | startswith("registry")) | select(.id | endswith(".deprecated"))
     application_mode: each
   - pattern: readme.md
     # TODO - figure out how to get depreacted groups in ToC
     # filter: .groups[] | select(.type == "attribute_group") | select(.id | startswith("registry") or endswith(".deprecated"))
-    filter: .groups[] | select(.type == "attribute_group") | select(.id | startswith("registry"))
+    filter: .groups[] | select(.type == "attribute_group") | select(.id | startswith("registry")) | select(.id | endswith(".deprecated") | not)
     application_mode: single
 # - pattern: groups_per_prefix.md
 #   filter: '.groups | map(select(.prefix != null and .prefix != "")) | group_by(.prefix) | map({prefix: .[0].prefix, groups: .})'
