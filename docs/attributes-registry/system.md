@@ -8,6 +8,7 @@
 - [Filesystem attributes](#filesystem-attributes)
 - [Network attributes](#network-attributes)
 - [Process attributes](#process-attributes)
+- [Deprecated System Attributes](#deprecated-system-attributes)
 
 <!-- tocstop -->
 
@@ -150,6 +151,23 @@
 | `system.process.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `running` | running | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sleeping` | sleeping | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stopped` | stopped | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `defunct` | defunct | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+## Deprecated System Attributes
+
+<!-- semconv registry.system.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
+
+`system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
