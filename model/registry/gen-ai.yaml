@@ -57,12 +57,12 @@ groups:
         brief: The name of the LLM a response was generated from.
         examples: ['gpt-4-0613']
         tag: llm-generic-response
-      - id: response.finish_reasons
+      - id: response.finish_reason
         stability: experimental
-        type: string[]
-        brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
-        examples: ['stop']
-        tag: llm-generic-response
+        type: string
+        brief: The reason the model stopped generating tokens.
+        examples: ['stop', 'content_filter', 'tool_calls']
+        tag: llm-generic-event
       - id: usage.prompt_tokens
         stability: experimental
         type: int
