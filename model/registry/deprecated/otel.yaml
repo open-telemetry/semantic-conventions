@@ -1,9 +1,8 @@
 groups:
-  - id: registry.otel.library
+  - id: registry.otel.library.deprecated
     prefix: otel.library
-    type: resource
-    brief: >
-      Span attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
+    type: attribute_group
+    brief: "Describes deprecated otel.library attributes."
     attributes:
       - id: name
         type: string

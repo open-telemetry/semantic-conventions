@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.system.deprecated
+  - id: registry.system.deprecated
     type: attribute_group
     brief: "Deprecated system attributes."
     attributes:

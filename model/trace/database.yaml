@@ -5,18 +5,19 @@ groups:
     attributes:
       - ref: db.system
         requirement_level: required
-      - ref: db.user
       - ref: db.name
         requirement_level:
           conditionally_required: If applicable.
-      - ref: db.statement
+      - ref: db.query.text
         requirement_level:
           recommended: >
             Should be collected by default only if there is sanitization that excludes sensitive information.
+      - ref: db.query.parameter
+        requirement_level: opt_in
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
-            If readily available. Otherwise, if the instrumentation library parses `db.statement` to capture
+            If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
             `db.operation.name`, then it SHOULD be the first operation name found in the query.
       - ref: server.address
         brief: >
@@ -27,6 +28,11 @@ groups:
       - ref: db.instance.id
         requirement_level:
           recommended: If different from the `server.address`
+      - ref: db.collection.name
+        requirement_level:
+          conditionally_required: >
+            If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
+            `db.collection.name`, then it SHOULD be the first collection name found in the query.
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:
@@ -85,7 +91,8 @@ groups:
         tag: tech-specific
       - ref: db.cassandra.consistency_level
         tag: tech-specific
-      - ref: db.cassandra.table
+      - ref: db.collection.name
+        brief: The name of the Cassandra table that the operation is acting upon.
         tag: tech-specific
       - ref: db.cassandra.idempotence
         tag: tech-specific
@@ -137,14 +144,14 @@ groups:
         requirement_level:
           conditionally_required: If other than the default database (`0`).
         tag: tech-specific
-      - ref: db.statement
+      - ref: db.query.text
         tag: tech-specific
         brief: >
           The full syntax of the Redis CLI command.
         examples: ["HMSET myhash field1 'Hello' field2 'World'"]
         note: >
-          For **Redis**, the value provided for `db.statement` SHOULD correspond to the syntax of the Redis CLI.
-          If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.statement`.
+          For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
+          If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
   - id: db.mongodb
     type: span
@@ -159,7 +166,9 @@ groups:
           See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
         examples: ['findAndModify', 'getMore', 'update']
         tag: tech-specific
-      - ref: db.mongodb.collection
+      - ref: db.collection.name
+        brief:
+          The MongoDB collection being accessed within the database stated in `db.name`.
         requirement_level: required
         tag: tech-specific
 
@@ -181,7 +190,7 @@ groups:
         requirement_level: required
         examples: [ 'https://localhost:9200/index/_search?q=user.id:kimchy' ]
         tag: tech-specific
-      - ref: db.statement
+      - ref: db.query.text
         requirement_level:
           recommended: >
             Should be collected by default for search-type queries and only if there is sanitization that excludes
@@ -221,7 +230,8 @@ groups:
           In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
         examples: ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'mystoredproc']
         tag: tech-specific
-      - ref: db.sql.table
+      - ref: db.collection.name
+        brief: The name of the SQL table that the operation is acting upon.
         tag: tech-specific
 
   - id: db.cosmosdb
@@ -256,7 +266,9 @@ groups:
         requirement_level:
           conditionally_required: if not `direct` (or pick gw as default)
         tag: tech-specific
-      - ref: db.cosmosdb.container
+      - ref: db.collection.name
+        brief: >
+          Cosmos DB container name.
         requirement_level:
           conditionally_required: if available
         tag: tech-specific

@@ -3,6 +3,14 @@
 
 # OpenTelemetry
 
+<!-- toc -->
+
+- [General Attributes](#general-attributes)
+- [Scope Attributes](#scope-attributes)
+- [Deprecated OpenTelemetry Attributes](#deprecated-opentelemetry-attributes)
+
+<!-- tocstop -->
+
 ## General Attributes
 
 <!-- semconv registry.otel(omit_requirement_level) -->
@@ -30,7 +38,7 @@
 
 ## Deprecated OpenTelemetry Attributes
 
-<!-- semconv registry.otel.library(omit_requirement_level) -->
+<!-- semconv registry.otel.library.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `otel.library.name` | string | None | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.name` attribute. |

@@ -35,6 +35,7 @@ body:
         - area:dns
         - area:enduser
         - area:error
+        - area:event
         - area:exception
         - area:faas
         - area:feature-flag
@@ -49,6 +50,7 @@ body:
         - area:messaging
         - area:network
         - area:oci
+        - area:opentracing
         - area:os
         - area:otel
         - area:peer
@@ -63,6 +65,7 @@ body:
         - area:tls
         - area:url
         - area:user-agent
+        - area:webengine
         # End semconv area list
   - type: textarea
     attributes:

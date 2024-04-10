@@ -1,0 +1,4 @@
+change_type: breaking
+component: db
+note: Rename `db.statement` to `db.query.text` and introduce `db.query.parameter.<key>`
+issues: [ 716 ]
