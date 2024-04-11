@@ -6,7 +6,6 @@
 {%- endif %}
 {%- endmacro %}
 {%- macro render() %}
-{% for note in ns.notes %}
-[{{loop.index}}]: {{note}}
-{%- endfor -%}
+{% for note in ns.notes %}[{{loop.index}}]: {{note}}
+{% endfor %}
 {%- endmacro %}

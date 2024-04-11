@@ -27,10 +27,9 @@ All registered attributes are listed by namespace in this registry.
 
 Currently, the following namespaces exist:
 
-{% for group in ctx | sort(attribute="prefix") %}
-{%- set my_file_name = group.id | split_id | list | reject("eq", "registry") | join("/") | file_name | lower -%}
-{%- set my_name = group.id | split_id | list | reject("eq", "registry") | join("_") -%}
-- [{{my_name}}]({{ my_file_name}}.md)
+{% for bundle in ctx %}
+{%- set my_file_name = bundle.id | lower ~ ".md" -%}
+- [{{ bundle.id }}]({{ my_file_name }})
 {% endfor %}
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
