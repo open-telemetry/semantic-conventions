@@ -3,7 +3,7 @@ groups:
   - id: registry.system
     prefix: system
     type: attribute_group
-    brief: "Describes System metric attributes"
+    brief: "Describes System attributes"
     attributes:
       - id: device
         type: string
@@ -14,7 +14,7 @@ groups:
   - id: registry.system.cpu
     prefix: system.cpu
     type: attribute_group
-    brief: "Describes System CPU metric attributes"
+    brief: "Describes System CPU attributes"
     attributes:
       - id: state
         type:
@@ -41,7 +41,7 @@ groups:
             - id: steal
               value: 'steal'
               stability: experimental
-        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
+        brief: "The state of the CPU"
         stability: experimental
         examples: ["idle", "interrupt"]
       - id: logical_number
@@ -53,7 +53,7 @@ groups:
   - id: registry.system.memory
     prefix: system.memory
     type: attribute_group
-    brief: "Describes System Memory metric attributes"
+    brief: "Describes System Memory attributes"
     attributes:
       - id: state
         type:
@@ -81,7 +81,7 @@ groups:
   - id: registry.system.paging
     prefix: system.paging
     type: attribute_group
-    brief: "Describes System Memory Paging metric attributes"
+    brief: "Describes System Memory Paging attributes"
     attributes:
       - id: state
         type:
@@ -125,7 +125,7 @@ groups:
   - id: registry.system.filesystem
     prefix: system.filesystem
     type: attribute_group
-    brief: "Describes Filesystem metric attributes"
+    brief: "Describes Filesystem attributes"
     attributes:
       - id: state
         brief: "The filesystem state"
@@ -182,7 +182,7 @@ groups:
   - id: registry.system.network
     prefix: system.network
     type: attribute_group
-    brief: "Describes Network metric attributes"
+    brief: "Describes Network attributes"
     attributes:
       - id: state
         type:
@@ -231,7 +231,7 @@ groups:
   - id: registry.system.process
     prefix: system.process
     type: attribute_group
-    brief: "Describes System Process metric attributes"
+    brief: "Describes System Process attributes"
     attributes:
       - id: status
         type:
