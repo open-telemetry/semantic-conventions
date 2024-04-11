@@ -24,7 +24,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `system.cpu.logical_number` | int | The logical CPU number [0..n-1] | `1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system.cpu.state` | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `idle`; `interrupt` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.state` | string | The state of the CPU | `idle`; `interrupt` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

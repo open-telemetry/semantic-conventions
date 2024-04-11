@@ -9,6 +9,7 @@ groups:
     unit: "s"
     attributes:
       - ref: system.cpu.state
+        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.utilization
@@ -20,6 +21,7 @@ groups:
     unit: "1"
     attributes:
       - ref: system.cpu.state
+        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.frequency
