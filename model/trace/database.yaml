@@ -126,7 +126,8 @@ groups:
           conditionally_required: If applicable and is not default.
         note: >
           When performing table-related operations, the instrumentations SHOULD extract the namespace from the table name according to
-          the [HBase table naming conventions](https://hbase.apache.org/book.html#namespace_creation).
+          the [HBase table naming conventions](https://hbase.apache.org/book.html#namespace_creation). If namespace is not provided,
+          instrumentation SHOULD set `db.collection.namespace` value to `default`.
         examples: ['mynamespace']
         tag: tech-specific
       - ref: db.collection.name
@@ -165,8 +166,14 @@ groups:
       - ref: db.collection.namespace
         brief: >
           The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select).
+        requirement_level:
+          conditionally_required: If and only if it can be captured reliably.
         note: >
-          Instrumentations SHOULD NOT set this attribute if capturing it would require additional queries to the database.
+          The database index for current connection can be changed by the application dynamically. Instrumentations MAY track
+          the currently selected database and set `db.collection.namespace` accordingly.
+
+          Instrumentations SHOULD NOT set this attribute if capturing it would require additional network calls to Redis.
+
           For commands that switch the database, this should be set to the target database (even if the command fails).
         examples: ["0", "1", "15"]
         tag: tech-specific
