@@ -55,6 +55,7 @@ The **span name** SHOULD be set to a low cardinality value representing the stat
 It MAY be a stored procedure name (without arguments), DB statement without variable arguments, operation name, etc.
 Since SQL statements may have very high cardinality even without arguments, SQL spans SHOULD be named the
 following way, unless the statement is known to be of low cardinality:
+
 `<db.operation.name> <db.collection.namespace>.<db.collection.name>`, provided that `db.operation.name` and `db.collection.name` are available.
 If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.collection.namespace>`.
 
