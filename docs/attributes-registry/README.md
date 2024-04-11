@@ -2,14 +2,12 @@
 linkTitle: Registry
 weight: -2
 --->
-
-# Attributes Registry
+# Attribute Registry
 
 The attributes registry is the place where attributes are defined. An attribute definition covers the following properties of an attribute:
 
 - the `id` (the fully qualified name) of the attribute
 - the `type` of the attribute
-- the `stability` of the attribute
 - a `brief` description of the attribute and optionally a longer `note`
 - example values
 
@@ -28,50 +26,53 @@ All registered attributes are listed by namespace in this registry.
 
 Currently, the following namespaces exist:
 
-* [Android](android.md)
-* [AWS](aws.md)
-* [Browser](browser.md)
-* [Client](client.md)
-* [Cloud](cloud.md)
-* [CloudEvents](cloudevents.md)
-* [Code](code.md)
-* [Container](container.md)
-* [DB](db.md) (database)
-* [Deployment](deployment.md)
-* [Destination](destination.md)
-* [Device](device.md)
-* [Disk](disk.md)
-* [End user](enduser.md)
-* [Error](error.md)
-* [Event](event.md)
-* [Exception](exception.md)
-* [FaaS](faas.md)
-* [Feature Flag](feature-flag.md)
-* [File](file.md)
-* [Google Cloud Platform (GCP)](gcp.md)
-* [GraphQl](graphql.md)
-* [Heroku](heroku.md)
-* [Host](host.md)
-* [HTTP](http.md)
-* [iOS](ios.md)
-* [K8s](k8s.md)
-* [Network](network.md)
-* [OCI](oci.md)
-* [OpenTelemetry](otel.md)
-* [OpenTracing](opentracing.md)
-* [OS](os.md)
-* [Peer](peer.md)
-* [Process](process.md)
-* [RPC](rpc.md)
-* [Server](server.md)
-* [Service](service.md)
-* [Session](session.md)
-* [Source](source.md)
-* [Telemetry](telemetry.md)
-* [Thread](thread.md)
-* [TLS](tls.md)
-* [URL](url.md)
-* [User agent](user-agent.md)
-* [Webengine](webengine.md)
+- [android](android.md)
+- [aws](aws.md)
+- [browser](browser.md)
+- [client](client.md)
+- [cloud](cloud.md)
+- [cloudevents](cloudevents.md)
+- [code](code.md)
+- [container](container.md)
+- [db](db.md)
+- [deployment](deployment.md)
+- [destination](destination.md)
+- [device](device.md)
+- [disk](disk.md)
+- [dns](dns.md)
+- [enduser](enduser.md)
+- [error](error.md)
+- [event](event.md)
+- [exception](exception.md)
+- [faas](faas.md)
+- [feature_flag](feature_flag.md)
+- [file](file.md)
+- [gcp](gcp.md)
+- [graphql](graphql.md)
+- [heroku](heroku.md)
+- [host](host.md)
+- [http](http.md)
+- [ios](ios.md)
+- [k8s](k8s.md)
+- [messaging](messaging.md)
+- [network](network.md)
+- [oci](oci.md)
+- [opentracing](opentracing.md)
+- [os](os.md)
+- [otel](otel.md)
+- [process](process.md)
+- [rpc](rpc.md)
+- [server](server.md)
+- [service](service.md)
+- [session](session.md)
+- [source](source.md)
+- [system](system.md)
+- [telemetry](telemetry.md)
+- [thread](thread.md)
+- [tls](tls.md)
+- [url](url.md)
+- [user_agent](user_agent.md)
+- [webengine](webengine.md)
+
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
