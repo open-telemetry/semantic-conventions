@@ -97,8 +97,9 @@ table-generation:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
 
-.PHONY: table-generation2-check
-table-generation2:
+# Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
+.PHONY: table-check2
+table-check2:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/weaver registry update-markdown \
 		--registry=/source \
@@ -106,6 +107,7 @@ table-generation2:
 		--dry-run \
 		/spec
 
+# Generate attribute registry markdown.
 .PHONY: attribute-registry-generation
 attribute-registry-generation:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
@@ -113,7 +115,7 @@ attribute-registry-generation:
 		  --registry=/source \
 		  --templates=/weaver/templates \
 		  markdown \
-		  /spec/attributes-registry2/
+		  /spec/attributes-registry/
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions
 .PHONY: table-check
@@ -147,7 +149,7 @@ check: misspell markdownlint check-format markdown-toc compatibility-check markd
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation misspell-correction fix-format markdown-toc
+fix: table-generation attribute-registry-generation misspell-correction fix-format markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
