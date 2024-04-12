@@ -53,7 +53,7 @@ flowchart LR;
 | Status | `Ok` | `Ok` | `Ok` |
 | `messaging.batch.message_count` |  |  | 2 |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
-| `messaging.operation.name` | `"create"` | `"create"` | `"publish"` |
+| `messaging.operation.type` | `"create"` | `"create"` | `"publish"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.message.envelope.size` | `1` | `1` | |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
