@@ -31,10 +31,7 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.
- |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state.
- |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states.
- |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

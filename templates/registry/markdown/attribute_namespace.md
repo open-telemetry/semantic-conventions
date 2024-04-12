@@ -33,7 +33,7 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-{% for espec in enum.type.members %}| `{{espec.value}}` | {{espec.brief}} | {{ stability.badge(espec.stability) }} |
+{% for espec in enum.type.members %}| `{{espec.value}}` | {{espec.brief | trim}} | {{ stability.badge(espec.stability) }} |
 {% endfor %}
 {% endif %}
 {%- endfor -%}
