@@ -5,7 +5,7 @@
 # FILE
 
 - [file](#file)
-- [Notes](#notes)
+
 
 ## file Attributes
 
@@ -18,7 +18,6 @@
 | `file.size` | int | File size in bytes.  | | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
+**[1]:** When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
 
-[1]: When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
 

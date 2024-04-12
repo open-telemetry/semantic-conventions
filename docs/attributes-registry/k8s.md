@@ -6,7 +6,7 @@
 
 - [k8s](#k8s)
 - [k8s deprecated](#k8s deprecated)
-- [Notes](#notes)
+
 
 ## k8s Attributes
 
@@ -37,17 +37,7 @@
 | `k8s.cronjob.name` | string | The name of the CronJob.  |`opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-
-## k8s deprecated Attributes
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `k8s.pod.labels` | template[string] | Deprecated, use `k8s.pod.label` instead. [2] |`k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-|---|---|---|---|---|
-
-## Notes
-
-[1]: K8s doesn't have support for obtaining a cluster ID. If this is ever
+**[1]:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
 official APIs. In the meantime, we are able to use the `uid` of the
 `kube-system` namespace as a proxy for cluster ID. Read on for the
@@ -70,4 +60,14 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
-[2]: Replaced by `k8s.pod.label`.
+
+
+## k8s deprecated Attributes
+
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `k8s.pod.labels` | template[string] | Deprecated, use `k8s.pod.label` instead. [2] |`k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+|---|---|---|---|---|
+
+**[2]:** Replaced by `k8s.pod.label`.
+

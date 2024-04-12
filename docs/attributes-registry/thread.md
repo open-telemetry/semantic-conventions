@@ -5,7 +5,7 @@
 # THREAD
 
 - [thread](#thread)
-- [Notes](#notes)
+
 
 ## thread Attributes
 
@@ -17,5 +17,4 @@
 main | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
 

@@ -5,7 +5,7 @@
 # SYSTEM
 
 - [system deprecated](#system deprecated)
-- [Notes](#notes)
+
 
 ## system deprecated Attributes
 
@@ -13,6 +13,8 @@
 |---|---|---|---|---|
 | `system.processes.status` | string | Deprecated, use `system.process.status` instead. [1] |`running`; `sleeping`; `stopped`; `defunct` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 |---|---|---|---|---|
+
+**[1]:** Replaced by `system.process.status`.
 
 `system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -23,6 +25,3 @@
 | `stopped` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `defunct` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Notes
-
-[1]: Replaced by `system.process.status`.

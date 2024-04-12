@@ -5,7 +5,7 @@
 # TLS
 
 - [tls](#tls)
-- [Notes](#notes)
+
 
 ## tls Attributes
 
@@ -42,14 +42,13 @@
 | `tls.server.subject` | string | Distinguished name of subject of the x.509 certificate presented by the server.  |`CN=myserver, OU=Documentation Team, DC=example, DC=com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
+**[1]:** The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
+
+
 `tls.protocol.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `ssl` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tls` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Notes
-
-[1]: The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
 

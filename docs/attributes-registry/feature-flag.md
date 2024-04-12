@@ -5,7 +5,7 @@
 # FEATURE_FLAG
 
 - [feature_flag](#feature_flag)
-- [Notes](#notes)
+
 
 ## feature_flag Attributes
 
@@ -16,9 +16,7 @@
 | `feature_flag.variant` | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] |`red`; `true`; `on` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
-
-[1]: A semantic identifier, commonly referred to as a variant, provides a means
+**[1]:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
@@ -26,3 +24,4 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 A stringified version of the value can be used in situations where a
 semantic identifier is unavailable. String representation of the value
 should be determined by the implementer.
+

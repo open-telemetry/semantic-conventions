@@ -6,7 +6,7 @@
 
 - [messaging](#messaging)
 - [messaging deprecated](#messaging deprecated)
-- [Notes](#notes)
+
 
 ## messaging Attributes
 
@@ -73,6 +73,26 @@ mySubscription | ![Experimental](https://img.shields.io/badge/-experimental-blue
 indexer | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
+**[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+
+**[2]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+
+**[3]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+
+**[4]:** The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
+the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
+
+**[5]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+
+**[6]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+size should be used.
+
+**[7]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+body size should be used.
+
+**[8]:** If a custom value is used, it MUST be of low cardinality.
+
 `messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -137,25 +157,5 @@ indexer | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 2 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 |---|---|---|---|---|
 
-## Notes
+**[9]:** Replaced by `messaging.destination.partition.id`.
 
-[1]: Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
-
-[2]: Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
-
-[3]: Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
-
-[4]: The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
-the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
-
-[5]: If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
-
-[6]: This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
-size should be used.
-
-[7]: This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
-body size should be used.
-
-[8]: If a custom value is used, it MUST be of low cardinality.
-[9]: Replaced by `messaging.destination.partition.id`.

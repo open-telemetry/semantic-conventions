@@ -5,7 +5,7 @@
 # OS
 
 - [os](#os)
-- [Notes](#notes)
+
 
 ## os Attributes
 
@@ -17,6 +17,7 @@
 | `os.version` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).  |`14.2.1`; `18.04.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `os.build_id` | string | Unique identifier for a particular build or compilation of the operating system.  |`TQ3C.230805.001.B2`; `20E247`; `22621` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
+
 
 `os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -33,6 +34,4 @@
 | `aix` | AIX (Advanced Interactive eXecutive) |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `solaris` | SunOS, Oracle Solaris |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `z_os` | IBM z/OS |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Notes
 

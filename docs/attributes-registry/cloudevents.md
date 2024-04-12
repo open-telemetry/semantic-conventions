@@ -5,7 +5,7 @@
 # CLOUDEVENTS
 
 - [cloudevents](#cloudevents)
-- [Notes](#notes)
+
 
 ## cloudevents Attributes
 
@@ -20,5 +20,4 @@
 mynewfile.jpg | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
 

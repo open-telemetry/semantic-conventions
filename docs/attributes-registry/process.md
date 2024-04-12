@@ -5,7 +5,7 @@
 # PROCESS
 
 - [process](#process)
-- [Notes](#notes)
+
 
 ## process Attributes
 
@@ -39,7 +39,6 @@ Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0 | ![Experimental](https://img.shi
 | `process.interactive` | boolean | Whether the process is connected to an interactive shell.  | | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
+**[1]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 
-[1]: The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 

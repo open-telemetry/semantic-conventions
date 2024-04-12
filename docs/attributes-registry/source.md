@@ -5,7 +5,7 @@
 # SOURCE
 
 - [source](#source)
-- [Notes](#notes)
+
 
 ## source Attributes
 
@@ -15,7 +15,6 @@
 | `source.port` | int | Source port number  |`3389`; `2888` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
+**[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 
-[1]: When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 

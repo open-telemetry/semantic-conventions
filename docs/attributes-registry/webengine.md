@@ -5,7 +5,7 @@
 # WEBENGINE
 
 - [webengine](#webengine)
-- [Notes](#notes)
+
 
 ## webengine Attributes
 
@@ -16,5 +16,4 @@
 | `webengine.description` | string | Additional description of the web engine (e.g. detailed version and edition information).  |`WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
 

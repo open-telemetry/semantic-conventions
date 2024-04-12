@@ -5,7 +5,7 @@
 # IOS
 
 - [ios lifecycle events](#ios lifecycle events)
-- [Notes](#notes)
+
 
 ## ios lifecycle events Attributes
 
@@ -13,6 +13,9 @@
 |---|---|---|---|---|
 | `ios.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] |`active`; `inactive`; `background`; `foreground`; `terminate` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
+
+**[1]:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902), and from which the `OS terminology` column values are derived.
+
 
 `ios.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -28,8 +31,4 @@
  |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
  |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Notes
-
-[1]: The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902), and from which the `OS terminology` column values are derived.
 

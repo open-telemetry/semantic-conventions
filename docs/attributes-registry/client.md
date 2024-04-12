@@ -5,7 +5,7 @@
 # CLIENT
 
 - [client](#client)
-- [Notes](#notes)
+
 
 ## client Attributes
 
@@ -15,9 +15,8 @@
 | `client.port` | int | Client port number. [2] |`65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 |---|---|---|---|---|
 
-## Notes
+**[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
-[1]: When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-[2]: When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 

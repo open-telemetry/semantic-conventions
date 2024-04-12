@@ -4,47 +4,8 @@
 
 # NETWORK
 
-- [network deprecated](#network deprecated)
 - [network](#network)
-- [Notes](#notes)
-
-## network deprecated Attributes
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `net.sock.peer.name` | string | Deprecated, no replacement at this time. [1] |`/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.sock.peer.addr` | string | Deprecated, use `network.peer.address`. [2] |`192.168.0.1` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.sock.peer.port` | int | Deprecated, use `network.peer.port`. [3] |`65531` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.peer.name` | string | Deprecated, use `server.address` on client spans and `client.address` on server spans. [4] |`example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.peer.port` | int | Deprecated, use `server.port` on client spans and `client.port` on server spans. [5] |`8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.host.name` | string | Deprecated, use `server.address`. [6] |`example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.host.port` | int | Deprecated, use `server.port`. [7] |`8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.sock.host.addr` | string | Deprecated, use `network.local.address`. [8] |`/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.sock.host.port` | int | Deprecated, use `network.local.port`. [9] |`8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.transport` | string | Deprecated, use `network.transport`. [10] |`ip_tcp`; `ip_udp`; `pipe`; `inproc`; `other` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.protocol.name` | string | Deprecated, use `network.protocol.name`. [11] |`amqp`; `http`; `mqtt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.protocol.version` | string | Deprecated, use `network.protocol.version`. [12] |
-3.1.1 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.sock.family` | string | Deprecated, use `network.transport` and `network.type`. [13] |`inet`; `inet6`; `unix` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-|---|---|---|---|---|
-
-`net.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `ip_tcp` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ip_udp` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pipe` | Named or anonymous pipe. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `inproc` | In-process communication. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | Something else (non IP-based). |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `inet` | IPv4 address |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `inet6` | IPv6 address |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unix` | Unix domain socket path |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+- [network deprecated](#network deprecated)
 
 
 ## network Attributes
@@ -65,12 +26,23 @@ sprint | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `network.local.port` | int | Local port number of the network connection.  |`65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name.  |`10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.peer.port` | int | Peer port number of the network connection.  |`65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [14] |`amqp`; `http`; `mqtt` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `network.protocol.version` | string | The actual version of the protocol used for network communication. [15] |`1.1`; `2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [16] |`tcp`; `udp`; `pipe`; `unix` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [17] |`ipv4`; `ipv6` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] |`amqp`; `http`; `mqtt` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.protocol.version` | string | The actual version of the protocol used for network communication. [2] |`1.1`; `2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] |`tcp`; `udp`; `pipe`; `unix` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] |`ipv4`; `ipv6` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.io.direction` | string | The network IO operation direction.  |`transmit`; `receive` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
+
+**[1]:** The value SHOULD be normalized to lowercase.
+**[2]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+
+**[3]:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport. For example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[4]:** The value SHOULD be normalized to lowercase.
 
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -131,28 +103,56 @@ sprint | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transmit` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Notes
 
-[1]: Removed.
-[2]: Replaced by `network.peer.address`.
-[3]: Replaced by `network.peer.port`.
-[4]: Replaced by `server.address` on client spans and `client.address` on server spans.
-[5]: Replaced by `server.port` on client spans and `client.port` on server spans.
-[6]: Replaced by `server.address`.
-[7]: Replaced by `server.port`.
-[8]: Replaced by `network.local.address`.
-[9]: Replaced by `network.local.port`.
-[10]: Replaced by `network.transport`.
-[11]: Replaced by `network.protocol.name`.
-[12]: Replaced by `network.protocol.version`.
-[13]: Split to `network.transport` and `network.type`.
-[14]: The value SHOULD be normalized to lowercase.
-[15]: If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+## network deprecated Attributes
 
-[16]: The value SHOULD be normalized to lowercase.
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `net.sock.peer.name` | string | Deprecated, no replacement at this time. [5] |`/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.sock.peer.addr` | string | Deprecated, use `network.peer.address`. [6] |`192.168.0.1` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.sock.peer.port` | int | Deprecated, use `network.peer.port`. [7] |`65531` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.peer.name` | string | Deprecated, use `server.address` on client spans and `client.address` on server spans. [8] |`example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.peer.port` | int | Deprecated, use `server.port` on client spans and `client.port` on server spans. [9] |`8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.host.name` | string | Deprecated, use `server.address`. [10] |`example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.host.port` | int | Deprecated, use `server.port`. [11] |`8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.sock.host.addr` | string | Deprecated, use `network.local.address`. [12] |`/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.sock.host.port` | int | Deprecated, use `network.local.port`. [13] |`8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.transport` | string | Deprecated, use `network.transport`. [14] |`ip_tcp`; `ip_udp`; `pipe`; `inproc`; `other` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.protocol.name` | string | Deprecated, use `network.protocol.name`. [15] |`amqp`; `http`; `mqtt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.protocol.version` | string | Deprecated, use `network.protocol.version`. [16] |
+3.1.1 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.sock.family` | string | Deprecated, use `network.transport` and `network.type`. [17] |`inet`; `inet6`; `unix` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+|---|---|---|---|---|
 
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
+**[5]:** Removed.
+**[6]:** Replaced by `network.peer.address`.
+**[7]:** Replaced by `network.peer.port`.
+**[8]:** Replaced by `server.address` on client spans and `client.address` on server spans.
+**[9]:** Replaced by `server.port` on client spans and `client.port` on server spans.
+**[10]:** Replaced by `server.address`.
+**[11]:** Replaced by `server.port`.
+**[12]:** Replaced by `network.local.address`.
+**[13]:** Replaced by `network.local.port`.
+**[14]:** Replaced by `network.transport`.
+**[15]:** Replaced by `network.protocol.name`.
+**[16]:** Replaced by `network.protocol.version`.
+**[17]:** Split to `network.transport` and `network.type`.
 
-[17]: The value SHOULD be normalized to lowercase.
+`net.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `ip_tcp` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ip_udp` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pipe` | Named or anonymous pipe. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `inproc` | In-process communication. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | Something else (non IP-based). |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `inet` | IPv4 address |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `inet6` | IPv6 address |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unix` | Unix domain socket path |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+

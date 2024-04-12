@@ -5,7 +5,7 @@
 # PEER
 
 - [peer](#peer)
-- [Notes](#notes)
+
 
 ## peer Attributes
 
@@ -15,5 +15,4 @@
 AuthTokenCache | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
 

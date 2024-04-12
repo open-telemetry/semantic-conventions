@@ -5,7 +5,7 @@
 # SESSION
 
 - [session](#session)
-- [Notes](#notes)
+
 
 ## session Attributes
 
@@ -17,5 +17,4 @@
 00112233-4455-6677-8899-aabbccddeeff | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
 

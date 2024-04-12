@@ -5,7 +5,7 @@
 # ENDUSER
 
 - [enduser](#enduser)
-- [Notes](#notes)
+
 
 ## enduser Attributes
 
@@ -19,5 +19,4 @@ admin | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 read:message, write:files | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
 

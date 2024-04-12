@@ -5,7 +5,7 @@
 # ERROR
 
 - [error](#error)
-- [Notes](#notes)
+
 
 ## error Attributes
 
@@ -14,16 +14,7 @@
 | `error.type` | string | Describes a class of error the operation ended with. [1] |`_OTHER` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 |---|---|---|---|---|
 
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value.
- |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-## Notes
-
-[1]: The `error.type` SHOULD be predictable and SHOULD have low cardinality.
+**[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
 
 The cardinality of `error.type` within one instrumentation library SHOULD be low.
@@ -38,4 +29,12 @@ it's RECOMMENDED to:
 
 * Use a domain-specific attribute
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value.
+ |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 

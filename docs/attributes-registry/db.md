@@ -6,7 +6,7 @@
 
 - [db](#db)
 - [db deprecated](#db deprecated)
-- [Notes](#notes)
+
 
 ## db Attributes
 
@@ -42,6 +42,18 @@ MSSQLSERVER | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.instance.id` | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`.  |
 mysql-e26b99z.example.com | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
+
+**[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
+
+**[2]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
+
+**[3]:** If setting a `db.mssql.instance_name`, `server.port` is no longer required (but still recommended if non-standard).
+
+**[4]:** In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
+
+**[5]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+
 
 `db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -165,27 +177,15 @@ mytable | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 mytable | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 |---|---|---|---|---|
 
-## Notes
+**[6]:** "Replaced by `server.address` and `server.port`."
 
-[1]: If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
+**[7]:** Removed as not used.
+**[8]:** Replaced by `db.instance.id`.
+**[9]:** Replaced by `db.operation.name`.
+**[10]:** No replacement at this time.
+**[11]:** Replaced by `db.query.text`.
+**[12]:** Replaced by `db.collection.name`.
+**[13]:** Replaced by `db.collection.name`.
+**[14]:** Replaced by `db.collection.name`.
+**[15]:** Replaced by `db.collection.name`.
 
-[2]: Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
-
-[3]: If setting a `db.mssql.instance_name`, `server.port` is no longer required (but still recommended if non-standard).
-
-[4]: In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
-
-[5]: Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
-If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
-
-[6]: "Replaced by `server.address` and `server.port`."
-
-[7]: Removed as not used.
-[8]: Replaced by `db.instance.id`.
-[9]: Replaced by `db.operation.name`.
-[10]: No replacement at this time.
-[11]: Replaced by `db.query.text`.
-[12]: Replaced by `db.collection.name`.
-[13]: Replaced by `db.collection.name`.
-[14]: Replaced by `db.collection.name`.
-[15]: Replaced by `db.collection.name`.

@@ -5,7 +5,7 @@
 # CODE
 
 - [code](#code)
-- [Notes](#notes)
+
 
 ## code Attributes
 
@@ -25,5 +25,4 @@ com.example.MyHttpService | ![Experimental](https://img.shields.io/badge/-experi
 at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
 

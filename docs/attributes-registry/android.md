@@ -6,7 +6,7 @@
 
 - [android](#android)
 - [android lifecycle events](#android lifecycle events)
-- [Notes](#notes)
+
 
 ## android Attributes
 
@@ -16,12 +16,16 @@
 |---|---|---|---|---|
 
 
+
 ## android lifecycle events Attributes
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `android.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] |`created`; `background`; `foreground` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
+
+**[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
+
 
 `android.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -33,8 +37,4 @@
  |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states.
  |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Notes
-
-[1]: The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 

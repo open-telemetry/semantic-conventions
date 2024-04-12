@@ -6,7 +6,7 @@
 
 - [rpc](#rpc)
 - [rpc deprecated](#rpc deprecated)
-- [Notes](#notes)
+
 
 ## rpc Attributes
 
@@ -32,6 +32,20 @@ myservice.EchoService | ![Experimental](https://img.shields.io/badge/-experiment
 | `rpc.message.compressed_size` | int | Compressed size of the message in bytes.  | | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rpc.message.uncompressed_size` | int | Uncompressed size of the message in bytes.  | | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
+
+**[1]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+**[2]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+**[3]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+**[4]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+**[5]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+
+**[6]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+
+**[7]:** This way we guarantee that the values will be consistent between different implementations.
 
 `rpc.connect_rpc.error_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -104,6 +118,11 @@ myservice.EchoService | ![Experimental](https://img.shields.io/badge/-experiment
 | `message.uncompressed_size` | int | Deprecated, use `rpc.message.uncompressed_size` instead. [11] | | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 |---|---|---|---|---|
 
+**[8]:** Replaced by `rpc.message.type`.
+**[9]:** Replaced by `rpc.message.id`.
+**[10]:** Replaced by `rpc.message.compressed_size`.
+**[11]:** Replaced by `rpc.message.uncompressed_size`.
+
 `message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -111,22 +130,3 @@ myservice.EchoService | ![Experimental](https://img.shields.io/badge/-experiment
 | `SENT` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `RECEIVED` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Notes
-
-[1]: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-[2]: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-[3]: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-[4]: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-[5]: This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
-
-[6]: This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
-
-[7]: This way we guarantee that the values will be consistent between different implementations.
-[8]: Replaced by `rpc.message.type`.
-[9]: Replaced by `rpc.message.id`.
-[10]: Replaced by `rpc.message.compressed_size`.
-[11]: Replaced by `rpc.message.uncompressed_size`.

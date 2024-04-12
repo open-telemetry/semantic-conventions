@@ -5,7 +5,7 @@
 # DESTINATION
 
 - [destination](#destination)
-- [Notes](#notes)
+
 
 ## destination Attributes
 
@@ -15,7 +15,6 @@
 | `destination.port` | int | Destination port number  |`3389`; `2888` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
+**[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 
-[1]: When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 

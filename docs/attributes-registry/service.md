@@ -5,7 +5,7 @@
 # SERVICE
 
 - [service](#service)
-- [Notes](#notes)
+
 
 ## service Attributes
 
@@ -17,13 +17,11 @@
 | `service.instance.id` | string | The string ID of the service instance. [3] |`627cc493-f310-47de-96bd-71410b7dec09` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
+**[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
-[1]: MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
+**[2]:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
 
-[2]: A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
-
-[3]: MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
+**[3]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
 distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled
 service).
@@ -49,4 +47,5 @@ likely be wrong, as the Collector might not know from which container within tha
 However, Collectors can set the `service.instance.id` if they can unambiguously determine the service instance
 for that telemetry. This is typically the case for scraping receivers, as they know the target address and
 port.
+
 

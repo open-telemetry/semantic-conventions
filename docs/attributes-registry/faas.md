@@ -5,7 +5,7 @@
 # FAAS
 
 - [faas](#faas)
-- [Notes](#notes)
+
 
 ## faas Attributes
 
@@ -36,6 +36,44 @@ af9d5aa4-a685-4c5f-a22b-444f80b3cc28 | ![Experimental](https://img.shields.io/ba
 | `faas.document.name` | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name.  |`myFile.txt`; `myTableName` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
+**[1]:** This is the name of the function as configured/deployed on the FaaS
+platform and is usually different from the name of the callback
+function (which may be stored in the
+[`code.namespace`/`code.function`](/docs/general/attributes.md#source-code-attributes)
+span attributes).
+
+For some cloud providers, the above definition is ambiguous. The following
+definition of function name MUST be used for this attribute
+(and consequently the span name) for the listed cloud providers/products:
+
+* **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
+  followed by a forward slash followed by the function name (this form
+  can also be seen in the resource JSON for the function).
+  This means that a span attribute MUST be used, as an Azure function
+  app can host multiple functions that would usually share
+  a TracerProvider (see also the `cloud.resource_id` attribute).
+
+**[2]:** Depending on the cloud provider and platform, use:
+
+* **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
+  (an integer represented as a decimal string).
+* **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
+  (i.e., the function name plus the revision suffix).
+* **Google Cloud Functions:** The value of the
+  [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
+* **Azure Functions:** Not applicable. Do not set this attribute.
+
+**[3]:** * **AWS Lambda:** Use the (full) log stream name.
+
+**[4]:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
+
+**[5]:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
+
+**[6]:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
+
+**[7]:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
+
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -63,43 +101,4 @@ af9d5aa4-a685-4c5f-a22b-444f80b3cc28 | ![Experimental](https://img.shields.io/ba
 | `insert` | When a new object is created. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `edit` | When an object is modified. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `delete` | When an object is deleted. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Notes
-
-[1]: This is the name of the function as configured/deployed on the FaaS
-platform and is usually different from the name of the callback
-function (which may be stored in the
-[`code.namespace`/`code.function`](/docs/general/attributes.md#source-code-attributes)
-span attributes).
-
-For some cloud providers, the above definition is ambiguous. The following
-definition of function name MUST be used for this attribute
-(and consequently the span name) for the listed cloud providers/products:
-
-* **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
-  followed by a forward slash followed by the function name (this form
-  can also be seen in the resource JSON for the function).
-  This means that a span attribute MUST be used, as an Azure function
-  app can host multiple functions that would usually share
-  a TracerProvider (see also the `cloud.resource_id` attribute).
-
-[2]: Depending on the cloud provider and platform, use:
-
-* **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
-  (an integer represented as a decimal string).
-* **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
-  (i.e., the function name plus the revision suffix).
-* **Google Cloud Functions:** The value of the
-  [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
-* **Azure Functions:** Not applicable. Do not set this attribute.
-
-[3]: * **AWS Lambda:** Use the (full) log stream name.
-
-[4]: It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
-
-[5]: SHOULD be equal to the `faas.name` resource attribute of the invoked function.
-
-[6]: SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
-
-[7]: SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
 

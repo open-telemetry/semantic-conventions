@@ -5,7 +5,7 @@
 # HOST
 
 - [host](#host)
-- [Notes](#notes)
+
 
 ## host Attributes
 
@@ -28,6 +28,13 @@
 | `host.cpu.cache.l2.size` | int | The amount of level 2 memory cache available to the processor (in Bytes).  |`12288000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
+**[1]:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
+
+**[2]:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+
+**[3]:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
+
+
 `host.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -40,12 +47,4 @@
 | `ppc64` | 64-bit PowerPC |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `s390x` | IBM z/Architecture |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `x86` | 32-bit x86 |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Notes
-
-[1]: IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
-
-[2]: MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
-
-[3]: [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 

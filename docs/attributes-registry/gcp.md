@@ -6,7 +6,7 @@
 
 - [gcp cloud_run](#gcp cloud_run)
 - [gcp gce](#gcp gce)
-- [Notes](#notes)
+
 
 ## gcp cloud_run Attributes
 
@@ -17,6 +17,7 @@
 |---|---|---|---|---|
 
 
+
 ## gcp gce Attributes
 
 | Attribute  | Type | Description  | Examples  | Stability |
@@ -25,5 +26,4 @@
 | `gcp.gce.instance.hostname` | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).  |`my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
 

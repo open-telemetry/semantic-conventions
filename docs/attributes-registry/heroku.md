@@ -5,7 +5,7 @@
 # HEROKU
 
 - [heroku](#heroku)
-- [Notes](#notes)
+
 
 ## heroku Attributes
 
@@ -16,5 +16,4 @@
 | `heroku.app.id` | string | Unique identifier for the application  |`2daa2797-e42b-4624-9322-ec3f968df4da` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
-## Notes
 
