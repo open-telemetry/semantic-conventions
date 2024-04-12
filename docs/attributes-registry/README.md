@@ -60,6 +60,7 @@ Currently, the following namespaces exist:
 - [opentracing](opentracing.md)
 - [os](os.md)
 - [otel](otel.md)
+- [peer](peer.md)
 - [process](process.md)
 - [rpc](rpc.md)
 - [server](server.md)
