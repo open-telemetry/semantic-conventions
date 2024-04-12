@@ -11,7 +11,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `error.type` | string | Describes a class of error the operation ended with. [1] |`_OTHER` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `error.type` |  string | Describes a class of error the operation ended with. [1] | `_OTHER` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 |---|---|---|---|---|
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.

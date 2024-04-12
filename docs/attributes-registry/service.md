@@ -11,10 +11,10 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `service.instance.id` | string | The string ID of the service instance. [1] |`627cc493-f310-47de-96bd-71410b7dec09` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `service.name` | string | Logical name of the service. [2] |`shoppingcart` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `service.namespace` | string | A namespace for `service.name`. [3] |`Shop` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `service.version` | string | The version string of the service API or implementation. The format is not defined by these conventions.  |`2.0.0`; `a01dbef8a` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `service.instance.id` |  string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `service.name` |  string | Logical name of the service. [2] | `shoppingcart` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `service.namespace` |  string | A namespace for `service.name`. [3] | `Shop` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `service.version` |  string | The version string of the service API or implementation. The format is not defined by these conventions.  | `2.0.0`; `a01dbef8a` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 |---|---|---|---|---|
 
 **[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
