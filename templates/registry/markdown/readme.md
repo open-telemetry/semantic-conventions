@@ -28,8 +28,8 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 {% for bundle in ctx %}
-{%- set my_file_name = bundle.id | lower ~ ".md" -%}
-- [{{ bundle.id }}]({{ my_file_name }})
+{%- set my_file_name = bundle.id | lower | replace("_", "-") ~ ".md" -%}
+* [{{ bundle.id }}]({{ my_file_name }})
 {% endfor %}
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

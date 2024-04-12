@@ -5,7 +5,7 @@
 {#-           This includes deprecated groups. -#}
 {% import 'stability.j2' as stability %}
 {% import 'notes.j2' as notes %}
-{%- set my_file_name = ctx.id | lower ~ ".md" -%}
+{%- set my_file_name = ctx.id | lower | replace("_", "-") ~ ".md" -%}
 {{- template.set_file_name(my_file_name) -}}
 
 <!--- Hugo front matter used to generate the website version of this page:
@@ -23,7 +23,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 {%- for attribute in group.attributes %}
-| `{{ attribute.name }}` | {%- include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }} {{ notes.add(attribute.note or attribute.deprecated) }} | {%- include "examples.j2" | trim %} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
+| `{{ attribute.name }}` | {%- include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }} {{ notes.add(attribute.note or attribute.deprecated) | trim }} | {%- include "examples.j2" | trim %} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {%- endfor %}
 |---|---|---|---|---|
 
