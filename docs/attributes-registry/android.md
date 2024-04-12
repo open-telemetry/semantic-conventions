@@ -12,7 +12,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `android.os.api_level` |  string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).  | `33`; `32` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `android.os.api_level` | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).  | `33`; `32` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
 
@@ -21,7 +21,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `android.state` |  string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created`; `background`; `foreground` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `android.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created`; `background`; `foreground` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
 **[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.

@@ -11,7 +11,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `ios.state` |  string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `active`; `inactive`; `background`; `foreground`; `terminate` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ios.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `active`; `inactive`; `background`; `foreground`; `terminate` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
 **[1]:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902), and from which the `OS terminology` column values are derived.

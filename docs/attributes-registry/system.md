@@ -11,7 +11,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `system.processes.status` |  string | Deprecated, use `system.process.status` instead. [1] | `running`; `sleeping`; `stopped`; `defunct` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `system.processes.status` | string | Deprecated, use `system.process.status` instead. [1] | `running`; `sleeping`; `stopped`; `defunct` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 |---|---|---|---|---|
 
 **[1]:** Replaced by `system.process.status`.

@@ -11,7 +11,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `disk.io.direction` |  string | The disk IO operation direction.  | `read`; `write` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `disk.io.direction` | string | The disk IO operation direction.  | `read`; `write` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
 

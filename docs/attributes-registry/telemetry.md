@@ -11,11 +11,11 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `telemetry.distro.name` |  string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `telemetry.distro.version` |  string | The version string of the auto instrumentation agent or distribution, if used.  | `1.2.3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `telemetry.sdk.language` |  string | The language of the telemetry SDK.  | `cpp`; `dotnet`; `erlang`; `go`; `java`; `nodejs`; `php`; `python`; `ruby`; `rust`; `swift`; `webjs` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `telemetry.sdk.name` |  string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `telemetry.sdk.version` |  string | The version string of the telemetry SDK.  | `1.2.3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `telemetry.distro.name` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `telemetry.distro.version` | string | The version string of the auto instrumentation agent or distribution, if used.  | `1.2.3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `telemetry.sdk.language` | string | The language of the telemetry SDK.  | `cpp`; `dotnet`; `erlang`; `go`; `java`; `nodejs`; `php`; `python`; `ruby`; `rust`; `swift`; `webjs` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `telemetry.sdk.name` | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `telemetry.sdk.version` | string | The version string of the telemetry SDK.  | `1.2.3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 |---|---|---|---|---|
 
 **[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
