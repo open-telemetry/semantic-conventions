@@ -186,11 +186,11 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | `webjs` | webjs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
-## Telemetry SDK (Experimental)
+## Telemetry Distribution (Experimental)
 
 **Status**: [Experimental][DocumentStatus]
 
-**type:** `telemetry.sdk`
+**type:** `telemetry.distro`
 
 **Description:** Additions to the telemetry SDK.
 
