@@ -91,8 +91,18 @@ These attributes will usually be the same for all operations performed over the 
 
 **[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 
-**[3]:** The namespace usually matches database (catalog, keyspace) names. Some systems, such as MS SQL, allow to host multiple database engines on the same server, in such case, the namespace should include additional qualifiers uniquely identifying the database.
-Semantic conventions for individual database systems SHOULD document what `db.collection.namespace` means in the context of that system.
+**[3]:** For many database systems, the namespace matches the database (catalog, keyspace, schema) name.
+In general case, however, namespace consist of several qualifiers:
+
+* Instance name - MS SQL Server or Oracle, allow to host multiple database engines on the same host.
+* Database name - The name of the database, keyspace, namespace, etc.
+* Schema name - such as PostgreSQL or MS SQL Server schemas.
+* Other sub-namespaces which may include partition or shard identifiers.
+
+Namespace SHOULD include all such identifiers applicable to the database system and available to the instrumentation.
+
+Semantic conventions for individual database systems SHOULD document what `db.collection.namespace`
+means in the context of that system.
 
 **[4]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 

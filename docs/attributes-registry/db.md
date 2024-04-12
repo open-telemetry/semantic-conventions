@@ -31,8 +31,18 @@
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
-**[2]:** The namespace usually matches database (catalog, keyspace) names. Some systems, such as MS SQL, allow to host multiple database engines on the same server, in such case, the namespace should include additional qualifiers uniquely identifying the database.
-Semantic conventions for individual database systems SHOULD document what `db.collection.namespace` means in the context of that system.
+**[2]:** For many database systems, the namespace matches the database (catalog, keyspace, schema) name.
+In general case, however, namespace consist of several qualifiers:
+
+* Instance name - MS SQL Server or Oracle, allow to host multiple database engines on the same host.
+* Database name - The name of the database, keyspace, namespace, etc.
+* Schema name - such as PostgreSQL or MS SQL Server schemas.
+* Other sub-namespaces which may include partition or shard identifiers.
+
+Namespace SHOULD include all such identifiers applicable to the database system and available to the instrumentation.
+
+Semantic conventions for individual database systems SHOULD document what `db.collection.namespace`
+means in the context of that system.
 
 **[3]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
