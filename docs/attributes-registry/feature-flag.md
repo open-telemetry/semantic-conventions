@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# FEATURE_FLAG
+# Feature Flag
 
-- [feature_flag](#feature_flag)
+- [Feature Flag](#feature_flag)
 
-## feature_flag Attributes
+## Feature Flag Attributes
 
 | Attribute                    | Type   | Description                                                                                                             | Examples            | Stability                                                        |
 | ---------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------- |

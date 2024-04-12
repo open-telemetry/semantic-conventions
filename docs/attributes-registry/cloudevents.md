@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# CLOUDEVENTS
+# Cloudevents
 
-- [cloudevents](#cloudevents)
+- [Cloudevents](#cloudevents)
 
-## cloudevents Attributes
+## Cloudevents Attributes
 
 | Attribute                        | Type   | Description                                                                                                                                                                     | Examples                                                                     | Stability                                                        |
 | -------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------- |

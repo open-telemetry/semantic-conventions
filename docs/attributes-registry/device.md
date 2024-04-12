@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# DEVICE
+# Device
 
-- [device](#device)
+- [Device](#device)
 
-## device Attributes
+## Device Attributes
 
 | Attribute                 | Type   | Description                                     | Examples                               | Stability                                                        |
 | ------------------------- | ------ | ----------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |

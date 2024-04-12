@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# PEER
+# Peer
 
-- [peer](#peer)
+- [Peer](#peer)
 
-## peer Attributes
+## Peer Attributes
 
 | Attribute      | Type   | Description                                                                                                                                                                 | Examples         | Stability                                                        |
 | -------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------------- |

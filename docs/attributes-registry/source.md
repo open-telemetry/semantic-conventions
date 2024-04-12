@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# SOURCE
+# Source
 
-- [source](#source)
+- [Source](#source)
 
-## source Attributes
+## Source Attributes
 
 | Attribute        | Type   | Description                                                                                                                 | Examples                                          | Stability                                                        |
 | ---------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------- |

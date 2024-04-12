@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# WEBENGINE
+# Webengine
 
-- [webengine](#webengine)
+- [Webengine](#webengine)
 
-## webengine Attributes
+## Webengine Attributes
 
 | Attribute               | Type   | Description                                                                               | Examples                                                              | Stability                                                        |
 | ----------------------- | ------ | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------- |

@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# SESSION
+# Session
 
-- [session](#session)
+- [Session](#session)
 
-## session Attributes
+## Session Attributes
 
 | Attribute             | Type   | Description                                          | Examples                               | Stability                                                        |
 | --------------------- | ------ | ---------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |

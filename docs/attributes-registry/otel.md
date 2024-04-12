@@ -1,12 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# OTEL
+# Otel
 
-- [otel](#otel)
-- [otel library deprecated](#otel library deprecated)
+- [Otel](#otel)
+- [Otel Library Deprecated](#otel-library-deprecated)
 
-## otel Attributes
+## Otel Attributes
 
 | Attribute                 | Type   | Description                                                                            | Examples             | Stability                                                  |
 | ------------------------- | ------ | -------------------------------------------------------------------------------------- | -------------------- | ---------------------------------------------------------- |
@@ -20,7 +20,7 @@
 | `OK`    | The operation has been validated by an Application developer or Operator to have completed successfully. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ERROR` | The operation contains an error.                                                                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## otel library deprecated Attributes
+## Otel Library Deprecated Attributes
 
 | Attribute              | Type   | Description | Examples                           | Stability                                                   |
 | ---------------------- | ------ | ----------- | ---------------------------------- | ----------------------------------------------------------- |

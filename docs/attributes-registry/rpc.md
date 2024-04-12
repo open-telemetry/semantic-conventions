@@ -1,12 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# RPC
+# Rpc
 
-- [rpc](#rpc)
-- [rpc deprecated](#rpc deprecated)
+- [Rpc](#rpc)
+- [Rpc Deprecated](#rpc-deprecated)
 
-## rpc Attributes
+## Rpc Attributes
 
 | Attribute                                 | Type     | Description                                                                                                                                                                                                                                                        | Examples                                                                        | Stability                                                        |
 | ----------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -101,7 +101,7 @@
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc`  | Connect RPC  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## rpc deprecated Attributes
+## Rpc Deprecated Attributes
 
 | Attribute                   | Type   | Description                                                   | Examples | Stability                                                   |
 | --------------------------- | ------ | ------------------------------------------------------------- | -------- | ----------------------------------------------------------- |

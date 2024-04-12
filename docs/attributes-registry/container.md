@@ -1,12 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# CONTAINER
+# Container
 
-- [container](#container)
-- [container deprecated](#container deprecated)
+- [Container](#container)
+- [Container Deprecated](#container-deprecated)
 
-## container Attributes
+## Container Attributes
 
 | Attribute                      | Type     | Description                                                                                                                                                                                                                                                             | Examples                                                                                                                                                                                                | Stability                                                        |
 | ------------------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -39,7 +39,7 @@ The ID is assinged by the container runtime and can vary in different environmen
 | `system` | When CPU is used by the system (host OS)                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## container deprecated Attributes
+## Container Deprecated Attributes
 
 | Attribute                | Type   | Description                                    | Examples                    | Stability                                                   |
 | ------------------------ | ------ | ---------------------------------------------- | --------------------------- | ----------------------------------------------------------- |

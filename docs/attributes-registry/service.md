@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# SERVICE
+# Service
 
-- [service](#service)
+- [Service](#service)
 
-## service Attributes
+## Service Attributes
 
 | Attribute             | Type   | Description                                                                                              | Examples                               | Stability                                                        |
 | --------------------- | ------ | -------------------------------------------------------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |

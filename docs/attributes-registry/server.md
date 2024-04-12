@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# SERVER
+# Server
 
-- [server](#server)
+- [Server](#server)
 
-## server Attributes
+## Server Attributes
 
 | Attribute        | Type   | Description                                                                                                       | Examples                                   | Stability                                                  |
 | ---------------- | ------ | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ---------------------------------------------------------- |

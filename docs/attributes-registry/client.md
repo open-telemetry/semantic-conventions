@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# CLIENT
+# Client
 
-- [client](#client)
+- [Client](#client)
 
-## client Attributes
+## Client Attributes
 
 | Attribute        | Type   | Description                                                                                                                 | Examples                                          | Stability                                                  |
 | ---------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------- |

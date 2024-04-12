@@ -1,22 +1,22 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# AWS
+# Aws
 
-- [aws](#aws)
-- [aws dynamodb](#aws dynamodb)
-- [aws ecs](#aws ecs)
-- [aws lambda](#aws lambda)
-- [aws log](#aws log)
-- [aws s3](#aws s3)
+- [Aws](#aws)
+- [Aws Dynamodb](#aws-dynamodb)
+- [Aws Ecs](#aws-ecs)
+- [Aws Lambda](#aws-lambda)
+- [Aws Log](#aws-log)
+- [Aws S 3](#aws-s3)
 
-## aws Attributes
+## Aws Attributes
 
 | Attribute        | Type   | Description                                                                                     | Examples                                                   | Stability                                                        |
 | ---------------- | ------ | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
 | `aws.request_id` | string | The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## aws dynamodb Attributes
+## Aws Dynamodb Attributes
 
 | Attribute                                     | Type     | Description                                                                                | Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Stability                                                        |
 | --------------------------------------------- | -------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -43,7 +43,7 @@
 | `aws.dynamodb.table_names`                    | string[] | The keys in the `RequestItems` object field.                                               | `Users`; `Cats`                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.dynamodb.total_segments`                 | int      | The value of the `TotalSegments` request parameter.                                        | `100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## aws ecs Attributes
+## Aws Ecs Attributes
 
 | Attribute               | Type   | Description                                                                                                                                                  | Examples                                                                                                                                                                          | Stability                                                        |
 | ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -62,7 +62,7 @@
 | `ec2`     | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `fargate` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## aws lambda Attributes
+## Aws Lambda Attributes
 
 | Attribute                | Type   | Description                                                                                                                                                               | Examples                                                      | Stability                                                        |
 | ------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -70,7 +70,7 @@
 
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
 
-## aws log Attributes
+## Aws Log Attributes
 
 | Attribute              | Type     | Description                                                           | Examples                                                                                                                | Stability                                                        |
 | ---------------------- | -------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -85,7 +85,7 @@
 
 **[4]:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
 
-## aws s3 Attributes
+## Aws S 3 Attributes
 
 | Attribute            | Type   | Description                                                                                                                                                                          | Examples                                                                              | Stability                                                        |
 | -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |

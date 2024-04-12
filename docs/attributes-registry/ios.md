@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# IOS
+# Ios
 
-- [ios lifecycle events](#ios lifecycle events)
+- [Ios Lifecycle Events](#ios-lifecycle-events)
 
-## ios lifecycle events Attributes
+## Ios Lifecycle Events Attributes
 
 | Attribute   | Type   | Description                                                                                                   | Examples | Stability                                                        |
 | ----------- | ------ | ------------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------------------------------------- |

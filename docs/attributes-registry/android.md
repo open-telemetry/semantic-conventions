@@ -1,18 +1,18 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# ANDROID
+# Android
 
-- [android](#android)
-- [android lifecycle events](#android lifecycle events)
+- [Android](#android)
+- [Android Lifecycle Events](#android-lifecycle-events)
 
-## android Attributes
+## Android Attributes
 
 | Attribute              | Type   | Description                                                                                                                                                                                                                               | Examples   | Stability                                                        |
 | ---------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------- |
 | `android.os.api_level` | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## android lifecycle events Attributes
+## Android Lifecycle Events Attributes
 
 | Attribute       | Type   | Description                                                                                                   | Examples  | Stability                                                        |
 | --------------- | ------ | ------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------- |

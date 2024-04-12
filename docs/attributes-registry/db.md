@@ -1,12 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# DB
+# Db
 
-- [db](#db)
-- [db deprecated](#db deprecated)
+- [Db](#db)
+- [Db Deprecated](#db-deprecated)
 
-## db Attributes
+## Db Attributes
 
 | Attribute                                  | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                                        | Examples                                                                                 | Stability                                                        |
 | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -146,7 +146,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `spanner`       | Cloud Spanner                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino`         | Trino                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## db deprecated Attributes
+## Db Deprecated Attributes
 
 | Attribute                    | Type   | Description                                                             | Examples                                                                | Stability                                                   |
 | ---------------------------- | ------ | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------- |

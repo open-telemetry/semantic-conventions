@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# DNS
+# Dns
 
-- [dns](#dns)
+- [Dns](#dns)
 
-## dns Attributes
+## Dns Attributes
 
 | Attribute           | Type   | Description                 | Examples                              | Stability                                                        |
 | ------------------- | ------ | --------------------------- | ------------------------------------- | ---------------------------------------------------------------- |

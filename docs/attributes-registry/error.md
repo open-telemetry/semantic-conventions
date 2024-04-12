@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# ERROR
+# Error
 
-- [error](#error)
+- [Error](#error)
 
-## error Attributes
+## Error Attributes
 
 | Attribute    | Type   | Description                                              | Examples | Stability                                                  |
 | ------------ | ------ | -------------------------------------------------------- | -------- | ---------------------------------------------------------- |

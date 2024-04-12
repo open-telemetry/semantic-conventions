@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# EVENT
+# Event
 
-- [event](#event)
+- [Event](#event)
 
-## event Attributes
+## Event Attributes
 
 | Attribute    | Type   | Description                               | Examples                                      | Stability                                                        |
 | ------------ | ------ | ----------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------- |

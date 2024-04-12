@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# OPENTRACING
+# Opentracing
 
-- [opentracing](#opentracing)
+- [Opentracing](#opentracing)
 
-## opentracing Attributes
+## Opentracing Attributes
 
 | Attribute              | Type   | Description                     | Examples   | Stability                                                        |
 | ---------------------- | ------ | ------------------------------- | ---------- | ---------------------------------------------------------------- |

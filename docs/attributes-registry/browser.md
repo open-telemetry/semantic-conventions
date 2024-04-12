@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# BROWSER
+# Browser
 
-- [browser](#browser)
+- [Browser](#browser)
 
-## browser Attributes
+## Browser Attributes
 
 | Attribute          | Type     | Description                                                             | Examples                                      | Stability                                                        |
 | ------------------ | -------- | ----------------------------------------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------- |

@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# GRAPHQL
+# Graphql
 
-- [graphql](#graphql)
+- [Graphql](#graphql)
 
-## graphql Attributes
+## Graphql Attributes
 
 | Attribute                | Type   | Description                               | Examples                                          | Stability                                                        |
 | ------------------------ | ------ | ----------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------- |

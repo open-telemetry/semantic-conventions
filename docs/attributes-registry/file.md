@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# FILE
+# File
 
-- [file](#file)
+- [File](#file)
 
-## file Attributes
+## File Attributes
 
 | Attribute        | Type   | Description                                                                                           | Examples                                                      | Stability                                                        |
 | ---------------- | ------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------- |

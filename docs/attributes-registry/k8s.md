@@ -1,12 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# K8S
+# K 8 S
 
-- [k8s](#k8s)
-- [k8s deprecated](#k8s deprecated)
+- [K 8 S](#k8s)
+- [K 8 S Deprecated](#k8s-deprecated)
 
-## k8s Attributes
+## K 8 S Attributes
 
 | Attribute                     | Type   | Description                                                                                                                                                      | Examples                                                                                                                                  | Stability                                                        |
 | ----------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -57,7 +57,7 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
-## k8s deprecated Attributes
+## K 8 S Deprecated Attributes
 
 | Attribute              | Type   | Description                                  | Examples                   | Stability                                                   |
 | ---------------------- | ------ | -------------------------------------------- | -------------------------- | ----------------------------------------------------------- |

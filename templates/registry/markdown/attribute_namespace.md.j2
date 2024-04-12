@@ -11,14 +11,14 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# {{ ctx.id | upper }}
+# {{ ctx.id | TitleCase }}
 
 {% for group in ctx.groups | sort(attribute="id") %}
 {%- set group_name = group.id | split_id | list | reject("eq", "registry") | join(" ") -%}
-- [{{ group_name }}](#{{group_name | lower}})
+- [{{ group_name | TitleCase }}](#{{group_name | replace(" ", "-") | lower}})
 {% endfor %}
 {% for group in ctx.groups | sort(attribute="id") %}
-## {{ group.id | split_id | list | reject("eq", "registry") | join(" ") }} Attributes
+## {{ group.id | split_id | list | reject("eq", "registry") | join(" ") | TitleCase }} Attributes
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|

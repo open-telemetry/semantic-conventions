@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# OCI
+# Oci
 
-- [oci manifest](#oci manifest)
+- [Oci Manifest](#oci-manifest)
 
-## oci manifest Attributes
+## Oci Manifest Attributes
 
 | Attribute             | Type   | Description                                                                                                                      | Examples                                                                  | Stability                                                        |
 | --------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------- |

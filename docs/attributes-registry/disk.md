@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# DISK
+# Disk
 
-- [disk](#disk)
+- [Disk](#disk)
 
-## disk Attributes
+## Disk Attributes
 
 | Attribute           | Type   | Description                      | Examples | Stability                                                        |
 | ------------------- | ------ | -------------------------------- | -------- | ---------------------------------------------------------------- |

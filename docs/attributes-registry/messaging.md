@@ -1,12 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# MESSAGING
+# Messaging
 
-- [messaging](#messaging)
-- [messaging deprecated](#messaging deprecated)
+- [Messaging](#messaging)
+- [Messaging Deprecated](#messaging-deprecated)
 
-## messaging Attributes
+## Messaging Attributes
 
 | Attribute                                            | Type     | Description                                                                                                                                                                                                                                | Examples                           | Stability                                                        |
 | ---------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------- |
@@ -118,7 +118,7 @@ size should be used.
 | `rabbitmq`   | RabbitMQ                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq`   | Apache RocketMQ                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## messaging deprecated Attributes
+## Messaging Deprecated Attributes
 
 | Attribute                               | Type | Description                                                         | Examples | Stability                                                   |
 | --------------------------------------- | ---- | ------------------------------------------------------------------- | -------- | ----------------------------------------------------------- |

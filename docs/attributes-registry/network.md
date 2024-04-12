@@ -1,12 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# NETWORK
+# Network
 
-- [network](#network)
-- [network deprecated](#network deprecated)
+- [Network](#network)
+- [Network Deprecated](#network-deprecated)
 
-## network Attributes
+## Network Attributes
 
 | Attribute                    | Type   | Description                                                                                                                                                                       | Examples                    | Stability                                                        |
 | ---------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------- |
@@ -96,7 +96,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `ipv4` | IPv4        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## network deprecated Attributes
+## Network Deprecated Attributes
 
 | Attribute              | Type   | Description                                                                                | Examples               | Stability                                                   |
 | ---------------------- | ------ | ------------------------------------------------------------------------------------------ | ---------------------- | ----------------------------------------------------------- |

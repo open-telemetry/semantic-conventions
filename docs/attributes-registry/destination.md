@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# DESTINATION
+# Destination
 
-- [destination](#destination)
+- [Destination](#destination)
 
-## destination Attributes
+## Destination Attributes
 
 | Attribute             | Type   | Description                                                                                                                      | Examples                                               | Stability                                                        |
 | --------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------- |

@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# TELEMETRY
+# Telemetry
 
-- [telemetry](#telemetry)
+- [Telemetry](#telemetry)
 
-## telemetry Attributes
+## Telemetry Attributes
 
 | Attribute                  | Type   | Description                                                                    | Examples               | Stability                                                        |
 | -------------------------- | ------ | ------------------------------------------------------------------------------ | ---------------------- | ---------------------------------------------------------------- |

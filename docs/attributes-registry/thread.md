@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# THREAD
+# Thread
 
-- [thread](#thread)
+- [Thread](#thread)
 
-## thread Attributes
+## Thread Attributes
 
 | Attribute     | Type   | Description                                               | Examples | Stability                                                        |
 | ------------- | ------ | --------------------------------------------------------- | -------- | ---------------------------------------------------------------- |

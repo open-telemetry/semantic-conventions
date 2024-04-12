@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# HEROKU
+# Heroku
 
-- [heroku](#heroku)
+- [Heroku](#heroku)
 
-## heroku Attributes
+## Heroku Attributes
 
 | Attribute                           | Type   | Description                           | Examples                                | Stability                                                        |
 | ----------------------------------- | ------ | ------------------------------------- | --------------------------------------- | ---------------------------------------------------------------- |

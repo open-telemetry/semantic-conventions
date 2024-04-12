@@ -1,12 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# HTTP
+# Http
 
-- [http](#http)
-- [http deprecated](#http deprecated)
+- [Http](#http)
+- [Http Deprecated](#http-deprecated)
 
-## http Attributes
+## Http Attributes
 
 | Attribute                      | Type     | Description                                                                                                                                                                                                                                                                                                                  | Examples                                                                                                              | Stability                                                        |
 | ------------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -73,7 +73,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `TRACE`   | TRACE method.                                                       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER`  | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## http deprecated Attributes
+## Http Deprecated Attributes
 
 | Attribute                      | Type   | Description                                                        | Examples                                                                                                                                                                          | Stability                                                   |
 | ------------------------------ | ------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |

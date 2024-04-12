@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
-# SYSTEM
+# System
 
-- [system deprecated](#system deprecated)
+- [System Deprecated](#system-deprecated)
 
-## system deprecated Attributes
+## System Deprecated Attributes
 
 | Attribute                 | Type   | Description                                          | Examples  | Stability                                                   |
 | ------------------------- | ------ | ---------------------------------------------------- | --------- | ----------------------------------------------------------- |
