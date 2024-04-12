@@ -1,7 +1,7 @@
 templates:
-  - pattern: readme.md
+  - pattern: readme.md.j2
     filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: single
-  - pattern: attribute_namespace.md
+  - pattern: attribute_namespace.md.j2
     filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: each
