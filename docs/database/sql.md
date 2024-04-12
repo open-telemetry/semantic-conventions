@@ -24,7 +24,7 @@ described on this page.
 **[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 
 **[3]:** Namespace contains different identifiers depending on the database system:
-* MySQL - database or schema name. For example, `products.dbo` * PostgreSQL - database and schema name. For example, `products.public` * MS SQL Server - instance name, database and schema name. * Oracle - instance name and schema name.
+* MySQL - database or schema name. For example, `products.dbo` * PostgreSQL - database and schema name. For example, `products.public` * MS SQL Server - instance name, database and schema name. For example, `test.products.public` * Oracle - instance name and schema name. For example, `test.products`
 Current database name can usually be obtained using database driver API such as [JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--) or [.NET `SqlConnection.Database`](https://learn.microsoft.com/dotnet/api/system.data.sqlclient.sqlconnection.database).
 If instrumentation cannot reliably determine the database name (for example, if database can be changed in runtime without instrumentation being aware of it), it SHOULD NOT set `db.collection.namespace`.
 Instrumentations that parse SQL statements MAY use database name provided in the connection string and track the currently selected database name as long as current database name is associated with current connection and can't be changed without instrumentation being aware of it.

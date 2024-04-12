@@ -279,8 +279,8 @@ groups:
 
           * MySQL - database or schema name. For example, `products.dbo`
           * PostgreSQL - database and schema name. For example, `products.public`
-          * MS SQL Server - instance name, database and schema name.
-          * Oracle - instance name and schema name.
+          * MS SQL Server - instance name, database and schema name. For example, `test.products.public`
+          * Oracle - instance name and schema name. For example, `test.products`
 
           Current database name can usually be obtained using database driver API such as
           [JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--)
