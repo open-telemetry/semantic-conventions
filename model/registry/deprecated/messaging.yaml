@@ -14,6 +14,6 @@ groups:
         type: string
         stability: experimental
         brief: >
-          Deprecated, use `messaging.operation.name` instead.
+          Deprecated, use `messaging.operation.type` instead.
         examples: ["publish", "create", "process"]
-        deprecated: "Replaced by `messaging.operation.name`."
+        deprecated: "Replaced by `messaging.operation.type`."

@@ -54,8 +54,11 @@ groups:
         messaging systems.
     extends: messaging.attributes.common
     attributes:
-      - ref: messaging.operation.name
+      - ref: messaging.operation.type
         requirement_level: required
+      - ref: messaging.operation.name
+        requirement_level:
+          recommended: If the operation is not sufficiently described by `messaging.operation.type`.
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.

@@ -24,7 +24,7 @@ versions:
         # https://github.com/open-telemetry/semantic-conventions/pull/913
         - rename_attributes:
             attribute_map:
-              messaging.operation: messaging.operation.name
+              messaging.operation: messaging.operation.type
         # https://github.com/open-telemetry/semantic-conventions/pull/866
         - rename_attributes:
             attribute_map:
