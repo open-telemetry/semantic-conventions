@@ -1,11 +1,21 @@
-{%- set ns = namespace(notes=[]) -%}
+{%- set ns = namespace(notes=[],index=0) -%}
 {%- macro add(note) %}
 {%- if note %}
 {%- set ns.notes = [ns.notes, [note]] | flatten -%}
-[{{ ns.notes | length }}]
+[{{ ns.notes | length + ns.index }}]
+{%- endif %}
+{%- endmacro %}
+{%- macro add_with_limit(note) %}
+{%- if note | length > 50 %}
+{%- set ns.notes = [ns.notes, [note]] | flatten -%}
+[{{ ns.notes | length + ns.index }}]
+{%- elif note -%}
+{{ note }}
 {%- endif %}
 {%- endmacro %}
 {%- macro render() %}
-{% for note in ns.notes %}[{{loop.index}}]: {{note}}
+{% for note in ns.notes %}**[{{ns.index+loop.index}}]:** {{note}}
 {% endfor %}
+{%- set ns.index = ns.notes | length + ns.index -%}
+{%- set ns.notes = [] -%}
 {%- endmacro %}

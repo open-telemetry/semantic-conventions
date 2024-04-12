@@ -13,11 +13,11 @@
 
 # {{ ctx.id | upper }}
 
-{% for group in ctx.groups %}
+{% for group in ctx.groups | sort(attribute="id") %}
 {%- set group_name = group.id | split_id | list | reject("eq", "registry") | join(" ") -%}
 - [{{ group_name }}](#{{group_name | lower}})
-{% endfor %}- [Notes](#notes)
-{% for group in ctx.groups %}
+{% endfor %}
+{% for group in ctx.groups | sort(attribute="id") %}
 ## {{ group.id | split_id | list | reject("eq", "registry") | join(" ") }} Attributes
 
 | Attribute  | Type | Description  | Examples  | Stability |
@@ -26,7 +26,7 @@
 | `{{ attribute.name }}` | {%- include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }} {{ notes.add(attribute.note or attribute.deprecated) | trim }} | {%- include "examples.j2" | trim %} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {%- endfor %}
 |---|---|---|---|---|
-
+{{ notes.render() }}
 {% for enum in group.attributes %}
 {%- if enum.type is mapping -%}{#- We should use a filter for enums vs. this if. -#}
 `{{enum.name}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -38,9 +38,3 @@
 {% endif %}
 {%- endfor -%}
 {%- endfor -%}
-
-{#- TODO - Previous attribute registry just had broken notes links -#}
-{#- due to repeated numbers.  This isn't the best experience here, but -#}
-{#- we can probably update our notes abstraction to handle things. -#}
-## Notes
-{{ notes.render() }}
