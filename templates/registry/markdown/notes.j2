@@ -1,10 +1,5 @@
 {%- set ns = namespace(notes=[],index=0) -%}
-{%- macro add(note) %}
-{%- if note %}
-{%- set ns.notes = [ns.notes, [note]] | flatten -%}
-[{{ ns.notes | length + ns.index }}]
-{%- endif %}
-{%- endmacro %}
+{%- macro add(note) %}{% if note %}{% set ns.notes = [ns.notes, [note]] | flatten %} [{{ ns.notes | length + ns.index }}]{% endif %}{% endmacro %}
 {%- macro add_with_limit(note) %}
 {%- if note | length > 50 %}
 {%- set ns.notes = [ns.notes, [note]] | flatten -%}

@@ -12,17 +12,17 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.  | `DE` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.carrier.mcc` | string | The mobile carrier country code.  | `310` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.carrier.mnc` | string | The mobile carrier network code.  | `001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.carrier.name` | string | The name of the mobile carrier.  | `sprint` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.  | `gprs` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.connection.type` | string | The internet connection type.  | `wifi` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.io.direction` | string | The network IO operation direction.  | `transmit` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name.  | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `network.local.port` | int | Local port number of the network connection.  | `65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name.  | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `network.peer.port` | int | Peer port number of the network connection.  | `65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.carrier.mcc` | string | The mobile carrier country code. | `310` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.carrier.mnc` | string | The mobile carrier network code. | `001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.carrier.name` | string | The name of the mobile carrier. | `sprint` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `gprs` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.connection.type` | string | The internet connection type. | `wifi` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.io.direction` | string | The network IO operation direction. | `transmit` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.local.port` | int | Local port number of the network connection. | `65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.peer.port` | int | Peer port number of the network connection. | `65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.protocol.version` | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

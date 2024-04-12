@@ -11,8 +11,8 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `feature_flag.key` | string | The unique identifier of the feature flag.  | `logo-color` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `feature_flag.provider_name` | string | The name of the service provider that performs the flag evaluation.  | `Flag Manager` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `feature_flag.key` | string | The unique identifier of the feature flag. | `logo-color` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `feature_flag.provider_name` | string | The name of the service provider that performs the flag evaluation. | `Flag Manager` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `feature_flag.variant` | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 

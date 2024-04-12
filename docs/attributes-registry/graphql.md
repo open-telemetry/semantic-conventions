@@ -12,8 +12,8 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `graphql.document` | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `graphql.operation.name` | string | The name of the operation being executed.  | `findBookById` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `graphql.operation.type` | string | The type of the operation being executed.  | `query` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `graphql.operation.name` | string | The name of the operation being executed. | `findBookById` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `graphql.operation.type` | string | The type of the operation being executed. | `query` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
 **[1]:** The value may be sanitized to exclude sensitive information.

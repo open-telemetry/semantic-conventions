@@ -23,7 +23,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 {%- for attribute in group.attributes | sort(attribute="name") %}
-| `{{ attribute.name }}` | {% include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }} {{ notes.add(attribute.note or attribute.deprecated) | trim }} | {% include "examples.j2" | trim %} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
+| `{{ attribute.name }}` | {% include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }}{{ notes.add(attribute.note or attribute.deprecated) }} | {% include "examples.j2" | trim %} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {%- endfor %}
 |---|---|---|---|---|
 {{ notes.render() }}

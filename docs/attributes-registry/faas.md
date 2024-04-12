@@ -11,21 +11,21 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `faas.coldstart` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start).  |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `faas.cron` | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).  | `0/5 * * * ? *` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `faas.document.collection` | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name.  | `myBucketName`; `myDbName` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `faas.document.name` | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name.  | `myFile.txt`; `myTableName` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `faas.document.operation` | string | Describes the type of the operation that was performed on the data.  | `insert` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `faas.document.time` | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).  | `2020-01-23T13:47:06Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.coldstart` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.cron` | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.document.collection` | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.document.name` | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.document.operation` | string | Describes the type of the operation that was performed on the data. | `insert` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.document.time` | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `faas.instance` | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `faas.invocation_id` | string | The invocation ID of the current function invocation.  | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.invocation_id` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `faas.invoked_name` | string | The name of the invoked function. [2] | `my-function` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `faas.invoked_provider` | string | The cloud provider of the invoked function. [3] | `alibaba_cloud` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `faas.invoked_region` | string | The cloud region of the invoked function. [4] | `eu-central-1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `faas.max_memory` | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `faas.name` | string | The name of the single function that this runtime instance executes. [6] | `my-function`; `myazurefunctionapp/some-function-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `faas.time` | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).  | `2020-01-23T13:47:06Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `faas.trigger` | string | Type of the trigger which caused this function invocation.  | `datasource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.time` | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `faas.version` | string | The immutable version of the function being executed. [7] | `26`; `pinkfroid-00002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
