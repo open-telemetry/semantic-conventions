@@ -64,23 +64,23 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Value  | Description | Stability |
 |---|---|---|
-| `active` | active state. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `idle` | idle state. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `active` | active state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `CONNECT` | CONNECT method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `DELETE` | DELETE method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `GET` | GET method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `HEAD` | HEAD method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `OPTIONS` | OPTIONS method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `PATCH` | PATCH method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `POST` | POST method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `PUT` | PUT method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `TRACE` | TRACE method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `CONNECT` | CONNECT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `DELETE` | DELETE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `GET` | GET method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `HEAD` | HEAD method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `OPTIONS` | OPTIONS method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 ## http deprecated Attributes
@@ -114,10 +114,10 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Value  | Description | Stability |
 |---|---|---|
-| `1.0` | HTTP/1.0 |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `1.1` | HTTP/1.1 |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `2.0` | HTTP/2 |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `3.0` | HTTP/3 |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `SPDY` | SPDY protocol. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QUIC` | QUIC protocol. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `1.0` | HTTP/1.0 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `1.1` | HTTP/1.1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `2.0` | HTTP/2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `3.0` | HTTP/3 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `SPDY` | SPDY protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `QUIC` | QUIC protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

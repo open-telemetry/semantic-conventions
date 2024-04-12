@@ -33,16 +33,16 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cpp` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `dotnet` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `erlang` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `go` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `java` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `nodejs` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `php` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `python` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ruby` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `rust` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `swift` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `webjs` | none |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `cpp` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `dotnet` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `erlang` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `go` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `java` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `nodejs` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `php` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `python` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ruby` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `rust` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `swift` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `webjs` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 

@@ -20,8 +20,8 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-| `running` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sleeping` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stopped` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `defunct` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `running` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sleeping` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stopped` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `defunct` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

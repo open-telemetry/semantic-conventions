@@ -49,6 +49,6 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-| `ssl` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tls` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ssl` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tls` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

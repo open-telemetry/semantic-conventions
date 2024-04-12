@@ -19,6 +19,6 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` | none |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

@@ -23,15 +23,15 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-| `windows` | Microsoft Windows |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `linux` | Linux |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `darwin` | Apple Darwin |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `freebsd` | FreeBSD |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `netbsd` | NetBSD |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openbsd` | OpenBSD |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dragonflybsd` | DragonFly BSD |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hpux` | HP-UX (Hewlett Packard Unix) |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aix` | AIX (Advanced Interactive eXecutive) |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `solaris` | SunOS, Oracle Solaris |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `z_os` | IBM z/OS |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `windows` | Microsoft Windows | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `linux` | Linux | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `darwin` | Apple Darwin | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `freebsd` | FreeBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `netbsd` | NetBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `openbsd` | OpenBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dragonflybsd` | DragonFly BSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hpux` | HP-UX (Hewlett Packard Unix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aix` | AIX (Advanced Interactive eXecutive) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `solaris` | SunOS, Oracle Solaris | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `z_os` | IBM z/OS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

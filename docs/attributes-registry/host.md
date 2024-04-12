@@ -39,12 +39,12 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-| `amd64` | AMD64 |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `arm32` | ARM32 |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `arm64` | ARM64 |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ia64` | Itanium |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ppc32` | 32-bit PowerPC |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ppc64` | 64-bit PowerPC |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `s390x` | IBM z/Architecture |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `x86` | 32-bit x86 |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `amd64` | AMD64 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `arm32` | ARM32 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `arm64` | ARM64 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ia64` | Itanium | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ppc32` | 32-bit PowerPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ppc64` | 64-bit PowerPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `s390x` | IBM z/Architecture | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `x86` | 32-bit x86 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
