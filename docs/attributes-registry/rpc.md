@@ -26,10 +26,8 @@
 | `rpc.message.id` | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [5] |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rpc.message.type` | string | Whether this is a received or sent message.  | `SENT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rpc.message.uncompressed_size` | int | Uncompressed size of the message in bytes.  |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | 
-exampleMethod | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | 
-myservice.EchoService | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rpc.system` | string | A string identifying the remoting system. See below for a list of well-known identifiers.  | `grpc` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 

@@ -12,14 +12,10 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.  | 
-DE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.carrier.mcc` | string | The mobile carrier country code.  | 
-310 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.carrier.mnc` | string | The mobile carrier network code.  | 
-001 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.carrier.name` | string | The name of the mobile carrier.  | 
-sprint | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.carrier.icc` | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.  | `DE` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.carrier.mcc` | string | The mobile carrier country code.  | `310` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.carrier.mnc` | string | The mobile carrier network code.  | `001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.carrier.name` | string | The name of the mobile carrier.  | `sprint` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.  | `gprs` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `network.connection.type` | string | The internet connection type.  | `wifi` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `network.io.direction` | string | The network IO operation direction.  | `transmit` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -113,8 +109,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `net.peer.name` | string | Deprecated, use `server.address` on client spans and `client.address` on server spans. [7] | `example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.peer.port` | int | Deprecated, use `server.port` on client spans and `client.port` on server spans. [8] | `8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.protocol.name` | string | Deprecated, use `network.protocol.name`. [9] | `amqp`; `http`; `mqtt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.protocol.version` | string | Deprecated, use `network.protocol.version`. [10] | 
-3.1.1 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.protocol.version` | string | Deprecated, use `network.protocol.version`. [10] | `3.1.1` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.sock.family` | string | Deprecated, use `network.transport` and `network.type`. [11] | `inet` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.sock.host.addr` | string | Deprecated, use `network.local.address`. [12] | `/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.sock.host.port` | int | Deprecated, use `network.local.port`. [13] | `8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |

@@ -3,8 +3,7 @@
 {%- if attribute.examples %}
 {%- if attribute.examples is sequence %}
 {%- for example in attribute.examples %}{%if loop.first == false %}; {% endif %}`{{ example }}`{%- endfor %}
-{%- else %}
-{{ attribute.examples }}
+{%- else %}`{{ attribute.examples | trim }}`
 {%- endif %}
 {%- endif %}
 {%- endif %}

@@ -13,20 +13,15 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool.  | `active` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.  | 
-3495 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.  | `3495` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.request.header` | template[string[]] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `http.request.method` | string | HTTP request method. [2] | `CONNECT` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `http.request.method_original` | string | Original HTTP method sent by the client in the request line.  | `GeT`; `ACL`; `foo` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `http.request.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | 
-3 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `http.request.size` | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.  | 
-1437 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.  | 
-3495 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.request.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `http.request.size` | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.  | `1437` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.response.body.size` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.  | `3495` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.response.header` | template[string[]] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `http.response.size` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.  | 
-1437 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.response.size` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.  | `1437` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).  | `200` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `http.route` | string | The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 |---|---|---|---|---|
@@ -89,10 +84,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 |---|---|---|---|---|
 | `http.flavor` | string | Deprecated, use `network.protocol.name` instead. [6] | `1.0` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `http.method` | string | Deprecated, use `http.request.method` instead. [7] | `GET`; `POST`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `http.request_content_length` | int | Deprecated, use `http.request.header.content-length` instead. [8] | 
-3495 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `http.response_content_length` | int | Deprecated, use `http.response.header.content-length` instead. [9] | 
-3495 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `http.request_content_length` | int | Deprecated, use `http.request.header.content-length` instead. [8] | `3495` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `http.response_content_length` | int | Deprecated, use `http.response.header.content-length` instead. [9] | `3495` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `http.scheme` | string | Deprecated, use `url.scheme` instead. [10] | `http`; `https` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `http.status_code` | int | Deprecated, use `http.response.status_code` instead. [11] | `200` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `http.target` | string | Deprecated, use `url.path` and `url.query` instead. [12] | `/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
