@@ -27,8 +27,8 @@
 | `k8s.namespace.name` | string | The name of the namespace that the pod is running in. | `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `k8s.node.name` | string | The name of the Node. | `node-1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `k8s.node.uid` | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.pod.annotation` | template[string] | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.pod.label` | template[string] | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.pod.annotation.<key>` | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.pod.label.<key>` | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `k8s.pod.name` | string | The name of the Pod. | `opentelemetry-pod-autoconf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `k8s.pod.uid` | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `k8s.replicaset.name` | string | The name of the ReplicaSet. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -66,7 +66,7 @@ conflict.
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `k8s.pod.labels` | template[string] | Deprecated, use `k8s.pod.label` instead. [2] | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `k8s.pod.labels.<key>` | string | Deprecated, use `k8s.pod.label` instead. [2] | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 |---|---|---|---|---|
 
 **[2]:** Replaced by `k8s.pod.label`.

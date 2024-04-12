@@ -1,0 +1,9 @@
+{%- if attribute.type == "template[boolean]" %}`{{ attribute.name }}.<key>`
+{%- elif attribute.type == "template[int]" %}`{{ attribute.name }}.<key>`
+{%- elif attribute.type == "template[double]" %}`{{ attribute.name }}.<key>`
+{%- elif attribute.type == "template[string]" %}`{{ attribute.name }}.<key>`
+{%- elif attribute.type == "template[boolean[]]" %}`{{ attribute.name }}.<key>`
+{%- elif attribute.type == "template[int[]]" %}`{{ attribute.name }}.<key>`
+{%- elif attribute.type == "template[double[]]" %}`{{ attribute.name }}.<key>`
+{%- elif attribute.type == "template[string[]]" %}`{{ attribute.name }}.<key>`
+{%- else %}`{{ attribute.name }}`{%- endif %}
