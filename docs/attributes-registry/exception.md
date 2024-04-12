@@ -1,4 +1,3 @@
-
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -6,16 +5,14 @@
 
 - [exception](#exception)
 
-
 ## exception Attributes
 
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `exception.escaped` | boolean | SHOULD be set to true if the exception event is recorded at a point where it is known that the exception is escaping the scope of the span. [1] |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `exception.message` | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `exception.stacktrace` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `exception.type` | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
+| Attribute              | Type    | Description                                                                                                                                                                         | Examples                                                                                                                                                                                                                                                     | Stability                                                  |
+| ---------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| `exception.escaped`    | boolean | SHOULD be set to true if the exception event is recorded at a point where it is known that the exception is escaping the scope of the span. [1]                                     |                                                                                                                                                                                                                                                              | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `exception.message`    | string  | The exception message.                                                                                                                                                              | `Division by zero`; `Can't convert 'int' object to str implicitly`                                                                                                                                                                                           | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `exception.stacktrace` | string  | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG.                        | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `exception.type`       | string  | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError`                                                                                                                                                                                                                       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** An exception is considered to have escaped (or left) the scope of a span,
 if that span is ended while the exception is still logically "in flight".
@@ -33,4 +30,3 @@ It follows that an exception may still escape the scope of the span
 even if the `exception.escaped` attribute was not set or set to false,
 since the event might have been recorded at a time where it was not
 clear whether the exception will escape.
-
