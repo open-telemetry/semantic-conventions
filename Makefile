@@ -14,6 +14,7 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
 SEMCONVGEN_VERSION=0.24.0
+WEAVER_VERSION=latest
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -101,7 +102,7 @@ table-generation:
 .PHONY: table-check2
 table-check2:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/weaver registry update-markdown \
+		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
 		--attribute-registry-base-url="https://opentelemetry.io/docs/specs/semconv/attributes-registry" \
 		--dry-run \
@@ -111,7 +112,7 @@ table-check2:
 .PHONY: attribute-registry-generation
 attribute-registry-generation:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
-		otel/weaver registry generate \
+		otel/weaver:${WEAVER_VERSION} registry generate \
 		  --registry=/source \
 		  --templates=/weaver/templates \
 		  markdown \

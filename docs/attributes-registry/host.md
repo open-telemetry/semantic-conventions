@@ -26,7 +26,7 @@
 | `host.mac` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `AC-DE-48-23-45-67`; `AC-DE-48-23-45-67-01-9F` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `host.name` | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `host.type` | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 

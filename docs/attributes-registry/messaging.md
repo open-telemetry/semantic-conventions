@@ -49,7 +49,7 @@
 | `messaging.servicebus.message.delivery_count` | int | Number of deliveries that have been attempted for this message. | `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.servicebus.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.system` | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -127,7 +127,7 @@ size should be used.
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `messaging.kafka.destination.partition` | int | "Deprecated, use `messaging.destination.partition.id` instead." [9] | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-|---|---|---|---|---|
+
 
 **[9]:** Replaced by `messaging.destination.partition.id`.
 

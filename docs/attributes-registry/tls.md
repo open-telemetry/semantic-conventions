@@ -40,7 +40,7 @@
 | `tls.server.not_after` | string | Date/Time indicating when server certificate is no longer considered valid. | `2021-01-01T00:00:00.000Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tls.server.not_before` | string | Date/Time indicating when server certificate is first considered valid. | `1970-01-01T00:00:00.000Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tls.server.subject` | string | Distinguished name of subject of the x.509 certificate presented by the server. | `CN=myserver, OU=Documentation Team, DC=example, DC=com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
 

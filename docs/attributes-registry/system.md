@@ -12,7 +12,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `system.processes.status` | string | Deprecated, use `system.process.status` instead. [1] | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-|---|---|---|---|---|
+
 
 **[1]:** Replaced by `system.process.status`.
 

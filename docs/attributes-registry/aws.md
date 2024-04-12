@@ -17,7 +17,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `aws.request_id` | string | The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 
 
@@ -47,7 +47,7 @@
 | `aws.dynamodb.table_count` | int | The number of items in the `TableNames` response parameter. | `20` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.dynamodb.table_names` | string[] | The keys in the `RequestItems` object field. | `Users`; `Cats` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.dynamodb.total_segments` | int | The value of the `TotalSegments` request parameter. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 
 
@@ -62,7 +62,7 @@
 | `aws.ecs.task.family` | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.ecs.task.id` | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`. | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.ecs.task.revision` | string | The revision for the task definition used to create the ECS task. | `8`; `26` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 
 `aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -78,7 +78,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `aws.lambda.invoked_arn` | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
 
@@ -91,7 +91,7 @@
 | `aws.log.group.names` | string[] | The name(s) of the AWS log group(s) an application is writing to. [3] | `/aws/lambda/my-function`; `opentelemetry-service` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.log.stream.arns` | string[] | The ARN(s) of the AWS log stream(s). [4] | `arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.log.stream.names` | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `logs/main/10838bed-421f-43ef-870a-f43feacbbb5b` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[2]:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 
@@ -111,7 +111,7 @@
 | `aws.s3.key` | string | The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [8] | `someFile.yml` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.s3.part_number` | int | The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000. [9] | `3456` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.s3.upload_id` | string | Upload ID that identifies the multipart upload. [10] | `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[5]:** The `bucket` attribute is applicable to all S3 operations that reference a bucket, i.e. that require the bucket name as a mandatory parameter.
 This applies to almost all S3 operations except `list-buckets`.

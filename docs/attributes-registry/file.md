@@ -16,7 +16,7 @@
 | `file.name` | string | Name of the file including the extension, without the directory. | `example.png` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `file.path` | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `file.size` | int | File size in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
 

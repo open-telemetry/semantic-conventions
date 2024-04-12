@@ -24,7 +24,7 @@
 | `container.label.<key>` | string | Container labels, `<key>` being the label name, the value being the label value. | `container.label.app=nginx` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `container.name` | string | Container name used by container runtime. | `opentelemetry-autoconf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `container.runtime` | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 
@@ -49,7 +49,7 @@ The ID is assinged by the container runtime and can vary in different environmen
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `container.labels.<key>` | string | Deprecated, use `container.label` instead. [4] | `container.label.app=nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-|---|---|---|---|---|
+
 
 **[4]:** Replaced by `container.label`.
 

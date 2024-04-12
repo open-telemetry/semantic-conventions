@@ -27,7 +27,7 @@
 | `network.protocol.version` | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-|---|---|---|---|---|
+
 
 **[1]:** The value SHOULD be normalized to lowercase.
 **[2]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
@@ -117,7 +117,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `net.sock.peer.name` | string | Deprecated, no replacement at this time. [15] | `/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.sock.peer.port` | int | Deprecated, use `network.peer.port`. [16] | `65531` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.transport` | string | Deprecated, use `network.transport`. [17] | `ip_tcp` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-|---|---|---|---|---|
+
 
 **[5]:** Replaced by `server.address`.
 **[6]:** Replaced by `server.port`.

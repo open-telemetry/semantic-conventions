@@ -35,7 +35,7 @@
 | `process.user.id` | int | The effective user ID (EUID) of the process. | `1001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.user.name` | string | The username of the effective user of the process. | `root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.vpid` | int | Virtual process identifier. [1] | `12` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 

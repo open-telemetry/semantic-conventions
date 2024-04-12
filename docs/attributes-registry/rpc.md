@@ -29,7 +29,7 @@
 | `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rpc.system` | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
@@ -114,7 +114,7 @@
 | `message.id` | int | Deprecated, use `rpc.message.id` instead. [9] |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `message.type` | string | Deprecated, use `rpc.message.type` instead. [10] | `SENT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `message.uncompressed_size` | int | Deprecated, use `rpc.message.uncompressed_size` instead. [11] |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-|---|---|---|---|---|
+
 
 **[8]:** Replaced by `rpc.message.compressed_size`.
 **[9]:** Replaced by `rpc.message.id`.

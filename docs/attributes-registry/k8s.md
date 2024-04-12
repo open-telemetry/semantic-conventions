@@ -35,7 +35,7 @@
 | `k8s.replicaset.uid` | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `k8s.statefulset.name` | string | The name of the StatefulSet. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `k8s.statefulset.uid` | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
@@ -67,7 +67,7 @@ conflict.
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `k8s.pod.labels.<key>` | string | Deprecated, use `k8s.pod.label` instead. [2] | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-|---|---|---|---|---|
+
 
 **[2]:** Replaced by `k8s.pod.label`.
 

@@ -16,7 +16,7 @@
 | `telemetry.sdk.language` | string | The language of the telemetry SDK. | `cpp` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `telemetry.sdk.name` | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `telemetry.sdk.version` | string | The version string of the telemetry SDK. | `1.2.3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-|---|---|---|---|---|
+
 
 **[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.

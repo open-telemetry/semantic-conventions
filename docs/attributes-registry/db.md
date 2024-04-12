@@ -36,7 +36,7 @@
 | `db.query.text` | string | The database query being executed. | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.redis.database_index` | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute. | `0`; `1`; `15` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.system` | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
@@ -165,7 +165,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `db.sql.table` | string | Deprecated, use `db.collection.name` instead. [13] | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `db.statement` | string | The database statement being executed. [14] | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `db.user` | string | Deprecated, no replacement at this time. [15] | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-|---|---|---|---|---|
+
 
 **[6]:** Replaced by `db.collection.name`.
 **[7]:** "Replaced by `server.address` and `server.port`."

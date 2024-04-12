@@ -27,7 +27,7 @@
 | `faas.time` | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `faas.trigger` | string | Type of the trigger which caused this function invocation. | `datasource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `faas.version` | string | The immutable version of the function being executed. [7] | `26`; `pinkfroid-00002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-|---|---|---|---|---|
+
 
 **[1]:** * **AWS Lambda:** Use the (full) log stream name.
 
