@@ -1,5 +1,4 @@
-{%- if attribute.type is mapping %}
-{%- for member in attribute.type.members %}{%if loop.first == false %}; {% endif %}`{{ member.value }}`{%- endfor %}
+{%- if attribute.type is mapping %}`{{ attribute.type.members | first | attr("value") | trim }}`
 {%- else %}
 {%- if attribute.examples %}
 {%- if attribute.examples is sequence %}

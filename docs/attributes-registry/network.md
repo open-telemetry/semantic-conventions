@@ -20,17 +20,17 @@ DE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 001 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `network.carrier.name` | string | The name of the mobile carrier.  | 
 sprint | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.  | `gprs`; `edge`; `umts`; `cdma`; `evdo_0`; `evdo_a`; `cdma2000_1xrtt`; `hsdpa`; `hsupa`; `hspa`; `iden`; `evdo_b`; `lte`; `ehrpd`; `hspap`; `gsm`; `td_scdma`; `iwlan`; `nr`; `nrnsa`; `lte_ca` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.connection.type` | string | The internet connection type.  | `wifi`; `wired`; `cell`; `unavailable`; `unknown` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.io.direction` | string | The network IO operation direction.  | `transmit`; `receive` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.  | `gprs` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.connection.type` | string | The internet connection type.  | `wifi` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.io.direction` | string | The network IO operation direction.  | `transmit` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name.  | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.local.port` | int | Local port number of the network connection.  | `65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name.  | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.peer.port` | int | Peer port number of the network connection.  | `65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.protocol.version` | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp`; `pipe`; `unix` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 |---|---|---|---|---|
 
 **[1]:** The value SHOULD be normalized to lowercase.
@@ -115,13 +115,13 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `net.protocol.name` | string | Deprecated, use `network.protocol.name`. [9] | `amqp`; `http`; `mqtt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.protocol.version` | string | Deprecated, use `network.protocol.version`. [10] | 
 3.1.1 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.sock.family` | string | Deprecated, use `network.transport` and `network.type`. [11] | `inet`; `inet6`; `unix` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.sock.family` | string | Deprecated, use `network.transport` and `network.type`. [11] | `inet` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.sock.host.addr` | string | Deprecated, use `network.local.address`. [12] | `/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.sock.host.port` | int | Deprecated, use `network.local.port`. [13] | `8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.sock.peer.addr` | string | Deprecated, use `network.peer.address`. [14] | `192.168.0.1` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.sock.peer.name` | string | Deprecated, no replacement at this time. [15] | `/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `net.sock.peer.port` | int | Deprecated, use `network.peer.port`. [16] | `65531` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `net.transport` | string | Deprecated, use `network.transport`. [17] | `ip_tcp`; `ip_udp`; `pipe`; `inproc`; `other` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `net.transport` | string | Deprecated, use `network.transport`. [17] | `ip_tcp` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 |---|---|---|---|---|
 
 **[5]:** Replaced by `server.address`.

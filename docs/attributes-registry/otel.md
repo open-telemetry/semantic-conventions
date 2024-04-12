@@ -12,7 +12,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `otel.status_code` | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET.  | `OK`; `ERROR` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `otel.status_code` | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET.  | `OK` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `otel.status_description` | string | Description of the Status if it has a value, otherwise not set.  | `resource not found` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 |---|---|---|---|---|
 

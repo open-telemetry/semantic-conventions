@@ -43,14 +43,14 @@ MyConversationId | ![Experimental](https://img.shields.io/badge/-experimental-bl
 2738 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string.  | 
 452a7c7c7c7048c2f887f61572b18fc2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.operation` | string | A string identifying the kind of messaging operation. [8] | `publish`; `create`; `receive`; `process`; `settle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.operation` | string | A string identifying the kind of messaging operation. [8] | `publish` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key.  | 
 myKey | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rabbitmq.message.delivery_tag` | int | RabbitMQ message delivery tag  | 
 123 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rocketmq.client_group` | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind.  | 
 myConsumerGroup | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.rocketmq.consumption_model` | string | Model of message consumption. This only applies to consumer spans.  | `clustering`; `broadcasting` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.rocketmq.consumption_model` | string | Model of message consumption. This only applies to consumer spans.  | `clustering` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rocketmq.message.delay_time_level` | int | The delay time level for delay message, which determines the message delay time.  | 
 3 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rocketmq.message.delivery_timestamp` | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer.  | 
@@ -60,17 +60,17 @@ myMessageGroup | ![Experimental](https://img.shields.io/badge/-experimental-blue
 | `messaging.rocketmq.message.keys` | string[] | Key(s) of message, another way to mark message besides message id.  | `keyA`; `keyB` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rocketmq.message.tag` | string | The secondary classifier of message besides topic.  | 
 tagA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.rocketmq.message.type` | string | Type of message.  | `normal`; `fifo`; `delay`; `transaction` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.rocketmq.message.type` | string | Type of message.  | `normal` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rocketmq.namespace` | string | Namespace of RocketMQ resources, resources in different namespaces are individual.  | 
 myNamespace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.servicebus.destination.subscription_name` | string | The name of the subscription in the topic messages are received from.  | 
 mySubscription | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.servicebus.disposition_status` | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).  | `complete`; `abandon`; `dead_letter`; `defer` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.servicebus.disposition_status` | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).  | `complete` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.servicebus.message.delivery_count` | int | Number of deliveries that have been attempted for this message.  | 
 2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.servicebus.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity.  | 
 1701393730 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.system` | string | An identifier for the messaging system being used. See below for a list of well-known identifiers.  | `activemq`; `aws_sqs`; `eventgrid`; `eventhubs`; `servicebus`; `gcp_pubsub`; `jms`; `kafka`; `rabbitmq`; `rocketmq` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.system` | string | An identifier for the messaging system being used. See below for a list of well-known identifiers.  | `activemq` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.

@@ -12,7 +12,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `db.cassandra.consistency_level` | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).  | `all`; `each_quorum`; `quorum`; `local_quorum`; `one`; `two`; `three`; `local_one`; `any`; `serial`; `local_serial` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cassandra.consistency_level` | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).  | `all` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cassandra.coordinator.dc` | string | The data center of the coordinating node for a query.  | 
 us-west-2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cassandra.coordinator.id` | string | The ID of the coordinating node for a query.  | 
@@ -23,8 +23,8 @@ be13faa2-8574-4d71-926d-27f16cf8a7af | ![Experimental](https://img.shields.io/ba
 | `db.collection.name` | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.client_id` | string | Unique Cosmos client instance id.  | 
 3ba4827d-4422-483f-b59f-85b74211c11d | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.connection_mode` | string | Cosmos client connection mode.  | `gateway`; `direct` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.operation_type` | string | CosmosDB Operation Type.  | `Invalid`; `Create`; `Patch`; `Read`; `ReadFeed`; `Delete`; `Replace`; `Execute`; `Query`; `Head`; `HeadFeed`; `Upsert`; `Batch`; `QueryPlan`; `ExecuteJavaScript` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.connection_mode` | string | Cosmos client connection mode.  | `gateway` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.operation_type` | string | CosmosDB Operation Type.  | `Invalid` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.request_charge` | double | RU consumed for that operation  | `46.18`; `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.request_content_length` | int | Request payload size in bytes  |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.status_code` | int | Cosmos DB status code.  | `200`; `201` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -40,7 +40,7 @@ MSSQLSERVER | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.parameter` | template[string] | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [5] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.text` | string | The database query being executed.  | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.redis.database_index` | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute.  | `0`; `1`; `15` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.system` | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.  | `other_sql`; `mssql`; `mssqlcompact`; `mysql`; `oracle`; `db2`; `postgresql`; `redshift`; `hive`; `cloudscape`; `hsqldb`; `progress`; `maxdb`; `hanadb`; `ingres`; `firstsql`; `edb`; `cache`; `adabas`; `firebird`; `derby`; `filemaker`; `informix`; `instantdb`; `interbase`; `mariadb`; `netezza`; `pervasive`; `pointbase`; `sqlite`; `sybase`; `teradata`; `vertica`; `h2`; `coldfusion`; `cassandra`; `hbase`; `mongodb`; `redis`; `couchbase`; `couchdb`; `cosmosdb`; `dynamodb`; `neo4j`; `geode`; `elasticsearch`; `memcached`; `cockroachdb`; `opensearch`; `clickhouse`; `spanner`; `trino` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.system` | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.  | `other_sql` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.

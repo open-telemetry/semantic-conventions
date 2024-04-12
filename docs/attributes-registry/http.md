@@ -12,11 +12,11 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool.  | `active`; `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool.  | `active` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.  | 
 3495 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.request.header` | template[string[]] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `http.request.method` | string | HTTP request method. [2] | `CONNECT`; `DELETE`; `GET`; `HEAD`; `OPTIONS`; `PATCH`; `POST`; `PUT`; `TRACE`; `_OTHER` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `http.request.method` | string | HTTP request method. [2] | `CONNECT` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `http.request.method_original` | string | Original HTTP method sent by the client in the request line.  | `GeT`; `ACL`; `foo` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `http.request.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | 
 3 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -87,7 +87,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `http.flavor` | string | Deprecated, use `network.protocol.name` instead. [6] | `1.0`; `1.1`; `2.0`; `3.0`; `SPDY`; `QUIC` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `http.flavor` | string | Deprecated, use `network.protocol.name` instead. [6] | `1.0` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `http.method` | string | Deprecated, use `http.request.method` instead. [7] | `GET`; `POST`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `http.request_content_length` | int | Deprecated, use `http.request.header.content-length` instead. [8] | 
 3495 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |

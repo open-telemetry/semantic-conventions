@@ -11,7 +11,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `host.arch` | string | The CPU architecture the host system is running on.  | `amd64`; `arm32`; `arm64`; `ia64`; `ppc32`; `ppc64`; `s390x`; `x86` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `host.arch` | string | The CPU architecture the host system is running on.  | `amd64` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `host.cpu.cache.l2.size` | int | The amount of level 2 memory cache available to the processor (in Bytes).  | `12288000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `host.cpu.family` | string | Family or generation of the CPU.  | `6`; `PA-RISC 1.1e` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `host.cpu.model.id` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family.  | `6`; `9000/778/B180L` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
