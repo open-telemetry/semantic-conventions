@@ -24,7 +24,7 @@ This document defines standard attributes for resources. These attributes are ty
 - [Service](#service)
 - [Service (Experimental)](#service-experimental)
 - [Telemetry SDK](#telemetry-sdk)
-- [Telemetry SDK (Experimental)](#telemetry-sdk-experimental)
+- [Telemetry Distribution (Experimental)](#telemetry-distribution-experimental)
 - [Compute Unit](#compute-unit)
 - [Compute Instance](#compute-instance)
 - [Environment](#environment)
