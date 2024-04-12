@@ -192,7 +192,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 **type:** `telemetry.distro`
 
-**Description:** Additions to the telemetry SDK.
+**Description:** The telemetry distribution (distro) used to capture data recorded by the instrumentation libraries.
 
 <!-- semconv telemetry_experimental -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
