@@ -22,12 +22,12 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-{%- for attribute in group.attributes %}
+{%- for attribute in group.attributes | sort(attribute="name") %}
 | `{{ attribute.name }}` | {%- include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }} {{ notes.add(attribute.note or attribute.deprecated) | trim }} | {%- include "examples.j2" | trim %} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {%- endfor %}
 |---|---|---|---|---|
 {{ notes.render() }}
-{% for enum in group.attributes %}
+{% for enum in group.attributes | sort(attribute="name") %}
 {%- if enum.type is mapping -%}{#- We should use a filter for enums vs. this if. -#}
 `{{enum.name}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

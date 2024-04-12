@@ -14,14 +14,20 @@
 |---|---|---|---|---|
 | `messaging.batch.message_count` | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] |`0`; `1`; `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.client_id` | string | A unique identifier for the client that consumes or produces a message.  |`client-5`; `myhost@8742@s8083jm` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.destination.name` | string | The message destination name [2] |`MyQueue`; `MyTopic` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.destination.template` | string | Low cardinality representation of the messaging destination name [3] |`/customers/{customerId}` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.destination.anonymous` | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name).  | | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.destination.name` | string | The message destination name [2] |`MyQueue`; `MyTopic` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.destination.partition.id` | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`.  |
+1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.destination.template` | string | Low cardinality representation of the messaging destination name [3] |`/customers/{customerId}` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.destination.temporary` | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed.  | | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.destination_publish.anonymous` | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name).  | | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.destination_publish.name` | string | The name of the original destination the message was published to [4] |`MyQueue`; `MyTopic` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.destination.partition.id` | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`.  |
-1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.eventhubs.consumer.group` | string | The name of the consumer group the event consumer is associated with.  |
+indexer | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.eventhubs.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity.  |
+1701393730 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.gcp_pubsub.message.ordering_key` | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.  |
+ordering_key | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.kafka.consumer.group` | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers.  |
 my-group | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.kafka.message.key` | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [5] |
@@ -29,14 +35,14 @@ myKey | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.kafka.message.offset` | int | The offset of a record in the corresponding Kafka partition.  |
 42 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.kafka.message.tombstone` | boolean | A boolean that is true if the message is a tombstone.  | | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.message.body.size` | int | The size of the message body in bytes. [6] |
+1439 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.message.conversation_id` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID".  |
 MyConversationId | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [6] |
+| `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [7] |
 2738 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string.  |
 452a7c7c7c7048c2f887f61572b18fc2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.message.body.size` | int | The size of the message body in bytes. [7] |
-1439 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.operation` | string | A string identifying the kind of messaging operation. [8] |`publish`; `create`; `receive`; `process`; `settle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key.  |
 myKey | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -57,20 +63,14 @@ tagA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rocketmq.message.type` | string | Type of message.  |`normal`; `fifo`; `delay`; `transaction` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rocketmq.namespace` | string | Namespace of RocketMQ resources, resources in different namespaces are individual.  |
 myNamespace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.gcp_pubsub.message.ordering_key` | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.  |
-ordering_key | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.system` | string | An identifier for the messaging system being used. See below for a list of well-known identifiers.  |`activemq`; `aws_sqs`; `eventgrid`; `eventhubs`; `servicebus`; `gcp_pubsub`; `jms`; `kafka`; `rabbitmq`; `rocketmq` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.servicebus.destination.subscription_name` | string | The name of the subscription in the topic messages are received from.  |
+mySubscription | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.servicebus.disposition_status` | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).  |`complete`; `abandon`; `dead_letter`; `defer` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.servicebus.message.delivery_count` | int | Number of deliveries that have been attempted for this message.  |
 2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.servicebus.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity.  |
 1701393730 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.servicebus.destination.subscription_name` | string | The name of the subscription in the topic messages are received from.  |
-mySubscription | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.servicebus.disposition_status` | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).  |`complete`; `abandon`; `dead_letter`; `defer` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.eventhubs.message.enqueued_time` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity.  |
-1701393730 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.eventhubs.consumer.group` | string | The name of the consumer group the event consumer is associated with.  |
-indexer | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.system` | string | An identifier for the messaging system being used. See below for a list of well-known identifiers.  |`activemq`; `aws_sqs`; `eventgrid`; `eventhubs`; `servicebus`; `gcp_pubsub`; `jms`; `kafka`; `rabbitmq`; `rocketmq` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
@@ -85,11 +85,11 @@ the broker doesn't have such notion, the original destination name SHOULD unique
 
 **[5]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
-**[6]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
-size should be used.
-
-**[7]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[6]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
+
+**[7]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+size should be used.
 
 **[8]:** If a custom value is used, it MUST be of low cardinality.
 
@@ -124,6 +124,15 @@ body size should be used.
 | `delay` | Delay message |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transaction` | Transaction message |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+`messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `complete` | Message is completed |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `abandon` | Message is abandoned |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dead_letter` | Message is sent to dead letter queue |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `defer` | Message is deferred |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -138,15 +147,6 @@ body size should be used.
 | `kafka` | Apache Kafka |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rabbitmq` | RabbitMQ |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `complete` | Message is completed |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `abandon` | Message is abandoned |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dead_letter` | Message is sent to dead letter queue |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `defer` | Message is deferred |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 ## messaging deprecated Attributes

@@ -12,6 +12,7 @@
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
+| `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool.  |`active`; `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.request.body.size` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.  |
 3495 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.request.header` | template[string[]] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] |`http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -28,7 +29,6 @@
 1437 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).  |`200` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `http.route` | string | The matched route, that is, the path template in the format used by the respective server framework. [5] |`/users/:userID?`; `{controller}/{action}/{id?}` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `http.connection.state` | string | State of the HTTP connection in the HTTP connection pool.  |`active`; `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 |---|---|---|---|---|
 
 **[1]:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -60,6 +60,13 @@ The attribute value MUST consist of either multiple header values as an array of
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 
+`http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `active` | active state. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle state. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -75,39 +82,32 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `TRACE` | TRACE method. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. |  ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-`http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `active` | active state. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `idle` | idle state. |  ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 ## http deprecated Attributes
 
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `http.method` | string | Deprecated, use `http.request.method` instead. [6] |`GET`; `POST`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `http.status_code` | int | Deprecated, use `http.response.status_code` instead. [7] |`200` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `http.scheme` | string | Deprecated, use `url.scheme` instead. [8] |`http`; `https` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `http.url` | string | Deprecated, use `url.full` instead. [9] |`https://www.foo.bar/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `http.target` | string | Deprecated, use `url.path` and `url.query` instead. [10] |`/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `http.request_content_length` | int | Deprecated, use `http.request.header.content-length` instead. [11] |
+| `http.flavor` | string | Deprecated, use `network.protocol.name` instead. [6] |`1.0`; `1.1`; `2.0`; `3.0`; `SPDY`; `QUIC` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `http.method` | string | Deprecated, use `http.request.method` instead. [7] |`GET`; `POST`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `http.request_content_length` | int | Deprecated, use `http.request.header.content-length` instead. [8] |
 3495 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `http.response_content_length` | int | Deprecated, use `http.response.header.content-length` instead. [12] |
+| `http.response_content_length` | int | Deprecated, use `http.response.header.content-length` instead. [9] |
 3495 | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `http.flavor` | string | Deprecated, use `network.protocol.name` instead. [13] |`1.0`; `1.1`; `2.0`; `3.0`; `SPDY`; `QUIC` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `http.scheme` | string | Deprecated, use `url.scheme` instead. [10] |`http`; `https` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `http.status_code` | int | Deprecated, use `http.response.status_code` instead. [11] |`200` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `http.target` | string | Deprecated, use `url.path` and `url.query` instead. [12] |`/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `http.url` | string | Deprecated, use `url.full` instead. [13] |`https://www.foo.bar/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 | `http.user_agent` | string | Deprecated, use `user_agent.original` instead. [14] |`CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 |---|---|---|---|---|
 
-**[6]:** Replaced by `http.request.method`.
-**[7]:** Replaced by `http.response.status_code`.
-**[8]:** Replaced by `url.scheme` instead.
-**[9]:** Replaced by `url.full`.
-**[10]:** Split to `url.path` and `url.query.
-**[11]:** Replaced by `http.request.header.content-length`.
-**[12]:** Replaced by `http.response.header.content-length`.
-**[13]:** Replaced by `network.protocol.name`.
+**[6]:** Replaced by `network.protocol.name`.
+**[7]:** Replaced by `http.request.method`.
+**[8]:** Replaced by `http.request.header.content-length`.
+**[9]:** Replaced by `http.response.header.content-length`.
+**[10]:** Replaced by `url.scheme` instead.
+**[11]:** Replaced by `http.response.status_code`.
+**[12]:** Split to `url.path` and `url.query.
+**[13]:** Replaced by `url.full`.
 **[14]:** Replaced by `user_agent.original`.
 
 `http.flavor` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
