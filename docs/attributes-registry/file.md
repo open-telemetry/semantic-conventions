@@ -35,7 +35,7 @@
 
 **[3]:** This attribute is not supported on all file systems.
 
-**[4]:** This attribute is not supported on all file systems. Note that changes to the  file content will update `mtime`. This implies `ctime` will be adjusted at the same time, since `mtime` is an attribute of the file.
+**[4]:** This attribute is not supported on all file systems. Note that changes to the file content will update `mtime`. This implies `ctime` will be adjusted at the same time, since `mtime` is an attribute of the file.
 
 **[5]:** This attribute is only applicable to Windows systems. The value should be uppercase, and not include the colon.
 
