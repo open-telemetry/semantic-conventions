@@ -96,16 +96,9 @@ yamllint:
 .PHONY: table-generation
 table-generation:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
-
-# Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
-.PHONY: table-check2
-table-check2:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
-		--attribute-registry-base-url="https://opentelemetry.io/docs/specs/semconv/attributes-registry" \
-		--dry-run \
+		--attribute-registry-base-url="/docs/attributes-registry" \
 		/spec
 
 # Generate attribute registry markdown.
@@ -119,11 +112,15 @@ attribute-registry-generation:
 		  /spec/attributes-registry/
 	npm run fix:format
 
-# Check if current markdown tables differ from the ones that would be generated from YAML definitions
+# Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
 table-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check
+		otel/weaver:${WEAVER_VERSION} registry update-markdown \
+		--registry=/source \
+		--attribute-registry-base-url="/docs/attributes-registry" \
+		--dry-run \
+		/spec
 
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git describe --tags --abbrev=0 | sed 's/v//g')
 .PHONY: compatibility-check
