@@ -7,14 +7,15 @@
 <!-- toc -->
 
 - [Process](#process)
+  - [Selecting process attributes](#selecting-process-attributes)
 - [Process runtimes](#process-runtimes)
-  * [Erlang Runtimes](#erlang-runtimes)
-  * [Go Runtimes](#go-runtimes)
-  * [Java runtimes](#java-runtimes)
-  * [JavaScript runtimes](#javascript-runtimes)
-  * [.NET Runtimes](#net-runtimes)
-  * [Python Runtimes](#python-runtimes)
-  * [Ruby Runtimes](#ruby-runtimes)
+  - [Erlang Runtimes](#erlang-runtimes)
+  - [Go Runtimes](#go-runtimes)
+  - [Java runtimes](#java-runtimes)
+  - [JavaScript runtimes](#javascript-runtimes)
+  - [.NET Runtimes](#net-runtimes)
+  - [Python Runtimes](#python-runtimes)
+  - [Ruby Runtimes](#ruby-runtimes)
 
 <!-- tocstop -->
 
@@ -25,33 +26,41 @@
 **Description:** An operating system process.
 
 <!-- semconv process -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`process.command`](../attributes-registry/process.md) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | Conditionally Required: See alternative attributes below. |
-| [`process.command_args`](../attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `[cmd/otecol, --config=config.yaml]` | Conditionally Required: See alternative attributes below. |
-| [`process.command_line`](../attributes-registry/process.md) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` | Conditionally Required: See alternative attributes below. |
-| [`process.executable.name`](../attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | Conditionally Required: See alternative attributes below. |
-| [`process.executable.path`](../attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | Conditionally Required: See alternative attributes below. |
-| [`process.owner`](../attributes-registry/process.md) | string | The username of the user that owns the process. | `root` | Recommended |
-| [`process.parent_pid`](../attributes-registry/process.md) | int | Parent Process identifier (PPID). | `111` | Recommended |
-| [`process.pid`](../attributes-registry/process.md) | int | Process identifier (PID). | `1234` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`process.command`](../attributes-registry/process.md) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.command_args`](../attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `[cmd/otecol, --config=config.yaml]` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.command_line`](../attributes-registry/process.md) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.executable.name`](../attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.executable.path`](../attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.owner`](../attributes-registry/process.md) | string | The username of the user that owns the process. | `root` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.parent_pid`](../attributes-registry/process.md) | int | Parent Process identifier (PPID). | `111` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.pid`](../attributes-registry/process.md) | int | Process identifier (PID). | `1234` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**Additional attribute requirements:** At least one of the following sets of attributes is required:
+**[1]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+
+**[2]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+
+**[3]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+
+**[4]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+
+**[5]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+<!-- endsemconv -->
+
+### Selecting process attributes
+
+At least one of the following attributes is required:
 
 * [`process.executable.name`](../attributes-registry/process.md)
 * [`process.executable.path`](../attributes-registry/process.md)
 * [`process.command`](../attributes-registry/process.md)
 * [`process.command_line`](../attributes-registry/process.md)
 * [`process.command_args`](../attributes-registry/process.md)
-<!-- endsemconv -->
 
 Between `process.command_args` and `process.command_line`, usually `process.command_args` should be preferred.
 On Windows and other systems where the native format of process commands is a single string,
 `process.command_line` can additionally (or instead) be used.
-
-For backwards compatibility with older versions of this semantic convention,
-it is possible but deprecated to use an array as type for `process.command_line`.
-In that case it MUST be interpreted as if it was `process.command_args`.
 
 ## Process runtimes
 
@@ -60,11 +69,11 @@ In that case it MUST be interpreted as if it was `process.command_args`.
 **Description:** The single (language) runtime instance which is monitored.
 
 <!-- semconv process.runtime -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`process.runtime.description`](../attributes-registry/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | Recommended |
-| [`process.runtime.name`](../attributes-registry/process.md) | string | The name of the runtime of this process. For compiled native binaries, this SHOULD be the name of the compiler. | `OpenJDK Runtime Environment` | Recommended |
-| [`process.runtime.version`](../attributes-registry/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`process.runtime.description`](../attributes-registry/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.runtime.name`](../attributes-registry/process.md) | string | The name of the runtime of this process. For compiled native binaries, this SHOULD be the name of the compiler. | `OpenJDK Runtime Environment` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.runtime.version`](../attributes-registry/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 How to set these attributes for particular runtime kinds is described in the following subsections.
@@ -94,7 +103,7 @@ Go Runtimes SHOULD fill in the as follows:
 
   ```go
   import "runtime"
-  
+
   func getRuntimeName() string {
     if runtime.Compiler == "gc" {
       return "go"
@@ -234,4 +243,4 @@ Examples for some Ruby runtimes
 | MRI | ruby | 2.7.1 | ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-darwin19] |
 | TruffleRuby | truffleruby | 2.6.2 | truffleruby (Shopify) 20.0.0-dev-92ed3059, like ruby 2.6.2, GraalVM CE Native [x86_64-darwin] |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

@@ -17,11 +17,11 @@ described on this page.
 Below is a table of attributes that SHOULD be included on client and server Connect RPC measurements.
 
 <!-- semconv rpc.connect_rpc(full,tag=connect_rpc-tech-specific) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`rpc.connect_rpc.error_code`](../attributes-registry/rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled` | Conditionally Required: [1] |
-| [`rpc.connect_rpc.request.metadata.<key>`](../attributes-registry/rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | Opt-In |
-| [`rpc.connect_rpc.response.metadata.<key>`](../attributes-registry/rpc.md) | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | Opt-In |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`rpc.connect_rpc.error_code`](../attributes-registry/rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.connect_rpc.request.metadata.<key>`](../attributes-registry/rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.connect_rpc.response.metadata.<key>`](../attributes-registry/rpc.md) | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If response is not successful and if error code available.
 
@@ -31,28 +31,28 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 
 `rpc.connect_rpc.error_code` MUST be one of the following:
 
-| Value  | Description |
-|---|---|
-| `cancelled` | cancelled |
-| `unknown` | unknown |
-| `invalid_argument` | invalid_argument |
-| `deadline_exceeded` | deadline_exceeded |
-| `not_found` | not_found |
-| `already_exists` | already_exists |
-| `permission_denied` | permission_denied |
-| `resource_exhausted` | resource_exhausted |
-| `failed_precondition` | failed_precondition |
-| `aborted` | aborted |
-| `out_of_range` | out_of_range |
-| `unimplemented` | unimplemented |
-| `internal` | internal |
-| `unavailable` | unavailable |
-| `data_loss` | data_loss |
-| `unauthenticated` | unauthenticated |
+| Value  | Description | Stability |
+|---|---|---|
+| `cancelled` | cancelled | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unknown` | unknown | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `invalid_argument` | invalid_argument | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deadline_exceeded` | deadline_exceeded | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `not_found` | not_found | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `already_exists` | already_exists | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `permission_denied` | permission_denied | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `resource_exhausted` | resource_exhausted | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `failed_precondition` | failed_precondition | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aborted` | aborted | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `out_of_range` | out_of_range | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unimplemented` | unimplemented | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `internal` | internal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `data_loss` | data_loss | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unauthenticated` | unauthenticated | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Connect RPC Status
 
-If `rpc.connect_rpc.error_code` is set, [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/trace/api.md#set-status) MUST be set to `Error` and left unset in all other cases.
+If `rpc.connect_rpc.error_code` is set, [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/trace/api.md#set-status) MUST be set to `Error` and left unset in all other cases.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

@@ -36,33 +36,43 @@ groups:
             - id: connect
               value: "CONNECT"
               brief: 'CONNECT method.'
+              stability: stable
             - id: delete
               value: "DELETE"
               brief: 'DELETE method.'
+              stability: stable
             - id: get
               value: "GET"
               brief: 'GET method.'
+              stability: stable
             - id: head
               value: "HEAD"
               brief: 'HEAD method.'
+              stability: stable
             - id: options
               value: "OPTIONS"
               brief: 'OPTIONS method.'
+              stability: stable
             - id: patch
               value: "PATCH"
               brief: 'PATCH method.'
+              stability: stable
             - id: post
               value: "POST"
               brief: 'POST method.'
+              stability: stable
             - id: put
               value: "PUT"
               brief: 'PUT method.'
+              stability: stable
             - id: trace
               value: "TRACE"
               brief: 'TRACE method.'
+              stability: stable
             - id: other
               value: "_OTHER"
               brief: 'Any HTTP method that the instrumentation has no prior knowledge of.'
+              stability: stable
         brief: 'HTTP request method.'
         examples: ["GET", "POST", "HEAD"]
         note: |
@@ -95,6 +105,13 @@ groups:
           was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues,
           or any other).
         examples: 3
+      - id: request.size
+        type: int
+        brief: >
+          The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1),
+          framing (HTTP/2 and HTTP/3), headers, and request body if any.
+        examples: 1437
+        stability: experimental
       - id: response.body.size
         type: int
         brief: >
@@ -118,6 +135,13 @@ groups:
           or a single-item array containing a possibly comma-concatenated string, depending on the way
           the HTTP library provides access to headers.
         examples: ['http.response.header.content-type=["application/json"]', 'http.response.header.my-custom-header=["abc", "def"]']
+      - id: response.size
+        type: int
+        brief: >
+          The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1),
+          framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
+        examples: 1437
+        stability: experimental
       - id: response.status_code
         stability: stable
         type: int
@@ -133,3 +157,18 @@ groups:
           MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 
           SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+      - id: connection.state
+        type:
+          allow_custom_values: true
+          members:
+            - id: active
+              value: "active"
+              brief: 'active state.'
+              stability: experimental
+            - id: idle
+              value: "idle"
+              brief: 'idle state.'
+              stability: experimental
+        brief: State of the HTTP connection in the HTTP connection pool.
+        stability: experimental
+        examples: ["active", "idle"]

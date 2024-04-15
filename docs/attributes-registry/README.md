@@ -9,6 +9,7 @@ The attributes registry is the place where attributes are defined. An attribute 
 
 - the `id` (the fully qualified name) of the attribute
 - the `type` of the attribute
+- the `stability` of the attribute
 - a `brief` description of the attribute and optionally a longer `note`
 - example values
 
@@ -27,31 +28,51 @@ All registered attributes are listed by namespace in this registry.
 
 Currently, the following namespaces exist:
 
+* [Android](android.md)
+* [AWS](aws.md)
 * [Browser](browser.md)
 * [Client](client.md)
 * [Cloud](cloud.md)
+* [CloudEvents](cloudevents.md)
 * [Code](code.md)
 * [Container](container.md)
 * [DB](db.md) (database)
+* [Deployment](deployment.md)
 * [Destination](destination.md)
 * [Device](device.md)
 * [Disk](disk.md)
+* [End user](enduser.md)
 * [Error](error.md)
+* [Event](event.md)
 * [Exception](exception.md)
+* [FaaS](faas.md)
+* [Feature Flag](feature-flag.md)
+* [File](file.md)
+* [Google Cloud Platform (GCP)](gcp.md)
+* [GraphQl](graphql.md)
+* [Heroku](heroku.md)
 * [Host](host.md)
 * [HTTP](http.md)
+* [iOS](ios.md)
 * [K8s](k8s.md)
 * [Network](network.md)
 * [OCI](oci.md)
+* [OpenTelemetry](otel.md)
+* [OpenTracing](opentracing.md)
 * [OS](os.md)
+* [Peer](peer.md)
 * [Process](process.md)
 * [RPC](rpc.md)
 * [Server](server.md)
+* [Service](service.md)
+* [Session](session.md)
 * [Source](source.md)
+* [Telemetry](telemetry.md)
 * [Thread](thread.md)
 * [TLS](tls.md)
 * [URL](url.md)
 * [User](user.md)
 * [User agent](user-agent.md)
+* [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
