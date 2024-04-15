@@ -7,6 +7,7 @@ groups:
       - id: rate_limiting.policy
         type: string
         brief: Rate limiting policy name.
+        stability: stable
         examples: ["fixed", "sliding", "token"]
         requirement_level:
           conditionally_required: if the matched endpoint for the request had a rate-limiting policy.
@@ -17,26 +18,33 @@ groups:
             - id: acquired
               value: 'acquired'
               brief: "Lease was acquired"
+              stability: stable
             - id: endpoint_limiter
               value: 'endpoint_limiter'
               brief: "Lease request was rejected by the endpoint limiter"
+              stability: stable
             - id: global_limiter
               value: 'global_limiter'
               brief: "Lease request was rejected by the global limiter"
+              stability: stable
             - id: request_canceled
               value: 'request_canceled'
               brief: "Lease request was canceled"
+              stability: stable
+        stability: stable
         brief: Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
         examples: ["acquired", "request_canceled"]
         requirement_level: required
       - id: routing.is_fallback
         type: boolean
+        stability: stable
         brief: A value that indicates whether the matched route is a fallback route.
         examples: [true]
         requirement_level:
           conditionally_required: If and only if a route was successfully matched.
       - id: diagnostics.handler.type
         type: string
+        stability: stable
         brief: Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler)
           implementation that handled the exception.
         examples: ["Contoso.MyHandler"]
@@ -44,6 +52,7 @@ groups:
           conditionally_required: if and only if the exception was handled by this handler.
       - id: request.is_unhandled
         type: boolean
+        stability: stable
         brief: Flag indicating if request was handled by the application pipeline.
         examples: [true]
         requirement_level:
@@ -53,6 +62,7 @@ groups:
   - id: metric.aspnetcore.routing.match_attempts
     type: metric
     metric_name: aspnetcore.routing.match_attempts
+    stability: stable
     brief: Number of requests that were attempted to be matched to an endpoint.
     instrument: counter
     unit: "{match_attempt}"
@@ -72,9 +82,12 @@ groups:
             - id: success
               value: 'success'
               brief: 'Match succeeded'
+              stability: stable
             - id: failure
               value: 'failure'
               brief: 'Match failed'
+              stability: stable
+        stability: stable
         requirement_level: required
         brief: Match result - success or failure
         examples: ["success", "failure"]
@@ -83,6 +96,7 @@ groups:
   - id: metric.aspnetcore.diagnostics.exceptions
     type: metric
     metric_name: aspnetcore.diagnostics.exceptions
+    stability: stable
     brief: Number of exceptions caught by exception handling middleware.
     instrument: counter
     unit: "{exception}"
@@ -100,15 +114,20 @@ groups:
             - id: handled
               value: 'handled'
               brief: "Exception was handled by the exception handling middleware."
+              stability: stable
             - id: unhandled
               value: 'unhandled'
               brief: "Exception was not handled by the exception handling middleware."
+              stability: stable
             - id: skipped
               value: 'skipped'
               brief: "Exception handling was skipped because the response had started."
+              stability: stable
             - id: aborted
               value: 'aborted'
               brief: "Exception handling didn't run because the request was aborted."
+              stability: stable
+        stability: stable
         requirement_level: required
         brief: ASP.NET Core exception middleware handling result
         examples: ["handled", "unhandled"]
@@ -117,6 +136,7 @@ groups:
   - id: metric.aspnetcore.rate_limiting.active_request_leases
     type: metric
     metric_name: aspnetcore.rate_limiting.active_request_leases
+    stability: stable
     brief: Number of requests that are currently active on the server that hold a rate limiting lease.
     instrument: updowncounter
     unit: "{request}"
@@ -128,6 +148,7 @@ groups:
   - id: metric.aspnetcore.rate_limiting.request_lease.duration
     type: metric
     metric_name: aspnetcore.rate_limiting.request_lease.duration
+    stability: stable
     brief: The duration of rate limiting lease held by requests on the server.
     instrument: histogram
     unit: "s"
@@ -139,6 +160,7 @@ groups:
   - id: metric.aspnetcore.rate_limiting.request.time_in_queue
     type: metric
     metric_name: aspnetcore.rate_limiting.request.time_in_queue
+    stability: stable
     brief: The time the request spent in a queue waiting to acquire a rate limiting lease.
     instrument: histogram
     unit: "s"
@@ -151,6 +173,7 @@ groups:
   - id: metric.aspnetcore.rate_limiting.queued_requests
     type: metric
     metric_name: aspnetcore.rate_limiting.queued_requests
+    stability: stable
     brief: Number of requests that are currently queued, waiting to acquire a rate limiting lease.
     instrument: updowncounter
     unit: "{request}"
@@ -162,6 +185,7 @@ groups:
   - id: metric.aspnetcore.rate_limiting.requests
     type: metric
     metric_name: aspnetcore.rate_limiting.requests
+    stability: stable
     brief: Number of requests that tried to acquire a rate limiting lease.
     instrument: counter
     unit: "{request}"

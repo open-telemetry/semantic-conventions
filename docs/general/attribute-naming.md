@@ -60,7 +60,7 @@ Names SHOULD follow these rules:
 ## Name Pluralization guidelines
 
 - When an attribute represents a single entity, the attribute name SHOULD be
-  singular. Examples: `host.name`, `db.user`, `container.id`.
+  singular. Examples: `host.name`, `container.id`.
 
 - When attribute can represent multiple entities, the attribute name SHOULD be
   pluralized and the value type SHOULD be an array. E.g. `process.command_args`
@@ -157,4 +157,4 @@ Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
 
 [DocumentStatus]:
-  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

@@ -1,5 +1,5 @@
 groups:
-  - id: source
+  - id: registry.source
     prefix: source
     type: attribute_group
     brief: >

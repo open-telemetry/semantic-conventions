@@ -13,11 +13,11 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
-SEMCONVGEN_VERSION=0.23.0
+SEMCONVGEN_VERSION=0.24.0
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint markdown-link-check misspell table-check schema-check \
+all: install-tools markdownlint markdown-link-check misspell table-check compatibility-check schema-check \
 		 check-file-and-folder-names-in-docs
 
 .PHONY: check-file-and-folder-names-in-docs
@@ -95,13 +95,19 @@ yamllint:
 .PHONY: table-generation
 table-generation:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-use-badges --md-stable
+		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions
 .PHONY: table-check
 table-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check --md-use-badges --md-stable
+		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check
+
+LATEST_RELEASED_SEMCONV_VERSION := $(shell git describe --tags --abbrev=0 | sed 's/v//g')
+.PHONY: compatibility-check
+compatibility-check:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
 
 .PHONY: schema-check
 schema-check:
@@ -117,7 +123,7 @@ fix-format:
 
 # Run all checks in order of speed / likely failure.
 .PHONY: check
-check: misspell markdownlint check-format markdown-toc markdown-link-check
+check: misspell markdownlint check-format markdown-toc compatibility-check markdown-link-check
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
@@ -150,3 +156,9 @@ chlog-preview: $(CHLOGGEN)
 .PHONY: chlog-update
 chlog-update: $(CHLOGGEN)
 	$(CHLOGGEN) update --config $(CHLOGGEN_CONFIG) --version $(VERSION)
+
+# Updates the areas (registry yaml file names) on all ISSUE_TEMPLATE
+# files that have the "area" dropdown field
+.PHONY: generate-gh-issue-templates
+generate-gh-issue-templates:
+	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh

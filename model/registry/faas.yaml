@@ -72,18 +72,23 @@ groups:
             - id: datasource
               value: 'datasource'
               brief: 'A response to some data source operation such as a database or filesystem read/write'
+              stability: experimental
             - id: http
               value: 'http'
               brief: 'To provide an answer to an inbound HTTP request'
+              stability: experimental
             - id: pubsub
               value: 'pubsub'
               brief: 'A function is set to be executed when messages are sent to a messaging system'
+              stability: experimental
             - id: timer
               value: 'timer'
               brief: 'A function is scheduled to be executed regularly'
+              stability: experimental
             - id: other
               value: 'other'
               brief: 'If none of the others apply'
+              stability: experimental
       - id: invoked_name
         type: string
         stability: experimental
@@ -101,18 +106,23 @@ groups:
             - id: 'alibaba_cloud'
               value: 'alibaba_cloud'
               brief: 'Alibaba Cloud'
+              stability: experimental
             - id: 'aws'
               value: 'aws'
               brief: 'Amazon Web Services'
+              stability: experimental
             - id: 'azure'
               value: 'azure'
               brief: 'Microsoft Azure'
+              stability: experimental
             - id: 'gcp'
               value: 'gcp'
               brief: 'Google Cloud Platform'
+              stability: experimental
             - id: 'tencent_cloud'
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
+              stability: experimental
         brief: >
           The cloud provider of the invoked function.
         note: >
@@ -170,12 +180,15 @@ groups:
             - id: insert
               value: 'insert'
               brief: 'When a new object is created.'
+              stability: experimental
             - id: edit
               value: 'edit'
               brief: 'When an object is modified.'
+              stability: experimental
             - id: delete
               value: 'delete'
               brief: 'When an object is deleted.'
+              stability: experimental
         brief: 'Describes the type of the operation that was performed on the data.'
       - id: document.time
         type: string
