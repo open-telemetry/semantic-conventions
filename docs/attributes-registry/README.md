@@ -43,6 +43,7 @@ Currently, the following namespaces exist:
 * [Disk](disk.md)
 * [End user](enduser.md)
 * [Error](error.md)
+* [Event](event.md)
 * [Exception](exception.md)
 * [FaaS](faas.md)
 * [Feature Flag](feature-flag.md)
