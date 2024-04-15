@@ -1,10 +1,9 @@
 groups:
   - id: registry.system.deprecated
-    prefix: system
     type: attribute_group
     brief: "Deprecated system attributes."
     attributes:
-      - id: processes.status
+      - id: system.processes.status
         type:
           allow_custom_values: true
           members:
