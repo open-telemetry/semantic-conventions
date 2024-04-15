@@ -114,9 +114,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.coldstarts(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub`; `timer`; `other` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`faas.trigger` MUST be one of the following:
+`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -140,9 +140,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.errors(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub`; `timer`; `other` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`faas.trigger` MUST be one of the following:
+`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -166,9 +166,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.invocations(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub`; `timer`; `other` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`faas.trigger` MUST be one of the following:
+`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -192,9 +192,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.faas.timeouts(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub`; `timer`; `other` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`faas.trigger` MUST be one of the following:
+`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

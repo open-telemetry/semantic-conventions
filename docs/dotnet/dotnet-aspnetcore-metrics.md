@@ -75,9 +75,9 @@ Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 <!-- semconv metric.aspnetcore.diagnostics.exceptions(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `aspnetcore.diagnostics.exception.result` | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](../attributes-registry/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `aspnetcore.diagnostics.handler.type` | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`aspnetcore.diagnostics.exception.result`](/docs/attributes-registry/aspnetcore.md) | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`aspnetcore.diagnostics.handler.type`](/docs/attributes-registry/aspnetcore.md) | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -97,7 +97,7 @@ it's RECOMMENDED to:
 
 **[2]:** if and only if the exception was handled by this handler.
 
-`aspnetcore.diagnostics.exception.result` MUST be one of the following:
+`aspnetcore.diagnostics.exception.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

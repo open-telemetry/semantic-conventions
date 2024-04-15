@@ -69,8 +69,8 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv server -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -106,8 +106,8 @@ if they do not cause breaking changes to HTTP semantic conventions.
 <!-- semconv client -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`client.address`](../attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.port`](../attributes-registry/client.md) | int | Client port number. [2] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`client.port`](/docs/attributes-registry/client.md) | int | Client port number. [2] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
@@ -128,8 +128,8 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 <!-- semconv source -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`source.address`](../attributes-registry/source.md) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`source.port`](../attributes-registry/source.md) | int | Source port number | `3389`; `2888` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`source.address`](/docs/attributes-registry/source.md) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`source.port`](/docs/attributes-registry/source.md) | int | Source port number | `3389`; `2888` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
@@ -141,8 +141,8 @@ Destination fields capture details about the receiver of a network exchange/pack
 <!-- semconv destination -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`destination.address`](../attributes-registry/destination.md) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`destination.port`](../attributes-registry/destination.md) | int | Destination port number | `3389`; `2888` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`destination.address`](/docs/attributes-registry/destination.md) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`destination.port`](/docs/attributes-registry/destination.md) | int | Destination port number | `3389`; `2888` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 <!-- endsemconv -->
@@ -296,7 +296,7 @@ Instrumentations SHOULD provide a way for users to configure this name.
 <!-- semconv peer -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`peer.service`](../attributes-registry/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`peer.service`](/docs/attributes-registry/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 Examples of `peer.service` that users may specify:
@@ -311,9 +311,9 @@ These attributes may be used for any operation with an authenticated and/or auth
 <!-- semconv identity -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`enduser.id`](../attributes-registry/enduser.md) | string | Username or client_id extracted from the access token or [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2) header in the inbound request from outside the system. | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`enduser.role`](../attributes-registry/enduser.md) | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`enduser.scope`](../attributes-registry/enduser.md) | string | Scopes or granted authorities the client currently possesses extracted from token or application security context. The value would come from the scope associated with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html). | `read:message, write:files` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Username or client_id extracted from the access token or [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2) header in the inbound request from outside the system. | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Scopes or granted authorities the client currently possesses extracted from token or application security context. The value would come from the scope associated with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html). | `read:message, write:files` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 These attributes describe the authenticated user driving the user agent making requests to the instrumented
@@ -358,8 +358,8 @@ a thread that started a span.
 <!-- semconv thread -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`thread.id`](../attributes-registry/thread.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`thread.name`](../attributes-registry/thread.md) | string | Current thread name. | `main` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`thread.id`](/docs/attributes-registry/thread.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`thread.name`](/docs/attributes-registry/thread.md) | string | Current thread name. | `main` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
@@ -384,12 +384,12 @@ about the span.
 <!-- semconv code -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`code.column`](../attributes-registry/code.md) | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.filepath`](../attributes-registry/code.md) | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.function`](../attributes-registry/code.md) | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.lineno`](../attributes-registry/code.md) | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.namespace`](../attributes-registry/code.md) | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.stacktrace`](../attributes-registry/code.md) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`code.column`](/docs/attributes-registry/code.md) | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`code.filepath`](/docs/attributes-registry/code.md) | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`code.function`](/docs/attributes-registry/code.md) | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`code.lineno`](/docs/attributes-registry/code.md) | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`code.namespace`](/docs/attributes-registry/code.md) | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`code.stacktrace`](/docs/attributes-registry/code.md) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

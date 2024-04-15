@@ -82,8 +82,8 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 <!-- semconv service -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`service.name`](../attributes-registry/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`service.version`](../attributes-registry/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`service.name`](/docs/attributes-registry/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`service.version`](/docs/attributes-registry/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 <!-- endsemconv -->
@@ -157,9 +157,9 @@ service.name = Shop.shoppingcart
 <!-- semconv telemetry(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`telemetry.sdk.language`](../attributes-registry/telemetry.md) | string | The language of the telemetry SDK. | `cpp` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`telemetry.sdk.name`](../attributes-registry/telemetry.md) | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`telemetry.sdk.version`](../attributes-registry/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.language`](/docs/attributes-registry/telemetry.md) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang`; `go`; `java`; `nodejs`; `php`; `python`; `ruby`; `rust`; `swift`; `webjs` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.name`](/docs/attributes-registry/telemetry.md) | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
@@ -172,18 +172,18 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cpp` | cpp | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `dotnet` | dotnet | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `erlang` | erlang | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `go` | go | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `java` | java | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `nodejs` | nodejs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `php` | php | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `python` | python | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ruby` | ruby | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `rust` | rust | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `swift` | swift | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `webjs` | webjs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `cpp` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `dotnet` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `erlang` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `go` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `java` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `nodejs` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `php` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `python` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ruby` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `rust` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `swift` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `webjs` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 ## Telemetry SDK (Experimental)

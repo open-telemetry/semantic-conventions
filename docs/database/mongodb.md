@@ -17,8 +17,8 @@ described on this page.
 <!-- semconv db.mongodb(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](../attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. [1] | `public.users`; `customers` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](../attributes-registry/db.md) | string | The name of the command being executed. [2] | `findAndModify`; `getMore`; `update` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.name`. [1] | `public.users`; `customers` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [2] | `findAndModify`; `getMore`; `update` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
