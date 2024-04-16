@@ -1,26 +1,12 @@
 groups:
   - id: webengine_resource
-    prefix: webengine
     type: resource
     brief: >
        Resource describing the packaged software running the application code. Web engines are typically executed using process.runtime.
     attributes:
-      - id: name
-        type: string
-        stability: experimental
+      - ref: webengine.name
         requirement_level: required
-        brief: >
-          The name of the web engine.
-        examples: ['WildFly']
-      - id: version
-        type: string
-        stability: experimental
-        brief: >
-          The version of the web engine.
-        examples: ['21.0.0']
-      - id: description
-        type: string
-        stability: experimental
-        brief: >
-          Additional description of the web engine (e.g. detailed version and edition information).
-        examples: ['WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final']
+      - ref: webengine.version
+        requirement_level: recommended
+      - ref: webengine.description
+        requirement_level: recommended

@@ -13,6 +13,7 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:aws
         - area:browser
         - area:client
         - area:cloud
@@ -27,28 +28,38 @@ body:
         - area:dns
         - area:enduser
         - area:error
+        - area:event
         - area:exception
         - area:faas
         - area:feature-flag
         - area:file
-        - area:gcp-cloud-run
-        - area:gcp-gce
+        - area:gcp
         - area:gen-ai
+        - area:graphql
+        - area:heroku
         - area:host
         - area:http
+        - area:ios
         - area:k8s
         - area:messaging
         - area:network
         - area:oci
+        - area:opentracing
         - area:os
+        - area:otel
+        - area:peer
         - area:process
         - area:rpc
         - area:server
+        - area:service
+        - area:session
         - area:source
+        - area:telemetry
         - area:thread
         - area:tls
         - area:url
         - area:user-agent
+        - area:webengine
         # End semconv area list
   - type: textarea
     attributes:

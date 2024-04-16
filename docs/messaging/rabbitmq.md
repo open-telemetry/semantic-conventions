@@ -17,7 +17,6 @@ described on this page.
 In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 `messaging.destination.name` MUST be set to the name of the exchange. This will be an empty string if the default exchange is used.
 
-<<<<<<< HEAD
 <!-- semconv messaging.rabbitmq(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -29,4 +28,4 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 **[1]:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

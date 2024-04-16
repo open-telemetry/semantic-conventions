@@ -3,6 +3,13 @@
 
 # Container
 
+<!-- toc -->
+
+- [Container Attributes](#container-attributes)
+- [Deprecated Container Attributes](#deprecated-container-attributes)
+
+<!-- tocstop -->
+
 ## Container Attributes
 
 <!-- semconv registry.container(omit_requirement_level) -->
@@ -25,7 +32,7 @@
 
 **[2]:** Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
 K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
-The ID is assinged by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
+The ID is assigned by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
 
 **[3]:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 
@@ -36,4 +43,12 @@ The ID is assinged by the container runtime and can vary in different environmen
 | `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system` | When CPU is used by the system (host OS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+## Deprecated Container Attributes
+
+<!-- semconv registry.container.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `container.labels.<key>` | string | Deprecated, use `container.label` instead. | `container.label.app=nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. |
 <!-- endsemconv -->

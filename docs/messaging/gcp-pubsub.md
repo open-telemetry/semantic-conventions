@@ -13,7 +13,7 @@ The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pub
 ## Span attributes
 
 For Google Cloud Pub/Sub, the following additional attributes are defined:
-<<<<<<< HEAD
+
 <!-- semconv messaging.gcp_pubsub(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -58,4 +58,4 @@ flowchart LR;
 | `messaging.message.envelope.size` | `1` | `1` | |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

@@ -79,19 +79,15 @@ groups:
           The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
         examples: [0, 2]
         tag: tech-specific-cassandra
-      - id: cassandra.table
+      - id: collection.name
         type: string
         stability: experimental
-        brief: The name of the primary Cassandra table that the operation is acting upon, including the keyspace name (if applicable).
+        brief: The name of a collection (table, container) within the database.
         note: >
-          This mirrors the db.sql.table attribute but references cassandra rather than sql.
-          It is not recommended to attempt any client-side parsing of
-          `db.statement` just to get this property, but it should be set if
-          it is provided by the library being instrumented.
-          If the operation is acting upon an anonymous table, or more than one table, this
-          value MUST NOT be set.
-        examples: 'mytable'
-        tag: tech-specific-cassandra
+            If the collection name is parsed from the query, it SHOULD match the value provided
+            in the query and may be qualified with the schema and database name.
+        tag: db-generic
+        examples: ['public.users', 'customers']
       - id: cosmosdb.client_id
         type: string
         stability: experimental
@@ -112,12 +108,6 @@ groups:
               stability: experimental
         stability: experimental
         brief: Cosmos client connection mode.
-        tag: tech-specific-cosmosdb
-      - id: cosmosdb.container
-        type: string
-        stability: experimental
-        brief: Cosmos DB container name.
-        examples: 'anystring'
         tag: tech-specific-cosmosdb
       - id: cosmosdb.operation_type
         type:
@@ -213,13 +203,6 @@ groups:
           in order to map the path part values to their names.
         examples: ['db.elasticsearch.path_parts.index=test-index', 'db.elasticsearch.path_parts.doc_id=123']
         tag: tech-specific-elasticsearch
-      - id: mongodb.collection
-        type: string
-        stability: experimental
-        brief: >
-          The MongoDB collection being accessed within the database stated in `db.name`.
-        examples: [ 'customers', 'products' ]
-        tag: tech-specific-mongodb
       - id: mssql.instance_name
         type: string
         stability: experimental
@@ -245,19 +228,11 @@ groups:
           the database name to be used is the more specific layer (e.g. Oracle schema name).
         examples: [ 'customers', 'main' ]
         tag: db-generic
-      - id: operation
+      - id: operation.name
         type: string
         stability: experimental
         brief: >
-          The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations)
-          such as `findAndModify`, or the SQL keyword.
-        note: >
-          When setting this to an SQL keyword, it is not recommended to
-          attempt any client-side parsing of `db.statement` just to get this
-          property, but it should be set if the operation name is provided by
-          the library being instrumented.
-          If the SQL statement has an ambiguous operation, or performs more
-          than one operation, this value may be omitted.
+          The name of the operation or command being executed.
         examples: ['findAndModify', 'HMSET', 'SELECT']
         tag: db-generic
       - id: redis.database_index
@@ -268,24 +243,25 @@ groups:
           To be used instead of the generic `db.name` attribute.
         examples: [0, 1, 15]
         tag: tech-specific-redis
-      - id: sql.table
-        type: string
-        stability: experimental
-        brief: The name of the primary table that the operation is acting upon, including the database name (if applicable).
-        note: >
-          It is not recommended to attempt any client-side parsing of
-          `db.statement` just to get this property, but it should be set if
-          it is provided by the library being instrumented.
-          If the operation is acting upon an anonymous table, or more than one table, this
-          value MUST NOT be set.
-        examples: ['public.users', 'customers']
-        tag: tech-specific-sql
-      - id: statement
+      - id: query.text
         type: string
         stability: experimental
         brief: >
-          The database statement being executed.
-        examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
+          The database query being executed.
+        examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
+        tag: db-generic
+      - id: query.parameter
+        type: template[string]
+        stability: experimental
+        brief: >
+          The query parameters used in `db.query.text`, with `<key>` being the parameter name,
+          and the attribute value being the parameter value.
+        note: >
+          Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+
+          If a parameter has no name and instead is referenced only by index,
+          then `<key>` SHOULD be the 0-based index.
+        examples: ['someval', '55']
         tag: db-generic
       - id: system
         brief: An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.
@@ -501,13 +477,6 @@ groups:
               brief: 'Trino'
               stability: experimental
         stability: experimental
-        tag: db-generic
-      - id: user
-        type: string
-        stability: experimental
-        brief: >
-          Username for accessing the database.
-        examples: ['readonly_user', 'reporting_user']
         tag: db-generic
       - id: instance.id
         tag: db-generic

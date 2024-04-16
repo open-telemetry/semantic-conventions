@@ -3,6 +3,13 @@
 
 # RPC
 
+<!-- toc -->
+
+- [RPC Attributes](#rpc-attributes)
+- [Deprecated RPC Attributes](#deprecated-rpc-attributes)
+
+<!-- tocstop -->
+
 ## RPC Attributes
 
 RPC attributes are intended to be used in the context of events related to remote procedure calls (RPC).
@@ -20,8 +27,12 @@ RPC attributes are intended to be used in the context of events related to remot
 | `rpc.jsonrpc.error_message` | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rpc.jsonrpc.request_id` | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rpc.jsonrpc.version` | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [5] | `exampleMethod` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [6] | `myservice.EchoService` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.message.compressed_size` | int | Compressed size of the message in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.message.id` | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [5] |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.message.type` | string | Whether this is a received or sent message. | `SENT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.message.uncompressed_size` | int | Uncompressed size of the message in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.method` | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.service` | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rpc.system` | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -32,9 +43,11 @@ RPC attributes are intended to be used in the context of events related to remot
 
 **[4]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-**[5]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[5]:** This way we guarantee that the values will be consistent between different implementations.
 
-**[6]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+**[6]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+
+**[7]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 `rpc.connect_rpc.error_code` MUST be one of the following:
 
@@ -79,6 +92,13 @@ RPC attributes are intended to be used in the context of events related to remot
 | `15` | DATA_LOSS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `16` | UNAUTHENTICATED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+`rpc.message.type` MUST be one of the following:
+
+| Value  | Description | Stability |
+|---|---|---|
+| `SENT` | sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -88,4 +108,22 @@ RPC attributes are intended to be used in the context of events related to remot
 | `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+## Deprecated RPC Attributes
+
+<!-- semconv registry.rpc.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `message.compressed_size` | int | Deprecated, use `rpc.message.compressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.compressed_size`. |
+| `message.id` | int | Deprecated, use `rpc.message.id` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`. |
+| `message.type` | string | Deprecated, use `rpc.message.type` instead. | `SENT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`. |
+| `message.uncompressed_size` | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. |
+
+`message.type` MUST be one of the following:
+
+| Value  | Description | Stability |
+|---|---|---|
+| `SENT` | sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
