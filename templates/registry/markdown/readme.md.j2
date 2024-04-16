@@ -33,7 +33,7 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 {% for bundle in ctx %}
-{%- set my_file_name = bundle.id | lower | replace("_", "-") ~ ".md" -%}
+{%- set my_file_name = bundle.id | kebab_case ~ ".md" -%}
 - [{{ bundle.id | title_case }}]({{ my_file_name }})
 {% endfor %}
 
