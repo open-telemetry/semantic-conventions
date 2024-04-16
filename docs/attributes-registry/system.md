@@ -6,8 +6,6 @@
 
 # System
 
-- [System Deprecated](#system-deprecated)
-
 ## System Deprecated Attributes
 
 | Attribute                 | Type   | Description                                          | Examples  | Stability                                                   |

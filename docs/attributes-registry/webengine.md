@@ -6,8 +6,6 @@
 
 # Webengine
 
-- [Webengine](#webengine)
-
 ## Webengine Attributes
 
 | Attribute               | Type   | Description                                                                               | Examples                                                              | Stability                                                        |

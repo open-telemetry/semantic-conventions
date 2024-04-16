@@ -6,8 +6,6 @@
 
 # Cloudevents
 
-- [Cloudevents](#cloudevents)
-
 ## Cloudevents Attributes
 
 | Attribute                        | Type   | Description                                                                                                                                                                     | Examples                                                                     | Stability                                                        |

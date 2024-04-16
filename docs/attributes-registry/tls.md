@@ -6,8 +6,6 @@
 
 # Tls
 
-- [Tls](#tls)
-
 ## Tls Attributes
 
 | Attribute                      | Type     | Description                                                                                                                                                                                                                         | Examples                                                                                    | Stability                                                        |

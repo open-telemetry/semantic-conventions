@@ -6,8 +6,8 @@
 
 # Android
 
-- [Android](#android)
-- [Android Lifecycle Events](#android-lifecycle-events)
+- [Android](#android-attributes)
+- [Android Lifecycle Events](#android-lifecycle-events-attributes)
 
 ## Android Attributes
 

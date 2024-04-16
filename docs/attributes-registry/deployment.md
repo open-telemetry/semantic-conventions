@@ -6,8 +6,6 @@
 
 # Deployment
 
-- [Deployment](#deployment)
-
 ## Deployment Attributes
 
 | Attribute                | Type   | Description                                                                                                        | Examples                | Stability                                                        |

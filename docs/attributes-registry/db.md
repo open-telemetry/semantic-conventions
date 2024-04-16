@@ -6,8 +6,8 @@
 
 # Db
 
-- [Db](#db)
-- [Db Deprecated](#db-deprecated)
+- [Db](#db-attributes)
+- [Db Deprecated](#db-deprecated-attributes)
 
 ## Db Attributes
 

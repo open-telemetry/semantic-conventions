@@ -6,8 +6,6 @@
 
 # Browser
 
-- [Browser](#browser)
-
 ## Browser Attributes
 
 | Attribute          | Type     | Description                                                             | Examples                                      | Stability                                                        |

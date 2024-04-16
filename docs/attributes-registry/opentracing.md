@@ -6,8 +6,6 @@
 
 # Opentracing
 
-- [Opentracing](#opentracing)
-
 ## Opentracing Attributes
 
 | Attribute              | Type   | Description                     | Examples   | Stability                                                        |

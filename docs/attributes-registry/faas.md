@@ -6,8 +6,6 @@
 
 # Faas
 
-- [Faas](#faas)
-
 ## Faas Attributes
 
 | Attribute                  | Type    | Description                                                                                                                                                                                       | Examples                                               | Stability                                                        |

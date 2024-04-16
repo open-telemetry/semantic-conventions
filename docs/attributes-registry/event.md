@@ -6,8 +6,6 @@
 
 # Event
 
-- [Event](#event)
-
 ## Event Attributes
 
 | Attribute    | Type   | Description                               | Examples                                      | Stability                                                        |

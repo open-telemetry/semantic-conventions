@@ -6,8 +6,6 @@
 
 # Code
 
-- [Code](#code)
-
 ## Code Attributes
 
 | Attribute         | Type   | Description                                                                                                                                                                                                    | Examples                                                                                                                                                                             | Stability                                                        |

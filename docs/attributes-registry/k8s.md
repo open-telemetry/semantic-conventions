@@ -6,8 +6,8 @@
 
 # K8s
 
-- [K8s](#k8s)
-- [K8s Deprecated](#k8s-deprecated)
+- [K8s](#k8s-attributes)
+- [K8s Deprecated](#k8s-deprecated-attributes)
 
 ## K8s Attributes
 

@@ -6,8 +6,6 @@
 
 # Graphql
 
-- [Graphql](#graphql)
-
 ## Graphql Attributes
 
 | Attribute                | Type   | Description                               | Examples                                          | Stability                                                        |

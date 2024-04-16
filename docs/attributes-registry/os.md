@@ -6,8 +6,6 @@
 
 # Os
 
-- [Os](#os)
-
 ## Os Attributes
 
 | Attribute        | Type   | Description                                                                                                                  | Examples                                                           | Stability                                                        |

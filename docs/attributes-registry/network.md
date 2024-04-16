@@ -6,8 +6,8 @@
 
 # Network
 
-- [Network](#network)
-- [Network Deprecated](#network-deprecated)
+- [Network](#network-attributes)
+- [Network Deprecated](#network-deprecated-attributes)
 
 ## Network Attributes
 

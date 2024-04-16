@@ -6,8 +6,6 @@
 
 # Oci
 
-- [Oci Manifest](#oci-manifest)
-
 ## Oci Manifest Attributes
 
 | Attribute             | Type   | Description                                                                                                                      | Examples                                                                  | Stability                                                        |

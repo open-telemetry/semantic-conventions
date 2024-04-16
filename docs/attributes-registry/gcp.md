@@ -6,8 +6,8 @@
 
 # Gcp
 
-- [Gcp Cloud Run](#gcp-cloud_run)
-- [Gcp Gce](#gcp-gce)
+- [Gcp Cloud Run](#gcp-cloud_run-attributes)
+- [Gcp Gce](#gcp-gce-attributes)
 
 ## Gcp Cloud Run Attributes
 

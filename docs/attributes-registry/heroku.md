@@ -6,8 +6,6 @@
 
 # Heroku
 
-- [Heroku](#heroku)
-
 ## Heroku Attributes
 
 | Attribute                           | Type   | Description                           | Examples                                | Stability                                                        |

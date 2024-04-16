@@ -6,8 +6,6 @@
 
 # Host
 
-- [Host](#host)
-
 ## Host Attributes
 
 | Attribute                | Type     | Description                                                                                                                                                                                                                                                 | Examples                                                       | Stability                                                        |

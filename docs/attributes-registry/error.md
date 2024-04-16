@@ -6,8 +6,6 @@
 
 # Error
 
-- [Error](#error)
-
 ## Error Attributes
 
 | Attribute    | Type   | Description                                              | Examples | Stability                                                  |

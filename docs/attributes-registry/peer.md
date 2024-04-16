@@ -6,8 +6,6 @@
 
 # Peer
 
-- [Peer](#peer)
-
 ## Peer Attributes
 
 | Attribute      | Type   | Description                                                                                                                                                                 | Examples         | Stability                                                        |

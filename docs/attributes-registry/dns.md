@@ -6,8 +6,6 @@
 
 # Dns
 
-- [Dns](#dns)
-
 ## Dns Attributes
 
 | Attribute           | Type   | Description                 | Examples                              | Stability                                                        |

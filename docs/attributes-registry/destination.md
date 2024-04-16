@@ -6,8 +6,6 @@
 
 # Destination
 
-- [Destination](#destination)
-
 ## Destination Attributes
 
 | Attribute             | Type   | Description                                                                                                                      | Examples                                               | Stability                                                        |

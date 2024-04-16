@@ -6,8 +6,6 @@
 
 # Source
 
-- [Source](#source)
-
 ## Source Attributes
 
 | Attribute        | Type   | Description                                                                                                                 | Examples                                          | Stability                                                        |

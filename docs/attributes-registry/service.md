@@ -6,8 +6,6 @@
 
 # Service
 
-- [Service](#service)
-
 ## Service Attributes
 
 | Attribute             | Type   | Description                                                                                              | Examples                               | Stability                                                        |

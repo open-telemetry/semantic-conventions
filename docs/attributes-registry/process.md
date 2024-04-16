@@ -6,8 +6,6 @@
 
 # Process
 
-- [Process](#process)
-
 ## Process Attributes
 
 | Attribute                     | Type     | Description                                                                                                                                                                                                                                                                                                                                                 | Examples                                            | Stability                                                        |

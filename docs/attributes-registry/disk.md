@@ -6,8 +6,6 @@
 
 # Disk
 
-- [Disk](#disk)
-
 ## Disk Attributes
 
 | Attribute           | Type   | Description                      | Examples | Stability                                                        |

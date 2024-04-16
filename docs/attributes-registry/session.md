@@ -6,8 +6,6 @@
 
 # Session
 
-- [Session](#session)
-
 ## Session Attributes
 
 | Attribute             | Type   | Description                                          | Examples                               | Stability                                                        |

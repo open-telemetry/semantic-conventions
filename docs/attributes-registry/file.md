@@ -6,8 +6,6 @@
 
 # File
 
-- [File](#file)
-
 ## File Attributes
 
 | Attribute        | Type   | Description                                                                                           | Examples                                                      | Stability                                                        |

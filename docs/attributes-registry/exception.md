@@ -6,8 +6,6 @@
 
 # Exception
 
-- [Exception](#exception)
-
 ## Exception Attributes
 
 | Attribute              | Type    | Description                                                                                                                                                                         | Examples                                                                                                                                                                                                                                                     | Stability                                                  |

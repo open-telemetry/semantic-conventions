@@ -6,8 +6,8 @@
 
 # Rpc
 
-- [Rpc](#rpc)
-- [Rpc Deprecated](#rpc-deprecated)
+- [Rpc](#rpc-attributes)
+- [Rpc Deprecated](#rpc-deprecated-attributes)
 
 ## Rpc Attributes
 

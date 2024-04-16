@@ -6,12 +6,12 @@
 
 # Aws
 
-- [Aws](#aws)
-- [Aws Dynamodb](#aws-dynamodb)
-- [Aws Ecs](#aws-ecs)
-- [Aws Lambda](#aws-lambda)
-- [Aws Log](#aws-log)
-- [Aws S3](#aws-s3)
+- [Aws](#aws-attributes)
+- [Aws Dynamodb](#aws-dynamodb-attributes)
+- [Aws Ecs](#aws-ecs-attributes)
+- [Aws Lambda](#aws-lambda-attributes)
+- [Aws Log](#aws-log-attributes)
+- [Aws S3](#aws-s3-attributes)
 
 ## Aws Attributes
 

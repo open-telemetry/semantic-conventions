@@ -6,8 +6,6 @@
 
 # Server
 
-- [Server](#server)
-
 ## Server Attributes
 
 | Attribute        | Type   | Description                                                                                                       | Examples                                   | Stability                                                  |

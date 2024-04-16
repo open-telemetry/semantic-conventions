@@ -16,10 +16,10 @@
 
 # {{ ctx.id | title_case }}
 
-{% for group in ctx.groups | sort(attribute="id") %}
+{% if ctx.groups | length > 1 %}{% for group in ctx.groups | sort(attribute="id") %}
 {%- set group_name = group.id | split_id | list | reject("eq", "registry") | join(" ") -%}
-- [{{ group_name | title_case }}](#{{group_name | replace(" ", "-") | lower}})
-{% endfor %}
+- [{{ group_name | title_case }}](#{{group_name | replace(" ", "-") | lower}}-attributes)
+{% endfor %}{% endif %}
 {% for group in ctx.groups | sort(attribute="id") %}
 ## {{ group.id | split_id | list | reject("eq", "registry") | join(" ") | title_case }} Attributes
 

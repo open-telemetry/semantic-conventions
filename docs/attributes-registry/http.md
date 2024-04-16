@@ -6,8 +6,8 @@
 
 # Http
 
-- [Http](#http)
-- [Http Deprecated](#http-deprecated)
+- [Http](#http-attributes)
+- [Http Deprecated](#http-deprecated-attributes)
 
 ## Http Attributes
 

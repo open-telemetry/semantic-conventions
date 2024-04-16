@@ -6,8 +6,6 @@
 
 # Device
 
-- [Device](#device)
-
 ## Device Attributes
 
 | Attribute                 | Type   | Description                                     | Examples                               | Stability                                                        |

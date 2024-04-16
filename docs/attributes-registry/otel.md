@@ -6,8 +6,8 @@
 
 # Otel
 
-- [Otel](#otel)
-- [Otel Library Deprecated](#otel-library-deprecated)
+- [Otel](#otel-attributes)
+- [Otel Library Deprecated](#otel-library-deprecated-attributes)
 
 ## Otel Attributes
 

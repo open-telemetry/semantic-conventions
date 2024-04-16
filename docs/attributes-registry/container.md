@@ -6,8 +6,8 @@
 
 # Container
 
-- [Container](#container)
-- [Container Deprecated](#container-deprecated)
+- [Container](#container-attributes)
+- [Container Deprecated](#container-deprecated-attributes)
 
 ## Container Attributes
 

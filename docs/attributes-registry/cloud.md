@@ -6,8 +6,6 @@
 
 # Cloud
 
-- [Cloud](#cloud)
-
 ## Cloud Attributes
 
 | Attribute                 | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                           | Examples                                                                                                                                                                                                                                                        | Stability                                                        |

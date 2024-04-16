@@ -6,8 +6,6 @@
 
 # Feature Flag
 
-- [Feature Flag](#feature_flag)
-
 ## Feature Flag Attributes
 
 | Attribute                    | Type   | Description                                                                                                             | Examples            | Stability                                                        |

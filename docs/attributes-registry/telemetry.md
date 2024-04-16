@@ -6,8 +6,6 @@
 
 # Telemetry
 
-- [Telemetry](#telemetry)
-
 ## Telemetry Attributes
 
 | Attribute                  | Type   | Description                                                                    | Examples               | Stability                                                        |

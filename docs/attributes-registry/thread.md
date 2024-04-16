@@ -6,8 +6,6 @@
 
 # Thread
 
-- [Thread](#thread)
-
 ## Thread Attributes
 
 | Attribute     | Type   | Description                                               | Examples | Stability                                                        |

@@ -6,8 +6,6 @@
 
 # User Agent
 
-- [User Agent](#user_agent)
-
 ## User Agent Attributes
 
 | Attribute             | Type   | Description                                                                                                             | Examples                                                                                                                                                                                                                   | Stability                                                        |

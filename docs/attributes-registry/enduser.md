@@ -6,8 +6,6 @@
 
 # Enduser
 
-- [Enduser](#enduser)
-
 ## Enduser Attributes
 
 | Attribute       | Type   | Description                                                                                                                                                                                                                                                                                                                                                                             | Examples                    | Stability                                                        |

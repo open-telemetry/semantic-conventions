@@ -6,8 +6,6 @@
 
 # Client
 
-- [Client](#client)
-
 ## Client Attributes
 
 | Attribute        | Type   | Description                                                                                                                 | Examples                                          | Stability                                                  |

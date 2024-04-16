@@ -6,8 +6,8 @@
 
 # Messaging
 
-- [Messaging](#messaging)
-- [Messaging Deprecated](#messaging-deprecated)
+- [Messaging](#messaging-attributes)
+- [Messaging Deprecated](#messaging-deprecated-attributes)
 
 ## Messaging Attributes
 

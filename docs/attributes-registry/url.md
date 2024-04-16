@@ -6,8 +6,6 @@
 
 # Url
 
-- [Url](#url)
-
 ## Url Attributes
 
 | Attribute               | Type   | Description                                                                                                                                                                                                                                                                                                   | Examples                                                                        | Stability                                                        |

@@ -6,8 +6,6 @@
 
 # Ios
 
-- [Ios Lifecycle Events](#ios-lifecycle-events)
-
 ## Ios Lifecycle Events Attributes
 
 | Attribute   | Type   | Description                                                                                                   | Examples | Stability                                                        |
