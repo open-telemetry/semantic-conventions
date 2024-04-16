@@ -9,6 +9,7 @@ The attributes registry is the place where attributes are defined. An attribute 
 
 - the `id` (the fully qualified name) of the attribute
 - the `type` of the attribute
+- the `stability` of the attribute
 - a `brief` description of the attribute and optionally a longer `note`
 - example values
 
