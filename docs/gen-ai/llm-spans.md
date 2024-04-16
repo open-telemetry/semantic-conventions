@@ -32,8 +32,6 @@ Instrumentations that support it, MUST offer the ability to turn off capture of 
 2. Data size concerns. Although there is no specified limit to sizes, there are practical limitations in programming languages and telemetry systems. Some LLMs allow for extremely large context windows that end users may take full advantage of.
 3. Performance concerns. Sending large amounts of data to a telemetry backend may cause performance issues for the application.
 
-By default, these configurations SHOULD NOT capture prompts and completions.
-
 ## LLM Request attributes
 
 These attributes track input data and metadata for a request to an LLM. Each attribute represents a concept that is common to most LLMs.
@@ -54,7 +52,7 @@ These attributes track input data and metadata for a request to an LLM. Each att
 
 **[1]:** The name of the LLM a request is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model requested. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[2]:** If not using a vendor-supplied model, provide a custom friendly name, such as a name of the company or project. If the instrumentation reports any attributes specific to a custom model, the value provided in the `gen_ai.system` SHOULD match the custom attribute namespace segment. For example, if `gen_ai.system` is set to `the_best_llm`, custom attributes should be added in the `gen_ai.the_best_llm.*` namespace. If none of above options apply, the instrumentation should set `_OTHER`.
+**[2]:** If not using a vendor-supplied model, provide a custom friendly name, such as a name of the company or project. If the instrumetnation reports any attributes specific to a custom model, the value provided in the `gen_ai.system` SHOULD match the custom attribute namespace segment. For example, if `gen_ai.system` is set to `the_best_llm`, custom attributes should be added in the `gen_ai.the_best_llm.*` namespace. If none of above options apply, the instrumentation should set `_OTHER`.
 
 **[3]:** If available. The name of the LLM serving a response. If the LLM is supplied by a vendor, then the value must be the exact name of the model actually used. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 <!-- endsemconv -->
