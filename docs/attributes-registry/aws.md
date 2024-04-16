@@ -8,7 +8,7 @@
 - [Aws Ecs](#aws-ecs)
 - [Aws Lambda](#aws-lambda)
 - [Aws Log](#aws-log)
-- [Aws S 3](#aws-s3)
+- [Aws S3](#aws-s3)
 
 ## Aws Attributes
 
@@ -85,7 +85,7 @@
 
 **[4]:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
 
-## Aws S 3 Attributes
+## Aws S3 Attributes
 
 | Attribute            | Type   | Description                                                                                                                                                                          | Examples                                                                              | Stability                                                        |
 | -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |

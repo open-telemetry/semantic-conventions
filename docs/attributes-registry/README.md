@@ -55,7 +55,7 @@ Currently, the following namespaces exist:
 - [Host](host.md)
 - [Http](http.md)
 - [Ios](ios.md)
-- [K 8 S](k8s.md)
+- [K8s](k8s.md)
 - [Messaging](messaging.md)
 - [Network](network.md)
 - [Oci](oci.md)
