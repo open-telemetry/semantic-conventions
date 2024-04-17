@@ -35,11 +35,13 @@ body:
         - area:dns
         - area:enduser
         - area:error
+        - area:event
         - area:exception
         - area:faas
         - area:feature-flag
         - area:file
         - area:gcp
+        - area:gen-ai
         - area:graphql
         - area:heroku
         - area:host
@@ -60,6 +62,7 @@ body:
         - area:service
         - area:session
         - area:source
+        - area:system
         - area:telemetry
         - area:thread
         - area:tls

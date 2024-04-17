@@ -78,4 +78,11 @@
 /model/metrics/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
 /docs/dotnet/          @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
 
+# Gen-AI semantic conventions approvers
+/model/registry/gen-ai.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers 
+/model/metrics/gen-ai.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers 
+/model/trace/gen-ai.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
+/docs/gen-ai/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
+/docs/attributes-registry/llm.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
+
 # TODO - Add semconv area experts
