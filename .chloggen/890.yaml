@@ -1,0 +1,4 @@
+change_type: breaking
+component: messaging
+note: Rename `messaging.operation` to `messaging.operation.type`, add `messaging.operation.name`.
+issues: [ 890 ]

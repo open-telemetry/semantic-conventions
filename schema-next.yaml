@@ -6,6 +6,13 @@ versions:
   1.25.0:
     spans:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/870
+        - rename_attributes:
+            attribute_map:
+              db.sql.table: db.collection.name
+              db.mongodb.collection: db.collection.name
+              db.cosmosdb.container: db.collection.name
+              db.cassandra.table: db.collection.name
         # https://github.com/open-telemetry/semantic-conventions/pull/798
         - rename_attributes:
             attribute_map:
@@ -14,6 +21,10 @@ versions:
         - rename_attributes:
             attribute_map:
               db.operation: db.operation.name
+        # https://github.com/open-telemetry/semantic-conventions/pull/913
+        - rename_attributes:
+            attribute_map:
+              messaging.operation: messaging.operation.type
         # https://github.com/open-telemetry/semantic-conventions/pull/866
         - rename_attributes:
             attribute_map:
