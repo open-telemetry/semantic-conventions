@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.container.deprecated
+  - id: registry.container.deprecated
     type: attribute_group
     brief: "Describes deprecated container attributes."
     attributes:
@@ -7,4 +7,5 @@ groups:
         type: template[string]
         examples: [ 'container.label.app=nginx' ]
         brief: "Deprecated, use `container.label` instead."
+        stability: experimental
         deprecated: "Replaced by `container.label`."

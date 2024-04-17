@@ -1,0 +1,57 @@
+groups:
+  # container.cpu.* metrics and attribute group
+  - id: metric.container.cpu.time
+    type: metric
+    metric_name: container.cpu.time
+    stability: experimental
+    brief: "Total CPU time consumed"
+    note: >
+      Total CPU time consumed by the specific container on all available CPU cores
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: container.cpu.state
+        brief: "The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
+        requirement_level: opt_in
+
+  # container.memory.* metrics and attribute group
+  - id: metric.container.memory.usage
+    type: metric
+    metric_name: container.memory.usage
+    stability: experimental
+    brief: "Memory usage of the container."
+    note: >
+      Memory usage of the container.
+    instrument: counter
+    unit: "By"
+
+  # container.disk.io.* metrics and attribute group
+  - id: metric.container.disk.io
+    type: metric
+    metric_name: container.disk.io
+    stability: experimental
+    brief: "Disk bytes for the container."
+    note: >
+      The total number of bytes read/written
+      successfully (aggregated from all disks).
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: disk.io.direction
+      - ref: system.device
+
+  # container.network.io.* metrics and attribute group
+  - id: metric.container.network.io
+    type: metric
+    metric_name: container.network.io
+    stability: experimental
+    brief: "Network bytes for the container."
+    note: >
+      The number of bytes sent/received
+      on all network interfaces
+      by the container.
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: network.io.direction
+      - ref: system.device

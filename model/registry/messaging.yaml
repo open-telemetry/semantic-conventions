@@ -139,7 +139,7 @@ groups:
           body size should be used.
         examples: 1439
         tag: messaging-generic
-      - id: operation
+      - id: operation.type
         type:
           allow_custom_values: true
           members:
@@ -148,28 +148,40 @@ groups:
               brief: >
                 One or more messages are provided for publishing to an intermediary.
                 If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created.
+              stability: experimental
             - id: create
               value: "create"
               brief: >
                 A message is created.
                 "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios.
+              stability: experimental
             - id: receive
               value: "receive"
               brief: >
                 One or more messages are requested by a consumer.
                 This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.
+              stability: experimental
             - id: deliver
               value: "process"
               brief: >
                 One or more messages are delivered to or processed by a consumer.
+              stability: experimental
             - id: settle
               value: "settle"
               brief: >
                 One or more messages are settled.
+              stability: experimental
         stability: experimental
         brief: >
-          A string identifying the kind of messaging operation.
+          A string identifying the type of the messaging operation.
         note: If a custom value is used, it MUST be of low cardinality.
+        tag: messaging-generic
+      - id: operation.name
+        type: string
+        stability: experimental
+        brief: >
+          The system-specific name of the messaging operation.
+        examples: [ "ack", "nack", "send" ]
         tag: messaging-generic
       - id: rabbitmq.destination.routing_key
         type: string
@@ -200,9 +212,11 @@ groups:
             - id: clustering
               value: 'clustering'
               brief: 'Clustering consumption model'
+              stability: experimental
             - id: broadcasting
               value: 'broadcasting'
               brief: 'Broadcasting consumption model'
+              stability: experimental
         stability: experimental
         brief: >
           Model of message consumption. This only applies to consumer spans.
@@ -249,15 +263,19 @@ groups:
             - id: normal
               value: 'normal'
               brief: "Normal message"
+              stability: experimental
             - id: fifo
               value: 'fifo'
               brief: 'FIFO message'
+              stability: experimental
             - id: delay
               value: 'delay'
               brief: 'Delay message'
+              stability: experimental
             - id: transaction
               value: 'transaction'
               brief: 'Transaction message'
+              stability: experimental
         stability: experimental
         brief: >
           Type of message.
@@ -285,33 +303,43 @@ groups:
             - id: activemq
               value: 'activemq'
               brief: 'Apache ActiveMQ'
+              stability: experimental
             - id: aws_sqs
               value: 'aws_sqs'
               brief: 'Amazon Simple Queue Service (SQS)'
+              stability: experimental
             - id: eventgrid
               value: 'eventgrid'
               brief: 'Azure Event Grid'
+              stability: experimental
             - id: eventhubs
               value: 'eventhubs'
               brief: 'Azure Event Hubs'
+              stability: experimental
             - id: servicebus
               value: 'servicebus'
               brief: 'Azure Service Bus'
+              stability: experimental
             - id: gcp_pubsub
               value: 'gcp_pubsub'
               brief: 'Google Cloud Pub/Sub'
+              stability: experimental
             - id: jms
               value: 'jms'
               brief: 'Java Message Service'
+              stability: experimental
             - id: kafka
               value: 'kafka'
               brief: 'Apache Kafka'
+              stability: experimental
             - id: rabbitmq
               value: 'rabbitmq'
               brief: 'RabbitMQ'
+              stability: experimental
             - id: rocketmq
               value: 'rocketmq'
               brief: 'Apache RocketMQ'
+              stability: experimental
         stability: experimental
         tag: messaging-generic
       - id: servicebus.message.delivery_count
@@ -344,15 +372,19 @@ groups:
             - id: complete
               value: 'complete'
               brief: 'Message is completed'
+              stability: experimental
             - id: abandon
               value: 'abandon'
               brief: 'Message is abandoned'
+              stability: experimental
             - id: dead_letter
               value: 'dead_letter'
               brief: 'Message is sent to dead letter queue'
+              stability: experimental
             - id: defer
               value: 'defer'
               brief: 'Message is deferred'
+              stability: experimental
         stability: experimental
         tag: tech-specific-servicebus
       - id: eventhubs.message.enqueued_time
