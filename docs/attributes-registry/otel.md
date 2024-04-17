@@ -5,12 +5,29 @@
 
 <!-- toc -->
 
-- [OpenTelemetry Attributes](#opentelemetry-attributes)
+- [General Attributes](#general-attributes)
+- [Scope Attributes](#scope-attributes)
 - [Deprecated OpenTelemetry Attributes](#deprecated-opentelemetry-attributes)
 
 <!-- tocstop -->
 
-## OpenTelemetry Attributes
+## General Attributes
+
+<!-- semconv registry.otel(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `otel.status_code` | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `otel.status_description` | string | Description of the Status if it has a value, otherwise not set. | `resource not found` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+`otel.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `OK` | The operation has been validated by an Application developer or Operator to have completed successfully. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ERROR` | The operation contains an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+<!-- endsemconv -->
+
+## Scope Attributes
 
 <!-- semconv registry.otel.scope(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
