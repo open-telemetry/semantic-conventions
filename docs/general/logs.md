@@ -59,9 +59,9 @@ As such, these should be recorded as Log Record attributes when applicable. They
 <!-- semconv attributes.log.file -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`file.name`](../attributes-registry/file.md) | string | Name of the file including the extension, without the directory. | `example.png` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`file.path`](../attributes-registry/file.md) | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.file.name`](../attributes-registry/log.md) | string | The basename of the file. | `audit.log` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`log.file.name_resolved`](../attributes-registry/log.md) | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.file.path`](../attributes-registry/log.md) | string | The full path to the file. | `/var/log/mysql/audit.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`log.file.path_resolved`](../attributes-registry/log.md) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 

@@ -9,7 +9,6 @@
   - [Generic log attributes](#generic-log-attributes)
   - [File log attributes](#file-log-attributes)
   - [Record log attributes](#record-log-attributes)
-  - [Deprecated log attributes](#deprecated-log-attributes)
 
 <!-- tocstop -->
 
@@ -35,7 +34,9 @@
 <!-- semconv registry.log.file(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
+| `log.file.name` | string | The basename of the file. | `audit.log` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `log.file.name_resolved` | string | The basename of the file, with symlinks resolved. | `uuid.log` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `log.file.path` | string | The full path to the file. | `/var/log/mysql/audit.log` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `log.file.path_resolved` | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
@@ -48,13 +49,4 @@
 
 **[1]:** If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
 The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
-<!-- endsemconv -->
-
-### Deprecated log attributes
-
-<!-- semconv registry.log.file.deprecated(omit_requirement_level) -->
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `log.file.name` | string | Deprecated, use `file.name` instead. | `audit.log` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `file.name`. |
-| `log.file.path` | string | Deprecated, use `file.path` instead. | `/var/log/mysql/audit.log` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `file.path`. |
 <!-- endsemconv -->

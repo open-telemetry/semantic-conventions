@@ -11,9 +11,9 @@ groups:
     brief: >
       A file to which log was emitted.
     attributes:
-      - ref: file.name
+      - ref: log.file.name
         requirement_level: recommended
-      - ref: file.path
+      - ref: log.file.path
         requirement_level: opt_in
       - ref: log.file.name_resolved
         requirement_level: opt_in
