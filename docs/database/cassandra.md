@@ -40,17 +40,17 @@ described on this page.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `all` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_quorum` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `any` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_serial` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `all` | all | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `each_quorum` | each_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quorum` | quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `one` | one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `two` | two | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `three` | three | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_one` | local_one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `any` | any | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `serial` | serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

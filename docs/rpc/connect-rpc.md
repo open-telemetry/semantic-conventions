@@ -19,9 +19,9 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 <!-- semconv rpc.connect_rpc(full,tag=connect_rpc-tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.connect_rpc.error_code`](../attributes-registry/rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.connect_rpc.request.metadata.<key>`](../attributes-registry/rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.connect_rpc.response.metadata.<key>`](../attributes-registry/rpc.md) | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.connect_rpc.error_code`](/docs/attributes-registry/rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument`; `deadline_exceeded`; `not_found`; `already_exists`; `permission_denied`; `resource_exhausted`; `failed_precondition`; `aborted`; `out_of_range`; `unimplemented`; `internal`; `unavailable`; `data_loss`; `unauthenticated` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.connect_rpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.connect_rpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If response is not successful and if error code available.
 
@@ -29,7 +29,7 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 
 **[3]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-`rpc.connect_rpc.error_code` MUST be one of the following:
+`rpc.connect_rpc.error_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

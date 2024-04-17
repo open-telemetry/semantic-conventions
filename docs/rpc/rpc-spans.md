@@ -299,8 +299,8 @@ The event name MUST be `rpc.message`
 
 | Value  | Description | Stability |
 |---|---|---|
-| `SENT` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECEIVED` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `SENT` | SENT | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | RECEIVED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Distinction from HTTP spans

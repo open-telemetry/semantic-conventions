@@ -21,8 +21,8 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-| `ec2` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fargate` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ec2` | ec2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fargate` | fargate | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

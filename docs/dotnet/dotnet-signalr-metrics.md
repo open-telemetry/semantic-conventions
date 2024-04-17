@@ -65,10 +65,10 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 <!-- semconv metric.signalr.server.active_connections(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `signalr.connection.status` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `signalr.transport` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`signalr.connection.status`](/docs/attributes-registry/signalr.md) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`signalr.transport`](/docs/attributes-registry/signalr.md) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-`signalr.connection.status` MUST be one of the following:
+`signalr.connection.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

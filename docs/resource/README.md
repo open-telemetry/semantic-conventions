@@ -99,8 +99,8 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 <!-- semconv service_experimental -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`service.instance.id`](../attributes-registry/service.md) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`service.namespace`](../attributes-registry/service.md) | string | A namespace for `service.name`. [2] | `Shop` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`service.instance.id`](/docs/attributes-registry/service.md) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`service.namespace`](/docs/attributes-registry/service.md) | string | A namespace for `service.name`. [2] | `Shop` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
@@ -172,18 +172,18 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cpp` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `dotnet` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `erlang` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `go` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `java` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `nodejs` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `php` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `python` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ruby` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `rust` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `swift` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `webjs` |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `cpp` | cpp | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `dotnet` | dotnet | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `erlang` | erlang | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `go` | go | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `java` | java | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `nodejs` | nodejs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `php` | php | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `python` | python | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ruby` | ruby | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `rust` | rust | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `swift` | swift | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `webjs` | webjs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 ## Telemetry SDK (Experimental)
@@ -197,8 +197,8 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 <!-- semconv telemetry_experimental -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`telemetry.distro.name`](../attributes-registry/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.distro.version`](../attributes-registry/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.distro.name`](/docs/attributes-registry/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.distro.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.

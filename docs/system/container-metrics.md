@@ -71,8 +71,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `container.network.io`
@@ -97,8 +97,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `transmit` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

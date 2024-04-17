@@ -93,13 +93,13 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `user` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nice` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `idle` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iowait` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interrupt` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `steal` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.cpu.utilization`
@@ -122,13 +122,13 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `user` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nice` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `idle` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iowait` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interrupt` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `steal` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.cpu.physical.count`
@@ -200,11 +200,11 @@ available on the system, that is `system.memory.limit`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `used` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `free` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `buffers` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cached` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `shared` | shared | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.memory.limit`
@@ -241,11 +241,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `used` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `free` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `buffers` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cached` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `shared` | shared | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Paging/Swap Metrics
@@ -271,8 +271,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `used` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `free` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.paging.utilization`
@@ -294,8 +294,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `used` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `free` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.paging.faults`
@@ -317,8 +317,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `minor` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.paging.operations`
@@ -341,15 +341,15 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `in` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `out` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `in` | in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `out` | out | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `minor` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Disk Controller Metrics
@@ -376,8 +376,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.disk.operations`
@@ -400,8 +400,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.disk.io_time`
@@ -424,7 +424,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.io_time(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.disk.operation_time`
@@ -445,10 +445,10 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.system.disk.operation_time(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`disk.io.direction`](../attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system.device` | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`disk.io.direction` MUST be one of the following:
+`disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -476,8 +476,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Filesystem Metrics
@@ -507,20 +507,20 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `used` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `free` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `reserved` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `reserved` | reserved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `fat32` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `exfat` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ntfs` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `refs` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hfsplus` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ext4` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fat32` | fat32 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `exfat` | exfat | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ntfs` | ntfs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `refs` | refs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hfsplus` | hfsplus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ext4` | ext4 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.filesystem.utilization`
@@ -546,20 +546,20 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `used` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `free` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `reserved` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `reserved` | reserved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `fat32` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `exfat` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ntfs` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `refs` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hfsplus` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ext4` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fat32` | fat32 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `exfat` | exfat | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ntfs` | ntfs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `refs` | refs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hfsplus` | hfsplus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ext4` | ext4 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Network Metrics
@@ -592,8 +592,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `transmit` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.network.packets`
@@ -616,8 +616,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `transmit` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.network.errors`
@@ -646,8 +646,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `transmit` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.network.io`
@@ -670,8 +670,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `transmit` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.network.connections`
@@ -710,18 +710,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `close` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `close_wait` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `closing` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `delete` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `established` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_2` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `last_ack` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `listen` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_recv` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_sent` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `time_wait` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `close` | close | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_recv` | syn_recv | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 ## Aggregate System Process Metrics
 
@@ -747,10 +747,10 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `running` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sleeping` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stopped` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `defunct` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `running` | running | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sleeping` | sleeping | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stopped` | stopped | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `defunct` | defunct | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `system.process.created`

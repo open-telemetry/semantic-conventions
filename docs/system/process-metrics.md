@@ -64,9 +64,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `system` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wait` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wait` | wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `process.cpu.utilization`
@@ -88,9 +88,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `system` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wait` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wait` | wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `process.memory.usage`
@@ -138,8 +138,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `process.network.io`
@@ -161,8 +161,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `transmit` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `process.thread.count`
@@ -204,7 +204,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.process.context_switches(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `process.context_switch_type` | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.context_switch_type`](/docs/attributes-registry/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -233,8 +233,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `minor` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

@@ -140,12 +140,12 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 <!-- semconv metric.jvm.memory.used_after_last_gc(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `jvm.memory.pool.name` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`pool.name`](/docs/attributes-registry/pool.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`type`](/docs/attributes-registry/type.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-`jvm.memory.type` MUST be one of the following:
+`type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
