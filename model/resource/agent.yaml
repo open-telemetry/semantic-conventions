@@ -1,0 +1,11 @@
+groups:
+  - id: agent
+    prefix: agent
+    type: resource
+    brief: >
+        An agent
+    attributes:
+      - ref: agent.type
+        requirement_level: required
+      - ref: agent.version
+      - ref: agent.distro
