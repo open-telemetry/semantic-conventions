@@ -61,6 +61,7 @@ body:
         - area:service
         - area:session
         - area:source
+        - area:system
         - area:telemetry
         - area:thread
         - area:tls
