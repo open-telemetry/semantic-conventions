@@ -65,9 +65,6 @@ groups:
             - id: free
               value: 'free'
               stability: experimental
-            - id: shared
-              value: 'shared'
-              stability: experimental
             - id: buffers
               value: 'buffers'
               stability: experimental

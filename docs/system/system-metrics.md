@@ -202,7 +202,6 @@ available on the system, that is `system.memory.limit`.
 |---|---|---|
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` | shared | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
@@ -220,6 +219,19 @@ This metric is [opt-in][MetricOptIn].
 <!-- endsemconv -->
 
 <!-- semconv metric.system.memory.limit(full) -->
+<!-- endsemconv -->
+
+### Metric: `system.memory.shared`
+
+This metric is [opt-in][MetricOptIn].
+
+<!-- semconv metric.system.memory.shared(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.memory.shared` | UpDownCounter | `By` | Reports shared memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.system.memory.shared(full) -->
 <!-- endsemconv -->
 
 ### Metric: `system.memory.utilization`
@@ -243,7 +255,6 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` | shared | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->

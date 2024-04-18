@@ -77,6 +77,14 @@ groups:
     unit: "By"
     attributes: []
 
+  - id: metric.system.memory.shared
+    type: metric
+    metric_name: system.memory.shared
+    stability: experimental
+    brief: "Reports shared memory."
+    instrument: updowncounter
+    unit: "By"
+
   - id: metric.system.memory.utilization
     type: metric
     metric_name: system.memory.utilization
