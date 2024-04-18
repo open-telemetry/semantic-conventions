@@ -31,7 +31,8 @@
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
-**[2]:** If a database system has multiple namespace components, they should be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces should not be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid. Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+**[2]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 
 **[3]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.

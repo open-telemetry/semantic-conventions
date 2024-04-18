@@ -24,7 +24,7 @@ described on this page.
 
 **[1]:** The database index for current connection can be changed by the application dynamically. Instrumentations MAY use the initial database index provided in the connection string and keep track of the currently selected database to capture the `db.namespace`.
 Instrumentations SHOULD NOT set this attribute if capturing it would require additional network calls to Redis.
-For commands that switch the database, this should be set to the target database (even if the command fails).
+For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
 
 **[2]:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 

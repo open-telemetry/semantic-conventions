@@ -23,10 +23,25 @@ described on this page.
 
 **[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 
-**[3]:** Current database name can usually be obtained using database driver API such as [JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--) or [.NET `SqlConnection.Database`](https://learn.microsoft.com/dotnet/api/system.data.sqlclient.sqlconnection.database).
-If instrumentation cannot reliably determine the database name (for example, if database can be changed in runtime without instrumentation being aware of it), it SHOULD NOT set `db.namespace`.
-Instrumentations that parse SQL statements MAY utilize the database name provided in the connection string and keep track of the currently selected database name, as long as it cannot be changed without the instrumentation being aware of it.
-For commands that switch the database, this should be set to the target database (even if the command fails).
+**[3]:** If a database system has multiple namespace components, they SHOULD be concatenated
+(potentially using database system specific conventions) from most general to most
+specific namespace component, and more specific namespaces SHOULD NOT be captured without
+the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+
+Unless specified by the system-specific semantic convention, the `db.namespace` attribute matches
+the name of the database being accessed.
+
+The database name can usually be obtained with database driver API such as
+[JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--)
+or [.NET `SqlConnection.Database`](https://learn.microsoft.com/dotnet/api/system.data.sqlclient.sqlconnection.database).
+
+Some database drivers don't detect when the current database is changed (for example, with SQL `USE database` statement).
+Instrumentations that parse SQL statements MAY use the database name provided
+in the connection string and keep track of the currently selected database name.
+
+For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
+
+If instrumentation cannot reliably determine the current database name, it SHOULD NOT set `db.namespace`.
 
 **[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
 In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.

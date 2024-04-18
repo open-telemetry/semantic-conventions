@@ -32,7 +32,7 @@ described on this page.
 
 **[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 
-**[3]:** For commands that switch the keyspace, this should be set to the target keyspace (even if the command fails).
+**[3]:** For commands that switch the keyspace, this SHOULD be set to the target keyspace (even if the command fails).
 
 **[4]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 

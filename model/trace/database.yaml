@@ -77,13 +77,13 @@ groups:
       Attributes for Microsoft SQL Server
     attributes:
       - ref: db.namespace
-        brief: Identifies MS SQL database within a server.
+        brief: The name of the database, fully qualified within the server address and port.
         note:
           When connecting to a default instance, `db.namespace` SHOULD be set to the name of
           the database. When connecting to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
           `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
 
-          For commands that switch the database, this should be set to the target database (even if the command fails).
+          For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
         examples: ["instance1.products", "customers"]
         tag: tech-specific
 
@@ -95,7 +95,7 @@ groups:
     attributes:
       - ref: db.namespace
         brief: The Cassandra keyspace name.
-        note: For commands that switch the keyspace, this should be set to the target keyspace (even if the command fails).
+        note: For commands that switch the keyspace, this SHOULD be set to the target keyspace (even if the command fails).
         examples: ["mykeyspace"]
         tag: tech-specific
       - ref: db.cassandra.page_size
@@ -175,7 +175,7 @@ groups:
 
           Instrumentations SHOULD NOT set this attribute if capturing it would require additional network calls to Redis.
 
-          For commands that switch the database, this should be set to the target database (even if the command fails).
+          For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
         examples: ["0", "1", "15"]
         tag: tech-specific
       - ref: db.query.text
@@ -274,19 +274,26 @@ groups:
         examples: ['users', 'dbo.products']
         tag: tech-specific
       - ref: db.namespace
-        note: >
-          Current database name can usually be obtained using database driver API such as
+        note: |
+          If a database system has multiple namespace components, they SHOULD be concatenated
+          (potentially using database system specific conventions) from most general to most
+          specific namespace component, and more specific namespaces SHOULD NOT be captured without
+          the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+
+          Unless specified by the system-specific semantic convention, the `db.namespace` attribute matches
+          the name of the database being accessed.
+
+          The database name can usually be obtained with database driver API such as
           [JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--)
           or [.NET `SqlConnection.Database`](https://learn.microsoft.com/dotnet/api/system.data.sqlclient.sqlconnection.database).
 
-          If instrumentation cannot reliably determine the database name (for example, if database can be changed in runtime without
-          instrumentation being aware of it), it SHOULD NOT set `db.namespace`.
+          Some database drivers don't detect when the current database is changed (for example, with SQL `USE database` statement).
+          Instrumentations that parse SQL statements MAY use the database name provided
+          in the connection string and keep track of the currently selected database name.
 
-          Instrumentations that parse SQL statements MAY utilize the database name provided
-          in the connection string and keep track of the currently selected database name,
-          as long as it cannot be changed without the instrumentation being aware of it.
+          For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
 
-          For commands that switch the database, this should be set to the target database (even if the command fails).
+          If instrumentation cannot reliably determine the current database name, it SHOULD NOT set `db.namespace`.
         tag: tech-specific
   - id: db.cosmosdb
     type: span

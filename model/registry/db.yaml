@@ -19,10 +19,11 @@ groups:
         brief: >
           The name of the database, fully qualified within the server address and port.
         note: >
-          If a database system has multiple namespace components, they should be concatenated
+          If a database system has multiple namespace components, they SHOULD be concatenated
           (potentially using database system specific conventions) from most general to most
-          specific namespace component, and more specific namespaces should not be captured without
+          specific namespace component, and more specific namespaces SHOULD NOT be captured without
           the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+
           Semantic conventions for individual database systems SHOULD document what `db.namespace`
           means in the context of that system.
         examples: [ 'customers', 'test.users' ]
