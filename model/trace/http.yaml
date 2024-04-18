@@ -1,40 +1,21 @@
 groups:
-  - id: trace.http.common
-    extends: attributes.http.common
-    type: attribute_group
-    brief: 'This document defines semantic conventions for HTTP client and server Spans.'
-    note: >
-        These conventions can be used for http and https schemes
-        and various HTTP versions like 1.1, 2 and SPDY.
-    attributes:
-      - ref: http.request.method_original
-        requirement_level:
-          conditionally_required: If and only if it's different than `http.request.method`.
-      - ref: http.response.header
-        requirement_level: opt_in
-      - ref: http.request.method
-        sampling_relevant: true
-        requirement_level: required
-      - ref: network.peer.address
-      - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
-      - ref: network.transport
-        requirement_level: opt_in
-        note: >
-          Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
-          Other obscure implementations are possible.
-
   - id: trace.http.client
     type: span
     extends: attributes.http.client
     span_kind: client
     brief: 'Semantic Convention for HTTP Client'
     attributes:
+      - ref: http.request.method
+        sampling_relevant: true
+      - ref: http.request.method_original
+        requirement_level:
+          conditionally_required: If and only if it's different than `http.request.method`.
       - ref: http.request.resend_count
         requirement_level:
           recommended: if and only if request was retried.
       - ref: http.request.header
+        requirement_level: opt_in
+      - ref: http.response.header
         requirement_level: opt_in
       - ref: server.address
         sampling_relevant: true
@@ -46,6 +27,13 @@ groups:
       - ref: user_agent.original
         requirement_level: opt_in
       - ref: url.scheme
+      - ref: network.peer.address
+      - ref: network.peer.port
+      - ref: network.transport
+        requirement_level: opt_in
+        note: >
+          Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
+          Other obscure implementations are possible.
 
   - id: trace.http.server
     type: span
@@ -53,9 +41,16 @@ groups:
     span_kind: server
     brief: 'Semantic Convention for HTTP Server'
     attributes:
+      - ref: http.request.method
+        sampling_relevant: true
+      - ref: http.request.method_original
+        requirement_level:
+          conditionally_required: If and only if it's different than `http.request.method`.
       - ref: http.route
       - ref: http.request.header
         sampling_relevant: true
+        requirement_level: opt_in
+      - ref: http.response.header
         requirement_level: opt_in
       - ref: server.address
         sampling_relevant: true
@@ -89,3 +84,10 @@ groups:
         sampling_relevant: true
       - ref: user_agent.original
         sampling_relevant: true
+      - ref: network.peer.address
+      - ref: network.peer.port
+      - ref: network.transport
+        requirement_level: opt_in
+        note: >
+          Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
+          Other obscure implementations are possible.
