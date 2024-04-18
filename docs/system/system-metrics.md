@@ -421,12 +421,6 @@ This metric is [recommended][MetricRecommended].
   performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
 <!-- endsemconv -->
 
-<!-- semconv metric.system.disk.io_time(full) -->
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-<!-- endsemconv -->
-
 ### Metric: `system.disk.operation_time`
 
 This metric is [recommended][MetricRecommended].

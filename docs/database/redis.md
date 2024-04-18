@@ -41,7 +41,7 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 | `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |
 | `db.name`                 | not set |
-| `db.statement`            | `"HMSET myhash field1 'Hello' field2 'World"` |
+| `db.query.text`           | `"HMSET myhash field1 'Hello' field2 'World"` |
 | `db.operation.name`       | not set |
 | `db.redis.database_index` | `15` |
 

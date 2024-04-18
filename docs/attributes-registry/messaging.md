@@ -33,7 +33,8 @@
 | `messaging.message.conversation_id`                  | string   | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID".                                                                                                 | `MyConversationId`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.message.envelope.size`                    | int      | The size of the message body and metadata in bytes. [7]                                                                                                                                                                                    | `2738`                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.message.id`                               | string   | A value used by the messaging system as an identifier for the message, represented as a string.                                                                                                                                            | `452a7c7c7c7048c2f887f61572b18fc2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.operation`                                | string   | A string identifying the kind of messaging operation. [8]                                                                                                                                                                                  | `publish`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.operation.name`                           | string   | The system-specific name of the messaging operation.                                                                                                                                                                                       | `ack`; `nack`; `send`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.operation.type`                           | string   | A string identifying the type of the messaging operation. [8]                                                                                                                                                                              | `publish`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rabbitmq.destination.routing_key`         | string   | RabbitMQ message routing key.                                                                                                                                                                                                              | `myKey`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rabbitmq.message.delivery_tag`            | int      | RabbitMQ message delivery tag                                                                                                                                                                                                              | `123`                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rocketmq.client_group`                    | string   | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind.                                                                                                                  | `myConsumerGroup`                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -71,7 +72,7 @@ size should be used.
 
 **[8]:** If a custom value is used, it MUST be of low cardinality.
 
-`messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value     | Description                                                                                                                                                                                                            | Stability                                                        |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -123,8 +124,10 @@ size should be used.
 
 ## Messaging Deprecated Attributes
 
-| Attribute                               | Type | Description                                                         | Examples | Stability                                                   |
-| --------------------------------------- | ---- | ------------------------------------------------------------------- | -------- | ----------------------------------------------------------- |
-| `messaging.kafka.destination.partition` | int  | "Deprecated, use `messaging.destination.partition.id` instead." [9] | `2`      | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| Attribute                               | Type   | Description                                                       | Examples                       | Stability                                                   |
+| --------------------------------------- | ------ | ----------------------------------------------------------------- | ------------------------------ | ----------------------------------------------------------- |
+| `messaging.kafka.destination.partition` | int    | Deprecated, use `messaging.destination.partition.id` instead. [9] | `2`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `messaging.operation`                   | string | Deprecated, use `messaging.operation.type` instead. [10]          | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 
 **[9]:** Replaced by `messaging.destination.partition.id`.
+**[10]:** Replaced by `messaging.operation.type`.

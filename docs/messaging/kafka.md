@@ -53,7 +53,7 @@ One process, CA, receives the message and publishes a new message to a topic T2 
 
 Frameworks such as Quarkus and Spring Boot separate processing of a received message from producing subsequent messages out.
 For this reason, receiving (Span Rcv1) is the parent of both processing (Span Proc1) and producing a new message (Span Prod2).
-The span representing message receiving (Span Rcv1) should not set `messaging.operation` to `receive`,
+The span representing message receiving (Span Rcv1) should not set `messaging.operation.type` to `receive`,
 as it does not only receive the message but also converts the input message to something suitable for the processing operation to consume and creates the output message from the result of processing.
 
 ```
@@ -77,7 +77,7 @@ Process CB:                           | Span Rcv2 |
 | `service.name` |  | `"myConsumer1"` | `"myConsumer1"` |  | `"myConsumer2"` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T1"` | `"T1"` | `"T1"` | `"T2"` | `"T2"` |
-| `messaging.operation` |  |  | `"process"` |  | `"receive"` |
+| `messaging.operation.type` |  |  | `"process"` |  | `"receive"` |
 | `messaging.client_id` |  | `"5"` | `"5"` | `"5"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | `"anotherKey"` | `"anotherKey"` |
 | `messaging.kafka.consumer.group` |  | `"my-group"` | `"my-group"` |  | `"another-group"` |

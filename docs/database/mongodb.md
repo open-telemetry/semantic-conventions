@@ -39,7 +39,7 @@ described on this page.
 | `network.peer.port`     | `27017` |
 | `network.transport`     | `"tcp"` |
 | `db.name`               | `"shopDb"` |
-| `db.statement`          | not set |
+| `db.query.text`         | not set |
 | `db.operation.name`     | `"findAndModify"` |
 | `db.mongodb.collection` | `"products"` |
 

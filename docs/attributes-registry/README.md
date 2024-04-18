@@ -53,6 +53,7 @@ Currently, the following namespaces exist:
 - [Feature Flag](feature-flag.md)
 - [File](file.md)
 - [Gcp](gcp.md)
+- [Gen Ai](gen-ai.md)
 - [Graphql](graphql.md)
 - [Heroku](heroku.md)
 - [Host](host.md)
