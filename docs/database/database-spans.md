@@ -56,13 +56,12 @@ It MAY be a stored procedure name (without arguments), DB statement without vari
 Since SQL statements may have very high cardinality even without arguments, SQL spans SHOULD be named the
 following way, unless the statement is known to be of low cardinality:
 
-`<db.operation.name> <db.collection.namespace>.<db.collection.name>`, provided that `db.operation.name` and `db.collection.name` are available.
-If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.collection.namespace>`.
+`<db.operation.name> <db.namespace>.<db.collection.name>`, provided that `db.operation.name` and `db.collection.name` are available.
+If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.name>`.
 
 It is not recommended to attempt any client-side parsing of `db.query.text` just to get these properties,
-
 they should only be used if the library being instrumented already provides them.
-When it's otherwise impossible to get any meaningful span name, `db.collection.namespace` or the tech-specific database name MAY be used.
+When it's otherwise impossible to get any meaningful span name, `db.namespace` or the tech-specific database name MAY be used.
 
 Span that describes database call SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
 For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
@@ -77,7 +76,7 @@ These attributes will usually be the same for all operations performed over the 
 |---|---|---|---|---|---|
 | [`db.system`](../attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.collection.name`](../attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.collection.namespace`](../attributes-registry/db.md) | string | The namespace containing database objects, fully qualified within the server address and port. [3] | `customers`; `test.users` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](../attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [3] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](../attributes-registry/db.md) | string | The name of the operation or command being executed. | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](../attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.instance.id`](../attributes-registry/db.md) | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | `Recommended` If different from the `server.address` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -91,18 +90,7 @@ These attributes will usually be the same for all operations performed over the 
 
 **[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 
-**[3]:** For many database systems, the namespace matches the database (catalog, keyspace, schema) name.
-In general case, however, namespace consist of several qualifiers:
-
-* Instance name - MS SQL Server or Oracle, allow to host multiple database engines on the same host.
-* Database name - The name of the database, keyspace, namespace, etc.
-* Schema name - such as PostgreSQL or MS SQL Server schemas.
-* Other sub-namespaces which may include partition or shard identifiers.
-
-Namespace SHOULD include all such identifiers applicable to the database system and available to the instrumentation.
-
-Semantic conventions for individual database systems SHOULD document what `db.collection.namespace`
-means in the context of that system.
+**[3]:** If a database system has multiple namespace components, they should be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces should not be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid. Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 
 **[4]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 

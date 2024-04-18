@@ -13,23 +13,17 @@ groups:
             If the collection name is parsed from the query, it SHOULD match the value provided
             in the query and may be qualified with the schema and database name.
         examples: ['public.users', 'customers']
-      - id: collection.namespace
+      - id: namespace
         type: string
         stability: experimental
         brief: >
-          The namespace containing database objects, fully qualified within the server address and port.
-        note: |
-          For many database systems, the namespace matches the database (catalog, keyspace, schema) name.
-          In general case, however, namespace consist of several qualifiers:
-
-          * Instance name - MS SQL Server or Oracle, allow to host multiple database engines on the same host.
-          * Database name - The name of the database, keyspace, namespace, etc.
-          * Schema name - such as PostgreSQL or MS SQL Server schemas.
-          * Other sub-namespaces which may include partition or shard identifiers.
-
-          Namespace SHOULD include all such identifiers applicable to the database system and available to the instrumentation.
-
-          Semantic conventions for individual database systems SHOULD document what `db.collection.namespace`
+          The name of the database, fully qualified within the server address and port.
+        note: >
+          If a database system has multiple namespace components, they should be concatenated
+          (potentially using database system specific conventions) from most general to most
+          specific namespace component, and more specific namespaces should not be captured without
+          the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+          Semantic conventions for individual database systems SHOULD document what `db.namespace`
           means in the context of that system.
         examples: [ 'customers', 'test.users' ]
       - id: operation.name

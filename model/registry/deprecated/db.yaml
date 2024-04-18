@@ -95,18 +95,18 @@ groups:
       - id: redis.database_index
         type: int
         stability: experimental
-        brief: 'Deprecated, use `db.collection.namespace` instead.'
-        deprecated: "Replaced by `db.collection.namespace`."
+        brief: 'Deprecated, use `db.namespace` instead.'
+        deprecated: "Replaced by `db.namespace`."
         examples: [0, 1, 15]
       - id: name
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.namespace` instead.'
-        deprecated: "Replaced by `db.collection.namespace`."
+        brief: 'Deprecated, use `db.namespace` instead.'
+        deprecated: "Replaced by `db.namespace`."
         examples: [ 'customers', 'main' ]
       - id: mssql.instance_name
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.namespace` instead.'
+        brief: 'Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.'
         deprecated: 'Deprecated, no replacement at this time.'
         examples: 'MSSQLSERVER'

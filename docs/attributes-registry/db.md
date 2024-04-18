@@ -22,8 +22,8 @@
 | `db.client.connections.pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.client.connections.state` | string | The state of a connection in the pool | `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.collection.name` | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.collection.namespace` | string | The namespace containing database objects, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.instance.id` | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.namespace` | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.operation.name` | string | The name of the operation or command being executed. | `findAndModify`; `HMSET`; `SELECT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.parameter.<key>` | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [3] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.text` | string | The database query being executed. | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -31,18 +31,7 @@
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
-**[2]:** For many database systems, the namespace matches the database (catalog, keyspace, schema) name.
-In general case, however, namespace consist of several qualifiers:
-
-* Instance name - MS SQL Server or Oracle, allow to host multiple database engines on the same host.
-* Database name - The name of the database, keyspace, namespace, etc.
-* Schema name - such as PostgreSQL or MS SQL Server schemas.
-* Other sub-namespaces which may include partition or shard identifiers.
-
-Namespace SHOULD include all such identifiers applicable to the database system and available to the instrumentation.
-
-Semantic conventions for individual database systems SHOULD document what `db.collection.namespace`
-means in the context of that system.
+**[2]:** If a database system has multiple namespace components, they should be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces should not be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid. Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 
 **[3]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
@@ -235,10 +224,10 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 <!-- semconv registry.db.metrics.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `mssql.instance_name` | string | Deprecated, use `db.collection.namespace` instead. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
-| `name` | string | Deprecated, use `db.collection.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.namespace`. |
+| `mssql.instance_name` | string | Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
+| `name` | string | Deprecated, use `db.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | `pool.name` | string | Deprecated, use `db.client.connections.pool.name` instead. | `myDataSource` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.pool.name`. |
-| `redis.database_index` | int | Deprecated, use `db.collection.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.namespace`. |
+| `redis.database_index` | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | `state` | string | Deprecated, use `db.client.connections.state` instead. | `idle` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.state`. |
 
 `state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

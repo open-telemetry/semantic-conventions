@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     brief: 'Database Client attributes'
     attributes:
-      - ref: db.collection.namespace
+      - ref: db.namespace
         requirement_level:
           conditionally_required: If applicable.
       - ref: db.collection.name

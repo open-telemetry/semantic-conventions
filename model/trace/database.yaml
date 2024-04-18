@@ -34,9 +34,9 @@ groups:
         note: >
           If the collection name is parsed from the query, it SHOULD match the value provided
           in the query and may be qualified with the schema and database name.
-      - ref: db.collection.namespace
+      - ref: db.namespace
         requirement_level:
-          conditionally_required: If applicable.
+          conditionally_required: If available.
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:
@@ -76,12 +76,12 @@ groups:
     brief: >
       Attributes for Microsoft SQL Server
     attributes:
-      - ref: db.collection.namespace
+      - ref: db.namespace
         brief: Identifies MS SQL database within a server.
         note:
-          When connecting to a default database, `db.collection.namespace` SHOULD be set to the name of
+          When connecting to a default instance, `db.namespace` SHOULD be set to the name of
           the database. When connecting to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
-          `db.collection.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
+          `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
 
           For commands that switch the database, this should be set to the target database (even if the command fails).
         examples: ["instance1.products", "customers"]
@@ -93,7 +93,7 @@ groups:
     brief: >
       Attributes for Cassandra
     attributes:
-      - ref: db.collection.namespace
+      - ref: db.namespace
         brief: The Cassandra keyspace name.
         note: For commands that switch the keyspace, this should be set to the target keyspace (even if the command fails).
         examples: ["mykeyspace"]
@@ -120,14 +120,14 @@ groups:
     brief: >
       Attributes for HBase
     attributes:
-      - ref: db.collection.namespace
+      - ref: db.namespace
         brief: The HBase namespace.
         requirement_level:
-          conditionally_required: If applicable and is not default.
+          conditionally_required: If applicable.
         note: >
           When performing table-related operations, the instrumentations SHOULD extract the namespace from the table name according to
           the [HBase table naming conventions](https://hbase.apache.org/book.html#namespace_creation). If namespace is not provided,
-          instrumentation SHOULD set `db.collection.namespace` value to `default`.
+          instrumentation SHOULD set `db.namespace` value to `default`.
         examples: ['mynamespace']
         tag: tech-specific
       - ref: db.collection.name
@@ -163,14 +163,15 @@ groups:
     brief: >
       Attributes for Redis
     attributes:
-      - ref: db.collection.namespace
+      - ref: db.namespace
         brief: >
           The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select).
         requirement_level:
           conditionally_required: If and only if it can be captured reliably.
         note: >
-          The database index for current connection can be changed by the application dynamically. Instrumentations MAY track
-          the currently selected database and set `db.collection.namespace` accordingly.
+          The database index for current connection can be changed by the application dynamically. Instrumentations MAY use
+          the initial database index provided in the connection string and keep track of the currently selected
+          database to capture the `db.namespace`.
 
           Instrumentations SHOULD NOT set this attribute if capturing it would require additional network calls to Redis.
 
@@ -201,10 +202,10 @@ groups:
         tag: tech-specific
       - ref: db.collection.name
         brief:
-          The MongoDB collection being accessed within the database stated in `db.collection.namespace`.
+          The MongoDB collection being accessed within the database stated in `db.namespace`.
         requirement_level: required
         tag: tech-specific
-      - ref: db.collection.namespace
+      - ref: db.namespace
         brief: The MongoDB database name.
         note: |
           <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
@@ -272,30 +273,20 @@ groups:
         brief: The name of the SQL table that the operation is acting upon.
         examples: ['users', 'dbo.products']
         tag: tech-specific
-      - ref: db.collection.namespace
-        brief: The namespace containing database objects, fully qualified within the server address and port.
+      - ref: db.namespace
         note: >
-          Namespace contains different identifiers depending on the database system:
-
-          * MySQL - database or schema name. For example, `products.dbo`
-          * PostgreSQL - database and schema name. For example, `products.public`
-          * MS SQL Server - instance name, database and schema name. For example, `test.products.public`
-          * Oracle - instance name and schema name. For example, `test.products`
-
           Current database name can usually be obtained using database driver API such as
           [JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--)
           or [.NET `SqlConnection.Database`](https://learn.microsoft.com/dotnet/api/system.data.sqlclient.sqlconnection.database).
 
           If instrumentation cannot reliably determine the database name (for example, if database can be changed in runtime without
-          instrumentation being aware of it), it SHOULD NOT set `db.collection.namespace`.
+          instrumentation being aware of it), it SHOULD NOT set `db.namespace`.
 
-          Instrumentations that parse SQL statements MAY use database name provided in the connection string and
-          track the currently selected database name as long as current database name is associated with current connection and
-          can't be changed without instrumentation being aware of it.
+          Instrumentations that parse SQL statements MAY utilize the database name provided
+          in the connection string and keep track of the currently selected database name,
+          as long as it cannot be changed without the instrumentation being aware of it.
 
           For commands that switch the database, this should be set to the target database (even if the command fails).
-
-          TODO schema.
         tag: tech-specific
   - id: db.cosmosdb
     type: span
