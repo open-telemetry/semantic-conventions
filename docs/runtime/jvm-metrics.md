@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Runtime Environment
+linkTitle: JVM
 --->
 
 # Semantic Conventions for JVM Metrics
