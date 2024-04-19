@@ -2,7 +2,7 @@
 
 <!-- toc -->
 
-- [ASP.NET Core Attributes](#aspnet-core-attributes
+- [ASP.NET Core Attributes](#aspnet-core-attributes)
 
 <!-- tocstop -->
 
