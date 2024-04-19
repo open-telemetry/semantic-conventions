@@ -1,9 +1,4 @@
 groups:
-  - id: metric_attributes.db.client
-    type: attribute_group
-    brief: 'Database client attributes'
-    extends: attributes.db.client
-
   - id: metric.db.client.operation.duration
     type: metric
     metric_name: db.client.operation.duration
@@ -11,7 +6,7 @@ groups:
     instrument: histogram
     unit: "s"
     stability: experimental
-    extends: metric_attributes.db.client
+    extends: attributes.db.client
 
   - id: metric.db.client.connections.usage
     type: metric
