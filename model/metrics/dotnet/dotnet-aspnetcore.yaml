@@ -1,62 +1,11 @@
 groups:
-  - id: aspnetcore
-    prefix: aspnetcore
+  - id: aspnetcore.common.rate_limiting.metrics.attributes
     type: attribute_group
-    brief: ASP.NET Core attributes
+    brief: Common ASP.NET Core rate-limiting metrics attributes
     attributes:
-      - id: rate_limiting.policy
-        type: string
-        brief: Rate limiting policy name.
-        stability: stable
-        examples: ["fixed", "sliding", "token"]
+      - ref: aspnetcore.rate_limiting.policy
         requirement_level:
           conditionally_required: if the matched endpoint for the request had a rate-limiting policy.
-      - id: rate_limiting.result
-        type:
-          allow_custom_values: true
-          members:
-            - id: acquired
-              value: 'acquired'
-              brief: "Lease was acquired"
-              stability: stable
-            - id: endpoint_limiter
-              value: 'endpoint_limiter'
-              brief: "Lease request was rejected by the endpoint limiter"
-              stability: stable
-            - id: global_limiter
-              value: 'global_limiter'
-              brief: "Lease request was rejected by the global limiter"
-              stability: stable
-            - id: request_canceled
-              value: 'request_canceled'
-              brief: "Lease request was canceled"
-              stability: stable
-        stability: stable
-        brief: Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
-        examples: ["acquired", "request_canceled"]
-        requirement_level: required
-      - id: routing.is_fallback
-        type: boolean
-        stability: stable
-        brief: A value that indicates whether the matched route is a fallback route.
-        examples: [true]
-        requirement_level:
-          conditionally_required: If and only if a route was successfully matched.
-      - id: diagnostics.handler.type
-        type: string
-        stability: stable
-        brief: Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler)
-          implementation that handled the exception.
-        examples: ["Contoso.MyHandler"]
-        requirement_level:
-          conditionally_required: if and only if the exception was handled by this handler.
-      - id: request.is_unhandled
-        type: boolean
-        stability: stable
-        brief: Flag indicating if request was handled by the application pipeline.
-        examples: [true]
-        requirement_level:
-          conditionally_required: if and only if the request was not handled.
 
   # routing
   - id: metric.aspnetcore.routing.match_attempts
@@ -75,22 +24,8 @@ groups:
       - ref: aspnetcore.routing.is_fallback
         requirement_level:
           conditionally_required: if and only if a route was successfully matched.
-      - id: aspnetcore.routing.match_status
-        type:
-          allow_custom_values: true
-          members:
-            - id: success
-              value: 'success'
-              brief: 'Match succeeded'
-              stability: stable
-            - id: failure
-              value: 'failure'
-              brief: 'Match failed'
-              stability: stable
-        stability: stable
+      - ref: aspnetcore.routing.match_status
         requirement_level: required
-        brief: Match result - success or failure
-        examples: ["success", "failure"]
 
   # diagnostics
   - id: metric.aspnetcore.diagnostics.exceptions
@@ -108,29 +43,8 @@ groups:
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
         requirement_level: required
       - ref: aspnetcore.diagnostics.handler.type
-      - id: aspnetcore.diagnostics.exception.result
-        type:
-          members:
-            - id: handled
-              value: 'handled'
-              brief: "Exception was handled by the exception handling middleware."
-              stability: stable
-            - id: unhandled
-              value: 'unhandled'
-              brief: "Exception was not handled by the exception handling middleware."
-              stability: stable
-            - id: skipped
-              value: 'skipped'
-              brief: "Exception handling was skipped because the response had started."
-              stability: stable
-            - id: aborted
-              value: 'aborted'
-              brief: "Exception handling didn't run because the request was aborted."
-              stability: stable
-        stability: stable
+      - ref: aspnetcore.diagnostics.exception.result
         requirement_level: required
-        brief: ASP.NET Core exception middleware handling result
-        examples: ["handled", "unhandled"]
 
   # rate_limiting
   - id: metric.aspnetcore.rate_limiting.active_request_leases
@@ -142,8 +56,7 @@ groups:
     unit: "{request}"
     note: |
       Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
-    attributes:
-      - ref: aspnetcore.rate_limiting.policy
+    extends: aspnetcore.common.rate_limiting.metrics.attributes
 
   - id: metric.aspnetcore.rate_limiting.request_lease.duration
     type: metric
@@ -154,8 +67,7 @@ groups:
     unit: "s"
     note: |
       Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
-    attributes:
-      - ref: aspnetcore.rate_limiting.policy
+    extends: aspnetcore.common.rate_limiting.metrics.attributes
 
   - id: metric.aspnetcore.rate_limiting.request.time_in_queue
     type: metric
@@ -166,9 +78,10 @@ groups:
     unit: "s"
     note: |
       Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+    extends: aspnetcore.common.rate_limiting.metrics.attributes
     attributes:
-      - ref: aspnetcore.rate_limiting.policy
       - ref: aspnetcore.rate_limiting.result
+        requirement_level: required
 
   - id: metric.aspnetcore.rate_limiting.queued_requests
     type: metric
@@ -179,8 +92,7 @@ groups:
     unit: "{request}"
     note: |
       Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
-    attributes:
-      - ref: aspnetcore.rate_limiting.policy
+    extends: aspnetcore.common.rate_limiting.metrics.attributes
 
   - id: metric.aspnetcore.rate_limiting.requests
     type: metric
@@ -196,6 +108,7 @@ groups:
       * Canceled while waiting for the lease.
 
       Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+    extends: aspnetcore.common.rate_limiting.metrics.attributes
     attributes:
-      - ref: aspnetcore.rate_limiting.policy
       - ref: aspnetcore.rate_limiting.result
+        requirement_level: required
