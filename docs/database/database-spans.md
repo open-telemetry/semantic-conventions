@@ -57,7 +57,7 @@ Since SQL statements may have very high cardinality even without arguments, SQL 
 following way, unless the statement is known to be of low cardinality:
 
 `<db.operation.name> <db.namespace>.<db.collection.name>`, provided that `db.operation.name` and `db.collection.name` are available.
-If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.name>`.
+If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.namespace>`.
 
 It is not recommended to attempt any client-side parsing of `db.query.text` just to get these properties,
 they should only be used if the library being instrumented already provides them.
