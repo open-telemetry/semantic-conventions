@@ -48,7 +48,6 @@ body:
         - area:heroku
         - area:host
         - area:http
-        - area:ios
         - area:k8s
         - area:messaging
         - area:network
