@@ -8,6 +8,7 @@
 
 - [Db](#db-attributes)
 - [Db Deprecated](#db-deprecated-attributes)
+- [Db Metrics Deprecated](#db-metrics-deprecated-attributes)
 
 ## Db Attributes
 
@@ -19,6 +20,8 @@
 | `db.cassandra.idempotence`                 | boolean | Whether or not the query is idempotent.                                                                                                                                                                                                                                                                                                                                                                            |                                                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cassandra.page_size`                   | int     | The fetch size used for paging, i.e. how many rows will be returned at once.                                                                                                                                                                                                                                                                                                                                       | `5000`                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cassandra.speculative_execution_count` | int     | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.                                                                                                                                                                                                                                                                                                | `0`; `2`                                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connections.pool.name`          | string  | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`.                                                                                                                               | `myDataSource`                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connections.state`              | string  | The state of a connection in the pool                                                                                                                                                                                                                                                                                                                                                                              | `idle`                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.collection.name`                       | string  | The name of a collection (table, container) within the database. [1]                                                                                                                                                                                                                                                                                                                                               | `public.users`; `customers`                                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.client_id`                    | string  | Unique Cosmos client instance id.                                                                                                                                                                                                                                                                                                                                                                                  | `3ba4827d-4422-483f-b59f-85b74211c11d`                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.connection_mode`              | string  | Cosmos client connection mode.                                                                                                                                                                                                                                                                                                                                                                                     | `gateway`                                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -64,6 +67,13 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `any`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `serial`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `local_serial` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability                                                        |
+| ------ | ----------- | ---------------------------------------------------------------- |
+| `idle` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -175,3 +185,20 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 **[13]:** Replaced by `db.collection.name`.
 **[14]:** Replaced by `db.query.text`.
 **[15]:** No replacement at this time.
+
+## Db Metrics Deprecated Attributes
+
+| Attribute   | Type   | Description                                                     | Examples       | Stability                                                   |
+| ----------- | ------ | --------------------------------------------------------------- | -------------- | ----------------------------------------------------------- |
+| `pool.name` | string | Deprecated, use `db.client.connections.pool.name` instead. [16] | `myDataSource` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| `state`     | string | Deprecated, use `db.client.connections.state` instead. [17]     | `idle`         | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+
+**[16]:** Replaced by `db.client.connections.pool.name`.
+**[17]:** Replaced by `db.client.connections.state`.
+
+`state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability                                                        |
+| ------ | ----------- | ---------------------------------------------------------------- |
+| `idle` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
