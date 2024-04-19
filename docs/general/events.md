@@ -45,18 +45,12 @@ structure and semantics will also be defined.
 ### General event semantics
 
 * An event MUST have an `event.name` attribute that uniquely identifies the event.
-* It MAY have other [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/common#attribute)
+* It MAY have [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/common#attribute)
   attributes that provide additional context about the event.
 * It MAY contain a _payload_ (data) that describes the specific details of the
   named event.
-* The structure of the named event (`event.name`) is unique to the event, this
-  identifies
-  * Whether the event contains a _payload_ (data), and the structure / type of
-    the _payload_ (data).
-  * Whether there are any expected [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/common#attribute)
-    attributes that are used to describe the event.
-* All OpenTelemetry defined events SHOULD be defined in the semantic conventions
-  to highlight the expected structure of the event.
+* The event name uniquely identifies event structure / type of the _payload_ (data)
+  and the set of attributes.
 * The _payload_ (data) MAY contain any type supported by the OpenTelemetry data
   model for the log [body](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body)
   and the semantic conventions will define the expected structure of the _payload_
@@ -74,8 +68,10 @@ Recommendations for defining events:
   * The Event API is not yet available in all OpenTelemetry SDKs.
   * TODO: Add deep link to the [compliance matrix of the Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md)
     when it exists.
-* The _payload_ (data) _fields_ SHOULD not be prefixed with the `event.name` to
+* It's NOT RECOMMENDED to prefix the _payload_ (data) _fields_ with the `event.name` to
   avoid redundancy and to keep the event definition clean.
+* The events SHOULD document their semantic conventions including event name,
+  attributes, and the payload.
 
 ### Event payload (data)
 
@@ -83,21 +79,12 @@ Recommendations for defining events:
   requirements don't apply to event payload fields.
 * The definition for OpenTelemetry defined events supports describing
   individual _fields_ (Body Fields)
-  * Any _fields_ are NOT added to the Global attribute registry for use by other
-    events.
   * The _fields_ are unique to the named event (`event.name`) and different events
     may use the same _field_ name to represent different data, due to the unique
     nature of the event.
-* The _fields_ MAY reference / inherit details from Global attribute registry
+* The _fields_ MAY reference / inherit details from the attribute registry
   attributes and provide additional details specific to the event, including
   providing an _alias_ (shorter) name for the attribute.
-
-As each `event.name` is unique and defines the structure of the event, as long
-as the event follows the General event semantics it will be considered a valid
-event. For example :
-
-* [Exceptions](/docs/exceptions/exceptions-logs.md): Semantic attributes that
-  may be used in describing exceptions as events.
 
 ## External event compatibility
 
