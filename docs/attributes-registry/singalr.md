@@ -2,7 +2,7 @@
 
 <!-- toc -->
 
-- [SignalR](#signalr-attributes)
+- [SignalR Attributes](#signalr-attributes)
 
 <!-- tocstop -->
 
