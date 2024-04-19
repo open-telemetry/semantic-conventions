@@ -80,7 +80,7 @@ In addition to Cosmos DB attributes, all spans include
 | `az.namespace`                       | `"Microsoft.DocumentDB"` |
 | `db.system`                          | `"cosmosdb"` |
 | `db.name`                            | `"database name"` |
-| `db.operation`                       | `"ReadItemsAsync"` |
+| `db.operation.name`                  | `"ReadItemsAsync"` |
 | `server.address`                     |  `"account.documents.azure.com"`  |
 | `db.cosmosdb.client_id`              | `3ba4827d-4422-483f-b59f-85b74211c11d` |
 | `db.cosmosdb.operation_type`         | `Read` |

@@ -43,6 +43,7 @@ Currently, the following namespaces exist:
 * [Disk](disk.md)
 * [End user](enduser.md)
 * [Error](error.md)
+* [Event](event.md)
 * [Exception](exception.md)
 * [FaaS](faas.md)
 * [Feature Flag](feature-flag.md)
@@ -71,5 +72,6 @@ Currently, the following namespaces exist:
 * [TLS](tls.md)
 * [URL](url.md)
 * [User agent](user-agent.md)
+* [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

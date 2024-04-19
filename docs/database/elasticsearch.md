@@ -100,11 +100,11 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `server.address`                    | `"elasticsearch.mydomain.com"`                                                                                                      |
 | `server.port`                       | `9200`                                                                                                                              |
 | `http.request.method`               | `"GET"`                                                                                                                             |
-| `db.statement`                      | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                 |
-| `db.operation`                      | `"search"`                                                                                                                          |
+| `db.query.text`                     | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                 |
+| `db.operation.name`                 | `"search"`                                                                                                                          |
 | `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
 | `db.elasticsearch.path_parts.index` | `"my-index-000001"`                                                                                                                 |
 | `db.elasticsearch.cluster.name`     | `"e9106fc68e3044f0b1475b04bf4ffd5f"`                                                                                                |
-| `db.instance.id`      | `"instance-0000000001"`                                                                                                             |
+| `db.instance.id`                    | `"instance-0000000001"`                                                                                                             |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

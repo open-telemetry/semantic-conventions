@@ -29,8 +29,8 @@ described on this page.
 
 ## Example
 
-| Key | Value |
-| :---------------------- | :----------------------------------------------------------- |
+| Key                     | Value |
+|:------------------------| :----------------------------------------------------------- |
 | Span name               | `"products.findAndModify"` |
 | `db.system`             | `"mongodb"` |
 | `server.address`        | `"mongodb0.example.com"` |
@@ -39,8 +39,8 @@ described on this page.
 | `network.peer.port`     | `27017` |
 | `network.transport`     | `"tcp"` |
 | `db.name`               | `"shopDb"` |
-| `db.statement`          | not set |
-| `db.operation`          | `"findAndModify"` |
+| `db.query.text`         | not set |
+| `db.operation.name`     | `"findAndModify"` |
 | `db.mongodb.collection` | `"products"` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
