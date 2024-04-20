@@ -37,10 +37,10 @@ The following table describes the payload fields that MUST be used to describe t
 | `url` [1] | string | Full HTTP request URL in the form `scheme://host[:port]/path?query[#fragment]`. Usually the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless. [2] | `https://en.wikipedia.org/wiki/Main_Page`; `https://en.wikipedia.org/wiki/Main_Page#foo` | Required |
 | `changeState` | string | Type of state change used for the virtual page navigation | `pushState`, `replaceState` | Recommended |
 
-**[1]:**  Alias for [`http.url`](../../../trace/semantic_conventions/http.md)
+**[1]:** Alias for [`http.url`](../../../trace/semantic_conventions/http.md)
 **[2]:** The URL fragment may be included for virtual pages
 
-`type` MUST be one of the following:
+`type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.:
 
 | Value  | Description |
 |---|---|
@@ -49,10 +49,10 @@ The following table describes the payload fields that MUST be used to describe t
 
 ## PageNavigationTiming
 
-The event name MUST be`page_navigation_timing`.
+The event name MUST be `browser.page_navigation_timing`.
 
 This event describes the timing metrics of a page navigation as provided by
-`PerformanceNavigationTiming` Performance API.
+[PerformanceNavigationTiming](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming) Performance API.
 
 The following table describes the payload fields that MUST be used to describe the details of event.
 
@@ -73,9 +73,9 @@ The following table describes the payload fields that MUST be used to describe t
 
 ## ResourceTiming
 
-The event name MUST be `resource_timing`.
+The event name MUST be `browser.resource_timing`.
 
-This event describes the timing metrics as provided by `PerformanceResourceTiming`
+This event describes the timing metrics as provided by [PerformanceResourceTiming](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming)
 Performance API.  These metrics are related to fetching a resource, such as
 XMLHttpRequest, Fetch, sendBeacon APIs, SVG, image or script.
 
@@ -113,7 +113,7 @@ The following table describes the payload fields that MUST be used to describe t
 
 ## UserAction
 
-The event name MUST be`user_action`.
+The event name MUST be `browser.user_action`.
 
 This event describes actions performed by the user such as click, scroll, zoom, resize, etc.
 
@@ -127,7 +127,7 @@ The following table describes the payload fields that MUST be used to describe t
 | `click_coordinates` | string | Click coordinates captured as a string in the format {x}X{y}.  Eg. 345X23 | `345X23` | Recommended |
 | `tags` | string[] | Grab data from data-otel-* attributes in tree | `[data-otel-asd="value" -> asd attr w/ "value"]` | Recommended |
 
-`user_action_type` MUST be one of the following:
+`user_action_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.:
 
 | Value  | Description |
 |---|---|
@@ -135,7 +135,7 @@ The following table describes the payload fields that MUST be used to describe t
 
 ## WebVital
 
-The event name MUST be `web_vital`.
+The event name MUST be `browser.web_vital`.
 
 This event describes the website performance metrics introduced by Google (See <https://web.dev/vitals/>).
 
