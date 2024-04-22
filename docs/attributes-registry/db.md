@@ -12,6 +12,7 @@
 - [MSSQL Attributes](#mssql-attributes)
 - [Redis Attributes](#redis-attributes)
 - [Deprecated DB Attributes](#deprecated-db-attributes)
+- [Deprecated DB Metrics Attributes](#deprecated-db-metrics-attributes)
 
 <!-- tocstop -->
 
@@ -20,6 +21,8 @@
 <!-- semconv registry.db(omit_requirement_level,tag=db-generic) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
+| `db.client.connections.pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connections.state` | string | The state of a connection in the pool | `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.collection.name` | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.instance.id` | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.name` | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [2] | `customers`; `main` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -34,6 +37,13 @@
 
 **[3]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+
+`db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -207,4 +217,19 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `db.sql.table` | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
 | `db.statement` | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
 | `db.user` | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
+<!-- endsemconv -->
+
+## Deprecated DB Metrics Attributes
+<!-- semconv registry.db.metrics.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `pool.name` | string | Deprecated, use `db.client.connections.pool.name` instead. | `myDataSource` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.pool.name`. |
+| `state` | string | Deprecated, use `db.client.connections.state` instead. | `idle` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.state`. |
+
+`state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->

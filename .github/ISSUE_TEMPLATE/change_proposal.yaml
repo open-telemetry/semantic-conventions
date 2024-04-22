@@ -34,12 +34,14 @@ body:
         - area:feature-flag
         - area:file
         - area:gcp
+        - area:gen-ai
         - area:graphql
         - area:heroku
         - area:host
         - area:http
         - area:ios
         - area:k8s
+        - area:log
         - area:messaging
         - area:network
         - area:oci
@@ -53,6 +55,7 @@ body:
         - area:service
         - area:session
         - area:source
+        - area:system
         - area:telemetry
         - area:thread
         - area:tls
