@@ -7,7 +7,7 @@ groups:
       - ref: db.query.text
         requirement_level:
           recommended: >
-            Should be collected by default only if there is sanitization that excludes sensitive information.
+            SHOULD be collected by default only if there is sanitization that excludes sensitive information.
       - ref: db.query.parameter
         requirement_level: opt_in
 

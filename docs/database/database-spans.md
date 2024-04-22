@@ -96,7 +96,7 @@ These attributes will usually be the same for all operations performed over the 
 
 **[6]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[7]:** Should be collected by default only if there is sanitization that excludes sensitive information.
+**[7]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
 
 **[8]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
