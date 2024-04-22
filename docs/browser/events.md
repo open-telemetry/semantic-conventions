@@ -37,6 +37,10 @@ The following table describes the payload fields that MUST be used to describe t
 | `url` [1] | string | Full HTTP request URL in the form `scheme://host[:port]/path?query[#fragment]`. Usually the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless. [2] | `https://en.wikipedia.org/wiki/Main_Page`; `https://en.wikipedia.org/wiki/Main_Page#foo` | Required |
 | `changeState` | string | Type of state change used for the virtual page navigation | `pushState`, `replaceState` | Recommended |
 
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
+
 **[1]:** Alias for [`http.url`](../../../trace/semantic_conventions/http.md)
 **[2]:** The URL fragment may be included for virtual pages
 
@@ -71,6 +75,10 @@ The following table describes the payload fields that MUST be used to describe t
 | firstPaint | long | || Recommended |
 | firstContentfulPaint | long | || Recommended |
 
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
+
 ## ResourceTiming
 
 The event name MUST be `browser.resource_timing`.
@@ -94,22 +102,9 @@ The following table describes the payload fields that MUST be used to describe t
 |responseStart | long | || Recommended |
 |responseEnd | long | || Recommended |
 
-## Exception
-
-The event name MUST be `browser.exception`.
-
-This event describes an error or exception that occurs in a browser application.
-
-The following table describes the payload fields that MUST be used to describe the details of event.
-
-| Body Field  | Type | Description  | Examples  | Requirement Level |
+| Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `exception.file_name` | string | Name of the file that generated the error | `foo.js` | Recommended |
-| `exception.line_number` | int | Line number where the error occurred |  | Recommended |
-| `exception.column_number` | int | Column number where the error occurred |  | Recommended |
-| `exception.message` | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` | Recommended |
-| `exception.stacktrace` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | Recommended |
-| `exception.type` | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | Recommended |
+| [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
 
 ## UserAction
 
@@ -126,6 +121,10 @@ The following table describes the payload fields that MUST be used to describe t
 | `user_action_type` | string | Type of interaction. See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/941ec2e4dbd017b8450f2b17c60088ead1e6c428/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for. | `click` | Required |
 | `click_coordinates` | string | Click coordinates captured as a string in the format {x}X{y}.  Eg. 345X23 | `345X23` | Recommended |
 | `tags` | string[] | Grab data from data-otel-* attributes in tree | `[data-otel-asd="value" -> asd attr w/ "value"]` | Recommended |
+
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
 
 `user_action_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.:
 
@@ -147,6 +146,10 @@ The following table describes the payload fields that MUST be used to describe t
 | `value` | double | value of the web vital | `1.0`; `2.0` | Required |
 | `delta` | double | The delta between the current value and the last-reported value | `0.2` | Required |
 | `id` | string | A unique ID representing this particular metric instance | "v3-1677874579383-6381583661209" | Required |
+
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
 
 `name` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
