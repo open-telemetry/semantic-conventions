@@ -1,5 +1,5 @@
 groups:
-  - id: registry.ios.lifecycle.events
+  - id: registry.ios.deprecated
     prefix: ios
     type: attribute_group
     brief: >
@@ -7,11 +7,13 @@ groups:
     attributes:
       - id: state
         stability: experimental
+        deprecated: "Moved to a payload field of `device.app.lifecycle`."
         note: >
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
           and from which the `OS terminology` column values are derived.
         brief: >
-          This attribute represents the state the application has transitioned into at the occurrence of the event.
+          Deprecated use the `device.app.lifecycle` event definition including
+          `ios.state` as a payload field instead.
         type:
           allow_custom_values: true
           members:
