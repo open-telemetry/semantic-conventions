@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Google Cloud Pub/Sub
+linkTitle: Azure Messaging
 --->
 
 # Semantic Conventions for Azure Messaging systems
