@@ -49,6 +49,7 @@ body:
         - area:host
         - area:http
         - area:k8s
+        - area:log
         - area:messaging
         - area:network
         - area:oci
