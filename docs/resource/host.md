@@ -12,7 +12,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 <!-- semconv host(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`host.arch`](/docs/attributes-registry/host.md) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64`; `ia64`; `ppc32`; `ppc64`; `s390x`; `x86` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.arch`](/docs/attributes-registry/host.md) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.id`](/docs/attributes-registry/host.md) | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.image.id`](/docs/attributes-registry/host.md) | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.image.name`](/docs/attributes-registry/host.md) | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

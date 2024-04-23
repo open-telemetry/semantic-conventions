@@ -11,7 +11,7 @@ In case of virtualized environments, this is the operating system as it is obser
 <!-- semconv os(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `windows`; `linux`; `darwin`; `freebsd`; `netbsd`; `openbsd`; `dragonflybsd`; `hpux`; `aix`; `solaris`; `z_os` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`os.build_id`](/docs/attributes-registry/os.md) | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`os.description`](/docs/attributes-registry/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`os.name`](/docs/attributes-registry/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

@@ -157,7 +157,7 @@ service.name = Shop.shoppingcart
 <!-- semconv telemetry(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`telemetry.sdk.language`](/docs/attributes-registry/telemetry.md) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang`; `go`; `java`; `nodejs`; `php`; `python`; `ruby`; `rust`; `swift`; `webjs` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.language`](/docs/attributes-registry/telemetry.md) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`telemetry.sdk.name`](/docs/attributes-registry/telemetry.md) | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`telemetry.sdk.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
