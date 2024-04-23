@@ -3,6 +3,13 @@
 
 # RPC
 
+<!-- toc -->
+
+- [RPC Attributes](#rpc-attributes)
+- [Deprecated RPC Attributes](#deprecated-rpc-attributes)
+
+<!-- tocstop -->
+
 ## RPC Attributes
 
 RPC attributes are intended to be used in the context of events related to remote procedure calls (RPC).
@@ -101,4 +108,22 @@ RPC attributes are intended to be used in the context of events related to remot
 | `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+## Deprecated RPC Attributes
+
+<!-- semconv registry.rpc.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `message.compressed_size` | int | Deprecated, use `rpc.message.compressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.compressed_size`. |
+| `message.id` | int | Deprecated, use `rpc.message.id` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`. |
+| `message.type` | string | Deprecated, use `rpc.message.type` instead. | `SENT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`. |
+| `message.uncompressed_size` | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. |
+
+`message.type` MUST be one of the following:
+
+| Value  | Description | Stability |
+|---|---|---|
+| `SENT` | sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->

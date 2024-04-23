@@ -139,7 +139,7 @@ groups:
           body size should be used.
         examples: 1439
         tag: messaging-generic
-      - id: operation
+      - id: operation.type
         type:
           allow_custom_values: true
           members:
@@ -173,8 +173,15 @@ groups:
               stability: experimental
         stability: experimental
         brief: >
-          A string identifying the kind of messaging operation.
+          A string identifying the type of the messaging operation.
         note: If a custom value is used, it MUST be of low cardinality.
+        tag: messaging-generic
+      - id: operation.name
+        type: string
+        stability: experimental
+        brief: >
+          The system-specific name of the messaging operation.
+        examples: [ "ack", "nack", "send" ]
         tag: messaging-generic
       - id: rabbitmq.destination.routing_key
         type: string

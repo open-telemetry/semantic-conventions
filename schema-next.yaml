@@ -2,10 +2,38 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/909
+        - rename_attributes:
+            attribute_map:
+              state: db.client.connections.state
+            apply_to_metrics:
+              - db.client.connections.usage
+        - rename_attributes:
+            attribute_map:
+              pool.name: db.client.connections.pool.name
+            apply_to_metrics:
+              - db.client.connections.usage
+              - db.client.connections.idle.max
+              - db.client.connections.idle.min
+              - db.client.connections.max
+              - db.client.connections.pending_requests
+              - db.client.connections.timeouts
+              - db.client.connections.create_time
+              - db.client.connections.wait_time
+              - db.client.connections.use_time
 
   1.25.0:
     spans:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/870
+        - rename_attributes:
+            attribute_map:
+              db.sql.table: db.collection.name
+              db.mongodb.collection: db.collection.name
+              db.cosmosdb.container: db.collection.name
+              db.cassandra.table: db.collection.name
         # https://github.com/open-telemetry/semantic-conventions/pull/798
         - rename_attributes:
             attribute_map:
@@ -14,6 +42,14 @@ versions:
         - rename_attributes:
             attribute_map:
               db.operation: db.operation.name
+        # https://github.com/open-telemetry/semantic-conventions/pull/913
+        - rename_attributes:
+            attribute_map:
+              messaging.operation: messaging.operation.type
+        # https://github.com/open-telemetry/semantic-conventions/pull/866
+        - rename_attributes:
+            attribute_map:
+              db.statement: db.query.text
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/484

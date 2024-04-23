@@ -34,7 +34,8 @@
 | `messaging.message.conversation_id` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.message.envelope.size` | int | The size of the message body and metadata in bytes. [6] | `2738` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.message.id` | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.operation` | string | A string identifying the kind of messaging operation. [7] | `publish` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.operation.name` | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.operation.type` | string | A string identifying the type of the messaging operation. [7] | `publish` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.system` | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
@@ -55,7 +56,7 @@ size should be used.
 
 **[7]:** If a custom value is used, it MUST be of low cardinality.
 
-`messaging.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -177,8 +178,9 @@ size should be used.
 
 ## Deprecated Messaging Attributes
 
-<!-- semconv attributes.messaging.deprecated(omit_requirement_level) -->
+<!-- semconv registry.messaging.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `messaging.kafka.destination.partition` | int | "Deprecated, use `messaging.destination.partition.id` instead." | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
+| `messaging.kafka.destination.partition` | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
+| `messaging.operation` | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
 <!-- endsemconv -->

@@ -47,7 +47,7 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 <!-- semconv aws.lambda -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `aws.lambda.invoked_arn` | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`aws.lambda.invoked_arn`](../attributes-registry/aws.md) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
 <!-- endsemconv -->
@@ -158,8 +158,8 @@ added as a link to the span. This means the span may have as many links as messa
 See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `AmazonSQS`.
+- [`messaging.operation.type`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
+- [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `aws_sqs`.
 
 ### SQS Message
 
@@ -171,8 +171,8 @@ added as a link to the span.
 See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `AmazonSQS`.
+- [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `process`.
+- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `aws_sqs`.
 
 Other [Messaging attributes](/docs/messaging/messaging-spans.md#messaging-attributes) SHOULD be set based on the available information in the SQS message
 event.
@@ -251,9 +251,9 @@ Function F:                      | Span ProcBatch |
 | Links |  |  |  | Span Prod1 | Span Prod2 |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
-| `messaging.system` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` | `AmazonSQS` |
+| `messaging.system` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` |
 | `messaging.destination.name` | `Q` | `Q` | `Q` | `Q` | `Q` |
-| `messaging.operation` |  |  | `process` | `process` | `process` |
+| `messaging.operation.type` |  |  | `process` | `process` | `process` |
 | `messaging.message.id` | | | | `"a1"` | `"a2"` |
 
 Note that if Span Prod1 and Span Prod2 were sent to different queues, Span ProcBatch would not have
