@@ -189,7 +189,7 @@ This group describes attributes specific to Azure Service Bus.
 <!-- semconv registry.messaging.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `client_id` | string | Deprecated, use `messaging.client.id` instead. | `client-5`; `myhost@8742@s8083jm` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`. |
+| `messaging.client_id` | string | Deprecated, use `messaging.client.id` instead. | `client-5`; `myhost@8742@s8083jm` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`. |
 | `messaging.kafka.destination.partition` | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
 | `messaging.operation` | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
 <!-- endsemconv -->
