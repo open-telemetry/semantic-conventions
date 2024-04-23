@@ -123,7 +123,7 @@ The following table describes the payload fields that MUST be used to describe t
 | `element_xpath` | string | Target element xpath | `//*[@id="testBtn"]` | Recommended |
 | `user_action_type` | string | Type of interaction. See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/941ec2e4dbd017b8450f2b17c60088ead1e6c428/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for. | `click` | Required |
 | `click_coordinates` | string | Click coordinates captured as a string in the format {x}X{y}.  Eg. 345X23 | `345X23` | Recommended |
-| `tags` | string[] | Grab data from data-otel-* attributes in tree | `[data-otel-asd="value" -> asd attr w/ "value"]` | Recommended |
+| `tag.<key>` | string[] | Grab data from data-otel-* attributes in tree | `[data-otel-xyz="value" -> tag.xyz=["value"]` | Recommended |
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
