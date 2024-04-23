@@ -60,6 +60,7 @@ Currently, the following namespaces exist:
 - [Http](http.md)
 - [Ios](ios.md)
 - [K8s](k8s.md)
+- [Log](log.md)
 - [Messaging](messaging.md)
 - [Network](network.md)
 - [Oci](oci.md)

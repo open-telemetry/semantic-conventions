@@ -69,7 +69,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 **Description:** The I/O stream to which the log was emitted.
 
-<!-- semconv attributes.log -->
+<!-- semconv attributes.log(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`log.iostream`](/docs/attributes-registry/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

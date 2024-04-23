@@ -6,11 +6,11 @@
 
 # Ios
 
-## Ios Lifecycle Events Attributes
+## Ios Deprecated Attributes
 
-| Attribute   | Type   | Description                                                                                                   | Examples | Stability                                                        |
-| ----------- | ------ | ------------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------------------------------------- |
-| `ios.state` | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `active` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute   | Type   | Description                                                                                                      | Examples | Stability                                                   |
+| ----------- | ------ | ---------------------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------- |
+| `ios.state` | string | Deprecated use the `device.app.lifecycle` event definition including `ios.state` as a payload field instead. [1] | `active` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
 
 **[1]:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902), and from which the `OS terminology` column values are derived.
 
