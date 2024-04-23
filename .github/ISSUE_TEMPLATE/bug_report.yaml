@@ -33,7 +33,6 @@ body:
         - area:device
         - area:disk
         - area:dns
-        - area:enduser
         - area:error
         - area:event
         - area:exception

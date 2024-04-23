@@ -31,7 +31,6 @@ Particular operations may refer to or require some of these attributes.
         - [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
     - [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
 - [General remote service attributes](#general-remote-service-attributes)
-- [General identity attributes](#general-identity-attributes)
 - [General thread attributes](#general-thread-attributes)
 - [Source Code Attributes](#source-code-attributes)
 
@@ -303,52 +302,6 @@ Examples of `peer.service` that users may specify:
 
 - A Redis cache of auth tokens as `peer.service="AuthTokenCache"`.
 - A gRPC service `rpc.service="io.opentelemetry.AuthService"` may be hosted in both a gateway, `peer.service="ExternalApiService"` and a backend, `peer.service="AuthService"`.
-
-## General identity attributes
-
-These attributes may be used for any operation with an authenticated and/or authorized enduser.
-
-<!-- semconv identity -->
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`enduser.id`](../attributes-registry/enduser.md) | string | Username or client_id extracted from the access token or [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2) header in the inbound request from outside the system. | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`enduser.role`](../attributes-registry/enduser.md) | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`enduser.scope`](../attributes-registry/enduser.md) | string | Scopes or granted authorities the client currently possesses extracted from token or application security context. The value would come from the scope associated with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html). | `read:message, write:files` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-<!-- endsemconv -->
-
-These attributes describe the authenticated user driving the user agent making requests to the instrumented
-system. It is expected this information would be propagated unchanged from node-to-node within the system
-using the Baggage mechanism. These attributes should not be used to record system-to-system
-authentication attributes.
-
-Examples of where the `enduser.id` value is extracted from:
-
-| Authentication protocol | Field or description            |
-| :---------------------- | :------------------------------ |
-| [HTTP Basic/Digest Authentication] | `username`               |
-| [OAuth 2.0 Bearer Token] | [OAuth 2.0 Client Identifier] value from `client_id` for the [OAuth 2.0 Client Credentials Grant] flow and `subject` or `username` from get token info response for other flows using opaque tokens. |
-| [OpenID Connect 1.0 IDToken] | `sub` |
-| [SAML 2.0 Assertion] | `urn:oasis:names:tc:SAML:2.0:assertion:Subject` |
-| [Kerberos] | `PrincipalName` |
-
-| Framework               | Field or description            |
-| :---------------------- | :------------------------------ |
-| [JavaEE/JakartaEE Servlet] | `javax.servlet.http.HttpServletRequest.getUserPrincipal()` |
-| [Windows Communication Foundation] | `ServiceSecurityContext.Current.PrimaryIdentity` |
-
-[SAML 2.0 Assertion]: http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html
-[HTTP Basic/Digest Authentication]: https://tools.ietf.org/html/rfc2617
-[OAuth 2.0 Bearer Token]: https://tools.ietf.org/html/rfc6750
-[OAuth 2.0 Client Identifier]: https://tools.ietf.org/html/rfc6749#section-2.2
-[OAuth 2.0 Client Credentials Grant]: https://tools.ietf.org/html/rfc6749#section-4.4
-[OpenID Connect 1.0 IDToken]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
-[Kerberos]: https://tools.ietf.org/html/rfc4120
-[JavaEE/JakartaEE Servlet]: https://jakarta.ee/specifications/platform/8/apidocs/javax/servlet/http/HttpServletRequest.html
-[Windows Communication Foundation]: https://docs.microsoft.com/dotnet/api/system.servicemodel.servicesecuritycontext?view=netframework-4.8
-
-Given the sensitive nature of this information, SDKs and exporters SHOULD drop these attributes by
-default and then provide a configuration parameter to turn on retention for use cases where the
-information is required and would not violate any policies or regulations.
 
 ## General thread attributes
 

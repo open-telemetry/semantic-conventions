@@ -41,7 +41,6 @@ Currently, the following namespaces exist:
 * [Destination](destination.md)
 * [Device](device.md)
 * [Disk](disk.md)
-* [End user](enduser.md)
 * [Error](error.md)
 * [Event](event.md)
 * [Exception](exception.md)
