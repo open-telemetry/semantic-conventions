@@ -54,6 +54,7 @@
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 <!-- endsemconv -->
 
 ## Paging attributes

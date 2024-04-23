@@ -81,7 +81,7 @@ groups:
     type: metric
     metric_name: system.memory.shared
     stability: experimental
-    brief: "Reports shared memory."
+    brief: "Reports shared memory. Memory used (mostly) by tmpfs."
     instrument: updowncounter
     unit: "By"
 

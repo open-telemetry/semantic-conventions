@@ -71,6 +71,10 @@ groups:
             - id: cached
               value: 'cached'
               stability: experimental
+            - id: shared
+              value: 'shared'
+              stability: experimental
+              deprecated: 'Removed, report shared memory usage with `metric.system.memory.shared` metric'
         stability: experimental
         brief: "The memory state"
         examples: ["free", "cached"]

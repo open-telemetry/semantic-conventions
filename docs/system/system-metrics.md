@@ -30,6 +30,7 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
 - [Memory Metrics](#memory-metrics)
   - [Metric: `system.memory.usage`](#metric-systemmemoryusage)
   - [Metric: `system.memory.limit`](#metric-systemmemorylimit)
+  - [Metric: `system.memory.shared`](#metric-systemmemoryshared)
   - [Metric: `system.memory.utilization`](#metric-systemmemoryutilization)
 - [Paging/Swap Metrics](#pagingswap-metrics)
   - [Metric: `system.paging.usage`](#metric-systempagingusage)
@@ -204,6 +205,7 @@ available on the system, that is `system.memory.limit`.
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 <!-- endsemconv -->
 
 ### Metric: `system.memory.limit`
@@ -228,7 +230,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- semconv metric.system.memory.shared(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.memory.shared` | UpDownCounter | `By` | Reports shared memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.memory.shared` | UpDownCounter | `By` | Reports shared memory. Memory used (mostly) by tmpfs. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.system.memory.shared(full) -->
@@ -257,6 +259,7 @@ This metric is [recommended][MetricRecommended].
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 <!-- endsemconv -->
 
 ## Paging/Swap Metrics
