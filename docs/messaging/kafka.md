@@ -42,7 +42,7 @@ For Apache Kafka producers, [`peer.service`](/docs/general/attributes.md#general
 The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of the Producer, when the message is directly passed to another service.
 If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
 
-`messaging.client.id` SHOULD be set to the client name of consumer or producers, which is unique for each individual instance.
+`messaging.client.id` SHOULD be set to the client name of a consumer or producer, which is unique for each individual instance.
 
 ## Examples
 
