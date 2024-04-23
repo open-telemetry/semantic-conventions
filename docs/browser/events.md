@@ -40,6 +40,7 @@ The following table describes the payload fields that MUST be used to describe t
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
+| `browser.page.instance_id` | string | A unique id that identifies the instance of the page where the event is emitted. | `e611e02f-c9d2-47b3-a678-df1465e0f401` | `Opt-In` |
 
 **[1]:** Alias for [`http.url`](../../../trace/semantic_conventions/http.md)
 **[2]:** The URL fragment may be included for virtual pages
@@ -78,6 +79,7 @@ The following table describes the payload fields that MUST be used to describe t
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
+| `browser.page.instance_id` | string | A unique id that identifies the instance of the page where the event is emitted. | `e611e02f-c9d2-47b3-a678-df1465e0f401` | `Opt-In` |
 
 ## ResourceTiming
 
@@ -105,6 +107,7 @@ The following table describes the payload fields that MUST be used to describe t
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
+| `browser.page.instance_id` | string | A unique id that identifies the instance of the page where the event is emitted. | `e611e02f-c9d2-47b3-a678-df1465e0f401` | `Opt-In` |
 
 ## UserAction
 
@@ -125,6 +128,7 @@ The following table describes the payload fields that MUST be used to describe t
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
+| `browser.page.instance_id` | string | A unique id that identifies the instance of the page where the event is emitted. | `e611e02f-c9d2-47b3-a678-df1465e0f401` | `Opt-In` |
 
 `user_action_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.:
 
@@ -150,6 +154,7 @@ The following table describes the payload fields that MUST be used to describe t
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | [`session.id`](../attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` |
+| `browser.page.instance_id` | string | A unique id that identifies the instance of the page where the event is emitted. | `e611e02f-c9d2-47b3-a678-df1465e0f401` | `Opt-In` |
 
 `name` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
