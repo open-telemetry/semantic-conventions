@@ -24,7 +24,7 @@ This document defines standard attributes for resources. These attributes are ty
 - [Service](#service)
 - [Service (Experimental)](#service-experimental)
 - [Telemetry SDK](#telemetry-sdk)
-- [Telemetry SDK (Experimental)](#telemetry-sdk-experimental)
+- [Telemetry Distribution (Experimental)](#telemetry-distribution-experimental)
 - [Compute Unit](#compute-unit)
 - [Compute Instance](#compute-instance)
 - [Environment](#environment)
@@ -186,13 +186,13 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | `webjs` | webjs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
-## Telemetry SDK (Experimental)
+## Telemetry Distribution (Experimental)
 
 **Status**: [Experimental][DocumentStatus]
 
-**type:** `telemetry.sdk`
+**type:** `telemetry.distro`
 
-**Description:** Additions to the telemetry SDK.
+**Description:** The telemetry distribution (distro) used to capture data recorded by the instrumentation libraries.
 
 <!-- semconv telemetry_experimental -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

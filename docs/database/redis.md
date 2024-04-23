@@ -24,7 +24,7 @@ described on this page.
 
 **[1]:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
-**[2]:** Should be collected by default only if there is sanitization that excludes sensitive information.
+**[2]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
 
 **[3]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 <!-- endsemconv -->
@@ -41,7 +41,7 @@ Furthermore, `db.name` is not specified as there is no database name in Redis an
 | `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |
 | `db.name`                 | not set |
-| `db.statement`            | `"HMSET myhash field1 'Hello' field2 'World"` |
+| `db.query.text`           | `"HMSET myhash field1 'Hello' field2 'World"` |
 | `db.operation.name`       | not set |
 | `db.redis.database_index` | `15` |
 

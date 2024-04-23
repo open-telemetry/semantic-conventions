@@ -57,7 +57,7 @@ Since SQL statements may have very high cardinality even without arguments, SQL 
 following way, unless the statement is known to be of low cardinality:
 `<db.operation.name> <db.name>.<db.collection.name>`, provided that `db.operation.name` and `db.collection.name` are available.
 If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.name>`.
-It is not recommended to attempt any client-side parsing of `db.statement` just to get these properties,
+It is not recommended to attempt any client-side parsing of `db.query.text` just to get these properties,
 they should only be used if the library being instrumented already provides them.
 When it's otherwise impossible to get any meaningful span name, `db.name` or the tech-specific database name MAY be used.
 
@@ -96,7 +96,7 @@ These attributes will usually be the same for all operations performed over the 
 
 **[6]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[7]:** Should be collected by default only if there is sanitization that excludes sensitive information.
+**[7]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
 
 **[8]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
@@ -178,7 +178,7 @@ This allows multiple instrumentations for the same database to be aligned and ea
 The value `other_sql` is intended as a fallback and MUST only be used if the DBMS is known to be SQL-compliant but the concrete product is not known to the instrumentation.
 If the concrete DBMS is known to the instrumentation, its specific identifier MUST be used.
 
-Back ends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.statement`.
+Back ends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.query.text`.
 
 When additional attributes are added that only apply to a specific DBMS, its identifier SHOULD be used as a namespace in the attribute key as for the attributes in the sections below.
 
