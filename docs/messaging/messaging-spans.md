@@ -311,7 +311,7 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 **[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
-fully-qualified class name SHOULD be used.
+canonical class name identifying the type within the artifact SHOULD be used.
 
 Instrumentations SHOULD document the list of errors they report.
 
