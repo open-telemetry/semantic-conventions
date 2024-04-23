@@ -18,7 +18,6 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`messaging.gcp_pubsub.message.ordering_key`](../attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | `Conditionally Required` If the message type has an ordering key set. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp.project.id` | string | The name of a GCP Project. | `my-project` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.gcp_pubsub.message.ack_deadline`](../attributes-registry/messaging.md) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.gcp_pubsub.message.ack_id`](../attributes-registry/messaging.md) | string | The ack id for a given message. | `ack_id` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.gcp_pubsub.message.delivery_attempt`](../attributes-registry/messaging.md) | int | The delivery attempt for a given message. | `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -68,7 +67,6 @@ flowchart LR;
 | Links |  |  | Span Create A, Span Create B |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |
-| `gcp.project_id` | `"P"` | `"P"` | `"P"` |
 | `messaging.batch.message_count` |  |  | 2 |
 | `messaging.destination.name` | `"projects/P/topics/T"` | `"projects/P/topics/T"` | `"projects/P/topics/T"` |
 | `messaging.operation` | `"create"` | `"create"` | `"publish"` |
@@ -127,7 +125,6 @@ flowchart TD;
 | Links |  | Span Create A | Span Create A | Span Receive A | Span Receive A |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |`Ok` | `Ok` |
-| `gcp.project_id` | `"P"` | `"P"` | `"P"` |  `"P"` |  `"P"` |
 | `messaging.destination.name` | `"T"`| `"T"`| `"S"` | `"S"` |`"S"` |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
 | `messaging.operation` | `"create"` | `"publish"` | `"receive"` |  `"extend"` |  `"settle"` |

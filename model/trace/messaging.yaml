@@ -200,8 +200,6 @@ groups:
         tag: tech-specific-gcp-pubsub
       - ref: messaging.gcp_pubsub.message.ack_id
         tag: tech-specific-gcp-pubsub
-      - ref: gcp.project.id
-        tag: tech-specific-gcp-pubsub
   - id: messaging.servicebus
     type: attribute_group
     extends: messaging
