@@ -17,7 +17,7 @@ groups:
           Deprecated, use `messaging.operation.type` instead.
         examples: ["publish", "create", "process"]
         deprecated: "Replaced by `messaging.operation.type`."
-      - id: client_id
+      - id: messaging.client_id
         type: string
         stability: experimental
         brief: >
