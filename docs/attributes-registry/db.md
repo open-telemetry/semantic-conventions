@@ -18,7 +18,7 @@
 
 ## Generic Database Attributes
 
-<!-- semconv registry.db(omit_requirement_level,tag=db-generic) -->
+<!-- semconv registry.db(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `db.client.connections.pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -105,7 +105,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 ## Cassandra Attributes
 
-<!-- semconv registry.db(omit_requirement_level,tag=tech-specific-cassandra) -->
+<!-- semconv registry.db.cassandra(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `db.cassandra.consistency_level` | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -134,7 +134,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 ## CosmosDB Attributes
 
-<!-- semconv registry.db(omit_requirement_level,tag=tech-specific-cosmosdb) -->
+<!-- semconv registry.db.cosmosdb(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `db.cosmosdb.client_id` | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -175,7 +175,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 ## Elasticsearch Attributes
 
-<!-- semconv registry.db(omit_requirement_level,tag=tech-specific-elasticsearch) -->
+<!-- semconv registry.db.elasticsearch(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `db.elasticsearch.cluster.name` | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -186,7 +186,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 ## MSSQL Attributes
 
-<!-- semconv registry.db(omit_requirement_level,tag=tech-specific-mssql) -->
+<!-- semconv registry.db.mssql(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `db.mssql.instance_name` | string | The Microsoft SQL Server [instance name](https://docs.microsoft.com/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15) connecting to. This name is used to determine the port of a named instance. [1] | `MSSQLSERVER` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -196,7 +196,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 ## Redis Attributes
 
-<!-- semconv registry.db(omit_requirement_level,tag=tech-specific-redis) -->
+<!-- semconv registry.db.redis(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `db.redis.database_index` | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute. | `0`; `1`; `15` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
