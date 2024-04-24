@@ -9,8 +9,6 @@
 - [Cassandra Attributes](#cassandra-attributes)
 - [CosmosDB Attributes](#cosmosdb-attributes)
 - [Elasticsearch Attributes](#elasticsearch-attributes)
-- [MSSQL Attributes](#mssql-attributes)
-- [Redis Attributes](#redis-attributes)
 - [Deprecated DB Attributes](#deprecated-db-attributes)
 - [Deprecated DB Metrics Attributes](#deprecated-db-metrics-attributes)
 
@@ -25,7 +23,7 @@
 | `db.client.connections.state` | string | The state of a connection in the pool | `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.collection.name` | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.instance.id` | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.name` | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [2] | `customers`; `main` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.namespace` | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.operation.name` | string | The name of the operation or command being executed. | `findAndModify`; `HMSET`; `SELECT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.parameter.<key>` | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [3] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.text` | string | The database query being executed. | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -33,7 +31,8 @@
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
-**[2]:** In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
+**[2]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 
 **[3]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
@@ -184,24 +183,6 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 **[1]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 <!-- endsemconv -->
 
-## MSSQL Attributes
-
-<!-- semconv registry.db.mssql(omit_requirement_level,full) -->
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `db.mssql.instance_name` | string | The Microsoft SQL Server [instance name](https://docs.microsoft.com/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15) connecting to. This name is used to determine the port of a named instance. [1] | `MSSQLSERVER` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[1]:** If setting a `db.mssql.instance_name`, `server.port` is no longer required (but still recommended if non-standard).
-<!-- endsemconv -->
-
-## Redis Attributes
-
-<!-- semconv registry.db.redis(omit_requirement_level,full) -->
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `db.redis.database_index` | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute. | `0`; `1`; `15` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-<!-- endsemconv -->
-
 ## Deprecated DB Attributes
 
 <!-- semconv registry.db.deprecated(omit_requirement_level) -->
@@ -213,7 +194,10 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `db.elasticsearch.node.name` | string | Deprecated, use `db.instance.id` instead. | `instance-0000000001` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.instance.id`. |
 | `db.jdbc.driver_classname` | string | Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed as not used. |
 | `db.mongodb.collection` | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| `db.mssql.instance_name` | string | Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
+| `db.name` | string | Deprecated, use `db.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | `db.operation` | string | Deprecated, use `db.operation.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.name`. |
+| `db.redis.database_index` | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | `db.sql.table` | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
 | `db.statement` | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
 | `db.user` | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
