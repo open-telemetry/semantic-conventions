@@ -42,7 +42,11 @@ groups:
           In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 
           `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
-          Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+
+          Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g.
+          `https://www.example.com/path?abc=REDACTED&xyz=REDACTED` (the query string keys SHOULD be preserved).
+          
+          Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
         examples: ['https://www.foo.bar/search?q=OpenTelemetry#SemConv', '//localhost']
       - id: original
         type: string
@@ -77,7 +81,10 @@ groups:
           The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component
         examples: ["q=OpenTelemetry"]
         note: >
-          Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
+          Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g.
+          `abc=REDACTED&xyz=REDACTED` (the query string keys SHOULD be preserved).
+
+          Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
       - id: registered_domain
         type: string
         stability: experimental

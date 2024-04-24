@@ -33,11 +33,14 @@ This document defines semantic conventions that describe URL and its components.
 
 **[1]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
-`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed). Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `https://www.example.com/path?abc=REDACTED&xyz=REDACTED` (the query string keys SHOULD be preserved).
+Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
 
 **[2]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
-**[3]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
+**[3]:** Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `abc=REDACTED&xyz=REDACTED` (the query string keys SHOULD be preserved).
+Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
 <!-- endsemconv -->
 
 ## Sensitive information

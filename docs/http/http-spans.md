@@ -163,7 +163,9 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[4]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
-`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed). Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `https://www.example.com/path?abc=REDACTED&xyz=REDACTED` (the query string keys SHOULD be preserved).
+Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
 
 **[5]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
@@ -393,7 +395,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[9]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
-**[10]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
+**[10]:** Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `abc=REDACTED&xyz=REDACTED` (the query string keys SHOULD be preserved).
+Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
 
 **[11]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for), [X-Forwarded-For](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
 
