@@ -154,13 +154,13 @@ The following metric instruments describe database client connection pool operat
 
 This metric is [required][MetricRequired].
 
-<!-- semconv metric.db.client.connections.usage(metric_table) -->
+<!-- semconv metric.db.client.connections.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.usage` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connections.count` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.usage(full) -->
+<!-- semconv metric.db.client.connections.count(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

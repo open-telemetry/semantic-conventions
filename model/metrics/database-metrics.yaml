@@ -8,9 +8,9 @@ groups:
     stability: experimental
     extends: attributes.db.client
 
-  - id: metric.db.client.connections.usage
+  - id: metric.db.client.connections.count
     type: metric
-    metric_name: db.client.connections.usage
+    metric_name: db.client.connections.count
     stability: experimental
     brief: "The number of connections that are currently in state described by the `state` attribute"
     instrument: updowncounter
