@@ -44,7 +44,11 @@ The following additional attributes are defined:
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
-**[2]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
+**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
 Instrumentations SHOULD document the list of errors they report.
 
 The cardinality of `error.type` within one instrumentation library SHOULD be low.
@@ -170,7 +174,11 @@ The following additional attributes are defined:
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
-**[2]:** The `error.type` SHOULD be predictable and SHOULD have low cardinality.
+**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
 Instrumentations SHOULD document the list of errors they report.
 
 The cardinality of `error.type` within one instrumentation library SHOULD be low.
