@@ -34,10 +34,9 @@ structure and semantics will also be defined.
 
 The following semantic conventions for events are defined:
 
-* **[General](#general-event-attributes): General semantic attributes that may be used in describing Events.**
 * [Exceptions](/docs/exceptions/exceptions-logs.md): Semantic attributes that may be used in describing exceptions as events.
 
-## Mapping Log Records or Span Events to Events
+## Mapping Log Records and Span Events to Events
 
 <!--TODO: update or remove this section once Event API is stable and supported by majority of languages-->
 
@@ -69,7 +68,7 @@ that identify the class of Events but not the instance of the Event.
 
 **[2]:** The `event.body` MAY be used only on Span Events to capture the body (payload) and MUST NOT be used when emitting Log Records or Events.
 
-**[3]:** If and only if the event has a body and is reported using Span Event API.
+**[3]:** If and only if the event has a body and is reported as a Span Event.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

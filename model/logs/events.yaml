@@ -8,5 +8,4 @@ groups:
         requirement_level: required
       - ref: event.body
         requirement_level:
-          conditionally_required: If and only if the event has a body and is reported using Span Event API.
-
+          conditionally_required: If and only if the event has a body and is reported as a Span Event.
