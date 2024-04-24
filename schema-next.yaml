@@ -4,7 +4,7 @@ versions:
   next:
     metrics:
       changes:
-        #
+        # https://github.com/open-telemetry/semantic-conventions/pull/966
         - rename_metrics:
             db.client.connections.usage: db.client.connections.count
         # https://github.com/open-telemetry/semantic-conventions/pull/909
