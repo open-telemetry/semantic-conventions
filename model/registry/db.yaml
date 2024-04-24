@@ -487,32 +487,3 @@ groups:
           reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
           in order to map the path part values to their names.
         examples: ['db.elasticsearch.path_parts.index=test-index', 'db.elasticsearch.path_parts.doc_id=123']
-  - id: registry.db.mssql
-    prefix: db
-    type: attribute_group
-    brief: >
-      This group defines attributes for Microsoft SQL Server.
-    attributes:
-      - id: mssql.instance_name
-        type: string
-        stability: experimental
-        note: >
-          If setting a `db.mssql.instance_name`, `server.port` is no longer
-          required (but still recommended if non-standard).
-        brief: >
-          The Microsoft SQL Server [instance name](https://docs.microsoft.com/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15)
-          connecting to. This name is used to determine the port of a named instance.
-        examples: 'MSSQLSERVER'
-  - id: registry.db.redis
-    prefix: db
-    type: attribute_group
-    brief: >
-      This group defines attributes for Redis.
-    attributes:
-      - id: redis.database_index
-        type: int
-        stability: experimental
-        brief: >
-          The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer.
-          To be used instead of the generic `db.name` attribute.
-        examples: [0, 1, 15]

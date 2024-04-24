@@ -183,27 +183,6 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 **[1]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 <!-- endsemconv -->
 
-<<<<<<< HEAD
-## MSSQL Attributes
-
-<!-- semconv registry.db.mssql(omit_requirement_level,full) -->
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `db.mssql.instance_name` | string | The Microsoft SQL Server [instance name](https://docs.microsoft.com/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15) connecting to. This name is used to determine the port of a named instance. [1] | `MSSQLSERVER` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[1]:** If setting a `db.mssql.instance_name`, `server.port` is no longer required (but still recommended if non-standard).
-<!-- endsemconv -->
-
-## Redis Attributes
-
-<!-- semconv registry.db.redis(omit_requirement_level,full) -->
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `db.redis.database_index` | int | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute. | `0`; `1`; `15` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-<!-- endsemconv -->
-
-=======
->>>>>>> 667fb2e (Rename db.name to db.collection.namespace)
 ## Deprecated DB Attributes
 
 <!-- semconv registry.db.deprecated(omit_requirement_level) -->
