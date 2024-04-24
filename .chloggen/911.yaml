@@ -1,0 +1,4 @@
+change_type: breaking
+component: db
+note: Rename `db.name` and `db.redis.database_index` to `db.namespace`, deprecate `db.mssql.instance_name`.
+issues: [ 885 ]

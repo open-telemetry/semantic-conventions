@@ -188,14 +188,21 @@ groups:
         tag: tech-specific
   - id: messaging.gcp_pubsub
     type: attribute_group
+    stability: experimental
     extends: messaging
     brief: >
       Attributes for Google Cloud Pub/Sub
     attributes:
       - ref: messaging.gcp_pubsub.message.ordering_key
-        tag: tech-specific
+        tag: tech-specific-gcp-pubsub
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
+      - ref: messaging.gcp_pubsub.message.delivery_attempt
+        tag: tech-specific-gcp-pubsub
+      - ref: messaging.gcp_pubsub.message.ack_deadline
+        tag: tech-specific-gcp-pubsub
+      - ref: messaging.gcp_pubsub.message.ack_id
+        tag: tech-specific-gcp-pubsub
   - id: messaging.servicebus
     type: attribute_group
     extends: messaging

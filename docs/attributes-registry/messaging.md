@@ -98,9 +98,12 @@ size should be used.
 
 ## Messaging Gcp Pubsub Attributes
 
-| Attribute                                   | Type   | Description                                                                                                       | Examples       | Stability                                                        |
-| ------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------- |
-| `messaging.gcp_pubsub.message.ordering_key` | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                                       | Type   | Description                                                                                                       | Examples       | Stability                                                        |
+| ----------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------- |
+| `messaging.gcp_pubsub.message.ack_deadline`     | int    | The ack deadline in seconds set for the modify ack deadline request.                                              | `10`           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.gcp_pubsub.message.ack_id`           | string | The ack id for a given message.                                                                                   | `ack_id`       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.gcp_pubsub.message.delivery_attempt` | int    | The delivery attempt for a given message.                                                                         | `2`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.gcp_pubsub.message.ordering_key`     | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Messaging Kafka Attributes
 
