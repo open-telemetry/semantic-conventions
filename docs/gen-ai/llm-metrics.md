@@ -8,7 +8,7 @@ linkTitle: LLM metrics
 
 The conventions described in this section are specific to LLM clients.
 
-**Disclaimer:** These are initial database client metric instruments
+**Disclaimer:** These are initial LLM client metric instruments
 and attributes but more may be added in the future.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
