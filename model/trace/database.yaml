@@ -340,3 +340,24 @@ groups:
           conditionally_required: If available.
         note: >
           <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
+        
+  - id: db.influxdb
+    type: span
+    extends: trace.db.common
+    brief: >
+      Attributes for InfluxDB
+    attributes:
+      - ref: db.name
+        brief: >
+          The InfluxDB database name.
+        note: For InfluxDB the `db.name` should be set to the InfluxDB database name.
+        examples: [ 'mydb' ]
+        requirement_level: required
+        tag: tech-specific
+      - ref: db.operation.name
+        brief: >
+          The name of the command being executed.
+        note: See [InfluxDB database commands](https://docs.influxdata.com/influxdb/v1/query_language/).
+        examples: [ 'CREATE DATABASE', 'DROP DATABASE', 'SELECT', 'write' ]
+        requirement_level: required
+        tag: tech-specific

@@ -15,17 +15,15 @@ described on this page.
 
 ## Attributes
 
-<!-- semconv db.hbase(full,tag=tech-specific) -->
-
-| Attribute                                           | Type   | Description                                 | Examples                            | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability                                                        |
-|-----------------------------------------------------|--------|---------------------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| [`db.name`](../attributes-registry/db.md)           | string | The InfluxDB database name. [1]             | `mydb`                              | `Required` If applicable.                                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](../attributes-registry/db.md) | string | The name of the command being executed. [2] | `CREATE`; `DROP`; `SELECT`; `write` | `Required` If applicable.                                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- semconv db.influxdb(full,tag=tech-specific) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`db.name`](../attributes-registry/db.md) | string | The InfluxDB database name. [1] | `mydb` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](../attributes-registry/db.md) | string | The name of the command being executed. [2] | `CREATE DATABASE`; `DROP DATABASE`; `SELECT`; `write` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For InfluxDB the `db.name` should be set to the InfluxDB database name.
 
-**[2]:**
-See [InfluxDB database commands](https://docs.influxdata.com/influxdb/v1/query_language/).
+**[2]:** See [InfluxDB database commands](https://docs.influxdata.com/influxdb/v1/query_language/).
 <!-- endsemconv -->
 
 ## Example
