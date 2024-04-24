@@ -3,82 +3,8 @@ groups:
     prefix: db
     type: attribute_group
     brief: >
-      This document defines the attributes used to describe telemetry in the context of databases.
+      This group defines the attributes used to describe telemetry in the context of databases.
     attributes:
-      - id: cassandra.coordinator.dc
-        type: string
-        stability: experimental
-        brief: >
-          The data center of the coordinating node for a query.
-        examples: 'us-west-2'
-        tag: tech-specific-cassandra
-      - id: cassandra.coordinator.id
-        type: string
-        stability: experimental
-        brief: >
-          The ID of the coordinating node for a query.
-        examples: 'be13faa2-8574-4d71-926d-27f16cf8a7af'
-        tag: tech-specific-cassandra
-      - id: cassandra.consistency_level
-        brief: >
-          The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
-        type:
-          members:
-            - id: all
-              value: 'all'
-              stability: experimental
-            - id: each_quorum
-              value: 'each_quorum'
-              stability: experimental
-            - id: quorum
-              value: 'quorum'
-              stability: experimental
-            - id: local_quorum
-              value: 'local_quorum'
-              stability: experimental
-            - id: one
-              value: 'one'
-              stability: experimental
-            - id: two
-              value: 'two'
-              stability: experimental
-            - id: three
-              value: 'three'
-              stability: experimental
-            - id: local_one
-              value: 'local_one'
-              stability: experimental
-            - id: any
-              value: 'any'
-              stability: experimental
-            - id: serial
-              value: 'serial'
-              stability: experimental
-            - id: local_serial
-              value: 'local_serial'
-              stability: experimental
-        stability: experimental
-        tag: tech-specific-cassandra
-      - id: cassandra.idempotence
-        type: boolean
-        stability: experimental
-        brief: >
-          Whether or not the query is idempotent.
-        tag: tech-specific-cassandra
-      - id: cassandra.page_size
-        type: int
-        stability: experimental
-        brief: >
-          The fetch size used for paging, i.e. how many rows will be returned at once.
-        examples: [5000]
-        tag: tech-specific-cassandra
-      - id: cassandra.speculative_execution_count
-        type: int
-        stability: experimental
-        brief: >
-          The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
-        examples: [0, 2]
-        tag: tech-specific-cassandra
       - id: collection.name
         type: string
         stability: experimental
@@ -86,134 +12,7 @@ groups:
         note: >
             If the collection name is parsed from the query, it SHOULD match the value provided
             in the query and may be qualified with the schema and database name.
-        tag: db-generic
         examples: ['public.users', 'customers']
-      - id: cosmosdb.client_id
-        type: string
-        stability: experimental
-        brief: Unique Cosmos client instance id.
-        examples: '3ba4827d-4422-483f-b59f-85b74211c11d'
-        tag: tech-specific-cosmosdb
-      - id: cosmosdb.connection_mode
-        type:
-          allow_custom_values: false
-          members:
-            - id: gateway
-              value: 'gateway'
-              brief: Gateway (HTTP) connections mode
-              stability: experimental
-            - id: direct
-              value: 'direct'
-              brief: Direct connection.
-              stability: experimental
-        stability: experimental
-        brief: Cosmos client connection mode.
-        tag: tech-specific-cosmosdb
-      - id: cosmosdb.operation_type
-        type:
-          allow_custom_values: true
-          members:
-            - id: invalid
-              value: 'Invalid'
-              stability: experimental
-            - id: create
-              value: 'Create'
-              stability: experimental
-            - id: patch
-              value: 'Patch'
-              stability: experimental
-            - id: read
-              value: 'Read'
-              stability: experimental
-            - id: read_feed
-              value: 'ReadFeed'
-              stability: experimental
-            - id: delete
-              value: 'Delete'
-              stability: experimental
-            - id: replace
-              value: 'Replace'
-              stability: experimental
-            - id: execute
-              value: 'Execute'
-              stability: experimental
-            - id: query
-              value: 'Query'
-              stability: experimental
-            - id: head
-              value: 'Head'
-              stability: experimental
-            - id: head_feed
-              value: 'HeadFeed'
-              stability: experimental
-            - id: upsert
-              value: 'Upsert'
-              stability: experimental
-            - id: batch
-              value: 'Batch'
-              stability: experimental
-            - id: query_plan
-              value: 'QueryPlan'
-              stability: experimental
-            - id: execute_javascript
-              value: 'ExecuteJavaScript'
-              stability: experimental
-        stability: experimental
-        brief: CosmosDB Operation Type.
-        tag: tech-specific-cosmosdb
-      - id: cosmosdb.request_charge
-        type: double
-        stability: experimental
-        brief: RU consumed for that operation
-        examples: [46.18, 1.0]
-        tag: tech-specific-cosmosdb
-      - id: cosmosdb.request_content_length
-        type: int
-        stability: experimental
-        brief: Request payload size in bytes
-        tag: tech-specific-cosmosdb
-      - id: cosmosdb.status_code
-        type: int
-        stability: experimental
-        brief: Cosmos DB status code.
-        examples: [200, 201]
-        tag: tech-specific-cosmosdb
-      - id: cosmosdb.sub_status_code
-        type: int
-        stability: experimental
-        brief: Cosmos DB sub status code.
-        examples: [1000, 1002]
-        tag: tech-specific-cosmosdb
-      - id: elasticsearch.cluster.name
-        type: string
-        stability: experimental
-        brief: >
-          Represents the identifier of an Elasticsearch cluster.
-        examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
-        tag: tech-specific-elasticsearch
-      - id: elasticsearch.path_parts
-        type: template[string]
-        stability: experimental
-        brief: >
-          A dynamic value in the url path.
-        note: >
-          Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format
-          `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD
-          reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
-          in order to map the path part values to their names.
-        examples: ['db.elasticsearch.path_parts.index=test-index', 'db.elasticsearch.path_parts.doc_id=123']
-        tag: tech-specific-elasticsearch
-      - id: mssql.instance_name
-        type: string
-        stability: experimental
-        note: >
-          If setting a `db.mssql.instance_name`, `server.port` is no longer
-          required (but still recommended if non-standard).
-        brief: >
-          The Microsoft SQL Server [instance name](https://docs.microsoft.com/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15)
-          connecting to. This name is used to determine the port of a named instance.
-        examples: 'MSSQLSERVER'
-        tag: tech-specific-mssql
       - id: name
         type: string
         stability: experimental
@@ -227,29 +26,18 @@ groups:
           (e.g. Oracle instance name and schema name),
           the database name to be used is the more specific layer (e.g. Oracle schema name).
         examples: [ 'customers', 'main' ]
-        tag: db-generic
       - id: operation.name
         type: string
         stability: experimental
         brief: >
           The name of the operation or command being executed.
         examples: ['findAndModify', 'HMSET', 'SELECT']
-        tag: db-generic
-      - id: redis.database_index
-        type: int
-        stability: experimental
-        brief: >
-          The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer.
-          To be used instead of the generic `db.name` attribute.
-        examples: [0, 1, 15]
-        tag: tech-specific-redis
       - id: query.text
         type: string
         stability: experimental
         brief: >
           The database query being executed.
         examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
-        tag: db-generic
       - id: query.parameter
         type: template[string]
         stability: experimental
@@ -262,7 +50,6 @@ groups:
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
         examples: ['someval', '55']
-        tag: db-generic
       - id: system
         brief: An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.
         type:
@@ -477,9 +264,7 @@ groups:
               brief: 'Trino'
               stability: experimental
         stability: experimental
-        tag: db-generic
       - id: instance.id
-        tag: db-generic
         type: string
         stability: experimental
         brief: >
@@ -488,7 +273,6 @@ groups:
           The client may obtain this value in databases like MySQL using queries like `select @@hostname`.
         examples: 'mysql-e26b99z.example.com'
       - id: client.connections.state
-        tag: db-generic
         stability: experimental
         type:
           allow_custom_values: true
@@ -502,7 +286,6 @@ groups:
         brief: "The state of a connection in the pool"
         examples: ["idle"]
       - id: client.connections.pool.name
-        tag: db-generic
         type: string
         stability: experimental
         brief: >
@@ -511,3 +294,224 @@ groups:
           instrumentation should use a combination of `server.address` and `server.port` attributes
           formatted as `server.address:server.port`.
         examples: ["myDataSource"]
+  - id: registry.db.cassandra
+    prefix: db
+    type: attribute_group
+    brief: >
+      This group defines attributes for Cassandra.
+    attributes:
+      - id: cassandra.coordinator.dc
+        type: string
+        stability: experimental
+        brief: >
+          The data center of the coordinating node for a query.
+        examples: 'us-west-2'
+      - id: cassandra.coordinator.id
+        type: string
+        stability: experimental
+        brief: >
+          The ID of the coordinating node for a query.
+        examples: 'be13faa2-8574-4d71-926d-27f16cf8a7af'
+      - id: cassandra.consistency_level
+        brief: >
+          The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
+        type:
+          members:
+            - id: all
+              value: 'all'
+              stability: experimental
+            - id: each_quorum
+              value: 'each_quorum'
+              stability: experimental
+            - id: quorum
+              value: 'quorum'
+              stability: experimental
+            - id: local_quorum
+              value: 'local_quorum'
+              stability: experimental
+            - id: one
+              value: 'one'
+              stability: experimental
+            - id: two
+              value: 'two'
+              stability: experimental
+            - id: three
+              value: 'three'
+              stability: experimental
+            - id: local_one
+              value: 'local_one'
+              stability: experimental
+            - id: any
+              value: 'any'
+              stability: experimental
+            - id: serial
+              value: 'serial'
+              stability: experimental
+            - id: local_serial
+              value: 'local_serial'
+              stability: experimental
+        stability: experimental
+      - id: cassandra.idempotence
+        type: boolean
+        stability: experimental
+        brief: >
+          Whether or not the query is idempotent.
+      - id: cassandra.page_size
+        type: int
+        stability: experimental
+        brief: >
+          The fetch size used for paging, i.e. how many rows will be returned at once.
+        examples: [5000]
+      - id: cassandra.speculative_execution_count
+        type: int
+        stability: experimental
+        brief: >
+          The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
+        examples: [0, 2]
+  - id: registry.db.cosmosdb
+    prefix: db
+    type: attribute_group
+    brief: >
+      This group defines attributes for Azure Cosmos DB.
+    attributes:
+      - id: cosmosdb.client_id
+        type: string
+        stability: experimental
+        brief: Unique Cosmos client instance id.
+        examples: '3ba4827d-4422-483f-b59f-85b74211c11d'
+      - id: cosmosdb.connection_mode
+        type:
+          allow_custom_values: false
+          members:
+            - id: gateway
+              value: 'gateway'
+              brief: Gateway (HTTP) connections mode
+              stability: experimental
+            - id: direct
+              value: 'direct'
+              brief: Direct connection.
+              stability: experimental
+        stability: experimental
+        brief: Cosmos client connection mode.
+      - id: cosmosdb.operation_type
+        type:
+          allow_custom_values: true
+          members:
+            - id: invalid
+              value: 'Invalid'
+              stability: experimental
+            - id: create
+              value: 'Create'
+              stability: experimental
+            - id: patch
+              value: 'Patch'
+              stability: experimental
+            - id: read
+              value: 'Read'
+              stability: experimental
+            - id: read_feed
+              value: 'ReadFeed'
+              stability: experimental
+            - id: delete
+              value: 'Delete'
+              stability: experimental
+            - id: replace
+              value: 'Replace'
+              stability: experimental
+            - id: execute
+              value: 'Execute'
+              stability: experimental
+            - id: query
+              value: 'Query'
+              stability: experimental
+            - id: head
+              value: 'Head'
+              stability: experimental
+            - id: head_feed
+              value: 'HeadFeed'
+              stability: experimental
+            - id: upsert
+              value: 'Upsert'
+              stability: experimental
+            - id: batch
+              value: 'Batch'
+              stability: experimental
+            - id: query_plan
+              value: 'QueryPlan'
+              stability: experimental
+            - id: execute_javascript
+              value: 'ExecuteJavaScript'
+              stability: experimental
+        stability: experimental
+        brief: CosmosDB Operation Type.
+      - id: cosmosdb.request_charge
+        type: double
+        stability: experimental
+        brief: RU consumed for that operation
+        examples: [46.18, 1.0]
+      - id: cosmosdb.request_content_length
+        type: int
+        stability: experimental
+        brief: Request payload size in bytes
+      - id: cosmosdb.status_code
+        type: int
+        stability: experimental
+        brief: Cosmos DB status code.
+        examples: [200, 201]
+      - id: cosmosdb.sub_status_code
+        type: int
+        stability: experimental
+        brief: Cosmos DB sub status code.
+        examples: [1000, 1002]
+  - id: registry.db.elasticsearch
+    prefix: db
+    type: attribute_group
+    brief: >
+      This group defines attributes for Elasticsearch.
+    attributes:
+      - id: elasticsearch.cluster.name
+        type: string
+        stability: experimental
+        brief: >
+          Represents the identifier of an Elasticsearch cluster.
+        examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
+      - id: elasticsearch.path_parts
+        type: template[string]
+        stability: experimental
+        brief: >
+          A dynamic value in the url path.
+        note: >
+          Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format
+          `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD
+          reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
+          in order to map the path part values to their names.
+        examples: ['db.elasticsearch.path_parts.index=test-index', 'db.elasticsearch.path_parts.doc_id=123']
+  - id: registry.db.mssql
+    prefix: db
+    type: attribute_group
+    brief: >
+      This group defines attributes for Microsoft SQL Server.
+    attributes:
+      - id: mssql.instance_name
+        type: string
+        stability: experimental
+        note: >
+          If setting a `db.mssql.instance_name`, `server.port` is no longer
+          required (but still recommended if non-standard).
+        brief: >
+          The Microsoft SQL Server [instance name](https://docs.microsoft.com/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15)
+          connecting to. This name is used to determine the port of a named instance.
+        examples: 'MSSQLSERVER'
+  - id: registry.db.redis
+    prefix: db
+    type: attribute_group
+    brief: >
+      This group defines attributes for Redis.
+    attributes:
+      - id: redis.database_index
+        type: int
+        stability: experimental
+        brief: >
+          The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer.
+          To be used instead of the generic `db.name` attribute.
+        examples: [0, 1, 15]
