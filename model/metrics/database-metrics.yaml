@@ -108,3 +108,16 @@ groups:
     attributes:
       - ref: db.client.connections.pool.name
         requirement_level: required
+
+  - id: metric.db.client.connections.usage
+    type: metric
+    metric_name: db.client.connections.usage
+    stability: experimental
+    brief: "Deprecated, use `db.client.connections.count` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connections.state
+        requirement_level: required
+      - ref: db.client.connections.pool.name
+        requirement_level: required
