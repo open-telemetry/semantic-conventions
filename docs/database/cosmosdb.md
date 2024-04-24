@@ -47,21 +47,21 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 
 | Value  | Description | Stability |
 |---|---|---|
-| `Invalid` | Invalid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Create` | Create | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Patch` | Patch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read` | Read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed` | ReadFeed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Delete` | Delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Replace` | Replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Execute` | Execute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query` | Query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Head` | Head | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HeadFeed` | HeadFeed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert` | Upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Batch` | Batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QueryPlan` | QueryPlan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ExecuteJavaScript` | ExecuteJavaScript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Invalid` | invalid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Create` | create | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Patch` | patch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ReadFeed` | read_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Execute` | execute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Query` | query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Head` | head | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `HeadFeed` | head_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Batch` | batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `QueryPlan` | query_plan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 In addition to Cosmos DB attributes, all spans include

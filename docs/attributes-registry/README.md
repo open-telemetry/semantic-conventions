@@ -32,6 +32,7 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 - [Android](android.md)
+- [Aspnetcore](aspnetcore.md)
 - [Aws](aws.md)
 - [Browser](browser.md)
 - [Client](client.md)
@@ -73,6 +74,7 @@ Currently, the following namespaces exist:
 - [Server](server.md)
 - [Service](service.md)
 - [Session](session.md)
+- [Signalr](signalr.md)
 - [Source](source.md)
 - [System](system.md)
 - [Telemetry](telemetry.md)

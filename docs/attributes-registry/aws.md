@@ -9,6 +9,7 @@
 - [Aws](#aws-attributes)
 - [Aws Dynamodb](#aws-dynamodb-attributes)
 - [Aws Ecs](#aws-ecs-attributes)
+- [Aws Eks](#aws-eks-attributes)
 - [Aws Lambda](#aws-lambda-attributes)
 - [Aws Log](#aws-log-attributes)
 - [Aws S3](#aws-s3-attributes)
@@ -64,6 +65,12 @@
 | --------- | ----------- | ---------------------------------------------------------------- |
 | `ec2`     | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `fargate` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Aws Eks Attributes
+
+| Attribute             | Type   | Description                | Examples                                                | Stability                                                        |
+| --------------------- | ------ | -------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------- |
+| `aws.eks.cluster.arn` | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Aws Lambda Attributes
 
