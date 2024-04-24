@@ -109,3 +109,6 @@ it's RECOMMENDED to:
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[MetricRequired]: /docs/general/metric-requirement-level.md#required
