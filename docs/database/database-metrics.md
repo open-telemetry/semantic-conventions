@@ -18,7 +18,7 @@ and attributes but more may be added in the future.
 - [Database operation](#database-operation)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
 - [Connection pools](#connection-pools)
-  - [Metric: `db.client.connections.usage`](#metric-dbclientconnectionsusage)
+  - [Metric: `db.client.connections.count`](#metric-dbclientconnectionscount)
   - [Metric: `db.client.connections.idle.max`](#metric-dbclientconnectionsidlemax)
   - [Metric: `db.client.connections.idle.min`](#metric-dbclientconnectionsidlemin)
   - [Metric: `db.client.connections.max`](#metric-dbclientconnectionsmax)
@@ -150,7 +150,7 @@ If a database operation involved multiple network calls (for example retries), t
 
 The following metric instruments describe database client connection pool operations.
 
-### Metric: `db.client.connections.usage`
+### Metric: `db.client.connections.count`
 
 This metric is [required][MetricRequired].
 
