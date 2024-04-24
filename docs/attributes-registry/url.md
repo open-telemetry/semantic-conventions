@@ -12,11 +12,11 @@ linkTitle: URL
 | `url.domain` | string | Domain extracted from the `url.full`, such as "opentelemetry.io". [1] | `www.foo.bar`; `opentelemetry.io`; `3.12.167.2`; `[1080:0:0:0:8:800:200C:417A]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url.extension` | string | The file extension extracted from the `url.full`, excluding the leading dot. [2] | `png`; `gz` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url.fragment` | string | The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component | `SemConv` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `url.full` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `url.full` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://www.foo.bar/search?q=REDACTED&v=REDACTED#SemConv`; `//localhost` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `url.original` | string | Unmodified original URL as seen in the event source. [4] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `search?q=OpenTelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url.path` | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [5] | `/search` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `url.port` | int | Port extracted from the `url.full` | `443` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `url.query` | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [6] | `q=OpenTelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `url.query` | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [6] | `q=REDACTED&v=REDACTED` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `url.registered_domain` | string | The highest registered url domain, stripped of the subdomain. [7] | `example.com`; `foo.co.uk` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `url.subdomain` | string | The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain. [8] | `east`; `sub2.sub1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -29,7 +29,7 @@ linkTitle: URL
 **[3]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
-Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `https://www.example.com/path?abc=REDACTED&xyz=REDACTED` (the query string keys SHOULD be preserved).
+Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `https://www.example.com/path?q=REDACTED&v=REDACTED` (the query string keys SHOULD be preserved).
 Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
 
 **[4]:** In network monitoring, the observed URL may be a full URL, whereas in access logs, the URL is often just represented as a path. This field is meant to represent the URL as it was observed, complete or not.
@@ -37,7 +37,7 @@ Instrumentation MAY provide a configuration option to capture the full query str
 
 **[5]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
-**[6]:** Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `abc=REDACTED&xyz=REDACTED` (the query string keys SHOULD be preserved).
+**[6]:** Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `q=REDACTED&v=REDACTED` (the query string keys SHOULD be preserved).
 Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
 
 **[7]:** This value can be determined precisely with the [public suffix list](http://publicsuffix.org). For example, the registered domain for `foo.example.com` is `example.com`. Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
