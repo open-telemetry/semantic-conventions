@@ -15,7 +15,7 @@ This document defines how to describe remote procedure calls
 
 - [Common remote procedure call conventions](#common-remote-procedure-call-conventions)
   - [Span name](#span-name)
-    - [Service name](#service-name)
+  - [Service name](#service-name)
   - [Client attributes](#client-attributes)
   - [Server attributes](#server-attributes)
   - [Events](#events)
@@ -78,7 +78,7 @@ Examples of span names:
   `MyServiceReference.ICalculator/Add` reported by the client for .NET WCF calls
 - `MyServiceWithNoPackage/theMethod`
 
-#### Service name
+### Service name
 
 On the server process receiving and handling the remote procedure call, the service name provided in `rpc.service` does not necessarily have to match the [`service.name`][] resource attribute.
 One process can expose multiple RPC endpoints and thus have multiple RPC service names. From a deployment perspective, as expressed by the `service.*` resource attributes, it will be treated as one deployed service with one `service.name`.
