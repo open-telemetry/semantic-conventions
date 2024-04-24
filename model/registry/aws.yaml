@@ -315,7 +315,7 @@ groups:
         examples: ["8", "26"]
   - id: registry.aws.eks
     prefix: aws.eks
-    type: resource
+    type: attribute_group
     brief: >
       This document defines attributes for AWS Elastic Kubernetes Service (EKS).
     attributes:
