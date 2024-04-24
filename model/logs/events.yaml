@@ -2,7 +2,11 @@ groups:
   - id: event
     type: attribute_group
     brief: >
-        This document defines attributes for Events represented using Log Records.
+        This document defines attributes for Events represented using Span Events or Log Records.
     attributes:
       - ref: event.name
         requirement_level: required
+      - ref: event.body
+        requirement_level:
+          conditionally_required: If and only if the event has a body and is reported using Span Event API.
+

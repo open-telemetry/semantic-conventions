@@ -37,12 +37,27 @@ The following semantic conventions for events are defined:
 * **[General](#general-event-attributes): General semantic attributes that may be used in describing Events.**
 * [Exceptions](/docs/exceptions/exceptions-logs.md): Semantic attributes that may be used in describing exceptions as events.
 
-## General event attributes
+## Mapping Log Records or Span Events to Events
 
-Events are recorded as LogRecords that are shaped in a special way: Event
-LogRecords MUST have the attribute `event.name` that uniquely identifies the event.
-Events with the same `event.name` are structurally similar to one another. Events
-may also have other LogRecord attributes.
+<!--TODO: update or remove this section once Event API is stable and supported by majority of languages-->
+
+Telemetry producers such as instrumentation libraries SHOULD use Event API to emit events.
+
+When it's not possible, they MAY emit Log Records or Span Events and use the following attributes to
+provide missing properties.
+
+<!-- semconv event -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`event.name`](../attributes-registry/event.md) | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`event.body`](../attributes-registry/event.md) | string | The body of the event serialized into JSON string. [2] | `{"role":"user","content":"how to use Events API?"}`; `"plain string"` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Event names are subject to the same rules as [attribute names](https://opentelemetry.io/docs/specs/semconv/general/attribute-naming/).
+Notably, event names are namespaced to avoid collisions and provide a clean
+separation of semantics for events in separate domains like browser, mobile, and
+kubernetes.
+
+Events with the same `event.name` are structurally similar to one another.
 
 When recording events from an existing system as OpenTelemetry Events, it is
 possible that the existing system does not have the equivalent of a name or
@@ -52,12 +67,9 @@ such that the name identifies the event structurally. It is also recommended tha
 the event names have low-cardinality, so care must be taken to use fields
 that identify the class of Events but not the instance of the Event.
 
-<!-- semconv event -->
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`event.name`](../attributes-registry/event.md) | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+**[2]:** The `event.body` MAY be used only on Span Events to capture the body (payload) and MUST NOT be used when emitting Log Records or Events.
 
-**[1]:** Event names are subject to the same rules as [attribute names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/common/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.
+**[3]:** If and only if the event has a body and is reported using Span Event API.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
