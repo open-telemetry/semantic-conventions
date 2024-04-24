@@ -1,0 +1,31 @@
+groups:
+  - id: metric_attributes.gen_ai
+    type: attribute_group
+    brief: 'LLM attributes'
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+      - ref: server.address
+        requirement_level: required
+      - ref: gen_ai.response.model
+        requirement_level: required
+  - id: metric.gen_ai.usage.tokens
+    type: metric
+    metric_name: gen_ai.usage.tokens
+    brief: 'LLM usage attributes'
+    instrument: histogram
+    unit: "tokens"
+    stability: experimental
+    extends: metric_attributes.gen_ai
+    attributes:
+      - ref: gen_ai.usage.token_type
+        requirement_level: required
+  - id: metric.gen_ai.request.duration
+    type: metric
+    metric_name: gen_ai.request.duration
+    brief: 'LLM request duration'
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    extends: metric_attributes.gen_ai

@@ -75,6 +75,12 @@ groups:
         brief: The number of tokens used in the LLM response (completion).
         examples: [180]
         tag: llm-generic-response
+      - id: usage.token_type
+        stability: experimental
+        type: string
+        brief: The type of token being counted.
+        examples: ['prompt', 'completion']
+        tag: llm-generic-metrics
       - id: prompt
         stability: experimental
         type: string
