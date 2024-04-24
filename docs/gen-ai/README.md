@@ -21,5 +21,6 @@ This document defines semantic conventions for the following kind of Generative 
 Semantic conventions for LLM operations are defined for the following signals:
 
 * [LLM Spans](llm-spans.md): Semantic Conventions for LLM requests - *spans*.
+* [LLM Metrics](llm-metrics.md): Semantic Conventions for LLM requests - *metrics*.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
