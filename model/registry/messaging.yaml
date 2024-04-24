@@ -355,54 +355,6 @@ groups:
           The delivery attempt for a given message.
         examples: 2
         tag: tech-specific-gcp-pubsub
-      - id: system
-        brief: >
-          An identifier for the messaging system being used. See below for a list of well-known identifiers.
-        type:
-          allow_custom_values: true
-          members:
-            - id: activemq
-              value: 'activemq'
-              brief: 'Apache ActiveMQ'
-              stability: experimental
-            - id: aws_sqs
-              value: 'aws_sqs'
-              brief: 'Amazon Simple Queue Service (SQS)'
-              stability: experimental
-            - id: eventgrid
-              value: 'eventgrid'
-              brief: 'Azure Event Grid'
-              stability: experimental
-            - id: eventhubs
-              value: 'eventhubs'
-              brief: 'Azure Event Hubs'
-              stability: experimental
-            - id: servicebus
-              value: 'servicebus'
-              brief: 'Azure Service Bus'
-              stability: experimental
-            - id: gcp_pubsub
-              value: 'gcp_pubsub'
-              brief: 'Google Cloud Pub/Sub'
-              stability: experimental
-            - id: jms
-              value: 'jms'
-              brief: 'Java Message Service'
-              stability: experimental
-            - id: kafka
-              value: 'kafka'
-              brief: 'Apache Kafka'
-              stability: experimental
-            - id: rabbitmq
-              value: 'rabbitmq'
-              brief: 'RabbitMQ'
-              stability: experimental
-            - id: rocketmq
-              value: 'rocketmq'
-              brief: 'Apache RocketMQ'
-              stability: experimental
-        stability: experimental
-        tag: messaging-generic
   - id: registry.messaging.servicebus
     prefix: messaging
     type: attribute_group
