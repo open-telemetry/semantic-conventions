@@ -8,6 +8,7 @@
 
 - [Otel](#otel-attributes)
 - [Otel Library Deprecated](#otel-library-deprecated-attributes)
+- [Otel Scope](#otel-scope-attributes)
 
 ## Otel Attributes
 
@@ -32,3 +33,10 @@
 
 **[1]:** use the `otel.scope.name` attribute.
 **[2]:** use the `otel.scope.version` attribute.
+
+## Otel Scope Attributes
+
+| Attribute            | Type   | Description                                                                          | Examples                           | Stability                                                  |
+| -------------------- | ------ | ------------------------------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------- |
+| `otel.scope.name`    | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP).       | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `otel.scope.version` | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0`                            | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
