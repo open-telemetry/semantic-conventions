@@ -1,32 +1,38 @@
 groups:
   - id: metric_attributes.gen_ai
     type: attribute_group
-    brief: 'LLM attributes'
+    brief: 'This group describes GenAI metrics attributes'
     attributes:
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
       - ref: server.address
         requirement_level: required
-      - ref: gen_ai.response.model
+      - ref: server.port
         requirement_level: required
+      - ref: gen_ai.response.model
+        requirement_level: recommended
+      - ref: gen_ai.request.model
+        requirement_level: recommended
       - ref: gen_ai.system
+        requirement_level: required
+      - ref: gen_ai.operation.name
         requirement_level: required
   - id: metric.gen_ai.tokens.usage
     type: metric
     metric_name: gen_ai.tokens.usage
     brief: 'LLM usage attributes'
     instrument: histogram
-    unit: "tokens"
+    unit: "{token}"
     stability: experimental
     extends: metric_attributes.gen_ai
     attributes:
       - ref: gen_ai.usage.token_type
         requirement_level: required
-  - id: metric.gen_ai.request.duration
+  - id: metric.gen_ai.operation.duration
     type: metric
-    metric_name: gen_ai.request.duration
-    brief: 'LLM request duration'
+    metric_name: gen_ai.operation.duration
+    brief: 'GenAI operation duration'
     instrument: histogram
     unit: "s"
     stability: experimental

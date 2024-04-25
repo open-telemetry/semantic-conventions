@@ -77,7 +77,21 @@ groups:
         tag: llm-generic-response
       - id: usage.token_type
         stability: experimental
-        type: string
+        type:
+          allow_custom_values: true
+          members:
+            - id: input
+              stability: experimental
+              value: "input"
+              brief: 'Input tokens (Embeddings)'
+            - id: prompt
+              stability: experimental
+              value: "prompt"
+              brief: 'Prompt tokens'
+            - id: completion
+              stability: experimental
+              value: "completion"
+              brief: 'Completion tokens'
         brief: The type of token being counted.
         examples: ['prompt', 'completion']
         tag: llm-generic-metrics
@@ -95,3 +109,9 @@ groups:
         note: It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
         tag: llm-generic-events
+      - id: operation.name
+        stability: experimental
+        type: string
+        brief: The name of the operation being performed.
+        examples: ['generate']
+        tag: llm-generic-metrics
