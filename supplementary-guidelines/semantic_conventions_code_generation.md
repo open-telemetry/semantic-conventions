@@ -2,10 +2,10 @@
 
 <!-- toc -->
 
-- [Stability and versioning](#stability-and-versioning)
-  - [Recommendations](#recommendations)
-- [Semantic Conventions Artifact Structure](#semantic-conventions-artifact-structure)
-- [Generating semantic conventions](#generating-semantic-conventions)
+* [Stability and Versioning](#stability-and-versioning)
+  * [Deprecated Conventions](#deprecated-conventions)
+* [Semantic Conventions Artifact Structure](#semantic-conventions-artifact-structure)
+* [Generating semantic conventions](#generating-semantic-conventions)
 
 <!-- tocstop -->
 
@@ -17,7 +17,7 @@ their language and may (or may not) ship it as a stand-alone library.
 This document outlines common patterns and provides non-normative guidance on how to structure semantic conventions artifact
 and generate the code.
 
-## Stability and versioning
+## Stability and Versioning
 
 Semantic Conventions contain a mix of stability levels.
 Language SIGs that ship semantic conventions library may decide to ship a stable artifact with stable part of the Semantic Conventions, an experimental artifact with all Semantic Conventions, or other combination that's idiomatic for this language and provides [SemVer 2.0](https://semver.org/) stability guarantees.
@@ -26,22 +26,38 @@ Possible solutions include:
 
 - Generate all Semantic Conventions for a given version in specific folder while keeping old versions intact. It is used by [opentelemetry-go](https://github.com/open-telemetry/opentelemetry-go/tree/main/semconv/) but could be problematic if the artifact size is a concern.
 - Follow language-specific conventions to annotate experimental parts. For example, Semantic Conventions in Python puts experimental attributes in `opentelemetry.semconv._incubating` import path which is considered (following Python underscore convention) to be internal and subject to change.
-- Ship two different artifacts: one that contains stable Semantic Conventions only, another one that contains all conventions.
+- Ship two different artifacts: one that contains stable Semantic Conventions and another one that contains all conventions.
 
 > Note:
 > Shipping two versions of the same artifact (stable and preview) could be problematic due to diamond-dependency problems.
-> For example, if user application depends on the `semconv v1.0.0-preview` and some library brings transitive dependency on `semconv v1.1.0`, the latter would be resolved leading
-> to compile or runtime issues in the application.
+> For example, if user application depends on the `semconv v1.0.0-preview` and some library brings transitive dependency on `semconv v1.1.0` that does not contain
+> experimental convention, the latter would be resolved leading to compilation or runtime issues in the application.
+
+Instrumentation libraries should depend on the stable (parts of) semantic convention artifact or copy relevant definitions into their own code base.
+Incubating parts are intended for the end-users.
+
+### Deprecated Conventions
+
+Generate code for deprecated attributes, metrics, and other conventions. Use appropriate annotations to mark them as deprecated.
+Conventions have a `stability` property which provide the stability level at the deprecation time (`experimental` or `stable`) and
+the `deprecated` property that describes deprecation reason and can be used to generate documentation.
+
+- Deprecated conventions that reached stability should not be removed without major version update according to SemVer.
+- Conventions that were deprecated while being experimental should still be generated and kept in the incubating artifact. It minimizes runtime issues
+  and breaking changes in user applications.
+
+Keep stable convention definitions inside incubating artifact (or incubating parts of the artifact). It prevents user code from breaking when semantic convention stabilizes. Deprecate stable definitions inside incubating artifact and point users to the stable location in generated documentation.
+For example, in Java `http.request.method` attribute is defined as deprecated `io.opentelemetry.semconv.incubating.HttpIncubatingAttributes.HTTP_REQUEST_METHOD` field and also as stable `io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD`.
 
 ## Semantic Conventions Artifact Structure
 
-This section contains suggestion on structuring semantic convention artifact(s) which should be adjusted to the specific language.
+This section contains suggestions on structuring semantic convention artifact(s) which should be adjusted to the specific language.
 
-- Artifact name(s):
-  - `opentelemetry-semconv` for the stable conventions
-  - `opentelemetry-semconv-incubating` for the incubating one that contains all conventions
+- Artifact name:
+  - `opentelemetry-semconv` - stable conventions
+  - `opentelemetry-semconv-incubating` - (if applicable) the incubating artifact which contains all conventions
 - Namespace: `opentelemetry.semconv` and `opentelemetry.semconv.incubating`
-- All supported Schema URLs should be listed to allow different instrumentations in one application to provide the exact version of conventions they follow.
+- All supported Schema URLs should be listed to allow different instrumentations in the same application to provide the exact version of conventions they follow.
 - Attributes, metrics, and other convention definitions should be grouped by the convention type and the root namespace. See the example below:
 
 ```
@@ -56,22 +72,6 @@ This section contains suggestion on structuring semantic convention artifact(s) 
 └── events
     └── ...
 ```
-
-### Recommendations
-
-Generate code for deprecated attributes, metrics, and other conventions. Use appropriate annotations to mark deprecated conventions.
-Conventions have a `stability` property which documents if the convention was ever stabilized and the `deprecated` property that
-provides alternatives (when available) and can be used to generated code documentation.
-
-- Deprecated conventions that reached stability should not be removed without major version update according to SemVer.
-- Conventions that were deprecated while being experimental should still be generated and kept in the incubating artifact. It minimizes runtime issues
-  and breaking changes in user applications.
-
-
-Keep stable convention definitions inside incubating artifact (or incubating parts). It prevents user code from breaking when semantic convention stabilizes. Deprecate stable definitions inside incubating artifact and point users to the stable location.
-For example, in Java `http.request.method` attribute is defined as deprecated `io.opentelemetry.semconv.incubating.HttpIncubatingAttributes.HTTP_REQUEST_METHOD` as well as `io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD`.
-
-Instrumentation libraries should depend on the stable semantic convention artifact or copy relevant definitions and keep them in their code base. Incubating artifact is intended for the end-users.
 
 ## Generating semantic conventions
 
@@ -115,4 +115,4 @@ Code-generation usually involves several steps which could be semi-automated:
 5. Fix lint violations in the auto-generated code (if any)
 6. Send the PR with new code to the corresponding repository
 
-Here're the examples of how steps 2-6 are implemented for [Java](https://github.com/open-telemetry/semantic-conventions-java/blob/7da24068eea69dff11a78d59750b115dc4c5854d/build.gradle.kts#L55-L137) and [Python](https://github.com/open-telemetry/opentelemetry-python/blob/23f67971a4c147b8586c3fe6a68c9cfb0f5d7362/scripts/semconv/generate.sh).
+Here're the examples of how steps 2-5 are implemented for [Java](https://github.com/open-telemetry/semantic-conventions-java/blob/7da24068eea69dff11a78d59750b115dc4c5854d/build.gradle.kts#L55-L137) and [Python](https://github.com/open-telemetry/opentelemetry-python/blob/23f67971a4c147b8586c3fe6a68c9cfb0f5d7362/scripts/semconv/generate.sh).
