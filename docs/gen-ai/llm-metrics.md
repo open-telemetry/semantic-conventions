@@ -16,7 +16,7 @@ and attributes but more may be added in the future.
 <!-- toc -->
 
 - [LLM Requests](#llm-requests)
-  - [Metric: `gen_ai.usage.tokens`](#metric-gen_aiusagetokens)
+  - [Metric: `gen_ai.tokens.usage`](#metric-gen_aitokensusage)
   - [Metrics: `gen_ai.request.duration`](#metrics-gen_airequestduration)
 
 <!-- tocstop -->
@@ -25,17 +25,17 @@ and attributes but more may be added in the future.
 
 The following metric instruments describe LLM request operations.
 
-### Metric: `gen_ai.usage.tokens`
+### Metric: `gen_ai.tokens.usage`
 
 This metric is [required][MetricRequired].
 
-<!-- semconv metric.gen_ai.usage.tokens(metric_table) -->
+<!-- semconv metric.gen_ai.tokens.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `gen_ai.usage.tokens` | Histogram | `tokens` | LLM usage attributes | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.tokens.usage` | Histogram | `tokens` | LLM usage attributes | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.gen_ai.usage.tokens(full) -->
+<!-- semconv metric.gen_ai.tokens.usage(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.response.model`](../attributes-registry/llm.md) | string | The name of the LLM a response was generated from. | `gpt-4-0613` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
