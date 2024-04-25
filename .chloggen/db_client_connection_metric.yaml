@@ -11,12 +11,12 @@ component: db
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: >
-  Rename `db.client.connections.*` namespace to `db.client.connection.*` and
+  Rename `db.client.connections.*` metric namespace to `db.client.connection.*` and
   rename `db.client.connection.usage` to `db.client.connection.count`.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [201]
+issues: [201, 967]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
