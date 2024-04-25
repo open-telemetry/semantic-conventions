@@ -46,7 +46,7 @@ groups:
           Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g.
           `https://www.example.com/path?q=REDACTED&v=REDACTED` (the query string keys SHOULD be preserved).
 
-          Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
+          Instrumentation SHOULD provide a configuration option to capture the full query string without any redaction.
         examples: ['https://www.foo.bar/search?q=REDACTED&v=REDACTED#SemConv', '//localhost']
       - id: original
         type: string
