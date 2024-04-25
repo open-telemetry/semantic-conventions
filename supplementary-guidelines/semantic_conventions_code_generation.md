@@ -2,10 +2,10 @@
 
 <!-- toc -->
 
-* [Stability and Versioning](#stability-and-versioning)
-  * [Deprecated Conventions](#deprecated-conventions)
-* [Semantic Conventions Artifact Structure](#semantic-conventions-artifact-structure)
-* [Generating semantic conventions](#generating-semantic-conventions)
+- [Stability and Versioning](#stability-and-versioning)
+  - [Deprecated Conventions](#deprecated-conventions)
+- [Semantic Conventions Artifact Structure](#semantic-conventions-artifact-structure)
+- [Generating semantic conventions](#generating-semantic-conventions)
 
 <!-- tocstop -->
 
