@@ -165,7 +165,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
 Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `https://www.example.com/path?q=REDACTED&v=REDACTED` (the query string keys SHOULD be preserved).
-Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
+Instrumentation SHOULD provide a configuration option to capture the full query string without any redaction.
 
 **[5]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)

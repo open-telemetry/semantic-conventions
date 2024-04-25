@@ -30,7 +30,7 @@ linkTitle: URL
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
 Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `https://www.example.com/path?q=REDACTED&v=REDACTED` (the query string keys SHOULD be preserved).
-Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
+Instrumentation SHOULD provide a configuration option to capture the full query string without any redaction.
 
 **[4]:** In network monitoring, the observed URL may be a full URL, whereas in access logs, the URL is often just represented as a path. This field is meant to represent the URL as it was observed, complete or not.
 `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.

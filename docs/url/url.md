@@ -35,7 +35,7 @@ This document defines semantic conventions that describe URL and its components.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
 Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `https://www.example.com/path?q=REDACTED&v=REDACTED` (the query string keys SHOULD be preserved).
-Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
+Instrumentation SHOULD provide a configuration option to capture the full query string without any redaction.
 
 **[2]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
