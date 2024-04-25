@@ -10,6 +10,8 @@ groups:
         requirement_level: required
       - ref: gen_ai.response.model
         requirement_level: required
+      - ref: gen_ai.system
+        requirement_level: required
   - id: metric.gen_ai.tokens.usage
     type: metric
     metric_name: gen_ai.tokens.usage
