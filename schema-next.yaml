@@ -27,6 +27,10 @@ versions:
   1.25.0:
     spans:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/911
+        - rename_attributes:
+            attribute_map:
+              db.name: db.namespace
         # https://github.com/open-telemetry/semantic-conventions/pull/870
         - rename_attributes:
             attribute_map:

@@ -22,6 +22,7 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:aspnetcore
         - area:aws
         - area:browser
         - area:client
@@ -48,7 +49,6 @@ body:
         - area:heroku
         - area:host
         - area:http
-        - area:ios
         - area:k8s
         - area:log
         - area:messaging
@@ -63,6 +63,7 @@ body:
         - area:server
         - area:service
         - area:session
+        - area:signalr
         - area:source
         - area:system
         - area:telemetry
