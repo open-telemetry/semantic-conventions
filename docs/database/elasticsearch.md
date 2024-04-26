@@ -59,7 +59,13 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
 Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
-In particular, query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`: * `AWSAccessKeyId` * `Signature` * `sig` * `X-Goog-Signature`
+In particular, query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
+
+  * `AWSAccessKeyId`
+  * `Signature`
+  * `sig`
+  * `X-Goog-Signature`
+
 This list is subject to grow over time, but once a key is added to the list, removing it will be considered a breaking change.
 When a query string value is redacted, the query string key SHOULD still be preserved, e.g. `https://www.example.com/path?color=blue&sig=REDACTED`.
 

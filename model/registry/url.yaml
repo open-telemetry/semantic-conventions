@@ -47,10 +47,11 @@ groups:
 
           In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
           value `REDACTED`:
-          * `AWSAccessKeyId`
-          * `Signature`
-          * `sig`
-          * `X-Goog-Signature`
+
+            * `AWSAccessKeyId`
+            * `Signature`
+            * `sig`
+            * `X-Goog-Signature`
 
           This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
           breaking change.
@@ -95,10 +96,11 @@ groups:
 
           In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
           value `REDACTED`:
-          * `AWSAccessKeyId`
-          * `Signature`
-          * `sig`
-          * `X-Goog-Signature`
+
+            * `AWSAccessKeyId`
+            * `Signature`
+            * `sig`
+            * `X-Goog-Signature`
 
           This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
           breaking change.
