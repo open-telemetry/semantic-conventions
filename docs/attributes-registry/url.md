@@ -28,7 +28,11 @@ linkTitle: URL
 
 **[3]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
-`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed). Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+In particular, query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`: * `AWSAccessKeyId` * `Signature` * `sig` * `X-Goog-Signature`
+This list is subject to grow over time, but once a key is added to the list, removing it will be considered a breaking change.
+When a query string value is redacted, the query string key SHOULD still be preserved, e.g. `https://www.example.com/path?color=blue&sig=REDACTED`.
 
 **[4]:** In network monitoring, the observed URL may be a full URL, whereas in access logs, the URL is often just represented as a path. This field is meant to represent the URL as it was observed, complete or not.
 `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.
@@ -36,6 +40,9 @@ linkTitle: URL
 **[5]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
 **[6]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
+In particular, query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`: * `AWSAccessKeyId` * `Signature` * `sig` * `X-Goog-Signature`
+This list is subject to grow over time, but once a key is added to the list, removing it will be considered a breaking change.
+When a query string value is redacted, the query string key SHOULD still be preserved, e.g. `q=OpenTelemetry&sig=REDACTED`.
 
 **[7]:** This value can be determined precisely with the [public suffix list](http://publicsuffix.org). For example, the registered domain for `foo.example.com` is `example.com`. Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
 
