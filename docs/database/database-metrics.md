@@ -18,15 +18,15 @@ and attributes but more may be added in the future.
 - [Database operation](#database-operation)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
 - [Connection pools](#connection-pools)
-  - [Metric: `db.client.connections.count`](#metric-dbclientconnectionscount)
-  - [Metric: `db.client.connections.idle.max`](#metric-dbclientconnectionsidlemax)
-  - [Metric: `db.client.connections.idle.min`](#metric-dbclientconnectionsidlemin)
-  - [Metric: `db.client.connections.max`](#metric-dbclientconnectionsmax)
-  - [Metric: `db.client.connections.pending_requests`](#metric-dbclientconnectionspending_requests)
-  - [Metric: `db.client.connections.timeouts`](#metric-dbclientconnectionstimeouts)
-  - [Metric: `db.client.connections.create_time`](#metric-dbclientconnectionscreate_time)
-  - [Metric: `db.client.connections.wait_time`](#metric-dbclientconnectionswait_time)
-  - [Metric: `db.client.connections.use_time`](#metric-dbclientconnectionsuse_time)
+  - [Metric: `db.client.connection.count`](#metric-dbclientconnectioncount)
+  - [Metric: `db.client.connection.idle.max`](#metric-dbclientconnectionidlemax)
+  - [Metric: `db.client.connection.idle.min`](#metric-dbclientconnectionidlemin)
+  - [Metric: `db.client.connection.max`](#metric-dbclientconnectionmax)
+  - [Metric: `db.client.connection.pending_requests`](#metric-dbclientconnectionpending_requests)
+  - [Metric: `db.client.connection.timeouts`](#metric-dbclientconnectiontimeouts)
+  - [Metric: `db.client.connection.create_time`](#metric-dbclientconnectioncreate_time)
+  - [Metric: `db.client.connection.wait_time`](#metric-dbclientconnectionwait_time)
+  - [Metric: `db.client.connection.use_time`](#metric-dbclientconnectionuse_time)
 
 <!-- tocstop -->
 
@@ -150,17 +150,17 @@ If a database operation involved multiple network calls (for example retries), t
 
 The following metric instruments describe database client connection pool operations.
 
-### Metric: `db.client.connections.count`
+### Metric: `db.client.connection.count`
 
 This metric is [required][MetricRequired].
 
-<!-- semconv metric.db.client.connections.count(metric_table) -->
+<!-- semconv metric.db.client.connection.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.count` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.count` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.count(full) -->
+<!-- semconv metric.db.client.connection.count(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -173,129 +173,129 @@ This metric is [required][MetricRequired].
 | `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
-### Metric: `db.client.connections.idle.max`
+### Metric: `db.client.connection.idle.max`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.idle.max(metric_table) -->
+<!-- semconv metric.db.client.connection.idle.max(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.idle.max(full) -->
+<!-- semconv metric.db.client.connection.idle.max(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.idle.min`
+### Metric: `db.client.connection.idle.min`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.idle.min(metric_table) -->
+<!-- semconv metric.db.client.connection.idle.min(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.idle.min(full) -->
+<!-- semconv metric.db.client.connection.idle.min(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.max`
+### Metric: `db.client.connection.max`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.max(metric_table) -->
+<!-- semconv metric.db.client.connection.max(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.max(full) -->
+<!-- semconv metric.db.client.connection.max(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.pending_requests`
+### Metric: `db.client.connection.pending_requests`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.pending_requests(metric_table) -->
+<!-- semconv metric.db.client.connection.pending_requests(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.pending_requests` | UpDownCounter | `{request}` | The number of pending requests for an open connection, cumulative for the entire pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of pending requests for an open connection, cumulative for the entire pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.pending_requests(full) -->
+<!-- semconv metric.db.client.connection.pending_requests(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.timeouts`
+### Metric: `db.client.connection.timeouts`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.timeouts(metric_table) -->
+<!-- semconv metric.db.client.connection.timeouts(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.timeouts(full) -->
+<!-- semconv metric.db.client.connection.timeouts(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.create_time`
+### Metric: `db.client.connection.create_time`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.create_time(metric_table) -->
+<!-- semconv metric.db.client.connection.create_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.create_time` | Histogram | `ms` | The time it took to create a new connection | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.create_time` | Histogram | `ms` | The time it took to create a new connection | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.create_time(full) -->
+<!-- semconv metric.db.client.connection.create_time(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.wait_time`
+### Metric: `db.client.connection.wait_time`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.wait_time(metric_table) -->
+<!-- semconv metric.db.client.connection.wait_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.wait_time` | Histogram | `ms` | The time it took to obtain an open connection from the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.wait_time` | Histogram | `ms` | The time it took to obtain an open connection from the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.wait_time(full) -->
+<!-- semconv metric.db.client.connection.wait_time(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `db.client.connections.use_time`
+### Metric: `db.client.connection.use_time`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.db.client.connections.use_time(metric_table) -->
+<!-- semconv metric.db.client.connection.use_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connections.use_time` | Histogram | `ms` | The time between borrowing a connection and returning it to the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.use_time` | Histogram | `ms` | The time between borrowing a connection and returning it to the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.db.client.connections.use_time(full) -->
+<!-- semconv metric.db.client.connection.use_time(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connections.pool.name`](../attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
