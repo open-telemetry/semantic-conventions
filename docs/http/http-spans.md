@@ -174,10 +174,10 @@ Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentation
 In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
 value `REDACTED`:
 
-* `AWSAccessKeyId`
-* `Signature`
-* `sig`
-* `X-Goog-Signature`
+* [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`sig`](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#sas-token)
+* [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
 breaking change.
@@ -418,10 +418,10 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
 value `REDACTED`:
 
-* `AWSAccessKeyId`
-* `Signature`
-* `sig`
-* `X-Goog-Signature`
+* [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`sig`](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#sas-token)
+* [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
 breaking change.
