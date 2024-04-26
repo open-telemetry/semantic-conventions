@@ -62,13 +62,14 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 |---|---|---|---|---|---|
 | [`db.system`](../attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.collection.name`](../attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](../attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [3] | `customers`; `test.users` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](../attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [3] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](../attributes-registry/db.md) | string | The name of the operation or command being executed. | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](../attributes-registry/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](../attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.instance.id`](../attributes-registry/db.md) | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | `Recommended` If different from the `server.address` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [7] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [8] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
@@ -79,14 +80,16 @@ Semantic conventions for individual database systems SHOULD document what `db.na
 
 **[4]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 
-**[5]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or anther low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-**[6]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[7]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
+**[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+
+**[8]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[8]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[9]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -144,6 +147,12 @@ If a database operation involved multiple network calls (for example retries), t
 | `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
 ## Connection pools
