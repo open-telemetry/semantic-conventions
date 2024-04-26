@@ -23,9 +23,6 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
-      - ref: db.instance.id
-        requirement_level:
-          recommended: If different from the `server.address`
       - ref: db.collection.name
         requirement_level:
           conditionally_required: >
@@ -243,7 +240,7 @@ groups:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
         tag: tech-specific
-      - ref: db.instance.id
+      - ref: db.elasticsearch.node.name
         requirement_level:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
