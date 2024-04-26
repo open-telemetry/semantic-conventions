@@ -1,33 +1,37 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: LLM metrics
+linkTitle: Generative AI metrics
 --->
 
-# Semantic Conventions for LLM Metrics
+# Semantic Conventions for Generative AI Metrics
 
 **Status**: [Experimental][DocumentStatus]
 
-The conventions described in this section are specific to LLM clients.
+The conventions described in this section are specific to Generative AI 
+applications.
 
-**Disclaimer:** These are initial LLM client metric instruments
+**Disclaimer:** These are initial Generative AI client metric instruments
 and attributes but more may be added in the future.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
-- [LLM Requests](#llm-requests)
+- [Generative AI Operations](#generative-ai-operations)
   - [Metric: `gen_ai.tokens.usage`](#metric-gen_aitokensusage)
   - [Metric: `gen_ai.operation.duration`](#metric-gen_aioperationduration)
 
 <!-- tocstop -->
 
-## LLM Requests
+## Generative AI Operations
 
-The following metric instruments describe LLM request operations.
+The following metric instruments describe Generative AI operations. An
+operation may be a request to an LLM, a function call, or some other
+distinct action within a larger Generative AI workflow.
 
 ### Metric: `gen_ai.tokens.usage`
 
-This metric is [required][MetricRequired].
+This metric is [required][MetricRequired] when an operation involves the usage 
+of tokens.
 
 <!-- semconv metric.gen_ai.tokens.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
