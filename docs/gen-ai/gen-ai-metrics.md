@@ -6,7 +6,7 @@ linkTitle: Generative AI metrics
 
 **Status**: [Experimental][DocumentStatus]
 
-The conventions described in this section are specific to Generative AI 
+The conventions described in this section are specific to Generative AI
 applications.
 
 **Disclaimer:** These are initial Generative AI client metric instruments
@@ -30,7 +30,7 @@ distinct action within a larger Generative AI workflow.
 
 ### Metric: `gen_ai.tokens.usage`
 
-This metric is [required][MetricRequired] when an operation involves the usage 
+This metric is [required][MetricRequired] when an operation involves the usage
 of tokens.
 
 <!-- semconv metric.gen_ai.tokens.usage(metric_table) -->
