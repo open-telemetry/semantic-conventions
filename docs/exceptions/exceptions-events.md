@@ -1,14 +1,15 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Logs
+linkTitle: Events
 --->
 
 # Semantic Conventions for Exceptions in Logs
 
-**Status**: [Stable][DocumentStatus]
+**Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions for recording exceptions on
-[logs](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#emit-a-logrecord)
-emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#logger).
+[events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/event-api.md#emit-event)
+emitted through the [EventLogger](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md#eventlogger) API.
+
 
 <!-- toc -->
 
@@ -18,21 +19,14 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 
 <!-- tocstop -->
 
-## Recording an Exception
+## Recording an Exception Event
 
-Exceptions SHOULD be recorded as attributes on the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#logger) emit
-operations.
+Exception events MUST be recorded using the event name `exception`. 
 
-To encapsulate proper handling of exceptions API authors MAY provide a
-constructor, `RecordException` method/extension, or similar helper mechanism on
-the `LogRecord` class/structure or wherever it makes the most sense depending on
-the language runtime.
 
 ## Attributes
 
-The table below indicates which attributes should be added to the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
+The table below indicates which attributes should be added to the event and their types.
 
 <!-- semconv log-exception -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

@@ -15,5 +15,6 @@ Semantic conventions for Exceptions are defined for the following signals:
 
 * [Exceptions on spans](exceptions-spans.md): Semantic Conventions for Exceptions associated with *spans*.
 * [Exceptions in logs](exceptions-logs.md): Semantic Conventions for Exceptions recorded in *logs*.
+* [Exceptions in events](exceptions-events.md): Semantic Conventions for Exceptions recorded in *events*.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
