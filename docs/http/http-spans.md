@@ -161,19 +161,29 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
-`url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
+**[4]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
+is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
+
+`url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`.
+In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
+
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+
 Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
-In particular, query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
-  * `AWSAccessKeyId`
-  * `Signature`
-  * `sig`
-  * `X-Goog-Signature`
+In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
+value `REDACTED`:
 
-This list is subject to grow over time, but once a key is added to the list, removing it will be considered a breaking change.
-When a query string value is redacted, the query string key SHOULD still be preserved, e.g. `https://www.example.com/path?color=blue&sig=REDACTED`.
+* `AWSAccessKeyId`
+* `Signature`
+* `sig`
+* `X-Goog-Signature`
+
+This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
+breaking change.
+
+When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
+`https://www.example.com/path?color=blue&sig=REDACTED`.
 
 **[5]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
@@ -404,15 +414,20 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 **[9]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
 **[10]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
-In particular, query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
-  * `AWSAccessKeyId`
-  * `Signature`
-  * `sig`
-  * `X-Goog-Signature`
+In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
+value `REDACTED`:
 
-This list is subject to grow over time, but once a key is added to the list, removing it will be considered a breaking change.
-When a query string value is redacted, the query string key SHOULD still be preserved, e.g. `q=OpenTelemetry&sig=REDACTED`.
+* `AWSAccessKeyId`
+* `Signature`
+* `sig`
+* `X-Goog-Signature`
+
+This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
+breaking change.
+
+When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
+`q=OpenTelemetry&sig=REDACTED`.
 
 **[11]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for), [X-Forwarded-For](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
 

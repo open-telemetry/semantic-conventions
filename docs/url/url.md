@@ -31,32 +31,47 @@ This document defines semantic conventions that describe URL and its components.
 | [`url.query`](../attributes-registry/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [3] | `q=OpenTelemetry` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
-`url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
+**[1]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
+is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
+
+`url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`.
+In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
+
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+
 Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
-In particular, query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
-  * `AWSAccessKeyId`
-  * `Signature`
-  * `sig`
-  * `X-Goog-Signature`
+In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
+value `REDACTED`:
 
-This list is subject to grow over time, but once a key is added to the list, removing it will be considered a breaking change.
-When a query string value is redacted, the query string key SHOULD still be preserved, e.g. `https://www.example.com/path?color=blue&sig=REDACTED`.
+* `AWSAccessKeyId`
+* `Signature`
+* `sig`
+* `X-Goog-Signature`
+
+This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
+breaking change.
+
+When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
+`https://www.example.com/path?color=blue&sig=REDACTED`.
 
 **[2]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
 **[3]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
-In particular, query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
-  * `AWSAccessKeyId`
-  * `Signature`
-  * `sig`
-  * `X-Goog-Signature`
+In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
+value `REDACTED`:
 
-This list is subject to grow over time, but once a key is added to the list, removing it will be considered a breaking change.
-When a query string value is redacted, the query string key SHOULD still be preserved, e.g. `q=OpenTelemetry&sig=REDACTED`.
+* `AWSAccessKeyId`
+* `Signature`
+* `sig`
+* `X-Goog-Signature`
+
+This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
+breaking change.
+
+When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
+`q=OpenTelemetry&sig=REDACTED`.
 <!-- endsemconv -->
 
 ## Sensitive information
