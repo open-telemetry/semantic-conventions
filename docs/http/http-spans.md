@@ -396,7 +396,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 **[9]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
 **[10]:** Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `q=REDACTED&v=REDACTED` (the query string keys SHOULD be preserved).
-Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
+Instrumentation SHOULD provide a configuration option to capture the full query string without any redaction.
 
 **[11]:** The IP address of the original client behind all proxies, if known (e.g. from [Forwarded#for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for), [X-Forwarded-For](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header). Otherwise, the immediate client peer address.
 

@@ -40,7 +40,7 @@ Instrumentation SHOULD provide a configuration option to capture the full query 
 **[2]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
 **[3]:** Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `q=REDACTED&v=REDACTED` (the query string keys SHOULD be preserved).
-Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
+Instrumentation SHOULD provide a configuration option to capture the full query string without any redaction.
 <!-- endsemconv -->
 
 ## Sensitive information

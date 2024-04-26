@@ -38,7 +38,7 @@ Instrumentation SHOULD provide a configuration option to capture the full query 
 **[5]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
 **[6]:** Query string values SHOULD be redacted by default and replaced by the value `REDACTED`, e.g. `q=REDACTED&v=REDACTED` (the query string keys SHOULD be preserved).
-Instrumentation MAY provide a configuration option to capture the full query string without any redaction.
+Instrumentation SHOULD provide a configuration option to capture the full query string without any redaction.
 
 **[7]:** This value can be determined precisely with the [public suffix list](http://publicsuffix.org). For example, the registered domain for `foo.example.com` is `example.com`. Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
 
