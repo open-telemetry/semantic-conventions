@@ -32,6 +32,7 @@ Technology specific semantic conventions are defined for the following databases
 * [CouchDB](couchdb.md): Semantic Conventions for *CouchDB*.
 * [Elasticsearch](elasticsearch.md): Semantic Conventions for *Elasticsearch*.
 * [HBase](hbase.md): Semantic Conventions for *HBase*.
+* [InfluxDB](influxdb.md): Semantic Conventions for *InfluxDB*.
 * [MongoDB](mongodb.md): Semantic Conventions for *MongoDB*.
 * [MSSQL](mssql.md): Semantic Conventions for *MSSQL*.
 * [Redis](redis.md): Semantic Conventions for *Redis*.

@@ -18,10 +18,10 @@ described on this page.
 <!-- semconv db.influxdb(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.name`](../attributes-registry/db.md) | string | The InfluxDB database name. [1] | `mydb` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](../attributes-registry/db.md) | string | The InfluxDB database name. [1] | `mydb` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](../attributes-registry/db.md) | string | The name of the command being executed. [2] | `CREATE DATABASE`; `DROP DATABASE`; `SELECT`; `write` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** For InfluxDB the `db.name` should be set to the InfluxDB database name.
+**[1]:** For InfluxDB the `db.namespace` should be set to the InfluxDB database name.
 
 **[2]:** See [InfluxDB database commands](https://docs.influxdata.com/influxdb/v1/query_language/).
 <!-- endsemconv -->
@@ -32,7 +32,7 @@ described on this page.
 |:--------------------|:----------------------------------|
 | Span name           | `"SELECT mydb"`                   |
 | `db.system`         | `"influxdb"`                      |
-| `db.name`           | `"mydb"`                          |
+| `db.namespace`      | `"mydb"`                          |
 | `server.address`    | `"localhost"`                     |
 | `server.port`       | `"32771"`                         |
 | `db.statement`      | `"SELECT * FROM mydb GROUP BY *"` |

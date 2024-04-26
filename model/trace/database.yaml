@@ -347,10 +347,10 @@ groups:
     brief: >
       Attributes for InfluxDB
     attributes:
-      - ref: db.name
+      - ref: db.namespace
         brief: >
           The InfluxDB database name.
-        note: For InfluxDB the `db.name` should be set to the InfluxDB database name.
+        note: For InfluxDB the `db.namespace` should be set to the InfluxDB database name.
         examples: [ 'mydb' ]
         requirement_level: required
         tag: tech-specific
