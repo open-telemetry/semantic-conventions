@@ -33,10 +33,10 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 | [`server.port`](../attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.elasticsearch.cluster.name`](../attributes-registry/db.md) | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | `Recommended` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.instance.id`](../attributes-registry/db.md) | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | `Recommended` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](../attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [9] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [10] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.text`](../attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [9] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** This SHOULD be the endpoint identifier for the request.
 
@@ -69,11 +69,13 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[8]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[9]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
+**[9]:** Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameters, and the benefit to observability of capturing it by default outweighs the risk.
 
-**[10]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[10]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[11]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
