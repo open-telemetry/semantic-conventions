@@ -11,7 +11,7 @@ groups:
           recommended: >
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
-  
+ 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
             see [`db.query.parameter.<key>`](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/attributes-registry/db.md)).
