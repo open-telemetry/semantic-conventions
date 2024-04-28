@@ -13,9 +13,13 @@ linkTitle: LLM requests
 - [Events](#events)
   - [System message](#system-message)
   - [User message](#user-message)
-  - [Assistant message in prompt](#assistant-message-in-prompt)
+  - [Assistant message](#assistant-message)
+    - [`ToolCall` object](#toolcall-object)
+    - [`Function` object](#function-object)
   - [Tool message](#tool-message)
-  - [Assistant response](#assistant-response)
+  - [Chat response](#chat-response)
+    - [`Message` object](#message-object)
+- [Examples](#examples)
 
 <!-- tocstop -->
 
@@ -28,8 +32,11 @@ For example, the API name such as [Create chat completion](https://platform.open
 
 ## Configuration
 
-Instrumentations for LLMs MAY capture prompts and completions.
-Instrumentations that support it, MUST offer the ability to turn off capture of prompt and completion contents. This is for three primary reasons:
+Instrumentations for LLMs MAY capture user-provided prompt content and GenAI model responses.
+Instrumentations that support it, MUST NOT capture sensitive content annotated in the [Events section](#events) by default and MAY provide a configuration option to enable
+capturing sensitive content.
+
+This is for three primary reasons:
 
 1. Data privacy concerns. End users of LLM applications may input sensitive information or personally identifiable information (PII) that they do not wish to be sent to a telemetry backend.
 2. Data size concerns. Although there is no specified limit to sizes, there are practical limitations in programming languages and telemetry systems. Some LLMs allow for extremely large context windows that end users may take full advantage of.
@@ -81,96 +88,136 @@ These attributes track input data and metadata for a request to an LLM. Each att
 
 ## Events
 
-In the lifetime of an LLM span, an event for each message application sends to GenAI and receives in response from it MAY be created, depending on the configuration of the instrumentation.
-The generic events applicable to multiple GenAI models follow `gen_ai.{role}.message` naming pattern.
-Gen AI vendor-specific instrumentations SHOULD follow `gen_ai.{gen_ai.system}.{role}.message` pattern to record events that apply to their system only.
+In the lifetime of an GenAI span, an event for each message application sends to GenAI and receives in response from it MAY be created, depending on the configuration of the instrumentation.
+The generic events applicable to multiple GenAI models follow `gen_ai.{type}.message` naming pattern.
+GenAI vendor-specific instrumentations SHOULD follow `gen_ai.{gen_ai.system}.{type}.message` pattern to record events that apply to their system only.
 
-It's RECOMMENDED to use [Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md) to record Gen AI events once it's implemented in corresponding language.
-If, however Event API is not supported yet, events SHOULD be recorded as span events. The payload SHOULD be provided with `event.body` attribute as a JSON string.
+It's RECOMMENDED to use [Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md) to record GenAI events once it's implemented in corresponding language.
 
-The event payload describes message content sent to or received from Gen AI and depends on specific messages described in the following sections.
+If, however Event API is not supported yet, events SHOULD be recorded as span events.
 
-Instrumentations for individual Gen AI systems MAY add system specific fields into corresponding events payload.
+TODO: There will be a standard mapping between Span Events and Events - https://github.com/open-telemetry/semantic-conventions/pull/954. Add link once merged.
+
+The event payload describes message content sent to or received from GenAI and depends on specific messages described in the following sections.
+
+Instrumentations for individual GenAI systems MAY add system specific fields into corresponding events payload.
 It's RECOMMENDED to document them in system-specific extensions.
 Telemetry consumers SHOULD expect to receive unknown payload fields.
 
 ### System message
 
-The event name MUST be `gen_ai.system.message`.
+This event describes the instructions passed to the GenAI model.
 
-This event describes the instructions passed to the Gen AI system inside the prompt.
+<!-- semconv gen_ai.system.message -->
+The event name MUST be `gen_ai.system.message`
 
-| Body Field | Type | Description | Examples | Requirement Level |
-|---|---|---|---|---|
-| `role` | string | The role of the messages author | `system` | `Required` |
-| `content` | string | The contents of the system message. | `You're a friendly bot that helps use OpenTelemetry.` | `Required` |
-| `name` | string | An optional name for the participant. | `bot` | `Recommended: if available` |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM foundation model vendor. | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-Example of event serialized into `event.data` attribute:
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-```json
-{"role":"system","content":"You're a friendly bot that helps use OpenTelemetry.","name":"bot"}
-```
+| Value  | Description | Stability |
+|---|---|---|
+| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `role` | string | The role of the messages author | `system` | `Required` |  |
+| `content` | string | The contents of the system message. | `"You're a friendly bot that answers questions about OpenTelemetry."` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
 
 ### User message
 
-The event name MUST be `gen_ai.user.message`.
-
 This event describes the prompt message specified by the user.
 
-| Body Field | Type | Description | Examples | Requirement Level |
-|---|---|---|---|---|
-| `role` | string | The role of the messages author | `user` | `Required` |
-| `content` | string | The contents of the user message. | `What telemetry is reported by OpenAI instrumentations?` | `Required` |
-| `name` | string | An optional name for the participant. | `alice` | `Recommended: if available` |
+<!-- semconv gen_ai.user.message -->
+The event name MUST be `gen_ai.user.message`
 
-Examples of serialized event payload that can be passed in `event.data` attribute:
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM foundation model vendor. | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-```json
-{"role":"user","content":"What telemetry is reported by OpenAI instrumentations?"}
-```
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-### Assistant message in prompt
+| Value  | Description | Stability |
+|---|---|---|
+| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
 
-The event name MUST be `gen_ai.assistant.message`.
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `role` | string | The role of the messages author | `user` | `Required` |  |
+| `content` | `AnyValue` | The contents of the user message. | `What telemetry is reported by OpenAI instrumentations?` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
 
-This event describes the assistant message when it's passed in the prompt.
+### Assistant message
 
-| Body Field | Type | Description | Examples | Requirement Level |
-|---|---|---|---|---|
-| `role` | string | The role of the messages author | `assistant` | `Required` |
-| `content` | string | The contents of the assistant message. | `Spans, events, metrics that follow Gen AI semantic conventions.` | `Conditionally Required: if available` |
-| `tool_calls` | object | The tool calls generated by the model, such as function calls. | `get_link_to_otel_semconv` | `Conditionally Required: if available` |
+This event describes the assistant message.
 
-<!-- TODO we need to describe tool_calls structure here, but we can't do it yet.-->
+<!-- semconv gen_ai.assistant.message -->
+The event name MUST be `gen_ai.assistant.message`
 
-Examples of serialized event payload that can be passed in `event.data` attribute:
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM foundation model vendor. | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-```json
-{"role":"assistant","content":"Spans, events, metrics that follow Gen AI semantic conventions."}
-```
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-```json
-{"role":"assistant","tool_calls":[{"id":"call_hHM72v9f1JprJBStycQC4Svz","function":{"name":"get_link_to_otel_semconv","arguments":"{\"gen_ai_system\": \"OpenAI\"}"},"type":"function"}]}
-```
+| Value  | Description | Stability |
+|---|---|---|
+| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `role` | string | The role of the messages author | `assistant` | `Required` |  |
+| `content` | `AnyValue` | The contents of the assistant message. | `Spans, events, metrics defined by the GenAI semantic conventions.` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
+| `tool_calls` | [ToolCall](#toolcall-object)[] | The tool calls generated by the model, such as function calls. | `[{"id":"call_mszuSIzqtI65i1wAUOE8w5H4", "function":{"name":"get_link_to_otel_semconv", "arguments":"{\"type\":\"gen_ai\"}"}, "type":"function"}]` | `Conditionally Required: if available` | ![Mixed](https://img.shields.io/badge/-mixed-orange) |
+
+#### `ToolCall` object
+
+| Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `id` | string | The id of the tool call | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` |  |  |
+| `type` | string | The type of the tool | `function` | `Required` |  |
+| `function` | [Function](#function) | Function name and arguments | `Required` | ![Mixed](https://img.shields.io/badge/-mixed-orange) |
+
+#### `Function` object
+
+| Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `name` | string | The name of the function to call | `get_link_to_otel_semconv` | `Required` |  |
+| `arguments` | `AnyValue` | The arguments to pass the the function | `{"gen_ai_system": "OpenAI"}` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
 
 ### Tool message
 
-The event name MUST be `gen_ai.tool.message`.
+This event describes the output of the tool or function submitted back to the model.
 
-This event describes the tool or function response message.
+<!-- semconv gen_ai.tool.message -->
+The event name MUST be `gen_ai.tool.message`
 
-| Body Field | Type | Description | Examples | Requirement Level |
-|---|---|---|---|---|
-| `role` | string | The role of the messages author | `tool`, `function` | `Required` |
-| `content` | string | The contents of the tool message. | `OpenAI Semantic conventions are available at opentelemetry.io` | `Required` |
-| `tool_call_id` | string | Tool call that this message is responding to. | `call_BC9hyMlI7if1ZMIH8l1R26Lo` | `Required` |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM foundation model vendor. | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-Examples of serialized event payload that can be passed in `event.data` attribute:
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-```json
-{"role":"tool","content":"OpenAI Semantic conventions are available at opentelemetry.io","tool_call_id":"call_BC9hyMlI7if1ZMIH8l1R26Lo"}
-```
+| Value  | Description | Stability |
+|---|---|---|
+| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `role` | string | The role of the messages author | `tool`, `function` | `Required` |  |
+| `content` | string | The contents of the tool message. | `opentelemetry.io` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
+| `tool_call_id` | string | Tool call that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` |  |
+
+### Chat response
+
+This event describes the model-generated chat response message (choice).
+
+If GenAI model returns multiple choices, each of the message SHOULD be recorded as an individual event.
 
 ### Assistant response
 
@@ -208,22 +255,50 @@ The event name MUST be `gen_ai.response.message`.
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
+When response is streamed, instrumentations that report response events MUST reconstruct and report the full message and MUST NOT report individual chunks as events.
+If the request to GenAI model fails with an error before content is received, instrumentation SHOULD report an event with truncated content it was able to receive.
 
-When response is streamed, instrumentations that report response content with events MUST reconstruct and report the full message amd MUST NOT report individual chunks as events.
 Response event payload has the following fields:
 
-| Body Field | Type | Description | Examples | Requirement Level |
-|---|---|---|---|---|
-| `finish_reason` | string | The reason the model stopped generating tokens. | `stop`, `tool_calls`, `content_filter` | `Required` |
-| `content_filter_results` | object | The content filter results. | `{"protected_material_text":{"detected":true,"filtered":true}}` | `Conditionally Required: if finish_reason is `content_filter` |
-| `index` | int | The index of the choice in the list of choices. | `1` | `Recommended: if not 0` |
-| `message.role` | string | The role of the messages author | `assistant` | `Conditionally Required: if available` |
-| `message.content` | string | The contents of the assistant message. | `Spans, events, metrics that follow Gen AI semantic conventions.` | `Conditionally Required: if available` |
-| `message.tool_calls` | object | The tool calls generated by the model, such as function calls. | `get_link_to_otel_semconv` | `Conditionally Required: if available` |
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `finish_reason` | string | The reason the model stopped generating tokens. | `stop`, `tool_calls`, `content_filter` | `Required` |  |
+| `index` | int | The index of the choice in the list of choices. | `1` | `Required` |  |
+| `message` | [Message](#message-object) | GenAI response message | `{"role":"assistant", "content":"The OpenAI semantic conventions are available at opentelemetry.io"}` | `Recommended` | ![Mixed](https://img.shields.io/badge/-mixed-orange) |
 
-<!-- TODO we need to describe tool_calls and content_filter_results structure here, but we can't do it yet.-->
+#### `Message` object
+
+The message structure matches one of the messages defined in this document depending on the role:
+
+- [System message](#system-message)
+- [User message](#user-message)
+- [Assistant message](#assistant-message)
+- [Tool message](#tool-message)
+
+## Examples
+
+
+```json
+{"role":"system","content":"You're a friendly bot that helps use OpenTelemetry.","name":"bot"}
+```
+
+```json
+{"role":"user","content":"What telemetry is reported by OpenAI instrumentations?"}
+```
+
+```json
+{"role":"assistant","content":"Spans, events, metrics that follow GenAI semantic conventions."}
+```
+
+```json
+{"role":"assistant","tool_calls":[{"id":"call_hHM72v9f1JprJBStycQC4Svz","function":{"name":"get_link_to_otel_semconv","arguments":"{\"gen_ai_system\": \"OpenAI\"}"},"type":"function"}]}
+```
 
 Examples of serialized event payload that can be passed in `event.data` attribute:
+
+```json
+{"role":"tool","content":"OpenAI Semantic conventions are available at opentelemetry.io","tool_call_id":"call_BC9hyMlI7if1ZMIH8l1R26Lo"}
+```
 
 ```json
 {"index":0,"finish_reason":"stop","message":{"role":"assistant","content":"The OpenAI semantic conventions are available at opentelemetry.io"}}
