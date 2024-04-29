@@ -1,0 +1,4 @@
+change_type: enhancment
+component: process
+note: Add `process.entity_id` attribute
+issues: []
