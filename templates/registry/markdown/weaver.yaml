@@ -5,3 +5,27 @@ templates:
   - pattern: attribute_namespace.md.j2
     filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: each
+acronyms:
+  - AI
+  - iOS
+  - AWS
+  - CloudEvents
+  - CosmosDB
+  - DynamoDB
+  - ECS
+  - EKS
+  - GraphQL
+  - GCP
+  - GCE
+  - HTTP
+  - OCI
+  - OTel
+  - OpenTracing
+  - OS
+  - RabbitMQ
+  - RocketMQ
+  - RPC
+  - S3
+  - SignalR
+  - TLS
+  - URL
