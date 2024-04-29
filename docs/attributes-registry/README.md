@@ -60,6 +60,7 @@ Currently, the following namespaces exist:
 - [Host](host.md)
 - [Http](http.md)
 - [Ios](ios.md)
+- [Jvm](jvm.md)
 - [K8s](k8s.md)
 - [Log](log.md)
 - [Messaging](messaging.md)
