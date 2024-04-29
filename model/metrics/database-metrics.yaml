@@ -82,7 +82,7 @@ groups:
     stability: experimental
     brief: "The time it took to create a new connection"
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     attributes:
       - ref: db.client.connections.pool.name
         requirement_level: required
@@ -93,7 +93,7 @@ groups:
     stability: experimental
     brief: "The time it took to obtain an open connection from the pool"
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     attributes:
       - ref: db.client.connections.pool.name
         requirement_level: required
@@ -104,7 +104,7 @@ groups:
     stability: experimental
     brief: "The time between borrowing a connection and returning it to the pool"
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     attributes:
       - ref: db.client.connections.pool.name
         requirement_level: required

@@ -260,7 +260,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.db.client.connection.create_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.create_time` | Histogram | `ms` | The time it took to create a new connection | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.create_time` | Histogram | `s` | The time it took to create a new connection | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.db.client.connection.create_time(full) -->
@@ -276,7 +276,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.db.client.connection.wait_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.wait_time` | Histogram | `ms` | The time it took to obtain an open connection from the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.wait_time` | Histogram | `s` | The time it took to obtain an open connection from the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.db.client.connection.wait_time(full) -->
@@ -292,7 +292,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.db.client.connection.use_time(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.use_time` | Histogram | `ms` | The time between borrowing a connection and returning it to the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.use_time` | Histogram | `s` | The time between borrowing a connection and returning it to the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.db.client.connection.use_time(full) -->
