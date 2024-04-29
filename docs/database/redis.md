@@ -29,7 +29,7 @@ For commands that switch the database, this SHOULD be set to the target database
 **[2]:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
 **[3]:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
-Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/attributes-registry/db.md)).
+Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
 
 **[4]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 <!-- endsemconv -->
