@@ -1,5 +1,5 @@
 groups:
-  - id: metric.deprecated.db.client.connections.count
+  - id: metric.db.client.connections.count.deprecated
     type: metric
     metric_name: db.client.connections.usage
     stability: experimental
@@ -13,7 +13,7 @@ groups:
       - ref: db.client.connections.pool.name
         requirement_level: required
 
-  - id: metric.deprecated.db.client.connections.idle.max
+  - id: metric.db.client.connections.idle.max.deprecated
     type: metric
     metric_name: db.client.connections.idle.max
     stability: experimental
@@ -25,7 +25,7 @@ groups:
       - ref: db.client.connections.pool.name
         requirement_level: required
 
-  - id: metric.deprecated.db.client.connections.idle.min
+  - id: metric.db.client.connections.idle.min.deprecated
     type: metric
     metric_name: db.client.connections.idle.min
     stability: experimental
@@ -37,7 +37,7 @@ groups:
       - ref: db.client.connections.pool.name
         requirement_level: required
 
-  - id: metric.deprecated.db.client.connections.max
+  - id: metric.db.client.connections.max.deprecated
     type: metric
     metric_name: db.client.connections.max
     stability: experimental
@@ -49,7 +49,7 @@ groups:
       - ref: db.client.connections.pool.name
         requirement_level: required
 
-  - id: metric.deprecated.db.client.connections.pending_requests
+  - id: metric.db.client.connections.pending_requests.deprecated
     type: metric
     metric_name: db.client.connections.pending_requests
     stability: experimental
@@ -61,7 +61,7 @@ groups:
       - ref: db.client.connections.pool.name
         requirement_level: required
 
-  - id: metric.deprecated.db.client.connections.timeouts
+  - id: metric.db.client.connections.timeouts.deprecated
     type: metric
     metric_name: db.client.connections.timeouts
     stability: experimental
@@ -73,7 +73,7 @@ groups:
       - ref: db.client.connections.pool.name
         requirement_level: required
 
-  - id: metric.deprecated.db.client.connections.create_time
+  - id: metric.db.client.connections.create_time.deprecated
     type: metric
     metric_name: db.client.connections.create_time
     stability: experimental
@@ -85,7 +85,7 @@ groups:
       - ref: db.client.connections.pool.name
         requirement_level: required
 
-  - id: metric.deprecated.db.client.connections.wait_time
+  - id: metric.db.client.connections.wait_time.deprecated
     type: metric
     metric_name: db.client.connections.wait_time
     stability: experimental
@@ -97,7 +97,7 @@ groups:
       - ref: db.client.connections.pool.name
         requirement_level: required
 
-  - id: metric.deprecated.db.client.connections.use_time
+  - id: metric.db.client.connections.use_time.deprecated
     type: metric
     metric_name: db.client.connections.use_time
     stability: experimental
