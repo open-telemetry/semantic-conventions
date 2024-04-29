@@ -24,8 +24,8 @@ body:
         - area:aws
         - area:browser
         - area:client
-        - area:cloudevents
         - area:cloud
+        - area:cloudevents
         - area:code
         - area:container
         - area:db
