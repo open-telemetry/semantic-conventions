@@ -44,5 +44,5 @@ groups:
           conditionally_required: If and only if the operation failed.
         note: >
           The `error.type` SHOULD match the error code returned by the database or the client library,
-          the canonical name of exception that occurred, or anther low-cardinality error identifier.
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
