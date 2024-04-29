@@ -34,7 +34,7 @@ Currently, the following namespaces exist:
 
 {% for bundle in ctx %}
 {%- set my_file_name = bundle.id | kebab_case ~ ".md" -%}
-- [{{ bundle.id | title_case }}]({{ my_file_name }})
+- [{{ bundle.id | title_case | acronym }}]({{ my_file_name }})
 {% endfor %}
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
