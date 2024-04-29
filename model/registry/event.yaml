@@ -26,12 +26,12 @@ groups:
           the event names have low-cardinality, so care must be taken to use fields
           that identify the class of Events but not the instance of the Event.
         examples: ['browser.mouse.click', 'device.app.lifecycle']
-      - id: body
+      - id: data
         type: string
         stability: experimental
         brief: >
-          The body of the event serialized into JSON string.
+          The event payload serialized into JSON string.
         note: >
-          The `event.body` MAY be used only on Span Events to capture the body (payload) and MUST NOT be used
-          when emitting Log Records or Events.
-        examples: ['{"role":"user","content":"how to use Events API?"}', '"plain string"']
+          The `event.data` MAY be used only on Span Events to capture the event payload (body) and MUST NOT be used
+          on `LogRecord`s or `Event`s.
+        examples: ['{"role":"user","content":"how to use OTel Event API?"}', '"plain string"']

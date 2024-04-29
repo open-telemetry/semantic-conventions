@@ -1,4 +1,4 @@
 change_type: enhancement
 component: event
-note: Add event.body attribute to provide mapping from span events to events.
+note: Add event.data attribute to provide mapping from span events to events.
 issues: [954]

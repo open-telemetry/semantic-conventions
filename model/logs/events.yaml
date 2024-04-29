@@ -1,11 +1,18 @@
 groups:
-  - id: event
+  - id: log_record.event
     type: attribute_group
     brief: >
-        This document defines attributes for Events represented using Span Events or Log Records.
+        This document defines attributes that are used to map `LogRecord`` to Events.
     attributes:
       - ref: event.name
         requirement_level: required
-      - ref: event.body
+  - id: span_event.event
+    type: attribute_group
+    brief: >
+        This document defines attributes that are used to map Span Events to Events.
+    attributes:
+      - ref: event.name
+        requirement_level: required
+      - ref: event.data
         requirement_level:
           conditionally_required: If and only if the event has a body and is reported as a Span Event.

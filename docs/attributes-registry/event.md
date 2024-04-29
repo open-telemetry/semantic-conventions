@@ -9,10 +9,10 @@ linkTitle: Events
 <!-- semconv registry.event(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
-| `event.body` | string | The body of the event serialized into JSON string. [1] | `{"role":"user","content":"how to use Events API?"}`; `"plain string"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `event.data` | string | The event payload serialized into JSON string. [1] | `{"role":"user","content":"how to use OTel Event API?"}`; `"plain string"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `event.name` | string | Identifies the class / type of event. [2] | `browser.mouse.click`; `device.app.lifecycle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The `event.body` MAY be used only on Span Events to capture the body (payload) and MUST NOT be used when emitting Log Records or Events.
+**[1]:** The `event.data` MAY be used only on Span Events to capture the event payload (body) and MUST NOT be used on `LogRecord`s or `Event`s.
 
 **[2]:** Event names are subject to the same rules as [attribute names](https://opentelemetry.io/docs/specs/semconv/general/attribute-naming/).
 Notably, event names are namespaced to avoid collisions and provide a clean
