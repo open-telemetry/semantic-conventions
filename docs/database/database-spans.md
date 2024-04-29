@@ -61,7 +61,7 @@ Database spans MUST follow the overall [guidelines for span names](https://githu
 
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
-The **span name** span names SHOULD be `{db.operation.name} {target}` if there is a
+The **span name** SHOULD be `{db.operation.name} {target}` if there is a
 (low-cardinality) `db.operation.name` available (see below for the exact definition of the [`{target}`](#target-placeholder) placeholder).
 
 If there is no (low-cardinality) `db.operation.name` available, database span names
