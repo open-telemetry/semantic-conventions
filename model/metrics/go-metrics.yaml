@@ -1,0 +1,88 @@
+groups:
+  - id: metric.go.memory.used
+    type: metric
+    metric_name: go.memory.used
+    brief: "Virtual memory mapped by the Go runtime."
+    instrument: updowncounter
+    prefix: go.memory
+    unit: "By"
+    attributes:
+      - id: type
+        stability: experimental
+        type:
+          allow_custom_values: false
+          members:
+            - id: released
+              value: 'released'
+              brief: 'Memory that is completely free and has been returned to the underlying system.'
+              stability: experimental
+            - id: stack
+              value: 'stack'
+              brief: 'Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.'
+              stability: experimental
+            - id: other
+              value: 'other'
+              brief: 'All memory mapped by the Go runtime into the current process as read-write, excluding other categories of memory usage.'
+              stability: experimental
+        requirement_level: recommended
+        brief: The type of memory.
+        examples: ["released", "stack"]
+    stability: experimental
+
+  - id: metric.go.memory.limit
+    type: metric
+    metric_name: go.memory.limit
+    brief: "Go runtime memory limit configured by the user, otherwise math.MaxInt64."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+
+  - id: metric.go.memory.allocated
+    type: metric
+    metric_name: go.memory.allocated
+    brief: "Memory allocated to the heap by the application."
+    instrument: counter
+    unit: "By"
+    stability: experimental
+
+  - id: metric.go.memory.allocations
+    type: metric
+    metric_name: go.memory.allocations
+    brief: "Count of allocations to the heap by the application."
+    instrument: counter
+    unit: "{allocation}"
+    stability: experimental
+
+  - id: metric.go.memory.gc.target
+    type: metric
+    metric_name: go.memory.gc.target
+    brief: "Heap size target for the end of the GC cycle."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+
+  - id: metric.go.memory.gc.user_target
+    type: metric
+    metric_name: go.memory.gc.user_target
+    brief: "Heap size target ratio for the end of the GC cycle, as configured by the user."
+    instrument: updowncounter
+    unit: "1"
+    note: >
+      The value range is [0.0,1.0].
+    stability: experimental
+
+  - id: metric.go.thread.limit
+    type: metric
+    metric_name: go.thread.limit
+    brief: "The number of OS threads that can execute user-level Go code simultaneously."
+    instrument: updowncounter
+    unit: "{thread}"
+    stability: experimental
+
+  - id: metric.go.schedule.duration
+    type: metric
+    metric_name: go.schedule.duration
+    brief: "The time goroutines have spent in the scheduler in a runnable state before actually running."
+    instrument: histogram
+    unit: "s"
+    stability: experimental
