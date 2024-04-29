@@ -12,6 +12,8 @@
 
 ## Log Attributes
 
+This document defines log attributes
+
 | Attribute      | Type   | Description                                                                    | Examples | Stability                                                        |
 | -------------- | ------ | ------------------------------------------------------------------------------ | -------- | ---------------------------------------------------------------- |
 | `log.iostream` | string | The stream associated with the log. See below for a list of well-known values. | `stdout` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -25,6 +27,8 @@
 
 ## Log File Attributes
 
+Attributes for a file to which log was emitted.
+
 | Attribute                | Type   | Description                                        | Examples                   | Stability                                                        |
 | ------------------------ | ------ | -------------------------------------------------- | -------------------------- | ---------------------------------------------------------------- |
 | `log.file.name`          | string | The basename of the file.                          | `audit.log`                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -33,6 +37,8 @@
 | `log.file.path_resolved` | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Log Record Attributes
+
+This document defines the generic attributes that may be used in any Log Record.
 
 | Attribute        | Type   | Description                                 | Examples                     | Stability                                                        |
 | ---------------- | ------ | ------------------------------------------- | ---------------------------- | ---------------------------------------------------------------- |

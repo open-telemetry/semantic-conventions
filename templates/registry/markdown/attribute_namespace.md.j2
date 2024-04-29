@@ -23,6 +23,8 @@
 {% for group in ctx.groups | sort(attribute="id") %}
 ## {{ group.id | split_id | list | reject("eq", "registry") | join(" ") | title_case }} Attributes
 
+{{ group.brief }}
+
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 {%- for attribute in group.attributes | sort(attribute="name") %}

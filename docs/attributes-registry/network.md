@@ -11,6 +11,8 @@
 
 ## Network Attributes
 
+These attributes may be used for any network related operation.
+
 | Attribute                    | Type   | Description                                                                                                                                                                       | Examples                    | Stability                                                        |
 | ---------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------- |
 | `network.carrier.icc`        | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.                                                                                       | `DE`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -100,6 +102,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `ipv6` | IPv6        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## Network Deprecated Attributes
+
+These attributes may be used for any network related operation.
 
 | Attribute              | Type   | Description                                                                                | Examples               | Stability                                                   |
 | ---------------------- | ------ | ------------------------------------------------------------------------------------------ | ---------------------- | ----------------------------------------------------------- |

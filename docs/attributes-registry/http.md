@@ -11,6 +11,8 @@
 
 ## Http Attributes
 
+This document defines semantic convention attributes in the HTTP namespace.
+
 | Attribute                      | Type     | Description                                                                                                                                                                                                                                                                                                                  | Examples                                                                                                              | Stability                                                        |
 | ------------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `http.connection.state`        | string   | State of the HTTP connection in the HTTP connection pool.                                                                                                                                                                                                                                                                    | `active`                                                                                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -77,6 +79,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `_OTHER`  | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## Http Deprecated Attributes
+
+Describes deprecated HTTP attributes.
 
 | Attribute                      | Type   | Description                                                        | Examples                                                                                                                                                                          | Stability                                                   |
 | ------------------------------ | ------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |

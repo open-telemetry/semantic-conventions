@@ -8,6 +8,8 @@
 
 ## Service Attributes
 
+A service instance.
+
 | Attribute             | Type   | Description                                                                                              | Examples                               | Stability                                                        |
 | --------------------- | ------ | -------------------------------------------------------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
 | `service.instance.id` | string | The string ID of the service instance. [1]                                                               | `627cc493-f310-47de-96bd-71410b7dec09` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

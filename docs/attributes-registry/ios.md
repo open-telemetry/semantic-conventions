@@ -8,6 +8,8 @@
 
 ## Ios Deprecated Attributes
 
+The iOS platform on which the iOS application is running.
+
 | Attribute   | Type   | Description                                                                                                      | Examples | Stability                                                   |
 | ----------- | ------ | ---------------------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------- |
 | `ios.state` | string | Deprecated use the `device.app.lifecycle` event definition including `ios.state` as a payload field instead. [1] | `active` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |

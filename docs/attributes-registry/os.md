@@ -8,6 +8,8 @@
 
 ## Os Attributes
 
+The operating system (OS) on which the process represented by this resource is running.
+
 | Attribute        | Type   | Description                                                                                                                  | Examples                                                           | Stability                                                        |
 | ---------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | `os.build_id`    | string | Unique identifier for a particular build or compilation of the operating system.                                             | `TQ3C.230805.001.B2`; `20E247`; `22621`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

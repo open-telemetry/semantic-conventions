@@ -8,6 +8,8 @@
 
 ## User Agent Attributes
 
+Describes user-agent attributes.
+
 | Attribute             | Type   | Description                                                                                                             | Examples                                                                                                                                                                                                                   | Stability                                                        |
 | --------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `user_agent.name`     | string | Name of the user-agent extracted from original. Usually refers to the browser's name. [1]                               | `Safari`; `YourApp`                                                                                                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

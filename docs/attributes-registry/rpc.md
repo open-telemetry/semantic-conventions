@@ -11,6 +11,8 @@
 
 ## Rpc Attributes
 
+This document defines attributes for remote procedure calls.
+
 | Attribute                                 | Type     | Description                                                                                                                                                                                                                                                        | Examples                                                                        | Stability                                                        |
 | ----------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `rpc.connect_rpc.error_code`              | string   | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values.                                                                                                                                  | `cancelled`                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -105,6 +107,8 @@
 | `connect_rpc`  | Connect RPC  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Rpc Deprecated Attributes
+
+Deprecated rpc message attributes.
 
 | Attribute                   | Type   | Description                                                   | Examples | Stability                                                   |
 | --------------------------- | ------ | ------------------------------------------------------------- | -------- | ----------------------------------------------------------- |

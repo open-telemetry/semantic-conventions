@@ -8,6 +8,8 @@
 
 ## Device Attributes
 
+Describes device attributes.
+
 | Attribute                 | Type   | Description                                     | Examples                               | Stability                                                        |
 | ------------------------- | ------ | ----------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
 | `device.id`               | string | A unique identifier representing the device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

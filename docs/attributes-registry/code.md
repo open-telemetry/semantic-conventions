@@ -8,6 +8,8 @@
 
 ## Code Attributes
 
+These attributes allow to report this unit of code and therefore to provide more context about the span.
+
 | Attribute         | Type   | Description                                                                                                                                                                                                    | Examples                                                                                                                                                                             | Stability                                                        |
 | ----------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | `code.column`     | int    | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.                                                                           | `16`                                                                                                                                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

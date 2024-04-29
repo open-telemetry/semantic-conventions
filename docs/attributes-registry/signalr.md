@@ -8,6 +8,8 @@
 
 ## Signalr Attributes
 
+SignalR attributes
+
 | Attribute                   | Type   | Description                                                                                                           | Examples             | Stability                                                  |
 | --------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------- | -------------------- | ---------------------------------------------------------- |
 | `signalr.connection.status` | string | SignalR HTTP connection closure status.                                                                               | `normal_closure`     | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

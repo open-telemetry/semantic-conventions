@@ -11,6 +11,8 @@
 
 ## Container Attributes
 
+A container instance.
+
 | Attribute                      | Type     | Description                                                                                                                                                                                                                                                             | Examples                                                                                                                                                                                                | Stability                                                        |
 | ------------------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `container.command`            | string   | The command used to run the container (i.e. the command name). [1]                                                                                                                                                                                                      | `otelcontribcol`                                                                                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -43,6 +45,8 @@ The ID is assigned by the container runtime and can vary in different environmen
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Container Deprecated Attributes
+
+Describes deprecated container attributes.
 
 | Attribute                | Type   | Description                                    | Examples                    | Stability                                                   |
 | ------------------------ | ------ | ---------------------------------------------- | --------------------------- | ----------------------------------------------------------- |

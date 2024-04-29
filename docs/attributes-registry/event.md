@@ -8,6 +8,8 @@
 
 ## Event Attributes
 
+Attributes for Events represented using Log Records.
+
 | Attribute    | Type   | Description                               | Examples                                      | Stability                                                        |
 | ------------ | ------ | ----------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------- |
 | `event.name` | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

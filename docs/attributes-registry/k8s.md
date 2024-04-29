@@ -11,6 +11,8 @@
 
 ## K8s Attributes
 
+Kubernetes resource attributes.
+
 | Attribute                     | Type   | Description                                                                                                                                                      | Examples                                                                                                                                  | Stability                                                        |
 | ----------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `k8s.cluster.name`            | string | The name of the cluster.                                                                                                                                         | `opentelemetry-cluster`                                                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -61,6 +63,8 @@ Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
 ## K8s Deprecated Attributes
+
+Describes deprecated k8s attributes.
 
 | Attribute              | Type   | Description                                  | Examples                   | Stability                                                   |
 | ---------------------- | ------ | -------------------------------------------- | -------------------------- | ----------------------------------------------------------- |

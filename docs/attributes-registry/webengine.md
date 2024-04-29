@@ -8,6 +8,8 @@
 
 ## Webengine Attributes
 
+This document defines the attributes used to describe the packaged software running the application code.
+
 | Attribute               | Type   | Description                                                                               | Examples                                                              | Stability                                                        |
 | ----------------------- | ------ | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `webengine.description` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

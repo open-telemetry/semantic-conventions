@@ -8,6 +8,8 @@
 
 ## Enduser Attributes
 
+This document defines attributes for operations with an authenticated and/or authorized enduser.
+
 | Attribute       | Type   | Description                                                                                                                                                                                                                                                                                                                                                                             | Examples                    | Stability                                                        |
 | --------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------- |
 | `enduser.id`    | string | Username or client_id extracted from the access token or [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2) header in the inbound request from outside the system.                                                                                                                                                                                                        | `username`                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

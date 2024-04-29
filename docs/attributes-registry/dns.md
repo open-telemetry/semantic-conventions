@@ -8,6 +8,8 @@
 
 ## Dns Attributes
 
+This document defines the shared attributes used to report a DNS query.
+
 | Attribute           | Type   | Description                 | Examples                              | Stability                                                        |
 | ------------------- | ------ | --------------------------- | ------------------------------------- | ---------------------------------------------------------------- |
 | `dns.question.name` | string | The name being queried. [1] | `www.example.com`; `opentelemetry.io` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

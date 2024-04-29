@@ -15,6 +15,8 @@
 
 ## Db Attributes
 
+This group defines the attributes used to describe telemetry in the context of databases.
+
 | Attribute                         | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                        | Examples                                                              | Stability                                                        |
 | --------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `db.client.connections.pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`.                                                                                                                               | `myDataSource`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -101,6 +103,8 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 ## Db Cassandra Attributes
 
+This group defines attributes for Cassandra.
+
 | Attribute                                  | Type    | Description                                                                                                                                                         | Examples                               | Stability                                                        |
 | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
 | `db.cassandra.consistency_level`           | string  | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -127,6 +131,8 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `local_serial` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db Cosmosdb Attributes
+
+This group defines attributes for Azure Cosmos DB.
 
 | Attribute                            | Type   | Description                       | Examples                               | Stability                                                        |
 | ------------------------------------ | ------ | --------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
@@ -167,6 +173,8 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 ## Db Deprecated Attributes
 
+"Describes deprecated db attributes."
+
 | Attribute                    | Type   | Description                                                                                  | Examples                                                                | Stability                                                   |
 | ---------------------------- | ------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------- |
 | `db.cassandra.table`         | string | Deprecated, use `db.collection.name` instead. [4]                                            | `mytable`                                                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
@@ -200,6 +208,8 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 ## Db Elasticsearch Attributes
 
+This group defines attributes for Elasticsearch.
+
 | Attribute                           | Type   | Description                                            | Examples                                                                                 | Stability                                                        |
 | ----------------------------------- | ------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `db.elasticsearch.cluster.name`     | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -208,6 +218,8 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 **[17]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 
 ## Db Metrics Deprecated Attributes
+
+"Describes deprecated db metrics attributes."
 
 | Attribute   | Type   | Description                                                     | Examples       | Stability                                                   |
 | ----------- | ------ | --------------------------------------------------------------- | -------------- | ----------------------------------------------------------- |

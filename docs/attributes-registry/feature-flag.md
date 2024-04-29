@@ -8,6 +8,8 @@
 
 ## Feature Flag Attributes
 
+This document defines attributes for Feature Flags.
+
 | Attribute                    | Type   | Description                                                                                                             | Examples            | Stability                                                        |
 | ---------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------- |
 | `feature_flag.key`           | string | The unique identifier of the feature flag.                                                                              | `logo-color`        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

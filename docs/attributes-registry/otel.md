@@ -12,6 +12,8 @@
 
 ## Otel Attributes
 
+Attributes reserved for OpenTelemetry
+
 | Attribute                 | Type   | Description                                                                            | Examples             | Stability                                                  |
 | ------------------------- | ------ | -------------------------------------------------------------------------------------- | -------------------- | ---------------------------------------------------------- |
 | `otel.status_code`        | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`                 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -26,6 +28,8 @@
 
 ## Otel Library Deprecated Attributes
 
+Describes deprecated otel.library attributes.
+
 | Attribute              | Type   | Description | Examples                           | Stability                                                   |
 | ---------------------- | ------ | ----------- | ---------------------------------- | ----------------------------------------------------------- |
 | `otel.library.name`    | string | [1]         | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
@@ -35,6 +39,8 @@
 **[2]:** use the `otel.scope.version` attribute.
 
 ## Otel Scope Attributes
+
+Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
 
 | Attribute            | Type   | Description                                                                          | Examples                           | Stability                                                  |
 | -------------------- | ------ | ------------------------------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------- |

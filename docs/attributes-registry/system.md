@@ -17,11 +17,15 @@
 
 ## System Attributes
 
+Describes System attributes
+
 | Attribute       | Type   | Description           | Examples       | Stability                                                        |
 | --------------- | ------ | --------------------- | -------------- | ---------------------------------------------------------------- |
 | `system.device` | string | The device identifier | `(identifier)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Cpu Attributes
+
+Describes System CPU attributes
 
 | Attribute                   | Type   | Description                     | Examples | Stability                                                        |
 | --------------------------- | ------ | ------------------------------- | -------- | ---------------------------------------------------------------- |
@@ -42,6 +46,8 @@
 
 ## System Deprecated Attributes
 
+Deprecated system attributes.
+
 | Attribute                 | Type   | Description                                          | Examples  | Stability                                                   |
 | ------------------------- | ------ | ---------------------------------------------------- | --------- | ----------------------------------------------------------- |
 | `system.processes.status` | string | Deprecated, use `system.process.status` instead. [1] | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
@@ -58,6 +64,8 @@
 | `defunct`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Filesystem Attributes
+
+Describes Filesystem attributes
 
 | Attribute                      | Type   | Description               | Examples    | Stability                                                        |
 | ------------------------------ | ------ | ------------------------- | ----------- | ---------------------------------------------------------------- |
@@ -87,6 +95,8 @@
 
 ## System Memory Attributes
 
+Describes System Memory attributes
+
 | Attribute             | Type   | Description      | Examples | Stability                                                        |
 | --------------------- | ------ | ---------------- | -------- | ---------------------------------------------------------------- |
 | `system.memory.state` | string | The memory state | `used`   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -102,6 +112,8 @@
 | `cached`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Network Attributes
+
+Describes Network attributes
 
 | Attribute              | Type   | Description                                      | Examples | Stability                                                        |
 | ---------------------- | ------ | ------------------------------------------------ | -------- | ---------------------------------------------------------------- |
@@ -125,6 +137,8 @@
 | `time_wait`   | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Paging Attributes
+
+Describes System Memory Paging attributes
 
 | Attribute                 | Type   | Description                 | Examples | Stability                                                        |
 | ------------------------- | ------ | --------------------------- | -------- | ---------------------------------------------------------------- |
@@ -154,6 +168,8 @@
 | `minor` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Process Attributes
+
+Describes System Process attributes
 
 | Attribute               | Type   | Description                                                                                                               | Examples  | Stability                                                        |
 | ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------- |

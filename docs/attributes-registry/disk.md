@@ -8,6 +8,8 @@
 
 ## Disk Attributes
 
+These attributes may be used for any disk related operation.
+
 | Attribute           | Type   | Description                      | Examples | Stability                                                        |
 | ------------------- | ------ | -------------------------------- | -------- | ---------------------------------------------------------------- |
 | `disk.io.direction` | string | The disk IO operation direction. | `read`   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

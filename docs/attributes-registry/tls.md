@@ -8,6 +8,8 @@
 
 ## Tls Attributes
 
+This document defines semantic convention attributes in the TLS namespace.
+
 | Attribute                      | Type     | Description                                                                                                                                                                                                                         | Examples                                                                                    | Stability                                                        |
 | ------------------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `tls.cipher`                   | string   | String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5) used during the current connection. [1]                                                                                                  | `TLS_RSA_WITH_3DES_EDE_CBC_SHA`; `TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

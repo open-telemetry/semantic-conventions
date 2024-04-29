@@ -8,6 +8,8 @@
 
 ## Exception Attributes
 
+This document defines the shared attributes used to report a single exception associated with a span or log.
+
 | Attribute              | Type    | Description                                                                                                                                                                         | Examples                                                                                                                                                                                                                                                     | Stability                                                  |
 | ---------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
 | `exception.escaped`    | boolean | SHOULD be set to true if the exception event is recorded at a point where it is known that the exception is escaping the scope of the span. [1]                                     |                                                                                                                                                                                                                                                              | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

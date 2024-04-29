@@ -8,6 +8,8 @@
 
 ## Error Attributes
 
+This document defines the shared attributes used to report an error.
+
 | Attribute    | Type   | Description                                              | Examples | Stability                                                  |
 | ------------ | ------ | -------------------------------------------------------- | -------- | ---------------------------------------------------------- |
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `_OTHER` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

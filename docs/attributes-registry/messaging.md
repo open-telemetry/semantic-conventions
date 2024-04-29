@@ -17,6 +17,8 @@
 
 ## Messaging Attributes
 
+Attributes describing telemetry around messaging systems and messaging activities.
+
 | Attribute                                 | Type    | Description                                                                                                                                | Examples                           | Stability                                                        |
 | ----------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------- |
 | `messaging.batch.message_count`           | int     | The number of messages sent, received, or processed in the scope of the batching operation. [1]                                            | `0`; `1`; `2`                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -81,6 +83,8 @@ size should be used.
 
 ## Messaging Deprecated Attributes
 
+Describes deprecated messaging attributes.
+
 | Attribute                               | Type   | Description                                                       | Examples                       | Stability                                                   |
 | --------------------------------------- | ------ | ----------------------------------------------------------------- | ------------------------------ | ----------------------------------------------------------- |
 | `messaging.kafka.destination.partition` | int    | Deprecated, use `messaging.destination.partition.id` instead. [8] | `2`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
@@ -91,12 +95,16 @@ size should be used.
 
 ## Messaging Eventhubs Attributes
 
+This group describes attributes specific to Azure Event Hubs.
+
 | Attribute                                   | Type   | Description                                                                            | Examples     | Stability                                                        |
 | ------------------------------------------- | ------ | -------------------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------- |
 | `messaging.eventhubs.consumer.group`        | string | The name of the consumer group the event consumer is associated with.                  | `indexer`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.eventhubs.message.enqueued_time` | int    | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Messaging Gcp Pubsub Attributes
+
+This group describes attributes specific to GCP Pub/Sub.
 
 | Attribute                                       | Type   | Description                                                                                                       | Examples       | Stability                                                        |
 | ----------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------- |
@@ -106,6 +114,8 @@ size should be used.
 | `messaging.gcp_pubsub.message.ordering_key`     | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Messaging Kafka Attributes
+
+This group describes attributes specific to Apache Kafka.
 
 | Attribute                           | Type    | Description                                                                                                                                                                                                                                 | Examples   | Stability                                                        |
 | ----------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------- |
@@ -118,12 +128,16 @@ size should be used.
 
 ## Messaging Rabbitmq Attributes
 
+This group describes attributes specific to RabbitMQ.
+
 | Attribute                                    | Type   | Description                   | Examples | Stability                                                        |
 | -------------------------------------------- | ------ | ----------------------------- | -------- | ---------------------------------------------------------------- |
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rabbitmq.message.delivery_tag`    | int    | RabbitMQ message delivery tag | `123`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Messaging Rocketmq Attributes
+
+This group describes attributes specific to RocketMQ.
 
 | Attribute                                       | Type     | Description                                                                                                                                      | Examples          | Stability                                                        |
 | ----------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ---------------------------------------------------------------- |
@@ -154,6 +168,8 @@ size should be used.
 | `transaction` | Transaction message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Messaging Servicebus Attributes
+
+This group describes attributes specific to Azure Service Bus.
 
 | Attribute                                            | Type   | Description                                                                                                                           | Examples         | Stability                                                        |
 | ---------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------------- |

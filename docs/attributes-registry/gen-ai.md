@@ -8,6 +8,8 @@
 
 ## Gen Ai Attributes
 
+This document defines the attributes used to describe telemetry in the context of LLM (Large Language Models) requests and responses.
+
 | Attribute                        | Type     | Description                                                                                      | Examples                                                                | Stability                                                        |
 | -------------------------------- | -------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `gen_ai.completion`              | string   | The full response received from the LLM. [1]                                                     | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

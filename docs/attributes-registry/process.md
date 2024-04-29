@@ -8,6 +8,8 @@
 
 ## Process Attributes
 
+An operating system process.
+
 | Attribute                     | Type     | Description                                                                                                                                                                                                                                                                                                                                                 | Examples                                            | Stability                                                        |
 | ----------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------- |
 | `process.command`             | string   | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`.                                                                                                                            | `cmd/otelcol`                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

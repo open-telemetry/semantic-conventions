@@ -8,6 +8,8 @@
 
 ## File Attributes
 
+Describes file attributes.
+
 | Attribute        | Type   | Description                                                                                           | Examples                                                      | Stability                                                        |
 | ---------------- | ------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `file.directory` | string | Directory where the file is located. It should include the drive letter, when appropriate.            | `/home/user`; `C:\Program Files\MyApp`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

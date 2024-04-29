@@ -8,6 +8,8 @@
 
 ## Host Attributes
 
+A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
+
 | Attribute                | Type     | Description                                                                                                                                                                                                                                                 | Examples                                                       | Stability                                                        |
 | ------------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `host.arch`              | string   | The CPU architecture the host system is running on.                                                                                                                                                                                                         | `amd64`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

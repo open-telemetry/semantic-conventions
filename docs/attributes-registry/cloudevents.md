@@ -8,6 +8,8 @@
 
 ## Cloudevents Attributes
 
+This document defines attributes for CloudEvents.
+
 | Attribute                        | Type   | Description                                                                                                                                                                     | Examples                                                                     | Stability                                                        |
 | -------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `cloudevents.event_id`           | string | The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event.                                                           | `123e4567-e89b-12d3-a456-426614174000`; `0001`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

@@ -16,11 +16,15 @@
 
 ## Aws Attributes
 
+This document defines generic attributes for AWS services.
+
 | Attribute        | Type   | Description                                                                                     | Examples                                                   | Stability                                                        |
 | ---------------- | ------ | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
 | `aws.request_id` | string | The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Aws Dynamodb Attributes
+
+This document defines attributes for AWS DynamoDB.
 
 | Attribute                                     | Type     | Description                                                                                | Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Stability                                                        |
 | --------------------------------------------- | -------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -49,6 +53,8 @@
 
 ## Aws Ecs Attributes
 
+This document defines attributes for AWS Elastic Container Service (ECS).
+
 | Attribute               | Type   | Description                                                                                                                                                  | Examples                                                                                                                                                                          | Stability                                                        |
 | ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `aws.ecs.cluster.arn`   | string | The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).                                                      | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster`                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -68,11 +74,15 @@
 
 ## Aws Eks Attributes
 
+This document defines attributes for AWS Elastic Kubernetes Service (EKS).
+
 | Attribute             | Type   | Description                | Examples                                                | Stability                                                        |
 | --------------------- | ------ | -------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------- |
 | `aws.eks.cluster.arn` | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Aws Lambda Attributes
+
+This document defines attributes for AWS Lambda.
 
 | Attribute                | Type   | Description                                                                                                                                                               | Examples                                                      | Stability                                                        |
 | ------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -81,6 +91,8 @@
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
 
 ## Aws Log Attributes
+
+This document defines attributes for AWS Logs.
 
 | Attribute              | Type     | Description                                                           | Examples                                                                                                                | Stability                                                        |
 | ---------------------- | -------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -96,6 +108,8 @@
 **[4]:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
 
 ## Aws S3 Attributes
+
+This document defines attributes for AWS S3.
 
 | Attribute            | Type   | Description                                                                                                                                                                          | Examples                                                                              | Stability                                                        |
 | -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |

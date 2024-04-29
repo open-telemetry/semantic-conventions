@@ -11,11 +11,15 @@
 
 ## Android Attributes
 
+The Android platform on which the Android application is running.
+
 | Attribute              | Type   | Description                                                                                                                                                                                                                               | Examples   | Stability                                                        |
 | ---------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------- |
 | `android.os.api_level` | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Android Deprecated Attributes
+
+This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
 
 | Attribute       | Type   | Description                                                                                                          | Examples  | Stability                                                        |
 | --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------- |

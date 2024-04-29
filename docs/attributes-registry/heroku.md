@@ -8,6 +8,8 @@
 
 ## Heroku Attributes
 
+This document defines attributes for the Android platform on which the Android application is running.
+
 | Attribute                           | Type   | Description                           | Examples                                | Stability                                                        |
 | ----------------------------------- | ------ | ------------------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
 | `heroku.app.id`                     | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

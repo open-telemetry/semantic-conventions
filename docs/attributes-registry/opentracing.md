@@ -8,6 +8,8 @@
 
 ## Opentracing Attributes
 
+Attributes used by the OpenTracing Shim layer.
+
 | Attribute              | Type   | Description                     | Examples   | Stability                                                        |
 | ---------------------- | ------ | ------------------------------- | ---------- | ---------------------------------------------------------------- |
 | `opentracing.ref_type` | string | Parent-child Reference type [1] | `child_of` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
