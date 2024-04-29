@@ -98,4 +98,3 @@ that identify the class of Events but not the instance of the Event.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
-
