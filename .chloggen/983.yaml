@@ -1,4 +1,4 @@
-change_type: enhancment
+change_type: enhancement
 component: process
 note: Add `process.entity_id` attribute
 issues: [983]
