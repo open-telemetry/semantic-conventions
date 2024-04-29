@@ -6,7 +6,6 @@
 # Changelog
 
 <!-- next version -->
-
 ## Unreleased
 
 ### Breaking
