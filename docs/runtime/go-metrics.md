@@ -92,7 +92,6 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.go.memory.limit(full) -->
 <!-- endsemconv -->
 
-
 ### Metric: `go.memory.allocated`
 
 This metric is [recommended][MetricRecommended].
