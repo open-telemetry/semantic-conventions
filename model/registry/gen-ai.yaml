@@ -47,6 +47,12 @@ groups:
         brief: The unique identifier for the completion.
         examples: ['chatcmpl-123']
         tag: llm-generic-response
+      - id: operation.name
+        stability: experimental
+        type: string
+        brief: The name of the LLM operation request is being made.
+        examples: ['chat.completion']
+        tag: llm-generic-response  
       - id: response.model
         stability: experimental
         type: string

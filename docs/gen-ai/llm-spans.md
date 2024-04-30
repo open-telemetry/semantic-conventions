@@ -10,9 +10,10 @@ linkTitle: LLM requests
 
 <!-- toc -->
 
-- [Configuration](#configuration)
-- [LLM Request attributes](#llm-request-attributes)
-- [Events](#events)
+- [Semantic Conventions for LLM requests](#semantic-conventions-for-llm-requests)
+  - [Configuration](#configuration)
+  - [LLM Request attributes](#llm-request-attributes)
+  - [Events](#events)
 
 <!-- tocstop -->
 
@@ -40,6 +41,7 @@ These attributes track input data and metadata for a request to an LLM. Each att
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.request.model`](../attributes-registry/llm.md) | string | The name of the LLM a request is being made to. [1] | `gpt-4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.operation.name`](../attributes-registry/llm.md) | string | The name of the LLM operation request is being made. [1] | `chat.completions`;`embeddings`;`speech.generations`;`audio.transcriptions`;`audio.translations`;`image.generations` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.system`](../attributes-registry/llm.md) | string | The name of the LLM foundation model vendor. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.max_tokens`](../attributes-registry/llm.md) | int | The maximum number of tokens the LLM generates for a request. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.temperature`](../attributes-registry/llm.md) | double | The temperature setting for the LLM request. | `0.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

@@ -6,10 +6,11 @@ linkTitle: LLM
 
 <!-- toc -->
 
-- [Generic LLM Attributes](#generic-llm-attributes)
-  - [Request Attributes](#request-attributes)
-  - [Response Attributes](#response-attributes)
-  - [Event Attributes](#event-attributes)
+- [Large Language Model](#large-language-model)
+  - [Generic LLM Attributes](#generic-llm-attributes)
+    - [Request Attributes](#request-attributes)
+    - [Response Attributes](#response-attributes)
+    - [Event Attributes](#event-attributes)
 
 <!-- tocstop -->
 
@@ -39,6 +40,7 @@ linkTitle: LLM
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `gen_ai.response.finish_reasons` | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `[stop]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.operation.name`](../attributes-registry/llm.md) | string | The name of the LLM operation request is being made. [1] | `chat.completions`;`embeddings`;`speech.generations`;`audio.transcriptions`;`audio.translations`;`image.generations` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.response.id` | string | The unique identifier for the completion. | `chatcmpl-123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.response.model` | string | The name of the LLM a response was generated from. | `gpt-4-0613` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.usage.completion_tokens` | int | The number of tokens used in the LLM response (completion). | `180` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

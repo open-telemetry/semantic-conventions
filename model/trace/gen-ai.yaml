@@ -25,6 +25,8 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.response.id
         requirement_level: recommended
+      - ref: gen_ai.operation.name
+        requirement_level: recommended
       - ref: gen_ai.response.model
         requirement_level: recommended
         note: >
