@@ -161,6 +161,26 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 <!-- semconv metric.go.memory.gc.user_goal(full) -->
 <!-- endsemconv -->
 
+## Go Goroutines
+
+**Description:** Go metrics captured under the namespace `go.goroutine.*`
+
+### Metric: `go.goroutine.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package `/sched/gomaxprocs:threads`.
+
+<!-- semconv metric.go.goroutine.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `go.goroutine.count` | UpDownCounter | `{goroutine}` | Count of live goroutines. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Computed from `/sched/goroutines:goroutines`.
+<!-- endsemconv -->
+
+<!-- semconv metric.go.goroutine.count(full) -->
+<!-- endsemconv -->
+
 ## Go Threads
 
 **Description:** Go metrics captured under the namespace `go.thread.*`

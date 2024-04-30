@@ -90,6 +90,16 @@ groups:
       Computed from /gc/gogc:percent.
     stability: experimental
 
+  - id: metric.go.goroutine.count
+    type: metric
+    metric_name: go.goroutine.count
+    brief: "Count of live goroutines."
+    note: >
+      Computed from `/sched/goroutines:goroutines`.
+    instrument: updowncounter
+    unit: "{goroutine}"
+    stability: experimental
+
   - id: metric.go.thread.limit
     type: metric
     metric_name: go.thread.limit
