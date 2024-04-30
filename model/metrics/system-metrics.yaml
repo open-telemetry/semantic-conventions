@@ -81,7 +81,10 @@ groups:
     type: metric
     metric_name: system.memory.shared
     stability: experimental
-    brief: "Reports shared memory. Memory used (mostly) by tmpfs."
+    brief: "Shared memory used (mostly by tmpfs)."
+    note: |
+      Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
     instrument: updowncounter
     unit: "By"
 

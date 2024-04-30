@@ -230,7 +230,10 @@ This metric is [opt-in][MetricOptIn].
 <!-- semconv metric.system.memory.shared(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.memory.shared` | UpDownCounter | `By` | Reports shared memory. Memory used (mostly) by tmpfs. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.memory.shared` | UpDownCounter | `By` | Shared memory used (mostly by tmpfs). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+`Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
 <!-- endsemconv -->
 
 <!-- semconv metric.system.memory.shared(full) -->
