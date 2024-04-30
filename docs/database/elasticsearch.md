@@ -95,7 +95,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 | Key                                 | Value                                                                                                                               |
 |:------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|
-| Span name                           | `"search elasticsearch.mydomain.com:9200"`                                                                                          |
+| Span name                           | `"search"`                                                                                          |
 | `db.system`                         | `"elasticsearch"`                                                                                                                   |
 | `server.address`                    | `"elasticsearch.mydomain.com"`                                                                                                      |
 | `server.port`                       | `9200`                                                                                                                              |

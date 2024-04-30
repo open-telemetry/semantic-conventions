@@ -10,6 +10,7 @@ linkTitle: Client Calls
 
 <!-- toc -->
 
+- [Name](#name)
 - [Common attributes](#common-attributes)
   - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Semantic Conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
@@ -73,8 +74,8 @@ The <span id="target-placeholder">`{target}`</span> SHOULD adhere to one of the 
 - `db.collection.name`
 - `db.namespace`
 - `server.address:server.port`
-- `network.peer.address:network.peer.port`
 - `db.system`
+
 
 ## Common attributes
 
