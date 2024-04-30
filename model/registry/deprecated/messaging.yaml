@@ -1,6 +1,7 @@
 groups:
   - id: registry.messaging.deprecated
     type: attribute_group
+    display_name: Deprecated Messaging Attributes
     brief: "Describes deprecated messaging attributes."
     attributes:
       - id: messaging.kafka.destination.partition

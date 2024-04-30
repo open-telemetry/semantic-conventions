@@ -2,6 +2,7 @@ groups:
   - id: registry.http
     prefix: http
     type: attribute_group
+    display_name: HTTP Attributes
     brief: 'This document defines semantic convention attributes in the HTTP namespace.'
     attributes:
       - id: request.body.size

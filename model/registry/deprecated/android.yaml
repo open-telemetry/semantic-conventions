@@ -2,6 +2,7 @@ groups:
   - id: registry.android.deprecated
     prefix: android
     type: attribute_group
+    display_name: Deprecated Android Attributes
     brief: >
         This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
     attributes:

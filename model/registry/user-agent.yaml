@@ -2,6 +2,7 @@ groups:
   - id: registry.user_agent
     prefix: user_agent
     type: attribute_group
+    display_name: User-agent Attributes
     brief: "Describes user-agent attributes."
     attributes:
       - id: original

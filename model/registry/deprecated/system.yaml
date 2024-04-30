@@ -1,6 +1,7 @@
 groups:
   - id: registry.system.deprecated
     type: attribute_group
+    display_name: Deprecated System Attributes
     brief: "Deprecated system attributes."
     attributes:
       - id: system.processes.status

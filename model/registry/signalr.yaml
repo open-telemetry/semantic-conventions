@@ -2,6 +2,7 @@ groups:
   - id: registry.signalr
     prefix: signalr
     type: attribute_group
+    display_name: SignalR Attributes
     brief: SignalR attributes
     attributes:
       - id: connection.status

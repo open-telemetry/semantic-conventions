@@ -2,6 +2,7 @@ groups:
   - id: registry.browser
     prefix: browser
     type: attribute_group
+    display_name: Browser Attributes
     brief: >
       The web browser attributes
     attributes:
