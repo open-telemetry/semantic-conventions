@@ -51,7 +51,7 @@ groups:
         stability: experimental
         type: string
         brief: The name of the LLM operation request is being made.
-        examples: ['chat.completion']
+        examples: ['chat.completions','embeddings','speech.generations','audio.transcriptions','audio.translations','image.generations']
         tag: llm-generic-response  
       - id: response.model
         stability: experimental
