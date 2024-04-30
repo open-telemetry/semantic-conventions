@@ -42,9 +42,10 @@ groups:
   - id: metric.go.memory.limit
     type: metric
     metric_name: go.memory.limit
-    brief: "Go runtime memory limit configured by the user, otherwise math.MaxInt64."
+    brief: "Go runtime memory limit configured by the user, if a limit exists."
     note: >
       Computed from `/gc/gomemlimit:bytes`.
+      This metric is excluded if the limit obtained from the Go runtime is math.MaxInt64.
     instrument: updowncounter
     unit: "By"
     stability: experimental

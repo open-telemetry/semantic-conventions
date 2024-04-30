@@ -84,9 +84,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.go.memory.limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, otherwise math.MaxInt64. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from `/gc/gomemlimit:bytes`.
+**[1]:** Computed from `/gc/gomemlimit:bytes`. This metric is excluded if the limit obtained from the Go runtime is math.MaxInt64.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.memory.limit(full) -->
