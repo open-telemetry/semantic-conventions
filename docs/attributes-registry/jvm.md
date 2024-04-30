@@ -15,9 +15,9 @@ This document defines Java Virtual machine related attributes.
 | `jvm.gc.action`        | string  | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC`               | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `jvm.gc.name`          | string  | Name of the garbage collector. [2]        | `G1 Young Generation`; `G1 Old Generation`         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `jvm.memory.pool.name` | string  | Name of the memory pool. [3]              | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `jvm.memory.type`      | string  | The type of memory.                       | `heap`                                             | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.memory.type`      | string  | The type of memory.                       | `heap`; `non_heap`                                 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `jvm.thread.daemon`    | boolean | Whether the thread is daemon or not.      |                                                    | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `jvm.thread.state`     | string  | State of the thread.                      | `new`                                              | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.thread.state`     | string  | State of the thread.                      | `new`; `runnable`; `blocked`                       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](<https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()>).
 

@@ -21,9 +21,9 @@ The Android platform on which the Android application is running.
 
 This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
 
-| Attribute       | Type   | Description                                                                                                          | Examples  | Stability                                                        |
-| --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------- |
-| `android.state` | string | Deprecated use the `device.app.lifecycle` event definition including `android.state` as a payload field instead. [1] | `created` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute       | Type   | Description                                                                                                          | Examples                              | Stability                                                        |
+| --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ---------------------------------------------------------------- |
+| `android.state` | string | Deprecated use the `device.app.lifecycle` event definition including `android.state` as a payload field instead. [1] | `created`; `background`; `foreground` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
