@@ -3,7 +3,7 @@ groups:
     prefix: android
     type: attribute_group
     brief: >
-      The Android platform on which the Android application is running.
+      The Android platform on which the Android application is running on.
     attributes:
       - id: os.api_level
         type: string
