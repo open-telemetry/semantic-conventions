@@ -4,7 +4,7 @@ groups:
     metric_name: go.memory.used
     brief: "Memory used by the Go runtime."
     note: >
-      Computed from (/memory/classes/total:bytes - /memory/classes/heap/released:bytes).
+      Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
     instrument: updowncounter
     prefix: go.memory
     unit: "By"
@@ -18,7 +18,7 @@ groups:
               value: 'stack'
               brief: 'Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.'
               note: >
-                Computed from /memory/classes/heap/stacks:bytes.
+                Computed from `/memory/classes/heap/stacks:bytes`.
               stability: experimental
             - id: other
               value: 'other'
@@ -26,7 +26,7 @@ groups:
               stability: experimental
         requirement_level: recommended
         brief: The type of memory.
-        examples: ["released", "stack"]
+        examples: ["other", "stack"]
     stability: experimental
 
   - id: metric.go.memory.released
@@ -34,7 +34,7 @@ groups:
     metric_name: go.memory.released
     brief: "Memory that is completely free and has been returned to the underlying system."
     note: >
-      Computed from /memory/classes/heap/released:bytes.
+      Computed from `/memory/classes/heap/released:bytes`.
     instrument: updowncounter
     unit: "By"
     stability: experimental
@@ -44,7 +44,7 @@ groups:
     metric_name: go.memory.limit
     brief: "Go runtime memory limit configured by the user, otherwise math.MaxInt64."
     note: >
-      Computed from /gc/gomemlimit:bytes.
+      Computed from `/gc/gomemlimit:bytes`.
     instrument: updowncounter
     unit: "By"
     stability: experimental
@@ -54,7 +54,7 @@ groups:
     metric_name: go.memory.allocated
     brief: "Memory allocated to the heap by the application."
     note: >
-      Computed from /gc/heap/allocs:bytes.
+      Computed from `/gc/heap/allocs:bytes`.
     instrument: counter
     unit: "By"
     stability: experimental
@@ -64,7 +64,7 @@ groups:
     metric_name: go.memory.allocations
     brief: "Count of allocations to the heap by the application."
     note: >
-      Computed from /gc/heap/allocs:objects.
+      Computed from `/gc/heap/allocs:objects`.
     instrument: counter
     unit: "{allocation}"
     stability: experimental
@@ -74,7 +74,7 @@ groups:
     metric_name: go.memory.gc.goal
     brief: "Heap size target for the end of the GC cycle."
     note: >
-      Computed from /gc/heap/goal:bytes.
+      Computed from `/gc/heap/goal:bytes`.
     instrument: updowncounter
     unit: "By"
     stability: experimental
@@ -87,7 +87,7 @@ groups:
     unit: "1"
     note: >
       The value range is [0.0,1.0].
-      Computed from /gc/gogc:percent.
+      Computed from `/gc/gogc:percent`.
     stability: experimental
 
   - id: metric.go.goroutine.count
@@ -105,7 +105,7 @@ groups:
     metric_name: go.thread.limit
     brief: "The number of OS threads that can execute user-level Go code simultaneously."
     note: >
-      Computed from /sched/gomaxprocs:threads.
+      Computed from `/sched/gomaxprocs:threads`.
     instrument: updowncounter
     unit: "{thread}"
     stability: experimental
@@ -115,7 +115,7 @@ groups:
     metric_name: go.schedule.duration
     brief: "The time goroutines have spent in the scheduler in a runnable state before actually running."
     note: >
-      Computed from /sched/latencies:seconds.
+      Computed from `/sched/latencies:seconds`.
     instrument: histogram
     unit: "s"
     stability: experimental

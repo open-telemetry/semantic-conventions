@@ -7,6 +7,7 @@ linkTitle: Go Runtime
 **Status**: [Experimental][DocumentStatus]
 
 This document describes semantic conventions for Go runtime metrics in OpenTelemetry.
+These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
@@ -21,6 +22,8 @@ This document describes semantic conventions for Go runtime metrics in OpenTelem
 - [Go Garbage Collection](#go-garbage-collection)
   - [Metric: `go.memory.gc.goal`](#metric-gomemorygcgoal)
   - [Metric: `go.memory.gc.user_goal`](#metric-gomemorygcuser_goal)
+- [Go Goroutines](#go-goroutines)
+  - [Metric: `go.goroutine.count`](#metric-gogoroutinecount)
 - [Go Threads](#go-threads)
   - [Metric: `go.thread.limit`](#metric-gothreadlimit)
 - [Go Scheduler](#go-scheduler)
@@ -35,20 +38,19 @@ This document describes semantic conventions for Go runtime metrics in OpenTelem
 ### Metric: `go.memory.used`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/memory/classes` metrics.
 
 <!-- semconv metric.go.memory.used(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.used` | UpDownCounter | `By` | Memory used by the Go runtime. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from (/memory/classes/total:bytes - /memory/classes/heap/released:bytes).
+**[1]:** Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.memory.used(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `go.memory.type` | string | The type of memory. | `released`; `stack` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.type` | string | The type of memory. | `other`; `stack` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `go.memory.type` MUST be one of the following:
 
@@ -57,20 +59,19 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 | `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other` | Memory used by the Go runtime, excluding other categories of memory usage. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from /memory/classes/heap/stacks:bytes.
+**[1]:** Computed from `/memory/classes/heap/stacks:bytes`.
 <!-- endsemconv -->
 
 ### Metric: `go.memory.released`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/gc/gomemlimit:bytes`.
 
 <!-- semconv metric.go.memory.released(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.released` | UpDownCounter | `By` | Memory that is completely free and has been returned to the underlying system. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from /memory/classes/heap/released:bytes.
+**[1]:** Computed from `/memory/classes/heap/released:bytes`.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.memory.released(full) -->
@@ -79,14 +80,13 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 ### Metric: `go.memory.limit`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/gc/gomemlimit:bytes`.
 
 <!-- semconv metric.go.memory.limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, otherwise math.MaxInt64. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from /gc/gomemlimit:bytes.
+**[1]:** Computed from `/gc/gomemlimit:bytes`.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.memory.limit(full) -->
@@ -96,14 +96,13 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 ### Metric: `go.memory.allocated`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/gc/heap/allocs:bytes`.
 
 <!-- semconv metric.go.memory.allocated(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.allocated` | Counter | `By` | Memory allocated to the heap by the application. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from /gc/heap/allocs:bytes.
+**[1]:** Computed from `/gc/heap/allocs:bytes`.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.memory.allocated(full) -->
@@ -112,14 +111,13 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 ### Metric: `go.memory.allocations`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/gc/heap/allocs:objects`.
 
 <!-- semconv metric.go.memory.allocations(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.allocations` | Counter | `{allocation}` | Count of allocations to the heap by the application. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from /gc/heap/allocs:objects.
+**[1]:** Computed from `/gc/heap/allocs:objects`.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.memory.allocations(full) -->
@@ -132,14 +130,13 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 ### Metric: `go.memory.gc.goal`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/gc/heap/goal:bytes`.
 
 <!-- semconv metric.go.memory.gc.goal(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.gc.goal` | UpDownCounter | `By` | Heap size target for the end of the GC cycle. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from /gc/heap/goal:bytes.
+**[1]:** Computed from `/gc/heap/goal:bytes`.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.memory.gc.goal(full) -->
@@ -148,14 +145,13 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 ### Metric: `go.memory.gc.user_goal`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/gc/gogc:percent`.
 
 <!-- semconv metric.go.memory.gc.user_goal(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.gc.user_goal` | UpDownCounter | `1` | Heap size target ratio for the end of the GC cycle, as configured by the user. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The value range is [0.0,1.0]. Computed from /gc/gogc:percent.
+**[1]:** The value range is [0.0,1.0]. Computed from `/gc/gogc:percent`.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.memory.gc.user_goal(full) -->
@@ -168,7 +164,6 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 ### Metric: `go.goroutine.count`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package `/sched/gomaxprocs:threads`.
 
 <!-- semconv metric.go.goroutine.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
@@ -188,14 +183,13 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package `/
 ### Metric: `go.thread.limit`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package `/sched/gomaxprocs:threads`.
 
 <!-- semconv metric.go.thread.limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.thread.limit` | UpDownCounter | `{thread}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from /sched/gomaxprocs:threads.
+**[1]:** Computed from `/sched/gomaxprocs:threads`.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.thread.limit(full) -->
@@ -208,14 +202,13 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package `/
 ### Metric: `go.schedule.duration`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package `/sched/latencies:seconds`.
 
 <!-- semconv metric.go.schedule.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.schedule.duration` | Histogram | `s` | The time goroutines have spent in the scheduler in a runnable state before actually running. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from /sched/latencies:seconds.
+**[1]:** Computed from `/sched/latencies:seconds`.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.schedule.duration(full) -->
