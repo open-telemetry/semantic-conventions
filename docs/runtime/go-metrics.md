@@ -14,6 +14,7 @@ This document describes semantic conventions for Go runtime metrics in OpenTelem
 
 - [Go Memory](#go-memory)
   - [Metric: `go.memory.used`](#metric-gomemoryused)
+  - [Metric: `go.memory.released`](#metric-gomemoryreleased)
   - [Metric: `go.memory.limit`](#metric-gomemorylimit)
   - [Metric: `go.memory.allocated`](#metric-gomemoryallocated)
   - [Metric: `go.memory.allocations`](#metric-gomemoryallocations)
@@ -39,7 +40,7 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 <!-- semconv metric.go.memory.used(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.used` | UpDownCounter | `By` | Virtual memory mapped by the Go runtime. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.used` | UpDownCounter | `By` | Memory used by the Go runtime. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.go.memory.used(full) -->
@@ -51,9 +52,22 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 
 | Value  | Description | Stability |
 |---|---|---|
-| `released` | Memory that is completely free and has been returned to the underlying system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | All memory mapped by the Go runtime into the current process as read-write, excluding other categories of memory usage. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | Memory used by the Go runtime, excluding other categories of memory usage. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `go.memory.released`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/gc/gomemlimit:bytes`.
+
+<!-- semconv metric.go.memory.released(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `go.memory.released` | UpDownCounter | `By` | Memory that is completely free and has been returned to the underlying system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.go.memory.released(full) -->
 <!-- endsemconv -->
 
 ### Metric: `go.memory.limit`
@@ -69,6 +83,7 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 
 <!-- semconv metric.go.memory.limit(full) -->
 <!-- endsemconv -->
+
 
 ### Metric: `go.memory.allocated`
 

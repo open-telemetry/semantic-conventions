@@ -2,7 +2,7 @@ groups:
   - id: metric.go.memory.used
     type: metric
     metric_name: go.memory.used
-    brief: "Virtual memory mapped by the Go runtime."
+    brief: "Memory used by the Go runtime."
     instrument: updowncounter
     prefix: go.memory
     unit: "By"
@@ -12,21 +12,25 @@ groups:
         type:
           allow_custom_values: false
           members:
-            - id: released
-              value: 'released'
-              brief: 'Memory that is completely free and has been returned to the underlying system.'
-              stability: experimental
             - id: stack
               value: 'stack'
               brief: 'Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.'
               stability: experimental
             - id: other
               value: 'other'
-              brief: 'All memory mapped by the Go runtime into the current process as read-write, excluding other categories of memory usage.'
+              brief: 'Memory used by the Go runtime, excluding other categories of memory usage.'
               stability: experimental
         requirement_level: recommended
         brief: The type of memory.
         examples: ["released", "stack"]
+    stability: experimental
+
+  - id: metric.go.memory.released
+    type: metric
+    metric_name: go.memory.released
+    brief: "Memory that is completely free and has been returned to the underlying system."
+    instrument: updowncounter
+    unit: "By"
     stability: experimental
 
   - id: metric.go.memory.limit
