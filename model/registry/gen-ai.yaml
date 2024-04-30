@@ -113,5 +113,5 @@ groups:
         stability: experimental
         type: string
         brief: The name of the operation being performed.
-        examples: ['generate']
+        examples: ['chat', 'completion']
         tag: llm-generic-metrics
