@@ -2,7 +2,7 @@ groups:
   - id: log_record.event
     type: attribute_group
     brief: >
-        This document defines attributes that are used to map `LogRecord`` to Events.
+        This document defines attributes that are used to map `LogRecord` to Events.
     attributes:
       - ref: event.name
         requirement_level: required
