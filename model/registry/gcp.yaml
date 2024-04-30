@@ -22,6 +22,7 @@ groups:
   - id: registry.gcp.cloud_run
     prefix: gcp.cloud_run
     type: attribute_group
+    display_name: GCP - Google Cloud Run Attributes
     brief: >
       This document defines attributes for Google Cloud Run.
     attributes:
@@ -46,6 +47,7 @@ groups:
   - id: registry.gcp.gce
     prefix: gcp.gce
     type: attribute_group
+    display_name: GCP - Google Compute Engine (GCE) Attributes
     brief: >
       This document defines attributes for Google Compute Engine (GCE).
     attributes:

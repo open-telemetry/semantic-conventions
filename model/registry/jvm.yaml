@@ -1,6 +1,7 @@
 groups:
   - id: registry.jvm
     type: attribute_group
+    display_name: Java Virtual Machine (JVM) Attributes
     prefix: jvm
     brief: >
       This document defines Java Virtual machine related attributes.
