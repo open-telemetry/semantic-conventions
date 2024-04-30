@@ -114,7 +114,8 @@ to a running container.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.container.name`](../attributes-registry/k8s.md) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.container.restart_count`](../attributes-registry/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | `0`; `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.container.restart_count`](../attributes-registry/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.container.status.last_terminated_reason`](../attributes-registry/k8s.md) | string | Last terminated reason of the Container. | `Evicted`; `Error` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## ReplicaSet
