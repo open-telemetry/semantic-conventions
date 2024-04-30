@@ -69,13 +69,14 @@ If there is no (low-cardinality) `db.operation.name` available, database span na
 SHOULD be [`{target}`](#target-placeholder).
 <!-- markdown-link-check-enable -->
 
+Semantic conventions for individual database systems MAY specify different span name format.
+
 The <span id="target-placeholder">`{target}`</span> SHOULD adhere to one of the following values, arranged in prioritized order, provided they are accessible:
 
 - `db.collection.name`
 - `db.namespace`
 - `server.address:server.port`
 - `db.system`
-
 
 ## Common attributes
 
