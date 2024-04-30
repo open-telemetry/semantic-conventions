@@ -18,8 +18,8 @@ This document describes semantic conventions for Go runtime metrics in OpenTelem
   - [Metric: `go.memory.allocated`](#metric-gomemoryallocated)
   - [Metric: `go.memory.allocations`](#metric-gomemoryallocations)
 - [Go Garbage Collection](#go-garbage-collection)
-  - [Metric: `go.memory.gc.target`](#metric-gomemorygctarget)
-  - [Metric: `go.memory.gc.user_target`](#metric-gomemorygcuser_target)
+  - [Metric: `go.memory.gc.goal`](#metric-gomemorygcgoal)
+  - [Metric: `go.memory.gc.user_goal`](#metric-gomemorygcuser_goal)
 - [Go Threads](#go-threads)
   - [Metric: `go.thread.limit`](#metric-gothreadlimit)
 - [Go Scheduler](#go-scheduler)
@@ -102,34 +102,34 @@ This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package us
 
 **Description:** Go metrics captured under the namespace `go.memory.gc.*`
 
-### Metric: `go.memory.gc.target`
+### Metric: `go.memory.gc.goal`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/gc/heap/goal:bytes`.
 
-<!-- semconv metric.go.memory.gc.target(metric_table) -->
+<!-- semconv metric.go.memory.gc.goal(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.gc.target` | UpDownCounter | `By` | Heap size target for the end of the GC cycle. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.gc.goal` | UpDownCounter | `By` | Heap size target for the end of the GC cycle. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.go.memory.gc.target(full) -->
+<!-- semconv metric.go.memory.gc.goal(full) -->
 <!-- endsemconv -->
 
-### Metric: `go.memory.gc.user_target`
+### Metric: `go.memory.gc.user_goal`
 
 This metric is [recommended][MetricRecommended].
 This metric is obtained from Go's [`runtime/metrics`][RuntimeMetrics] package using `/gc/gogc:percent`.
 
-<!-- semconv metric.go.memory.gc.user_target(metric_table) -->
+<!-- semconv metric.go.memory.gc.user_goal(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.gc.user_target` | UpDownCounter | `1` | Heap size target ratio for the end of the GC cycle, as configured by the user. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.gc.user_goal` | UpDownCounter | `1` | Heap size target ratio for the end of the GC cycle, as configured by the user. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The value range is [0.0,1.0].
 <!-- endsemconv -->
 
-<!-- semconv metric.go.memory.gc.user_target(full) -->
+<!-- semconv metric.go.memory.gc.user_goal(full) -->
 <!-- endsemconv -->
 
 ## Go Threads

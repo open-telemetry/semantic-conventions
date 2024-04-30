@@ -53,17 +53,17 @@ groups:
     unit: "{allocation}"
     stability: experimental
 
-  - id: metric.go.memory.gc.target
+  - id: metric.go.memory.gc.goal
     type: metric
-    metric_name: go.memory.gc.target
+    metric_name: go.memory.gc.goal
     brief: "Heap size target for the end of the GC cycle."
     instrument: updowncounter
     unit: "By"
     stability: experimental
 
-  - id: metric.go.memory.gc.user_target
+  - id: metric.go.memory.gc.user_goal
     type: metric
-    metric_name: go.memory.gc.user_target
+    metric_name: go.memory.gc.user_goal
     brief: "Heap size target ratio for the end of the GC cycle, as configured by the user."
     instrument: updowncounter
     unit: "1"
