@@ -66,3 +66,47 @@ groups:
         brief: 'Deprecated, use `db.collection.name` instead.'
         deprecated: "Replaced by `db.collection.name`."
         examples: 'mytable'
+      - id: redis.database_index
+        type: int
+        stability: experimental
+        brief: 'Deprecated, use `db.namespace` instead.'
+        deprecated: "Replaced by `db.namespace`."
+        examples: [0, 1, 15]
+      - id: name
+        type: string
+        stability: experimental
+        brief: 'Deprecated, use `db.namespace` instead.'
+        deprecated: "Replaced by `db.namespace`."
+        examples: [ 'customers', 'main' ]
+      - id: mssql.instance_name
+        type: string
+        stability: experimental
+        brief: 'Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.'
+        deprecated: 'Deprecated, no replacement at this time.'
+        examples: 'MSSQLSERVER'
+
+  - id: registry.db.metrics.deprecated
+    type: attribute_group
+    brief: >
+      "Describes deprecated db metrics attributes."
+    attributes:
+      - id: state
+        stability: experimental
+        type:
+          allow_custom_values: true
+          members:
+            - id: idle
+              value: 'idle'
+              stability: experimental
+            - id: used
+              value: 'used'
+              stability: experimental
+        brief: "Deprecated, use `db.client.connections.state` instead."
+        deprecated: "Replaced by `db.client.connections.state`."
+        examples: ["idle"]
+      - id: pool.name
+        type: string
+        stability: experimental
+        brief: "Deprecated, use `db.client.connections.pool.name` instead."
+        deprecated: "Replaced by `db.client.connections.pool.name`."
+        examples: ["myDataSource"]

@@ -18,7 +18,7 @@
 
 ## Generic Messaging Attributes
 
-<!-- semconv registry.messaging(omit_requirement_level,tag=messaging-generic) -->
+<!-- semconv registry.messaging(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `messaging.batch.message_count` | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -84,15 +84,18 @@ size should be used.
 
 ## GCP Pub/Sub Attributes
 
-<!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-gcp-pubsub) -->
+<!-- semconv registry.messaging.gcp_pubsub(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
+| `messaging.gcp_pubsub.message.ack_deadline` | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.gcp_pubsub.message.ack_id` | string | The ack id for a given message. | `ack_id` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.gcp_pubsub.message.delivery_attempt` | int | The delivery attempt for a given message. | `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.gcp_pubsub.message.ordering_key` | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Kafka Attributes
 
-<!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-kafka) -->
+<!-- semconv registry.messaging.kafka(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `messaging.kafka.consumer.group` | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -105,7 +108,7 @@ size should be used.
 
 ## RabbitMQ Attributes
 
-<!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-rabbitmq) -->
+<!-- semconv registry.messaging.rabbitmq(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -114,7 +117,7 @@ size should be used.
 
 ## RocketMQ Attributes
 
-<!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-rocketmq) -->
+<!-- semconv registry.messaging.rocketmq(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `messaging.rocketmq.client_group` | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -146,7 +149,7 @@ size should be used.
 
 ## Azure Event Hubs Attributes
 
-<!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-eventhubs) -->
+<!-- semconv registry.messaging.eventhubs(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `messaging.eventhubs.consumer.group` | string | The name of the consumer group the event consumer is associated with. | `indexer` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -155,7 +158,7 @@ size should be used.
 
 ## Azure Service Bus Attributes
 
-<!-- semconv registry.messaging(omit_requirement_level,tag=tech-specific-servicebus) -->
+<!-- semconv registry.messaging.servicebus(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `messaging.servicebus.destination.subscription_name` | string | The name of the subscription in the topic messages are received from. | `mySubscription` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -175,7 +178,7 @@ size should be used.
 
 ## Deprecated Messaging Attributes
 
-<!-- semconv registry.messaging.deprecated(omit_requirement_level) -->
+<!-- semconv registry.messaging.deprecated(omit_requirement_level,full) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `messaging.kafka.destination.partition` | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
