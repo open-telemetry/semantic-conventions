@@ -11,8 +11,6 @@ groups:
     brief: >
         This document defines attributes that are used to map Span Events to Events.
     attributes:
-      - ref: event.name
-        requirement_level: required
       - ref: event.data
         requirement_level:
           conditionally_required: If and only if the event has a body and is reported as a Span Event.
