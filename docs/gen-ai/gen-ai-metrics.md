@@ -17,7 +17,7 @@ and attributes but more may be added in the future.
 <!-- toc -->
 
 - [Generative AI Operations](#generative-ai-operations)
-  - [Metric: `gen_ai.tokens.usage`](#metric-gen_aitokensusage)
+  - [Metric: `gen_ai.token.usage`](#metric-gen_aitokenusage)
   - [Metric: `gen_ai.operation.duration`](#metric-gen_aioperationduration)
 
 <!-- tocstop -->
@@ -28,21 +28,21 @@ The following metric instruments describe Generative AI operations. An
 operation may be a request to an LLM, a function call, or some other
 distinct action within a larger Generative AI workflow.
 
-### Metric: `gen_ai.tokens.usage`
+### Metric: `gen_ai.token.usage`
 
 This metric is [required][MetricRequired] when an operation involves the usage
 of tokens.
 
-<!-- semconv metric.gen_ai.tokens.usage(metric_table) -->
+<!-- semconv metric.gen_ai.token.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `gen_ai.tokens.usage` | Histogram | `{token}` | LLM usage attributes | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.token.usage` | Histogram | `{token}` | Measures number of input and output tokens used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.gen_ai.tokens.usage(full) -->
+<!-- semconv metric.gen_ai.token.usage(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.operation.name`](../attributes-registry/llm.md) | string | The name of the operation being performed. | `generate` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.operation.name`](../attributes-registry/llm.md) | string | The name of the operation being performed. | `chat`; `completion` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.system`](../attributes-registry/llm.md) | string | The name of the LLM foundation model vendor. | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.usage.token_type`](../attributes-registry/llm.md) | string | The type of token being counted. | `prompt`; `completion` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -109,7 +109,7 @@ This metric is [required][MetricRequired].
 <!-- semconv metric.gen_ai.operation.duration(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.operation.name`](../attributes-registry/llm.md) | string | The name of the operation being performed. | `generate` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.operation.name`](../attributes-registry/llm.md) | string | The name of the operation being performed. | `chat`; `completion` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.system`](../attributes-registry/llm.md) | string | The name of the LLM foundation model vendor. | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](../attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](../attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

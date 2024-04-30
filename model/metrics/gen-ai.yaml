@@ -18,10 +18,10 @@ groups:
         requirement_level: required
       - ref: gen_ai.operation.name
         requirement_level: required
-  - id: metric.gen_ai.tokens.usage
+  - id: metric.gen_ai.token.usage
     type: metric
-    metric_name: gen_ai.tokens.usage
-    brief: 'LLM usage attributes'
+    metric_name: gen_ai.token.usage
+    brief: 'Measures number of input and output tokens used'
     instrument: histogram
     unit: "{token}"
     stability: experimental
