@@ -4,8 +4,6 @@ groups:
     type: attribute_group
     brief: This group defines the attributes used to perform database client calls.
     attributes:
-      - ref: db.system
-        requirement_level: required
       - ref: db.query.text
         requirement_level:
           recommended: >
@@ -21,40 +19,9 @@ groups:
           to observability of capturing the static part of the query text by default outweighs the risk.
       - ref: db.query.parameter
         requirement_level: opt_in
-      - ref: db.operation.name
-        requirement_level:
-          conditionally_required: >
-            If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
-            `db.operation.name`, then it SHOULD be the first operation name found in the query.
-      - ref: server.address
-        brief: >
-          Name of the database host.
-      - ref: server.port
-        requirement_level:
-          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
       - ref: db.instance.id
         requirement_level:
           recommended: If different from the `server.address`
-      - ref: db.collection.name
-        requirement_level:
-          conditionally_required: >
-            If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
-            `db.collection.name`, then it SHOULD be the first collection name found in the query.
-      - ref: db.namespace
-        requirement_level:
-          conditionally_required: If available.
-      - ref: network.peer.address
-        brief: Peer address of the database node where the operation was performed.
-        requirement_level:
-          recommended: If applicable for this database system.
-        note: >
-          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
-          Network peer address and port are useful when the application interacts with individual database nodes directly.
-
-          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
-      - ref: network.peer.port
-        requirement_level:
-          recommended: if and only if `network.peer.address` is set.
 
   - id: db.tech_specific.network.attributes
     type: attribute_group
