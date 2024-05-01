@@ -14,7 +14,7 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
 SEMCONVGEN_VERSION=0.24.0
-WEAVER_VERSION=0.1.0
+WEAVER_VERSION=latest
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all

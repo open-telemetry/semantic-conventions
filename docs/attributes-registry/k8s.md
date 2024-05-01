@@ -67,8 +67,8 @@ conflict.
 
 Describes deprecated k8s attributes.
 
-| Attribute              | Type   | Description                                  | Examples                   | Stability                                                   |
-| ---------------------- | ------ | -------------------------------------------- | -------------------------- | ----------------------------------------------------------- |
-| `k8s.pod.labels.<key>` | string | Deprecated, use `k8s.pod.label` instead. [2] | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| Attribute              | Type   | Description                                  | Examples                   | Stability                                                                                   |
+| ---------------------- | ------ | -------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------- |
+| `k8s.pod.labels.<key>` | string | Deprecated, use `k8s.pod.label` instead. [2] | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. |
 
 **[2]:** Replaced by `k8s.pod.label`.

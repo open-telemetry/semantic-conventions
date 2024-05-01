@@ -48,8 +48,8 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 Describes deprecated container attributes.
 
-| Attribute                | Type   | Description                                    | Examples                    | Stability                                                   |
-| ------------------------ | ------ | ---------------------------------------------- | --------------------------- | ----------------------------------------------------------- |
-| `container.labels.<key>` | string | Deprecated, use `container.label` instead. [4] | `container.label.app=nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| Attribute                | Type   | Description                                    | Examples                    | Stability                                                                                     |
+| ------------------------ | ------ | ---------------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------- |
+| `container.labels.<key>` | string | Deprecated, use `container.label` instead. [4] | `container.label.app=nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. |
 
 **[4]:** Replaced by `container.label`.

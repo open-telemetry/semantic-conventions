@@ -48,9 +48,9 @@ Describes System CPU attributes
 
 Deprecated system attributes.
 
-| Attribute                 | Type   | Description                                          | Examples                         | Stability                                                   |
-| ------------------------- | ------ | ---------------------------------------------------- | -------------------------------- | ----------------------------------------------------------- |
-| `system.processes.status` | string | Deprecated, use `system.process.status` instead. [1] | `running`; `sleeping`; `stopped` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| Attribute                 | Type   | Description                                          | Examples                         | Stability                                                                                           |
+| ------------------------- | ------ | ---------------------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `system.processes.status` | string | Deprecated, use `system.process.status` instead. [1] | `running`; `sleeping`; `stopped` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
 
 **[1]:** Replaced by `system.process.status`.
 
@@ -103,13 +103,13 @@ Describes System Memory attributes
 
 `system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value     | Description | Stability                                                        |
-| --------- | ----------- | ---------------------------------------------------------------- |
-| `used`    | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `free`    | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `buffers` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cached`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value     | Description | Stability                                                                                                                                    |
+| --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `used`    | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
+| `free`    | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
+| `shared`  | none        | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
+| `buffers` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
+| `cached`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
 
 ## System Network Attributes
 

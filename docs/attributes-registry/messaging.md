@@ -85,10 +85,10 @@ size should be used.
 
 Describes deprecated messaging attributes.
 
-| Attribute                               | Type   | Description                                                       | Examples                       | Stability                                                   |
-| --------------------------------------- | ------ | ----------------------------------------------------------------- | ------------------------------ | ----------------------------------------------------------- |
-| `messaging.kafka.destination.partition` | int    | Deprecated, use `messaging.destination.partition.id` instead. [8] | `2`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
-| `messaging.operation`                   | string | Deprecated, use `messaging.operation.type` instead. [9]           | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) |
+| Attribute                               | Type   | Description                                                       | Examples                       | Stability                                                                                                        |
+| --------------------------------------- | ------ | ----------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `messaging.kafka.destination.partition` | int    | Deprecated, use `messaging.destination.partition.id` instead. [8] | `2`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
+| `messaging.operation`                   | string | Deprecated, use `messaging.operation.type` instead. [9]           | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`.           |
 
 **[8]:** Replaced by `messaging.destination.partition.id`.
 **[9]:** Replaced by `messaging.operation.type`.
