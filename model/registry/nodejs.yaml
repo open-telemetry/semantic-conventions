@@ -1,0 +1,12 @@
+groups:
+  - id: attributes.nodejs.version
+    type: attribute_group
+    brief: "Describes Node.js version attribute."
+    prefix: nodejs
+    attributes:
+      - id: version
+        stability: experimental
+        type: string
+        requirement_level: recommended
+        brief: Node.js version.
+        examples: ["v22.0.0", "v21.7.3"]
