@@ -11,9 +11,6 @@ groups:
           conditionally_required: >
             If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
             `db.collection.name`, then it SHOULD be the first collection name found in the query.
-      - ref: db.instance.id
-        requirement_level:
-          recommended: If different from the `server.address`
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
