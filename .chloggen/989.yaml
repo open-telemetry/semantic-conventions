@@ -4,4 +4,4 @@ component: http
 
 note: List experimental HTTP attributes applicable to HTTP client and server spans.
 
-issues: [988]
+issues: [989]

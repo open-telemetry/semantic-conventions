@@ -17,7 +17,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 - [Name](#name)
 - [Status](#status)
 - [HTTP client](#http-client)
-  - [HTTP Client Experimental Attributes](#http-client-experimental-attributes)
+  - [HTTP client experimental attributes](#http-client-experimental-attributes)
   - [HTTP client span duration](#http-client-span-duration)
   - [HTTP request retries and redirects](#http-request-retries-and-redirects)
 - [HTTP server](#http-server)
@@ -25,8 +25,8 @@ and various HTTP versions like 1.1, 2 and SPDY.
     - [Setting `server.address` and `server.port` attributes](#setting-serveraddress-and-serverport-attributes)
     - [Simple client/server example](#simple-clientserver-example)
     - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
-  - [HTTP Server semantic conventions](#http-server-semantic-conventions)
-  - [HTTP Server Experimental Attributes](#http-server-experimental-attributes)
+  - [HTTP server semantic conventions](#http-server-semantic-conventions)
+  - [HTTP server experimental attributes](#http-server-experimental-attributes)
 - [Examples](#examples)
   - [HTTP client-server example](#http-client-server-example)
   - [HTTP client retries examples](#http-client-retries-examples)
@@ -242,11 +242,11 @@ The following attributes can be important for making sampling decisions and SHOU
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
-### HTTP Client Experimental Attributes
+### HTTP client experimental attributes
 
 **Status**: [Experimental][DocumentStatus]
 
-Instrumentations MAY allow users to enable additional experimental attributes. The following attributes are define for HTTP Client spans
+Instrumentations MAY allow users to enable additional experimental attributes.
 
 <!-- semconv trace.http.client.experimental(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -331,7 +331,7 @@ Application developers MAY overwrite potentially inaccurate values of `server.*`
 [Forwarded#host]: https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host
 [X-Forwarded-Host]: https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host
 
-### HTTP Server semantic conventions
+### HTTP server semantic conventions
 
 This span type represents an inbound HTTP request.
 
@@ -475,11 +475,11 @@ The following attributes can be important for making sampling decisions and SHOU
 
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
 
-### HTTP Server Experimental Attributes
+### HTTP server experimental attributes
 
 **Status**: [Experimental][DocumentStatus]
 
-Instrumentations MAY allow users to enable additional experimental attributes. The following attributes are define for HTTP Server spans
+Instrumentations MAY allow users to enable additional experimental attributes.
 
 <!-- semconv trace.http.server.experimental(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
