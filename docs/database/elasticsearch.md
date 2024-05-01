@@ -69,7 +69,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[8]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[9]:** Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameters, and the benefit to observability of capturing it by default outweighs the risk.
+**[9]:** Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 **[10]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
 
