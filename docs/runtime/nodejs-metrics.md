@@ -40,7 +40,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.nodejs.active_handles.count(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `nodejs.version` | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `nodejs.active_requests.count`
@@ -56,7 +56,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.nodejs.active_requests.count(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `nodejs.version` | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `nodejs.eventloop.lag`
@@ -66,13 +66,25 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.nodejs.eventloop.lag(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `nodejs.eventloop.lag` | Histogram | `s` | Event loop lag. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.eventloop.lag` | Counter | `s` | Event loop lag. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.nodejs.eventloop.lag(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `nodejs.version` | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.eventloop.lag.type`](/docs/attributes-registry/nodejs.md) | string | The type of memory. | `min`; `p90` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`nodejs.eventloop.lag.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `min` | Event loop minimum latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `max` | Event loop maximum latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p50` | Event loop 50 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p90` | Event loop 90 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p99` | Event loop 99 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `avg` | Event loop average lag. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `nodejs.gc.duration`
@@ -82,14 +94,23 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.nodejs.gc.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `nodejs.gc.duration` | Histogram | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.gc.duration` | Counter | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.nodejs.gc.duration(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `nodejs.gc.name` | string | Name of the garbage collector. | `G1 Young Generation`; `G1 Old Generation` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejs.version` | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.gc.type`](/docs/attributes-registry/nodejs.md) | string | The type of garbage collection. | `major`; `minor`; `incremental` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`nodejs.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `major` | Major (Mark Sweep Compact). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `minor` | Minor (Scavenge). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `incremental` | Incremental (Incremental Marking). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `weakcb` | Weak Callbacks (Process Weak Callbacks). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `nodejs.memory.size`
@@ -105,18 +126,18 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.nodejs.memory.size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `nodejs.memory.state` | string | The state of memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejs.memory.type` | string | The type of memory. | `heap`; `external` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejs.version` | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.memory.state`](/docs/attributes-registry/nodejs.md) | string | The state of memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.memory.type`](/docs/attributes-registry/nodejs.md) | string | The type of memory. | `heap`; `external` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`nodejs.memory.state` MUST be one of the following:
+`nodejs.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `total` | Total memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | Used memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`nodejs.memory.type` MUST be one of the following:
+`nodejs.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

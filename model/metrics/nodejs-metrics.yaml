@@ -22,26 +22,78 @@ groups:
     metric_name: nodejs.eventloop.lag
     brief: "Event loop lag."
     extends: attributes.nodejs.version
-    instrument: histogram
+    instrument: counter
     unit: "s"
     stability: experimental
+    prefix: nodejs.eventloop.lag
+    attributes:
+      - id: type
+        stability: experimental
+        type:
+          allow_custom_values: false
+          members:
+            - id: min
+              value: 'min'
+              brief: 'Event loop minimum latency.'
+              stability: experimental
+            - id: max
+              value: 'max'
+              brief: 'Event loop maximum latency.'
+              stability: experimental
+            - id: p50
+              value: 'p50'
+              brief: 'Event loop 50 percentile latency.'
+              stability: experimental
+            - id: p90
+              value: 'p90'
+              brief: 'Event loop 90 percentile latency.'
+              stability: experimental
+            - id: p99
+              value: 'p99'
+              brief: 'Event loop 99 percentile latency.'
+              stability: experimental
+            - id: avg
+              value: avg
+              brief: 'Event loop average lag.'
+              stability: experimental
+        requirement_level: recommended
+        brief: The type of memory.
+        examples: ["min", "p90"]
+
 
   - id: metric.nodejs.gc.duration
     type: metric
     metric_name: nodejs.gc.duration
     brief: "Garbage collection duration."
     extends: attributes.nodejs.version
-    instrument: histogram
+    instrument: counter
     unit: "s"
     stability: experimental
     prefix: nodejs.gc
     attributes:
-      - id: name
+      - id: type
         stability: experimental
-        type: string
         requirement_level: recommended
-        brief: Name of the garbage collector.
-        examples: ["G1 Young Generation", "G1 Old Generation"]
+        brief: The type of garbage collection.
+        type:
+          allow_custom_values: false
+          members:
+            - id: major
+              value: 'major'
+              brief: 'Major (Mark Sweep Compact).'
+              stability: experimental
+            - id: minor
+              value: 'minor'
+              brief: 'Minor (Scavenge).'
+              stability: experimental
+            - id: incremental
+              value: 'incremental'
+              brief: 'Incremental (Incremental Marking).'
+              stability: experimental
+            - id: weakcb
+              value: 'weakcb'
+              brief: 'Weak Callbacks (Process Weak Callbacks).'
+              stability: experimental
 
   - id: metric.nodejs.memory.size
     type: metric
