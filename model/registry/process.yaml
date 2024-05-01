@@ -84,6 +84,16 @@ groups:
           null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based
           executables, this would be the full argv vector passed to `main`.
         examples: ['cmd/otecol', '--config=config.yaml']
+      - id: args_count
+        type: int
+        stability: experimental
+        brief: >
+          Length of the process.command_args array
+        note: >
+          This field can be useful for querying or performing bucket analysis on how many
+          arguments were provided to start a process. More arguments may be an indication
+          of suspicious activity.
+        examples: [4]
       - id: owner
         type: string
         stability: experimental
@@ -147,6 +157,15 @@ groups:
           An additional description about the runtime of the process, for example
           a specific vendor customization of the runtime environment.
         examples: 'Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0'
+      - id: title
+        type: string
+        stability: experimental
+        brief: >
+          Process title
+        note: >
+          The proctitle, some times the same as process name. Can also be different, for
+          example, a browser setting its title to the web page currently opened.
+        examples: ["cat /etc/hostname"]
       - id: creation.time
         type: string
         stability: experimental
@@ -165,8 +184,20 @@ groups:
         brief: >
           The exit code of the process.
         examples: [127]
+      - id: uptime
+        type: int
+        stability: experimental
+        brief: >
+          Seconds the process has been up.
+        examples: [2880]
       - id: interactive
         type: boolean
         stability: experimental
         brief: >
           Whether the process is connected to an interactive shell.
+      - id: working_directory
+        type: string
+        stability: experimental
+        brief: >
+          The working directory of the process.
+        examples: ["/root"]

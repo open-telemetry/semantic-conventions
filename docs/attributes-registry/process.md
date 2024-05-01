@@ -8,6 +8,7 @@
 <!-- semconv registry.process(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
+| `process.args_count` | int | Length of the process.command_args array [1] | `4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.command` | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.command_args` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `[cmd/otecol, --config=config.yaml]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.command_line` | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -29,9 +30,16 @@
 | `process.saved_user.id` | int | The saved user ID (SUID) of the process. | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.saved_user.name` | string | The username of the saved user. | `operator` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.session_leader.pid` | int | The PID of the process's session leader. This is also the session ID (SID) of the process. | `14` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.title` | string | Process title [2] | `cat /etc/hostname` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.uptime` | int | Seconds the process has been up. | `2880` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.user.id` | int | The effective user ID (EUID) of the process. | `1001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.user.name` | string | The username of the effective user of the process. | `root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `process.vpid` | int | Virtual process identifier. [1] | `12` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.vpid` | int | Virtual process identifier. [3] | `12` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.working_directory` | string | The working directory of the process. | `/root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+**[1]:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
+
+**[2]:** The proctitle, some times the same as process name. Can also be different, for example, a browser setting its title to the web page currently opened.
+
+**[3]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 <!-- endsemconv -->
