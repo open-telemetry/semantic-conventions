@@ -19,6 +19,9 @@ and various HTTP versions like 1.1, 2 and SPDY.
 <!-- toc -->
 
 - [Name](#name)
+  - [HTTP server span names](#http-server-span-names)
+  - [HTTP client span names](#http-client-span-names)
+  - [Notes](#notes)
 - [Status](#status)
 - [HTTP client](#http-client)
   - [HTTP client experimental attributes](#http-client-experimental-attributes)
