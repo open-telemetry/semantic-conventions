@@ -265,14 +265,6 @@ groups:
               brief: 'Trino'
               stability: experimental
         stability: experimental
-      - id: instance.id
-        type: string
-        stability: experimental
-        brief: >
-          An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection.
-          This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query.
-          The client may obtain this value in databases like MySQL using queries like `select @@hostname`.
-        examples: 'mysql-e26b99z.example.com'
       - id: client.connections.state
         stability: experimental
         type:
@@ -476,6 +468,12 @@ groups:
         brief: >
           Represents the identifier of an Elasticsearch cluster.
         examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
+      - id: elasticsearch.node.name
+        type: string
+        stability: experimental
+        brief: >
+          Represents the human-readable identifier of the node/instance to which a request was routed.
+        examples: ["instance-0000000001"]
       - id: elasticsearch.path_parts
         type: template[string]
         stability: experimental
