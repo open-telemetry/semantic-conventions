@@ -10,9 +10,6 @@ groups:
             SHOULD be collected by default only if there is sanitization that excludes sensitive information.
       - ref: db.query.parameter
         requirement_level: opt_in
-      - ref: db.instance.id
-        requirement_level:
-          recommended: If different from the `server.address`
 
   - id: db.tech_specific.network.attributes
     type: attribute_group
@@ -210,7 +207,7 @@ groups:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
         tag: tech-specific
-      - ref: db.instance.id
+      - ref: db.elasticsearch.node.name
         requirement_level:
           recommended: >
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
