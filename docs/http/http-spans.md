@@ -4,7 +4,7 @@ linkTitle: Spans
 
 # Semantic Conventions for HTTP Spans
 
-**Status**: [Stable][DocumentStatus]
+**Status**: [Stable][DocumentStatus], Unless otherwise specified.
 
 This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
@@ -17,22 +17,24 @@ and various HTTP versions like 1.1, 2 and SPDY.
 - [Name](#name)
 - [Status](#status)
 - [HTTP client](#http-client)
-  - [HTTP client span duration](#http-client-span-duration)
-  - [HTTP request retries and redirects](#http-request-retries-and-redirects)
+  * [HTTP Client Experimental Attributes](#http-client-experimental-attributes)
+  * [HTTP client span duration](#http-client-span-duration)
+  * [HTTP request retries and redirects](#http-request-retries-and-redirects)
 - [HTTP server](#http-server)
-  - [HTTP server definitions](#http-server-definitions)
-    - [Setting `server.address` and `server.port` attributes](#setting-serveraddress-and-serverport-attributes)
-    - [Simple client/server example](#simple-clientserver-example)
-    - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
-  - [HTTP Server semantic conventions](#http-server-semantic-conventions)
+  * [HTTP server definitions](#http-server-definitions)
+    + [Setting `server.address` and `server.port` attributes](#setting-serveraddress-and-serverport-attributes)
+    + [Simple client/server example](#simple-clientserver-example)
+    + [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
+  * [HTTP Server semantic conventions](#http-server-semantic-conventions)
+  * [HTTP Server Experimental Attributes](#http-server-experimental-attributes)
 - [Examples](#examples)
-  - [HTTP client-server example](#http-client-server-example)
-  - [HTTP client retries examples](#http-client-retries-examples)
-  - [HTTP client authorization retry examples](#http-client-authorization-retry-examples)
-  - [HTTP client redirects examples](#http-client-redirects-examples)
-  - [HTTP client call: DNS error](#http-client-call-dns-error)
-  - [HTTP client call: Internal Server Error](#http-client-call-internal-server-error)
-  - [HTTP server call: connection dropped before response body was sent](#http-server-call-connection-dropped-before-response-body-was-sent)
+  * [HTTP client-server example](#http-client-server-example)
+  * [HTTP client retries examples](#http-client-retries-examples)
+  * [HTTP client authorization retry examples](#http-client-authorization-retry-examples)
+  * [HTTP client redirects examples](#http-client-redirects-examples)
+  * [HTTP client call: DNS error](#http-client-call-dns-error)
+  * [HTTP client call: Internal Server Error](#http-client-call-internal-server-error)
+  * [HTTP server call: connection dropped before response body was sent](#http-server-call-connection-dropped-before-response-body-was-sent)
 
 <!-- tocstop -->
 
@@ -238,6 +240,21 @@ The following attributes can be important for making sampling decisions and SHOU
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+<!-- endsemconv -->
+
+### HTTP Client Experimental Attributes
+
+**Status**: [Experimental][DocumentStatus]
+
+Instrumentations MAY allow users to enable additional experimental attributes. The following attributes are define for HTTP Client spans
+
+<!-- semconv trace.http.client.experimental(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`http.request.body.size`](../attributes-registry/http.md) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.request.size`](../attributes-registry/http.md) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.response.body.size`](../attributes-registry/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.response.size`](../attributes-registry/http.md) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### HTTP client span duration
@@ -457,6 +474,21 @@ The following attributes can be important for making sampling decisions and SHOU
 <!-- endsemconv -->
 
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
+
+### HTTP Server Experimental Attributes
+
+**Status**: [Experimental][DocumentStatus]
+
+Instrumentations MAY allow users to enable additional experimental attributes. The following attributes are define for HTTP Server spans
+
+<!-- semconv trace.http.server.experimental(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`http.request.body.size`](../attributes-registry/http.md) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.request.size`](../attributes-registry/http.md) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.response.body.size`](../attributes-registry/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.response.size`](../attributes-registry/http.md) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
 
 ## Examples
 
