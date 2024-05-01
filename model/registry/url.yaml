@@ -110,7 +110,7 @@ groups:
         stability: experimental
         brief: >
           The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
-        examples: ["/users/{id}", "/users?id={id}"]
+        examples: ["/users/{id}", "/users/:id", "/users?id={id}"]
       - id: top_level_domain
         type: string
         stability: experimental
