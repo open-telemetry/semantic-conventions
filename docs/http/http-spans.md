@@ -4,7 +4,11 @@ linkTitle: Spans
 
 # Semantic Conventions for HTTP Spans
 
+<<<<<<< HEAD
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
+=======
+**Status**: [Stable][DocumentStatus], Unless otherwise specified
+>>>>>>> ea8003c (marking semantic conventions for spans as stable unless otherwise specified)
 
 This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
@@ -70,18 +74,25 @@ HTTP spans MUST follow the overall [guidelines for span names](https://github.co
 
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
+
+### HTTP server span names
+
 HTTP server span names SHOULD be `{method} {http.route}` if there is a
 (low-cardinality) `http.route` available (see below for the exact definition of the [`{method}`](#method-placeholder) placeholder).
 
 If there is no (low-cardinality) `http.route` available, HTTP server span names
 SHOULD be [`{method}`](#method-placeholder).
 
-HTTP client span names SHOULD be `{method} {url.template}` if there is a
-(low-cardinality) `url.template` available (see below for the exact definition of the [`{method}`](#method-placeholder) placeholder).
+### HTTP client span names
 
-If there is no (low-cardinality) `url.template` available, HTTP client span names
+HTTP client span names SHOULD be `{method} {url.template}` if there is a
+(low-cardinality, experimental) `url.template` available (see below for the exact definition of the [`{method}`](#method-placeholder) placeholder).
+
+If there is no (low-cardinality, experimental) `url.template` available, HTTP client span names
 SHOULD be [`{method}`](#method-placeholder).
 <!-- markdown-link-check-enable -->
+
+### Notes
 
 The <span id="method-placeholder">`{method}`</span> MUST be `{http.request.method}` if the method represents the original method known to the instrumentation.
 In other cases (when `{http.request.method}` is set to `_OTHER`), `{method}` MUST be `HTTP`.
@@ -144,7 +155,7 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 | `http.response.header.<key>` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [12] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [13] | `tcp`; `udp` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `url.template` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2) associated with outgoing HTTP request. [14] | `/users/{id}`; `/users?id={id}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `url.template` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2) associated with outgoing HTTP request. [14] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user_agent.original` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
