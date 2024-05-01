@@ -80,17 +80,6 @@ groups:
     unit: "By"
     stability: experimental
 
-  - id: metric.go.memory.gc.user_goal
-    type: metric
-    metric_name: go.memory.gc.user_goal
-    brief: "Heap size target ratio for the end of the GC cycle, as configured by the user."
-    instrument: updowncounter
-    unit: "1"
-    note: >
-      The value range is [0.0,1.0].
-      Computed from `/gc/gogc:percent`.
-    stability: experimental
-
   - id: metric.go.goroutine.count
     type: metric
     metric_name: go.goroutine.count
@@ -119,4 +108,15 @@ groups:
       Computed from `/sched/latencies:seconds`.
     instrument: histogram
     unit: "s"
+    stability: experimental
+
+  - id: metric.go.config.gogc
+    type: metric
+    metric_name: go.config.gogc
+    brief: "Heap size target percentage configured by the user, otherwise 100."
+    note: >
+      The value range is [0.0,100.0].
+      Computed from `/gc/gogc:percent`.
+    instrument: updowncounter
+    unit: "%"
     stability: experimental

@@ -21,13 +21,14 @@ These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package
   - [Metric: `go.memory.allocations`](#metric-gomemoryallocations)
 - [Go Garbage Collection](#go-garbage-collection)
   - [Metric: `go.memory.gc.goal`](#metric-gomemorygcgoal)
-  - [Metric: `go.memory.gc.user_goal`](#metric-gomemorygcuser_goal)
 - [Go Goroutines](#go-goroutines)
   - [Metric: `go.goroutine.count`](#metric-gogoroutinecount)
 - [Go Threads](#go-threads)
   - [Metric: `go.thread.limit`](#metric-gothreadlimit)
 - [Go Scheduler](#go-scheduler)
   - [Metric: `go.schedule.duration`](#metric-goscheduleduration)
+- [Go Runtime Configuration](#go-runtime-configuration)
+  - [Metric: `go.config.gogc`](#metric-goconfiggogc)
 
 <!-- tocstop -->
 
@@ -141,21 +142,6 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.go.memory.gc.goal(full) -->
 <!-- endsemconv -->
 
-### Metric: `go.memory.gc.user_goal`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.go.memory.gc.user_goal(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.gc.user_goal` | UpDownCounter | `1` | Heap size target ratio for the end of the GC cycle, as configured by the user. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[1]:** The value range is [0.0,1.0]. Computed from `/gc/gogc:percent`.
-<!-- endsemconv -->
-
-<!-- semconv metric.go.memory.gc.user_goal(full) -->
-<!-- endsemconv -->
-
 ## Go Goroutines
 
 **Description:** Go metrics captured under the namespace `go.goroutine.*`
@@ -211,6 +197,25 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 
 <!-- semconv metric.go.schedule.duration(full) -->
+<!-- endsemconv -->
+
+## Go Runtime Configuration
+
+**Description:** Go metrics captured under the namespace `go.config.*`
+
+### Metric: `go.config.gogc`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.go.config.gogc(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `go.config.gogc` | UpDownCounter | `%` | Heap size target percentage configured by the user, otherwise 100. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The value range is [0.0,100.0]. Computed from `/gc/gogc:percent`.
+<!-- endsemconv -->
+
+<!-- semconv metric.go.config.gogc(full) -->
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
