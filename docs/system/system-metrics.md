@@ -30,6 +30,7 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
 - [Memory Metrics](#memory-metrics)
   - [Metric: `system.memory.usage`](#metric-systemmemoryusage)
   - [Metric: `system.memory.limit`](#metric-systemmemorylimit)
+  - [Metric: `system.memory.shared`](#metric-systemmemoryshared)
   - [Metric: `system.memory.utilization`](#metric-systemmemoryutilization)
 - [Paging/Swap Metrics](#pagingswap-metrics)
   - [Metric: `system.paging.usage`](#metric-systempagingusage)
@@ -202,7 +203,7 @@ available on the system, that is `system.memory.limit`.
 |---|---|---|
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` | shared | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
@@ -220,6 +221,22 @@ This metric is [opt-in][MetricOptIn].
 <!-- endsemconv -->
 
 <!-- semconv metric.system.memory.limit(full) -->
+<!-- endsemconv -->
+
+### Metric: `system.memory.shared`
+
+This metric is [opt-in][MetricOptIn].
+
+<!-- semconv metric.system.memory.shared(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `system.memory.shared` | UpDownCounter | `By` | Shared memory used (mostly by tmpfs). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+`Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
+<!-- endsemconv -->
+
+<!-- semconv metric.system.memory.shared(full) -->
 <!-- endsemconv -->
 
 ### Metric: `system.memory.utilization`
@@ -243,7 +260,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` | shared | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->

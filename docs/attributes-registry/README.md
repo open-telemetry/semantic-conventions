@@ -54,6 +54,7 @@ Currently, the following namespaces exist:
 * [Host](host.md)
 * [HTTP](http.md)
 * [iOS](ios.md)
+* [JVM](jvm.md)
 * [K8s](k8s.md)
 * [Log](log.md)
 * [Network](network.md)
