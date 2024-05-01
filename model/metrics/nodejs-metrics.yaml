@@ -3,137 +3,64 @@ groups:
     type: metric
     metric_name: nodejs.active_handles.count
     brief: "Number of active handles."
-    extends: attributes.nodejs.version
     instrument: updowncounter
     unit: "{handles}"
     stability: experimental
+    attributes:
+      - ref: nodejs.version
+        requirement_level: recommended
 
   - id: metric.nodejs.active_requests.count
     type: metric
     metric_name: nodejs.active_requests.count
     brief: "Number of active requests."
-    extends: attributes.nodejs.version
     instrument: updowncounter
     unit: "{requests}"
     stability: experimental
+    attributes:
+      - ref: nodejs.version
+        requirement_level: recommended
 
   - id: metric.nodejs.eventloop.lag
     type: metric
     metric_name: nodejs.eventloop.lag
     brief: "Event loop lag."
-    extends: attributes.nodejs.version
     instrument: counter
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.lag
     attributes:
-      - id: type
-        stability: experimental
-        type:
-          allow_custom_values: false
-          members:
-            - id: min
-              value: 'min'
-              brief: 'Event loop minimum latency.'
-              stability: experimental
-            - id: max
-              value: 'max'
-              brief: 'Event loop maximum latency.'
-              stability: experimental
-            - id: p50
-              value: 'p50'
-              brief: 'Event loop 50 percentile latency.'
-              stability: experimental
-            - id: p90
-              value: 'p90'
-              brief: 'Event loop 90 percentile latency.'
-              stability: experimental
-            - id: p99
-              value: 'p99'
-              brief: 'Event loop 99 percentile latency.'
-              stability: experimental
-            - id: avg
-              value: avg
-              brief: 'Event loop average lag.'
-              stability: experimental
+      - ref: nodejs.version
         requirement_level: recommended
-        brief: The type of memory.
-        examples: ["min", "p90"]
-
+      - ref: nodejs.eventloop.lag.type
+        requirement_level: recommended
 
   - id: metric.nodejs.gc.duration
     type: metric
     metric_name: nodejs.gc.duration
     brief: "Garbage collection duration."
-    extends: attributes.nodejs.version
     instrument: counter
     unit: "s"
     stability: experimental
     prefix: nodejs.gc
     attributes:
-      - id: type
-        stability: experimental
+      - ref: nodejs.version
         requirement_level: recommended
-        brief: The type of garbage collection.
-        type:
-          allow_custom_values: false
-          members:
-            - id: major
-              value: 'major'
-              brief: 'Major (Mark Sweep Compact).'
-              stability: experimental
-            - id: minor
-              value: 'minor'
-              brief: 'Minor (Scavenge).'
-              stability: experimental
-            - id: incremental
-              value: 'incremental'
-              brief: 'Incremental (Incremental Marking).'
-              stability: experimental
-            - id: weakcb
-              value: 'weakcb'
-              brief: 'Weak Callbacks (Process Weak Callbacks).'
-              stability: experimental
+      - ref: nodejs.gc.type
+        requirement_level: recommended
 
   - id: metric.nodejs.memory.size
     type: metric
     metric_name: nodejs.memory.size
     brief: "Memory size."
-    extends: attributes.nodejs.version
     instrument: updowncounter
     unit: "By"
     stability: experimental
     prefix: nodejs.memory
     attributes:
-      - id: type
-        stability: experimental
-        type:
-          allow_custom_values: false
-          members:
-            - id: heap
-              value: 'heap'
-              brief: 'Heap memory.'
-              stability: experimental
-            - id: external
-              value: 'external'
-              brief: 'External memory'
-              stability: experimental
+      - ref: nodejs.version
         requirement_level: recommended
-        brief: The type of memory.
-        examples: ["heap", "external"]
-      - id: state
-        stability: experimental
-        type:
-          allow_custom_values: false
-          members:
-            - id: total
-              value: 'total'
-              brief: 'Total memory.'
-              stability: experimental
-            - id: used
-              value: 'used'
-              brief: 'Used memory'
-              stability: experimental
+      - ref: nodejs.memory.type
         requirement_level: recommended
-        brief: The state of memory.
-        examples: ["total", "used"]
+      - ref: nodejs.memory.state
+        requirement_level: recommended

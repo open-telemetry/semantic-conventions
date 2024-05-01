@@ -81,10 +81,10 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `min` | Event loop minimum latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `max` | Event loop maximum latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `avg` | Event loop average latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `p50` | Event loop 50 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `p90` | Event loop 90 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `p99` | Event loop 99 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `avg` | Event loop average lag. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `nodejs.gc.duration`
