@@ -50,7 +50,7 @@ groups:
       - id: operation.name
         stability: experimental
         type: string
-        brief: The name of the LLM operation request is being made.
+        brief: The name of the LLM operation request being made.
         examples: ['chat.completions','embeddings','speech.generations','audio.transcriptions','audio.translations','image.generations']
         tag: llm-generic-response  
       - id: response.model

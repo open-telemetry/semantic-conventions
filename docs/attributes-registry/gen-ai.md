@@ -24,6 +24,7 @@ This document defines the attributes used to describe telemetry in the context o
 | `gen_ai.system`                  | string   | The name of the LLM foundation model vendor.                                                     | `openai`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.usage.completion_tokens` | int      | The number of tokens used in the LLM response (completion).                                      | `180`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.usage.prompt_tokens`     | int      | The number of tokens used in the LLM prompt.                                                     | `100`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.operation.name` | string | The name of the LLM operation request being made. [1] | `chat.completions`;`embeddings`;`speech.generations`;`audio.transcriptions`;`audio.translations`;`image.generations` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 **[2]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
