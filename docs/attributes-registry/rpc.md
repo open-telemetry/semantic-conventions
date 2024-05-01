@@ -110,17 +110,12 @@ This document defines attributes for remote procedure calls.
 
 Deprecated rpc message attributes.
 
-| Attribute                   | Type   | Description                                                   | Examples           | Stability                                                                                                   |
-| --------------------------- | ------ | ------------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------- |
-| `message.compressed_size`   | int    | Deprecated, use `rpc.message.compressed_size` instead. [8]    |                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.compressed_size`.   |
-| `message.id`                | int    | Deprecated, use `rpc.message.id` instead. [9]                 |                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`.                |
-| `message.type`              | string | Deprecated, use `rpc.message.type` instead. [10]              | `SENT`; `RECEIVED` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`.              |
-| `message.uncompressed_size` | int    | Deprecated, use `rpc.message.uncompressed_size` instead. [11] |                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. |
-
-**[8]:** Replaced by `rpc.message.compressed_size`.
-**[9]:** Replaced by `rpc.message.id`.
-**[10]:** Replaced by `rpc.message.type`.
-**[11]:** Replaced by `rpc.message.uncompressed_size`.
+| Attribute                   | Type   | Description                                              | Examples           | Stability                                                                                                   |
+| --------------------------- | ------ | -------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `message.compressed_size`   | int    | Deprecated, use `rpc.message.compressed_size` instead.   |                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.compressed_size`.   |
+| `message.id`                | int    | Deprecated, use `rpc.message.id` instead.                |                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`.                |
+| `message.type`              | string | Deprecated, use `rpc.message.type` instead.              | `SENT`; `RECEIVED` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`.              |
+| `message.uncompressed_size` | int    | Deprecated, use `rpc.message.uncompressed_size` instead. |                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. |
 
 `message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

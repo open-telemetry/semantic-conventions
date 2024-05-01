@@ -48,11 +48,9 @@ Describes System CPU attributes
 
 Deprecated system attributes.
 
-| Attribute                 | Type   | Description                                          | Examples                         | Stability                                                                                           |
-| ------------------------- | ------ | ---------------------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `system.processes.status` | string | Deprecated, use `system.process.status` instead. [1] | `running`; `sleeping`; `stopped` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
-
-**[1]:** Replaced by `system.process.status`.
+| Attribute                 | Type   | Description                                      | Examples                         | Stability                                                                                           |
+| ------------------------- | ------ | ------------------------------------------------ | -------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running`; `sleeping`; `stopped` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
 
 `system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

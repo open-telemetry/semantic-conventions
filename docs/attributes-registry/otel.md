@@ -32,11 +32,8 @@ Describes deprecated otel.library attributes.
 
 | Attribute              | Type   | Description | Examples                           | Stability                                                                                              |
 | ---------------------- | ------ | ----------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `otel.library.name`    | string | [1]         | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.name` attribute.    |
-| `otel.library.version` | string | [2]         | `1.0.0`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.version` attribute. |
-
-**[1]:** use the `otel.scope.name` attribute.
-**[2]:** use the `otel.scope.version` attribute.
+| `otel.library.name`    | string |             | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.name` attribute.    |
+| `otel.library.version` | string |             | `1.0.0`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.version` attribute. |
 
 ## Otel Scope Attributes
 

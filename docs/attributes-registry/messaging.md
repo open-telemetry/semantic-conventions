@@ -85,13 +85,10 @@ size should be used.
 
 Describes deprecated messaging attributes.
 
-| Attribute                               | Type   | Description                                                       | Examples                       | Stability                                                                                                        |
-| --------------------------------------- | ------ | ----------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| `messaging.kafka.destination.partition` | int    | Deprecated, use `messaging.destination.partition.id` instead. [8] | `2`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
-| `messaging.operation`                   | string | Deprecated, use `messaging.operation.type` instead. [9]           | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`.           |
-
-**[8]:** Replaced by `messaging.destination.partition.id`.
-**[9]:** Replaced by `messaging.operation.type`.
+| Attribute                               | Type   | Description                                                   | Examples                       | Stability                                                                                                        |
+| --------------------------------------- | ------ | ------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `messaging.kafka.destination.partition` | int    | Deprecated, use `messaging.destination.partition.id` instead. | `2`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
+| `messaging.operation`                   | string | Deprecated, use `messaging.operation.type` instead.           | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`.           |
 
 ## Messaging Eventhubs Attributes
 
@@ -117,14 +114,14 @@ This group describes attributes specific to GCP Pub/Sub.
 
 This group describes attributes specific to Apache Kafka.
 
-| Attribute                           | Type    | Description                                                                                                                                                                                                                                 | Examples   | Stability                                                        |
-| ----------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------- |
-| `messaging.kafka.consumer.group`    | string  | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers.                                                                                                                                    | `my-group` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.kafka.message.key`       | string  | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.kafka.message.offset`    | int     | The offset of a record in the corresponding Kafka partition.                                                                                                                                                                                | `42`       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.kafka.message.tombstone` | boolean | A boolean that is true if the message is a tombstone.                                                                                                                                                                                       |            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                           | Type    | Description                                                                                                                                                                                                                                | Examples   | Stability                                                        |
+| ----------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | ---------------------------------------------------------------- |
+| `messaging.kafka.consumer.group`    | string  | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers.                                                                                                                                   | `my-group` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.kafka.message.key`       | string  | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [8] | `myKey`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.kafka.message.offset`    | int     | The offset of a record in the corresponding Kafka partition.                                                                                                                                                                               | `42`       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.kafka.message.tombstone` | boolean | A boolean that is true if the message is a tombstone.                                                                                                                                                                                      |            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[10]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[8]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
 ## Messaging Rabbitmq Attributes
 

@@ -105,35 +105,21 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 These attributes may be used for any network related operation.
 
-| Attribute              | Type   | Description                                                                                | Examples                   | Stability                                                                                                                                         |
-| ---------------------- | ------ | ------------------------------------------------------------------------------------------ | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `net.host.name`        | string | Deprecated, use `server.address`. [5]                                                      | `example.com`              | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`.                                                      |
-| `net.host.port`        | int    | Deprecated, use `server.port`. [6]                                                         | `8080`                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.port`.                                                         |
-| `net.peer.name`        | string | Deprecated, use `server.address` on client spans and `client.address` on server spans. [7] | `example.com`              | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` on client spans and `client.address` on server spans. |
-| `net.peer.port`        | int    | Deprecated, use `server.port` on client spans and `client.port` on server spans. [8]       | `8080`                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.port` on client spans and `client.port` on server spans.       |
-| `net.protocol.name`    | string | Deprecated, use `network.protocol.name`. [9]                                               | `amqp`; `http`; `mqtt`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.protocol.name`.                                               |
-| `net.protocol.version` | string | Deprecated, use `network.protocol.version`. [10]                                           | `3.1.1`                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.protocol.version`.                                            |
-| `net.sock.family`      | string | Deprecated, use `network.transport` and `network.type`. [11]                               | `inet`; `inet6`; `unix`    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split to `network.transport` and `network.type`.                                   |
-| `net.sock.host.addr`   | string | Deprecated, use `network.local.address`. [12]                                              | `/var/my.sock`             | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.address`.                                               |
-| `net.sock.host.port`   | int    | Deprecated, use `network.local.port`. [13]                                                 | `8080`                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.port`.                                                  |
-| `net.sock.peer.addr`   | string | Deprecated, use `network.peer.address`. [14]                                               | `192.168.0.1`              | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.address`.                                                |
-| `net.sock.peer.name`   | string | Deprecated, no replacement at this time. [15]                                              | `/var/my.sock`             | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed.                                                                           |
-| `net.sock.peer.port`   | int    | Deprecated, use `network.peer.port`. [16]                                                  | `65531`                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.port`.                                                   |
-| `net.transport`        | string | Deprecated, use `network.transport`. [17]                                                  | `ip_tcp`; `ip_udp`; `pipe` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.transport`.                                                   |
-
-**[5]:** Replaced by `server.address`.
-**[6]:** Replaced by `server.port`.
-**[7]:** Replaced by `server.address` on client spans and `client.address` on server spans.
-**[8]:** Replaced by `server.port` on client spans and `client.port` on server spans.
-**[9]:** Replaced by `network.protocol.name`.
-**[10]:** Replaced by `network.protocol.version`.
-**[11]:** Split to `network.transport` and `network.type`.
-**[12]:** Replaced by `network.local.address`.
-**[13]:** Replaced by `network.local.port`.
-**[14]:** Replaced by `network.peer.address`.
-**[15]:** Removed.
-**[16]:** Replaced by `network.peer.port`.
-**[17]:** Replaced by `network.transport`.
+| Attribute              | Type   | Description                                                                            | Examples                   | Stability                                                                                                                                         |
+| ---------------------- | ------ | -------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `net.host.name`        | string | Deprecated, use `server.address`.                                                      | `example.com`              | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`.                                                      |
+| `net.host.port`        | int    | Deprecated, use `server.port`.                                                         | `8080`                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.port`.                                                         |
+| `net.peer.name`        | string | Deprecated, use `server.address` on client spans and `client.address` on server spans. | `example.com`              | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` on client spans and `client.address` on server spans. |
+| `net.peer.port`        | int    | Deprecated, use `server.port` on client spans and `client.port` on server spans.       | `8080`                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.port` on client spans and `client.port` on server spans.       |
+| `net.protocol.name`    | string | Deprecated, use `network.protocol.name`.                                               | `amqp`; `http`; `mqtt`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.protocol.name`.                                               |
+| `net.protocol.version` | string | Deprecated, use `network.protocol.version`.                                            | `3.1.1`                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.protocol.version`.                                            |
+| `net.sock.family`      | string | Deprecated, use `network.transport` and `network.type`.                                | `inet`; `inet6`; `unix`    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split to `network.transport` and `network.type`.                                   |
+| `net.sock.host.addr`   | string | Deprecated, use `network.local.address`.                                               | `/var/my.sock`             | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.address`.                                               |
+| `net.sock.host.port`   | int    | Deprecated, use `network.local.port`.                                                  | `8080`                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.port`.                                                  |
+| `net.sock.peer.addr`   | string | Deprecated, use `network.peer.address`.                                                | `192.168.0.1`              | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.address`.                                                |
+| `net.sock.peer.name`   | string | Deprecated, no replacement at this time.                                               | `/var/my.sock`             | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed.                                                                           |
+| `net.sock.peer.port`   | int    | Deprecated, use `network.peer.port`.                                                   | `65531`                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.port`.                                                   |
+| `net.transport`        | string | Deprecated, use `network.transport`.                                                   | `ip_tcp`; `ip_udp`; `pipe` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.transport`.                                                   |
 
 `net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
