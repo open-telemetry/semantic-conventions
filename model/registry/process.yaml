@@ -183,7 +183,7 @@ groups:
               stability: experimental
         stability: experimental
       - id: paging.fault_type
-        brief: > 
+        brief: >
           The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor`
           is for minor/soft page faults.
         type:
