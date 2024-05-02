@@ -4,31 +4,11 @@ groups:
     brief: "Describes JVM memory metric attributes."
     prefix: jvm.memory
     attributes:
-      - id: type
-        stability: stable
-        type:
-          allow_custom_values: false
-          members:
-            - id: heap
-              value: 'heap'
-              brief: 'Heap memory.'
-              stability: stable
-            - id: non_heap
-              value: 'non_heap'
-              brief: 'Non-heap memory'
-              stability: stable
+      - ref: jvm.memory.type
         requirement_level: recommended
-        brief: The type of memory.
-        examples: ["heap", "non_heap"]
-      - id: pool.name
-        stability: stable
-        type: string
+      - ref: jvm.memory.pool.name
         requirement_level: recommended
         brief: Name of the memory pool.
-        examples: ["G1 Old Gen", "G1 Eden space", "G1 Survivor Space"]
-        note: >
-          Pool names are generally obtained via
-          [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
   - id: metric.jvm.memory.used
     type: metric
@@ -74,24 +54,10 @@ groups:
     unit: "s"
     prefix: jvm.gc
     attributes:
-      - id: name
-        stability: stable
-        type: string
+      - ref: jvm.gc.name
         requirement_level: recommended
-        brief: Name of the garbage collector.
-        examples: ["G1 Young Generation", "G1 Old Generation"]
-        note: >
-          Garbage collector name is generally obtained via
-          [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
-      - id: action
-        stability: stable
-        type: string
+      - ref: jvm.gc.action
         requirement_level: recommended
-        brief: Name of the garbage collector action.
-        examples: ["end of minor GC", "end of major GC"]
-        note: >
-          Garbage collector action is generally obtained via
-          [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
     stability: stable
 
   - id: metric.jvm.thread.count
@@ -101,43 +67,10 @@ groups:
     instrument: updowncounter
     unit: "{thread}"
     attributes:
-      - id: jvm.thread.daemon
-        stability: stable
-        type: boolean
+      - ref: jvm.thread.daemon
         requirement_level: recommended
-        brief: "Whether the thread is daemon or not."
-      - id: jvm.thread.state
-        stability: stable
+      - ref: jvm.thread.state
         requirement_level: recommended
-        type:
-          allow_custom_values: false
-          members:
-            - id: new
-              value: 'new'
-              brief: 'A thread that has not yet started is in this state.'
-              stability: stable
-            - id: runnable
-              value: 'runnable'
-              brief: 'A thread executing in the Java virtual machine is in this state.'
-              stability: stable
-            - id: blocked
-              value: 'blocked'
-              brief: 'A thread that is blocked waiting for a monitor lock is in this state.'
-              stability: stable
-            - id: waiting
-              value: 'waiting'
-              brief: 'A thread that is waiting indefinitely for another thread to perform a particular action is in this state.'
-              stability: stable
-            - id: timed_waiting
-              value: 'timed_waiting'
-              brief: 'A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.'
-              stability: stable
-            - id: terminated
-              value: 'terminated'
-              brief: 'A thread that has exited is in this state.'
-              stability: stable
-        brief: "State of the thread."
-        examples: ["runnable", "blocked"]
     stability: stable
 
   - id: metric.jvm.class.loaded

@@ -5,15 +5,12 @@ groups:
     attributes:
       - ref: db.namespace
         requirement_level:
-          conditionally_required: If applicable.
+          conditionally_required: If available.
       - ref: db.collection.name
         requirement_level:
           conditionally_required: >
             If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
             `db.collection.name`, then it SHOULD be the first collection name found in the query.
-      - ref: db.instance.id
-        requirement_level:
-          recommended: If different from the `server.address`
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
@@ -39,3 +36,10 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+        note: >
+          The `error.type` SHOULD match the error code returned by the database or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
