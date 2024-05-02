@@ -43,6 +43,6 @@ An operating system process.
 
 **[1]:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2]:** The proctitle, some times the same as process name. Can also be different, for example, a browser setting its title to the web page currently opened.
+**[2]:** The process title (proctitle), sometimes the same as process name. It can also be different, for example, a browser setting its title to the web page currently opened.
 
 **[3]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.

@@ -163,7 +163,7 @@ groups:
         brief: >
           Process title
         note: >
-          The proctitle, some times the same as process name. Can also be different, for
+          The process title (proctitle), sometimes the same as process name. It can also be different, for
           example, a browser setting its title to the web page currently opened.
         examples: ["cat /etc/hostname"]
       - id: creation.time
