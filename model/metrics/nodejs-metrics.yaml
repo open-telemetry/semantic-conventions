@@ -10,10 +10,10 @@ groups:
       - ref: nodejs.version
         requirement_level: recommended
 
-  - id: metric.nodejs.active_requests.count
+  - id: metric.nodejs.active_libuv_requests.count
     type: metric
-    metric_name: nodejs.active_requests.count
-    brief: "Number of active requests."
+    metric_name: nodejs.active_libuv_requests.count
+    brief: "Number of active libuv requests."
     instrument: updowncounter
     unit: "{requests}"
     stability: experimental

@@ -14,7 +14,7 @@ This document describes semantic conventions for Node.js metrics in OpenTelemetr
 
 - [Experimental](#experimental)
   - [Metric: `nodejs.active_handles.count`](#metric-nodejsactive_handlescount)
-  - [Metric: `nodejs.active_requests.count`](#metric-nodejsactive_requestscount)
+  - [Metric: `nodejs.active_libuv_requests.count`](#metric-nodejsactive_libuv_requestscount)
   - [Metric: `nodejs.eventloop.lag`](#metric-nodejseventlooplag)
   - [Metric: `nodejs.gc.duration`](#metric-nodejsgcduration)
   - [Metric: `nodejs.memory.size`](#metric-nodejsmemorysize)
@@ -43,17 +43,17 @@ This metric is [recommended][MetricRecommended].
 | [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `nodejs.active_requests.count`
+### Metric: `nodejs.active_libuv_requests.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.nodejs.active_requests.count(metric_table) -->
+<!-- semconv metric.nodejs.active_libuv_requests.count(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `nodejs.active_requests.count` | UpDownCounter | `{requests}` | Number of active requests. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.active_libuv_requests.count` | UpDownCounter | `{requests}` | Number of active libuv requests. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.nodejs.active_requests.count(full) -->
+<!-- semconv metric.nodejs.active_libuv_requests.count(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
