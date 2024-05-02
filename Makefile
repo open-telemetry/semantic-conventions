@@ -95,10 +95,12 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
 		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
 		--attribute-registry-base-url="/docs/attributes-registry" \
+		--templates=/weaver/templates \
+		--target=markdown \
 		/spec
 
 # Generate attribute registry markdown.

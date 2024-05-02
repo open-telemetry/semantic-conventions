@@ -1,0 +1,11 @@
+{% import 'stability.j2' as stability %}
+{% import 'notes.j2' as notes %}
+{#- Macro for creating attribute table -#}
+{% macro generate(attributes, attribute_registry_base_url) %}| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+{% for attribute in attributes | sort(attribute="name") %}| [{% include "attribute_name.j2" %}]({{attribute_registry_base_url}}/{{ attribute.name | split_id | list | first }}.md) | {% include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }}{{ notes.add(attribute.note) }} | {% include "examples.j2" | trim %} | {{attribute.requirement_level }} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
+{% endfor %}
+
+{{ notes.render() }}
+{{ debug() }}
+{% endmacro %}
