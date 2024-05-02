@@ -38,7 +38,9 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-{% for espec in enum.type.members %}| `{{espec.value}}` | {{espec.brief | trim}} | {{ stability.badge(espec.stability, espec.deprecated) }} |
+{% for espec in enum.type.members %}| `{{espec.value}}` | {{espec.brief | trim}}{{ notes.add(espec.note) }} | {{ stability.badge(espec.stability, espec.deprecated) }} |
+
+{{ notes.render() }}
 {% endfor %}
 {% endif %}
 {%- endfor -%}
