@@ -41,9 +41,9 @@ If Spans following this convention are produced, a Resource of type `faas` MUST 
 <!-- semconv faas_span(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cloud.resource_id`](../attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.invocation_id`](../attributes-registry/faas.md) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [2] | `datasource` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.resource_id`](/docs/attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.invocation_id`](/docs/attributes-registry/faas.md) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [2] | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -73,7 +73,7 @@ trigger that corresponding incoming would have (i.e., this has
 nothing to do with the underlying transport used to make the API
 call to invoke the lambda, which is often HTTP).
 
-`faas.trigger` MUST be one of the following:
+`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -122,8 +122,8 @@ For incoming FaaS spans, the span kind MUST be `Server`.
 <!-- semconv faas_span.in -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.trigger`](../attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [1] | `datasource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.coldstart`](../attributes-registry/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [1] | `datasource`; `http`; `pubsub` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.coldstart`](/docs/attributes-registry/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For the server/consumer span on the incoming side,
 `faas.trigger` MUST be set.
@@ -134,6 +134,16 @@ the event type. If clients set it, it should be the same as the
 trigger that corresponding incoming would have (i.e., this has
 nothing to do with the underlying transport used to make the API
 call to invoke the lambda, which is often HTTP).
+
+`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Resource attributes as incoming FaaS span attributes
@@ -161,9 +171,9 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 <!-- semconv faas_span.out(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.invoked_name`](../attributes-registry/faas.md) | string | The name of the invoked function. [1] | `my-function` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.invoked_provider`](../attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.invoked_region`](../attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.invoked_name`](/docs/attributes-registry/faas.md) | string | The name of the invoked function. [1] | `my-function` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.invoked_provider`](/docs/attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.invoked_region`](/docs/attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
@@ -199,10 +209,10 @@ FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOUL
 <!-- semconv faas_span.datasource(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.document.collection`](../attributes-registry/faas.md) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.document.operation`](../attributes-registry/faas.md) | string | Describes the type of the operation that was performed on the data. | `insert` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.document.name`](../attributes-registry/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.document.time`](../attributes-registry/faas.md) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.document.collection`](/docs/attributes-registry/faas.md) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.document.operation`](/docs/attributes-registry/faas.md) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.document.name`](/docs/attributes-registry/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.document.time`](/docs/attributes-registry/faas.md) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.document.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -232,8 +242,8 @@ A function is scheduled to be executed regularly. The following additional attri
 <!-- semconv faas_span.timer -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.cron`](../attributes-registry/faas.md) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.time`](../attributes-registry/faas.md) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.cron`](/docs/attributes-registry/faas.md) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.time`](/docs/attributes-registry/faas.md) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Other
