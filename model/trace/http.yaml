@@ -25,8 +25,6 @@ groups:
       - ref: url.full
         sampling_relevant: true
         requirement_level: required
-      - ref: url.template
-        requirement_level: opt_in
       - ref: user_agent.original
         requirement_level: opt_in
       - ref: url.scheme
@@ -44,6 +42,7 @@ groups:
     type: attribute_group
     brief: 'Experimental attributes for HTTP Client spans'
     stability: experimental
+    extends: attributes.http.client.experimental
     attributes:
       - ref: http.request.size
         requirement_level: opt_in
