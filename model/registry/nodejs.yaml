@@ -38,7 +38,7 @@ groups:
               value: 'p99'
               brief: 'Event loop 99 percentile latency.'
               stability: experimental
-        brief: The type of memory.
+        brief: The type of the event loop latency.
         examples: ["min", "p90"]
       - id: gc.type
         stability: experimental

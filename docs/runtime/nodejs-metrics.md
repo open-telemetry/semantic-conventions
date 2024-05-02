@@ -66,13 +66,13 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.nodejs.eventloop.lag(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `nodejs.eventloop.lag` | Counter | `s` | Event loop lag. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.eventloop.lag` | Gauge | `s` | Event loop lag. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.nodejs.eventloop.lag(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`nodejs.eventloop.lag.type`](/docs/attributes-registry/nodejs.md) | string | The type of memory. | `min`; `p90` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.eventloop.lag.type`](/docs/attributes-registry/nodejs.md) | string | The type of the event loop latency. | `min`; `p90` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `nodejs.eventloop.lag.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -94,7 +94,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.nodejs.gc.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `nodejs.gc.duration` | Counter | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.gc.duration` | Gauge | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.nodejs.gc.duration(full) -->

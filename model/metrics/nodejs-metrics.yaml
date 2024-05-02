@@ -25,7 +25,7 @@ groups:
     type: metric
     metric_name: nodejs.eventloop.lag
     brief: "Event loop lag."
-    instrument: counter
+    instrument: gauge
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.lag
@@ -39,7 +39,7 @@ groups:
     type: metric
     metric_name: nodejs.gc.duration
     brief: "Garbage collection duration."
-    instrument: counter
+    instrument: gauge
     unit: "s"
     stability: experimental
     prefix: nodejs.gc

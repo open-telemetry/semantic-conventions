@@ -10,13 +10,13 @@
 
 Describes Node.js related attributes.
 
-| Attribute                   | Type   | Description                     | Examples                        | Stability                                                        |
-| --------------------------- | ------ | ------------------------------- | ------------------------------- | ---------------------------------------------------------------- |
-| `nodejs.eventloop.lag.type` | string | The type of memory.             | `min`; `max`; `avg`             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejs.gc.type`            | string | The type of garbage collection. | `major`; `minor`; `incremental` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejs.memory.state`       | string | The state of memory.            | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejs.memory.type`        | string | The type of memory.             | `heap`; `external`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejs.version`            | string | Node.js version.                | `v22.0.0`; `v21.7.3`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                   | Type   | Description                         | Examples                        | Stability                                                        |
+| --------------------------- | ------ | ----------------------------------- | ------------------------------- | ---------------------------------------------------------------- |
+| `nodejs.eventloop.lag.type` | string | The type of the event loop latency. | `min`; `max`; `avg`             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.gc.type`            | string | The type of garbage collection.     | `major`; `minor`; `incremental` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.memory.state`       | string | The state of memory.                | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.memory.type`        | string | The type of memory.                 | `heap`; `external`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.version`            | string | Node.js version.                    | `v22.0.0`; `v21.7.3`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `nodejs.eventloop.lag.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
