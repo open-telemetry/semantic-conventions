@@ -19,11 +19,14 @@
 # {{ ctx.id | title_case | acronym }}
 
 {% if ctx.groups | length > 1 %}{% for group in ctx.groups | sort(attribute="id") %}
-{%- set group_name = group.id | split_id | list | reject("eq", "registry") | join(" ") -%}
-- [{{ group_name | title_case }}](#{{group_name | kebab_case }}-attributes)
+- [{{ group.display_name }}](#{{group.display_name | kebab_case }}-attributes)
 {% endfor %}{% endif %}
 {% for group in ctx.groups | sort(attribute="id") %}
+{% if display_name in group %}
+## {{ group.display_name }}
+{% else %}
 ## {{ group.id | split_id | list | reject("eq", "registry") | join(" ") | title_case | acronym }} Attributes
+{% endif %}
 
 {{ group.brief }}
 
