@@ -15,9 +15,6 @@ and various HTTP versions like 1.1, 2 and SPDY.
 <!-- toc -->
 
 - [Name](#name)
-  - [HTTP server span names](#http-server-span-names)
-  - [HTTP client span names](#http-client-span-names)
-  - [Notes](#notes)
 - [Status](#status)
 - [HTTP client](#http-client)
   - [HTTP client experimental attributes](#http-client-experimental-attributes)
@@ -69,24 +66,24 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 ## Name
 
+**Status**: [Mixed][DocumentStatus]
+
 HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/trace/api.md#span).
 
-HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available
+HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available. If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
 
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
-See below for the exact definition of the [`{method}`](#method-placeholder) and [`{target}`](#target-placeholder) placeholders.
+(see below for the exact definition of the [`{method}`](#method-placeholder) and [`{target}`](#target-placeholder) placeholders).
 <!-- markdown-link-check-enable -->
-
-If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
 
 The <span id="method-placeholder">`{method}`</span> MUST be `{http.request.method}` if the method represents the original method known to the instrumentation.
 In other cases (when `{http.request.method}` is set to `_OTHER`), `{method}` MUST be `HTTP`.
 
 The <span id="target-placeholder">`{target}`</span> SHOULD be one of the following:
 - [`http.route`](/docs/attributes-registry/http.md) for HTTP Server spans
-- Status: [Experimental][DocumentStatus] [`url.template`](/docs/attributes-registry/url.md) if it's available
-- Other value MAY be provided through custom hooks or logic at span start time or after it.
+- [`url.template`](/docs/attributes-registry/url.md) if enabled and available (![Experimental](https://img.shields.io/badge/-experimental-blue))
+- Other value MAY be provided through custom hooks at span start time or later.
 
 Instrumentation MUST NOT default to using URI path as a `{target}`.
 
@@ -144,7 +141,7 @@ For an HTTP client span, `SpanKind` MUST be `Client`.
 | [`http.response.header.<key>`](/docs/attributes-registry/http.md) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [12] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [13] | `tcp`; `udp` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2) associated with outgoing HTTP request. [14] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [14] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`user_agent.original`](/docs/attributes-registry/user-agent.md) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** HTTP request method value SHOULD be "known" to the instrumentation.

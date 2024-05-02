@@ -57,8 +57,6 @@ groups:
         examples: ["http", "https"]
       - ref: url.template
         requirement_level: opt_in
-        brief: >
-            The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2) associated with outgoing HTTP request.
         note: >
           The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
