@@ -1,0 +1,7 @@
+{% import 'stability.j2' as stability %}
+{% import 'notes.j2' as notes %}
+{% macro generate(group) %}| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `{{ group.metric_name }}` | {{ group.instrument }} | `{{ group.unit }}` | {{ group.brief | trim }}{{ notes.add(group.note) }} | {{ stability.badge(group.stability, group.deprecated) | trim }} |
+
+{{ notes.render() }}{% endmacro %}

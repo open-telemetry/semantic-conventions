@@ -1,0 +1,8 @@
+{% macro render(level, notes) -%}
+{%- if level == "recommended" %}`Recommended`
+{% elif level == "required" %}`Required`
+{% elif level == "required" %}`Required`
+{% elif level.conditionally_required %}`Conditionally Required` {{ notes.add(level.conditionally_required) }}
+{% else %}{{ level }}
+{%- endif %}
+{% endmacro %}
