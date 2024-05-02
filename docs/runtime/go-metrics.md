@@ -51,16 +51,14 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.go.memory.used(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `go.memory.type` | string | The type of memory. | `other`; `stack` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`go.memory.type`](/docs/attributes-registry/go.md) | string | The type of memory. | `other`; `stack` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`go.memory.type` MUST be one of the following:
+`go.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other` | Memory used by the Go runtime, excluding other categories of memory usage. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[1]:** Computed from `/memory/classes/heap/stacks:bytes`.
 <!-- endsemconv -->
 
 ### Metric: `go.memory.released`
