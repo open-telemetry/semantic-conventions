@@ -3,9 +3,6 @@ groups:
     type: attribute_group
     brief: 'Database Client attributes'
     attributes:
-      - ref: db.namespace
-        requirement_level:
-          conditionally_required: If available.
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
@@ -38,9 +35,6 @@ groups:
       - ref: db.system
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
-      - ref: db.instance.id
-        requirement_level:
-          recommended: If different from the `server.address`
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:
@@ -53,3 +47,6 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If and only if `network.peer.address` is set.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
