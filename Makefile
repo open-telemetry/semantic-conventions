@@ -98,7 +98,7 @@ table-generation:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
-		--attribute-registry-base-url="/docs/attributes-registry" \
+		--attribute-registry-base-url=/docs/attributes-registry \
 		/spec
 
 # Generate attribute registry markdown.
@@ -118,7 +118,7 @@ table-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
-		--attribute-registry-base-url="/docs/attributes-registry" \
+		--attribute-registry-base-url=/docs/attributes-registry \
 		--dry-run \
 		/spec
 
