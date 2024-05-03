@@ -21,7 +21,7 @@ described on this page.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | `Conditionally Required`  [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

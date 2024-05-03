@@ -33,14 +33,14 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [2] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.full`](/docs/attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.elasticsearch.path_parts.<key>`](/docs/attributes-registry/db.md) | string | A dynamic value in the url path. [4] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | `Conditionally Required`  [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required`  [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.elasticsearch.cluster.name`](/docs/attributes-registry/db.md) | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | {"recommended": "When communicating with an Elastic Cloud deployment, this should be collected from the \"X-Found-Handling-Cluster\" HTTP response header.\n"} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | {"recommended": "When communicating with an Elastic Cloud deployment, this should be collected from the \"X-Found-Handling-Instance\" HTTP response header.\n"} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | {"recommended": "Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.\n"} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [8] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | {"recommended": "if and only if `network.peer.address` is set."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.elasticsearch.path_parts.<key>`](/docs/attributes-registry/db.md) | string | A dynamic value in the url path. [4] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.elasticsearch.cluster.name`](/docs/attributes-registry/db.md) | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | `Recommended` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | `Recommended` [9] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` [12] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -70,9 +70,16 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 **[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
-**[8]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[8]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[9]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+
+**[10]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
+
+**[11]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+
+**[12]:** if and only if `network.peer.address` is set.
+**[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

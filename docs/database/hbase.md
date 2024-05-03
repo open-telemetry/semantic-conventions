@@ -21,8 +21,8 @@ described on this page.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The HBase table name. [1] | `mytable`; `ns:table` | `Conditionally Required`  [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The HBase namespace. [3] | `mynamespace` | `Conditionally Required`  [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The HBase table name. [1] | `mytable`; `ns:table` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The HBase namespace. [3] | `mynamespace` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

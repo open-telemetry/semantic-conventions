@@ -23,8 +23,8 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | [`host.image.version`](/docs/attributes-registry/host.md) | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.name`](/docs/attributes-registry/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.type`](/docs/attributes-registry/host.md) | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.ip`](/docs/attributes-registry/host.md) | string[] | Available IP addresses of the host, excluding loopback interfaces. [1] | `192.168.1.140`; `fe80::abc2:4a28:737a:609e` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.mac`](/docs/attributes-registry/host.md) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [2] | `AC-DE-48-23-45-67`; `AC-DE-48-23-45-67-01-9F` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.ip`](/docs/attributes-registry/host.md) | string[] | Available IP addresses of the host, excluding loopback interfaces. [1] | `192.168.1.140`; `fe80::abc2:4a28:737a:609e` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.mac`](/docs/attributes-registry/host.md) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [2] | `AC-DE-48-23-45-67`; `AC-DE-48-23-45-67-01-9F` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -58,12 +58,12 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`host.cpu.cache.l2.size`](/docs/attributes-registry/host.md) | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.cpu.family`](/docs/attributes-registry/host.md) | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.cpu.model.id`](/docs/attributes-registry/host.md) | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.cpu.model.name`](/docs/attributes-registry/host.md) | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.cpu.stepping`](/docs/attributes-registry/host.md) | string | Stepping or core revisions. | `1`; `r1p1` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.cpu.vendor.id`](/docs/attributes-registry/host.md) | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.cpu.cache.l2.size`](/docs/attributes-registry/host.md) | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.cpu.family`](/docs/attributes-registry/host.md) | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.cpu.model.id`](/docs/attributes-registry/host.md) | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.cpu.model.name`](/docs/attributes-registry/host.md) | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.cpu.stepping`](/docs/attributes-registry/host.md) | string | Stepping or core revisions. | `1`; `r1p1` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.cpu.vendor.id`](/docs/attributes-registry/host.md) | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

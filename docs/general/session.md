@@ -24,8 +24,8 @@ backends can link the two sessions.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`session.id`](/docs/attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`session.previous_id`](/docs/attributes-registry/session.md) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`session.id`](/docs/attributes-registry/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`session.previous_id`](/docs/attributes-registry/session.md) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

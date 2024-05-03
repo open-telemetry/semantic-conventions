@@ -24,8 +24,8 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.grpc.status_code`](/docs/attributes-registry/rpc.md) | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.grpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [1] | `rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.grpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [2] | `rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.grpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [1] | `rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.grpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [2] | `rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

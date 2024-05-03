@@ -34,7 +34,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`container.cpu.state`](/docs/attributes-registry/container.md) | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `system`; `kernel` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`container.cpu.state`](/docs/attributes-registry/container.md) | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `system`; `kernel` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

@@ -195,7 +195,7 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 |---|---|---|---|---|---|
 | [`faas.invoked_name`](/docs/attributes-registry/faas.md) | string | The name of the invoked function. [1] | `my-function` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.invoked_provider`](/docs/attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.invoked_region`](/docs/attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required`  [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.invoked_region`](/docs/attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

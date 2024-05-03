@@ -42,7 +42,7 @@ These attributes may be used for identifying a Log Record.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`log.record.uid`](/docs/attributes-registry/log.md) | string | A unique identifier for the Log Record. [1] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.record.uid`](/docs/attributes-registry/log.md) | string | A unique identifier for the Log Record. [1] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -72,9 +72,9 @@ As such, these should be recorded as Log Record attributes when applicable. They
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`log.file.name`](/docs/attributes-registry/log.md) | string | The basename of the file. | `audit.log` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`log.file.name_resolved`](/docs/attributes-registry/log.md) | string | The basename of the file, with symlinks resolved. | `uuid.log` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`log.file.path`](/docs/attributes-registry/log.md) | string | The full path to the file. | `/var/log/mysql/audit.log` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`log.file.path_resolved`](/docs/attributes-registry/log.md) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.file.name_resolved`](/docs/attributes-registry/log.md) | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.file.path`](/docs/attributes-registry/log.md) | string | The full path to the file. | `/var/log/mysql/audit.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.file.path_resolved`](/docs/attributes-registry/log.md) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -92,7 +92,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`log.iostream`](/docs/attributes-registry/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.iostream`](/docs/attributes-registry/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

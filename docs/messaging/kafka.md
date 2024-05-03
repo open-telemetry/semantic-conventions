@@ -31,7 +31,7 @@ For Apache Kafka, the following additional attributes are defined:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.kafka.message.tombstone`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | `Conditionally Required`  [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.kafka.message.tombstone`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | String representation of the partition id the message (or batch) is sent to or received from. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.consumer.group`](/docs/attributes-registry/messaging.md) | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.message.key`](/docs/attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [2] | `myKey` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

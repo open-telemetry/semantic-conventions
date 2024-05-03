@@ -83,7 +83,7 @@ In the lifetime of an LLM span, an event for prompts sent and completions receiv
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.prompt`](/docs/attributes-registry/gen-ai.md) | string | The full prompt sent to an LLM. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | `Conditionally Required`  [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.prompt`](/docs/attributes-registry/gen-ai.md) | string | The full prompt sent to an LLM. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -100,7 +100,7 @@ In the lifetime of an LLM span, an event for prompts sent and completions receiv
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.completion`](/docs/attributes-registry/gen-ai.md) | string | The full response received from the LLM. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | `Conditionally Required`  [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.completion`](/docs/attributes-registry/gen-ai.md) | string | The full response received from the LLM. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

@@ -22,8 +22,8 @@ described on this page.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.namespace`. [1] | `public.users`; `customers` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The MongoDB database name. [2] | `customers`; `test.users` | `Conditionally Required`  [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [4] | `findAndModify`; `getMore`; `update` | `Conditionally Required`  [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The MongoDB database name. [2] | `customers`; `test.users` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [4] | `findAndModify`; `getMore`; `update` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
