@@ -10,10 +10,9 @@ linkTitle: LLM requests
 
 <!-- toc -->
 
-- [Semantic Conventions for LLM requests](#semantic-conventions-for-llm-requests)
-  - [Configuration](#configuration)
-  - [LLM Request attributes](#llm-request-attributes)
-  - [Events](#events)
+- [Configuration](#configuration)
+- [LLM Request attributes](#llm-request-attributes)
+- [Events](#events)
 
 <!-- tocstop -->
 
