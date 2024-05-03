@@ -56,7 +56,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.cpu.time` | counter | `s` | Total CPU seconds broken down by different states. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.cpu.time` | Counter | `s` | Total CPU seconds broken down by different states. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -95,7 +95,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.cpu.utilization` | gauge | `1` | Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.cpu.utilization` | Gauge | `1` | Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -134,7 +134,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.memory.usage` | updowncounter | `By` | The amount of physical memory in use. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.memory.usage` | UpDownCounter | `By` | The amount of physical memory in use. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -164,7 +164,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.memory.virtual` | updowncounter | `By` | The amount of committed virtual memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.memory.virtual` | UpDownCounter | `By` | The amount of committed virtual memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -194,7 +194,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.disk.io` | counter | `By` | Disk bytes transferred. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.disk.io` | Counter | `By` | Disk bytes transferred. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -232,7 +232,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.network.io` | counter | `By` | Network bytes transferred. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.network.io` | Counter | `By` | Network bytes transferred. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -270,7 +270,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.thread.count` | updowncounter | `{thread}` | Process threads count. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.thread.count` | UpDownCounter | `{thread}` | Process threads count. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -300,7 +300,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.open_file_descriptor.count` | updowncounter | `{count}` | Number of file descriptors in use by the process. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.open_file_descriptor.count` | UpDownCounter | `{count}` | Number of file descriptors in use by the process. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -330,7 +330,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.context_switches` | counter | `{count}` | Number of times the process has been context switched. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.context_switches` | Counter | `{count}` | Number of times the process has been context switched. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -368,7 +368,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.paging.faults` | counter | `{fault}` | Number of page faults the process has made. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.paging.faults` | Counter | `{fault}` | Number of page faults the process has made. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

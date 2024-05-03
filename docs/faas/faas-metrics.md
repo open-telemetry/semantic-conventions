@@ -56,7 +56,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.invoke_duration` | histogram | `s` | Measures the duration of the function's logic execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.invoke_duration` | Histogram | `s` | Measures the duration of the function's logic execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -101,7 +101,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.init_duration` | histogram | `s` | Measures the duration of the function's initialization, such as a cold start | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.init_duration` | Histogram | `s` | Measures the duration of the function's initialization, such as a cold start | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -142,7 +142,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.coldstarts` | counter | `{coldstart}` | Number of invocation cold starts | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.coldstarts` | Counter | `{coldstart}` | Number of invocation cold starts | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -183,7 +183,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.errors` | counter | `{error}` | Number of invocation errors | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.errors` | Counter | `{error}` | Number of invocation errors | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -224,7 +224,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.invocations` | counter | `{invocation}` | Number of successful invocations | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.invocations` | Counter | `{invocation}` | Number of successful invocations | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -265,7 +265,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.timeouts` | counter | `{timeout}` | Number of invocation timeouts | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.timeouts` | Counter | `{timeout}` | Number of invocation timeouts | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -306,7 +306,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.mem_usage` | histogram | `By` | Distribution of max memory usage per invocation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.mem_usage` | Histogram | `By` | Distribution of max memory usage per invocation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -351,7 +351,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.cpu_usage` | histogram | `s` | Distribution of CPU usage per invocation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.cpu_usage` | Histogram | `s` | Distribution of CPU usage per invocation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -392,7 +392,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.net_io` | histogram | `By` | Distribution of net I/O usage per invocation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `faas.net_io` | Histogram | `By` | Distribution of net I/O usage per invocation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

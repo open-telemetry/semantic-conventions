@@ -122,7 +122,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.publish.duration` | histogram | `s` | Measures the duration of publish operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.publish.duration` | Histogram | `s` | Measures the duration of publish operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -139,7 +139,7 @@ This metric is [required][MetricRequired] when the messaging system supports bat
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.publish.messages` | counter | `{message}` | Measures the number of published messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.publish.messages` | Counter | `{message}` | Measures the number of published messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -166,7 +166,7 @@ When this metric is reported alongside a messaging receive span, the metric valu
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.receive.duration` | histogram | `s` | Measures the duration of receive operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.receive.duration` | Histogram | `s` | Measures the duration of receive operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -185,7 +185,7 @@ _Note: The need to report `messaging.receive.messages` depends on the messaging 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.receive.messages` | counter | `{message}` | Measures the number of received messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.receive.messages` | Counter | `{message}` | Measures the number of received messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -208,7 +208,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.process.duration` | histogram | `s` | Measures the duration of process operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.process.duration` | Histogram | `s` | Measures the duration of process operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -227,7 +227,7 @@ _Note: The need to report `messaging.process.messages` depends on the messaging 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.process.messages` | counter | `{message}` | Measures the number of processed messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.process.messages` | Counter | `{message}` | Measures the number of processed messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

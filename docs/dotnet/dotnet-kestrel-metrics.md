@@ -39,7 +39,7 @@ In case instrumentation does not recognize `EndPoint` implementation, it sets th
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `kestrel.active_connections` | updowncounter | `{connection}` | Number of connections that are currently active on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kestrel.active_connections` | UpDownCounter | `{connection}` | Number of connections that are currently active on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
@@ -104,7 +104,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `kestrel.connection.duration` | histogram | `s` | The duration of connections on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kestrel.connection.duration` | Histogram | `s` | The duration of connections on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
@@ -180,7 +180,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `kestrel.rejected_connections` | counter | `{connection}` | Number of connections rejected by the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kestrel.rejected_connections` | Counter | `{connection}` | Number of connections rejected by the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 **[1]:** Connections are rejected when the currently active count exceeds the value configured with `MaxConcurrentConnections`.
@@ -242,7 +242,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `kestrel.queued_connections` | updowncounter | `{connection}` | Number of connections that are currently queued and are waiting to start. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kestrel.queued_connections` | UpDownCounter | `{connection}` | Number of connections that are currently queued and are waiting to start. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
@@ -303,7 +303,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `kestrel.queued_requests` | updowncounter | `{request}` | Number of HTTP requests on multiplexed connections (HTTP/2 and HTTP/3) that are currently queued and are waiting to start. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kestrel.queued_requests` | UpDownCounter | `{request}` | Number of HTTP requests on multiplexed connections (HTTP/2 and HTTP/3) that are currently queued and are waiting to start. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
@@ -369,7 +369,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `kestrel.upgraded_connections` | updowncounter | `{connection}` | Number of connections that are currently upgraded (WebSockets). . [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kestrel.upgraded_connections` | UpDownCounter | `{connection}` | Number of connections that are currently upgraded (WebSockets). . [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 **[1]:** The counter only tracks HTTP/1.1 connections.
@@ -436,7 +436,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `kestrel.tls_handshake.duration` | histogram | `s` | The duration of TLS handshakes on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kestrel.tls_handshake.duration` | Histogram | `s` | The duration of TLS handshakes on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
@@ -507,7 +507,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `kestrel.active_tls_handshakes` | updowncounter | `{handshake}` | Number of TLS handshakes that are currently in progress on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kestrel.active_tls_handshakes` | UpDownCounter | `{handshake}` | Number of TLS handshakes that are currently in progress on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0

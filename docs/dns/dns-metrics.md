@@ -34,7 +34,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `dns.lookup.duration` | histogram | `s` | Measures the time taken to perform a DNS lookup. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dns.lookup.duration` | Histogram | `s` | Measures the time taken to perform a DNS lookup. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

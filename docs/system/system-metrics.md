@@ -85,7 +85,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.time` | counter | `s` | Seconds each logical CPU spent on each mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.time` | Counter | `s` | Seconds each logical CPU spent on each mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -129,7 +129,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.utilization` | gauge | `1` | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.utilization` | Gauge | `1` | Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -173,7 +173,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.physical.count` | updowncounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -203,7 +203,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.logical.count` | updowncounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -233,7 +233,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.frequency` | gauge | `{Hz}` | Reports the current frequency of the CPU in Hz | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.frequency` | Gauge | `{Hz}` | Reports the current frequency of the CPU in Hz | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -269,7 +269,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.memory.usage` | updowncounter | `By` | Reports memory in use by state. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** The sum over all `system.memory.state` values SHOULD equal the total memory
@@ -313,7 +313,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.memory.limit` | updowncounter | `By` | Total memory available in the system. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.memory.limit` | UpDownCounter | `By` | Total memory available in the system. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** Its value SHOULD equal the sum of `system.memory.state` over all states.
@@ -345,7 +345,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.memory.shared` | updowncounter | `By` | Shared memory used (mostly by tmpfs). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.memory.shared` | UpDownCounter | `By` | Shared memory used (mostly by tmpfs). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
@@ -378,7 +378,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.memory.utilization` | gauge | `1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.memory.utilization` | Gauge | `1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -423,7 +423,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.paging.usage` | updowncounter | `By` | Unix swap or windows pagefile usage | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.paging.usage` | UpDownCounter | `By` | Unix swap or windows pagefile usage | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -461,7 +461,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.paging.utilization` | gauge | `1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.paging.utilization` | Gauge | `1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -499,7 +499,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.paging.faults` | counter | `{fault}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.paging.faults` | Counter | `{fault}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -537,7 +537,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.paging.operations` | counter | `{operation}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.paging.operations` | Counter | `{operation}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -587,7 +587,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.disk.io` | counter | `By` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.disk.io` | Counter | `By` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -626,7 +626,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.disk.operations` | counter | `{operation}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.disk.operations` | Counter | `{operation}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -665,7 +665,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.disk.io_time` | counter | `s` | Time disk spent activated [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.disk.io_time` | Counter | `s` | Time disk spent activated [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
@@ -703,7 +703,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.disk.operation_time` | counter | `s` | Sum of the time each operation took to complete [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.disk.operation_time` | Counter | `s` | Sum of the time each operation took to complete [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
@@ -747,7 +747,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.disk.merged` | counter | `{operation}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.disk.merged` | Counter | `{operation}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -790,7 +790,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.filesystem.usage` | updowncounter | `By` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.usage` | UpDownCounter | `By` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -844,7 +844,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.filesystem.utilization` | gauge | `1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.utilization` | Gauge | `1` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -902,7 +902,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.network.dropped` | counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.network.dropped` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** Measured as:
@@ -947,7 +947,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.network.packets` | counter | `{packet}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.network.packets` | Counter | `{packet}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -986,7 +986,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.network.errors` | counter | `{error}` | Count of network errors detected [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.network.errors` | Counter | `{error}` | Count of network errors detected [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** Measured as:
@@ -1031,7 +1031,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.network.io` | counter | `By` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.network.io` | Counter | `By` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -1070,7 +1070,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.network.connections` | updowncounter | `{connection}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.network.connections` | UpDownCounter | `{connection}` |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -1139,7 +1139,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.process.count` | updowncounter | `{process}` | Total number of processes in each state | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.process.count` | UpDownCounter | `{process}` | Total number of processes in each state | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -1179,7 +1179,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.process.created` | counter | `{process}` | Total number of processes created over uptime of the host | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -1239,7 +1239,7 @@ an `{os}` prefix to split this metric across OSes.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.linux.memory.available` | updowncounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.linux.memory.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** This is an alternative to `system.memory.usage` metric with `state=free`.

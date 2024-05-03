@@ -19,7 +19,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.cpu.time` | counter | `s` | Total CPU time consumed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** Total CPU time consumed by the specific container on all available CPU cores
@@ -60,7 +60,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.memory.usage` | counter | `By` | Memory usage of the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.memory.usage` | Counter | `By` | Memory usage of the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** Memory usage of the container.
@@ -92,7 +92,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.disk.io` | counter | `By` | Disk bytes for the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.disk.io` | Counter | `By` | Disk bytes for the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** The total number of bytes read/written successfully (aggregated from all disks).
@@ -133,7 +133,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.network.io` | counter | `By` | Network bytes for the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.network.io` | Counter | `By` | Network bytes for the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** The number of bytes sent/received on all network interfaces by the container.

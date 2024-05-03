@@ -57,7 +57,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.used` | updowncounter | `By` | Measure of memory used. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.memory.used` | UpDownCounter | `By` | Measure of memory used. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -99,7 +99,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.committed` | updowncounter | `By` | Measure of memory committed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.memory.committed` | UpDownCounter | `By` | Measure of memory committed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -141,7 +141,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.limit` | updowncounter | `By` | Measure of max obtainable memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.memory.limit` | UpDownCounter | `By` | Measure of max obtainable memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -183,7 +183,7 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.used_after_last_gc` | updowncounter | `By` | Measure of memory used, as measured after the most recent garbage collection event on this pool. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.memory.used_after_last_gc` | UpDownCounter | `By` | Measure of memory used, as measured after the most recent garbage collection event on this pool. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -236,7 +236,7 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.gc.duration` | histogram | `s` | Duration of JVM garbage collection actions. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.gc.duration` | Histogram | `s` | Duration of JVM garbage collection actions. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -286,7 +286,7 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.thread.count` | updowncounter | `{thread}` | Number of executing platform threads. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.thread.count` | UpDownCounter | `{thread}` | Number of executing platform threads. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -336,7 +336,7 @@ This metric is obtained from [`ClassLoadingMXBean#getTotalLoadedClassCount()`](h
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.class.loaded` | counter | `{class}` | Number of classes loaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.class.loaded` | Counter | `{class}` | Number of classes loaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -367,7 +367,7 @@ This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](http
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.class.unloaded` | counter | `{class}` | Number of classes unloaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.class.unloaded` | Counter | `{class}` | Number of classes unloaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -398,7 +398,7 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.class.count` | updowncounter | `{class}` | Number of classes currently loaded. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.class.count` | UpDownCounter | `{class}` | Number of classes currently loaded. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -437,7 +437,7 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.cpu.time` | counter | `s` | CPU time used by the process as reported by the JVM. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.cpu.time` | Counter | `s` | CPU time used by the process as reported by the JVM. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -469,7 +469,7 @@ Note that this is always an integer value (i.e. fractional or millicores are not
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.cpu.count` | updowncounter | `{cpu}` | Number of processors available to the Java virtual machine. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.cpu.count` | UpDownCounter | `{cpu}` | Number of processors available to the Java virtual machine. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -502,7 +502,7 @@ Note that the JVM does not provide a definition of what "recent" means.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.cpu.recent_utilization` | gauge | `1` | Recent CPU utilization for the process as reported by the JVM. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.cpu.recent_utilization` | Gauge | `1` | Recent CPU utilization for the process as reported by the JVM. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 **[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()).
@@ -541,7 +541,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.init` | updowncounter | `By` | Measure of initial memory requested. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `jvm.memory.init` | UpDownCounter | `By` | Measure of initial memory requested. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -584,7 +584,7 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https:/
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.system.cpu.utilization` | gauge | `1` | Recent CPU utilization for the whole system as reported by the JVM. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `jvm.system.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the whole system as reported by the JVM. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()).
@@ -633,7 +633,7 @@ This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.o
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.buffer.memory.usage` | updowncounter | `By` | Measure of memory used by buffers. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `jvm.buffer.memory.usage` | UpDownCounter | `By` | Measure of memory used by buffers. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -667,7 +667,7 @@ This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://doc
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.buffer.memory.limit` | updowncounter | `By` | Measure of total memory capacity of buffers. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `jvm.buffer.memory.limit` | UpDownCounter | `By` | Measure of total memory capacity of buffers. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -701,7 +701,7 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.buffer.count` | updowncounter | `{buffer}` | Number of buffers in the pool. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `jvm.buffer.count` | UpDownCounter | `{buffer}` | Number of buffers in the pool. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
