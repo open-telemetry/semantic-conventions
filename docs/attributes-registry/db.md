@@ -40,8 +40,8 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 | Value  | Description | Stability                                                        |
 | ------ | ----------- | ---------------------------------------------------------------- |
-| `idle` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -115,19 +115,19 @@ This group defines attributes for Cassandra.
 
 `db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value          | Description | Stability                                                        |
-| -------------- | ----------- | ---------------------------------------------------------------- |
-| `all`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_quorum` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three`        | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one`    | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `any`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_serial` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value          | Description  | Stability                                                        |
+| -------------- | ------------ | ---------------------------------------------------------------- |
+| `all`          | all          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `each_quorum`  | each_quorum  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quorum`       | quorum       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `one`          | one          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `two`          | two          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `three`        | three        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_one`    | local_one    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `any`          | any          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `serial`       | serial       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db Cosmosdb Attributes
 
@@ -152,23 +152,23 @@ This group defines attributes for Azure Cosmos DB.
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value               | Description | Stability                                                        |
-| ------------------- | ----------- | ---------------------------------------------------------------- |
-| `Invalid`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Create`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Patch`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read`              | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Delete`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Replace`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Execute`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Head`              | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HeadFeed`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Batch`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QueryPlan`         | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ExecuteJavaScript` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value               | Description       | Stability                                                        |
+| ------------------- | ----------------- | ---------------------------------------------------------------- |
+| `Invalid`           | Invalid           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Create`            | Create            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Patch`             | Patch             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Read`              | Read              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ReadFeed`          | ReadFeed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Delete`            | Delete            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Replace`           | Replace           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Execute`           | Execute           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Query`             | Query             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Head`              | Head              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `HeadFeed`          | HeadFeed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Upsert`            | Upsert            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Batch`             | Batch             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `QueryPlan`         | QueryPlan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ExecuteJavaScript` | ExecuteJavaScript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db Deprecated Attributes
 
@@ -215,5 +215,5 @@ This group defines attributes for Elasticsearch.
 
 | Value  | Description | Stability                                                        |
 | ------ | ----------- | ---------------------------------------------------------------- |
-| `idle` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

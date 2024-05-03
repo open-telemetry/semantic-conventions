@@ -5,6 +5,7 @@
 {#-           This includes deprecated groups. -#}
 {% import 'stability.j2' as stability %}
 {% import 'notes.j2' as notes %}
+{% import 'enum_macros.j2' as enums %}
 {%- set my_file_name = ctx.id | lower | kebab_case ~ ".md" -%}
 {{- template.set_file_name(my_file_name) -}}
 
@@ -33,13 +34,6 @@
 
 {{ notes.render() }}
 {% for enum in group.attributes | sort(attribute="name") %}
-{%- if enum.type is mapping -%}{#- We should use a filter for enums vs. this if. -#}
-`{{enum.name}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-{% for espec in enum.type.members %}| `{{espec.value}}` | {{espec.brief | trim}} | {{ stability.badge(espec.stability, espec.deprecated) }} |
-{% endfor %}
-{% endif %}
+{%- if enum.type is mapping -%}{{ enums.table(enum, notes, stability) }}{% endif %}
 {%- endfor -%}
 {%- endfor -%}

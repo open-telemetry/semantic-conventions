@@ -318,6 +318,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -327,14 +328,16 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -344,7 +347,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 For client-side metrics `server.port` is required if the connection is IP-based and the port is available (it describes the server port they are connecting to).

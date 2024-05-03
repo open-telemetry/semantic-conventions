@@ -104,6 +104,7 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
+
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -161,13 +162,14 @@ If a database operation involved multiple network calls (for example retries), t
 | `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ## Connection pools
@@ -203,6 +205,7 @@ This metric is [required][MetricRequired].
 
 
 
+
 `db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -210,7 +213,7 @@ This metric is [required][MetricRequired].
 | `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 ### Metric: `db.client.connection.idle.max`
 

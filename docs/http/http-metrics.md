@@ -153,13 +153,15 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -174,7 +176,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `http.server.active_requests`
@@ -233,6 +235,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -248,7 +251,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `http.server.request.body.size`
@@ -343,13 +346,15 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -364,7 +369,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `http.server.response.body.size`
@@ -459,13 +464,15 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -480,7 +487,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ## HTTP Client
@@ -568,13 +575,15 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[8]:** If not `http` and `network.protocol.version` is set.
 **[9]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -589,7 +598,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `http.client.request.body.size`
@@ -671,13 +680,15 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[8]:** If not `http` and `network.protocol.version` is set.
 **[9]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -692,7 +703,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `http.client.response.body.size`
@@ -774,13 +785,15 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[8]:** If not `http` and `network.protocol.version` is set.
 **[9]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -795,7 +808,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `http.client.open_connections`
@@ -837,6 +850,7 @@ This metric is optional.
 
 **[3]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
+
 `http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -844,7 +858,7 @@ This metric is optional.
 | `active` | active state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `idle` | idle state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `http.client.connection.duration`
@@ -944,6 +958,7 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -959,7 +974,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

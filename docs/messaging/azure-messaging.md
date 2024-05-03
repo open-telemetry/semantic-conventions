@@ -101,13 +101,15 @@ If a messaging operation involved multiple network calls (for example retries), 
 
 **[20]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -117,7 +119,8 @@ If a messaging operation involved multiple network calls (for example retries), 
 | `process` | One or more messages are delivered to or processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- `messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -126,7 +129,8 @@ If a messaging operation involved multiple network calls (for example retries), 
 | `dead_letter` | Message is sent to dead letter queue | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `defer` | Message is deferred | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -141,7 +145,7 @@ If a messaging operation involved multiple network calls (for example retries), 
 | `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## Azure Event Hubs
@@ -234,13 +238,15 @@ If a messaging operation involved multiple network calls (for example retries), 
 
 **[19]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -250,7 +256,8 @@ If a messaging operation involved multiple network calls (for example retries), 
 | `process` | One or more messages are delivered to or processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -265,7 +272,7 @@ If a messaging operation involved multiple network calls (for example retries), 
 | `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

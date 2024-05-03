@@ -48,5 +48,5 @@ This document defines semantic convention attributes in the TLS namespace.
 
 | Value | Description | Stability                                                        |
 | ----- | ----------- | ---------------------------------------------------------------- |
-| `ssl` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tls` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ssl` | ssl         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tls` | tls         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

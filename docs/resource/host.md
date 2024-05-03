@@ -32,6 +32,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 
 **[2]:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
+
 `host.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -45,7 +46,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | `s390x` | IBM z/Architecture | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `x86` | 32-bit x86 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 **type:** `host.cpu`

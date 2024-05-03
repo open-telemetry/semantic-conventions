@@ -23,6 +23,7 @@ In case of virtualized environments, this is the operating system as it is obser
 
 
 
+
 `os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -39,7 +40,7 @@ In case of virtualized environments, this is the operating system as it is obser
 | `solaris` | SunOS, Oracle Solaris | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `z_os` | IBM z/OS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

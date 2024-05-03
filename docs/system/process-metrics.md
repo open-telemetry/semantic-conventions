@@ -73,6 +73,7 @@ This metric is [recommended][MetricRecommended].
 
 
 
+
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -81,7 +82,7 @@ This metric is [recommended][MetricRecommended].
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `wait` | wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `process.cpu.utilization`
@@ -112,6 +113,7 @@ This metric is [recommended][MetricRecommended].
 
 
 
+
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -120,7 +122,7 @@ This metric is [recommended][MetricRecommended].
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `wait` | wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `process.memory.usage`
@@ -211,6 +213,7 @@ This metric is [recommended][MetricRecommended].
 
 
 
+
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -218,7 +221,7 @@ This metric is [recommended][MetricRecommended].
 | `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `process.network.io`
@@ -249,6 +252,7 @@ This metric is [recommended][MetricRecommended].
 
 
 
+
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -256,7 +260,7 @@ This metric is [recommended][MetricRecommended].
 | `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `process.thread.count`
@@ -347,6 +351,7 @@ This metric is [recommended][MetricRecommended].
 
 
 
+
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -354,7 +359,7 @@ This metric is [recommended][MetricRecommended].
 | `voluntary` | voluntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `involuntary` | involuntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `process.paging.faults`
@@ -385,6 +390,7 @@ This metric is [recommended][MetricRecommended].
 
 
 
+
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -392,7 +398,7 @@ This metric is [recommended][MetricRecommended].
 | `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

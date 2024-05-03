@@ -72,18 +72,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value         | Description | Stability                                                        |
 | ------------- | ----------- | ---------------------------------------------------------------- |
-| `wifi`        | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wired`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cell`        | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unavailable` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown`     | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wifi`        | wifi        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wired`       | wired       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cell`        | cell        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unknown`     | unknown     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `transmit` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive`  | receive     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -133,8 +133,10 @@ These attributes may be used for any network related operation.
 
 | Value    | Description                    | Stability                                                        |
 | -------- | ------------------------------ | ---------------------------------------------------------------- |
-| `ip_tcp` | none                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ip_udp` | none                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ip_tcp` | ip_tcp                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ip_udp` | ip_udp                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pipe`   | Named or anonymous pipe.       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `inproc` | In-process communication.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `inproc` | In-process communication. [5]  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other`  | Something else (non IP-based). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[5]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.

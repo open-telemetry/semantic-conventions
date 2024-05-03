@@ -1,0 +1,7 @@
+{% macro table(enum, notes, stability) %}
+`{{enum.name}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+{% for espec in enum.type.members %}| `{{ espec.value }}` | {{ (espec.brief or espec.value) | trim }}{{ notes.add(espec.note) }} | {{ stability.badge(espec.stability, espec.deprecated) }} |
+{% endfor %} {{ notes.render() }}{% endmacro %}

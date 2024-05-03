@@ -1,19 +1,12 @@
 {% import 'requirement.j2' as requirement %}
 {% import 'stability.j2' as stability %}
 {% import 'notes.j2' as notes %}
+{% import 'enum_macros.j2' as enums %}
 {#- Macro for creating attribute table -#}
 {% macro generate(attributes, tag_filter, attribute_registry_base_url) %}| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 {% for attribute in attributes | attribute_sort %}{% if (tag_filter | length == 0) or (attribute.tag is in(tag_filter)) %}| [{% include "attribute_name.j2" %}]({{attribute_registry_base_url}}/{{ attribute.name | split_id | list | first | kebab_case }}.md) | {% include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }}{{ notes.add(attribute.note) }} | {% include "examples.j2" | trim %} | {{ requirement.render(attribute.requirement_level, notes) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {% endif %}{% endfor %}
 
-{{ notes.render() }}{% for enum in group.attributes | sort(attribute="name") %}{% if enum.type is mapping and ((tag_filter | length == 0) or (enum.tag is in(tag_filter))) %}{#- We should use a filter for enums vs. this if. -#}
-
-`{{enum.name}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-{% for espec in enum.type.members %}| `{{ espec.value }}` | {{ (espec.brief or espec.value) | trim }}{{ notes.add(espec.note) }} | {{ stability.badge(espec.stability, espec.deprecated) }} |
-{% endfor %} {{ notes.render() }} {% endif %}
-{%- endfor -%}
+{{ notes.render() }}{% for enum in group.attributes | sort(attribute="name") %}{% if enum.type is mapping and ((tag_filter | length == 0) or (enum.tag is in(tag_filter))) %}{#- We should use a filter for enums vs. this if. -#}{{ enums.table(enum, notes, stability) }}{% endif %}{% endfor %}
 {% endmacro %}

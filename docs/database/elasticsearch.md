@@ -74,6 +74,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[9]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -89,7 +90,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ## Example

@@ -34,6 +34,7 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 
 **[3]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
+
 `rpc.connect_rpc.error_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -55,7 +56,7 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 | `data_loss` | data_loss | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unauthenticated` | unauthenticated | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## Connect RPC Status

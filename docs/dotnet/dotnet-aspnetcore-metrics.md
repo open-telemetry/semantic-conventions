@@ -65,6 +65,7 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 **[3]:** if and only if a route was successfully matched.
+
 `aspnetcore.routing.match_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -72,7 +73,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `success` | Match succeeded | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `failure` | Match failed | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ## Exceptions
@@ -130,6 +131,7 @@ it's RECOMMENDED to:
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 **[2]:** if and only if the exception was handled by this handler.
+
 `aspnetcore.diagnostics.exception.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -139,13 +141,14 @@ it's RECOMMENDED to:
 | `skipped` | Exception handling was skipped because the response had started. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `aborted` | Exception handling didn't run because the request was aborted. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ## Rate-limiting
@@ -286,6 +289,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
+
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -295,7 +299,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `global_limiter` | Lease request was rejected by the global limiter | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `request_canceled` | Lease request was canceled | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `aspnetcore.rate_limiting.requests`
@@ -333,6 +337,7 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
+
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -342,7 +347,7 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 | `global_limiter` | Lease request was rejected by the global limiter | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `request_canceled` | Lease request was canceled | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

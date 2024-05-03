@@ -48,6 +48,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 
 
+
 `signalr.connection.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -56,7 +57,8 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `timeout` | The connection was closed due to a timeout. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `app_shutdown` | The connection was closed because the app is shutting down. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -64,7 +66,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `long_polling` | LongPolling protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `web_sockets` | WebSockets protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ## Metric: `signalr.server.active_connections`
@@ -96,6 +98,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 
 
+
 `signalr.connection.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -104,7 +107,8 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `timeout` | The connection was closed due to a timeout. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `app_shutdown` | The connection was closed because the app is shutting down. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- `signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -112,7 +116,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `long_polling` | LongPolling protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `web_sockets` | WebSockets protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

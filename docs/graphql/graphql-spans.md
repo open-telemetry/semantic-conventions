@@ -28,6 +28,7 @@ MAY be used as span name.
 
 
 **[1]:** The value may be sanitized to exclude sensitive information.
+
 `graphql.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -36,7 +37,7 @@ MAY be used as span name.
 | `mutation` | GraphQL mutation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `subscription` | GraphQL subscription | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

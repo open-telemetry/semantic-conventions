@@ -48,6 +48,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
    Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
    Default value is "NS".
 
+
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -55,7 +56,8 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 | `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `direct` | Direct connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+`db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -75,7 +77,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 | `QueryPlan` | QueryPlan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ExecuteJavaScript` | ExecuteJavaScript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 In addition to Cosmos DB attributes, all spans include

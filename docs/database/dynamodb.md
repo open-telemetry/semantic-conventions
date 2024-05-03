@@ -27,6 +27,7 @@ These attributes are filled in for all DynamoDB request types.
 
 
 
+
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -84,7 +85,7 @@ These attributes are filled in for all DynamoDB request types.
 | `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.BatchGetItem
@@ -109,6 +110,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -119,7 +121,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.BatchWriteItem
@@ -145,6 +147,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -155,7 +158,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.CreateTable
@@ -185,6 +188,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -195,7 +199,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.DeleteItem
@@ -221,6 +225,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -231,7 +236,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.DeleteTable
@@ -255,6 +260,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -265,7 +271,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.DescribeTable
@@ -289,6 +295,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -299,7 +306,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.GetItem
@@ -326,6 +333,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -336,7 +344,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.ListTables
@@ -362,6 +370,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -372,7 +381,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.PutItem
@@ -398,6 +407,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -408,7 +418,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.Query
@@ -440,6 +450,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -450,7 +461,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.Scan
@@ -485,6 +496,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -495,7 +507,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.UpdateItem
@@ -521,6 +533,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -531,7 +544,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ## DynamoDB.UpdateTable
@@ -560,6 +573,7 @@ These attributes are filled in for all DynamoDB request types.
 
 **[2]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -570,7 +584,7 @@ These attributes are filled in for all DynamoDB request types.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

@@ -38,6 +38,7 @@ This metric is [opt-in][MetricOptIn].
 
 
 
+
 `container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -46,7 +47,7 @@ This metric is [opt-in][MetricOptIn].
 | `system` | When CPU is used by the system (host OS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `container.memory.usage`
@@ -112,6 +113,7 @@ This metric is [opt-in][MetricOptIn].
 
 
 
+
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -119,7 +121,7 @@ This metric is [opt-in][MetricOptIn].
 | `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Metric: `container.network.io`
@@ -153,6 +155,7 @@ This metric is [opt-in][MetricOptIn].
 
 
 
+
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -160,7 +163,7 @@ This metric is [opt-in][MetricOptIn].
 | `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md

@@ -190,6 +190,7 @@ or another suitable identifier depending on the language.
 The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
 All custom identifiers SHOULD be stable across different versions of an implementation.
 
+
 `telemetry.sdk.language` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -207,7 +208,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | `swift` | swift | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `webjs` | webjs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
- 
+
 <!-- endsemconv -->
 
 ## Telemetry Distribution (Experimental)

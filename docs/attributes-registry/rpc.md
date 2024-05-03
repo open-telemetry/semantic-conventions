@@ -48,24 +48,24 @@ This document defines attributes for remote procedure calls.
 
 `rpc.connect_rpc.error_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value                 | Description | Stability                                                        |
-| --------------------- | ----------- | ---------------------------------------------------------------- |
-| `cancelled`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_argument`    | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deadline_exceeded`   | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `not_found`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `already_exists`      | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `permission_denied`   | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `resource_exhausted`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `failed_precondition` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aborted`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `out_of_range`        | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unimplemented`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `internal`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unavailable`         | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `data_loss`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unauthenticated`     | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value                 | Description         | Stability                                                        |
+| --------------------- | ------------------- | ---------------------------------------------------------------- |
+| `cancelled`           | cancelled           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unknown`             | unknown             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `invalid_argument`    | invalid_argument    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deadline_exceeded`   | deadline_exceeded   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `not_found`           | not_found           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `already_exists`      | already_exists      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `permission_denied`   | permission_denied   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `resource_exhausted`  | resource_exhausted  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `failed_precondition` | failed_precondition | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aborted`             | aborted             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `out_of_range`        | out_of_range        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unimplemented`       | unimplemented       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `internal`            | internal            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unavailable`         | unavailable         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `data_loss`           | data_loss           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unauthenticated`     | unauthenticated     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `rpc.grpc.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -93,8 +93,8 @@ This document defines attributes for remote procedure calls.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `SENT`     | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECEIVED` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `SENT`     | SENT        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | RECEIVED    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -121,5 +121,5 @@ Deprecated rpc message attributes.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `SENT`     | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECEIVED` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `SENT`     | SENT        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | RECEIVED    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

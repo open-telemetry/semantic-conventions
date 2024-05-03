@@ -18,5 +18,5 @@ These attributes may be used for any disk related operation.
 
 | Value   | Description | Stability                                                        |
 | ------- | ----------- | ---------------------------------------------------------------- |
-| `read`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read`  | read        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

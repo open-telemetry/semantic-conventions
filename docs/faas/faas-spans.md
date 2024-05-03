@@ -79,6 +79,7 @@ trigger that corresponding incoming would have (i.e., this has
 nothing to do with the underlying transport used to make the API
 call to invoke the lambda, which is often HTTP).
 
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -89,7 +90,7 @@ call to invoke the lambda, which is often HTTP).
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Function Name
@@ -149,6 +150,7 @@ trigger that corresponding incoming would have (i.e., this has
 nothing to do with the underlying transport used to make the API
 call to invoke the lambda, which is often HTTP).
 
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -159,7 +161,7 @@ call to invoke the lambda, which is often HTTP).
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### Resource attributes as incoming FaaS span attributes
@@ -205,6 +207,7 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 **[4]:** For some cloud providers, like AWS or GCP, the region in which a function is hosted is essential to uniquely identify the function and also part of its endpoint. Since it's part of the endpoint being called, the region is always known to clients. In these cases, `faas.invoked_region` MUST be set accordingly. If the region is unknown to the client or not required for identifying the invoked function, setting `faas.invoked_region` is optional.
 
+
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -215,7 +218,7 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 | `gcp` | Google Cloud Platform | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 [FaaS resource attributes]: ../resource/faas.md
@@ -244,6 +247,7 @@ FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOUL
 
 
 
+
 `faas.document.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -252,7 +256,7 @@ FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOUL
 | `edit` | When an object is modified. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `delete` | When an object is deleted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
- 
+
 <!-- endsemconv -->
 
 ### HTTP
