@@ -13,7 +13,7 @@ groups:
             When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD
             use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
         examples: [0, 1, 2]
-      - id: client_id
+      - id: client.id
         type: string
         stability: experimental
         brief: >
