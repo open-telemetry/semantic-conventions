@@ -35,6 +35,18 @@ groups:
       - ref: nodejs.eventloop.lag.type
         requirement_level: recommended
 
+  - id: metric.nodejs.eventloop.utilization
+    type: metric
+    metric_name: nodejs.eventloop.utilization
+    brief: "Event loop utilization."
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    prefix: nodejs.eventloop.utilization
+    attributes:
+      - ref: nodejs.version
+        requirement_level: recommended
+
   - id: metric.nodejs.gc.duration
     type: metric
     metric_name: nodejs.gc.duration
@@ -52,7 +64,7 @@ groups:
   - id: metric.nodejs.memory.size
     type: metric
     metric_name: nodejs.memory.size
-    brief: "Memory size."
+    brief: "External memory size."
     instrument: updowncounter
     unit: "By"
     stability: experimental
@@ -60,7 +72,33 @@ groups:
     attributes:
       - ref: nodejs.version
         requirement_level: recommended
-      - ref: nodejs.memory.type
-        requirement_level: recommended
       - ref: nodejs.memory.state
+        requirement_level: recommended
+
+  - id: metric.nodejs.heap.size
+    type: metric
+    metric_name: nodejs.heap.size
+    brief: "Heap size."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    prefix: nodejs.heap.size
+    attributes:
+      - ref: nodejs.version
+        requirement_level: recommended
+      - ref: nodejs.heap.size.state
+        requirement_level: recommended
+
+  - id: metric.nodejs.heap.space
+    type: metric
+    metric_name: nodejs.heap.space
+    brief: "Heap space."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    prefix: nodejs.heap.space
+    attributes:
+      - ref: nodejs.version
+        requirement_level: recommended
+      - ref: nodejs.heap.space.state
         requirement_level: recommended

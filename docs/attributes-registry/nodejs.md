@@ -12,22 +12,24 @@ Describes Node.js related attributes.
 
 | Attribute                   | Type   | Description                         | Examples                        | Stability                                                        |
 | --------------------------- | ------ | ----------------------------------- | ------------------------------- | ---------------------------------------------------------------- |
-| `nodejs.eventloop.lag.type` | string | The type of the event loop latency. | `min`; `max`; `avg`             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.eventloop.lag.type` | string | The type of the event loop latency. | `min`; `max`; `mean`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nodejs.gc.type`            | string | The type of garbage collection.     | `major`; `minor`; `incremental` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.heap.size.state`    | string | The size of heap memory.            | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.heap.space.state`   | string | The space of heap memory.           | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nodejs.memory.state`       | string | The state of memory.                | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejs.memory.type`        | string | The type of memory.                 | `heap`; `external`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nodejs.version`            | string | Node.js version.                    | `v22.0.0`; `v21.7.3`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `nodejs.eventloop.lag.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value | Description                       | Stability                                                        |
-| ----- | --------------------------------- | ---------------------------------------------------------------- |
-| `min` | Event loop minimum latency.       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `max` | Event loop maximum latency.       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `avg` | Event loop average latency.       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `p50` | Event loop 50 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `p90` | Event loop 90 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `p99` | Event loop 99 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value    | Description                            | Stability                                                        |
+| -------- | -------------------------------------- | ---------------------------------------------------------------- |
+| `min`    | Event loop minimum latency.            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `max`    | Event loop maximum latency.            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mean`   | Event loop mean latency.               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stddev` | Event loop standard deviation latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p50`    | Event loop 50 percentile latency.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p90`    | Event loop 90 percentile latency.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p99`    | Event loop 99 percentile latency.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `nodejs.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -38,16 +40,23 @@ Describes Node.js related attributes.
 | `incremental` | Incremental (Incremental Marking).       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `weakcb`      | Weak Callbacks (Process Weak Callbacks). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+`nodejs.heap.size.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value   | Description             | Stability                                                        |
+| ------- | ----------------------- | ---------------------------------------------------------------- |
+| `total` | Total heap memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used`  | Used heap memory size.  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`nodejs.heap.space.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value   | Description              | Stability                                                        |
+| ------- | ------------------------ | ---------------------------------------------------------------- |
+| `total` | Total heap memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used`  | Used heap memory space.  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
 `nodejs.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value   | Description   | Stability                                                        |
 | ------- | ------------- | ---------------------------------------------------------------- |
 | `total` | Total memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used`  | Used memory   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`nodejs.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value      | Description     | Stability                                                        |
-| ---------- | --------------- | ---------------------------------------------------------------- |
-| `heap`     | Heap memory.    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `external` | External memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used`  | Used memory.  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

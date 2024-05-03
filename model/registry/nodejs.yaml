@@ -22,9 +22,13 @@ groups:
               value: 'max'
               brief: 'Event loop maximum latency.'
               stability: experimental
-            - id: avg
-              value: avg
-              brief: 'Event loop average latency.'
+            - id: mean
+              value: mean
+              brief: 'Event loop mean latency.'
+              stability: experimental
+            - id: stddev
+              value: stddev
+              brief: 'Event loop standard deviation latency.'
               stability: experimental
             - id: p50
               value: 'p50'
@@ -62,21 +66,6 @@ groups:
               value: 'weakcb'
               brief: 'Weak Callbacks (Process Weak Callbacks).'
               stability: experimental
-      - id: memory.type
-        stability: experimental
-        type:
-          allow_custom_values: false
-          members:
-            - id: heap
-              value: 'heap'
-              brief: 'Heap memory.'
-              stability: experimental
-            - id: external
-              value: 'external'
-              brief: 'External memory'
-              stability: experimental
-        brief: The type of memory.
-        examples: ["heap", "external"]
       - id: memory.state
         stability: experimental
         type:
@@ -88,7 +77,37 @@ groups:
               stability: experimental
             - id: used
               value: 'used'
-              brief: 'Used memory'
+              brief: 'Used memory.'
               stability: experimental
         brief: The state of memory.
+        examples: ["total", "used"]
+      - id: heap.size.state
+        stability: experimental
+        type:
+          allow_custom_values: false
+          members:
+            - id: total
+              value: 'total'
+              brief: 'Total heap memory size.'
+              stability: experimental
+            - id: used
+              value: 'used'
+              brief: 'Used heap memory size.'
+              stability: experimental
+        brief: The size of heap memory.
+        examples: ["total", "used"]
+      - id: heap.space.state
+        stability: experimental
+        type:
+          allow_custom_values: false
+          members:
+            - id: total
+              value: 'total'
+              brief: 'Total heap memory space.'
+              stability: experimental
+            - id: used
+              value: 'used'
+              brief: 'Used heap memory space.'
+              stability: experimental
+        brief: The space of heap memory.
         examples: ["total", "used"]

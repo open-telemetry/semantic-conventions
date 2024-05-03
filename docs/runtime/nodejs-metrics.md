@@ -16,8 +16,11 @@ This document describes semantic conventions for Node.js metrics in OpenTelemetr
   - [Metric: `nodejs.active_handles.count`](#metric-nodejsactive_handlescount)
   - [Metric: `nodejs.active_libuv_requests.count`](#metric-nodejsactive_libuv_requestscount)
   - [Metric: `nodejs.eventloop.lag`](#metric-nodejseventlooplag)
+  - [Metric: `nodejs.eventloop.utilization`](#metric-nodejseventlooputilization)
   - [Metric: `nodejs.gc.duration`](#metric-nodejsgcduration)
   - [Metric: `nodejs.memory.size`](#metric-nodejsmemorysize)
+  - [Metric: `nodejs.heap.size`](#metric-nodejsheapsize)
+  - [Metric: `nodejs.heap.space`](#metric-nodejsheapspace)
 
 <!-- tocstop -->
 
@@ -81,10 +84,28 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `min` | Event loop minimum latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `max` | Event loop maximum latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `avg` | Event loop average latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mean` | Event loop mean latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stddev` | Event loop standard deviation latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `p50` | Event loop 50 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `p90` | Event loop 90 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `p99` | Event loop 99 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+
+### Metric: `nodejs.eventloop.utilization`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.eventloop.utilization(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.eventloop.utilization` | Gauge | `s` | Event loop utilization. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.eventloop.utilization(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `nodejs.gc.duration`
@@ -120,14 +141,13 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.nodejs.memory.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `nodejs.memory.size` | UpDownCounter | `By` | Memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.memory.size` | UpDownCounter | `By` | External memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.nodejs.memory.size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`nodejs.memory.state`](/docs/attributes-registry/nodejs.md) | string | The state of memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`nodejs.memory.type`](/docs/attributes-registry/nodejs.md) | string | The type of memory. | `heap`; `external` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `nodejs.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -135,14 +155,55 @@ This metric is [recommended][MetricRecommended].
 | Value  | Description | Stability |
 |---|---|---|
 | `total` | Total memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | Used memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | Used memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
 
-`nodejs.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+### Metric: `nodejs.heap.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.heap.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.heap.size` | UpDownCounter | `By` | Heap size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.heap.size(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.heap.size.state`](/docs/attributes-registry/nodejs.md) | string | The size of heap memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`nodejs.heap.size.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `heap` | Heap memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `external` | External memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `total` | Total heap memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | Used heap memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `nodejs.heap.space`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.heap.space(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.heap.space` | UpDownCounter | `By` | Heap space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.heap.space(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.heap.space.state`](/docs/attributes-registry/nodejs.md) | string | The space of heap memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`nodejs.heap.space.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `total` | Total heap memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | Used heap memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
