@@ -183,3 +183,14 @@ This group describes attributes specific to Azure Service Bus.
 | `abandon`     | Message is abandoned                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `dead_letter` | Message is sent to dead letter queue | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `defer`       | Message is deferred                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Deprecated Messaging Attributes
+
+<!-- semconv registry.messaging.deprecated(omit_requirement_level) -->
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `client_id` | string | Deprecated, use `messaging.client.id` instead. | `client-5`; `myhost@8742@s8083jm` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`. |
+| `messaging.kafka.destination.partition` | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
+| `messaging.operation` | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
+<!-- endsemconv -->
+>>>>>>> b66f1e5 (Update deprecated attributes)
