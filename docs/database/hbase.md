@@ -21,17 +21,17 @@ described on this page.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`db.system`](/docs/attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql`; `mssql`; `mssqlcompact` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The HBase table name. [1] | `mytable`; `ns:table` | `Conditionally Required`  [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The HBase namespace. [3] | `mynamespace` | `Conditionally Required`  [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required`  [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [6] | `someval`; `55` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `_OTHER` | `Conditionally Required`  [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required`  [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | {"recommended": "SHOULD be collected by default only if there is sanitization that excludes sensitive information.\n"} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.system`](/docs/attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql`; `mssql`; `mssqlcompact` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `_OTHER` | `Conditionally Required`  [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [9] | `10.1.2.80`; `/tmp/my.sock` | {"recommended": "If applicable for this database system."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [10] | `10.1.2.80`; `/tmp/my.sock` | {"recommended": "If applicable for this database system."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | {"recommended": "if and only if `network.peer.address` is set."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [11] | `80`; `8080`; `443` | `Conditionally Required`  [12] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [12] | `someval`; `55` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -43,20 +43,20 @@ described on this page.
 **[4]:** If applicable.
 **[5]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 
-**[6]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
-If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+**[6]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-**[7]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
+**[7]:** If and only if the operation failed.
+**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8]:** If and only if the operation failed.
-**[9]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
+**[9]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[10]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[10]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[12]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
-**[12]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

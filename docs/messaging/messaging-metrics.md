@@ -36,12 +36,12 @@ All messaging metrics share the same set of attributes:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `_OTHER` | `Conditionally Required`  [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | `Conditionally Required`  [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | `Conditionally Required`  [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required`  [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 

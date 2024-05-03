@@ -21,10 +21,10 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | [`host.image.id`](/docs/attributes-registry/host.md) | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.image.name`](/docs/attributes-registry/host.md) | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.image.version`](/docs/attributes-registry/host.md) | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.ip`](/docs/attributes-registry/host.md) | string[] | Available IP addresses of the host, excluding loopback interfaces. [1] | `192.168.1.140`; `fe80::abc2:4a28:737a:609e` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.mac`](/docs/attributes-registry/host.md) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [2] | `AC-DE-48-23-45-67`; `AC-DE-48-23-45-67-01-9F` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.name`](/docs/attributes-registry/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.type`](/docs/attributes-registry/host.md) | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.ip`](/docs/attributes-registry/host.md) | string[] | Available IP addresses of the host, excluding loopback interfaces. [1] | `192.168.1.140`; `fe80::abc2:4a28:737a:609e` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.mac`](/docs/attributes-registry/host.md) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [2] | `AC-DE-48-23-45-67`; `AC-DE-48-23-45-67-01-9F` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

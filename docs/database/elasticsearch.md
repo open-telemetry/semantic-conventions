@@ -30,44 +30,27 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | `Conditionally Required`  [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.system`](/docs/attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql`; `mssql`; `mssqlcompact` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [2] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.full`](/docs/attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [4] | `public.users`; `customers` | `Conditionally Required`  [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.elasticsearch.path_parts.<key>`](/docs/attributes-registry/db.md) | string | A dynamic value in the url path. [6] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | `Conditionally Required`  [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [8] | `customers`; `test.users` | `Conditionally Required`  [9] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [10] | `_OTHER` | `Conditionally Required`  [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [12] | `80`; `8080`; `443` | `Conditionally Required`  [13] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.elasticsearch.cluster.name`](/docs/attributes-registry/db.md) | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | {"recommended": "When communicating with an Elastic Cloud deployment, this should be collected from the \"X-Found-Handling-Cluster\" HTTP response header.\n"} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | {"recommended": "When communicating with an Elastic Cloud deployment, this should be collected from the \"X-Found-Handling-Instance\" HTTP response header.\n"} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.elasticsearch.path_parts.<key>`](/docs/attributes-registry/db.md) | string | A dynamic value in the url path. [3] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | `Conditionally Required`  [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [5] | `customers`; `test.users` | `Conditionally Required`  [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [7] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [8] | `someval`; `55` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | {"recommended": "Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.\n"} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.system`](/docs/attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql`; `mssql`; `mssqlcompact` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [9] | `_OTHER` | `Conditionally Required`  [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [11] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [12] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | {"recommended": "if and only if `network.peer.address` is set."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [14] | `80`; `8080`; `443` | `Conditionally Required`  [15] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.full`](/docs/attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [16] | `https://localhost:9200/index/_search?q=user.id:kimchy` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [16] | `someval`; `55` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
-**[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
-
-**[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
-
-**[3]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
-
-**[4]:** when the url has dynamic values
-**[5]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
-Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
-
-**[6]:** If available.
-**[7]:** This SHOULD be the endpoint identifier for the request.
-**[8]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
-If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
-
-**[9]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
-
-**[10]:** If and only if the operation failed.
-**[11]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[1]:** This SHOULD be the endpoint identifier for the request.
+**[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -82,16 +65,33 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[12]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
-
-**[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-
-**[14]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[15]:** If using a port other than the default port for this DBMS and if `server.address` is set.
-**[16]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
+**[3]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed). Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+
+**[4]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
+
+**[5]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
+
+**[6]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
+
+**[7]:** when the url has dynamic values
+**[8]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+
+**[9]:** If available.
+**[10]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
+
+**[11]:** If and only if the operation failed.
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[13]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[14]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+
+**[15]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[16]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

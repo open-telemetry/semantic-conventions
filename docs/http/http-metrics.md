@@ -87,19 +87,36 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `_OTHER` | `Conditionally Required`  [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [3] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.route`](/docs/attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [7] | `http`; `spdy` | `Conditionally Required`  [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [9] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [11] | `80`; `8080`; `443` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [12] | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [1] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [2] | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `_OTHER` | `Conditionally Required`  [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.route`](/docs/attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [6] | `/users/:userID?`; `{controller}/{action}/{id?}` | `Conditionally Required`  [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [8] | `http`; `spdy` | `Conditionally Required`  [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [10] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [12] | `80`; `8080`; `443` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+
+**[3]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -116,42 +133,25 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** If request has ended with an error.
-**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
-
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[4]:** If and only if one was received/sent.
-**[5]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[4]:** If request has ended with an error.
+**[5]:** If and only if one was received/sent.
+**[6]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[6]:** If and only if it's available
-**[7]:** The value SHOULD be normalized to lowercase.
-**[8]:** If not `http` and `network.protocol.version` is set.
-**[9]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[10]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-> **Warning**
-> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-> to trigger cardinality limits, degrading the usefulness of the metric.
+**[7]:** If and only if it's available
+**[8]:** The value SHOULD be normalized to lowercase.
+**[9]:** If not `http` and `network.protocol.version` is set.
+**[10]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 **[11]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 > **Warning**
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-**[12]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[12]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -207,9 +207,9 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [1] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [3] | `80`; `8080`; `443` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -285,19 +285,36 @@ This metric is optional.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `_OTHER` | `Conditionally Required`  [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [3] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.route`](/docs/attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [7] | `http`; `spdy` | `Conditionally Required`  [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [9] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [11] | `80`; `8080`; `443` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [12] | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [1] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [2] | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `_OTHER` | `Conditionally Required`  [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.route`](/docs/attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [6] | `/users/:userID?`; `{controller}/{action}/{id?}` | `Conditionally Required`  [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [8] | `http`; `spdy` | `Conditionally Required`  [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [10] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [12] | `80`; `8080`; `443` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+
+**[3]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -314,42 +331,25 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** If request has ended with an error.
-**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
-
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[4]:** If and only if one was received/sent.
-**[5]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[4]:** If request has ended with an error.
+**[5]:** If and only if one was received/sent.
+**[6]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[6]:** If and only if it's available
-**[7]:** The value SHOULD be normalized to lowercase.
-**[8]:** If not `http` and `network.protocol.version` is set.
-**[9]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[10]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-> **Warning**
-> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-> to trigger cardinality limits, degrading the usefulness of the metric.
+**[7]:** If and only if it's available
+**[8]:** The value SHOULD be normalized to lowercase.
+**[9]:** If not `http` and `network.protocol.version` is set.
+**[10]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 **[11]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 > **Warning**
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-**[12]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[12]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -406,19 +406,36 @@ This metric is optional.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `_OTHER` | `Conditionally Required`  [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [3] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.route`](/docs/attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [7] | `http`; `spdy` | `Conditionally Required`  [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [9] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [11] | `80`; `8080`; `443` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [12] | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [1] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [2] | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `_OTHER` | `Conditionally Required`  [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.route`](/docs/attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [6] | `/users/:userID?`; `{controller}/{action}/{id?}` | `Conditionally Required`  [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [8] | `http`; `spdy` | `Conditionally Required`  [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [10] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [12] | `80`; `8080`; `443` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+
+**[3]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -435,42 +452,25 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** If request has ended with an error.
-**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
-
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[4]:** If and only if one was received/sent.
-**[5]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[4]:** If request has ended with an error.
+**[5]:** If and only if one was received/sent.
+**[6]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[6]:** If and only if it's available
-**[7]:** The value SHOULD be normalized to lowercase.
-**[8]:** If not `http` and `network.protocol.version` is set.
-**[9]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[10]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-> **Warning**
-> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-> to trigger cardinality limits, degrading the usefulness of the metric.
+**[7]:** If and only if it's available
+**[8]:** The value SHOULD be normalized to lowercase.
+**[9]:** If not `http` and `network.protocol.version` is set.
+**[10]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 **[11]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 > **Warning**
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-**[12]:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
+**[12]:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+> **Warning**
+> Since this attribute is based on HTTP headers, opting in to it may allow an attacker
+> to trigger cardinality limits, degrading the usefulness of the metric.
 
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -533,18 +533,37 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `_OTHER` | `Conditionally Required`  [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [3] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [7] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [9] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [1] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `_OTHER` | `Conditionally Required`  [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [7] | `http`; `spdy` | `Conditionally Required`  [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [9] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[4]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -561,30 +580,11 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** If request has ended with an error.
-**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
-
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[4]:** If and only if one was received/sent.
-**[5]:** The value SHOULD be normalized to lowercase.
-**[6]:** If not `http` and `network.protocol.version` is set.
-**[7]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[8]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5]:** If request has ended with an error.
+**[6]:** If and only if one was received/sent.
+**[7]:** The value SHOULD be normalized to lowercase.
+**[8]:** If not `http` and `network.protocol.version` is set.
+**[9]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -641,18 +641,37 @@ This metric is optional.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `_OTHER` | `Conditionally Required`  [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [3] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [7] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [9] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [1] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `_OTHER` | `Conditionally Required`  [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [7] | `http`; `spdy` | `Conditionally Required`  [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [9] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[4]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -669,30 +688,11 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** If request has ended with an error.
-**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
-
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[4]:** If and only if one was received/sent.
-**[5]:** The value SHOULD be normalized to lowercase.
-**[6]:** If not `http` and `network.protocol.version` is set.
-**[7]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[8]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5]:** If request has ended with an error.
+**[6]:** If and only if one was received/sent.
+**[7]:** The value SHOULD be normalized to lowercase.
+**[8]:** If not `http` and `network.protocol.version` is set.
+**[9]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -749,18 +749,37 @@ This metric is optional.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `_OTHER` | `Conditionally Required`  [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [3] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [5] | `http`; `spdy` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [7] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [9] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [1] | `CONNECT`; `DELETE`; `GET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `_OTHER` | `Conditionally Required`  [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [7] | `http`; `spdy` | `Conditionally Required`  [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [9] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** If the request fails with an error before response status code was sent or received,
+**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+
+**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[4]:** If the request fails with an error before response status code was sent or received,
 `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
 or a component-specific low cardinality error identifier.
 
@@ -777,30 +796,11 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[2]:** If request has ended with an error.
-**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
-
-If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
-
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
-
-HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[4]:** If and only if one was received/sent.
-**[5]:** The value SHOULD be normalized to lowercase.
-**[6]:** If not `http` and `network.protocol.version` is set.
-**[7]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[8]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
-
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5]:** If request has ended with an error.
+**[6]:** If and only if one was received/sent.
+**[7]:** The value SHOULD be normalized to lowercase.
+**[8]:** If not `http` and `network.protocol.version` is set.
+**[9]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -856,19 +856,19 @@ This metric is optional.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`http.connection.state`](/docs/attributes-registry/http.md) | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [1] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 
 `http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -911,19 +911,19 @@ This metric is optional.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [1] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 
 
@@ -955,14 +955,18 @@ This metric is optional.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [1] | `CONNECT`; `DELETE`; `GET` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [3] | `CONNECT`; `DELETE`; `GET` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | opt_in | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -976,10 +980,6 @@ OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of ca
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

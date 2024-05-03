@@ -21,33 +21,34 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `_OTHER` | `Conditionally Required`  [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required`  [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [1] | `publish`; `create`; `receive` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `_OTHER` | `Conditionally Required`  [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [4] | `0`; `1`; `2` | `Conditionally Required`  [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.anonymous`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | `Conditionally Required`  [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [7] | `MyQueue`; `MyTopic` | `Conditionally Required`  [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` | `Conditionally Required`  [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.temporary`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | `Conditionally Required`  [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.gcp_pubsub.message.ordering_key`](/docs/attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | `Conditionally Required`  [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required`  [14] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.client_id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | {"recommended": "If a client id is available"} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.anonymous`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | `Conditionally Required`  [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [6] | `MyQueue`; `MyTopic` | `Conditionally Required`  [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | {"recommended": "When applicable."} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` | `Conditionally Required`  [9] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.temporary`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | `Conditionally Required`  [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.gcp_pubsub.message.ack_deadline`](/docs/attributes-registry/messaging.md) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.gcp_pubsub.message.ack_id`](/docs/attributes-registry/messaging.md) | string | The ack id for a given message. | `ack_id` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.gcp_pubsub.message.delivery_attempt`](/docs/attributes-registry/messaging.md) | int | The delivery attempt for a given message. | `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.gcp_pubsub.message.ordering_key`](/docs/attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | `Conditionally Required`  [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [12] | `1439` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [15] | `1439` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.conversation_id`](/docs/attributes-registry/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [13] | `2738` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [16] | `2738` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | {"recommended": "If the operation is not sufficiently described by `messaging.operation.type`."} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [14] | `publish`; `create`; `receive` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [15] | `10.1.2.80`; `/tmp/my.sock` | {"recommended": "If applicable for this messaging system."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [17] | `10.1.2.80`; `/tmp/my.sock` | {"recommended": "If applicable for this messaging system."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` | {"recommended": "if and only if `network.peer.address` is set."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [16] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required`  [17] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [18] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1]:** If a custom value is used, it MUST be of low cardinality.
+**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -67,35 +68,34 @@ it's RECOMMENDED to:
 * Use a domain-specific attribute
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** If and only if the messaging operation has failed.
-**[3]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[3]:** If and only if the messaging operation has failed.
+**[4]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[4]:** If the span describes an operation on a batch of messages.
-**[5]:** If value is `true`. When missing, the value is assumed to be `false`.
-**[6]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[5]:** If the span describes an operation on a batch of messages.
+**[6]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[7]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[7]:** If span describes operation on a single message or if the value applies to all messages in the batch.
-**[8]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[8]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[9]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[9]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
+**[10]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[10]:** If value is `true`. When missing, the value is assumed to be `false`.
-**[11]:** If the message type has an ordering key set.
-**[12]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[11]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[12]:** If the message type has an ordering key set.
+**[13]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+
+**[14]:** If available.
+**[15]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[13]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[16]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[14]:** If a custom value is used, it MUST be of low cardinality.
-**[15]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
+**[17]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[16]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
-
-**[17]:** If available.
 **[18]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 

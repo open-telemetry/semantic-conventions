@@ -101,34 +101,34 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required`  [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | {"recommended": "If `network.peer.address` is set."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp`; `pipe` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [3] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required`  [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp`; `pipe` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
-**[1]:** The value SHOULD be normalized to lowercase.
+**[1]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
+
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[3]:** if the port is supported by the network transport used for communication.
+**[4]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** The value SHOULD be normalized to lowercase.
-**[3]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[5]:** The value SHOULD be normalized to lowercase.
+**[6]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
-**[4]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+**[7]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
-**[5]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
-
-**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[7]:** if the port is supported by the network transport used for communication.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -174,40 +174,40 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.port`](/docs/attributes-registry/client.md) | int | Client port number. [2] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required`  [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`client.port`](/docs/attributes-registry/client.md) | int | Client port number. [5] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | {"recommended": "If `network.peer.address` is set."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp`; `pipe` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [5] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [6] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required`  [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [6] | `tcp`; `udp`; `pipe` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [8] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
-**[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+**[1]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
-**[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+**[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3]:** The value SHOULD be normalized to lowercase.
+**[3]:** if the port is supported by the network transport used for communication.
+**[4]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+
+**[5]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+
+**[6]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[4]:** The value SHOULD be normalized to lowercase.
-**[5]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[7]:** The value SHOULD be normalized to lowercase.
+**[8]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
-**[6]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+**[9]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
-**[7]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
-
-**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[9]:** if the port is supported by the network transport used for communication.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

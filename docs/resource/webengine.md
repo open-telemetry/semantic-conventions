@@ -13,8 +13,8 @@
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`webengine.description`](/docs/attributes-registry/webengine.md) | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`webengine.name`](/docs/attributes-registry/webengine.md) | string | The name of the web engine. | `WildFly` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`webengine.description`](/docs/attributes-registry/webengine.md) | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`webengine.version`](/docs/attributes-registry/webengine.md) | string | The version of the web engine. | `21.0.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 

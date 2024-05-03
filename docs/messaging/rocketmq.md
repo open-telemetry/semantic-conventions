@@ -23,38 +23,39 @@ Specific attributes for Apache RocketMQ are defined below.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `_OTHER` | `Conditionally Required`  [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required`  [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [1] | `publish`; `create`; `receive` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.client_group`](/docs/attributes-registry/messaging.md) | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.namespace`](/docs/attributes-registry/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `_OTHER` | `Conditionally Required`  [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [4] | `0`; `1`; `2` | `Conditionally Required`  [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.anonymous`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | `Conditionally Required`  [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [7] | `MyQueue`; `MyTopic` | `Conditionally Required`  [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` | `Conditionally Required`  [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.temporary`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | `Conditionally Required`  [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.message.delay_time_level`](/docs/attributes-registry/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | `Conditionally Required`  [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.message.delivery_timestamp`](/docs/attributes-registry/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | `Conditionally Required`  [13] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.message.group`](/docs/attributes-registry/messaging.md) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | `Conditionally Required`  [14] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required`  [16] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.client_id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | {"recommended": "If a client id is available"} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.anonymous`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | `Conditionally Required`  [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [6] | `MyQueue`; `MyTopic` | `Conditionally Required`  [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | {"recommended": "When applicable."} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` | `Conditionally Required`  [9] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.temporary`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | `Conditionally Required`  [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [11] | `1439` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [17] | `1439` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.conversation_id`](/docs/attributes-registry/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [12] | `2738` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [18] | `2738` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | {"recommended": "If the operation is not sufficiently described by `messaging.operation.type`."} | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [13] | `publish`; `create`; `receive` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.client_group`](/docs/attributes-registry/messaging.md) | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rocketmq.consumption_model`](/docs/attributes-registry/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.delay_time_level`](/docs/attributes-registry/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | `Conditionally Required`  [14] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.delivery_timestamp`](/docs/attributes-registry/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | `Conditionally Required`  [15] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.group`](/docs/attributes-registry/messaging.md) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | `Conditionally Required`  [16] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rocketmq.message.keys`](/docs/attributes-registry/messaging.md) | string[] | Key(s) of message, another way to mark message besides message id. | `keyA`; `keyB` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rocketmq.message.tag`](/docs/attributes-registry/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rocketmq.message.type`](/docs/attributes-registry/messaging.md) | string | Type of message. | `normal`; `fifo`; `delay` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.namespace`](/docs/attributes-registry/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | An identifier for the messaging system being used. See below for a list of well-known identifiers. | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [17] | `10.1.2.80`; `/tmp/my.sock` | {"recommended": "If applicable for this messaging system."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [19] | `10.1.2.80`; `/tmp/my.sock` | {"recommended": "If applicable for this messaging system."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` | {"recommended": "if and only if `network.peer.address` is set."} | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [18] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required`  [19] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [20] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1]:** If a custom value is used, it MUST be of low cardinality.
+**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -74,37 +75,36 @@ it's RECOMMENDED to:
 * Use a domain-specific attribute
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** If and only if the messaging operation has failed.
-**[3]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[3]:** If and only if the messaging operation has failed.
+**[4]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[4]:** If the span describes an operation on a batch of messages.
-**[5]:** If value is `true`. When missing, the value is assumed to be `false`.
-**[6]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[5]:** If the span describes an operation on a batch of messages.
+**[6]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[7]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[7]:** If span describes operation on a single message or if the value applies to all messages in the batch.
-**[8]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[8]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[9]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[9]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
+**[10]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[10]:** If value is `true`. When missing, the value is assumed to be `false`.
-**[11]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[11]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[12]:** If the message type is delay and delivery timestamp is not specified.
+**[13]:** If the message type is delay and delay time level is not specified.
+**[14]:** If the message type is FIFO.
+**[15]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+
+**[16]:** If available.
+**[17]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[12]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[18]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[13]:** If a custom value is used, it MUST be of low cardinality.
-**[14]:** If the message type is delay and delivery timestamp is not specified.
-**[15]:** If the message type is delay and delay time level is not specified.
-**[16]:** If the message type is FIFO.
-**[17]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
+**[19]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[18]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
-
-**[19]:** If available.
 **[20]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 

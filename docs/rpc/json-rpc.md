@@ -21,38 +21,38 @@ described on this page.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp`; `pipe` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required`  [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.jsonrpc.version`](/docs/attributes-registry/rpc.md) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | `Conditionally Required`  [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required`  [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [7] | `tcp`; `udp`; `pipe` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [8] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.jsonrpc.error_message`](/docs/attributes-registry/rpc.md) | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`rpc.jsonrpc.request_id`](/docs/attributes-registry/rpc.md) | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.jsonrpc.version`](/docs/attributes-registry/rpc.md) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | `Conditionally Required`  [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [5] | `exampleMethod` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [6] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required`  [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
-**[1]:** The value SHOULD be normalized to lowercase.
+**[1]:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
+
+**[2]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
+
+**[3]:** If response is not successful.
+**[4]:** If other than the default version (`1.0`)
+**[5]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[6]:** if the port is supported by the network transport used for communication.
+**[7]:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** The value SHOULD be normalized to lowercase.
-**[3]:** If response is not successful.
-**[4]:** If other than the default version (`1.0`)
-**[5]:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
+**[8]:** The value SHOULD be normalized to lowercase.
+**[9]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
-**[6]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
-
-**[7]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
-
-**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[9]:** if the port is supported by the network transport used for communication.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

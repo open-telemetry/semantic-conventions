@@ -137,8 +137,8 @@ For incoming FaaS spans, the span kind MUST be `Server`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.coldstart`](/docs/attributes-registry/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [1] | `datasource`; `http`; `pubsub` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.coldstart`](/docs/attributes-registry/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -247,8 +247,8 @@ FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOUL
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`faas.document.collection`](/docs/attributes-registry/faas.md) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.document.name`](/docs/attributes-registry/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.document.operation`](/docs/attributes-registry/faas.md) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.document.name`](/docs/attributes-registry/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.document.time`](/docs/attributes-registry/faas.md) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
