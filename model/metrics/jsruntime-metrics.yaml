@@ -1,104 +1,104 @@
 groups:
-  - id: metric.nodejs.active_handles.count
+  - id: metric.jsruntime.active_handles.count
     type: metric
-    metric_name: nodejs.active_handles.count
+    metric_name: jsruntime.active_handles.count
     brief: "Number of active handles."
     instrument: updowncounter
     unit: "{handles}"
     stability: experimental
     attributes:
-      - ref: nodejs.version
+      - ref: jsruntime.version
         requirement_level: recommended
 
-  - id: metric.nodejs.active_libuv_requests.count
+  - id: metric.jsruntime.active_libuv_requests.count
     type: metric
-    metric_name: nodejs.active_libuv_requests.count
+    metric_name: jsruntime.active_libuv_requests.count
     brief: "Number of active libuv requests."
     instrument: updowncounter
     unit: "{requests}"
     stability: experimental
     attributes:
-      - ref: nodejs.version
+      - ref: jsruntime.version
         requirement_level: recommended
 
-  - id: metric.nodejs.eventloop.lag
+  - id: metric.jsruntime.eventloop.lag
     type: metric
-    metric_name: nodejs.eventloop.lag
+    metric_name: jsruntime.eventloop.lag
     brief: "Event loop lag."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejs.eventloop.lag
+    prefix: jsruntime.eventloop.lag
     attributes:
-      - ref: nodejs.version
+      - ref: jsruntime.version
         requirement_level: recommended
-      - ref: nodejs.eventloop.lag.type
+      - ref: jsruntime.eventloop.lag.type
         requirement_level: recommended
 
-  - id: metric.nodejs.eventloop.utilization
+  - id: metric.jsruntime.eventloop.utilization
     type: metric
-    metric_name: nodejs.eventloop.utilization
+    metric_name: jsruntime.eventloop.utilization
     brief: "Event loop utilization."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejs.eventloop.utilization
+    prefix: jsruntime.eventloop.utilization
     attributes:
-      - ref: nodejs.version
+      - ref: jsruntime.version
         requirement_level: recommended
 
-  - id: metric.nodejs.gc.duration
+  - id: metric.jsruntime.gc.duration
     type: metric
-    metric_name: nodejs.gc.duration
+    metric_name: jsruntime.gc.duration
     brief: "Garbage collection duration."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejs.gc
+    prefix: jsruntime.gc
     attributes:
-      - ref: nodejs.version
+      - ref: jsruntime.version
         requirement_level: recommended
-      - ref: nodejs.gc.type
+      - ref: jsruntime.gc.type
         requirement_level: recommended
 
-  - id: metric.nodejs.memory.size
+  - id: metric.jsruntime.memory.size
     type: metric
-    metric_name: nodejs.memory.size
+    metric_name: jsruntime.memory.size
     brief: "External memory size."
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: nodejs.memory
+    prefix: jsruntime.memory
     attributes:
-      - ref: nodejs.version
+      - ref: jsruntime.version
         requirement_level: recommended
-      - ref: nodejs.memory.state
+      - ref: jsruntime.memory.state
         requirement_level: recommended
 
-  - id: metric.nodejs.heap.size
+  - id: metric.jsruntime.heap.size
     type: metric
-    metric_name: nodejs.heap.size
+    metric_name: jsruntime.heap.size
     brief: "Heap size."
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: nodejs.heap.size
+    prefix: jsruntime.heap.size
     attributes:
-      - ref: nodejs.version
+      - ref: jsruntime.version
         requirement_level: recommended
-      - ref: nodejs.heap.size.state
+      - ref: jsruntime.heap.size.state
         requirement_level: recommended
 
-  - id: metric.nodejs.heap.space
+  - id: metric.jsruntime.heap.space
     type: metric
-    metric_name: nodejs.heap.space
+    metric_name: jsruntime.heap.space
     brief: "Heap space."
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: nodejs.heap.space
+    prefix: jsruntime.heap.space
     attributes:
-      - ref: nodejs.version
+      - ref: jsruntime.version
         requirement_level: recommended
-      - ref: nodejs.heap.space.state
+      - ref: jsruntime.heap.space.state
         requirement_level: recommended

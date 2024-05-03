@@ -40,12 +40,12 @@ body:
         - area:heroku
         - area:host
         - area:http
+        - area:jsruntime
         - area:jvm
         - area:k8s
         - area:log
         - area:messaging
         - area:network
-        - area:nodejs
         - area:oci
         - area:opentracing
         - area:os

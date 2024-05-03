@@ -1,13 +1,13 @@
 groups:
-  - id: registry.nodejs
+  - id: registry.jsruntime
     type: attribute_group
-    brief: Describes Node.js related attributes.
-    prefix: nodejs
+    brief: Describes JS Runtime related attributes.
+    prefix: jsruntime
     attributes:
       - id: version
         stability: experimental
         type: string
-        brief: Node.js version.
+        brief: JS Runtime version.
         examples: ["v22.0.0", "v21.7.3"]
       - id: eventloop.lag.type
         stability: experimental
