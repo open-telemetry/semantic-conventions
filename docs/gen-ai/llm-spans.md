@@ -40,21 +40,9 @@ These attributes track input data and metadata for a request to an LLM. Each att
 <!-- semconv gen_ai.request -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-<<<<<<< HEAD
-| [`gen_ai.request.model`](../attributes-registry/llm.md) | string | The name of the LLM a request is being made to. [1] | `gpt-4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.operation.name`](../attributes-registry/llm.md) | string | The name of the LLM operation request is being made. [1] | `chat.completions`;`embeddings`;`speech.generations`;`audio.transcriptions`;`audio.translations`;`image.generations` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.system`](../attributes-registry/llm.md) | string | The name of the LLM foundation model vendor. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.request.max_tokens`](../attributes-registry/llm.md) | int | The maximum number of tokens the LLM generates for a request. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.request.temperature`](../attributes-registry/llm.md) | double | The temperature setting for the LLM request. | `0.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.request.top_p`](../attributes-registry/llm.md) | double | The top_p sampling setting for the LLM request. | `1.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.response.finish_reasons`](../attributes-registry/llm.md) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `[stop]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.response.id`](../attributes-registry/llm.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.response.model`](../attributes-registry/llm.md) | string | The name of the LLM a response was generated from. [3] | `gpt-4-0613` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.usage.completion_tokens`](../attributes-registry/llm.md) | int | The number of tokens used in the LLM response (completion). | `180` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.usage.prompt_tokens`](../attributes-registry/llm.md) | int | The number of tokens used in the LLM prompt. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-=======
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM a request is being made to. [1] | `gpt-4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM foundation model vendor. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM operation request being made. | `chat.completions`; `embeddings`; `speech.generations`; `audio.transcriptions`; `audio.translations`; `image.generations` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the LLM generates for a request. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.temperature`](/docs/attributes-registry/gen-ai.md) | double | The temperature setting for the LLM request. | `0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the LLM request. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -63,7 +51,6 @@ These attributes track input data and metadata for a request to an LLM. Each att
 | [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM a response was generated from. [3] | `gpt-4-0613` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.usage.completion_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the LLM response (completion). | `180` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.usage.prompt_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the LLM prompt. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
->>>>>>> 651d779183ecc7c2f8cfa90bf94e105f7b9d3f5a
 
 **[1]:** The name of the LLM a request is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model requested. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
