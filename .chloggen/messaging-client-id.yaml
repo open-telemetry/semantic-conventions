@@ -1,0 +1,4 @@
+change_type: breaking
+component: messaging
+note: Rename `messaging.client_id` to `messaging.client.id`
+issues: [ 935 ]
