@@ -24,16 +24,14 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.rabbitmq.destination.routing_key`](/docs/attributes-registry/messaging.md) | string | RabbitMQ message routing key. | `myKey` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rabbitmq.message.delivery_tag`](/docs/attributes-registry/messaging.md) | int | RabbitMQ message delivery tag | `123` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [3] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.rabbitmq.destination.routing_key`](/docs/attributes-registry/messaging.md) | string | RabbitMQ message routing key. | `myKey` | `Conditionally Required` If not empty. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rabbitmq.message.delivery_tag`](/docs/attributes-registry/messaging.md) | int | RabbitMQ message delivery tag | `123` | `Conditionally Required` When available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [1] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
-**[1]:** If not empty.
-**[2]:** When available.
-**[3]:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[1]:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 
 <!-- endsemconv -->
