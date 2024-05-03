@@ -50,7 +50,6 @@ These attributes may be used for identifying a Log Record.
 The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
 
 
-
 <!-- endsemconv -->
 
 ## Log Media
@@ -80,7 +79,6 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 
 
-
 <!-- endsemconv -->
 
 ### I/O Stream
@@ -98,17 +96,14 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 
 
-
 `log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `stdout` | Logs from stdout stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `stderr` | Events from stderr stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

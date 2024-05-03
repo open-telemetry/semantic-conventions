@@ -76,7 +76,6 @@ even if the `exception.escaped` attribute was not set or set to false,
 since the event might have been recorded at a time where it was not
 clear whether the exception will escape.
 
-
 <!-- endsemconv -->
 
 ### Stacktrace Representation

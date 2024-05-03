@@ -83,7 +83,6 @@ if they do not cause breaking changes to HTTP semantic conventions.
 **[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 
-
 <!-- endsemconv -->
 
 `server.address` and `server.port` represent logical server name and port. Semantic conventions that refer to these attributes SHOULD
@@ -129,7 +128,6 @@ if they do not cause breaking changes to HTTP semantic conventions.
 **[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
 
-
 <!-- endsemconv -->
 
 ### Source and destination attributes
@@ -158,7 +156,6 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 **[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 
 
-
 <!-- endsemconv -->
 
 #### Destination
@@ -178,7 +175,6 @@ Destination fields capture details about the receiver of a network exchange/pack
 
 
 **[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
-
 
 
 <!-- endsemconv -->
@@ -220,7 +216,6 @@ a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[4]:** The value SHOULD be normalized to lowercase.
-
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -229,19 +224,15 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+ 
+ `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 #### `network.peer.*` and `network.local.*` attributes
@@ -301,7 +292,6 @@ Note that `network.local.*` attributes are not included in these examples since 
 
 
 
-
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -327,10 +317,8 @@ Note that `network.local.*` attributes are not included in these examples since 
 | `nr` | 5G NR (New Radio) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nrnsa` | 5G NRNSA (New Radio Non-Standalone) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `lte_ca` | LTE CA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-`network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+ 
+ `network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -339,10 +327,8 @@ Note that `network.local.*` attributes are not included in these examples since 
 | `cell` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unavailable` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unknown` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 For `Unix` and `pipe`, since the connection goes over the file system instead of being directly to a known peer, `server.address` is the only attribute that usually makes sense (see description of `server.address` below).
@@ -361,7 +347,6 @@ Instrumentations SHOULD provide a way for users to configure this name.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`peer.service`](/docs/attributes-registry/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 
 
@@ -387,7 +372,6 @@ These attributes may be used for any operation with an authenticated and/or auth
 | [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Username or client_id extracted from the access token or [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2) header in the inbound request from outside the system. | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Scopes or granted authorities the client currently possesses extracted from token or application security context. The value would come from the scope associated with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html). | `read:message, write:files` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 
 
@@ -446,7 +430,6 @@ a thread that started a span.
 
 
 
-
 <!-- endsemconv -->
 
 Examples of where `thread.id` and `thread.name` can be extracted from:
@@ -481,7 +464,6 @@ about the span.
 | [`code.lineno`](/docs/attributes-registry/code.md) | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`code.namespace`](/docs/attributes-registry/code.md) | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`code.stacktrace`](/docs/attributes-registry/code.md) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | opt_in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 
 

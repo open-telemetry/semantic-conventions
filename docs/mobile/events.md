@@ -40,7 +40,6 @@ NOT be used together, each field MUST be used with its corresponding
 
 
 
-
 <!-- endsemconv -->
 
 <!-- Manually adding the markdown table until the body definition is available in the build tools -->

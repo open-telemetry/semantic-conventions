@@ -215,7 +215,6 @@ The following attributes are applicable to creation and processing Spans.
 
 
 
-
 <!-- endsemconv -->
 <!-- prettier-ignore-end -->
 

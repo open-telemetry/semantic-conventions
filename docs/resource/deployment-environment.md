@@ -26,7 +26,6 @@ considered to be identifying the same service:
 * `service.name=frontend`, `deployment.environment=staging`.
 
 
-
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

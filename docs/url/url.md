@@ -46,7 +46,6 @@ This document defines semantic conventions that describe URL and its components.
 **[3]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
 
 
-
 <!-- endsemconv -->
 
 ## Sensitive information

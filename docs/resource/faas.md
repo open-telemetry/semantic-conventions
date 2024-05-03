@@ -78,7 +78,6 @@ The following well-known definitions MUST be used if you set this attribute and 
 * **Azure Functions:** Not applicable. Do not set this attribute.
 
 
-
 <!-- endsemconv -->
 
 Note: The resource attribute `faas.instance` differs from the span attribute `faas.invocation_id`. For more information see the [Semantic conventions for FaaS spans](/docs/faas/faas-spans.md#difference-between-invocation-and-instance).

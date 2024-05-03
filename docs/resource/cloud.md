@@ -46,7 +46,6 @@ The following well-known definitions MUST be used if you set this attribute and 
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
 
-
 `cloud.platform` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -79,10 +78,8 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-`cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+ 
+ `cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -93,10 +90,8 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `heroku` | Heroku Platform as a Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm_cloud` | IBM Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

@@ -51,7 +51,6 @@ The table below indicates which attributes should be added to the
 **[1]:** Required if `exception.type` is not set, recommended otherwise.
 **[2]:** Required if `exception.message` is not set, recommended otherwise.
 
-
 <!-- endsemconv -->
 
 ### Stacktrace Representation

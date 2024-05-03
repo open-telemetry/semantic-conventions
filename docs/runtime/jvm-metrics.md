@@ -77,17 +77,14 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `jvm.memory.committed`
@@ -122,17 +119,14 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `jvm.memory.limit`
@@ -167,17 +161,14 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `jvm.memory.used_after_last_gc`
@@ -212,17 +203,14 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ## JVM Garbage Collection
@@ -271,7 +259,6 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 **[2]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
 
 
-
 <!-- endsemconv -->
 
 ## JVM Threads
@@ -317,7 +304,6 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 
 
 
-
 `jvm.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -328,10 +314,8 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 | `waiting` | A thread that is waiting indefinitely for another thread to perform a particular action is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `timed_waiting` | A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `terminated` | A thread that has exited is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ## JVM Classes
@@ -369,7 +353,6 @@ This metric is obtained from [`ClassLoadingMXBean#getTotalLoadedClassCount()`](h
 
 
 
-
 <!-- endsemconv -->
 
 ### Metric: `jvm.class.unloaded`
@@ -401,7 +384,6 @@ This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](http
 
 
 
-
 <!-- endsemconv -->
 
 ### Metric: `jvm.class.count`
@@ -429,7 +411,6 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-
 
 
 
@@ -473,7 +454,6 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 
 
 
-
 <!-- endsemconv -->
 
 ### Metric: `jvm.cpu.count`
@@ -502,7 +482,6 @@ Note that this is always an integer value (i.e. fractional or millicores are not
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-
 
 
 
@@ -538,7 +517,6 @@ Note that the JVM does not provide a definition of what "recent" means.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-
 
 
 
@@ -583,17 +561,14 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `jvm.system.cpu.utilization`
@@ -624,7 +599,6 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https:/
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-
 
 
 
@@ -679,7 +653,6 @@ This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.o
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
 
-
 <!-- endsemconv -->
 
 ### Metric: `jvm.buffer.memory.limit`
@@ -714,7 +687,6 @@ This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://doc
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
 
-
 <!-- endsemconv -->
 
 ### Metric: `jvm.buffer.count`
@@ -747,7 +719,6 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
-
 
 
 <!-- endsemconv -->

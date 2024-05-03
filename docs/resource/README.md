@@ -94,7 +94,6 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 **[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
 
-
 <!-- endsemconv -->
 
 ## Service (Experimental)
@@ -147,7 +146,6 @@ port.
 **[2]:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
 
 
-
 <!-- endsemconv -->
 
 Note: `service.namespace` and `service.name` are not intended to be concatenated for the purpose of forming a single globally unique name for the service. For example the following 2 sets of attributes actually describe 2 different services (despite the fact that the concatenation would result in the same string):
@@ -192,7 +190,6 @@ or another suitable identifier depending on the language.
 The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
 All custom identifiers SHOULD be stable across different versions of an implementation.
 
-
 `telemetry.sdk.language` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -209,10 +206,8 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | `rust` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `swift` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `webjs` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ## Telemetry Distribution (Experimental)
@@ -237,7 +232,6 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 **[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
-
 
 
 <!-- endsemconv -->

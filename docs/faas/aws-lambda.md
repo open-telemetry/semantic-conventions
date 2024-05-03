@@ -57,7 +57,6 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
 
-
 <!-- endsemconv -->
 
 [faas]: faas-spans.md (FaaS trace conventions)

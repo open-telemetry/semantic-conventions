@@ -103,7 +103,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -115,10 +114,8 @@ This metric is [recommended][MetricRecommended].
 | `iowait` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interrupt` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `steal` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.cpu.utilization`
@@ -150,7 +147,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -162,10 +158,8 @@ This metric is [recommended][MetricRecommended].
 | `iowait` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interrupt` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `steal` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.cpu.physical.count`
@@ -192,7 +186,6 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-
 
 
 
@@ -227,7 +220,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 <!-- endsemconv -->
 
 ### Metric: `system.cpu.frequency`
@@ -255,7 +247,6 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 
 
@@ -298,7 +289,6 @@ available on the system, that is `system.memory.limit`.
 
 
 
-
 `system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -308,10 +298,8 @@ available on the system, that is `system.memory.limit`.
 | `shared` | none |  ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `buffers` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.memory.limit`
@@ -340,7 +328,6 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-
 
 
 
@@ -378,7 +365,6 @@ This metric is [opt-in][MetricOptIn].
 
 
 
-
 <!-- endsemconv -->
 
 ### Metric: `system.memory.utilization`
@@ -409,7 +395,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -419,10 +404,8 @@ This metric is [recommended][MetricRecommended].
 | `shared` | none |  ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `buffers` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ## Paging/Swap Metrics
@@ -457,17 +440,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.paging.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `used` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.paging.utilization`
@@ -498,17 +478,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.paging.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `used` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.paging.faults`
@@ -539,17 +516,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `major` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.paging.operations`
@@ -581,26 +555,21 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.paging.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `in` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `out` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-`system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+ 
+ `system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `major` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ## Disk Controller Metrics
@@ -636,17 +605,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `read` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `write` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.disk.operations`
@@ -678,17 +644,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `read` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `write` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.disk.io_time`
@@ -723,7 +686,6 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 
 
@@ -764,17 +726,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `read` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `write` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.disk.merged`
@@ -806,17 +765,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `read` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `write` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ## Filesystem Metrics
@@ -855,7 +811,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.filesystem.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -863,10 +818,8 @@ This metric is [recommended][MetricRecommended].
 | `used` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `reserved` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+ 
+ `system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -876,10 +829,8 @@ This metric is [recommended][MetricRecommended].
 | `refs` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hfsplus` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ext4` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.filesystem.utilization`
@@ -914,7 +865,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.filesystem.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -922,10 +872,8 @@ This metric is [recommended][MetricRecommended].
 | `used` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `reserved` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+ 
+ `system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -935,10 +883,8 @@ This metric is [recommended][MetricRecommended].
 | `refs` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hfsplus` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ext4` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ## Network Metrics
@@ -980,17 +926,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `transmit` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.network.packets`
@@ -1022,17 +965,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `transmit` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.network.errors`
@@ -1070,17 +1010,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `transmit` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.network.io`
@@ -1112,17 +1049,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `transmit` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.network.connections`
@@ -1161,7 +1095,6 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -1170,10 +1103,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-
-`system.network.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+ 
+ `system.network.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -1189,10 +1120,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `syn_recv` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `syn_sent` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `time_wait` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 ## Aggregate System Process Metrics
 
@@ -1227,7 +1156,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -1236,10 +1164,8 @@ This metric is [recommended][MetricRecommended].
 | `sleeping` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `stopped` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `defunct` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `system.process.created`
@@ -1266,7 +1192,6 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-
 
 
 

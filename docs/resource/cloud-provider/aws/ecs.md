@@ -24,17 +24,14 @@
 
 
 **[1]:** If and only if `task.arn` is populated.
-
 `aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `ec2` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `fargate` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

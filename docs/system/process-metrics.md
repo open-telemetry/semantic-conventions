@@ -73,7 +73,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -81,10 +80,8 @@ This metric is [recommended][MetricRecommended].
 | `system` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `wait` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `process.cpu.utilization`
@@ -115,7 +112,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -123,10 +119,8 @@ This metric is [recommended][MetricRecommended].
 | `system` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `wait` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `process.memory.usage`
@@ -153,7 +147,6 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-
 
 
 
@@ -188,7 +181,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 <!-- endsemconv -->
 
 ### Metric: `process.disk.io`
@@ -219,17 +211,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `read` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `write` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `process.network.io`
@@ -260,17 +249,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `transmit` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `process.thread.count`
@@ -297,7 +283,6 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-
 
 
 
@@ -332,7 +317,6 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 <!-- endsemconv -->
 
 ### Metric: `process.context_switches`
@@ -363,17 +347,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `voluntary` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `involuntary` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 ### Metric: `process.paging.faults`
@@ -404,17 +385,14 @@ This metric is [recommended][MetricRecommended].
 
 
 
-
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `major` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-
+ 
+ 
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

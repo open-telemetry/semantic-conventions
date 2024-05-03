@@ -30,7 +30,6 @@ backends can link the two sessions.
 
 
 
-
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
