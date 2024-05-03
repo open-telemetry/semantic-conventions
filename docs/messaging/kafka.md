@@ -42,7 +42,7 @@ For Apache Kafka producers, [`peer.service`](/docs/general/attributes.md#general
 The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of the Producer, when the message is directly passed to another service.
 If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
 
-`messaging.client_id` SHOULD be set to the `client-id` of consumers, or to the `client.id` property of producers.
+`messaging.client.id` SHOULD be set to the client name of consumer or producers, which is unique for each individual instance.
 
 ## Examples
 
@@ -78,7 +78,7 @@ Process CB:                           | Span Rcv2 |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T1"` | `"T1"` | `"T1"` | `"T2"` | `"T2"` |
 | `messaging.operation.type` |  |  | `"process"` |  | `"receive"` |
-| `messaging.client_id` |  | `"5"` | `"5"` | `"5"` | `"8"` |
+| `messaging.client.id` |  | `"5"` | `"5"` | `"5"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | `"anotherKey"` | `"anotherKey"` |
 | `messaging.kafka.consumer.group` |  | `"my-group"` | `"my-group"` |  | `"another-group"` |
 | `messaging.kafka.destination.partition` | `"1"` | `"1"` | `"1"` | `"3"` | `"3"` |
