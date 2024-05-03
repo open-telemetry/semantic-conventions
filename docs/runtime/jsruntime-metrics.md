@@ -6,7 +6,7 @@ linkTitle: JS Runtime
 
 **Status**: [Experimental][DocumentStatus]
 
-This document describes semantic conventions for JS Runtime (e.g. jsruntime, DenoJS, BunJS) metrics in OpenTelemetry.
+This document describes semantic conventions for JS Runtime (e.g. jsruntime, Deno, Bun) metrics in OpenTelemetry.
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
@@ -14,7 +14,6 @@ This document describes semantic conventions for JS Runtime (e.g. jsruntime, Den
 
 - [Experimental](#experimental)
   - [Metric: `jsruntime.active_handles.count`](#metric-jsruntimeactive_handlescount)
-  - [Metric: `jsruntime.active_libuv_requests.count`](#metric-jsruntimeactive_libuv_requestscount)
   - [Metric: `jsruntime.eventloop.lag`](#metric-jsruntimeeventlooplag)
   - [Metric: `jsruntime.eventloop.utilization`](#metric-jsruntimeeventlooputilization)
   - [Metric: `jsruntime.gc.duration`](#metric-jsruntimegcduration)
@@ -41,22 +40,6 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 
 <!-- semconv metric.jsruntime.active_handles.count(full) -->
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`jsruntime.version`](/docs/attributes-registry/jsruntime.md) | string | JS Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-<!-- endsemconv -->
-
-### Metric: `jsruntime.active_libuv_requests.count`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.jsruntime.active_libuv_requests.count(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jsruntime.active_libuv_requests.count` | UpDownCounter | `{requests}` | Number of active libuv requests. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-<!-- endsemconv -->
-
-<!-- semconv metric.jsruntime.active_libuv_requests.count(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`jsruntime.version`](/docs/attributes-registry/jsruntime.md) | string | JS Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

@@ -10,17 +10,6 @@ groups:
       - ref: jsruntime.version
         requirement_level: recommended
 
-  - id: metric.jsruntime.active_libuv_requests.count
-    type: metric
-    metric_name: jsruntime.active_libuv_requests.count
-    brief: "Number of active libuv requests."
-    instrument: updowncounter
-    unit: "{requests}"
-    stability: experimental
-    attributes:
-      - ref: jsruntime.version
-        requirement_level: recommended
-
   - id: metric.jsruntime.eventloop.lag
     type: metric
     metric_name: jsruntime.eventloop.lag
