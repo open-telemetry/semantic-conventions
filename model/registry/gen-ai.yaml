@@ -52,7 +52,7 @@ groups:
         type: string
         brief: The name of the LLM operation request being made.
         examples: ['chat.completions', 'embeddings', 'speech.generations', 'audio.transcriptions', 'audio.translations', 'image.generations']
-        tag: llm-generic-response  
+        tag: llm-generic-response
       - id: response.model
         stability: experimental
         type: string
