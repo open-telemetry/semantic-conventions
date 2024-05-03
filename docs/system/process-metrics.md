@@ -77,9 +77,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `system` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wait` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wait` | wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->
@@ -116,9 +116,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `system` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wait` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wait` | wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->
@@ -215,8 +215,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->
@@ -253,8 +253,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `transmit` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->
@@ -351,8 +351,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `voluntary` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `involuntary` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `voluntary` | voluntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `involuntary` | involuntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->
@@ -389,8 +389,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `minor` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->

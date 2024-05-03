@@ -322,11 +322,11 @@ Note that `network.local.*` attributes are not included in these examples since 
 
 | Value  | Description | Stability |
 |---|---|---|
-| `wifi` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wired` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cell` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unavailable` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wifi` | wifi | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wired` | wired | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cell` | cell | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unknown` | unknown | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->

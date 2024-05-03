@@ -207,8 +207,8 @@ This metric is [required][MetricRequired].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->

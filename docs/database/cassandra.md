@@ -46,17 +46,17 @@ described on this page.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `all` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_quorum` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `any` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_serial` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `all` | all | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `each_quorum` | each_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quorum` | quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `one` | one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `two` | two | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `three` | three | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_one` | local_one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `any` | any | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `serial` | serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->

@@ -255,8 +255,8 @@ and one received message will be recorded for both client and server spans.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `SENT` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECEIVED` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `SENT` | SENT | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | RECEIVED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->

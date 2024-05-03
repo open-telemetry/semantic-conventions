@@ -28,8 +28,8 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-| `ec2` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fargate` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ec2` | ec2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fargate` | fargate | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->

@@ -116,8 +116,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->
@@ -157,8 +157,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `transmit` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` | none | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
  
 <!-- endsemconv -->
