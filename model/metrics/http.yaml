@@ -206,4 +206,3 @@ groups:
           conditionally_required: If available.
         note: >
           The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
-
