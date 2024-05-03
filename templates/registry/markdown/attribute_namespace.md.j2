@@ -34,6 +34,6 @@
 
 {{ notes.render() }}
 {% for enum in group.attributes | sort(attribute="name") %}
-{%- if enum.type is mapping -%}{{ enums.table(enum, notes, stability) }}{% endif %}
+{%- if enum.type is mapping -%}{{ enums.table(enum, notes) }}{% endif %}
 {%- endfor -%}
 {%- endfor -%}

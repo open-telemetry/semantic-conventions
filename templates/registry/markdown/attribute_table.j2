@@ -8,5 +8,5 @@
 {% for attribute in attributes | attribute_sort %}{% if (tag_filter | length == 0) or (attribute.tag is in(tag_filter)) %}| [{% include "attribute_name.j2" %}]({{attribute_registry_base_url}}/{{ attribute.name | split_id | list | first | kebab_case }}.md) | {% include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }}{{ notes.add(attribute.note) }} | {% include "examples.j2" | trim %} | {{ requirement.render(attribute.requirement_level, notes) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {% endif %}{% endfor %}
 
-{{ notes.render() }}{% for enum in group.attributes | sort(attribute="name") %}{% if enum.type is mapping and ((tag_filter | length == 0) or (enum.tag is in(tag_filter))) %}{#- We should use a filter for enums vs. this if. -#}{{ enums.table(enum, notes, stability) }}{% endif %}{% endfor %}
+{{ notes.render() }}{% for enum in group.attributes | sort(attribute="name") %}{% if enum.type is mapping and ((tag_filter | length == 0) or (enum.tag is in(tag_filter))) %}{#- We should use a filter for enums vs. this if. -#}{{ enums.table(enum, notes) }}{% endif %}{% endfor %}
 {% endmacro %}

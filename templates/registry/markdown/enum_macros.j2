@@ -1,4 +1,5 @@
-{% macro table(enum, notes, stability) %}
+{% import 'stability.j2' as stability %}
+{% macro table(enum, notes) %}
 `{{enum.name}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
