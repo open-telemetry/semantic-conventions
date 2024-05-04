@@ -117,10 +117,12 @@ attribute-registry-generation:
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
 table-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
 		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
 		--attribute-registry-base-url="/docs/attributes-registry" \
+		--templates=/weaver/templates \
+		--target=markdown \
 		--dry-run \
 		/spec
 
