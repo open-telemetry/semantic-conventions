@@ -9,27 +9,20 @@ groups:
       - ref: process.parent_pid
       - ref: process.executable.name
         requirement_level:
-          conditionally_required: See alternative attributes below.
+          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
       - ref: process.executable.path
         requirement_level:
-          conditionally_required: See alternative attributes below.
+          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
       - ref: process.command
         requirement_level:
-          conditionally_required: See alternative attributes below.
+          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
       - ref: process.command_line
         requirement_level:
-          conditionally_required: See alternative attributes below.
+          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
       - ref: process.command_args
         requirement_level:
-          conditionally_required: See alternative attributes below.
+          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
       - ref: process.owner
-    constraints:
-      - any_of:
-          - process.executable.name
-          - process.executable.path
-          - process.command
-          - process.command_line
-          - process.command_args
 
   - id: process.runtime
     prefix: process.runtime

@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.network.deprecated
+  - id: registry.network.deprecated
     prefix: net
     type: attribute_group
     brief: >

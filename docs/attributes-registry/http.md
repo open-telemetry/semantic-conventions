@@ -3,6 +3,13 @@
 
 # HTTP
 
+<!-- toc -->
+
+- [HTTP Attributes](#http-attributes)
+- [Deprecated HTTP Attributes](#deprecated-http-attributes)
+
+<!-- tocstop -->
+
 ## HTTP Attributes
 
 <!-- semconv registry.http(omit_requirement_level) -->
@@ -74,7 +81,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 ## Deprecated HTTP Attributes
 
-<!-- semconv attributes.http.deprecated(omit_requirement_level) -->
+<!-- semconv registry.http.deprecated(omit_requirement_level) -->
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 | `http.flavor` | string | Deprecated, use `network.protocol.name` instead. | `1.0` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.protocol.name`. |

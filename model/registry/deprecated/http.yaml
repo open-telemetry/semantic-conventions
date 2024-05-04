@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.http.deprecated
+  - id: registry.http.deprecated
     type: attribute_group
     brief: "Describes deprecated HTTP attributes."
     prefix: http
