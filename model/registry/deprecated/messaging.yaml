@@ -14,9 +14,16 @@ groups:
         type: string
         stability: experimental
         brief: >
-          Deprecated, use `messaging.operation.type` instead.
+          Deprecated, use `messaging.operation.name` instead.
         examples: ["publish", "create", "process"]
-        deprecated: "Replaced by `messaging.operation.type`."
+        deprecated: "Replaced by `messaging.operation.name`."
+      - id: messaging.operation.type
+        type: string
+        stability: experimental
+        brief: >
+          Deprecated, use `messaging.operation.name` instead.
+        examples: ["publish", "create", "process"]
+        deprecated: "Replaced by `messaging.operation.name`."
       - id: messaging.client_id
         type: string
         stability: experimental

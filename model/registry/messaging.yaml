@@ -94,42 +94,6 @@ groups:
           This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
           body size should be used.
         examples: 1439
-      - id: operation.type
-        type:
-          allow_custom_values: true
-          members:
-            - id: publish
-              value: "publish"
-              brief: >
-                One or more messages are provided for publishing to an intermediary.
-                If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created.
-              stability: experimental
-            - id: create
-              value: "create"
-              brief: >
-                A message is created.
-                "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios.
-              stability: experimental
-            - id: receive
-              value: "receive"
-              brief: >
-                One or more messages are requested by a consumer.
-                This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.
-              stability: experimental
-            - id: deliver
-              value: "process"
-              brief: >
-                One or more messages are delivered to or processed by a consumer.
-              stability: experimental
-            - id: settle
-              value: "settle"
-              brief: >
-                One or more messages are settled.
-              stability: experimental
-        stability: experimental
-        brief: >
-          A string identifying the type of the messaging operation.
-        note: If a custom value is used, it MUST be of low cardinality.
       - id: operation.name
         type: string
         stability: experimental

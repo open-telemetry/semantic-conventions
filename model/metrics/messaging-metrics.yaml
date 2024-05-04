@@ -16,27 +16,18 @@ groups:
           conditionally_required: if available.
 
   # durations
-  - id: metric.messaging.publish.duration
+  - id: metric.messaging.client.operation.duration
     type: metric
-    metric_name: messaging.publish.duration
-    brief: "Measures the duration of publish operation."
+    metric_name: messaging.client.operation.duration
+    brief: "Measures the duration of messaging operations involving communication with the broker."
     stability: experimental
     instrument: histogram
     unit: "s"
     extends: metric.messaging.attributes
 
-  - id: metric.messaging.receive.duration
+  - id: metric.messaging.client.process.duration
     type: metric
-    metric_name: messaging.receive.duration
-    brief: "Measures the duration of receive operation."
-    stability: experimental
-    instrument: histogram
-    unit: "s"
-    extends: metric.messaging.attributes
-
-  - id: metric.messaging.process.duration
-    type: metric
-    metric_name: messaging.process.duration
+    metric_name: messaging.client.process.duration
     brief: "Measures the duration of process operation."
     stability: experimental
     instrument: histogram
@@ -44,28 +35,19 @@ groups:
     extends: metric.messaging.attributes
 
   # counters
-  - id: metric.messaging.publish.messages
+  - id: metric.messaging.client.produced.messages
     type: metric
-    metric_name: messaging.publish.messages
-    brief: "Measures the number of published messages."
+    metric_name: messaging.client.produced.messages
+    brief: "Measures the number of produced messages."
     stability: experimental
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.attributes
 
-  - id: metric.messaging.receive.messages
+  - id: metric.messaging.client.consumed.messages
     type: metric
-    metric_name: messaging.receive.messages
-    brief: "Measures the number of received messages."
-    stability: experimental
-    instrument: counter
-    unit: "{message}"
-    extends: metric.messaging.attributes
-
-  - id: metric.messaging.process.messages
-    type: metric
-    metric_name: messaging.process.messages
-    brief: "Measures the number of processed messages."
+    metric_name: messaging.client.consumed.messages
+    brief: "Measures the number of consumed (received and/or processed) messages."
     stability: experimental
     instrument: counter
     unit: "{message}"

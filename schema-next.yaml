@@ -10,6 +10,7 @@ versions:
               db.elasticsearch.cluster.name: db.namespace
     metrics:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1125
         - rename_attributes:
             attribute_map:
               db.client.connections.state: db.client.connection.state
@@ -28,6 +29,17 @@ versions:
               - db.client.connection.create_time
               - db.client.connection.wait_time
               - db.client.connection.use_time
+        # https://github.com/open-telemetry/semantic-conventions/pull/1006
+        - rename_metrics:
+            messaging.publish.messages: messaging.client.produced.messages
+            messaging.process.duration: messaging.client.process.duration
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1006
+        - rename_attributes:
+            attribute_map:
+              messaging.operation.type: messaging.operation.name
+
   1.26.0:
     metrics:
       changes:

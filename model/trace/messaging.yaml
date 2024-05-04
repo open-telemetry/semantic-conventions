@@ -53,11 +53,14 @@ groups:
         Defines minimal set of attributes used by all messaging systems.
     extends: attributes.messaging.common.minimal
     attributes:
-      - ref: messaging.operation.type
-        requirement_level: required
       - ref: messaging.operation.name
+        requirement_level: required
+      - ref: messaging.batch.message_count
         requirement_level:
-          recommended: If the operation is not sufficiently described by `messaging.operation.type`.
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.client.id
+        requirement_level:
+          recommended: If a client id is available
       - ref: messaging.destination.name
         requirement_level:
           conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
@@ -213,7 +216,16 @@ groups:
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.operation.name
+        note: |
+          The `messaging.operation.name` has the following list of well-known values in the context of Google Pub/Sub.
+          If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
+          - `ack` and `nack` for settlement operations
+          - `send` for publishing operations
+          - `modack` for extending the lease for a single message or batch of messages
+          - `subscribe` for operations that represent the time from after the message was received to when the message is acknowledged, negatively acknowledged, or expired.
+          - `create`, `receive`, and `publish` for [common messaging operations](/docs/messaging/messaging-spans.md#common-messaging-operations)
   - id: messaging.servicebus
     type: attribute_group
     extends: attributes.messaging.trace.minimal
@@ -236,6 +248,10 @@ groups:
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        examples: ['send', 'receive', 'complete', 'process', 'peek']
+
   - id: messaging.eventhubs
     type: attribute_group
     extends: attributes.messaging.trace.minimal
@@ -255,3 +271,6 @@ groups:
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        examples: ['send', 'receive', 'checkpoint']
