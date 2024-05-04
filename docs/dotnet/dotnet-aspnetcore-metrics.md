@@ -60,7 +60,6 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 **[1]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-
 `aspnetcore.routing.match_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -124,7 +123,6 @@ it's RECOMMENDED to:
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 **[2]:** if and only if the exception was handled by this handler.
-
 `aspnetcore.diagnostics.exception.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -134,7 +132,6 @@ it's RECOMMENDED to:
 | `skipped` | Exception handling was skipped because the response had started. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `aborted` | Exception handling didn't run because the request was aborted. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -274,7 +271,6 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`aspnetcore.rate_limiting.policy`](/docs/attributes-registry/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
-
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -320,7 +316,6 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 | [`aspnetcore.rate_limiting.policy`](/docs/attributes-registry/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** if the matched endpoint for the request had a rate-limiting policy.
-
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

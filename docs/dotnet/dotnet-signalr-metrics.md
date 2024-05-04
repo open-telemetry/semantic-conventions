@@ -45,7 +45,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`signalr.connection.status`](/docs/attributes-registry/signalr.md) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`signalr.transport`](/docs/attributes-registry/signalr.md) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `signalr.connection.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -54,7 +53,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `timeout` | The connection was closed due to a timeout. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `app_shutdown` | The connection was closed because the app is shutting down. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
-
 `signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -93,7 +91,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`signalr.connection.status`](/docs/attributes-registry/signalr.md) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`signalr.transport`](/docs/attributes-registry/signalr.md) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `signalr.connection.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -102,7 +99,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `timeout` | The connection was closed due to a timeout. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `app_shutdown` | The connection was closed because the app is shutting down. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
-
 `signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

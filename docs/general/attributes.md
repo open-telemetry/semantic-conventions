@@ -205,7 +205,6 @@ a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[4]:** The value SHOULD be normalized to lowercase.
-
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -215,7 +214,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
  
-
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -281,7 +279,6 @@ Note that `network.local.*` attributes are not included in these examples since 
 | [`network.connection.subtype`](/docs/attributes-registry/network.md) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.connection.type`](/docs/attributes-registry/network.md) | string | The internet connection type. | `wifi` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -308,7 +305,6 @@ Note that `network.local.*` attributes are not included in these examples since 
 | `nrnsa` | 5G NRNSA (New Radio Non-Standalone) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `lte_ca` | LTE CA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
-
 `network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

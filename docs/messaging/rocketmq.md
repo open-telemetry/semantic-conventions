@@ -34,7 +34,6 @@ Specific attributes for Apache RocketMQ are defined below.
 
 **[1]:** If the message type is delay and delivery timestamp is not specified.
 **[2]:** If the message type is delay and delay time level is not specified.
-
 `messaging.rocketmq.consumption_model` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -42,7 +41,6 @@ Specific attributes for Apache RocketMQ are defined below.
 | `clustering` | Clustering consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `broadcasting` | Broadcasting consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
  
-
 `messaging.rocketmq.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

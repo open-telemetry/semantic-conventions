@@ -38,7 +38,6 @@ described on this page.
 **[3]:** For commands that switch the keyspace, this SHOULD be set to the target keyspace (even if the command fails).
 **[4]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-
 `db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
