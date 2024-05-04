@@ -6,16 +6,18 @@
 
 <!-- toc -->
 
-- [Common attributes](#common-attributes)
-- [Producer metrics](#producer-metrics)
-  - [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
-  - [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
-- [Consumer metrics](#consumer-metrics)
-  - [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
-  - [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
-  - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
-  - [Metric: `messaging.process.messages`](#metric-messagingprocessmessages)
-  - [Metric: `messaging.consumer.latency.duration`](#metric-messagingconsumerlatencyduration)
+- [Semantic Conventions for Messaging Metrics](#semantic-conventions-for-messaging-metrics)
+  - [Common attributes](#common-attributes)
+  - [Producer metrics](#producer-metrics)
+    - [Metric: `messaging.publish.duration`](#metric-messagingpublishduration)
+    - [Metric: `messaging.publish.messages`](#metric-messagingpublishmessages)
+  - [Consumer metrics](#consumer-metrics)
+    - [Metric: `messaging.receive.duration`](#metric-messagingreceiveduration)
+    - [Metric: `messaging.receive.messages`](#metric-messagingreceivemessages)
+    - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
+    - [Metric: `messaging.process.messages`](#metric-messagingprocessmessages)
+    - [Metric: `metric.messaging.latency.duration`](#metric-metricmessaginglatencyduration)
+    - [Metric: `metric.messaging.buffering.duration`](#metric-metricmessagingbufferingduration)
 
 <!-- tocstop -->
 
@@ -180,18 +182,32 @@ _Note: The need to report `messaging.process.messages` depends on the messaging 
 | `messaging.process.messages` | Counter | `{message}` | Measures the number of processed messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `messaging.consumer.latency.duration`
+### Metric: `metric.messaging.latency.duration`
 
-This metric is [recommended][MetricRecommended] for any consumer with the capability to extract these timings.
+This metric is [recommended][MetricRecommended] for any messaging system with the capability to extract these timings. It represents the observed time between when a message was created, for example, by a producer, to the time it began being processed, for example, by a consumer.
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advice)
-of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10, 30, 60, 300, 600, 1800 ]`.
+of `[ 0.01, 0.05, 0.1, 0.5, 1, 5, 10, 30, 60, 300, 600, 1800, 3600, 14400 ]`.
 
-<!-- semconv metric.messaging.consumer.latency.duration(metric_table) -->
+<!-- semconv metric.messaging.latency.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.consumer.latency.duration` | Histogram | `s` | Measures the duration between message production and consumption. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.latency.duration` | Histogram | `s` | Measures the observed duration between when a message was created and when it began being processed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `metric.messaging.buffering.duration`
+
+This metric is [recommended][MetricRecommended] for any messaging system with the capability to extract these timings. It represents the observed time between when a message was successfully published, for example, when it reached an asynchronous queue, to the time it began being processed, for example, by a consumer.
+
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advice)
+of `[ 0.01, 0.05, 0.1, 0.5, 1, 5, 10, 30, 60, 300, 600, 1800, 3600, 14400 ]`.
+
+<!-- semconv metric.messaging.buffering.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `messaging.buffering.duration` | Histogram | `s` | Measures the observed duration between when a message was successfully published and when it began being processed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.21.0/specification/document-status.md

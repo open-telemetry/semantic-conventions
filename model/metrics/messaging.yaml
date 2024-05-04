@@ -40,10 +40,19 @@ groups:
     unit: "s"
     extends: metric.messaging.attributes
 
-  - id: metric.messaging.consumer.latency.duration
+  - id: metric.messaging.latency.duration
     type: metric
-    metric_name: messaging.consumer.latency.duration
-    brief: "Measures the duration between message production and consumption."
+    metric_name: messaging.latency.duration
+    brief: "Measures the observed duration between when a message was created and when it began being processed."
+    stability: experimental
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
+
+  - id: metric.messaging.buffering.duration
+    type: metric
+    metric_name: messaging.buffering.duration
+    brief: "Measures the observed duration between when a message was successfully published and when it began being processed."
     stability: experimental
     instrument: histogram
     unit: "s"
