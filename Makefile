@@ -122,6 +122,18 @@ table-check:
 		--dry-run \
 		/spec
 
+# Check  attribute registry markdown.
+.PHONY: attribute-registry-table-check
+attribute-registry-table-check:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
+		otel/weaver:${WEAVER_VERSION} registry generate \
+		  --registry=/source \
+		  --templates=/weaver/templates \
+		  markdown \
+		  /spec/attributes-registry/
+	npm run fix:format
+	git diff --quiet
+
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git describe --tags --abbrev=0 | sed 's/v//g')
 .PHONY: compatibility-check
 compatibility-check:

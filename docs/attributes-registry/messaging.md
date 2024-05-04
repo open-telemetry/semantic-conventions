@@ -22,7 +22,7 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | Attribute                                 | Type    | Description                                                                                                                                | Examples                           | Stability                                                        |
 | ----------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------- |
 | `messaging.batch.message_count`           | int     | The number of messages sent, received, or processed in the scope of the batching operation. [1]                                            | `0`; `1`; `2`                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.client_id`                     | string  | A unique identifier for the client that consumes or produces a message.                                                                    | `client-5`; `myhost@8742@s8083jm`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.client.id`                     | string  | A unique identifier for the client that consumes or produces a message.                                                                    | `client-5`; `myhost@8742@s8083jm`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.destination.anonymous`         | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name).                             |                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.destination.name`              | string  | The message destination name [2]                                                                                                           | `MyQueue`; `MyTopic`               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.destination.partition.id`      | string  | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`.                     | `1`                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -85,10 +85,11 @@ size should be used.
 
 Describes deprecated messaging attributes.
 
-| Attribute                               | Type   | Description                                                   | Examples                       | Stability                                                                                                        |
-| --------------------------------------- | ------ | ------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| `messaging.kafka.destination.partition` | int    | Deprecated, use `messaging.destination.partition.id` instead. | `2`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
-| `messaging.operation`                   | string | Deprecated, use `messaging.operation.type` instead.           | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`.           |
+| Attribute                               | Type   | Description                                                   | Examples                          | Stability                                                                                                        |
+| --------------------------------------- | ------ | ------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `messaging.client_id`                   | string | Deprecated, use `messaging.client.id` instead.                | `client-5`; `myhost@8742@s8083jm` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`.                |
+| `messaging.kafka.destination.partition` | int    | Deprecated, use `messaging.destination.partition.id` instead. | `2`                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
+| `messaging.operation`                   | string | Deprecated, use `messaging.operation.type` instead.           | `publish`; `create`; `process`    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`.           |
 
 ## Messaging Eventhubs Attributes
 
@@ -183,14 +184,3 @@ This group describes attributes specific to Azure Service Bus.
 | `abandon`     | Message is abandoned                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `dead_letter` | Message is sent to dead letter queue | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `defer`       | Message is deferred                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Deprecated Messaging Attributes
-
-<!-- semconv registry.messaging.deprecated(omit_requirement_level) -->
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| [`messaging.client_id`](/docs/attributes-registry/messaging.md) | string | Deprecated, use `messaging.client.id` instead. | `client-5`; `myhost@8742@s8083jm` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`. |
-| [`messaging.kafka.destination.partition`](/docs/attributes-registry/messaging.md) | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
-| [`messaging.operation`](/docs/attributes-registry/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
-<!-- endsemconv -->
->>>>>>> b66f1e5 (Update deprecated attributes)
