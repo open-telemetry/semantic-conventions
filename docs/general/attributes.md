@@ -205,7 +205,7 @@ if they do not cause breaking changes to HTTP semantic conventions.
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp`; `pipe` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
@@ -294,8 +294,8 @@ Note that `network.local.*` attributes are not included in these examples since 
 | [`network.carrier.mcc`](/docs/attributes-registry/network.md) | string | The mobile carrier country code. | `310` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.carrier.mnc`](/docs/attributes-registry/network.md) | string | The mobile carrier network code. | `001` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.carrier.name`](/docs/attributes-registry/network.md) | string | The name of the mobile carrier. | `sprint` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.connection.subtype`](/docs/attributes-registry/network.md) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `gprs`; `edge`; `umts` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.connection.type`](/docs/attributes-registry/network.md) | string | The internet connection type. | `wifi`; `wired`; `cell` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.connection.subtype`](/docs/attributes-registry/network.md) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.connection.type`](/docs/attributes-registry/network.md) | string | The internet connection type. | `wifi` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
