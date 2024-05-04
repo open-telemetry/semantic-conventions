@@ -3,5 +3,5 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-{% for espec in enum.type.members %}| `{{ espec.value }}` | {{ (espec.brief or espec.value) | trim }}{{ notes.add(espec.note) }} | {{ stability.badge(espec.stability, espec.deprecated) }} |
+{% for espec in enum.type.members %}| `{{ espec.value }}` | {{ (espec.brief or espec.id) | trim }}{{ notes.add(espec.note) }} | {{ stability.badge(espec.stability, espec.deprecated) }} |
 {% endfor %} {{ notes.render() }}{% endmacro %}
