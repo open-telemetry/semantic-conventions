@@ -26,6 +26,7 @@ This document defines the attributes used to describe telemetry in the context o
 | `gen_ai.usage.prompt_tokens`     | int      | The number of tokens used in the LLM prompt.                                                     | `100`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+
 **[2]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

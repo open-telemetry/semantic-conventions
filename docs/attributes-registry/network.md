@@ -32,6 +32,7 @@ These attributes may be used for any network related operation.
 | `network.type`               | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4]                                                                                              | `ipv4`; `ipv6`              | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 
 **[1]:** The value SHOULD be normalized to lowercase.
+
 **[2]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 **[3]:** The value SHOULD be normalized to lowercase.

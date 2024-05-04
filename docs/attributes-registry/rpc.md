@@ -42,6 +42,7 @@ This document defines attributes for remote procedure calls.
 **[4]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 **[5]:** This way we guarantee that the values will be consistent between different implementations.
+
 **[6]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
 **[7]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
@@ -93,8 +94,8 @@ This document defines attributes for remote procedure calls.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `SENT`     | SENT        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECEIVED` | RECEIVED    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `SENT`     | sent        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | received    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -121,5 +122,5 @@ Deprecated rpc message attributes.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `SENT`     | SENT        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECEIVED` | RECEIVED    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `SENT`     | sent        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | received    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
