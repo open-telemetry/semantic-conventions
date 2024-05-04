@@ -21,7 +21,6 @@ In case of virtualized environments, this is the operating system as it is obser
 | [`os.version`](/docs/attributes-registry/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-
 `os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

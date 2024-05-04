@@ -25,7 +25,6 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | [`host.ip`](/docs/attributes-registry/host.md) | string[] | Available IP addresses of the host, excluding loopback interfaces. [1] | `192.168.1.140`; `fe80::abc2:4a28:737a:609e` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.mac`](/docs/attributes-registry/host.md) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [2] | `AC-DE-48-23-45-67`; `AC-DE-48-23-45-67-01-9F` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
 
 **[2]:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
@@ -62,7 +61,6 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | [`host.cpu.model.name`](/docs/attributes-registry/host.md) | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.cpu.stepping`](/docs/attributes-registry/host.md) | string | Stepping or core revisions. | `1`; `r1p1` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`host.cpu.vendor.id`](/docs/attributes-registry/host.md) | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 **[1]:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 

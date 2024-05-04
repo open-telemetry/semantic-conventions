@@ -17,7 +17,6 @@
 | [`device.model.identifier`](/docs/attributes-registry/device.md) | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`device.model.name`](/docs/attributes-registry/device.md) | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The device identifier MUST only be defined using the values outlined below. This value is not an advertising identifier and MUST NOT be used as such. On iOS (Swift or Objective-C), this value MUST be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor). On Android (Java or Kotlin), this value MUST be equal to the Firebase Installation ID or a globally unique UUID which is persisted across sessions in your application. More information can be found [here](https://developer.android.com/training/articles/user-data-ids) on best practices and exact implementation details. Caution should be taken when storing personal data or anything which can identify a user. GDPR and data protection laws may apply, ensure you do your own due diligence.
 
 **[2]:** The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER). iOS apps SHOULD hardcode the value `Apple`.

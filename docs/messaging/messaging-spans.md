@@ -309,7 +309,6 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [16] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 **[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -416,7 +415,6 @@ under the namespace `messaging.destination_publish.*`
 |---|---|---|---|---|---|
 | [`messaging.destination_publish.anonymous`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name). |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination_publish.name`](/docs/attributes-registry/messaging.md) | string | The name of the original destination the message was published to [1] | `MyQueue`; `MyTopic` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 **[1]:** The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
 the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.

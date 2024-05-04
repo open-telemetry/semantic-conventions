@@ -36,7 +36,6 @@ For Apache Kafka, the following additional attributes are defined:
 | [`messaging.kafka.message.key`](/docs/attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [2] | `myKey` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.message.offset`](/docs/attributes-registry/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** If value is `true`. When missing, the value is assumed to be `false`.
 **[2]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 

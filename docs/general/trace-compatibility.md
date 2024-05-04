@@ -32,7 +32,6 @@ between a child Span and a parent Span, as defined by
 |---|---|---|---|---|---|
 | [`opentracing.ref_type`](/docs/attributes-registry/opentracing.md) | string | Parent-child Reference type [1] | `child_of`; `follows_from` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The causal relationship between a child Span and a parent Span.
 
 

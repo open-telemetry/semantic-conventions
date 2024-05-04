@@ -53,7 +53,6 @@ These attributes track input data and metadata for a request to an LLM. Each att
 | [`gen_ai.usage.completion_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the LLM response (completion). | `180` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.usage.prompt_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the LLM prompt. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The name of the LLM a request is being made to. If the LLM is supplied by a vendor, then the value must be the exact name of the model requested. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
 **[2]:** If not using a vendor-supplied model, provide a custom friendly name, such as a name of the company or project. If the instrumetnation reports any attributes specific to a custom model, the value provided in the `gen_ai.system` SHOULD match the custom attribute namespace segment. For example, if `gen_ai.system` is set to `the_best_llm`, custom attributes should be added in the `gen_ai.the_best_llm.*` namespace. If none of above options apply, the instrumentation should set `_OTHER`.
@@ -83,7 +82,6 @@ In the lifetime of an LLM span, an event for prompts sent and completions receiv
 |---|---|---|---|---|---|
 | [`gen_ai.prompt`](/docs/attributes-registry/gen-ai.md) | string | The full prompt sent to an LLM. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | `Conditionally Required` if and only if corresponding event is enabled | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 
 
@@ -97,7 +95,6 @@ In the lifetime of an LLM span, an event for prompts sent and completions receiv
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.completion`](/docs/attributes-registry/gen-ai.md) | string | The full response received from the LLM. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | `Conditionally Required` if and only if corresponding event is enabled | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 **[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 

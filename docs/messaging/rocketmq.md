@@ -32,7 +32,6 @@ Specific attributes for Apache RocketMQ are defined below.
 | [`messaging.rocketmq.message.tag`](/docs/attributes-registry/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rocketmq.message.type`](/docs/attributes-registry/messaging.md) | string | Type of message. | `normal`; `fifo`; `delay` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** If the message type is delay and delivery timestamp is not specified.
 **[2]:** If the message type is delay and delay time level is not specified.
 

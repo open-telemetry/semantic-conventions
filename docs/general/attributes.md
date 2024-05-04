@@ -75,7 +75,6 @@ if they do not cause breaking changes to HTTP semantic conventions.
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
@@ -119,7 +118,6 @@ if they do not cause breaking changes to HTTP semantic conventions.
 | [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`client.port`](/docs/attributes-registry/client.md) | int | Client port number. [2] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 **[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
 **[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
@@ -148,7 +146,6 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 | [`source.address`](/docs/attributes-registry/source.md) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`source.port`](/docs/attributes-registry/source.md) | int | Source port number | `3389`; `2888` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 
 
@@ -167,7 +164,6 @@ Destination fields capture details about the receiver of a network exchange/pack
 |---|---|---|---|---|---|
 | [`destination.address`](/docs/attributes-registry/destination.md) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`destination.port`](/docs/attributes-registry/destination.md) | int | Destination port number | `3389`; `2888` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 **[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 
@@ -198,7 +194,6 @@ if they do not cause breaking changes to HTTP semantic conventions.
 | [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 **[1]:** The value SHOULD be normalized to lowercase.
 **[2]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
@@ -287,7 +282,6 @@ Note that `network.local.*` attributes are not included in these examples since 
 | [`network.connection.type`](/docs/attributes-registry/network.md) | string | The internet connection type. | `wifi` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -346,7 +340,6 @@ Instrumentations SHOULD provide a way for users to configure this name.
 | [`peer.service`](/docs/attributes-registry/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
@@ -368,7 +361,6 @@ These attributes may be used for any operation with an authenticated and/or auth
 | [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Username or client_id extracted from the access token or [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2) header in the inbound request from outside the system. | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Scopes or granted authorities the client currently possesses extracted from token or application security context. The value would come from the scope associated with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html). | `read:message, write:files` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 
 <!-- END AUTOGENERATED TEXT -->
@@ -423,7 +415,6 @@ a thread that started a span.
 | [`thread.name`](/docs/attributes-registry/thread.md) | string | Current thread name. | `main` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
@@ -458,7 +449,6 @@ about the span.
 | [`code.lineno`](/docs/attributes-registry/code.md) | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`code.namespace`](/docs/attributes-registry/code.md) | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`code.stacktrace`](/docs/attributes-registry/code.md) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 
 <!-- END AUTOGENERATED TEXT -->

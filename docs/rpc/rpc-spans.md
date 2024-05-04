@@ -110,7 +110,6 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
 **[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
@@ -179,7 +178,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [8] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 **[1]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -250,7 +248,6 @@ and one received message will be recorded for both client and server spans.
 | [`rpc.message.id`](/docs/attributes-registry/rpc.md) | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`rpc.message.type`](/docs/attributes-registry/rpc.md) | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`rpc.message.uncompressed_size`](/docs/attributes-registry/rpc.md) | int | Uncompressed size of the message in bytes. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 **[1]:** This way we guarantee that the values will be consistent between different implementations.
 

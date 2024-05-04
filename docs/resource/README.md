@@ -88,7 +88,6 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 | [`service.name`](/docs/attributes-registry/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`service.version`](/docs/attributes-registry/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 **[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
 
@@ -111,7 +110,6 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 |---|---|---|---|---|---|
 | [`service.instance.id`](/docs/attributes-registry/service.md) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`service.namespace`](/docs/attributes-registry/service.md) | string | A namespace for `service.name`. [2] | `Shop` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 **[1]:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
@@ -178,7 +176,6 @@ service.name = Shop.shoppingcart
 | [`telemetry.sdk.name`](/docs/attributes-registry/telemetry.md) | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`telemetry.sdk.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 **[1]:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
 `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point
@@ -224,7 +221,6 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 |---|---|---|---|---|---|
 | [`telemetry.distro.name`](/docs/attributes-registry/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`telemetry.distro.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 **[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.

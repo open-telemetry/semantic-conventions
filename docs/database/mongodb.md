@@ -24,7 +24,6 @@ described on this page.
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The MongoDB database name. [2] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [3] | `findAndModify`; `getMore`; `update` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 
 **[2]:** <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->

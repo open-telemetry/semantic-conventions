@@ -21,7 +21,6 @@
 | [`aws.ecs.task.revision`](/docs/attributes-registry/aws.md) | string | The revision for the task definition used to create the ECS task. | `8`; `26` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-
 `aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
