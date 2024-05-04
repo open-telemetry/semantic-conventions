@@ -83,7 +83,7 @@ In addition to Cosmos DB attributes, all spans include
 
 | Key                                  | Value |
 |:-------------------------------------| :------------------- |
-| Span name                            | `"ReadItemsAsync"` |
+| Span name                            | `"ReadItemsAsync orders"` |
 | `kind`                               | `"internal"` |
 | `az.namespace`                       | `"Microsoft.DocumentDB"` |
 | `db.system`                          | `"cosmosdb"` |

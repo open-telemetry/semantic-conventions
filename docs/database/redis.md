@@ -51,12 +51,12 @@ In this example, Redis is connected using a unix domain socket and therefore the
 
 | Key                       | Value |
 |:--------------------------| :-------------------------------------------- |
-| Span name                 | `"HMSET myhash"` |
+| Span name                 | `"HMSET 15"` |
 | `db.system`               | `"redis"` |
 | `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |
 | `db.namespace`            | `"15"` |
 | `db.query.text`           | `"HMSET myhash field1 'Hello' field2 'World"` |
-| `db.operation.name`       | not set |
+| `db.operation.name`       | `"HMSET"` |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

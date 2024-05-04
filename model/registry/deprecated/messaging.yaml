@@ -17,3 +17,10 @@ groups:
           Deprecated, use `messaging.operation.type` instead.
         examples: ["publish", "create", "process"]
         deprecated: "Replaced by `messaging.operation.type`."
+      - id: messaging.client_id
+        type: string
+        stability: experimental
+        brief: >
+          Deprecated, use `messaging.client.id` instead.
+        examples: ['client-5', 'myhost@8742@s8083jm']
+        deprecated: "Replaced by `messaging.client.id`."
