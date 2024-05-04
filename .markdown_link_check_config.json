@@ -2,6 +2,9 @@
   "ignorePatterns": [
     {
       "pattern": "^https://github\\.com/open-telemetry/opentelemetry-specification/(issues|pull)"
+    },
+    {
+      "pattern": "^https://github\\.com/open-telemetry/semantic-conventions/(issues|pull)"
     }
   ],
   "replacementPatterns": [

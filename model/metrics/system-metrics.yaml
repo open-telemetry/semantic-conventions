@@ -1,56 +1,5 @@
 groups:
-  # General system attributes
-  - id: attributes.system
-    prefix: system
-    type: attribute_group
-    brief: "Describes System metric attributes"
-    attributes:
-      - id: device
-        type: string
-        stability: experimental
-        brief: "The device identifier"
-        examples: ["(identifier)"]
-
-  # system.cpu.* metrics and attribute group
-  - id: attributes.system.cpu
-    prefix: system.cpu
-    type: attribute_group
-    brief: "Describes System CPU metric attributes"
-    attributes:
-      - id: state
-        type:
-          allow_custom_values: true
-          members:
-            - id: user
-              value: 'user'
-              stability: experimental
-            - id: system
-              value: 'system'
-              stability: experimental
-            - id: nice
-              value: 'nice'
-              stability: experimental
-            - id: idle
-              value: 'idle'
-              stability: experimental
-            - id: iowait
-              value: 'iowait'
-              stability: experimental
-            - id: interrupt
-              value: 'interrupt'
-              stability: experimental
-            - id: steal
-              value: 'steal'
-              stability: experimental
-        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
-        stability: experimental
-        examples: ["idle", "interrupt"]
-      - id: logical_number
-        type: int
-        stability: experimental
-        brief: "The logical CPU number [0..n-1]"
-        examples: [1]
-
+  # system.cpu.* metrics
   - id: metric.system.cpu.time
     type: metric
     metric_name: system.cpu.time
@@ -60,6 +9,7 @@ groups:
     unit: "s"
     attributes:
       - ref: system.cpu.state
+        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.utilization
@@ -71,6 +21,7 @@ groups:
     unit: "1"
     attributes:
       - ref: system.cpu.state
+        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.frequency
@@ -101,35 +52,7 @@ groups:
     unit: "{cpu}"
     attributes: []
 
-  # sytem.memory.* metrics and attribute group
-  - id: attributes.system.memory
-    prefix: system.memory
-    type: attribute_group
-    brief: "Describes System Memory metric attributes"
-    attributes:
-      - id: state
-        type:
-          allow_custom_values: true
-          members:
-            - id: used
-              value: 'used'
-              stability: experimental
-            - id: free
-              value: 'free'
-              stability: experimental
-            - id: shared
-              value: 'shared'
-              stability: experimental
-            - id: buffers
-              value: 'buffers'
-              stability: experimental
-            - id: cached
-              value: 'cached'
-              stability: experimental
-        stability: experimental
-        brief: "The memory state"
-        examples: ["free", "cached"]
-
+  # sytem.memory.* metrics
   - id: metric.system.memory.usage
     type: metric
     metric_name: system.memory.usage
@@ -152,6 +75,18 @@ groups:
       Its value SHOULD equal the sum of `system.memory.state` over all states.
     instrument: updowncounter
     unit: "By"
+    attributes: []
+
+  - id: metric.system.memory.shared
+    type: metric
+    metric_name: system.memory.shared
+    stability: experimental
+    brief: "Shared memory used (mostly by tmpfs)."
+    note: |
+      Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
+    instrument: updowncounter
+    unit: "By"
 
   - id: metric.system.memory.utilization
     type: metric
@@ -163,51 +98,7 @@ groups:
     attributes:
       - ref: system.memory.state
 
-  # system.paging.* metrics and attribute group
-  - id: attributes.system.paging
-    prefix: system.paging
-    type: attribute_group
-    brief: "Describes System Memory Paging metric attributes"
-    attributes:
-      - id: state
-        type:
-          allow_custom_values: false
-          members:
-            - id: used
-              value: 'used'
-              stability: experimental
-            - id: free
-              value: 'free'
-              stability: experimental
-        stability: experimental
-        brief: "The memory paging state"
-        examples: ["free"]
-      - id: type
-        type:
-          allow_custom_values: false
-          members:
-            - id: major
-              value: 'major'
-              stability: experimental
-            - id: minor
-              value: 'minor'
-              stability: experimental
-        stability: experimental
-        brief: "The memory paging type"
-        examples: ["minor"]
-      - id: direction
-        type:
-          allow_custom_values: false
-          members:
-            - id: in
-              value: 'in'
-              stability: experimental
-            - id: out
-              value: 'out'
-              stability: experimental
-        stability: experimental
-        brief: "The paging access direction"
-        examples: ["in"]
+  # system.paging.* metrics
   - id: metric.system.paging.usage
     type: metric
     metric_name: system.paging.usage
@@ -249,7 +140,7 @@ groups:
       - ref: system.paging.type
       - ref: system.paging.direction
 
-  # system.disk.* metrics and attribute group
+  # system.disk.* metrics
   - id: metric.system.disk.io
     type: metric
     metric_name: system.disk.io
@@ -316,64 +207,7 @@ groups:
       - ref: system.device
       - ref: disk.io.direction
 
-  # system.filesystem.* metrics and attribute group
-  - id: attributes.system.filesystem
-    prefix: system.filesystem
-    type: attribute_group
-    brief: "Describes Filesystem metric attributes"
-    attributes:
-      - id: state
-        brief: "The filesystem state"
-        type:
-          allow_custom_values: false
-          members:
-            - id: used
-              value: 'used'
-              stability: experimental
-            - id: free
-              value: 'free'
-              stability: experimental
-            - id: reserved
-              value: 'reserved'
-              stability: experimental
-        stability: experimental
-        examples: ["used"]
-      - id: type
-        type:
-          allow_custom_values: true
-          members:
-            - id: fat32
-              value: 'fat32'
-              stability: experimental
-            - id: exfat
-              value: 'exfat'
-              stability: experimental
-            - id: ntfs
-              value: 'ntfs'
-              stability: experimental
-            - id: refs
-              value: 'refs'
-              stability: experimental
-            - id: hfsplus
-              value: 'hfsplus'
-              stability: experimental
-            - id: ext4
-              value: 'ext4'
-              stability: experimental
-        stability: experimental
-        brief: "The filesystem type"
-        examples: ["ext4"]
-      - id: mode
-        type: string
-        stability: experimental
-        brief: "The filesystem mode"
-        examples: ["rw, ro"]
-      - id: mountpoint
-        type: string
-        stability: experimental
-        brief: "The filesystem mount path"
-        examples: ["/mnt/data"]
-
+  # system.filesystem.* metrics
   - id: metric.system.filesystem.usage
     type: metric
     metric_name: system.filesystem.usage
@@ -402,58 +236,7 @@ groups:
       - ref: system.filesystem.mode
       - ref: system.filesystem.mountpoint
 
-  # system.network.* metrics and attribute group
-
-  # System-specific network attributes
-  - id: attributes.system.network
-    prefix: system.network
-    type: attribute_group
-    brief: "Describes Network metric attributes"
-    attributes:
-      - id: state
-        type:
-          allow_custom_values: false
-          members:
-            - id: close
-              value: 'close'
-              stability: experimental
-            - id: close_wait
-              value: 'close_wait'
-              stability: experimental
-            - id: closing
-              value: 'closing'
-              stability: experimental
-            - id: delete
-              value: 'delete'
-              stability: experimental
-            - id: established
-              value: 'established'
-              stability: experimental
-            - id: fin_wait_1
-              value: 'fin_wait_1'
-              stability: experimental
-            - id: fin_wait_2
-              value: 'fin_wait_2'
-              stability: experimental
-            - id: last_ack
-              value: 'last_ack'
-              stability: experimental
-            - id: listen
-              value: 'listen'
-              stability: experimental
-            - id: syn_recv
-              value: 'syn_recv'
-              stability: experimental
-            - id: syn_sent
-              value: 'syn_sent'
-              stability: experimental
-            - id: time_wait
-              value: 'time_wait'
-              stability: experimental
-        stability: experimental
-        brief: "A stateless protocol MUST NOT set this attribute"
-        examples: ["close_wait"]
-
+  # system.network.* metrics
   - id: metric.system.network.dropped
     type: metric
     metric_name: system.network.dropped
@@ -522,34 +305,7 @@ groups:
       - ref: system.network.state
       - ref: network.transport
 
-  # system.process.* metrics and attribute group
-  - id: attributes.system.process
-    prefix: system.process
-    type: attribute_group
-    brief: "Describes System Process metric attributes"
-    attributes:
-      - id: status
-        type:
-          allow_custom_values: true
-          members:
-            - id: running
-              value: 'running'
-              stability: experimental
-            - id: sleeping
-              value: 'sleeping'
-              stability: experimental
-            - id: stopped
-              value: 'stopped'
-              stability: experimental
-            - id: defunct
-              value: 'defunct'
-              stability: experimental
-        stability: experimental
-        brief: >
-          The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
-        examples: ["running"]
-
-
+  # system.process.* metrics
   - id: metric.system.process.count
     type: metric
     metric_name: system.process.count
@@ -567,6 +323,7 @@ groups:
     brief: "Total number of processes created over uptime of the host"
     instrument: counter
     unit: "{process}"
+    attributes: []
 
   # system.linux.* metrics
   - id: metric.system.linux.memory.available
@@ -582,3 +339,4 @@ groups:
       See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
     instrument: updowncounter
     unit: "By"
+    attributes: []
