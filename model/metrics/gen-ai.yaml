@@ -27,7 +27,7 @@ groups:
     stability: experimental
     extends: metric_attributes.gen_ai
     attributes:
-      - ref: gen_ai.usage.token_type
+      - ref: gen_ai.token.type
         requirement_level: required
   - id: metric.gen_ai.operation.duration
     type: metric
