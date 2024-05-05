@@ -18,9 +18,12 @@ This document defines semantic conventions for the following kind of Generative 
 
 * LLMs
 
+Semantic conventions for Generative AI operations are defined for the following signals:
+
+* [Metrics](gen-ai-metrics.md): Semantic Conventions for Generative AI operations - *metrics*.
+
 Semantic conventions for LLM operations are defined for the following signals:
 
 * [LLM Spans](llm-spans.md): Semantic Conventions for LLM requests - *spans*.
-* [LLM Metrics](llm-metrics.md): Semantic Conventions for LLM requests - *metrics*.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md
