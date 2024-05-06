@@ -26,7 +26,7 @@ groups:
   - id: metric_attributes.http.client.experimental
     type: attribute_group
     brief: 'HTTP client experimental attributes'
-    extends: attributes.http.client
+    extends: metric_attributes.http.client
     attributes:
       - ref: url.template
         requirement_level:

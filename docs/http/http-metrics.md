@@ -792,15 +792,17 @@ This metric is optional.
 |---|---|---|---|---|---|
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [3] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [4] | `GET`; `POST`; `HEAD` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [4] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3]:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[3]:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
+
+**[4]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -814,8 +816,6 @@ OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of ca
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-
-**[4]:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
