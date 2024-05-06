@@ -399,8 +399,6 @@ This metric is obtained from [`ClassLoadingMXBean#getTotalLoadedClassCount()`](h
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -436,8 +434,6 @@ This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](http
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -473,8 +469,6 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -518,8 +512,6 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -556,8 +548,6 @@ Note that this is always an integer value (i.e. fractional or millicores are not
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -599,8 +589,6 @@ Note that the JVM does not provide a definition of what "recent" means.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -697,8 +685,6 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https:/
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

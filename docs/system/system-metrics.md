@@ -202,8 +202,6 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -238,8 +236,6 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -331,7 +327,7 @@ available on the system, that is `system.memory.limit`.
 |---|---|---|
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` | shared |  ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
+| `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -372,8 +368,6 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -413,8 +407,6 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -459,7 +451,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` | shared |  ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
+| `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -1368,8 +1360,6 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
