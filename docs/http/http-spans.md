@@ -212,6 +212,14 @@ The attribute value MUST consist of either multiple header values as an array of
 
 
 
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`http.request.method`](/docs/attributes-registry/http.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
+* [`url.full`](/docs/attributes-registry/url.md)
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -241,14 +249,6 @@ The attribute value MUST consist of either multiple header values as an array of
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`http.request.method`](/docs/attributes-registry/http.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
-* [`url.full`](/docs/attributes-registry/url.md)
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -461,6 +461,19 @@ The attribute value MUST consist of either multiple header values as an array of
 
 
 
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`http.request.method`](/docs/attributes-registry/http.md)
+* [`client.address`](/docs/attributes-registry/client.md)
+* [`http.request.header.<key>`](/docs/attributes-registry/http.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
+* [`url.path`](/docs/attributes-registry/url.md)
+* [`url.query`](/docs/attributes-registry/url.md)
+* [`url.scheme`](/docs/attributes-registry/url.md)
+* [`user_agent.original`](/docs/attributes-registry/user-agent.md)
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -490,19 +503,6 @@ The attribute value MUST consist of either multiple header values as an array of
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`http.request.method`](/docs/attributes-registry/http.md)
-* [`client.address`](/docs/attributes-registry/client.md)
-* [`http.request.header.<key>`](/docs/attributes-registry/http.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
-* [`url.path`](/docs/attributes-registry/url.md)
-* [`url.query`](/docs/attributes-registry/url.md)
-* [`url.scheme`](/docs/attributes-registry/url.md)
-* [`user_agent.original`](/docs/attributes-registry/user-agent.md)
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
