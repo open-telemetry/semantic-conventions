@@ -2,23 +2,24 @@
 linkTitle: Logs
 --->
 
-# Semantic Conventions for Exceptions in Logs
+# Semantic Conventions for Exceptions in Logs and Events
 
 **Status**: [Stable][DocumentStatus]
 
 This document defines semantic conventions for recording exceptions on
-[logs](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#emit-a-logrecord)
-emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#logger).
+[logs](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#emit-a-logrecord) emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#logger) and [events](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/events.md) emitted through the [Events API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/event-api.md#emit-event)
 
 <!-- toc -->
 
-- [Recording an Exception](#recording-an-exception)
+- [Recording an Exception in logs](#recording-an-exception-in-logs)
+- [Recording an Exception in events](#recording-an-exception-in-events)
 - [Attributes](#attributes)
   - [Stacktrace Representation](#stacktrace-representation)
+- [Guidelines for Recording Exceptions in Spans, Logs, and Events](#guidelines-for-recording-exceptions-in-spans-logs-and-events)
 
 <!-- tocstop -->
 
-## Recording an Exception
+## Recording an Exception in logs
 
 Exceptions SHOULD be recorded as attributes on the
 [LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#logger) emit
@@ -29,10 +30,14 @@ constructor, `RecordException` method/extension, or similar helper mechanism on
 the `LogRecord` class/structure or wherever it makes the most sense depending on
 the language runtime.
 
+## Recording an Exception in events
+
+Exceptions SHOULD be recorded in Events with the event name `exception` and the exception data in attributes.
+
 ## Attributes
 
 The table below indicates which attributes should be added to the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/data-model.md#log-and-event-record-definition) for logs and events and their types.
 
 <!-- semconv log-exception -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -50,5 +55,14 @@ The table below indicates which attributes should be added to the
 
 Same as [Trace Semantic Conventions for Exceptions - Stacktrace
 Representation](exceptions-spans.md#stacktrace-representation).
+
+## Guidelines for Recording Exceptions in Spans, Logs, and Events
+
+When it comes to recording exceptions, it's crucial to distinguish between Spans, Logs, and Events:
+
+* Spans and Events: Exception recording in Spans and Events follows a similar pattern. Both utilize the event name `exception`. Exceptions MAY be recorded within Span Events if they occur during the span's lifecycle.
+* Logs: Exceptions SHOULD be recorded in logs when utilizing the log bridge API to map application logs to OpenTelemetry logs.
+
+Note that in all cases the exception data is stored in attributes.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
