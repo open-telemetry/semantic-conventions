@@ -6,11 +6,14 @@
 # Changelog
 
 <!-- next version -->
+
 ## Unreleased
 
 ### Breaking
 
 ### Features
+
+- Add semantic conventions for recording exceptions in events [#970](https://github.com/open-telemetry/semantic-conventions/pull/970)
 
 ### Fixes
 
