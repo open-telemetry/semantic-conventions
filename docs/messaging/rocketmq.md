@@ -48,6 +48,7 @@ Specific attributes for Apache RocketMQ are defined below.
 | `clustering` | Clustering consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `broadcasting` | Broadcasting consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+
 `messaging.rocketmq.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -56,6 +57,8 @@ Specific attributes for Apache RocketMQ are defined below.
 | `fifo` | FIFO message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `delay` | Delay message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transaction` | Transaction message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -164,6 +164,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -178,6 +179,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -260,6 +263,8 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -371,6 +376,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -385,6 +391,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -496,6 +504,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -510,6 +519,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -613,6 +624,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -627,6 +639,8 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -726,6 +740,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -740,6 +755,8 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -839,6 +856,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
+
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -853,6 +871,8 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -911,6 +931,8 @@ This metric is optional.
 | `active` | active state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `idle` | idle state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -961,6 +983,7 @@ This metric is optional.
 **[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[3]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+
 
 
 
@@ -1041,6 +1064,8 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -6,3 +6,5 @@
 |---|---|---|
 {% for espec in enum.type.members %}| `{{ espec.value }}` | {{ (espec.brief or espec.id) | trim }}{{ notes.add(espec.note) }} | {{ stability.badge(espec.stability, espec.deprecated) }} |
 {% endfor %}{{ notes.render() }}{% endmacro %}
+{% macro tables(enums, notes) %}{% for enum in enums | sort(attribute="name") %}{{ table(enum, notes) }}
+{% endfor %}{% endmacro %}

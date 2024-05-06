@@ -51,6 +51,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 | `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `direct` | Direct connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -70,6 +71,8 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 | `Batch` | batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `QueryPlan` | query_plan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
