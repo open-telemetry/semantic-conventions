@@ -17,13 +17,13 @@ MAY be used as span name.
 <!-- semconv graphql(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`graphql.document`](../attributes-registry/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`graphql.operation.name`](../attributes-registry/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`graphql.operation.type`](../attributes-registry/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`graphql.document`](/docs/attributes-registry/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`graphql.operation.name`](/docs/attributes-registry/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`graphql.operation.type`](/docs/attributes-registry/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The value may be sanitized to exclude sensitive information.
 
-`graphql.operation.type` MUST be one of the following:
+`graphql.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

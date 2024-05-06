@@ -19,28 +19,28 @@ Specific attributes for Apache RocketMQ are defined below.
 <!-- semconv messaging.rocketmq(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.rocketmq.client_group`](../attributes-registry/messaging.md) | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.namespace`](../attributes-registry/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.delay_time_level`](../attributes-registry/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.delivery_timestamp`](../attributes-registry/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.group`](../attributes-registry/messaging.md) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | `Conditionally Required` If the message type is FIFO. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.consumption_model`](../attributes-registry/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.keys`](../attributes-registry/messaging.md) | string[] | Key(s) of message, another way to mark message besides message id. | `[keyA, keyB]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.tag`](../attributes-registry/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.type`](../attributes-registry/messaging.md) | string | Type of message. | `normal` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.client_group`](/docs/attributes-registry/messaging.md) | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.namespace`](/docs/attributes-registry/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.message.delay_time_level`](/docs/attributes-registry/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.message.delivery_timestamp`](/docs/attributes-registry/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.message.group`](/docs/attributes-registry/messaging.md) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | `Conditionally Required` If the message type is FIFO. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.consumption_model`](/docs/attributes-registry/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.message.keys`](/docs/attributes-registry/messaging.md) | string[] | Key(s) of message, another way to mark message besides message id. | `keyA`; `keyB` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.message.tag`](/docs/attributes-registry/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.rocketmq.message.type`](/docs/attributes-registry/messaging.md) | string | Type of message. | `normal`; `fifo`; `delay` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If the message type is delay and delivery timestamp is not specified.
 
 **[2]:** If the message type is delay and delay time level is not specified.
 
-`messaging.rocketmq.consumption_model` MUST be one of the following:
+`messaging.rocketmq.consumption_model` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `clustering` | Clustering consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `broadcasting` | Broadcasting consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`messaging.rocketmq.message.type` MUST be one of the following:
+`messaging.rocketmq.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -50,6 +50,6 @@ Specific attributes for Apache RocketMQ are defined below.
 | `transaction` | Transaction message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-`messaging.client_id` SHOULD be set to the client ID that is automatically generated by the Apache RocketMQ SDK.
+`messaging.client.id` SHOULD be set to the client ID that is automatically generated by the Apache RocketMQ SDK.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md

@@ -7,6 +7,7 @@
 .project
 .settings
 bin
+.vs
 
 # NetBeans
 /.nb-gradle
@@ -31,3 +32,6 @@ package-lock.json
 
 # Visual Studio Code
 .vscode
+
+# Visual Studio
+.vs/

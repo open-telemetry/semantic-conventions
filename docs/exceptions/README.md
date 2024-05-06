@@ -7,7 +7,7 @@ path_base_for_github_subdir:
 
 # Semantic Conventions for Exceptions
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This document defines semantic conventions for Exceptions.
 

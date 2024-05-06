@@ -4,6 +4,18 @@ versions:
   next:
     metrics:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/966
+        - rename_metrics:
+            db.client.connections.usage: db.client.connection.count
+            db.client.connections.idle.max: db.client.connection.idle.max
+            db.client.connections.idle.min: db.client.connection.idle.min
+            db.client.connections.max: db.client.connection.max
+            db.client.connections.pending_requests: db.client.connection.pending_requests
+            db.client.connections.timeouts: db.client.connection.timeouts
+        # https://github.com/open-telemetry/semantic-conventions/pull/948
+        - rename_attributes:
+            attribute_map:
+              messaging.client_id: messaging.client.id
         # https://github.com/open-telemetry/semantic-conventions/pull/909
         - rename_attributes:
             attribute_map:
@@ -27,6 +39,10 @@ versions:
   1.25.0:
     spans:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/911
+        - rename_attributes:
+            attribute_map:
+              db.name: db.namespace
         # https://github.com/open-telemetry/semantic-conventions/pull/870
         - rename_attributes:
             attribute_map:
