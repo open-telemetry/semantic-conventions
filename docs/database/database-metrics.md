@@ -31,8 +31,9 @@ and attributes but more may be added in the future.
 <!-- tocstop -->
 
 > **Warning**
+>
 > Existing database instrumentations that are using
-> [v1.24.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
 > (or prior):
 >
 > * SHOULD NOT change the version of the database conventions that they emit
