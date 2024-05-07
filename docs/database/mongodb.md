@@ -34,7 +34,7 @@ described on this page.
 
 | Key                     | Value |
 |:------------------------| :----------------------------------------------------------- |
-| Span name               | `"products.findAndModify"` |
+| Span name               | `"findAndModify products"` |
 | `db.system`             | `"mongodb"` |
 | `server.address`        | `"mongodb0.example.com"` |
 | `server.port`           | `27017` |

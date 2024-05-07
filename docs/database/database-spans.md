@@ -10,6 +10,7 @@ linkTitle: Client Calls
 
 <!-- toc -->
 
+- [Name](#name)
 - [Common attributes](#common-attributes)
   - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Semantic Conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
@@ -69,20 +70,31 @@ linkTitle: Client Calls
 
 **Span kind:** MUST always be `CLIENT`.
 
-The **span name** SHOULD be set to a low cardinality value representing the statement executed on the database.
-It MAY be a stored procedure name (without arguments), DB statement without variable arguments, operation name, etc.
-Since SQL statements may have very high cardinality even without arguments, SQL spans SHOULD be named the
-following way, unless the statement is known to be of low cardinality:
-`<db.operation.name> <db.namespace>.<db.collection.name>`, provided that `db.operation.name` and `db.collection.name` are available.
-If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.namespace>`.
-
-It is not recommended to attempt any client-side parsing of `db.query.text` just to get these properties,
-they should only be used if the library being instrumented already provides them.
-When it's otherwise impossible to get any meaningful span name, `db.namespace` or the tech-specific database name MAY be used.
-
 Span that describes database call SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
 For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
 with all retries.
+
+## Name
+
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/trace/api.md#span).
+
+<!-- markdown-link-check-disable -->
+<!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
+The **span name** SHOULD be `{db.operation.name} {target}` if there is a
+(low-cardinality) `db.operation.name` available (see below for the exact definition of the [`{target}`](#target-placeholder) placeholder).
+
+If there is no (low-cardinality) `db.operation.name` available, database span names
+SHOULD be [`{target}`](#target-placeholder).
+<!-- markdown-link-check-enable -->
+
+Semantic conventions for individual database systems MAY specify different span name format.
+
+The <span id="target-placeholder">`{target}`</span> SHOULD adhere to one of the following values, arranged in prioritized order, provided they are accessible:
+
+- `db.collection.name`
+- `db.namespace`
+- `server.address:server.port`
+- `db.system`
 
 ## Common attributes
 
