@@ -66,8 +66,6 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 ## Name
 
-**Status**: [Mixed][DocumentStatus]
-
 HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/trace/api.md#span).
 
 HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available. If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
