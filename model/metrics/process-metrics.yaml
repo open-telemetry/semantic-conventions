@@ -16,7 +16,9 @@ groups:
     type: metric
     metric_name: process.cpu.utilization
     stability: experimental
-    brief: "Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process."
+    brief:
+      Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs
+      available to the process.
     instrument: gauge
     unit: "1"
     attributes:
@@ -24,7 +26,6 @@ groups:
         brief: >
           A process SHOULD be characterized _either_ by data points with no `state`
           labels, _or only_ data points with `state` labels.
-        
 
   - id: metric.process.memory.usage
     type: metric
