@@ -78,7 +78,7 @@ groups:
       - id: token.type
         stability: experimental
         type:
-          allow_custom_values: false
+          allow_custom_values: true
           members:
             - id: input
               stability: experimental
