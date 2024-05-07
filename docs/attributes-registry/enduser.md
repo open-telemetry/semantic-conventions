@@ -1,4 +1,3 @@
-
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -7,17 +6,12 @@
 
 # Enduser
 
-
-
 ## Enduser Deprecated Attributes
 
 Describes deprecated enduser attributes. Complete enduser namespace has been deprecated
 
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `enduser.id` | string | Deprecated, use `user.id` instead. | `username` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `user.id` attribute. |
-| `enduser.role` | string | Deprecated, use `user.roles` instead. | `admin` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `user.roles` attribute. |
+| Attribute       | Type   | Description                           | Examples                    | Stability                                                                                      |
+| --------------- | ------ | ------------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------- |
+| `enduser.id`    | string | Deprecated, use `user.id` instead.    | `username`                  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `user.id` attribute.    |
+| `enduser.role`  | string | Deprecated, use `user.roles` instead. | `admin`                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `user.roles` attribute. |
 | `enduser.scope` | string | Deprecated, use `user.scope` instead. | `read:message, write:files` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `user.scope` attribute. |
-
-
-

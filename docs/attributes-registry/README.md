@@ -86,5 +86,4 @@ Currently, the following namespaces exist:
 - [User Agent](user-agent.md)
 - [Webengine](webengine.md)
 
-
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

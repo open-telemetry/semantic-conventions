@@ -1,4 +1,3 @@
-
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -7,21 +6,17 @@
 
 # Telemetry
 
-
-
 ## Telemetry Attributes
 
 This document defines attributes for telemetry SDK.
 
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `telemetry.distro.name` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `telemetry.distro.version` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `telemetry.sdk.language` | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `telemetry.sdk.name` | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `telemetry.sdk.version` | string | The version string of the telemetry SDK. | `1.2.3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
+| Attribute                  | Type   | Description                                                                    | Examples                  | Stability                                                        |
+| -------------------------- | ------ | ------------------------------------------------------------------------------ | ------------------------- | ---------------------------------------------------------------- |
+| `telemetry.distro.name`    | string | The name of the auto instrumentation agent or distribution, if used. [1]       | `parts-unlimited-java`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `telemetry.distro.version` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3`                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `telemetry.sdk.language`   | string | The language of the telemetry SDK.                                             | `cpp`; `dotnet`; `erlang` | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| `telemetry.sdk.name`       | string | The name of the telemetry SDK as defined above. [2]                            | `opentelemetry`           | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| `telemetry.sdk.version`    | string | The version string of the telemetry SDK.                                       | `1.2.3`                   | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 
 **[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
@@ -33,21 +28,19 @@ or another suitable identifier depending on the language.
 The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
 All custom identifiers SHOULD be stable across different versions of an implementation.
 
-
 `telemetry.sdk.language` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `cpp` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `dotnet` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `erlang` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `go` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `java` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `nodejs` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `php` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `python` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ruby` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `rust` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `swift` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `webjs` | none | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
+| Value    | Description | Stability                                                  |
+| -------- | ----------- | ---------------------------------------------------------- |
+| `cpp`    | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `dotnet` | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `erlang` | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `go`     | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `java`   | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `nodejs` | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `php`    | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `python` | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ruby`   | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `rust`   | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `swift`  | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `webjs`  | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

@@ -1,4 +1,3 @@
-
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -7,20 +6,16 @@
 
 # Browser
 
-
-
 ## Browser Attributes
 
 The web browser attributes
 
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `browser.brands` | string[] | Array of brand name and version separated by a space [1] | ` Not A;Brand 99`; `Chromium 99`; `Chrome 99` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `browser.language` | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `browser.mobile` | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `browser.platform` | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
+| Attribute          | Type     | Description                                                             | Examples                                      | Stability                                                        |
+| ------------------ | -------- | ----------------------------------------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------- |
+| `browser.brands`   | string[] | Array of brand name and version separated by a space [1]                | ` Not A;Brand 99`; `Chromium 99`; `Chrome 99` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `browser.language` | string   | Preferred language of the user using the browser [2]                    | `en`; `en-US`; `fr`; `fr-FR`                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `browser.mobile`   | boolean  | A boolean that is true if the browser is running on a mobile device [3] |                                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `browser.platform` | string   | The platform on which the browser is running [4]                        | `Windows`; `macOS`; `Android`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
@@ -30,5 +25,3 @@ The web browser attributes
 
 **[4]:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
-
-
