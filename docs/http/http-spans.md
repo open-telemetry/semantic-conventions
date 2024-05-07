@@ -471,13 +471,13 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`http.request.method`](/docs/attributes-registry/http.md)
 * [`http.request.header.<key>`](/docs/attributes-registry/http.md)
+* [`client.address`](/docs/attributes-registry/client.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 * [`url.path`](/docs/attributes-registry/url.md)
 * [`url.query`](/docs/attributes-registry/url.md)
 * [`url.scheme`](/docs/attributes-registry/url.md)
 * [`user_agent.original`](/docs/attributes-registry/user-agent.md)
-* [`client.address`](/docs/attributes-registry/client.md)
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
