@@ -7,13 +7,14 @@ groups:
         requirement_level:
           conditionally_required: "if the operation ended in an error"
       - ref: server.address
-        requirement_level: required
+        requirement_level: recommended
       - ref: server.port
-        requirement_level: required
+        requirement_level:  
+          conditionally_required: If `sever.address` is set. 
       - ref: gen_ai.response.model
         requirement_level: recommended
       - ref: gen_ai.request.model
-        requirement_level: recommended
+        requirement_level: required
       - ref: gen_ai.system
         requirement_level: required
       - ref: gen_ai.operation.name
