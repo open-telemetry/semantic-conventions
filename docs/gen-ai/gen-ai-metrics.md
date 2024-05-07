@@ -30,8 +30,8 @@ distinct action within a larger Generative AI workflow.
 
 ### Metric: `gen_ai.token.usage`
 
-This metric is [required][MetricRequired] when an operation involves the usage
-of tokens.
+
+This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304, 16777216, 67108864].
 
 <!-- semconv metric.gen_ai.token.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
@@ -85,6 +85,8 @@ Additional details may be captured in domain-specific attributes.
 
 This metric is [required][MetricRequired].
 
+This metric SHOULD be specified with [ExplicitBucketBoundaries] of [ 0.01, 0.02, 0.04, 0.08, 0.16, 0.32, 0.64, 1.28, 2.56, 5.12,10.24, 20.48, 40.96, 81.92].
+
 <!-- semconv metric.gen_ai.operation.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
@@ -127,3 +129,4 @@ Additional details may be captured in domain-specific attributes.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
 [MetricRequired]: /docs/general/metric-requirement-level.md#required
+[ExplicitBucketBoundaries]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advisory-parameters
