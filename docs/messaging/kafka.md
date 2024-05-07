@@ -66,7 +66,7 @@ Process CA:              | Span Rcv1 |
 Process CB:                           | Span Rcv2 |
 ```
 
-| Field or Attribute | Span Prod1 | Span Rcv1 | Span Proc1 | Span Prod2 | Span Rcv2
+| Field or Attribute | Span Prod1 | Span Rcv1 | Span Proc1 | Span Prod2 | Span Rcv2 |
 |-|-|-|-|-|-|
 | Span name | `"T1 publish"` | `"T1 receive"` | `"T1 process"` | `"T2 publish"` | `"T2 receive`" |
 | Parent |  | Span Prod1 | Span Rcv1 | Span Rcv1 | Span Prod2 |
