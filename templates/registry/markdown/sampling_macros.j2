@@ -3,5 +3,5 @@
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-{% for attribute in sampling_attributes %}* {{ attrs.name_with_link(attribute, attribute_registry_base_url) }}
+{% for attribute in sampling_attributes | sort(attribute="id") %}* {{ attrs.name_with_link(attribute, attribute_registry_base_url) }}
 {% endfor %}{% endif %}{% endmacro %}
