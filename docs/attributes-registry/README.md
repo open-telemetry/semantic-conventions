@@ -72,6 +72,7 @@ Currently, the following namespaces exist:
 - [Peer](peer.md)
 - [Process](process.md)
 - [RPC](rpc.md)
+- [Rule](rule.md)
 - [Server](server.md)
 - [Service](service.md)
 - [Session](session.md)
