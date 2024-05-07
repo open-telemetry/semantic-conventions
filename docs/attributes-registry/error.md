@@ -1,3 +1,4 @@
+
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -6,13 +7,17 @@
 
 # Error
 
+
+
 ## Error Attributes
 
 This document defines the shared attributes used to report an error.
 
-| Attribute    | Type   | Description                                              | Examples | Stability                                                  |
-| ------------ | ------ | -------------------------------------------------------- | -------- | ---------------------------------------------------------- |
+
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
 | `error.type` | string | Describes a class of error the operation ended with. [1] | `_OTHER` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
 
 **[1]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -31,11 +36,13 @@ If the operation has completed successfully, instrumentations SHOULD NOT set `er
 If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
 it's RECOMMENDED to:
 
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+* Use a domain-specific attribute
+* Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value    | Description                                                                               | Stability                                                  |
-| -------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| Value  | Description | Stability |
+|---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+

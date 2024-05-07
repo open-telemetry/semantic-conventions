@@ -82,7 +82,9 @@ Currently, the following namespaces exist:
 - [Thread](thread.md)
 - [TLS](tls.md)
 - [URL](url.md)
+- [User](user.md)
 - [User Agent](user-agent.md)
 - [Webengine](webengine.md)
+
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

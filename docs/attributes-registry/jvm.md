@@ -1,3 +1,4 @@
+
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -6,39 +7,45 @@
 
 # JVM
 
+
+
 ## Jvm Attributes
 
 This document defines Java Virtual machine related attributes.
 
-| Attribute              | Type    | Description                               | Examples                                           | Stability                                                  |
-| ---------------------- | ------- | ----------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------- |
-| `jvm.gc.action`        | string  | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC`               | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `jvm.gc.name`          | string  | Name of the garbage collector. [2]        | `G1 Young Generation`; `G1 Old Generation`         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `jvm.memory.pool.name` | string  | Name of the memory pool. [3]              | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `jvm.memory.type`      | string  | The type of memory.                       | `heap`; `non_heap`                                 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `jvm.thread.daemon`    | boolean | Whether the thread is daemon or not.      |                                                    | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `jvm.thread.state`     | string  | State of the thread.                      | `new`; `runnable`; `blocked`                       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](<https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()>).
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `jvm.gc.action` | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.gc.name` | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.memory.pool.name` | string | Name of the memory pool. [3] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.memory.type` | string | The type of memory. | `heap`; `non_heap` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.thread.daemon` | boolean | Whether the thread is daemon or not. |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.thread.state` | string | State of the thread. | `new`; `runnable`; `blocked` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[2]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](<https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()>).
 
-**[3]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](<https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()>).
+**[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
+
+**[2]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+
+**[3]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value      | Description     | Stability                                                  |
-| ---------- | --------------- | ---------------------------------------------------------- |
-| `heap`     | Heap memory.    | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Value  | Description | Stability |
+|---|---|---|
+| `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 `jvm.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value           | Description                                                                                                           | Stability                                                  |
-| --------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `new`           | A thread that has not yet started is in this state.                                                                   | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `runnable`      | A thread executing in the Java virtual machine is in this state.                                                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `blocked`       | A thread that is blocked waiting for a monitor lock is in this state.                                                 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `waiting`       | A thread that is waiting indefinitely for another thread to perform a particular action is in this state.             | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Value  | Description | Stability |
+|---|---|---|
+| `new` | A thread that has not yet started is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `runnable` | A thread executing in the Java virtual machine is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `blocked` | A thread that is blocked waiting for a monitor lock is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `waiting` | A thread that is waiting indefinitely for another thread to perform a particular action is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `timed_waiting` | A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `terminated`    | A thread that has exited is in this state.                                                                            | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `terminated` | A thread that has exited is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
