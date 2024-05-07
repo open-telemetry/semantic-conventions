@@ -17,8 +17,8 @@ described on this page.
 <!-- semconv db.hbase(full,tag=tech-specific) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](../attributes-registry/db.md) | string | The HBase table name. [1] | `mytable`; `ns:table` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](../attributes-registry/db.md) | string | The HBase namespace. [2] | `mynamespace` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The HBase table name. [1] | `mytable`; `ns:table` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The HBase namespace. [2] | `mynamespace` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
 

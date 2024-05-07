@@ -30,8 +30,6 @@ NOT be used together, each field MUST be used with its corresponding
 ### Event details
 
 <!-- semconv device.app.lifecycle(full) -->
-The event name MUST be `device.app.lifecycle`.
-
 <!-- endsemconv -->
 
 <!-- Manually adding the markdown table until the body definition is available in the build tools -->
