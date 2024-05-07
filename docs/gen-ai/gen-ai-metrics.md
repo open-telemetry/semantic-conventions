@@ -30,6 +30,12 @@ distinct action within a larger Generative AI workflow.
 
 ### Metric: `gen_ai.token.usage`
 
+This metric is [required][MetricRecommended] when an operation involves the usage
+of tokens and the count is readily available.
+
+For example, if GenAI system returns usage information in the streaming response, it SHOULD be used. Or if GenAI system returns each token independently, instrumentation SHOULD count number of output tokens and record the result.
+
+If instrumentation cannot efficiently obtain number of input and/or output tokens, it MAY allow users to enable offline token counting. Otherwise it MUST NOT report usage metric.
 
 This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304, 16777216, 67108864].
 
@@ -129,4 +135,5 @@ Additional details may be captured in domain-specific attributes.
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
 [MetricRequired]: /docs/general/metric-requirement-level.md#required
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
 [ExplicitBucketBoundaries]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advisory-parameters
