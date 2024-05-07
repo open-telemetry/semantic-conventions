@@ -6,6 +6,7 @@
 {% import 'stability.j2' as stability %}
 {% import 'notes.j2' as notes %}
 {% import 'enum_macros.j2' as enums %}
+{% import 'attribute_macros.j2' as attrs %}
 {%- set my_file_name = ctx.id | lower | kebab_case ~ ".md" -%}
 {{- template.set_file_name(my_file_name) -}}
 
@@ -29,7 +30,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 {%- for attribute in group.attributes | sort(attribute="name") %}
-| {% include "attribute_name.j2" %} | {% include "attribute_type.j2" | trim %} | {{ attribute.brief | trim }}{{ notes.add(attribute.note) }} | {% include "examples.j2" | trim %} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
+| {{ attrs.name(attribute) }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add(attribute.note) }} | {{ attrs.examples(attribute) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {%- endfor %}
 
 {{ notes.render() }}
