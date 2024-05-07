@@ -6,6 +6,12 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
+        note: |
+          The cardinality of `error.type` SHOULD be low.
+
+          When working across multiple models, it is RECOMMENDED to use a common set of error types.
+
+          Additional details may be captured in domain-specific attributes.
       - ref: server.address
         requirement_level: recommended
       - ref: server.port
