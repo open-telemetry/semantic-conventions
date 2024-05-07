@@ -26,15 +26,15 @@ Possible solutions include:
 
 - Generate all Semantic Conventions for a given version in specific folder while keeping old versions intact. It is used by [opentelemetry-go](https://github.com/open-telemetry/opentelemetry-go/tree/main/semconv/) but could be problematic if the artifact size is a concern.
 - Follow language-specific conventions to annotate experimental parts. For example, Semantic Conventions in Python puts experimental attributes in `opentelemetry.semconv._incubating` import path which is considered (following Python underscore convention) to be internal and subject to change.
-- Ship two different artifacts: one that contains stable Semantic Conventions and another one that contains all conventions. For example, [semantic-conventions in Java](https://github.com/open-telemetry/semantic-conventions-java) are shipped in two artifacts: `opentelemetry-semconv` and `opentelemetry-semconv-incubating` artifacts.
+- Ship two different artifacts: one that contains stable Semantic Conventions and another one with all available conventions. For example, [semantic-conventions in Java](https://github.com/open-telemetry/semantic-conventions-java) are shipped in two artifacts: `opentelemetry-semconv` and `opentelemetry-semconv-incubating`.
 
 > Note:
 > Shipping two versions of the same artifact (stable and preview) could be problematic due to diamond-dependency problems.
 > For example, if user application depends on the `semconv v1.0.0-preview` and some library brings transitive dependency on `semconv v1.1.0` that does not contain
-> experimental convention, the latter would be resolved leading to compilation or runtime issues in the application.
+> experimental conventions, the latter would be resolved leading to compilation or runtime issues in the application.
 
 Instrumentation libraries should depend on the stable (part of) semantic convention artifact or copy relevant definitions into their own code base.
-Experimental semantic conventions are intended for the end-user applications.
+Experimental semantic conventions are intended for end-user applications.
 
 ### Deprecated Conventions
 
@@ -47,7 +47,7 @@ the `deprecated` property that describes deprecation reason which can be used to
   and breaking changes in user applications.
 
 Keep stable convention definitions inside the preview (part of) semantic conversions artifact. It prevents user code from breaking when semantic convention stabilizes. Deprecate stable definitions inside the preview artifact and point users to the stable location in generated documentation.
-For example, in Java `http.request.method` attribute is defined as deprecated `io.opentelemetry.semconv.incubating.HttpIncubatingAttributes.HTTP_REQUEST_METHOD` field and also as stable `io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD`.
+For example, in Java `http.request.method` attribute is defined as the deprecated `io.opentelemetry.semconv.incubating.HttpIncubatingAttributes.HTTP_REQUEST_METHOD` field and also as stable `io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD`.
 
 ## Semantic Conventions Artifact Structure
 
