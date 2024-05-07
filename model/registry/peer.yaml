@@ -1,6 +1,6 @@
 groups:
   - id: registry.peer
-    type: span
+    type: attribute_group
     prefix: peer
     brief: >
       Operations that access some remote service.
