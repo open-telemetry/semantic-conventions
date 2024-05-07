@@ -38,13 +38,13 @@ The table below indicates which attributes should be added to the
 [LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
 
 <!-- semconv log-feature_flag -->
-The event name MUST be `feature_flag`.
+The event name MUST be `feature_flag`
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`feature_flag.key`](../attributes-registry/feature-flag.md) | string | The unique identifier of the feature flag. | `logo-color` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.provider_name`](../attributes-registry/feature-flag.md) | string | The name of the service provider that performs the flag evaluation. | `Flag Manager` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.variant`](../attributes-registry/feature-flag.md) | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.key`](/docs/attributes-registry/feature-flag.md) | string | The unique identifier of the feature flag. | `logo-color` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.provider_name`](/docs/attributes-registry/feature-flag.md) | string | The name of the service provider that performs the flag evaluation. | `Flag Manager` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.variant`](/docs/attributes-registry/feature-flag.md) | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
