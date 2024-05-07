@@ -39,12 +39,6 @@ groups:
           `mtime` is an attribute of the file.
         stability: experimental
         examples: ['2021-01-01T12:00:00Z']
-      - id: device
-        type: string
-        brief: >
-          Device ID of the file system where the file is located.
-        stability: experimental
-        examples: ['sda1']
       - id: directory
         type: string
         brief: >
