@@ -205,8 +205,7 @@ groups:
     attributes:
       - id: state
         brief: >
-          The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state`
-          labels, _or only_ data points with `state` labels.
+          The CPU state of the process.
         type:
           allow_custom_values: true
           members:

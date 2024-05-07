@@ -58,7 +58,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.process.cpu.time(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.cpu.state`](/docs/attributes-registry/process.md) | string | The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `system`; `user`; `wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.cpu.state`](/docs/attributes-registry/process.md) | string | A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `system`; `user`; `wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -82,7 +82,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.process.cpu.utilization(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.cpu.state`](/docs/attributes-registry/process.md) | string | The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `system`; `user`; `wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.cpu.state`](/docs/attributes-registry/process.md) | string | The CPU state of the process. | `system`; `user`; `wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
