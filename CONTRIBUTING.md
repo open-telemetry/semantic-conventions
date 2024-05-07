@@ -103,10 +103,10 @@ You can also take examples from past changes inside the `schemas` folder.
 ### 2. Update the markdown files
 
 After updating the YAML file(s), you need to update
-the respective markdown files. For this, run the following command:
+the respective markdown files. For this, run the following commands:
 
 ```bash
-make table-generation
+make table-generation attribute-registry-generation
 ```
 
 #### Hugo frontmatter
