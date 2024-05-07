@@ -25,7 +25,7 @@ groups:
         stability: stable
   - id: registry.otel.scope
     prefix: otel.scope
-    type: resource
+    type: attribute_group
     brief: Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
     attributes:
       - id: name

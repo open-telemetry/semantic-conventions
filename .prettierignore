@@ -5,5 +5,8 @@
 /docs/**
 !/docs/cloud*
 !/docs/cloud*/**
+!/docs/attributes-registry*
+!/docs/attributes-registry*/**
 /model
 /schemas
+CHANGELOG.md
