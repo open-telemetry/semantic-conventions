@@ -30,7 +30,7 @@ distinct action within a larger Generative AI workflow.
 
 ### Metric: `gen_ai.token.usage`
 
-This metric is [required][MetricRecommended] when an operation involves the usage
+This metric is [recommended][MetricRecommended] when an operation involves the usage
 of tokens and the count is readily available.
 
 For example, if GenAI system returns usage information in the streaming response, it SHOULD be used. Or if GenAI system returns each token independently, instrumentation SHOULD count number of output tokens and record the result.
