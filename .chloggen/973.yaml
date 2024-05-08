@@ -1,0 +1,7 @@
+change_type: enhancement
+
+component: db
+
+note: Show applicable common attributes in individual database semantic conventions.
+
+issues: [973]
