@@ -17,6 +17,14 @@
       "replacement": "LINK-CHECK-ERROR-USE-LOCAL-PATH-TO-DOC-PAGE-NOT-EXTERNAL-URL/"
     }
   ],
+  "httpHeaders": [
+    {
+      "urls": ["http", ".", "/"],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; OpenTelemetryDocsBot/1.0;"
+      }
+    }
+  ],
   "retryOn429": true,
   "timeout": "30s",
   "aliveStatusCodes": [200, 403]
