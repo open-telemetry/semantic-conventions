@@ -22,6 +22,7 @@ described on this page.
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [3] | `findAndModify`; `getMore`; `update` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[2]:** <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
 
@@ -34,7 +35,7 @@ described on this page.
 
 | Key                     | Value |
 |:------------------------| :----------------------------------------------------------- |
-| Span name               | `"products.findAndModify"` |
+| Span name               | `"findAndModify products"` |
 | `db.system`             | `"mongodb"` |
 | `server.address`        | `"mongodb0.example.com"` |
 | `server.port`           | `27017` |
