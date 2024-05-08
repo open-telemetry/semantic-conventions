@@ -1,24 +1,4 @@
 groups:
-  - id: attributes.process.cpu
-    prefix: process.cpu
-    type: attribute_group
-    brief: "Attributes for process CPU metrics."
-    attributes:
-      - id: state
-        brief: "The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
-        type:
-          allow_custom_values: true
-          members:
-            - id: system
-              value: 'system'
-              stability: experimental
-            - id: user
-              value: 'user'
-              stability: experimental
-            - id: wait
-              value: 'wait'
-              stability: experimental
-        stability: experimental
   - id: metric.process.cpu.time
     type: metric
     metric_name: process.cpu.time
@@ -28,16 +8,24 @@ groups:
     unit: "s"
     attributes:
       - ref: process.cpu.state
+        brief: >
+          A process SHOULD be characterized _either_ by data points with no `state`
+          labels, _or only_ data points with `state` labels.
 
   - id: metric.process.cpu.utilization
     type: metric
     metric_name: process.cpu.utilization
     stability: experimental
-    brief: "Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process."
+    brief:
+      Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs
+      available to the process.
     instrument: gauge
     unit: "1"
     attributes:
       - ref: process.cpu.state
+        brief: >
+          A process SHOULD be characterized _either_ by data points with no `state`
+          labels, _or only_ data points with `state` labels.
 
   - id: metric.process.memory.usage
     type: metric
@@ -102,18 +90,7 @@ groups:
     instrument: counter
     unit: "{count}"
     attributes:
-      - id: process.context_switch_type
-        brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
-        type:
-          allow_custom_values: true
-          members:
-            - id: voluntary
-              value: 'voluntary'
-              stability: experimental
-            - id: involuntary
-              value: 'involuntary'
-              stability: experimental
-        stability: experimental
+      - ref: process.context_switch_type
   - id: metric.process.paging.faults
     type: metric
     metric_name: process.paging.faults
@@ -122,15 +99,4 @@ groups:
     instrument: counter
     unit: "{fault}"
     attributes:
-      - id: process.paging.fault_type
-        brief: "The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults."
-        type:
-          allow_custom_values: true
-          members:
-            - id: major
-              value: 'major'
-              stability: experimental
-            - id: minor
-              value: 'minor'
-              stability: experimental
-        stability: experimental
+      - ref: process.paging.fault_type
