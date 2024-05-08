@@ -13,9 +13,9 @@ groups:
         requirement_level: recommended
     stability: experimental
 
-  - id: metric.go.memory.limit
+  - id: metric.go.memory.soft_limit
     type: metric
-    metric_name: go.memory.limit
+    metric_name: go.memory.soft_limit
     brief: "Go runtime memory limit configured by the user, if a limit exists."
     note: >
       Computed from `/gc/gomemlimit:bytes`.
@@ -64,14 +64,14 @@ groups:
     unit: "{goroutine}"
     stability: experimental
 
-  - id: metric.go.thread.limit
+  - id: metric.go.processor.limit
     type: metric
-    metric_name: go.thread.limit
+    metric_name: go.processor.limit
     brief: "The number of OS threads that can execute user-level Go code simultaneously."
     note: >
       Computed from `/sched/gomaxprocs:threads`.
     instrument: updowncounter
-    unit: "{thread}"
+    unit: "{processor}"
     stability: experimental
 
   - id: metric.go.schedule.duration

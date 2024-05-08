@@ -15,15 +15,15 @@ These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package
 
 - [Go Memory](#go-memory)
   - [Metric: `go.memory.used`](#metric-gomemoryused)
-  - [Metric: `go.memory.limit`](#metric-gomemorylimit)
+  - [Metric: `go.memory.soft_limit`](#metric-gomemorysoftlimit)
   - [Metric: `go.memory.allocated`](#metric-gomemoryallocated)
   - [Metric: `go.memory.allocations`](#metric-gomemoryallocations)
 - [Go Garbage Collection](#go-garbage-collection)
   - [Metric: `go.memory.gc.goal`](#metric-gomemorygcgoal)
 - [Go Goroutines](#go-goroutines)
   - [Metric: `go.goroutine.count`](#metric-gogoroutinecount)
-- [Go Threads](#go-threads)
-  - [Metric: `go.thread.limit`](#metric-gothreadlimit)
+- [Go Process](#go-process)
+  - [Metric: `go.processor.limit`](#metric-goprocessorlimit)
 - [Go Scheduler](#go-scheduler)
   - [Metric: `go.schedule.duration`](#metric-goscheduleduration)
 - [Go Runtime Configuration](#go-runtime-configuration)
@@ -60,19 +60,19 @@ This metric is [recommended][MetricRecommended].
 | `other` | Memory used by the Go runtime, excluding other categories of memory usage. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `go.memory.limit`
+### Metric: `go.memory.soft_limit`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.go.memory.limit(metric_table) -->
+<!-- semconv metric.go.memory.soft_limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.soft_limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Computed from `/gc/gomemlimit:bytes`. This metric is excluded if the limit obtained from the Go runtime is math.MaxInt64.
 <!-- endsemconv -->
 
-<!-- semconv metric.go.memory.limit(full) -->
+<!-- semconv metric.go.memory.soft_limit(full) -->
 <!-- endsemconv -->
 
 ### Metric: `go.memory.allocated`
@@ -143,23 +143,23 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.go.goroutine.count(full) -->
 <!-- endsemconv -->
 
-## Go Threads
+## Go Processor
 
-**Description:** Go metrics captured under the namespace `go.thread.*`
+**Description:** Go metrics captured under the namespace `go.processor.*`
 
-### Metric: `go.thread.limit`
+### Metric: `go.processor.limit`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.go.thread.limit(metric_table) -->
+<!-- semconv metric.go.processor.limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.thread.limit` | UpDownCounter | `{thread}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.processor.limit` | UpDownCounter | `{processor}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Computed from `/sched/gomaxprocs:threads`.
 <!-- endsemconv -->
 
-<!-- semconv metric.go.thread.limit(full) -->
+<!-- semconv metric.go.processor.limit(full) -->
 <!-- endsemconv -->
 
 ## Go Scheduler
