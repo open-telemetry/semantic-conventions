@@ -2,7 +2,7 @@
 linkTitle: Generative AI metrics
 --->
 
-# Semantic Conventions for Generative AI Metrics
+# Semantic Conventions for Generative AI Client Metrics
 
 **Status**: [Experimental][DocumentStatus]
 
