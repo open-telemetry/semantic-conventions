@@ -117,7 +117,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.veightjsengineruntime.heap.space_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The space of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `v8jsengineruntime.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -143,7 +143,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.veightjsengineruntime.heap.space_used_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The space of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `v8jsengineruntime.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -169,7 +169,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.veightjsengineruntime.heap.space_available_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The space of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `v8jsengineruntime.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -195,7 +195,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.veightjsengineruntime.heap.physical_space_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The space of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `v8jsengineruntime.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

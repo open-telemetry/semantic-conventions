@@ -10,12 +10,12 @@
 
 Describes V8 JS Engine Runtime related attributes.
 
-| Attribute                           | Type   | Description                     | Examples                               | Stability                                                        |
-| ----------------------------------- | ------ | ------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
-| `v8jsengineruntime.gc.type`         | string | The type of garbage collection. | `major`; `minor`; `incremental`        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `v8jsengineruntime.heap.size.state` | string | The size of heap memory.        | `total`; `used`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `v8jsengineruntime.heap.space.name` | string | The space of heap memory.       | `new_space`; `old_space`; `code_space` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `v8jsengineruntime.memory.state`    | string | The state of memory.            | `total`; `used`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                           | Type   | Description                                | Examples                               | Stability                                                        |
+| ----------------------------------- | ------ | ------------------------------------------ | -------------------------------------- | ---------------------------------------------------------------- |
+| `v8jsengineruntime.gc.type`         | string | The type of garbage collection.            | `major`; `minor`; `incremental`        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8jsengineruntime.heap.size.state` | string | The size of heap memory.                   | `total`; `used`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8jsengineruntime.heap.space.name` | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8jsengineruntime.memory.state`    | string | The state of memory.                       | `total`; `used`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `v8jsengineruntime.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

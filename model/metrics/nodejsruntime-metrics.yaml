@@ -1,16 +1,86 @@
 groups:
-  - id: metric.nodejsruntime.eventloop.delay
+  - id: metric.nodejsruntime.eventloop.delay.min
     type: metric
-    metric_name: nodejsruntime.eventloop.delay
-    brief: "Event loop delay."
+    metric_name: nodejsruntime.eventloop.delay.min
+    brief: "Event loop minimum delay."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejsruntime.eventloop.delay
+    prefix: nodejsruntime.eventloop.delay.min
     attributes:
       - ref: nodejsruntime.version
         requirement_level: recommended
-      - ref: nodejsruntime.eventloop.delay.type
+
+  - id: metric.nodejsruntime.eventloop.delay.max
+    type: metric
+    metric_name: nodejsruntime.eventloop.delay.max
+    brief: "Event loop maximum delay."
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    prefix: nodejsruntime.eventloop.delay.max
+    attributes:
+      - ref: nodejsruntime.version
+        requirement_level: recommended
+
+  - id: metric.nodejsruntime.eventloop.delay.mean
+    type: metric
+    metric_name: nodejsruntime.eventloop.delay.mean
+    brief: "Event loop mean delay."
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    prefix: nodejsruntime.eventloop.delay.mean
+    attributes:
+      - ref: nodejsruntime.version
+        requirement_level: recommended
+
+  - id: metric.nodejsruntime.eventloop.delay.stddev
+    type: metric
+    metric_name: nodejsruntime.eventloop.delay.stddev
+    brief: "Event loop standard deviation delay."
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    prefix: nodejsruntime.eventloop.delay.stddev
+    attributes:
+      - ref: nodejsruntime.version
+        requirement_level: recommended
+
+  - id: metric.nodejsruntime.eventloop.delay.pfifty
+    type: metric
+    metric_name: nodejsruntime.eventloop.delay.p50
+    brief: "Event loop 50 percentile delay."
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    prefix: nodejsruntime.eventloop.delay.p50
+    attributes:
+      - ref: nodejsruntime.version
+        requirement_level: recommended
+
+  - id: metric.nodejsruntime.eventloop.delay.ninety
+    type: metric
+    metric_name: nodejsruntime.eventloop.delay.p90
+    brief: "Event loop 90 percentile delay."
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    prefix: nodejsruntime.eventloop.delay.p90
+    attributes:
+      - ref: nodejsruntime.version
+        requirement_level: recommended
+
+  - id: metric.nodejsruntime.eventloop.delay.ninety_nine
+    type: metric
+    metric_name: nodejsruntime.eventloop.delay.p99
+    brief: "Event loop 99 percentile delay."
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    prefix: nodejsruntime.eventloop.delay.p99
+    attributes:
+      - ref: nodejsruntime.version
         requirement_level: recommended
 
   - id: metric.nodejsruntime.eventloop.utilization
@@ -26,4 +96,3 @@ groups:
     attributes:
       - ref: nodejsruntime.version
         requirement_level: recommended
-
