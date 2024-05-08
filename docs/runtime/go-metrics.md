@@ -175,7 +175,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.schedule.duration` | Histogram | `s` | The time goroutines have spent in the scheduler in a runnable state before actually running. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Computed from `/sched/latencies:seconds`.
+**[1]:** Computed from `/sched/latencies:seconds`. Bucket boundaries are provided by the runtime, and are subject to change.
 <!-- endsemconv -->
 
 <!-- semconv metric.go.schedule.duration(full) -->

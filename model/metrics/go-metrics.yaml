@@ -80,6 +80,7 @@ groups:
     brief: "The time goroutines have spent in the scheduler in a runnable state before actually running."
     note: >
       Computed from `/sched/latencies:seconds`.
+      Bucket boundaries are provided by the runtime, and are subject to change.
     instrument: histogram
     unit: "s"
     stability: experimental
