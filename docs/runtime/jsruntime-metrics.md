@@ -94,10 +94,14 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
+This metric SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advisory-parameters)
+of `[ 0.01, 0.1, 1, 10 ]`.
+
 <!-- semconv metric.jsruntime.gc.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jsruntime.gc.duration` | Gauge | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `jsruntime.gc.duration` | Histogram | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.jsruntime.gc.duration(full) -->

@@ -40,7 +40,7 @@ groups:
     type: metric
     metric_name: jsruntime.gc.duration
     brief: "Garbage collection duration."
-    instrument: gauge
+    instrument: histogram
     unit: "s"
     stability: experimental
     prefix: jsruntime.gc
