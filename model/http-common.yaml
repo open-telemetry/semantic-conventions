@@ -56,6 +56,15 @@ groups:
         requirement_level: opt_in
         examples: ["http", "https"]
 
+  - id: attributes.http.client.experimental
+    type: attribute_group
+    brief: "Experimental HTTP attributes."
+    attributes:
+      - ref: url.template
+        requirement_level: opt_in
+        note: >
+          The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
+
   - id: attributes.http.server
     type: attribute_group
     brief: 'HTTP Server attributes'

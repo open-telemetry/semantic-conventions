@@ -68,25 +68,23 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/trace/api.md#span).
 
+HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available. If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
+
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
-HTTP server span names SHOULD be `{method} {http.route}` if there is a
-(low-cardinality) `http.route` available (see below for the exact definition of the [`{method}`](#method-placeholder) placeholder).
-
-If there is no (low-cardinality) `http.route` available, HTTP server span names
-SHOULD be [`{method}`](#method-placeholder).
-
-HTTP client spans have no `http.route` attribute since client-side instrumentation
-is not generally aware of the "route", and therefore HTTP client span names SHOULD be
-[`{method}`](#method-placeholder).
+(see below for the exact definition of the [`{method}`](#method-placeholder) and [`{target}`](#target-placeholder) placeholders).
 <!-- markdown-link-check-enable -->
 
 The <span id="method-placeholder">`{method}`</span> MUST be `{http.request.method}` if the method represents the original method known to the instrumentation.
 In other cases (when `{http.request.method}` is set to `_OTHER`), `{method}` MUST be `HTTP`.
 
-Instrumentation MUST NOT default to using URI
-path as span name, but MAY provide hooks to allow custom logic to override the
-default span name.
+The <span id="target-placeholder">`{target}`</span> SHOULD be one of the following:
+
+- [`http.route`](/docs/attributes-registry/http.md) for HTTP Server spans
+- [`url.template`](/docs/attributes-registry/url.md) for HTTP Client spans if enabled and available (![Experimental](https://img.shields.io/badge/-experimental-blue))
+- Other value MAY be provided through custom hooks at span start time or later.
+
+Instrumentation MUST NOT default to using URI path as a `{target}`.
 
 ## Status
 
@@ -255,6 +253,9 @@ Instrumentations MAY allow users to enable additional experimental attributes.
 | [`http.request.size`](/docs/attributes-registry/http.md) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`http.response.body.size`](/docs/attributes-registry/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`http.response.size`](/docs/attributes-registry/http.md) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [1] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 <!-- endsemconv -->
 
 ### HTTP client span duration
