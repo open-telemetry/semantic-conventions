@@ -26,7 +26,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | `db.operation.name`               | string | The name of the operation or command being executed. [3]                                                                                                                                                                                                                             | `findAndModify`; `HMSET`; `SELECT`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.parameter.<key>`        | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [4]                                                                                                                                          | `someval`; `55`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.text`                   | string | The database query being executed.                                                                                                                                                                                                                                                   | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.system`                       | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.                                                                                                                                                          | `other_sql`; `mssql`; `mssqlcompact`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.system`                       | string | Identifies the database management system (DBMS) product as recognized from the client side. [5]                                                                                                                                                                                     | `other_sql`; `mssql`; `mssqlcompact`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
@@ -39,6 +39,8 @@ It is RECOMMENDED to capture the value as provided by the application without at
 
 **[4]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+
+**[5]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` SHOULD be set to `postgresql`.
 
 `db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -202,9 +204,9 @@ This group defines attributes for Elasticsearch.
 | ----------------------------------- | ------ | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `db.elasticsearch.cluster.name`     | string | Represents the identifier of an Elasticsearch cluster.                                       | `e9106fc68e3044f0b1475b04bf4ffd5f`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.elasticsearch.node.name`        | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001`                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [5]                                                         | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [6]                                                         | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[5]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
+**[6]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 
 ## Db Metrics Deprecated Attributes
 

@@ -58,7 +58,11 @@ groups:
           then `<key>` SHOULD be the 0-based index.
         examples: ['someval', '55']
       - id: system
-        brief: An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.
+        brief: Identifies the database management system (DBMS) product as recognized from the client side.
+        note: >
+          The actual DBMS may differ from the one known by the client.
+          For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system`
+          SHOULD be set to `postgresql`.
         type:
           allow_custom_values: true
           members:
