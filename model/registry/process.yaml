@@ -170,3 +170,52 @@ groups:
         stability: experimental
         brief: >
           Whether the process is connected to an interactive shell.
+      - id: context_switch_type
+        brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
+        type:
+          allow_custom_values: true
+          members:
+            - id: voluntary
+              value: 'voluntary'
+              stability: experimental
+            - id: involuntary
+              value: 'involuntary'
+              stability: experimental
+        stability: experimental
+      - id: paging.fault_type
+        brief: >
+          The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor`
+          is for minor/soft page faults.
+        type:
+          allow_custom_values: true
+          members:
+            - id: major
+              value: 'major'
+              stability: experimental
+            - id: minor
+              value: 'minor'
+              stability: experimental
+        stability: experimental
+
+  - id: registry.process.cpu
+    prefix: process.cpu
+    type: attribute_group
+    brief: >
+        Attributes for process CPU
+    attributes:
+      - id: state
+        brief: >
+          The CPU state of the process.
+        type:
+          allow_custom_values: true
+          members:
+            - id: system
+              value: 'system'
+              stability: experimental
+            - id: user
+              value: 'user'
+              stability: experimental
+            - id: wait
+              value: 'wait'
+              stability: experimental
+        stability: experimental
