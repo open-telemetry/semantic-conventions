@@ -30,7 +30,7 @@ attr_registry_violation(violation_id, group_id, attr_id) = violation {
 	violation := {
 		"id": violation_id,
 		"type": "semconv_attribute",
-		"category": "attrigute_registry",
+		"category": "attribute_registry",
 		"group": group_id,
 		"attr": attr_id,
 	}
