@@ -1,5 +1,5 @@
 groups:
-  - id: metric.v8jsengineruntime.gc.duration
+  - id: metric.veightjsengineruntime.gc.duration
     type: metric
     metric_name: v8jsengineruntime.gc.duration
     brief: "Garbage collection duration."
@@ -11,7 +11,7 @@ groups:
       - ref: v8jsengineruntime.gc.type
         requirement_level: recommended
 
-  - id: metric.v8jsengineruntime.memory.size
+  - id: metric.veightjsengineruntime.memory.size
     type: metric
     metric_name: v8jsengineruntime.memory.size
     brief: "External memory size."
@@ -23,7 +23,7 @@ groups:
       - ref: v8jsengineruntime.memory.state
         requirement_level: recommended
 
-  - id: metric.v8jsengineruntime.heap.size
+  - id: metric.veightjsengineruntime.heap.size
     type: metric
     metric_name: v8jsengineruntime.heap.size
     brief: "Heap size."
@@ -35,14 +35,50 @@ groups:
       - ref: v8jsengineruntime.heap.size.state
         requirement_level: recommended
 
-  - id: metric.v8jsengineruntime.heap.space
+  - id: metric.veightjsengineruntime.heap.space_size
     type: metric
-    metric_name: v8jsengineruntime.heap.space
+    metric_name: v8jsengineruntime.heap.space_size
+    brief: "Heap space size."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    prefix: v8jsengineruntime.heap.space_size
+    attributes:
+      - ref: v8jsengineruntime.heap.space.name
+        requirement_level: recommended
+
+  - id: metric.veightjsengineruntime.heap.space_used_size
+    type: metric
+    metric_name: v8jsengineruntime.heap.space_used_size
+    brief: "Heap space used size."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    prefix: v8jsengineruntime.heap.space_used_size
+    attributes:
+      - ref: v8jsengineruntime.heap.space.name
+        requirement_level: recommended
+
+  - id: metric.veightjsengineruntime.heap.space_available_size
+    type: metric
+    metric_name: v8jsengineruntime.heap.space_available_size
+    brief: "Heap space available size."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    prefix: v8jsengineruntime.heap.space_available_size
+    attributes:
+      - ref: v8jsengineruntime.heap.space.name
+        requirement_level: recommended
+
+  - id: metric.veightjsengineruntime.heap.physical_space_size
+    type: metric
+    metric_name: v8jsengineruntime.heap.physical_space_size
     brief: "Heap space."
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: v8jsengineruntime.heap.space
+    prefix: v8jsengineruntime.heap.physical_space_size
     attributes:
-      - ref: v8jsengineruntime.heap.space.state
+      - ref: v8jsengineruntime.heap.space.name
         requirement_level: recommended

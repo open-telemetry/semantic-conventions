@@ -10,12 +10,12 @@
 
 Describes V8 JS Engine Runtime related attributes.
 
-| Attribute                            | Type   | Description                     | Examples                        | Stability                                                        |
-| ------------------------------------ | ------ | ------------------------------- | ------------------------------- | ---------------------------------------------------------------- |
-| `v8jsengineruntime.gc.type`          | string | The type of garbage collection. | `major`; `minor`; `incremental` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `v8jsengineruntime.heap.size.state`  | string | The size of heap memory.        | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `v8jsengineruntime.heap.space.state` | string | The space of heap memory.       | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `v8jsengineruntime.memory.state`     | string | The state of memory.            | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                           | Type   | Description                     | Examples                               | Stability                                                        |
+| ----------------------------------- | ------ | ------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
+| `v8jsengineruntime.gc.type`         | string | The type of garbage collection. | `major`; `minor`; `incremental`        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8jsengineruntime.heap.size.state` | string | The size of heap memory.        | `total`; `used`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8jsengineruntime.heap.space.name` | string | The space of heap memory.       | `new_space`; `old_space`; `code_space` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8jsengineruntime.memory.state`    | string | The state of memory.            | `total`; `used`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `v8jsengineruntime.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -33,12 +33,15 @@ Describes V8 JS Engine Runtime related attributes.
 | `total` | Total heap memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used`  | Used heap memory size.  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`v8jsengineruntime.heap.space.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`v8jsengineruntime.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value   | Description              | Stability                                                        |
-| ------- | ------------------------ | ---------------------------------------------------------------- |
-| `total` | Total heap memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used`  | Used heap memory space.  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value                | Description                | Stability                                                        |
+| -------------------- | -------------------------- | ---------------------------------------------------------------- |
+| `new_space`          | New memory space.          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `old_space`          | Old memory space.          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `code_space`         | Code memory space.         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `map_space`          | Map memory space.          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `v8jsengineruntime.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

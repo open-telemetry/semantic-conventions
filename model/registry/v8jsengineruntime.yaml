@@ -56,18 +56,29 @@ groups:
               stability: experimental
         brief: The size of heap memory.
         examples: ["total", "used"]
-      - id: heap.space.state
+      - id: heap.space.name
         stability: experimental
+        brief: The name of the space type of heap memory.
         type:
           allow_custom_values: false
           members:
-            - id: total
-              value: 'total'
-              brief: 'Total heap memory space.'
+            - id: new_space
+              value: 'new_space'
+              brief: 'New memory space.'
               stability: experimental
-            - id: used
-              value: 'used'
-              brief: 'Used heap memory space.'
+            - id: old_space
+              value: 'old_space'
+              brief: 'Old memory space.'
               stability: experimental
-        brief: The space of heap memory.
-        examples: ["total", "used"]
+            - id: code_space
+              value: 'code_space'
+              brief: 'Code memory space.'
+              stability: experimental
+            - id: map_space
+              value: 'map_space'
+              brief: 'Map memory space.'
+              stability: experimental
+            - id: large_object_space
+              value: 'large_object_space'
+              brief: 'Large object memory space.'
+              stability: experimental
