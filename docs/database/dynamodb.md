@@ -16,7 +16,7 @@ described on this page.
 
 These attributes are filled in for all DynamoDB request types.
 
-<!-- semconv dynamodb.all -->
+<!-- semconv dynamodb.all(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.system`](/docs/attributes-registry/db.md) | string | The value `dynamodb`. | `dynamodb` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -81,7 +81,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.BatchGetItem
 
-<!-- semconv dynamodb.batchgetitem -->
+<!-- semconv dynamodb.batchgetitem(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -108,7 +108,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.BatchWriteItem
 
-<!-- semconv dynamodb.batchwriteitem -->
+<!-- semconv dynamodb.batchwriteitem(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -136,7 +136,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.CreateTable
 
-<!-- semconv dynamodb.createtable -->
+<!-- semconv dynamodb.createtable(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -168,7 +168,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.DeleteItem
 
-<!-- semconv dynamodb.deleteitem -->
+<!-- semconv dynamodb.deleteitem(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -196,7 +196,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.DeleteTable
 
-<!-- semconv dynamodb.deletetable -->
+<!-- semconv dynamodb.deletetable(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -222,7 +222,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.DescribeTable
 
-<!-- semconv dynamodb.describetable -->
+<!-- semconv dynamodb.describetable(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -248,7 +248,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.GetItem
 
-<!-- semconv dynamodb.getitem -->
+<!-- semconv dynamodb.getitem(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -277,7 +277,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.ListTables
 
-<!-- semconv dynamodb.listtables -->
+<!-- semconv dynamodb.listtables(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -305,7 +305,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.PutItem
 
-<!-- semconv dynamodb.putitem -->
+<!-- semconv dynamodb.putitem(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -333,7 +333,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.Query
 
-<!-- semconv dynamodb.query -->
+<!-- semconv dynamodb.query(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -367,7 +367,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.Scan
 
-<!-- semconv dynamodb.scan -->
+<!-- semconv dynamodb.scan(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -404,7 +404,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.UpdateItem
 
-<!-- semconv dynamodb.updateitem -->
+<!-- semconv dynamodb.updateitem(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -432,7 +432,7 @@ These attributes are filled in for all DynamoDB request types.
 
 ## DynamoDB.UpdateTable
 
-<!-- semconv dynamodb.updatetable -->
+<!-- semconv dynamodb.updatetable(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
