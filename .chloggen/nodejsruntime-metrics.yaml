@@ -7,7 +7,7 @@
 change_type: new_component
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: jsruntime
+component: nodejsruntime
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: Introducing semantic conventions for Runtime Javascript (e.g. NodeJS, Deno, Bun) runtime metrics.

@@ -1,93 +1,93 @@
 groups:
-  - id: metric.jsruntime.active_handles.count
+  - id: metric.nodejsruntime.active_handles.count
     type: metric
-    metric_name: jsruntime.active_handles.count
+    metric_name: nodejsruntime.active_handles.count
     brief: "Number of active handles."
     instrument: updowncounter
     unit: "{handles}"
     stability: experimental
     attributes:
-      - ref: jsruntime.version
+      - ref: nodejsruntime.version
         requirement_level: recommended
 
-  - id: metric.jsruntime.eventloop.lag
+  - id: metric.nodejsruntime.eventloop.lag
     type: metric
-    metric_name: jsruntime.eventloop.lag
+    metric_name: nodejsruntime.eventloop.lag
     brief: "Event loop lag."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: jsruntime.eventloop.lag
+    prefix: nodejsruntime.eventloop.lag
     attributes:
-      - ref: jsruntime.version
+      - ref: nodejsruntime.version
         requirement_level: recommended
-      - ref: jsruntime.eventloop.lag.type
+      - ref: nodejsruntime.eventloop.lag.type
         requirement_level: recommended
 
-  - id: metric.jsruntime.eventloop.utilization
+  - id: metric.nodejsruntime.eventloop.utilization
     type: metric
-    metric_name: jsruntime.eventloop.utilization
+    metric_name: nodejsruntime.eventloop.utilization
     brief: "Event loop utilization."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: jsruntime.eventloop.utilization
+    prefix: nodejsruntime.eventloop.utilization
     attributes:
-      - ref: jsruntime.version
+      - ref: nodejsruntime.version
         requirement_level: recommended
 
-  - id: metric.jsruntime.gc.duration
+  - id: metric.nodejsruntime.gc.duration
     type: metric
-    metric_name: jsruntime.gc.duration
+    metric_name: nodejsruntime.gc.duration
     brief: "Garbage collection duration."
     instrument: histogram
     unit: "s"
     stability: experimental
-    prefix: jsruntime.gc
+    prefix: nodejsruntime.gc
     attributes:
-      - ref: jsruntime.version
+      - ref: nodejsruntime.version
         requirement_level: recommended
-      - ref: jsruntime.gc.type
+      - ref: nodejsruntime.gc.type
         requirement_level: recommended
 
-  - id: metric.jsruntime.memory.size
+  - id: metric.nodejsruntime.memory.size
     type: metric
-    metric_name: jsruntime.memory.size
+    metric_name: nodejsruntime.memory.size
     brief: "External memory size."
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: jsruntime.memory
+    prefix: nodejsruntime.memory
     attributes:
-      - ref: jsruntime.version
+      - ref: nodejsruntime.version
         requirement_level: recommended
-      - ref: jsruntime.memory.state
+      - ref: nodejsruntime.memory.state
         requirement_level: recommended
 
-  - id: metric.jsruntime.heap.size
+  - id: metric.nodejsruntime.heap.size
     type: metric
-    metric_name: jsruntime.heap.size
+    metric_name: nodejsruntime.heap.size
     brief: "Heap size."
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: jsruntime.heap.size
+    prefix: nodejsruntime.heap.size
     attributes:
-      - ref: jsruntime.version
+      - ref: nodejsruntime.version
         requirement_level: recommended
-      - ref: jsruntime.heap.size.state
+      - ref: nodejsruntime.heap.size.state
         requirement_level: recommended
 
-  - id: metric.jsruntime.heap.space
+  - id: metric.nodejsruntime.heap.space
     type: metric
-    metric_name: jsruntime.heap.space
+    metric_name: nodejsruntime.heap.space
     brief: "Heap space."
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: jsruntime.heap.space
+    prefix: nodejsruntime.heap.space
     attributes:
-      - ref: jsruntime.version
+      - ref: nodejsruntime.version
         requirement_level: recommended
-      - ref: jsruntime.heap.space.state
+      - ref: nodejsruntime.heap.space.state
         requirement_level: recommended

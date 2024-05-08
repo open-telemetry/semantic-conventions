@@ -1,8 +1,8 @@
 groups:
-  - id: registry.jsruntime
+  - id: registry.nodejsruntime
     type: attribute_group
     brief: Describes JS Runtime related attributes.
-    prefix: jsruntime
+    prefix: nodejsruntime
     attributes:
       - id: version
         stability: experimental

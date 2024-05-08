@@ -48,7 +48,7 @@ Also consider the
 semantic conventions when instrumenting runtime environments.
 
 - [JVM](jvm-metrics.md)
-- [JS Runtime](jsruntime-metrics.md)
+- [Node.js Runtime](nodejsruntime-metrics.md)
 
 ### Attributes
 
