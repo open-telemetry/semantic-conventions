@@ -1,0 +1,48 @@
+groups:
+  - id: metric.v8jsengineruntime.gc.duration
+    type: metric
+    metric_name: v8jsengineruntime.gc.duration
+    brief: "Garbage collection duration."
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    prefix: v8jsengineruntime.gc
+    attributes:
+      - ref: v8jsengineruntime.gc.type
+        requirement_level: recommended
+
+  - id: metric.v8jsengineruntime.memory.size
+    type: metric
+    metric_name: v8jsengineruntime.memory.size
+    brief: "External memory size."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    prefix: v8jsengineruntime.memory
+    attributes:
+      - ref: v8jsengineruntime.memory.state
+        requirement_level: recommended
+
+  - id: metric.v8jsengineruntime.heap.size
+    type: metric
+    metric_name: v8jsengineruntime.heap.size
+    brief: "Heap size."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    prefix: v8jsengineruntime.heap.size
+    attributes:
+      - ref: v8jsengineruntime.heap.size.state
+        requirement_level: recommended
+
+  - id: metric.v8jsengineruntime.heap.space
+    type: metric
+    metric_name: v8jsengineruntime.heap.space
+    brief: "Heap space."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    prefix: v8jsengineruntime.heap.space
+    attributes:
+      - ref: v8jsengineruntime.heap.space.state
+        requirement_level: recommended

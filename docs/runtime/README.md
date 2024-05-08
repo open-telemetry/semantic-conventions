@@ -48,7 +48,8 @@ Also consider the
 semantic conventions when instrumenting runtime environments.
 
 - [JVM](jvm-metrics.md)
-- [Node.js Runtime](nodejsruntime-metrics.md)
+- [V8 JS Engine](v8jsengineruntime-metrics.md)
+- [Node.js](nodejsruntime-metrics.md)
 
 ### Attributes
 

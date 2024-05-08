@@ -8,16 +8,12 @@
 
 ## Nodejsruntime Attributes
 
-Describes JS Runtime related attributes.
+Describes Node.js Runtime related attributes.
 
-| Attribute                            | Type   | Description                       | Examples                        | Stability                                                        |
-| ------------------------------------ | ------ | --------------------------------- | ------------------------------- | ---------------------------------------------------------------- |
-| `nodejsruntime.eventloop.delay.type` | string | The type of the event loop delay. | `min`; `max`; `mean`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.gc.type`              | string | The type of garbage collection.   | `major`; `minor`; `incremental` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.heap.size.state`      | string | The size of heap memory.          | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.heap.space.state`     | string | The space of heap memory.         | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.memory.state`         | string | The state of memory.              | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.version`              | string | JS Runtime version.               | `v22.0.0`; `v21.7.3`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                            | Type   | Description                       | Examples             | Stability                                                        |
+| ------------------------------------ | ------ | --------------------------------- | -------------------- | ---------------------------------------------------------------- |
+| `nodejsruntime.eventloop.delay.type` | string | The type of the event loop delay. | `min`; `max`; `mean` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejsruntime.version`              | string | Node.js Runtime version.          | `v22.0.0`; `v21.7.3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `nodejsruntime.eventloop.delay.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -30,33 +26,3 @@ Describes JS Runtime related attributes.
 | `p50`    | Event loop 50 percentile delay.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `p90`    | Event loop 90 percentile delay.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `p99`    | Event loop 99 percentile delay.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`nodejsruntime.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value         | Description                              | Stability                                                        |
-| ------------- | ---------------------------------------- | ---------------------------------------------------------------- |
-| `major`       | Major (Mark Sweep Compact).              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `minor`       | Minor (Scavenge).                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `incremental` | Incremental (Incremental Marking).       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `weakcb`      | Weak Callbacks (Process Weak Callbacks). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`nodejsruntime.heap.size.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value   | Description             | Stability                                                        |
-| ------- | ----------------------- | ---------------------------------------------------------------- |
-| `total` | Total heap memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used`  | Used heap memory size.  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`nodejsruntime.heap.space.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value   | Description              | Stability                                                        |
-| ------- | ------------------------ | ---------------------------------------------------------------- |
-| `total` | Total heap memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used`  | Used heap memory space.  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`nodejsruntime.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value   | Description   | Stability                                                        |
-| ------- | ------------- | ---------------------------------------------------------------- |
-| `total` | Total memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used`  | Used memory.  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
