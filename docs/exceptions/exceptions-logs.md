@@ -4,7 +4,7 @@ linkTitle: Logs
 
 # Semantic Conventions for Exceptions in Logs and Events
 
-**Status**: [Stable][DocumentStatus]
+**Status**: [Stable][DocumentStatus], Unless otherwise specified.
 
 This document defines semantic conventions for recording exceptions on
 [logs](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#emit-a-logrecord) emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/bridge-api.md#logger) and [events](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/events.md) emitted through the [Events API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/logs/event-api.md#emit-event)
@@ -31,6 +31,8 @@ the `LogRecord` class/structure or wherever it makes the most sense depending on
 the language runtime.
 
 ## Recording an Exception in events
+
+**Status**: [Experimental][DocumentStatus]
 
 Exceptions SHOULD be recorded in Events with the event name `exception` and the exception data in attributes.
 
