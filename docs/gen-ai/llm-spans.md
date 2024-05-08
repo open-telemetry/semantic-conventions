@@ -279,7 +279,6 @@ The event name MUST be `gen_ai.tool.message`.
 
 | Body Field | Type | Description | Examples | Requirement Level | Sensitive |
 |---|---|---|---|---|---|
-| `role` | string | The role of the messages author | `tool`, `function` | `Conditionally Required`: when the message is returned by GenAI model. |  |
 | `content` | string | The contents of the tool message. | `opentelemetry.io` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
 | `tool_call_id` | string | Tool call that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` |  |
 
@@ -516,8 +515,8 @@ Here's the telemetry generated for each step in this scenario:
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
      | `gen_ai.system`     | `"openai"`                                            |
-     | Event payload (with sensitive content)    | `{"role":"tool","content":"opentelemetry.io/semconv/gen-ai","tool_call_id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
-     | Event payload (without sensitive content) | `{"role":"tool","content":"REDACTED","tool_call_id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
+     | Event payload (with sensitive content)    | `{"content":"opentelemetry.io/semconv/gen-ai","tool_call_id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
+     | Event payload (without sensitive content) | `{"content":"REDACTED","tool_call_id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
 
    - `gen_ai.choice` (could be reported when capturing sensitive content is disabled)
 
