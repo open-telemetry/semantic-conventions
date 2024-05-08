@@ -10,12 +10,13 @@ path_base_for_github_subdir:
 **Status**: [Experimental][DocumentStatus]
 
 **Warning**:
-The semantic conventions for GenAI and LLM are currently in development.
+The semantic conventions for GenAI are currently in development.
 We encourage instrumentation libraries and telemetry consumers developers to
 use the conventions in limited non-critical workloads and share the feedback
 
-This document defines semantic conventions for the following kind of Generative AI systems:
+Semantic conventions for Generative AI operations are defined for the following signals:
 
+<<<<<<< HEAD
 * LLMs
 
 Semantic conventions for Generative AI operations are defined for the following signals:
@@ -25,5 +26,8 @@ Semantic conventions for Generative AI operations are defined for the following 
 Semantic conventions for LLM operations are defined for the following signals:
 
 * [LLM Spans](llm-spans.md): Semantic Conventions for LLM requests - *spans*.
+=======
+* [Generative AI Spans](llm-spans.md): Semantic Conventions for Generative AI *spans*.
+>>>>>>> 1d913bc7 (clean up and add gen-ai specific temp attribute for payload)
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/document-status.md

@@ -20,55 +20,46 @@ groups:
           For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
           is set to `openai` based on the instrumentation's best knowledge.
         examples: 'openai'
-        tag: llm-generic-request
       - id: request.model
         stability: experimental
         type: string
         brief: The name of the LLM a request is being made to.
         examples: 'gpt-4'
-        tag: llm-generic-request
       - id: request.max_tokens
         stability: experimental
         type: int
         brief: The maximum number of tokens the LLM generates for a request.
         examples: [100]
-        tag: llm-generic-request
       - id: request.temperature
         stability: experimental
         type: double
         brief: The temperature setting for the LLM request.
         examples: [0.0]
-        tag: llm-generic-request
       - id: request.top_p
         stability: experimental
         type: double
         brief: The top_p sampling setting for the LLM request.
         examples: [1.0]
-        tag: llm-generic-request
       - id: response.id
         stability: experimental
         type: string
         brief: The unique identifier for the completion.
         examples: ['chatcmpl-123']
-        tag: llm-generic-response
       - id: response.model
         stability: experimental
         type: string
         brief: The name of the LLM a response was generated from.
         examples: ['gpt-4-0613']
-        tag: llm-generic-response
       - id: response.finish_reason
         stability: experimental
         type: string
         brief: The reason the model stopped generating tokens.
         examples: ['stop', 'content_filter', 'tool_calls']
-        tag: llm-generic-event
       - id: usage.prompt_tokens
         stability: experimental
         type: int
         brief: The number of tokens used in the LLM prompt.
         examples: [100]
-        tag: llm-generic-response
       - id: usage.completion_tokens
         stability: experimental
         type: int
@@ -89,22 +80,13 @@ groups:
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
         examples: ['input', 'output']
-      - id: prompt
-        stability: experimental
-        type: string
-        brief: The full prompt sent to an LLM.
-        note: It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
-        examples: ["[{'role': 'user', 'content': 'What is the capital of France?'}]"]
-        tag: llm-generic-events
-      - id: completion
-        stability: experimental
-        type: string
-        brief: The full response received from the LLM.
-        note: It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
-        examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
-        tag: llm-generic-events
       - id: operation.name
         stability: experimental
         type: string
         brief: The name of the operation being performed.
         examples: ['chat', 'completion']
+      - id: event.content
+        stability: experimental
+        type: string
+        brief: The GenAI event payload serialized into JSON string.
+        examples: ["[{'content': 'What is the capital of France?'}]", "plain string"]

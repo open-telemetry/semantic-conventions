@@ -88,3 +88,14 @@ groups:
       This event describes the Gen AI response message.
     extends: gen_ai.common.event.attributes
 
+  - id: gen_ai.span.event.content
+    type: attribute_group
+    brief: >
+      Describes the content of a span event.
+    attributes:
+      - ref: gen_ai.event.content
+        requirement_level:
+          conditionally_required: >
+            If and only if recording GenAI events as span events. It is NOT RECOMMENDED to record
+            GenAI events with span event API and SHOULD only be used if Event API is not yet
+            available in the corresponding OpenTelemetry API package.
