@@ -29,8 +29,10 @@ groups:
     metric_name: nodejsruntime.eventloop.utilization
     brief: "Event loop utilization."
     instrument: gauge
-    unit: "s"
+    unit: "1"
     stability: experimental
+    note: >
+      The value range is [0.0,1.0].
     prefix: nodejsruntime.eventloop.utilization
     attributes:
       - ref: nodejsruntime.version

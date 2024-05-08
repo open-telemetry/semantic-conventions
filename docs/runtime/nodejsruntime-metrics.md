@@ -81,7 +81,9 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.nodejsruntime.eventloop.utilization(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `nodejsruntime.eventloop.utilization` | Gauge | `s` | Event loop utilization. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejsruntime.eventloop.utilization` | Gauge | `1` | Event loop utilization. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The value range is [0.0,1.0].
 <!-- endsemconv -->
 
 <!-- semconv metric.nodejsruntime.eventloop.utilization(full) -->
