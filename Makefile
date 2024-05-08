@@ -33,6 +33,13 @@ check-file-and-folder-names-in-docs:
 $(MISSPELL):
 	cd $(TOOLS_DIR) && go build -o $(MISSPELL_BINARY) github.com/client9/misspell/cmd/misspell
 
+.PHONY: check-policies
+check-policies:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/policies:/policies \
+		otel/weaver:${WEAVER_VERSION} registry check \
+		--registry=/source \
+		--before-resolution-policies=/policies/before_resolution/registry.rego
+
 .PHONY: misspell
 misspell:	$(MISSPELL)
 	$(MISSPELL) -error $(ALL_DOCS)
