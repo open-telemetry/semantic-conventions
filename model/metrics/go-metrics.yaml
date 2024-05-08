@@ -13,16 +13,6 @@ groups:
         requirement_level: recommended
     stability: experimental
 
-  - id: metric.go.memory.released
-    type: metric
-    metric_name: go.memory.released
-    brief: "Memory that is completely free and has been returned to the underlying system."
-    note: >
-      Computed from `/memory/classes/heap/released:bytes`.
-    instrument: updowncounter
-    unit: "By"
-    stability: experimental
-
   - id: metric.go.memory.limit
     type: metric
     metric_name: go.memory.limit

@@ -15,7 +15,6 @@ These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package
 
 - [Go Memory](#go-memory)
   - [Metric: `go.memory.used`](#metric-gomemoryused)
-  - [Metric: `go.memory.released`](#metric-gomemoryreleased)
   - [Metric: `go.memory.limit`](#metric-gomemorylimit)
   - [Metric: `go.memory.allocated`](#metric-gomemoryallocated)
   - [Metric: `go.memory.allocations`](#metric-gomemoryallocations)
@@ -59,21 +58,6 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other` | Memory used by the Go runtime, excluding other categories of memory usage. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-<!-- endsemconv -->
-
-### Metric: `go.memory.released`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.go.memory.released(metric_table) -->
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.released` | UpDownCounter | `By` | Memory that is completely free and has been returned to the underlying system. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[1]:** Computed from `/memory/classes/heap/released:bytes`.
-<!-- endsemconv -->
-
-<!-- semconv metric.go.memory.released(full) -->
 <!-- endsemconv -->
 
 ### Metric: `go.memory.limit`
