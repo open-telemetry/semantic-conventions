@@ -14,7 +14,7 @@ This document describes semantic conventions for Node.js Runtime metrics in Open
 
 - [Experimental](#experimental)
   - [Metric: `nodejsruntime.active_handles.count`](#metric-nodejsruntimeactive_handlescount)
-  - [Metric: `nodejsruntime.eventloop.lag`](#metric-nodejsruntimeeventlooplag)
+  - [Metric: `nodejsruntime.eventloop.delay`](#metric-nodejsruntimeeventloopdelay)
   - [Metric: `nodejsruntime.eventloop.utilization`](#metric-nodejsruntimeeventlooputilization)
   - [Metric: `nodejsruntime.gc.duration`](#metric-nodejsruntimegcduration)
   - [Metric: `nodejsruntime.memory.size`](#metric-nodejsruntimememorysize)
@@ -45,33 +45,33 @@ This metric is [recommended][MetricRecommended].
 | [`nodejsruntime.version`](/docs/attributes-registry/nodejsruntime.md) | string | JS Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `nodejsruntime.eventloop.lag`
+### Metric: `nodejsruntime.eventloop.delay`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.nodejsruntime.eventloop.lag(metric_table) -->
+<!-- semconv metric.nodejsruntime.eventloop.delay(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `nodejsruntime.eventloop.lag` | Gauge | `s` | Event loop lag. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejsruntime.eventloop.delay` | Gauge | `s` | Event loop delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.nodejsruntime.eventloop.lag(full) -->
+<!-- semconv metric.nodejsruntime.eventloop.delay(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`nodejsruntime.eventloop.lag.type`](/docs/attributes-registry/nodejsruntime.md) | string | The type of the event loop latency. | `min`; `p90` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`nodejsruntime.eventloop.delay.type`](/docs/attributes-registry/nodejsruntime.md) | string | The type of the event loop delay. | `min`; `p90` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`nodejsruntime.version`](/docs/attributes-registry/nodejsruntime.md) | string | JS Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`nodejsruntime.eventloop.lag.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`nodejsruntime.eventloop.delay.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `min` | Event loop minimum latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `max` | Event loop maximum latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mean` | Event loop mean latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stddev` | Event loop standard deviation latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `p50` | Event loop 50 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `p90` | Event loop 90 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `p99` | Event loop 99 percentile latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `min` | Event loop minimum delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `max` | Event loop maximum delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mean` | Event loop mean delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stddev` | Event loop standard deviation delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p50` | Event loop 50 percentile delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p90` | Event loop 90 percentile delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p99` | Event loop 99 percentile delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ### Metric: `nodejsruntime.eventloop.utilization`

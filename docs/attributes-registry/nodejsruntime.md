@@ -10,26 +10,26 @@
 
 Describes JS Runtime related attributes.
 
-| Attribute                          | Type   | Description                         | Examples                        | Stability                                                        |
-| ---------------------------------- | ------ | ----------------------------------- | ------------------------------- | ---------------------------------------------------------------- |
-| `nodejsruntime.eventloop.lag.type` | string | The type of the event loop latency. | `min`; `max`; `mean`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.gc.type`            | string | The type of garbage collection.     | `major`; `minor`; `incremental` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.heap.size.state`    | string | The size of heap memory.            | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.heap.space.state`   | string | The space of heap memory.           | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.memory.state`       | string | The state of memory.                | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nodejsruntime.version`            | string | JS Runtime version.                 | `v22.0.0`; `v21.7.3`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                            | Type   | Description                       | Examples                        | Stability                                                        |
+| ------------------------------------ | ------ | --------------------------------- | ------------------------------- | ---------------------------------------------------------------- |
+| `nodejsruntime.eventloop.delay.type` | string | The type of the event loop delay. | `min`; `max`; `mean`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejsruntime.gc.type`              | string | The type of garbage collection.   | `major`; `minor`; `incremental` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejsruntime.heap.size.state`      | string | The size of heap memory.          | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejsruntime.heap.space.state`     | string | The space of heap memory.         | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejsruntime.memory.state`         | string | The state of memory.              | `total`; `used`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejsruntime.version`              | string | JS Runtime version.               | `v22.0.0`; `v21.7.3`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`nodejsruntime.eventloop.lag.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`nodejsruntime.eventloop.delay.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value    | Description                            | Stability                                                        |
-| -------- | -------------------------------------- | ---------------------------------------------------------------- |
-| `min`    | Event loop minimum latency.            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `max`    | Event loop maximum latency.            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mean`   | Event loop mean latency.               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stddev` | Event loop standard deviation latency. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `p50`    | Event loop 50 percentile latency.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `p90`    | Event loop 90 percentile latency.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `p99`    | Event loop 99 percentile latency.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value    | Description                          | Stability                                                        |
+| -------- | ------------------------------------ | ---------------------------------------------------------------- |
+| `min`    | Event loop minimum delay.            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `max`    | Event loop maximum delay.            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mean`   | Event loop mean delay.               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stddev` | Event loop standard deviation delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p50`    | Event loop 50 percentile delay.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p90`    | Event loop 90 percentile delay.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `p99`    | Event loop 99 percentile delay.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `nodejsruntime.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

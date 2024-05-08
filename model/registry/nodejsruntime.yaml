@@ -9,40 +9,40 @@ groups:
         type: string
         brief: JS Runtime version.
         examples: ["v22.0.0", "v21.7.3"]
-      - id: eventloop.lag.type
+      - id: eventloop.delay.type
         stability: experimental
         type:
           allow_custom_values: false
           members:
             - id: min
               value: 'min'
-              brief: 'Event loop minimum latency.'
+              brief: 'Event loop minimum delay.'
               stability: experimental
             - id: max
               value: 'max'
-              brief: 'Event loop maximum latency.'
+              brief: 'Event loop maximum delay.'
               stability: experimental
             - id: mean
               value: mean
-              brief: 'Event loop mean latency.'
+              brief: 'Event loop mean delay.'
               stability: experimental
             - id: stddev
               value: stddev
-              brief: 'Event loop standard deviation latency.'
+              brief: 'Event loop standard deviation delay.'
               stability: experimental
             - id: p50
               value: 'p50'
-              brief: 'Event loop 50 percentile latency.'
+              brief: 'Event loop 50 percentile delay.'
               stability: experimental
             - id: p90
               value: 'p90'
-              brief: 'Event loop 90 percentile latency.'
+              brief: 'Event loop 90 percentile delay.'
               stability: experimental
             - id: p99
               value: 'p99'
-              brief: 'Event loop 99 percentile latency.'
+              brief: 'Event loop 99 percentile delay.'
               stability: experimental
-        brief: The type of the event loop latency.
+        brief: The type of the event loop delay.
         examples: ["min", "p90"]
       - id: gc.type
         stability: experimental

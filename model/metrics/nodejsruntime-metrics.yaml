@@ -10,18 +10,18 @@ groups:
       - ref: nodejsruntime.version
         requirement_level: recommended
 
-  - id: metric.nodejsruntime.eventloop.lag
+  - id: metric.nodejsruntime.eventloop.delay
     type: metric
-    metric_name: nodejsruntime.eventloop.lag
-    brief: "Event loop lag."
+    metric_name: nodejsruntime.eventloop.delay
+    brief: "Event loop delay."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejsruntime.eventloop.lag
+    prefix: nodejsruntime.eventloop.delay
     attributes:
       - ref: nodejsruntime.version
         requirement_level: recommended
-      - ref: nodejsruntime.eventloop.lag.type
+      - ref: nodejsruntime.eventloop.delay.type
         requirement_level: recommended
 
   - id: metric.nodejsruntime.eventloop.utilization
