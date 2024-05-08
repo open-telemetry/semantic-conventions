@@ -6,7 +6,7 @@ linkTitle: Generative AI metrics
 
 **Status**: [Experimental][DocumentStatus]
 
-The conventions described in this section are specific to Generative AI
+The conventions described in this section are specific to Generative AI client
 applications.
 
 **Disclaimer:** These are initial Generative AI client metric instruments
@@ -16,19 +16,19 @@ and attributes but more may be added in the future.
 
 <!-- toc -->
 
-- [Generative AI Operations](#generative-ai-operations)
-  - [Metric: `gen_ai.token.usage`](#metric-gen_aitokenusage)
-  - [Metric: `gen_ai.operation.duration`](#metric-gen_aioperationduration)
+- [Generative AI Client Metrics](#generative-ai-client-metrics)
+  - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
+  - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)
 
 <!-- tocstop -->
 
-## Generative AI Operations
+## Generative AI Client Metrics
 
 The following metric instruments describe Generative AI operations. An
 operation may be a request to an LLM, a function call, or some other
 distinct action within a larger Generative AI workflow.
 
-### Metric: `gen_ai.token.usage`
+### Metric: `gen_ai.client.token.usage`
 
 This metric is [recommended][MetricRecommended] when an operation involves the usage
 of tokens and the count is readily available.
@@ -39,13 +39,13 @@ If instrumentation cannot efficiently obtain number of input and/or output token
 
 This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304, 16777216, 67108864].
 
-<!-- semconv metric.gen_ai.token.usage(metric_table) -->
+<!-- semconv metric.gen_ai.client.token.usage(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `gen_ai.token.usage` | Histogram | `{token}` | Measures number of input and output tokens used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.client.token.usage` | Histogram | `{token}` | Measures number of input and output tokens used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.gen_ai.token.usage(full) -->
+<!-- semconv metric.gen_ai.client.token.usage(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. | `chat`; `completion` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -87,19 +87,19 @@ Additional details may be captured in domain-specific attributes.
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- endsemconv -->
 
-### Metric: `gen_ai.operation.duration`
+### Metric: `gen_ai.client.operation.duration`
 
 This metric is [required][MetricRequired].
 
 This metric SHOULD be specified with [ExplicitBucketBoundaries] of [ 0.01, 0.02, 0.04, 0.08, 0.16, 0.32, 0.64, 1.28, 2.56, 5.12,10.24, 20.48, 40.96, 81.92].
 
-<!-- semconv metric.gen_ai.operation.duration(metric_table) -->
+<!-- semconv metric.gen_ai.client.operation.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `gen_ai.operation.duration` | Histogram | `s` | GenAI operation duration | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.client.operation.duration` | Histogram | `s` | GenAI operation duration | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.gen_ai.operation.duration(full) -->
+<!-- semconv metric.gen_ai.client.operation.duration(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. | `chat`; `completion` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
