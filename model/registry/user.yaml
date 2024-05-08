@@ -48,3 +48,12 @@ groups:
         brief: >
           Array of user roles at the time of the event.
         examples: ["admin", "reporting_user"]
+      - id: scope
+        type: string
+        stability: experimental
+        brief: >
+          Scopes or granted authorities the client currently possesses extracted from token
+          or application security context. The value would come from the scope associated
+          with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3)
+          or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html).
+        examples: 'read:message, write:files'
