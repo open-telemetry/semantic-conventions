@@ -6,9 +6,33 @@ linkTitle: SQL
 
 **Status**: [Experimental][DocumentStatus]
 
-The SQL databases Semantic Conventions extend and override the [Database Semantic Conventions](database-spans.md)
-that describe common database operations attributes in addition to the Semantic Conventions
-described on this page.
+The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](database-spans.md) apply to SQL databases.
+
+The following database systems (defined in the [`db.system`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystem) set) are known to use SQL as their primary query language and
+
+- `cockroachdb`
+- `db2`
+- `derby`
+- `edb`
+- `ingres`
+- `interbase`
+- `firebird`
+- `h2`
+- `hsqldb`
+- `mariadb`
+- `maxdb`
+- `mssql`
+- `mssqlcompact`
+- `mysql`
+- `oracle`
+- `other_sql`
+- `pervasive`
+- `postgresql`
+- `sqlite`
+- `trino`
+
+The following list of well-known
+Many database systems provide SQL support and can be used via generic database driver APIs
 
 ## Attributes
 
@@ -94,15 +118,12 @@ This is an example of attributes for a MySQL database span:
 
 | Key                    | Value |
 |:-----------------------| :----------------------------------------------------------- |
-| Span name              | `"SELECT ShopDb.orders"` |
+| Span name              | `"SELECT orders"` |
 | `db.collection.name`   | `"orders"` |
 | `db.namespace`         | `"ShopDb"` |
 | `db.system`            | `"mysql"` |
 | `server.address`       | `"shopdb.example.com"` |
 | `server.port`          | `3306` |
-| `network.peer.address` | `"192.0.2.12"` |
-| `network.peer.port`    | `3306` |
-| `network.transport`    | `"tcp"` |
 | `db.query.text`        | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
 | `db.operation.name`    | `"SELECT"` |
 
