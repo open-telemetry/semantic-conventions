@@ -95,6 +95,9 @@ groups:
           recommended: If available and if span describes operation on a single message or if the value applies to all messages in the batch.
       - ref: messaging.message.envelope.size
       - ref: messaging.message.body.size
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
       - ref: network.peer.address
         brief: Peer address of the messaging intermediary node where the operation was performed.
         requirement_level:
@@ -154,6 +157,9 @@ groups:
       - ref: messaging.kafka.message.tombstone
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
 
   - id: messaging.rocketmq
     type: attribute_group
@@ -191,6 +197,10 @@ groups:
       - ref: messaging.gcp_pubsub.message.delivery_attempt
       - ref: messaging.gcp_pubsub.message.ack_deadline
       - ref: messaging.gcp_pubsub.message.ack_id
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+
   - id: messaging.servicebus
     type: attribute_group
     extends: attributes.messaging.trace.minimal
@@ -210,6 +220,9 @@ groups:
           conditionally_required: if and only if `messaging.operation` is `settle`.
       - ref: messaging.message.conversation_id
         brief: Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
   - id: messaging.eventhubs
     type: attribute_group
     extends: attributes.messaging.trace.minimal
@@ -226,3 +239,6 @@ groups:
       - ref: messaging.eventhubs.consumer.group
         requirement_level:
           conditionally_required: If not default ("$Default").
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.

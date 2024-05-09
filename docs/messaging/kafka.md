@@ -29,16 +29,17 @@ For Apache Kafka, the following additional attributes are defined:
 |---|---|---|---|---|---|
 | [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [1] | `publish`; `create`; `receive` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.kafka.message.tombstone`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.kafka.message.tombstone`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | String representation of the partition id the message (or batch) is sent to or received from. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.consumer.group`](/docs/attributes-registry/messaging.md) | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.kafka.message.key`](/docs/attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [7] | `myKey` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.kafka.message.key`](/docs/attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [9] | `myKey` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.message.offset`](/docs/attributes-registry/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Recommended` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [11] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
@@ -62,20 +63,24 @@ it's RECOMMENDED to:
 * Use a domain-specific attribute
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[3]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[3]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+
+**[4]:** If the span describes an operation on a batch of messages.
+
+**[5]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[4]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[6]:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[5]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[7]:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[6]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[8]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[7]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[9]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
-**[8]:** If the operation is not sufficiently described by `messaging.operation.type`.
+**[10]:** If the operation is not sufficiently described by `messaging.operation.type`.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[11]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
