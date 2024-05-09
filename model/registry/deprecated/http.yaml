@@ -82,6 +82,20 @@ groups:
           When the header is not set the attribute MUST NOT be set.
         sampling_relevant: true
         examples: ['www.example.org']
+      - id: request_content_length_uncompressed
+        stability: experimental
+        deprecated: "Removed in 1.13"
+        type: int
+        brief: >
+           The size of the uncompressed request payload body after transport decoding. Not set if transport encoding not used.
+        examples: 5493
+      - id: response_content_length_uncompressed
+        stability: experimental
+        deprecated: "Removed in 1.13"
+        type: int
+        brief: >
+           The size of the uncompressed response payload body after transport decoding. Not set if transport encoding not used.
+        examples: 5493
       - id: flavor
         type:
           allow_custom_values: true
