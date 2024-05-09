@@ -91,8 +91,6 @@ groups:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
       - ref: messaging.message.conversation_id
-        requirement_level:
-          recommended: If available and if span describes operation on a single message or if the value applies to all messages in the batch.
       - ref: messaging.message.envelope.size
       - ref: messaging.message.body.size
       - ref: messaging.batch.message_count
@@ -140,11 +138,7 @@ groups:
       - ref: messaging.message.conversation_id
         brief: >
           Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
-        requirement_level:
-          recommended: If span describes operation on a single message or if the value applies to all messages in the batch.
       - ref: messaging.message.body.size
-        requirement_level:
-          recommended: If span describes operation on a single message or if the value applies to all messages in the batch.
 
   - id: messaging.kafka
     type: attribute_group
@@ -199,8 +193,9 @@ groups:
       - ref: messaging.rocketmq.consumption_model
       - ref: messaging.client.id
       - ref: messaging.message.body.size
+      - ref: messaging.batch.message_count
         requirement_level:
-          recommended: If span describes operation on a single message.
+          conditionally_required: If the span describes an operation on a batch of messages.
 
   - id: messaging.gcp_pubsub
     type: attribute_group
