@@ -55,7 +55,7 @@ body size should be used.
 size should be used.
 
 **[7]:** If a custom value is used, it MUST be of low cardinality.
-**[8]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client library to connect to a Azure Event Hubs, the `messaging.system` SHOULD be set to `kafka`.
+**[8]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client library to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation best knowledge.
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

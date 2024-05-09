@@ -27,7 +27,7 @@ This document defines the attributes used to describe telemetry in the context o
 
 **[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 **[2]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
-**[3]:** The actual GenAI product may differ from the one known by the client. For example, when using OpenAI client library to communicate with Mistral, the `gen_ai.system` SHOULD be set to `openai`.
+**[3]:** The actual GenAI product may differ from the one known by the client. For example, when using OpenAI client library to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation best knowledge.
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

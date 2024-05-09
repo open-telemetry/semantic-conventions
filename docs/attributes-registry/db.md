@@ -40,7 +40,7 @@ It is RECOMMENDED to capture the value as provided by the application without at
 **[4]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
-**[5]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` SHOULD be set to `postgresql`.
+**[5]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation best knowledge.
 
 `db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
