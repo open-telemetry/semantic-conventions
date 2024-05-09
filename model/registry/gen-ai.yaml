@@ -26,6 +26,14 @@ groups:
               stability: experimental
               value: "google"
               brief: 'Google'
+            - id: meta
+              stability: experimental
+              value: "meta"
+              brief: 'Meta'
+            - id: anthropic
+              stability: experimental
+              value: "anthropic"
+              brief: "Anthropic"
             - id: mistral
               stability: experimental
               value: "mistral"

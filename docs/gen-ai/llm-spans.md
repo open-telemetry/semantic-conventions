@@ -61,6 +61,13 @@ These attributes track input data and metadata for a request to an LLM. Each att
 | Value  | Description | Stability |
 |---|---|---|
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `microsoft` | Microsoft | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `huggingface` | Hugging Face | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `google` | Google | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `meta` | Meta | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mistral` | Mistral | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 ## Events
