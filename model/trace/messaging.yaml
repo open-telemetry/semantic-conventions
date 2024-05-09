@@ -50,7 +50,7 @@ groups:
   - id: attributes.messaging.trace.minimal
     type: attribute_group
     brief: >
-        Defines general attributes used in messaging systems.
+        Defines minimal set of attributes used by all messaging systems.
     extends: attributes.messaging.common.minimal
     attributes:
       - ref: messaging.operation.type
@@ -62,14 +62,17 @@ groups:
         requirement_level:
           conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
       - ref: messaging.message.id
+        requirement_level:
+          recommended: If span describes operation on a single message.
 
   - id: messaging
     type: span
     brief: >
-        This document defines general attributes used in
-        messaging systems.
+        Defines a full set of attributes used in messaging systems.
     extends: attributes.messaging.trace.minimal
     attributes:
+      - ref: messaging.system
+        requirement_level: required
       - ref: messaging.client.id
         requirement_level:
           recommended: If a client id is available
@@ -88,6 +91,8 @@ groups:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
       - ref: messaging.message.conversation_id
+        requirement_level:
+          recommended: If available and if span describes operation on a single message or if the value applies to all messages in the batch.
       - ref: messaging.message.envelope.size
       - ref: messaging.message.body.size
       - ref: network.peer.address
@@ -130,6 +135,8 @@ groups:
         requirement_level:
           conditionally_required: When available.
       - ref: messaging.message.conversation_id
+        brief: >
+          Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
 
   - id: messaging.kafka
     type: attribute_group
@@ -201,6 +208,8 @@ groups:
       - ref: messaging.servicebus.disposition_status
         requirement_level:
           conditionally_required: if and only if `messaging.operation` is `settle`.
+      - ref: messaging.message.conversation_id
+        brief: Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
   - id: messaging.eventhubs
     type: attribute_group
     extends: attributes.messaging.trace.minimal
