@@ -8,7 +8,7 @@ linkTitle: SQL
 
 The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](database-spans.md) apply to SQL databases.
 
-The following database systems (defined in the [`db.system`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystem) set) are known to use SQL as their primary query language and
+The following database systems (defined in the [`db.system`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystem) set) are known to use SQL as their primary query language:
 
 - `cockroachdb`
 - `db2`
@@ -25,14 +25,15 @@ The following database systems (defined in the [`db.system`](./database-spans.md
 - `mssqlcompact`
 - `mysql`
 - `oracle`
-- `other_sql`
 - `pervasive`
 - `postgresql`
 - `sqlite`
 - `trino`
+- `other_sql`
 
-The following list of well-known
-Many database systems provide SQL support and can be used via generic database driver APIs
+Many other database systems provide SQL support and can be accessed via generic database driver APIs such as JDBC or ODBC.
+When system-specific conventions are defined for the database, and it's accessed using SQL, the instrumentation SHOULD
+follow database-specific conventions and MAY also adhere to SQL semantic conventions.
 
 ## Attributes
 
