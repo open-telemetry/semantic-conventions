@@ -96,6 +96,18 @@ groups:
         brief: >
            The size of the uncompressed response payload body after transport decoding. Not set if transport encoding not used.
         examples: 5493
+      - id: server_name
+        type: string
+        stability: experimental
+        deprecated: "Replaced by `net.host.name`."
+        brief: >
+          The primary server name of the matched virtual host. This should be obtained via configuration.
+          If no such configuration can be obtained, this attribute MUST NOT be set ( `net.host.name` should be used instead).
+        note: >
+          `http.url` is usually not readily available on the server side but would have to be assembled in a cumbersome and
+          sometimes lossy process from other information (see e.g. open-telemetry/opentelemetry-python/pull/148).
+          It is thus preferred to supply the raw data that is available.
+        examples: ['example.com']
       - id: flavor
         type:
           allow_custom_values: true
