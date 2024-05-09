@@ -91,6 +91,7 @@ groups:
     unit: "{count}"
     attributes:
       - ref: process.context_switch_type
+
   - id: metric.process.paging.faults
     type: metric
     metric_name: process.paging.faults
@@ -100,3 +101,11 @@ groups:
     unit: "{fault}"
     attributes:
       - ref: process.paging.fault_type
+
+  - id: metric.process.uptime
+    type: metric
+    metric_name: process.uptime
+    stability: experimental
+    brief: "The number of seconds the process has been running."
+    instrument: counter
+    unit: "s"

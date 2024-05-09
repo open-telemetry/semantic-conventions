@@ -184,12 +184,6 @@ groups:
         brief: >
           The exit code of the process.
         examples: [127]
-      - id: uptime
-        type: int
-        stability: experimental
-        brief: >
-          Seconds the process has been up.
-        examples: [2880]
       - id: interactive
         type: boolean
         stability: experimental
