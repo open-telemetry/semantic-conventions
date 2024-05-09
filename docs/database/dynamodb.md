@@ -21,7 +21,7 @@ These attributes are filled in for all DynamoDB request types.
 |---|---|---|---|---|---|
 | [`db.system`](/docs/attributes-registry/db.md) | string | The value `dynamodb`. [1] | `dynamodb` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` SHOULD be set to `postgresql`.
+**[1]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation best knowledge.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -140,8 +140,8 @@ groups:
         brief: Identifies the messaging product being used as recognized from the client side.
         note: >
           The actual messaging system may differ from the one known by the client.
-          For example, when using Kafka client library to connect to a Azure Event Hubs, the `messaging.system`
-          SHOULD be set to `kafka`.
+          For example, when using Kafka client library to communicate with Azure Event Hubs, the `messaging.system`
+          is set to `kafka` based on the instrumentation best knowledge.
         type:
           allow_custom_values: true
           members:

@@ -90,7 +90,7 @@ These attributes will usually be the same for all operations performed over the 
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [13] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` SHOULD be set to `postgresql`.
+**[1]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation best knowledge.
 
 **[2]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.

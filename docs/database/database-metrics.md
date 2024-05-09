@@ -89,7 +89,7 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` SHOULD be set to `postgresql`.
+**[1]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation best knowledge.
 
 **[2]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.

@@ -18,7 +18,7 @@ groups:
         note: >
           The actual GenAI product may differ from the one known by the client.
           For example, when using OpenAI client library to communicate with Mistral, the `gen_ai.system`
-          SHOULD be set to `openai`.
+          is set to `openai` based on the instrumentation best knowledge.
         examples: 'openai'
         tag: llm-generic-request
       - id: request.model

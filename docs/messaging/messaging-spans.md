@@ -308,7 +308,7 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
-**[2]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client library to connect to a Azure Event Hubs, the `messaging.system` SHOULD be set to `kafka`.
+**[2]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client library to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation best knowledge.
 
 **[3]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 

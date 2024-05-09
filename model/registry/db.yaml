@@ -62,7 +62,7 @@ groups:
         note: >
           The actual DBMS may differ from the one known by the client.
           For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system`
-          SHOULD be set to `postgresql`.
+          is set to `postgresql` based on the instrumentation best knowledge.
         type:
           allow_custom_values: true
           members:
