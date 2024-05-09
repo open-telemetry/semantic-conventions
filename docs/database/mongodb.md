@@ -72,6 +72,7 @@ It is RECOMMENDED to capture the value as provided by the application without at
 | `server.port`           | `27017` |
 | `network.peer.address`  | `"192.0.2.14"` |
 | `network.peer.port`     | `27017` |
+| `network.transport`     | `"tcp"` |
 | `db.collection.name`    | `"products"` |
 | `db.namespace`          | `"shopDb"` |
 | `db.query.text`         | not set |
