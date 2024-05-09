@@ -49,7 +49,7 @@ groups:
       - id: client_ip
         type: string
         stability: experimental
-        deprecated: "Replaced by `client.address`"
+        deprecated: "Replaced by `client.address`."
         brief: >
           The IP address of the original client behind all proxies, if
           known (e.g. from [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For)).
@@ -66,6 +66,22 @@ groups:
           one is at least somewhat confident that the address is not that of
           the closest proxy.
         examples: '83.164.160.102'
+      - id: host
+        type: string
+        stability: experimental
+        deprecated: "Replaced by `http.request.header.host`."
+        brief: >
+          The value of the [HTTP host header](https://tools.ietf.org/html/rfc7230#section-5.4).
+
+          An empty Host header should also be reported, see note.
+        note: >
+          When the header is present but empty the attribute SHOULD be set to
+          the empty string. Note that this is a valid situation that is expected
+          in certain cases, according the aforementioned
+          [section of RFC 7230](https://tools.ietf.org/html/rfc7230#section-5.4).
+          When the header is not set the attribute MUST NOT be set.
+        sampling_relevant: true
+        examples: ['www.example.org']
       - id: flavor
         type:
           allow_custom_values: true
