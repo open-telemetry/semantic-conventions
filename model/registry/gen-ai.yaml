@@ -14,6 +14,26 @@ groups:
               stability: experimental
               value: "openai"
               brief: 'OpenAI'
+            - id: microsoft
+              stability: experimental
+              value: "microsoft"
+              brief: 'Microsoft'
+            - id: huggingface
+              stability: experimental
+              value: "huggingface"
+              brief: 'Hugging Face'
+            - id: google
+              stability: experimental
+              value: "google"
+              brief: 'Google'
+            - id: mistral
+              stability: experimental
+              value: "mistral"
+              brief: 'Mistral'
+            - id: cohere
+              stability: experimental
+              value: "cohere"
+              brief: 'Cohere'
         brief: The name of the LLM foundation model vendor.
         examples: 'openai'
         tag: llm-generic-request
