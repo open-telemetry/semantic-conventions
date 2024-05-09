@@ -46,6 +46,26 @@ groups:
         stability: experimental
         deprecated: "Replaced by `http.response.header.content-length`."
         examples: 3495
+      - id: client_ip
+        type: string
+        stability: experimental
+        deprecated: "Replaced by `client.address`"
+        brief: >
+          The IP address of the original client behind all proxies, if
+          known (e.g. from [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For)).
+        note: |
+          This is not necessarily the same as `net.sock.peer.addr`, which would
+          identify the network-level peer, which may be a proxy.
+
+          This attribute should be set when a source of information different
+          from the one used for `net.sock.peer.addr`, is available even if that other
+          source just confirms the same value as `net.sock.peer.addr`.
+          Rationale: For `net.sock.peer.addr`, one typically does not know if it
+          comes from a proxy, reverse proxy, or the actual client. Setting
+          `http.client_ip` when it's the same as `net.sock.peer.addr` means that
+          one is at least somewhat confident that the address is not that of
+          the closest proxy.
+        examples: '83.164.160.102'
       - id: flavor
         type:
           allow_custom_values: true
