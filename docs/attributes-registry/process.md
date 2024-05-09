@@ -6,6 +6,9 @@
 
 # Process
 
+- [Process](#process-attributes)
+- [Process Cpu](#process-cpu-attributes)
+
 ## Process Attributes
 
 An operating system process.
@@ -16,6 +19,7 @@ An operating system process.
 | `process.command`             | string   | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`.                                                                                                                            | `cmd/otelcol`                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.command_args`        | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `cmd/otecol`; `--config=config.yaml`                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.command_line`        | string   | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead.                                                                                                | `C:\cmd\otecol --config="my directory\config.yaml"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.context_switch_type` | string   | Specifies whether the context switches for this data point were voluntary or involuntary.                                                                                                                                                                                                                                                                   | `voluntary`; `involuntary`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.creation.time`       | string   | The date and time the process was created, in ISO 8601 format.                                                                                                                                                                                                                                                                                              | `2023-11-21T09:25:34.853Z`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.executable.name`     | string   | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`.                                                                                                                                                                         | `otelcol`                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.executable.path`     | string   | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`.                                                                                                                                                                          | `/usr/bin/cmd/otelcol`                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -24,6 +28,7 @@ An operating system process.
 | `process.group_leader.pid`    | int      | The PID of the process's group leader. This is also the process group ID (PGID) of the process.                                                                                                                                                                                                                                                             | `23`                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.interactive`         | boolean  | Whether the process is connected to an interactive shell.                                                                                                                                                                                                                                                                                                   |                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.owner`               | string   | The username of the user that owns the process.                                                                                                                                                                                                                                                                                                             | `root`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.paging.fault_type`   | string   | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.                                                                                                                                                                                                                          | `major`; `minor`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.parent_pid`          | int      | Parent Process identifier (PPID).                                                                                                                                                                                                                                                                                                                           | `111`                                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.pid`                 | int      | Process identifier (PID).                                                                                                                                                                                                                                                                                                                                   | `1234`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.real_user.id`        | int      | The real user ID (RUID) of the process.                                                                                                                                                                                                                                                                                                                     | `1000`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -46,3 +51,33 @@ An operating system process.
 **[2]:** The process title (proctitle), sometimes the same as process name. It can also be different, for example, a browser setting its title to the web page currently opened.
 
 **[3]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+
+`process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value         | Description | Stability                                                        |
+| ------------- | ----------- | ---------------------------------------------------------------- |
+| `voluntary`   | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `involuntary` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value   | Description | Stability                                                        |
+| ------- | ----------- | ---------------------------------------------------------------- |
+| `major` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `minor` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Process Cpu Attributes
+
+Attributes for process CPU
+
+| Attribute           | Type   | Description                   | Examples                 | Stability                                                        |
+| ------------------- | ------ | ----------------------------- | ------------------------ | ---------------------------------------------------------------- |
+| `process.cpu.state` | string | The CPU state of the process. | `system`; `user`; `wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value    | Description | Stability                                                        |
+| -------- | ----------- | ---------------------------------------------------------------- |
+| `system` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user`   | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wait`   | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

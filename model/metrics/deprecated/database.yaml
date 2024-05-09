@@ -1,0 +1,110 @@
+groups:
+  - id: metric.db.client.connections.count.deprecated
+    type: metric
+    metric_name: db.client.connections.usage
+    stability: experimental
+    deprecated: "Replaced by `db.client.connection.count`."
+    brief: "Deprecated, use `db.client.connection.count` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connections.state
+        requirement_level: required
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.idle.max.deprecated
+    type: metric
+    metric_name: db.client.connections.idle.max
+    stability: experimental
+    deprecated: "Replaced by `db.client.connection.idle.max`."
+    brief: "Deprecated, use `db.client.connection.idle.max` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.idle.min.deprecated
+    type: metric
+    metric_name: db.client.connections.idle.min
+    stability: experimental
+    deprecated: "Replaced by `db.client.connection.idle.min`."
+    brief: "Deprecated, use `db.client.connection.idle.min` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.max.deprecated
+    type: metric
+    metric_name: db.client.connections.max
+    stability: experimental
+    deprecated: "Replaced by `db.client.connection.max`."
+    brief: "Deprecated, use `db.client.connection.max` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.pending_requests.deprecated
+    type: metric
+    metric_name: db.client.connections.pending_requests
+    stability: experimental
+    deprecated: "Replaced by `db.client.connection.pending_requests`."
+    brief: "Deprecated, use `db.client.connection.pending_requests` instead."
+    instrument: updowncounter
+    unit: "{request}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.timeouts.deprecated
+    type: metric
+    metric_name: db.client.connections.timeouts
+    stability: experimental
+    deprecated: "Replaced by `db.client.connection.timeouts`."
+    brief: "Deprecated, use `db.client.connection.timeouts` instead."
+    instrument: counter
+    unit: "{timeout}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.create_time.deprecated
+    type: metric
+    metric_name: db.client.connections.create_time
+    stability: experimental
+    deprecated: "Replaced by `db.client.connection.create_time`. Note: the unit also changed from `ms` to `s`."
+    brief: "Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`."
+    instrument: histogram
+    unit: "ms"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.wait_time.deprecated
+    type: metric
+    metric_name: db.client.connections.wait_time
+    stability: experimental
+    deprecated: "Replaced by `db.client.connection.wait_time`. Note: the unit also changed from `ms` to `s`."
+    brief: "Deprecated, use `db.client.connection.wait_time` instead. Note: the unit also changed from `ms` to `s`."
+    instrument: histogram
+    unit: "ms"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.use_time.deprecated
+    type: metric
+    metric_name: db.client.connections.use_time
+    stability: experimental
+    deprecated: "Replaced by `db.client.connection.use_time`. Note: the unit also changed from `ms` to `s`."
+    brief: "Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`."
+    instrument: histogram
+    unit: "ms"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required

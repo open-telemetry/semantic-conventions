@@ -13,3 +13,6 @@ ol-prefix:
 no-inline-html: false
 fenced-code-language: false
 no-space-in-code: false
+first-line-h1: false
+no-duplicate-heading:
+  siblings_only: true
