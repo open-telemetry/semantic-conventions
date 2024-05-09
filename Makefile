@@ -95,7 +95,7 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
 		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
 		--attribute-registry-base-url=/docs/attributes-registry \
@@ -104,7 +104,7 @@ table-generation:
 # Generate attribute registry markdown.
 .PHONY: attribute-registry-generation
 attribute-registry-generation:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates --pull=always \
 		otel/weaver:${WEAVER_VERSION} registry generate \
 		  --registry=/source \
 		  --templates=/weaver/templates \
@@ -115,7 +115,7 @@ attribute-registry-generation:
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
 table-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
 		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
 		--attribute-registry-base-url=/docs/attributes-registry \
@@ -125,7 +125,7 @@ table-check:
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git describe --tags --abbrev=0 | sed 's/v//g')
 .PHONY: compatibility-check
 compatibility-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
 
 .PHONY: schema-check
