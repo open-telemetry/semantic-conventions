@@ -2,4 +2,3 @@ change_type: enhancement
 component: db
 note: List SQL database systems one the SQL semantic conventions.
 issues: [1024]
-
