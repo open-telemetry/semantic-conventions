@@ -42,6 +42,7 @@ groups:
     type: attribute_group
     brief: 'Experimental attributes for HTTP Client spans'
     stability: experimental
+    extends: attributes.http.client.experimental
     attributes:
       - ref: http.request.size
         requirement_level: opt_in
