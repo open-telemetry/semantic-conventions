@@ -56,6 +56,7 @@ Currently, the following namespaces exist:
 - [GCP](gcp.md)
 - [Gen AI](gen-ai.md)
 - [GraphQL](graphql.md)
+- [Hardware](hardware.md)
 - [Heroku](heroku.md)
 - [Host](host.md)
 - [HTTP](http.md)

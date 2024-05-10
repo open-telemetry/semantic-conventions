@@ -1,0 +1,113 @@
+groups:
+  - id: registry.hardware
+    prefix: hw
+    type: attribute_group
+    brief: >
+      Attributes for hardware.
+    attributes:
+      - id: id
+        type: string
+        stability: experimental
+        brief: >
+          An identifier for the hardware component, unique within the monitored host
+        examples: ['win32battery_battery_testsysa33_1']
+      - id: name
+        type: string
+        stability: experimental
+        brief: >
+          An easily-recognizable name for the hardware component
+        examples: ['eth0']
+      - id: parent
+        type: string
+        stability: experimental
+        brief: >
+          Unique identifier of the parent component (typically the `id` attribute of the enclosure, or disk controller)
+        examples: ['dellStorage_perc_0']
+      - id: type
+        type:
+          allow_custom_values: true
+          members:
+            - id: battery.yaml
+              value: 'battery'
+              brief: "Battery"
+              stability: experimental
+            - id: cpu
+              value: 'cpu'
+              brief: 'CPU'
+              stability: experimental
+            - id: disk_controller
+              value: 'disk_controller'
+              brief: 'Disk controller'
+              stability: experimental
+            - id: enclosure
+              value: 'enclosure'
+              brief: 'Enclosure'
+              stability: experimental
+            - id: fan
+              value: 'fan'
+              brief: 'Fan'
+              stability: experimental
+            - id: gpu
+              value: 'gpu'
+              brief: 'GPU'
+              stability: experimental
+            - id: logical_disk
+              value: 'logical_disk'
+              brief: 'Logical disk'
+              stability: experimental
+            - id: memory
+              value: 'memory'
+              brief: 'Memory'
+              stability: experimental
+            - id: network
+              value: 'network'
+              brief: 'Network'
+              stability: experimental
+            - id: physical_disk
+              value: 'physical_disk'
+              brief: 'Physical disk'
+              stability: experimental
+            - id: power_supply
+              value: 'power_supply'
+              brief: 'Power supply'
+              stability: experimental
+            - id: tape_drive
+              value: 'tape_drive'
+              brief: 'Tape drive'
+              stability: experimental
+            - id: temperature
+              value: 'temperature'
+              brief: 'Temperature'
+              stability: experimental
+            - id: voltage
+              value: 'voltage'
+              brief: 'Voltage'
+              stability: experimental
+        stability: experimental
+        brief: >
+          Type of the component
+      - id: error.type
+        type: string
+        stability: experimental
+        brief: >
+          The type of error encountered by the component
+        examples: ['']
+      - id: state
+        type:
+          allow_custom_values: true
+          members:
+            - id: ok
+              value: 'ok'
+              brief: "Ok"
+              stability: experimental
+            - id: degraded
+              value: 'degraded'
+              brief: 'Degraded'
+              stability: experimental
+            - id: failed
+              value: 'failed'
+              brief: 'Failed'
+              stability: experimental
+        stability: experimental
+        brief: >
+          The current state of the component
