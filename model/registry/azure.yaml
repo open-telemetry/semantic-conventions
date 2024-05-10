@@ -1,0 +1,88 @@
+groups:
+  - id: registry.azure
+    prefix: azure
+    type: attribute_group
+    brief: >
+      This document defines generic attributes for Azure Logs.
+    attributes:
+      - id: category
+        type: string
+        stability: experimental
+        brief: "The Azure category of the log entry"
+        examples:
+          - AuditEvent
+          - GatewayLogs
+          - ApplicationGatewayAccessLog
+      - id: correlation.id
+        type: string
+        stability: experimental
+        brief: "The correlation ID of the log entry"
+        examples:
+          - 607964b6-41a5-4e24-a5db-db7aab3b9b34
+      - id: duration
+        type: int
+        stability: experimental
+        brief: "The duration of the log entry in milliseconds"
+        examples:
+          - 1000
+      - id: identity
+        type: string
+        stability: experimental
+        brief: "The identity of the log entry"
+        examples:
+          - "someone"
+      - id: operation.name
+        type: string
+        stability: experimental
+        brief: "The name of the operation"
+        examples:
+          - SecretGet
+          - Microsoft.ApiManagement/GatewayLogs
+          - ApplicationGatewayAccess
+      - id: operation.version
+        type: string
+        stability: experimental
+        brief: "The version of the operation"
+        examples:
+          - "1.0"
+      - id: properties
+        type: string
+        stability: experimental
+        brief: "The properties of the log entry"
+        examples:
+          - "{'string': 'value'}"
+          - "{'int': 1234 }"
+          - "{'float': '1.234'}"
+          - "{'bool': true}"
+      - id: resource.id
+        type: string
+        stability: experimental
+        brief: "The ID of the resource"
+        examples:
+          - "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.ApiManagement/service/apim"
+      - id: result.type
+        type: string
+        stability: experimental
+        brief: "The type of the result"
+        examples:
+          - "success"
+          - "failure"
+      - id: result.signature
+        type: string
+        stability: experimental
+        brief: "The signature of the result"
+        examples:
+          - "00000000-0000-0000-0000-000000000000"
+      - id: result.description
+        type: string
+        stability: experimental
+        brief: "The description of the result"
+        examples:
+          - "The operation was successful"
+          - "The operation failed"
+      - id: tenant.id
+        type: string
+        stability: experimental
+        brief: "The ID of the tenant"
+        examples:
+          - "00000000-0000-0000-0000-000000000000"
