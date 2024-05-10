@@ -21,7 +21,7 @@
     {
       "urls": ["http", ".", "/"],
       "headers": {
-        "User-Agent": "Mozilla/5.0 (compatible; OpenTelemetryDocsBot/1.0;"
+        "User-Agent": "Mozilla/5.0 (compatible; OpenTelemetryDocsBot/1.0)"
       }
     }
   ],
