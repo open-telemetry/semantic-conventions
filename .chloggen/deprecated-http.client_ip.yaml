@@ -4,10 +4,10 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: 'bug_fix'
+change_type: 'deprecation'
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: deprecated
+component: http
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: Add deprecated http attributes to registry

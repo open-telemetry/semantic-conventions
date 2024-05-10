@@ -50,63 +50,32 @@ groups:
         type: string
         stability: experimental
         deprecated: "Replaced by `client.address`."
-        brief: >
-          The IP address of the original client behind all proxies, if
-          known (e.g. from [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For)).
-        note: |
-          This is not necessarily the same as `net.sock.peer.addr`, which would
-          identify the network-level peer, which may be a proxy.
-
-          This attribute should be set when a source of information different
-          from the one used for `net.sock.peer.addr`, is available even if that other
-          source just confirms the same value as `net.sock.peer.addr`.
-          Rationale: For `net.sock.peer.addr`, one typically does not know if it
-          comes from a proxy, reverse proxy, or the actual client. Setting
-          `http.client_ip` when it's the same as `net.sock.peer.addr` means that
-          one is at least somewhat confident that the address is not that of
-          the closest proxy.
+        brief: "Deprecated, use `client.address` instead."
         examples: '83.164.160.102'
       - id: host
         type: string
         stability: experimental
         deprecated: "Replaced by `http.request.header.host`."
-        brief: >
-          The value of the [HTTP host header](https://tools.ietf.org/html/rfc7230#section-5.4).
-
-          An empty Host header should also be reported, see note.
-        note: >
-          When the header is present but empty the attribute SHOULD be set to
-          the empty string. Note that this is a valid situation that is expected
-          in certain cases, according the aforementioned
-          [section of RFC 7230](https://tools.ietf.org/html/rfc7230#section-5.4).
-          When the header is not set the attribute MUST NOT be set.
+        brief: "Deprecated, use `http.request.header.host` instead."
         sampling_relevant: true
         examples: ['www.example.org']
       - id: request_content_length_uncompressed
         stability: experimental
         deprecated: "Removed in 1.13"
         type: int
-        brief: >
-           The size of the uncompressed request payload body after transport decoding. Not set if transport encoding not used.
+        brief: "Deprecated, use `http.request_content_length` instead."
         examples: 5493
       - id: response_content_length_uncompressed
         stability: experimental
         deprecated: "Removed in 1.13"
         type: int
-        brief: >
-           The size of the uncompressed response payload body after transport decoding. Not set if transport encoding not used.
+        brief: "Deprecated, use `http.response_content_length` instead."
         examples: 5493
       - id: server_name
         type: string
         stability: experimental
         deprecated: "Replaced by `net.host.name`."
-        brief: >
-          The primary server name of the matched virtual host. This should be obtained via configuration.
-          If no such configuration can be obtained, this attribute MUST NOT be set ( `net.host.name` should be used instead).
-        note: >
-          `http.url` is usually not readily available on the server side but would have to be assembled in a cumbersome and
-          sometimes lossy process from other information (see e.g. open-telemetry/opentelemetry-python/pull/148).
-          It is thus preferred to supply the raw data that is available.
+        brief: "Deprecated, use `net.host.name` instead."
         examples: ['example.com']
       - id: flavor
         type:
