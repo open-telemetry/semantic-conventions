@@ -55,27 +55,26 @@ groups:
       - id: host
         type: string
         stability: experimental
-        deprecated: "Replaced by `http.request.header.host`."
-        brief: "Deprecated, use `http.request.header.host` instead."
-        sampling_relevant: true
+        deprecated: "Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage."
+        brief: "Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage."
         examples: ['www.example.org']
       - id: request_content_length_uncompressed
         stability: experimental
         deprecated: "Removed in 1.13"
         type: int
-        brief: "Deprecated, use `http.request_content_length` instead."
+        brief: "Deprecated, use `http.request.body.size` instead."
         examples: 5493
       - id: response_content_length_uncompressed
         stability: experimental
         deprecated: "Removed in 1.13"
         type: int
-        brief: "Deprecated, use `http.response_content_length` instead."
+        brief: "Deprecated, use `http.response.body.size` instead."
         examples: 5493
       - id: server_name
         type: string
         stability: experimental
-        deprecated: "Replaced by `net.host.name`."
-        brief: "Deprecated, use `net.host.name` instead."
+        deprecated: "Replaced by `server.address`."
+        brief: "Deprecated, use `server.address` instead."
         examples: ['example.com']
       - id: flavor
         type:
