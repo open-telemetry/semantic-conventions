@@ -35,12 +35,22 @@ groups:
         stability: experimental
         brief: Deprecated, use `server.port` on client spans and `client.port` on server spans.
         examples: [8080]
+      - id: peer.ip
+        type: string
+        deprecated: "Replaced by `net.sock.peer.addr`."
+        brief: Deprecated, use `net.sock.peer.addr`.
+        examples: '127.0.0.1'
       - id: host.name
         type: string
         deprecated: "Replaced by `server.address`."
         stability: experimental
         brief: Deprecated, use `server.address`.
         examples: ['example.com']
+      - id: host.ip
+        type: string
+        deprecated: "Replaced by `net.sock.host.addr`."
+        brief: Deprecated, use `net.sock.host.addr`.
+        examples: '192.168.0.1'
       - id: host.port
         type: int
         deprecated: "Replaced by `server.port`."
