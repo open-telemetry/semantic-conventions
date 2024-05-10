@@ -13,7 +13,6 @@ when creating instruments not explicitly defined in the specification.
 <!-- toc -->
 
 - [Metric Instruments](#metric-instruments)
-  - [`hw.` - Common hardware metrics](#hw---common-hardware-metrics)
   - [`hw.host.` - Physical host metrics](#hwhost---physical-host-metrics)
   - [`hw.battery.` - Battery metrics](#hwbattery---battery-metrics)
   - [`hw.cpu.` - Physical processor metrics](#hwcpu---physical-processor-metrics)
