@@ -6,12 +6,6 @@ groups:
       Describes rule attributes. Rule fields are used to capture the specifics of any observer or agent rules
       that generate alerts or other notable events.
     attributes:
-      - id: author
-        stability: experimental
-        type: string
-        brief: >
-          Name, organization, or pseudonym of the author or authors who created the rule used to generate this event.
-        examples: ['username1']
       - id: category
         type: string
         stability: experimental
