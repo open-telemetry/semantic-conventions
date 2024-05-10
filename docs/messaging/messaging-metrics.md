@@ -32,7 +32,7 @@ All messaging metrics share the same set of attributes:
 <!-- semconv metric.messaging.attributes(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | Identifies the messaging product being used as recognized from the client side. [1] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -40,7 +40,7 @@ All messaging metrics share the same set of attributes:
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client library to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation best knowledge.
+**[1]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
 **[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 

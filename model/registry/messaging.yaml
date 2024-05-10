@@ -137,11 +137,11 @@ groups:
           The system-specific name of the messaging operation.
         examples: [ "ack", "nack", "send" ]
       - id: system
-        brief: Identifies the messaging product being used as recognized from the client side.
+        brief: The messaging system as identified by the client instrumentation.
         note: >
           The actual messaging system may differ from the one known by the client.
-          For example, when using Kafka client library to communicate with Azure Event Hubs, the `messaging.system`
-          is set to `kafka` based on the instrumentation best knowledge.
+          For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system`
+          is set to `kafka` based on the instrumentation's best knowledge.
         type:
           allow_custom_values: true
           members:

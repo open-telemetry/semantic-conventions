@@ -36,7 +36,7 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | `messaging.message.id`                    | string  | A value used by the messaging system as an identifier for the message, represented as a string.                                            | `452a7c7c7c7048c2f887f61572b18fc2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.operation.name`                | string  | The system-specific name of the messaging operation.                                                                                       | `ack`; `nack`; `send`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.operation.type`                | string  | A string identifying the type of the messaging operation. [7]                                                                              | `publish`; `create`; `receive`     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.system`                        | string  | Identifies the messaging product being used as recognized from the client side. [8]                                                        | `activemq`; `aws_sqs`; `eventgrid` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.system`                        | string  | The messaging system as identified by the client instrumentation. [8]                                                                      | `activemq`; `aws_sqs`; `eventgrid` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -55,7 +55,7 @@ body size should be used.
 size should be used.
 
 **[7]:** If a custom value is used, it MUST be of low cardinality.
-**[8]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client library to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation best knowledge.
+**[8]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

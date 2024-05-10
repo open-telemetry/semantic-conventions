@@ -287,7 +287,7 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [1] | `publish`; `create`; `receive` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | Identifies the messaging product being used as recognized from the client side. [2] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | The messaging system as identified by the client instrumentation. [2] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [4] | `0`; `1`; `2` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.anonymous`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -308,7 +308,7 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 
 **[1]:** If a custom value is used, it MUST be of low cardinality.
 
-**[2]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client library to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation best knowledge.
+**[2]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
 **[3]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 

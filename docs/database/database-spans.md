@@ -78,7 +78,7 @@ These attributes will usually be the same for all operations performed over the 
 <!-- semconv db(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.system`](/docs/attributes-registry/db.md) | string | Identifies the database management system (DBMS) product as recognized from the client side. [1] | `other_sql`; `mssql`; `mssqlcompact` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `mssql`; `mssqlcompact` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -90,7 +90,7 @@ These attributes will usually be the same for all operations performed over the 
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [13] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The actual DBMS may differ from the one known by the client. For example, when using PostgreSQL client library to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation best knowledge.
+**[1]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[2]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
