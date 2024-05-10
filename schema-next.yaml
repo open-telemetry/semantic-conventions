@@ -76,12 +76,26 @@ versions:
               - db.client.connections.create_time
               - db.client.connections.wait_time
               - db.client.connections.use_time
+<<<<<<< HEAD
     all:
       changes:
         # https://github:com/open-telemetry/semantic-conventions/pull/731/
         - rename_attributes:
             attribute_map:
               enduser.id: user.id
+=======
+        - rename_attributes:
+            attribute_map:
+              system.cpu.state: cpu.state
+              process.cpu.state: cpu.state
+              container.cpu.state: cpu.state
+            apply_to_metrics:
+              - system.cpu.time
+              - system.cpu.utilization
+              - process.cpu.time
+              - process.cpu.utilization
+              - container.cpu.time
+>>>>>>> a7e9c02... merge *.cpu.state into cpu.state
 
   1.25.0:
     spans:

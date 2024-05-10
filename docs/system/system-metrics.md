@@ -104,10 +104,10 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`cpu.state`](/docs/attributes-registry/cpu.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`system.cpu.state`](/docs/attributes-registry/system.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `idle`; `interrupt` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -116,8 +116,12 @@ This metric is [recommended][MetricRecommended].
 | `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<<<<<<< HEAD
 | `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+=======
+| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+>>>>>>> a7e9c02... merge *.cpu.state into cpu.state
 
 
 
@@ -156,10 +160,10 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`cpu.state`](/docs/attributes-registry/cpu.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`system.cpu.state`](/docs/attributes-registry/system.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `idle`; `interrupt` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -168,8 +172,12 @@ This metric is [recommended][MetricRecommended].
 | `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<<<<<<< HEAD
 | `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+=======
+| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+>>>>>>> a7e9c02... merge *.cpu.state into cpu.state
 
 
 

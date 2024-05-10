@@ -40,6 +40,7 @@ Currently, the following namespaces exist:
 - [CloudEvents](cloudevents.md)
 - [Code](code.md)
 - [Container](container.md)
+- [Cpu](cpu.md)
 - [Db](db.md)
 - [Deployment](deployment.md)
 - [Destination](destination.md)

@@ -7,7 +7,7 @@
 # Process
 
 - [Process](#process-attributes)
-- [Process Cpu](#process-cpu-attributes)
+- [Process Deprecated](#process-deprecated-attributes)
 
 ## Process Attributes
 
@@ -58,13 +58,13 @@ An operating system process.
 | `major` | major       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | minor       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Process Cpu Attributes
+## Process Deprecated Attributes
 
-Attributes for process CPU
+Deprecated process attributes.
 
-| Attribute           | Type   | Description                   | Examples                 | Stability                                                        |
-| ------------------- | ------ | ----------------------------- | ------------------------ | ---------------------------------------------------------------- |
-| `process.cpu.state` | string | The CPU state of the process. | `system`; `user`; `wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute           | Type   | Description                          | Examples                 | Stability                                                                                                                  |
+| ------------------- | ------ | ------------------------------------ | ------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `process.cpu.state` | string | Deprecated, use `cpu.state` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report cpu state with `cpu.state` common attribute |
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

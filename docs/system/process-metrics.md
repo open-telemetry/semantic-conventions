@@ -75,15 +75,20 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.cpu.state`](/docs/attributes-registry/process.md) | string | A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `system`; `user`; `wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cpu.state`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wait` | wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -122,15 +127,20 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.cpu.state`](/docs/attributes-registry/process.md) | string | A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `system`; `user`; `wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cpu.state`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wait` | wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

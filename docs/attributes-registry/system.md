@@ -27,10 +27,18 @@ Describes System attributes
 
 Describes System CPU attributes
 
-| Attribute                   | Type   | Description                     | Examples            | Stability                                                        |
-| --------------------------- | ------ | ------------------------------- | ------------------- | ---------------------------------------------------------------- |
-| `system.cpu.logical_number` | int    | The logical CPU number [0..n-1] | `1`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system.cpu.state`          | string | The state of the CPU            | `idle`; `interrupt` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                   | Type | Description                     | Examples | Stability                                                        |
+| --------------------------- | ---- | ------------------------------- | -------- | ---------------------------------------------------------------- |
+| `system.cpu.logical_number` | int  | The logical CPU number [0..n-1] | `1`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## System Deprecated Attributes
+
+Deprecated system attributes.
+
+| Attribute                 | Type   | Description                                      | Examples            | Stability                                                                                                                  |
+| ------------------------- | ------ | ------------------------------------------------ | ------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `system.cpu.state`        | string | Deprecated, use `cpu.state` instead.             | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report cpu state with `cpu.state` common attribute |
+| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`.                        |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -43,14 +51,6 @@ Describes System CPU attributes
 | `steal`     | steal       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system`    | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user`      | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## System Deprecated Attributes
-
-Deprecated system attributes.
-
-| Attribute                 | Type   | Description                                      | Examples  | Stability                                                                                           |
-| ------------------------- | ------ | ------------------------------------------------ | --------- | --------------------------------------------------------------------------------------------------- |
-| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
 
 `system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

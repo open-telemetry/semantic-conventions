@@ -7,7 +7,7 @@ groups:
     instrument: counter
     unit: "s"
     attributes:
-      - ref: process.cpu.state
+      - ref: cpu.state
         brief: >
           A process SHOULD be characterized _either_ by data points with no `state`
           labels, _or only_ data points with `state` labels.
@@ -22,7 +22,7 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: process.cpu.state
+      - ref: cpu.state
         brief: >
           A process SHOULD be characterized _either_ by data points with no `state`
           labels, _or only_ data points with `state` labels.

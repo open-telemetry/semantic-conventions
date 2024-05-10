@@ -8,7 +8,7 @@ groups:
     instrument: counter
     unit: "s"
     attributes:
-      - ref: system.cpu.state
+      - ref: cpu.state
         brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
       - ref: system.cpu.logical_number
 
@@ -20,7 +20,7 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: system.cpu.state
+      - ref: cpu.state
         brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
       - ref: system.cpu.logical_number
 
