@@ -38,6 +38,7 @@ groups:
       - id: peer.ip
         type: string
         deprecated: "Replaced by `net.sock.peer.addr`."
+        stability: experimental
         brief: Deprecated, use `net.sock.peer.addr`.
         examples: '127.0.0.1'
       - id: host.name
@@ -49,6 +50,7 @@ groups:
       - id: host.ip
         type: string
         deprecated: "Replaced by `net.sock.host.addr`."
+        stability: experimental
         brief: Deprecated, use `net.sock.host.addr`.
         examples: '192.168.0.1'
       - id: host.port
