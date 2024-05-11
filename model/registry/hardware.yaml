@@ -27,7 +27,7 @@ groups:
         type:
           allow_custom_values: true
           members:
-            - id: battery.yaml
+            - id: battery
               value: 'battery'
               brief: "Battery"
               stability: experimental

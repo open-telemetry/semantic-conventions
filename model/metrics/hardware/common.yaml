@@ -12,7 +12,7 @@ groups:
     type: metric
     metric_name: hw.energy
     stability: experimental
-    brief: "Energy consumed by the component, in joules"
+    brief: "Energy consumed by the component"
     instrument: counter
     unit: "J"
     extends: metric.hardware.attributes
@@ -33,7 +33,7 @@ groups:
     type: metric
     metric_name: hw.power
     stability: experimental
-    brief: "Instantaneous power consumed by the component, in Watts"
+    brief: "Instantaneous power consumed by the component"
     note: >
       `hw.energy` is preferred
     instrument: gauge
