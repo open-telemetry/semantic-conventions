@@ -5,47 +5,41 @@ groups:
     brief: >
       CloudFoundry resource attributes.
     attributes:
-      - id: source.id
+      - id: system.id
         type: string
+        stability: experimental
         brief: >
           A guid or another name describing the event source.
         note: |
           CloudFoundry defines the `source_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
           It is used for logs and metrics emitted by CloudFoundry. It is
-          supposed to contain the application id for applications deployed on
-          the runtime or the component name, e.g. "gorouter", for CloudFoundry
-          components.
+          supposed to contain the component name, e.g. "gorouter", for
+          CloudFoundry components.
 
-          Application instrumentation should use the value from environment
-          variable `VCAP_APPLICATION.application_id`. This is the same value as
-          reported by `cf app <app-name> --guid`.
-
-          When system components are instrumented, values from the [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
-          should be used. The `source.id` should be set to
+          When system components are instrumented, values from the
+          [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
+          should be used. The `system.id` should be set to
           `spec.deployment/spec.name`.
         examples:
-          - '218fc5a9-a5f1-4b54-aa05-46717d0ab26d'
           - 'cf/gorouter'
-      - id: instance.id
+      - id: system.instance.id
         type: string
+        stability: experimental
         brief: >
-          An index or guid describing the concrete instance of the event source.
+          A guid describing the concrete instance of the event source.
         note: |
           CloudFoundry defines the `instance_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
           It is used for logs and metrics emitted by CloudFoundry. It is
-          supposed to contain the application instance index for applications
-          deployed on the runtime or the vm id for CloudFoundry components.
+          supposed to contain the vm id for CloudFoundry components.
 
-          Application instrumentation should use the value from environment
-          variable `CF_INSTANCE_INDEX`.
-
-          When system components are instrumented, values from the [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
-          should be used. The `instance.id` should be set to `spec.id`.
+          When system components are instrumented, values from the
+          [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
+          should be used. The `system.instance.id` should be set to `spec.id`.
         examples:
-          - '0'
           - '218fc5a9-a5f1-4b54-aa05-46717d0ab26d'
       - id: app.name
         type: string
+        stability: experimental
         brief: >
           The name of the application.
         note: |
@@ -55,6 +49,7 @@ groups:
         examples: ['my-app-name']
       - id: app.id
         type: string
+        stability: experimental
         brief: >
           The guid of the application.
         note: |
@@ -62,8 +57,25 @@ groups:
           variable `VCAP_APPLICATION.application_id`. This is the same value as
           reported by `cf app <app-name> --guid`.
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
+      - id: app.instance.id
+        type: string
+        stability: experimental
+        brief: >
+          The index of the application instance. 0 when just one instance is active.
+        note: |
+          CloudFoundry defines the `instance_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+          It is used for logs and metrics emitted by CloudFoundry. It is
+          supposed to contain the application instance index for applications
+          deployed on the runtime.
+
+          Application instrumentation should use the value from environment
+          variable `CF_INSTANCE_INDEX`.
+        examples:
+          - '0'
+          - '1'
       - id: space.name
         type: string
+        stability: experimental
         brief: >
           The name of the CloudFoundry space the application is running in.
         note: |
@@ -73,6 +85,7 @@ groups:
         examples: ['my-space-name']
       - id: space.id
         type: string
+        stability: experimental
         brief: >
           The guid of the CloudFoundry space the application is running in.
         note: |
@@ -82,6 +95,7 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: org.name
         type: string
+        stability: experimental
         brief: >
           The name of the CloudFoundry organization the app is running in.
         note: |
@@ -91,6 +105,7 @@ groups:
         examples: ['my-org-name']
       - id: org.id
         type: string
+        stability: experimental
         brief: >
           The guid of the CloudFoundry org the application is running in.
         note: |
@@ -100,6 +115,7 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: source.type
         type: string
+        stability: experimental
         brief: >
           The type of the event source.
         note: |
@@ -121,6 +137,7 @@ groups:
           - 'STG'
       - id: process.id
         type: string
+        stability: experimental
         brief: >
           The UID identifying the process.
         note: |
@@ -131,6 +148,7 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: process.type
         type: string
+        stability: experimental
         brief: >
           The type of process.
         note: |

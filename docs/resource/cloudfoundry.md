@@ -27,10 +27,10 @@ They align with the Bosh deployment tool of CloudFoundry.
 **Description:** A CloudFoundry Organization
 
 <!-- semconv cloudfoundry.org -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`cloudfoundry.org.id`](../attributes-registry/cloudfoundry.md) | string | The guid of the CloudFoundry org the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | Recommended |
-| [`cloudfoundry.org.name`](../attributes-registry/cloudfoundry.md) | string | The name of the CloudFoundry organization the app is running in. [2] | `my-org-name` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`cloudfoundry.org.id`](../attributes-registry/cloudfoundry.md) | string | The guid of the CloudFoundry org the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloudfoundry.org.name`](../attributes-registry/cloudfoundry.md) | string | The name of the CloudFoundry organization the app is running in. [2] | `my-org-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_id`. This is the same value as
@@ -48,10 +48,10 @@ reported by `cf orgs`.
 **Description:** A CloudFoundry Space
 
 <!-- semconv cloudfoundry.space -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`cloudfoundry.space.id`](../attributes-registry/cloudfoundry.md) | string | The guid of the CloudFoundry space the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | Recommended |
-| [`cloudfoundry.space.name`](../attributes-registry/cloudfoundry.md) | string | The name of the CloudFoundry space the application is running in. [2] | `my-space-name` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`cloudfoundry.space.id`](../attributes-registry/cloudfoundry.md) | string | The guid of the CloudFoundry space the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloudfoundry.space.name`](../attributes-registry/cloudfoundry.md) | string | The name of the CloudFoundry space the application is running in. [2] | `my-space-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_id`. This is the same value as
@@ -69,10 +69,10 @@ reported by `cf spaces`.
 **Description:** A CloudFoundry Application
 
 <!-- semconv cloudfoundry.app -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`cloudfoundry.app.id`](../attributes-registry/cloudfoundry.md) | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | Recommended |
-| [`cloudfoundry.app.name`](../attributes-registry/cloudfoundry.md) | string | The name of the application. [2] | `my-app-name` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`cloudfoundry.app.id`](../attributes-registry/cloudfoundry.md) | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloudfoundry.app.name`](../attributes-registry/cloudfoundry.md) | string | The name of the application. [2] | `my-app-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_id`. This is the same value as
@@ -90,10 +90,10 @@ as reported by `cf apps`.
 **Description:** A CloudFoundry Application Process
 
 <!-- semconv cloudfoundry.process -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`cloudfoundry.process.id`](../attributes-registry/cloudfoundry.md) | string | The UID identifying the process. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | Recommended |
-| [`cloudfoundry.process.type`](../attributes-registry/cloudfoundry.md) | string | The type of process. [2] | `web` | Recommended |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`cloudfoundry.process.id`](../attributes-registry/cloudfoundry.md) | string | The UID identifying the process. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloudfoundry.process.type`](../attributes-registry/cloudfoundry.md) | string | The type of process. [2] | `web` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.process_id`. It is supposed to be equal to
@@ -105,42 +105,35 @@ main process will be of type `web`. There can be additional background
 tasks or side-cars with different process types.
 <!-- endsemconv -->
 
-## Generic Source
+## Cloud Foundry System Component
 
 **type:** `cloudfoundry`
 
-**Description:** The generic source (app or system component)
+**Description:** A CloudFoundry system component, i.e. parts of the runtime.
 
-<!-- semconv cloudfoundry(tag=generic) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`cloudfoundry.instance.id`](../attributes-registry/cloudfoundry.md) | string | An index or guid describing the concrete instance of the event source. [1] | `0`; `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | Required |
-| [`cloudfoundry.source.id`](../attributes-registry/cloudfoundry.md) | string | A guid or another name describing the event source. [2] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d`; `cf/gorouter` | Required |
+<!-- semconv cloudfoundry.system -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`cloudfoundry.system.id`](../attributes-registry/cloudfoundry.md) | string | A guid or another name describing the event source. [1] | `cf/gorouter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloudfoundry.system.instance.id`](../attributes-registry/cloudfoundry.md) | string | A guid describing the concrete instance of the event source. [2] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** CloudFoundry defines the `instance_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[1]:** CloudFoundry defines the `source_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
-supposed to contain the application instance index for applications
-deployed on the runtime or the vm id for CloudFoundry components.
+supposed to contain the component name, e.g. "gorouter", for
+CloudFoundry components.
 
-Application instrumentation should use the value from environment
-variable `CF_INSTANCE_INDEX`.
-
-When system components are instrumented, values from the [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
-should be used. The `instance.id` should be set to `spec.id`.
-
-**[2]:** CloudFoundry defines the `source_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
-It is used for logs and metrics emitted by CloudFoundry. It is
-supposed to contain the application id for applications deployed on
-the runtime or the component name, e.g. "gorouter", for CloudFoundry
-components.
-
-Application instrumentation should use the value from environment
-variable `VCAP_APPLICATION.application_id`. This is the same value as
-reported by `cf app <app-name> --guid`.
-
-When system components are instrumented, values from the [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
-should be used. The `source.id` should be set to
+When system components are instrumented, values from the
+[Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
+should be used. The `system.id` should be set to
 `spec.deployment/spec.name`.
+
+**[2]:** CloudFoundry defines the `instance_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+It is used for logs and metrics emitted by CloudFoundry. It is
+supposed to contain the vm id for CloudFoundry components.
+
+When system components are instrumented, values from the
+[Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
+should be used. The `system.instance.id` should be set to `spec.id`.
 <!-- endsemconv -->
 
 ## Source Type
@@ -150,9 +143,9 @@ should be used. The `source.id` should be set to
 **Description:** The CloudFoundry source type.
 
 <!-- semconv cloudfoundry(tag=source.type) -->
-| Attribute  | Type | Description  | Examples  | Requirement Level |
-|---|---|---|---|---|
-| [`cloudfoundry.source.type`](../attributes-registry/cloudfoundry.md) | string | The type of the event source. [1] | `APP/PROC/WEB/0`; `APP/TASK/jobscheduler-task-70013817-ab92-4f75-82d4-de8ae4dd64b4`; `RTR`; `STG` | Conditionally Required: if the the event is a log message |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`cloudfoundry.source.type`](../attributes-registry/cloudfoundry.md) | string | The type of the event source. [1] | `APP/PROC/WEB/0`; `APP/TASK/jobscheduler-task-70013817-ab92-4f75-82d4-de8ae4dd64b4`; `RTR`; `STG` | `Conditionally Required` if the the event is a log message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** CloudFoundry generates log messages with different source types for an
 applications. This indicates, whether the log was created from the

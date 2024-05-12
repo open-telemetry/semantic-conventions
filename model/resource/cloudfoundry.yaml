@@ -3,18 +3,20 @@ groups:
     prefix: cloudfoundry
     type: resource
     brief: >
-      A CloudFoundry application or sytem component.
+      A CloudFoundry application or system component.
     attributes:
-      - ref: cloudfoundry.source.id
-        requirement_level: required
-        tag: generic
-      - ref: cloudfoundry.instance.id
-        requirement_level: required
-        tag: generic
       - ref: cloudfoundry.source.type
         requirement_level:
           conditionally_required: if the the event is a log message
         tag: source.type
+  - id: cloudfoundry.system
+    prefix: cloudfoundry.system
+    type: resource
+    brief: >
+      The system component which is monitored.
+    attributes:
+      - ref: cloudfoundry.system.id
+      - ref: cloudfoundry.system.instance.id
   - id: cloudfoundry.app
     prefix: cloudfoundry.app
     type: resource
