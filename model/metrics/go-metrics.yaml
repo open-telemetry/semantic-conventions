@@ -71,7 +71,7 @@ groups:
     note: >
       Computed from `/sched/gomaxprocs:threads`.
     instrument: updowncounter
-    unit: "{processor}"
+    unit: "{thread}"
     stability: experimental
 
   - id: metric.go.schedule.duration

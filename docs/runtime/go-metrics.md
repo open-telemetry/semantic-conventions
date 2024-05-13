@@ -154,7 +154,7 @@ This metric is [recommended][MetricRecommended].
 <!-- semconv metric.go.processor.limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.processor.limit` | UpDownCounter | `{processor}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.processor.limit` | UpDownCounter | `{thread}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Computed from `/sched/gomaxprocs:threads`.
 <!-- endsemconv -->
