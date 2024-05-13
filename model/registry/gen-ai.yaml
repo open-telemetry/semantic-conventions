@@ -17,6 +17,42 @@ groups:
         brief: The name of the LLM foundation model vendor.
         examples: 'openai'
         tag: llm-generic-request
+      - id: operation.name
+        stability: experimental
+        type:
+          allow_custom_values: true
+          members:
+            - id: completions
+              value: 'completions'
+              brief: "Completions"
+              stability: experimental
+            - id: chat.completions
+              value: 'chat.completions'
+              brief: "Chat completions"
+              stability: experimental
+            - id: embeddings
+              value: 'embeddings'
+              brief: "Embeddings"
+              stability: experimental
+            - id: speech.generations
+              value: 'speech.generations'
+              brief: "Speech generations"
+              stability: experimental
+            - id: audio.transcriptions
+              value: 'audio.transcriptions'
+              brief: "Audio transcriptions"
+              stability: experimental
+            - id: audio.translations
+              value: 'audio.translations'
+              brief: "Audio translations"
+              stability: experimental
+            - id: image.generations
+              value: 'image.generations'
+              brief: "Image generations"
+              stability: experimental        
+        brief: The name of the Generative AI operation being performed.
+        examples: ['chat.completions', 'embeddings', 'speech.generations', 'audio.transcriptions', 'audio.translations', 'image.generations']
+        tag: llm-generic-response
       - id: request.model
         stability: experimental
         type: string
@@ -46,13 +82,7 @@ groups:
         type: string
         brief: The unique identifier for the completion.
         examples: ['chatcmpl-123']
-        tag: llm-generic-response
-      - id: operation.name
-        stability: experimental
-        type: string
-        brief: The name of the LLM operation request being made.
-        examples: ['chat.completions', 'embeddings', 'speech.generations', 'audio.transcriptions', 'audio.translations', 'image.generations']
-        tag: llm-generic-response
+        tag: llm-generic-response      
       - id: response.model
         stability: experimental
         type: string

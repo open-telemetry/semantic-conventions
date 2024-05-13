@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen-ai
+note: Adding operation.name attributes for Generative AI operations spans
+issues: [930]

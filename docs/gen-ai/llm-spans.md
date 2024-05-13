@@ -10,9 +10,10 @@ linkTitle: LLM requests
 
 <!-- toc -->
 
-- [Configuration](#configuration)
-- [LLM Request attributes](#llm-request-attributes)
-- [Events](#events)
+- [Semantic Conventions for LLM requests](#semantic-conventions-for-llm-requests)
+  - [Configuration](#configuration)
+  - [LLM Request attributes](#llm-request-attributes)
+  - [Events](#events)
 
 <!-- tocstop -->
 
@@ -39,9 +40,9 @@ These attributes track input data and metadata for a request to an LLM. Each att
 <!-- semconv gen_ai.request -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the Generative AI operation being performed. | `chat.completions`; `embeddings`; `speech.generations`; `audio.transcriptions`; `audio.translations`; `image.generations` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM a request is being made to. [1] | `gpt-4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM foundation model vendor. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM operation request being made. | `chat.completions`; `embeddings`; `speech.generations`; `audio.transcriptions`; `audio.translations`; `image.generations` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the LLM generates for a request. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.temperature`](/docs/attributes-registry/gen-ai.md) | double | The temperature setting for the LLM request. | `0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the LLM request. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -56,6 +57,18 @@ These attributes track input data and metadata for a request to an LLM. Each att
 **[2]:** If not using a vendor-supplied model, provide a custom friendly name, such as a name of the company or project. If the instrumetnation reports any attributes specific to a custom model, the value provided in the `gen_ai.system` SHOULD match the custom attribute namespace segment. For example, if `gen_ai.system` is set to `the_best_llm`, custom attributes should be added in the `gen_ai.the_best_llm.*` namespace. If none of above options apply, the instrumentation should set `_OTHER`.
 
 **[3]:** If available. The name of the LLM serving a response. If the LLM is supplied by a vendor, then the value must be the exact name of the model actually used. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+
+`gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `completions` | Completions | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `chat.completions` | Chat completions | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `embeddings` | Embeddings | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `speech.generations` | Speech generations | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `audio.transcriptions` | Audio transcriptions | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `audio.translations` | Audio translations | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `image.generations` | Image generations | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
