@@ -51,7 +51,7 @@ groups:
               brief: "Image generations"
               stability: experimental        
         brief: The name of the Generative AI operation being performed.
-        examples: ['chat.completions', 'embeddings', 'speech.generations', 'audio.transcriptions', 'audio.translations', 'image.generations']
+        examples: ['completions', 'chat.completions', 'embeddings', 'speech.generations', 'audio.transcriptions', 'audio.translations', 'image.generations']
         tag: llm-generic-response
       - id: request.model
         stability: experimental
