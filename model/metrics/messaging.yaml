@@ -3,8 +3,11 @@ groups:
     type: attribute_group
     stability: experimental
     brief: "Common messaging metrics attributes."
-    extends: messaging.attributes.common
+    extends: attributes.messaging.common.minimal
     attributes:
+      - ref: messaging.system
+        requirement_level: required
+      - ref: messaging.destination.partition.id
       - ref: messaging.destination.name
         requirement_level:
           conditionally_required: if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
