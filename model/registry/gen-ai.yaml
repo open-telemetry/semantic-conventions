@@ -49,7 +49,7 @@ groups:
             - id: image.generations
               value: 'image.generations'
               brief: "Image generations"
-              stability: experimental        
+              stability: experimental
         brief: The name of the Generative AI operation being performed.
         examples: ['completions', 'chat.completions', 'embeddings', 'speech.generations', 'audio.transcriptions', 'audio.translations', 'image.generations']
         tag: llm-generic-response
@@ -82,7 +82,7 @@ groups:
         type: string
         brief: The unique identifier for the completion.
         examples: ['chatcmpl-123']
-        tag: llm-generic-response      
+        tag: llm-generic-response
       - id: response.model
         stability: experimental
         type: string
