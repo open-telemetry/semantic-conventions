@@ -36,6 +36,8 @@ NOT be used together, each field MUST be used with its corresponding
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+The event name MUST be `device.app.lifecycle`.
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

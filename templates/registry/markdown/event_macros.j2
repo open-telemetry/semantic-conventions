@@ -1,0 +1,4 @@
+{#- Macros for simplifying creating "Event" documentation. -#}
+{% macro header(event) %}{% if event.name %}The event name MUST be `{{ event.name }}`.
+
+{% endif %}{% endmacro %}

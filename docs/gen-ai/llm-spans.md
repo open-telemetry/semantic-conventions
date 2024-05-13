@@ -88,6 +88,8 @@ In the lifetime of an LLM span, an event for prompts sent and completions receiv
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+The event name MUST be `gen_ai.content.prompt`.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.prompt`](/docs/attributes-registry/gen-ai.md) | string | The full prompt sent to an LLM. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | `Conditionally Required` if and only if corresponding event is enabled | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -108,6 +110,8 @@ In the lifetime of an LLM span, an event for prompts sent and completions receiv
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+The event name MUST be `gen_ai.content.completion`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
