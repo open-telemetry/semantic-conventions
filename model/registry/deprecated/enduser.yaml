@@ -7,18 +7,18 @@ groups:
       - id: id
         type: string
         stability: experimental
-        deprecated: use the `user.id` attribute.
+        deprecated: Replaced by `user.id` attribute.
         brief: "Deprecated, use `user.id` instead."
         examples: 'username'
       - id: role
         type: string
         stability: experimental
-        deprecated: use the `user.roles` attribute.
+        deprecated: Replaced by `user.roles` attribute.
         brief: "Deprecated, use `user.roles` instead."
         examples: 'admin'
       - id: scope
         type: string
         stability: experimental
-        deprecated: use the `user.scope` attribute.
+        deprecated: Replaced by `user.scope` attribute.
         brief: "Deprecated, use `user.scope` instead."
         examples: 'read:message, write:files'
