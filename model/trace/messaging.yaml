@@ -47,27 +47,35 @@ groups:
       - ref: messaging.destination_publish.name
       - ref: messaging.destination_publish.anonymous
 
-  - id: messaging
-    type: span
+  - id: attributes.messaging.trace.minimal
+    type: attribute_group
     brief: >
-        This document defines general attributes used in
-        messaging systems.
-    extends: messaging.attributes.common
+        Defines minimal set of attributes used by all messaging systems.
+    extends: attributes.messaging.common.minimal
     attributes:
       - ref: messaging.operation.type
         requirement_level: required
       - ref: messaging.operation.name
         requirement_level:
           recommended: If the operation is not sufficiently described by `messaging.operation.type`.
-      - ref: messaging.batch.message_count
-        requirement_level:
-          conditionally_required: If the span describes an operation on a batch of messages.
-      - ref: messaging.client.id
-        requirement_level:
-          recommended: If a client id is available
       - ref: messaging.destination.name
         requirement_level:
           conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
+      - ref: messaging.message.id
+        requirement_level:
+          recommended: If span describes operation on a single message.
+
+  - id: messaging
+    type: span
+    brief: >
+        Defines a full set of attributes used in messaging systems.
+    extends: attributes.messaging.trace.minimal
+    attributes:
+      - ref: messaging.system
+        requirement_level: required
+      - ref: messaging.client.id
+        requirement_level:
+          recommended: If a client id is available
       - ref: messaging.destination.partition.id
         requirement_level:
           recommended: When applicable.
@@ -82,10 +90,12 @@ groups:
       - ref: messaging.destination.anonymous
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
-      - ref: messaging.message.id
       - ref: messaging.message.conversation_id
       - ref: messaging.message.envelope.size
       - ref: messaging.message.body.size
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
       - ref: network.peer.address
         brief: Peer address of the messaging intermediary node where the operation was performed.
         requirement_level:
@@ -101,10 +111,10 @@ groups:
         requirement_level:
           recommended: if and only if `network.peer.address` is set.
 
-  - id: messaging.tech_specific.network.attributes
+  - id: messaging.network.attributes
     type: attribute_group
     brief: Attributes that describe messaging operation along with network information.
-    extends: messaging
+    extends: attributes.messaging.trace.minimal
     attributes:
       - ref: network.peer.address
         requirement_level: recommended
@@ -115,26 +125,24 @@ groups:
 
   - id: messaging.rabbitmq
     type: attribute_group
-    extends: messaging.tech_specific.network.attributes
+    extends: messaging.network.attributes
     brief: >
       Attributes for RabbitMQ
     attributes:
       - ref: messaging.rabbitmq.destination.routing_key
         requirement_level:
           conditionally_required: If not empty.
-        tag: tech-specific
       - ref: messaging.rabbitmq.message.delivery_tag
         requirement_level:
           conditionally_required: When available.
-        tag: tech-specific
-      - ref: network.peer.address
-        tag: tech-specific
-      - ref: network.peer.port
-        tag: tech-specific
+      - ref: messaging.message.conversation_id
+        brief: >
+          Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
+      - ref: messaging.message.body.size
 
   - id: messaging.kafka
     type: attribute_group
-    extends: messaging
+    extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Apache Kafka
     attributes:
@@ -142,73 +150,77 @@ groups:
         brief: >
           String representation of the partition id the message (or batch) is sent to or received from.
         requirement_level: recommended
-        tag: tech-specific
       - ref: messaging.kafka.message.key
-        tag: tech-specific
+        requirement_level:
+          recommended: If span describes operation on a single message.
       - ref: messaging.kafka.consumer.group
-        tag: tech-specific
       - ref: messaging.kafka.message.offset
-        tag: tech-specific
+        requirement_level:
+          recommended: If span describes operation on a single message.
       - ref: messaging.kafka.message.tombstone
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
-        tag: tech-specific
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.client.id
+      - ref: messaging.message.body.size
+        requirement_level:
+          recommended: If span describes operation on a single message.
 
   - id: messaging.rocketmq
     type: attribute_group
-    extends: messaging
+    extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Apache RocketMQ
     attributes:
       - ref: messaging.rocketmq.namespace
         requirement_level: required
-        tag: tech-specific
       - ref: messaging.rocketmq.client_group
         requirement_level: required
-        tag: tech-specific
       - ref: messaging.rocketmq.message.delivery_timestamp
         requirement_level:
           conditionally_required: If the message type is delay and delay time level is not specified.
-        tag: tech-specific
       - ref: messaging.rocketmq.message.delay_time_level
         requirement_level:
           conditionally_required: If the message type is delay and delivery timestamp is not specified.
-        tag: tech-specific
       - ref: messaging.rocketmq.message.group
         requirement_level:
           conditionally_required: If the message type is FIFO.
-        tag: tech-specific
       - ref: messaging.rocketmq.message.type
-        tag: tech-specific
       - ref: messaging.rocketmq.message.tag
-        tag: tech-specific
       - ref: messaging.rocketmq.message.keys
-        tag: tech-specific
       - ref: messaging.rocketmq.consumption_model
-        tag: tech-specific
+      - ref: messaging.client.id
+      - ref: messaging.message.body.size
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+
   - id: messaging.gcp_pubsub
     type: attribute_group
     stability: experimental
-    extends: messaging
+    extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Google Cloud Pub/Sub
     attributes:
       - ref: messaging.gcp_pubsub.message.ordering_key
-        tag: tech-specific-gcp-pubsub
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
       - ref: messaging.gcp_pubsub.message.delivery_attempt
-        tag: tech-specific-gcp-pubsub
       - ref: messaging.gcp_pubsub.message.ack_deadline
-        tag: tech-specific-gcp-pubsub
       - ref: messaging.gcp_pubsub.message.ack_id
-        tag: tech-specific-gcp-pubsub
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+
   - id: messaging.servicebus
     type: attribute_group
-    extends: messaging
+    extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Azure Service Bus
     attributes:
+      - ref: messaging.operation.name
       - ref: messaging.servicebus.message.delivery_count
         requirement_level:
           conditionally_required: If delivery count is available and is bigger than 0.
@@ -219,12 +231,18 @@ groups:
       - ref: messaging.servicebus.disposition_status
         requirement_level:
           conditionally_required: if and only if `messaging.operation` is `settle`.
+      - ref: messaging.message.conversation_id
+        brief: Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
   - id: messaging.eventhubs
     type: attribute_group
-    extends: messaging
+    extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Azure Event Hubs
     attributes:
+      - ref: messaging.operation.name
       - ref: messaging.destination.partition.id
         brief: >
           String representation of the partition id messages are sent to or received from, unique within the Event Hub.
@@ -234,3 +252,6 @@ groups:
       - ref: messaging.eventhubs.consumer.group
         requirement_level:
           conditionally_required: If not default ("$Default").
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
