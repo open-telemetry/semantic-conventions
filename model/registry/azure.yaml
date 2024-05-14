@@ -1,5 +1,5 @@
 groups:
-  - id: registry.azure
+  - id: registry.azure.sdk
     prefix: az
     type: attribute_group
     brief: >
@@ -11,7 +11,7 @@ groups:
         brief: "The unique reference string that identifies a request"
         examples:
           - "00000000-0000-0000-0000-000000000000"
-  - id: registry.azure
+  - id: registry.azure.logs
     prefix: azure
     type: attribute_group
     brief: >

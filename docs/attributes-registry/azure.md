@@ -6,18 +6,10 @@
 
 # Azure
 
-- [Azure](#azure-attributes)
-- [Azure](#azure-attributes)
+- [Azure Logs](#azure-logs-attributes)
+- [Azure SDK](#azure-sdk-attributes)
 
-## Azure Attributes
-
-This document defines generic attributes for Azure SDK.
-
-| Attribute               | Type   | Description                                           | Examples                               | Stability                                                        |
-| ----------------------- | ------ | ----------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
-| `az.service_request_id` | string | The unique reference string that identifies a request | `00000000-0000-0000-0000-000000000000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Azure Attributes
+## Azure Logs Attributes
 
 This document defines generic attributes for Azure Logs.
 
@@ -35,3 +27,11 @@ This document defines generic attributes for Azure Logs.
 | `azure.result.signature`   | string | The signature of the result                   | `00000000-0000-0000-0000-000000000000`                                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `azure.result.type`        | string | The type of the result                        | `success`; `failure`                                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `azure.tenant.id`          | string | The ID of the tenant                          | `00000000-0000-0000-0000-000000000000`                                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Azure SDK Attributes
+
+This document defines generic attributes for Azure SDK.
+
+| Attribute               | Type   | Description                                           | Examples                               | Stability                                                        |
+| ----------------------- | ------ | ----------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
+| `az.service_request_id` | string | The unique reference string that identifies a request | `00000000-0000-0000-0000-000000000000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
