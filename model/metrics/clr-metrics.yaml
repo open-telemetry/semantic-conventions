@@ -2,7 +2,7 @@ groups:
   - id: metric.clr.gc.collections.count
     type: metric
     metric_name: clr.gc.collections.count
-    brief: > 
+    brief: >
       Number of garbage collections that have occurred since the process started.
     instrument: counter
     unit: "{collection}"
@@ -13,7 +13,7 @@ groups:
   - id: metric.clr.gc.objects.size
     type: metric
     metric_name: clr.gc.objects.size
-    brief: > 
+    brief: >
       The number of bytes currently allocated on the managed GC heap.
       Fragmentation and other GC committed memory pools are excluded.
     instrument: updowncounter
@@ -22,7 +22,7 @@ groups:
   - id: metric.clr.gc.allocations.size
     type: metric
     metric_name: clr.gc.allocations.size
-    brief: > 
+    brief: >
       The number of bytes allocated on the managed GC heap since the process
       started. The returned value does not include any native allocations.
     instrument: counter
@@ -31,7 +31,7 @@ groups:
   - id: metric.clr.gc.committed_memory.size
     type: metric
     metric_name: clr.gc.committed_memory.size
-    brief: > 
+    brief: >
       The amount of committed virtual memory for the managed GC heap, as
       observed during the latest garbage collection.
     note: >
@@ -116,7 +116,7 @@ groups:
   - id: metric.clr.thread_pool.work_items.count
     type: metric
     metric_name: clr.thread_pool.work_items.count
-    brief: > 
+    brief: >
       The number of work items that the thread pool has processed since
       the process start.
     instrument: counter
@@ -125,7 +125,7 @@ groups:
   - id: metric.clr.thread_pool.queue.length
     type: metric
     metric_name: clr.thread_pool.queue.length
-    brief: > 
+    brief: >
       The number of work items that are currently queued to be processed by the
       thread pool.
     instrument: updowncounter
