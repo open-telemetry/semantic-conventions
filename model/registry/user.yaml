@@ -2,7 +2,7 @@ groups:
   - id: registry.user
     prefix: user
     type: attribute_group
-    brief: "Describes information about the user that is relevant to the event."
+    brief: "Describes information about the user."
     attributes:
       - id: domain
         type: string
