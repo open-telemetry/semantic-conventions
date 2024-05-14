@@ -22,7 +22,6 @@ body:
         - area:android
         - area:aspnetcore
         - area:aws
-        - area:az
         - area:azure
         - area:browser
         - area:client

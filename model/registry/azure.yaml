@@ -1,5 +1,17 @@
 groups:
   - id: registry.azure
+    prefix: az
+    type: attribute_group
+    brief: >
+      This document defines generic attributes for Azure SDK.
+    attributes:
+      - id: service_request_id
+        type: string
+        stability: experimental
+        brief: "The unique reference string that identifies a request"
+        examples:
+          - "00000000-0000-0000-0000-000000000000"
+  - id: registry.azure
     prefix: azure
     type: attribute_group
     brief: >
