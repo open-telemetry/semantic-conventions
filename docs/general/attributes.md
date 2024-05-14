@@ -311,9 +311,9 @@ These attributes may be used for any operation with an authenticated and/or auth
 <!-- semconv identity -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.id` instead. | `username` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `user.id` attribute. |
-| [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.roles` instead. | `admin` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `user.roles` attribute. |
-| [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.scope` instead. | `read:message, write:files` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `user.scope` attribute. |
+| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.id` instead. | `username` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.id` attribute. |
+| [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.roles` instead. | `admin` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.roles` attribute. |
+| [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.scope` instead. | `read:message, write:files` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.scope` attribute. |
 <!-- endsemconv -->
 
 These attributes describe the authenticated user driving the user agent making requests to the instrumented
