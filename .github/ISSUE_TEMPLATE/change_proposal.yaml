@@ -22,6 +22,7 @@ body:
         - area:client
         - area:cloud
         - area:cloudevents
+        - area:clr
         - area:code
         - area:container
         - area:cpu
