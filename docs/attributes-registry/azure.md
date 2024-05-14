@@ -7,7 +7,7 @@
 # Azure
 
 - [Azure Logs](#azure-logs-attributes)
-- [Azure SDK](#azure-sdk-attributes)
+- [Azure Sdk](#azure-sdk-attributes)
 
 ## Azure Logs Attributes
 
@@ -28,7 +28,7 @@ This document defines generic attributes for Azure Logs.
 | `azure.result.type`        | string | The type of the result                        | `success`; `failure`                                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `azure.tenant.id`          | string | The ID of the tenant                          | `00000000-0000-0000-0000-000000000000`                                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Azure SDK Attributes
+## Azure Sdk Attributes
 
 This document defines generic attributes for Azure SDK.
 
