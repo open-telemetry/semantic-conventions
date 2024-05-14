@@ -34,6 +34,7 @@ Currently, the following namespaces exist:
 - [Android](android.md)
 - [Aspnetcore](aspnetcore.md)
 - [AWS](aws.md)
+- [Az](az.md)
 - [Azure](azure.md)
 - [Browser](browser.md)
 - [Client](client.md)
