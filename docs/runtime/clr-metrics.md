@@ -1,0 +1,324 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: CLR
+--->
+
+# Semantic Conventions for .NET CLR Metrics
+
+**Status**: [Experimental][DocumentStatus]
+
+This document describes semantic conventions for .NET CLR runtime metrics in OpenTelemetry.
+
+<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
+
+<!-- toc -->
+
+- [CLR Garbage Collection](#clr-garbage-collection)
+  - [Metric: `clr.gc.collections.count`](#metric-clrgccollectionscount)
+  - [Metric: `clr.gc.objects.size`](#metric-clrgcobjectssize)
+  - [Metric: `clr.gc.allocations.size`](#metric-clrgcallocationssize)
+  - [Metric: `clr.gc.committed_memory.size`](#metric-clrgccommitted_memorysize)
+  - [Metric: `clr.gc.heap.size`](#metric-clrgcheapsize)
+  - [Metric: `clr.gc.heap.fragmentation.size`](#metric-clrgcheapfragmentationsize)
+  - [Metric: `clr.gc.duration`](#metric-clrgcduration)
+- [Just-In-Time (JIT) Compiler](#just-in-time-jit-compiler)
+  - [Metric: `clr.jit.il_compiled.size`](#metric-clrjitil_compiledsize)
+  - [Metric: `clr.jit.methods_compiled.count`](#metric-clrjitmethods_compiledcount)
+  - [Metric: `clr.jit.compilation_time`](#metric-clrjitcompilation_time)
+- [Thread pool](#thread-pool)
+  - [Metric: `clr.thread_pool.threads.count`](#metric-clrthread_poolthreadscount)
+  - [Metric: `clr.thread_pool.work_items.count`](#metric-clrthread_poolwork_itemscount)
+  - [Metric: `clr.thread_pool.queue.length`](#metric-clrthread_poolqueuelength)
+- [General](#general)
+  - [Metric: `clr.monitor.lock_contention.count`](#metric-clrmonitorlock_contentioncount)
+  - [Metric: `clr.timer.count`](#metric-clrtimercount)
+  - [Metric: `clr.assemblies.count`](#metric-clrassembliescount)
+  - [Metric: `clr.exceptions.count`](#metric-clrexceptionscount)
+
+<!-- tocstop -->
+
+## CLR Garbage Collection
+
+**Status**: [Experimental][DocumentStatus]
+
+**Description:** .NET Common Language Runtime (CLR) metrics relating to garbage collection, captured under the namespace `clr.gc.*`.
+
+### Metric: `clr.gc.collections.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`GC.CollectionCount(int generation)`](https://learn.microsoft.com/en-us/dotnet/api/system.gc.collectioncount).
+
+<!-- semconv metric.clr.gc.collections.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.gc.collections.count` | Counter | `{collection}` | Number of garbage collections that have occurred since the process started.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.gc.collections.count(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`clr.gc.generation`](/docs/attributes-registry/clr.md) | string | Name of the garbage collector heap generation. | `gen0`; `gen1`; `gen2`; `loh`; `poh` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `clr.gc.objects.size`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`GC.GetTotalMemory(false)`](https://learn.microsoft.com/en-us/dotnet/api/system.gc.gettotalmemory).
+
+<!-- semconv metric.clr.gc.objects.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.gc.objects.size` | UpDownCounter | `By` | The number of bytes currently allocated on the managed GC heap. Fragmentation and other GC committed memory pools are excluded.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.gc.objects.size(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.gc.allocations.size`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`GC.GetTotalAllocatedBytes()`](https://learn.microsoft.com/en-us/dotnet/api/system.gc.gettotalallocatedbytes).
+
+<!-- semconv metric.clr.gc.allocations.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.gc.allocations.size` | Counter | `By` | The number of bytes allocated on the managed GC heap since the process started. The returned value does not include any native allocations.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.gc.allocations.size(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.gc.committed_memory.size`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`GC.GetGCMemoryInfo().TotalCommittedBytes`](https://learn.microsoft.com/en-us/dotnet/api/system.gcmemoryinfo.totalcommittedbytes).
+
+<!-- semconv metric.clr.gc.committed_memory.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.gc.committed_memory.size` | UpDownCounter | `By` | The amount of committed virtual memory for the managed GC heap, as observed during the latest garbage collection.
+ [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Committed virtual memory may be larger than the heap size because it includes both memory for storing existing objects (the heap size) and some extra memory that is ready to handle newly allocated objects in the future.
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.gc.committed_memory.size(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.gc.heap.size`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`GC.GetGCMemoryInfo().GenerationInfo.SizeAfterBytes`](https://learn.microsoft.com/en-us/dotnet/api/system.gcgenerationinfo.sizeafterbytes).
+
+<!-- semconv metric.clr.gc.heap.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.gc.heap.size` | UpDownCounter | `By` | The heap size (including fragmentation), as observed during the latest garbage collection.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.gc.heap.size(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`clr.gc.generation`](/docs/attributes-registry/clr.md) | string | Name of the garbage collector heap generation. | `gen0`; `gen1`; `gen2`; `loh`; `poh` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `clr.gc.heap.fragmentation.size`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`GC.GetGCMemoryInfo().GenerationInfo.FragmentationAfterBytes`](https://learn.microsoft.com/en-us/dotnet/api/system.gcgenerationinfo.fragmentationafterbytes).
+
+<!-- semconv metric.clr.gc.heap.fragmentation.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.gc.heap.fragmentation.size` | UpDownCounter | `By` | The heap fragmentation, as observed during the latest garbage collection.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.gc.heap.fragmentation.size(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`clr.gc.generation`](/docs/attributes-registry/clr.md) | string | Name of the garbage collector heap generation. | `gen0`; `gen1`; `gen2`; `loh`; `poh` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `clr.gc.duration`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`GC.GetTotalPauseDuration()`](https://learn.microsoft.com/en-us/dotnet/api/system.gc.gettotalpauseduration).
+
+<!-- semconv metric.clr.gc.duration(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.gc.duration` | Counter | `ns` | The total amount of time paused in GC since the process started. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.gc.duration(full) -->
+<!-- endsemconv -->
+
+## Just-In-Time (JIT) Compiler
+
+**Status**: [Experimental][DocumentStatus]
+
+**Description:** .NET Common Language Runtime (CLR) metrics relating to the Just-In-Time compiler, captured under the namespace `clr.jit.*`.
+
+### Metric: `clr.jit.il_compiled.size`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`JitInfo.GetCompiledILBytes()`](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.jitinfo.getcompiledilbytes).
+
+<!-- semconv metric.clr.jit.il_compiled.size(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.jit.il_compiled.size` | Counter | `By` | Count of bytes of intermediate language that have been compiled since the process start. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.jit.il_compiled.size(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.jit.methods_compiled.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`JitInfo.GetCompiledMethodCount()`](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.jitinfo.getcompiledmethodcount).
+
+<!-- semconv metric.clr.jit.methods_compiled.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.jit.methods_compiled.count` | Counter | `{method}` | The number of times the JIT compiler (re)compiled methods since the process start.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.jit.methods_compiled.count(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.jit.compilation_time`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`JitInfo.GetCompilationTime()`](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.jitinfo.getcompilationtime).
+
+<!-- semconv metric.clr.jit.compilation_time(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.jit.compilation_time` | Counter | `ns` | The amount of time the JIT compiler has spent compiling methods since the process start.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.jit.compilation_time(full) -->
+<!-- endsemconv -->
+
+## Thread pool
+
+**Status**: [Experimental][DocumentStatus]
+
+**Description:** .NET Common Language Runtime (CLR) metrics relating to the thread pool, captured under the namespace `clr.thread_pool.*`.
+
+### Metric: `clr.thread_pool.threads.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`ThreadPool.ThreadCount`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.threadpool.threadcount).
+
+<!-- semconv metric.clr.thread_pool.threads.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.thread_pool.threads.count` | UpDownCounter | `{thread}` | The number of thread pool threads that currently exist. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.thread_pool.threads.count(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.thread_pool.work_items.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`ThreadPool.CompletedWorkItemCount`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.threadpool.completedworkitemcount).
+
+<!-- semconv metric.clr.thread_pool.work_items.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.thread_pool.work_items.count` | Counter | `{work_item}` | The number of work items that the thread pool has processed since the process start.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.thread_pool.work_items.count(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.thread_pool.queue.length`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`ThreadPool.PendingWorkItemCount`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.threadpool.pendingworkitemcount).
+
+<!-- semconv metric.clr.thread_pool.queue.length(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.thread_pool.queue.length` | UpDownCounter | `{queue}` | The number of work items that are currently queued to be processed by the thread pool.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.thread_pool.queue.length(full) -->
+<!-- endsemconv -->
+
+## General
+
+**Status**: [Experimental][DocumentStatus]
+
+**Description:** Other useful .NET Common Language Runtime (CLR) metrics.
+
+### Metric: `clr.monitor.lock_contention.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`Monitor.LockContentionCount`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.monitor.lockcontentioncount).
+
+<!-- semconv metric.clr.monitor.lock_contention.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.monitor.lock_contention.count` | Counter | `{contention}` | The number of times there was contention when trying to acquire a monitor lock since the process start.
+ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.monitor.lock_contention.count(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.timer.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`Timer.ActiveCount`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.timer.activecount).
+
+<!-- semconv metric.clr.timer.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.timer.count` | UpDownCounter | `{timer}` | The number of timer instances that are currently active. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.timer.count(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.assemblies.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`AppDomain.CurrentDomain.GetAssemblies().Length`](https://learn.microsoft.com/en-us/dotnet/api/system.appdomain.getassemblies).
+
+<!-- semconv metric.clr.assemblies.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.assemblies.count` | UpDownCounter | `{assembly}` | The number of .NET assemblies that are currently loaded. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.assemblies.count(full) -->
+<!-- endsemconv -->
+
+### Metric: `clr.exceptions.count`
+
+This metric is [recommended][MetricRecommended].
+This metric is obtained from [`AppDomain.CurrentDomain.FirstChanceException`](https://learn.microsoft.com/en-us/dotnet/api/system.appdomain.firstchanceexception).
+
+<!-- semconv metric.clr.exceptions.count(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `clr.exceptions.count` | Counter | `{exception}` | Count of exceptions that have been thrown in managed code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.clr.exceptions.count(full) -->
+<!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

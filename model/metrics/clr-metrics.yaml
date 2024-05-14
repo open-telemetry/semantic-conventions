@@ -1,0 +1,154 @@
+groups:
+  - id: metric.clr.gc.collections.count
+    type: metric
+    metric_name: clr.gc.collections.count
+    brief: > 
+      Number of garbage collections that have occurred since the process started.
+    instrument: counter
+    unit: "{collection}"
+    stability: experimental
+    attributes:
+      - ref: clr.gc.generation
+        requirement_level: required
+  - id: metric.clr.gc.objects.size
+    type: metric
+    metric_name: clr.gc.objects.size
+    brief: > 
+      The number of bytes currently allocated on the managed GC heap.
+      Fragmentation and other GC committed memory pools are excluded.
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+  - id: metric.clr.gc.allocations.size
+    type: metric
+    metric_name: clr.gc.allocations.size
+    brief: > 
+      The number of bytes allocated on the managed GC heap since the process
+      started. The returned value does not include any native allocations.
+    instrument: counter
+    unit: "By"
+    stability: experimental
+  - id: metric.clr.gc.committed_memory.size
+    type: metric
+    metric_name: clr.gc.committed_memory.size
+    brief: > 
+      The amount of committed virtual memory for the managed GC heap, as
+      observed during the latest garbage collection.
+    note: >
+      Committed virtual memory may be larger than the heap size because it
+      includes both memory for storing existing objects (the heap size) and some
+      extra memory that is ready to handle newly allocated objects in the
+      future.
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+  - id: metric.clr.gc.heap.size
+    type: metric
+    metric_name: clr.gc.heap.size
+    brief: >
+      The heap size (including fragmentation), as observed during the latest
+      garbage collection.
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    attributes:
+      - ref: clr.gc.generation
+        requirement_level: required
+  - id: metric.clr.gc.heap.fragmentation.size
+    type: metric
+    metric_name: clr.gc.heap.fragmentation.size
+    brief: >
+      The heap fragmentation, as observed during the latest garbage collection.
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+    attributes:
+      - ref: clr.gc.generation
+        requirement_level: required
+  - id: metric.clr.gc.duration
+    type: metric
+    metric_name: clr.gc.duration
+    brief: "The total amount of time paused in GC since the process started."
+    instrument: counter
+    unit: "ns"
+    stability: experimental
+  - id: metric.clr.jit.il_compiled.size
+    type: metric
+    metric_name: clr.jit.il_compiled.size
+    brief: "Count of bytes of intermediate language that have been compiled since the process start."
+    instrument: counter
+    unit: "By"
+    stability: experimental
+  - id: metric.clr.jit.methods_compiled.count
+    type: metric
+    metric_name: clr.jit.methods_compiled.count
+    brief: >
+      The number of times the JIT compiler (re)compiled methods since the
+      process start.
+    instrument: counter
+    unit: "{method}"
+    stability: experimental
+  - id: metric.clr.jit.compilation_time
+    type: metric
+    metric_name: clr.jit.compilation_time
+    brief: >
+      The amount of time the JIT compiler has spent compiling methods since the
+      process start.
+    instrument: counter
+    unit: "ns"
+    stability: experimental
+  - id: metric.clr.monitor.lock_contention.count
+    type: metric
+    metric_name: clr.monitor.lock_contention.count
+    brief: >
+      The number of times there was contention when trying to acquire a monitor
+      lock since the process start.
+    instrument: counter
+    unit: "{contention}"
+    stability: experimental
+  - id: metric.clr.thread_pool.threads.count
+    type: metric
+    metric_name: clr.thread_pool.threads.count
+    brief: "The number of thread pool threads that currently exist."
+    instrument: updowncounter
+    unit: "{thread}"
+    stability: experimental
+  - id: metric.clr.thread_pool.work_items.count
+    type: metric
+    metric_name: clr.thread_pool.work_items.count
+    brief: > 
+      The number of work items that the thread pool has processed since
+      the process start.
+    instrument: counter
+    unit: "{work_item}"
+    stability: experimental
+  - id: metric.clr.thread_pool.queue.length
+    type: metric
+    metric_name: clr.thread_pool.queue.length
+    brief: > 
+      The number of work items that are currently queued to be processed by the
+      thread pool.
+    instrument: updowncounter
+    unit: "{queue}"
+    stability: experimental
+  - id: metric.clr.timer.count
+    type: metric
+    metric_name: clr.timer.count
+    brief: "The number of timer instances that are currently active."
+    instrument: updowncounter
+    unit: "{timer}"
+    stability: experimental
+  - id: metric.clr.assemblies.count
+    type: metric
+    metric_name: clr.assemblies.count
+    brief: "The number of .NET assemblies that are currently loaded."
+    instrument: updowncounter
+    unit: "{assembly}"
+    stability: experimental
+  - id: metric.clr.exceptions.count
+    type: metric
+    metric_name: clr.exceptions.count
+    brief: "Count of exceptions that have been thrown in managed code."
+    instrument: counter
+    unit: "{exception}"
+    stability: experimental
