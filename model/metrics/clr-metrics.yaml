@@ -10,6 +10,7 @@ groups:
     attributes:
       - ref: clr.gc.generation
         requirement_level: required
+
   - id: metric.clr.gc.objects.size
     type: metric
     metric_name: clr.gc.objects.size
@@ -19,6 +20,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     stability: experimental
+
   - id: metric.clr.gc.allocations.size
     type: metric
     metric_name: clr.gc.allocations.size
@@ -28,6 +30,7 @@ groups:
     instrument: counter
     unit: "By"
     stability: experimental
+
   - id: metric.clr.gc.committed_memory.size
     type: metric
     metric_name: clr.gc.committed_memory.size
@@ -42,6 +45,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     stability: experimental
+
   - id: metric.clr.gc.heap.size
     type: metric
     metric_name: clr.gc.heap.size
@@ -54,6 +58,7 @@ groups:
     attributes:
       - ref: clr.gc.generation
         requirement_level: required
+
   - id: metric.clr.gc.heap.fragmentation.size
     type: metric
     metric_name: clr.gc.heap.fragmentation.size
@@ -65,6 +70,7 @@ groups:
     attributes:
       - ref: clr.gc.generation
         requirement_level: required
+
   - id: metric.clr.gc.duration
     type: metric
     metric_name: clr.gc.duration
@@ -79,6 +85,7 @@ groups:
     instrument: counter
     unit: "By"
     stability: experimental
+
   - id: metric.clr.jit.methods_compiled.count
     type: metric
     metric_name: clr.jit.methods_compiled.count
@@ -88,6 +95,7 @@ groups:
     instrument: counter
     unit: "{method}"
     stability: experimental
+
   - id: metric.clr.jit.compilation_time
     type: metric
     metric_name: clr.jit.compilation_time
@@ -97,6 +105,7 @@ groups:
     instrument: counter
     unit: "ns"
     stability: experimental
+
   - id: metric.clr.monitor.lock_contention.count
     type: metric
     metric_name: clr.monitor.lock_contention.count
@@ -106,6 +115,7 @@ groups:
     instrument: counter
     unit: "{contention}"
     stability: experimental
+
   - id: metric.clr.thread_pool.threads.count
     type: metric
     metric_name: clr.thread_pool.threads.count
@@ -113,6 +123,7 @@ groups:
     instrument: updowncounter
     unit: "{thread}"
     stability: experimental
+
   - id: metric.clr.thread_pool.work_items.count
     type: metric
     metric_name: clr.thread_pool.work_items.count
@@ -122,6 +133,7 @@ groups:
     instrument: counter
     unit: "{work_item}"
     stability: experimental
+
   - id: metric.clr.thread_pool.queue.length
     type: metric
     metric_name: clr.thread_pool.queue.length
@@ -131,6 +143,7 @@ groups:
     instrument: updowncounter
     unit: "{queue}"
     stability: experimental
+
   - id: metric.clr.timer.count
     type: metric
     metric_name: clr.timer.count
@@ -138,6 +151,7 @@ groups:
     instrument: updowncounter
     unit: "{timer}"
     stability: experimental
+
   - id: metric.clr.assemblies.count
     type: metric
     metric_name: clr.assemblies.count
@@ -145,6 +159,7 @@ groups:
     instrument: updowncounter
     unit: "{assembly}"
     stability: experimental
+
   - id: metric.clr.exceptions.count
     type: metric
     metric_name: clr.exceptions.count
