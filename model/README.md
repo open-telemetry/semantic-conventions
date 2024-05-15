@@ -37,7 +37,7 @@ language projects, in addition to build-tools.
 
 See also:
 
-* [Markdown Templates](https://github.com/open-telemetry/semantic_conventions/tree/main/templates/registry/markdown)
+* [Markdown Templates](https://github.com/open-telemetry/semantic-conventions/tree/main/templates/registry/markdown)
 * [Weaver Template Documentation](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md)
 * [Weaver Usage Documentation](https://github.com/open-telemetry/weaver/blob/main/docs/usage.md#registry-generate)
 * [Build Tools - Code Generator](https://github.com/open-telemetry/build-tools/tree/main/semantic-conventions#code-generator)
