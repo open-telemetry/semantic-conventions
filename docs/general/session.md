@@ -39,7 +39,7 @@ backends can link the two sessions (see [Session Change Event](#session-change-e
 
 ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-When a session changes (due to time-based expiry or another mechanism), an event MAY be emitted. 
+When a session changes (due to time-based expiry or another mechanism), an event MAY be emitted.
 
 The emitted event that represents a session change MUST have the `event.name=session.change`.
 The event body MUST be empty and the attributes MUST include both the `session.id` and `session.previous_id`
