@@ -19,19 +19,20 @@ These attributes may be used for any network related operation.
 | `network.carrier.mcc`        | string | The mobile carrier country code.                                                                                                                                                  | `310`                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `network.carrier.mnc`        | string | The mobile carrier network code.                                                                                                                                                  | `001`                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `network.carrier.name`       | string | The name of the mobile carrier.                                                                                                                                                   | `sprint`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `gprs`; `edge`; `umts`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.connection.type`    | string | The internet connection type.                                                                                                                                                     | `wifi`; `wired`; `cell`     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network.io.direction`       | string | The network IO operation direction.                                                                                                                                               | `transmit`; `receive`       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.connection.subtype` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE`                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.connection.type`    | string | The internet connection type.                                                                                                                                                     | `wifi`                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `network.io.direction`       | string | The network IO operation direction.                                                                                                                                               | `transmit`                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `network.local.address`      | string | Local address of the network connection - IP address or Unix domain socket name.                                                                                                  | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 | `network.local.port`         | int    | Local port number of the network connection.                                                                                                                                      | `65123`                     | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 | `network.peer.address`       | string | Peer address of the network connection - IP address or Unix domain socket name.                                                                                                   | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 | `network.peer.port`          | int    | Peer port number of the network connection.                                                                                                                                       | `65123`                     | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 | `network.protocol.name`      | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1]                                                                                      | `amqp`; `http`; `mqtt`      | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 | `network.protocol.version`   | string | The actual version of the protocol used for network communication. [2]                                                                                                            | `1.1`; `2`                  | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
-| `network.transport`          | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3]                | `tcp`; `udp`; `pipe`        | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| `network.transport`          | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3]                | `tcp`; `udp`                | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 | `network.type`               | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4]                                                                                              | `ipv4`; `ipv6`              | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 
 **[1]:** The value SHOULD be normalized to lowercase.
+
 **[2]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 **[3]:** The value SHOULD be normalized to lowercase.
@@ -72,18 +73,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value         | Description | Stability                                                        |
 | ------------- | ----------- | ---------------------------------------------------------------- |
-| `wifi`        | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wired`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cell`        | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unavailable` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown`     | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wifi`        | wifi        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wired`       | wired       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cell`        | cell        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unknown`     | unknown     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `transmit` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive`  | receive     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -135,8 +136,10 @@ These attributes may be used for any network related operation.
 
 | Value    | Description                    | Stability                                                        |
 | -------- | ------------------------------ | ---------------------------------------------------------------- |
-| `ip_tcp` | none                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ip_udp` | none                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ip_tcp` | ip_tcp                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ip_udp` | ip_udp                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pipe`   | Named or anonymous pipe.       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `inproc` | In-process communication.      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `inproc` | In-process communication. [5]  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other`  | Something else (non IP-based). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[5]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
