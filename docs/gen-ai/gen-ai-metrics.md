@@ -37,6 +37,8 @@ For example, if GenAI system returns usage information in the streaming response
 
 If instrumentation cannot efficiently obtain number of input and/or output tokens, it MAY allow users to enable offline token counting. Otherwise it MUST NOT report usage metric.
 
+When systems report both used tokens and billable tokens, instrumentation MUST report billable tokens.
+
 This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304, 16777216, 67108864].
 
 <!-- semconv metric.gen_ai.client.token.usage(metric_table) -->
