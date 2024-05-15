@@ -30,12 +30,14 @@ formatted Markdown tables for all semantic conventions in the specification. Run
 make table-generation
 ```
 
-For more information, see the [semantic convention generator](https://github.com/open-telemetry/build-tools/tree/v0.24.0/semantic-conventions)
-in the OpenTelemetry build tools repository.
-Using this build tool, it is also possible to generate code for use in OpenTelemetry
-language projects.
+For more information, see the [Weaver](https://github.com/open-telemetry/weaver)
+as our code generations tool.
+Using Weaver, it is also possible to generate code for use in OpenTelemetry
+language projects, in addition to build-tools.
 
 See also:
 
-* [Markdown Tables](https://github.com/open-telemetry/build-tools/tree/main/semantic-conventions#markdown-tables)
-* [Code Generator](https://github.com/open-telemetry/build-tools/tree/main/semantic-conventions#code-generator)
+* [Markdown Templates](https://github.com/open-telemetry/semantic_conventions/tree/main/templates/registry/markdown)
+* [Weaver Template Documentation](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md)
+* [Weaver Usage Documentation](https://github.com/open-telemetry/weaver/blob/main/docs/usage.md#registry-generate)
+* [Build Tools - Code Generator](https://github.com/open-telemetry/build-tools/tree/main/semantic-conventions#code-generator)
