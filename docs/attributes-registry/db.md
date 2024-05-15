@@ -20,7 +20,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | Attribute                         | Type   | Description                                                                                                                                                                                                                                                                          | Examples                                                              | Stability                                                        |
 | --------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `db.client.connections.pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.client.connections.state`     | string | The state of a connection in the pool                                                                                                                                                                                                                                                | `idle`; `used`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connections.state`     | string | The state of a connection in the pool                                                                                                                                                                                                                                                | `idle`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.collection.name`              | string | The name of a collection (table, container) within the database. [1]                                                                                                                                                                                                                 | `public.users`; `customers`                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.namespace`                    | string | The name of the database, fully qualified within the server address and port. [2]                                                                                                                                                                                                    | `customers`; `test.users`                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.operation.name`               | string | The name of the operation or command being executed. [3]                                                                                                                                                                                                                             | `findAndModify`; `HMSET`; `SELECT`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -46,8 +46,8 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 | Value  | Description | Stability                                                        |
 | ------ | ----------- | ---------------------------------------------------------------- |
-| `idle` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -121,19 +121,19 @@ This group defines attributes for Cassandra.
 
 `db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value          | Description | Stability                                                        |
-| -------------- | ----------- | ---------------------------------------------------------------- |
-| `all`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_quorum` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three`        | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one`    | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `any`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_serial` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value          | Description  | Stability                                                        |
+| -------------- | ------------ | ---------------------------------------------------------------- |
+| `all`          | all          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `each_quorum`  | each_quorum  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quorum`       | quorum       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `one`          | one          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `two`          | two          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `three`        | three        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_one`    | local_one    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `any`          | any          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `serial`       | serial       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db Cosmosdb Attributes
 
@@ -158,23 +158,23 @@ This group defines attributes for Azure Cosmos DB.
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value               | Description | Stability                                                        |
-| ------------------- | ----------- | ---------------------------------------------------------------- |
-| `Invalid`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Create`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Patch`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read`              | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Delete`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Replace`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Execute`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Head`              | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HeadFeed`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Batch`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QueryPlan`         | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ExecuteJavaScript` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value               | Description        | Stability                                                        |
+| ------------------- | ------------------ | ---------------------------------------------------------------- |
+| `Invalid`           | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Create`            | create             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Patch`             | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Read`              | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ReadFeed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Delete`            | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Replace`           | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Execute`           | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Query`             | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Head`              | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `HeadFeed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Upsert`            | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Batch`             | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `QueryPlan`         | query_plan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db Deprecated Attributes
 
@@ -215,11 +215,11 @@ This group defines attributes for Elasticsearch.
 | Attribute   | Type   | Description                                                | Examples       | Stability                                                                                                     |
 | ----------- | ------ | ---------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------- |
 | `pool.name` | string | Deprecated, use `db.client.connections.pool.name` instead. | `myDataSource` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.pool.name`. |
-| `state`     | string | Deprecated, use `db.client.connections.state` instead.     | `idle`; `used` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.state`.     |
+| `state`     | string | Deprecated, use `db.client.connections.state` instead.     | `idle`         | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.state`.     |
 
 `state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability                                                        |
 | ------ | ----------- | ---------------------------------------------------------------- |
-| `idle` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
