@@ -2,8 +2,7 @@ groups:
   - id: metric.clr.gc.collections.count
     type: metric
     metric_name: clr.gc.collections.count
-    brief: >
-      Number of garbage collections that have occurred since the process started.
+    brief: "Number of garbage collections that have occurred since the process started."
     instrument: counter
     unit: "{collection}"
     stability: experimental
