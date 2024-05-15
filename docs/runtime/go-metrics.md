@@ -15,7 +15,7 @@ These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package
 
 - [Go Memory](#go-memory)
   - [Metric: `go.memory.used`](#metric-gomemoryused)
-  - [Metric: `go.memory.soft_limit`](#metric-gomemorysoft_limit)
+  - [Metric: `go.memory.limit`](#metric-gomemorylimit)
   - [Metric: `go.memory.allocated`](#metric-gomemoryallocated)
   - [Metric: `go.memory.allocations`](#metric-gomemoryallocations)
 - [Go Garbage Collection](#go-garbage-collection)
@@ -60,19 +60,19 @@ This metric is [recommended][MetricRecommended].
 | `other` | Memory used by the Go runtime, excluding other categories of memory usage. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `go.memory.soft_limit`
+### Metric: `go.memory.limit`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.go.memory.soft_limit(metric_table) -->
+<!-- semconv metric.go.memory.limit(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.soft_limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Computed from `/gc/gomemlimit:bytes`. This metric is excluded if the limit obtained from the Go runtime is math.MaxInt64.
 <!-- endsemconv -->
 
-<!-- semconv metric.go.memory.soft_limit(full) -->
+<!-- semconv metric.go.memory.limit(full) -->
 <!-- endsemconv -->
 
 ### Metric: `go.memory.allocated`

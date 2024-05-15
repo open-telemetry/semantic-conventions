@@ -13,9 +13,9 @@ groups:
         requirement_level: recommended
     stability: experimental
 
-  - id: metric.go.memory.soft_limit
+  - id: metric.go.memory.limit
     type: metric
-    metric_name: go.memory.soft_limit
+    metric_name: go.memory.limit
     brief: "Go runtime memory limit configured by the user, if a limit exists."
     note: >
       Computed from `/gc/gomemlimit:bytes`.
