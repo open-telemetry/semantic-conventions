@@ -14,9 +14,7 @@ groups:
   - id: metric.clr.gc.objects.size
     type: metric
     metric_name: clr.gc.objects.size
-    brief: >
-      The number of bytes currently allocated on the managed GC heap.
-      Fragmentation and other GC committed memory pools are excluded.
+    brief: "The number of bytes currently allocated on the managed GC heap. Fragmentation and other GC committed memory pools are excluded."
     instrument: updowncounter
     unit: "By"
     stability: experimental
