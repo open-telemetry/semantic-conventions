@@ -13,7 +13,7 @@ the Logs, Events, and Spans generated during the Session's lifecycle.
 
 When a session reaches end of life, typically due to user inactivity or session timeout, a new session identifier
 will be assigned. The previous session identifier may be provided by the instrumentation so that telemetry
-backends can link the two sessions (see [Session Change Event](#session_change_event) below).
+backends can link the two sessions (see [Session Change Event](#session-change-event) below).
 
 ## Attributes
 
