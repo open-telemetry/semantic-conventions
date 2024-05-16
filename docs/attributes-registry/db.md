@@ -135,7 +135,7 @@ This group defines attributes for Cassandra.
 | `serial`       | serial       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Db Cosmosdb Attributes
+## Db CosmosDB Attributes
 
 This group defines attributes for Azure Cosmos DB.
 

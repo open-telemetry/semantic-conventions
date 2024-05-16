@@ -9,7 +9,7 @@
 - [Http](#http-attributes)
 - [Http Deprecated](#http-deprecated-attributes)
 
-## Http Attributes
+## HTTP Attributes
 
 This document defines semantic convention attributes in the HTTP namespace.
 
@@ -78,7 +78,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `TRACE`   | TRACE method.                                                       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `_OTHER`  | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## Http Deprecated Attributes
+## HTTP Deprecated Attributes
 
 Describes deprecated HTTP attributes.
 
