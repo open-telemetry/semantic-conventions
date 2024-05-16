@@ -160,7 +160,7 @@ groups:
   - id: metric.clr.exceptions.count
     type: metric
     metric_name: clr.exceptions.count
-    brief: "Count of exceptions that have been thrown in managed code."
+    brief: "The number of exceptions that have been thrown in managed code."
     instrument: counter
     unit: "{exception}"
     stability: experimental
