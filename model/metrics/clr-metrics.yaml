@@ -2,7 +2,7 @@ groups:
   - id: metric.clr.gc.collections.count
     type: metric
     metric_name: clr.gc.collections.count
-    brief: "Number of garbage collections that have occurred since the process started."
+    brief: "Number of garbage collections that have occurred since the process has started."
     instrument: counter
     unit: "{collection}"
     stability: experimental
@@ -22,7 +22,7 @@ groups:
     type: metric
     metric_name: clr.gc.allocations.size
     brief: >
-      The number of bytes allocated on the managed GC heap since the process
+      The number of bytes allocated on the managed GC heap since the process has
       started. The returned value does not include any native allocations.
     instrument: counter
     unit: "By"
@@ -68,17 +68,18 @@ groups:
       - ref: clr.gc.generation
         requirement_level: required
 
-  - id: metric.clr.gc.duration
+  - id: metric.clr.gc.pause.time
     type: metric
-    metric_name: clr.gc.duration
-    brief: "The total amount of time paused in GC since the process started."
+    metric_name: clr.gc.pause.time
+    brief: "The total amount of time paused in GC since the process has started."
     instrument: counter
-    unit: "ns"
+    unit: "s"
     stability: experimental
+
   - id: metric.clr.jit.il_compiled.size
     type: metric
     metric_name: clr.jit.il_compiled.size
-    brief: "Count of bytes of intermediate language that have been compiled since the process start."
+    brief: "Count of bytes of intermediate language that have been compiled since the process has started."
     instrument: counter
     unit: "By"
     stability: experimental
@@ -88,19 +89,19 @@ groups:
     metric_name: clr.jit.methods_compiled.count
     brief: >
       The number of times the JIT compiler (re)compiled methods since the
-      process start.
+      process has started.
     instrument: counter
     unit: "{method}"
     stability: experimental
 
-  - id: metric.clr.jit.compilation_time
+  - id: metric.clr.jit.compilation.time
     type: metric
-    metric_name: clr.jit.compilation_time
+    metric_name: clr.jit.compilation.time
     brief: >
       The amount of time the JIT compiler has spent compiling methods since the
-      process start.
+      process has started.
     instrument: counter
-    unit: "ns"
+    unit: "s"
     stability: experimental
 
   - id: metric.clr.monitor.lock_contention.count
@@ -108,7 +109,7 @@ groups:
     metric_name: clr.monitor.lock_contention.count
     brief: >
       The number of times there was contention when trying to acquire a monitor
-      lock since the process start.
+      lock since the process has started.
     instrument: counter
     unit: "{contention}"
     stability: experimental
@@ -125,8 +126,8 @@ groups:
     type: metric
     metric_name: clr.thread_pool.work_items.count
     brief: >
-      The number of work items that the thread pool has processed since
-      the process start.
+      The number of work items that the thread pool has completed since
+      the process has started.
     instrument: counter
     unit: "{work_item}"
     stability: experimental
