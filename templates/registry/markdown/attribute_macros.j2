@@ -1,0 +1,26 @@
+{% macro type(attribute) %}{%- if attribute.type is mapping %}
+{%- if attribute.type.members[0].value is string %}string{%- endif %}
+{%- if attribute.type.members[0].value is int %}int{%- endif %}
+{%- if attribute.type.members[0].value is float %}double{%- endif %}
+{%- elif attribute.type == "template[boolean]" %}boolean
+{%- elif attribute.type == "template[int]" %}int
+{%- elif attribute.type == "template[double]" %}double
+{%- elif attribute.type == "template[string]" %}string
+{%- elif attribute.type == "template[boolean[]]" %}boolean[]
+{%- elif attribute.type == "template[int[]]" %}int[]
+{%- elif attribute.type == "template[double[]]" %}double[]
+{%- elif attribute.type == "template[string[]]" %}string[]
+{%- else %}{{ attribute.type | trim }}{%- endif %}{% endmacro %}
+
+{% macro name(attribute) %}{%- if attribute.type is startingwith("template[") %}`{{ attribute.name }}.<key>`
+{%- else %}`{{ attribute.name }}`{%- endif %}{% endmacro %}
+
+{% macro name_with_link(attribute, attribute_registry_base_url) %}[{{name(attribute)}}]({{attribute_registry_base_url}}/{{ attribute.name | split_id | list | first | kebab_case }}.md){% endmacro %}
+
+{% macro examples(attribute) %}{%- if attribute.examples %}
+{%- if attribute.examples is sequence %}
+{%- for example in attribute.examples %}{%if loop.first == false %}; {% endif %}`{{ example }}`{%- endfor %}
+{%- else %}`{{ attribute.examples | trim }}`
+{%- endif %}{%- elif attribute.type is mapping %}
+{%- for e in attribute.type.members %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
+{%- endif %}{% endmacro %}

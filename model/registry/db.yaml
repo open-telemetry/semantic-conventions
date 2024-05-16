@@ -12,6 +12,8 @@ groups:
         note: >
             If the collection name is parsed from the query, it SHOULD match the value provided
             in the query and may be qualified with the schema and database name.
+
+            It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ['public.users', 'customers']
       - id: namespace
         type: string
@@ -26,12 +28,16 @@ groups:
 
           Semantic conventions for individual database systems SHOULD document what `db.namespace`
           means in the context of that system.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: [ 'customers', 'test.users' ]
       - id: operation.name
         type: string
         stability: experimental
         brief: >
           The name of the operation or command being executed.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ['findAndModify', 'HMSET', 'SELECT']
       - id: query.text
         type: string
@@ -52,7 +58,11 @@ groups:
           then `<key>` SHOULD be the 0-based index.
         examples: ['someval', '55']
       - id: system
-        brief: An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.
+        brief: The database management system (DBMS) product as identified by the client instrumentation.
+        note: >
+          The actual DBMS may differ from the one identified by the client.
+          For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system`
+          is set to `postgresql` based on the instrumentation's best knowledge.
         type:
           allow_custom_values: true
           members:
