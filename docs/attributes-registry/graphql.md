@@ -6,7 +6,7 @@
 
 # GraphQL
 
-## Graphql Attributes
+## GraphQL Attributes
 
 This document defines attributes for GraphQL.
 

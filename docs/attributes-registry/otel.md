@@ -10,7 +10,7 @@
 - [Otel Library Deprecated](#otel-library-deprecated-attributes)
 - [Otel Scope](#otel-scope-attributes)
 
-## Otel Attributes
+## OTel Attributes
 
 Attributes reserved for OpenTelemetry
 
@@ -26,7 +26,7 @@ Attributes reserved for OpenTelemetry
 | `OK`    | The operation has been validated by an Application developer or Operator to have completed successfully. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ERROR` | The operation contains an error.                                                                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## Otel Library Deprecated Attributes
+## OTel Library Deprecated Attributes
 
 Describes deprecated otel.library attributes.
 
@@ -35,7 +35,7 @@ Describes deprecated otel.library attributes.
 | `otel.library.name`    | string |             | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.name` attribute.    |
 | `otel.library.version` | string |             | `1.0.0`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.version` attribute. |
 
-## Otel Scope Attributes
+## OTel Scope Attributes
 
 Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
 

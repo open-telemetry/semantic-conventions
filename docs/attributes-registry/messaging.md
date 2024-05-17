@@ -102,7 +102,7 @@ This group describes attributes specific to Azure Event Hubs.
 | `messaging.eventhubs.consumer.group`        | string | The name of the consumer group the event consumer is associated with.                  | `indexer`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.eventhubs.message.enqueued_time` | int    | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Messaging Gcp Pubsub Attributes
+## Messaging GCP Pubsub Attributes
 
 This group describes attributes specific to GCP Pub/Sub.
 
@@ -126,7 +126,7 @@ This group describes attributes specific to Apache Kafka.
 
 **[9]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
-## Messaging Rabbitmq Attributes
+## Messaging RabbitMQ Attributes
 
 This group describes attributes specific to RabbitMQ.
 
@@ -135,7 +135,7 @@ This group describes attributes specific to RabbitMQ.
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rabbitmq.message.delivery_tag`    | int    | RabbitMQ message delivery tag | `123`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Messaging Rocketmq Attributes
+## Messaging RocketMQ Attributes
 
 This group describes attributes specific to RocketMQ.
 
