@@ -6,7 +6,7 @@
 
 # OCI
 
-## Oci Manifest Attributes
+## OCI Manifest Attributes
 
 An OCI image manifest.
 

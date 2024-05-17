@@ -6,7 +6,7 @@
 
 # JVM
 
-## Jvm Attributes
+## JVM Attributes
 
 This document defines Java Virtual machine related attributes.
 
@@ -17,7 +17,7 @@ This document defines Java Virtual machine related attributes.
 | `jvm.memory.pool.name` | string  | Name of the memory pool. [3]              | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `jvm.memory.type`      | string  | The type of memory.                       | `heap`; `non_heap`                                 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `jvm.thread.daemon`    | boolean | Whether the thread is daemon or not.      |                                                    | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `jvm.thread.state`     | string  | State of the thread.                      | `new`; `runnable`; `blocked`                       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `jvm.thread.state`     | string  | State of the thread.                      | `runnable`; `blocked`                              | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](<https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()>).
 
