@@ -6,7 +6,7 @@
 
 # Gen AI
 
-## Gen Ai Attributes
+## Gen AI Attributes
 
 This document defines the attributes used to describe telemetry in the context of LLM (Large Language Models) requests and responses.
 
