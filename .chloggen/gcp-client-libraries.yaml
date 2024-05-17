@@ -1,0 +1,3 @@
+change_type: 'enhancement'
+component: gcp
+note: Introduced `gcp.client.*` scope attributes to identify GCP client libraries.
