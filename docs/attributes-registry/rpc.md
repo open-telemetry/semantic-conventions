@@ -9,7 +9,7 @@
 - [Rpc](#rpc-attributes)
 - [Rpc Deprecated](#rpc-deprecated-attributes)
 
-## Rpc Attributes
+## RPC Attributes
 
 This document defines attributes for remote procedure calls.
 
@@ -107,7 +107,7 @@ This document defines attributes for remote procedure calls.
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc`  | Connect RPC  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Rpc Deprecated Attributes
+## RPC Deprecated Attributes
 
 Deprecated rpc message attributes.
 

@@ -6,7 +6,7 @@
 
 # TLS
 
-## Tls Attributes
+## TLS Attributes
 
 This document defines semantic convention attributes in the TLS namespace.
 

@@ -6,7 +6,7 @@
 
 # URL
 
-## Url Attributes
+## URL Attributes
 
 Attributes describing URL.
 
