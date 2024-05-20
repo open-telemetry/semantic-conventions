@@ -19,4 +19,4 @@ The following metrics are currently supported:
 * [Kestrel](dotnet-kestrel-metrics.md): Semantic Conventions for Kestrel web server *metrics*.
 * [SignalR](dotnet-signalr-metrics.md): Semantic Conventions for SignalR server *metrics*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
