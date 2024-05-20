@@ -1,0 +1,91 @@
+groups:
+  - id: registry.gen_ai
+    prefix: gen_ai
+    type: attribute_group
+    brief: >
+      This document defines the attributes used to describe telemetry in the context of LLM (Large Language Models) requests and responses.
+    attributes:
+      - id: system
+        stability: experimental
+        type:
+          allow_custom_values: true
+          members:
+            - id: openai
+              stability: experimental
+              value: "openai"
+              brief: 'OpenAI'
+        brief: The Generative AI product as identified by the client instrumentation.
+        note: >
+          The actual GenAI product may differ from the one identified by the client.
+          For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+          is set to `openai` based on the instrumentation's best knowledge.
+        examples: 'openai'
+        tag: llm-generic-request
+      - id: request.model
+        stability: experimental
+        type: string
+        brief: The name of the LLM a request is being made to.
+        examples: 'gpt-4'
+        tag: llm-generic-request
+      - id: request.max_tokens
+        stability: experimental
+        type: int
+        brief: The maximum number of tokens the LLM generates for a request.
+        examples: [100]
+        tag: llm-generic-request
+      - id: request.temperature
+        stability: experimental
+        type: double
+        brief: The temperature setting for the LLM request.
+        examples: [0.0]
+        tag: llm-generic-request
+      - id: request.top_p
+        stability: experimental
+        type: double
+        brief: The top_p sampling setting for the LLM request.
+        examples: [1.0]
+        tag: llm-generic-request
+      - id: response.id
+        stability: experimental
+        type: string
+        brief: The unique identifier for the completion.
+        examples: ['chatcmpl-123']
+        tag: llm-generic-response
+      - id: response.model
+        stability: experimental
+        type: string
+        brief: The name of the LLM a response was generated from.
+        examples: ['gpt-4-0613']
+        tag: llm-generic-response
+      - id: response.finish_reasons
+        stability: experimental
+        type: string[]
+        brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
+        examples: ['stop']
+        tag: llm-generic-response
+      - id: usage.prompt_tokens
+        stability: experimental
+        type: int
+        brief: The number of tokens used in the LLM prompt.
+        examples: [100]
+        tag: llm-generic-response
+      - id: usage.completion_tokens
+        stability: experimental
+        type: int
+        brief: The number of tokens used in the LLM response (completion).
+        examples: [180]
+        tag: llm-generic-response
+      - id: prompt
+        stability: experimental
+        type: string
+        brief: The full prompt sent to an LLM.
+        note: It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+        examples: ["[{'role': 'user', 'content': 'What is the capital of France?'}]"]
+        tag: llm-generic-events
+      - id: completion
+        stability: experimental
+        type: string
+        brief: The full response received from the LLM.
+        note: It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+        examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
+        tag: llm-generic-events

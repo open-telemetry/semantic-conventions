@@ -1,0 +1,89 @@
+groups:
+  - id: registry.jvm
+    type: attribute_group
+    prefix: jvm
+    brief: >
+      This document defines Java Virtual machine related attributes.
+    attributes:
+      - id: gc.action
+        stability: stable
+        type: string
+        brief: Name of the garbage collector action.
+        examples: ["end of minor GC", "end of major GC"]
+        note: >
+          Garbage collector action is generally obtained via
+          [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
+      - id: gc.name
+        stability: stable
+        type: string
+        brief: Name of the garbage collector.
+        examples: ["G1 Young Generation", "G1 Old Generation"]
+        note: >
+          Garbage collector name is generally obtained via
+          [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+      - id: memory.type
+        stability: stable
+        type:
+          allow_custom_values: false
+          members:
+            - id: heap
+              value: 'heap'
+              brief: 'Heap memory.'
+              stability: stable
+            - id: non_heap
+              value: 'non_heap'
+              brief: 'Non-heap memory'
+              stability: stable
+        brief: The type of memory.
+        examples: ["heap", "non_heap"]
+      - id: memory.pool.name
+        stability: stable
+        type: string
+        brief: Name of the memory pool.
+        examples: ["G1 Old Gen", "G1 Eden space", "G1 Survivor Space"]
+        note: >
+          Pool names are generally obtained via
+          [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+      - id: thread.daemon
+        stability: stable
+        type: boolean
+        brief: "Whether the thread is daemon or not."
+      - id: thread.state
+        stability: stable
+        brief: "State of the thread."
+        examples: ["runnable", "blocked"]
+        type:
+          allow_custom_values: false
+          members:
+            - id: new
+              value: 'new'
+              brief: 'A thread that has not yet started is in this state.'
+              stability: stable
+            - id: runnable
+              value: 'runnable'
+              brief: 'A thread executing in the Java virtual machine is in this state.'
+              stability: stable
+            - id: blocked
+              value: 'blocked'
+              brief: 'A thread that is blocked waiting for a monitor lock is in this state.'
+              stability: stable
+            - id: waiting
+              value: 'waiting'
+              brief: 'A thread that is waiting indefinitely for another thread to perform a particular action is in this state.'
+              stability: stable
+            - id: timed_waiting
+              value: 'timed_waiting'
+              brief: 'A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.'
+              stability: stable
+            - id: terminated
+              value: 'terminated'
+              brief: 'A thread that has exited is in this state.'
+              stability: stable
+      - id: buffer.pool.name
+        type: string
+        stability: experimental
+        brief: Name of the buffer pool.
+        examples: [ "mapped", "direct" ]
+        note: >
+          Pool names are generally obtained via
+          [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
