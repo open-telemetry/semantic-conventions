@@ -11,7 +11,6 @@
 - [PageView](#pageview)
 - [PageNavigationTiming](#pagenavigationtiming)
 - [ResourceTiming](#resourcetiming)
-- [Exception](#exception)
 - [UserAction](#useraction)
 - [WebVital](#webvital)
 
