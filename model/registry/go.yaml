@@ -18,7 +18,7 @@ groups:
               stability: experimental
             - id: other
               value: 'other'
-              brief: 'Memory used by the Go runtime, excluding other categories of memory usage.'
+              brief: 'Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration.'
               stability: experimental
         requirement_level: recommended
         brief: The type of memory.
