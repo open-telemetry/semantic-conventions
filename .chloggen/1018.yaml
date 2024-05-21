@@ -1,4 +1,0 @@
-change_type: enhancement
-component: messaging
-note: Show all applicable attributes in individual messaging semantic conventions.
-issues: [869, 1018]
