@@ -14,7 +14,7 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
 SEMCONVGEN_VERSION=0.24.0
-WEAVER_VERSION=latest
+WEAVER_VERSION=0.2.0
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -95,10 +95,12 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
 		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
 		--attribute-registry-base-url=/docs/attributes-registry \
+		--templates=/weaver/templates \
+		--target=markdown \
 		/spec
 
 # Generate attribute registry markdown.
@@ -115,17 +117,19 @@ attribute-registry-generation:
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
 table-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
 		otel/weaver:${WEAVER_VERSION} registry update-markdown \
 		--registry=/source \
 		--attribute-registry-base-url=/docs/attributes-registry \
+		--templates=/weaver/templates \
+		--target=markdown \
 		--dry-run \
 		/spec
 
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git describe --tags --abbrev=0 | sed 's/v//g')
 .PHONY: compatibility-check
 compatibility-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
 
 .PHONY: schema-check

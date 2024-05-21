@@ -32,15 +32,15 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Value    | Description | Stability                                                  |
 | -------- | ----------- | ---------------------------------------------------------- |
-| `cpp`    | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `dotnet` | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `erlang` | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `go`     | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `java`   | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `nodejs` | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `php`    | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `python` | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ruby`   | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `rust`   | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `swift`  | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `webjs`  | none        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `cpp`    | cpp         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `dotnet` | dotnet      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `erlang` | erlang      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `go`     | go          | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `java`   | java        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `nodejs` | nodejs      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `php`    | php         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `python` | python      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ruby`   | ruby        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `rust`   | rust        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `swift`  | swift       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `webjs`  | webjs       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
