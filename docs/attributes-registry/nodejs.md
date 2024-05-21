@@ -10,6 +10,6 @@
 
 Describes Node.js Runtime related attributes.
 
-| Attribute               | Type   | Description              | Examples             | Stability                                                        |
-| ----------------------- | ------ | ------------------------ | -------------------- | ---------------------------------------------------------------- |
+| Attribute        | Type   | Description              | Examples             | Stability                                                        |
+| ---------------- | ------ | ------------------------ | -------------------- | ---------------------------------------------------------------- |
 | `nodejs.version` | string | Node.js Runtime version. | `v22.0.0`; `v21.7.3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
