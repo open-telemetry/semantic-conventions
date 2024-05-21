@@ -1,5 +1,5 @@
 groups:
-  - id: metric.veightjsengineruntime.gc.duration
+  - id: metric.veightjs.gc.duration
     type: metric
     metric_name: v8js.gc.duration
     brief: "Garbage collection duration."
@@ -11,7 +11,7 @@ groups:
       - ref: v8js.gc.type
         requirement_level: recommended
 
-  - id: metric.veightjsengineruntime.memory.size
+  - id: metric.veightjs.memory.size
     type: metric
     metric_name: v8js.memory.size
     brief: "External memory size."
@@ -23,7 +23,7 @@ groups:
       - ref: v8js.memory.state
         requirement_level: recommended
 
-  - id: metric.veightjsengineruntime.heap.size
+  - id: metric.veightjs.heap.size
     type: metric
     metric_name: v8js.heap.size
     brief: "Heap size."
@@ -35,7 +35,7 @@ groups:
       - ref: v8js.heap.size.state
         requirement_level: recommended
 
-  - id: metric.veightjsengineruntime.heap.space_size
+  - id: metric.veightjs.heap.space_size
     type: metric
     metric_name: v8js.heap.space_size
     brief: "Heap space size."
@@ -47,7 +47,7 @@ groups:
       - ref: v8js.heap.space.name
         requirement_level: recommended
 
-  - id: metric.veightjsengineruntime.heap.space_used_size
+  - id: metric.veightjs.heap.space_used_size
     type: metric
     metric_name: v8js.heap.space_used_size
     brief: "Heap space used size."
@@ -59,7 +59,7 @@ groups:
       - ref: v8js.heap.space.name
         requirement_level: recommended
 
-  - id: metric.veightjsengineruntime.heap.space_available_size
+  - id: metric.veightjs.heap.space_available_size
     type: metric
     metric_name: v8js.heap.space_available_size
     brief: "Heap space available size."
@@ -71,7 +71,7 @@ groups:
       - ref: v8js.heap.space.name
         requirement_level: recommended
 
-  - id: metric.veightjsengineruntime.heap.physical_space_size
+  - id: metric.veightjs.heap.physical_space_size
     type: metric
     metric_name: v8js.heap.physical_space_size
     brief: "Heap space."

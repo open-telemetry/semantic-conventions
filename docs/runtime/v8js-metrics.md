@@ -37,13 +37,13 @@ This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.1, 1, 10 ]`.
 
-<!-- semconv metric.veightjsengineruntime.gc.duration(metric_table) -->
+<!-- semconv metric.veightjs.gc.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `v8js.gc.duration` | Histogram | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.veightjsengineruntime.gc.duration(full) -->
+<!-- semconv metric.veightjs.gc.duration(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`v8js.gc.type`](/docs/attributes-registry/v8js.md) | string | The type of garbage collection. | `major`; `minor`; `incremental` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -62,13 +62,13 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.veightjsengineruntime.memory.size(metric_table) -->
+<!-- semconv metric.veightjs.memory.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `v8js.memory.size` | UpDownCounter | `By` | External memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.veightjsengineruntime.memory.size(full) -->
+<!-- semconv metric.veightjs.memory.size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`v8js.memory.state`](/docs/attributes-registry/v8js.md) | string | The state of memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -85,13 +85,13 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.veightjsengineruntime.heap.size(metric_table) -->
+<!-- semconv metric.veightjs.heap.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `v8js.heap.size` | UpDownCounter | `By` | Heap size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.veightjsengineruntime.heap.size(full) -->
+<!-- semconv metric.veightjs.heap.size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`v8js.heap.size.state`](/docs/attributes-registry/v8js.md) | string | The size of heap memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -108,13 +108,13 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.veightjsengineruntime.heap.space_size(metric_table) -->
+<!-- semconv metric.veightjs.heap.space_size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `v8js.heap.space_size` | UpDownCounter | `By` | Heap space size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.veightjsengineruntime.heap.space_size(full) -->
+<!-- semconv metric.veightjs.heap.space_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -134,13 +134,13 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.veightjsengineruntime.heap.space_used_size(metric_table) -->
+<!-- semconv metric.veightjs.heap.space_used_size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `v8js.heap.space_used_size` | UpDownCounter | `By` | Heap space used size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.veightjsengineruntime.heap.space_used_size(full) -->
+<!-- semconv metric.veightjs.heap.space_used_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -160,13 +160,13 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.veightjsengineruntime.heap.space_available_size(metric_table) -->
+<!-- semconv metric.veightjs.heap.space_available_size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `v8js.heap.space_available_size` | UpDownCounter | `By` | Heap space available size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.veightjsengineruntime.heap.space_available_size(full) -->
+<!-- semconv metric.veightjs.heap.space_available_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -186,13 +186,13 @@ This metric is [recommended][MetricRecommended].
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.veightjsengineruntime.heap.physical_space_size(metric_table) -->
+<!-- semconv metric.veightjs.heap.physical_space_size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `v8js.heap.physical_space_size` | UpDownCounter | `By` | Heap space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-<!-- semconv metric.veightjsengineruntime.heap.physical_space_size(full) -->
+<!-- semconv metric.veightjs.heap.physical_space_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
