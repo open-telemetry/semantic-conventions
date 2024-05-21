@@ -15,7 +15,7 @@ groups:
     type: metric
     metric_name: v8js.memory.size
     brief: "External memory size."
-    instrument: updowncounter
+    instrument: gauge
     unit: "By"
     stability: experimental
     prefix: v8js.memory
