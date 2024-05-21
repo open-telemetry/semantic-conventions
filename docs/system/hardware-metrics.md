@@ -362,4 +362,4 @@ Additional **Recommended** attributes:
 | ----------------- | ---------------------- | ---------- |
 | `sensor_location` | Location of the sensor | `PS0 V3_3` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
