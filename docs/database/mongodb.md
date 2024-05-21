@@ -78,4 +78,4 @@ It is RECOMMENDED to capture the value as provided by the application without at
 | `db.query.text`         | not set |
 | `db.operation.name`     | `"findAndModify"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
