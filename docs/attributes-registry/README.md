@@ -65,7 +65,7 @@ Currently, the following namespaces exist:
 - [Log](log.md)
 - [Messaging](messaging.md)
 - [Network](network.md)
-- [Nodejsruntime](nodejsruntime.md)
+- [Nodejs](nodejs.md)
 - [OCI](oci.md)
 - [OpenTracing](opentracing.md)
 - [OS](os.md)
@@ -84,7 +84,7 @@ Currently, the following namespaces exist:
 - [TLS](tls.md)
 - [URL](url.md)
 - [User Agent](user-agent.md)
-- [V8jsengineruntime](v8jsengineruntime.md)
+- [V8js](v8js.md)
 - [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

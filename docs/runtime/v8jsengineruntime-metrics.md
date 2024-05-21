@@ -13,13 +13,13 @@ This document describes semantic conventions for V8 JS Engine Runtime metrics in
 <!-- toc -->
 
 - [Experimental](#experimental)
-  - [Metric: `v8jsengineruntime.gc.duration`](#metric-v8jsengineruntimegcduration)
-  - [Metric: `v8jsengineruntime.memory.size`](#metric-v8jsengineruntimememorysize)
-  - [Metric: `v8jsengineruntime.heap.size`](#metric-v8jsengineruntimeheapsize)
-  - [Metric: `v8jsengineruntime.heap.space_size`](#metric-v8jsengineruntimeheapspace_size)
-  - [Metric: `v8jsengineruntime.heap.space_used_size`](#metric-v8jsengineruntimeheapspace_used_size)
-  - [Metric: `v8jsengineruntime.heap.space_available_size`](#metric-v8jsengineruntimeheapspace_available_size)
-  - [Metric: `v8jsengineruntime.heap.physical_space_size`](#metric-v8jsengineruntimeheapphysical_space_size)
+  - [Metric: `v8js.gc.duration`](#metric-v8jsgcduration)
+  - [Metric: `v8js.memory.size`](#metric-v8jsmemorysize)
+  - [Metric: `v8js.heap.size`](#metric-v8jsheapsize)
+  - [Metric: `v8js.heap.space_size`](#metric-v8jsheapspace_size)
+  - [Metric: `v8js.heap.space_used_size`](#metric-v8jsheapspace_used_size)
+  - [Metric: `v8js.heap.space_available_size`](#metric-v8jsheapspace_available_size)
+  - [Metric: `v8js.heap.physical_space_size`](#metric-v8jsheapphysical_space_size)
 
 <!-- tocstop -->
 
@@ -27,9 +27,9 @@ This document describes semantic conventions for V8 JS Engine Runtime metrics in
 
 **Status**: [Experimental][DocumentStatus]
 
-**Description:** Experimental V8 JS Engine Runtime metrics captured under `v8jsengineruntime`.
+**Description:** Experimental V8 JS Engine Runtime metrics captured under `v8js`.
 
-### Metric: `v8jsengineruntime.gc.duration`
+### Metric: `v8js.gc.duration`
 
 This metric is [recommended][MetricRecommended].
 
@@ -40,15 +40,15 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 <!-- semconv metric.veightjsengineruntime.gc.duration(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8jsengineruntime.gc.duration` | Histogram | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.gc.duration` | Histogram | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.veightjsengineruntime.gc.duration(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.gc.type`](/docs/attributes-registry/v8jsengineruntime.md) | string | The type of garbage collection. | `major`; `minor`; `incremental` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.gc.type`](/docs/attributes-registry/v8js.md) | string | The type of garbage collection. | `major`; `minor`; `incremental` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`v8jsengineruntime.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`v8js.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -58,22 +58,22 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 | `weakcb` | Weak Callbacks (Process Weak Callbacks). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `v8jsengineruntime.memory.size`
+### Metric: `v8js.memory.size`
 
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.veightjsengineruntime.memory.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8jsengineruntime.memory.size` | UpDownCounter | `By` | External memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.memory.size` | UpDownCounter | `By` | External memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.veightjsengineruntime.memory.size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.memory.state`](/docs/attributes-registry/v8jsengineruntime.md) | string | The state of memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.memory.state`](/docs/attributes-registry/v8js.md) | string | The state of memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`v8jsengineruntime.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`v8js.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -81,22 +81,22 @@ This metric is [recommended][MetricRecommended].
 | `used` | Used memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `v8jsengineruntime.heap.size`
+### Metric: `v8js.heap.size`
 
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.veightjsengineruntime.heap.size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8jsengineruntime.heap.size` | UpDownCounter | `By` | Heap size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.heap.size` | UpDownCounter | `By` | Heap size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.veightjsengineruntime.heap.size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.heap.size.state`](/docs/attributes-registry/v8jsengineruntime.md) | string | The size of heap memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.heap.size.state`](/docs/attributes-registry/v8js.md) | string | The size of heap memory. | `total`; `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`v8jsengineruntime.heap.size.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`v8js.heap.size.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -104,22 +104,22 @@ This metric is [recommended][MetricRecommended].
 | `used` | Used heap memory size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `v8jsengineruntime.heap.space_size`
+### Metric: `v8js.heap.space_size`
 
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.veightjsengineruntime.heap.space_size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8jsengineruntime.heap.space_size` | UpDownCounter | `By` | Heap space size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.heap.space_size` | UpDownCounter | `By` | Heap space size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.veightjsengineruntime.heap.space_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`v8jsengineruntime.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -130,22 +130,22 @@ This metric is [recommended][MetricRecommended].
 | `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `v8jsengineruntime.heap.space_used_size`
+### Metric: `v8js.heap.space_used_size`
 
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.veightjsengineruntime.heap.space_used_size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8jsengineruntime.heap.space_used_size` | UpDownCounter | `By` | Heap space used size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.heap.space_used_size` | UpDownCounter | `By` | Heap space used size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.veightjsengineruntime.heap.space_used_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`v8jsengineruntime.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -156,22 +156,22 @@ This metric is [recommended][MetricRecommended].
 | `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `v8jsengineruntime.heap.space_available_size`
+### Metric: `v8js.heap.space_available_size`
 
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.veightjsengineruntime.heap.space_available_size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8jsengineruntime.heap.space_available_size` | UpDownCounter | `By` | Heap space available size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.heap.space_available_size` | UpDownCounter | `By` | Heap space available size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.veightjsengineruntime.heap.space_available_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`v8jsengineruntime.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -182,22 +182,22 @@ This metric is [recommended][MetricRecommended].
 | `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
-### Metric: `v8jsengineruntime.heap.physical_space_size`
+### Metric: `v8js.heap.physical_space_size`
 
 This metric is [recommended][MetricRecommended].
 
 <!-- semconv metric.veightjsengineruntime.heap.physical_space_size(metric_table) -->
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8jsengineruntime.heap.physical_space_size` | UpDownCounter | `By` | Heap space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.heap.physical_space_size` | UpDownCounter | `By` | Heap space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- endsemconv -->
 
 <!-- semconv metric.veightjsengineruntime.heap.physical_space_size(full) -->
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8jsengineruntime.heap.space.name`](/docs/attributes-registry/v8jsengineruntime.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. | `new_space`; `old_space`; `code_space` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`v8jsengineruntime.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

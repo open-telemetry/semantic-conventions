@@ -1,0 +1,164 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Node.js Runtime
+--->
+
+# Semantic Conventions for Node.js Runtime Metrics
+
+**Status**: [Experimental][DocumentStatus]
+
+This document describes semantic conventions for Node.js Runtime metrics in OpenTelemetry.
+
+<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
+
+<!-- toc -->
+
+- [Experimental](#experimental)
+  - [Metric: `nodejs.eventloop.delay.min`](#metric-nodejseventloopdelaymin)
+  - [Metric: `nodejs.eventloop.delay.max`](#metric-nodejseventloopdelaymax)
+  - [Metric: `nodejs.eventloop.delay.mean`](#metric-nodejseventloopdelaymean)
+  - [Metric: `nodejs.eventloop.delay.stddev`](#metric-nodejseventloopdelaystddev)
+  - [Metric: `nodejs.eventloop.delay.p50`](#metric-nodejseventloopdelayp50)
+  - [Metric: `nodejs.eventloop.delay.p90`](#metric-nodejseventloopdelayp90)
+  - [Metric: `nodejs.eventloop.delay.p99`](#metric-nodejseventloopdelayp99)
+  - [Metric: `nodejs.eventloop.utilization`](#metric-nodejseventlooputilization)
+
+<!-- tocstop -->
+
+## Experimental
+
+**Status**: [Experimental][DocumentStatus]
+
+**Description:** Experimental Node.js Runtime metrics captured under `nodejs`.
+
+### Metric: `nodejs.eventloop.delay.min`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.eventloop.delay.min(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.eventloop.delay.min` | Gauge | `s` | Event loop minimum delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.eventloop.delay.min(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `nodejs.eventloop.delay.max`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.eventloop.delay.max(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.eventloop.delay.max` | Gauge | `s` | Event loop maximum delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.eventloop.delay.max(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `nodejs.eventloop.delay.mean`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.eventloop.delay.mean(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.eventloop.delay.mean` | Gauge | `s` | Event loop mean delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.eventloop.delay.mean(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `nodejs.eventloop.delay.stddev`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.eventloop.delay.stddev(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.eventloop.delay.stddev` | Gauge | `s` | Event loop standard deviation delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.eventloop.delay.stddev(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `nodejs.eventloop.delay.p50`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.eventloop.delay.pfifty(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.eventloop.delay.p50` | Gauge | `s` | Event loop 50 percentile delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.eventloop.delay.pfifty(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `nodejs.eventloop.delay.p90`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.eventloop.delay.ninety(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.eventloop.delay.p90` | Gauge | `s` | Event loop 90 percentile delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.eventloop.delay.ninety(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `nodejs.eventloop.delay.p99`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.eventloop.delay.ninety_nine(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.eventloop.delay.p99` | Gauge | `s` | Event loop 99 percentile delay. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.eventloop.delay.ninety_nine(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+### Metric: `nodejs.eventloop.utilization`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.nodejs.eventloop.utilization(metric_table) -->
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
+| -------- | --------------- | ----------- | -------------- | --------- |
+| `nodejs.eventloop.utilization` | Gauge | `1` | Event loop utilization. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The value range is [0.0,1.0].
+<!-- endsemconv -->
+
+<!-- semconv metric.nodejs.eventloop.utilization(full) -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nodejs.version`](/docs/attributes-registry/nodejs.md) | string | Node.js Runtime version. | `v22.0.0`; `v21.7.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<!-- endsemconv -->
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

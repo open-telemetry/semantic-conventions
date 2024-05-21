@@ -54,7 +54,7 @@ body:
         - area:log
         - area:messaging
         - area:network
-        - area:nodejsruntime
+        - area:nodejs
         - area:oci
         - area:opentracing
         - area:os
@@ -73,7 +73,7 @@ body:
         - area:tls
         - area:url
         - area:user-agent
-        - area:v8jsengineruntime
+        - area:v8js
         - area:webengine
         # End semconv area list
   - type: textarea

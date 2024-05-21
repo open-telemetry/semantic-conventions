@@ -1,98 +1,98 @@
 groups:
-  - id: metric.nodejsruntime.eventloop.delay.min
+  - id: metric.nodejs.eventloop.delay.min
     type: metric
-    metric_name: nodejsruntime.eventloop.delay.min
+    metric_name: nodejs.eventloop.delay.min
     brief: "Event loop minimum delay."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejsruntime.eventloop.delay.min
+    prefix: nodejs.eventloop.delay.min
     attributes:
-      - ref: nodejsruntime.version
+      - ref: nodejs.version
         requirement_level: recommended
 
-  - id: metric.nodejsruntime.eventloop.delay.max
+  - id: metric.nodejs.eventloop.delay.max
     type: metric
-    metric_name: nodejsruntime.eventloop.delay.max
+    metric_name: nodejs.eventloop.delay.max
     brief: "Event loop maximum delay."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejsruntime.eventloop.delay.max
+    prefix: nodejs.eventloop.delay.max
     attributes:
-      - ref: nodejsruntime.version
+      - ref: nodejs.version
         requirement_level: recommended
 
-  - id: metric.nodejsruntime.eventloop.delay.mean
+  - id: metric.nodejs.eventloop.delay.mean
     type: metric
-    metric_name: nodejsruntime.eventloop.delay.mean
+    metric_name: nodejs.eventloop.delay.mean
     brief: "Event loop mean delay."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejsruntime.eventloop.delay.mean
+    prefix: nodejs.eventloop.delay.mean
     attributes:
-      - ref: nodejsruntime.version
+      - ref: nodejs.version
         requirement_level: recommended
 
-  - id: metric.nodejsruntime.eventloop.delay.stddev
+  - id: metric.nodejs.eventloop.delay.stddev
     type: metric
-    metric_name: nodejsruntime.eventloop.delay.stddev
+    metric_name: nodejs.eventloop.delay.stddev
     brief: "Event loop standard deviation delay."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejsruntime.eventloop.delay.stddev
+    prefix: nodejs.eventloop.delay.stddev
     attributes:
-      - ref: nodejsruntime.version
+      - ref: nodejs.version
         requirement_level: recommended
 
-  - id: metric.nodejsruntime.eventloop.delay.pfifty
+  - id: metric.nodejs.eventloop.delay.pfifty
     type: metric
-    metric_name: nodejsruntime.eventloop.delay.p50
+    metric_name: nodejs.eventloop.delay.p50
     brief: "Event loop 50 percentile delay."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejsruntime.eventloop.delay.p50
+    prefix: nodejs.eventloop.delay.p50
     attributes:
-      - ref: nodejsruntime.version
+      - ref: nodejs.version
         requirement_level: recommended
 
-  - id: metric.nodejsruntime.eventloop.delay.ninety
+  - id: metric.nodejs.eventloop.delay.ninety
     type: metric
-    metric_name: nodejsruntime.eventloop.delay.p90
+    metric_name: nodejs.eventloop.delay.p90
     brief: "Event loop 90 percentile delay."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejsruntime.eventloop.delay.p90
+    prefix: nodejs.eventloop.delay.p90
     attributes:
-      - ref: nodejsruntime.version
+      - ref: nodejs.version
         requirement_level: recommended
 
-  - id: metric.nodejsruntime.eventloop.delay.ninety_nine
+  - id: metric.nodejs.eventloop.delay.ninety_nine
     type: metric
-    metric_name: nodejsruntime.eventloop.delay.p99
+    metric_name: nodejs.eventloop.delay.p99
     brief: "Event loop 99 percentile delay."
     instrument: gauge
     unit: "s"
     stability: experimental
-    prefix: nodejsruntime.eventloop.delay.p99
+    prefix: nodejs.eventloop.delay.p99
     attributes:
-      - ref: nodejsruntime.version
+      - ref: nodejs.version
         requirement_level: recommended
 
-  - id: metric.nodejsruntime.eventloop.utilization
+  - id: metric.nodejs.eventloop.utilization
     type: metric
-    metric_name: nodejsruntime.eventloop.utilization
+    metric_name: nodejs.eventloop.utilization
     brief: "Event loop utilization."
     instrument: gauge
     unit: "1"
     stability: experimental
     note: >
       The value range is [0.0,1.0].
-    prefix: nodejsruntime.eventloop.utilization
+    prefix: nodejs.eventloop.utilization
     attributes:
-      - ref: nodejsruntime.version
+      - ref: nodejs.version
         requirement_level: recommended
