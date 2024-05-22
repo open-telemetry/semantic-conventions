@@ -6,7 +6,7 @@
 
 # CloudEvents
 
-## Cloudevents Attributes
+## CloudEvents Attributes
 
 This document defines attributes for CloudEvents.
 

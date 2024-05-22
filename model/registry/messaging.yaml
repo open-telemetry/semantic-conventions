@@ -137,8 +137,11 @@ groups:
           The system-specific name of the messaging operation.
         examples: [ "ack", "nack", "send" ]
       - id: system
-        brief: >
-          An identifier for the messaging system being used. See below for a list of well-known identifiers.
+        brief: The messaging system as identified by the client instrumentation.
+        note: >
+          The actual messaging system may differ from the one known by the client.
+          For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system`
+          is set to `kafka` based on the instrumentation's best knowledge.
         type:
           allow_custom_values: true
           members:
@@ -333,28 +336,24 @@ groups:
         brief: >
           The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
         examples: 'ordering_key'
-        tag: tech-specific-gcp-pubsub
       - id: gcp_pubsub.message.ack_id
         type: string
         stability: experimental
         brief: >
          The ack id for a given message.
         examples: 'ack_id'
-        tag: tech-specific-gcp-pubsub
       - id: gcp_pubsub.message.ack_deadline
         type: int
         stability: experimental
         brief: >
           The ack deadline in seconds set for the modify ack deadline request.
         examples: 10
-        tag: tech-specific-gcp-pubsub
       - id: gcp_pubsub.message.delivery_attempt
         type: int
         stability: experimental
         brief: >
           The delivery attempt for a given message.
         examples: 2
-        tag: tech-specific-gcp-pubsub
   - id: registry.messaging.servicebus
     prefix: messaging
     type: attribute_group
