@@ -71,6 +71,8 @@ The <span id="target-placeholder">`{target}`</span> SHOULD adhere to one of the 
 - `server.address:server.port`
 - `db.system`
 
+A given instrumentation SHOULD strive for consistency in span names. This means that if a specific attribute from the [`{target}`](#target-placeholder) list is selected, it should always be used for the span name. If certain queries lack this specific attribute, the instrumentation SHOULD use `{db.operation.name}` as the span name and omit `{target}`, rather than falling back to the next attribute in the [`{target}`](#target-placeholder) list.
+
 ## Common attributes
 
 These attributes will usually be the same for all operations performed over the same database connection.
