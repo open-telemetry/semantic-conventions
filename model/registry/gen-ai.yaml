@@ -57,6 +57,18 @@ groups:
         brief: The stop sequences to provide.
         examples: ['\n']
         tag: llm-generic-request
+      - id: request.frequency_penalty
+        stability: experimental
+        type: double
+        brief: The frequency penalty to provide.
+        examples: ['0.1']
+        tag: llm-generic-request
+      - id: request.presence_penalty
+        stability: experimental
+        type: double
+        brief: The presence penalty to provide.
+        examples: ['0.1']
+        tag: llm-generic-request
       - id: response.id
         stability: experimental
         type: string
