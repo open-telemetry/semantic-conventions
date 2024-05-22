@@ -1,4 +1,0 @@
-change_type: breaking
-component: db
-note: Renames `db.sql.table`, `db.cassandra.table`, `db.mongodb.collection`, and `db.cosmosdb.container` attributes to `db.collection.name`
-issues: [ 870 ]

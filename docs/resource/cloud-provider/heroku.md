@@ -40,4 +40,4 @@ Additionally, [the `cloud.provider` resource attribute MUST be set to `heroku`](
 
 [Heroku dyno metadata]: https://devcenter.heroku.com/articles/dyno-metadata
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md

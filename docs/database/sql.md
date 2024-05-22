@@ -106,4 +106,4 @@ This is an example of attributes for a MySQL database span:
 | `db.query.text`        | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
 | `db.operation.name`    | `"SELECT"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
