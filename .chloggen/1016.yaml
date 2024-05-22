@@ -1,4 +1,0 @@
-change_type: enhancement
-component: db, messaging, gen_ai
-note: Clarify that `db.system`, `messaging.system`, `gen_ai.system` attributes capture the client perception and may differ from the actual product name.
-issues: [813, 1016]
