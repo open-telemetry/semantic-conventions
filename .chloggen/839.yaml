@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen-ai
+note: Adding top_k and stop to the list of required attributes for the gen_ai.request.model event.
+issues: [839]
