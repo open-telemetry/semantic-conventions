@@ -6,7 +6,7 @@
 
 # OpenTracing
 
-## Opentracing Attributes
+## OpenTracing Attributes
 
 Attributes used by the OpenTracing Shim layer.
 
