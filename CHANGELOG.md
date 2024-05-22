@@ -668,7 +668,7 @@ This and earlier versions were released as part of [the Specification](https://g
   ([#2827](https://github.com/open-telemetry/opentelemetry-specification/pull/2827))
 - Define semantic conventions yaml for non-otlp conventions
   ([#2850](https://github.com/open-telemetry/opentelemetry-specification/pull/2850))
-- Add more semantic convetion attributes of Apache RocketMQ
+- Add more semantic convention attributes of Apache RocketMQ
   ([#2881](https://github.com/open-telemetry/opentelemetry-specification/pull/2881))
 - Add `process.runtime.jvm.memory.usage_after_last_gc` metric to semantic conventions.
   ([#2901](https://github.com/open-telemetry/opentelemetry-specification/pull/2901))
