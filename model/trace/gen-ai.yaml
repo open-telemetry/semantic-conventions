@@ -23,6 +23,10 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.request.top_p
         requirement_level: recommended
+      - ref: gen_ai.request.top_k
+        requirement_level: recommended
+      - ref: gen_ai.request.stop
+        requirement_level: recommended
       - ref: gen_ai.response.id
         requirement_level: recommended
       - ref: gen_ai.response.model

@@ -45,6 +45,18 @@ groups:
         brief: The top_p sampling setting for the LLM request.
         examples: [1.0]
         tag: llm-generic-request
+      - id: request.top_k
+        stability: experimental
+        type: double
+        brief: The top_k sampling setting for the LLM request.
+        examples: [1.0]
+        tag: llm-generic-request
+      - id: request.stop
+        stability: experimental
+        type: double
+        brief: The stop sequences to provide.
+        examples: ['\n']
+        tag: llm-generic-request
       - id: response.id
         stability: experimental
         type: string
