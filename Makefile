@@ -52,7 +52,7 @@ markdown-link-check:
 # This target runs markdown-toc on all files that contain
 # a comment <!-- tocstop -->.
 #
-# The recommended way to prepate a .md file for markdown-toc is
+# The recommended way to prepare a .md file for markdown-toc is
 # to add these comments:
 #
 #   <!-- toc -->
