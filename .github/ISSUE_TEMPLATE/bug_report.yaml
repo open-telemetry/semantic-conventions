@@ -71,6 +71,7 @@ body:
         - area:tls
         - area:url
         - area:user-agent
+        - area:v8js
         - area:webengine
         # End semconv area list
   - type: textarea

@@ -1,0 +1,84 @@
+groups:
+  - id: registry.v8js
+    type: attribute_group
+    brief: Describes V8 JS Engine Runtime related attributes.
+    prefix: v8js
+    attributes:
+      - id: gc.type
+        stability: experimental
+        brief: The type of garbage collection.
+        type:
+          allow_custom_values: false
+          members:
+            - id: major
+              value: 'major'
+              brief: 'Major (Mark Sweep Compact).'
+              stability: experimental
+            - id: minor
+              value: 'minor'
+              brief: 'Minor (Scavenge).'
+              stability: experimental
+            - id: incremental
+              value: 'incremental'
+              brief: 'Incremental (Incremental Marking).'
+              stability: experimental
+            - id: weakcb
+              value: 'weakcb'
+              brief: 'Weak Callbacks (Process Weak Callbacks).'
+              stability: experimental
+      - id: memory.state
+        stability: experimental
+        type:
+          allow_custom_values: false
+          members:
+            - id: total
+              value: 'total'
+              brief: 'Total memory.'
+              stability: experimental
+            - id: used
+              value: 'used'
+              brief: 'Used memory.'
+              stability: experimental
+        brief: The state of memory.
+        examples: ["total", "used"]
+      - id: heap.size.state
+        stability: experimental
+        type:
+          allow_custom_values: false
+          members:
+            - id: total
+              value: 'total'
+              brief: 'Total heap memory size.'
+              stability: experimental
+            - id: used
+              value: 'used'
+              brief: 'Used heap memory size.'
+              stability: experimental
+        brief: The size of heap memory.
+        examples: ["total", "used"]
+      - id: heap.space.name
+        stability: experimental
+        brief: The name of the space type of heap memory.
+        type:
+          allow_custom_values: false
+          members:
+            - id: new_space
+              value: 'new_space'
+              brief: 'New memory space.'
+              stability: experimental
+            - id: old_space
+              value: 'old_space'
+              brief: 'Old memory space.'
+              stability: experimental
+            - id: code_space
+              value: 'code_space'
+              brief: 'Code memory space.'
+              stability: experimental
+            - id: map_space
+              value: 'map_space'
+              brief: 'Map memory space.'
+              stability: experimental
+            - id: large_object_space
+              value: 'large_object_space'
+              brief: 'Large object memory space.'
+              stability: experimental
