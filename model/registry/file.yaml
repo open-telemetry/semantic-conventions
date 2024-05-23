@@ -17,8 +17,8 @@ groups:
         brief: >
           Array of file attributes.
         note: >
-          Attributes names will vary by platform. Here’s a non-exhaustive list of values that are expected in this
-          field: archive, compressed, directory, encrypted, execute, hidden, read, readonly, system, write.
+          Attributes names depend on the OS or file system. Here’s a non-exhaustive list of values expected for this
+          attribute: `archive`, `compressed`, `directory`, `encrypted`, `execute`, `hidden`, `immutable`, `journaled`, `read`, `readonly`, `symbolic link`, `system`, `temporary`, `write`.
         stability: experimental
         examples: ['readonly', 'hidden']
       - id: created
@@ -34,9 +34,9 @@ groups:
         brief: >
           Time when the file attributes or metadata was last changed, in ISO 8601 format.
         note: >
-          This attribute is not supported on all file systems. Note that changes to the
-          file content will update `mtime`. This implies `ctime` will be adjusted at the same time, since
-          `mtime` is an attribute of the file.
+          `file.ctime` captures the time when any of the file's properties or attributes
+          (including the content) are changed, while `file.mtime` captures the timestamp
+          when the file content is modified.
         stability: experimental
         examples: ['2021-01-01T12:00:00Z']
       - id: directory
