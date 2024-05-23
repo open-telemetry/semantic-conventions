@@ -1,4 +1,0 @@
-change_type: enhancement
-component: messaging
-note: Adds `messaging.destination.partition.id`` to the messaging attributes
-issues: [ 814 ]

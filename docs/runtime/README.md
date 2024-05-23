@@ -47,6 +47,7 @@ Also consider the
 [OS process metrics](/docs/system/process-metrics.md)
 semantic conventions when instrumenting runtime environments.
 
+- [Go](go-metrics.md)
 - [JVM](jvm-metrics.md)
 - [Node.js](nodejs-metrics.md)
 

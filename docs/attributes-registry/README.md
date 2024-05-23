@@ -55,6 +55,7 @@ Currently, the following namespaces exist:
 - [File](file.md)
 - [GCP](gcp.md)
 - [Gen AI](gen-ai.md)
+- [Go](go.md)
 - [GraphQL](graphql.md)
 - [Heroku](heroku.md)
 - [Host](host.md)
