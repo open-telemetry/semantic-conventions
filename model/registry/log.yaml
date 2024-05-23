@@ -20,6 +20,11 @@ groups:
               value: 'stderr'
               brief: 'Events from stderr stream'
               stability: experimental
+      - id: iostream.foo
+        stability: experimental
+        brief: Should not be allowed
+        type: string
+        examples: [ "bar" ]
 
   - id: registry.log.file    # TODO: should we move it to the file model?
     type: attribute_group

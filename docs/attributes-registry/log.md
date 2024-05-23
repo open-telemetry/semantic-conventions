@@ -14,9 +14,10 @@
 
 This document defines log attributes
 
-| Attribute      | Type   | Description                                                                    | Examples           | Stability                                                        |
-| -------------- | ------ | ------------------------------------------------------------------------------ | ------------------ | ---------------------------------------------------------------- |
-| `log.iostream` | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute          | Type   | Description                                                                    | Examples           | Stability                                                        |
+| ------------------ | ------ | ------------------------------------------------------------------------------ | ------------------ | ---------------------------------------------------------------- |
+| `log.iostream`     | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `log.iostream.foo` | string | Should not be allowed                                                          | `bar`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
