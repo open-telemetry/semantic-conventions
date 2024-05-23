@@ -34,11 +34,11 @@ Describes file attributes.
 
 **[1]:** This attribute is not supported on all file systems.
 
-**[2]:** Attributes names will vary by platform. Here’s a non-exhaustive list of values that are expected in this field: archive, compressed, directory, encrypted, execute, hidden, read, readonly, system, write.
+**[2]:** Attributes names depend on the OS or file system. Here’s a non-exhaustive list of values expected for this attribute: `archive`, `compressed`, `directory`, `encrypted`, `execute`, `hidden`, `immutable`, `journaled`, `read`, `readonly`, `symbolic link`, `system`, `temporary`, `write`.
 
 **[3]:** This attribute is not supported on all file systems.
 
-**[4]:** This attribute is not supported on all file systems. Note that changes to the file content will update `mtime`. This implies `ctime` will be adjusted at the same time, since `mtime` is an attribute of the file.
+**[4]:** `file.ctime` captures the time when any of the file's properties or attributes (including the content) are changed, while `file.mtime` captures the timestamp when the file content is modified.
 
 **[5]:** This attribute is only applicable to Windows systems. The value should be uppercase, and not include the colon.
 
