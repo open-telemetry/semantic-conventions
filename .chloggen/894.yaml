@@ -1,4 +1,0 @@
-change_type: breaking
-component: db
-note: Deprecate the `db.user` attribute.
-issues: [ 885 ]

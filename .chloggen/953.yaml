@@ -1,7 +1,0 @@
-change_type: enhancement
-
-component: other
-
-note: Document patterns and suggestions for semconv code generation.
-
-issues: [551, 953]
