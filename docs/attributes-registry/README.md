@@ -84,7 +84,6 @@ Currently, the following namespaces exist:
 - [TLS](tls.md)
 - [URL](url.md)
 - [User Agent](user-agent.md)
-- [V8js](v8js.md)
 - [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
