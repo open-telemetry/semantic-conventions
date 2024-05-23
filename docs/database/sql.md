@@ -31,9 +31,8 @@ The following database systems (defined in the [`db.system`](./database-spans.md
 - `trino`
 - `other_sql`
 
-Many other database systems provide SQL support and can be accessed via generic database driver APIs such as JDBC or ODBC.
-When system-specific conventions are defined for the database, and it's accessed using SQL, the instrumentation SHOULD
-follow database-specific conventions and MAY also adhere to SQL semantic conventions.
+Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
+Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
 
 ## Attributes
 
