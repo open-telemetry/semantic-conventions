@@ -11,9 +11,6 @@ linkTitle: Client Calls
 <!-- toc -->
 
 - [Name](#name)
-- [Batch operations](#batch-operations)
-  - [Homogeneous batches](#homogeneous-batches)
-  - [Heterogeneous batches](#heterogeneous-batches)
 - [Common attributes](#common-attributes)
   - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Semantic Conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
@@ -73,18 +70,6 @@ The <span id="target-placeholder">`{target}`</span> SHOULD adhere to one of the 
 - `db.namespace`
 - `server.address:server.port`
 - `db.system`
-
-## Batch operations
-
-### Homogeneous batches
-
-Homogeneous batches are defined as batches of two or more operations
-where the individual operations are known to all have the same `db.query.text`.
-
-### Heterogeneous batches
-
-Heterogeneous batches are defined batches of two or more operations
-where individual operations are not known to all have the same `db.query.text`.
 
 ## Common attributes
 

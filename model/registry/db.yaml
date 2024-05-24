@@ -16,12 +16,8 @@ groups:
           If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query
           and it SHOULD match the value provided in the query text including any schema and database name prefix.
 
-          For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), since individual operations will all have the same collection name,
-          that collection name SHOULD be used.
-          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same collection name,
-          that collection name SHOULD be used.
-          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same collection name,
-          `db.collection.name` SHOULD NOT be captured.
+          For batch operations, if the individual operations are known to have the same collection name
+          then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
         examples: ['public.users', 'customers']
       - id: namespace
         type: string
@@ -47,15 +43,9 @@ groups:
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-          For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches),
-          individual operations will all have the same operation name and so that operation name SHOULD be used,
-          prepended by `BATCH `.
-          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches)
-          where individual operations are known to all have the same operation name, that operation name SHOULD be used,
-          prepended by `BATCH `.
-          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches)
-          where individual operations are not known to all have the same operation name,
-          `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+          For batch operations, if the individual operations are known to have the same operation name
+          then that operation name SHOULD be used prepended by `BATCH `,
+          otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
         examples: ['findAndModify', 'HMSET', 'SELECT']
       - id: query.text
         type: string
@@ -63,12 +53,9 @@ groups:
         brief: >
           The database query being executed.
         note: >
-          For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches),
-          individual operations will all have the same query text and so that query text SHOULD be used.
-          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches),
-          individual operations will not all have the same query text,
-          and all of the individual query texts SHOULD be concatenated with separator `; `
-          or some other database system specific separator if more applicable.
+          For batch operations, if the individual operations are known to have the same query text
+          then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated
+          with separator `; ` or some other database system specific separator if more applicable.
         examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
       - id: query.parameter
         type: template[string]
