@@ -28,14 +28,15 @@ This group defines the attributes used to describe telemetry in the context of d
 | `db.query.text`                   | string | The database query being executed.                                                                                                                                                                                                                                                   | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.system`                       | string | The database management system (DBMS) product as identified by the client instrumentation. [5]                                                                                                                                                                                       | `other_sql`; `mssql`; `mssqlcompact`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
 
 **[2]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[3]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
 
 **[4]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
