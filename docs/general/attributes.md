@@ -410,7 +410,7 @@ These attributes may be used for any operation with an authenticated and/or auth
 |---|---|---|---|---|---|
 | [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.id` instead. | `username` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.id` attribute. |
 | [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.roles` instead. | `admin` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.roles` attribute. |
-| [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.scope` instead. | `read:message, write:files` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.scope` attribute. |
+| [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Deprecated, no replacement at this time. | `read:message, write:files` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
 
 
 <!-- markdownlint-restore -->

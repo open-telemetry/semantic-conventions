@@ -19,6 +19,6 @@ groups:
       - id: scope
         type: string
         stability: experimental
-        deprecated: Replaced by `user.scope` attribute.
-        brief: "Deprecated, use `user.scope` instead."
+        deprecated: Removed.
+        brief: "Deprecated, no replacement at this time."
         examples: 'read:message, write:files'
