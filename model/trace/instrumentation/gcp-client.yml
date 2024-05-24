@@ -1,43 +1,9 @@
 groups:
-  - id: gcp.client.scope
-    type: scope
-    brief: >
-      The `gcp.client` conventions are intended to be used by Google Cloud
-      client libraries (e.g. https://github.com/googleapis/* and other
-      Google-owned/Google-provided client libraries for Google Cloud) to
-      identify such clients and to track their operations and performance.
-    prefix: gcp.client
-    stability: experimental
-    attributes:
-      - id: gcp.client.service
-        type: string
-        stability: experimental
-        requirement_level: required
-        brief: >
-          Short name of the GCP service for which the library is a client.
-          All variants of the client across programming languages should use an
-          identical value for this property. The short name should be intuitive
-          and aligned with either the name of the client (e.g. X for client
-          library packages named `google-cloud-X`) or the name of the API
-          subdomain (e.g. X for APIs hosted at `X.googleapis.com`). 
-        examples: ['cloudsql', 'datastore', 'spanner', 'firestore']
-      - id: gcp.client.repo
-        type: string
-        stability: experimental
-        brief: >
-          Identifies the repository where the client library source comes from.
-          The prefix `github.com/` should be not be included in the name. If 
-          (`gcp.client.service`, `telemetry.sdk.language`) do not uniquely
-          identify the client such as when multiple client variants exist
-          for the same service in a given programming language, this field
-          should be supplied in order to disambiguate between clients.
-      - id: gcp.client.artifact
-        type: string
-        stability: experimental
-        brief: >
-          Identifies the build target or deployment artifact within the
-          repository. In cases where multiple variants of the client exist
-          within the same repository, `gcp.client.repo` may not be sufficient
-          to disambiguate between client variants. For those cases, this
-          attribute may be used as an alternative approach to disambiguation.
-  
+- id: gcp.client.scope
+  type: scope
+  brief: Conventions for official Google Cloud client libraries.
+  prefix: gcp.client
+  stability: experimental
+  attributes:
+  - ref: gcp.client.service
+    requirement_level: opt_in

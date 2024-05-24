@@ -1,0 +1,13 @@
+groups:
+- id: instrumentation.scope
+  type: scope
+  brief: >
+    The `instrumentation` conventions are intended to provide common
+    mechanisms for triangulating and identifying instrumentation libraries.
+  prefix: instrumentation
+  stability: experimental
+  attributes:
+  - ref: instrumentation.source.repo
+    requirement_level: opt_in
+  - ref: instrumentation.source.target
+    requirement_level: opt_in

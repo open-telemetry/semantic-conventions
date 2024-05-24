@@ -1,4 +1,4 @@
 change_type: 'enhancement'
-component: gcp
-note: Introduced `gcp.client.*` scope attributes to identify GCP client libraries.
+component: instrumentation, gcp
+note: Introduced `gcp.client.service` and 'instrumentation.source.*' attributes.
 issues: [ 1047 ]
