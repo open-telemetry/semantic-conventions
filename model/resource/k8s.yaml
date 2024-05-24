@@ -46,6 +46,7 @@ groups:
       - ref: k8s.container.name
       - ref: k8s.container.restart_count
       - ref: k8s.container.status.last_terminated_reason
+      - ref: k8s.container.status.current_waiting_reason
 
   - id: k8s.replicaset
     prefix: k8s.replicaset
