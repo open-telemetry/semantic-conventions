@@ -4,12 +4,6 @@ groups:
     type: attribute_group
     brief: "Describes information about the user."
     attributes:
-      - id: domain
-        type: string
-        stability: experimental
-        brief: >
-          Name of the directory the user is a member of. For example, an LDAP or Active Directory domain name.
-        examples: ['internal.example.com']
       - id: email
         type: string
         stability: experimental
