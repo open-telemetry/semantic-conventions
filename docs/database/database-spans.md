@@ -75,13 +75,13 @@ The <span id="target-placeholder">`{target}`</span> SHOULD adhere to one of the 
 
 ### Homogeneous batches
 
-Homogeneous batches are batches of two or more operations where the individual operations are known to all have the
-same `db.query.text`.
+Homogeneous batches are defined as batches of two or more operations
+where the individual operations are known to all have the same `db.query.text`.
 
 ### Heterogeneous batches
 
-Heterogeneous batches are batches of two or more operations where individual operations are not known to all have the
-same `db.query.text`.
+Heterogeneous batches are defined batches of two or more operations
+where individual operations are not known to all have the same `db.query.text`.
 
 ## Common attributes
 
