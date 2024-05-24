@@ -70,26 +70,21 @@ jobs:
     - name: run misspell
       run: make misspell
 
-  docfx:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x
-
-    - name: install docfx
-      run: dotnet tool update -g docfx --version "3.0.0-*" --add-source https://docfx.pkgs.visualstudio.com/docfx/_packaging/docs-public-packages/nuget/v3/index.json
-
-    - name: run docfx
-      run: docfx build --dry-run
-
   semantic-conventions:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: verify semantic convention tables
       run: make table-check
+
+  semantic-conventions-registry:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify registry tables
+      run: |
+        make attribute-registry-generation
+        git diff --exit-code './docs/attributes-registry/*.md' || (echo 'Attribute registry markdown is out of date, please run "make attribute-registry-generation" and commit the changes in this PR.' && exit 1)
 
   semantic-conventions-compatibility:
     runs-on: ubuntu-latest

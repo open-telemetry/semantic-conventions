@@ -10,6 +10,7 @@ linkTitle: Client Calls
 
 <!-- toc -->
 
+- [Name](#name)
 - [Common attributes](#common-attributes)
   - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Semantic Conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
@@ -17,94 +18,116 @@ linkTitle: Client Calls
 <!-- tocstop -->
 
 > **Warning**
+>
 > Existing database instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
-> (or prior) SHOULD NOT change the version of the database conventions that they emit
-> until a transition plan to the (future) stable semantic conventions has been published.
-> Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
->
-> **Warning**
-> Existing Database instrumentations that are using
-> [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/database.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the networking conventions that they emit
->   until the HTTP semantic conventions are marked stable (HTTP stabilization will
->   include stabilization of a core set of networking conventions which are also used
->   in Database instrumentations). Conventions include, but are not limited to, attributes,
+> * SHOULD NOT change the version of the database conventions that they emit
+>   until the database semantic conventions are marked stable.
+>   Conventions include, but are not limited to, attributes,
 >   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version which is a comma-separated list of values.
->   The only values defined so far are:
->   * `http` - emit the new, stable networking conventions,
->     and stop emitting the old experimental networking conventions
+>   If the list of values includes:
+>   * `database` - emit the new, stable database conventions,
+>     and stop emitting the old experimental database conventions
 >     that the instrumentation emitted previously.
->   * `http/dup` - emit both the old and the stable networking conventions,
+>   * `database/dup` - emit both the old and the stable database conventions,
 >     allowing for a seamless transition.
 >   * The default behavior (in the absence of one of these values) is to continue
->     emitting whatever version of the old experimental networking conventions
+>     emitting whatever version of the old experimental database conventions
 >     the instrumentation was emitting previously.
->   * Note: `http/dup` has higher precedence than `http` in case both values are present
+>   * Note: `database/dup` has higher precedence than `database` in case both values are present
 > * SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of conventions.
 > * SHOULD drop the environment variable in the next major version.
 
 **Span kind:** MUST always be `CLIENT`.
 
-The **span name** SHOULD be set to a low cardinality value representing the statement executed on the database.
-It MAY be a stored procedure name (without arguments), DB statement without variable arguments, operation name, etc.
-Since SQL statements may have very high cardinality even without arguments, SQL spans SHOULD be named the
-following way, unless the statement is known to be of low cardinality:
-`<db.operation.name> <db.name>.<db.collection.name>`, provided that `db.operation.name` and `db.collection.name` are available.
-If `db.collection.name` is not available due to its semantics, the span SHOULD be named `<db.operation.name> <db.name>`.
-It is not recommended to attempt any client-side parsing of `db.statement` just to get these properties,
-they should only be used if the library being instrumented already provides them.
-When it's otherwise impossible to get any meaningful span name, `db.name` or the tech-specific database name MAY be used.
-
 Span that describes database call SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
 For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
 with all retries.
+
+## Name
+
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#span).
+
+<!-- markdown-link-check-disable -->
+<!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
+The **span name** SHOULD be `{db.operation.name} {target}` if there is a
+(low-cardinality) `db.operation.name` available (see below for the exact definition of the [`{target}`](#target-placeholder) placeholder).
+
+If there is no (low-cardinality) `db.operation.name` available, database span names
+SHOULD be [`{target}`](#target-placeholder).
+<!-- markdown-link-check-enable -->
+
+Semantic conventions for individual database systems MAY specify different span name format.
+
+The <span id="target-placeholder">`{target}`</span> SHOULD adhere to one of the following values, arranged in prioritized order, provided they are accessible:
+
+- `db.collection.name`
+- `db.namespace`
+- `server.address:server.port`
+- `db.system`
 
 ## Common attributes
 
 These attributes will usually be the same for all operations performed over the same database connection.
 
 <!-- semconv db(full) -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.system`](../attributes-registry/db.md) | string | An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers. | `other_sql` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.collection.name`](../attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.name`](../attributes-registry/db.md) | string | This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails). [3] | `customers`; `main` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](../attributes-registry/db.md) | string | The name of the operation or command being executed. | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](../attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.instance.id`](../attributes-registry/db.md) | string | An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`. | `mysql-e26b99z.example.com` | `Recommended` If different from the `server.address` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](../attributes-registry/db.md) | string | The database query being executed. | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [8] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](../attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](../attributes-registry/server.md) | string | Name of the database host. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](../attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [10] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `mssql`; `mssqlcompact` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required` [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [13] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
+**[1]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 
-**[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
+**[2]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3]:** In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
+**[3]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 
-**[4]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
+**[4]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[5]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[6]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[6]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 
-**[7]:** Should be collected by default only if there is sanitization that excludes sensitive information.
+**[7]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-**[8]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
+**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[9]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+
+**[10]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+
+**[11]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[10]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+**[13]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+
+
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -162,6 +185,19 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
 ### Notes and well-known identifiers for `db.system`
@@ -178,7 +214,7 @@ This allows multiple instrumentations for the same database to be aligned and ea
 The value `other_sql` is intended as a fallback and MUST only be used if the DBMS is known to be SQL-compliant but the concrete product is not known to the instrumentation.
 If the concrete DBMS is known to the instrumentation, its specific identifier MUST be used.
 
-Back ends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.statement`.
+Back ends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.query.text`.
 
 When additional attributes are added that only apply to a specific DBMS, its identifier SHOULD be used as a namespace in the attribute key as for the attributes in the sections below.
 
@@ -197,4 +233,4 @@ More specific Semantic Conventions are defined for the following database techno
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
