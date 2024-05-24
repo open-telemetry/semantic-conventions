@@ -14,35 +14,27 @@ groups:
               stability: experimental
               value: "openai"
               brief: 'OpenAI'
-            - id: microsoft
+            - id: azure_openai
               stability: experimental
-              value: "microsoft"
-              brief: 'Microsoft'
-            - id: huggingface
+              value: "azure_openai"
+              brief: 'Azure OpenAI'
+            - id: vertex_ai
               stability: experimental
-              value: "huggingface"
-              brief: 'Hugging Face'
-            - id: google
-              stability: experimental
-              value: "google"
-              brief: 'Google'
-            - id: meta
-              stability: experimental
-              value: "meta"
-              brief: 'Meta'
+              value: "vertex_ai"
+              brief: 'Vertex AI'
             - id: anthropic
               stability: experimental
               value: "anthropic"
-              brief: "Anthropic"
-            - id: mistral
-              stability: experimental
-              value: "mistral"
-              brief: 'Mistral'
+              brief: 'Anthropic'
             - id: cohere
               stability: experimental
               value: "cohere"
-              brief: 'Cohere'
-        brief: The name of the LLM foundation model vendor.
+              brief: 'Cohere'            
+        brief: The Generative AI product as identified by the client instrumentation.
+        note: >
+          The actual GenAI product may differ from the one identified by the client.
+          For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+          is set to `openai` based on the instrumentation's best knowledge.
         examples: 'openai'
         tag: llm-generic-request
       - id: request.model

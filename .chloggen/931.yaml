@@ -1,7 +1,0 @@
-change_type: enhancement
-
-component: http
-
-note: List all HTTP client and server attributes in the corresponding table, remove common attributes from yaml and markdown.
-
-issues: [928]

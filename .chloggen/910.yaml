@@ -1,4 +1,0 @@
-change_type: enhancement
-component: db
-note: Reorganize DB conventions to be shared across span and metric conventions.
-issues: [ 910 ]
