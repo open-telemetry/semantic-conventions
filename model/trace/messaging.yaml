@@ -232,7 +232,6 @@ groups:
     brief: >
       Attributes for Azure Service Bus
     attributes:
-      - ref: messaging.operation.name
       - ref: messaging.servicebus.message.delivery_count
         requirement_level:
           conditionally_required: If delivery count is available and is bigger than 0.
@@ -258,7 +257,6 @@ groups:
     brief: >
       Attributes for Azure Event Hubs
     attributes:
-      - ref: messaging.operation.name
       - ref: messaging.destination.partition.id
         brief: >
           String representation of the partition id messages are sent to or received from, unique within the Event Hub.
