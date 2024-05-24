@@ -10,8 +10,8 @@ groups:
         stability: experimental
         brief: The name of a collection (table, container) within the database.
         note: >
-            If the collection name is parsed from the query, it SHOULD match the value provided
-            in the query and may be qualified with the schema and database name.
+          If the collection name is parsed from the query, it SHOULD match the value provided
+          in the query and may be qualified with the schema and database name.
 
           If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query
           and it SHOULD match the value provided in the query text including any schema and database name prefix.

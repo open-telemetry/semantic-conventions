@@ -79,7 +79,11 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.operation.duration` | Histogram | `s` | Duration of database client operations. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.operation.duration` | Histogram | `s` | Duration of database client operations. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+**[1]:** Batch operations SHOULD be recorded as a single operation.
+
 
 
 <!-- markdownlint-restore -->
@@ -99,7 +103,8 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `mssql`; `mssqlcompact` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed.
+For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), individual operations will all have the same operation name and so that operation name SHOULD be used, prepended by `BATCH `. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same operation name, that operation name SHOULD be used, prepended by `BATCH `. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same operation name, `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required` [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [10] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -109,7 +114,8 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 **[1]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[2]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
+For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), since individual operations will all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same collection name, `db.collection.name` SHOULD NOT be captured.
 
 **[3]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 

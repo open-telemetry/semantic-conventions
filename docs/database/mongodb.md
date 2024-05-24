@@ -31,7 +31,8 @@ described on this page.
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
+For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), since individual operations will all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same collection name, `db.collection.name` SHOULD NOT be captured.
 
 **[2]:** <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
 
