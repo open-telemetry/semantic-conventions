@@ -66,12 +66,12 @@ If neither `db.operation.name` nor `{target}` are available, span name SHOULD be
 
 Semantic conventions for individual database systems MAY specify different span name format.
 
-The <span id="target-placeholder">`{target}`</span> SHOULD describe the entity operation is performed against
+The <span id="target-placeholder">`{target}`</span> SHOULD describe the entity that the operation is performed against
 and SHOULD adhere to one of the following values, provided they are accessible:
 
 - `db.collection.name` SHOULD be used for data manipulation operations or operations on database collections.
 - `db.namespace` SHOULD be used only for operations on a specific database namespace.
-- `server.address:server.port` SHOULD be used for other operations not targeting a specific database or collection
+- `server.address:server.port` SHOULD be used for other operations not targeting any specific database(s) or collection(s)
 
 ## Common attributes
 
