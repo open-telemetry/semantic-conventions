@@ -73,6 +73,9 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 - `db.namespace` SHOULD be used only for operations on a specific database namespace.
 - `server.address:server.port` SHOULD be used for other operations not targeting any specific database(s) or collection(s)
 
+If a corresponding `{target}` value is not available for a specific operation, the instrumentation SHOULD NOT populate `{target}`.
+For example, for an operation describing SQL query on an anonymous table `SELECT * FROM (VALUES 'a', 'b', 'c') AS t (name)`, span name should be `SELECT`.
+
 ## Common attributes
 
 These attributes will usually be the same for all operations performed over the same database connection.
