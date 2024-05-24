@@ -35,6 +35,7 @@ body:
         - area:file
         - area:gcp
         - area:gen-ai
+        - area:go
         - area:graphql
         - area:heroku
         - area:host
