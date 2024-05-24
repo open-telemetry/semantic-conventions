@@ -13,7 +13,15 @@ groups:
             If the collection name is parsed from the query, it SHOULD match the value provided
             in the query and may be qualified with the schema and database name.
 
-            It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+          If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query
+          and it SHOULD match the value provided in the query text including any schema and database name prefix.
+
+          For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), since individual operations will all have the same collection name,
+          that collection name SHOULD be used.
+          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same collection name,
+          that collection name SHOULD be used.
+          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same collection name,
+          `db.collection.name` SHOULD NOT be captured.
         examples: ['public.users', 'customers']
       - id: namespace
         type: string
@@ -36,6 +44,16 @@ groups:
         stability: experimental
         brief: >
           The name of the operation or command being executed.
+
+          For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches),
+          individual operations will all have the same operation name and so that operation name SHOULD be used,
+          prepended by `BATCH `.
+          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches)
+          where individual operations are known to all have the same operation name, that operation name SHOULD be used,
+          prepended by `BATCH `.
+          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches)
+          where individual operations are not known to all have the same operation name,
+          `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ['findAndModify', 'HMSET', 'SELECT']
@@ -44,6 +62,13 @@ groups:
         stability: experimental
         brief: >
           The database query being executed.
+        note: >
+          For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches),
+          individual operations will all have the same query text and so that query text SHOULD be used.
+          For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches),
+          individual operations will not all have the same query text,
+          and all of the individual query texts SHOULD be concatenated with separator `; `
+          or some other database system specific separator if more applicable.
         examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
       - id: query.parameter
         type: template[string]
@@ -57,6 +82,14 @@ groups:
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
         examples: ['someval', '55']
+      - id: operation.batch.size
+        type: int
+        stability: experimental
+        brief: The number of queries included in a [batch operation](/docs/database/database-spans.md#batch-operations).
+        note: >
+          Operations are only considered batches when they contain two or more operations,
+          and so `db.operation.batch.size` SHOULD never be `1`.
+        examples: [ 2, 3, 4 ]
       - id: system
         brief: The database management system (DBMS) product as identified by the client instrumentation.
         note: >

@@ -71,6 +71,18 @@ The <span id="target-placeholder">`{target}`</span> SHOULD adhere to one of the 
 - `server.address:server.port`
 - `db.system`
 
+## Batch operations
+
+### Homogeneous batches
+
+Homogeneous batches are batches of two or more operations where the individual operations are known to all have the
+same `db.query.text`.
+
+### Heterogeneous batches
+
+Heterogeneous batches are batches of two or more operations where individual operations are not known to all have the
+same `db.query.text`.
+
 ## Common attributes
 
 These attributes will usually be the same for all operations performed over the same database connection.
