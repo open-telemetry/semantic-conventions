@@ -6,8 +6,27 @@
 
 # GCP
 
+- [Gcp](#gcp-attributes)
+- [Gcp Client](#gcp-client-attributes)
 - [Gcp Cloud Run](#gcp-cloud-run-attributes)
 - [Gcp Gce](#gcp-gce-attributes)
+
+## GCP Attributes
+
+Attributes for Google Cloud
+
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+## GCP Client Attributes
+
+Attributes for Google Cloud client libraries.
+
+| Attribute            | Type   | Description                                            | Examples                                              | Stability                                                        |
+| -------------------- | ------ | ------------------------------------------------------ | ----------------------------------------------------- | ---------------------------------------------------------------- |
+| `gcp.client.service` | string | Identifies official Google Cloud client libraries. [1] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'. This attribute should be accompanied by 'instrumentation.source.repo' and/or 'instrumentation.source.target' when the combination of 'gcp.client.service' and 'telemetry.sdk.language' is insufficient to uniquely identify the particular client library.
 
 ## GCP Cloud Run Attributes
 

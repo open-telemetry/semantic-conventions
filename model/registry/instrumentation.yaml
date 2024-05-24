@@ -6,12 +6,12 @@ groups:
     Describes properties about the library that is being instrumented or that
     is responsible for performing the instrumentation.
   attributes:
-    - id: instrumentation.source.repo
+    - id: source.repo
       type: string
       stability: experimental
       brief: The repository associated with the InstrumentationScope.
       examples: [github.com/organization/repo, gitlab.com/group/repo]
-    - id: instrumentation.source.target
+    - id: source.target
       type: string
       stability: experimental
       brief: The build target associated with the InstrumentationScope.

@@ -9,7 +9,7 @@ groups:
     brief: >
       Attributes for Google Cloud client libraries.
     attributes:
-      - id: gcp.client.service
+      - id: service
         type: string
         stability: experimental
         brief: Identifies official Google Cloud client libraries.
