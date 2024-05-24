@@ -32,7 +32,7 @@ described on this page.
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
-For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), since individual operations will all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same collection name, `db.collection.name` SHOULD NOT be captured.
+For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
 
 **[2]:** <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
 

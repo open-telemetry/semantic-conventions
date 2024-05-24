@@ -31,7 +31,7 @@ This group defines the attributes used to describe telemetry in the context of d
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
-For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), since individual operations will all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same collection name, `db.collection.name` SHOULD NOT be captured.
+For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
 
 **[2]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -40,12 +40,12 @@ It is RECOMMENDED to capture the value as provided by the application without at
 **[3]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
 **[4]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), individual operations will all have the same operation name and so that operation name SHOULD be used, prepended by `BATCH `. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same operation name, that operation name SHOULD be used, prepended by `BATCH `. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same operation name, `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
 
 **[5]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
-**[6]:** For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), individual operations will all have the same query text and so that query text SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches), individual operations will not all have the same query text, and all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+**[6]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 
 **[7]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 

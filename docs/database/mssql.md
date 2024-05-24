@@ -34,7 +34,7 @@ described on this page.
 
 **[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
-For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), since individual operations will all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same collection name, that collection name SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same collection name, `db.collection.name` SHOULD NOT be captured.
+For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
 
 **[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
 
@@ -52,7 +52,7 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 
 **[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[9]:** For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), individual operations will all have the same query text and so that query text SHOULD be used. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches), individual operations will not all have the same query text, and all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+**[9]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 
 **[10]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
 

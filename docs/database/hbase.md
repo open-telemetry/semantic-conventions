@@ -35,7 +35,7 @@ described on this page.
 **[2]:** When performing table-related operations, the instrumentations SHOULD extract the namespace from the table name according to the [HBase table naming conventions](https://hbase.apache.org/book.html#namespace_creation). If namespace is not provided, instrumentation SHOULD set `db.namespace` value to `default`.
 
 **[3]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-For [homogeneous batch operations](/docs/database/database-spans.md#homogeneous-batches), individual operations will all have the same operation name and so that operation name SHOULD be used, prepended by `BATCH `. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are known to all have the same operation name, that operation name SHOULD be used, prepended by `BATCH `. For [heterogeneous batch operations](/docs/database/database-spans.md#heterogeneous-batches) where individual operations are not known to all have the same operation name, `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
 
 **[4]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
 
