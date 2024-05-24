@@ -4,19 +4,17 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: enhancement
+change_type: new_component
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: db
+component: go
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: >
-  Add note to `db.collection.name`, `db.namespace`, and `db.operation.name`
-  about capturing those without attempting to do any case normalization.
+note: Add new go namespace for Go runtime metrics
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [886]
+issues: [535]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.

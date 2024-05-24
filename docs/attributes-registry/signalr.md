@@ -6,7 +6,7 @@
 
 # SignalR
 
-## Signalr Attributes
+## SignalR Attributes
 
 SignalR attributes
 

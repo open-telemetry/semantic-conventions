@@ -221,4 +221,4 @@ The following attributes are applicable to creation and processing Spans.
 <!-- endsemconv -->
 <!-- prettier-ignore-end -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md

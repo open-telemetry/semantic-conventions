@@ -6,7 +6,7 @@
 
 # iOS
 
-## Ios Deprecated Attributes
+## iOS Deprecated Attributes
 
 The iOS platform on which the iOS application is running.
 

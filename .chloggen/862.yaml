@@ -1,4 +1,0 @@
-change_type: enhancement
-component: exception
-note: Replace constraints with requirement levels on exceptions.
-issues: [ 862 ]

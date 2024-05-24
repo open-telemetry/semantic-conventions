@@ -23,4 +23,4 @@ Technology specific semantic conventions are defined for the following messaging
 * [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
 * [Google Cloud Pub/Sub](gcp-pubsub.md): Semantic Conventions for *Google Cloud Pub/Sub*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md

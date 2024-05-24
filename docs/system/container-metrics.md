@@ -200,4 +200,4 @@ This metric is [opt-in][MetricOptIn].
 <!-- endsemconv -->
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
-[MetricOptIn]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/metrics/metric-requirement-level.md#opt-in
+[MetricOptIn]: https://github.com/open-telemetry/semantic-conventions/blob/v1.26.0/docs/general/metric-requirement-level.md#opt-in
