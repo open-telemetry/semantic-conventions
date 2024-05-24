@@ -14,22 +14,22 @@ The following database systems (defined in the [`db.system`](./database-spans.md
 - `db2`
 - `derby`
 - `edb`
-- `ingres`
-- `interbase`
 - `firebird`
 - `h2`
 - `hsqldb`
+- `ingres`
+- `interbase`
 - `mariadb`
 - `maxdb`
 - `mssql`
 - `mssqlcompact`
 - `mysql`
 - `oracle`
+- `other_sql`
 - `pervasive`
 - `postgresql`
 - `sqlite`
 - `trino`
-- `other_sql`
 
 Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
 Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
