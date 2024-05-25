@@ -40,8 +40,6 @@ groups:
         requirement_level:
           conditionally_required: "if the operation ended in an error"
         note: |
-          The cardinality of `error.type` SHOULD be low.
-
-          When working across multiple models, it is RECOMMENDED to use a common set of error types.
-
-          Additional details may be captured in domain-specific attributes.
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.

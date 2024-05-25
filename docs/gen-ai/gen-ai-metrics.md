@@ -146,11 +146,9 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [ 0.01, 0.02,
 
 **[1]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
 
-**[2]:** The cardinality of `error.type` SHOULD be low.
-
-When working across multiple models, it is RECOMMENDED to use a common set of error types.
-
-Additional details may be captured in domain-specific attributes.
+**[2]:** The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+the canonical name of exception that occurred, or another low-cardinality error identifier.
+Instrumentations SHOULD document the list of errors they report.
 
 **[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
