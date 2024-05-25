@@ -10,9 +10,11 @@
 
 This document defines attributes for software deployments.
 
-| Attribute                | Type   | Description                                                                                                        | Examples                | Stability                                                        |
-| ------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------ | ----------------------- | ---------------------------------------------------------------- |
-| `deployment.environment` | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                     | Type   | Description                                                                                                        | Examples                           | Stability                                                        |
+| ----------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------- |
+| `deployment.environment.name` | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deployment.id`               | string | The id of the deployment.                                                                                          | `1208`                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deployment.name`             | string | The name of the deployment.                                                                                        | `deploy my app`; `deploy-frontend` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** `deployment.environment` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.

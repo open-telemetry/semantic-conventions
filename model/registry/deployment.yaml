@@ -5,7 +5,19 @@ groups:
     brief: >
      This document defines attributes for software deployments.
     attributes:
-      - id: environment
+      - id: name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the deployment.
+        examples: ['deploy my app', 'deploy-frontend']
+      - id: id
+        type: string
+        stability: experimental
+        brief: >
+          The id of the deployment.
+        examples: ['1208']
+      - id: environment.name
         type: string
         stability: experimental
         brief: >
