@@ -16,3 +16,13 @@ groups:
           separation of semantics for events in separate domains like browser, mobile, and
           kubernetes.
         examples: ['browser.mouse.click', 'device.app.lifecycle']
+      - id: message
+        type: string
+        stability: experimental
+        brief: >
+          Human-readable message representing an event.
+        note: >
+          Events are identified by an `event.name` and a set of attributes and fields in the body that carry specific
+          meaning. However, since these events will be combined with other logs, `event.message` allows a backend to
+          display a human-readable representation of the event.
+        examples: ['Workflow started']

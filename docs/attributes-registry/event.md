@@ -10,8 +10,11 @@
 
 Attributes for Events represented using Log Records.
 
-| Attribute    | Type   | Description                               | Examples                                      | Stability                                                        |
-| ------------ | ------ | ----------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------- |
-| `event.name` | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute       | Type   | Description                                       | Examples                                      | Stability                                                        |
+| --------------- | ------ | ------------------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------- |
+| `event.message` | string | Human-readable message representing an event. [1] | `Workflow started`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `event.name`    | string | Identifies the class / type of event. [2]         | `browser.mouse.click`; `device.app.lifecycle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Event names are subject to the same rules as [attribute names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/common/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.
+**[1]:** Events are identified by an `event.name` and a set of attributes and fields in the body that carry specific meaning. However, since these events will be combined with other logs, `event.message` allows a backend to display a human-readable representation of the event.
+
+**[2]:** Event names are subject to the same rules as [attribute names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/common/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.

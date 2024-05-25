@@ -6,3 +6,5 @@ groups:
     attributes:
       - ref: event.name
         requirement_level: required
+      - ref: event.message
+        requirement_level: recommended
