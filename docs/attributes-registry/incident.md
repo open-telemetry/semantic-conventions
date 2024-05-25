@@ -1,6 +1,3 @@
-
-
-
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -9,17 +6,12 @@
 
 # Incident
 
-
-
 ## Incident Attributes
 
 This group describes attributes specific to incidents.
 
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `incident.id` | string | The id of the incident. | `123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `incident.name` | string | The name of the incident. | `incident-123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute           | Type   | Description                   | Examples                            | Stability                                                        |
+| ------------------- | ------ | ----------------------------- | ----------------------------------- | ---------------------------------------------------------------- |
+| `incident.id`       | string | The id of the incident.       | `123`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `incident.name`     | string | The name of the incident.     | `incident-123`                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `incident.severity` | string | The severity of the incident. | `critical`; `high`; `medium`; `low` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-

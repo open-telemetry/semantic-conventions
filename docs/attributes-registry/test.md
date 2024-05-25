@@ -1,6 +1,3 @@
-
-
-
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -9,19 +6,14 @@
 
 # Test
 
-
-
 ## Test Suite Attributes
 
 This group describes attributes specific to tests.
 
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `test.suite.case.id` | string | The id of the test case. | `123445` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test.suite.case.name` | string | The name of the test case. | `TestCase1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                | Type   | Description                  | Examples                        | Stability                                                        |
+| ------------------------ | ------ | ---------------------------- | ------------------------------- | ---------------------------------------------------------------- |
+| `test.suite.case.id`     | string | The id of the test case.     | `123445`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `test.suite.case.name`   | string | The name of the test case.   | `TestCase1`                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `test.suite.case.status` | string | The status of the test case. | `success`; `failure`; `skipped` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test.suite.id` | string | The id of the test suite. | `123408` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test.suite.name` | string | The name of the test suite. | `TestSuite1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
+| `test.suite.id`          | string | The id of the test suite.    | `123408`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `test.suite.name`        | string | The name of the test suite.  | `TestSuite1`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

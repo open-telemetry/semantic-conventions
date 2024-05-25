@@ -190,7 +190,7 @@ groups:
         brief: >
           The id of the runner executing the step within a pipeline.
         examples: ['1289']
-      - id: pipeline.step.runner.system()
+      - id: pipeline.step.runner.system
         type: string
         stability: experimental
         brief: >
