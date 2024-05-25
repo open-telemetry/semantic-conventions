@@ -78,7 +78,6 @@ groups:
       - id: token.type
         stability: experimental
         type:
-          allow_custom_values: true
           members:
             - id: input
               stability: experimental
@@ -90,7 +89,6 @@ groups:
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
         examples: ['input', 'output']
-        tag: llm-generic-metrics
       - id: prompt
         stability: experimental
         type: string
@@ -110,4 +108,3 @@ groups:
         type: string
         brief: The name of the operation being performed.
         examples: ['chat', 'completion']
-        tag: llm-generic-metrics
