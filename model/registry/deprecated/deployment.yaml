@@ -20,4 +20,3 @@ groups:
           * `service.name=frontend`, `deployment.environment=production`
           * `service.name=frontend`, `deployment.environment=staging`.
         examples: ['staging', 'production']
-
