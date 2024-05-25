@@ -16,6 +16,7 @@ body:
         - area:aspnetcore
         - area:aws
         - area:browser
+        - area:cicd
         - area:client
         - area:cloud
         - area:cloudevents
