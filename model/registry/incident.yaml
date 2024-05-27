@@ -23,4 +23,3 @@ groups:
         brief: >
           The severity of the incident.
         examples: ['critical', 'high', 'medium', 'low']
-

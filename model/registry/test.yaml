@@ -35,4 +35,3 @@ groups:
         brief: >
           The status of the test case.
         examples: ['success', 'failure', 'skipped']
-

@@ -41,4 +41,3 @@ groups:
         brief: >
           The sha (checksum) of the build attestation.
         examples: ['1b31dfcd5b7f9267bf2ff47651df1cfb9147b9e4df1f335accf65b4cda498408']
-

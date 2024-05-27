@@ -53,4 +53,3 @@ groups:
         brief: >
           OS system attributes of the runner acorrding to the [OS system attributes](./os.md).
         examples: ['system.os.name']
-
