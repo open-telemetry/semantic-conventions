@@ -31,9 +31,9 @@ considered to be identifying the same service:
 
 "Describes deprecated deployment attributes."
 
-| Attribute                | Type   | Description                                             | Examples                | Stability                                                                                                        |
-| ------------------------ | ------ | ------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `deployment.environment` | string | 'Deprecated, use `deployment.environment` instead.' [2] | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `deployment.environment` instead. |
+| Attribute                | Type   | Description                                                  | Examples                | Stability                                                                                                             |
+| ------------------------ | ------ | ------------------------------------------------------------ | ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `deployment.environment` | string | 'Deprecated, use `deployment.environment.name` instead.' [2] | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `deployment.environment.name` instead. |
 
 **[2]:** `deployment.environment` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.

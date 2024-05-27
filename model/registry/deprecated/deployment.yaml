@@ -8,9 +8,9 @@ groups:
       - id: environment
         type: string
         stability: experimental
-        deprecated: 'Deprecated, use `deployment.environment` instead.'
+        deprecated: 'Deprecated, use `deployment.environment.name` instead.'
         brief: >
-          'Deprecated, use `deployment.environment` instead.'
+          'Deprecated, use `deployment.environment.name` instead.'
         note: |
           `deployment.environment` does not affect the uniqueness constraints defined through
           the `service.namespace`, `service.name` and `service.instance.id` resource attributes.

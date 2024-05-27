@@ -1,0 +1,26 @@
+groups:
+  - id: registry.incident
+    prefix: incident
+    type: attribute_group
+    brief: >
+     This group describes attributes specific to incidents.
+    attributes:
+      - id: name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the incident.
+        examples: ['incident-123']
+      - id: id
+        type: string
+        stability: experimental
+        brief: >
+          The id of the incident.
+        examples: ['123']
+      - id: severity
+        type: string
+        stability: experimental
+        brief: >
+          The severity of the incident.
+        examples: ['critical', 'high', 'medium', 'low']
+

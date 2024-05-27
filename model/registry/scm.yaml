@@ -1,0 +1,37 @@
+groups:
+  - id: registry.scm.repository
+    prefix: scm
+    type: attribute_group
+    brief: >
+     This group defines the attributes for source control management (SCM) systems.
+    attributes:
+      - id: name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the repository.
+        examples: ['opentelemetry-collector-contrib']
+      - id: ref.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the ref (branch) in the repository.
+        examples: ['my-feature-branch']
+      - id: ref.commit.sha
+        type: string
+        stability: experimental
+        brief: >
+          The sha of the commit the ref (branch) is pointing to in the repository.
+        examples: ['9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc']
+      - id: change.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the change (pull request / merge request) in the repository.
+        examples: ['pull-request-123']
+      - id: change.id
+        type: string
+        stability: experimental
+        brief: >
+          The id of the change (pull request / merge request) in the repository.
+        examples: ['123']

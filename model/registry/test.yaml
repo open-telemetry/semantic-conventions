@@ -1,0 +1,38 @@
+groups:
+  - id: registry.test.suite
+    prefix: test
+    type: attribute_group
+    brief: >
+     This group describes attributes specific to tests.
+    attributes:
+      - id: suite.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the test suite.
+        examples: ['TestSuite1']
+      - id: suite.id
+        type: string
+        stability: experimental
+        brief: >
+          The id of the test suite.
+        examples: ['123408']
+      - id: suite.case.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the test case.
+        examples: ['TestCase1']
+      - id: suite.case.id
+        type: string
+        stability: experimental
+        brief: >
+          The id of the test case.
+        examples: ['123445']
+      - id: suite.case.status
+        type: string
+        stability: experimental
+        brief: >
+          The status of the test case.
+        examples: ['success', 'failure', 'skipped']
+

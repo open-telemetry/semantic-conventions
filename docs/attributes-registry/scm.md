@@ -6,24 +6,14 @@
 
 # Scm
 
-- [Scm](#scm-attributes)
-- [Scm Repository](#scm-repository-attributes)
-
-## Scm Attributes
+## Scm Repository Attributes
 
 This group defines the attributes for source control management (SCM) systems.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-## Scm Repository Attributes
-
-This group describes attributes specific to repositories within a source control management system.
-
-| Attribute                   | Type   | Description                                                              | Examples                                                           | Stability                                                        |
-| --------------------------- | ------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------- |
-| `repository.change.id`      | string | The id of the change (pull request / merge request) in the repository.   | `123`                                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `repository.change.name`    | string | The name of the change (pull request / merge request) in the repository. | `pull-request-123`                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `repository.name`           | string | The name of the repository.                                              | `opentelemetry-collector-contrib`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `repository.ref.commit.sha` | string | The sha of the commit the ref (branch) is pointing to in the repository. | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `repository.ref.name`       | string | The name of the ref (branch) in the repository.                          | `my-feature-branch`                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute            | Type   | Description                                                              | Examples                                                           | Stability                                                        |
+| -------------------- | ------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| `scm.change.id`      | string | The id of the change (pull request / merge request) in the repository.   | `123`                                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `scm.change.name`    | string | The name of the change (pull request / merge request) in the repository. | `pull-request-123`                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `scm.name`           | string | The name of the repository.                                              | `opentelemetry-collector-contrib`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `scm.ref.commit.sha` | string | The sha of the commit the ref (branch) is pointing to in the repository. | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `scm.ref.name`       | string | The name of the ref (branch) in the repository.                          | `my-feature-branch`                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
