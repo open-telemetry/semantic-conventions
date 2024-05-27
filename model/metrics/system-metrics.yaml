@@ -340,3 +340,13 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes: []
+
+  - id: metric.system.linux.memory.slab
+    type: metric
+    metric_name: system.linux.memory.slab
+    stability: experimental
+    brief: "Memory used by the Linux kernel for managing caches of frequently used objects"
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.memory.state
