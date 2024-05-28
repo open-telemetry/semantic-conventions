@@ -10,6 +10,7 @@
 - [System Cpu](#system-cpu-attributes)
 - [System Deprecated](#system-deprecated-attributes)
 - [System Filesystem](#system-filesystem-attributes)
+- [System Linux Memory Slab](#system-linux-memory-slab-attributes)
 - [System Memory](#system-memory-attributes)
 - [System Network](#system-network-attributes)
 - [System Paging](#system-paging-attributes)
@@ -90,6 +91,21 @@ Describes Filesystem attributes
 | `refs`    | refs        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hfsplus` | hfsplus     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ext4`    | ext4        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## System Linux Memory Slab Attributes
+
+Describes Linux Slab Memory attributes
+
+| Attribute                        | Type   | Description                 | Examples                       | Stability                                                        |
+| -------------------------------- | ------ | --------------------------- | ------------------------------ | ---------------------------------------------------------------- |
+| `system.linux.memory.slab.state` | string | The Linux slab memory state | `reclaimable`; `unreclaimable` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`system.linux.memory.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value           | Description   | Stability                                                        |
+| --------------- | ------------- | ---------------------------------------------------------------- |
+| `reclaimable`   | reclaimable   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unreclaimable` | unreclaimable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Memory Attributes
 

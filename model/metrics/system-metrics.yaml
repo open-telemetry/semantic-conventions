@@ -341,12 +341,25 @@ groups:
     unit: "By"
     attributes: []
 
-  - id: metric.system.linux.memory.slab
+  - id: metric.system.linux.memory.slab.usage
     type: metric
-    metric_name: system.linux.memory.slab
+    metric_name: system.linux.memory.slab.usage
     stability: experimental
-    brief: "Memory used by the Linux kernel for managing caches of frequently used objects"
+    brief: "Reports the memory used by the Linux kernel for managing caches of frequently used objects by state."
+    note: |
+      The sum over all `system.linux.memory.slab.state` values SHOULD equal the total slab memory available on the system, that is `system.linux.memory.slab.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.memory.state
+      - ref: system.linux.memory.slab.state
+
+  - id: metric.system.linux.memory.slab.limit
+    type: metric
+    metric_name: system.linux.memory.slab.limit
+    stability: experimental
+    brief: "Total slab memory used in the system."
+    note: |
+      Its value SHOULD equal the sum of `system.linux.memory.slab.state` over all states.
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
