@@ -56,20 +56,25 @@ Database spans MUST follow the overall [guidelines for span names](https://githu
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
 The **span name** SHOULD be `{db.operation.name} {target}` if there is a
-(low-cardinality) `db.operation.name` available (see below for the exact definition of the [`{target}`](#target-placeholder) placeholder).
+(low-cardinality) `{db.operation.name}` available (see below for the exact definition of the [`{target}`](#target-placeholder) placeholder).
 
 If there is no (low-cardinality) `db.operation.name` available, database span names
 SHOULD be [`{target}`](#target-placeholder).
 <!-- markdown-link-check-enable -->
 
+If neither `{db.operation.name}` nor `{target}` are available, span name SHOULD be `{db.system}`.
+
 Semantic conventions for individual database systems MAY specify different span name format.
 
-The <span id="target-placeholder">`{target}`</span> SHOULD adhere to one of the following values, arranged in prioritized order, provided they are accessible:
+The <span id="target-placeholder">`{target}`</span> SHOULD describe the entity that the operation is performed against
+and SHOULD adhere to one of the following values, provided they are accessible:
 
-- `db.collection.name`
-- `db.namespace`
-- `server.address:server.port`
-- `db.system`
+- `db.collection.name` SHOULD be used for data manipulation operations or operations on database collections.
+- `db.namespace` SHOULD be used for operations on a specific database namespace.
+- `server.address:server.port` SHOULD be used for other operations not targeting any specific database(s) or collection(s)
+
+If a corresponding `{target}` value is not available for a specific operation, the instrumentation SHOULD omit the `{target}`.
+For example, for an operation describing SQL query on an anonymous table like `SELECT * FROM (SELECT * FROM table) t`, span name should be `SELECT`.
 
 ## Common attributes
 
