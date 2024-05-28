@@ -3,8 +3,7 @@ groups:
   prefix: instrumentation
   type: attribute_group
   brief: >
-    Describes properties about the library that is being instrumented or that
-    is responsible for performing the instrumentation.
+    Describes the instrumentation library - the original library if it's instrumented natively or the instrumentation library.
   attributes:
     - id: source.repo
       type: string
