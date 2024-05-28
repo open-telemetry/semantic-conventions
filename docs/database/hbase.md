@@ -35,8 +35,9 @@ described on this page.
 **[2]:** When performing table-related operations, the instrumentations SHOULD extract the namespace from the table name according to the [HBase table naming conventions](https://hbase.apache.org/book.html#namespace_creation). If namespace is not provided, instrumentation SHOULD set `db.namespace` value to `default`.
 
 **[3]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
 
-**[4]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
+**[4]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
 **[5]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
