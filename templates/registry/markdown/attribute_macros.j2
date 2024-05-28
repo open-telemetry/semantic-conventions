@@ -20,8 +20,17 @@
 {% macro name_with_link(attribute, attribute_registry_base_url, lineage_attributes) %}[{{name(attribute)}}]({{attribute_registry_base_url}}/{{ find_lineage(attribute.name, lineage_attributes) | split_id | list | reject("eq", "registry")| first | kebab_case }}.md){% endmacro %}
 
 {% macro examples(attribute) %}{%- if attribute.examples %}
+{%- if "[]" in attribute.type and "template" not in attribute.type %}
 {%- if attribute.examples is sequence %}
-{%- for example in attribute.examples %}{%if loop.first == false %}; {% endif %}`{{ example }}`{%- endfor %}
+{%- set ns = namespace(all_non_sequence=true) %}
+{%- for example in attribute.examples %}{%- if example is sequence %}{%- set ns.all_non_sequence = false %}{%- endif %}{%- endfor %}
+{%- if ns.all_non_sequence %}`{{ attribute.examples | trim }}`
+{%- else %}{%- for example in attribute.examples %}{%if loop.first == false %}; {% endif %}`{{ example | trim }}`{%- endfor %}
+{%- endif %}
+{%- else %}`[{{ attribute.examples | trim }}]`
+{%- endif %}
+{%- elif attribute.examples is sequence %}
+{%- for example in attribute.examples %}{%if loop.first == false %}; {% endif %}`{{ example | trim }}`{%- endfor %}
 {%- else %}`{{ attribute.examples | trim }}`
 {%- endif %}{%- elif attribute.type is mapping %}
 {%- for e in attribute.type.members %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
