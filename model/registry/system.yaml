@@ -49,7 +49,7 @@ groups:
         stability: experimental
         brief: "The logical CPU number [0..n-1]"
         examples: [1]
-  # sytem.memory.* attribute group
+  # system.memory.* attribute group
   - id: registry.system.memory
     prefix: system.memory
     type: attribute_group
