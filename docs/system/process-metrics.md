@@ -289,8 +289,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -403,8 +403,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `voluntary` | voluntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `involuntary` | involuntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `voluntary` | voluntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
