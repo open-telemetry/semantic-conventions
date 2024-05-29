@@ -139,7 +139,6 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 | Value  | Description | Stability |
 |---|---|---|
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -164,6 +163,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hsqldb` | HyperSQL DataBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `influxdb` | InfluxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `informix` | Informix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -179,6 +179,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `postgresql` | PostgreSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

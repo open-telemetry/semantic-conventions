@@ -47,52 +47,52 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value            | Description                         | Stability                                                        |
 | ---------------- | ----------------------------------- | ---------------------------------------------------------------- |
-| `gprs`           | GPRS                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edge`           | EDGE                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `umts`           | UMTS                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cdma`           | CDMA                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cdma2000_1xrtt` | CDMA2000 1XRTT                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `edge`           | EDGE                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ehrpd`          | EHRPD                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `evdo_0`         | EVDO Rel. 0                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `evdo_a`         | EVDO Rev. A                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cdma2000_1xrtt` | CDMA2000 1XRTT                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsdpa`          | HSDPA                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsupa`          | HSUPA                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hspa`           | HSPA                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iden`           | IDEN                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `evdo_b`         | EVDO Rev. B                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `lte`            | LTE                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ehrpd`          | EHRPD                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hspap`          | HSPAP                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gprs`           | GPRS                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gsm`            | GSM                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `td_scdma`       | TD-SCDMA                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hsdpa`          | HSDPA                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hspa`           | HSPA                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hspap`          | HSPAP                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hsupa`          | HSUPA                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iden`           | IDEN                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `iwlan`          | IWLAN                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `lte`            | LTE                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `lte_ca`         | LTE CA                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nr`             | 5G NR (New Radio)                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nrnsa`          | 5G NRNSA (New Radio Non-Standalone) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `lte_ca`         | LTE CA                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `td_scdma`       | TD-SCDMA                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `umts`           | UMTS                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value         | Description | Stability                                                        |
 | ------------- | ----------- | ---------------------------------------------------------------- |
-| `wifi`        | wifi        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wired`       | wired       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cell`        | cell        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unknown`     | unknown     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wifi`        | wifi        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wired`       | wired       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `transmit` | transmit    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive`  | receive     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `transmit` | transmit    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description              | Stability                                                  |
 | ------ | ------------------------ | ---------------------------------------------------------- |
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp`  | TCP                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp`  | UDP                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -136,10 +136,10 @@ These attributes may be used for any network related operation.
 
 | Value    | Description                    | Stability                                                        |
 | -------- | ------------------------------ | ---------------------------------------------------------------- |
+| `inproc` | In-process communication. [5]  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ip_tcp` | ip_tcp                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ip_udp` | ip_udp                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pipe`   | Named or anonymous pipe.       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `inproc` | In-process communication. [5]  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other`  | Something else (non IP-based). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pipe`   | Named or anonymous pipe.       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[5]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.

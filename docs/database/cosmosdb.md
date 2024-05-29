@@ -76,29 +76,29 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 | Value  | Description | Stability |
 |---|---|---|
-| `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `direct` | Direct connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `Invalid` | invalid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Batch` | batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Create` | create | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Patch` | patch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed` | read_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Execute` | execute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query` | query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Head` | head | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `HeadFeed` | head_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Batch` | batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Invalid` | invalid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Patch` | patch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Query` | query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `QueryPlan` | query_plan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ReadFeed` | read_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

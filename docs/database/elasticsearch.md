@@ -93,6 +93,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 | Value  | Description | Stability |
 |---|---|---|
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `CONNECT` | CONNECT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `DELETE` | DELETE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `GET` | GET method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -102,7 +103,6 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
