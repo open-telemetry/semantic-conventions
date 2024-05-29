@@ -50,26 +50,26 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `alibaba_cloud_ecs`         | Alibaba Cloud Elastic Compute Service          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `alibaba_cloud_fc`          | Alibaba Cloud Function Compute                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `alibaba_cloud_openshift`   | Red Hat OpenShift on Alibaba Cloud             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_app_runner`            | AWS App Runner                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws_ec2`                   | AWS Elastic Compute Cloud                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws_ecs`                   | AWS Elastic Container Service                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws_eks`                   | AWS Elastic Kubernetes Service                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_lambda`                | AWS Lambda                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws_elastic_beanstalk`     | AWS Elastic Beanstalk                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_app_runner`            | AWS App Runner                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_lambda`                | AWS Lambda                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws_openshift`             | Red Hat OpenShift on AWS (ROSA)                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_vm`                  | Azure Virtual Machines                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_aks`                 | Azure Kubernetes Service                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_app_service`         | Azure App Service                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `azure_container_apps`      | Azure Container Apps                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `azure_container_instances` | Azure Container Instances                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_aks`                 | Azure Kubernetes Service                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `azure_functions`           | Azure Functions                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_app_service`         | Azure App Service                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `azure_openshift`           | Azure Red Hat OpenShift                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_bare_metal_solution`   | Google Bare Metal Solution (BMS)               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_compute_engine`        | Google Cloud Compute Engine (GCE)              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_cloud_run`             | Google Cloud Run                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_kubernetes_engine`     | Google Cloud Kubernetes Engine (GKE)           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_cloud_functions`       | Google Cloud Functions (GCF)                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_vm`                  | Azure Virtual Machines                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp_app_engine`            | Google Cloud App Engine (GAE)                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_bare_metal_solution`   | Google Bare Metal Solution (BMS)               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_cloud_functions`       | Google Cloud Functions (GCF)                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_cloud_run`             | Google Cloud Run                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_compute_engine`        | Google Cloud Compute Engine (GCE)              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_kubernetes_engine`     | Google Cloud Kubernetes Engine (GKE)           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp_openshift`             | Red Hat OpenShift on Google Cloud              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm_cloud_openshift`       | Red Hat OpenShift on IBM Cloud                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud_cvm`         | Tencent Cloud Cloud Virtual Machine (CVM)      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

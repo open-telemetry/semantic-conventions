@@ -187,6 +187,10 @@ groups:
               value: 'hsqldb'
               brief: 'HyperSQL DataBase'
               stability: experimental
+            - id: influxdb
+              value: 'influxdb'
+              brief: 'InfluxDB'
+              stability: experimental
             - id: informix
               value: 'informix'
               brief: 'Informix'

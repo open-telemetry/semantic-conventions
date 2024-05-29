@@ -78,16 +78,16 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | Value  | Description | Stability |
 |---|---|---|
 | `all` | all | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum` | each_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum` | quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one` | one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two` | two | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three` | three | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one` | local_one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `any` | any | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial` | serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `each_quorum` | each_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_one` | local_one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `one` | one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quorum` | quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `serial` | serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `three` | three | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `two` | two | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

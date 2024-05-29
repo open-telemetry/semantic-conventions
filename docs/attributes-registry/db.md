@@ -61,7 +61,6 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 | Value           | Description                                        | Stability                                                        |
 | --------------- | -------------------------------------------------- | ---------------------------------------------------------------- |
-| `other_sql`     | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `adabas`        | Adabas (Adaptable Database System)                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cache`         | InterSystems Caché                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cassandra`     | Apache Cassandra                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -86,6 +85,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `hbase`         | Apache HBase                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hive`          | Apache Hive                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hsqldb`        | HyperSQL DataBase                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `influxdb`      | InfluxDB                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `informix`      | Informix                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ingres`        | Ingres                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `instantdb`     | InstantDB                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -101,6 +101,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `netezza`       | Netezza                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch`    | OpenSearch                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `oracle`        | Oracle Database                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other_sql`     | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pervasive`     | Pervasive PSQL                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pointbase`     | PointBase                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `postgresql`    | PostgreSQL                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -132,16 +133,16 @@ This group defines attributes for Cassandra.
 | Value          | Description  | Stability                                                        |
 | -------------- | ------------ | ---------------------------------------------------------------- |
 | `all`          | all          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum`  | each_quorum  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum`       | quorum       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one`          | one          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two`          | two          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three`        | three        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one`    | local_one    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `any`          | any          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial`       | serial       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `each_quorum`  | each_quorum  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_one`    | local_one    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `one`          | one          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quorum`       | quorum       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `serial`       | serial       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `three`        | three        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `two`          | two          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db CosmosDB Attributes
 
@@ -161,28 +162,28 @@ This group defines attributes for Azure Cosmos DB.
 
 | Value     | Description                     | Stability                                                        |
 | --------- | ------------------------------- | ---------------------------------------------------------------- |
-| `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `direct`  | Direct connection.              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value               | Description        | Stability                                                        |
 | ------------------- | ------------------ | ---------------------------------------------------------------- |
-| `Invalid`           | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Batch`             | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Create`            | create             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Patch`             | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read`              | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Delete`            | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Replace`           | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Execute`           | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query`             | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Head`              | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `HeadFeed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert`            | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Batch`             | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Invalid`           | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Patch`             | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Query`             | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `QueryPlan`         | query_plan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Read`              | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ReadFeed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Replace`           | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Upsert`            | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db Deprecated Attributes
 
