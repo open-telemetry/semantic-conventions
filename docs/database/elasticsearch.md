@@ -127,7 +127,7 @@ It is RECOMMENDED to capture the value as provided by the application without at
 | `db.collection.name`                | `"my-index"`                                                                                                                        |
 | `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
 | `db.elasticsearch.path_parts.index` | `"my-index-000001"`                                                                                                                 |
-| `db.elasticsearch.cluster.name`     | `"e9106fc68e3044f0b1475b04bf4ffd5f"`                                                                                                |
-| `db.instance.id`                    | `"instance-0000000001"`                                                                                                             |
+| `db.namespace`                      | `"e9106fc68e3044f0b1475b04bf4ffd5f"`                                                                                                |
+| `db.elasticsearch.node.name`        | `"instance-0000000001"`                                                                                                             |
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
