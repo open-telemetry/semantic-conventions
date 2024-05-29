@@ -73,15 +73,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[9]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[10]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
-Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[11]:** The name of the Elasticsearch cluster which the client connects to. When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
-
-**[12]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
-
-**[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 
 
