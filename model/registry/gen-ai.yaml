@@ -50,7 +50,6 @@ groups:
         type: double
         brief: The top_k sampling setting for the LLM request.
         examples: [1.0]
-        tag: llm-generic-request
       - id: request.stop_sequences
         stability: experimental
         type: string[]
