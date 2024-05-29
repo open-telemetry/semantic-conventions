@@ -44,4 +44,4 @@ Semantic conventions for HTTP are defined for the following signals:
 * [HTTP Spans](http-spans.md): Semantic Conventions for HTTP client and server *spans*.
 * [HTTP Metrics](http-metrics.md): Semantic Conventions for HTTP client and server *metrics*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
