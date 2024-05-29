@@ -48,15 +48,15 @@ An operating system process.
 
 | Value         | Description | Stability                                                        |
 | ------------- | ----------- | ---------------------------------------------------------------- |
-| `voluntary`   | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `involuntary` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `involuntary` | involuntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `voluntary`   | voluntary   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value   | Description | Stability                                                        |
 | ------- | ----------- | ---------------------------------------------------------------- |
-| `major` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `minor` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `major` | major       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `minor` | minor       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Process Cpu Attributes
 
@@ -70,6 +70,6 @@ Attributes for process CPU
 
 | Value    | Description | Stability                                                        |
 | -------- | ----------- | ---------------------------------------------------------------- |
-| `system` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user`   | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wait`   | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user`   | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wait`   | wait        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

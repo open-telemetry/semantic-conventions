@@ -2,6 +2,7 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+  1.26.0:
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/966
@@ -35,6 +36,12 @@ versions:
               - db.client.connections.create_time
               - db.client.connections.wait_time
               - db.client.connections.use_time
+    all:
+      changes:
+        # https://github:com/open-telemetry/semantic-conventions/pull/731/
+        - rename_attributes:
+            attribute_map:
+              enduser.id: user.id
 
   1.25.0:
     spans:

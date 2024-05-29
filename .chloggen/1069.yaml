@@ -1,0 +1,7 @@
+change_type: enhancement
+
+component: db
+
+note: 'Update database span name: clarify that target depends on the operation and should not be set when corresponding data is not available.'
+
+issues: [1045]

@@ -55,16 +55,17 @@ body size should be used.
 size should be used.
 
 **[7]:** If a custom value is used, it MUST be of low cardinality.
+
 **[8]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value     | Description                                                                                                                                                                                                            | Stability                                                        |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `create`  | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios.                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process` | One or more messages are delivered to or processed by a consumer.                                                                                                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle`  | One or more messages are settled.                                                                                                                                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -75,12 +76,12 @@ size should be used.
 | `aws_sqs`    | Amazon Simple Queue Service (SQS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `eventgrid`  | Azure Event Grid                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `eventhubs`  | Azure Event Hubs                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `servicebus` | Azure Service Bus                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp_pubsub` | Google Cloud Pub/Sub              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `jms`        | Java Message Service              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kafka`      | Apache Kafka                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rabbitmq`   | RabbitMQ                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq`   | Apache RocketMQ                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `servicebus` | Azure Service Bus                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Messaging Deprecated Attributes
 
@@ -101,7 +102,7 @@ This group describes attributes specific to Azure Event Hubs.
 | `messaging.eventhubs.consumer.group`        | string | The name of the consumer group the event consumer is associated with.                  | `indexer`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.eventhubs.message.enqueued_time` | int    | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Messaging Gcp Pubsub Attributes
+## Messaging GCP Pubsub Attributes
 
 This group describes attributes specific to GCP Pub/Sub.
 
@@ -125,7 +126,7 @@ This group describes attributes specific to Apache Kafka.
 
 **[9]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
-## Messaging Rabbitmq Attributes
+## Messaging RabbitMQ Attributes
 
 This group describes attributes specific to RabbitMQ.
 
@@ -134,7 +135,7 @@ This group describes attributes specific to RabbitMQ.
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rabbitmq.message.delivery_tag`    | int    | RabbitMQ message delivery tag | `123`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Messaging Rocketmq Attributes
+## Messaging RocketMQ Attributes
 
 This group describes attributes specific to RocketMQ.
 
@@ -154,16 +155,16 @@ This group describes attributes specific to RocketMQ.
 
 | Value          | Description                    | Stability                                                        |
 | -------------- | ------------------------------ | ---------------------------------------------------------------- |
-| `clustering`   | Clustering consumption model   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `broadcasting` | Broadcasting consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `clustering`   | Clustering consumption model   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `messaging.rocketmq.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value         | Description         | Stability                                                        |
 | ------------- | ------------------- | ---------------------------------------------------------------- |
-| `normal`      | Normal message      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fifo`        | FIFO message        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `delay`       | Delay message       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fifo`        | FIFO message        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `normal`      | Normal message      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transaction` | Transaction message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Messaging Servicebus Attributes
@@ -181,7 +182,7 @@ This group describes attributes specific to Azure Service Bus.
 
 | Value         | Description                          | Stability                                                        |
 | ------------- | ------------------------------------ | ---------------------------------------------------------------- |
-| `complete`    | Message is completed                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `abandon`     | Message is abandoned                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `complete`    | Message is completed                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `dead_letter` | Message is sent to dead letter queue | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `defer`       | Message is deferred                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

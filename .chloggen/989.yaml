@@ -1,7 +1,0 @@
-change_type: enhancement
-
-component: http
-
-note: List experimental HTTP attributes applicable to HTTP client and server spans.
-
-issues: [989]

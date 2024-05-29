@@ -20,22 +20,23 @@ This group defines the attributes used to describe telemetry in the context of d
 | Attribute                         | Type   | Description                                                                                                                                                                                                                                                                          | Examples                                                              | Stability                                                        |
 | --------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `db.client.connections.pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.client.connections.state`     | string | The state of a connection in the pool                                                                                                                                                                                                                                                | `idle`; `used`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connections.state`     | string | The state of a connection in the pool                                                                                                                                                                                                                                                | `idle`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.collection.name`              | string | The name of a collection (table, container) within the database. [1]                                                                                                                                                                                                                 | `public.users`; `customers`                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.namespace`                    | string | The name of the database, fully qualified within the server address and port. [2]                                                                                                                                                                                                    | `customers`; `test.users`                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.operation.name`               | string | The name of the operation or command being executed. [3]                                                                                                                                                                                                                             | `findAndModify`; `HMSET`; `SELECT`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.parameter.<key>`        | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [4]                                                                                                                                          | `someval`; `55`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.text`                   | string | The database query being executed.                                                                                                                                                                                                                                                   | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.system`                       | string | The database management system (DBMS) product as identified by the client instrumentation. [5]                                                                                                                                                                                       | `other_sql`; `mssql`; `mssqlcompact`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.system`                       | string | The database management system (DBMS) product as identified by the client instrumentation. [5]                                                                                                                                                                                       | `other_sql`; `adabas`; `cache`                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
 
 **[2]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[3]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
 
 **[4]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
@@ -46,65 +47,66 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 | Value  | Description | Stability                                                        |
 | ------ | ----------- | ---------------------------------------------------------------- |
-| `idle` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value           | Description                                        | Stability                                                        |
 | --------------- | -------------------------------------------------- | ---------------------------------------------------------------- |
-| `other_sql`     | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql`         | Microsoft SQL Server                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssqlcompact`  | Microsoft SQL Server Compact                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mysql`         | MySQL                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle`        | Oracle Database                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db2`           | IBM Db2                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `postgresql`    | PostgreSQL                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redshift`      | Amazon Redshift                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hive`          | Apache Hive                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudscape`    | Cloudscape                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsqldb`        | HyperSQL DataBase                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `progress`      | Progress Database                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `maxdb`         | SAP MaxDB                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hanadb`        | SAP HANA                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ingres`        | Ingres                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firstsql`      | FirstSQL                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edb`           | EnterpriseDB                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cache`         | InterSystems Caché                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `adabas`        | Adabas (Adaptable Database System)                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firebird`      | Firebird                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cache`         | InterSystems Caché                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cassandra`     | Apache Cassandra                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `clickhouse`    | ClickHouse                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudscape`    | Cloudscape                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cockroachdb`   | CockroachDB                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `coldfusion`    | ColdFusion IMQ                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cosmosdb`      | Microsoft Azure Cosmos DB                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchbase`     | Couchbase                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchdb`       | CouchDB                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db2`           | IBM Db2                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `derby`         | Apache Derby                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dynamodb`      | Amazon DynamoDB                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `edb`           | EnterpriseDB                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `elasticsearch` | Elasticsearch                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `filemaker`     | FileMaker                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firebird`      | Firebird                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firstsql`      | FirstSQL                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `geode`         | Apache Geode                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `h2`            | H2                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hanadb`        | SAP HANA                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hbase`         | Apache HBase                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hive`          | Apache Hive                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hsqldb`        | HyperSQL DataBase                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `influxdb`      | InfluxDB                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `informix`      | Informix                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ingres`        | Ingres                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `instantdb`     | InstantDB                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interbase`     | InterBase                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mariadb`       | MariaDB                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `maxdb`         | SAP MaxDB                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `memcached`     | Memcached                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mongodb`       | MongoDB                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssql`         | Microsoft SQL Server                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssqlcompact`  | Microsoft SQL Server Compact                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mysql`         | MySQL                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `neo4j`         | Neo4j                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `netezza`       | Netezza                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `opensearch`    | OpenSearch                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle`        | Oracle Database                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other_sql`     | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pervasive`     | Pervasive PSQL                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pointbase`     | PointBase                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `postgresql`    | PostgreSQL                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `progress`      | Progress Database                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `redis`         | Redis                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `redshift`      | Amazon Redshift                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `spanner`       | Cloud Spanner                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `sqlite`        | SQLite                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `sybase`        | Sybase                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `teradata`      | Teradata                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertica`       | Vertica                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `h2`            | H2                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `coldfusion`    | ColdFusion IMQ                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cassandra`     | Apache Cassandra                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hbase`         | Apache HBase                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mongodb`       | MongoDB                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redis`         | Redis                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchbase`     | Couchbase                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchdb`       | CouchDB                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cosmosdb`      | Microsoft Azure Cosmos DB                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dynamodb`      | Amazon DynamoDB                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `neo4j`         | Neo4j                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `geode`         | Apache Geode                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `elasticsearch` | Elasticsearch                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memcached`     | Memcached                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cockroachdb`   | CockroachDB                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `opensearch`    | OpenSearch                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `clickhouse`    | ClickHouse                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `spanner`       | Cloud Spanner                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino`         | Trino                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertica`       | Vertica                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db Cassandra Attributes
 
@@ -121,21 +123,21 @@ This group defines attributes for Cassandra.
 
 `db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value          | Description | Stability                                                        |
-| -------------- | ----------- | ---------------------------------------------------------------- |
-| `all`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum`  | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_quorum` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three`        | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one`    | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `any`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial`       | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_serial` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value          | Description  | Stability                                                        |
+| -------------- | ------------ | ---------------------------------------------------------------- |
+| `all`          | all          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `any`          | any          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `each_quorum`  | each_quorum  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_one`    | local_one    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `one`          | one          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quorum`       | quorum       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `serial`       | serial       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `three`        | three        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `two`          | two          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Db Cosmosdb Attributes
+## Db CosmosDB Attributes
 
 This group defines attributes for Azure Cosmos DB.
 
@@ -153,28 +155,28 @@ This group defines attributes for Azure Cosmos DB.
 
 | Value     | Description                     | Stability                                                        |
 | --------- | ------------------------------- | ---------------------------------------------------------------- |
-| `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `direct`  | Direct connection.              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value               | Description | Stability                                                        |
-| ------------------- | ----------- | ---------------------------------------------------------------- |
-| `Invalid`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Create`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Patch`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read`              | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Delete`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Replace`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Execute`           | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Head`              | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HeadFeed`          | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert`            | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Batch`             | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QueryPlan`         | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ExecuteJavaScript` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value               | Description        | Stability                                                        |
+| ------------------- | ------------------ | ---------------------------------------------------------------- |
+| `Batch`             | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Create`            | create             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Delete`            | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Execute`           | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Head`              | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `HeadFeed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Invalid`           | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Patch`             | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Query`             | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `QueryPlan`         | query_plan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Read`              | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ReadFeed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Replace`           | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Upsert`            | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db Deprecated Attributes
 
@@ -215,11 +217,11 @@ This group defines attributes for Elasticsearch.
 | Attribute   | Type   | Description                                                | Examples       | Stability                                                                                                     |
 | ----------- | ------ | ---------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------- |
 | `pool.name` | string | Deprecated, use `db.client.connections.pool.name` instead. | `myDataSource` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.pool.name`. |
-| `state`     | string | Deprecated, use `db.client.connections.state` instead.     | `idle`; `used` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.state`.     |
+| `state`     | string | Deprecated, use `db.client.connections.state` instead.     | `idle`         | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.state`.     |
 
 `state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability                                                        |
 | ------ | ----------- | ---------------------------------------------------------------- |
-| `idle` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | none        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

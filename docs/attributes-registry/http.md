@@ -9,7 +9,7 @@
 - [Http](#http-attributes)
 - [Http Deprecated](#http-deprecated-attributes)
 
-## Http Attributes
+## HTTP Attributes
 
 This document defines semantic convention attributes in the HTTP namespace.
 
@@ -18,7 +18,7 @@ This document defines semantic convention attributes in the HTTP namespace.
 | `http.connection.state`        | string   | State of the HTTP connection in the HTTP connection pool.                                                                                                                                                                                                                                                                    | `active`; `idle`                                                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.request.body.size`       | int      | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.  | `3495`                                                                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http.request.header.<key>`    | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1]                                                                                                                                                                                                      | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
-| `http.request.method`          | string   | HTTP request method. [2]                                                                                                                                                                                                                                                                                                     | `CONNECT`; `DELETE`; `GET`                                                                                            | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| `http.request.method`          | string   | HTTP request method. [2]                                                                                                                                                                                                                                                                                                     | `GET`; `POST`; `HEAD`                                                                                                 | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 | `http.request.method_original` | string   | Original HTTP method sent by the client in the request line.                                                                                                                                                                                                                                                                 | `GeT`; `ACL`; `foo`                                                                                                   | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 | `http.request.resend_count`    | int      | The ordinal number of request resending attempt (for any reason, including redirects). [3]                                                                                                                                                                                                                                   | `3`                                                                                                                   | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 | `http.request.size`            | int      | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.                                                                                                                   | `1437`                                                                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -67,6 +67,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Value     | Description                                                         | Stability                                                  |
 | --------- | ------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `_OTHER`  | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `CONNECT` | CONNECT method.                                                     | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `DELETE`  | DELETE method.                                                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `GET`     | GET method.                                                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -76,9 +77,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `POST`    | POST method.                                                        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT`     | PUT method.                                                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE`   | TRACE method.                                                       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `_OTHER`  | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## Http Deprecated Attributes
+## HTTP Deprecated Attributes
 
 Describes deprecated HTTP attributes.
 
@@ -107,5 +107,5 @@ Describes deprecated HTTP attributes.
 | `1.1`  | HTTP/1.1       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `2.0`  | HTTP/2         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `3.0`  | HTTP/3         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `SPDY` | SPDY protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `QUIC` | QUIC protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `SPDY` | SPDY protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
