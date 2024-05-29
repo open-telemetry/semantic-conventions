@@ -22,6 +22,6 @@ This document defines attributes for GraphQL.
 
 | Value          | Description          | Stability                                                        |
 | -------------- | -------------------- | ---------------------------------------------------------------- |
-| `query`        | GraphQL query        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mutation`     | GraphQL mutation     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query`        | GraphQL query        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `subscription` | GraphQL subscription | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

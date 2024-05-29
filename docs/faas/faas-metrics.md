@@ -83,9 +83,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -136,9 +136,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -185,9 +185,9 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -234,9 +234,9 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -283,9 +283,9 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -332,9 +332,9 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -381,9 +381,9 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -434,9 +434,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -483,9 +483,9 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

@@ -139,7 +139,6 @@ If a database operation involved multiple network calls (for example retries), t
 
 | Value  | Description | Stability |
 |---|---|---|
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -180,6 +179,7 @@ If a database operation involved multiple network calls (for example retries), t
 | `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `postgresql` | PostgreSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
