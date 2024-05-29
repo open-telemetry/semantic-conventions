@@ -77,8 +77,12 @@ groups:
         stability: experimental
         brief: "The status associated with the logged event."
         examples:
-          - "success"
-          - "failure"
+          - "Started"
+          - "In Progress"
+          - "Succeeded"
+          - "Failed"
+          - "Active"
+          - "Resolved"
       - id: result.signature
         type: string
         stability: experimental
