@@ -200,4 +200,4 @@ This metric is [opt-in][MetricOptIn].
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricOptIn]: https://github.com/open-telemetry/semantic-conventions/blob/v1.26.0/docs/general/metric-requirement-level.md#opt-in
+[MetricOptIn]: /docs/general/metric-requirement-level.md#opt-in
