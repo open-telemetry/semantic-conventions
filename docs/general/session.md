@@ -13,7 +13,7 @@ the Logs, Events, and Spans generated during the Session's lifecycle.
 
 When a session reaches end of life, typically due to user inactivity or session timeout, a new session identifier
 will be assigned. The previous session identifier may be provided by the instrumentation so that telemetry
-backends can link the two sessions (see [Session Change Event](#session-change-event) below).
+backends can link the two sessions (see [Session Start Event](#session-start-event) below).
 
 ## Attributes
 
@@ -45,14 +45,13 @@ backends can link the two sessions (see [Session Change Event](#session-change-e
 
 For instrumentation that tracks users behavior during user sessions, a `session.start` event MUST be emitted
 every time a session is created. When a new session is created as a continuation of a prior session,
-the `session.previous_id` SHOULD be included in the event. The values of `session.id` and `session.previous_id` 
-MUST be different. 
+the `session.previous_id` SHOULD be included in the event. The values of `session.id` and `session.previous_id`
+MUST be different.
 
-| Body field                                                    | Type   | Description                                          | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | 
+| Body field                                                    | Type   | Description                                          | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) |
 |---------------------------------------------------------------|--------|------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
 | [`session.id`](/docs/attributes-registry/session.md)          | string | The ID of the new session being started.             | `Required`                                                                                            |
 | [`session.previous_id`](/docs/attributes-registry/session.md) | string | The previous `session.id` for this user, when known. | `Conditionally Required`                                                                              |
-
 
 ### Session End Event
 
@@ -64,7 +63,7 @@ For instrumentation that tracks users behavior during user sessions, a `session.
 every time a session ends. When a session ends and continues as a new session, this event SHOULD also be
 emitted prior to the `session.start` event.
 
-| Body field                                                    | Type   | Description                                          | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | 
+| Body field                                                    | Type   | Description                                          | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) |
 |---------------------------------------------------------------|--------|------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
 | [`session.id`](/docs/attributes-registry/session.md)          | string | The ID of the new session being started.             | `Required`                                                                                            |
 
