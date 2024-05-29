@@ -244,9 +244,9 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
@@ -325,38 +325,38 @@ Note that `network.local.*` attributes are not included in these examples since 
 
 | Value  | Description | Stability |
 |---|---|---|
-| `gprs` | GPRS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edge` | EDGE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `umts` | UMTS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cdma` | CDMA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cdma2000_1xrtt` | CDMA2000 1XRTT | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `edge` | EDGE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ehrpd` | EHRPD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `evdo_0` | EVDO Rel. 0 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `evdo_a` | EVDO Rev. A | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cdma2000_1xrtt` | CDMA2000 1XRTT | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsdpa` | HSDPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsupa` | HSUPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hspa` | HSPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iden` | IDEN | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `evdo_b` | EVDO Rev. B | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `lte` | LTE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ehrpd` | EHRPD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hspap` | HSPAP | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gprs` | GPRS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gsm` | GSM | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `td_scdma` | TD-SCDMA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hsdpa` | HSDPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hspa` | HSPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hspap` | HSPAP | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hsupa` | HSUPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iden` | IDEN | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `iwlan` | IWLAN | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `lte` | LTE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `lte_ca` | LTE CA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nr` | 5G NR (New Radio) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nrnsa` | 5G NRNSA (New Radio Non-Standalone) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `lte_ca` | LTE CA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `td_scdma` | TD-SCDMA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `umts` | UMTS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 `network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `wifi` | wifi | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wired` | wired | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cell` | cell | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unknown` | unknown | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wifi` | wifi | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wired` | wired | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -408,9 +408,9 @@ These attributes may be used for any operation with an authenticated and/or auth
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Username or client_id extracted from the access token or [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2) header in the inbound request from outside the system. | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Scopes or granted authorities the client currently possesses extracted from token or application security context. The value would come from the scope associated with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html). | `read:message, write:files` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.id` instead. | `username` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.id` attribute. |
+| [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.roles` instead. | `admin` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.roles` attribute. |
+| [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Deprecated, no replacement at this time. | `read:message, write:files` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
 
 
 <!-- markdownlint-restore -->
