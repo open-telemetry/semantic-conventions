@@ -240,7 +240,6 @@ groups:
             sensitive information.
         brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
-        tag: tech-specific
       - ref: db.collection.name
         requirement_level: recommended
         brief: The index or data stream against which the query is executed.
@@ -248,7 +247,6 @@ groups:
           If the query targets multiple indices or data streams, then the name of those should be added as a comma separated list.
           If the query doesn't target a specific index, this field MUST NOT be set.
         examples: [ 'my_index', 'index1, index2' ]
-        tag: tech-specific
       - ref: server.address
       - ref: server.port
       - ref: db.namespace
