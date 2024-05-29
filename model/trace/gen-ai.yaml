@@ -39,12 +39,6 @@ groups:
         note: >
           If there is more than one finish reason in the response, the last one should be reported.
         requirement_level: recommended
-    events:
-      - gen_ai.system.message
-      - gen_ai.user.message
-      - gen_ai.assistant.message
-      - gen_ai.tool.message
-      - gen_ai.choice
 
   - id: gen_ai.common.event.attributes
     type: attribute_group
