@@ -10,11 +10,11 @@ path_base_for_github_subdir:
 **Status**: [Experimental][DocumentStatus]
 
 **Warning**:
-The semantic conventions for GenAI and LLM are currently in development.
+The semantic conventions for GenAI are currently in development.
 We encourage instrumentation libraries and telemetry consumers developers to
 use the conventions in limited non-critical workloads and share the feedback
 
-This document defines semantic conventions for the following kind of Generative AI systems:
+Semantic conventions for Generative AI operations are defined for the following signals:
 
 * LLMs
 

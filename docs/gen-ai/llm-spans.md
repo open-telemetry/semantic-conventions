@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: LLM requests
+linkTitle: Generative AI spans
 --->
 
-# Semantic Conventions for LLM requests
+# Semantic Conventions for Generative AI spans
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -11,12 +11,24 @@ linkTitle: LLM requests
 <!-- toc -->
 
 - [Configuration](#configuration)
-- [LLM Request attributes](#llm-request-attributes)
+- [LLM Request attributes](#generative-ai-request-attributes)
 - [Events](#events)
+  - [System message](#system-message)
+  - [User message](#user-message)
+  - [Assistant message](#assistant-message)
+    - [`ToolCall` object](#toolcall-object)
+    - [`Function` object](#function-object)
+  - [Tool message](#tool-message)
+  - [Chat response](#chat-response)
+    - [`Message` object](#message-object)
+  - [Recording GenAI events as span events](#recording-genai-events-as-span-events)
+- [Examples](#examples)
+  - [Chat completion](#chat-completion)
+  - [Tools](#tools)
 
 <!-- tocstop -->
 
-A request to an LLM is modeled as a span in a trace.
+A request to a Generative AI system is modeled as a span in a trace.
 
 **Span kind:** MUST always be `CLIENT`.
 
@@ -25,14 +37,17 @@ For example, the API name such as [Create chat completion](https://platform.open
 
 ## Configuration
 
-Instrumentations for LLMs MAY capture prompts and completions.
-Instrumentations that support it, MUST offer the ability to turn off capture of prompts and completions. This is for three primary reasons:
+Instrumentations for LLMs MAY capture user-provided prompt content and GenAI model responses.
+Instrumentations that support it, MUST NOT capture sensitive content annotated in the [Events section](#events) by default and MAY provide a configuration option to enable
+capturing sensitive content.
+
+This is for three primary reasons:
 
 1. Data privacy concerns. End users of LLM applications may input sensitive information or personally identifiable information (PII) that they do not wish to be sent to a telemetry backend.
 2. Data size concerns. Although there is no specified limit to sizes, there are practical limitations in programming languages and telemetry systems. Some LLMs allow for extremely large context windows that end users may take full advantage of.
 3. Performance concerns. Sending large amounts of data to a telemetry backend may cause performance issues for the application.
 
-## LLM Request attributes
+## Generative AI Request attributes
 
 These attributes track input data and metadata for a request to an LLM. Each attribute represents a concept that is common to most LLMs.
 
@@ -50,9 +65,9 @@ These attributes track input data and metadata for a request to an LLM. Each att
 | [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the LLM generates for a request. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.temperature`](/docs/attributes-registry/gen-ai.md) | double | The temperature setting for the LLM request. | `0.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the LLM request. | `1.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.response.finish_reasons`](/docs/attributes-registry/gen-ai.md) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `stop` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.response.finish_reason`](/docs/attributes-registry/gen-ai.md) | string | The reason the model stopped generating tokens. [3] | `stop`; `content_filter`; `tool_calls` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.response.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM a response was generated from. [3] | `gpt-4-0613` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the LLM a response was generated from. [4] | `gpt-4-0613` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.usage.completion_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the LLM response (completion). | `180` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.usage.prompt_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the LLM prompt. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -60,7 +75,9 @@ These attributes track input data and metadata for a request to an LLM. Each att
 
 **[2]:** If not using a vendor-supplied model, provide a custom friendly name, such as a name of the company or project. If the instrumetnation reports any attributes specific to a custom model, the value provided in the `gen_ai.system` SHOULD match the custom attribute namespace segment. For example, if `gen_ai.system` is set to `the_best_llm`, custom attributes should be added in the `gen_ai.the_best_llm.*` namespace. If none of above options apply, the instrumentation should set `_OTHER`.
 
-**[3]:** If available. The name of the LLM serving a response. If the LLM is supplied by a vendor, then the value must be the exact name of the model actually used. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+**[3]:** If there is more than one finish reason in the response, the last one should be reported.
+
+**[4]:** If available. The name of the LLM serving a response. If the LLM is supplied by a vendor, then the value must be the exact name of the model actually used. If the LLM is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
 
 
@@ -79,22 +96,268 @@ These attributes track input data and metadata for a request to an LLM. Each att
 
 ## Events
 
-In the lifetime of an LLM span, an event for prompts sent and completions received MAY be created, depending on the configuration of the instrumentation.
+In the lifetime of an GenAI span, an event for each message application sends to GenAI and receives in response from it MAY be created, depending on the configuration of the instrumentation.
+The generic events applicable to multiple GenAI models follow `gen_ai.{type}.message` naming pattern.
+GenAI vendor-specific instrumentations SHOULD follow `gen_ai.{gen_ai.system}.{type}.message` pattern to record system-specific events.
 
-<!-- semconv gen_ai.content.prompt -->
+It's RECOMMENDED to use [Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md) to record GenAI events once it's implemented in corresponding language.
+
+The event payload describes message content sent to or received from GenAI and depends on specific messages described in the following sections.
+
+Instrumentations for individual GenAI systems MAY add system specific fields into corresponding events payload.
+It's RECOMMENDED to document them in system-specific extensions.
+Telemetry consumers SHOULD expect to receive unknown payload fields.
+
+### System message
+
+This event describes the instructions passed to the GenAI model.
+It's NOT RECOMMENDED to report this event when capturing sensitive content is disabled, unless there are additional system-specific properties
+instrumentation adds to the event payload.
+
+<!-- semconv gen_ai.system.message -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-The event name MUST be `gen_ai.content.prompt`.
+The event name MUST be `gen_ai.system.message`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.prompt`](/docs/attributes-registry/gen-ai.md) | string | The full prompt sent to an LLM. [1] | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | `Conditionally Required` if and only if corresponding event is enabled | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+**[1]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
+
+
+
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `content` | string | The contents of the system message. | `"You're a friendly bot that answers questions about OpenTelemetry."` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
+
+### User message
+
+This event describes the prompt message specified by the user.
+It's NOT RECOMMENDED to report this event when capturing sensitive content is disabled, unless there are additional system-specific properties
+instrumentation adds to the event payload.
+
+
+<!-- semconv gen_ai.user.message -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+The event name MUST be `gen_ai.user.message`.
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
+
+
+
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `content` | `AnyValue` | The contents of the user message. | `What telemetry is reported by OpenAI instrumentations?` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
+
+### Assistant message
+
+This event describes the assistant message.
+
+<!-- semconv gen_ai.assistant.message -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+The event name MUST be `gen_ai.assistant.message`.
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
+
+
+
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `content` | `AnyValue` | The contents of the assistant message. | `Spans, events, metrics defined by the GenAI semantic conventions.` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
+| `tool_calls` | [ToolCall](#toolcall-object)[] | The tool calls generated by the model, such as function calls. | `[{"id":"call_mszuSIzqtI65i1wAUOE8w5H4", "function":{"name":"get_link_to_otel_semconv", "arguments":"{\"semconv\":\"gen_ai\"}"}, "type":"function"}]` | `Conditionally Required`: if available | ![Mixed](https://img.shields.io/badge/-mixed-orange) |
+
+#### `ToolCall` object
+
+| Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `id` | string | The id of the tool call | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` |  |  |
+| `type` | string | The type of the tool | `function` | `Required` |  |
+| `function` | [Function](#function-object) | Function name and arguments | `Required` | ![Mixed](https://img.shields.io/badge/-mixed-orange) |
+
+#### `Function` object
+
+| Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `name` | string | The name of the function to call | `get_link_to_otel_semconv` | `Required` |  |
+| `arguments` | `AnyValue` | The arguments to pass the the function | `{"semconv": "gen_ai"}` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
+
+### Tool message
+
+This event describes the output of the tool or function submitted back to the model.
+
+<!-- semconv gen_ai.tool.message -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+The event name MUST be `gen_ai.tool.message`.
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
+
+
+
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `content` | string | The contents of the tool message. | `opentelemetry.io` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
+| `tool_call_id` | string | Tool call that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` |  |
+
+### Choice message
+
+This event describes the model-generated chat response message (choice).
+If GenAI model returns multiple choices, each of the message SHOULD be recorded as an individual event.
+
+<!-- semconv gen_ai.choice -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+The event name MUST be `gen_ai.choice`.
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
+
+
+
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+When response is streamed, instrumentations that report response events MUST reconstruct and report the full message and MUST NOT report individual chunks as events.
+If the request to GenAI model fails with an error before content is received, instrumentation SHOULD report an event with truncated content it was able to receive and if `finish_reason` is not
+yet received, it MUST set it to `error`.
+
+Response event payload has the following fields:
+
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `finish_reason` | string | The reason the model stopped generating tokens. | `stop`, `tool_calls`, `content_filter` | `Required` |  |
+| `index` | int | The index of the choice in the list of choices. | `1` | `Required` |  |
+| `message` | [Message](#message-object) | GenAI response message | `{"content":"The OpenAI semantic conventions are available at opentelemetry.io"}` | `Recommended` | ![Mixed](https://img.shields.io/badge/-mixed-orange) |
+
+#### `Message` object
+
+| Body Field | Type | Description | Examples | Requirement Level | Sensitive |
+|---|---|---|---|---|---|
+| `content` | `AnyValue` | The contents of the assistant message. | `Spans, events, metrics defined by the GenAI semantic conventions.` | `Opt-In` | ![Sensitive](https://img.shields.io/badge/-sensitive-red) |
+| `tool_calls` | [ToolCall](#toolcall-object)[] | The tool calls generated by the model, such as function calls. | `[{"id":"call_mszuSIzqtI65i1wAUOE8w5H4", "function":{"name":"get_link_to_otel_semconv", "arguments":"{\"semconv\":\"gen_ai\"}"}, "type":"function"}]` | `Conditionally Required`: if available | ![Mixed](https://img.shields.io/badge/-mixed-orange) |
+
+### Recording GenAI events as span events
+
+<!-- TODO: remove this section once Event API is available -->
+
+> Note:
+> It is NOT RECOMMENDED to report GenAI events as span events. It MAY only be done for prototyping and experimentation when
+> neither Event nor Log API are available in the corresponding language or don't yet support structured payload data.
+
+Use the following attribute to record payload of the GenAI event on the span event
+
+<!-- semconv gen_ai.span.event.content(full) -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.event.content`](/docs/attributes-registry/gen-ai.md) | string | The GenAI event payload serialized into JSON string. | `[{'content': 'What is the capital of France?'}]`; `plain string` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** If and only if recording GenAI events as span events. It is NOT RECOMMENDED to record GenAI events with span event API and SHOULD only be used if Event API is not yet available in the corresponding OpenTelemetry API package.
 
 
 
@@ -104,27 +367,202 @@ The event name MUST be `gen_ai.content.prompt`.
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-<!-- semconv gen_ai.content.completion -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
+## Examples
 
-The event name MUST be `gen_ai.content.completion`.
+### Chat completion
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`gen_ai.completion`](/docs/attributes-registry/gen-ai.md) | string | The full response received from the LLM. [1] | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | `Conditionally Required` if and only if corresponding event is enabled | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+This example covers the following scenario:
 
-**[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+- user requests chat completion from OpenAI GPT-4 model for the following prompt:
 
+  - System message: `You're a friendly bot that answers questions about OpenTelemetry.`
+  - User message: `How to instrument GenAI library with OTel?`
 
+- The model responds with `"Follow GenAI semantic conventions available at opentelemetry.io."` message
 
+Span:
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
+|   Attribute name    |                     Value                             |
+|---------------------|-------------------------------------------------------|
+| Span name           | `"chat.completion gpt-4"`                             |
+| `gen_ai.system`     | `"openai"`                                            |
+| `gen_ai.request.model`| `"gpt-4"`                                           |
+| `gen_ai.request.max_tokens`| `200`                                          |
+| `gen_ai.request.top_p`| `1.0`                                               |
+| `gen_ai.response.id`| `"chatcmpl-9J3uIL87gldCFtiIbyaOvTeYBRA3l"`            |
+| `gen_ai.response.model`| `"gpt-4-0613"`                                     |
+| `gen_ai.usage.completion_tokens`| `47`                                      |
+| `gen_ai.usage.prompt_tokens`| `52`                                          |
+| `gen_ai.response.finish_reason`| `"stop"`                                   |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+Events:
+
+1. `gen_ai.system.message`.
+   Not reported if when capturing sensitive content is not enabled.
+
+   |   Property          |                     Value                             |
+   |---------------------|-------------------------------------------------------|
+   | `gen_ai.system`     | `"openai"`                                            |
+   | Event payload       | `{"content":"You're a friendly bot that answers questions about OpenTelemetry."}` |
+
+2. `gen_ai.user.message`
+   Not reported if when capturing sensitive content is not enabled.
+
+   |   Property          |                     Value                             |
+   |---------------------|-------------------------------------------------------|
+   | `gen_ai.system`     | `"openai"`                                            |
+   | Event payload       | `{"content":"How to instrument GenAI library with OTel?"}` |
+
+3. `gen_ai.choice`
+   May be reported if when capturing sensitive content is not enabled.
+
+   |   Property          |                     Value                             |
+   |---------------------|-------------------------------------------------------|
+   | `gen_ai.system`     | `"openai"`                                            |
+   | Event payload (with sensitive content) | `{"index":0,"finish_reason":"stop","message":{"content":"Follow GenAI semantic conventions available at opentelemetry.io."}}` |
+   | Event payload (without sensitive content) | `{"index":0,"finish_reason":"stop","message":{"content":"REDACTED"}}` |
+
+### Tools
+
+This example covers the following scenario:
+
+1. Application requests chat completion from OpenAI GPT-4 model and provides a function definition.
+
+   - Application provides the following prompt:
+
+     - User message: `How to instrument GenAI library with OTel?`
+
+   - Application defines a tool (a function) names `get_link_to_otel_semconv` with single string argument named `semconv`
+
+2. The model responds with a tool call request which application executes
+3. The application requests chat completion again now with the tool execution result
+
+Here's the telemetry generated for each step in this scenario:
+
+1. Chat completion resulting in a tool call.
+
+   |   Attribute name    |                     Value                             |
+   |---------------------|-------------------------------------------------------|
+   | Span name           | `"chat.completion gpt-4"`                             |
+   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.request.model`| `"gpt-4"`                                           |
+   | `gen_ai.request.max_tokens`| `200`                                          |
+   | `gen_ai.request.top_p`| `1.0`                                               |
+   | `gen_ai.response.id`| `"chatcmpl-9J3uIL87gldCFtiIbyaOvTeYBRA3l"`            |
+   | `gen_ai.response.model`| `"gpt-4-0613"`                                     |
+   | `gen_ai.usage.completion_tokens`| `17`                                      |
+   | `gen_ai.usage.prompt_tokens`| `47`                                          |
+   | `gen_ai.response.finish_reason`| `"tool_calls"`                             |
+
+   Events parented to this span:
+
+   - `gen_ai.user.message` (not reported when capturing sensitive content is disabled)
+
+     |   Property          |                     Value                             |
+     |---------------------|-------------------------------------------------------|
+     | `gen_ai.system`     | `"openai"`                                            |
+     | Event payload       | `{"content":"How to instrument GenAI library with OTel?"}` |
+
+   - `gen_ai.choice` (not reported when capturing sensitive content is disabled)
+
+     |   Property          |                     Value                             |
+     |---------------------|-------------------------------------------------------|
+     | `gen_ai.system`     | `"openai"`                                            |
+     | Event payload (with sensitive content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"{\"semconv\":\"GenAI\"}"},"type":"function"}]}` |
+     | Event payload (without sensitive content) | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"REDACTED"},"type":"function"}]}` |
+
+2. Application executes the tool call. Application may create span which is not covered by this semantic convention.
+3. Final chat completion call
+
+   |   Attribute name    |                     Value                             |
+   |---------------------|-------------------------------------------------------|
+   | Span name           | `"chat.completion gpt-4"`                             |
+   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.request.model`| `"gpt-4"`                                           |
+   | `gen_ai.request.max_tokens`| `200`                                          |
+   | `gen_ai.request.top_p`| `1.0`                                               |
+   | `gen_ai.response.id`| `"chatcmpl-call_VSPygqKTWdrhaFErNvMV18Yl"`            |
+   | `gen_ai.response.model`| `"gpt-4-0613"`                                     |
+   | `gen_ai.usage.completion_tokens`| `52`                                      |
+   | `gen_ai.usage.prompt_tokens`| `47`                                          |
+   | `gen_ai.response.finish_reason`| `"tool_calls"`                             |
+
+   Events parented to this span:
+   (in this example, the event content matches the original messages, but applications may also drop messages or change their content)
+
+   - `gen_ai.user.message` (not reported when capturing sensitive content is disabled)
+
+     |   Property          |                     Value                             |
+     |---------------------|-------------------------------------------------------|
+     | `gen_ai.system`     | `"openai"`                                            |
+     | Event payload       | `{"content":"How to instrument GenAI library with OTel?"}` |
+
+   - `gen_ai.assistant.message` (could be reported when capturing sensitive content is disabled)
+
+     |   Property          |                     Value                             |
+     |---------------------|-------------------------------------------------------|
+     | `gen_ai.system`     | `"openai"`                                            |
+     | Event payload (with sensitive content)    | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"{\"semconv\":\"GenAI\"}"},"type":"function"}]}` |
+     | Event payload (without sensitive content) | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"REDACTED"},"type":"function"}]}` |
+
+   - `gen_ai.tool.message` (could be reported when capturing sensitive content is disabled)
+
+     |   Property          |                     Value                             |
+     |---------------------|-------------------------------------------------------|
+     | `gen_ai.system`     | `"openai"`                                            |
+     | Event payload (with sensitive content)    | `{"content":"opentelemetry.io/semconv/gen-ai","tool_call_id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
+     | Event payload (without sensitive content) | `{"content":"REDACTED","tool_call_id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
+
+   - `gen_ai.choice` (could be reported when capturing sensitive content is disabled)
+
+     |   Property          |                     Value                             |
+     |---------------------|-------------------------------------------------------|
+     | `gen_ai.system`     | `"openai"`                                            |
+     | Event payload (with sensitive content)    | `{"index":0,"finish_reason":"stop","message":{"content":"Follow OTel semconv available at opentelemetry.io/semconv/gen-ai"}}` |
+     | Event payload (without sensitive content) | `{"index":0,"finish_reason":"stop","message":{"content":"REDACTED"}}` |
+
+### Chat completion with multiple choices
+
+This example covers the following scenario:
+
+- user requests 2 chat completion from OpenAI GPT-4 model for the following prompt:
+
+  - System message: `You're a friendly bot that answers questions about OpenTelemetry.`
+  - User message: `How to instrument GenAI library with OTel?`
+
+- The model responds with two choices
+  - `"Follow GenAI semantic conventions available at opentelemetry.io."` message
+  - `"Use OpenAI instrumentation library."` message
+
+Span:
+
+|   Attribute name    |                     Value                             |
+|---------------------|-------------------------------------------------------|
+| Span name           | `"chat.completion gpt-4"`                             |
+| `gen_ai.system`     | `"openai"`                                            |
+| `gen_ai.request.model`| `"gpt-4"`                                           |
+| `gen_ai.request.max_tokens`| `200`                                          |
+| `gen_ai.request.top_p`| `1.0`                                               |
+| `gen_ai.response.id`| `"chatcmpl-9J3uIL87gldCFtiIbyaOvTeYBRA3l"`            |
+| `gen_ai.response.model`| `"gpt-4-0613"`                                     |
+| `gen_ai.usage.completion_tokens`| `77`                                      |
+| `gen_ai.usage.prompt_tokens`| `52`                                          |
+| `gen_ai.response.finish_reason`| `"stop"`                                   |
+
+Events:
+
+1. `gen_ai.system.message`: the same as in the previous example
+2. `gen_ai.user.message`: the same as in the previous example
+3. `gen_ai.choice`
+   |   Property          |                     Value                             |
+   |---------------------|-------------------------------------------------------|
+   | `gen_ai.system`     | `"openai"`                                            |
+   | Event payload (with sensitive content) | `{"index":0,"finish_reason":"stop","message":{"content":"Follow GenAI semantic conventions available at opentelemetry.io."}}` |
+4. `gen_ai.choice`
+   |   Property          |                     Value                             |
+   |---------------------|-------------------------------------------------------|
+   | `gen_ai.system`     | `"openai"`                                            |
+   | Event payload (with sensitive content) | `{"index":1,"finish_reason":"stop","message":{"content":"Use OpenAI instrumentation library."}}` |
+
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+
