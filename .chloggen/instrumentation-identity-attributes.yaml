@@ -1,0 +1,4 @@
+change_type: 'enhancement'
+component: instrumentation
+note: Add semantic conventions for instrumentation library identification.
+issues: [1047]
