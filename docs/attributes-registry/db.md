@@ -53,7 +53,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value           | Description                                        | Stability                                                        |
-|-----------------|----------------------------------------------------| ---------------------------------------------------------------- |
+| --------------- | -------------------------------------------------- | ---------------------------------------------------------------- |
 | `other_sql`     | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `adabas`        | Adabas (Adaptable Database System)                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cache`         | InterSystems Caché                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
