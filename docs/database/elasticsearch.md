@@ -14,7 +14,8 @@ described on this page.
 
 ## Span Name
 
-The **span name** follows the [general database span name guidelines](database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, instead of the url path in order to reduce the cardinality of the span and the index stored in `db.collection.name`.
+The **span name** follows the [general database span name guidelines](database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, instead of the url path in order to reduce the cardinality of the span and the index stored in `db.collection.name`. The endpoint id is the `name` field in the
+[elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json).
 
 ## Attributes
 
