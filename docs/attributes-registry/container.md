@@ -40,9 +40,9 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 | Value    | Description                                                                                                     | Stability                                                        |
 | -------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `user`   | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows).     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system` | When CPU is used by the system (host OS)                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | When CPU is used by the system (host OS)                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user`   | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows).     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Container Deprecated Attributes
 

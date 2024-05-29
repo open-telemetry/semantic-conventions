@@ -39,9 +39,9 @@ This document defines Java Virtual machine related attributes.
 
 | Value           | Description                                                                                                           | Stability                                                  |
 | --------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `blocked`       | A thread that is blocked waiting for a monitor lock is in this state.                                                 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `new`           | A thread that has not yet started is in this state.                                                                   | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `runnable`      | A thread executing in the Java virtual machine is in this state.                                                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `blocked`       | A thread that is blocked waiting for a monitor lock is in this state.                                                 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `waiting`       | A thread that is waiting indefinitely for another thread to perform a particular action is in this state.             | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `timed_waiting` | A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `terminated`    | A thread that has exited is in this state.                                                                            | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `timed_waiting` | A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `waiting`       | A thread that is waiting indefinitely for another thread to perform a particular action is in this state.             | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

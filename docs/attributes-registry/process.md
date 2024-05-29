@@ -48,8 +48,8 @@ An operating system process.
 
 | Value         | Description | Stability                                                        |
 | ------------- | ----------- | ---------------------------------------------------------------- |
-| `voluntary`   | voluntary   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `involuntary` | involuntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `voluntary`   | voluntary   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
