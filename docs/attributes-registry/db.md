@@ -1,6 +1,3 @@
-
-
-
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -15,7 +12,6 @@
 - [Db Deprecated](#db-deprecated-attributes)
 - [Db Elasticsearch](#db-elasticsearch-attributes)
 - [Db Metrics Deprecated](#db-metrics-deprecated-attributes)
-
 
 ## Db Attributes
 
@@ -54,15 +50,12 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 **[7]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 
-
-
-
 `db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description | Stability                                                        |
+| ------ | ----------- | ---------------------------------------------------------------- |
+| `idle` | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -126,132 +119,116 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 This group defines attributes for Cassandra.
 
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `db.cassandra.consistency_level` | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cassandra.coordinator.dc` | string | The data center of the coordinating node for a query. | `us-west-2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cassandra.coordinator.id` | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cassandra.idempotence` | boolean | Whether or not the query is idempotent. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cassandra.page_size` | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cassandra.speculative_execution_count` | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
+| Attribute                                  | Type    | Description                                                                                                                                                         | Examples                               | Stability                                                        |
+| ------------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
+| `db.cassandra.consistency_level`           | string  | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum`         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cassandra.coordinator.dc`              | string  | The data center of the coordinating node for a query.                                                                                                               | `us-west-2`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cassandra.coordinator.id`              | string  | The ID of the coordinating node for a query.                                                                                                                        | `be13faa2-8574-4d71-926d-27f16cf8a7af` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cassandra.idempotence`                 | boolean | Whether or not the query is idempotent.                                                                                                                             |                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cassandra.page_size`                   | int     | The fetch size used for paging, i.e. how many rows will be returned at once.                                                                                        | `5000`                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cassandra.speculative_execution_count` | int     | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.                                                 | `0`; `2`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `all` | all | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `any` | any | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum` | each_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one` | local_one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value          | Description  | Stability                                                        |
+| -------------- | ------------ | ---------------------------------------------------------------- |
+| `all`          | all          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `any`          | any          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `each_quorum`  | each_quorum  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local_one`    | local_one    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one` | one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum` | quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial` | serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three` | three | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two` | two | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `one`          | one          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quorum`       | quorum       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `serial`       | serial       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `three`        | three        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `two`          | two          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db CosmosDB Attributes
 
 This group defines attributes for Azure Cosmos DB.
 
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `db.cosmosdb.client_id` | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.connection_mode` | string | Cosmos client connection mode. | `gateway`; `direct` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.operation_type` | string | CosmosDB Operation Type. | `Invalid`; `Create`; `Patch` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.request_charge` | double | RU consumed for that operation | `46.18`; `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.request_content_length` | int | Request payload size in bytes |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.status_code` | int | Cosmos DB status code. | `200`; `201` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.sub_status_code` | int | Cosmos DB sub status code. | `1000`; `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
+| Attribute                            | Type   | Description                       | Examples                               | Stability                                                        |
+| ------------------------------------ | ------ | --------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
+| `db.cosmosdb.client_id`              | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.connection_mode`        | string | Cosmos client connection mode.    | `gateway`; `direct`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.operation_type`         | string | CosmosDB Operation Type.          | `Invalid`; `Create`; `Patch`           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.request_charge`         | double | RU consumed for that operation    | `46.18`; `1.0`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.request_content_length` | int    | Request payload size in bytes     |                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.status_code`            | int    | Cosmos DB status code.            | `200`; `201`                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.sub_status_code`        | int    | Cosmos DB sub status code.        | `1000`; `1002`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `direct` | Direct connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value     | Description                     | Stability                                                        |
+| --------- | ------------------------------- | ---------------------------------------------------------------- |
+| `direct`  | Direct connection.              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `Batch` | batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Create` | create | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Execute` | execute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value               | Description        | Stability                                                        |
+| ------------------- | ------------------ | ---------------------------------------------------------------- |
+| `Batch`             | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Create`            | create             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Delete`            | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Execute`           | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Head` | head | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HeadFeed` | head_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Invalid` | invalid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Patch` | patch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query` | query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QueryPlan` | query_plan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed` | read_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Head`              | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `HeadFeed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Invalid`           | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Patch`             | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Query`             | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `QueryPlan`         | query_plan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Read`              | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ReadFeed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Replace`           | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Upsert`            | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Db Deprecated Attributes
 
 "Describes deprecated db attributes."
 
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `db.cassandra.table` | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
-| `db.connection_string` | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>"Replaced by `server.address` and `server.port`." |
-| `db.cosmosdb.container` | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
-| `db.elasticsearch.cluster.name` | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use `db.namesapce` instead. |
-| `db.instance.id` | string | Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. | `mysql-e26b99z.example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
-| `db.jdbc.driver_classname` | string | Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed as not used. |
-| `db.mongodb.collection` | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
-| `db.mssql.instance_name` | string | Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
-| `db.name` | string | Deprecated, use `db.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
-| `db.operation` | string | Deprecated, use `db.operation.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.name`. |
-| `db.redis.database_index` | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
-| `db.sql.table` | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
-| `db.statement` | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
-| `db.user` | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
-
-
+| Attribute                       | Type   | Description                                                                                                   | Examples                                                                | Stability                                                                                                                                                                    |
+| ------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `db.cassandra.table`            | string | Deprecated, use `db.collection.name` instead.                                                                 | `mytable`                                                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`.                                                                             |
+| `db.connection_string`          | string | Deprecated, use `server.address`, `server.port` attributes instead.                                           | `Server=(localdb)\v11.0;Integrated Security=true;`                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>"Replaced by `server.address` and `server.port`."                                                             |
+| `db.cosmosdb.container`         | string | Deprecated, use `db.collection.name` instead.                                                                 | `mytable`                                                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`.                                                                             |
+| `db.elasticsearch.cluster.name` | string | Represents the identifier of an Elasticsearch cluster.                                                        | `e9106fc68e3044f0b1475b04bf4ffd5f`                                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use `db.namespace` instead.                                                                                   |
+| `db.instance.id`                | string | Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. | `mysql-e26b99z.example.com`                                             | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
+| `db.jdbc.driver_classname`      | string | Removed, no replacement at this time.                                                                         | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed as not used.                                                                                          |
+| `db.mongodb.collection`         | string | Deprecated, use `db.collection.name` instead.                                                                 | `mytable`                                                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`.                                                                             |
+| `db.mssql.instance_name`        | string | Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.                       | `MSSQLSERVER`                                                           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time.                                                                      |
+| `db.name`                       | string | Deprecated, use `db.namespace` instead.                                                                       | `customers`; `main`                                                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`.                                                                                   |
+| `db.operation`                  | string | Deprecated, use `db.operation.name` instead.                                                                  | `findAndModify`; `HMSET`; `SELECT`                                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.name`.                                                                              |
+| `db.redis.database_index`       | int    | Deprecated, use `db.namespace` instead.                                                                       | `0`; `1`; `15`                                                          | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`.                                                                                   |
+| `db.sql.table`                  | string | Deprecated, use `db.collection.name` instead.                                                                 | `mytable`                                                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`.                                                                             |
+| `db.statement`                  | string | The database statement being executed.                                                                        | `SELECT * FROM wuser_table`; `SET mykey "WuValue"`                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`.                                                                                  |
+| `db.user`                       | string | Deprecated, no replacement at this time.                                                                      | `readonly_user`; `reporting_user`                                       | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time.                                                                                  |
 
 ## Db Elasticsearch Attributes
 
 This group defines attributes for Elasticsearch.
 
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
-| `db.elasticsearch.node.name` | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [6] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
+| Attribute                           | Type   | Description                                                                                  | Examples                                                                                 | Stability                                                        |
+| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `db.elasticsearch.node.name`        | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001`                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [8]                                                         | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[8]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
-
-
-
 
 ## Db Metrics Deprecated Attributes
 
 "Describes deprecated db metrics attributes."
 
-
-| Attribute  | Type | Description  | Examples  | Stability |
-|---|---|---|---|---|
+| Attribute   | Type   | Description                                                | Examples       | Stability                                                                                                     |
+| ----------- | ------ | ---------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------- |
 | `pool.name` | string | Deprecated, use `db.client.connections.pool.name` instead. | `myDataSource` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.pool.name`. |
-| `state` | string | Deprecated, use `db.client.connections.state` instead. | `idle` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.state`. |
-
-
+| `state`     | string | Deprecated, use `db.client.connections.state` instead.     | `idle`         | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connections.state`.     |
 
 `state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description | Stability                                                        |
+| ------ | ----------- | ---------------------------------------------------------------- |
+| `idle` | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
