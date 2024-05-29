@@ -108,8 +108,8 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 | Value  | Description | Stability |
 |---|---|---|
-| `stdout` | Logs from stdout stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `stderr` | Events from stderr stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stdout` | Logs from stdout stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
