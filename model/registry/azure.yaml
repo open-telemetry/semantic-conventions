@@ -15,7 +15,7 @@ groups:
     prefix: az.log
     type: attribute_group
     brief: >
-      This document defines generic attributes for Azure Logs.
+      This document defines generic attributes for Azure Logs, see [Azure Log Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema) for more details.
     attributes:
       - id: category
         type: string
@@ -58,7 +58,7 @@ groups:
         examples:
           - "1.0"
       - id: properties
-        type: string
+        type: template[string[]]
         stability: experimental
         brief: "The properties of the log entry"
         examples:
@@ -75,14 +75,14 @@ groups:
       - id: result.type
         type: string
         stability: experimental
-        brief: "The type of the result"
+        brief: "The status associated with the logged event."
         examples:
           - "success"
           - "failure"
       - id: result.signature
         type: string
         stability: experimental
-        brief: "The signature of the result"
+        brief: "The substatus of associated with the logged event. "
         examples:
           - "00000000-0000-0000-0000-000000000000"
       - id: result.description
@@ -95,6 +95,6 @@ groups:
       - id: tenant.id
         type: string
         stability: experimental
-        brief: "The ID of the tenant"
+        brief: "The tenant ID of the Active Directory tenant that this event is tied to."
         examples:
           - "00000000-0000-0000-0000-000000000000"
