@@ -54,7 +54,7 @@ groups:
       - id: request.stop
         stability: experimental
         type: double
-        brief: The stop sequences to provide.
+        brief: The stop sequences provided in the request.
         examples: ['\n']
         tag: llm-generic-request
       - id: request.frequency_penalty
