@@ -18,7 +18,7 @@ This document defines Go related attributes.
 
 | Value   | Description                                                                                                 | Stability                                                        |
 | ------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other` | Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration.    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Computed from `/memory/classes/heap/stacks:bytes`.
