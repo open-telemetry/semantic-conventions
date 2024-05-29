@@ -34,7 +34,7 @@ groups:
       - id: duration
         type: int
         stability: experimental
-        brief: "The duration of the log entry in milliseconds"
+        brief: "The duration of the operations in milliseconds"
         examples:
           - 1000
       - id: identity
