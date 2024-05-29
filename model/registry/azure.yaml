@@ -12,7 +12,7 @@ groups:
         examples:
           - "00000000-0000-0000-0000-000000000000"
   - id: registry.azure.logs
-    prefix: azure
+    prefix: az.log
     type: attribute_group
     brief: >
       This document defines generic attributes for Azure Logs.
