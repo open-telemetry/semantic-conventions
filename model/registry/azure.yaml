@@ -40,7 +40,10 @@ groups:
       - id: identity
         type: string
         stability: experimental
-        brief: "The identity of the log entry"
+        brief: >
+          "A JSON blob that describes the identity of the user or application that performed the operation."
+          "Typically, this field includes the authorization and claims or JWT token from Active Directory."
+          "Warning: this field contains senstive PII information."
         examples:
           - "someone"
       - id: operation.name
