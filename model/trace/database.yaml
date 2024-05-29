@@ -228,7 +228,10 @@ groups:
         requirement_level: required
       - ref: db.operation.name
         requirement_level: required
-        note: This SHOULD be the endpoint identifier for the request.
+        note: >
+          This SHOULD be the endpoint identifier for the request.
+
+          The endpoint id is the `name` field in the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json).
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
       - ref: url.full
         requirement_level: required
@@ -250,6 +253,7 @@ groups:
       - ref: server.address
       - ref: server.port
       - ref: db.namespace
+        note: ""
         requirement_level:
           recommended: >
             The name of the Elasticsearch cluster which the client connects to.
