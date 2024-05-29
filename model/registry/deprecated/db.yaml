@@ -87,7 +87,7 @@ groups:
       - id: elasticsearch.cluster.name
         type: string
         stability: experimental
-        deprecated: Use `db.namesapce` instead.
+        deprecated: Use `db.namespace` instead.
         brief: >
           Represents the identifier of an Elasticsearch cluster.
         examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
