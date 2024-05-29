@@ -43,7 +43,7 @@ groups:
         brief: >
           "A JSON blob that describes the identity of the user or application that performed the operation."
           "Typically, this field includes the authorization and claims or JWT token from Active Directory."
-          "Warning: this field contains senstive PII information."
+          "Warning: this field contains sensitive PII information."
         examples:
           - "someone"
       - id: operation.name
