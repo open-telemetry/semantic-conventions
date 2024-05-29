@@ -474,12 +474,6 @@ groups:
     brief: >
       This group defines attributes for Elasticsearch.
     attributes:
-      - id: elasticsearch.cluster.name
-        type: string
-        stability: experimental
-        brief: >
-          Represents the identifier of an Elasticsearch cluster.
-        examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
       - id: elasticsearch.node.name
         type: string
         stability: experimental

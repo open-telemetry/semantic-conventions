@@ -4,14 +4,15 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: enhancement
+change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
 component: db
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: >
-  Align Elasticsearch span name to the general database span name guidelines.
+  Align Elasticsearch span name to the general database span name guidelines. 
+  Deprecates `b.elasticsearch.cluster.name` in favor of db.namespace.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.

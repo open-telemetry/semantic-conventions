@@ -84,6 +84,13 @@ groups:
         brief: 'Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.'
         deprecated: 'Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.'
         examples: 'mysql-e26b99z.example.com'
+      - id: elasticsearch.cluster.name
+        type: string
+        stability: experimental
+        deprecated: Use `db.namesapce` instead.
+        brief: >
+          Represents the identifier of an Elasticsearch cluster.
+        examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
 
   - id: registry.db.metrics.deprecated
     type: attribute_group
