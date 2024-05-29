@@ -59,6 +59,7 @@ These attributes are filled in for all DynamoDB request types.
 | `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hsqldb` | HyperSQL DataBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `influxdb` | InfluxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `informix` | Informix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
