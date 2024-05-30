@@ -3,6 +3,8 @@ groups:
     type: metric
     metric_name: db.client.operation.duration
     brief: "Duration of database client operations."
+    note: >
+      Batch operations SHOULD be recorded as a single operation.
     instrument: histogram
     unit: "s"
     stability: experimental
