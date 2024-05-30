@@ -16,29 +16,35 @@ groups:
           conditionally_required: if available.
 
   # durations
-  - id: metric.messaging.client.operation.duration
+  - id: metric.messaging.client.request.duration
     type: metric
-    metric_name: messaging.client.operation.duration
-    brief: "Measures the duration of messaging operations involving communication with the broker."
+    metric_name: messaging.client.request.duration
+    brief: "Duration of messaging operation initiated by a producer or consumer."
+    note: >
+      This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
     stability: experimental
     instrument: histogram
     unit: "s"
     extends: metric.messaging.attributes
 
-  - id: metric.messaging.client.process.duration
+  - id: metric.messaging.process.duration
     type: metric
-    metric_name: messaging.client.process.duration
-    brief: "Measures the duration of process operation."
+    metric_name: messaging.process.duration
+    brief: "Duration of processing operation."
+    note: >
+      This metric MUST be reported for operations with `messaging.operation.type` that matches `process`.
     stability: experimental
     instrument: histogram
     unit: "s"
     extends: metric.messaging.attributes
 
   # counters
-  - id: metric.messaging.client.produced.messages
+  - id: metric.messaging.client.published.messages
     type: metric
-    metric_name: messaging.client.produced.messages
-    brief: "Measures the number of produced messages."
+    metric_name: messaging.client.published.messages
+    brief: "Number of messages producer attempted to publish to the broker."
+    note: >
+      This metric MUST NOT count messages that were created, but aren't being published yet.
     stability: experimental
     instrument: counter
     unit: "{message}"
@@ -47,7 +53,12 @@ groups:
   - id: metric.messaging.client.consumed.messages
     type: metric
     metric_name: messaging.client.consumed.messages
-    brief: "Measures the number of consumed (received and/or processed) messages."
+    brief: "Number of messages that were delivered to the application."
+    note: >
+      Records the number of messages pulled from the broker or number of messages dispatched to the application in push-based scenarios.
+
+      The metric MUST be reported once per message delivery. For example, if receiving and processing operations are both instrumented for a single message delivery, the number of received messages
+      is reported when then message is received and not reported for the processing operation.
     stability: experimental
     instrument: counter
     unit: "{message}"

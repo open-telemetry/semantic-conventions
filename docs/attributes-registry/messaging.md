@@ -35,7 +35,8 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | `messaging.message.envelope.size`         | int     | The size of the message body and metadata in bytes. [6]                                                                                    | `2738`                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.message.id`                    | string  | A value used by the messaging system as an identifier for the message, represented as a string.                                            | `452a7c7c7c7048c2f887f61572b18fc2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.operation.name`                | string  | The system-specific name of the messaging operation.                                                                                       | `ack`; `nack`; `send`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.system`                        | string  | The messaging system as identified by the client instrumentation. [7]                                                                      | `activemq`; `aws_sqs`; `eventgrid` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.operation.type`                | string  | A string identifying the type of the messaging operation. [7]                                                                              | `publish`; `create`; `receive`     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.system`                        | string  | The messaging system as identified by the client instrumentation. [8]                                                                      | `activemq`; `aws_sqs`; `eventgrid` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -53,7 +54,19 @@ body size should be used.
 **[6]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[7]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
+**[7]:** If a custom value is used, it MUST be of low cardinality.
+
+**[8]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
+
+`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value     | Description                                                                                                                                                                                                            | Stability                                                        |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `create`  | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios.                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process` | One or more messages are processed by a consumer.                                                                                                                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `settle`  | One or more messages are settled.                                                                                                                                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -80,7 +93,6 @@ Describes deprecated messaging attributes.
 | `messaging.client_id`                   | string | Deprecated, use `messaging.client.id` instead.                | `client-5`; `myhost@8742@s8083jm` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`.                |
 | `messaging.kafka.destination.partition` | int    | Deprecated, use `messaging.destination.partition.id` instead. | `2`                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
 | `messaging.operation`                   | string | Deprecated, use `messaging.operation.name` instead.           | `publish`; `create`; `process`    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.name`.           |
-| `messaging.operation.type`              | string | Deprecated, use `messaging.operation.name` instead.           | `publish`; `create`; `process`    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.name`.           |
 
 ## Messaging Eventhubs Attributes
 
@@ -109,11 +121,11 @@ This group describes attributes specific to Apache Kafka.
 | Attribute                           | Type    | Description                                                                                                                                                                                                                                | Examples   | Stability                                                        |
 | ----------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | ---------------------------------------------------------------- |
 | `messaging.kafka.consumer.group`    | string  | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers.                                                                                                                                   | `my-group` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `messaging.kafka.message.key`       | string  | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [8] | `myKey`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.kafka.message.key`       | string  | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [9] | `myKey`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.kafka.message.offset`    | int     | The offset of a record in the corresponding Kafka partition.                                                                                                                                                                               | `42`       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.kafka.message.tombstone` | boolean | A boolean that is true if the message is a tombstone.                                                                                                                                                                                      |            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[8]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[9]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
 ## Messaging RabbitMQ Attributes
 

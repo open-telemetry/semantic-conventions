@@ -1,24 +1,4 @@
 groups:
-  - id: metric.messaging.process.duration
-    type: metric
-    metric_name: messaging.process.duration
-    brief: "Deprecated. Use `messaging.client.process.duration` instead."
-    deprecated: "Replaced by `messaging.client.process.duration`."
-    stability: experimental
-    attributes:
-      - ref: messaging.system
-        requirement_level: required
-      - ref: messaging.destination.partition.id
-      - ref: messaging.destination.name
-        requirement_level:
-          conditionally_required: if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
-      - ref: messaging.destination.template
-        requirement_level:
-          conditionally_required: if available.
-    instrument: histogram
-    unit: "s"
-    extends: attributes.messaging.common.minimal
-
   - id: metric.messaging.publish.duration
     type: metric
     metric_name: messaging.publish.duration

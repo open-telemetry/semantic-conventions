@@ -31,14 +31,7 @@ versions:
               - db.client.connection.use_time
         # https://github.com/open-telemetry/semantic-conventions/pull/1006
         - rename_metrics:
-            messaging.publish.messages: messaging.client.produced.messages
-            messaging.process.duration: messaging.client.process.duration
-    all:
-      changes:
-        # https://github.com/open-telemetry/semantic-conventions/pull/1006
-        - rename_attributes:
-            attribute_map:
-              messaging.operation.type: messaging.operation.name
+            messaging.publish.messages: messaging.client.published.messages
 
   1.26.0:
     metrics:

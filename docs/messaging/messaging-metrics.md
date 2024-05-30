@@ -7,13 +7,13 @@
 <!-- toc -->
 
 - [Common attributes](#common-attributes)
-- [Metric: `messaging.client.operation.duration`](#metric-messagingclientoperationduration)
+- [Common metrics](#common-metrics)
+  - [Metric: `messaging.client.request.duration`](#metric-messagingclientrequestduration)
 - [Producer metrics](#producer-metrics)
-  - [Metric: `messaging.client.produced.messages`](#metric-messagingclientproducedmessages)
+  - [Metric: `messaging.client.published.messages`](#metric-messagingclientpublishedmessages)
 - [Consumer metrics](#consumer-metrics)
   - [Metric: `messaging.client.consumed.messages`](#metric-messagingclientconsumedmessages)
-  - [Metric: `messaging.client.process.duration`](#metric-messagingclientprocessduration)
-
+  - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
 <!-- tocstop -->
 
 > **Warning**
@@ -41,9 +41,10 @@ All messaging metrics share the same set of attributes:
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [6] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
@@ -74,9 +75,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[5]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[6]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[6]:** If a custom value is used, it MUST be of low cardinality.
 
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+
+**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 
 
@@ -85,6 +88,17 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+
+`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -110,75 +124,19 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Metric: `messaging.client.operation.duration`
+## Common metrics
 
-This metric is [required][MetricRequired].
+### Metric: `messaging.client.request.duration`
 
 When this metric is reported alongside a messaging span, the metric value SHOULD be the same as the corresponding span duration.
 
-This metric applies measures duration of operations that application initiates to communicate with the broker. It SHOULD NOT be used
-to report processing duration. Processing is covered by [`messaging.client.process.duration`](#metric-messagingclientprocessduration) metric.
+This metric is [required][MetricRequired].
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<<<<<<< HEAD
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-* Use a domain-specific attribute
-* Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
-
-**[3]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
-
-**[4]:** if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
-
-**[5]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
-
-**[6]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
-
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `activemq` | Apache ActiveMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `eventgrid` | Azure Event Grid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `eventhubs` | Azure Event Hubs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_pubsub` | Google Cloud Pub/Sub | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `jms` | Java Message Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `kafka` | Apache Kafka | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-=======
-<!-- semconv metric.messaging.client.operation.duration(metric_table) -->
+<!-- semconv metric.messaging.client.request.duration(metric_table) -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -187,7 +145,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.client.operation.duration` | Histogram | `s` | Measures the duration of messaging operations involving communication with the broker. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.client.request.duration` | Histogram | `s` | Duration of messaging operation initiated by a producer or consumer. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+**[1]:** This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
+
 
 
 <!-- markdownlint-restore -->
@@ -197,11 +159,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 ## Producer metrics
 
-### Metric: `messaging.client.produced.messages`
+### Metric: `messaging.client.published.messages`
 
 This metric is [required][MetricRequired].
 
-<!-- semconv metric.messaging.publish.messages(metric_table) -->
+<!-- semconv metric.messaging.client.published.messages(metric_table) -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -210,7 +172,11 @@ This metric is [required][MetricRequired].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.publish.messages` | Counter | `{message}` | Deprecated. Use `messaging.client.produced.messages` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.produced.messages`. |
+| `messaging.client.published.messages` | Counter | `{message}` | Number of messages producer attempted to publish to the broker. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+**[1]:** This metric MUST NOT count messages that were created, but aren't being published yet.
+
 
 
 <!-- markdownlint-restore -->
@@ -224,11 +190,6 @@ This metric is [required][MetricRequired].
 
 This metric is [required][MetricRequired].
 
-This metric measures number of messages that were consumed by the application. If messaging client supports pull mode, this metric SHOULD represent the number of successfully pulled
-messages. If messaging client pushes messages to the application, it SHOULD represent the number of times a message was dispatched to the application.
-
-If instrumentation reports pull-receiving and processing operations, the metric SHOULD be reported for each operation.
-
 <!-- semconv metric.messaging.client.consumed.messages(metric_table) -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
@@ -238,7 +199,12 @@ If instrumentation reports pull-receiving and processing operations, the metric 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.client.consumed.messages` | Counter | `{message}` | Measures the number of consumed (received and/or processed) messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.client.consumed.messages` | Counter | `{message}` | Number of messages that were delivered to the application. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+**[1]:** Records the number of messages pulled from the broker or number of messages dispatched to the application in push-based scenarios.
+The metric MUST be reported once per message delivery. For example, if receiving and processing operations are both instrumented for a single message delivery, the number of received messages is reported when then message is received and not reported for the processing operation.
+
 
 
 <!-- markdownlint-restore -->
@@ -246,19 +212,17 @@ If instrumentation reports pull-receiving and processing operations, the metric 
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `messaging.client.process.duration`
-
-This metric is [required][MetricRequired] for push-based message delivery and is [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
-
-Processing operation covers application-specific message processing logic and errors. Processing duration SHOULD NOT be reported as a part of the [`messaging.client.operation.duration`](#metric-messagingclientoperationduration).
+### Metric: `messaging.process.duration`
 
 When this metric is reported alongside a messaging process span, the metric value SHOULD be the same as the corresponding span duration.
+
+This metric is [required][MetricRequired] for push-based message delivery and is [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/metrics/api.md#instrument-advice)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
-<!-- semconv metric.messaging.client.process.duration(metric_table) -->
+<!-- semconv metric.messaging.process.duration(metric_table) -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -267,7 +231,11 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.client.process.duration` | Histogram | `s` | Measures the duration of process operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.process.duration` | Histogram | `s` | Duration of processing operation. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+**[1]:** This metric MUST be reported for operations with `messaging.operation.type` that matches `process`.
+
 
 
 <!-- markdownlint-restore -->

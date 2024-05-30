@@ -5,10 +5,9 @@ component: messaging
 note: |
   Support generic operations in messaging and rename metrics:
 
-    - Deprecate `messaging.operation.type` in favor of now required `messaging.operation.name`.
-    - Rename `messaging.publish.messages` to `messaging.client.produced.messages`
-    - Rename `messaging.process.duration` to `messaging.client.process.duration`
-    - Unify `messaging.publish.duration` and `messaging.receive.duration` into `messaging.client.operation.duration`
-    - Unify `messaging.receive.messages` and `messaging.process.messages` into `messaging.client.consumed.messages`
+    - Make `messaging.operation.name` required and `messaging.operation.type` conditionally required type is when applicable.
+    - Rename `messaging.publish.messages` metric to `messaging.client.published.messages`
+    - Unify `messaging.publish.duration` and `messaging.receive.duration` metrics into `messaging.client.request.duration`
+    - Unify `messaging.receive.messages` and `messaging.process.messages` metrics into `messaging.client.consumed.messages`
 
 issues: [1006, 947, 937]
