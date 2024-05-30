@@ -1,0 +1,10 @@
+name: Blank issue
+description: Create an issue that doesn't fit the other categories
+labels: ["triage:needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this issue!
+        Please make sure to provide all the relevant context in order to help us triage and track down your bug as quickly as possible.
+
