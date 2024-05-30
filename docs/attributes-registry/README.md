@@ -60,7 +60,6 @@ Currently, the following namespaces exist:
 - [Heroku](heroku.md)
 - [Host](host.md)
 - [HTTP](http.md)
-- [Instrumentation](instrumentation.md)
 - [iOS](ios.md)
 - [JVM](jvm.md)
 - [K8s](k8s.md)
