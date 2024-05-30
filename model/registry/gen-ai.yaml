@@ -87,6 +87,20 @@ groups:
         brief: The number of tokens used in the LLM response (completion).
         examples: [180]
         tag: llm-generic-response
+      - id: token.type
+        stability: experimental
+        type:
+          members:
+            - id: input
+              stability: experimental
+              value: "input"
+              brief: 'Input tokens (prompt, input, etc.)'
+            - id: completion
+              stability: experimental
+              value: "output"
+              brief: 'Output tokens (completion, response, etc.)'
+        brief: The type of token being counted.
+        examples: ['input', 'output']
       - id: prompt
         stability: experimental
         type: string
@@ -101,3 +115,8 @@ groups:
         note: It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
         tag: llm-generic-events
+      - id: operation.name
+        stability: experimental
+        type: string
+        brief: The name of the operation being performed.
+        examples: ['chat', 'completion']

@@ -48,11 +48,11 @@ with the naming guidelines for RPC client spans.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
