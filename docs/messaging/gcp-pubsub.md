@@ -44,7 +44,7 @@ If one of them applies, then the respective value MUST be used; otherwise, a cus
 - `send` for publishing operations
 - `modack` for extending the lease for a single message or batch of messages
 - `subscribe` for operations that represent the time from after the message was received to when the message is acknowledged, negatively acknowledged, or expired.
-- `create`, `receive`, and `publish` for [common messaging operations](/docs/messaging/messaging-spans.md#common-messaging-operations)
+- `create` and `receive` for [common messaging operations](/docs/messaging/messaging-spans.md#common-messaging-operations)
 
 **[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -141,6 +141,7 @@ flowchart LR;
 | `messaging.batch.message_count` |  |  | 2 |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation.name` | `"create"` | `"create"` | `"send"` |
+| `messaging.operation.type` | `"create"` | `"create"` | `"publish"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.message.envelope.size` | `1` | `1` | |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
@@ -191,14 +192,15 @@ flowchart TD;
 
 | Field or Attribute | Span Create A | Span Publish A | Span Receive A | Span Modack A | Span Ack A |
 |-|-|-|-|-|-|
-| Span name | `T create` | `publish` |  `S receive` | `S modack` |`S ack` |
+| Span name | `create T` | `send T` |  `receive S` | `modack S` | `ack S` |
 | Parent |  |  |  | |  |
 | Links |  | Span Create A | Span Create A | Span Receive A | Span Receive A |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |`Ok` | `Ok` |
 | `messaging.destination.name` | `"T"`| `"T"`| `"S"` | `"S"` |`"S"` |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
-| `messaging.operation` | `"create"` | `"publish"` | `"receive"` |  `"extend"` |  `"settle"` |
+| `messaging.operation.name` | `"create"` | `"send"` | `"receive"` | `"modack"` | `"ack"` |
+| `messaging.operation.type` | `"create"` | `"publish"` | `"receive"` |  | `"settle"` |
 | `messaging.message.id` | `"a1"` | | `"a1"` | | |
 | `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
 | `messaging.gcp_pubsub.message.ack_id` | | |  | `"ack_id1"` |`"ack_id1"` |

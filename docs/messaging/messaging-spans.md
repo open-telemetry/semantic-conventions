@@ -496,7 +496,7 @@ flowchart LR;
 
 | Field or Attribute | Span Publish A | Span Process A 1| Span Process A 2 |
 |-|-|-|-|
-| Span name | `publish T` | `process T` | `process T` |
+| Span name | `publish T` | `consume T` | `consume T` |
 | Parent | | | |
 | Links |  | `publish T` | `publish T` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
@@ -504,7 +504,8 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
-| `messaging.operation.name` | `"publish"` | `"process"` | `"process"` |
+| `messaging.operation.name` | `"publish"` | `"consume"` | `"consume"` |
+| `messaging.operation.type` | `"publish"` | `"process"` | `"process"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
 ### Batch receiving
@@ -532,7 +533,7 @@ flowchart LR;
 
 | Field or Attribute | Span Publish A | Span Publish B | Span Receive A B |
 |-|-|-|-|
-| Span name | `publish Q` | `publish Q` | `receive Q` |
+| Span name | `send Q` | `send Q` | `poll Q` |
 | Parent |  |  |  |
 | Links |  |  | Span Publish A, Span Publish B |
 | Link attributes |  |  | Span Publish A: `messaging.message.id`: `"a1"`  |
@@ -542,7 +543,8 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation.name` | `"publish"` | `"publish"` | `"receive"` |
+| `messaging.operation.name` | `"send"` | `"send"` | `"poll"` |
+| `messaging.operation.type` | `"publish"` | `"publish"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
 
@@ -579,7 +581,7 @@ flowchart LR;
 
 | Field or Attribute | Span Create A | Span Create B | Span Publish | Span Receive A | Span Receive B |
 |-|-|-|-|-|-|
-| Span name | `create Q` | `create Q` | `publish Q` | `receive Q` | `receive Q` |
+| Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
 | Parent |  | | | | |
 | Links |  |  |  | Span Create A | Span Create B |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CONSUMER` | `CONSUMER` |
@@ -587,7 +589,8 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation.name` | `"create"` | `"create"` | `"publish"` | `"receive"` | `"receive"` |
+| `messaging.operation.name` | `"create"` | `"create"` | `"send"` | `"poll"` | `"poll"` |
+| `messaging.operation.type` | `"create"` | `"create"` | `"publish"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | | | 2 | | |
 

@@ -225,7 +225,7 @@ groups:
           - `send` for publishing operations
           - `modack` for extending the lease for a single message or batch of messages
           - `subscribe` for operations that represent the time from after the message was received to when the message is acknowledged, negatively acknowledged, or expired.
-          - `create`, `receive`, and `publish` for [common messaging operations](/docs/messaging/messaging-spans.md#common-messaging-operations)
+          - `create` and `receive` for [common messaging operations](/docs/messaging/messaging-spans.md#common-messaging-operations)
   - id: messaging.servicebus
     type: attribute_group
     extends: attributes.messaging.trace.minimal

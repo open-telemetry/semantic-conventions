@@ -132,7 +132,7 @@ One process, CA, receives the message and publishes a new message to a topic T2 
 
 Frameworks such as Quarkus and Spring Boot separate processing of a received message from producing subsequent messages out.
 For this reason, receiving (Span Rcv1) is the parent of both processing (Span Proc1) and producing a new message (Span Prod2).
-The span representing message receiving (Span Rcv1) should not set `messaging.operation.name` to `receive`,
+The span representing message receiving (Span Rcv1) should set `messaging.operation.type` to `process`,
 as it does not only receive the message but also converts the input message to something suitable for the processing operation to consume and creates the output message from the result of processing.
 
 ```
@@ -147,7 +147,7 @@ Process CB:                           | Span Rcv2 |
 
 | Field or Attribute | Span Prod1 | Span Rcv1 | Span Proc1 | Span Prod2 | Span Rcv2 |
 |-|-|-|-|-|-|
-| Span name | `"send T1"` | `"send T1"` | `"process T1"` | `"publish T2"` | `"consume T2`" |
+| Span name | `"send T1"` | `"send T1"` | `"process T1"` | `"send T2"` | `"poll T2`" |
 | Parent |  | Span Prod1 | Span Rcv1 | Span Rcv1 | Span Prod2 |
 | Links |  |  | |  |  |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` | `PRODUCER` | `CONSUMER` |
@@ -156,7 +156,8 @@ Process CB:                           | Span Rcv2 |
 | `service.name` |  | `"myConsumer1"` | `"myConsumer1"` |  | `"myConsumer2"` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T1"` | `"T1"` | `"T1"` | `"T2"` | `"T2"` |
-| `messaging.operation.name` | `send` | `send` | `"process"` | `send` | `"consume"` |
+| `messaging.operation.name` | `send` | `send` | `"process"` | `send` | `"poll"` |
+| `messaging.operation.type` | `publish` | `publish` | `"process"` | `publish` | `"receive"` |
 | `messaging.client.id` |  | `"5"` | `"5"` | `"5"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | `"anotherKey"` | `"anotherKey"` |
 | `messaging.kafka.consumer.group` |  | `"my-group"` | `"my-group"` |  | `"another-group"` |
