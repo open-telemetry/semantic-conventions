@@ -10,10 +10,13 @@ groups:
         stability: experimental
         brief: The name of a collection (table, container) within the database.
         note: >
-            If the collection name is parsed from the query, it SHOULD match the value provided
-            in the query and may be qualified with the schema and database name.
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-            It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+          If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query
+          and it SHOULD match the value provided in the query text including any schema and database name prefix.
+
+          For batch operations, if the individual operations are known to have the same collection name
+          then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
         examples: ['public.users', 'customers']
       - id: namespace
         type: string
@@ -38,12 +41,22 @@ groups:
           The name of the operation or command being executed.
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+          If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
+
+          For batch operations, if the individual operations are known to have the same operation name
+          then that operation name SHOULD be used prepended by `BATCH `,
+          otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
         examples: ['findAndModify', 'HMSET', 'SELECT']
       - id: query.text
         type: string
         stability: experimental
         brief: >
           The database query being executed.
+        note: >
+          For batch operations, if the individual operations are known to have the same query text
+          then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated
+          with separator `; ` or some other database system specific separator if more applicable.
         examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
       - id: query.parameter
         type: template[string]
@@ -57,6 +70,14 @@ groups:
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
         examples: ['someval', '55']
+      - id: operation.batch.size
+        type: int
+        stability: experimental
+        brief: The number of queries included in a [batch operation](/docs/database/database-spans.md#batch-operations).
+        note: >
+          Operations are only considered batches when they contain two or more operations,
+          and so `db.operation.batch.size` SHOULD never be `1`.
+        examples: [ 2, 3, 4 ]
       - id: system
         brief: The database management system (DBMS) product as identified by the client instrumentation.
         note: >
@@ -165,6 +186,10 @@ groups:
             - id: hsqldb
               value: 'hsqldb'
               brief: 'HyperSQL DataBase'
+              stability: experimental
+            - id: influxdb
+              value: 'influxdb'
+              brief: 'InfluxDB'
               stability: experimental
             - id: informix
               value: 'informix'
