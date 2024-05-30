@@ -14,10 +14,6 @@ groups:
               stability: experimental
               value: "openai"
               brief: 'OpenAI'
-            - id: azure_openai
-              stability: experimental
-              value: "azure_openai"
-              brief: 'Azure OpenAI'
             - id: vertex_ai
               stability: experimental
               value: "vertex_ai"

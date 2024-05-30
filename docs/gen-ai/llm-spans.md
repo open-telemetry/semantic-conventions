@@ -69,7 +69,6 @@ These attributes track input data and metadata for a request to an LLM. Each att
 | Value  | Description | Stability |
 |---|---|---|
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
