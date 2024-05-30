@@ -58,12 +58,6 @@ groups:
       - ref: messaging.operation.type
         requirement_level:
           conditionally_required: If applicable.
-      - ref: messaging.batch.message_count
-        requirement_level:
-          conditionally_required: If the span describes an operation on a batch of messages.
-      - ref: messaging.client.id
-        requirement_level:
-          recommended: If a client id is available
       - ref: messaging.destination.name
         requirement_level:
           conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
@@ -79,9 +73,11 @@ groups:
     attributes:
       - ref: messaging.system
         requirement_level: required
-      - ref: messaging.client.id
+      - ref: messaging.batch.message_count
         requirement_level:
-          recommended: If a client id is available
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.client.id
+        requirement_level: recommended
       - ref: messaging.destination.partition.id
         requirement_level:
           recommended: When applicable.

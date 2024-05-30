@@ -5,7 +5,7 @@ component: messaging
 note: |
   Support generic operations in messaging and rename metrics:
 
-    - Make `messaging.operation.name` required and `messaging.operation.type` conditionally required type is when applicable.
+    - Make `messaging.operation.name` required and `messaging.operation.type` conditionally required when type is applicable.
     - Rename `messaging.publish.messages` metric to `messaging.client.published.messages`
     - Unify `messaging.publish.duration` and `messaging.receive.duration` metrics into `messaging.client.request.duration`
     - Unify `messaging.receive.messages` and `messaging.process.messages` metrics into `messaging.client.consumed.messages`

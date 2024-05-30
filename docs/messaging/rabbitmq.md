@@ -28,19 +28,17 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 |---|---|---|---|---|---|
 | [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [2] | `0`; `1`; `2` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [6] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [2] | `MyQueue`; `MyTopic` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [4] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rabbitmq.destination.routing_key`](/docs/attributes-registry/messaging.md) | string | RabbitMQ message routing key. | `myKey` | `Conditionally Required` If not empty. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rabbitmq.message.delivery_tag`](/docs/attributes-registry/messaging.md) | int | RabbitMQ message delivery tag | `123` | `Conditionally Required` When available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` If a client id is available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [8] | `1439` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [6] | `1439` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.conversation_id`](/docs/attributes-registry/messaging.md) | string | Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [9] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [7] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -62,25 +60,21 @@ it's RECOMMENDED to:
 * Use a domain-specific attribute
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
-
-**[3]:** If the span describes an operation on a batch of messages.
-
-**[4]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[2]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[5]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[3]:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[6]:** If a custom value is used, it MUST be of low cardinality.
+**[4]:** If a custom value is used, it MUST be of low cardinality.
 
-**[7]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[5]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[8]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[6]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[9]:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[7]:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 
 
