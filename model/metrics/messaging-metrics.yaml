@@ -26,6 +26,12 @@ groups:
     instrument: histogram
     unit: "s"
     extends: metric.messaging.attributes
+    attributes:
+      - ref: messaging.operation.type
+        requirement_level:
+          conditionally_required: If applicable.
+      - ref: messaging.operation.name
+        examples: ["send", "receive", "ack"]
 
   - id: metric.messaging.process.duration
     type: metric
@@ -37,6 +43,9 @@ groups:
     instrument: histogram
     unit: "s"
     extends: metric.messaging.attributes
+    attributes:
+      - ref: messaging.operation.name
+        examples: ["process", "consume", "handle"]
 
   # counters
   - id: metric.messaging.client.published.messages
@@ -49,6 +58,9 @@ groups:
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.attributes
+    attributes:
+      - ref: messaging.operation.name
+        examples: ["send", "schedule", "enqueue"]
 
   - id: metric.messaging.client.consumed.messages
     type: metric
@@ -63,3 +75,6 @@ groups:
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.attributes
+    attributes:
+      - ref: messaging.operation.name
+        examples: ["receive", "peek", "poll", "consume"]

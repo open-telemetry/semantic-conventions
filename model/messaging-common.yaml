@@ -17,6 +17,3 @@ groups:
       - ref: server.port
       - ref: messaging.operation.name
         requirement_level: required
-      - ref: messaging.operation.type
-        requirement_level:
-          conditionally_required: If applicable.

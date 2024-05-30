@@ -126,6 +126,12 @@ groups:
               brief: >
                 One or more messages are settled.
               stability: experimental
+            - id: deliver
+              value: "deliver"
+              brief: "Deprecated. Use `process` instead."
+              deprecated: "Replaced by `process`."
+              stability: experimental
+
         stability: experimental
         brief: >
           A string identifying the type of the messaging operation.
