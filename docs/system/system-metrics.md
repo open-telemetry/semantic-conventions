@@ -1487,7 +1487,7 @@ See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5
 | `system.linux.memory.slab.usage` | UpDownCounter | `By` | Reports the memory used by the Linux kernel for managing caches of frequently used objects by state. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-**[1]:** The sum over all `system.linux.memory.slab.state` values SHOULD equal the total slab memory available on the system, that is `system.linux.memory.slab.limit`.
+**[1]:** The sum over all `system.linux.memory.slab.usage` state values SHOULD equal the total slab memory available on the system, that is `system.linux.memory.slab.limit`.
 
 
 
@@ -1535,7 +1535,7 @@ See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5
 | `system.linux.memory.slab.limit` | UpDownCounter | `By` | Total slab memory used in the system. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-**[1]:** Its value SHOULD equal the sum of `system.linux.memory.slab.state` over all states.
+**[1]:** Its value SHOULD equal the sum of `system.linux.memory.slab.usage` over all states.
 
 
 
