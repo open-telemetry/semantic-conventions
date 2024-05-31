@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: db.collection.name
         type: string
-        stability: experimental
+        stability: experimental # RELEASE CANDIDATE
         brief: The name of a collection (table, container) within the database.
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
@@ -17,10 +17,12 @@ groups:
 
           For batch operations, if the individual operations are known to have the same collection name
           then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
+
+          This attribute has stability level RELEASE CANDIDATE.
         examples: ["public.users", "customers"]
       - id: db.namespace
         type: string
-        stability: experimental
+        stability: experimental # RELEASE CANDIDATE
         brief: >
           The name of the database, fully qualified within the server address and port.
         note: >
@@ -33,10 +35,12 @@ groups:
           means in the context of that system.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+          This attribute has stability level RELEASE CANDIDATE.
         examples: ["customers", "test.users"]
       - id: db.operation.name
         type: string
-        stability: experimental
+        stability: experimental # RELEASE CANDIDATE
         brief: >
           The name of the operation or command being executed.
         note: >
@@ -47,10 +51,12 @@ groups:
           For batch operations, if the individual operations are known to have the same operation name
           then that operation name SHOULD be used prepended by `BATCH `,
           otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+
+          This attribute has stability level RELEASE CANDIDATE.
         examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.query.text
         type: string
-        stability: experimental
+        stability: experimental # RELEASE CANDIDATE
         brief: >
           The database query being executed.
         note: >
@@ -63,6 +69,8 @@ groups:
           Even though parameterized query text can potentially have sensitive data, by using a parameterized query
           the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
           to observability of capturing the static part of the query text by default outweighs the risk.
+
+          This attribute has stability level RELEASE CANDIDATE.
         examples:
           [
             "SELECT * FROM wuser_table where username = ?",
@@ -70,7 +78,7 @@ groups:
           ]
       - id: db.query.parameter
         type: template[string]
-        stability: experimental
+        stability: experimental # RELEASE CANDIDATE
         brief: >
           A query parameter used in `db.query.text`, with `<key>` being the parameter name,
           and the attribute value being a string representation of the parameter value.
@@ -79,14 +87,18 @@ groups:
 
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
+
+          This attribute has stability level RELEASE CANDIDATE.
         examples: ["someval", "55"]
       - id: db.operation.batch.size
         type: int
-        stability: experimental
+        stability: experimental # RELEASE CANDIDATE
         brief: The number of queries included in a batch operation.
         note: >
           Operations are only considered batches when they contain two or more operations,
           and so `db.operation.batch.size` SHOULD never be `1`.
+
+          This attribute has stability level RELEASE CANDIDATE.
         examples: [2, 3, 4]
       - id: db.response.status_code
         type: string
@@ -107,6 +119,8 @@ groups:
           The actual DBMS may differ from the one identified by the client.
           For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system`
           is set to `postgresql` based on the instrumentation's best knowledge.
+
+          This attribute has stability level RELEASE CANDIDATE.
         type:
           members:
             - id: other_sql
@@ -239,8 +253,8 @@ groups:
               stability: experimental
             - id: mariadb
               value: "mariadb"
-              brief: "MariaDB"
-              stability: experimental
+              brief: "MariaDB (This value has stability level RELEASE CANDIDATE)"
+              stability: experimental # RELEASE CANDIDATE
             - id: maxdb
               value: "maxdb"
               brief: "SAP MaxDB"
@@ -255,8 +269,8 @@ groups:
               stability: experimental
             - id: mssql
               value: "mssql"
-              brief: "Microsoft SQL Server"
-              stability: experimental
+              brief: "Microsoft SQL Server (This value has stability level RELEASE CANDIDATE)"
+              stability: experimental # RELEASE CANDIDATE
             - id: mssqlcompact
               value: "mssqlcompact"
               deprecated: "Removed, use `other_sql` instead."
@@ -264,8 +278,8 @@ groups:
               stability: experimental
             - id: mysql
               value: "mysql"
-              brief: "MySQL"
-              stability: experimental
+              brief: "MySQL (This value has stability level RELEASE CANDIDATE)"
+              stability: experimental # RELEASE CANDIDATE
             - id: neo4j
               value: "neo4j"
               brief: "Neo4j"
@@ -292,8 +306,8 @@ groups:
               stability: experimental
             - id: postgresql
               value: "postgresql"
-              brief: "PostgreSQL"
-              stability: experimental
+              brief: "PostgreSQL (This value has stability level RELEASE CANDIDATE)"
+              stability: experimental # RELEASE CANDIDATE
             - id: progress
               value: "progress"
               brief: "Progress Database"
@@ -330,7 +344,7 @@ groups:
               value: "vertica"
               brief: "Vertica"
               stability: experimental
-        stability: experimental
+        stability: experimental # RELEASE CANDIDATE
       - id: db.client.connection.state
         stability: experimental
         type:

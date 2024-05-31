@@ -7,7 +7,7 @@ path_base_for_github_subdir:
 
 # Semantic Conventions for Database Calls and Systems
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 This document defines semantic conventions for database client spans as well as
 database metrics and logs.
