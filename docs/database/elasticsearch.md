@@ -77,6 +77,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 **[9]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
 **[10]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[11]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
 

@@ -4,7 +4,7 @@ linkTitle: MSSQL
 
 # Semantic Conventions for MSSQL
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 The Semantic Conventions for the *Microsoft SQL Server* extend and override the [Database Semantic Conventions](database-spans.md)
 that describe common database operations attributes in addition to the Semantic Conventions
@@ -35,6 +35,7 @@ described on this page.
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
 For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
@@ -53,6 +54,7 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 **[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[9]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[10]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
 
@@ -60,6 +62,7 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 
 **[12]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+This attribute has stability level RELEASE CANDIDATE.
 
 
 
