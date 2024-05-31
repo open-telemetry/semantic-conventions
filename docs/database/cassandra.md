@@ -60,9 +60,10 @@ For batch operations, if the individual operations are known to have the same op
 
 **[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[9]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+**[9]:** Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[10]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+**[10]:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. Sanitization SHOULD be done by replacing all literals with a placeholder value. Such literals include, but are not limited to, String literals, Numeric literals, Date and Time literals, Boolean literals, Interval literals, Binary literals, and Hexadecimal literals. The placeholder value SHOULD be `?`, unless it already has a defined meaning in the given database system, in which case the instrumentation MAY choose a different placeholder.
+Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)). Placeholders in a parametrized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is, and  there is no need to sanitize the value `$1`.
 
 **[11]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 

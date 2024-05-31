@@ -27,11 +27,11 @@ described on this page.
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [7] | `HMSET myhash field1 'Hello' field2 'World'` | `Recommended` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [9] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [7] | `HMSET myhash field1 'Hello' field2 'World'` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [8] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [11] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [10] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The database index for current connection can be changed by the application dynamically. Instrumentations MAY use the initial database index provided in the connection string and keep track of the currently selected database to capture the `db.namespace`.
 Instrumentations SHOULD NOT set this attribute if capturing it would require additional network calls to Redis.
@@ -51,14 +51,11 @@ For batch operations, if the individual operations are known to have the same op
 
 **[7]:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
-**[8]:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
-Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
+**[8]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[9]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[9]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[10]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-
-**[11]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+**[10]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
 
