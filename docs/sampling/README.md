@@ -138,7 +138,7 @@ sampling is available.
 ### Sampling randomness
 
 When determining the Randomness value from an item of telemetry,
-sampler implementations SHOULD:
+sampler implementations SHOULD evaluate the following in order:
 
 - use the OpenTelemetry R-value field (`rv`) in `tracestate` from a live SpanContext (in context)
 - use the OpenTelemetry R-value field (`rv`) in `tracestate` from a Span tracestate (spans data)
