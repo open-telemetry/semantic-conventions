@@ -43,3 +43,19 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
+  - id: metric.gen_ai.server.latency.time_per_output_token
+    type: metric
+    metric_name: gen_ai.server.latency.time_per_output_token
+    brief: 'Mean time per output token generated'
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    extends: metric_attributes.gen_ai
+  - id: metric.gen_ai.server.latency.time_to_first_token
+    type: metric
+    metric_name: gen_ai.server.latency.time_to_first_token
+    brief: 'Mean time/latency to generate first token'
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    extends: metric_attributes.gen_ai
