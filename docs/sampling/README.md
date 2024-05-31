@@ -118,7 +118,7 @@ attribute.
 ### Sampling threshold
 
 When determining the Threshold value from an item of telemetry,
-sampler implementations SHOULD:
+sampler implementations SHOULD evaluate the following in order:
 
 - use the OpenTelemetry T-value field (`th`) in `tracestate` from a live SpanContext (in context)
 - use the OpenTelemetry T-value field (`th`) in `tracestate` from a Span tracestate (spans data)
