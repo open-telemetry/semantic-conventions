@@ -10,7 +10,7 @@ change_type: enhancement
 component: events
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add a human-readable message as an attribute representing the event
+note: Add a human-readable description as an attribute representing the event
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
@@ -21,5 +21,5 @@ issues: [ 1076 ]
 # Use pipe (|) for multiline entries.
 subtext: |
   Events are identified by an `event.name` and a set of attributes and fields in the body that carry specific
-  meaning. However, since these events will be combined with other logs, `event.message` allows a backend to
-  display a human-readable representation of the event.
+  meaning. However, since these events will be combined with other logs, `event.description` allows a
+  centralized logging system to display a human-readable representation of the event.
