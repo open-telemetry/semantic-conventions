@@ -27,8 +27,8 @@ groups:
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
             see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
-            Placeholders in a parametrized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is, and
-            there is no need to sanitize the value `$1`.
+            Placeholders in a parametrized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is,
+            and there is no need to sanitize the value `$1`.
         note:
           Even though parameterized query text can potentially have sensitive data, by using a parameterized query
           the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
