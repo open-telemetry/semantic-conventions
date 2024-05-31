@@ -102,6 +102,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pulsar` | Apache Pulsar | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
