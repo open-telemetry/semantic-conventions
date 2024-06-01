@@ -19,26 +19,18 @@ This document defines attributes for software deployments.
 | `deployment.id`               | string | The id of the deployment.                                                                                          | `1208`                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `deployment.name`             | string | The name of the deployment.                                                                                        | `deploy my app`; `deploy-frontend` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** `deployment.environment` does not affect the uniqueness constraints defined through
+**[1]:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
 This implies that resources carrying the following attribute combinations MUST be
 considered to be identifying the same service:
 
-- `service.name=frontend`, `deployment.environment=production`
-- `service.name=frontend`, `deployment.environment=staging`.
+- `service.name=frontend`, `deployment.environment.name=production`
+- `service.name=frontend`, `deployment.environment.name=staging`.
 
 ## Deployment Deprecated Attributes
 
 "Describes deprecated deployment attributes."
 
-| Attribute                | Type   | Description                                                  | Examples                | Stability                                                                                                             |
-| ------------------------ | ------ | ------------------------------------------------------------ | ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `deployment.environment` | string | 'Deprecated, use `deployment.environment.name` instead.' [2] | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `deployment.environment.name` instead. |
-
-**[2]:** `deployment.environment` does not affect the uniqueness constraints defined through
-the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
-This implies that resources carrying the following attribute combinations MUST be
-considered to be identifying the same service:
-
-- `service.name=frontend`, `deployment.environment=production`
-- `service.name=frontend`, `deployment.environment=staging`.
+| Attribute                | Type   | Description                                              | Examples                | Stability                                                                                                             |
+| ------------------------ | ------ | -------------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `deployment.environment` | string | 'Deprecated, use `deployment.environment.name` instead.' | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `deployment.environment.name` instead. |

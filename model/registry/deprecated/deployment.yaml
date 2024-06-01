@@ -11,12 +11,4 @@ groups:
         deprecated: 'Deprecated, use `deployment.environment.name` instead.'
         brief: >
           'Deprecated, use `deployment.environment.name` instead.'
-        note: |
-          `deployment.environment` does not affect the uniqueness constraints defined through
-          the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
-          This implies that resources carrying the following attribute combinations MUST be
-          considered to be identifying the same service:
-
-          * `service.name=frontend`, `deployment.environment=production`
-          * `service.name=frontend`, `deployment.environment=staging`.
         examples: ['staging', 'production']
