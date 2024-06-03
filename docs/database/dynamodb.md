@@ -28,6 +28,7 @@ These attributes are filled in for all DynamoDB request types.
 | [`db.system`](/docs/attributes-registry/db.md) | string | The value `dynamodb`. [1] | `dynamodb` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+This attribute has stability level RELEASE CANDIDATE.
 
 
 
@@ -45,7 +46,7 @@ These attributes are filled in for all DynamoDB request types.
 | `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db2` | IBM Db2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db2` | IBM Db2 (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `derby` | Apache Derby | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `dynamodb` | Amazon DynamoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `edb` | EnterpriseDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -54,7 +55,7 @@ These attributes are filled in for all DynamoDB request types.
 | `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `firstsql` | FirstSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `h2` | H2 (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -64,21 +65,21 @@ These attributes are filled in for all DynamoDB request types.
 | `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mariadb` | MariaDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mariadb` | MariaDB (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql` | Microsoft SQL Server | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mssqlcompact` | Microsoft SQL Server Compact | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mysql` | MySQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle` | Oracle Database (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `postgresql` | PostgreSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `progress` | Progress Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
