@@ -48,6 +48,11 @@ every time a session is created. When a new session is created as a continuation
 the `session.previous_id` SHOULD be included in the event. The values of `session.id` and `session.previous_id`
 MUST be different.
 
+When the `session.start` event contains both `session.id` and `session.previous_id` fields, the event then implies
+that the previous session has ended. If the session ID in `session.previous_id` has not yet ended via explicit
+`session.end` event, then the receiver SHOULD treat this continuation event as semantically equivalent to
+`session.end(session.previous_id)` and `session.start(session.id)`.
+
 | Body field                                                    | Type   | Description                                          | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) |
 |---------------------------------------------------------------|--------|------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
 | [`session.id`](/docs/attributes-registry/session.md)          | string | The ID of the new session being started.             | `Required`                                                                                            |
