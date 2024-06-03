@@ -6,14 +6,6 @@ linkTitle: Generative AI metrics
 
 **Status**: [Experimental][DocumentStatus]
 
-## Generative AI Client Metrics
-
-The conventions described in this section are specific to Generative AI client
-applications.
-
-**Disclaimer:** These are initial Generative AI client metric instruments
-and attributes but more may be added in the future.
-
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
@@ -21,8 +13,20 @@ and attributes but more may be added in the future.
 - [Generative AI Client Metrics](#generative-ai-client-metrics)
   - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
   - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)
+- [Generative AI Model Server Metrics](#generative-ai-model-server-metrics)
+  - [Metric: `gen_ai.server.latency.request_duration`](#metric-gen_aiserverlatencyrequest_duration)
+  - [Metric: `gen_ai.server.latency.time_per_output_token`](#metric-gen_aiserverlatencytime_per_output_token)
+  - [Metric: `gen_ai.server.latency.time_to_first_token`](#metric-gen_aiserverlatencytime_to_first_token)
 
 <!-- tocstop -->
+
+## Generative AI Client Metrics
+
+The conventions described in this section are specific to Generative AI client
+applications.
+
+**Disclaimer:** These are initial Generative AI client metric instruments
+and attributes but more may be added in the future.
 
 The following metric instruments describe Generative AI operations. An
 operation may be a request to an LLM, a function call, or some other
