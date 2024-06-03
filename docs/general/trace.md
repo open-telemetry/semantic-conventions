@@ -37,4 +37,4 @@ Apart from semantic conventions for traces, [metrics](metrics.md), [logs](logs.m
 OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

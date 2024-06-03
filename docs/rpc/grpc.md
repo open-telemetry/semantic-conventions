@@ -92,4 +92,4 @@ and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/tr
 | DATA_LOSS | `Error` | `Error` |
 | UNAUTHENTICATED | unset | `Error` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
