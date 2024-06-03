@@ -108,4 +108,4 @@ detector implementations MUST not collect `host.id` from privileged sources. If
 privileged lookup of `host.id` is required, the value should be injected via the
 `OTEL_RESOURCE_ATTRIBUTES` environment variable.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

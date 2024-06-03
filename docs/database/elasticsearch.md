@@ -129,4 +129,4 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `db.namespace`                      | `"e9106fc68e3044f0b1475b04bf4ffd5f"`                                                                                                |
 | `db.elasticsearch.node.name`        | `"instance-0000000001"`                                                                                                             |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
