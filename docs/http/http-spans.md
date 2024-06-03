@@ -719,5 +719,5 @@ Span name: `POST /uploads/:document_id`.
 | `http.response.status_code` | `201`                                    |
 | `error.type`         | `WebSocketDisconnect`                           |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/sdk.md#span-processor

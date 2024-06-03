@@ -77,4 +77,4 @@ For batch operations, if the individual operations are known to have the same co
 | `db.query.text`         | not set |
 | `db.operation.name`     | `"findAndModify"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
