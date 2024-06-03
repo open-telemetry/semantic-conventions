@@ -7,63 +7,78 @@ groups:
       This geolocation information can be derived from techniques such as Geo IP, or be user-supplied.
     attributes:
       - id: city_name
+        stability: experimental
         type: string
         brief: >
           City name.
         examples: [ 'Montreal', 'Berlin' ]
       - id: continent_code
+        stability: experimental
         brief: >
           Two-letter code representing continent’s name.
         type:
           allow_custom_values: false
           members:
             - id: 'af'
+              stability: experimental
               value: 'AF'
               brief: 'Africa'
             - id: 'an'
+              stability: experimental
               value: 'AN'
               brief: 'Antarctica'
             - id: 'as'
+              stability: experimental
               value: 'AS'
               brief: 'Asia'
             - id: 'eu'
+              stability: experimental
               value: 'EU'
               brief: 'Europe'
             - id: 'na'
+              stability: experimental
               value: 'NA'
               brief: 'North America'
             - id: 'oc'
+              stability: experimental
               value: 'OC'
               brief: 'Oceania'
             - id: 'sa'
+              stability: experimental
               value: 'SA'
               brief: 'South America'
       - id: continent_name
+        stability: experimental
         type: string
         brief: >
           Name of the continent.
         examples: [ 'North America', 'Europe' ]
       - id: country_iso_code
+        stability: experimental
         type: string
         brief: >
           Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://en.wikipedia.org/wiki/ISO_3166-1#Codes)).
         examples: [ 'CA' ]
       - id: country_name
+        stability: experimental
         type: string
         brief: >
           Country name.
         examples: [ 'Canada' ]
       - id: location.lon
+        stability: experimental
         type: double
         brief: >
           Longitude of the geo location in [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ -73.614830 ]
       - id: location.lat
+        stability: experimental
         type: double
         brief: >
           Latitude of the geo location in [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ 45.505918 ]
       - id: name
+        stability: experimental
         type: string
         brief: >
           User-defined description of a location.
@@ -73,22 +88,26 @@ groups:
           Not typically used in automated geolocation.
         examples: [ 'boston-dc' ]
       - id: postal_code
+        stability: experimental
         type: string
         brief: >
           Postal code associated with the location.
           Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country.
         examples: [ '94040' ]
       - id: region_iso_code
+        stability: experimental
         type: string
         brief: >
           Region ISO code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
         examples: [ 'CA-QC' ]
       - id: region_name
+        stability: experimental
         type: string
         brief: >
           Region name.
         examples: [ 'Quebec' ]
       - id: timezone
+        stability: experimental
         type: string
         brief: >
           The time zone of the location, such as [IANA time zone name](https://nodatime.org/TimeZones).
