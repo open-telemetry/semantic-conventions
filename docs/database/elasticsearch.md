@@ -35,12 +35,11 @@ The **span name** follows the [general database span name guidelines](database-s
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The index or data stream against which the query is executed. [8] | `my_index`; `index1, index2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | `Recommended` [9] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the Elasticsearch cluster which the client connects to. | `customers`; `test.users` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [11] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** This SHOULD be the endpoint identifier for the request.
-The endpoint id is the `name` field in the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json).
+**[1]:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
 
 **[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -69,11 +68,11 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[8]:** If the query targets multiple indices or data streams, then the name of those should be added as a comma separated list. If the query doesn't target a specific index, this field MUST NOT be set.
+**[8]:** The query may target multiple indices or data streams, in which case it SHOULD be the first index or data stream name found in the request. If the query doesn't target a specific index, this field MUST NOT be set.
 
 **[9]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[10]:** The name of the Elasticsearch cluster which the client connects to. When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+**[10]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
 
 **[11]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 
@@ -126,7 +125,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `db.collection.name`                | `"my-index"`                                                                                                                        |
 | `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
 | `db.elasticsearch.path_parts.index` | `"my-index-000001"`                                                                                                                 |
-| `db.namespace`                      | `"e9106fc68e3044f0b1475b04bf4ffd5f"`                                                                                                |
+| `db.namespace`                      | `"my-cluster"`                                                                                                                      |
 | `db.elasticsearch.node.name`        | `"instance-0000000001"`                                                                                                             |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

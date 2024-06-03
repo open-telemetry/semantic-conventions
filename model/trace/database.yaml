@@ -229,9 +229,8 @@ groups:
       - ref: db.operation.name
         requirement_level: required
         note: >
-          This SHOULD be the endpoint identifier for the request.
-
-          The endpoint id is the `name` field in the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json).
+          The `db.operation.name` SHOULD match the endpoint identifier provided in the request
+          (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
       - ref: url.full
         requirement_level: required
@@ -247,16 +246,16 @@ groups:
         requirement_level: recommended
         brief: The index or data stream against which the query is executed.
         note: >
-          If the query targets multiple indices or data streams, then the name of those should be added as a comma separated list.
+          The query may target multiple indices or data streams, in which case it SHOULD be the first index or data stream name found in the request.
           If the query doesn't target a specific index, this field MUST NOT be set.
         examples: [ 'my_index', 'index1, index2' ]
       - ref: server.address
       - ref: server.port
       - ref: db.namespace
         note: ""
+        brief: The name of the Elasticsearch cluster which the client connects to.
         requirement_level:
           recommended: >
-            The name of the Elasticsearch cluster which the client connects to.
             When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
       - ref: db.elasticsearch.node.name
         requirement_level:
