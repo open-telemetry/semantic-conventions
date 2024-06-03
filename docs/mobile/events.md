@@ -78,4 +78,4 @@ The event name MUST be `device.app.lifecycle`.
 | `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- end of manually added table -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

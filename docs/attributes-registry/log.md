@@ -22,8 +22,8 @@ This document defines log attributes
 
 | Value    | Description               | Stability                                                        |
 | -------- | ------------------------- | ---------------------------------------------------------------- |
-| `stdout` | Logs from stdout stream   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `stderr` | Events from stderr stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stdout` | Logs from stdout stream   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Log File Attributes
 
