@@ -68,8 +68,8 @@ For instrumentation that tracks users behavior during user sessions, a `session.
 every time a session ends. When a session ends and continues as a new session, this event SHOULD also be
 emitted prior to the `session.start` event.
 
-| Body field                                                    | Type   | Description                                          | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) |
-|---------------------------------------------------------------|--------|------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| [`session.id`](/docs/attributes-registry/session.md)          | string | The ID of the new session being started.             | `Required`                                                                                            |
+| Body field                                                    | Type   | Description                            | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) |
+|---------------------------------------------------------------|--------|----------------------------------------|-------------------------------------------------------------------------------------------------------|
+| [`session.id`](/docs/attributes-registry/session.md)          | string | The ID of the new session being ended. | `Required`                                                                                            |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
