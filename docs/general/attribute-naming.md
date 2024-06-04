@@ -8,6 +8,7 @@
 <!-- toc -->
 
 - [Name Pluralization guidelines](#name-pluralization-guidelines)
+- [Name Abbreviation guidelines](#name-abbreviation-guidelines)
 - [Name Reuse Prohibition](#name-reuse-prohibition)
 - [Recommendations for OpenTelemetry Authors](#recommendations-for-opentelemetry-authors)
 - [Recommendations for Application Developers](#recommendations-for-application-developers)
