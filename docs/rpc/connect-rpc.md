@@ -69,4 +69,4 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 
 If `rpc.connect_rpc.error_code` is set, [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#set-status) MUST be set to `Error` and left unset in all other cases.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
