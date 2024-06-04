@@ -70,6 +70,14 @@ Names SHOULD follow these rules:
   [Metric Name Pluralization Guidelines](./metrics.md#pluralization) SHOULD be
   followed for the attribute name.
 
+## Name Abbreviation guidelines
+
+Avoid abbreviations in namespace names and attribute names to prevent confusion
+and misunderstandings.
+
+Exceptions can be made for widely recognized and commonly used abbreviations.
+Examples include: `ip`, `db`, `cpu`, `http`, `url`, `tcp`, `dns`, `rpc`, `ssl` etc.
+
 ## Name Reuse Prohibition
 
 A new attribute MUST NOT be added with the same name as an attribute that
