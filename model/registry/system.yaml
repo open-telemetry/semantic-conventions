@@ -263,7 +263,6 @@ groups:
     attributes:
       - id: state
         type:
-          allow_custom_values: false
           members:
             - id: reclaimable
               value: 'reclaimable'
