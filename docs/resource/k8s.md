@@ -167,7 +167,6 @@ to a running container.
 |---|---|---|---|---|---|
 | [`k8s.container.name`](/docs/attributes-registry/k8s.md) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`k8s.container.restart_count`](/docs/attributes-registry/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.container.status.current_waiting_reason`](/docs/attributes-registry/k8s.md) | string | Current waiting reason of the Container. | `CrashLoopBackOff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`k8s.container.status.last_terminated_reason`](/docs/attributes-registry/k8s.md) | string | Last terminated reason of the Container. | `Evicted`; `Error` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
