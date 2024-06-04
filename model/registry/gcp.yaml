@@ -18,10 +18,6 @@ groups:
           that is uniform across implementation languages. The value should be
           derived from the canonical service domain for the service; for
           example, 'foo.googleapis.com' should result in a value of 'foo'.
-          This attribute should be accompanied by 'instrumentation.source.repo'
-          and/or 'instrumentation.source.target' when the combination of
-          'gcp.client.service' and 'telemetry.sdk.language' is insufficient
-          to uniquely identify the particular client library.
         examples: ['appengine', 'run', 'firestore', 'alloydb', 'spanner']
   - id: registry.gcp.cloud_run
     prefix: gcp.cloud_run

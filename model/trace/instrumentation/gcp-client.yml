@@ -1,6 +1,6 @@
 groups:
 - id: gcp.client.scope
-  type: scope
+  type: attribute_group
   brief: Conventions for official Google Cloud client libraries.
   prefix: gcp.client
   stability: experimental
