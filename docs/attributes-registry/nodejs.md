@@ -8,7 +8,7 @@
 
 ## NodeJS Attributes
 
-Describes Node.js Runtime related attributes.
+Describes Node.js related attributes.
 
 | Attribute        | Type   | Description              | Examples             | Stability                                                        |
 | ---------------- | ------ | ------------------------ | -------------------- | ---------------------------------------------------------------- |
