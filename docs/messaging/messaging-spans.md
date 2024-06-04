@@ -202,17 +202,20 @@ Span kind SHOULD be set according to the following table, based on the operation
 | Operation type | Span kind|
 |----------------|-------------|
 | `create`       | `PRODUCER` |
-| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context, `CLIENT` otherwise. |
-| `receive`    | `CONSUMER` |
-| `process`    | `CONSUMER` for push-based scenarios where no "Receive" span exists, `SERVER` otherwise. |
+| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context. |
+| `receive`      | `CONSUMER` |
+| `process`      | `CONSUMER` for push-based scenarios where no "Receive" span exists. |
+
+For cases not covered by the table above, the span kind should be set according
+to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#spankind),
+e. g. it should be set to CLIENT for the "Publish" span if its context is not
+used as creation context and if the "Publish" span models a synchronous call to
+the intermediary.
 
 Setting span kinds according to this table ensures that span links between
 consumers and producers always exist between a PRODUCER span on the producer
 side and a CONSUMER span on the consumer side. This allows analysis tools to
 interpret linked traces without the need for additional semantic hints.
-
-For cases not covered by the table above, the span kind should be set according
-to the [generic span kind definition](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#spankind):
 
 ### Trace structure
 
@@ -376,7 +379,6 @@ If a messaging operation involved multiple network calls (for example retries), 
 | Value  | Description | Stability |
 |---|---|---|
 | `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deliver` | Deprecated. Use `process` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process`. |
 | `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
