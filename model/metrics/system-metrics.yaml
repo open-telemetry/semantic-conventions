@@ -359,7 +359,7 @@ groups:
     stability: experimental
     brief: "Total slab memory used in the system."
     note: |
-      Its value SHOULD equal the sum of `system.linux.memory.slab.usage` over all states.
+      Its value SHOULD be equal to the sum of `system.linux.memory.slab.usage` over all states.
     instrument: updowncounter
     unit: "By"
     attributes: []
