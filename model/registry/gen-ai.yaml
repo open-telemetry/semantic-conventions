@@ -25,7 +25,7 @@ groups:
             - id: cohere
               stability: experimental
               value: "cohere"
-              brief: 'Cohere'            
+              brief: 'Cohere'
         brief: The Generative AI product as identified by the client instrumentation.
         note: >
           The actual GenAI product may differ from the one identified by the client.
