@@ -1,5 +1,5 @@
 groups:
-- id: gcp.client.scope
+- id: gcp.client.attributes
   type: attribute_group
   brief: Conventions for official Google Cloud client libraries.
   prefix: gcp.client
