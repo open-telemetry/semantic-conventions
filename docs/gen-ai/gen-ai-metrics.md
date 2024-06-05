@@ -216,7 +216,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `gen_ai.server.latency.request_duration` | Histogram | `s` | Time (end to end latency) to complete a request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.server.latency.request_duration` | Histogram | `s` | Generative AI server request duration such as time-to-last byte or last output token | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
