@@ -35,9 +35,12 @@ This document defines the attributes used to describe telemetry in the context o
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value    | Description | Stability                                                        |
-| -------- | ----------- | ---------------------------------------------------------------- |
-| `openai` | OpenAI      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value       | Description | Stability                                                        |
+| ----------- | ----------- | ---------------------------------------------------------------- |
+| `anthropic` | Anthropic   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cohere`    | Cohere      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `openai`    | OpenAI      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertex_ai` | Vertex AI   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `gen_ai.token.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

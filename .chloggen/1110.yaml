@@ -1,0 +1,7 @@
+change_type: enhancement
+
+component: other
+
+note: "Don't render deprecated enum members in semconv tables."
+
+issues: [1110]
