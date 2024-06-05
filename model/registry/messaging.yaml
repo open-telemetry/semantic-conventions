@@ -185,6 +185,10 @@ groups:
               value: 'rocketmq'
               brief: 'Apache RocketMQ'
               stability: experimental
+            - id: pulsar
+              value: 'pulsar'
+              brief: 'Apache Pulsar'
+              stability: experimental
         stability: experimental
   - id: registry.messaging.kafka
     prefix: messaging
