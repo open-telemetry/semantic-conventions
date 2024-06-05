@@ -6,9 +6,33 @@ linkTitle: SQL
 
 **Status**: [Experimental][DocumentStatus]
 
-The SQL databases Semantic Conventions extend and override the [Database Semantic Conventions](database-spans.md)
-that describe common database operations attributes in addition to the Semantic Conventions
-described on this page.
+The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](database-spans.md) apply to SQL databases.
+
+The following database systems (defined in the [`db.system`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystem) set) are known to use SQL as their primary query language:
+
+- `cockroachdb`
+- `db2`
+- `derby`
+- `edb`
+- `firebird`
+- `h2`
+- `hsqldb`
+- `ingres`
+- `interbase`
+- `mariadb`
+- `maxdb`
+- `mssql`
+- `mssqlcompact`
+- `mysql`
+- `oracle`
+- `other_sql`
+- `pervasive`
+- `postgresql`
+- `sqlite`
+- `trino`
+
+Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
+Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
 
 ## Attributes
 
@@ -26,14 +50,15 @@ described on this page.
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [9] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [11] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value. [12] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
+For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
 
-**[2]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.collection.name`, then it SHOULD be the first collection name found in the query.
+**[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
 **[3]:** If a database system has multiple namespace components, they SHOULD be concatenated
 (potentially using database system specific conventions) from most general to most
@@ -58,7 +83,7 @@ If instrumentation cannot reliably determine the current database name, it SHOUL
 **[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
 In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
 
-**[5]:** If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture `db.operation.name`, then it SHOULD be the first operation name found in the query.
+**[5]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
 **[6]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
@@ -66,11 +91,13 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 
 **[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[9]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+**[9]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 
-**[10]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[10]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
 
-**[11]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[12]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
 
@@ -94,16 +121,13 @@ This is an example of attributes for a MySQL database span:
 
 | Key                    | Value |
 |:-----------------------| :----------------------------------------------------------- |
-| Span name              | `"SELECT ShopDb.orders"` |
+| Span name              | `"SELECT orders"` |
 | `db.collection.name`   | `"orders"` |
 | `db.namespace`         | `"ShopDb"` |
 | `db.system`            | `"mysql"` |
 | `server.address`       | `"shopdb.example.com"` |
 | `server.port`          | `3306` |
-| `network.peer.address` | `"192.0.2.12"` |
-| `network.peer.port`    | `3306` |
-| `network.transport`    | `"tcp"` |
 | `db.query.text`        | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
 | `db.operation.name`    | `"SELECT"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

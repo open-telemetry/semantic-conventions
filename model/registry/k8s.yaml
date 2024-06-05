@@ -104,6 +104,7 @@ groups:
         brief: >
           Last terminated reason of the Container.
         examples: ["Evicted", "Error"]
+
       - id: replicaset.uid
         type: string
         stability: experimental

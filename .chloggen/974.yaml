@@ -1,7 +1,0 @@
-change_type: breaking
-
-component: db
-
-note: Clarify database span name format and fallback values.
-
-issues: [974, 704]

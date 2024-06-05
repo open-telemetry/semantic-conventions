@@ -40,4 +40,4 @@ Instrumentation that doesn't support configuration MUST NOT emit `Opt-In` metric
 This attribute requirement level is recommended for metrics that are particularly expensive to retrieve or might pose a security or privacy risk. These should therefore only be enabled deliberately by a user making an informed decision.
 
 [DocumentStatus]:
-  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+  https://opentelemetry.io/docs/specs/otel/document-status
