@@ -17,7 +17,6 @@ groups:
         brief: >
           Two-letter code representing continent’s name.
         type:
-          allow_custom_values: false
           members:
             - id: 'af'
               stability: experimental
