@@ -33,24 +33,24 @@ to
 ### Database client span attributes
 
 <!-- prettier-ignore-start -->
-| Change                                          | Comments                                                                                                    |
-|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| `db.connection_string`                          | Removed                                                                                                     |
-| `db.user`                                       | Removed                                                                                                     |
-| `network.transport`                             | Removed                                                                                                     |
-| `network.type`                                  | Removed                                                                                                     |
-| `db.name` &rarr; `db.namespace`                 |                                                                                                             |
-| `db.redis.database_index` &rarr; `db.namespace` |                                                                                                             |
-| `db.mssql.instance_name`                        | Incorporated into the new `db.namespace`                                                                    |
-| `db.instance.id`                                | Removed, replaced by `server.address` or `db.namespace` as appropriate                                      |
-| `db.statement` &rarr; `db.query.text`           | Clarified, SHOULD be collected by default only if there is sanitization that excludes sensitive information |
-| `db.operation` &rarr; `db.operation.name`       |                                                                                                             |
-| `db.sql.table` -> `db.collection.name`          |                                                                                                             |
-| `db.cassandra.table` -> `db.collection.name`    |                                                                                                             |
-| `db.mongodb.collection` -> `db.collection.name` |                                                                                                             |
-| `db.cosmosdb.container` -> `db.collection.name` |                                                                                                             |
-| New: `db.query.parameter.<key>`                 | Opt-In                                                                                                      |
-| New: `error.type`                               |                                                                                                             |
+| Change                                              | Comments                                                                                                    |
+|-----------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `db.connection_string`                              | Removed                                                                                                     |
+| `db.user`                                           | Removed                                                                                                     |
+| `network.transport`                                 | Removed                                                                                                     |
+| `network.type`                                      | Removed                                                                                                     |
+| `db.name` &rarr; `db.namespace`                     |                                                                                                             |
+| `db.redis.database_index` &rarr; `db.namespace`     |                                                                                                             |
+| `db.mssql.instance_name`                            | Incorporated into the new `db.namespace`                                                                    |
+| `db.instance.id`                                    | Removed, replaced by `server.address` or `db.namespace` as appropriate                                      |
+| `db.statement` &rarr; `db.query.text`               | Clarified, SHOULD be collected by default only if there is sanitization that excludes sensitive information |
+| `db.operation` &rarr; `db.operation.name`           |                                                                                                             |
+| `db.sql.table` &rarr; `db.collection.name`          |                                                                                                             |
+| `db.cassandra.table` &rarr; `db.collection.name`    |                                                                                                             |
+| `db.mongodb.collection` &rarr; `db.collection.name` |                                                                                                             |
+| `db.cosmosdb.container` &rarr; `db.collection.name` |                                                                                                             |
+| New: `db.query.parameter.<key>`                     | Opt-In                                                                                                      |
+| New: `error.type`                                   |                                                                                                             |
 <!-- prettier-ignore-end -->
 
 References:
@@ -77,3 +77,39 @@ References:
 This is a required metric. There was no similar metric previously.
 
 See [Metric `db.client.operation.duration` v1.TODO](https://github.com/open-telemetry/semantic-conventions/blob/v1.TODO/docs/database/database-metrics.md#metric-dbclientoperationduration).
+
+### Experimental connection metrics
+
+Database connection metrics are still experimental, but there have been several changes in the latest 
+
+#### Database client connection count
+
+Metric changes:
+
+- **Name**: `db.client.connection.count` &rarr; `db.client.connection.count`
+- **Description**: `Measures the duration of inbound HTTP requests.` &rarr;
+  `Duration of HTTP server requests.`
+- **Attributes**: see table below
+
+<!-- prettier-ignore-start -->
+| Attribute change                                     | Comments |
+|------------------------------------------------------|----------|
+| `pool.name` &rarr; `db.client.connections.pool.name` |          |
+| `state` &rarr; `db.client.connections.state`         |          |
+<!-- prettier-ignore-end -->
+
+References:
+
+- [Metric `db.client.connections.usage` v1.24.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-metrics.md)
+- [Metric `db.client.connection.count` v1.TODO (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.TODO/docs/database/database-spans.md#name)
+
+
+- [Metric: `db.client.connection.count`](#metric-dbclientconnectioncount)
+- [Metric: `db.client.connection.idle.max`](#metric-dbclientconnectionidlemax)
+- [Metric: `db.client.connection.idle.min`](#metric-dbclientconnectionidlemin)
+- [Metric: `db.client.connection.max`](#metric-dbclientconnectionmax)
+- [Metric: `db.client.connection.pending_requests`](#metric-dbclientconnectionpending_requests)
+- [Metric: `db.client.connection.timeouts`](#metric-dbclientconnectiontimeouts)
+- [Metric: `db.client.connection.create_time`](#metric-dbclientconnectioncreate_time)
+- [Metric: `db.client.connection.wait_time`](#metric-dbclientconnectionwait_time)
+- [Metric: `db.client.connection.use_time`](#metric-dbclientconnectionuse_time)
