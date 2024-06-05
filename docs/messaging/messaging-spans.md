@@ -167,7 +167,7 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 
 1. `messaging.destination.template` SHOULD be used when it is available.
 2. `messaging.destination.name` SHOULD be used when the destination is known to be neither [temporary nor anonymous](#temporary-and-anonymous-destinations).
-3. `server.address:server.port` SHOULD be used for operations not targeting any specific destination(s).
+3. `server.address:server.port` SHOULD be used only for operations not targeting any specific destination(s).
 
 If a corresponding `{destination}` value is not available for a specific operation, the instrumentation SHOULD omit the `{destination}`.
 
