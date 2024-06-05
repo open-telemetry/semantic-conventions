@@ -252,15 +252,14 @@ groups:
       - ref: server.address
       - ref: server.port
       - ref: db.namespace
-        note: ""
+        note: >
+          When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
         brief: The name of the Elasticsearch cluster which the client connects to.
-        requirement_level:
-          recommended: >
-            When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+        requirement_level: recommended
       - ref: db.elasticsearch.node.name
-        requirement_level:
-          recommended: >
-            When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+        note: >
+          When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+        requirement_level: recommended
       - ref: db.elasticsearch.path_parts
         requirement_level:
           conditionally_required: when the url has dynamic values
