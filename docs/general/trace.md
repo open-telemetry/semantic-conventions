@@ -7,7 +7,7 @@ aliases: [docs/specs/semconv/general/trace-general]
 
 **Status**: [Mixed][DocumentStatus]
 
-In OpenTelemetry spans can be created freely and it’s up to the implementor to
+In OpenTelemetry spans can be created freely and it’s up to the implementer to
 annotate them with attributes specific to the represented operation. Spans
 represent specific operations in and between systems. Some of these operations
 represent calls that use well-known protocols like HTTP or database calls.
@@ -37,4 +37,4 @@ Apart from semantic conventions for traces, [metrics](metrics.md), [logs](logs.m
 OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

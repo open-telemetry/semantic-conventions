@@ -36,7 +36,6 @@ body:
         - area:device
         - area:disk
         - area:dns
-        - area:enduser
         - area:error
         - area:event
         - area:exception
@@ -45,6 +44,7 @@ body:
         - area:file
         - area:gcp
         - area:gen-ai
+        - area:go
         - area:graphql
         - area:hardware
         - area:heroku
@@ -73,6 +73,7 @@ body:
         - area:tls
         - area:url
         - area:user-agent
+        - area:user
         - area:webengine
         # End semconv area list
   - type: textarea

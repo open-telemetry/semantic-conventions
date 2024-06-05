@@ -60,7 +60,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 * **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
   Take care not to use the "invoked ARN" directly but replace any
   [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
-  with the resolved function version, as the same runtime instance may be invokable with
+  with the resolved function version, as the same runtime instance may be invocable with
   multiple different aliases.
 * **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
 * **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
@@ -87,9 +87,9 @@ call to invoke the lambda, which is often HTTP).
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -163,9 +163,9 @@ call to invoke the lambda, which is often HTTP).
 |---|---|---|
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -266,9 +266,9 @@ FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOUL
 
 | Value  | Description | Stability |
 |---|---|---|
-| `insert` | When a new object is created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edit` | When an object is modified. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `delete` | When an object is deleted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `edit` | When an object is modified. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `insert` | When a new object is created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -336,4 +336,4 @@ This example shows the FaaS attributes for a (non-FaaS) process hosted on Google
 | Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"` |
 | Resource       | `cloud.resource_id`     | n/a                    | `"arn:aws:lambda:us-west-2:123456789012:function:my-lambda-function"` |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

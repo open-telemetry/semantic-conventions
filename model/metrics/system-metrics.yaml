@@ -52,7 +52,7 @@ groups:
     unit: "{cpu}"
     attributes: []
 
-  # sytem.memory.* metrics
+  # system.memory.* metrics
   - id: metric.system.memory.usage
     type: metric
     metric_name: system.memory.usage

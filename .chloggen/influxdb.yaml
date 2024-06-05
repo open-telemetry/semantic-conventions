@@ -7,17 +7,14 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: messaging
+component: db
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: "Add a GCP Pub/Sub unary pull example and the new GCP messaging attributes:
-- `messaging.gcp_pubsub.message.ack_deadline`,
-- `messaging.gcp_pubsub.message.ack_id`,
-- `messaging.gcp_pubsub.message.delivery_attempt`"
+note: Add semantic convention of InfluxDB
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [527]
+issues: [949]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
