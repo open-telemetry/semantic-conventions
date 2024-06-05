@@ -83,7 +83,7 @@ and confusion for end users. (For example, prefer `process.runtime.java.gc*` ove
 ambiguous.
 
 Metric names and attributes SHOULD follow the general
-[name abbreviation guidelines](attribute-naming.md#name-abbreviation-guidelines). 
+[name abbreviation guidelines](attribute-naming.md#name-abbreviation-guidelines).
 
 ### Name Reuse Prohibition
 
