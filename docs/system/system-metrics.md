@@ -333,7 +333,6 @@ available on the system, that is `system.memory.limit`.
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -459,7 +458,6 @@ This metric is [recommended][MetricRecommended].
 | `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -1440,7 +1438,7 @@ An instrument for load average over 1 minute on Linux could be named
 `system.linux.cpu.load_1m`, reusing the `cpu` name proposed above and having
 an `{os}` prefix to split this metric across OSes.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
 [MetricOptIn]: /docs/general/metric-requirement-level.md#opt-in
 

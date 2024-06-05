@@ -606,4 +606,4 @@ More specific Semantic Conventions are defined for the following messaging techn
 * [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
 * [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
