@@ -155,8 +155,7 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
-        note: >
-          <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
+        note: ""  # overriding the base note
 
   - id: db.redis
     type: span
@@ -215,8 +214,7 @@ groups:
         brief: The MongoDB database name.
         requirement_level:
           conditionally_required: If available.
-        note: >
-          <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
+        note: ""  # overriding the base note
 
   - id: db.elasticsearch
     type: span
@@ -349,5 +347,4 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
-        note: >
-          <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
+        note: ""  # overriding the base note
