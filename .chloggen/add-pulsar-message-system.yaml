@@ -7,14 +7,14 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: db
+component: messaging
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Parameterized query text does not need to be sanitized by default
+note: Add pulsar message system
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [ 976 ]
+issues: [1099]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.

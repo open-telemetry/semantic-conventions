@@ -67,6 +67,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Value     | Description                                                         | Stability                                                  |
 | --------- | ------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `_OTHER`  | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `CONNECT` | CONNECT method.                                                     | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `DELETE`  | DELETE method.                                                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `GET`     | GET method.                                                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -76,7 +77,6 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `POST`    | POST method.                                                        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT`     | PUT method.                                                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE`   | TRACE method.                                                       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `_OTHER`  | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## HTTP Deprecated Attributes
 
@@ -107,5 +107,5 @@ Describes deprecated HTTP attributes.
 | `1.1`  | HTTP/1.1       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `2.0`  | HTTP/2         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `3.0`  | HTTP/3         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `SPDY` | SPDY protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `QUIC` | QUIC protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `SPDY` | SPDY protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

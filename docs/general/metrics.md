@@ -190,7 +190,7 @@ over all attribute values SHOULD be equal to the **limit**.
 out of its **limit** should be called `entity.utilization`. For example,
 `system.memory.utilization` for the fraction of memory in use. Utilization can
 be with respect to a fixed limit or a soft limit. Utilization values are
-represended as a ratio and are typically in the range `[0, 1]`, but may go above 1
+represented as a ratio and are typically in the range `[0, 1]`, but may go above 1
 in case of exceeding a soft limit.
 
 - **time** - an instrument that measures passage of time should be called
@@ -260,4 +260,4 @@ For example, if you are tracking `active_requests` with an `UpDownCounter`, and 
 request starts and decrementing it each time a request ends, then any attributes which are not yet available when
 incrementing the counter at request start should not be used when decrementing the counter at request end.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

@@ -65,4 +65,4 @@ The table below indicates which attributes should be added to the
 Same as [Trace Semantic Conventions for Exceptions - Stacktrace
 Representation](exceptions-spans.md#stacktrace-representation).
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
