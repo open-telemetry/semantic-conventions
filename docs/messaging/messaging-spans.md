@@ -400,6 +400,7 @@ If a messaging operation involved multiple network calls (for example retries), 
 | `gcp_pubsub` | Google Cloud Pub/Sub | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `jms` | Java Message Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kafka` | Apache Kafka | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pulsar` | Apache Pulsar | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -605,4 +606,4 @@ More specific Semantic Conventions are defined for the following messaging techn
 * [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
 * [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
