@@ -43,25 +43,25 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
-  - id: metric.gen_ai.server.latency.request_duration
+  - id: metric.gen_ai.server.request_duration
     type: metric
-    metric_name: gen_ai.server.latency.request_duration
-    brief: 'Time (end to end latency) to complete a request'
+    metric_name: gen_ai.server.request_duration
+    brief: 'Generative AI server request duration such as time-to-last byte or last output token'
     instrument: histogram
     unit: "s"
     stability: experimental
     extends: metric_attributes.gen_ai
-  - id: metric.gen_ai.server.latency.time_per_output_token
+  - id: metric.gen_ai.server.time_per_output_token
     type: metric
-    metric_name: gen_ai.server.latency.time_per_output_token
+    metric_name: gen_ai.server.time_per_output_token
     brief: 'Time per output token generated for successful responses'
     instrument: histogram
     unit: "s"
     stability: experimental
     extends: metric_attributes.gen_ai
-  - id: metric.gen_ai.server.latency.time_to_first_token
+  - id: metric.gen_ai.server.time_to_first_token
     type: metric
-    metric_name: gen_ai.server.latency.time_to_first_token
+    metric_name: gen_ai.server.time_to_first_token
     brief: 'Time to generate first token for successful responses'
     instrument: histogram
     unit: "s"
