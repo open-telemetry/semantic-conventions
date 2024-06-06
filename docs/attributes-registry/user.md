@@ -17,6 +17,6 @@ Describes information about the user.
 | `user.hash`      | string   | Unique user hash to correlate information for a user in anonymized form. [1] | `364fc68eaf4c8acec74a4e52d7d1feaa`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user.id`        | string   | Unique identifier of the user.                                               | `S-1-5-21-202424912787-2692429404-2351956786-1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user.name`      | string   | Short name or login/username of the user.                                    | `a.einstein`                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user.roles`     | string[] | Array of user roles at the time of the event.                                | `admin`; `reporting_user`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user.roles`     | string[] | Array of user roles at the time of the event.                                | `["admin", "reporting_user"]`                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Useful if `user.id` or `user.name` contain confidential information and cannot be used.
