@@ -347,7 +347,8 @@ groups:
     stability: experimental
     brief: "Reports the memory used by the Linux kernel for managing caches of frequently used objects."
     note: |
-      The sum over all `system.linux.memory.slab.usage` state values SHOULD be equal to the total slab memory available on the system. Note that the total slab memory is not constant and may vary over time.
+      The sum over all `system.linux.memory.slab.usage` state values SHOULD be equal to the total slab memory available on the system.
+      Note that the total slab memory is not constant and may vary over time.
     instrument: updowncounter
     unit: "By"
     attributes:
