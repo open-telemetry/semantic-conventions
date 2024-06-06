@@ -17,7 +17,7 @@ linkTitle: Hardware Common Metrics
 <!-- tocstop -->
 
 Hardware metrics do not include attributes that identify the device, machine, or host they are reported for. This
-information is expected to be provided via resource attributes configured by user applications. 
+information is expected to be provided via resource attributes configured by user applications.
 Application developers are encouraged to configure [Host](/docs/resource/host.md) resource attributes.
 
 ## Common hardware metrics
