@@ -15,4 +15,4 @@ Semantic conventions for the mobile platform are defined for the following signa
 
 * [Mobile Events](events.md) : Semantic Conventions for mobile events in *logs*.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.22.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
