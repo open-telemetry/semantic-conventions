@@ -15,6 +15,20 @@ groups:
         note: "Following states SHOULD be used: `user`, `system`, `kernel`"
         requirement_level: opt_in
 
+  - id: metric.container.cpu.usage
+    type: metric
+    metric_name: container.cpu.usage
+    stability: experimental
+    brief: "CPU usage"
+    note: >
+      CPU usage of the specific container on all available CPU cores, averaged over the sample window
+    instrument: gauge
+    unit: "{cpu}"
+    attributes:
+      - ref: container.cpu.state
+        brief: "The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
+        requirement_level: opt_in
+
   # container.memory.* metrics and attribute group
   - id: metric.container.memory.usage
     type: metric
