@@ -23,7 +23,7 @@ groups:
     stability: experimental
     brief: "Number of errors encountered by the component"
     instrument: counter
-    unit: "{errors}"
+    unit: "{error}"
     extends: metric.hardware.attributes
     attributes:
       - ref: hw.error.type

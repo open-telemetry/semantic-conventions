@@ -23,9 +23,9 @@ Attributes for hardware.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `ok`       | Ok          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `degraded` | Degraded    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `failed`   | Failed      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ok`       | Ok          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
