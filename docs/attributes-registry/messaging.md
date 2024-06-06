@@ -79,6 +79,7 @@ size should be used.
 | `gcp_pubsub` | Google Cloud Pub/Sub              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `jms`        | Java Message Service              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kafka`      | Apache Kafka                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pulsar`     | Apache Pulsar                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rabbitmq`   | RabbitMQ                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq`   | Apache RocketMQ                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `servicebus` | Azure Service Bus                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
