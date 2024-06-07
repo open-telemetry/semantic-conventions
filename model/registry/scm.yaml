@@ -1,6 +1,6 @@
 groups:
   - id: registry.scm.repository
-    prefix: scm
+    prefix: scm.repository
     type: attribute_group
     brief: >
      This group defines the attributes for source control management (SCM) systems.

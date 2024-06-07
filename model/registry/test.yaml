@@ -3,35 +3,102 @@ groups:
     prefix: test
     type: attribute_group
     brief: >
-     This group describes attributes specific to tests.
+     This group describes attributes specific to
+     [software tests](https://en.wikipedia.org/wiki/Software_testing).
     attributes:
       - id: suite.name
         type: string
         stability: experimental
         brief: >
-          The name of the test suite.
+          The human readable name of a [test suite](https://en.wikipedia.org/wiki/Test_suite).
         examples: ['TestSuite1']
-      - id: suite.id
+      - id: suite.run.id
         type: string
         stability: experimental
         brief: >
-          The id of the test suite.
+          The unique identifier of a test suite run.
         examples: ['123408']
+      - id: suite.run.status
+        type:
+          allow_custom_values: true
+          members:
+            - id: success
+              value: success
+              brief: success
+              stability: experimental
+            - id: failure
+              value: failure
+              brief: failure
+              stability: experimental
+            - id: skipped
+              value: skipped
+              brief: skipped
+              stability: experimental
+            - id: aborted
+              value: aborted
+              brief: aborted
+              stability: experimental
+            - id: timed_out
+              value: timed_out
+              brief: timed_out
+              stability: experimental
+        stability: experimental
+        brief: >
+          The status of the test suite run.
+        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out']
       - id: suite.case.name
         type: string
         stability: experimental
         brief: >
-          The name of the test case.
+          The human readable name of the [test case](https://en.wikipedia.org/wiki/Test_case).
         examples: ['TestCase1']
-      - id: suite.case.id
+      - id: suite.case.run.id
         type: string
         stability: experimental
         brief: >
-          The id of the test case.
+          The unique identifier of a test case run.
         examples: ['123445']
-      - id: suite.case.status
-        type: string
+      - id: suite.case.run.status
+        type:
+          allow_custom_values: true
+          members:
+            - id: success
+              value: success
+              brief: success
+              stability: experimental
+            - id: failure
+              value: failure
+              brief: failure
+              stability: experimental
+            - id: skipped
+              value: skipped
+              brief: skipped
+              stability: experimental
+            - id: aborted
+              value: aborted
+              brief: aborted
+              stability: experimental
+            - id: timed_out
+              value: timed_out
+              brief: timed_out
+              stability: experimental
         stability: experimental
         brief: >
-          The status of the test case.
-        examples: ['success', 'failure', 'skipped']
+          The status of the test case run.
+        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out']
+      - id: suite.case.execution.status
+        type:
+          allow_custom_values: true
+          members:
+            - id: passed
+              value: passed
+              brief: passed
+              stability: experimental
+            - id: failed
+              value: failed
+              brief: failed
+              stability: experimental
+        stability: experimental
+        brief: >
+          The status of the test case execution, meaning the actual test result.
+        examples: ['passed', 'failed']

@@ -1,0 +1,92 @@
+groups:
+  # - id: registry.cicd
+  #   prefix: cicd
+  #   type: attribute_group
+  #   brief: >
+  #    This group describes attributes specific to Continuous Integration and
+  #    Continuous Deployment (CI/CD) systems where the sub-attributes can have
+  #    many different meanings across different systems.
+  - id: registry.cicd.pipeline
+    prefix: cicd.pipeline
+    type: attribute_group
+    brief: >
+      This group describes attributes specific to pipelines within a Continuous
+      Integration and Continuous Deployment (CI/CD) system. A
+      [pipeline](https://en.wikipedia.org/wiki/Pipeline_(computing)) in this
+      case is a series of steps that are performed in order to deliver a new
+      version of software. This aligns with the
+      [Britannica](https://www.britannica.com/dictionary/pipeline) definition
+      of a pipeline where a **pipeline** is the system for developing and
+      producing something. In the context of CI/CD, a pipeline produces or
+      delivers software.
+    attributes:
+      - id: name
+        type: string
+        stability: experimental
+        brief: >
+          The human readable name of the pipeline within a CI/CD system.
+        examples: ['Build and Test', 'Lint', 'Deploy Go Project', 'deploy_to_environment']
+      - id: run.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of a pipeline run within a CI/CD system.
+        examples: ['120912']
+      - id: task.name
+        type: string
+        stability: experimental
+        brief: >
+          The human readable name of a task within a pipeline. Task here most
+          closely aligns with a [computing process](https://en.wikipedia.org/wiki/Pipeline_(computing))
+          in a pipeline. Other terms for tasks include commands, steps, and
+          procedures.
+        examples: ['Run GoLang Linter', 'Go Build', 'go-test', 'deploy_binary']
+      - id: task.run.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of a task run within a pipeline.
+        examples: ['12097']
+      - id: task.type
+        type:
+          allow_custom_values: true
+          members:
+            - id: build
+              value: build
+              brief: build
+              stability: experimental
+            - id: test
+              value: test
+              brief: test
+              stability: experimental
+            - id: deploy
+              value: deploy
+              brief: deploy
+              stability: experimental
+        stability: experimental
+        brief: >
+          The type of the task within a pipeline.
+        examples: ['build', 'test', 'deploy']
+      # TODO: May change name to type and make it a well known enum.
+      # Need definition of a runner linked.
+      - id: task.runner.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the runner executing the step within a pipeline.
+        examples: ['ubuntu-runner-latest']
+      - id: task.runner.id
+        type: string
+        stability: experimental
+        brief: >
+          The id of the runner executing the step within a pipeline.
+        examples: ['1289']
+      # TODO: Figure out how to inherit (embed) system attributes. - This maybe
+      # be WIP already taking place and simply may need to be removed for the
+      # time being.
+      - id: step.runner.system
+        type: string
+        stability: experimental
+        brief: >
+          OS system attributes of the runner acorrding to the [OS system attributes](./os.md).
+        examples: ['system.os.name']
