@@ -7,14 +7,14 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: http
+component: messaging
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: New `url.template` attribute added to URL, HTTP client attributes are extended with optional low-cardinality `url.template`
+note: Add pulsar message system
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [675]
+issues: [1099]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.

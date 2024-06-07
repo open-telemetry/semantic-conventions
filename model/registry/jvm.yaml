@@ -79,3 +79,11 @@ groups:
               value: 'terminated'
               brief: 'A thread that has exited is in this state.'
               stability: stable
+      - id: buffer.pool.name
+        type: string
+        stability: experimental
+        brief: Name of the buffer pool.
+        examples: [ "mapped", "direct" ]
+        note: >
+          Pool names are generally obtained via
+          [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).

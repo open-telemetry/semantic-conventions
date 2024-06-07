@@ -101,12 +101,32 @@ groups:
             - id: used
               value: 'used'
               stability: experimental
-        brief: "Deprecated, use `db.client.connections.state` instead."
-        deprecated: "Replaced by `db.client.connections.state`."
+        brief: "Deprecated, use `db.client.connection.state` instead."
+        deprecated: "Replaced by `db.client.connection.state`."
         examples: ["idle"]
       - id: pool.name
         type: string
         stability: experimental
-        brief: "Deprecated, use `db.client.connections.pool.name` instead."
-        deprecated: "Replaced by `db.client.connections.pool.name`."
+        brief: "Deprecated, use `db.client.connection.pool.name` instead."
+        deprecated: "Replaced by `db.client.connection.pool.name`."
+        examples: ["myDataSource"]
+      - id: db.client.connections.state
+        stability: experimental
+        type:
+          allow_custom_values: true
+          members:
+            - id: idle
+              value: 'idle'
+              stability: experimental
+            - id: used
+              value: 'used'
+              stability: experimental
+        brief: "Deprecated, use `db.client.connection.state` instead."
+        deprecated: "Replaced by `db.client.connection.state`."
+        examples: ["idle"]
+      - id: db.client.connections.pool.name
+        type: string
+        stability: experimental
+        brief: "Deprecated, use `db.client.connection.pool.name` instead."
+        deprecated: "Replaced by `db.client.connection.pool.name`."
         examples: ["myDataSource"]

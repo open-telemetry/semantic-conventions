@@ -4,23 +4,19 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: breaking
+change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: device.app.lifecycle
+component: db
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: >
-  Reformat and update the `device.app.lifecycle` event description adds constraints for the possible values of
-  the `android.state` and `ios.state`.
+note: Add semantic convention of InfluxDB
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [794]
+issues: [949]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
-subtext: >
-  Removes the `ios.lifecycle.events` and `android.lifecycle.events` attributes from the global registry and adds
-  constraints for the possible values of the `android.state` and `ios.state` attributes.
+subtext:
