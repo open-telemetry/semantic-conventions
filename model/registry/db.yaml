@@ -114,8 +114,8 @@ groups:
               stability: experimental
             - id: cloudscape
               value: 'cloudscape'
-              deprecated: "Replaced by `derby`."
-              brief: "Deprecated, use `derby` instead."
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
               stability: experimental
             - id: cockroachdb
               value: 'cockroachdb'
@@ -168,8 +168,8 @@ groups:
               stability: experimental
             - id: firstsql
               value: 'firstsql'
-              deprecated: "Removed."
-              brief: "Deprecated, no replacement at this time."
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
               stability: experimental
             - id: geode
               value: 'geode'

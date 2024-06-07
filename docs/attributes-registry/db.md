@@ -65,7 +65,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `cache`              | Deprecated, use `intersystems_cache` instead.             | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `intersystems_cache`. |
 | `cassandra`          | Apache Cassandra                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `clickhouse`         | ClickHouse                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
-| `cloudscape`         | Deprecated, use `derby` instead.                          | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `derby`.              |
+| `cloudscape`         | Deprecated, use `other_sql` instead.                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `other_sql`.          |
 | `cockroachdb`        | CockroachDB                                               | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `coldfusion`         | Deprecated, no replacement at this time.                  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed.                          |
 | `cosmosdb`           | Microsoft Azure Cosmos DB                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
@@ -78,7 +78,7 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `elasticsearch`      | Elasticsearch                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `filemaker`          | FileMaker                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `firebird`           | Firebird                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
-| `firstsql`           | Deprecated, no replacement at this time.                  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed.                          |
+| `firstsql`           | Deprecated, use `other_sql` instead.                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `other_sql`.          |
 | `geode`              | Apache Geode                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `h2`                 | H2                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `hanadb`             | SAP HANA                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
