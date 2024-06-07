@@ -53,6 +53,7 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 **[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[9]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext)
+For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 
 **[10]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
 

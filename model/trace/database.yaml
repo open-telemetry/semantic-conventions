@@ -13,7 +13,7 @@ groups:
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
             see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
-        note:
+        note: >
           For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext)
 
           Even though parameterized query text can potentially have sensitive data, by using a parameterized query
@@ -28,7 +28,12 @@ groups:
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       - ref: db.query.text
-        note: For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext)
+        note: >
+          For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext)
+
+          For batch operations, if the individual operations are known to have the same query text
+          then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated
+          with separator `; ` or some other database system specific separator if more applicable.
         requirement_level:
           recommended: >
             SHOULD be collected by default only if there is sanitization that excludes sensitive information.
