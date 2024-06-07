@@ -68,7 +68,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[8]:** The query may target multiple indices or data streams, in which case it SHOULD be the first index or data stream name found in the request. If the query doesn't target a specific index, this field MUST NOT be set.
+**[8]:** The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
 
 **[9]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
