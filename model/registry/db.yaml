@@ -300,7 +300,7 @@ groups:
               brief: 'Vertica'
               stability: experimental
         stability: experimental
-      - id: client.connections.state
+      - id: client.connection.state
         stability: experimental
         type:
           allow_custom_values: true
@@ -313,7 +313,7 @@ groups:
               stability: experimental
         brief: "The state of a connection in the pool"
         examples: ["idle"]
-      - id: client.connections.pool.name
+      - id: client.connection.pool.name
         type: string
         stability: experimental
         brief: >
