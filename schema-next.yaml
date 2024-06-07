@@ -2,6 +2,26 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    metrics:
+      changes:
+        - rename_attributes:
+            attribute_map:
+              db.client.connections.state: db.client.connection.state
+            apply_to_metrics:
+              - db.client.connection.count
+        - rename_attributes:
+            attribute_map:
+              db.client.connections.pool.name: db.client.connection.pool.name
+            apply_to_metrics:
+              - db.client.connection.count
+              - db.client.connection.idle.max
+              - db.client.connection.idle.min
+              - db.client.connection.max
+              - db.client.connection.pending_requests
+              - db.client.connection.timeouts
+              - db.client.connection.create_time
+              - db.client.connection.wait_time
+              - db.client.connection.use_time
   1.26.0:
     metrics:
       changes:
