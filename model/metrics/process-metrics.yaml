@@ -109,11 +109,3 @@ groups:
     brief: "The number of seconds the process has been running."
     instrument: counter
     unit: "s"
-
-  - id: metric.process.args_count
-    type: metric
-    metric_name: process.args_count
-    stability: experimental
-    brief: "Number of process arguments."
-    instrument: histogram
-    unit: "{count}"
