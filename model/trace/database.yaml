@@ -244,7 +244,7 @@ groups:
         requirement_level: recommended
         brief: The index or data stream against which the query is executed.
         note: >
-          The query may target multiple indices or data streams, in which case it SHOULD be the first index or data stream name found in the request.
+          The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those.
           If the query doesn't target a specific index, this field MUST NOT be set.
         examples: [ 'my_index', 'index1, index2' ]
       - ref: server.address
