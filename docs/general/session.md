@@ -53,10 +53,10 @@ that the previous session has ended. If the session ID in `session.previous_id` 
 `session.end` event, then the receiver SHOULD treat this continuation event as semantically equivalent to
 `session.end(session.previous_id)` and `session.start(session.id)`.
 
-| Body field                                                    | Type   | Description                                          | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) |
-|---------------------------------------------------------------|--------|------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| [`session.id`](/docs/attributes-registry/session.md)          | string | The ID of the new session being started.             | `Required`                                                                                            |
-| [`session.previous_id`](/docs/attributes-registry/session.md) | string | The previous `session.id` for this user, when known. | `Conditionally Required`                                                                              |
+| Body field                                                    | Type   | Description                                          | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability                                                        |
+|---------------------------------------------------------------|--------|------------------------------------------------------|-------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| [`session.id`](/docs/attributes-registry/session.md)          | string | The ID of the new session being started.             | `Required`                                                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`session.previous_id`](/docs/attributes-registry/session.md) | string | The previous `session.id` for this user, when known. | `Conditionally Required`                                                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ### Session End Event
 
@@ -68,8 +68,8 @@ For instrumentation that tracks users behavior during user sessions, a `session.
 every time a session ends. When a session ends and continues as a new session, this event SHOULD also be
 emitted prior to the `session.start` event.
 
-| Body field                                                    | Type   | Description                            | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) |
-|---------------------------------------------------------------|--------|----------------------------------------|-------------------------------------------------------------------------------------------------------|
-| [`session.id`](/docs/attributes-registry/session.md)          | string | The ID of the new session being ended. | `Required`                                                                                            |
+| Body field                                                    | Type   | Description                            | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability                                                        |
+|---------------------------------------------------------------|--------|----------------------------------------|--------------------------|------------------------------------------------------------------|
+| [`session.id`](/docs/attributes-registry/session.md)          | string | The ID of the new session being ended. | `Required`                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
