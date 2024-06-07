@@ -59,6 +59,7 @@ For batch operations, if the individual operations are known to have the same op
 
 **[6]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
+
 **[7]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 
 
