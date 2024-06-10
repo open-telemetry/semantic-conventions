@@ -69,9 +69,9 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `incremental` | Incremental (Incremental Marking). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `major` | Major (Mark Sweep Compact). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | Minor (Scavenge). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `incremental` | Incremental (Incremental Marking). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `weakcb` | Weak Callbacks (Process Weak Callbacks). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -209,11 +209,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
+| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `new_space` | New memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `old_space` | Old memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -258,11 +258,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
+| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `new_space` | New memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `old_space` | Old memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -307,11 +307,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
+| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `new_space` | New memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `old_space` | Old memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -356,11 +356,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
+| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `new_space` | New memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `old_space` | Old memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
