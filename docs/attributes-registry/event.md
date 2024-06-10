@@ -10,11 +10,12 @@
 
 Attributes for Events represented using Log Records.
 
-| Attribute           | Type   | Description                                       | Examples                                                                    | Stability                                                        |
-| ------------------- | ------ | ------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `event.description` | string | Human-readable message representing an event. [1] | `User clicked element with id 42`; `Device app lifecycle changed to PAUSED` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `event.name`        | string | Identifies the class / type of event. [2]         | `browser.mouse.click`; `device.app.lifecycle`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute       | Type   | Description                                       | Examples                                                                    | Stability                                                        |
+| --------------- | ------ | ------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `event.name`    | string | Identifies the class / type of event. [1]         | `browser.mouse.click`; `device.app.lifecycle`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `event.summary` | string | Human-readable summary representing an event. [2] | `User clicked element with id 42`; `Device app lifecycle changed to PAUSED` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Events are identified by an `event.name` and a set of attributes and fields in the body that carry specific meaning. However, since these events will be combined with other logs, `event.description` allows a centralized logging system to display a human-readable representation of the event.
+**[1]:** Event names are subject to the same rules as [attribute names](/docs/general/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.
 
-**[2]:** Event names are subject to the same rules as [attribute names](/docs/general/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.
+**[2]:** Events are identified by an `event.name` and a set of attributes and fields in the body that carry specific meaning. However, since these events will be combined with other logs, `event.summary` allows a centralized logging system to display a human-readable representation of the event.
+When summaries are generated, they are not expected to include every attribute and field that is part of the event but could contain those that are meaningful for a human operator when visually navigating a centralized log system. Instrumentation libraries that produce events defined within the standard OpenTelemetry are not expected to add an `event.summary` attribute, as these are well-known events.
