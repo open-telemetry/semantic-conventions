@@ -69,8 +69,8 @@ body:
         - area:thread
         - area:tls
         - area:url
-        - area:user
         - area:user-agent
+        - area:user
         - area:v8js
         - area:webengine
         # End semconv area list
