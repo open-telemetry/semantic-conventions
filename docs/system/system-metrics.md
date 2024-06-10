@@ -1486,7 +1486,9 @@ This metric is [recommended][MetricRecommended].
 | `system.linux.memory.slab.usage` | UpDownCounter | `By` | Reports the memory used by the Linux kernel for managing caches of frequently used objects. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-**[1]:** The sum over all `system.linux.memory.slab.usage` state values SHOULD be equal to the total slab memory available on the system. Note that the total slab memory is not constant and may vary over time.
+**[1]:** The sum over the `reclaimable` and `unreclaimable` state values in `system.linux.memory.slab.usage` SHOULD be equal to the total slab memory available on the system.
+Note that the total slab memory is not constant and may vary over time.
+See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-linux-kernel-memory-statistics) and `Slab` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
 
 
 
@@ -1504,9 +1506,9 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.linux.memory.slab.state`](/docs/attributes-registry/system.md) | string | The Linux slab memory state | `reclaimable`; `unreclaimable` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`system.linux.memory.state`](/docs/attributes-registry/system.md) | string | The Linux memory state | `reclaimable`; `unreclaimable` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.linux.memory.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`system.linux.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

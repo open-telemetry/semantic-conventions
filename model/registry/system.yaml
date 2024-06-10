@@ -254,12 +254,11 @@ groups:
         brief: >
           The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
         examples: ["running"]
-  # system.linux.* attribute group
-  # system.linux.memory.slab* attribute group
-  - id: registry.system.linux.memory.slab
-    prefix: system.linux.memory.slab
+  # system.linux.memory.* attribute group
+  - id: registry.system.linux.memory
+    prefix: system.linux.memory
     type: attribute_group
-    brief: "Describes Linux Slab Memory attributes"
+    brief: "Describes Linux Memory attributes"
     attributes:
       - id: state
         type:
@@ -271,5 +270,5 @@ groups:
               value: 'unreclaimable'
               stability: experimental
         stability: experimental
-        brief: "The Linux slab memory state"
+        brief: "The Linux memory state"
         examples: ["reclaimable", "unreclaimable"]
