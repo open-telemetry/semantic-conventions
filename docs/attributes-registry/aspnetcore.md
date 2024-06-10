@@ -24,10 +24,10 @@ ASP.NET Core attributes
 
 | Value       | Description                                                      | Stability                                                  |
 | ----------- | ---------------------------------------------------------------- | ---------------------------------------------------------- |
-| `handled`   | Exception was handled by the exception handling middleware.      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `unhandled` | Exception was not handled by the exception handling middleware.  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `skipped`   | Exception handling was skipped because the response had started. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `aborted`   | Exception handling didn't run because the request was aborted.   | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `handled`   | Exception was handled by the exception handling middleware.      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `skipped`   | Exception handling was skipped because the response had started. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `unhandled` | Exception was not handled by the exception handling middleware.  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -42,5 +42,5 @@ ASP.NET Core attributes
 
 | Value     | Description     | Stability                                                  |
 | --------- | --------------- | ---------------------------------------------------------- |
-| `success` | Match succeeded | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `failure` | Match failed    | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `success` | Match succeeded | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

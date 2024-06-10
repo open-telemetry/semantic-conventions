@@ -23,8 +23,8 @@ Attributes reserved for OpenTelemetry
 
 | Value   | Description                                                                                              | Stability                                                  |
 | ------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `OK`    | The operation has been validated by an Application developer or Operator to have completed successfully. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ERROR` | The operation contains an error.                                                                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `OK`    | The operation has been validated by an Application developer or Operator to have completed successfully. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## OTel Library Deprecated Attributes
 

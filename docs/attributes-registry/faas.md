@@ -70,9 +70,9 @@ definition of function name MUST be used for this attribute
 
 | Value    | Description                   | Stability                                                        |
 | -------- | ----------------------------- | ---------------------------------------------------------------- |
-| `insert` | When a new object is created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edit`   | When an object is modified.   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `delete` | When an object is deleted.    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `edit`   | When an object is modified.   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `insert` | When a new object is created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -90,6 +90,6 @@ definition of function name MUST be used for this attribute
 | ------------ | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `http`       | To provide an answer to an inbound HTTP request                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other`      | If none of the others apply                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub`     | A function is set to be executed when messages are sent to a messaging system        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer`      | A function is scheduled to be executed regularly                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other`      | If none of the others apply                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
