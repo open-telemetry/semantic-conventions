@@ -7,7 +7,8 @@
 
 <!-- toc -->
 
-- [Name Pluralization guidelines](#name-pluralization-guidelines)
+- [Name Pluralization Guidelines](#name-pluralization-guidelines)
+- [Name Abbreviation Guidelines](#name-abbreviation-guidelines)
 - [Name Reuse Prohibition](#name-reuse-prohibition)
 - [Recommendations for OpenTelemetry Authors](#recommendations-for-opentelemetry-authors)
 - [Recommendations for Application Developers](#recommendations-for-application-developers)
@@ -57,7 +58,7 @@ Names SHOULD follow these rules:
   versa: any existing namespace prohibits existence of an equally named
   attribute key in the future.
 
-## Name Pluralization guidelines
+## Name Pluralization Guidelines
 
 - When an attribute represents a single entity, the attribute name SHOULD be
   singular. Examples: `host.name`, `container.id`.
@@ -69,6 +70,16 @@ Names SHOULD follow these rules:
 - When an attribute represents a measurement,
   [Metric Name Pluralization Guidelines](./metrics.md#pluralization) SHOULD be
   followed for the attribute name.
+
+## Name Abbreviation Guidelines
+
+Abbreviations MAY be used when they are widely recognized and commonly used.
+
+Examples include common technical abbreviations such as `IP`, `DB`, `CPU`,
+`HTTP`, `URL`, or product names like `AWS`, `GCP`, `K8s`.
+
+Abbreviations SHOULD be avoided if they are ambiguous, for example, when they apply
+to multiple products or concepts.
 
 ## Name Reuse Prohibition
 
@@ -157,4 +168,4 @@ Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
 
 [DocumentStatus]:
-  https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+  https://opentelemetry.io/docs/specs/otel/document-status

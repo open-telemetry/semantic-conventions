@@ -36,13 +36,13 @@ Describes System CPU attributes
 
 | Value       | Description | Stability                                                        |
 | ----------- | ----------- | ---------------------------------------------------------------- |
-| `user`      | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system`    | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nice`      | nice        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `idle`      | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iowait`    | iowait      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interrupt` | interrupt   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait`    | iowait      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice`      | nice        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `steal`     | steal       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system`    | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user`      | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Deprecated Attributes
 
@@ -56,10 +56,10 @@ Deprecated system attributes.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
+| `defunct`  | defunct     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `running`  | running     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `sleeping` | sleeping    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `stopped`  | stopped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `defunct`  | defunct     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Filesystem Attributes
 
@@ -76,20 +76,20 @@ Describes Filesystem attributes
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `used`     | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free`     | free        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `reserved` | reserved    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used`     | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value     | Description | Stability                                                        |
 | --------- | ----------- | ---------------------------------------------------------------- |
-| `fat32`   | fat32       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `exfat`   | exfat       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ext4`    | ext4        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fat32`   | fat32       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hfsplus` | hfsplus     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ntfs`    | ntfs        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `refs`    | refs        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hfsplus` | hfsplus     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ext4`    | ext4        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Memory Attributes
 
@@ -103,11 +103,11 @@ Describes System Memory attributes
 
 | Value     | Description | Stability                                                                                                                                    |
 | --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `used`    | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
-| `free`    | free        | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
-| `shared`  | shared      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `buffers` | buffers     | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
 | `cached`  | cached      | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
+| `free`    | free        | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
+| `shared`  | shared      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
+| `used`    | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                                             |
 
 ## System Network Attributes
 
@@ -155,8 +155,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability                                                        |
 | ------ | ----------- | ---------------------------------------------------------------- |
-| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `free` | free        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -177,7 +177,7 @@ Describes System Process attributes
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
+| `defunct`  | defunct     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `running`  | running     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `sleeping` | sleeping    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `stopped`  | stopped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `defunct`  | defunct     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

@@ -27,7 +27,6 @@ body:
         - area:device
         - area:disk
         - area:dns
-        - area:enduser
         - area:error
         - area:event
         - area:exception
@@ -63,6 +62,7 @@ body:
         - area:thread
         - area:tls
         - area:url
+        - area:user
         - area:user-agent
         - area:v8js
         - area:webengine
