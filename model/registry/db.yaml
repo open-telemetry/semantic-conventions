@@ -97,7 +97,12 @@ groups:
               stability: experimental
             - id: cache
               value: 'cache'
-              brief: 'InterSystems Caché'
+              deprecated: "Replaced by `intersystems_cache`."
+              brief: "Deprecated, use `intersystems_cache` instead."
+              stability: experimental
+            - id: intersystems_cache
+              value: 'intersystems_cache'
+              brief: "InterSystems Caché"
               stability: experimental
             - id: cassandra
               value: 'cassandra'
@@ -109,7 +114,8 @@ groups:
               stability: experimental
             - id: cloudscape
               value: 'cloudscape'
-              brief: 'Cloudscape'
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
               stability: experimental
             - id: cockroachdb
               value: 'cockroachdb'
@@ -117,7 +123,8 @@ groups:
               stability: experimental
             - id: coldfusion
               value: 'coldfusion'
-              brief: 'ColdFusion IMQ'
+              deprecated: "Removed."
+              brief: "Deprecated, no replacement at this time."
               stability: experimental
             - id: cosmosdb
               value: 'cosmosdb'
@@ -161,7 +168,8 @@ groups:
               stability: experimental
             - id: firstsql
               value: 'firstsql'
-              brief: 'FirstSQL'
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
               stability: experimental
             - id: geode
               value: 'geode'
@@ -229,7 +237,8 @@ groups:
               stability: experimental
             - id: mssqlcompact
               value: 'mssqlcompact'
-              brief: 'Microsoft SQL Server Compact'
+              deprecated: "Removed, use `other_sql` instead."
+              brief: "Deprecated, Microsoft SQL Server Compact is discontinued."
               stability: experimental
             - id: mysql
               value: 'mysql'
@@ -300,7 +309,7 @@ groups:
               brief: 'Vertica'
               stability: experimental
         stability: experimental
-      - id: client.connections.state
+      - id: client.connection.state
         stability: experimental
         type:
           allow_custom_values: true
@@ -313,7 +322,7 @@ groups:
               stability: experimental
         brief: "The state of a connection in the pool"
         examples: ["idle"]
-      - id: client.connections.pool.name
+      - id: client.connection.pool.name
         type: string
         stability: experimental
         brief: >
@@ -497,12 +506,6 @@ groups:
     brief: >
       This group defines attributes for Elasticsearch.
     attributes:
-      - id: elasticsearch.cluster.name
-        type: string
-        stability: experimental
-        brief: >
-          Represents the identifier of an Elasticsearch cluster.
-        examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
       - id: elasticsearch.node.name
         type: string
         stability: experimental
