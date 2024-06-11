@@ -86,12 +86,10 @@ groups:
         stability: experimental
         brief: >
           Type of the component
-      - id: error.type
-        type: string
-        stability: experimental
-        brief: >
-          The type of error encountered by the component
-        examples: ['']
+        note: >
+          Describes the category of the hardware component for which `hw.state` is being reported. For example,
+          `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware
+          component has been reported as `degraded`.
       - id: state
         type:
           allow_custom_values: true

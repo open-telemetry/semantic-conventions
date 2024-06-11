@@ -36,9 +36,13 @@ monitored component:
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
+
+
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -97,9 +101,13 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
+
+
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -158,10 +166,41 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.error.type`](/docs/attributes-registry/hardware.md) | string | The type of error encountered by the component | `` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
+
+**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+* Use a domain-specific attribute
+* Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -224,9 +263,13 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
+
+
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -290,9 +333,13 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.state`](/docs/attributes-registry/hardware.md) | string | The current state of the component | `ok`; `degraded`; `failed` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
+
+
 
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

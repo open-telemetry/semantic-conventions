@@ -10,14 +10,15 @@
 
 Attributes for hardware.
 
-| Attribute       | Type   | Description                                                                                                   | Examples                            | Stability                                                        |
-| --------------- | ------ | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------- |
-| `hw.error.type` | string | The type of error encountered by the component                                                                | ``                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hw.id`         | string | An identifier for the hardware component, unique within the monitored host                                    | `win32battery_battery_testsysa33_1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hw.name`       | string | An easily-recognizable name for the hardware component                                                        | `eth0`                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hw.parent`     | string | Unique identifier of the parent component (typically the `id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0`                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hw.state`      | string | The current state of the component                                                                            | `ok`; `degraded`; `failed`          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hw.type`       | string | Type of the component                                                                                         | `battery`; `cpu`; `disk_controller` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute   | Type   | Description                                                                                                   | Examples                            | Stability                                                        |
+| ----------- | ------ | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------- |
+| `hw.id`     | string | An identifier for the hardware component, unique within the monitored host                                    | `win32battery_battery_testsysa33_1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hw.name`   | string | An easily-recognizable name for the hardware component                                                        | `eth0`                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hw.parent` | string | Unique identifier of the parent component (typically the `id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0`                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hw.state`  | string | The current state of the component                                                                            | `ok`; `degraded`; `failed`          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hw.type`   | string | Type of the component [1]                                                                                     | `battery`; `cpu`; `disk_controller` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

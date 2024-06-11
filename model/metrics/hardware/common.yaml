@@ -26,7 +26,7 @@ groups:
     unit: "{error}"
     extends: metric.hardware.attributes
     attributes:
-      - ref: hw.error.type
+      - ref: error.type
         requirement_level: recommended
 
   - id: metric.hardware.power
