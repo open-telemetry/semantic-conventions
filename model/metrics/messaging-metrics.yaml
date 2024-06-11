@@ -16,10 +16,10 @@ groups:
           conditionally_required: if available.
 
   # durations
-  - id: metric.messaging.client.request.duration
+  - id: metric.messaging.client.operation.duration
     type: metric
-    metric_name: messaging.client.request.duration
-    brief: "Duration of messaging operation initiated by a producer or consumer."
+    metric_name: messaging.client.operation.duration
+    brief: "Duration of messaging operation initiated by a producer or consumer client."
     note: >
       This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
     stability: experimental
