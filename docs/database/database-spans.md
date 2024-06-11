@@ -144,12 +144,9 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | Value  | Description | Stability |
 |---|---|---|
 | `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudscape` | Cloudscape | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cockroachdb` | CockroachDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `coldfusion` | ColdFusion IMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -160,7 +157,6 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `elasticsearch` | Elasticsearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `filemaker` | FileMaker | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firstsql` | FirstSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -172,12 +168,12 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 | `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `intersystems_cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mariadb` | MariaDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mssql` | Microsoft SQL Server | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssqlcompact` | Microsoft SQL Server Compact | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mysql` | MySQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -244,4 +240,4 @@ More specific Semantic Conventions are defined for the following database techno
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

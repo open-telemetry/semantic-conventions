@@ -82,6 +82,9 @@ and confusion for end users. (For example, prefer `process.runtime.java.gc*` ove
 `process.runtime.gc.*`.) Measures of many operating system metrics are similarly
 ambiguous.
 
+Metric names and attributes SHOULD follow the general
+[name abbreviation guidelines](attribute-naming.md#name-abbreviation-guidelines).
+
 ### Name Reuse Prohibition
 
 A new metric MUST NOT be added with the same name as a metric that existed in
@@ -260,4 +263,4 @@ For example, if you are tracking `active_requests` with an `UpDownCounter`, and 
 request starts and decrementing it each time a request ends, then any attributes which are not yet available when
 incrementing the counter at request start should not be used when decrementing the counter at request end.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
