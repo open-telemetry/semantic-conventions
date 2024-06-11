@@ -171,7 +171,7 @@ This metric is [required][MetricRequired].
 | `messaging.client.published.messages` | Counter | `{message}` | Number of messages producer attempted to publish to the broker. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-**[1]:** This metric MUST NOT count messages that were created, but aren't being published yet.
+**[1]:** This metric MUST NOT count messages that were created haven't yet been attempted to be published.
 
 
 
@@ -282,7 +282,7 @@ This metric is [required][MetricRequired].
 
 
 **[1]:** Records the number of messages pulled from the broker or number of messages dispatched to the application in push-based scenarios.
-The metric MUST be reported once per message delivery. For example, if receiving and processing operations are both instrumented for a single message delivery, the number of received messages is reported when then message is received and not reported for the processing operation.
+The metric SHOULD be reported once per message delivery. For example, if receiving and processing operations are both instrumented for a single message delivery, this counter is incremented when the message is received and not reported when it is processed.
 
 
 
