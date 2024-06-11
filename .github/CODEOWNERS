@@ -76,4 +76,13 @@
 /model/trace/gen-ai.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
 /docs/gen-ai/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
 
+# Security semantic conventions approvers
+/model/registry/file.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/model/registry/dns.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/model/registry/network.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/model/registry/process.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/model/registry/tls.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/model/registry/user.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+
+
 # TODO - Add semconv area experts
