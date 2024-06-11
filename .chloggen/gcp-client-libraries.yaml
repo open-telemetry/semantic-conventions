@@ -1,0 +1,4 @@
+change_type: 'enhancement'
+component: gcp
+note: Introduces `gcp.client.service` scope attribute.
+issues: [ 1047 ]

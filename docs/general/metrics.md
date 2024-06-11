@@ -82,6 +82,9 @@ and confusion for end users. (For example, prefer `process.runtime.java.gc*` ove
 `process.runtime.gc.*`.) Measures of many operating system metrics are similarly
 ambiguous.
 
+Metric names and attributes SHOULD follow the general
+[name abbreviation guidelines](attribute-naming.md#name-abbreviation-guidelines).
+
 ### Name Reuse Prohibition
 
 A new metric MUST NOT be added with the same name as a metric that existed in

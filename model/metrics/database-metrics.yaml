@@ -41,9 +41,9 @@ groups:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
-      - ref: db.client.connections.state
+      - ref: db.client.connection.state
         requirement_level: required
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.idle.max
@@ -54,7 +54,7 @@ groups:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.idle.min
@@ -65,7 +65,7 @@ groups:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.max
@@ -76,7 +76,7 @@ groups:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.pending_requests
@@ -87,7 +87,7 @@ groups:
     instrument: updowncounter
     unit: "{request}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.timeouts
@@ -98,7 +98,7 @@ groups:
     instrument: counter
     unit: "{timeout}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.create_time
@@ -109,7 +109,7 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.wait_time
@@ -120,7 +120,7 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.use_time
@@ -131,5 +131,5 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
