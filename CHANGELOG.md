@@ -7,8 +7,6 @@
 
 <!-- next version -->
 
-- `user`: Add `anonymous_id` (#1146)
-
 ## v1.26.0
 
 ### 🛑 Breaking changes 🛑
