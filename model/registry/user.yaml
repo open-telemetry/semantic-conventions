@@ -34,7 +34,10 @@ groups:
         type: string
         stability: experimental
         brief: >
-          Unique identifier of an anonymous user who interacts with a system or service without providing personal information or authentication credentials. It allows the system to track user activity while maintaining anonymity.
+          Unique identifier of an anonymous user who interacts with a system or service without providing personal information or authentication credentials. 
+          It allows the system to track user activity while maintaining anonymity.
+        note: >
+          It can be a random guid or a hash of the user's IP address. This is different from `user.hash` which is a hash of a known `user.id` or `user.name`.
         examples: ['QdH5CAWJgqVT4rOr0qtumf']
       - id: name
         type: string
