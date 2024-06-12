@@ -8,6 +8,10 @@ linkTitle: Container
 
 ## Container Metrics
 
+This document describes instruments and attributes for common container level
+metrics in OpenTelemetry. Collected from technology-specific,
+well-defined APIs (e.g. Kubelet's API or container runtimes).
+
 ### Metric: `container.cpu.time`
 
 This metric is [opt-in][MetricOptIn].
@@ -81,7 +85,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.cpu.usage` | Gauge | `{cpu}` | CPU usage [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable cpus [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
@@ -102,7 +106,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`container.cpu.state`](/docs/attributes-registry/container.md) | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `kernel` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`container.cpu.state`](/docs/attributes-registry/container.md) | string | The CPU state for this data point. A container's cpu time SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `kernel` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
