@@ -14,12 +14,7 @@ described on this page.
 
 ## Span Name
 
-The **span name** SHOULD be of the format `<endpoint id>`.
-
-The elasticsearch endpoint identifier is used instead of the url path in order to reduce the cardinality of the span
-name, as the path could contain dynamic values. The endpoint id is the `name` field in the
-[elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json).
-If the endpoint id is not available, the span name SHOULD be the `http.request.method`.
+The **span name** follows the [general database span name guidelines](database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
 
 ## Attributes
 
@@ -38,12 +33,13 @@ If the endpoint id is not available, the span name SHOULD be the `http.request.m
 | [`db.elasticsearch.path_parts.<key>`](/docs/attributes-registry/db.md) | string | A dynamic value in the url path. [4] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | `Conditionally Required` when the url has dynamic values | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.elasticsearch.cluster.name`](/docs/attributes-registry/db.md) | string | Represents the identifier of an Elasticsearch cluster. | `e9106fc68e3044f0b1475b04bf4ffd5f` | `Recommended` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | `Recommended` [9] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The index or data stream against which the query is executed. [8] | `my_index`; `index1, index2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [9] | `instance-0000000001` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the Elasticsearch cluster which the client connects to. [10] | `customers`; `test.users` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [11] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** This SHOULD be the endpoint identifier for the request.
+**[1]:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
 
 **[2]:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -72,13 +68,17 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[8]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+**[8]:** The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
 
 **[9]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[10]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
+**[10]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[11]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+
+**[12]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
+
+**[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 
 
@@ -93,6 +93,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 | Value  | Description | Stability |
 |---|---|---|
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `CONNECT` | CONNECT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `DELETE` | DELETE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `GET` | GET method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -102,7 +103,6 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
@@ -115,16 +115,17 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 | Key                                 | Value                                                                                                                               |
 |:------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|
-| Span name                           | `"search"`                                                                                                                          |
+| Span name                           | `"search my-index"`                                                                                                                 |
 | `db.system`                         | `"elasticsearch"`                                                                                                                   |
 | `server.address`                    | `"elasticsearch.mydomain.com"`                                                                                                      |
 | `server.port`                       | `9200`                                                                                                                              |
 | `http.request.method`               | `"GET"`                                                                                                                             |
 | `db.query.text`                     | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                 |
 | `db.operation.name`                 | `"search"`                                                                                                                          |
+| `db.collection.name`                | `"my-index"`                                                                                                                        |
 | `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
 | `db.elasticsearch.path_parts.index` | `"my-index-000001"`                                                                                                                 |
-| `db.elasticsearch.cluster.name`     | `"e9106fc68e3044f0b1475b04bf4ffd5f"`                                                                                                |
-| `db.instance.id`                    | `"instance-0000000001"`                                                                                                             |
+| `db.namespace`                      | `"my-cluster"`                                                                                                                      |
+| `db.elasticsearch.node.name`        | `"instance-0000000001"`                                                                                                             |
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

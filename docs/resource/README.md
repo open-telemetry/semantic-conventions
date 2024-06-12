@@ -315,4 +315,4 @@ Valid cloud providers are:
 - [Tencent Cloud](https://www.tencentcloud.com/) (`tencent_cloud`)
 - [Heroku dyno](./cloud-provider/heroku.md)
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

@@ -104,12 +104,6 @@ groups:
         brief: >
           Last terminated reason of the Container.
         examples: ["Evicted", "Error"]
-      - id: container.status.current_waiting_reason
-        type: string
-        stability: experimental
-        brief: >
-          Current waiting reason of the Container.
-        examples: ["CrashLoopBackOff"]
 
       - id: replicaset.uid
         type: string
