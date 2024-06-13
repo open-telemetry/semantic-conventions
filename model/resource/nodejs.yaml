@@ -1,7 +1,7 @@
 groups:
   - id: nodejs.runtime
     type: resource
-    brief: Describes Node.js resource.
+    brief: Node.js resource.
     prefix: nodejs.runtime
     attributes:
       - id: version
