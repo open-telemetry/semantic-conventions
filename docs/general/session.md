@@ -65,7 +65,7 @@ that the previous session has ended. If the session ID in `session.previous_id` 
 `event.name`=`session.end`
 
 For instrumentation that tracks user behavior during user sessions, a `session.end` event SHOULD be emitted
-every time a session ends. When a session ends and continues as a new session, this event SHOULD also be
+every time a session ends. When a session ends and continues as a new session, this event SHOULD be
 emitted prior to the `session.start` event.
 
 | Body field                                                    | Type   | Description                            | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability                                                        |
