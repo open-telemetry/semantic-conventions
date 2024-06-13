@@ -3,7 +3,7 @@ groups:
     prefix: gen_ai
     type: attribute_group
     brief: >
-      This document defines the attributes used to describe telemetry in the context of LLM (Large Language Models) requests and responses.
+      This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
     attributes:
       - id: system
         stability: experimental
@@ -37,7 +37,7 @@ groups:
       - id: request.model
         stability: experimental
         type: string
-        brief: The name of the Generative AI model a request is being made to.
+        brief: The name of the GenAI model a request is being made to.
         examples: 'gpt-4'
       - id: request.max_tokens
         stability: experimental
@@ -96,7 +96,7 @@ groups:
       - id: prompt
         stability: experimental
         type: string
-        brief: The full prompt sent to GenAI model.
+        brief: The full prompt sent to the GenAI model.
         note: It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
         examples: ["[{'role': 'user', 'content': 'What is the capital of France?'}]"]
       - id: completion
