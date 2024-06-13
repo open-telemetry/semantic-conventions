@@ -139,10 +139,10 @@ If an intermediary broker is present, `service.name` and `peer.service` will not
 ### Apache Kafka with Quarkus or Spring Boot Example
 
 In this example, the producer publishes a message to a topic T on Apache Kafka.
-Consumer receives the message, processes it and commits to offset.
+Consumer receives the message, processes it and commits the offset.
 
-Frameworks such as Quarkus and Spring Boot provide integrations with Kafka which allow to
-configure processing callbacks, so corresponding instrumentations can create "Process"
+Frameworks such as Quarkus and Spring Boot provide integrations with Kafka allowing to
+configure and instrument processing callbacks, so corresponding instrumentations should create "Process"
 spans in addition to "Receive" spans created by Kafka instrumentations for polling calls.
 
 ```mermaid
