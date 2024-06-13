@@ -17,8 +17,8 @@ body:
         - area:aws
         - area:browser
         - area:client
-        - area:cloud
         - area:cloudevents
+        - area:cloud
         - area:code
         - area:container
         - area:db
@@ -42,6 +42,7 @@ body:
         - area:http
         - area:jvm
         - area:k8s
+        - area:linux
         - area:log
         - area:messaging
         - area:network
