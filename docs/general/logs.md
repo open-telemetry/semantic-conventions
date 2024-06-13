@@ -61,7 +61,7 @@ The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID
 
 This section describes attributes for log media in OpenTelemetry. Log media are mechanisms by which logs are transmitted. Types of media include files, streams, network protocols, and os-specific logging services such as journald and Windows Event Log.
 
-**Note:** The OpenTelemetry specification defines a [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/resource/sdk.md#resource-sdk) as `an immutable representation of the entity producing telemetry`.
+**Note:** The OpenTelemetry specification defines a [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/resource/sdk.md) as `an immutable representation of the entity producing telemetry`.
 The following attributes do not describe entities that produce telemetry. Rather, they describe mechanisms of log transmission.
 As such, these should be recorded as Log Record attributes when applicable. They should not be recorded as Resource attributes.
 
