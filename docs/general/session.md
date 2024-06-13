@@ -43,7 +43,7 @@ backends can link the two sessions (see [Session Start Event](#session-start-eve
 
 `event.name`=`session.start`
 
-For instrumentation that tracks users behavior during user sessions, a `session.start` event MUST be emitted
+For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted
 every time a session is created. When a new session is created as a continuation of a prior session,
 the `session.previous_id` SHOULD be included in the event. The values of `session.id` and `session.previous_id`
 MUST be different.
