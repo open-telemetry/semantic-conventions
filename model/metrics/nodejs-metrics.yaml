@@ -7,9 +7,6 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.min
-    attributes:
-      - ref: nodejs.version
-        requirement_level: recommended
 
   - id: metric.nodejs.eventloop.delay.max
     type: metric
@@ -19,9 +16,6 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.max
-    attributes:
-      - ref: nodejs.version
-        requirement_level: recommended
 
   - id: metric.nodejs.eventloop.delay.mean
     type: metric
@@ -31,9 +25,6 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.mean
-    attributes:
-      - ref: nodejs.version
-        requirement_level: recommended
 
   - id: metric.nodejs.eventloop.delay.stddev
     type: metric
@@ -43,9 +34,6 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.stddev
-    attributes:
-      - ref: nodejs.version
-        requirement_level: recommended
 
   - id: metric.nodejs.eventloop.delay.pfifty
     type: metric
@@ -55,9 +43,6 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.p50
-    attributes:
-      - ref: nodejs.version
-        requirement_level: recommended
 
   - id: metric.nodejs.eventloop.delay.pninety
     type: metric
@@ -67,9 +52,6 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.p90
-    attributes:
-      - ref: nodejs.version
-        requirement_level: recommended
 
   - id: metric.nodejs.eventloop.delay.pninety_nine
     type: metric
@@ -79,9 +61,6 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.p99
-    attributes:
-      - ref: nodejs.version
-        requirement_level: recommended
 
   - id: metric.nodejs.eventloop.utilization
     type: metric
@@ -93,6 +72,3 @@ groups:
     note: >
       The value range is [0.0,1.0].
     prefix: nodejs.eventloop.utilization
-    attributes:
-      - ref: nodejs.version
-        requirement_level: recommended
