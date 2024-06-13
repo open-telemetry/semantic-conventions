@@ -63,6 +63,7 @@ Currently, the following namespaces exist:
 - [iOS](ios.md)
 - [JVM](jvm.md)
 - [K8s](k8s.md)
+- [Linux](linux.md)
 - [Log](log.md)
 - [Messaging](messaging.md)
 - [Network](network.md)

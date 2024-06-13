@@ -10,7 +10,6 @@
 - [System Cpu](#system-cpu-attributes)
 - [System Deprecated](#system-deprecated-attributes)
 - [System Filesystem](#system-filesystem-attributes)
-- [System Linux Memory](#system-linux-memory-attributes)
 - [System Memory](#system-memory-attributes)
 - [System Network](#system-network-attributes)
 - [System Paging](#system-paging-attributes)
@@ -91,21 +90,6 @@ Describes Filesystem attributes
 | `hfsplus` | hfsplus     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ntfs`    | ntfs        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `refs`    | refs        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## System Linux Memory Attributes
-
-Describes Linux Memory attributes
-
-| Attribute                   | Type   | Description            | Examples                       | Stability                                                        |
-| --------------------------- | ------ | ---------------------- | ------------------------------ | ---------------------------------------------------------------- |
-| `system.linux.memory.state` | string | The Linux memory state | `reclaimable`; `unreclaimable` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`system.linux.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value           | Description   | Stability                                                        |
-| --------------- | ------------- | ---------------------------------------------------------------- |
-| `reclaimable`   | reclaimable   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unreclaimable` | unreclaimable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## System Memory Attributes
 
