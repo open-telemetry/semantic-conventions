@@ -45,7 +45,6 @@ body:
         - area:log
         - area:messaging
         - area:network
-        - area:nodejs
         - area:oci
         - area:opentracing
         - area:os
