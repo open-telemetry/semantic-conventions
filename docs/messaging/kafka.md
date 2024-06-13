@@ -173,12 +173,12 @@ flowchart LR;
 | Parent |  |  |  (optional) Span Publish  | Span Process |
 | Links |  | Span Publish | Span Publish |  |
 | SpanKind | `PRODUCER` | `CONSUMER` | `SERVER` | `CLIENT` |
-| Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
+| Status | `Ok` | `Ok` | `Ok` | `Ok` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation.name` | `send` | `poll` | `"process"` | `commit` |
 | `messaging.operation.type` | `"publish"`  | `"receive"` | `"process"` | `"settle"` |
-| `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` | `"8"` |
+| `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` |  |
 | `messaging.destination.consumer.group` |  | `"my-group"` | `"my-group"` | `"my-group"` |
 | `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |
