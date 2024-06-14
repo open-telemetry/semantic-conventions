@@ -25,7 +25,7 @@ groups:
               stability: experimental
               value: "cohere"
               brief: 'Cohere'
-        brief: The Generative AI product as identified by the client instrumentation.
+        brief: The Generative AI product as identified by the client or server instrumentation.
         note: >
           The actual GenAI product may differ from the one identified by the client.
           For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`

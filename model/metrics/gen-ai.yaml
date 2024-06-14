@@ -16,6 +16,18 @@ groups:
         requirement_level: required
       - ref: gen_ai.operation.name
         requirement_level: required
+  - id: metric_attributes.gen_ai.server
+    type: attribute_group
+    brief: 'This group describes GenAI server metrics attributes'
+    extends: metric_attributes.gen_ai
+    attributes:
+    - ref: error.type
+      requirement_level:
+          conditionally_required: "if the operation ended in an error"
+      note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI service,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
   - id: metric.gen_ai.client.token.usage
     type: metric
     metric_name: gen_ai.client.token.usage
@@ -50,11 +62,11 @@ groups:
     instrument: histogram
     unit: "s"
     stability: experimental
-    extends: metric_attributes.gen_ai
+    extends: metric_attributes.gen_ai.server
   - id: metric.gen_ai.server.time_per_output_token
     type: metric
     metric_name: gen_ai.server.time_per_output_token
-    brief: 'Time per output token generated for successful responses'
+    brief: 'Time per output token generated after the first token for successful responses'
     instrument: histogram
     unit: "s"
     stability: experimental
