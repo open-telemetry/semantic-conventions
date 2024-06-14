@@ -77,7 +77,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`cpu.state`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used `user`, `system`, `wait`
+**[1]:** Following states SHOULD be used: `user`, `system`, `wait`
 
 
 
@@ -133,7 +133,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`cpu.state`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used `user`, `system`, `wait`
+**[1]:** Following states SHOULD be used: `user`, `system`, `wait`
 
 
 

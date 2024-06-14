@@ -23,7 +23,7 @@ Describes System attributes
 | --------------- | ------ | --------------------- | -------------- | ---------------------------------------------------------------- |
 | `system.device` | string | The device identifier | `(identifier)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## System Cpu Attributes
+## System CPU Attributes
 
 Describes System CPU attributes
 

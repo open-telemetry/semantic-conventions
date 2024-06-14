@@ -107,7 +107,7 @@ This metric is [recommended][MetricRecommended].
 | [`cpu.state`](/docs/attributes-registry/cpu.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
+**[1]:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
 
 
@@ -164,7 +164,7 @@ This metric is [recommended][MetricRecommended].
 | [`cpu.state`](/docs/attributes-registry/cpu.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
+**[1]:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
 
 

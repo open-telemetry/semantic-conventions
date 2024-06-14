@@ -11,7 +11,7 @@ groups:
         brief: >
           A process SHOULD be characterized _either_ by data points with no `state`
           labels, _or only_ data points with `state` labels.
-        note: "Following states SHOULD be used `user`, `system`, `wait`"
+        note: "Following states SHOULD be used: `user`, `system`, `wait`"
 
   - id: metric.process.cpu.utilization
     type: metric
@@ -27,7 +27,7 @@ groups:
         brief: >
           A process SHOULD be characterized _either_ by data points with no `state`
           labels, _or only_ data points with `state` labels.
-        note: "Following states SHOULD be used `user`, `system`, `wait`"
+        note: "Following states SHOULD be used: `user`, `system`, `wait`"
 
   - id: metric.process.memory.usage
     type: metric

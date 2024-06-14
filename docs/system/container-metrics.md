@@ -44,7 +44,7 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|---|---|---|
 | [`cpu.state`](/docs/attributes-registry/cpu.md) | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. [1] | `user`; `system` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used `user`, `system`, `kernel`
+**[1]:** Following states SHOULD be used: `user`, `system`, `kernel`
 
 
 

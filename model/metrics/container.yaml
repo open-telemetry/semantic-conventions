@@ -12,7 +12,7 @@ groups:
     attributes:
       - ref: cpu.state
         brief: "The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels."
-        note: "Following states SHOULD be used `user`, `system`, `kernel`"
+        note: "Following states SHOULD be used: `user`, `system`, `kernel`"
         requirement_level: opt_in
 
   # container.memory.* metrics and attribute group
