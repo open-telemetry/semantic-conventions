@@ -35,10 +35,10 @@ Describes System CPU attributes
 
 Deprecated system attributes.
 
-| Attribute                 | Type   | Description                                      | Examples            | Stability                                                                                                                  |
-| ------------------------- | ------ | ------------------------------------------------ | ------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `system.cpu.state`        | string | Deprecated, use `cpu.state` instead.             | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report cpu state with `cpu.state` common attribute |
-| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`.                        |
+| Attribute                 | Type   | Description                                      | Examples            | Stability                                                                                           |
+| ------------------------- | ------ | ------------------------------------------------ | ------------------- | --------------------------------------------------------------------------------------------------- |
+| `system.cpu.state`        | string | Deprecated, use `cpu.state` instead.             | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.state`              |
+| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

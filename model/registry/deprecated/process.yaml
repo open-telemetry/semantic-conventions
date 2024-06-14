@@ -5,7 +5,7 @@ groups:
     attributes:
       - id: process.cpu.state
         brief: "Deprecated, use `cpu.state` instead."
-        deprecated: 'Removed, report cpu state with `cpu.state` common attribute'
+        deprecated: 'Replaced by `cpu.state`'
         type:
           allow_custom_values: true
           members:

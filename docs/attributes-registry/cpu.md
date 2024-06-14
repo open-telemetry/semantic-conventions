@@ -18,11 +18,11 @@ Attributes specific to a cpu instance.
 
 | Value       | Description | Stability                                                        |
 | ----------- | ----------- | ---------------------------------------------------------------- |
-| `user`      | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system`    | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nice`      | nice        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `idle`      | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iowait`    | iowait      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interrupt` | interrupt   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `steal`     | steal       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait`    | iowait      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kernel`    | kernel      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice`      | nice        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `steal`     | steal       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system`    | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user`      | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

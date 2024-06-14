@@ -27,5 +27,5 @@ groups:
               brief: "When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows)."
               stability: experimental
         stability: experimental
-        deprecated: 'Removed, report cpu state with `cpu.state` common attribute'
+        deprecated: 'Replaced by `cpu.state`'
         examples: [ "user", "kernel" ]

@@ -62,9 +62,9 @@ An operating system process.
 
 Deprecated process attributes.
 
-| Attribute           | Type   | Description                          | Examples                 | Stability                                                                                                                  |
-| ------------------- | ------ | ------------------------------------ | ------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| `process.cpu.state` | string | Deprecated, use `cpu.state` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report cpu state with `cpu.state` common attribute |
+| Attribute           | Type   | Description                          | Examples                 | Stability                                                                              |
+| ------------------- | ------ | ------------------------------------ | ------------------------ | -------------------------------------------------------------------------------------- |
+| `process.cpu.state` | string | Deprecated, use `cpu.state` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.state` |
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

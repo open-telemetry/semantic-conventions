@@ -50,5 +50,5 @@ groups:
               stability: experimental
         brief: "Deprecated, use `cpu.state` instead."
         stability: experimental
-        deprecated: 'Removed, report cpu state with `cpu.state` common attribute'
+        deprecated: 'Replaced by `cpu.state`'
         examples: [ "idle", "interrupt" ]
