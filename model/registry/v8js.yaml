@@ -26,36 +26,6 @@ groups:
               value: 'weakcb'
               brief: 'Weak Callbacks (Process Weak Callbacks).'
               stability: experimental
-      - id: memory.state
-        stability: experimental
-        type:
-          allow_custom_values: false
-          members:
-            - id: total
-              value: 'total'
-              brief: 'Total memory.'
-              stability: experimental
-            - id: used
-              value: 'used'
-              brief: 'Used memory.'
-              stability: experimental
-        brief: The state of memory.
-        examples: ["total", "used"]
-      - id: heap.size.state
-        stability: experimental
-        type:
-          allow_custom_values: false
-          members:
-            - id: total
-              value: 'total'
-              brief: 'Total heap memory size.'
-              stability: experimental
-            - id: used
-              value: 'used'
-              brief: 'Used heap memory size.'
-              stability: experimental
-        brief: The size of heap memory.
-        examples: ["total", "used"]
       - id: heap.space.name
         stability: experimental
         brief: The name of the space type of heap memory.

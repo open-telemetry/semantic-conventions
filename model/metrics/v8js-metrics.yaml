@@ -11,29 +11,37 @@ groups:
       - ref: v8js.gc.type
         requirement_level: recommended
 
-  - id: metric.veightjs.memory.size
+  - id: metric.veightjs.memory.total
     type: metric
-    metric_name: v8js.memory.size
-    brief: "External memory size."
-    instrument: gauge
-    unit: "By"
-    stability: experimental
-    prefix: v8js.memory
-    attributes:
-      - ref: v8js.memory.state
-        requirement_level: recommended
-
-  - id: metric.veightjs.heap.size
-    type: metric
-    metric_name: v8js.heap.size
-    brief: "Heap size."
+    metric_name: v8js.memory.total
+    brief: "Total memory size."
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: v8js.heap.size
-    attributes:
-      - ref: v8js.heap.size.state
-        requirement_level: recommended
+
+  - id: metric.veightjs.memory.used
+    type: metric
+    metric_name: v8js.memory.used
+    brief: "Used memory size."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+
+  - id: metric.veightjs.heap.total
+    type: metric
+    metric_name: v8js.heap.total
+    brief: "Total heap memory size."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+
+  - id: metric.veightjs.heap.used
+    type: metric
+    metric_name: v8js.heap.used
+    brief: "Used heap memory size."
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
 
   - id: metric.veightjs.heap.space_size
     type: metric
