@@ -1,0 +1,4 @@
+change_type: enhancement
+component: messaging
+note: Document `messaging.operation.name` for Azure messaging systems.
+issues: [942]
