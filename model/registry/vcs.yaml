@@ -11,7 +11,7 @@ groups:
         stability: experimental
         brief: >
           The [URL](https://en.wikipedia.org/wiki/URL) of the repository
-          providing the complete address in order to local and identify the
+          providing the complete address in order to locate and identify the
           repository.
         examples: ['https://github.com/opentelemetry/open-telemetry-collector-contrib', 'https://gitlab.com/my-org/my-project/my-projects-project/repo']
       - id: ref.name
