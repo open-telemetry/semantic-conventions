@@ -17,6 +17,20 @@ groups:
         brief: >
           The id of the deployment.
         examples: ['1208']
+      - id: status
+        type:
+          allow_custom_values: true
+          members:
+            - id: failed
+              value: failed
+              brief: failed
+              stability: experimental
+            - id: succeeded
+              value: succeeded
+              brief: succeeded
+              stability: experimental
+        brief: >
+          The status of the deployment.
       - id: environment.name
         type: string
         stability: experimental

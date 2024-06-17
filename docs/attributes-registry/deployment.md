@@ -18,6 +18,7 @@ This document defines attributes for software deployments.
 | `deployment.environment.name` | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `deployment.id`               | string | The id of the deployment.                                                                                          | `1208`                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `deployment.name`             | string | The name of the deployment.                                                                                        | `deploy my app`; `deploy-frontend` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deployment.status`           | string | The status of the deployment.                                                                                      | `failed`; `succeeded`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
@@ -26,6 +27,13 @@ considered to be identifying the same service:
 
 - `service.name=frontend`, `deployment.environment.name=production`
 - `service.name=frontend`, `deployment.environment.name=staging`.
+
+`deployment.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value       | Description | Stability                                                        |
+| ----------- | ----------- | ---------------------------------------------------------------- |
+| `failed`    | failed      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `succeeded` | succeeded   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deployment Deprecated Attributes
 

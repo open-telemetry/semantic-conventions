@@ -76,7 +76,6 @@ Currently, the following namespaces exist:
 - [Peer](peer.md)
 - [Process](process.md)
 - [RPC](rpc.md)
-- [Scm](scm.md)
 - [Server](server.md)
 - [Service](service.md)
 - [Session](session.md)
@@ -89,6 +88,7 @@ Currently, the following namespaces exist:
 - [TLS](tls.md)
 - [URL](url.md)
 - [User Agent](user-agent.md)
+- [Vcs](vcs.md)
 - [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
