@@ -2,10 +2,12 @@ groups:
   - id: registry.gcp
     prefix: gcp
     type: attribute_group
+    display_name: GCP Attributes
     brief: Attributes for Google Cloud
   - id: registry.gcp.client
     prefix: gcp.client
     type: attribute_group
+    display_name: GCP Client Attributes
     brief: >
       Attributes for Google Cloud client libraries.
     attributes:
