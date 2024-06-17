@@ -102,6 +102,7 @@ groups:
   - id: registry.system.filesystem
     prefix: system.filesystem
     type: attribute_group
+    display_name: Filesystem Attributes
     brief: "Describes Filesystem attributes"
     attributes:
       - id: state
