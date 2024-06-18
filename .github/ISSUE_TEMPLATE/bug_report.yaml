@@ -26,7 +26,6 @@ body:
         - area:client
         - area:cloud
         - area:cloudevents
-        - area:clr
         - area:code
         - area:container
         - area:cpu
@@ -36,6 +35,7 @@ body:
         - area:device
         - area:disk
         - area:dns
+        - area:dotnet
         - area:error
         - area:event
         - area:exception
@@ -71,8 +71,8 @@ body:
         - area:thread
         - area:tls
         - area:url
-        - area:user-agent
         - area:user
+        - area:user-agent
         - area:webengine
         # End semconv area list
   - type: textarea
