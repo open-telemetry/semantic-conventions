@@ -86,6 +86,7 @@ Currently, the following namespaces exist:
 - [Thread](thread.md)
 - [TLS](tls.md)
 - [URL](url.md)
+- [User](user.md)
 - [User Agent](user-agent.md)
 - [Vcs](vcs.md)
 - [Webengine](webengine.md)

@@ -34,9 +34,8 @@ groups:
       - ref: db.collection.name
         requirement_level:
           conditionally_required: >
-            If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
-            `db.collection.name`, then it SHOULD be the first collection name found in the query.
-
+            If readily available. The collection name MAY be parsed from the query text,
+            in which case it SHOULD be the first collection name found in the query.
 
   - id: trace.db.common.full
     type: attribute_group
@@ -156,8 +155,7 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
-        note: >
-          <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
+        note: ""  # overriding the base note
 
   - id: db.redis
     type: span
@@ -216,8 +214,7 @@ groups:
         brief: The MongoDB database name.
         requirement_level:
           conditionally_required: If available.
-        note: >
-          <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
+        note: ""  # overriding the base note
 
   - id: db.elasticsearch
     type: span
@@ -229,7 +226,9 @@ groups:
         requirement_level: required
       - ref: db.operation.name
         requirement_level: required
-        note: This SHOULD be the endpoint identifier for the request.
+        note: >
+          The `db.operation.name` SHOULD match the endpoint identifier provided in the request
+          (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
       - ref: url.full
         requirement_level: required
@@ -241,16 +240,24 @@ groups:
             sensitive information.
         brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
+      - ref: db.collection.name
+        requirement_level: recommended
+        brief: The index or data stream against which the query is executed.
+        note: >
+          The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those.
+          If the query doesn't target a specific index, this field MUST NOT be set.
+        examples: [ 'my_index', 'index1, index2' ]
       - ref: server.address
       - ref: server.port
-      - ref: db.elasticsearch.cluster.name
-        requirement_level:
-          recommended: >
-            When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+      - ref: db.namespace
+        note: >
+          When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+        brief: The name of the Elasticsearch cluster which the client connects to.
+        requirement_level: recommended
       - ref: db.elasticsearch.node.name
-        requirement_level:
-          recommended: >
-            When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+        note: >
+          When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+        requirement_level: recommended
       - ref: db.elasticsearch.path_parts
         requirement_level:
           conditionally_required: when the url has dynamic values
@@ -339,5 +346,4 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
-        note: >
-          <!-- TODO: overriding the base note, workaround for https://github.com/open-telemetry/build-tools/issues/299 -->
+        note: ""  # overriding the base note

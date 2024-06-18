@@ -3,6 +3,8 @@ groups:
     type: metric
     metric_name: db.client.operation.duration
     brief: "Duration of database client operations."
+    note: >
+      Batch operations SHOULD be recorded as a single operation.
     instrument: histogram
     unit: "s"
     stability: experimental
@@ -11,8 +13,8 @@ groups:
       - ref: db.collection.name
         requirement_level:
           conditionally_required: >
-            If readily available. Otherwise, if the instrumentation library parses `db.query.text` to capture
-            `db.collection.name`, then it SHOULD be the first collection name found in the query.
+            If readily available. The collection name MAY be parsed from the query text,
+            in which case it SHOULD be the first collection name in the query.
       - ref: db.system
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
@@ -39,9 +41,9 @@ groups:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
-      - ref: db.client.connections.state
+      - ref: db.client.connection.state
         requirement_level: required
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.idle.max
@@ -52,7 +54,7 @@ groups:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.idle.min
@@ -63,7 +65,7 @@ groups:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.max
@@ -74,7 +76,7 @@ groups:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.pending_requests
@@ -85,7 +87,7 @@ groups:
     instrument: updowncounter
     unit: "{request}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.timeouts
@@ -96,7 +98,7 @@ groups:
     instrument: counter
     unit: "{timeout}"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.create_time
@@ -107,7 +109,7 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.wait_time
@@ -118,7 +120,7 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.use_time
@@ -129,5 +131,5 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
-      - ref: db.client.connections.pool.name
+      - ref: db.client.connection.pool.name
         requirement_level: required

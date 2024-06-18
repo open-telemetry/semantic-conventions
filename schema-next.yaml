@@ -8,6 +8,36 @@ versions:
         - rename_attributes:
             attribute_map:
               deployment.environment: deployment.environment.name
+    spans:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1002
+        - rename_attributes:
+            attribute_map:
+              db.elasticsearch.cluster.name: db.namespace
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1125
+        - rename_attributes:
+            attribute_map:
+              db.client.connections.state: db.client.connection.state
+            apply_to_metrics:
+              - db.client.connection.count
+        - rename_attributes:
+            attribute_map:
+              db.client.connections.pool.name: db.client.connection.pool.name
+            apply_to_metrics:
+              - db.client.connection.count
+              - db.client.connection.idle.max
+              - db.client.connection.idle.min
+              - db.client.connection.max
+              - db.client.connection.pending_requests
+              - db.client.connection.timeouts
+              - db.client.connection.create_time
+              - db.client.connection.wait_time
+              - db.client.connection.use_time
+        # https://github.com/open-telemetry/semantic-conventions/pull/1006
+        - rename_metrics:
+            messaging.publish.messages: messaging.client.published.messages
 
   1.26.0:
     metrics:
@@ -43,6 +73,12 @@ versions:
               - db.client.connections.create_time
               - db.client.connections.wait_time
               - db.client.connections.use_time
+    all:
+      changes:
+        # https://github:com/open-telemetry/semantic-conventions/pull/731/
+        - rename_attributes:
+            attribute_map:
+              enduser.id: user.id
 
   1.25.0:
     spans:
