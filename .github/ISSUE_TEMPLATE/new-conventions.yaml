@@ -31,7 +31,6 @@ body:
         - area:client
         - area:cloud
         - area:cloudevents
-        - area:clr
         - area:code
         - area:container
         - area:cpu
@@ -41,6 +40,7 @@ body:
         - area:device
         - area:disk
         - area:dns
+        - area:dotnet
         - area:error
         - area:event
         - area:exception
