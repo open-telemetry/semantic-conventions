@@ -1,26 +1,26 @@
 groups:
-  - id: metric.clr.gc.collections.count
+  - id: metric.dotnet.gc.collections.count
     type: metric
-    metric_name: clr.gc.collections.count
+    metric_name: dotnet.gc.collections.count
     brief: "Number of garbage collections that have occurred since the process has started."
     instrument: counter
     unit: "{collection}"
     stability: experimental
     attributes:
-      - ref: clr.gc.generation
+      - ref: dotnet.gc.generation
         requirement_level: required
 
-  - id: metric.clr.gc.objects.size
+  - id: metric.dotnet.gc.objects.size
     type: metric
-    metric_name: clr.gc.objects.size
+    metric_name: dotnet.gc.objects.size
     brief: "The number of bytes currently allocated on the managed GC heap. Fragmentation and other GC committed memory pools are excluded."
     instrument: updowncounter
     unit: "By"
     stability: experimental
 
-  - id: metric.clr.gc.allocations.size
+  - id: metric.dotnet.gc.allocations.size
     type: metric
-    metric_name: clr.gc.allocations.size
+    metric_name: dotnet.gc.allocations.size
     brief: >
       The number of bytes allocated on the managed GC heap since the process has
       started. The returned value does not include any native allocations.
@@ -28,9 +28,9 @@ groups:
     unit: "By"
     stability: experimental
 
-  - id: metric.clr.gc.committed_memory.size
+  - id: metric.dotnet.gc.committed_memory.size
     type: metric
-    metric_name: clr.gc.committed_memory.size
+    metric_name: dotnet.gc.committed_memory.size
     brief: >
       The amount of committed virtual memory for the managed GC heap, as
       observed during the latest garbage collection.
@@ -43,9 +43,9 @@ groups:
     unit: "By"
     stability: experimental
 
-  - id: metric.clr.gc.heap.size
+  - id: metric.dotnet.gc.heap.size
     type: metric
-    metric_name: clr.gc.heap.size
+    metric_name: dotnet.gc.heap.size
     brief: >
       The heap size (including fragmentation), as observed during the latest
       garbage collection.
@@ -53,40 +53,40 @@ groups:
     unit: "By"
     stability: experimental
     attributes:
-      - ref: clr.gc.generation
+      - ref: dotnet.gc.generation
         requirement_level: required
 
-  - id: metric.clr.gc.heap.fragmentation.size
+  - id: metric.dotnet.gc.heap.fragmentation.size
     type: metric
-    metric_name: clr.gc.heap.fragmentation.size
+    metric_name: dotnet.gc.heap.fragmentation.size
     brief: >
       The heap fragmentation, as observed during the latest garbage collection.
     instrument: updowncounter
     unit: "By"
     stability: experimental
     attributes:
-      - ref: clr.gc.generation
+      - ref: dotnet.gc.generation
         requirement_level: required
 
-  - id: metric.clr.gc.pause.time
+  - id: metric.dotnet.gc.pause.time
     type: metric
-    metric_name: clr.gc.pause.time
+    metric_name: dotnet.gc.pause.time
     brief: "The total amount of time paused in GC since the process has started."
     instrument: counter
     unit: "s"
     stability: experimental
 
-  - id: metric.clr.jit.il_compiled.size
+  - id: metric.dotnet.jit.il_compiled.size
     type: metric
-    metric_name: clr.jit.il_compiled.size
+    metric_name: dotnet.jit.il_compiled.size
     brief: "Count of bytes of intermediate language that have been compiled since the process has started."
     instrument: counter
     unit: "By"
     stability: experimental
 
-  - id: metric.clr.jit.methods_compiled.count
+  - id: metric.dotnet.jit.methods_compiled.count
     type: metric
-    metric_name: clr.jit.methods_compiled.count
+    metric_name: dotnet.jit.methods_compiled.count
     brief: >
       The number of times the JIT compiler (re)compiled methods since the
       process has started.
@@ -94,9 +94,9 @@ groups:
     unit: "{method}"
     stability: experimental
 
-  - id: metric.clr.jit.compilation.time
+  - id: metric.dotnet.jit.compilation.time
     type: metric
-    metric_name: clr.jit.compilation.time
+    metric_name: dotnet.jit.compilation.time
     brief: >
       The amount of time the JIT compiler has spent compiling methods since the
       process has started.
@@ -104,9 +104,9 @@ groups:
     unit: "s"
     stability: experimental
 
-  - id: metric.clr.monitor.lock_contention.count
+  - id: metric.dotnet.monitor.lock_contention.count
     type: metric
-    metric_name: clr.monitor.lock_contention.count
+    metric_name: dotnet.monitor.lock_contention.count
     brief: >
       The number of times there was contention when trying to acquire a monitor
       lock since the process has started.
@@ -114,17 +114,17 @@ groups:
     unit: "{contention}"
     stability: experimental
 
-  - id: metric.clr.thread_pool.threads.count
+  - id: metric.dotnet.thread_pool.threads.count
     type: metric
-    metric_name: clr.thread_pool.threads.count
+    metric_name: dotnet.thread_pool.threads.count
     brief: "The number of thread pool threads that currently exist."
     instrument: updowncounter
     unit: "{thread}"
     stability: experimental
 
-  - id: metric.clr.thread_pool.work_items.count
+  - id: metric.dotnet.thread_pool.work_items.count
     type: metric
-    metric_name: clr.thread_pool.work_items.count
+    metric_name: dotnet.thread_pool.work_items.count
     brief: >
       The number of work items that the thread pool has completed since
       the process has started.
@@ -132,9 +132,9 @@ groups:
     unit: "{work_item}"
     stability: experimental
 
-  - id: metric.clr.thread_pool.queue.length
+  - id: metric.dotnet.thread_pool.queue.length
     type: metric
-    metric_name: clr.thread_pool.queue.length
+    metric_name: dotnet.thread_pool.queue.length
     brief: >
       The number of work items that are currently queued to be processed by the
       thread pool.
@@ -142,26 +142,29 @@ groups:
     unit: "{queue}"
     stability: experimental
 
-  - id: metric.clr.timer.count
+  - id: metric.dotnet.timers.count
     type: metric
-    metric_name: clr.timer.count
+    metric_name: dotnet.timer.count
     brief: "The number of timer instances that are currently active."
     instrument: updowncounter
     unit: "{timer}"
     stability: experimental
 
-  - id: metric.clr.assemblies.count
+  - id: metric.dotnet.assemblies.count
     type: metric
-    metric_name: clr.assemblies.count
+    metric_name: dotnet.assemblies.count
     brief: "The number of .NET assemblies that are currently loaded."
     instrument: updowncounter
     unit: "{assembly}"
     stability: experimental
 
-  - id: metric.clr.exceptions.count
+  - id: metric.dotnet.exceptions.count
     type: metric
-    metric_name: clr.exceptions.count
+    metric_name: dotnet.exceptions.count
     brief: "The number of exceptions that have been thrown in managed code."
     instrument: counter
     unit: "{exception}"
     stability: experimental
+    attributes:
+      - ref: dotnet.exception.type
+        requirement_level: required
