@@ -14,7 +14,7 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
 SEMCONVGEN_VERSION=0.24.0
-WEAVER_VERSION=0.2.0
+WEAVER_VERSION=0.4.0
 
 # From where to resolve the containers (e.g. "otel/weaver").
 CONTAINER_REPOSITORY=docker.io
@@ -211,3 +211,12 @@ chlog-update: $(CHLOGGEN)
 .PHONY: generate-gh-issue-templates
 generate-gh-issue-templates:
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh
+
+#.PHONY: codegen-collision-checks
+codegen-collision-checks:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/:/output \
+		$(WEAVER_CONTAINER) registry resolve \
+		--registry=/source \
+		--output=/output/resolved.json \
+		-f json;
+	$(PWD)/node_modules/node-jq/bin/jq.exe -f $(TOOLS_DIR)/codegen_collisions_check.jq ./resolved.json

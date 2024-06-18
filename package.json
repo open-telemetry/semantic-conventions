@@ -20,5 +20,8 @@
   },
   "prettier": {
     "proseWrap": "preserve"
+  },
+  "dependencies": {
+    "node-jq": "^4.4.0"
   }
 }
