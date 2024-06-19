@@ -245,6 +245,18 @@ groups:
           conditionally_required: If the span describes an operation on a batch of messages.
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
+        note: |
+          The operation name SHOULD match one of the following values:
+
+          - sender operations: `send`, `schedule`, `cancel_scheduled`
+          - transaction operations: `create_transaction`, `commit_transaction`, `rollback_transaction`
+          - receiver operation: `receive`, `peek`, `receive_deferred`, `renew_message_lock`
+          - settlement operations: `abandon`, `complete`, `defer`, `dead_letter`, `delete`
+          - session operations: `accept_session`, `get_session_state`, `set_session_state`, `renew_session_lock`
+
+          If none of the above operation names apply, the attribute SHOULD be set
+          to the name of the client method in snake_case.
+
         examples: ['send', 'receive', 'complete', 'process', 'peek']
 
   - id: messaging.eventhubs
@@ -268,3 +280,15 @@ groups:
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
         examples: ['send', 'receive', 'checkpoint']
+        note: |
+          The operation name SHOULD match one of the following values:
+
+          - `send`
+          - `receive`
+          - `process`
+          - `checkpoint`
+          - `get_partition_properties`
+          - `get_event_hub_properties`
+
+          If none of the above operation names apply, the attribute SHOULD be set
+          to the name of the client method in snake_case.
