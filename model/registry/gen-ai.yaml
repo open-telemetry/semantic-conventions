@@ -63,18 +63,18 @@ groups:
       - id: request.stop_sequences
         stability: experimental
         type: string[]
-        brief: The stop sequences provided in the request.
-        examples: ['\n']
+        brief: List of sequences that the model will use to stop generating further tokens.
+        examples: ['forest', 'lived']
       - id: request.frequency_penalty
         stability: experimental
         type: double
-        brief: The frequency penalty to provide.
+        brief: The frequency penalty setting for the LLM request.
         examples: [0.1]
         tag: llm-generic-request
       - id: request.presence_penalty
         stability: experimental
         type: double
-        brief: The presence penalty to provide.
+        brief: The presence penalty setting for the LLM request.
         examples: [0.1]
         tag: llm-generic-request
       - id: response.id
