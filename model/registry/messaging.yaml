@@ -116,16 +116,22 @@ groups:
                 One or more messages are requested by a consumer.
                 This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.
               stability: experimental
-            - id: deliver
+            - id: process
               value: "process"
               brief: >
-                One or more messages are delivered to or processed by a consumer.
+                One or more messages are processed by a consumer.
               stability: experimental
             - id: settle
               value: "settle"
               brief: >
                 One or more messages are settled.
               stability: experimental
+            - id: deliver
+              value: "deliver"
+              brief: "Deprecated. Use `process` instead."
+              deprecated: "Replaced by `process`."
+              stability: experimental
+
         stability: experimental
         brief: >
           A string identifying the type of the messaging operation.
@@ -184,6 +190,10 @@ groups:
             - id: rocketmq
               value: 'rocketmq'
               brief: 'Apache RocketMQ'
+              stability: experimental
+            - id: pulsar
+              value: 'pulsar'
+              brief: 'Apache Pulsar'
               stability: experimental
         stability: experimental
   - id: registry.messaging.kafka

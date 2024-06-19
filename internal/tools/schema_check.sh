@@ -11,7 +11,7 @@ BUILD_TOOL_SCHEMAS_VERSION=0.24.0
 # List of versions that do not require or have a schema.
 declare -a skip_versions=("1.0.0" "1.0.1" "1.1.0" "1.2.0" "1.3.0" "1.6.0")
 
-# Verifies remote avilability of a schema file.
+# Verifies remote availability of a schema file.
 #
 # If the schema file is available for download, THEN we make sure it is exactly
 # what is in the repository.  If the file is not available for download,
@@ -32,7 +32,7 @@ verify_remote_availability() {
   rm verify$ver
 }
 
-# Verifies remote avilability of a schema file in the current repository.
+# Verifies remote availability of a schema file in the current repository.
 #
 # Args:
 # 1 - version number
@@ -65,7 +65,7 @@ grep -o -e '## v[1-9].*\s' $root_dir/CHANGELOG.md | grep -o '[1-9].*' | while re
   verify_remote_availability "$ver"
 done
 
-# Now check the content of all schema files in the ../shemas directory.
+# Now check the content of all schema files in the ../schemas directory.
 for file in $schemas_dir/*; do
   # Filename is the version number.
   ver=$(basename $file)

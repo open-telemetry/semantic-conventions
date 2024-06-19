@@ -8,7 +8,7 @@
 
 ## Gen AI Attributes
 
-This document defines the attributes used to describe telemetry in the context of LLM (Large Language Models) requests and responses.
+This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
 
 | Attribute                        | Type     | Description                                                                                      | Examples                                                                | Stability                                                        |
 | -------------------------------- | -------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -18,25 +18,37 @@ This document defines the attributes used to describe telemetry in the context o
 | `gen_ai.request.model`           | string   | The name of the LLM a request is being made to.                                                  | `gpt-4`                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.temperature`     | double   | The temperature setting for the LLM request.                                                     | `0.0`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.top_p`           | double   | The top_p sampling setting for the LLM request.                                                  | `1.0`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.request.stop`           | string   | Up to 4 sequences where the API will stop generating further tokens.                             | `1.0`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.request.stop`           | string[]   | List of sequences that the model will use to stop generating further tokens.                             | `['forest', 'lived']`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.top_k`           | double   | The top_k sampling setting for the LLM request.                                                  | `1.0`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.frequency_penalty`           | double   | The frequency penalty setting for the LLM request.                                                  | `1.0`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.presence_penalty`           | double   | The presence penalty setting for the LLM request.                                                  | `1.0`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.response.finish_reasons` | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `stop`                                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.response.id`             | string   | The unique identifier for the completion.                                                        | `chatcmpl-123`                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.response.model`          | string   | The name of the LLM a response was generated from.                                               | `gpt-4-0613`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.response.model`          | string   | The name of the model that generated the response.                                               | `gpt-4-0613`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.system`                  | string   | The Generative AI product as identified by the client instrumentation. [3]                       | `openai`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.usage.completion_tokens` | int      | The number of tokens used in the LLM response (completion).                                      | `180`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.usage.prompt_tokens`     | int      | The number of tokens used in the LLM prompt.                                                     | `100`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.token.type`              | string   | The type of token being counted.                                                                 | `input`; `output`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.usage.completion_tokens` | int      | The number of tokens used in the GenAI response (completion).                                    | `180`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.usage.prompt_tokens`     | int      | The number of tokens used in the GenAI input or prompt.                                          | `100`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 
 **[2]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 
 **[3]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
+For custom model, a custom friendly name SHOULD be used. If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value    | Description | Stability                                                        |
-| -------- | ----------- | ---------------------------------------------------------------- |
-| `openai` | OpenAI      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value       | Description | Stability                                                        |
+| ----------- | ----------- | ---------------------------------------------------------------- |
+| `anthropic` | Anthropic   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cohere`    | Cohere      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `openai`    | OpenAI      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertex_ai` | Vertex AI   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`gen_ai.token.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value    | Description                                | Stability                                                        |
+| -------- | ------------------------------------------ | ---------------------------------------------------------------- |
+| `input`  | Input tokens (prompt, input, etc.)         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `output` | Output tokens (completion, response, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

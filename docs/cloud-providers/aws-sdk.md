@@ -48,11 +48,11 @@ with the naming guidelines for RPC client spans.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -69,4 +69,4 @@ The following Semantic Conventions extend the general AWS SDK attributes for spe
 - [AWS DynamoDB](/docs/database/dynamodb.md): Semantic Conventions for _AWS DynamoDB_.
 - [AWS S3](/docs/object-stores/s3.md): Semantic Conventions for _AWS S3_.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

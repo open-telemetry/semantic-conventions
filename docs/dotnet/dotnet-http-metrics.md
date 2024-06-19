@@ -217,4 +217,4 @@ Notes:
 - Opt-in `server.address` and `server.port` attributes are not reported
 - Metric added in ASP.NET Core 8.0
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
