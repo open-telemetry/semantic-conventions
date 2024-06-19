@@ -77,17 +77,6 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 If a corresponding `{target}` value is not available for a specific operation, the instrumentation SHOULD omit the `{target}`.
 For example, for an operation describing SQL query on an anonymous table like `SELECT * FROM (SELECT * FROM table) t`, span name should be `SELECT`.
 
-## Sanitization of `db.query.text`
-
-Sanitization MUST be done by replacing all literals with a placeholder value. Such literals
-include, but are not limited to, String literals, Numeric literals, Date and Time literals,
-Boolean literals, Interval literals, Binary literals, and Hexadecimal literals.
-The placeholder value SHOULD be `?`, unless it already has a defined meaning in the given database system,
-in which case the instrumentation MAY choose a different placeholder.
-
-Placeholders in a parametrized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is,
-and there is no need to sanitize the value `$1`.
-
 ## Common attributes
 
 These attributes will usually be the same for all operations performed over the same database connection.
@@ -140,7 +129,7 @@ For batch operations, if the individual operations are known to have the same op
 **[10]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext)
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 
-**[11]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+**[11]:** See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 
 **[12]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
@@ -237,6 +226,18 @@ If the concrete DBMS is known to the instrumentation, its specific identifier MU
 Back ends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.query.text`.
 
 When additional attributes are added that only apply to a specific DBMS, its identifier SHOULD be used as a namespace in the attribute key as for the attributes in the sections below.
+
+## Sanitization of `db.query.text`
+
+The `db.query.text` SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+Sanitization SHOULD replace all literals with a placeholder value.
+Such literals include, but are not limited to, String literals, Numeric literals, Date and Time literals,
+Boolean literals, Interval literals, Binary literals, and Hexadecimal literals.
+The placeholder value SHOULD be `?`, unless it already has a defined meaning in the given database system,
+in which case the instrumentation MAY choose a different placeholder.
+
+Placeholders in a parametrized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is,
+and there is no need to sanitize the value `$1`.
 
 ## Semantic Conventions for specific database technologies
 
