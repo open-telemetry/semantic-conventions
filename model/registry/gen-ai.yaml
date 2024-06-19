@@ -74,7 +74,7 @@ groups:
       - id: request.presence_penalty
         stability: experimental
         type: double
-        brief: The presence penalty setting for the LLM request.
+        brief: The presence penalty setting for the GenAI request.
         examples: [0.1]
         tag: llm-generic-request
       - id: response.id
