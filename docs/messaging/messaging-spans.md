@@ -286,7 +286,7 @@ context of the message.
 
 Messaging attributes are organized into the following namespaces:
 
-- `messaging.message`: Contains [per-message attributes](#per-message-attributes) that describe individual messages. Those attributes are relevant only for spans or links that represent a single message.
+- `messaging.message`: Contains attributes that describe individual messages. See [per-message-attributes-on-batch-operations](#per-message-attributes-on-batch-operations) for more details.
 - `messaging.destination`: Contains attributes that describe the logical entity messages are published to. See [Destinations](#destinations) for more details.
 - `messaging.destination_publish`: Contains attributes that describe the logical entity messages were originally published to. See [Destinations](#destinations) for more details.
 - `messaging.batch`: Contains attributes that describe batch operations.
@@ -464,11 +464,17 @@ the broker doesn't have such notion, the original destination name SHOULD unique
 ### Per-message attributes on batch operations
 
 All messaging operations (`publish`, `receive`, `process`, or others not covered by this specification) can describe both single and/or batch of messages.
-Attributes in the `messaging.message` or `messaging.{system}.message` namespace describe individual messages. For single-message operations they SHOULD be set on corresponding span.
+Attributes in the `messaging.message` or `messaging.{system}.message` namespace describe individual messages.
 
-For batch operations, per-message attributes are usually different and cannot be set on the corresponding span. In such cases the attributes SHOULD be set on links. See [Batch receiving](#batch-receiving) for more information on correlation using links.
+For single-message operations they SHOULD be set on corresponding span.
+For batch operations, if the attribute value is the same for all messages in the batch, the instrumentation SHOULD set such attribute on the corresponding span.
 
-Some messaging systems (e.g., Kafka, Azure Event Grid) allow publishing a single batch of messages to different topics. In such cases, the attributes in `messaging.destination` namespace MAY be set on links. Instrumentations MAY set destination attributes on the span if all messages in the batch share the same destination.
+If the attribute values differ for messages in the same batch, the instrumentation SHOULD set such attributes on links. See [Batch receiving](#batch-receiving) for more information on correlation using links.
+
+The same approach applies to attributes in other namespaces. For example, some messaging systems (e.g., Kafka or Azure Event Grid) allow publishing
+a batch of messages to different topics in a single operation.
+In such cases, the `messaging.destination.name` attribute SHOULD be set on the publish span if the destination name is the same for all messages in the batch. Otherwise,
+it SHOULD be set on links describing  individual messages.
 
 ## Examples
 
