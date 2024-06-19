@@ -33,7 +33,6 @@
   - [Topic with multiple consumers](#topic-with-multiple-consumers)
   - [Batch receiving](#batch-receiving)
   - [Batch publishing](#batch-publishing)
-- [Semantic Conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies)
 
 <!-- tocstop -->
 
@@ -471,7 +470,7 @@ Attributes in the `messaging.message` or `messaging.{system}.message` namespace 
 
 For batch operations, per-message attributes are usually different and cannot be set on the corresponding span. In such cases the attributes SHOULD be set on links. See [Batch receiving](#batch-receiving) for more information on correlation using links.
 
-Some messaging systems (e.g., Kafka, Azure EventGrid) allow publishing a single batch of messages to different topics. In such cases, the attributes in `messaging.destination` MAY be
+Some messaging systems (e.g., Kafka, Azure Event Grid) allow publishing a single batch of messages to different topics. In such cases, the attributes in `messaging.destination` MAY be
 set on links. Instrumentations MAY set destination attributes on the span if all messages in the batch share the same destination.
 
 ### Attributes specific to certain messaging systems
@@ -479,7 +478,7 @@ set on links. Instrumentations MAY set destination attributes on the span if all
 All attributes that are specific for a messaging system SHOULD be populated in `messaging.{system}` namespace. Attributes that describe a message, a destination, a consumer, or a batch of messages SHOULD be populated under the corresponding namespace:
 
 * `messaging.{system}.message.*`: Describes attributes for individual messages
-* `messaging.{system}.destination.*`: Describes the destination a message (or a batch) are published to and received from respectively. The combination of attributes in these namespaces should uniquely identify the entity and include properties significant for this messaging system. For example, Kafka instrumentations should include partition identifier.
+* `messaging.{system}.destination.*`: Describes the destination a message (or a batch) are published to and received from respectively.
 * `messaging.{system}.consumer.*`: Describes message consumer properties
 * `messaging.{system}.batch.*`: Describes message batch properties
 
@@ -618,13 +617,5 @@ flowchart LR;
 | `messaging.operation.type` | `"create"` | `"create"` | `"publish"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | | | 2 | | |
-
-## Semantic Conventions for specific messaging technologies
-
-More specific Semantic Conventions are defined for the following messaging technologies:
-
-* [Kafka](kafka.md): Semantic Conventions for *Apache Kafka*.
-* [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
-* [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
