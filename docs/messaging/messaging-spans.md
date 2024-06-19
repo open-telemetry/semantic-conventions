@@ -178,7 +178,7 @@ Messaging spans SHOULD follow the overall [guidelines for span names](https://gi
 The **span name** SHOULD be `{messaging.operation.name} {destination}` (see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
 <!-- markdown-link-check-enable -->
 
-Semantic conventions for individual messaging systems MAY specify different span name format and then MUST document it in [semantic conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies).
+Semantic conventions for individual messaging systems MAY specify different span name format and then MUST document it in semantic conventions for specific messaging technologies.
 
 The <span id="destination-placeholder">`{destination}`</span> SHOULD describe the entity that the operation is performed against
 and SHOULD adhere to one of the following values, provided they are accessible:
