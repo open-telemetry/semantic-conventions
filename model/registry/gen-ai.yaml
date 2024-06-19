@@ -75,7 +75,6 @@ groups:
         type: double
         brief: The presence penalty setting for the GenAI request.
         examples: [0.1]
-        tag: llm-generic-request
       - id: response.id
         stability: experimental
         type: string
