@@ -1,32 +1,4 @@
 groups:
-  - id: messaging.message
-    type: attribute_group
-    brief: 'Semantic convention describing per-message attributes populated on messaging spans or links.'
-    attributes:
-      - ref: messaging.destination.name
-      - ref: messaging.message.id
-      - ref: messaging.message.conversation_id
-      - ref: messaging.message.envelope.size
-      - ref: messaging.message.body.size
-
-  - id: messaging.destination
-    type: attribute_group
-    brief: 'Semantic convention for attributes that describe messaging destination on broker'
-    note: |
-      Destination attributes should be set on publish, receive, or other spans
-      describing messaging operations.
-
-      Destination attributes should be set when the messaging operation handles
-      single messages. When the operation handles a batch of messages,
-      the destination attributes should only be applied when the attribute value
-      applies to all messages in the batch.
-      In other cases, destination attributes may be set on links.
-    attributes:
-      - ref: messaging.destination.name
-      - ref: messaging.destination.template
-      - ref: messaging.destination.temporary
-      - ref: messaging.destination.anonymous
-
   - id: messaging.destination_publish
     prefix: messaging.destination_publish
     type: attribute_group
