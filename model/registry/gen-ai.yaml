@@ -70,7 +70,6 @@ groups:
         type: double
         brief: The frequency penalty setting for the GenAI request.
         examples: [0.1]
-        tag: llm-generic-request
       - id: request.presence_penalty
         stability: experimental
         type: double
