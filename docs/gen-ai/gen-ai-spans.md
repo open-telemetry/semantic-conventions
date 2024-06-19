@@ -10,10 +10,9 @@ linkTitle: Generative AI traces
 
 <!-- toc -->
 
-- [Semantic Conventions for GenAI operations](#semantic-conventions-for-genai-operations)
-  - [Configuration](#configuration)
-  - [GenAI attributes](#genai-attributes)
-  - [Events](#events)
+- [Configuration](#configuration)
+- [GenAI attributes](#genai-attributes)
+- [Events](#events)
 
 <!-- tocstop -->
 
