@@ -20,7 +20,7 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.request.top_k
         requirement_level: recommended
-      - ref: gen_ai.request.stop
+      - ref: gen_ai.request.stop_sequences
         requirement_level: recommended
       - ref: gen_ai.request.frequency_penalty
         requirement_level: recommended

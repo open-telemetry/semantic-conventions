@@ -60,13 +60,11 @@ groups:
         type: double
         brief: The top_k sampling setting for the LLM request.
         examples: [1.0]
-        tag: llm-generic-request
-      - id: request.stop
+      - id: request.stop_sequences
         stability: experimental
-        type: double
-        brief: The stop sequences to provide.
-        examples: ['forest', 'lived']
-        tag: llm-generic-request
+        type: string[]
+        brief: The stop sequences provided in the request.
+        examples: ['\n']
       - id: request.frequency_penalty
         stability: experimental
         type: double

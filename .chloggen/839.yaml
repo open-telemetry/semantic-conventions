@@ -1,4 +1,4 @@
 change_type: enhancement
 component: gen-ai
-note: Adding top_k and stop to the list of required attributes for the gen_ai.request.model event.
+note: Adding `gen_ai.request.top_k`, `gen_ai.request.presence_penalty`,  `gen_ai.request.frequency_penalty` and `gen_ai.request.stop_sequences` attributes.
 issues: [839]
