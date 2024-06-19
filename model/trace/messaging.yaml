@@ -4,6 +4,7 @@ groups:
     brief: 'Semantic convention describing per-message attributes populated on messaging spans or links.'
     attributes:
       - ref: messaging.destination.name
+        sampling_relevant: true
       - ref: messaging.message.id
       - ref: messaging.message.conversation_id
       - ref: messaging.message.envelope.size
@@ -23,7 +24,9 @@ groups:
       In other cases, destination attributes may be set on links.
     attributes:
       - ref: messaging.destination.name
+        sampling_relevant: true
       - ref: messaging.destination.template
+        sampling_relevant: true
       - ref: messaging.destination.temporary
       - ref: messaging.destination.anonymous
 
@@ -45,6 +48,7 @@ groups:
       In other cases, destination attributes may be set on links.
     attributes:
       - ref: messaging.destination_publish.name
+        sampling_relevant: true
       - ref: messaging.destination_publish.anonymous
 
   - id: attributes.messaging.trace.minimal
@@ -55,15 +59,22 @@ groups:
     attributes:
       - ref: messaging.operation.name
         requirement_level: required
+        sampling_relevant: true
       - ref: messaging.operation.type
         requirement_level:
           conditionally_required: If applicable.
+        sampling_relevant: true
       - ref: messaging.destination.name
         requirement_level:
           conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
+        sampling_relevant: true
       - ref: messaging.message.id
         requirement_level:
           recommended: If span describes operation on a single message.
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
 
   - id: messaging
     type: span
@@ -73,16 +84,19 @@ groups:
     attributes:
       - ref: messaging.system
         requirement_level: required
+        sampling_relevant: true
       - ref: messaging.client.id
         requirement_level: recommended
       - ref: messaging.destination.partition.id
         requirement_level:
           recommended: When applicable.
+        sampling_relevant: true
       - ref: messaging.destination.template
         requirement_level:
           conditionally_required: >
             If available. Instrumentations MUST NOT use `messaging.destination.name` as template
             unless low-cardinality of destination name is guaranteed.
+        sampling_relevant: true
       - ref: messaging.destination.temporary
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
@@ -92,9 +106,11 @@ groups:
       - ref: messaging.consumer.group.name
         requirement_level:
           conditionally_required: If applicable.
+        sampling_relevant: true
       - ref: messaging.destination.subscription.name
         requirement_level:
           conditionally_required: If applicable.
+        sampling_relevant: true
       - ref: messaging.message.conversation_id
       - ref: messaging.message.envelope.size
       - ref: messaging.message.body.size
@@ -154,10 +170,12 @@ groups:
       - ref: messaging.consumer.group.name
         brief: "Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html)."
         note: ""
+        sampling_relevant: true
       - ref: messaging.destination.partition.id
         brief: >
           String representation of the partition id the message (or batch) is sent to or received from.
         requirement_level: recommended
+        sampling_relevant: true
       - ref: messaging.kafka.message.key
         requirement_level:
           recommended: If span describes operation on a single message.
@@ -184,6 +202,7 @@ groups:
       - ref: messaging.consumer.group.name
         brief: "RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup)."
         note: ""
+        sampling_relevant: true
         requirement_level: required
       - ref: messaging.rocketmq.namespace
         requirement_level: required
@@ -216,6 +235,7 @@ groups:
       - ref: messaging.destination.subscription.name
         brief: "Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview)."
         note: ""
+        sampling_relevant: true
       - ref: messaging.gcp_pubsub.message.ordering_key
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
@@ -244,6 +264,7 @@ groups:
       - ref: messaging.destination.subscription.name
         brief: "Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions)."
         note: ""
+        sampling_relevant: true
         requirement_level:
           conditionally_required: If messages are received from the subscription.
       - ref: messaging.servicebus.message.delivery_count
@@ -285,11 +306,13 @@ groups:
         note: ""
         requirement_level:
           conditionally_required: On consumer spans.
+        sampling_relevant: true
       - ref: messaging.destination.partition.id
         brief: >
           String representation of the partition id messages are sent to or received from, unique within the Event Hub.
         requirement_level:
           conditionally_required: If available.
+        sampling_relevant: true
       - ref: messaging.eventhubs.message.enqueued_time
       - ref: messaging.batch.message_count
         requirement_level:

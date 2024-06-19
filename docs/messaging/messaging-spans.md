@@ -389,6 +389,20 @@ If a messaging operation involved multiple network calls (for example retries), 
 
 
 
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.template`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
+* [`messaging.system`](/docs/attributes-registry/messaging.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -457,6 +471,11 @@ under the namespace `messaging.destination_publish.*`
 the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.destination_publish.name`](/docs/attributes-registry/messaging.md)
 
 
 <!-- markdownlint-restore -->
