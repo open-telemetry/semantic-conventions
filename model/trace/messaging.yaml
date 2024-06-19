@@ -89,6 +89,12 @@ groups:
       - ref: messaging.destination.anonymous
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref: messaging.consumer.group.name
+        requirement_level:
+          conditionally_required: If applicable.
+      - ref: messaging.destination.subscription.name
+        requirement_level:
+          conditionally_required: If applicable.
       - ref: messaging.message.conversation_id
       - ref: messaging.message.envelope.size
       - ref: messaging.message.body.size
@@ -145,6 +151,9 @@ groups:
     brief: >
       Attributes for Apache Kafka
     attributes:
+      - ref: messaging.consumer.group.name
+        brief: "Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html)."
+        note: ""
       - ref: messaging.destination.partition.id
         brief: >
           String representation of the partition id the message (or batch) is sent to or received from.
@@ -152,7 +161,6 @@ groups:
       - ref: messaging.kafka.message.key
         requirement_level:
           recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.consumer.group
       - ref: messaging.kafka.message.offset
         requirement_level:
           recommended: If span describes operation on a single message.
@@ -173,9 +181,11 @@ groups:
     brief: >
       Attributes for Apache RocketMQ
     attributes:
-      - ref: messaging.rocketmq.namespace
+      - ref: messaging.consumer.group.name
+        brief: "RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup)."
+        note: ""
         requirement_level: required
-      - ref: messaging.rocketmq.client_group
+      - ref: messaging.rocketmq.namespace
         requirement_level: required
       - ref: messaging.rocketmq.message.delivery_timestamp
         requirement_level:
@@ -203,6 +213,9 @@ groups:
     brief: >
       Attributes for Google Cloud Pub/Sub
     attributes:
+      - ref: messaging.destination.subscription.name
+        brief: "Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview)."
+        note: ""
       - ref: messaging.gcp_pubsub.message.ordering_key
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
@@ -228,13 +241,15 @@ groups:
     brief: >
       Attributes for Azure Service Bus
     attributes:
+      - ref: messaging.destination.subscription.name
+        brief: "Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions)."
+        note: ""
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
       - ref: messaging.servicebus.message.delivery_count
         requirement_level:
           conditionally_required: If delivery count is available and is bigger than 0.
       - ref: messaging.servicebus.message.enqueued_time
-      - ref: messaging.servicebus.destination.subscription_name
-        requirement_level:
-          conditionally_required: If messages are received from the subscription.
       - ref: messaging.servicebus.disposition_status
         requirement_level:
           conditionally_required: if and only if `messaging.operation` is `settle`.
@@ -265,15 +280,17 @@ groups:
     brief: >
       Attributes for Azure Event Hubs
     attributes:
+      - ref: messaging.consumer.group.name
+        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#consumer-groups)."
+        note: ""
+        requirement_level:
+          conditionally_required: On consumer spans.
       - ref: messaging.destination.partition.id
         brief: >
           String representation of the partition id messages are sent to or received from, unique within the Event Hub.
         requirement_level:
           conditionally_required: If available.
       - ref: messaging.eventhubs.message.enqueued_time
-      - ref: messaging.eventhubs.consumer.group
-        requirement_level:
-          conditionally_required: If not default ("$Default").
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
