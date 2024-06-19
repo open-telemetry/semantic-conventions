@@ -48,6 +48,15 @@ For batch operations, if the individual operations are known to have the same co
 
 
 
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.namespace`](/docs/attributes-registry/db.md)
+* [`db.operation.name`](/docs/attributes-registry/db.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
