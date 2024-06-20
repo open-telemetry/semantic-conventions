@@ -50,7 +50,7 @@ groups:
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: recommended
-    note: > 
+    note: >
       Value can be retrieved from value `space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
   - id: metric.veightjs.heap.space.used_size
@@ -64,7 +64,7 @@ groups:
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: recommended
-    note: > 
+    note: >
       Value can be retrieved from value `space_used_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
   - id: metric.veightjs.heap.space.available_size
@@ -78,7 +78,7 @@ groups:
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: recommended
-    note: > 
+    note: >
       Value can be retrieved from value `space_available_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
   - id: metric.veightjs.heap.space.physical_size
@@ -92,5 +92,5 @@ groups:
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: recommended
-    note: > 
+    note: >
       Value can be retrieved from value `physical_space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
