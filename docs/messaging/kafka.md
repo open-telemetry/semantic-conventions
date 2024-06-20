@@ -148,13 +148,13 @@ spans in addition to "Receive" spans created by Kafka instrumentations for polli
 ```mermaid
 flowchart LR;
   subgraph PRODUCER
-  P[Span 'send T']
+  P[Span Send]
   end
   subgraph CONSUMER
   direction TB
-  R1[Span 'poll T']
-  R2[Span 'process T']
-  R3[Span 'commit T']
+  R1[Span Poll]
+  R2[Span Process]
+  R3[Span Commit]
   end
 
   P-. link .-R1;
@@ -167,21 +167,21 @@ flowchart LR;
   linkStyle 1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span `"send T"` | Span `"poll T"` | Span `"process T"` | Span `"commit T"` |
+| Field or Attribute | Span Send | Span Poll | Span Process | Span Commit T |
 |-|-|-|-|-|
 | Span name | `"send T"` | `"poll T"` | `"process T"` | `"commit T"` |
-| Parent |  |  |  (optional) `"send T"`  | `"process T"` |
-| Links |  | `"send T"` | `"send T"` |  |
+| Parent |  |  |  (optional) Span Send  | Span Process |
+| Links |  | Span Send | Span Send |  |
 | SpanKind | `PRODUCER` | `CONSUMER` | `SERVER` | `CLIENT` |
 | Status | `UNSET` | `UNSET` | `UNSET` | `UNSET` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
+| `messaging.destination.consumer.group` |  | `"my-group"` | `"my-group"` | `"my-group"` |
+| `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |
 | `messaging.operation.name` | `"send"` | `"poll"` | `"process"` | `"commit"` |
 | `messaging.operation.type` | `"publish"`  | `"receive"` | `"process"` | `"settle"` |
 | `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` |  |
-| `messaging.destination.consumer.group` |  | `"my-group"` | `"my-group"` | `"my-group"` |
-| `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |
 | `messaging.kafka.message.offset` |  | `"12"` | `"12"` | `"12"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
