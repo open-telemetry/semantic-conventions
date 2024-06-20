@@ -93,6 +93,18 @@ Instrumentation MUST NOT default to using URI path as a `{target}`.
 the response body; or 3xx codes with max redirects exceeded), in which case status
 MUST be set to `Error`.
 
+> **Note:**
+>
+> The classification of an HTTP status code as an error depends on the context.
+> For example, a 404 "Not Found" status code indicates an error if the application
+> expected the resource to be available. However, it is not considered an error
+> when the application is simply checking whether the resource exists.
+>
+> Instrumentations that have additional context about a specific request MAY use
+> this context to set the span status more precisely.
+> Instrumentations that lack this context MUST follow the guidelines in this
+> section.
+
 For HTTP status codes in the 4xx range span status MUST be left unset in case of `SpanKind.SERVER`
 and SHOULD be set to `Error` in case of `SpanKind.CLIENT`.
 
