@@ -209,20 +209,14 @@ Span kind SHOULD be set according to the following table, based on the operation
 | Operation type | Span kind|
 |----------------|-------------|
 | `create`       | `PRODUCER` |
-| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context. |
+| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context, otherwise `CLIENT`. |
 | `receive`      | `CONSUMER` |
-| `process`      | `CONSUMER` for push-based scenarios where no "Receive" span exists. |
+| `process`      | `CONSUMER` for push-based scenarios where no "Receive" span exists, otherwise `SERVER`. |
 
-For cases not covered by the table above, the span kind should be set according
-to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/trace/api.md#spankind),
-e. g. it should be set to CLIENT for the "Publish" span if its context is not
-used as creation context and if the "Publish" span models a synchronous call to
-the intermediary.
-
-Setting span kinds according to this table ensures that span links between
-consumers and producers always exist between a PRODUCER span on the producer
-side and a CONSUMER span on the consumer side. This allows analysis tools to
-interpret linked traces without the need for additional semantic hints.
+Setting span kinds according to this table ensures that there always exists a
+span link between a PRODUCER span on the producer side and a CONSUMER span on
+the consumer side. This allows analysis tools to interpret linked traces
+without the need for additional semantic hints.
 
 ### Trace structure
 
