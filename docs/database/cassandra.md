@@ -10,7 +10,7 @@ The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend a
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`db.system` MUST be set to `"cassandra"`.
+`db.system` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

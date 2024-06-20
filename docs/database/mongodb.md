@@ -10,7 +10,7 @@ The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and over
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`db.system` MUST be set to `"mongodb"`.
+`db.system` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

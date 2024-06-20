@@ -10,7 +10,7 @@ The Semantic Conventions for [HBase](https://hbase.apache.org/) extend and overr
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`db.system` MUST be set to `"hbase"`.
+`db.system` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

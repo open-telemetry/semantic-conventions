@@ -10,7 +10,7 @@ The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`db.system` MUST be set to `"elasticsearch"`.
+`db.system` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
 
 ## Span Name
 

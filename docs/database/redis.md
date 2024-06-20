@@ -10,7 +10,7 @@ The Semantic Conventions for [Redis](https://redis.com/) extend and override the
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`db.system` MUST be set to `"redis"`.
+`db.system` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

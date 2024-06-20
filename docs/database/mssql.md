@@ -10,7 +10,7 @@ The Semantic Conventions for the *Microsoft SQL Server* extend and override the 
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`db.system` MUST be set to `"mssql"`.
+`db.system` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 
