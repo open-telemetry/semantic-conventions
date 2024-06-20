@@ -469,7 +469,7 @@ Attributes in the `messaging.message` or `messaging.{system}.message` namespace 
 Some messaging systems such as Kafka or Azure Event Grid allow publishing a batch of messages to different topics in a single operation resulting in
 different `messaging.destination.name` or other destination attributes within a single messaging operation.
 
-If the attribute value is the same for all messages in the batch, the instrumentation SHOULD set such attribute on the corresponding span describing the messaging operation.
+If the attribute value is the same for all messages in the batch, the instrumentation SHOULD set such attribute on the span representing the batch operation.
 If the attribute values vary, the instrumentation SHOULD set such attributes on links describing individual messages.
 
 See [Batch receiving](#batch-receiving) for more information on correlation using links.
