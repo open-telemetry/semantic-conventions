@@ -54,6 +54,27 @@ groups:
         type: double
         brief: The top_p sampling setting for the GenAI request.
         examples: [1.0]
+        tag: llm-generic-request
+      - id: request.top_k
+        stability: experimental
+        type: double
+        brief: The top_k sampling setting for the GenAI request.
+        examples: [1.0]
+      - id: request.stop_sequences
+        stability: experimental
+        type: string[]
+        brief: List of sequences that the model will use to stop generating further tokens.
+        examples: ['forest', 'lived']
+      - id: request.frequency_penalty
+        stability: experimental
+        type: double
+        brief: The frequency penalty setting for the GenAI request.
+        examples: [0.1]
+      - id: request.presence_penalty
+        stability: experimental
+        type: double
+        brief: The presence penalty setting for the GenAI request.
+        examples: [0.1]
       - id: response.id
         stability: experimental
         type: string
