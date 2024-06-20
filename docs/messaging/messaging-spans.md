@@ -466,7 +466,7 @@ the broker doesn't have such notion, the original destination name SHOULD unique
 All messaging operations (`publish`, `receive`, `process`, or others not covered by this specification) can describe both single and/or batch of messages.
 Attributes in the `messaging.message` or `messaging.{system}.message` namespace apply to individual messages and typically vary between messages within the same batch.
 
-Some messaging systems such as Kafka or Azure Event Grid allow publishing a batch of messages to different topics in a single operation resulting in
+Some messaging systems such as Kafka or Azure Event Grid allow publishing a batch of messages to different topics in a single operation, resulting in
 different `messaging.destination.name` or other destination attributes within a single messaging operation.
 
 If the attribute value is the same for all messages in the batch, the instrumentation SHOULD set such attribute on the span representing the batch operation.
