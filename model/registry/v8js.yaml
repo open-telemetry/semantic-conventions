@@ -43,7 +43,9 @@ groups:
               stability: experimental
       - id: heap.space.name
         stability: experimental
-        brief: The name of the space type of heap memory. Available only when memory type is heap.
+        brief: The name of the space type of heap memory.
+        note: > 
+          Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
         type:
           allow_custom_values: false
           members:
