@@ -4,6 +4,9 @@ groups:
     type: attribute_group
     brief: This group defines the attributes used to perform database client calls.
     attributes:
+      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # - ref: db.system
+      #   sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
       - ref: server.address
