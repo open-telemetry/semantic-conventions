@@ -18,6 +18,14 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.request.top_p
         requirement_level: recommended
+      - ref: gen_ai.request.top_k
+        requirement_level: recommended
+      - ref: gen_ai.request.stop_sequences
+        requirement_level: recommended
+      - ref: gen_ai.request.frequency_penalty
+        requirement_level: recommended
+      - ref: gen_ai.request.presence_penalty
+        requirement_level: recommended
       - ref: gen_ai.response.id
         requirement_level: recommended
       - ref: gen_ai.response.model
