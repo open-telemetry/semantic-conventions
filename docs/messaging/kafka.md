@@ -18,7 +18,7 @@ The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend an
 that describe common messaging operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`messaging.system` MUST be set to `"kafka"`.
+`messaging.system` MUST be set to `"kafka"` and SHOULD be provided **at span creation time**.
 
 ## Span attributes
 

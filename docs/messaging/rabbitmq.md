@@ -10,7 +10,7 @@ The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and ov
 that describe common messaging operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`messaging.system` MUST be set to `"rabbitmq"`.
+`messaging.system` MUST be set to `"rabbitmq"` and SHOULD be provided **at span creation time**.
 
 ## RabbitMQ attributes
 

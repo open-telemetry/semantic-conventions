@@ -4,7 +4,6 @@ groups:
     brief: 'Semantic convention describing per-message attributes populated on messaging spans or links.'
     attributes:
       - ref: messaging.destination.name
-        sampling_relevant: true
       - ref: messaging.message.id
       - ref: messaging.message.conversation_id
       - ref: messaging.message.envelope.size
@@ -24,9 +23,7 @@ groups:
       In other cases, destination attributes may be set on links.
     attributes:
       - ref: messaging.destination.name
-        sampling_relevant: true
       - ref: messaging.destination.template
-        sampling_relevant: true
       - ref: messaging.destination.temporary
       - ref: messaging.destination.anonymous
 
@@ -75,6 +72,9 @@ groups:
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
+    # TODO: add messaging.system once https://github.com/open-telemetry/build-tools/issues/192 is implemented
+    # - ref: messaging.system
+    #   sampling_relevant: true
 
   - id: messaging
     type: span

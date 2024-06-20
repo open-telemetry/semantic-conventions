@@ -10,7 +10,7 @@ The Semantic Conventions for [Azure Service Bus](https://learn.microsoft.com/azu
 
 ## Azure Service Bus
 
-`messaging.system` MUST be set to `"servicebus"`.
+`messaging.system` MUST be set to `"servicebus"` and SHOULD be provided **at span creation time**
 
 ### Span attributes
 
@@ -134,7 +134,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ## Azure Event Hubs
 
-`messaging.system` MUST be set to `"eventhubs"`.
+`messaging.system` MUST be set to `"eventhubs"` and SHOULD be provided **at span creation time**.
 
 ### Span attributes
 

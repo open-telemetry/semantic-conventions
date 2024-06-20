@@ -10,7 +10,7 @@ The Semantic Conventions for [Apache RocketMQ](https://rocketmq.apache.org/) ext
 that describe common messaging operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`messaging.system` MUST be set to `"rocketmq"`.
+`messaging.system` MUST be set to `"rocketmq"` and SHOULD be provided **at span creation time**.
 
 ## Apache RocketMQ attributes
 
