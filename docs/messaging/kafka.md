@@ -148,13 +148,13 @@ spans in addition to "Receive" spans created by Kafka instrumentations for polli
 ```mermaid
 flowchart LR;
   subgraph PRODUCER
-  P[Span Send T]
+  P[Span 'send T']
   end
   subgraph CONSUMER
   direction TB
-  R1[Span Poll T]
-  R2[Span Process T]
-  R3[Span Commit T]
+  R1[Span 'poll T']
+  R2[Span 'process T']
+  R3[Span 'commit T']
   end
 
   P-. link .-R1;
@@ -167,16 +167,16 @@ flowchart LR;
   linkStyle 1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Send | Span Poll | Span Process | Span Commit |
+| Field or Attribute | Span `"send T"` | Span `"poll T"` | Span `"process T"` | Span `"commit T"` |
 |-|-|-|-|-|
 | Span name | `"send T"` | `"poll T"` | `"process T"` | `"commit T"` |
-| Parent |  |  |  (optional) Span Publish  | Span Process |
-| Links |  | Span Publish | Span Publish |  |
+| Parent |  |  |  (optional) `"send T"`  | `"process T"` |
+| Links |  | `"send T"` | `"send T"` |  |
 | SpanKind | `PRODUCER` | `CONSUMER` | `SERVER` | `CLIENT` |
-| Status | `Ok` | `Ok` | `Ok` | `Ok` |
+| Status | `UNSET` | `UNSET` | `UNSET` | `UNSET` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
-| `messaging.operation.name` | `send` | `poll` | `"process"` | `commit` |
+| `messaging.operation.name` | `"send"` | `"poll"` | `"process"` | `"commit"` |
 | `messaging.operation.type` | `"publish"`  | `"receive"` | `"process"` | `"settle"` |
 | `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` |  |
