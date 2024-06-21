@@ -11,7 +11,7 @@ groups:
       - ref: v8js.gc.type
         requirement_level: recommended
 
-  - id: metric.veightjs.memory.total
+  - id: metric.veightjs.memory.limit
     type: metric
     metric_name: v8js.memory.limit
     brief: "Total memory size pre-allocated."
@@ -24,11 +24,14 @@ groups:
       - ref: v8js.heap.space.name
         requirement_level:
           conditionally_required: If memory type is `heap`.
+    note: >
+      If the memory type is `heap`, the value can be retrieved from value `space_size` of
+      [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
   - id: metric.veightjs.memory.used
     type: metric
     metric_name: v8js.memory.used
-    brief: "Used memory size."
+    brief: "Memory size allocated."
     instrument: updowncounter
     unit: "By"
     stability: experimental
@@ -38,32 +41,9 @@ groups:
       - ref: v8js.heap.space.name
         requirement_level:
           conditionally_required: If memory type is `heap`.
-
-  - id: metric.veightjs.heap.space.size
-    type: metric
-    metric_name: v8js.heap.space.limit
-    brief: "Total heap space size pre-allocated."
-    instrument: updowncounter
-    unit: "By"
-    stability: experimental
-    attributes:
-      - ref: v8js.heap.space.name
-        requirement_level: recommended
     note: >
-      Value can be retrieved from value `space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
-
-  - id: metric.veightjs.heap.space.used_size
-    type: metric
-    metric_name: v8js.heap.space.used_size
-    brief: "Heap space used size."
-    instrument: updowncounter
-    unit: "By"
-    stability: experimental
-    attributes:
-      - ref: v8js.heap.space.name
-        requirement_level: recommended
-    note: >
-      Value can be retrieved from value `space_used_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+      If the memory type is `heap`, the value can be retrieved from value `space_used_size` of
+      [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
   - id: metric.veightjs.heap.space.available_size
     type: metric
@@ -81,7 +61,7 @@ groups:
   - id: metric.veightjs.heap.space.physical_size
     type: metric
     metric_name: v8js.heap.space.physical_size
-    brief: "Heap space."
+    brief: "Committed size of a heap space."
     instrument: updowncounter
     unit: "By"
     stability: experimental
