@@ -8,6 +8,13 @@ versions:
         - rename_attributes:
             attribute_map:
               deployment.environment: deployment.environment.name
+        # https://github.com/open-telemetry/semantic-conventions/pull/815
+        - rename_attributes:
+            attribute_map:
+              messaging.kafka.consumer.group: messaging.consumer.group.name
+              messaging.rocketmq.client_group: messaging.consumer.group.name
+              messaging.evenhubs.consumer.group: messaging.consumer.group.name
+              message.servicebus.destination.subscription_name: messaging.destination.subscription.name
     spans:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1002

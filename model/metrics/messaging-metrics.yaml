@@ -15,6 +15,19 @@ groups:
         requirement_level:
           conditionally_required: if available.
 
+  - id: metric.messaging.consumer.attributes
+    type: attribute_group
+    stability: experimental
+    brief: "Messaging consumer metrics attributes."
+    extends: metric.messaging.attributes
+    attributes:
+      - ref: messaging.consumer.group.name
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: messaging.destination.subscription.name
+        requirement_level:
+          conditionally_required: if applicable.
+
   # durations
   - id: metric.messaging.client.operation.duration
     type: metric
@@ -25,7 +38,7 @@ groups:
     stability: experimental
     instrument: histogram
     unit: "s"
-    extends: metric.messaging.attributes
+    extends: metric.messaging.consumer.attributes
     attributes:
       - ref: messaging.operation.type
         requirement_level:
@@ -42,7 +55,7 @@ groups:
     stability: experimental
     instrument: histogram
     unit: "s"
-    extends: metric.messaging.attributes
+    extends: metric.messaging.consumer.attributes
     attributes:
       - ref: messaging.operation.name
         examples: ["process", "consume", "handle"]
@@ -75,7 +88,7 @@ groups:
     stability: experimental
     instrument: counter
     unit: "{message}"
-    extends: metric.messaging.attributes
+    extends: metric.messaging.consumer.attributes
     attributes:
       - ref: messaging.operation.name
         examples: ["receive", "peek", "poll", "consume"]
