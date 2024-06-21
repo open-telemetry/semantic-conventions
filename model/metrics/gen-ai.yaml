@@ -24,7 +24,7 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
-      note: |
+        note: |
           The `error.type` SHOULD match the error code returned by the Generative AI service,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
@@ -55,7 +55,7 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
-  - id: metric.gen_ai.server.request_duration
+  - id: metric.gen_ai.server.request.duration
     type: metric
     metric_name: gen_ai.server.request.duration
     brief: 'Generative AI server request duration such as time-to-last byte or last output token'
