@@ -10,11 +10,11 @@
 
 Attributes specific to a cpu instance.
 
-| Attribute   | Type   | Description          | Examples         | Stability                                                        |
-| ----------- | ------ | -------------------- | ---------------- | ---------------------------------------------------------------- |
-| `cpu.state` | string | The state of the CPU | `user`; `system` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute  | Type   | Description         | Examples         | Stability                                                        |
+| ---------- | ------ | ------------------- | ---------------- | ---------------------------------------------------------------- |
+| `cpu.mode` | string | The mode of the CPU | `user`; `system` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value       | Description | Stability                                                        |
 | ----------- | ----------- | ---------------------------------------------------------------- |

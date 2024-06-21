@@ -4,8 +4,8 @@ groups:
     type: attribute_group
     brief: Attributes specific to a cpu instance.
     attributes:
-      - id: state
-        brief: "The state of the CPU"
+      - id: mode
+        brief: "The mode of the CPU"
         type:
           allow_custom_values: true
           members:

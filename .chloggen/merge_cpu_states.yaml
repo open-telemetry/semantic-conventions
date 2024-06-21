@@ -10,7 +10,7 @@ change_type: breaking
 component: system
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Rename `process.cpu.state`, `container.cpu.state`, and `system.cpu.state` attributes into a common `cpu.state` attribute
+note: Rename `process.cpu.state`, `container.cpu.state`, and `system.cpu.state` attributes into a common `cpu.mode` attribute
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
