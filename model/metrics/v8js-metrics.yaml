@@ -13,7 +13,7 @@ groups:
 
   - id: metric.veightjs.memory.total
     type: metric
-    metric_name: v8js.memory.total
+    metric_name: v8js.memory.limit
     brief: "Total memory size pre-allocated."
     instrument: updowncounter
     unit: "By"
@@ -41,12 +41,11 @@ groups:
 
   - id: metric.veightjs.heap.space.size
     type: metric
-    metric_name: v8js.heap.space.size
+    metric_name: v8js.heap.space.limit
     brief: "Total heap space size pre-allocated."
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: v8js.heap.space.size
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: recommended
@@ -60,7 +59,6 @@ groups:
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: v8js.heap.space.used_size
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: recommended
@@ -74,7 +72,6 @@ groups:
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: v8js.heap.space.available_size
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: recommended

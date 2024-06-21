@@ -7,7 +7,6 @@ groups:
       - id: memory.type
         stability: experimental
         type:
-          allow_custom_values: false
           members:
             - id: heap
               value: 'heap'
@@ -23,7 +22,6 @@ groups:
         stability: experimental
         brief: The type of garbage collection.
         type:
-          allow_custom_values: false
           members:
             - id: major
               value: 'major'
@@ -47,7 +45,6 @@ groups:
         note: >
           Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
         type:
-          allow_custom_values: false
           members:
             - id: new_space
               value: 'new_space'
