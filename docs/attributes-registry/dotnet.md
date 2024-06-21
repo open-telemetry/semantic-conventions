@@ -10,7 +10,16 @@
 
 This document defines .NET Common Language Runtime (CLR) related attributes.
 
-| Attribute               | Type   | Description                                    | Examples                                                                     | Stability                                                        |
-| ----------------------- | ------ | ---------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `dotnet.exception.type` | string | The .NET type name of an exception.            | `ArgumentNullException`; `IndexOutOfRangeException`; `NotSupportedException` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet.gc.generation`  | string | Name of the garbage collector heap generation. | `gen0`; `gen1`; `gen2`; `loh`; `poh`                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                   | Type   | Description                                            | Examples               | Stability                                                        |
+| --------------------------- | ------ | ------------------------------------------------------ | ---------------------- | ---------------------------------------------------------------- |
+| `dotnet.gc.heap.generation` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`dotnet.gc.heap.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description        | Stability                                                        |
+| ------ | ------------------ | ---------------------------------------------------------------- |
+| `gen0` | Generation 0       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen1` | Generation 1       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen2` | Generation 2       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `loh`  | Large Object Heap  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `poh`  | Pinned Object Heap | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
