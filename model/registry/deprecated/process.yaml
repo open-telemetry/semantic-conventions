@@ -4,7 +4,7 @@ groups:
     brief: "Deprecated process attributes."
     attributes:
       - id: process.cpu.state
-        brief: "Deprecated, use `cpu.state` instead."
+        brief: "Deprecated, use `cpu.mode` instead."
         deprecated: 'Replaced by `cpu.state`'
         type:
           allow_custom_values: true
