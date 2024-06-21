@@ -48,7 +48,7 @@ groups:
             - id: steal
               value: 'steal'
               stability: experimental
-        brief: "Deprecated, use `cpu.state` instead."
+        brief: "Deprecated, use `cpu.mode` instead."
         stability: experimental
-        deprecated: 'Replaced by `cpu.state`'
+        deprecated: 'Replaced by `cpu.mode`'
         examples: [ "idle", "interrupt" ]
