@@ -232,8 +232,8 @@ When additional attributes are added that only apply to a specific DBMS, its ide
 
 The `db.query.text` SHOULD be collected by default only if there is sanitization that excludes sensitive information.
 Sanitization SHOULD replace all literals with a placeholder value.
-Such literals include, but are not limited to, String literals, Numeric literals, Date and Time literals,
-Boolean literals, Interval literals, Binary literals, and Hexadecimal literals.
+Such literals include, but are not limited to, String, Numeric, Date and Time,
+Boolean, Interval, Binary, and Hexadecimal literals.
 The placeholder value SHOULD be `?`, unless it already has a defined meaning in the given database system,
 in which case the instrumentation MAY choose a different placeholder.
 
