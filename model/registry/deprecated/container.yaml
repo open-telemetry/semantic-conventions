@@ -10,7 +10,7 @@ groups:
         stability: experimental
         deprecated: "Replaced by `container.label`."
       - id: container.cpu.state
-        brief: "Deprecated, use `cpu.state` instead."
+        brief: "Deprecated, use `cpu.mode` instead."
         type:
           allow_custom_values: true
           members:
