@@ -43,9 +43,9 @@ versions:
             messaging.publish.messages: messaging.client.published.messages
         - rename_attributes:
             attribute_map:
-              system.cpu.state: cpu.state
-              process.cpu.state: cpu.state
-              container.cpu.state: cpu.state
+              system.cpu.state: cpu.mode
+              process.cpu.state: cpu.mode
+              container.cpu.state: cpu.mode
             apply_to_metrics:
               - system.cpu.time
               - system.cpu.utilization
