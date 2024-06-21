@@ -15,13 +15,11 @@
     "markdown-toc": "^1.2.0",
     "markdownlint": "0.34.0",
     "markdownlint-cli": "0.31.0",
+    "node-jq": "^4.4.0",
     "prettier": "^3.0.0",
     "through2": "^4.0.2"
   },
   "prettier": {
     "proseWrap": "preserve"
-  },
-  "dependencies": {
-    "node-jq": "^4.4.0"
   }
 }

@@ -220,4 +220,4 @@ codegen-collision-checks:
 		--registry=/source \
 		--output=/output/resolved.json \
 		-f json;
-	$(PWD)/node_modules/node-jq/bin/jq.exe -f $(TOOLS_DIR)/codegen_collisions_check.jq ./resolved.json
+	$(PWD)/node_modules/node-jq/bin/jq -f $(TOOLS_DIR)/codegen_collisions_check.jq ./resolved.json
