@@ -214,6 +214,7 @@ generate-gh-issue-templates:
 
 #.PHONY: codegen-collision-checks
 codegen-collision-checks:
+	@if ! npm ls node-jq; then npm install; fi
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/:/output \
 		$(WEAVER_CONTAINER) registry resolve \
 		--registry=/source \
