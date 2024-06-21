@@ -7,6 +7,8 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.min
+    note: >
+      Value can be retrieved from value `histogram.min` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
   - id: metric.nodejs.eventloop.delay.max
     type: metric
@@ -16,6 +18,8 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.max
+    note: >
+      Value can be retrieved from value `histogram.max` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
   - id: metric.nodejs.eventloop.delay.mean
     type: metric
@@ -25,6 +29,8 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.mean
+    note: >
+      Value can be retrieved from value `histogram.mean` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
   - id: metric.nodejs.eventloop.delay.stddev
     type: metric
@@ -34,6 +40,8 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.stddev
+    note: >
+      Value can be retrieved from value `histogram.stddev` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
   - id: metric.nodejs.eventloop.delay.pfifty
     type: metric
@@ -43,6 +51,8 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.p50
+    note: >
+      Value can be retrieved from value `histogram.percentile(50)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
   - id: metric.nodejs.eventloop.delay.pninety
     type: metric
@@ -52,6 +62,8 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.p90
+    note: >
+      Value can be retrieved from value `histogram.percentile(90)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
   - id: metric.nodejs.eventloop.delay.pninety_nine
     type: metric
@@ -61,6 +73,8 @@ groups:
     unit: "s"
     stability: experimental
     prefix: nodejs.eventloop.delay.p99
+    note: >
+      Value can be retrieved from value `histogram.percentile(99)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
   - id: metric.nodejs.eventloop.utilization
     type: metric
@@ -69,6 +83,6 @@ groups:
     instrument: gauge
     unit: "1"
     stability: experimental
-    note: >
-      The value range is [0.0,1.0].
     prefix: nodejs.eventloop.utilization
+    note: >
+      The value range is [0.0,1.0] and can be retrieved from value [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
