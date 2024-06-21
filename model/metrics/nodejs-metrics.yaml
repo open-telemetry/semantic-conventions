@@ -85,4 +85,5 @@ groups:
     stability: experimental
     prefix: nodejs.eventloop.utilization
     note: >
-      The value range is [0.0,1.0] and can be retrieved from value [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
+      The value range is [0.0,1.0] and can be retrieved from value
+      [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
