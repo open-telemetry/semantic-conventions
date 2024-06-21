@@ -24,25 +24,25 @@ This group describes attributes specific to [software tests](https://en.wikipedi
 
 | Value    | Description | Stability                                                        |
 | -------- | ----------- | ---------------------------------------------------------------- |
-| `passed` | passed      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `failed` | failed      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `passed` | passed      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `test.suite.case.run.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value       | Description | Stability                                                        |
 | ----------- | ----------- | ---------------------------------------------------------------- |
-| `success`   | success     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aborted`   | aborted     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `failure`   | failure     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `skipped`   | skipped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aborted`   | aborted     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `success`   | success     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timed_out` | timed_out   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `test.suite.run.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value       | Description | Stability                                                        |
 | ----------- | ----------- | ---------------------------------------------------------------- |
-| `success`   | success     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aborted`   | aborted     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `failure`   | failure     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `skipped`   | skipped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aborted`   | aborted     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `success`   | success     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timed_out` | timed_out   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

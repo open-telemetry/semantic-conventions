@@ -23,7 +23,7 @@ groups:
         brief: >
           The [Package URL](https://github.com/package-url/purl-spec) of the
           build artifact, providing a standard way to identify and locate the
-          artifact. 
+          artifact.
         examples: ['pkg:github/package-url/purl-spec@1209109710924', 'pkg:npm/foo@12.12.3']
       - id: artifact.hash
         type: string

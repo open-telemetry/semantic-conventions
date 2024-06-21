@@ -26,5 +26,5 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | Value    | Description | Stability                                                        |
 | -------- | ----------- | ---------------------------------------------------------------- |
 | `build`  | build       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test`   | test        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `deploy` | deploy      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `test`   | test        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

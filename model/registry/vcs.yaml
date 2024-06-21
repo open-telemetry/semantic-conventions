@@ -34,8 +34,8 @@ groups:
               stability: experimental
         stability: experimental
         brief: >
-          The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
-        examples: ['my-feature-branch', 'tag-1-test']
+          The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
+        examples: ['branch', 'tag']
       - id: ref.commit.hash
         type: string
         stability: experimental
