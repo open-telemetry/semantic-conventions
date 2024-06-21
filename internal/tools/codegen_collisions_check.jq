@@ -4,12 +4,12 @@ def exclude(list):
 def to_const_name: .| split(".")|join("_");
 def get_namespaces: . | split(".") as $parts  | reduce range(1; ($parts |length)) as $i ([]; . + [$parts[0:$i] | join(".")]  );
 def fail_on_const_name_collision: . as $original
-    | exclude(["messaging.client_id"])
+    | exclude(["messaging.client_id_1"])
     | group_by(.const_name)
     | map(select(length>1))
     | map({error: ("Multiple attributes with the same constant name are defined: " + (. | map(.name) | join(", ")))});
 def fail_on_attr_name_collision: . as $original
-    | exclude(["messaging.operation", "db.operation"])
+    | exclude(["messaging.operation1", "db.operation1"])
     | {names: map(.|.name), namespaces: map(.|.name|get_namespaces[] ) | unique}
     | .namespaces as $namespaces
     | .names | map(select( . as $name | $namespaces | index($name)))
