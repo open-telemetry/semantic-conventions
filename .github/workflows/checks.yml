@@ -93,6 +93,13 @@ jobs:
     - name: verify semantic convention compatibility with latest released version
       run: make compatibility-check
 
+  semantic-conventions-collisions:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify attribute naming collisions within semantic conventions
+      run: make codegen-collision-checks
+
   schemas-check:
     runs-on: ubuntu-latest
     steps:
