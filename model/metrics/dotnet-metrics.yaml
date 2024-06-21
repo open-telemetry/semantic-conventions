@@ -3,17 +3,19 @@ groups:
     type: metric
     metric_name: dotnet.gc.collections.count
     brief: "Number of garbage collections that have occurred since the process has started."
+    note: "This metric reports the same values as calling [`GC.CollectionCount(int generation)`](https://learn.microsoft.com/dotnet/api/system.gc.collectioncount)."
     instrument: counter
     unit: "{collection}"
     stability: experimental
     attributes:
-      - ref: dotnet.gc.generation
+      - ref: dotnet.gc.heap.generation
         requirement_level: required
 
   - id: metric.dotnet.gc.objects.size
     type: metric
     metric_name: dotnet.gc.objects.size
     brief: "The number of bytes currently allocated on the managed GC heap. Fragmentation and other GC committed memory pools are excluded."
+    note: "This metric reports the same values as calling [`GC.GetTotalMemory(false)`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalmemory)."
     instrument: updowncounter
     unit: "By"
     stability: experimental
@@ -24,6 +26,7 @@ groups:
     brief: >
       The number of bytes allocated on the managed GC heap since the process has
       started. The returned value does not include any native allocations.
+    note: "This metric reports the same values as calling [`GC.GetTotalAllocatedBytes()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalallocatedbytes)."
     instrument: counter
     unit: "By"
     stability: experimental
@@ -35,6 +38,8 @@ groups:
       The amount of committed virtual memory for the managed GC heap, as
       observed during the latest garbage collection.
     note: >
+      This metric reports the same values as calling
+      [`GC.GetGCMemoryInfo().TotalCommittedBytes`](https://learn.microsoft.com/dotnet/api/system.gcmemoryinfo.totalcommittedbytes).
       Committed virtual memory may be larger than the heap size because it
       includes both memory for storing existing objects (the heap size) and some
       extra memory that is ready to handle newly allocated objects in the
@@ -49,11 +54,12 @@ groups:
     brief: >
       The heap size (including fragmentation), as observed during the latest
       garbage collection.
+    note: "This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.SizeAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.sizeafterbytes)."
     instrument: updowncounter
     unit: "By"
     stability: experimental
     attributes:
-      - ref: dotnet.gc.generation
+      - ref: dotnet.gc.heap.generation
         requirement_level: required
 
   - id: metric.dotnet.gc.heap.fragmentation.size
@@ -61,17 +67,19 @@ groups:
     metric_name: dotnet.gc.heap.fragmentation.size
     brief: >
       The heap fragmentation, as observed during the latest garbage collection.
+    note: "This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.FragmentationAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.fragmentationafterbytes)."
     instrument: updowncounter
     unit: "By"
     stability: experimental
     attributes:
-      - ref: dotnet.gc.generation
+      - ref: dotnet.gc.heap.generation
         requirement_level: required
 
   - id: metric.dotnet.gc.pause.time
     type: metric
     metric_name: dotnet.gc.pause.time
     brief: "The total amount of time paused in GC since the process has started."
+    note: "This metric reports the same values as calling [`GC.GetTotalPauseDuration()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalpauseduration)."
     instrument: counter
     unit: "s"
     stability: experimental
@@ -80,6 +88,7 @@ groups:
     type: metric
     metric_name: dotnet.jit.il_compiled.size
     brief: "Count of bytes of intermediate language that have been compiled since the process has started."
+    note: "This metric reports the same values as calling [`JitInfo.GetCompiledILBytes()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledilbytes)."
     instrument: counter
     unit: "By"
     stability: experimental
@@ -90,6 +99,7 @@ groups:
     brief: >
       The number of times the JIT compiler (re)compiled methods since the
       process has started.
+    note: "This metric reports the same values as calling [`JitInfo.GetCompiledMethodCount()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledmethodcount)."
     instrument: counter
     unit: "{method}"
     stability: experimental
@@ -100,6 +110,7 @@ groups:
     brief: >
       The amount of time the JIT compiler has spent compiling methods since the
       process has started.
+    note: "This metric reports the same values as calling [`JitInfo.GetCompilationTime()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompilationtime)."
     instrument: counter
     unit: "s"
     stability: experimental
@@ -110,6 +121,7 @@ groups:
     brief: >
       The number of times there was contention when trying to acquire a monitor
       lock since the process has started.
+    note: "This metric reports the same values as calling [`Monitor.LockContentionCount`](https://learn.microsoft.com/dotnet/api/system.threading.monitor.lockcontentioncount)."
     instrument: counter
     unit: "{contention}"
     stability: experimental
@@ -118,6 +130,7 @@ groups:
     type: metric
     metric_name: dotnet.thread_pool.threads.count
     brief: "The number of thread pool threads that currently exist."
+    note: "This metric reports the same values as calling [`ThreadPool.ThreadCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.threadcount)."
     instrument: updowncounter
     unit: "{thread}"
     stability: experimental
@@ -128,6 +141,7 @@ groups:
     brief: >
       The number of work items that the thread pool has completed since
       the process has started.
+    note: "This metric reports the same values as calling [`ThreadPool.CompletedWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.completedworkitemcount)."
     instrument: counter
     unit: "{work_item}"
     stability: experimental
@@ -138,6 +152,7 @@ groups:
     brief: >
       The number of work items that are currently queued to be processed by the
       thread pool.
+    note: "This metric reports the same values as calling [`ThreadPool.PendingWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.pendingworkitemcount)."
     instrument: updowncounter
     unit: "{queue}"
     stability: experimental
@@ -146,6 +161,7 @@ groups:
     type: metric
     metric_name: dotnet.timer.count
     brief: "The number of timer instances that are currently active."
+    note: "This metric reports the same values as calling [`Timer.ActiveCount`](https://learn.microsoft.com/dotnet/api/system.threading.timer.activecount)."
     instrument: updowncounter
     unit: "{timer}"
     stability: experimental
@@ -154,6 +170,7 @@ groups:
     type: metric
     metric_name: dotnet.assemblies.count
     brief: "The number of .NET assemblies that are currently loaded."
+    note: "This metric reports the same values as calling [`AppDomain.CurrentDomain.GetAssemblies().Length`](https://learn.microsoft.com/dotnet/api/system.appdomain.getassemblies)."
     instrument: updowncounter
     unit: "{assembly}"
     stability: experimental
@@ -162,6 +179,7 @@ groups:
     type: metric
     metric_name: dotnet.exceptions.count
     brief: "The number of exceptions that have been thrown in managed code."
+    note: "This metric reports the same values as calling [`AppDomain.CurrentDomain.FirstChanceException`](https://learn.microsoft.com/dotnet/api/system.appdomain.firstchanceexception)."
     instrument: counter
     unit: "{exception}"
     stability: experimental
