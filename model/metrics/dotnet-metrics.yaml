@@ -20,9 +20,9 @@ groups:
     unit: "By"
     stability: experimental
 
-  - id: metric.dotnet.gc.allocations.size
+  - id: metric.dotnet.gc.memory.total_allocated
     type: metric
-    metric_name: dotnet.gc.allocations.size
+    metric_name: dotnet.gc.memory.total_allocated
     brief: >
       The number of bytes allocated on the managed GC heap since the process has
       started. The returned value does not include any native allocations.
@@ -31,9 +31,9 @@ groups:
     unit: "By"
     stability: experimental
 
-  - id: metric.dotnet.gc.committed_memory.size
+  - id: metric.dotnet.gc.memory.commited
     type: metric
-    metric_name: dotnet.gc.committed_memory.size
+    metric_name: dotnet.gc.memory.commited
     brief: >
       The amount of committed virtual memory for the managed GC heap, as
       observed during the latest garbage collection.
@@ -62,9 +62,9 @@ groups:
       - ref: dotnet.gc.heap.generation
         requirement_level: required
 
-  - id: metric.dotnet.gc.heap.fragmentation.size
+  - id: metric.dotnet.gc.heap.fragmentation
     type: metric
-    metric_name: dotnet.gc.heap.fragmentation.size
+    metric_name: dotnet.gc.heap.fragmentation
     brief: >
       The heap fragmentation, as observed during the latest garbage collection.
     note: "This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.FragmentationAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.fragmentationafterbytes)."
@@ -84,18 +84,18 @@ groups:
     unit: "s"
     stability: experimental
 
-  - id: metric.dotnet.jit.il_compiled.size
+  - id: metric.dotnet.jit.compiled_il.size
     type: metric
-    metric_name: dotnet.jit.il_compiled.size
+    metric_name: dotnet.jit.compiled_il.size
     brief: "Count of bytes of intermediate language that have been compiled since the process has started."
     note: "This metric reports the same values as calling [`JitInfo.GetCompiledILBytes()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledilbytes)."
     instrument: counter
     unit: "By"
     stability: experimental
 
-  - id: metric.dotnet.jit.methods_compiled.count
+  - id: metric.dotnet.jit.compiled_method.count
     type: metric
-    metric_name: dotnet.jit.methods_compiled.count
+    metric_name: dotnet.jit.compiled_method.count
     brief: >
       The number of times the JIT compiler (re)compiled methods since the
       process has started.
@@ -126,18 +126,18 @@ groups:
     unit: "{contention}"
     stability: experimental
 
-  - id: metric.dotnet.thread_pool.threads.count
+  - id: metric.dotnet.thread_pool.thread.count
     type: metric
-    metric_name: dotnet.thread_pool.threads.count
+    metric_name: dotnet.thread_pool.thread.count
     brief: "The number of thread pool threads that currently exist."
     note: "This metric reports the same values as calling [`ThreadPool.ThreadCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.threadcount)."
     instrument: updowncounter
     unit: "{thread}"
     stability: experimental
 
-  - id: metric.dotnet.thread_pool.work_items.count
+  - id: metric.dotnet.thread_pool.work_item.count
     type: metric
-    metric_name: dotnet.thread_pool.work_items.count
+    metric_name: dotnet.thread_pool.work_item.count
     brief: >
       The number of work items that the thread pool has completed since
       the process has started.
@@ -157,7 +157,7 @@ groups:
     unit: "{queue}"
     stability: experimental
 
-  - id: metric.dotnet.timers.count
+  - id: metric.dotnet.timer.count
     type: metric
     metric_name: dotnet.timer.count
     brief: "The number of timer instances that are currently active."
