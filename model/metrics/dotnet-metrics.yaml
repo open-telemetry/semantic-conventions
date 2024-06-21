@@ -166,5 +166,5 @@ groups:
     unit: "{exception}"
     stability: experimental
     attributes:
-      - ref: dotnet.exception.type
+      - ref: error.type
         requirement_level: required
