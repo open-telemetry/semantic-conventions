@@ -67,7 +67,9 @@ groups:
     metric_name: dotnet.gc.heap.fragmentation
     brief: >
       The heap fragmentation, as observed during the latest garbage collection.
-    note: "This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.FragmentationAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.fragmentationafterbytes)."
+    note: >
+      This metric reports the same values as calling
+      [`GC.GetGCMemoryInfo().GenerationInfo.FragmentationAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.fragmentationafterbytes)."
     instrument: updowncounter
     unit: "By"
     stability: experimental
