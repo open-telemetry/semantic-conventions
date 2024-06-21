@@ -237,8 +237,7 @@ Boolean, Interval, Binary, and Hexadecimal literals.
 The placeholder value SHOULD be `?`, unless it already has a defined meaning in the given database system,
 in which case the instrumentation MAY choose a different placeholder.
 
-Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is,
-and there is no need to sanitize the text `$1`.
+Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
 
 ## Semantic Conventions for specific database technologies
 
