@@ -10,6 +10,8 @@ groups:
     attributes:
       - ref: v8js.gc.type
         requirement_level: recommended
+    note: >
+      The values can be retrieve from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
   - id: metric.veightjs.memory.limit
     type: metric

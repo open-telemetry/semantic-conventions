@@ -44,7 +44,11 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8js.gc.duration` | Histogram | `s` | Garbage collection duration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.gc.duration` | Histogram | `s` | Garbage collection duration. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+**[1]:** The values can be retrieve from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
+
 
 
 <!-- markdownlint-restore -->
