@@ -1,0 +1,10 @@
+groups:
+  - id: profile.link
+    type: attribute_group
+    brief: >
+      Unique identifier for an executable.
+    attributes:
+      - ref: profile.link.trace_id
+        requirement_level: opt_in
+      - ref: profile.link.span_id
+        requirement_level: opt_in

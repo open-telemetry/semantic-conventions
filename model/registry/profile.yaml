@@ -1,0 +1,99 @@
+groups:
+
+  - id: registry.profile.build_id
+    type: attribute_group
+    prefix: profile.build_id
+    brief: >
+      Unique identifier for an executable.
+    attributes: 
+      - id: gnu
+        stability: experimental
+        type: string
+        brief: >
+          The GNU build ID as can be found in the `.note.gnu.build-id` ELF section.
+        examples: ['c89b11207f6479603b0d49bf291c092c2b719293']
+      - id: go
+        stability: experimental
+        type: string
+        brief: >
+          The Go build ID.
+        examples: ['foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY']
+
+  - id: registry.profile.link
+    type: attribute_group
+    prefix: profile.link
+    brief: >
+      Connect Profile information to Spans and Traces.
+    attributes:
+      - id: trace_id 
+        stability: experimental
+        type: string
+        brief: >
+          A 16-byte array identifier for a trace as specified in [`SpanContext`](https://opentelemetry.io/docs/specs/otel/trace/api/#spancontext).
+        examples: ['4bf92f3577b34da6a3ce929d0e0e4736']
+      - id: span_id 
+        stability: experimental
+        type: string
+        brief: >
+          A 8-byte array identifier for a span as specified in [`SpanContext`](https://opentelemetry.io/docs/specs/otel/trace/api/#spancontext).
+        examples: ['00f067aa0ba902b7']
+
+  - id: registry.profile.frame
+    type: attribute_group
+    prefix: profile.frame
+    brief: >
+      Describes the origin of a single frame in a Profile.
+    attributes:
+      - id: type
+        stability: experimental
+        brief: >
+          Describes the interpreter or compiler of a single frame.
+        examples: ['python']
+        type:
+          allow_custom_values: true
+          members:
+            - id: dotnet
+              brief: >
+                [.Net](https://wikipedia.org/wiki/.NET)
+              value: "dotnet"
+              stability: experimental
+            - id: jvm
+              brief: >
+                [JVM](https://wikipedia.org/wiki/Java_virtual_machine)
+              value: "jvm"
+              stability: experimental
+            - id: kernel
+              brief: >
+                [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system))
+              value: "kernel"
+              stability: experimental
+            - id: native
+              brief: >
+                [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)), [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) 
+              value: "native"
+              stability: experimental
+            - id: perl
+              brief: >
+                [Perl](https://wikipedia.org/wiki/Perl)
+              value: "perl"
+              stability: experimental
+            - id: php
+              brief: >
+                [PHP](https://wikipedia.org/wiki/PHP)
+              value: "php"
+              stability: experimental
+            - id: python
+              brief: >
+                [Python](https://wikipedia.org/wiki/Python_(programming_language))
+              value: "python"
+              stability: experimental
+            - id: ruby 
+              brief: >
+                [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language))
+              value: "ruby"
+              stability: experimental
+            - id: v8
+              brief: >
+                [V8](https://wikipedia.org/wiki/V8_(JavaScript_engine))
+              value: "v8"
+              stability: experimental
