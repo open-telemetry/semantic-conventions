@@ -44,9 +44,9 @@ groups:
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
-    # TODO: add messaging.system once https://github.com/open-telemetry/build-tools/issues/192 is implemented
-    # - ref: messaging.system
-    #   sampling_relevant: true
+        # TODO: add messaging.system once https://github.com/open-telemetry/build-tools/issues/192 is implemented
+        # - ref: messaging.system
+        #   sampling_relevant: true
 
   - id: messaging
     type: span
