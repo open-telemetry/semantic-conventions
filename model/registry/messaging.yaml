@@ -19,6 +19,15 @@ groups:
         brief: >
           A unique identifier for the client that consumes or produces a message.
         examples: ['client-5', 'myhost@8742@s8083jm']
+      - id: consumer.group.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the consumer group with which a consumer is associated.
+        note: >
+          Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name`
+          is applicable and what it means in the context of that system.
+        examples: ['my-group', 'indexer']
       - id: destination.name
         type: string
         stability: experimental
@@ -27,6 +36,15 @@ groups:
           Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
           the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
         examples: ['MyQueue', 'MyTopic']
+        tag: messaging-generic
+      - id: destination.subscription.name
+        type: string
+        stability: experimental
+        brief: 'The name of the destination subscription from which a message is consumed.'
+        note: >
+          Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name`
+          is applicable and what it means in the context of that system.
+        examples: ['subscription-a']
       - id: destination.template
         type: string
         stability: experimental
@@ -116,16 +134,22 @@ groups:
                 One or more messages are requested by a consumer.
                 This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.
               stability: experimental
-            - id: deliver
+            - id: process
               value: "process"
               brief: >
-                One or more messages are delivered to or processed by a consumer.
+                One or more messages are processed by a consumer.
               stability: experimental
             - id: settle
               value: "settle"
               brief: >
                 One or more messages are settled.
               stability: experimental
+            - id: deliver
+              value: "deliver"
+              brief: "Deprecated. Use `process` instead."
+              deprecated: "Replaced by `process`."
+              stability: experimental
+
         stability: experimental
         brief: >
           A string identifying the type of the messaging operation.
@@ -196,13 +220,6 @@ groups:
     brief: >
       This group describes attributes specific to Apache Kafka.
     attributes:
-      - id: kafka.consumer.group
-        type: string
-        stability: experimental
-        brief: >
-          Name of the Kafka Consumer Group that is handling the message.
-          Only applies to consumers, not producers.
-        examples: 'my-group'
       - id: kafka.message.key
         type: string
         stability: experimental
@@ -248,12 +265,6 @@ groups:
     brief: >
       This group describes attributes specific to RocketMQ.
     attributes:
-      - id: rocketmq.client_group
-        type: string
-        stability: experimental
-        brief: >
-          Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind.
-        examples: 'myConsumerGroup'
       - id: rocketmq.consumption_model
         type:
           allow_custom_values: false
@@ -376,12 +387,6 @@ groups:
         brief: >
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
-      - id: servicebus.destination.subscription_name
-        type: string
-        stability: experimental
-        brief: >
-          The name of the subscription in the topic messages are received from.
-        examples: "mySubscription"
       - id: servicebus.disposition_status
         brief: >
           Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
@@ -417,9 +422,3 @@ groups:
         brief: >
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
-      - id: eventhubs.consumer.group
-        type: string
-        stability: experimental
-        brief: >
-          The name of the consumer group the event consumer is associated with.
-        examples: 'indexer'
