@@ -10,7 +10,7 @@ The Semantic Conventions for [Apache RocketMQ](https://rocketmq.apache.org/) ext
 that describe common messaging operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`messaging.system` MUST be set to `"rocketmq"`.
+`messaging.system` MUST be set to `"rocketmq"` and SHOULD be provided **at span creation time**.
 
 ## Apache RocketMQ attributes
 
@@ -25,8 +25,8 @@ Specific attributes for Apache RocketMQ are defined below.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup). | `my-group`; `indexer` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.client_group`](/docs/attributes-registry/messaging.md) | string | Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind. | `myConsumerGroup` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rocketmq.namespace`](/docs/attributes-registry/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [2] | `0`; `1`; `2` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -88,6 +88,16 @@ body size should be used.
 **[11]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

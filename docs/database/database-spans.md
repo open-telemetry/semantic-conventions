@@ -13,6 +13,7 @@ linkTitle: Client Calls
 - [Name](#name)
 - [Common attributes](#common-attributes)
   - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
+- [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Semantic Conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
@@ -125,9 +126,11 @@ For batch operations, if the individual operations are known to have the same op
 
 **[9]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[10]:** For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+**[10]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[11]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+**[11]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 
 **[12]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
@@ -224,6 +227,17 @@ If the concrete DBMS is known to the instrumentation, its specific identifier MU
 Back ends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.query.text`.
 
 When additional attributes are added that only apply to a specific DBMS, its identifier SHOULD be used as a namespace in the attribute key as for the attributes in the sections below.
+
+## Sanitization of `db.query.text`
+
+The `db.query.text` SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+Sanitization SHOULD replace all literals with a placeholder value.
+Such literals include, but are not limited to, String, Numeric, Date and Time,
+Boolean, Interval, Binary, and Hexadecimal literals.
+The placeholder value SHOULD be `?`, unless it already has a defined meaning in the given database system,
+in which case the instrumentation MAY choose a different placeholder.
+
+Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
 
 ## Semantic Conventions for specific database technologies
 
