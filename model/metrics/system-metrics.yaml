@@ -9,7 +9,7 @@ groups:
     unit: "s"
     attributes:
       - ref: cpu.mode
-        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
+        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
         note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: system.cpu.logical_number
 
