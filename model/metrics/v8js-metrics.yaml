@@ -13,38 +13,32 @@ groups:
     note: >
       The values can be retrieve from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
-  - id: metric.veightjs.memory.limit
+  - id: metric.veightjs.memory.heap.limit
     type: metric
-    metric_name: v8js.memory.limit
-    brief: "Total memory size pre-allocated."
+    metric_name: v8js.memory.heap.limit
+    brief: "Total heap memory size pre-allocated."
     instrument: updowncounter
     unit: "By"
     stability: experimental
     attributes:
-      - ref: v8js.memory.type
-        requirement_level: recommended
       - ref: v8js.heap.space.name
-        requirement_level:
-          conditionally_required: If memory type is `heap`.
+        requirement_level: recommended
     note: >
-      If the memory type is `heap`, the value can be retrieved from value `space_size` of
+      The value can be retrieved from value `space_size` of
       [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-  - id: metric.veightjs.memory.used
+  - id: metric.veightjs.memory.heap.used
     type: metric
-    metric_name: v8js.memory.used
-    brief: "Memory size allocated."
+    metric_name: v8js.memory.heap.used
+    brief: "Heap Memory size allocated."
     instrument: updowncounter
     unit: "By"
     stability: experimental
     attributes:
-      - ref: v8js.memory.type
-        requirement_level: recommended
       - ref: v8js.heap.space.name
-        requirement_level:
-          conditionally_required: If memory type is `heap`.
+        requirement_level: recommended
     note: >
-      If the memory type is `heap`, the value can be retrieved from value `space_used_size` of
+      The value can be retrieved from value `space_used_size` of
       [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
   - id: metric.veightjs.heap.space.available_size

@@ -4,20 +4,6 @@ groups:
     brief: Describes V8 JS Engine Runtime related attributes.
     prefix: v8js
     attributes:
-      - id: memory.type
-        stability: experimental
-        type:
-          members:
-            - id: heap
-              value: 'heap'
-              brief: 'Heap memory.'
-              stability: experimental
-            - id: non_heap
-              value: 'non_heap'
-              brief: 'Non-heap memory'
-              stability: experimental
-        brief: The type of memory.
-        examples: ["heap", "non_heap"]
       - id: gc.type
         stability: experimental
         brief: The type of garbage collection.
