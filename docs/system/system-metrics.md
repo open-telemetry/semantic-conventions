@@ -104,7 +104,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
@@ -161,10 +161,10 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
+**[1]:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
 
 
