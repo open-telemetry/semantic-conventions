@@ -196,26 +196,3 @@ groups:
               value: 'minor'
               stability: experimental
         stability: experimental
-
-  - id: registry.process.cpu
-    prefix: process.cpu
-    type: attribute_group
-    brief: >
-        Attributes for process CPU
-    attributes:
-      - id: state
-        brief: >
-          The CPU state of the process.
-        type:
-          allow_custom_values: true
-          members:
-            - id: system
-              value: 'system'
-              stability: experimental
-            - id: user
-              value: 'user'
-              stability: experimental
-            - id: wait
-              value: 'wait'
-              stability: experimental
-        stability: experimental

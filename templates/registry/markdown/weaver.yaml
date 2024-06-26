@@ -10,6 +10,7 @@ acronyms:
   - iOS
   - AWS
   - CloudEvents
+  - CPU
   - CosmosDB
   - DynamoDB
   - ECS
