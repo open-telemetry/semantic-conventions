@@ -2,6 +2,7 @@ groups:
   - id: registry.db
     prefix: db
     type: attribute_group
+    display_name: General Database Attributes
     brief: >
       This group defines the attributes used to describe telemetry in the context of databases.
     attributes:
@@ -340,6 +341,7 @@ groups:
   - id: registry.db.cassandra
     prefix: db
     type: attribute_group
+    display_name: Cassandra Attributes
     brief: >
       This group defines attributes for Cassandra.
     attributes:
@@ -414,6 +416,7 @@ groups:
   - id: registry.db.cosmosdb
     prefix: db
     type: attribute_group
+    display_name: Azure Cosmos DB Attributes
     brief: >
       This group defines attributes for Azure Cosmos DB.
     attributes:
@@ -509,6 +512,7 @@ groups:
   - id: registry.db.elasticsearch
     prefix: db
     type: attribute_group
+    display_name: Elasticsearch Attributes
     brief: >
       This group defines attributes for Elasticsearch.
     attributes:

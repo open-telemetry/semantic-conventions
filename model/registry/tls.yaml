@@ -2,6 +2,7 @@ groups:
   - id: registry.tls
     prefix: tls
     type: attribute_group
+    display_name: TLS Attributes
     brief: "This document defines semantic convention attributes in the TLS namespace."
     attributes:
       - id: cipher

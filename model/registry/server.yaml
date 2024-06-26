@@ -2,6 +2,7 @@ groups:
   - id: registry.server
     prefix: server
     type: attribute_group
+    display_name: Server Attributes
     brief: >
       These attributes may be used to describe the server in a connection-based network interaction
       where there is one side that initiates the connection (the client is the side that initiates the connection).

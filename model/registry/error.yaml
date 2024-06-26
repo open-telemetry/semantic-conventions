@@ -1,6 +1,7 @@
 groups:
   - id: registry.error
     type: attribute_group
+    display_name: Error Attributes
     prefix: error
     brief: >
       This document defines the shared attributes used to report an error.

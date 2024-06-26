@@ -2,6 +2,7 @@ groups:
   - id: registry.destination
     prefix: destination
     type: attribute_group
+    display_name: Destination Attributes
     brief: >
       These attributes may be used to describe the receiver of a network exchange/packet. These should be used
       when there is no client/server relationship between the two sides, or when that relationship is unknown.

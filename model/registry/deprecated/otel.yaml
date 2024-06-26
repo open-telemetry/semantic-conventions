@@ -2,6 +2,7 @@ groups:
   - id: registry.otel.library.deprecated
     prefix: otel.library
     type: attribute_group
+    display_name: Deprecated OTel Library Attributes
     brief: "Describes deprecated otel.library attributes."
     attributes:
       - id: name

@@ -2,6 +2,7 @@ groups:
   - id: registry.container
     prefix: container
     type: attribute_group
+    display_name: Container Attributes
     brief: >
       A container instance.
     attributes:

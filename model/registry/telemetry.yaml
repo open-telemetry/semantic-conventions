@@ -2,6 +2,7 @@ groups:
   - id: registry.telemetry
     prefix: telemetry
     type: attribute_group
+    display_name: Telemetry Attributes
     brief: >
         This document defines attributes for telemetry SDK.
     attributes:
