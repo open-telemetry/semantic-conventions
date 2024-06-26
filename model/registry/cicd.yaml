@@ -1,11 +1,4 @@
 groups:
-  # - id: registry.cicd
-  #   prefix: cicd
-  #   type: attribute_group
-  #   brief: >
-  #    This group describes attributes specific to Continuous Integration and
-  #    Continuous Deployment (CI/CD) systems where the sub-attributes can have
-  #    many different meanings across different systems.
   - id: registry.cicd.pipeline
     prefix: cicd.pipeline
     type: attribute_group

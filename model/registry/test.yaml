@@ -1,24 +1,24 @@
 groups:
   - id: registry.test.suite
-    prefix: test
+    prefix: test.suite
     type: attribute_group
     brief: >
      This group describes attributes specific to
      [software tests](https://en.wikipedia.org/wiki/Software_testing).
     attributes:
-      - id: suite.name
+      - id: name
         type: string
         stability: experimental
         brief: >
           The human readable name of a [test suite](https://en.wikipedia.org/wiki/Test_suite).
         examples: ['TestSuite1']
-      - id: suite.run.id
+      - id: run.id
         type: string
         stability: experimental
         brief: >
           The unique identifier of a test suite run.
         examples: ['123408']
-      - id: suite.run.status
+      - id: run.status
         type:
           allow_custom_values: true
           members:
@@ -46,19 +46,19 @@ groups:
         brief: >
           The status of the test suite run.
         examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out']
-      - id: suite.case.name
+      - id: case.name
         type: string
         stability: experimental
         brief: >
           The human readable name of the [test case](https://en.wikipedia.org/wiki/Test_case).
         examples: ['TestCase1']
-      - id: suite.case.run.id
+      - id: case.run.id
         type: string
         stability: experimental
         brief: >
           The unique identifier of a test case run.
         examples: ['123445']
-      - id: suite.case.run.status
+      - id: case.run.status
         type:
           allow_custom_values: true
           members:
@@ -86,19 +86,19 @@ groups:
         brief: >
           The status of the test case run.
         examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out']
-      - id: suite.case.execution.status
+      - id: case.result.status
         type:
           allow_custom_values: true
           members:
-            - id: passed
-              value: passed
-              brief: passed
+            - id: pass
+              value: pass
+              brief: pass
               stability: experimental
-            - id: failed
-              value: failed
-              brief: failed
+            - id: fail
+              value: fail
+              brief: fail
               stability: experimental
         stability: experimental
         brief: >
-          The status of the test case execution, meaning the actual test result.
-        examples: ['passed', 'failed']
+          The status of the test case result from test execution.
+        examples: ['pass', 'fail']

@@ -9,6 +9,7 @@ acronyms:
   - AI
   - iOS
   - AWS
+  - Cicd
   - CloudEvents
   - CosmosDB
   - DynamoDB
@@ -30,3 +31,4 @@ acronyms:
   - SignalR
   - TLS
   - URL
+  - VCS

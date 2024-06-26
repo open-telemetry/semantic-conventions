@@ -88,7 +88,7 @@ Currently, the following namespaces exist:
 - [URL](url.md)
 - [User](user.md)
 - [User Agent](user-agent.md)
-- [Vcs](vcs.md)
+- [VCS](vcs.md)
 - [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
