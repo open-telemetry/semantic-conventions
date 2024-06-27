@@ -5,7 +5,7 @@ groups:
     prefix: profile.build_id
     brief: >
       Unique identifier for an executable.
-    attributes: 
+    attributes:
       - id: gnu
         stability: experimental
         type: string
@@ -25,13 +25,13 @@ groups:
     brief: >
       Connect Profile information to Spans and Traces.
     attributes:
-      - id: trace_id 
+      - id: trace_id
         stability: experimental
         type: string
         brief: >
           A 16-byte array identifier for a trace as specified in [`SpanContext`](https://opentelemetry.io/docs/specs/otel/trace/api/#spancontext).
         examples: ['4bf92f3577b34da6a3ce929d0e0e4736']
-      - id: span_id 
+      - id: span_id
         stability: experimental
         type: string
         brief: >
@@ -69,7 +69,10 @@ groups:
               stability: experimental
             - id: native
               brief: >
-                [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)), [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) 
+                [C](https://wikipedia.org/wiki/C_(programming_language)),
+                [C++](https://wikipedia.org/wiki/C%2B%2B),
+                [Go](https://wikipedia.org/wiki/Go_(programming_language)),
+                [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
               value: "native"
               stability: experimental
             - id: perl
@@ -87,7 +90,7 @@ groups:
                 [Python](https://wikipedia.org/wiki/Python_(programming_language))
               value: "python"
               stability: experimental
-            - id: ruby 
+            - id: ruby
               brief: >
                 [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language))
               value: "ruby"
