@@ -47,6 +47,7 @@ body:
         - area:gen-ai
         - area:go
         - area:graphql
+        - area:hardware
         - area:heroku
         - area:host
         - area:http
