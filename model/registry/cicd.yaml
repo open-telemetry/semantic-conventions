@@ -66,7 +66,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the runner executing the step within a pipeline.
+          The human readable name of the runner executing the step within a pipeline.
         examples: ['ubuntu-runner-latest']
       - id: task.runner.id
         type: string
@@ -74,12 +74,3 @@ groups:
         brief: >
           The id of the runner executing the step within a pipeline.
         examples: ['1289']
-      # TODO: Figure out how to inherit (embed) system attributes. - This maybe
-      # be WIP already taking place and simply may need to be removed for the
-      # time being.
-      - id: step.runner.system
-        type: string
-        stability: experimental
-        brief: >
-          OS system attributes of the runner acorrding to the [OS system attributes](./os.md).
-        examples: ['system.os.name']

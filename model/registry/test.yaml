@@ -84,7 +84,9 @@ groups:
               stability: experimental
         stability: experimental
         brief: >
-          The status of the test case run.
+          The status of the test case run, where run is referring to the run of
+          the test case in the context of the pipeline, and not the actual
+          result of the case.
         examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out']
       - id: case.result.status
         type:

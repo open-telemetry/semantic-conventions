@@ -9,8 +9,9 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The human readable name of the built artifact.
-        examples: ['golang-binary-amd64-v0.1.0', 'docker-image-amd64-v0.1.0', 'release-1.tar.gz']
+          The human readable file name of the build artifact, often generated
+          by release utilities to include the package name and version.
+        examples: ['golang-binary-amd64-v0.1.0', 'docker-image-amd64-v0.1.0', 'release-1.tar.gz', 'file-name-package.tar.gz']
       - id: artifact.version
         type: string
         stability: experimental
