@@ -1,0 +1,92 @@
+groups:
+  - id: dotnet.http.connection
+    type: span
+    stability: development
+    span_kind: client
+    brief: 'The span is emitted by .NET runtime and describes the lifetime of the HTTP connection.'
+    note: |
+      HTTP connection duration is also reported by
+      [`http.client.connection.duration` metric](/dotnet/dotnet-http-metrics.md#metric-httpclientconnectionduration).
+
+      `Activity.OperationName`: `System.Net.Http.Connections.Connection`
+      `ActivitySource` name: `System.Net.Http.Connections`
+      Added in: .NET Core 9
+    attributes:
+      - ref: network.protocol.version
+      - ref: network.peer.address
+      - ref: server.address
+      - ref: server.port
+      - ref: error.type
+      - ref: url.scheme
+
+  - id: dotnet.http.connection_setup
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      The span is emitted by .NET runtime and describes the establishment of the HTTP connection. It includes
+      the time it takes to resolve the DNS, establish the socket connection, and perform the TLS handshake.
+
+      It's different from `dotnet.http.connection` span, which describes the lifetime of the HTTP connection.
+    note: |
+      `Activity.OperationName`: `System.Net.Http.Connections.ConnectionSetup`
+      `ActivitySource` name: `System.Net.Http.Connections` TODO - should be different than connection?
+      Added in: .NET Core 9
+    attributes:
+      - ref: network.protocol.version
+      - ref: network.peer.address
+      - ref: server.address
+      - ref: server.port
+      - ref: error.type
+      - ref: url.scheme
+
+  - id: dotnet.socket.connection_setup
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      The span is emitted by .NET runtime and describes the establishment of the socket connection.
+    note: |
+      `Activity.OperationName`: `System.Net.Sockets.ConnectionSetup`
+      `ActivitySource` name: `System.Net.Sockets`
+      Added in: .NET Core 9
+    attributes:
+      - ref: network.protocol.version
+      - ref: network.peer.address
+      - ref: network.transport
+      - ref: network.type
+      - ref: error.type
+
+  - id: dotnet.dns.lookup
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      The span is emitted by .NET runtime and describes DNS lookup.
+    note: |
+      DNS lookup duration is also reported by
+      [`dns.lookup.duration` metric](/docs/dotnet/dotnet-dns-metrics.md#metric-dnslookupduration).
+
+      `Activity.OperationName`: `System.Net.NameResolution.DnsLookup`
+      `ActivitySource` name: `System.Net.NameResolution`
+      Added in: .NET Core 9
+    attributes:
+      - ref: dns.question.name
+      - ref: dns.answer
+      - ref: error.type
+
+  - id: dotnet.tls.handshake
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      The span is emitted by .NET runtime and describes TLS handshake.
+    note: |
+      `Activity.OperationName`: `System.Net.Security.TlsHandshake`
+      `ActivitySource` name: `System.Net.Security`
+      Added in: .NET Core 9
+    attributes:
+      - ref: tls.protocol.name
+      - ref: tls.protocol.version
+      - ref: tls.client.server_name
+      - ref: error.type
