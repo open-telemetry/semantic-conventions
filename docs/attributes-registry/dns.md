@@ -10,8 +10,15 @@
 
 This document defines the shared attributes used to report a DNS query.
 
+<<<<<<< HEAD
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="dns-question-name" href="#dns-question-name">`dns.question.name`</a> | string | The name being queried. [1] | `www.example.com`; `opentelemetry.io` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+=======
+| Attribute           | Type     | Description                                  | Examples                                                  | Stability                                                        |
+| ------------------- | -------- | -------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------- |
+| `dns.answer`        | string[] | The list of resolved IPv4 or IPv6 addresses. | `["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dns.question.name` | string   | The name being queried. [1]                  | `www.example.com`; `opentelemetry.io`                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+>>>>>>> 98544399 (Add .NET HTTP connection spans)
 
 **[1] `dns.question.name`:** If the name field contains non-printable characters (below 32 or above 126), those characters should be represented as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped. Tabs, carriage returns, and line feeds should be converted to \t, \r, and \n respectively.
