@@ -23,7 +23,7 @@ described on this page.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.namespace`. [1] | `public.users`; `customers` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.target`](/docs/attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.namespace`. [1] | `public.users`; `customers` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The MongoDB database name. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [2] | `findAndModify`; `getMore`; `update` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -31,8 +31,8 @@ described on this page.
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
-For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
+If the target (e.g. table name) is parsed from the query text, it SHOULD be the first table name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
+For batch operations, if the individual operations are known to have the same target then that target SHOULD be used, otherwise `db.operation.target` SHOULD NOT be captured.
 
 **[2]:** See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
 
@@ -72,9 +72,9 @@ For batch operations, if the individual operations are known to have the same co
 | `network.peer.address`  | `"192.0.2.14"` |
 | `network.peer.port`     | `27017` |
 | `network.transport`     | `"tcp"` |
-| `db.collection.name`    | `"products"` |
 | `db.namespace`          | `"shopDb"` |
 | `db.query.text`         | not set |
 | `db.operation.name`     | `"findAndModify"` |
+| `db.operation.target`   | `"products"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

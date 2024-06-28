@@ -14,7 +14,7 @@ described on this page.
 
 ## Span Name
 
-The **span name** follows the [general database span name guidelines](database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
+The **span name** follows the [general database span name guidelines](database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.operation.target`.
 
 ## Attributes
 
@@ -33,9 +33,9 @@ The **span name** follows the [general database span name guidelines](database-s
 | [`db.elasticsearch.path_parts.<key>`](/docs/attributes-registry/db.md) | string | A dynamic value in the url path. [4] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | `Conditionally Required` when the url has dynamic values | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The index or data stream against which the query is executed. [8] | `my_index`; `index1, index2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [9] | `instance-0000000001` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the Elasticsearch cluster which the client connects to. [10] | `customers`; `test.users` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [8] | `instance-0000000001` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the Elasticsearch cluster which the client connects to. [9] | `customers`; `test.users` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.target`](/docs/attributes-registry/db.md) | string | The index or data stream against which the query is executed. [10] | `my_index`; `index1, index2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [11] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -68,11 +68,11 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[8]:** The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
+**[8]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[9]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+**[9]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
 
-**[10]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+**[10]:** The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
 
 **[11]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
@@ -124,7 +124,7 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `http.request.method`               | `"GET"`                                                                                                                             |
 | `db.query.text`                     | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                 |
 | `db.operation.name`                 | `"search"`                                                                                                                          |
-| `db.collection.name`                | `"my-index"`                                                                                                                        |
+| `db.operation.target`               | `"my-index"`                                                                                                                        |
 | `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
 | `db.elasticsearch.path_parts.index` | `"my-index-000001"`                                                                                                                 |
 | `db.namespace`                      | `"my-cluster"`                                                                                                                      |

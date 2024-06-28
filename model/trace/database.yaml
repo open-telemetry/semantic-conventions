@@ -28,7 +28,7 @@ groups:
             See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
       - ref: db.query.parameter
         requirement_level: opt_in
-      - ref: db.collection.name
+      - ref: db.operation.target
         requirement_level:
           conditionally_required: >
             If readily available. The collection name MAY be parsed from the query text,
@@ -95,7 +95,7 @@ groups:
           conditionally_required: If available.
       - ref: db.cassandra.page_size
       - ref: db.cassandra.consistency_level
-      - ref: db.collection.name
+      - ref: db.operation.target
         brief: The name of the Cassandra table that the operation is acting upon.
       - ref: db.cassandra.idempotence
       - ref: db.cassandra.speculative_execution_count
@@ -125,12 +125,12 @@ groups:
           the [HBase table naming conventions](https://hbase.apache.org/book.html#namespace_creation). If namespace is not provided,
           instrumentation SHOULD set `db.namespace` value to `default`.
         examples: ['mynamespace']
-      - ref: db.collection.name
+      - ref: db.operation.target
         brief: The HBase table name.
         requirement_level:
           conditionally_required: If applicable.
         note: >
-          If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
+          If table name includes the namespace, the `db.operation.target` SHOULD be set to the full table name.
         examples: ['mytable', 'ns:table']
 
   - id: db.couchdb
@@ -203,7 +203,7 @@ groups:
         note: >
           See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
         examples: ['findAndModify', 'getMore', 'update']
-      - ref: db.collection.name
+      - ref: db.operation.target
         brief:
           The MongoDB collection being accessed within the database stated in `db.namespace`.
         requirement_level: required
@@ -237,7 +237,7 @@ groups:
             sensitive information.
         brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
-      - ref: db.collection.name
+      - ref: db.operation.target
         requirement_level: recommended
         brief: The index or data stream against which the query is executed.
         note: >
@@ -271,7 +271,7 @@ groups:
 
           In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
         examples: ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'mystoredproc']
-      - ref: db.collection.name
+      - ref: db.operation.target
         brief: The name of the SQL table that the operation is acting upon.
         examples: ['users', 'dbo.products']
       - ref: db.namespace
@@ -325,7 +325,7 @@ groups:
       - ref: db.cosmosdb.connection_mode
         requirement_level:
           conditionally_required: if not `direct` (or pick gw as default)
-      - ref: db.collection.name
+      - ref: db.operation.target
         brief: >
           Cosmos DB container name.
         requirement_level:

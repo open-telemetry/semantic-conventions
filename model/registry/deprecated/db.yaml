@@ -39,26 +39,26 @@ groups:
       - id: cassandra.table
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.operation.target` instead.'
+        deprecated: "Replaced by `db.operation.target`."
         examples: 'mytable'
       - id: cosmosdb.container
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.operation.target` instead.'
+        deprecated: "Replaced by `db.operation.target`."
         examples: 'mytable'
       - id: mongodb.collection
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.operation.target` instead.'
+        deprecated: "Replaced by `db.operation.target`."
         examples: 'mytable'
       - id: sql.table
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.operation.target` instead.'
+        deprecated: "Replaced by `db.operation.target`."
         examples: 'mytable'
       - id: redis.database_index
         type: int

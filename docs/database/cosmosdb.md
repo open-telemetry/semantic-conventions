@@ -26,14 +26,14 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.connection_mode`](/docs/attributes-registry/db.md) | string | Cosmos client connection mode. | `gateway`; `direct` | `Conditionally Required` if not `direct` (or pick gw as default) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.operation_type`](/docs/attributes-registry/db.md) | string | CosmosDB Operation Type. | `Invalid`; `Create`; `Patch` | `Conditionally Required` when performing one of the operations in this list | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.request_charge`](/docs/attributes-registry/db.md) | double | RU consumed for that operation | `46.18`; `1.0` | `Conditionally Required` when available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB status code. | `200`; `201` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [1] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.target`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [3] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.cosmosdb.client_id`](/docs/attributes-registry/db.md) | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -44,14 +44,14 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [11] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
-For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
-
-**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
 For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
 
-**[3]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
+**[2]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
+
+**[3]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the target (e.g. table name) is parsed from the query text, it SHOULD be the first table name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
+For batch operations, if the individual operations are known to have the same target then that target SHOULD be used, otherwise `db.operation.target` SHOULD NOT be captured.
 
 **[4]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
@@ -129,9 +129,9 @@ In addition to Cosmos DB attributes, all spans include
 | `kind`                               | `"internal"` |
 | `az.namespace`                       | `"Microsoft.DocumentDB"` |
 | `db.system`                          | `"cosmosdb"` |
-| `db.collection.name`                 | `"orders"` |
 | `db.namespace`                       | `"ShopDb"` |
 | `db.operation.name`                  | `"ReadItemsAsync"` |
+| `db.operation.target`                | `"orders"` |
 | `server.address`                     | `"account.documents.azure.com"` |
 | `db.cosmosdb.client_id`              | `3ba4827d-4422-483f-b59f-85b74211c11d` |
 | `db.cosmosdb.operation_type`         | `Read` |
