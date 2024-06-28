@@ -39,7 +39,7 @@ instrumentations SHOULD propagate the context using this built-in mechanism.
 
 If CloudEvents are instrumented independently of the protocol used,
 CloudEvent-specific instrumentations SHOULD use the
-[CloudEvents Distributed Tracing Extension](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/extensions/distributed-tracing.md).
+[CloudEvents Distributed Tracing Extension](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/extensions/distributed-tracing.md)
 as means to propagate the trace context.
 
 When CloudEvents are used in messaging scenarios, where an event can go through
