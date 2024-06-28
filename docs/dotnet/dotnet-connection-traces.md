@@ -24,11 +24,11 @@ This article defines semantic conventions for HTTP client connections, DNS and T
 .NET reports spans related to HTTP connection establishment and its stages starting from .NET 9.
 Application developers are encouraged to enable corresponding instrumentation in development and test environments.
 
-Enabling connection-level details in production may result in increased telemetry consumption and reduce performance.
+Enabling connection-level details in production may result in increased telemetry volume and reduced performance.
 
 While such spans represent low-level details, connection lifetime is usually measured in minutes, therefore in common case
-when application is under the load and connections are established for every request, the rate of connection-related spans
-is expected to be much smaller than the rate of HTTP client spans.
+when application is under the load and connections are not established for every request, the rate of connection-related spans
+is expected to be much lower than the rate of HTTP client spans.
 
 ## HTTP client connection
 
