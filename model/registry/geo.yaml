@@ -6,13 +6,13 @@ groups:
       Geo fields can carry data about a specific location related to an event.
       This geolocation information can be derived from techniques such as Geo IP, or be user-supplied.
     attributes:
-      - id: city_name
+      - id: city.name
         stability: experimental
         type: string
         brief: >
           City name.
         examples: [ 'Montreal', 'Berlin' ]
-      - id: continent_code
+      - id: continent.code
         stability: experimental
         brief: >
           Two-letter code representing continent’s name.
@@ -46,19 +46,19 @@ groups:
               stability: experimental
               value: 'SA'
               brief: 'South America'
-      - id: continent_name
+      - id: continent.name
         stability: experimental
         type: string
         brief: >
           Name of the continent.
         examples: [ 'North America', 'Europe' ]
-      - id: country_iso_code
+      - id: country.iso_code
         stability: experimental
         type: string
         brief: >
           Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://en.wikipedia.org/wiki/ISO_3166-1#Codes)).
         examples: [ 'CA' ]
-      - id: country_name
+      - id: country.name
         stability: experimental
         type: string
         brief: >
@@ -93,13 +93,13 @@ groups:
           Postal code associated with the location.
           Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country.
         examples: [ '94040' ]
-      - id: region_iso_code
+      - id: region.iso_code
         stability: experimental
         type: string
         brief: >
           Region ISO code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
         examples: [ 'CA-QC' ]
-      - id: region_name
+      - id: region.name
         stability: experimental
         type: string
         brief: >
