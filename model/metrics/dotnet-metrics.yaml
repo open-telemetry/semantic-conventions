@@ -188,3 +188,26 @@ groups:
     attributes:
       - ref: error.type
         requirement_level: required
+
+  - id: metric.dotnet.cpu.count
+    type: metric
+    metric_name: dotnet.cpu.count
+    brief: "The number of processors available to the process."
+    note: "This metric reports the same values as accessing [`Environment.ProcessorCount`](https://learn.microsoft.com/dotnet/api/system.environment.processorcount)."
+    instrument: updowncounter
+    unit: "{cpu}"
+    stability: experimental
+
+  - id: metric.dotnet.cpu.time
+    type: metric
+    metric_name: dotnet.cpu.time
+    brief: "CPU time used by the process as reported by the CLR."
+    note: >
+      This metric reports the same values as accessing the corresponding
+      processor time properties on [`System.Diagnostics.Process`](https://learn.microsoft.com/dotnet/api/system.diagnostics.process)."
+    instrument: counter
+    unit: "s"
+    stability: experimental
+    attributes:
+      - ref: cpu.mode
+        requirement_level: required
