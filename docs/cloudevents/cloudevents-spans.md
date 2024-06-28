@@ -33,34 +33,22 @@ document.
 
 ## Conventions
 
-CloudEvents can be sent via various transports, such as HTTP or via messaging
-systems. Each transport defines its own mechanism of
-[trace context propagation](https://opentelemetry.io/docs/concepts/context-propagation/).
+CloudEvents can be sent via various communication protocols. When the protocol
+used to send CloudEvents has a well established support for trace context propagation,
+instrumentations SHOULD propagate the context using this built-in mechanism.
 
-In HTTP for example, context is propagated via headers as specified by the
-[W3C TraceContext](https://www.w3.org/TR/trace-context/) specification. Other
-transports, such [MQTT](https://w3c.github.io/trace-context-mqtt/)
-or [AMQP](https://w3c.github.io/trace-context-amqp/)
-are also defining their own trace context propagation mechanisms.
-
-CloudEvent SDKs and instrumentations SHOULD rely on existing context propagation
-mechanisms and follow the existing semantic conventions for each scenario.
-
-When sending CloudEvents via HTTP, the
-[Semantic Conventions for HTTP Spans](../http/http-spans.md) SHOULD be followed.
-When CloudEvents are sent via message brokers, the
-[Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md)
-SHOULD be followed.
-
-When the transport being used does not have a well stablished
-progation mechanism, instrumentations MAY rely on the
+If CloudEvents are instrumented independently of the protocol used,
+CloudEvent-specific instrumentations SHOULD use the
 [CloudEvents Distributed Tracing Extension](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/extensions/distributed-tracing.md).
-as means to propagate the trace context, while still following either the HTTP
-or Messaging span semantic conventions.
+as means to propagate the trace context.
+
+When CloudEvents are used in messaging scenarios, where an event can go through
+many [hops](https://en.wikipedia.org/wiki/Hop_%28networking%29),
+CloudEvent-specific instrumentations SHOULD follow the span structure described in
+[Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md).
 
 The remainder of this section describes additional CloudEvents attributes
-that can be recorded on spans in addition to the ones defined by
-the aforedmentioned conventions.
+that can be recorded on spans.
 
 ### Span attributes
 
