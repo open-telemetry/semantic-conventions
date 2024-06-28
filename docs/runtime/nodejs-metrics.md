@@ -30,6 +30,10 @@ This document describes semantic conventions for Node.js Runtime metrics in Open
 
 **Description:** Experimental Node.js Runtime metrics captured under `nodejs`.
 
+Note: The metrics for eventloop delay are split into separated values instead of a single histogram, because node runtime
+only returns single values through [`perf_hooks.monitorEventLoopDelay([options])`][Eventloop] and not the entire
+histogram, so it's not possible to convert it to an OpenTelemetry histogram.
+
 ### Metric: `nodejs.eventloop.delay.min`
 
 This metric is [recommended][MetricRecommended].
@@ -336,3 +340,4 @@ This metric is [recommended][MetricRecommended].
 
 [DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[Eventloop]: https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions
