@@ -1,7 +1,7 @@
 groups:
-  - id: metric.dotnet.gc.collections.count
+  - id: metric.dotnet.gc.collections
     type: metric
-    metric_name: dotnet.gc.collections.count
+    metric_name: dotnet.gc.collections
     brief: "Number of garbage collections that have occurred since the process has started."
     note: "This metric reports the same values as calling [`GC.CollectionCount(int generation)`](https://learn.microsoft.com/dotnet/api/system.gc.collectioncount)."
     instrument: counter
@@ -24,7 +24,7 @@ groups:
     type: metric
     metric_name: dotnet.gc.memory.total_allocated
     brief: >
-      The number of bytes allocated on the managed GC heap since the process has
+      The approximate number of bytes allocated on the managed GC heap since the process has
       started. The returned value does not include any native allocations.
     note: "This metric reports the same values as calling [`GC.GetTotalAllocatedBytes()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalallocatedbytes)."
     instrument: counter
@@ -52,8 +52,8 @@ groups:
     type: metric
     metric_name: dotnet.gc.heap.size
     brief: >
-      The heap size (including fragmentation), as observed during the latest
-      garbage collection.
+      The managed GC heap size (including fragmentation), as observed during the
+      latest garbage collection.
     note: "This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.SizeAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.sizeafterbytes)."
     instrument: updowncounter
     unit: "By"
@@ -95,9 +95,9 @@ groups:
     unit: "By"
     stability: experimental
 
-  - id: metric.dotnet.jit.compiled_method.count
+  - id: metric.dotnet.jit.compiled_methods
     type: metric
-    metric_name: dotnet.jit.compiled_method.count
+    metric_name: dotnet.jit.compiled_methods
     brief: >
       The number of times the JIT compiler (re)compiled methods since the
       process has started.
@@ -117,9 +117,9 @@ groups:
     unit: "s"
     stability: experimental
 
-  - id: metric.dotnet.monitor.lock_contention.count
+  - id: metric.dotnet.monitor.lock_contentions
     type: metric
-    metric_name: dotnet.monitor.lock_contention.count
+    metric_name: dotnet.monitor.lock_contentions
     brief: >
       The number of times there was contention when trying to acquire a monitor
       lock since the process has started.
@@ -168,9 +168,9 @@ groups:
     unit: "{timer}"
     stability: experimental
 
-  - id: metric.dotnet.assemblies.count
+  - id: metric.dotnet.assembly.count
     type: metric
-    metric_name: dotnet.assemblies.count
+    metric_name: dotnet.assembly.count
     brief: "The number of .NET assemblies that are currently loaded."
     note: "This metric reports the same values as calling [`AppDomain.CurrentDomain.GetAssemblies().Length`](https://learn.microsoft.com/dotnet/api/system.appdomain.getassemblies)."
     instrument: updowncounter
