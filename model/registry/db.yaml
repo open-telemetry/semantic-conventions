@@ -68,8 +68,8 @@ groups:
         type: template[string]
         stability: experimental
         brief: >
-          The query parameters used in `db.query.text`, with `<key>` being the parameter name,
-          and the attribute value being the parameter value.
+          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
+          and the attribute value being a string representation of the parameter value.
         note: >
           Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 
