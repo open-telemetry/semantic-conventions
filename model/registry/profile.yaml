@@ -95,8 +95,8 @@ groups:
                 [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language))
               value: "ruby"
               stability: experimental
-            - id: v8
+            - id: v8js
               brief: >
-                [V8](https://wikipedia.org/wiki/V8_(JavaScript_engine))
-              value: "v8"
+                [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
+              value: "v8js"
               stability: experimental
