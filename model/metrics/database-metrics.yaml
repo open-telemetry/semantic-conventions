@@ -10,7 +10,7 @@ groups:
     stability: experimental
     extends: attributes.db.client.minimal
     attributes:
-      - ref: db.collection.name
+      - ref: db.operation.target
         requirement_level:
           conditionally_required: >
             If readily available. The collection name MAY be parsed from the query text,

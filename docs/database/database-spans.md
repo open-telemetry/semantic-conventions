@@ -56,25 +56,25 @@ Database spans MUST follow the overall [guidelines for span names](https://githu
 
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
-The **span name** SHOULD be `{db.operation.name} {target}` if there is a
-(low-cardinality) `{db.operation.name}` available (see below for the exact definition of the [`{target}`](#target-placeholder) placeholder).
+The **span name** SHOULD be `{db.operation.name} {entity}` if there is a
+(low-cardinality) `{db.operation.name}` available (see below for the exact definition of the [`{entity}`](#entity-placeholder) placeholder).
 
 If there is no (low-cardinality) `db.operation.name` available, database span names
-SHOULD be [`{target}`](#target-placeholder).
+SHOULD be [`{entity}`](#entity-placeholder).
 <!-- markdown-link-check-enable -->
 
-If neither `{db.operation.name}` nor `{target}` are available, span name SHOULD be `{db.system}`.
+If neither `{db.operation.name}` nor `{entity}` are available, span name SHOULD be `{db.system}`.
 
 Semantic conventions for individual database systems MAY specify different span name format.
 
-The <span id="target-placeholder">`{target}`</span> SHOULD describe the entity that the operation is performed against
+The <span id="entity-placeholder">`{entity}`</span> SHOULD describe the entity that the operation is performed against
 and SHOULD adhere to one of the following values, provided they are accessible:
 
-- `db.collection.name` SHOULD be used for data manipulation operations or operations on database collections.
+- `db.operation.target` SHOULD be used for data manipulation operations or operations on database collections.
 - `db.namespace` SHOULD be used for operations on a specific database namespace.
 - `server.address:server.port` SHOULD be used for other operations not targeting any specific database(s) or collection(s)
 
-If a corresponding `{target}` value is not available for a specific operation, the instrumentation SHOULD omit the `{target}`.
+If a corresponding `{entity}` value is not available for a specific operation, the instrumentation SHOULD omit the `{entity}`.
 For example, for an operation describing SQL query on an anonymous table like `SELECT * FROM (SELECT * FROM table) t`, span name should be `SELECT`.
 
 ## Common attributes
@@ -91,9 +91,9 @@ These attributes will usually be the same for all operations performed over the 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `adabas`; `cache` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.target`](/docs/attributes-registry/db.md) | string | The target of the operation such as table or container within the database. [5] | `public.users`; `customers` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required` [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [10] | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -104,21 +104,21 @@ These attributes will usually be the same for all operations performed over the 
 
 **[1]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 
-**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
-For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
-
-**[3]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
-
-**[4]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+**[2]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[5]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[3]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
 For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
 
-**[6]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
+**[4]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
+
+**[5]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+If the target (e.g. table name) is parsed from the query text, it SHOULD be the first table name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
+For batch operations, if the individual operations are known to have the same target then that target SHOULD be used, otherwise `db.operation.target` SHOULD NOT be captured.
+
+**[6]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
 **[7]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
