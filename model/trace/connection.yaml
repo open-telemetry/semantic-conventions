@@ -1,0 +1,15 @@
+groups:
+  - id: span_attributes.connection.client
+    type: span
+    brief: >
+      Describes attributes that are common to all connection spans.
+    extends: common_attributes.connection.client
+    attributes:
+      - ref: network.peer.address
+        requirement_level: required
+      - ref: network.peer.port
+        requirement_level:
+          conditionally_required: when applicable
+      - ref: network.local.port
+      - ref: network.transport
+      - ref: network.type
