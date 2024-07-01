@@ -23,14 +23,22 @@ Describes System attributes
 | --------------- | ------ | --------------------- | -------------- | ---------------------------------------------------------------- |
 | `system.device` | string | The device identifier | `(identifier)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## System Cpu Attributes
+## System CPU Attributes
 
 Describes System CPU attributes
 
-| Attribute                   | Type   | Description                     | Examples            | Stability                                                        |
-| --------------------------- | ------ | ------------------------------- | ------------------- | ---------------------------------------------------------------- |
-| `system.cpu.logical_number` | int    | The logical CPU number [0..n-1] | `1`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system.cpu.state`          | string | The state of the CPU            | `idle`; `interrupt` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                   | Type | Description                     | Examples | Stability                                                        |
+| --------------------------- | ---- | ------------------------------- | -------- | ---------------------------------------------------------------- |
+| `system.cpu.logical_number` | int  | The logical CPU number [0..n-1] | `1`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## System Deprecated Attributes
+
+Deprecated system attributes.
+
+| Attribute                 | Type   | Description                                      | Examples            | Stability                                                                                           |
+| ------------------------- | ------ | ------------------------------------------------ | ------------------- | --------------------------------------------------------------------------------------------------- |
+| `system.cpu.state`        | string | Deprecated, use `cpu.mode` instead.              | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`               |
+| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -43,14 +51,6 @@ Describes System CPU attributes
 | `steal`     | steal       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system`    | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user`      | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## System Deprecated Attributes
-
-Deprecated system attributes.
-
-| Attribute                 | Type   | Description                                      | Examples  | Stability                                                                                           |
-| ------------------------- | ------ | ------------------------------------------------ | --------- | --------------------------------------------------------------------------------------------------- |
-| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
 
 `system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
