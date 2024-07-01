@@ -61,6 +61,7 @@ body:
         - area:otel
         - area:peer
         - area:process
+        - area:profile
         - area:rpc
         - area:server
         - area:service
