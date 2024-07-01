@@ -1,0 +1,19 @@
+groups:
+  # linux.memory.* attribute group
+  - id: registry.linux.memory
+    prefix: linux.memory
+    type: attribute_group
+    brief: "Describes Linux Memory attributes"
+    attributes:
+      - id: state
+        type:
+          members:
+            - id: reclaimable
+              value: 'reclaimable'
+              stability: experimental
+            - id: unreclaimable
+              value: 'unreclaimable'
+              stability: experimental
+        stability: experimental
+        brief: "The Linux memory state"
+        examples: ["reclaimable", "unreclaimable"]
