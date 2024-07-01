@@ -15,6 +15,21 @@ groups:
         note: "Following states SHOULD be used: `user`, `system`, `kernel`"
         requirement_level: opt_in
 
+  - id: metric.container.cpu.usage
+    type: metric
+    metric_name: container.cpu.usage
+    stability: experimental
+    brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable cpus"
+    note: >
+      CPU usage of the specific container on all available CPU cores, averaged over the sample window
+    instrument: gauge
+    unit: "{cpu}"
+    attributes:
+      - ref: cpu.mode
+        brief: "The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels."
+        note: "Following states SHOULD be used: `user`, `system`, `kernel`"
+        requirement_level: opt_in
+
   # container.memory.* metrics and attribute group
   - id: metric.container.memory.usage
     type: metric
