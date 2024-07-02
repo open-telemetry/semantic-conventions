@@ -10,7 +10,7 @@ change_type: enhancement
 component: db
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add (additional) query-level metrics, and add user.id and thread.id attributes to existing duration metric
+note: Add (additional) query-level metrics, and add thread.id attributes to existing duration metric
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.

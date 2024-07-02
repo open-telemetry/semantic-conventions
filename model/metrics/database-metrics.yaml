@@ -33,9 +33,6 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
-      - ref: user.id
-        requirement_level:
-          conditionally_required: If available
       - ref: thread.id
         requirement_level:
           conditionally_required: If available
@@ -72,9 +69,6 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
-      - ref: user.id
-        requirement_level:
-          conditionally_required: If available
       - ref: thread.id
         requirement_level:
           conditionally_required: If available
@@ -111,9 +105,6 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
-      - ref: user.id
-        requirement_level:
-          conditionally_required: If available
       - ref: thread.id
         requirement_level:
           conditionally_required: If available
@@ -150,9 +141,6 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
-      - ref: user.id
-        requirement_level:
-          conditionally_required: If available
       - ref: thread.id
         requirement_level:
           conditionally_required: If available
