@@ -6,7 +6,7 @@ groups:
      This group defines the attributes for
      [Version Control Systems (VCS)](https://en.wikipedia.org/wiki/Version_control).
     attributes:
-      - id: url
+      - id: url.full
         type: string
         stability: experimental
         brief: >
@@ -18,11 +18,12 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
+          The name of the
+          [reference](https://git-scm.com/docs/gitglossary#def_ref) such as
+          **branch** or **tag** in the repository.
         examples: ['my-feature-branch', 'tag-1-test']
       - id: ref.type
         type:
-          allow_custom_values: true
           members:
             - id: branch
               value: branch

@@ -42,7 +42,6 @@ groups:
         examples: ['12097']
       - id: task.type
         type:
-          allow_custom_values: true
           members:
             - id: build
               value: build

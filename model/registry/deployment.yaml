@@ -19,7 +19,6 @@ groups:
         examples: ['1208']
       - id: status
         type:
-          allow_custom_values: true
           members:
             - id: failed
               value: failed
