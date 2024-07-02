@@ -15,4 +15,3 @@ groups:
         deprecated: Replaced by `gen_ai.usage.output_tokens` attribute.
         brief: "Deprecated, use `gen_ai.usage.output_tokens` instead."
         examples: [42]
-

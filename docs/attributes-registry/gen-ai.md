@@ -61,7 +61,7 @@ For custom model, a custom friendly name SHOULD be used. If none of these option
 
 Describes deprecated `gen_ai` attributes.
 
-| Attribute                        | Type   | Description                                           | Examples | Stability                                                                                                          |
-| -------------------------------- | ------ | ----------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
-| `gen_ai.usage.completion_tokens` | string | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens` attribute. |
-| `gen_ai.usage.prompt_tokens`     | string | Deprecated, use `gen_ai.usage.input_tokens` instead.  | `42`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens` attribute.  |
+| Attribute                        | Type | Description                                           | Examples | Stability                                                                                                          |
+| -------------------------------- | ---- | ----------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
+| `gen_ai.usage.completion_tokens` | int  | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens` attribute. |
+| `gen_ai.usage.prompt_tokens`     | int  | Deprecated, use `gen_ai.usage.input_tokens` instead.  | `42`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens` attribute.  |
