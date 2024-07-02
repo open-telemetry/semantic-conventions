@@ -156,7 +156,7 @@ groups:
       thread pool.
     note: "This metric reports the same values as calling [`ThreadPool.PendingWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.pendingworkitemcount)."
     instrument: updowncounter
-    unit: "{queue}"
+    unit: "{work_item}"
     stability: experimental
 
   - id: metric.dotnet.timer.count

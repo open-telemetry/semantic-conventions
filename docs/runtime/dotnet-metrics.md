@@ -571,7 +571,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `dotnet.thread_pool.queue.length` | UpDownCounter | `{queue}` | The number of work items that are currently queued to be processed by the thread pool. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dotnet.thread_pool.queue.length` | UpDownCounter | `{work_item}` | The number of work items that are currently queued to be processed by the thread pool. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** This metric reports the same values as calling [`ThreadPool.PendingWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.pendingworkitemcount).
