@@ -35,6 +35,8 @@ Currently, the following namespaces exist:
 - [Aspnetcore](aspnetcore.md)
 - [AWS](aws.md)
 - [Browser](browser.md)
+- [Build](build.md)
+- [Cicd](cicd.md)
 - [Client](client.md)
 - [Cloud](cloud.md)
 - [CloudEvents](cloudevents.md)
@@ -81,11 +83,13 @@ Currently, the following namespaces exist:
 - [Source](source.md)
 - [System](system.md)
 - [Telemetry](telemetry.md)
+- [Test](test.md)
 - [Thread](thread.md)
 - [TLS](tls.md)
 - [URL](url.md)
 - [User](user.md)
 - [User Agent](user-agent.md)
+- [VCS](vcs.md)
 - [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

@@ -1,0 +1,103 @@
+groups:
+  - id: registry.test.suite
+    prefix: test.suite
+    type: attribute_group
+    brief: >
+     This group describes attributes specific to
+     [software tests](https://en.wikipedia.org/wiki/Software_testing).
+    attributes:
+      - id: name
+        type: string
+        stability: experimental
+        brief: >
+          The human readable name of a [test suite](https://en.wikipedia.org/wiki/Test_suite).
+        examples: ['TestSuite1']
+      - id: run.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of a test suite run.
+        examples: ['123408']
+      - id: run.status
+        type:
+          members:
+            - id: success
+              value: success
+              brief: success
+              stability: experimental
+            - id: failure
+              value: failure
+              brief: failure
+              stability: experimental
+            - id: skipped
+              value: skipped
+              brief: skipped
+              stability: experimental
+            - id: aborted
+              value: aborted
+              brief: aborted
+              stability: experimental
+            - id: timed_out
+              value: timed_out
+              brief: timed_out
+              stability: experimental
+        stability: experimental
+        brief: >
+          The status of the test suite run.
+        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out']
+      - id: case.name
+        type: string
+        stability: experimental
+        brief: >
+          The human readable name of the [test case](https://en.wikipedia.org/wiki/Test_case).
+        examples: ['TestCase1']
+      - id: case.run.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of a test case run.
+        examples: ['123445']
+      - id: case.run.status
+        type:
+          members:
+            - id: success
+              value: success
+              brief: success
+              stability: experimental
+            - id: failure
+              value: failure
+              brief: failure
+              stability: experimental
+            - id: skipped
+              value: skipped
+              brief: skipped
+              stability: experimental
+            - id: aborted
+              value: aborted
+              brief: aborted
+              stability: experimental
+            - id: timed_out
+              value: timed_out
+              brief: timed_out
+              stability: experimental
+        stability: experimental
+        brief: >
+          The status of the test case run, where run is referring to the run of
+          the test case in the context of the pipeline, and not the actual
+          result of the case.
+        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out']
+      - id: case.result.status
+        type:
+          members:
+            - id: pass
+              value: pass
+              brief: pass
+              stability: experimental
+            - id: fail
+              value: fail
+              brief: fail
+              stability: experimental
+        stability: experimental
+        brief: >
+          The status of the test case result from test execution.
+        examples: ['pass', 'fail']
