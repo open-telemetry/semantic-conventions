@@ -1,4 +1,4 @@
 change_type: enhancement
 component: gen_ai
-note: Convert `gen_ai.operation.name`to enum and use it on spans
+note: Convert `gen_ai.operation.name` to enum and use it on spans
 issues: [ 1202 ]
