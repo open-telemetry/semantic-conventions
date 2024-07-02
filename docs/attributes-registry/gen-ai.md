@@ -6,6 +6,9 @@
 
 # Gen AI
 
+- [Gen Ai](#gen-ai-attributes)
+- [Gen Ai Deprecated](#gen-ai-deprecated-attributes)
+
 ## Gen AI Attributes
 
 This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
@@ -28,8 +31,8 @@ This document defines the attributes used to describe telemetry in the context o
 | `gen_ai.response.model`            | string   | The name of the model that generated the response.                                               | `gpt-4-0613`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.system`                    | string   | The Generative AI product as identified by the client or server instrumentation. [3]             | `openai`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.token.type`                | string   | The type of token being counted.                                                                 | `input`; `output`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.usage.completion_tokens`   | int      | The number of tokens used in the GenAI response (completion).                                    | `180`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.usage.prompt_tokens`       | int      | The number of tokens used in the GenAI input or prompt.                                          | `100`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.usage.input_tokens`        | int      | The number of tokens used in the GenAI input or prompt.                                          | `100`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.usage.output_tokens`       | int      | The number of tokens used in the GenAI response (completion).                                    | `180`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 
@@ -53,3 +56,12 @@ For custom model, a custom friendly name SHOULD be used. If none of these option
 | -------- | ------------------------------------------ | ---------------------------------------------------------------- |
 | `input`  | Input tokens (prompt, input, etc.)         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Gen AI Deprecated Attributes
+
+Describes deprecated `gen_ai` attributes.
+
+| Attribute                        | Type   | Description                                           | Examples | Stability                                                                                                          |
+| -------------------------------- | ------ | ----------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
+| `gen_ai.usage.completion_tokens` | string | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens` attribute. |
+| `gen_ai.usage.prompt_tokens`     | string | Deprecated, use `gen_ai.usage.input_tokens` instead.  | `42`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens` attribute.  |
