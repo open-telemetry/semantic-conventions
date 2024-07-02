@@ -20,8 +20,11 @@ A request to an Generative AI is modeled as a span in a trace.
 
 **Span kind:** MUST always be `CLIENT`.
 
-The **span name** SHOULD be set to a low cardinality value describing an operation made to an Generative AI system.
-For example, the API name such as [Create chat completion](https://platform.openai.com/docs/api-reference/chat/create) could be represented as `completion gpt-4` to include the API and the model name.
+## Name
+
+GenAI spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#span).
+The **span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
+Semantic conventions for individual GenAI systems MAY specify different span name format.
 
 ## Configuration
 
