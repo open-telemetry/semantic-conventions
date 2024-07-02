@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen-ai
+note: Adding `gen_ai.request.top_k`, `gen_ai.request.presence_penalty`,  `gen_ai.request.frequency_penalty` and `gen_ai.request.stop_sequences` attributes.
+issues: [839]

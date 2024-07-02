@@ -1,0 +1,4 @@
+change_type: enhancement
+component: messaging
+note: Clarify how per-message attributes should be recorded for batch operations.
+issues: [ 1168 ]

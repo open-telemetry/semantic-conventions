@@ -10,6 +10,7 @@ acronyms:
   - iOS
   - AWS
   - CloudEvents
+  - CPU
   - CosmosDB
   - DynamoDB
   - ECS
@@ -19,6 +20,7 @@ acronyms:
   - GCE
   - HTTP
   - JVM
+  - NodeJS
   - OCI
   - OTel
   - OpenTracing

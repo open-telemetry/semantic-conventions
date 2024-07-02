@@ -15,3 +15,5 @@ groups:
         requirement_level:
           conditionally_required: If available.
       - ref: server.port
+      - ref: messaging.operation.name
+        requirement_level: required

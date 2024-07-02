@@ -2,6 +2,15 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/815
+        - rename_attributes:
+            attribute_map:
+              messaging.kafka.consumer.group: messaging.consumer.group.name
+              messaging.rocketmq.client_group: messaging.consumer.group.name
+              messaging.evenhubs.consumer.group: messaging.consumer.group.name
+              message.servicebus.destination.subscription_name: messaging.destination.subscription.name
     spans:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1002
@@ -10,6 +19,7 @@ versions:
               db.elasticsearch.cluster.name: db.namespace
     metrics:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1125
         - rename_attributes:
             attribute_map:
               db.client.connections.state: db.client.connection.state
@@ -28,6 +38,21 @@ versions:
               - db.client.connection.create_time
               - db.client.connection.wait_time
               - db.client.connection.use_time
+        # https://github.com/open-telemetry/semantic-conventions/pull/1006
+        - rename_metrics:
+            messaging.publish.messages: messaging.client.published.messages
+        # https://github.com/open-telemetry/semantic-conventions/pull/1026
+        - rename_attributes:
+            attribute_map:
+              system.cpu.state: cpu.mode
+              process.cpu.state: cpu.mode
+              container.cpu.state: cpu.mode
+            apply_to_metrics:
+              - system.cpu.time
+              - system.cpu.utilization
+              - process.cpu.time
+              - process.cpu.utilization
+              - container.cpu.time
   1.26.0:
     metrics:
       changes:

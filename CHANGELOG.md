@@ -26,7 +26,7 @@
 - `device.app.lifecycle`: Reformat and update the `device.app.lifecycle` event description adds constraints for the possible values of the `android.state` and `ios.state`.
  (#794)
   Removes the `ios.lifecycle.events` and `android.lifecycle.events` attributes from the global registry and adds constraints for the possible values of the `android.state` and `ios.state` attributes.
-  
+
 - `messaging`: Rename `messaging.client_id` to `messaging.client.id` (#935)
 - `rpc`: Rename`message.*` attributes under `rpc` to `rpc.message.*`. Deprecate old `message.*` attributes. (#854)
 
@@ -51,7 +51,7 @@
   The entirety of the registry now is generated using weaver with templates
   under the `templates/` directory.  Snippets still require a hardcoded
   command.
-  
+
 - `http`: List all HTTP client and server attributes in the corresponding table, remove common attributes from yaml and markdown. (#928)
 - `other`: Document patterns and suggestions for semconv code generation. (#551, #953)
 - `db`: Show applicable common attributes in individual database semantic conventions. (#973)
@@ -71,14 +71,6 @@
   These attributes were deprecated in 1.13
 - `net`: Add previously deprecated net attributes to registry (#1029)
   These attributes were deprecated in 1.13
-
-## Unreleased
-
-### Breaking
-
-### Features
-
-### Fixes
 
 ## v1.25.0
 
