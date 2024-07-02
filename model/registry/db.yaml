@@ -54,16 +54,22 @@ groups:
         brief: >
           The database query being executed.
         note: >
+          For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+
           For batch operations, if the individual operations are known to have the same query text
           then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated
           with separator `; ` or some other database system specific separator if more applicable.
+
+          Even though parameterized query text can potentially have sensitive data, by using a parameterized query
+          the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
+          to observability of capturing the static part of the query text by default outweighs the risk.
         examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
       - id: query.parameter
         type: template[string]
         stability: experimental
         brief: >
-          The query parameters used in `db.query.text`, with `<key>` being the parameter name,
-          and the attribute value being the parameter value.
+          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
+          and the attribute value being a string representation of the parameter value.
         note: >
           Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 
@@ -97,7 +103,12 @@ groups:
               stability: experimental
             - id: cache
               value: 'cache'
-              brief: 'InterSystems Caché'
+              deprecated: "Replaced by `intersystems_cache`."
+              brief: "Deprecated, use `intersystems_cache` instead."
+              stability: experimental
+            - id: intersystems_cache
+              value: 'intersystems_cache'
+              brief: "InterSystems Caché"
               stability: experimental
             - id: cassandra
               value: 'cassandra'
@@ -109,7 +120,8 @@ groups:
               stability: experimental
             - id: cloudscape
               value: 'cloudscape'
-              brief: 'Cloudscape'
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
               stability: experimental
             - id: cockroachdb
               value: 'cockroachdb'
@@ -117,7 +129,8 @@ groups:
               stability: experimental
             - id: coldfusion
               value: 'coldfusion'
-              brief: 'ColdFusion IMQ'
+              deprecated: "Removed."
+              brief: "Deprecated, no replacement at this time."
               stability: experimental
             - id: cosmosdb
               value: 'cosmosdb'
@@ -161,7 +174,8 @@ groups:
               stability: experimental
             - id: firstsql
               value: 'firstsql'
-              brief: 'FirstSQL'
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
               stability: experimental
             - id: geode
               value: 'geode'
@@ -229,7 +243,8 @@ groups:
               stability: experimental
             - id: mssqlcompact
               value: 'mssqlcompact'
-              brief: 'Microsoft SQL Server Compact'
+              deprecated: "Removed, use `other_sql` instead."
+              brief: "Deprecated, Microsoft SQL Server Compact is discontinued."
               stability: experimental
             - id: mysql
               value: 'mysql'
@@ -300,7 +315,7 @@ groups:
               brief: 'Vertica'
               stability: experimental
         stability: experimental
-      - id: client.connections.state
+      - id: client.connection.state
         stability: experimental
         type:
           allow_custom_values: true
@@ -313,7 +328,7 @@ groups:
               stability: experimental
         brief: "The state of a connection in the pool"
         examples: ["idle"]
-      - id: client.connections.pool.name
+      - id: client.connection.pool.name
         type: string
         stability: experimental
         brief: >
@@ -497,12 +512,6 @@ groups:
     brief: >
       This group defines attributes for Elasticsearch.
     attributes:
-      - id: elasticsearch.cluster.name
-        type: string
-        stability: experimental
-        brief: >
-          Represents the identifier of an Elasticsearch cluster.
-        examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
       - id: elasticsearch.node.name
         type: string
         stability: experimental

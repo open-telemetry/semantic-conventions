@@ -7,7 +7,7 @@
 # Process
 
 - [Process](#process-attributes)
-- [Process Cpu](#process-cpu-attributes)
+- [Process Deprecated](#process-deprecated-attributes)
 
 ## Process Attributes
 
@@ -16,7 +16,7 @@ An operating system process.
 | Attribute                     | Type     | Description                                                                                                                                                                                                                                                                                                                                                 | Examples                                            | Stability                                                        |
 | ----------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------- |
 | `process.command`             | string   | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`.                                                                                                                            | `cmd/otelcol`                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `process.command_args`        | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `cmd/otecol`; `--config=config.yaml`                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.command_args`        | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.command_line`        | string   | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead.                                                                                                | `C:\cmd\otecol --config="my directory\config.yaml"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.context_switch_type` | string   | Specifies whether the context switches for this data point were voluntary or involuntary.                                                                                                                                                                                                                                                                   | `voluntary`; `involuntary`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.creation.time`       | string   | The date and time the process was created, in ISO 8601 format.                                                                                                                                                                                                                                                                                              | `2023-11-21T09:25:34.853Z`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -58,13 +58,13 @@ An operating system process.
 | `major` | major       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | minor       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Process Cpu Attributes
+## Process Deprecated Attributes
 
-Attributes for process CPU
+Deprecated process attributes.
 
-| Attribute           | Type   | Description                   | Examples                 | Stability                                                        |
-| ------------------- | ------ | ----------------------------- | ------------------------ | ---------------------------------------------------------------- |
-| `process.cpu.state` | string | The CPU state of the process. | `system`; `user`; `wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute           | Type   | Description                         | Examples                 | Stability                                                                             |
+| ------------------- | ------ | ----------------------------------- | ------------------------ | ------------------------------------------------------------------------------------- |
+| `process.cpu.state` | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode` |
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
