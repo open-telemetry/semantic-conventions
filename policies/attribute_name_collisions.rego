@@ -2,8 +2,8 @@ package after_resolution
 
 # TODO: https://github.com/open-telemetry/semantic-conventions/issues/1118
 # we need to specify exclusions in the schema
-excluded_const_collisions := {"messaging.client_id"}
-excluded_namespace_collisions := {"messaging.operation", "db.operation"}
+excluded_const_collisions := {}
+excluded_namespace_collisions := {}
 
 deny[attr_registry_collision(description, attr.name)] {
     attr := attr_names_except(excluded_const_collisions)[_]
