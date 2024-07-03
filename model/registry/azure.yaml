@@ -11,9 +11,10 @@ groups:
         brief: "The unique reference string that identifies a request"
         examples:
           - "00000000-0000-0000-0000-000000000000"
-  - id: registry.azure.logs
-    prefix: az.log
+  - id: az.log
+    stability: experimental
     type: event
+    name: az.log
     brief: >
       This document defines generic attributes for Azure Logs, see [Azure Log Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema) for more details.
     attributes:
