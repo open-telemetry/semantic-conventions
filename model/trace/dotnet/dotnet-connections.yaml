@@ -1,23 +1,28 @@
 groups:
-  - id: dotnet.http.connection
+  - id: dotnet.http.request.wait_for_connection
     type: span
     stability: development
-    span_kind: client
-    brief: 'The span is emitted by .NET runtime and describes the lifetime of the HTTP connection.'
+    span_kind: internal
+    brief: 'The span is emitted by .NET runtime and describes the time it takes for HTTP request to obtain a connection to run on.'
     note: |
-      HTTP connection duration is also reported by
-      [`http.client.connection.duration` metric](/dotnet/dotnet-http-metrics.md#metric-httpclientconnectionduration).
+      The span is reported only if there are no connections that are readily available to perform the request.
+      The span ends when the connection is obtained - it could happen if an existing connection became available or
+      a new connection was established, so the time wait-for-connection span tracks is different than `dotnet.http.connection_setup`.
 
-      `Activity.OperationName`: `System.Net.Http.Connections.Connection`
-      `ActivitySource` name: `System.Net.Http.Connections`
+      The time it takes to get a connection from the pool is also reported by the
+      [`http.client.request.time_in_queue` metric](/docs/dotnet/dotnet-http-metrics.md#metric-httpclientrequesttime_in_queue).
+
+      `Activity.OperationName`: `System.Net.Http.WaitForConnection`
+      `ActivitySource` name: `"System.Net.Http` # TODO - should it be different from HTTP requests so that users can opt-in independently?
       Added in: .NET Core 9
     attributes:
+      - ref: http.request.method
       - ref: network.protocol.version
-      - ref: network.peer.address
       - ref: server.address
       - ref: server.port
-      - ref: error.type
       - ref: url.scheme
+      - ref: error.type
+        examples: ["System.OperationCanceledException"]
 
   - id: dotnet.http.connection_setup
     type: span

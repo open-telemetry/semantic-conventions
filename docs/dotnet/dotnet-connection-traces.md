@@ -1,51 +1,63 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: HTTP client and server
+linkTitle: HTTP request and connection spans
 --->
 
-# Semantic Conventions for HTTP client connection spans emitted by .NET
+# Semantic Conventions for HTTP client spans emitted by .NET
 
 **Status**: [Experimental][DocumentStatus]
 
-This article defines semantic conventions for HTTP client connections, DNS and TLS spans emitted by .NET.
+This article defines semantic conventions for HTTP client, DNS and TLS spans emitted by .NET.
 
 <!-- toc -->
 
-* [HTTP client connection](#http-connection)
-* [HTTP connection setup](#http-connection-setup)
-* [Socket connection setup](#socket-connection-setup)
-* [DNS](#dns)
-* [TLS](#tls)
-* [Examples](#examples)
+- [HTTP Request: wait for connection](#http-request-wait-for-connection)
+- [HTTP connection setup](#http-connection-setup)
+- [Socket connection setup](#socket-connection-setup)
+- [DNS](#dns)
+- [TLS](#tls)
+- [Examples](#examples)
+  - [HTTP request was performed on a connection that was immediately available](#http-request-was-performed-on-a-connection-that-was-immediately-available)
+  - [HTTP request that has to wait for existing connection to become available](#http-request-that-has-to-wait-for-existing-connection-to-become-available)
+  - [HTTP request has to wait for connection setup](#http-request-has-to-wait-for-connection-setup)
+  - [HTTP request has to wait for connection setup and other requests on that connection to complete](#http-request-has-to-wait-for-connection-setup-and-other-requests-on-that-connection-to-complete)
 
 <!-- tocstop -->
 
-## Overview
+.NET `HttpClient` reports HTTP client spans according to [HTTP Semantic Conventions](/docs/http/http-spans.md#http-client).
 
-.NET reports spans related to HTTP connection establishment and its stages starting from .NET 9.
-Application developers are encouraged to enable corresponding instrumentation in development and test environments.
+TODO: we might need to describe some .NET specifics. Leaving it out for now.
 
-Enabling connection-level details in production may result in increased telemetry volume and reduced performance.
+In addition to HTTP request spans, `HttpClient` reports spans describing HTTP connection establishment and its stages.
 
 While such spans represent low-level details, connection lifetime is usually measured in minutes, therefore in common case
-when application is under the load and connections are not established for every request, the rate of connection-related spans
-is expected to be much lower than the rate of HTTP client spans.
+when application is under the load, the rate of connection-related spans is expected to be much lower than the rate of HTTP client spans.
 
-## HTTP client connection
+Application developers are encouraged to enable corresponding instrumentation in development or test environments. Using connection-level
+instrumentation in production should be done with caution as it increases the volume of reported telemetry and has performance overhead that
+depends on the application.
 
-HTTP connection span describes the lifetime of the HTTP connection. TODO - after it's created or from the initiation time?
-HTTP connection duration is also reported as [`http.client.connection.duration` metric](/dotnet/dotnet-http-metrics.md#metric-httpclientconnectionduration).
+## HTTP Request: wait for connection
 
-Client HTTP request spans SHOULD have links to this connection span (when it is reported).
+The span describes the time it takes for the HTTP request to obtain a connection from the connection pool.
+The span is reported only if there is no connection that's readily available. It's reported as a child of HTTP client span.
 
-Span name SHOULD be `http connection {address}:{server.port}`.
-The `{address}` SHOULD be `server.address` when it's available and `network.peer.address` otherwise.
+The span ends when the connection is obtained - it could happen when an existing connection becomes available or once
+a new connection is established, so the time wait-for-connection span tracks is different than one describing [*HTTP connection setup*](#http-connection-setup).
 
-Span kind SHOULD be `CLIENT`
+If a new connection was created to serve the request and the corresponding [*HTTP connection setup*](#http-connection-setup) was reported, the instrumentation adds the
+link to the *HTTP connection setup* on the *Wait for connection* span.
 
-Corresponding `Activity.OperationName` is `System.Net.Http.Connections.Connection`, `ActivitySource` name - `System.Net.Http.Connections`.
+Span name SHOULD be `wait_for_connection {server.address}:{server.port}`.
+
+Span kind SHOULD be `INTERNAL`
+
+Corresponding `Activity.OperationName` is `System.Net.Http.TODO.`, `ActivitySource` name - `System.Net.Http.TODO`.
 Span added in .NET Core 9.
 
-<!-- semconv dotnet.http.connection -->
+The time it takes to get a connection from the pool is also reported by the
+[`http.client.request.time_in_queue` metric](/docs/dotnet/dotnet-http-metrics.md#metric-httpclientrequesttime_in_queue).
+
+<!-- semconv dotnet.http.request.wait_for_connection -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -54,26 +66,30 @@ Span added in .NET Core 9.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-The span is emitted by .NET runtime and describes the lifetime of the HTTP connection.
+The span is emitted by .NET runtime and describes the time it takes for HTTP request to obtain a connection to run on.
 
-HTTP connection duration is also reported by
-[`http.client.connection.duration` metric](/dotnet/dotnet-http-metrics.md#metric-httpclientconnectionduration).
+The span is reported only if there are no connections that are readily available to perform the request.
+The span ends when the connection is obtained - it could happen if an existing connection became available or
+a new connection was established, so the time wait-for-connection span tracks is different than `dotnet.http.connection_setup`.
 
-`Activity.OperationName`: `System.Net.Http.Connections.Connection`
-`ActivitySource` name: `System.Net.Http.Connections`
+The time it takes to get a connection from the pool is also reported by the
+[`http.client.request.time_in_queue` metric](/docs/dotnet/dotnet-http-metrics.md#metric-httpclientrequesttime_in_queue).
+
+`Activity.OperationName`: `System.Net.Http.WaitForConnection`
+`ActivitySource` name: `"System.Net.Http` # TODO - should it be different from HTTP requests so that users can opt-in independently?
 Added in: .NET Core 9
 
-**Span kind** SHOULD be `CLIENT`.
+**Span kind** SHOULD be `INTERNAL`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `System.OperationCanceledException` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -96,11 +112,26 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[2] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-**[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+
+HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+**[3] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+
+**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -109,6 +140,23 @@ it's RECOMMENDED to:
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `CONNECT` | CONNECT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `DELETE` | DELETE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `GET` | GET method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `HEAD` | HEAD method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `OPTIONS` | OPTIONS method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -120,11 +168,8 @@ it's RECOMMENDED to:
 The span describes the establishment of the HTTP connection. It includes the time it takes
 to resolve the DNS, establish the socket connection, and perform the TLS handshake.
 
-It's different from `dotnet.http.connection` span, which describes the lifetime of the HTTP connection.
 
-Client HTTP request spans SHOULD have links to this connection span (when it is reported).
-
-Span name SHOULD be `http connection_setup {address}:{server.port}`.
+Span name SHOULD be `HTTP connection_setup {address}:{server.port}`.
 The `{address}` SHOULD be `server.address` when it's available and `network.peer.address` otherwise.
 
 Span kind SHOULD be `CLIENT`.
@@ -203,7 +248,9 @@ it's RECOMMENDED to:
 ## Socket connection setup
 
 The span describes the establishment of the socket connection.
-It's different from `dotnet.http.connection_setup` span, which covers the DNS and TLS handshake duration in addition to socket connection setup.
+It's different from [*HTTP connection setup*](#http-connection-setup) span, which covers the DNS and TLS handshake duration in addition to socket connection setup.
+
+When *Socket connection setup* span is reported along with *HTTP connection setup* span, the socket span becomes a child of HTTP connection setup.
 
 Span name SHOULD be `socket connection_setup {network.peer.address}:{network.peer.port}`.
 Span kind SHOULD be `CLIENT`.
@@ -308,6 +355,9 @@ The span describes DNS lookup duration and outcome.
 
 DNS lookup duration is also reported by [`dns.lookup.duration` metric](/docs/dotnet/dotnet-dns-metrics.md#metric-dnslookupduration).
 
+When *DNS* span is reported along with *HTTP connection setup* and *Socket connection setup* span, the *DNS* span becomes a child of *HTTP connection setup*
+and a sibling of *Socket connection setup*.
+
 Span name SHOULD be `DNS {dns.question.name}`.
 Span kind SHOULD be `CLIENT`
 
@@ -384,6 +434,9 @@ The span describes TLS handshake.
 Span name SHOULD be `TLS {dns.question.name}`. // TODO - decide on TLS!
 Span kind SHOULD be `CLIENT`
 
+When *TLS* span is reported along with *HTTP connection setup* and *Socket connection setup* span, the *DNS* span becomes a child of *HTTP connection setup*
+and a sibling of *Socket connection setup*.
+
 Corresponding `Activity.OperationName` is `System.Net.Security.TlsHandshake`, `ActivitySource` name - `System.Net.Security`.
 Added in .NET Core 9.
 
@@ -456,5 +509,62 @@ it's RECOMMENDED to:
 <!-- endsemconv -->
 
 ## Examples
+
+### HTTP request was performed on a connection that was immediately available
+
+If connection is immediately available for the request, `HttpClient` creates one span for HTTP request.
+
+```
+<------------------ GET / (CLIENT, trace=t1, span=s1) --------------------------->
+```
+
+### HTTP request that has to wait for existing connection to become available
+
+If connection was not immediately available for the request, `HttpClient` creates span for HTTP request and
+*Wait for connection* span. In this example, the existing connection became available, so no additional spans
+related to connection setup were reported.
+
+```
+<------------------ GET / (CLIENT, trace=t1, span=s1) --------------------------->
+<-- wait_for_connection host:port (INTERNAL, trace=t1, span=s2) -->
+```
+
+### HTTP request has to wait for connection setup
+
+If connection was not immediately available for the request, `HttpClient` creates span for HTTP request and
+*Wait for connection* span. In this example, a new connection was created and the request was executed on it immediately after
+connection was created. There was no cached DNS record for the host.
+
+```
+<----------------------- GET / (trace=t1, span=s1) -------------------------------->
+<-- wait_for_connection (trace=t1, span=s2, link_to=t2,s3) -->
+
+
+<--------- HTTP connection_setup (trace=t2, span=s3) -------->
+<--- DNS --->
+             <---- socket connection_setup ---->
+                                                <--- TLS --->
+```
+
+### HTTP request has to wait for connection setup and other requests on that connection to complete
+
+If connection was not immediately available for the request, `HttpClient` creates span for HTTP request and
+*Wait for connection* span. In this example, request was performed on a new connection, but before this connection
+became available for this request, other requests were performed on it.
+
+```
+                <--------------------- GET / (trace=t1, span=s1) ------------------------------>
+                <---- wait_for_connection (trace=t1, span=s2, link_to=t2,s3) ---->
+
+
+<--- HTTP connection_setup - (trace=t2, span=s3) --->
+<-- DNS -->
+           <-- socket connection_setup -->
+                                          <-- TLS -->
+```
+
+The *HTTP connection_setup* has started before this request, it also ended much earlier than
+*Wait for connection* span, indicating that there is a queue of requests and high demand for
+connections in the pool.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
