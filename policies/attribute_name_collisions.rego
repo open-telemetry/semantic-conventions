@@ -15,15 +15,14 @@ deny[attr_registry_collision(description, name)] {
     name := names[_]
 
     collisions:= { n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(name))}
-    count(collisions) > 1
+    count(collisions) > 0
 
     description := sprintf("Attribute '%s' is used as a namespace in attributes %s", [name, collisions])
 }
 
-
-attr_registry_collision(violation_id, attr_name) = violation {
+attr_registry_collision(description, attr_name) = violation {
     violation := {
-        "id": violation_id,
+        "id": description,
         "type": "semconv_attribute",
         "category": "",
         "attr": attr_name,
