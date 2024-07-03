@@ -93,7 +93,7 @@ groups:
       - id: usage.input_tokens
         stability: experimental
         type: int
-        brief: The number of tokens used in the GenAI input or prompt.
+        brief: The number of tokens used in the GenAI input (prompt).
         examples: [100]
       - id: usage.output_tokens
         stability: experimental
