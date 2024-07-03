@@ -90,9 +90,11 @@ groups:
         brief: >
           The username of the user that owns the process.
         examples: ['root']
-      - id: user.id
-        type: int
-        stability: experimental
+      - ref: user.id
+        prefix: true
+#      - id: user.id
+#        type: int
+#        stability: experimental
         brief: >
           The effective user ID (EUID) of the process.
         examples: [1001]
