@@ -43,5 +43,5 @@ attr_names_except(excluded) = names {
     names := {n | n := input.groups[_].attributes[_].name} - excluded
 }
 
-excluded_const_collisions := {"messaging.client_id"}
-excluded_namespace_collisions := {"messaging.operation", "db.operation"}
+excluded_const_collisions := {"m1essaging.client_id"}
+excluded_namespace_collisions := {"m1essaging.operation", "db.operation"}
