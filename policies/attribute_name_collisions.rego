@@ -5,7 +5,7 @@ package after_resolution
 excluded_const_collisions := {"messaging.client_id"}
 excluded_namespace_collisions := {"messaging.operation", "db.operation"}
 
-deny[attr_registry_collision(description, "", attr.name)] {
+deny[attr_registry_collision(description, attr.name)] {
     attr := attr_names_except(excluded_const_collisions)[_]
     const_name := to_const_name(attr.name)
 
@@ -15,7 +15,7 @@ deny[attr_registry_collision(description, "", attr.name)] {
 	description := sprintf("Attribute '%s' has the same constant name '%s' as %s", [attr.name, const_name, collisions])
 }
 
-deny[attr_registry_collision(description, "", attr.name)] {
+deny[attr_registry_collision(description, attr.name)] {
     attr := attr_names_except(excluded_namespace_collisions)[_]
 
 	collisions:= [ n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(attr.name))]
@@ -24,13 +24,13 @@ deny[attr_registry_collision(description, "", attr.name)] {
 	description := sprintf("Attribute '%s' is used as a namespace in attributes %s", [attr.name, collisions])
 }
 
-attr_registry_collision(violation_id, group_id, attr_name) = violation {
+attr_registry_collision(violation_id, attr_name) = violation {
 	violation := {
 		"id": violation_id,
 		"type": "semconv_attribute",
 		"category": "",
 		"attr": attr_name,
-		"group": group_id,
+		"group": "",
 	}
 }
 
