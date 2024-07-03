@@ -1,28 +1,25 @@
 package after_resolution
 
-# TODO: https://github.com/open-telemetry/semantic-conventions/issues/1118
-# we need to specify exclusions in the schema
-excluded_const_collisions := {}
-excluded_namespace_collisions := {}
-
-deny[attr_registry_collision(description, attr.name)] {
-    attr := attr_names_except(excluded_const_collisions)[_]
-    const_name := to_const_name(attr.name)
-
-    collisions:= [ n | n := attr_names_except(excluded_const_collisions)[_]; n != attr.name; to_const_name(n) == const_name]
+deny[attr_registry_collision(description, name)] {
+    names := attr_names_except(excluded_const_collisions)
+    name := names[_]
+    const_name := to_const_name(name)
+    collisions:= [ n | n := attr_names_except(excluded_const_collisions)[_]; n != name; to_const_name(n) == const_name]
     count(collisions) > 0
 
-    description := sprintf("Attribute '%s' has the same constant name '%s' as %s", [attr.name, const_name, collisions])
+    description := sprintf("Attribute '%s' has the same constant name '%s' as %s", [name, const_name, collisions])
 }
 
-deny[attr_registry_collision(description, attr.name)] {
-    attr := attr_names_except(excluded_namespace_collisions)[_]
+deny[attr_registry_collision(description, name)] {
+    names := attr_names_except(excluded_namespace_collisions)
+    name := names[_]
 
-    collisions:= [ n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(attr.name))]
+    collisions:= [ n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(name))]
     count(collisions) > 1
 
-    description := sprintf("Attribute '%s' is used as a namespace in attributes %s", [attr.name, collisions])
+    description := sprintf("Attribute '%s' is used as a namespace in attributes %s", [name, collisions])
 }
+
 
 attr_registry_collision(violation_id, attr_name) = violation {
     violation := {
@@ -45,3 +42,6 @@ to_const_name(name) = const_name {
 attr_names_except(excluded) = names {
     names := {n | n := input.groups[_].attributes[_].name} - excluded
 }
+
+excluded_const_collisions := {"messaging.client_id"}
+excluded_namespace_collisions := {"messaging.operation", "db.operation"}
