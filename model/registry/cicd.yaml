@@ -40,6 +40,13 @@ groups:
         brief: >
           The unique identifier of a task run within a pipeline.
         examples: ['12097']
+      - id: task.run.url.full
+        type: string
+        stability: experimental
+        brief: >
+          The [URL](https://en.wikipedia.org/wiki/URL) of the pipeline run
+          providing the complete address in order to locate and identify the pipeline.
+        examples: ['https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075']
       - id: task.type
         type:
           members:
@@ -59,17 +66,3 @@ groups:
         brief: >
           The type of the task within a pipeline.
         examples: ['build', 'test', 'deploy']
-      # TODO: May change name to type and make it a well known enum.
-      # Need definition of a runner linked.
-      - id: task.runner.name
-        type: string
-        stability: experimental
-        brief: >
-          The human readable name of the runner executing the step within a pipeline.
-        examples: ['ubuntu-runner-latest']
-      - id: task.runner.id
-        type: string
-        stability: experimental
-        brief: >
-          The id of the runner executing the step within a pipeline.
-        examples: ['1289']
