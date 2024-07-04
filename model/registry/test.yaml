@@ -41,10 +41,14 @@ groups:
               value: timed_out
               brief: timed_out
               stability: experimental
+            - id: in_progress
+              value: in_progress
+              brief: in_progress
+              stability: experimental
         stability: experimental
         brief: >
           The status of the test suite run.
-        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out']
+        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out', 'in_progress']
       - id: case.name
         type: string
         stability: experimental
@@ -80,12 +84,16 @@ groups:
               value: timed_out
               brief: timed_out
               stability: experimental
+            - id: in_progress
+              value: in_progress
+              brief: in_progress
+              stability: experimental
         stability: experimental
         brief: >
           The status of the test case run, where run is referring to the run of
           the test case in the context of the pipeline, and not the actual
           result of the case.
-        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out']
+        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out', 'in_progress']
       - id: case.result.status
         type:
           members:
@@ -99,5 +107,5 @@ groups:
               stability: experimental
         stability: experimental
         brief: >
-          The status of the test case result from test execution.
+          The status of the actual test case result from test execution.
         examples: ['pass', 'fail']
