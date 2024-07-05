@@ -146,4 +146,3 @@ groups:
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
           conventions for specific GenAI system and use system-specific name in the instrumentation.
           If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
-        examples: ['chat', 'completions']

@@ -49,7 +49,7 @@ These attributes track input data and metadata for a request to an GenAI model. 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `completions` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [2] | `gpt-4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [3] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.frequency_penalty`](/docs/attributes-registry/gen-ai.md) | double | The frequency penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
