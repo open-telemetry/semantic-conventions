@@ -25,7 +25,7 @@ A request to an Generative AI is modeled as a span in a trace.
 
 GenAI spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#span).
 The **span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
-Semantic conventions for individual GenAI systems MAY specify different span name format.
+Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
 ## Configuration
 
@@ -69,8 +69,15 @@ These attributes track input data and metadata for a request to an GenAI model. 
 
 **[2]:** The name of the GenAI model a request is being made to. If the model is supplied by a vendor, then the value must be the exact name of the model requested. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[3]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
-For custom model, a custom friendly name SHOULD be used. If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+**[3]:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+
+The actual GenAI product may differ from the one identified by the client.
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+is set to `openai` based on the instrumentation's best knowledge.
+
+For custom model, a custom friendly name SHOULD be used.
+If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **[4]:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
@@ -81,7 +88,7 @@ For custom model, a custom friendly name SHOULD be used. If none of these option
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `completions` | Legacy completions operation such as [OpenAI Completions API](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

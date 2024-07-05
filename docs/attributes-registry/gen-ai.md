@@ -40,15 +40,22 @@ This document defines the attributes used to describe telemetry in the context o
 
 **[3]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 
-**[4]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
-For custom model, a custom friendly name SHOULD be used. If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+**[4]:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+
+The actual GenAI product may differ from the one identified by the client.
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+is set to `openai` based on the instrumentation's best knowledge.
+
+For custom model, a custom friendly name SHOULD be used.
+If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 `gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value         | Description                                                                                                               | Stability                                                        |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `chat`        | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `completions` | Legacy completions operation such as [OpenAI Completions API](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value             | Description                                                                                                                      | Stability                                                        |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `chat`            | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

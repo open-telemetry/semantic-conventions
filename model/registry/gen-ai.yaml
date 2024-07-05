@@ -26,7 +26,10 @@ groups:
               value: "cohere"
               brief: 'Cohere'
         brief: The Generative AI product as identified by the client or server instrumentation.
-        note: >
+        note: |
+          The `gen_ai.system` describes a family of GenAI models with specific model identified
+          by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+
           The actual GenAI product may differ from the one identified by the client.
           For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
           is set to `openai` based on the instrumentation's best knowledge.
@@ -134,9 +137,9 @@ groups:
               value: "chat"
               brief: 'Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)'
               stability: experimental
-            - id: completions
-              value: "completions"
-              brief: 'Legacy completions operation such as [OpenAI Completions API](https://platform.openai.com/docs/api-reference/completions)'
+            - id: text_completion
+              value: "text_completion"
+              brief: 'Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)'
               stability: experimental
         brief: The name of the operation being performed.
         note: >
