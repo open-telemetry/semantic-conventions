@@ -90,12 +90,12 @@ groups:
         type: string[]
         brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
         examples: ['stop']
-      - id: usage.prompt_tokens
+      - id: usage.input_tokens
         stability: experimental
         type: int
-        brief: The number of tokens used in the GenAI input or prompt.
+        brief: The number of tokens used in the GenAI input (prompt).
         examples: [100]
-      - id: usage.completion_tokens
+      - id: usage.output_tokens
         stability: experimental
         type: int
         brief: The number of tokens used in the GenAI response (completion).
