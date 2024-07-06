@@ -1,0 +1,121 @@
+groups:
+  - id: dotnet.http.request.wait_for_connection
+    type: span
+    stability: development
+    span_kind: internal
+    brief: 'The span describes the time it takes for HTTP request to obtain a connection to run on.'
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        brief: The full name of exception type.
+        note: ""
+        examples: ["System.OperationCanceledException"]
+
+  - id: dotnet.http.connection_setup
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      The span describes the establishment of the HTTP connection. It includes
+      the time it takes to resolve the DNS, establish the socket connection, and perform the TLS handshake.
+    attributes:
+      - ref: network.protocol.version
+      - ref: network.peer.address
+      - ref: server.address
+      - ref: server.port
+      - ref: error.type
+        brief: The full name of exception type.
+        note: ""
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ["System.OperationCanceledException", "System.Net.Sockets.SocketException"]
+      - ref: url.scheme
+
+  - id: dotnet.socket.connect
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      The span describes the establishment of the socket connection.
+    attributes:
+      - ref: network.peer.port
+      - ref: network.peer.address
+      - ref: network.transport
+      - ref: network.type
+      - ref: error.type
+        brief: "Socket error code."
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: |
+          The following errors codes are reported:
+
+          - `network_down`
+          - `address_already_in_use`
+          - `interrupted`
+          - `in_progress`
+          - `already_in_progress`
+          - `address_not_available`
+          - `address_family_not_supported`
+          - `connection_refused`
+          - `fault`
+          - `invalid_argument`
+          - `is_connected`
+          - `network_unreachable`
+          - `host_unreachable`
+          - `no_buffer_space_available`
+          - `timed_out`
+          - `access_denied`
+          - `protocol_type`
+
+          See socket errors on [Windows]( https://learn.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value) and [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
+        examples: ["connection_refused", "address_not_available"]
+
+  - id: dotnet.dns.lookup
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      The span describes DNS lookup.
+    attributes:
+      - ref: dns.question.name
+        brief: The domain name or IP address being queried.
+      - ref: dns.answers
+        brief: List of resolved IP addresses or a single element containing domain name.
+      - ref: error.type
+        brief: Error code returned by the DNS resolver.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: |
+          The following errors are reported:
+
+          - `host_not_found`
+          - `try_again`
+          - `no_recovery`
+          - `address_family_not_supported`
+          - the full exception type name.
+
+          See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
+        examples: ["host_not_found", "try_again" ]
+
+  - id: dotnet.tls.handshake
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      The span describes TLS handshake.
+    attributes:
+      - ref: tls.protocol.name
+      - ref: tls.protocol.version
+      - ref: server.address
+        brief: The [server name indication (SNI)](https://en.wikipedia.org/wiki/Server_Name_Indication) used in the 'Client Hello' message during TLS handshake.
+        requirement_level:
+          recommended: when authenticating the client.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: |
+          The following errors codes are reported:
+
+          TODO
+        examples: ["TODO"]

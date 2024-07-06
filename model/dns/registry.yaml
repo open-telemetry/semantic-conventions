@@ -16,7 +16,7 @@ groups:
           as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped.
           Tabs, carriage returns, and line feeds should be converted to \t, \r, and
           \n respectively.
-      - id: dns.answer
+      - id: dns.answers
         type: string[]
         stability: development
         brief: The list of resolved IPv4 or IPv6 addresses.
