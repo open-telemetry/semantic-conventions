@@ -46,7 +46,7 @@ versions:
         # https://github.com/open-telemetry/semantic-conventions/pull/1006
         - rename_metrics:
             messaging.publish.messages: messaging.client.published.messages
-        # TODO https://github.com/open-telemetry/semantic-conventions/pull/x
+        # https://github.com/open-telemetry/semantic-conventions/pull/1212
         - rename_attributes:
             attribute_map:
               system.process.status: process.status
