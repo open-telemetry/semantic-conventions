@@ -316,7 +316,7 @@ groups:
     instrument: updowncounter
     unit: "{process}"
     attributes:
-      - ref: system.process.status
+      - ref: process.status
 
   - id: metric.system.process.created
     type: metric

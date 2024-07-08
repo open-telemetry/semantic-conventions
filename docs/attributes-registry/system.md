@@ -13,7 +13,6 @@
 - [System Memory](#system-memory-attributes)
 - [System Network](#system-network-attributes)
 - [System Paging](#system-paging-attributes)
-- [System Process](#system-process-attributes)
 
 ## System Attributes
 
@@ -35,10 +34,11 @@ Describes System CPU attributes
 
 Deprecated system attributes.
 
-| Attribute                 | Type   | Description                                      | Examples            | Stability                                                                                           |
-| ------------------------- | ------ | ------------------------------------------------ | ------------------- | --------------------------------------------------------------------------------------------------- |
-| `system.cpu.state`        | string | Deprecated, use `cpu.mode` instead.              | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`               |
-| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
+| Attribute                 | Type   | Description                               | Examples            | Stability                                                                                    |
+| ------------------------- | ------ | ----------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------- |
+| `system.cpu.state`        | string | Deprecated, use `cpu.mode` instead.       | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`        |
+| `system.process.status`   | string | Deprecated, use `process.status` instead. | `running`           | ![Experimental](https://img.shields.io/badge/-experimental-blue)                             |
+| `system.processes.status` | string | Deprecated, use `process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.status`. |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -51,6 +51,15 @@ Deprecated system attributes.
 | `steal`     | steal       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system`    | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user`      | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value      | Description | Stability                                                        |
+| ---------- | ----------- | ---------------------------------------------------------------- |
+| `defunct`  | defunct     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `running`  | running     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sleeping` | sleeping    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stopped`  | stopped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -164,20 +173,3 @@ Describes System Memory Paging attributes
 | ------- | ----------- | ---------------------------------------------------------------- |
 | `major` | major       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | minor       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## System Process Attributes
-
-Describes System Process attributes
-
-| Attribute               | Type   | Description                                                                                                               | Examples  | Stability                                                        |
-| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------- |
-| `system.process.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value      | Description | Stability                                                        |
-| ---------- | ----------- | ---------------------------------------------------------------- |
-| `defunct`  | defunct     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `running`  | running     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sleeping` | sleeping    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stopped`  | stopped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

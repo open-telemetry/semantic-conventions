@@ -196,3 +196,23 @@ groups:
               value: 'minor'
               stability: experimental
         stability: experimental
+      - id: status
+        type:
+          allow_custom_values: true
+          members:
+            - id: running
+              value: 'running'
+              stability: experimental
+            - id: sleeping
+              value: 'sleeping'
+              stability: experimental
+            - id: stopped
+              value: 'stopped'
+              stability: experimental
+            - id: defunct
+              value: 'defunct'
+              stability: experimental
+        stability: experimental
+        brief: >
+          The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+        examples: ["running"]

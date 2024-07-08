@@ -8,6 +8,7 @@ groups:
       - ref: process.pid
       - ref: process.parent_pid
       - ref: process.executable.name
+      - ref: process.owner
         requirement_level:
           conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
       - ref: process.executable.path
@@ -22,7 +23,9 @@ groups:
       - ref: process.command_args
         requirement_level:
           conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
-      - ref: process.owner
+      - ref: process.status
+        requirement_level:
+          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
 
   - id: process.runtime
     prefix: process.runtime
