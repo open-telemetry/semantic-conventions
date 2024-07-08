@@ -68,7 +68,8 @@ groups:
           - `access_denied`
           - `protocol_type`
 
-          See socket errors on [Windows]( https://learn.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value) and [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
+          See socket errors on [Windows](https://learn.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value) and
+          [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
         examples: ["connection_refused", "address_not_available"]
 
   - id: dotnet.dns.lookup
@@ -106,7 +107,11 @@ groups:
       The span describes TLS handshake.
     attributes:
       - ref: tls.protocol.name
+        requirement_level:
+          recommended: when available
       - ref: tls.protocol.version
+        requirement_level:
+          recommended: when available
       - ref: server.address
         brief: The [server name indication (SNI)](https://en.wikipedia.org/wiki/Server_Name_Indication) used in the 'Client Hello' message during TLS handshake.
         requirement_level:
@@ -114,8 +119,5 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: if and only if an error has occurred.
-        note: |
-          The following errors codes are reported:
-
-          TODO
-        examples: ["TODO"]
+        note: ""
+        examples: ["System.Net.Security.Authentication.AuthenticationException", "System.OperationCanceledException"]
