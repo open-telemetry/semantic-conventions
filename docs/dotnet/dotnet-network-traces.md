@@ -14,8 +14,8 @@ This article defines semantic conventions for HTTP client, DNS and TLS spans emi
 - [HTTP client request: wait for connection](#http-client-request-wait-for-connection)
 - [HTTP connection setup](#http-connection-setup)
 - [Socket connect](#socket-connect)
-- [DNS](#dns)
-- [TLS](#tls)
+- [DNS](#dns-resolution)
+- [TLS](#tls-handshake)
 - [Examples](#examples)
   - [HTTP request was performed on a connection that was immediately available](#http-request-was-performed-on-a-connection-that-was-immediately-available)
   - [HTTP request has to wait for connection setup](#http-request-has-to-wait-for-connection-setup)
@@ -110,7 +110,7 @@ The `{address}` SHOULD be `server.address` when it's available and `network.peer
 
 Span kind SHOULD be `CLIENT`.
 
-Corresponding `Activity.OperationName` is `System.Net.Http.Connections.ConnectionSetup`, `ActivitySource` name - `System.Net.Http.Connections` TODO - should be different than connection?
+Corresponding `Activity.OperationName` is `System.Net.Http.Connections.ConnectionSetup`, `ActivitySource` name - `System.Net.Http.Connections`.
 Added in .NET Core 9.
 
 <!-- semconv dotnet.http.connection_setup -->
