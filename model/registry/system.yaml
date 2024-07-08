@@ -16,34 +16,6 @@ groups:
     type: attribute_group
     brief: "Describes System CPU attributes"
     attributes:
-      - id: state
-        type:
-          allow_custom_values: true
-          members:
-            - id: user
-              value: 'user'
-              stability: experimental
-            - id: system
-              value: 'system'
-              stability: experimental
-            - id: nice
-              value: 'nice'
-              stability: experimental
-            - id: idle
-              value: 'idle'
-              stability: experimental
-            - id: iowait
-              value: 'iowait'
-              stability: experimental
-            - id: interrupt
-              value: 'interrupt'
-              stability: experimental
-            - id: steal
-              value: 'steal'
-              stability: experimental
-        brief: "The state of the CPU"
-        stability: experimental
-        examples: ["idle", "interrupt"]
       - id: logical_number
         type: int
         stability: experimental

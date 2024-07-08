@@ -42,15 +42,24 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`container.cpu.state`](/docs/attributes-registry/container.md) | string | The CPU state for this data point. A container SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels. | `user`; `kernel` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+**[1]:** Following states SHOULD be used: `user`, `system`, `kernel`
+
+
+
+`cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system` | When CPU is used by the system (host OS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 

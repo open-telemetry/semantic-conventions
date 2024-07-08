@@ -10,7 +10,7 @@ The Semantic Conventions for [Azure Service Bus](https://learn.microsoft.com/azu
 
 ## Azure Service Bus
 
-`messaging.system` MUST be set to `"servicebus"`.
+`messaging.system` MUST be set to `"servicebus"` and SHOULD be provided **at span creation time**.
 
 ### Span attributes
 
@@ -88,6 +88,16 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 
 
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -124,7 +134,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 ## Azure Event Hubs
 
-`messaging.system` MUST be set to `"eventhubs"`.
+`messaging.system` MUST be set to `"eventhubs"` and SHOULD be provided **at span creation time**.
 
 ### Span attributes
 
@@ -198,6 +208,17 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 **[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

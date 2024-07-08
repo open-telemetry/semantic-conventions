@@ -11,6 +11,11 @@ versions:
               messaging.rocketmq.client_group: messaging.consumer.group.name
               messaging.evenhubs.consumer.group: messaging.consumer.group.name
               message.servicebus.destination.subscription_name: messaging.destination.subscription.name
+        # https://github.com/open-telemetry/semantic-conventions/pull/1200
+        - rename_attributes:
+            attribute_map:
+              gen_ai.usage.completion_tokens: gen_ai.usage.output_tokens
+              gen_ai.usage.prompt_tokens: gen_ai.usage.input_tokens
     spans:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1002
@@ -41,7 +46,18 @@ versions:
         # https://github.com/open-telemetry/semantic-conventions/pull/1006
         - rename_metrics:
             messaging.publish.messages: messaging.client.published.messages
-
+        # https://github.com/open-telemetry/semantic-conventions/pull/1026
+        - rename_attributes:
+            attribute_map:
+              system.cpu.state: cpu.mode
+              process.cpu.state: cpu.mode
+              container.cpu.state: cpu.mode
+            apply_to_metrics:
+              - system.cpu.time
+              - system.cpu.utilization
+              - process.cpu.time
+              - process.cpu.utilization
+              - container.cpu.time
   1.26.0:
     metrics:
       changes:
