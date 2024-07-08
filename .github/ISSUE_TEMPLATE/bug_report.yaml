@@ -30,6 +30,7 @@ body:
         - area:cloudevents
         - area:code
         - area:container
+        - area:cpu
         - area:db
         - area:deployment
         - area:destination
@@ -75,6 +76,7 @@ body:
         - area:user-agent
         - area:user
         - area:vcs
+        - area:v8js
         - area:webengine
         # End semconv area list
   - type: textarea
