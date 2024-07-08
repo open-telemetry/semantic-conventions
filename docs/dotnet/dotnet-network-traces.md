@@ -152,7 +152,7 @@ When *Socket connect* span is reported along with *HTTP connection setup* span, 
 Span name SHOULD be `socket connect {network.peer.address}:{network.peer.port}`.
 Span kind SHOULD be `CLIENT`.
 
-Corresponding `Activity.OperationName` is `System.Net.Sockets.ConnectionSetup`, `ActivitySource` name - `System.Net.Sockets`.
+Corresponding `Activity.OperationName` is `System.Net.Sockets.Connect`, `ActivitySource` name - `System.Net.Sockets`.
 Added in .NET Core 9.
 
 <!-- semconv dotnet.socket.connect -->
@@ -190,7 +190,8 @@ Added in .NET Core 9.
 - `access_denied`
 - `protocol_type`
 
-See socket errors on [Windows]( https://learn.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value) and [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
+See socket errors on [Windows](https://learn.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value) and
+[Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
 
 **[2]:** The value SHOULD be normalized to lowercase.
 
@@ -314,16 +315,12 @@ Added in .NET Core 9.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `TODO` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | The [server name indication (SNI)](https://en.wikipedia.org/wiki/Server_Name_Indication) used in the 'Client Hello' message during TLS handshake. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` when authenticating the client. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`tls.protocol.name`](/docs/attributes-registry/tls.md) | string | Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES) | `ssl`; `tls` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`tls.protocol.version`](/docs/attributes-registry/tls.md) | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES) | `1.2`; `3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. | `System.Net.Security.Authentication.AuthenticationException`; `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | The [server name indication (SNI)](https://en.wikipedia.org/wiki/Server_Name_Indication) used in the 'Client Hello' message during TLS handshake. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` when authenticating the client. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`tls.protocol.name`](/docs/attributes-registry/tls.md) | string | Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES) | `ssl`; `tls` | `Recommended` when available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`tls.protocol.version`](/docs/attributes-registry/tls.md) | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES) | `1.2`; `3` | `Recommended` when available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The following errors codes are reported:
-
-TODO
-
-**[2]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 
 

@@ -66,6 +66,7 @@
 
 # .NET semantic conventions approvers
 /model/metrics/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
+/model/trace/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
 /model/registry/aspnetcore.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
 /model/registry/signalr.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
 /docs/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
