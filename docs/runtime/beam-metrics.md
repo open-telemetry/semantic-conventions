@@ -83,7 +83,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.atom.count` | UpDownCounter | `{atom}` | The number of atom currently existing at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.atom.count` | Gauge | `{atom}` | The number of atom currently existing at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -117,7 +117,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.atom.limit` | UpDownCounter | `{atom}` | The maximum number of simultaneously existing atoms at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.atom.limit` | Gauge | `{atom}` | The maximum number of simultaneously existing atoms at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -279,7 +279,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.dirty_cpu_scheduler.count` | UpDownCounter | `{scheduler}` | The number of scheduler dirty CPU scheduler threads used by the emulator. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.dirty_cpu_scheduler.count` | Gauge | `{scheduler}` | The number of scheduler dirty CPU scheduler threads used by the emulator. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -313,7 +313,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.dirty_cpu_scheduler.online` | UpDownCounter | `{scheduler}` | The number of dirty CPU scheduler threads online. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.dirty_cpu_scheduler.online` | Gauge | `{scheduler}` | The number of dirty CPU scheduler threads online. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -347,7 +347,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.dirty_cpu_scheduler_run_queue_length` | UpDownCounter | `{process}` | Length of the dirty CPU run-queue. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.dirty_cpu_scheduler_run_queue_length` | Gauge | `{process}` | Length of the dirty CPU run-queue. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -442,7 +442,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.dirty_io_scheduler.count` | UpDownCounter | `{scheduler}` | The number of scheduler dirty I/O scheduler threads used by the emulator. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.dirty_io_scheduler.count` | Gauge | `{scheduler}` | The number of scheduler dirty I/O scheduler threads used by the emulator. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -476,7 +476,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.dirty_io_scheduler.online` | UpDownCounter | `{scheduler}` | The number of scheduler dirty I/O scheduler threads online. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.dirty_io_scheduler.online` | Gauge | `{scheduler}` | The number of scheduler dirty I/O scheduler threads online. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -510,7 +510,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.dirty_io_scheduler_run_queue_length` | UpDownCounter | `{process}` | Length of the dirty I/O run-queue. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.dirty_io_scheduler_run_queue_length` | Gauge | `{process}` | Length of the dirty I/O run-queue. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -605,7 +605,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.logical_processors.count` | UpDownCounter | `{cpu}` | The detected number of logical processors configured in the system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.logical_processors.count` | Gauge | `{cpu}` | The detected number of logical processors configured in the system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -639,7 +639,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.logical_processors.available` | UpDownCounter | `{cpu}` | The detected number of logical processors available to the Erlang runtime system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.logical_processors.available` | Gauge | `{cpu}` | The detected number of logical processors available to the Erlang runtime system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -673,7 +673,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.logical_processors.online` | UpDownCounter | `{cpu}` | The detected number of logical processors online on the system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.logical_processors.online` | Gauge | `{cpu}` | The detected number of logical processors online on the system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -768,7 +768,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.scheduler.count` | UpDownCounter | `{scheduler}` | The number of scheduler threads used by the emulator. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.scheduler.count` | Gauge | `{scheduler}` | The number of scheduler threads used by the emulator. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -802,7 +802,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.scheduler.online` | UpDownCounter | `{scheduler}` | The number of schedulers online. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.scheduler.online` | Gauge | `{scheduler}` | The number of schedulers online. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -836,7 +836,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.scheduler.run_queues_length` | UpDownCounter | `{process}` | Length of the normal run-queue. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.scheduler.run_queues_length` | Gauge | `{process}` | Length of the normal run-queue. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -931,7 +931,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.cpu.thread_pool_size` | UpDownCounter | `{thread}` | The number of async threads in the async thread pool used for asynchronous driver calls. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.cpu.thread_pool_size` | Gauge | `{thread}` | The number of async threads in the async thread pool used for asynchronous driver calls. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -971,7 +971,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.ets.limit` | UpDownCounter | `{table}` | The maximum number of ETS tables allowed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.ets.limit` | Gauge | `{table}` | The maximum number of ETS tables allowed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -1049,7 +1049,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.memory.allocators.block.count` | UpDownCounter | `{block}` | Count of allocated blocks for the different allocators in the VM. See erts_alloc(3). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.memory.allocators.block.count` | Gauge | `{block}` | Count of allocated blocks for the different allocators in the VM. See erts_alloc(3). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -1116,7 +1116,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.memory.allocators.block.size` | UpDownCounter | `By` | Total size of the memory blocks for the different allocators in the VM. See erts_alloc(3). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.memory.allocators.block.size` | Gauge | `By` | Total size of the memory blocks for the different allocators in the VM. See erts_alloc(3). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -1183,7 +1183,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.memory.allocators.carrier.count` | UpDownCounter | `{carriers}` | Number of allocated carriers for the different allocators in the VM. See erts_alloc(3). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.memory.allocators.carrier.count` | Gauge | `{carriers}` | Number of allocated carriers for the different allocators in the VM. See erts_alloc(3). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -1535,7 +1535,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.port.count` | UpDownCounter | `{port}` | The number of ports currently existing at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.port.count` | Gauge | `{port}` | The number of ports currently existing at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -1615,7 +1615,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.port.limit` | UpDownCounter | `{port}` | The maximum number of simultaneously existing ports at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.port.limit` | Gauge | `{port}` | The maximum number of simultaneously existing ports at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -1689,7 +1689,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.process.count` | UpDownCounter | `{process}` | The number of processes currently existing at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.process.count` | Gauge | `{process}` | The number of processes currently existing at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -1769,7 +1769,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.process.limit` | UpDownCounter | `{process}` | The maximum number of simultaneously existing processes at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.process.limit` | Gauge | `{process}` | The maximum number of simultaneously existing processes at the local node. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -1843,7 +1843,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `beam.system.wordsize` | UpDownCounter | `By` | The size of Erlang term words in bytes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam.system.wordsize` | Gauge | `By` | The size of Erlang term words in bytes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->

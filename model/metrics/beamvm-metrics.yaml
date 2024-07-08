@@ -3,7 +3,7 @@ groups:
     type: metric
     metric_name: beam.system.wordsize
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: By
     brief: "The size of Erlang term words in bytes."
 
@@ -95,7 +95,7 @@ groups:
     type: metric
     metric_name: beam.memory.allocators.carrier.count
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{carriers}"
     brief: "Number of allocated carriers for the different allocators in the VM. See erts_alloc(3)."
     attributes:
@@ -119,7 +119,7 @@ groups:
     type: metric
     metric_name: beam.memory.allocators.block.count
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{block}"
     brief: "Count of allocated blocks for the different allocators in the VM. See erts_alloc(3)."
     attributes:
@@ -131,7 +131,7 @@ groups:
     type: metric
     metric_name: beam.memory.allocators.block.size
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "By"
     brief: "Total size of the memory blocks for the different allocators in the VM. See erts_alloc(3)."
     attributes:
@@ -243,7 +243,7 @@ groups:
     type: metric
     metric_name: beam.process.count
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{process}"
     brief: "The number of processes currently existing at the local node."
 
@@ -251,7 +251,7 @@ groups:
     type: metric
     metric_name: beam.process.limit
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{process}"
     brief: "The maximum number of simultaneously existing processes at the local node."
 
@@ -259,7 +259,7 @@ groups:
     type: metric
     metric_name: beam.cpu.logical_processors.count
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{cpu}"
     brief: "The detected number of logical processors configured in the system."
 
@@ -267,7 +267,7 @@ groups:
     type: metric
     metric_name: beam.logical_processors.available
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{cpu}"
     brief: "The detected number of logical processors available to the Erlang runtime system."
 
@@ -275,7 +275,7 @@ groups:
     type: metric
     metric_name: beam.logical_processors.online
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{cpu}"
     brief: "The detected number of logical processors online on the system."
 
@@ -283,7 +283,7 @@ groups:
     type: metric
     metric_name: beam.cpu.thread_pool_size
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{thread}"
     brief: "The number of async threads in the async thread pool used for asynchronous driver calls."
 
@@ -291,7 +291,7 @@ groups:
     type: metric
     metric_name: beam.cpu.scheduler.run_queues_length
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{process}"
     brief: Length of the normal run-queue.
 
@@ -299,7 +299,7 @@ groups:
     type: metric
     metric_name: beam.cpu.scheduler.count
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{scheduler}"
     brief: "The number of scheduler threads used by the emulator."
 
@@ -307,7 +307,7 @@ groups:
     type: metric
     metric_name: beam.cpu.scheduler.online
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{scheduler}"
     brief: "The number of schedulers online."
 
@@ -315,7 +315,7 @@ groups:
     type: metric
     metric_name: beam.cpu.dirty_cpu_scheduler_run_queue_length
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{process}"
     brief: Length of the dirty CPU run-queue.
 
@@ -323,7 +323,7 @@ groups:
     type: metric
     metric_name: beam.cpu.dirty_cpu_scheduler.count
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{scheduler}"
     brief: "The number of scheduler dirty CPU scheduler threads used by the emulator."
 
@@ -331,7 +331,7 @@ groups:
     type: metric
     metric_name: beam.cpu.dirty_cpu_scheduler.online
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{scheduler}"
     brief: "The number of dirty CPU scheduler threads online."
 
@@ -339,7 +339,7 @@ groups:
     type: metric
     metric_name: beam.cpu.dirty_io_scheduler_run_queue_length
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{process}"
     brief: Length of the dirty I/O run-queue.
 
@@ -347,7 +347,7 @@ groups:
     type: metric
     metric_name: beam.cpu.dirty_io_scheduler.count
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{scheduler}"
     brief: "The number of scheduler dirty I/O scheduler threads used by the emulator."
 
@@ -355,7 +355,7 @@ groups:
     type: metric
     metric_name: beam.cpu.dirty_io_scheduler.online
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{scheduler}"
     brief: "The number of scheduler dirty I/O scheduler threads online."
 
@@ -385,7 +385,7 @@ groups:
     type: metric
     metric_name: beam.port.count
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{port}"
     brief: "The number of ports currently existing at the local node."
 
@@ -393,7 +393,7 @@ groups:
     type: metric
     metric_name: beam.port.limit
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{port}"
     brief: "The maximum number of simultaneously existing ports at the local node."
 
@@ -401,7 +401,7 @@ groups:
     type: metric
     metric_name: beam.atom.count
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{atom}"
     brief: "The number of atom currently existing at the local node."
 
@@ -409,7 +409,7 @@ groups:
     type: metric
     metric_name: beam.atom.limit
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{atom}"
     brief: "The maximum number of simultaneously existing atoms at the local node."
 
@@ -417,7 +417,7 @@ groups:
     type: metric
     metric_name: beam.ets.limit
     stability: experimental
-    instrument: updowncounter
+    instrument: gauge
     unit: "{table}"
     brief: "The maximum number of ETS tables allowed."
 
