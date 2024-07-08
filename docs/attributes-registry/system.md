@@ -34,11 +34,11 @@ Describes System CPU attributes
 
 Deprecated system attributes.
 
-| Attribute                 | Type   | Description                               | Examples            | Stability                                                                                    |
-| ------------------------- | ------ | ----------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------- |
-| `system.cpu.state`        | string | Deprecated, use `cpu.mode` instead.       | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`        |
-| `system.process.status`   | string | Deprecated, use `process.status` instead. | `running`           | ![Experimental](https://img.shields.io/badge/-experimental-blue)                             |
-| `system.processes.status` | string | Deprecated, use `process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.status`. |
+| Attribute                 | Type   | Description                               | Examples            | Stability                                                                                   |
+| ------------------------- | ------ | ----------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------- |
+| `system.cpu.state`        | string | Deprecated, use `cpu.mode` instead.       | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`       |
+| `system.process.status`   | string | Deprecated, use `process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.status` |
+| `system.processes.status` | string | Deprecated, use `process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.status` |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

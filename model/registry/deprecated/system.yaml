@@ -20,7 +20,7 @@ groups:
               value: 'defunct'
               stability: experimental
         brief: "Deprecated, use `process.status` instead."
-        deprecated: "Replaced by `process.status`."
+        deprecated: "Replaced by `process.status`"
         stability: experimental
         examples: ["running"]
       - id: system.cpu.state
@@ -50,7 +50,7 @@ groups:
               stability: experimental
         brief: "Deprecated, use `cpu.mode` instead."
         stability: experimental
-        deprecated: 'Replaced by `cpu.mode`'
+        deprecated: "Replaced by `cpu.mode`"
         examples: [ "idle", "interrupt" ]
       - id: system.process.status
         type:
@@ -70,4 +70,5 @@ groups:
               stability: experimental
         stability: experimental
         brief: "Deprecated, use `process.status` instead."
+        deprecated: "Replaced by `process.status`"
         examples: ["running"]
