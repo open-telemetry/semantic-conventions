@@ -20,7 +20,6 @@ groups:
       The span describes the establishment of the HTTP connection. It includes
       the time it takes to resolve the DNS, establish the socket connection, and perform the TLS handshake.
     attributes:
-      - ref: network.protocol.version
       - ref: network.peer.address
       - ref: server.address
       - ref: server.port
@@ -41,7 +40,6 @@ groups:
     attributes:
       - ref: network.peer.port
       - ref: network.peer.address
-      - ref: network.transport
       - ref: network.type
       - ref: error.type
         brief: "Socket error code."
@@ -80,9 +78,9 @@ groups:
       The span describes DNS lookup.
     attributes:
       - ref: dns.question.name
-        brief: The domain name or IP address being queried.
+        brief: The domain name or an IP address being queried.
       - ref: dns.answers
-        brief: List of resolved IP addresses or a single element containing domain name.
+        brief: List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup).
       - ref: error.type
         brief: Error code returned by the DNS resolver.
         requirement_level:
@@ -94,7 +92,7 @@ groups:
           - `try_again`
           - `no_recovery`
           - `address_family_not_supported`
-          - the full exception type name.
+          - the full exception type name
 
           See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
         examples: ["host_not_found", "try_again" ]
@@ -116,6 +114,7 @@ groups:
         brief: The [server name indication (SNI)](https://en.wikipedia.org/wiki/Server_Name_Indication) used in the 'Client Hello' message during TLS handshake.
         requirement_level:
           recommended: when authenticating the client.
+        examples: ["opentelemetry.io", "example.com"]
       - ref: error.type
         requirement_level:
           conditionally_required: if and only if an error has occurred.
