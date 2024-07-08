@@ -5,6 +5,11 @@ groups:
     brief: >
       Geo fields can carry data about a specific location related to an event.
       This geolocation information can be derived from techniques such as Geo IP, or be user-supplied.
+
+      Note: Geo attributes are typically used under another namespace, such as client.* and describe the location of the corresponding
+      entity (device, end-user, etc). Semantic conventions that reference geo attributes (as a root namespace) or embed them
+      (under their own namespace) SHOULD document what geo attributes describe in the scope of that convention.
+
     attributes:
       - id: city.name
         stability: experimental
@@ -105,9 +110,3 @@ groups:
         brief: >
           Region name.
         examples: [ 'Quebec' ]
-      - id: timezone
-        stability: experimental
-        type: string
-        brief: >
-          The time zone of the location, such as [IANA time zone name](https://nodatime.org/TimeZones).
-        examples: [ 'America/Argentina/Buenos_Aires' ]
