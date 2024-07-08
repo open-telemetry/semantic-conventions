@@ -10,7 +10,7 @@ The Semantic Conventions for [Azure Service Bus](https://learn.microsoft.com/azu
 
 ## Azure Service Bus
 
-`messaging.system` MUST be set to `"servicebus"`.
+`messaging.system` MUST be set to `"servicebus"` and SHOULD be provided **at span creation time**.
 
 ### Span attributes
 
@@ -28,8 +28,8 @@ The following additional attributes are defined:
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md) | string | Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions). | `subscription-a` | `Conditionally Required` If messages are received from the subscription. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.servicebus.destination.subscription_name`](/docs/attributes-registry/messaging.md) | string | The name of the subscription in the topic messages are received from. | `mySubscription` | `Conditionally Required` If messages are received from the subscription. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.servicebus.disposition_status`](/docs/attributes-registry/messaging.md) | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` | `Conditionally Required` if and only if `messaging.operation` is `settle`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.servicebus.message.delivery_count`](/docs/attributes-registry/messaging.md) | int | Number of deliveries that have been attempted for this message. | `2` | `Conditionally Required` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -88,6 +88,16 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 
 
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -124,7 +134,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 ## Azure Event Hubs
 
-`messaging.system` MUST be set to `"eventhubs"`.
+`messaging.system` MUST be set to `"eventhubs"` and SHOULD be provided **at span creation time**.
 
 ### Span attributes
 
@@ -141,9 +151,9 @@ The following additional attributes are defined:
 | [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | Azure Event Hubs operation name. [1] | `send`; `receive`; `checkpoint` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | Azure Event Hubs [consumer group name](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#consumer-groups). | `my-group`; `indexer` | `Conditionally Required` On consumer spans. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | String representation of the partition id messages are sent to or received from, unique within the Event Hub. | `1` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.eventhubs.consumer.group`](/docs/attributes-registry/messaging.md) | string | The name of the consumer group the event consumer is associated with. | `indexer` | `Conditionally Required` If not default ("$Default"). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.eventhubs.message.enqueued_time`](/docs/attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -198,6 +208,17 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 **[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

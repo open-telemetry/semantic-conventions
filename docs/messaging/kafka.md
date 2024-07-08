@@ -18,7 +18,7 @@ The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend an
 that describe common messaging operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`messaging.system` MUST be set to `"kafka"`.
+`messaging.system` MUST be set to `"kafka"` and SHOULD be provided **at span creation time**.
 
 ## Span attributes
 
@@ -41,8 +41,8 @@ For Apache Kafka, the following additional attributes are defined:
 | [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html). | `my-group`; `indexer` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | String representation of the partition id the message (or batch) is sent to or received from. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.kafka.consumer.group`](/docs/attributes-registry/messaging.md) | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.message.key`](/docs/attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [9] | `myKey` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.message.offset`](/docs/attributes-registry/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [10] | `1439` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -93,6 +93,17 @@ body size should be used.
 
 
 
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -127,41 +138,50 @@ If an intermediary broker is present, `service.name` and `peer.service` will not
 
 ### Apache Kafka with Quarkus or Spring Boot Example
 
-Given is a process P, that publishes a message to a topic T1 on Apache Kafka.
-One process, CA, receives the message and publishes a new message to a topic T2 that is then received and processed by CB.
+In this example, the producer publishes a message to a topic T on Apache Kafka.
+Consumer receives the message, processes it and commits the offset.
 
-Frameworks such as Quarkus and Spring Boot separate processing of a received message from producing subsequent messages out.
-For this reason, receiving (Span Rcv1) is the parent of both processing (Span Proc1) and producing a new message (Span Prod2).
-The span representing message receiving (Span Rcv1) should set `messaging.operation.type` to `process`,
-as it does not only receive the message but also converts the input message to something suitable for the processing operation to consume and creates the output message from the result of processing.
+Frameworks such as Quarkus and Spring Boot provide integrations with Kafka allowing to
+configure and instrument processing callbacks, so corresponding instrumentations should create "Process"
+spans in addition to "Receive" spans created by Kafka instrumentations for polling calls.
 
+```mermaid
+flowchart LR;
+  subgraph PRODUCER
+  P[Span Send]
+  end
+  subgraph CONSUMER
+  direction TB
+  R1[Span Poll]
+  R2[Span Process]
+  R3[Span Commit]
+  end
+
+  P-. link .-R1;
+  P-. link .-R2;
+  R2-- parent ---R3;
+
+  classDef normal fill:green
+  class P,R1,R2,R3 normal
+  linkStyle 0 color:green,stroke:green
+  linkStyle 1 color:green,stroke:green
 ```
-Process P:  | Span Prod1 |
---
-Process CA:              | Span Rcv1 |
-                                | Span Proc1 |
-                                  | Span Prod2 |
---
-Process CB:                           | Span Rcv2 |
-```
 
-| Field or Attribute | Span Prod1 | Span Rcv1 | Span Proc1 | Span Prod2 | Span Rcv2 |
-|-|-|-|-|-|-|
-| Span name | `"send T1"` | `"send T1"` | `"process T1"` | `"send T2"` | `"poll T2`" |
-| Parent |  | Span Prod1 | Span Rcv1 | Span Rcv1 | Span Prod2 |
-| Links |  |  | |  |  |
-| SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` | `PRODUCER` | `CONSUMER` |
-| Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
-| `peer.service` | `"myKafka"` |  |  | `"myKafka"` |  |
-| `service.name` |  | `"myConsumer1"` | `"myConsumer1"` |  | `"myConsumer2"` |
-| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
-| `messaging.destination.name` | `"T1"` | `"T1"` | `"T1"` | `"T2"` | `"T2"` |
-| `messaging.operation.name` | `send` | `send` | `"process"` | `send` | `"poll"` |
-| `messaging.operation.type` | `publish` | `publish` | `"process"` | `publish` | `"receive"` |
-| `messaging.client.id` |  | `"5"` | `"5"` | `"5"` | `"8"` |
-| `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | `"anotherKey"` | `"anotherKey"` |
-| `messaging.kafka.consumer.group` |  | `"my-group"` | `"my-group"` |  | `"another-group"` |
-| `messaging.kafka.destination.partition` | `"1"` | `"1"` | `"1"` | `"3"` | `"3"` |
-| `messaging.kafka.message.offset` | `"12"` | `"12"` | `"12"` | `"32"` | `"32"` |
+| Field or Attribute | Span Send | Span Poll | Span Process | Span Commit T |
+|-|-|-|-|-|
+| Span name | `"send T"` | `"poll T"` | `"process T"` | `"commit T"` |
+| Parent |  |  |  (optional) Span Send  | Span Process |
+| Links |  | Span Send | Span Send |  |
+| SpanKind | `PRODUCER` | `CONSUMER` | `SERVER` | `CLIENT` |
+| Status | `UNSET` | `UNSET` | `UNSET` | `UNSET` |
+| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
+| `messaging.destination.consumer.group` |  | `"my-group"` | `"my-group"` | `"my-group"` |
+| `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |
+| `messaging.operation.name` | `"send"` | `"poll"` | `"process"` | `"commit"` |
+| `messaging.operation.type` | `"publish"`  | `"receive"` | `"process"` | `"settle"` |
+| `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
+| `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` |  |
+| `messaging.kafka.message.offset` |  | `"12"` | `"12"` | `"12"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
