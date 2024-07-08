@@ -8,8 +8,9 @@ groups:
     instrument: counter
     unit: "s"
     attributes:
-      - ref: system.cpu.state
-        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
+      - ref: cpu.mode
+        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
+        note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.utilization
@@ -20,8 +21,9 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: system.cpu.state
-        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
+      - ref: cpu.mode
+        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
+        note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.frequency

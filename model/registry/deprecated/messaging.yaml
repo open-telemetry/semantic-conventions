@@ -24,3 +24,35 @@ groups:
           Deprecated, use `messaging.client.id` instead.
         examples: ['client-5', 'myhost@8742@s8083jm']
         deprecated: "Replaced by `messaging.client.id`."
+      - id: messaging.kafka.consumer.group
+        type: string
+        brief: >
+          Deprecated, use `messaging.consumer.group.name` instead.
+        deprecated: >
+          Replaced by `messaging.consumer.group.name`.
+        stability: experimental
+        examples: 'my-group'
+      - id: messaging.rocketmq.client_group
+        type: string
+        brief: >
+          Deprecated, use `messaging.consumer.group.name` instead.
+        stability: experimental
+        examples: 'myConsumerGroup'
+        deprecated: >
+          Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans.
+      - id: messaging.eventhubs.consumer.group
+        type: string
+        brief: >
+          Deprecated, use `messaging.consumer.group.name` instead.
+        stability: experimental
+        examples: '$Default'
+        deprecated: >
+          Replaced by `messaging.consumer.group.name`.
+      - id: messaging.servicebus.destination.subscription_name
+        type: string
+        brief: >
+          Deprecated, use `messaging.servicebus.destination.subscription_name` instead.
+        stability: experimental
+        examples: 'subscription-a'
+        deprecated: >
+          Replaced by `messaging.servicebus.destination.subscription_name`.
