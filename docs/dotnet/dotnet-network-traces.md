@@ -14,8 +14,8 @@ This article defines semantic conventions for HTTP client, DNS and TLS spans emi
 - [HTTP client request: wait for connection](#http-client-request-wait-for-connection)
 - [HTTP connection setup](#http-connection-setup)
 - [Socket connect](#socket-connect)
-- [DNS](#dns-resolution)
-- [TLS](#tls-handshake)
+- [DNS resolution](#dns-resolution)
+- [TLS handshake](#tls-handshake)
 - [Examples](#examples)
   - [HTTP request was performed on a connection that was immediately available](#http-request-was-performed-on-a-connection-that-was-immediately-available)
   - [HTTP request has to wait for connection setup](#http-request-has-to-wait-for-connection-setup)
@@ -103,7 +103,6 @@ The span describes the time it takes for HTTP request to obtain a connection to 
 
 The span describes the establishment of the HTTP connection. It includes the time it takes
 to resolve the DNS, establish the socket connection, and perform the TLS handshake.
-
 
 Span name SHOULD be `HTTP connection_setup {address}:{server.port}`.
 The `{address}` SHOULD be `server.address` when it's available and `network.peer.address` otherwise.
