@@ -65,7 +65,7 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8js.gc.type`](/docs/attributes-registry/v8js.md) | string | The type of garbage collection. | `major`; `minor`; `incremental` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.gc.type`](/docs/attributes-registry/v8js.md) | string | The type of garbage collection. | `major`; `minor`; `incremental` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `v8js.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

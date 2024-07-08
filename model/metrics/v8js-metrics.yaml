@@ -9,7 +9,7 @@ groups:
     prefix: v8js.gc
     attributes:
       - ref: v8js.gc.type
-        requirement_level: recommended
+        requirement_level: required
     note: >
       The values can be retrieve from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
