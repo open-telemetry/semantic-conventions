@@ -40,6 +40,7 @@ Currently, the following namespaces exist:
 - [CloudEvents](cloudevents.md)
 - [Code](code.md)
 - [Container](container.md)
+- [CPU](cpu.md)
 - [Db](db.md)
 - [Deployment](deployment.md)
 - [Destination](destination.md)
@@ -85,6 +86,7 @@ Currently, the following namespaces exist:
 - [URL](url.md)
 - [User](user.md)
 - [User Agent](user-agent.md)
+- [V8js](v8js.md)
 - [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

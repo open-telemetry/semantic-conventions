@@ -18,7 +18,7 @@ The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend an
 that describe common messaging operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`messaging.system` MUST be set to `"kafka"`.
+`messaging.system` MUST be set to `"kafka"` and SHOULD be provided **at span creation time**.
 
 ## Span attributes
 
@@ -33,25 +33,23 @@ For Apache Kafka, the following additional attributes are defined:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [1] | `publish`; `create`; `receive` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.kafka.message.tombstone`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [2] | `0`; `1`; `2` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.kafka.message.tombstone`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html). | `my-group`; `indexer` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | String representation of the partition id the message (or batch) is sent to or received from. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.kafka.consumer.group`](/docs/attributes-registry/messaging.md) | string | Name of the Kafka Consumer Group that is handling the message. Only applies to consumers, not producers. | `my-group` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.message.key`](/docs/attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [9] | `myKey` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.message.offset`](/docs/attributes-registry/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [10] | `1439` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Recommended` [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [12] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [11] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** If a custom value is used, it MUST be of low cardinality.
-
-**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -71,16 +69,18 @@ it's RECOMMENDED to:
 * Use a domain-specific attribute
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[3]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[2]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[4]:** If the span describes an operation on a batch of messages.
+**[3]:** If the span describes an operation on a batch of messages.
 
-**[5]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[4]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[6]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[5]:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[7]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[6]:** If value is `true`. When missing, the value is assumed to be `false`.
+
+**[7]:** If a custom value is used, it MUST be of low cardinality.
 
 **[8]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
@@ -89,11 +89,20 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 **[10]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[11]:** If the operation is not sufficiently described by `messaging.operation.type`.
-
-**[12]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[11]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -107,7 +116,7 @@ body size should be used.
 | Value  | Description | Stability |
 |---|---|---|
 | `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `process` | One or more messages are delivered to or processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -129,40 +138,50 @@ If an intermediary broker is present, `service.name` and `peer.service` will not
 
 ### Apache Kafka with Quarkus or Spring Boot Example
 
-Given is a process P, that publishes a message to a topic T1 on Apache Kafka.
-One process, CA, receives the message and publishes a new message to a topic T2 that is then received and processed by CB.
+In this example, the producer publishes a message to a topic T on Apache Kafka.
+Consumer receives the message, processes it and commits the offset.
 
-Frameworks such as Quarkus and Spring Boot separate processing of a received message from producing subsequent messages out.
-For this reason, receiving (Span Rcv1) is the parent of both processing (Span Proc1) and producing a new message (Span Prod2).
-The span representing message receiving (Span Rcv1) should not set `messaging.operation.type` to `receive`,
-as it does not only receive the message but also converts the input message to something suitable for the processing operation to consume and creates the output message from the result of processing.
+Frameworks such as Quarkus and Spring Boot provide integrations with Kafka allowing to
+configure and instrument processing callbacks, so corresponding instrumentations should create "Process"
+spans in addition to "Receive" spans created by Kafka instrumentations for polling calls.
 
+```mermaid
+flowchart LR;
+  subgraph PRODUCER
+  P[Span Send]
+  end
+  subgraph CONSUMER
+  direction TB
+  R1[Span Poll]
+  R2[Span Process]
+  R3[Span Commit]
+  end
+
+  P-. link .-R1;
+  P-. link .-R2;
+  R2-- parent ---R3;
+
+  classDef normal fill:green
+  class P,R1,R2,R3 normal
+  linkStyle 0 color:green,stroke:green
+  linkStyle 1 color:green,stroke:green
 ```
-Process P:  | Span Prod1 |
---
-Process CA:              | Span Rcv1 |
-                                | Span Proc1 |
-                                  | Span Prod2 |
---
-Process CB:                           | Span Rcv2 |
-```
 
-| Field or Attribute | Span Prod1 | Span Rcv1 | Span Proc1 | Span Prod2 | Span Rcv2 |
-|-|-|-|-|-|-|
-| Span name | `"T1 publish"` | `"T1 receive"` | `"T1 process"` | `"T2 publish"` | `"T2 receive`" |
-| Parent |  | Span Prod1 | Span Rcv1 | Span Rcv1 | Span Prod2 |
-| Links |  |  | |  |  |
-| SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` | `PRODUCER` | `CONSUMER` |
-| Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
-| `peer.service` | `"myKafka"` |  |  | `"myKafka"` |  |
-| `service.name` |  | `"myConsumer1"` | `"myConsumer1"` |  | `"myConsumer2"` |
-| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
-| `messaging.destination.name` | `"T1"` | `"T1"` | `"T1"` | `"T2"` | `"T2"` |
-| `messaging.operation.type` |  |  | `"process"` |  | `"receive"` |
-| `messaging.client.id` |  | `"5"` | `"5"` | `"5"` | `"8"` |
-| `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | `"anotherKey"` | `"anotherKey"` |
-| `messaging.kafka.consumer.group` |  | `"my-group"` | `"my-group"` |  | `"another-group"` |
-| `messaging.kafka.destination.partition` | `"1"` | `"1"` | `"1"` | `"3"` | `"3"` |
-| `messaging.kafka.message.offset` | `"12"` | `"12"` | `"12"` | `"32"` | `"32"` |
+| Field or Attribute | Span Send | Span Poll | Span Process | Span Commit T |
+|-|-|-|-|-|
+| Span name | `"send T"` | `"poll T"` | `"process T"` | `"commit T"` |
+| Parent |  |  |  (optional) Span Send  | Span Process |
+| Links |  | Span Send | Span Send |  |
+| SpanKind | `PRODUCER` | `CONSUMER` | `SERVER` | `CLIENT` |
+| Status | `UNSET` | `UNSET` | `UNSET` | `UNSET` |
+| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
+| `messaging.destination.consumer.group` |  | `"my-group"` | `"my-group"` | `"my-group"` |
+| `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |
+| `messaging.operation.name` | `"send"` | `"poll"` | `"process"` | `"commit"` |
+| `messaging.operation.type` | `"publish"`  | `"receive"` | `"process"` | `"settle"` |
+| `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
+| `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` |  |
+| `messaging.kafka.message.offset` |  | `"12"` | `"12"` | `"12"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
