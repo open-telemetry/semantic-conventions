@@ -10,7 +10,7 @@ This article defines semantic conventions for HTTP client, DNS and TLS spans emi
 
 <!-- toc -->
 
-- [HTTP client request](#http-client-request-wait-for-connection)
+- [HTTP client request](#http-client-request)
 - [HTTP client request: wait for connection](#http-client-request-wait-for-connection)
 - [HTTP connection setup](#http-connection-setup)
 - [Socket connect](#socket-connect)
