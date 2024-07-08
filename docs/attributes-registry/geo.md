@@ -8,7 +8,7 @@
 
 ## Geo Attributes
 
-Geo fields can carry data about a specific location related to an event. This geolocation information can be derived from techniques such as Geo IP, or be user-supplied.
+Geo fields can carry data about a specific location related to an telemetry item. This geolocation information can be derived from techniques such as Geo IP, or be user-supplied.
 
 | Attribute              | Type   | Description                                                                                                                                                           | Examples                         | Stability                                                        |
 | ---------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ---------------------------------------------------------------- |
