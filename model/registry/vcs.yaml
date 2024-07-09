@@ -41,7 +41,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+          The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
           of the recorded change the ref (branch) is pointing to in the
           repository. This recorded change is known as the
           [commit](https://git-scm.com/docs/git-commit). This commit is stored

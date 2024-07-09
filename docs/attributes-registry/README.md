@@ -32,6 +32,7 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 - [Android](android.md)
+- [Artifact](artifact.md)
 - [Aspnetcore](aspnetcore.md)
 - [AWS](aws.md)
 - [Browser](browser.md)
@@ -89,8 +90,8 @@ Currently, the following namespaces exist:
 - [URL](url.md)
 - [User](user.md)
 - [User Agent](user-agent.md)
-- [VCS](vcs.md)
 - [V8js](v8js.md)
+- [VCS](vcs.md)
 - [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
