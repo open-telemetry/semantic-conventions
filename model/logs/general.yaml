@@ -6,3 +6,5 @@ groups:
     attributes:
       - ref: log.record.uid
         requirement_level: opt_in
+      - ref: log.record.original
+        requirement_level: opt_in

@@ -70,3 +70,14 @@ groups:
           The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec),
           but other identifiers (e.g. UUID) may be used as needed.
         examples: ["01ARZ3NDEKTSV4RRFFQ69G5FAV"]
+      - id: original
+        type: string
+        stability: experimental
+        brief: >
+          The complete orignal Log Record.
+        note: >
+          This value SHOULD be provided if the Log Record was originally transmitted as a string or equivalent data type AND
+          the Body field of the Log Record does not contain the same value. (e.g. A syslog or log record read from a file.)
+        examples:
+          - "77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened"
+          - "[INFO] 8/3/24 12:34:56 Something happened"
