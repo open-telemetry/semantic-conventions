@@ -35,7 +35,7 @@ groups:
     type: metric
     metric_name: dotnet.gc.memory.committed
     brief: >
-      The amount of committed virtual memory for the managed GC heap, as
+      The amount of committed virtual memory in use by the .NET GC, as
       observed during the latest garbage collection.
     note: >
       This metric reports the same values as calling
