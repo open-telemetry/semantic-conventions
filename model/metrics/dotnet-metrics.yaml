@@ -31,7 +31,7 @@ groups:
     unit: "By"
     stability: experimental
 
-  - id: metric.dotnet.gc.memory.commited
+  - id: metric.dotnet.gc.memory.committed
     type: metric
     metric_name: dotnet.gc.memory.committed
     brief: >
