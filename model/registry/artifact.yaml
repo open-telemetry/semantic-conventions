@@ -34,3 +34,27 @@ groups:
           often found in checksum.txt on a release of the artifact and used to
           verify pakage integrity.
         examples: ['9ff4c52759e2c4ac70b7d517bc7fcdc1cda631ca0045271ddd1b192544f8a3e9']
+      - id: attestation.id
+        type: string
+        stability: experimental
+        brief: >
+          The id of the build [software attestation](https://slsa.dev/attestation-model).
+        examples: ['123']
+      - id: attestation.filename
+        type: string
+        stability: experimental
+        brief: >
+          The filename for provenance directly related to the artifact.
+          Attestations can have a one to many relationship with build
+          artifacts. See 
+          [SLSA Relationship](https://slsa.dev/spec/v1.0/distributing-provenance#relationship-between-artifacts-and-attestations)
+          for more information.
+        examples: ['golang-binary-amd64-v0.1.0.attestation', 'docker-image-amd64-v0.1.0.intoto.json1', 'release-1.tar.gz.attestation', 'file-name-package.tar.gz.intoto.json1']
+      - id: attestation.hash
+        type: string
+        stability: experimental
+        brief: >
+          The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+          of the built attestation. Some envelopes in the software attestation
+          space also refer to this as the [digest](https://github.com/in-toto/attestation/blob/main/spec/README.md#in-toto-attestation-framework-spec).
+        examples: ['1b31dfcd5b7f9267bf2ff47651df1cfb9147b9e4df1f335accf65b4cda498408']
