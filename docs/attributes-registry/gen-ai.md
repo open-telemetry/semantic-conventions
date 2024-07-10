@@ -16,8 +16,8 @@ This document defines the attributes used to describe telemetry in the context o
 | Attribute                          | Type     | Description                                                                                      | Examples                                                                | Stability                                                        |
 | ---------------------------------- | -------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `gen_ai.completion`                | string   | The full response received from the GenAI model. [1]                                             | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.operation.name`            | string   | The name of the operation being performed.                                                       | `chat`; `completion`                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.prompt`                    | string   | The full prompt sent to the GenAI model. [2]                                                     | `[{'role': 'user', 'content': 'What is the capital of France?'}]`       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.operation.name`            | string   | The name of the operation being performed. [2]                                                   | `chat`; `text_completion`                                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.prompt`                    | string   | The full prompt sent to the GenAI model. [3]                                                     | `[{'role': 'user', 'content': 'What is the capital of France?'}]`       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.frequency_penalty` | double   | The frequency penalty setting for the GenAI request.                                             | `0.1`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.max_tokens`        | int      | The maximum number of tokens the model generates for a request.                                  | `100`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.model`             | string   | The name of the GenAI model a request is being made to.                                          | `gpt-4`                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -29,17 +29,33 @@ This document defines the attributes used to describe telemetry in the context o
 | `gen_ai.response.finish_reasons`   | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`                                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.response.id`               | string   | The unique identifier for the completion.                                                        | `chatcmpl-123`                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.response.model`            | string   | The name of the model that generated the response.                                               | `gpt-4-0613`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.system`                    | string   | The Generative AI product as identified by the client or server instrumentation. [3]             | `openai`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.system`                    | string   | The Generative AI product as identified by the client or server instrumentation. [4]             | `openai`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.token.type`                | string   | The type of token being counted.                                                                 | `input`; `output`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.usage.input_tokens`        | int      | The number of tokens used in the GenAI input (prompt).                                           | `100`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.usage.output_tokens`       | int      | The number of tokens used in the GenAI response (completion).                                    | `180`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 
-**[2]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+**[2]:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[3]:** The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
-For custom model, a custom friendly name SHOULD be used. If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+**[3]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+
+**[4]:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+
+The actual GenAI product may differ from the one identified by the client.
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+is set to `openai` based on the instrumentation's best knowledge.
+
+For custom model, a custom friendly name SHOULD be used.
+If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+
+`gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value             | Description                                                                                                                      | Stability                                                        |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `chat`            | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
