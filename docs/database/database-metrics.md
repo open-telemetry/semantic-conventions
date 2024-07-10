@@ -193,6 +193,7 @@ If a database operation involved multiple network calls (for example retries), t
 | `sybase` | Sybase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vector` | vector | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 

@@ -310,6 +310,10 @@ groups:
               value: 'trino'
               brief: 'Trino'
               stability: experimental
+            - id: vector
+              value: 'vector'
+              brief: 'vector'
+              stability: experimental
             - id: vertica
               value: 'vertica'
               brief: 'Vertica'
@@ -529,3 +533,67 @@ groups:
           reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
           in order to map the path part values to their names.
         examples: ['db.elasticsearch.path_parts.index=test-index', 'db.elasticsearch.path_parts.doc_id=123']
+  - id: registry.db.vector
+    prefix: db.vector
+    type: attribute_group
+    brief: >
+      This group defines attributes for vector databases.
+    attributes:
+      - id: similarity
+        type:
+          allow_custom_values: true
+          members:
+            - id: cosine
+              value: 'cosine'
+              brief: >
+                The cosine metric.
+              stability: experimental
+            - id: dot
+              value: 'dot'
+              brief: >
+                The dot product metric.
+              stability: experimental
+            - id: euclidean
+              value: 'euclidean'
+              brief: >
+                The euclidean distance metric.
+              stability: experimental    
+            - id: manhattan
+              value: 'manhattan'
+              brief: >
+                The Manhattan distance metric.
+              stability: experimental
+        stability: experimental
+        brief: >
+          The metric used in similarity search.
+        examples: 'cosine'
+      - id: id
+        type: string
+        stability: experimental
+        brief: >
+          The ID of vector.
+        examples: '5c56c793-69f3-4fbf-87e6-c4bf54c28c26'
+      - id: name
+        type: string
+        stability: experimental
+        brief: >
+          The name field as of the vector (e.g. a field name).
+        examples: 'vector'
+      - id: embeddings
+        type: double[]
+        stability: experimental
+        brief: >
+          The values of the vector, the array of numbers.
+        examples: [0.9, 0.1, 0.1]
+      - id: dimension
+        type: int
+        stability: experimental
+        brief: >
+          The dimension of the vector.
+        examples: [3]
+      - id: model
+        type: string
+        stability: experimental
+        brief: >
+          The model used for the embedding.
+        examples: 'text-embedding-3-small'

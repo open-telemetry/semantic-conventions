@@ -12,6 +12,7 @@
 - [Db Deprecated](#db-deprecated-attributes)
 - [Db Elasticsearch](#db-elasticsearch-attributes)
 - [Db Metrics Deprecated](#db-metrics-deprecated-attributes)
+- [Db Vector](#db-vector-attributes)
 
 ## Db Attributes
 
@@ -116,6 +117,7 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `sybase`             | Sybase                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `teradata`           | Teradata                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `trino`              | Trino                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
+| `vector`             | vector                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `vertica`            | Vertica                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 
 ## Db Cassandra Attributes
@@ -244,3 +246,25 @@ This group defines attributes for Elasticsearch.
 | ------ | ----------- | ---------------------------------------------------------------- |
 | `idle` | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Db Vector Attributes
+
+This group defines attributes for vector databases.
+
+| Attribute              | Type     | Description                                          | Examples                               | Stability                                                        |
+| ---------------------- | -------- | ---------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
+| `db.vector.dimension`  | int      | The dimension of the vector.                         | `3`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.embeddings` | double[] | The values of the vector, the array of numbers.      | `[0.9, 0.1, 0.1]`                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.id`         | string   | The ID of vector.                                    | `5c56c793-69f3-4fbf-87e6-c4bf54c28c26` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.model`      | string   | The model used for the embedding.                    | `text-embedding-3-small`               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.name`       | string   | The name field as of the vector (e.g. a field name). | `vector`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.similarity` | string   | The metric used in similarity search.                | `cosine`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`db.vector.similarity` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value       | Description                    | Stability                                                        |
+| ----------- | ------------------------------ | ---------------------------------------------------------------- |
+| `cosine`    | The cosine metric.             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dot`       | The dot product metric.        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `euclidean` | The euclidean distance metric. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `manhattan` | The Manhattan distance metric. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
