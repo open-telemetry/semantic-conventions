@@ -12,11 +12,21 @@ groups:
             The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
             then the value must be the exact name of the model requested. If the model is a fine-tuned
             custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: gen_ai.operation.name
+        requirement_level: required
       - ref: gen_ai.request.max_tokens
         requirement_level: recommended
       - ref: gen_ai.request.temperature
         requirement_level: recommended
       - ref: gen_ai.request.top_p
+        requirement_level: recommended
+      - ref: gen_ai.request.top_k
+        requirement_level: recommended
+      - ref: gen_ai.request.stop_sequences
+        requirement_level: recommended
+      - ref: gen_ai.request.frequency_penalty
+        requirement_level: recommended
+      - ref: gen_ai.request.presence_penalty
         requirement_level: recommended
       - ref: gen_ai.response.id
         requirement_level: recommended
@@ -28,9 +38,9 @@ groups:
           fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: gen_ai.response.finish_reasons
         requirement_level: recommended
-      - ref: gen_ai.usage.prompt_tokens
+      - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
-      - ref: gen_ai.usage.completion_tokens
+      - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
     events:
       - gen_ai.content.prompt

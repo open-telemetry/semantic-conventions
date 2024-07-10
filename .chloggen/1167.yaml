@@ -1,0 +1,4 @@
+change_type: bug_fix
+component: http
+note: "Relax requirement on when to set HTTP span status to Error from `MUST` to `SHOULD`."
+issues: [1167, 1003]

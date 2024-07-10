@@ -130,8 +130,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the runtime of this process. For compiled native binaries,
-          this SHOULD be the name of the compiler.
+          The name of the runtime of this process.
         examples: ['OpenJDK Runtime Environment']
       - id: runtime.version
         type: string
@@ -194,28 +193,5 @@ groups:
               stability: experimental
             - id: minor
               value: 'minor'
-              stability: experimental
-        stability: experimental
-
-  - id: registry.process.cpu
-    prefix: process.cpu
-    type: attribute_group
-    brief: >
-        Attributes for process CPU
-    attributes:
-      - id: state
-        brief: >
-          The CPU state of the process.
-        type:
-          allow_custom_values: true
-          members:
-            - id: system
-              value: 'system'
-              stability: experimental
-            - id: user
-              value: 'user'
-              stability: experimental
-            - id: wait
-              value: 'wait'
               stability: experimental
         stability: experimental
