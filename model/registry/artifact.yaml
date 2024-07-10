@@ -46,7 +46,7 @@ groups:
         brief: >
           The filename for provenance directly related to the artifact.
           Attestations can have a one to many relationship with build
-          artifacts. See 
+          artifacts. See
           [SLSA Relationship](https://slsa.dev/spec/v1.0/distributing-provenance#relationship-between-artifacts-and-attestations)
           for more information.
         examples: ['golang-binary-amd64-v0.1.0.attestation', 'docker-image-amd64-v0.1.0.intoto.json1', 'release-1.tar.gz.attestation', 'file-name-package.tar.gz.intoto.json1']
