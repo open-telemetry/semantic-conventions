@@ -53,47 +53,8 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The human readable name of the [test case](https://en.wikipedia.org/wiki/Test_case).
+          The fully qualified human readable name of the [test case](https://en.wikipedia.org/wiki/Test_case).
         examples: ['TestCase1']
-      - id: case.run.id
-        type: string
-        stability: experimental
-        brief: >
-          The unique identifier of a test case run.
-        examples: ['123445']
-      - id: case.run.status
-        type:
-          members:
-            - id: success
-              value: success
-              brief: success
-              stability: experimental
-            - id: failure
-              value: failure
-              brief: failure
-              stability: experimental
-            - id: skipped
-              value: skipped
-              brief: skipped
-              stability: experimental
-            - id: aborted
-              value: aborted
-              brief: aborted
-              stability: experimental
-            - id: timed_out
-              value: timed_out
-              brief: timed_out
-              stability: experimental
-            - id: in_progress
-              value: in_progress
-              brief: in_progress
-              stability: experimental
-        stability: experimental
-        brief: >
-          The status of the test case run, where run is referring to the run of
-          the test case in the context of the pipeline, and not the actual
-          result of the case.
-        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out', 'in_progress']
       - id: case.result.status
         type:
           members:
