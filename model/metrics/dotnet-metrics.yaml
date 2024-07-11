@@ -11,18 +11,18 @@ groups:
       - ref: dotnet.gc.heap.generation
         requirement_level: required
 
-  - id: metric.dotnet.gc.objects.size
+  - id: metric.dotnet.process.memory.working_set
     type: metric
-    metric_name: dotnet.gc.objects.size
-    brief: "The number of bytes currently allocated on the managed GC heap. Fragmentation and other GC committed memory pools are excluded."
-    note: "This metric reports the same values as calling [`GC.GetTotalMemory(false)`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalmemory)."
+    metric_name: dotnet.process.memory.working_set
+    brief: "The number of bytes of physical memory mapped to the process context."
+    note: "This metric reports the same values as calling [`Environment.WorkingSet`](https://learn.microsoft.com/dotnet/api/system.environment.workingset)."
     instrument: updowncounter
     unit: "By"
     stability: experimental
 
-  - id: metric.dotnet.gc.memory.total_allocated
+  - id: metric.dotnet.gc.heap.total_allocated
     type: metric
-    metric_name: dotnet.gc.memory.total_allocated
+    metric_name: dotnet.gc.heap.total_allocated
     brief: >
       The approximate number of bytes allocated on the managed GC heap since the process has
       started. The returned value does not include any native allocations.
@@ -31,9 +31,9 @@ groups:
     unit: "By"
     stability: experimental
 
-  - id: metric.dotnet.gc.memory.committed
+  - id: metric.dotnet.gc.last_collection.memory.committed_size
     type: metric
-    metric_name: dotnet.gc.memory.committed
+    metric_name: dotnet.gc.last_collection.memory.committed_size
     brief: >
       The amount of committed virtual memory in use by the .NET GC, as
       observed during the latest garbage collection.
@@ -48,9 +48,9 @@ groups:
     unit: "By"
     stability: experimental
 
-  - id: metric.dotnet.gc.heap.size
+  - id: metric.dotnet.gc.last_collection.heap.size
     type: metric
-    metric_name: dotnet.gc.heap.size
+    metric_name: dotnet.gc.last_collection.heap.size
     brief: >
       The managed GC heap size (including fragmentation), as observed during the
       latest garbage collection.
@@ -62,9 +62,9 @@ groups:
       - ref: dotnet.gc.heap.generation
         requirement_level: required
 
-  - id: metric.dotnet.gc.heap.fragmentation
+  - id: metric.dotnet.gc.last_collection.heap.fragmentation.size
     type: metric
-    metric_name: dotnet.gc.heap.fragmentation
+    metric_name: dotnet.gc.last_collection.heap.fragmentation.size
     brief: >
       The heap fragmentation, as observed during the latest garbage collection.
     note: >
@@ -189,18 +189,18 @@ groups:
       - ref: error.type
         requirement_level: required
 
-  - id: metric.dotnet.cpu.count
+  - id: metric.dotnet.process.cpu.count
     type: metric
-    metric_name: dotnet.cpu.count
+    metric_name: dotnet.process.cpu.count
     brief: "The number of processors available to the process."
     note: "This metric reports the same values as accessing [`Environment.ProcessorCount`](https://learn.microsoft.com/dotnet/api/system.environment.processorcount)."
     instrument: updowncounter
     unit: "{cpu}"
     stability: experimental
 
-  - id: metric.dotnet.cpu.time
+  - id: metric.dotnet.process.cpu.time
     type: metric
-    metric_name: dotnet.cpu.time
+    metric_name: dotnet.process.cpu.time
     brief: "CPU time used by the process as reported by the CLR."
     note: >
       This metric reports the same values as accessing the corresponding
