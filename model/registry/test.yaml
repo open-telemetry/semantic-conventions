@@ -54,7 +54,7 @@ groups:
         stability: experimental
         brief: >
           The fully qualified human readable name of the [test case](https://en.wikipedia.org/wiki/Test_case).
-        examples: ['TestCase1']
+        examples: ['org.example.TestCase1.test1', 'example/tests/TestCase1.test1', 'ExampleTestCase1_test1']
       - id: case.result.status
         type:
           members:
