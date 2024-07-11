@@ -10,7 +10,7 @@ The Semantic Conventions for the *Microsoft SQL Server* extend and override the 
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`db.system` MUST be set to `"mssql"`.
+`db.system` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 
@@ -64,6 +64,16 @@ Even though parameterized query text can potentially have sensitive data, by usi
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.namespace`](/docs/attributes-registry/db.md)
+* [`db.operation.name`](/docs/attributes-registry/db.md)
+* [`db.query.text`](/docs/attributes-registry/db.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

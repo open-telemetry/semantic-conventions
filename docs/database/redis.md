@@ -10,7 +10,7 @@ The Semantic Conventions for [Redis](https://redis.com/) extend and override the
 that describe common database operations attributes in addition to the Semantic Conventions
 described on this page.
 
-`db.system` MUST be set to `"redis"`.
+`db.system` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 
@@ -62,6 +62,15 @@ Parameterized query text SHOULD be collected by default (the query parameter val
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`db.namespace`](/docs/attributes-registry/db.md)
+* [`db.operation.name`](/docs/attributes-registry/db.md)
+* [`db.query.text`](/docs/attributes-registry/db.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
