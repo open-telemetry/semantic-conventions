@@ -88,12 +88,13 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description              | Stability                                                  |
-| ------ | ------------------------ | ---------------------------------------------------------- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp`  | TCP                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp`  | UDP                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `unix` | Unix domain socket       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Value  | Description              | Stability                                                        |
+| ------ | ------------------------ | ---------------------------------------------------------------- |
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| `quic` | QUIC                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tcp`  | TCP                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| `udp`  | UDP                      | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| `unix` | Unix domain socket       | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
