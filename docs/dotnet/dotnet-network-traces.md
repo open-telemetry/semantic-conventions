@@ -25,14 +25,16 @@ This article defines semantic conventions for HTTP client, DNS and TLS spans emi
 
 .NET `HttpClient` reports HTTP client request spans according to [HTTP Semantic Conventions](/docs/http/http-spans.md#http-client).
 
-In addition to HTTP request spans, `HttpClient` reports spans describing HTTP connection establishment and its stages.
+In addition to stable HTTP client request spans, `HttpClient` reports experimental spans describing HTTP connection establishment and its stages.
 
-While such spans represent low-level details, connection lifetime is usually measured in minutes, therefore in common case
-when application is under the load, the rate of connection-related spans is expected to be much lower than the rate of HTTP client spans.
+The connection lifetime is usually measured in minutes, so when application is under the load but connection pool is not
+overloaded, the rate of connection-related spans is expected to be much lower than the rate of
+HTTP client request spans.
 
-Application developers are encouraged to enable corresponding instrumentation in development or test environments. Using connection-level
-instrumentation in production should be done after appropriate validation as it increases the volume of reported telemetry and has performance overhead that
-depends on the application.
+Applications are encouraged to enable *HTTP client request* spans by default in production environments.
+
+Connection-level spans are experimental - their semantics may be changed in the future in a breaking manner.
+Using connection-level instrumentation in production environments should be done after appropriate validation.
 
 ## HTTP client request
 
