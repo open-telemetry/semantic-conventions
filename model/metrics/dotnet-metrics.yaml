@@ -1,9 +1,52 @@
 groups:
+  - id: metric.dotnet.process.cpu.count
+    type: metric
+    metric_name: dotnet.process.cpu.count
+    brief: "The number of processors available to the process."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as accessing [`Environment.ProcessorCount`](https://learn.microsoft.com/dotnet/api/system.environment.processorcount).
+    instrument: updowncounter
+    unit: "{cpu}"
+    stability: experimental
+
+  - id: metric.dotnet.process.cpu.time
+    type: metric
+    metric_name: dotnet.process.cpu.time
+    brief: "CPU time used by the process as reported by the CLR."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as accessing the corresponding
+      processor time properties on [`System.Diagnostics.Process`](https://learn.microsoft.com/dotnet/api/system.diagnostics.process).
+    instrument: counter
+    unit: "s"
+    stability: experimental
+    attributes:
+      - ref: cpu.mode
+        requirement_level: required
+
+  - id: metric.dotnet.process.memory.working_set
+    type: metric
+    metric_name: dotnet.process.memory.working_set
+    brief: "The number of bytes of physical memory mapped to the process context."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling [`Environment.WorkingSet`](https://learn.microsoft.com/dotnet/api/system.environment.workingset).
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+
   - id: metric.dotnet.gc.collections
     type: metric
     metric_name: dotnet.gc.collections
-    brief: "Number of garbage collections that have occurred since the process has started."
-    note: "This metric reports the same values as calling [`GC.CollectionCount(int generation)`](https://learn.microsoft.com/dotnet/api/system.gc.collectioncount)."
+    brief: "The number of garbage collections that have occurred since the process has started."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling [`GC.CollectionCount(int generation)`](https://learn.microsoft.com/dotnet/api/system.gc.collectioncount).
     instrument: counter
     unit: "{collection}"
     stability: experimental
@@ -11,22 +54,16 @@ groups:
       - ref: dotnet.gc.heap.generation
         requirement_level: required
 
-  - id: metric.dotnet.process.memory.working_set
-    type: metric
-    metric_name: dotnet.process.memory.working_set
-    brief: "The number of bytes of physical memory mapped to the process context."
-    note: "This metric reports the same values as calling [`Environment.WorkingSet`](https://learn.microsoft.com/dotnet/api/system.environment.workingset)."
-    instrument: updowncounter
-    unit: "By"
-    stability: experimental
-
   - id: metric.dotnet.gc.heap.total_allocated
     type: metric
     metric_name: dotnet.gc.heap.total_allocated
     brief: >
-      The approximate number of bytes allocated on the managed GC heap since the process has
+      The *approximate* number of bytes allocated on the managed GC heap since the process has
       started. The returned value does not include any native allocations.
-    note: "This metric reports the same values as calling [`GC.GetTotalAllocatedBytes()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalallocatedbytes)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling [`GC.GetTotalAllocatedBytes()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalallocatedbytes).
     instrument: counter
     unit: "By"
     stability: experimental
@@ -38,6 +75,8 @@ groups:
       The amount of committed virtual memory in use by the .NET GC, as
       observed during the latest garbage collection.
     note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
       This metric reports the same values as calling
       [`GC.GetGCMemoryInfo().TotalCommittedBytes`](https://learn.microsoft.com/dotnet/api/system.gcmemoryinfo.totalcommittedbytes).
       Committed virtual memory may be larger than the heap size because it
@@ -54,7 +93,11 @@ groups:
     brief: >
       The managed GC heap size (including fragmentation), as observed during the
       latest garbage collection.
-    note: "This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.SizeAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.sizeafterbytes)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling
+      [`GC.GetGCMemoryInfo().GenerationInfo.SizeAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.sizeafterbytes).
     instrument: updowncounter
     unit: "By"
     stability: experimental
@@ -68,6 +111,8 @@ groups:
     brief: >
       The heap fragmentation, as observed during the latest garbage collection.
     note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
       This metric reports the same values as calling
       [`GC.GetGCMemoryInfo().GenerationInfo.FragmentationAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.fragmentationafterbytes).
     instrument: updowncounter
@@ -81,7 +126,10 @@ groups:
     type: metric
     metric_name: dotnet.gc.pause.time
     brief: "The total amount of time paused in GC since the process has started."
-    note: "This metric reports the same values as calling [`GC.GetTotalPauseDuration()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalpauseduration)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling [`GC.GetTotalPauseDuration()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalpauseduration).
     instrument: counter
     unit: "s"
     stability: experimental
@@ -90,7 +138,11 @@ groups:
     type: metric
     metric_name: dotnet.jit.compiled_il.size
     brief: "Count of bytes of intermediate language that have been compiled since the process has started."
-    note: "This metric reports the same values as calling [`JitInfo.GetCompiledILBytes()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledilbytes)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling
+      [`JitInfo.GetCompiledILBytes()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledilbytes).
     instrument: counter
     unit: "By"
     stability: experimental
@@ -101,7 +153,11 @@ groups:
     brief: >
       The number of times the JIT compiler (re)compiled methods since the
       process has started.
-    note: "This metric reports the same values as calling [`JitInfo.GetCompiledMethodCount()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledmethodcount)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling
+      [`JitInfo.GetCompiledMethodCount()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledmethodcount).
     instrument: counter
     unit: "{method}"
     stability: experimental
@@ -112,7 +168,11 @@ groups:
     brief: >
       The amount of time the JIT compiler has spent compiling methods since the
       process has started.
-    note: "This metric reports the same values as calling [`JitInfo.GetCompilationTime()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompilationtime)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling
+      [`JitInfo.GetCompilationTime()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompilationtime).
     instrument: counter
     unit: "s"
     stability: experimental
@@ -123,7 +183,11 @@ groups:
     brief: >
       The number of times there was contention when trying to acquire a monitor
       lock since the process has started.
-    note: "This metric reports the same values as calling [`Monitor.LockContentionCount`](https://learn.microsoft.com/dotnet/api/system.threading.monitor.lockcontentioncount)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling
+      [`Monitor.LockContentionCount`](https://learn.microsoft.com/dotnet/api/system.threading.monitor.lockcontentioncount).
     instrument: counter
     unit: "{contention}"
     stability: experimental
@@ -132,7 +196,10 @@ groups:
     type: metric
     metric_name: dotnet.thread_pool.thread.count
     brief: "The number of thread pool threads that currently exist."
-    note: "This metric reports the same values as calling [`ThreadPool.ThreadCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.threadcount)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling [`ThreadPool.ThreadCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.threadcount).
     instrument: updowncounter
     unit: "{thread}"
     stability: experimental
@@ -143,7 +210,11 @@ groups:
     brief: >
       The number of work items that the thread pool has completed since
       the process has started.
-    note: "This metric reports the same values as calling [`ThreadPool.CompletedWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.completedworkitemcount)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling
+      [`ThreadPool.CompletedWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.completedworkitemcount).
     instrument: counter
     unit: "{work_item}"
     stability: experimental
@@ -154,7 +225,11 @@ groups:
     brief: >
       The number of work items that are currently queued to be processed by the
       thread pool.
-    note: "This metric reports the same values as calling [`ThreadPool.PendingWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.pendingworkitemcount)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling
+      [`ThreadPool.PendingWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.pendingworkitemcount).
     instrument: updowncounter
     unit: "{work_item}"
     stability: experimental
@@ -163,7 +238,10 @@ groups:
     type: metric
     metric_name: dotnet.timer.count
     brief: "The number of timer instances that are currently active."
-    note: "This metric reports the same values as calling [`Timer.ActiveCount`](https://learn.microsoft.com/dotnet/api/system.threading.timer.activecount)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling [`Timer.ActiveCount`](https://learn.microsoft.com/dotnet/api/system.threading.timer.activecount).
     instrument: updowncounter
     unit: "{timer}"
     stability: experimental
@@ -172,42 +250,27 @@ groups:
     type: metric
     metric_name: dotnet.assembly.count
     brief: "The number of .NET assemblies that are currently loaded."
-    note: "This metric reports the same values as calling [`AppDomain.CurrentDomain.GetAssemblies().Length`](https://learn.microsoft.com/dotnet/api/system.appdomain.getassemblies)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling
+      [`AppDomain.CurrentDomain.GetAssemblies().Length`](https://learn.microsoft.com/dotnet/api/system.appdomain.getassemblies).
     instrument: updowncounter
     unit: "{assembly}"
     stability: experimental
 
-  - id: metric.dotnet.exceptions.count
+  - id: metric.dotnet.exceptions
     type: metric
-    metric_name: dotnet.exceptions.count
+    metric_name: dotnet.exceptions
     brief: "The number of exceptions that have been thrown in managed code."
-    note: "This metric reports the same values as calling [`AppDomain.CurrentDomain.FirstChanceException`](https://learn.microsoft.com/dotnet/api/system.appdomain.firstchanceexception)."
+    note: >
+      Meter name: `System.Runtime`; Added in: .NET 9.0.
+
+      This metric reports the same values as calling
+      [`AppDomain.CurrentDomain.FirstChanceException`](https://learn.microsoft.com/dotnet/api/system.appdomain.firstchanceexception).
     instrument: counter
     unit: "{exception}"
     stability: experimental
     attributes:
       - ref: error.type
-        requirement_level: required
-
-  - id: metric.dotnet.process.cpu.count
-    type: metric
-    metric_name: dotnet.process.cpu.count
-    brief: "The number of processors available to the process."
-    note: "This metric reports the same values as accessing [`Environment.ProcessorCount`](https://learn.microsoft.com/dotnet/api/system.environment.processorcount)."
-    instrument: updowncounter
-    unit: "{cpu}"
-    stability: experimental
-
-  - id: metric.dotnet.process.cpu.time
-    type: metric
-    metric_name: dotnet.process.cpu.time
-    brief: "CPU time used by the process as reported by the CLR."
-    note: >
-      This metric reports the same values as accessing the corresponding
-      processor time properties on [`System.Diagnostics.Process`](https://learn.microsoft.com/dotnet/api/system.diagnostics.process)."
-    instrument: counter
-    unit: "s"
-    stability: experimental
-    attributes:
-      - ref: cpu.mode
         requirement_level: required
