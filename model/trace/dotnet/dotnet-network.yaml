@@ -8,9 +8,10 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: if and only if an error has occurred.
-        brief: The full name of exception type.
+        brief: >
+          One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type.
         note: ""
-        examples: ["System.OperationCanceledException"]
+        examples: ["version_negotiation_error", "System.OperationCanceledException"]
 
   - id: dotnet.http.connection_setup
     type: span
@@ -24,11 +25,12 @@ groups:
       - ref: server.address
       - ref: server.port
       - ref: error.type
-        brief: The full name of exception type.
+        brief: >
+          One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type.
         note: ""
         requirement_level:
           conditionally_required: if and only if an error has occurred.
-        examples: ["System.OperationCanceledException", "System.Net.Sockets.SocketException"]
+        examples: ["name_resolution_error", "System.OperationCanceledException"]
       - ref: url.scheme
 
   - id: dotnet.socket.connect
@@ -39,8 +41,16 @@ groups:
       The span describes the establishment of the socket connection.
     attributes:
       - ref: network.peer.port
+        requirement_level:
+          recommended: If port is supported for the socket address family.
       - ref: network.peer.address
       - ref: network.type
+        requirement_level:
+          recommended: if `network.peer.address` is an IP address.
+      - ref: network.transport
+        examples: ['tcp', 'udp', 'unix']
+        requirement_level:
+          recommended: If value is not `tcp`. When missing, the value is assumed to be `tcp`.
       - ref: error.type
         brief: "Socket error code."
         requirement_level:

@@ -2,11 +2,12 @@
 linkTitle: .NET
 --->
 
-# Semantic conventions for .NET metrics
+# Semantic conventions for .NET
 
-**Status**: [Stable][DocumentStatus]
+This article documents semantic conventions for metrics and traces emitted by the .NET runtime and individual components in the .NET ecosystem.
 
-This article documents semantic conventions for metrics emitted by the .NET runtime and individual components in the .NET ecosystem.
+The following span are currently supported:
+- [HTTP client, DNS, and TLS](dotnet-network-traces.md): Semantic Conventions for HTTP client and connection-related *spans*.
 
 The following metrics are currently supported:
 
@@ -16,4 +17,3 @@ The following metrics are currently supported:
 * [Kestrel](dotnet-kestrel-metrics.md): Semantic Conventions for Kestrel web server *metrics*.
 * [SignalR](dotnet-signalr-metrics.md): Semantic Conventions for SignalR server *metrics*.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

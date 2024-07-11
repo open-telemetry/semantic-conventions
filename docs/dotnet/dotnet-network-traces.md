@@ -4,7 +4,7 @@ linkTitle: HTTP request and connection spans
 
 # Semantic Conventions for network spans emitted by .NET
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 This article defines semantic conventions for HTTP client, DNS and TLS spans emitted by .NET.
 
@@ -36,17 +36,22 @@ depends on the application.
 
 ## HTTP client request
 
+**Status**: [Stable][DocumentStatus]
+
 .NET `HttpClient` reports client request spans according to [HTTP Client Semantic Conventions](/docs/http/http-spans.md#http-client) with the following
 specific details:
 
 - `network.protocol.name`, `network.peer.port`, and `http.request.resend_count` are not reported
 - `url.full` is redacted by default - query parameter values are replaced with `*`. Redaction can be disabled by setting `AppContext` switch `System.Net.Http.DisableQueryRedaction` to `true`.
+- When the `error.type` attribute is reported, it contains one of [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, a full exception type, or a string representation of received status code.
 - all attributes are reported after `Activity` is started, none are provided at creation time.
 
 Corresponding `Activity.OperationName` is `System.Net.Http.HttpRequestOut`, `ActivitySource` name - `System.Net.Http`.
-Span with HTTP semantics was added in .NET Core 9.
+Span with HTTP semantics was added in .NET 9.
 
 ## HTTP client request: wait for connection
+
+**Status**: [Experimental][DocumentStatus]
 
 The span describes the time it takes for the HTTP request to obtain a connection from the connection pool.
 The span is reported only if there is no connection that's readily available. It's reported as a child of *HTTP client request* span.
@@ -54,15 +59,12 @@ The span is reported only if there is no connection that's readily available. It
 The span ends when the connection is obtained - it could happen when an existing connection becomes available or once
 a new connection is established, so the duration of *Wait For Connection* span is different from duration of the [*HTTP connection setup*](#http-connection-setup) span.
 
-If a new connection was created to serve the request and the corresponding [*HTTP connection setup*](#http-connection-setup) was reported, the instrumentation adds the
-link to the *HTTP connection setup* from the *Wait for connection* span.
-
 Span name SHOULD be `wait_for_connection {server.address}:{server.port}`.
 
 Span kind SHOULD be `INTERNAL`
 
-Corresponding `Activity.OperationName` is `System.Net.Http.ConnectionLink.WaitForConnection`, `ActivitySource` name - `System.Net.Http.ConnectionLink`.
-Span added in .NET Core 9.
+Corresponding `Activity.OperationName` is `Experimental.System.Net.Http.ConnectionLink.WaitForConnection`, `ActivitySource` name - `Experimental.System.Net.Http`.
+Span added in .NET 9.
 
 The time it takes to get a connection from the pool is also reported by the
 [`http.client.request.time_in_queue` metric](/docs/dotnet/dotnet-http-metrics.md#metric-httpclientrequesttime_in_queue).
@@ -84,7 +86,7 @@ The span describes the time it takes for HTTP request to obtain a connection to 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type. | `version_negotiation_error`; `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -101,16 +103,22 @@ The span describes the time it takes for HTTP request to obtain a connection to 
 
 ## HTTP connection setup
 
+**Status**: [Experimental][DocumentStatus]
+
 The span describes the establishment of the HTTP connection. It includes the time it takes
 to resolve the DNS, establish the socket connection, and perform the TLS handshake.
 
 Span name SHOULD be `HTTP connection_setup {address}:{server.port}`.
 The `{address}` SHOULD be `server.address` when it's available and `network.peer.address` otherwise.
 
-Span kind SHOULD be `CLIENT`.
+Span kind SHOULD be `INTERNAL`.
 
-Corresponding `Activity.OperationName` is `System.Net.Http.Connections.ConnectionSetup`, `ActivitySource` name - `System.Net.Http.Connections`.
-Added in .NET Core 9.
+If the [*HTTP connection setup*](#http-connection-setup) is reported, the instrumentation adds the
+link to the *HTTP client request* span pointing to the *HTTP connection setup* span. I.e. each client request span
+is linked to the connection that served this request (if the connection was ever associated with this request).
+
+Corresponding `Activity.OperationName` is `Experimental.System.Net.Http.Connections.ConnectionSetup`, `ActivitySource` name - `Experimental.System.Net.Http.Connections`.
+Added in .NET 9.
 
 <!-- semconv dotnet.http.connection_setup -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -129,7 +137,7 @@ The span describes the establishment of the HTTP connection. It includes the tim
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | The full name of exception type. | `System.OperationCanceledException`; `System.Net.Sockets.SocketException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type. | `name_resolution_error`; `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -154,16 +162,18 @@ The span describes the establishment of the HTTP connection. It includes the tim
 
 ## Socket connect
 
+**Status**: [Experimental][DocumentStatus]
+
 The span describes the establishment of the socket connection.
 It's different from [*HTTP connection setup*](#http-connection-setup) span, which also covers the DNS lookup and TLS handshake.
 
 When *Socket connect* span is reported along with *HTTP connection setup* span, the socket span becomes a child of HTTP connection setup.
 
 Span name SHOULD be `socket connect {network.peer.address}:{network.peer.port}`.
-Span kind SHOULD be `CLIENT`.
+Span kind SHOULD be `INTERNAL`.
 
-Corresponding `Activity.OperationName` is `System.Net.Sockets.Connect`, `ActivitySource` name - `System.Net.Sockets`.
-Added in .NET Core 9.
+Corresponding `Activity.OperationName` is `Experimental.System.Net.Sockets.Connect`, `ActivitySource` name - `Experimental.System.Net.Sockets`.
+Added in .NET 9.
 
 <!-- semconv dotnet.socket.connect -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -184,8 +194,9 @@ The span describes the establishment of the socket connection.
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | Socket error code. [1] | `connection_refused`; `address_not_available` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp`; `unix` | `Recommended` [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | `Recommended` if `network.peer.address` is an IP address. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `error.type`:** The following errors codes are reported:
 
@@ -210,7 +221,17 @@ The span describes the establishment of the socket connection.
 See socket errors on [Windows](https://learn.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value) and
 [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
 
-**[2] `network.type`:** The value SHOULD be normalized to lowercase.
+**[2] `network.peer.port`:** If port is supported for the socket address family.
+
+**[3] `network.transport`:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport. For example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+**[4] `network.transport`:** If value is not `tcp`. When missing, the value is assumed to be `tcp`.
+
+**[5] `network.type`:** The value SHOULD be normalized to lowercase.
 
 ---
 
@@ -219,6 +240,18 @@ See socket errors on [Windows](https://learn.microsoft.com/windows/win32/api/win
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -236,6 +269,8 @@ See socket errors on [Windows](https://learn.microsoft.com/windows/win32/api/win
 
 ## DNS resolution
 
+**Status**: [Experimental][DocumentStatus]
+
 The span describes DNS lookups performed with one of the methods on [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns) class.
 DNS lookup duration is also reported by [`dns.lookup.duration` metric](/docs/dotnet/dotnet-dns-metrics.md#metric-dnslookupduration).
 
@@ -247,12 +282,12 @@ and a sibling of *Socket connect*.
 
 DNS spans are reported for both lookups and reverse lookups.
 
-Lookup (IP addresses from host name) span name SHOULD be `DNS lookup {dns.question.name}`. TODO?
+Lookup (IP addresses from host name) span name SHOULD be `DNS lookup {dns.question.name}`.
 Reverse lookup (host names from IP address) span name SHOULD be `DNS reverse lookup {dns.question.name}`.
-Span kind SHOULD be `CLIENT`.
+Span kind SHOULD be `INTERNAL`.
 
-Corresponding `Activity.OperationName` is `System.Net.NameResolution.DnsLookup`, `ActivitySource` name - `System.Net.NameResolution`.
-Added in .NET Core 9
+Corresponding `Activity.OperationName` is `Experimental.System.Net.NameResolution.DnsLookup`, `ActivitySource` name - `Experimental.System.Net.NameResolution`.
+Added in .NET 9
 
 <!-- semconv dotnet.dns.lookup -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -302,15 +337,17 @@ See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.sock
 
 ## TLS handshake
 
+**Status**: [Experimental][DocumentStatus]
+
 The span describes TLS client or server handshake performed with [System.Net.Security.SslStream](https://learn.microsoft.com/dotnet/api/system.net.security.sslstream).
 
 Span name SHOULD be `TLS client {server.address}` when authenticating on the client side and `TLS server` when authenticating the server.
-Span kind SHOULD be `CLIENT` in both cases.
+Span kind SHOULD be `INTERNAL` in both cases.
 
 When *TLS* span is reported for client-side authentication along with *HTTP connection setup* and *Socket connect* span, the *TLS* span becomes a child of *HTTP connection setup*.
 
-Corresponding `Activity.OperationName` is `System.Net.Security.TlsHandshake`, `ActivitySource` name - `System.Net.Security`.
-Added in .NET Core 9.
+Corresponding `Activity.OperationName` is `Experimental.System.Net.Security.TlsHandshake`, `ActivitySource` name - `Experimental.System.Net.Security`.
+Added in .NET 9.
 
 <!-- semconv dotnet.tls.handshake -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -365,7 +402,7 @@ The span describes TLS handshake.
 If connection is immediately available for the request, `HttpClient` creates one span for HTTP request.
 
 ```
-<------------------ GET / (CLIENT, trace=t1, span=s1) --------------------------->
+<------------------ GET / (INTERNAL, trace=t1, span=s1) --------------------------->
 ```
 
 ### HTTP request has to wait for connection setup
@@ -375,8 +412,8 @@ If connection was not immediately available for the request, `HttpClient` create
 connection was created. There was no cached DNS record for the host.
 
 ```
-<----------------------- GET / (trace=t1, span=s1) -------------------------------->
-<-- wait_for_connection (trace=t1, span=s2, link_to=t2,s3) -->
+<----------------------- GET / (trace=t1, span=s1, link_to=t2,s3) -------------------------------->
+<--------- wait_for_connection (trace=t1, span=s2) ---------->
 
 
 <--------- HTTP connection_setup (trace=t2, span=s3) -------->
@@ -388,8 +425,8 @@ connection was created. There was no cached DNS record for the host.
 ### HTTP request has to wait for connection setup and other requests on that connection to complete
 
 If connection was not immediately available for the request, `HttpClient` creates span for HTTP request and
-*Wait for connection* span. In this example, request was performed on a new connection, but before this connection
-became available for this request, other requests were performed on it.
+*Wait for connection* span. In this example, request was performed on a new connection, but this connection
+served other requests in the queue before it became available for this request.
 
 ```
                 <--------------------- GET / (trace=t1, span=s1) ------------------------------>
