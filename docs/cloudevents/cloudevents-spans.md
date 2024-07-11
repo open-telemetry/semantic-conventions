@@ -12,7 +12,7 @@ linkTitle: CloudEvents Spans
 
 - [Definitions](#definitions)
 - [Conventions](#conventions)
-  - [Span attributes](#span-attributes)
+- [Span attributes](#span-attributes)
 
 <!-- tocstop -->
 
@@ -33,24 +33,18 @@ document.
 
 ## Conventions
 
-CloudEvents can be sent via various communication protocols. When the protocol
-used to send CloudEvents has a well established support for trace context propagation,
-instrumentations SHOULD propagate the context using this built-in mechanism.
+CloudEvent-specific instrumentations SHOULD follow the span structure described in
+the [Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md).
 
-If CloudEvents are instrumented independently of the protocol used,
-CloudEvent-specific instrumentations SHOULD use the
+If CloudEvents are instrumented independently of the above conventions,
+instrumentations can rely on the
 [CloudEvents Distributed Tracing Extension](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/extensions/distributed-tracing.md)
 as means to propagate the trace context.
 
-When CloudEvents are used in messaging scenarios, where an event can go through
-many [hops](https://en.wikipedia.org/wiki/Hop_%28networking%29),
-CloudEvent-specific instrumentations SHOULD follow the span structure described in
-[Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md).
+## Span attributes
 
-The remainder of this section describes additional CloudEvents attributes
-that can be recorded on spans.
-
-### Span attributes
+Additionally, instrumentations may record the following CloudEvent-specific
+attributes on spans created from the conventions described above.
 
 <!-- prettier-ignore-start -->
 <!-- semconv cloudevents -->
