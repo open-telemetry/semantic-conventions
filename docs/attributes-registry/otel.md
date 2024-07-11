@@ -6,9 +6,9 @@
 
 # OTel
 
-- [Otel](#otel-attributes)
-- [Otel Library Deprecated](#otel-library-deprecated-attributes)
-- [Otel Scope](#otel-scope-attributes)
+- [OTel Attributes](#o-tel-attributes)
+- [OTel Scope Attributes](#o-tel-scope-attributes)
+- [Deprecated OTel Library Attributes](#deprecated-o-tel-library-attributes)
 
 ## OTel Attributes
 
@@ -26,15 +26,6 @@ Attributes reserved for OpenTelemetry
 | `ERROR` | The operation contains an error.                                                                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `OK`    | The operation has been validated by an Application developer or Operator to have completed successfully. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## OTel Library Deprecated Attributes
-
-Describes deprecated otel.library attributes.
-
-| Attribute              | Type   | Description | Examples                           | Stability                                                                                              |
-| ---------------------- | ------ | ----------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `otel.library.name`    | string |             | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.name` attribute.    |
-| `otel.library.version` | string |             | `1.0.0`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.version` attribute. |
-
 ## OTel Scope Attributes
 
 Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
@@ -43,3 +34,12 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concept
 | -------------------- | ------ | ------------------------------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------- |
 | `otel.scope.name`    | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP).       | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `otel.scope.version` | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0`                            | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+## Deprecated OTel Library Attributes
+
+Describes deprecated otel.library attributes.
+
+| Attribute              | Type   | Description | Examples                           | Stability                                                                                              |
+| ---------------------- | ------ | ----------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `otel.library.name`    | string |             | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.name` attribute.    |
+| `otel.library.version` | string |             | `1.0.0`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.version` attribute. |

@@ -332,7 +332,7 @@ groups:
   - id: registry.aws.log
     prefix: aws.log
     type: attribute_group
-    display_name: AWS Logs Attributes
+    display_name: Amazon Logs Attributes
     brief: >
       This document defines attributes for AWS Logs.
     attributes:
@@ -376,7 +376,7 @@ groups:
   - id: registry.aws.lambda
     prefix: aws.lambda
     type: attribute_group
-    display_name: AWS Lambda Attributes
+    display_name: Amazon Lambda Attributes
     brief: >
         This document defines attributes for AWS Lambda.
     attributes:

@@ -9,6 +9,15 @@
 {% import 'attribute_macros.j2' as attrs %}
 {%- set my_file_name = ctx.id | lower | kebab_case ~ ".md" -%}
 {{- template.set_file_name(my_file_name) -}}
+{%- set groups = namespace(deprecated=[], non_deprecated=[]) -%}
+{% for group in ctx.groups | sort(attribute="id") %}
+{% if group.id[-10:] == "deprecated" %}
+{%- set groups.deprecated = groups.deprecated + [group] -%}
+{%- else -%}
+{%- set groups.non_deprecated = groups.non_deprecated + [group] -%}
+{%- endif -%}
+{%- endfor -%}
+{%- set attr_groups = groups.non_deprecated + groups.deprecated -%}
 
 <!--- Hugo front matter used to generate the website version of this page:
 --->
@@ -18,15 +27,12 @@
 
 # {{ ctx.id | title_case | acronym }}
 
-{% if ctx.groups | length > 1 %}{% for group in ctx.groups | sort(attribute="id") %}
-- [{{ group.display_name }}](#{{group.display_name | kebab_case }}-attributes)
-{% endfor %}{% endif %}
-{% for group in ctx.groups | sort(attribute="id") %}
-{% if display_name in group %}
-## {{ group.display_name }}
-{% else %}
-## {{ group.id | split_id | list | reject("eq", "registry") | join(" ") | title_case | acronym }} Attributes
-{% endif %}
+{%- if attr_groups | length > 1 %}{% for group in attr_groups %}
+- [{{ attrs.display_name(group) }}](#{{group.display_name | kebab_case }})
+{%- endfor -%}{%- endif -%}
+
+{% for group in attr_groups %}
+## {{ attrs.display_name(group) }}
 
 {{ group.brief }}
 

@@ -6,8 +6,8 @@
 
 # HTTP
 
-- [Http](#http-attributes)
-- [Http Deprecated](#http-deprecated-attributes)
+- [HTTP Attributes](#http-attributes)
+- [Deprecated HTTP Attributes](#deprecated-http-attributes)
 
 ## HTTP Attributes
 
@@ -78,7 +78,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PUT`     | PUT method.                                                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE`   | TRACE method.                                                       | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## HTTP Deprecated Attributes
+## Deprecated HTTP Attributes
 
 Describes deprecated HTTP attributes.
 

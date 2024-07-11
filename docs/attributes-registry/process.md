@@ -6,8 +6,8 @@
 
 # Process
 
-- [Process](#process-attributes)
-- [Process Deprecated](#process-deprecated-attributes)
+- [Process Attributes](#process-attributes)
+- [Deprecated Process Attributes](#deprecated-process-attributes)
 
 ## Process Attributes
 
@@ -58,7 +58,7 @@ An operating system process.
 | `major` | major       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | minor       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Process Deprecated Attributes
+## Deprecated Process Attributes
 
 Deprecated process attributes.
 
