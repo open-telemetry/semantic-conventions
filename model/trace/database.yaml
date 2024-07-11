@@ -162,7 +162,8 @@ groups:
     attributes:
       - ref: db.namespace
         brief: >
-          The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select).
+          The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select)
+          (captured as a string).
         requirement_level:
           conditionally_required: If and only if it can be captured reliably.
         note: >
