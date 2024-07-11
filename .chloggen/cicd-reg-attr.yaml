@@ -7,7 +7,7 @@
 change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: cicd, deployment
+component: cicd, deployment, artifact, test, vcs
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: Adds CICD common attributes to the registry.
