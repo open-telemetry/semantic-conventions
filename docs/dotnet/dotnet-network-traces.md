@@ -343,7 +343,7 @@ See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.sock
 
 The span describes TLS client or server handshake performed with [System.Net.Security.SslStream](https://learn.microsoft.com/dotnet/api/system.net.security.sslstream).
 
-Span name SHOULD be `TLS client {server.address}` when authenticating on the client side and `TLS server` when authenticating the server.
+Span name SHOULD be `TLS client handshake {server.address}` when authenticating on the client side and `TLS server handshake` when authenticating the server.
 Span kind SHOULD be `INTERNAL` in both cases.
 
 When *TLS* span is reported for client-side authentication along with *HTTP connection setup* and *Socket connect* span, the *TLS* span becomes a child of *HTTP connection setup*.
