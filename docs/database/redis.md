@@ -23,7 +23,7 @@ described on this page.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select). [1] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select) (captured as a string). [1] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
