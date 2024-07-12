@@ -38,6 +38,7 @@ An operating system process.
 | `process.saved_user.id`       | int      | The saved user ID (SUID) of the process.                                                                                                                                                                                                                                                                                                                    | `1002`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.saved_user.name`     | string   | The username of the saved user.                                                                                                                                                                                                                                                                                                                             | `operator`                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.session_leader.pid`  | int      | The PID of the process's session leader. This is also the session ID (SID) of the process.                                                                                                                                                                                                                                                                  | `14`                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.status`              | string   | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)                                                                                                                                                                                                                                   | `running`                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.user.id`             | int      | The effective user ID (EUID) of the process.                                                                                                                                                                                                                                                                                                                | `1001`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.user.name`           | string   | The username of the effective user of the process.                                                                                                                                                                                                                                                                                                          | `root`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.vpid`                | int      | Virtual process identifier. [1]                                                                                                                                                                                                                                                                                                                             | `12`                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -57,6 +58,15 @@ An operating system process.
 | ------- | ----------- | ---------------------------------------------------------------- |
 | `major` | major       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | minor       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value      | Description | Stability                                                        |
+| ---------- | ----------- | ---------------------------------------------------------------- |
+| `defunct`  | defunct     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `running`  | running     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sleeping` | sleeping    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stopped`  | stopped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Process Deprecated Attributes
 
