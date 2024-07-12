@@ -8,8 +8,8 @@
 
 - [GCP Attributes](#gcp-attributes)
 - [GCP Client Attributes](#gcp-client-attributes)
-- [GCP - Google Cloud Run Attributes](#gcp-google-cloud-run-attributes)
-- [GCP - Google Compute Engine (GCE) Attributes](<#gcp-google-compute-engine-(gce)-attributes>)
+- [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
+- [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
 
 ## GCP Attributes
 

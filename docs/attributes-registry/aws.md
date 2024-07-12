@@ -7,7 +7,7 @@
 # AWS
 
 - [General AWS Attributes](#general-aws-attributes)
-- [Amazon DynamoDB Attributes](#amazon-dynamo-db-attributes)
+- [Amazon DynamoDB Attributes](#amazon-dynamodb-attributes)
 - [Amazon ECS Attributes](#amazon-ecs-attributes)
 - [Amazon EKS Attributes](#amazon-eks-attributes)
 - [Amazon Lambda Attributes](#amazon-lambda-attributes)

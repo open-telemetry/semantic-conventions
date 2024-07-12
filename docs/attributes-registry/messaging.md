@@ -8,10 +8,10 @@
 
 - [General Messaging Attributes](#general-messaging-attributes)
 - [Azure Event Hubs Attributes](#azure-event-hubs-attributes)
-- [GCP Pub/Sub Attributes](#gcp-pub/sub-attributes)
+- [GCP Pub/Sub Attributes](#gcp-pubsub-attributes)
 - [Kafka Attributes](#kafka-attributes)
-- [RabbitMQ Attributes](#rabbit-mq-attributes)
-- [RocketMQ Attributes](#rocket-mq-attributes)
+- [RabbitMQ Attributes](#rabbitmq-attributes)
+- [RocketMQ Attributes](#rocketmq-attributes)
 - [Azure Service Bus Attributes](#azure-service-bus-attributes)
 - [Deprecated Messaging Attributes](#deprecated-messaging-attributes)
 

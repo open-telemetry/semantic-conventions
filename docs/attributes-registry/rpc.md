@@ -6,7 +6,7 @@
 
 # RPC
 
-- [Remote Procedure Call (RPC) Attributes](<#remote-procedure-call-(rpc)-attributes>)
+- [Remote Procedure Call (RPC) Attributes](#remote-procedure-call-rpc-attributes)
 - [Deprecated RPC Attributes](#deprecated-rpc-attributes)
 
 ## Remote Procedure Call (RPC) Attributes

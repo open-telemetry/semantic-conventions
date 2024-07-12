@@ -28,7 +28,7 @@
 # {{ ctx.id | title_case | acronym }}
 
 {%- if attr_groups | length > 1 %}{% for group in attr_groups %}
-- [{{ attrs.display_name(group) }}](#{{group.display_name | kebab_case }})
+- [{{ attrs.display_name(group) }}](#{{ attrs.heading_link_fragments(group.display_name) }})
 {%- endfor -%}{%- endif -%}
 
 {% for group in attr_groups %}

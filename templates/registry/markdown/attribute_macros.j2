@@ -39,3 +39,5 @@
 {%- if 'display_name' in group %}{{ group.display_name }}
 {%- else %}{{ group.id | split_id | list | reject("eq", "registry") | join(" ") | title_case | acronym }} Attributes
 {%- endif %}{% endmacro %}
+
+{% macro heading_link_fragments(title) %}{{ title | trim | lower | replace(" ", "-") | replace("(", "") | replace(")", "") | replace("/", "") | replace("\\", "") | replace(".", "") | replace("!", "") | replace("?", "") | replace("~", "") | replace("#", "")}}{% endmacro %}

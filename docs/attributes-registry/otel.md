@@ -6,9 +6,9 @@
 
 # OTel
 
-- [OTel Attributes](#o-tel-attributes)
-- [OTel Scope Attributes](#o-tel-scope-attributes)
-- [Deprecated OTel Library Attributes](#deprecated-o-tel-library-attributes)
+- [OTel Attributes](#otel-attributes)
+- [OTel Scope Attributes](#otel-scope-attributes)
+- [Deprecated OTel Library Attributes](#deprecated-otel-library-attributes)
 
 ## OTel Attributes
 

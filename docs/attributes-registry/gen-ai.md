@@ -6,8 +6,8 @@
 
 # Gen AI
 
-- [GenAI Attributes](#gen-ai-attributes)
-- [Deprecated GenAI Attributes](#deprecated-gen-ai-attributes)
+- [GenAI Attributes](#genai-attributes)
+- [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 
 ## GenAI Attributes
 
