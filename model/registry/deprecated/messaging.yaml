@@ -65,12 +65,12 @@ groups:
         examples: 42
         deprecated: >
           Replaced by `messaging.kafka.offset`.
-      - id: destination_publish.anonymous
+      - id: messaging.destination_publish.anonymous
         type: boolean
         stability: experimental
         brief: 'Deprecated, no replacement at this time.'
         deprecated: "No replacement at this time."
-      - id: destination_publish.name
+      - id: messaging.destination_publish.name
         type: string
         stability: experimental
         brief: 'Deprecated, no replacement at this time.'

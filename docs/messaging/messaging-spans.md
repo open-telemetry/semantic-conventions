@@ -282,7 +282,7 @@ Messaging attributes are organized into the following namespaces:
 - `messaging.message`: Contains attributes that describe individual messages.
 - `messaging.destination`: Contains attributes that describe the logical entity messages are published to. See [Destinations](#destinations) for more details.
 - `messaging.batch`: Contains attributes that describe batch operations.
-- `messaging.consumer`: Contains [consumer attributes](#consumer-attributes) that describe the application instance that consumes a message. See [consumer](#consumer) for more details.
+- `messaging.consumer`: Contains attributes that describe the application instance that consumes a message. See [Consumer](#consumer) for more details.
 
 Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace.
 
