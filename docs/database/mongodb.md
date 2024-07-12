@@ -6,9 +6,7 @@ linkTitle: MongoDB
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and override the [Database Semantic Conventions](database-spans.md)
-that describe common database operations attributes in addition to the Semantic Conventions
-described on this page.
+The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and override the [Database Semantic Conventions](database-spans.md).
 
 `db.system` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
 

@@ -6,9 +6,7 @@ linkTitle: Cassandra
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend and override the [Database Semantic Conventions](database-spans.md)
-that describe common database operations attributes in addition to the Semantic Conventions
-described on this page.
+The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend and override the [Database Semantic Conventions](database-spans.md).
 
 `db.system` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
 

@@ -6,9 +6,7 @@ linkTitle: MSSQL
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for the *Microsoft SQL Server* extend and override the [Database Semantic Conventions](database-spans.md)
-that describe common database operations attributes in addition to the Semantic Conventions
-described on this page.
+The Semantic Conventions for the *Microsoft SQL Server* extend and override the [Database Semantic Conventions](database-spans.md).
 
 `db.system` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
 
