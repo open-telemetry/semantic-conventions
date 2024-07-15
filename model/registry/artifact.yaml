@@ -3,7 +3,11 @@ groups:
     prefix: artifact
     type: attribute_group
     brief: >
-      This group describes attributes specific to artifacts. Artifacts are files or other immutable objects that are intended for distribution. This definition aligns directly with the [SLSA](https://slsa.dev/spec/v1.0/terminology#package-model) package model.
+      This group describes attributes specific to artifacts. Artifacts are
+      files or other immutable objects that are intended for distribution. This
+      definition aligns directly with the
+      [SLSA](https://slsa.dev/spec/v1.0/terminology#package-model) package
+      model.
     attributes:
       - id: name
         type: string
@@ -55,8 +59,9 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The provenance filename of the built attestation which directly relates to the build artifact filename. This filename SHOULD accompany the artifact at publish time.
-          See the
+          The provenance filename of the built attestation which directly
+          relates to the build artifact filename. This filename SHOULD
+          accompany the artifact at publish time. See the
           [SLSA Relationship](https://slsa.dev/spec/v1.0/distributing-provenance#relationship-between-artifacts-and-attestations)
           specification for more information.
         examples:
