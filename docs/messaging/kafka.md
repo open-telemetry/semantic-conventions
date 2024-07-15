@@ -14,9 +14,7 @@ linkTitle: Kafka
 
 <!-- tocstop -->
 
-The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend and override the [Messaging Semantic Conventions](README.md)
-that describe common messaging operations attributes in addition to the Semantic Conventions
-described on this page.
+The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend and override the [Messaging Semantic Conventions](README.md).
 
 `messaging.system` MUST be set to `"kafka"` and SHOULD be provided **at span creation time**.
 
