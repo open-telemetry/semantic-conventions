@@ -177,3 +177,53 @@ groups:
         brief: >
           The name of the CronJob.
         examples: ['opentelemetry']
+      - id: volume.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the K8s volume.
+        examples: [ 'volume0' ]
+      - id: volume.type
+        stability: experimental
+        brief: >
+          The type of the K8s volume.
+        examples: [ "emptyDir", "persistentVolumeClaim" ]
+        type:
+          allow_custom_values: true
+          members:
+            - id: persistentvolumeclaim
+              value: 'persistentVolumeClaim'
+              brief: "A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
+              stability: experimental
+            - id: configmap
+              value: 'configMap'
+              brief: "A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
+              stability: experimental
+            - id: downwardapi
+              value: 'downwardAPI'
+              brief: "A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
+              stability: experimental
+            - id: emptydir
+              value: 'emptyDir'
+              brief: "An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
+              stability: experimental
+            - id: secret
+              value: 'secret'
+              brief: "A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
+              stability: experimental
+            - id: local
+              value: 'local'
+              brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              stability: experimental
+            - id: awselasticblockstore
+              value: 'awsElasticBlockStore'
+              brief: "An [awsElasticBlockStore](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore) volume"
+              stability: experimental
+            - id: gcepersistentdisk
+              value: 'gcePersistentDisk'
+              brief: "A [gcePersistentDisk](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#gcepersistentdisk) volume"
+              stability: experimental
+            - id: glusterfs
+              value: 'glusterfs'
+              brief: "A [glusterfs](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#glusterfs) volume"
+              stability: experimental
