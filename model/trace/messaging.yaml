@@ -151,7 +151,7 @@ groups:
       - ref: messaging.kafka.message.key
         requirement_level:
           recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.message.offset
+      - ref: messaging.kafka.offset
         requirement_level:
           recommended: If span describes operation on a single message.
       - ref: messaging.kafka.message.tombstone
