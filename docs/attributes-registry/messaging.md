@@ -6,16 +6,16 @@
 
 # Messaging
 
-- [Messaging](#messaging-attributes)
-- [Messaging Deprecated](#messaging-deprecated-attributes)
-- [Messaging Eventhubs](#messaging-eventhubs-attributes)
-- [Messaging Gcp Pubsub](#messaging-gcp-pubsub-attributes)
-- [Messaging Kafka](#messaging-kafka-attributes)
-- [Messaging Rabbitmq](#messaging-rabbitmq-attributes)
-- [Messaging Rocketmq](#messaging-rocketmq-attributes)
-- [Messaging Servicebus](#messaging-servicebus-attributes)
+- [General Messaging Attributes](#general-messaging-attributes)
+- [Azure Event Hubs Attributes](#azure-event-hubs-attributes)
+- [GCP Pub/Sub Attributes](#gcp-pubsub-attributes)
+- [Kafka Attributes](#kafka-attributes)
+- [RabbitMQ Attributes](#rabbitmq-attributes)
+- [RocketMQ Attributes](#rocketmq-attributes)
+- [Azure Service Bus Attributes](#azure-service-bus-attributes)
+- [Deprecated Messaging Attributes](#deprecated-messaging-attributes)
 
-## Messaging Attributes
+## General Messaging Attributes
 
 Attributes describing telemetry around messaging systems and messaging activities.
 
@@ -91,22 +91,7 @@ size should be used.
 | `rocketmq`   | Apache RocketMQ                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `servicebus` | Azure Service Bus                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Messaging Deprecated Attributes
-
-Describes deprecated messaging attributes.
-
-| Attribute                                            | Type   | Description                                                                   | Examples                          | Stability                                                                                                                                                            |
-| ---------------------------------------------------- | ------ | ----------------------------------------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `messaging.client_id`                                | string | Deprecated, use `messaging.client.id` instead.                                | `client-5`; `myhost@8742@s8083jm` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`.                                                                    |
-| `messaging.eventhubs.consumer.group`                 | string | Deprecated, use `messaging.consumer.group.name` instead.                      | `$Default`                        | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name`.                                                          |
-| `messaging.kafka.consumer.group`                     | string | Deprecated, use `messaging.consumer.group.name` instead.                      | `my-group`                        | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name`.                                                          |
-| `messaging.kafka.destination.partition`              | int    | Deprecated, use `messaging.destination.partition.id` instead.                 | `2`                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`.                                                     |
-| `messaging.kafka.message.offset`                     | int    | Deprecated, use `messaging.kafka.offset` instead.                             | `42`                              | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.kafka.offset`.                                                                 |
-| `messaging.operation`                                | string | Deprecated, use `messaging.operation.type` instead.                           | `publish`; `create`; `process`    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`.                                                               |
-| `messaging.rocketmq.client_group`                    | string | Deprecated, use `messaging.consumer.group.name` instead.                      | `myConsumerGroup`                 | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans. |
-| `messaging.servicebus.destination.subscription_name` | string | Deprecated, use `messaging.servicebus.destination.subscription_name` instead. | `subscription-a`                  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.servicebus.destination.subscription_name`.                                     |
-
-## Messaging Eventhubs Attributes
+## Azure Event Hubs Attributes
 
 This group describes attributes specific to Azure Event Hubs.
 
@@ -114,7 +99,7 @@ This group describes attributes specific to Azure Event Hubs.
 | ------------------------------------------- | ---- | -------------------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------- |
 | `messaging.eventhubs.message.enqueued_time` | int  | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Messaging GCP Pubsub Attributes
+## GCP Pub/Sub Attributes
 
 This group describes attributes specific to GCP Pub/Sub.
 
@@ -125,7 +110,7 @@ This group describes attributes specific to GCP Pub/Sub.
 | `messaging.gcp_pubsub.message.delivery_attempt` | int    | The delivery attempt for a given message.                                                                         | `2`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.gcp_pubsub.message.ordering_key`     | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Messaging Kafka Attributes
+## Kafka Attributes
 
 This group describes attributes specific to Apache Kafka.
 
@@ -137,7 +122,7 @@ This group describes attributes specific to Apache Kafka.
 
 **[11]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
-## Messaging RabbitMQ Attributes
+## RabbitMQ Attributes
 
 This group describes attributes specific to RabbitMQ.
 
@@ -146,7 +131,7 @@ This group describes attributes specific to RabbitMQ.
 | `messaging.rabbitmq.destination.routing_key` | string | RabbitMQ message routing key. | `myKey`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `messaging.rabbitmq.message.delivery_tag`    | int    | RabbitMQ message delivery tag | `123`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Messaging RocketMQ Attributes
+## RocketMQ Attributes
 
 This group describes attributes specific to RocketMQ.
 
@@ -177,7 +162,7 @@ This group describes attributes specific to RocketMQ.
 | `normal`      | Normal message      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transaction` | Transaction message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Messaging Servicebus Attributes
+## Azure Service Bus Attributes
 
 This group describes attributes specific to Azure Service Bus.
 
@@ -195,3 +180,18 @@ This group describes attributes specific to Azure Service Bus.
 | `complete`    | Message is completed                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `dead_letter` | Message is sent to dead letter queue | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `defer`       | Message is deferred                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Deprecated Messaging Attributes
+
+Describes deprecated messaging attributes.
+
+| Attribute                                            | Type   | Description                                                                   | Examples                          | Stability                                                                                                                                                            |
+| ---------------------------------------------------- | ------ | ----------------------------------------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `messaging.client_id`                                | string | Deprecated, use `messaging.client.id` instead.                                | `client-5`; `myhost@8742@s8083jm` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`.                                                                    |
+| `messaging.eventhubs.consumer.group`                 | string | Deprecated, use `messaging.consumer.group.name` instead.                      | `$Default`                        | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name`.                                                          |
+| `messaging.kafka.consumer.group`                     | string | Deprecated, use `messaging.consumer.group.name` instead.                      | `my-group`                        | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name`.                                                          |
+| `messaging.kafka.destination.partition`              | int    | Deprecated, use `messaging.destination.partition.id` instead.                 | `2`                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`.                                                     |
+| `messaging.kafka.message.offset`                     | int    | Deprecated, use `messaging.kafka.offset` instead.                             | `42`                              | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.kafka.offset`.                                                                 |
+| `messaging.operation`                                | string | Deprecated, use `messaging.operation.type` instead.                           | `publish`; `create`; `process`    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`.                                                               |
+| `messaging.rocketmq.client_group`                    | string | Deprecated, use `messaging.consumer.group.name` instead.                      | `myConsumerGroup`                 | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans. |
+| `messaging.servicebus.destination.subscription_name` | string | Deprecated, use `messaging.servicebus.destination.subscription_name` instead. | `subscription-a`                  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.servicebus.destination.subscription_name`.                                     |

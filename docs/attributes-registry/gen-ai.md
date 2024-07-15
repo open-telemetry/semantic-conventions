@@ -6,10 +6,10 @@
 
 # Gen AI
 
-- [Gen Ai](#gen-ai-attributes)
-- [Gen Ai Deprecated](#gen-ai-deprecated-attributes)
+- [GenAI Attributes](#genai-attributes)
+- [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 
-## Gen AI Attributes
+## GenAI Attributes
 
 This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
 
@@ -73,7 +73,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `input`  | Input tokens (prompt, input, etc.)         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Gen AI Deprecated Attributes
+## Deprecated GenAI Attributes
 
 Describes deprecated `gen_ai` attributes.
 

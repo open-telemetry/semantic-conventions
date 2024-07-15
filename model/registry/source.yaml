@@ -2,6 +2,7 @@ groups:
   - id: registry.source
     prefix: source
     type: attribute_group
+    display_name: Source Attributes
     brief: >
       These attributes may be used to describe the sender of a network exchange/packet. These should be used
       when there is no client/server relationship between the two sides, or when that relationship is unknown.

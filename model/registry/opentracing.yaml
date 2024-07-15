@@ -2,6 +2,7 @@ groups:
   - id: registry.opentracing
     prefix: opentracing
     type: attribute_group
+    display_name: OpenTracing Attributes
     brief: Attributes used by the OpenTracing Shim layer.
     attributes:
       - id: ref_type

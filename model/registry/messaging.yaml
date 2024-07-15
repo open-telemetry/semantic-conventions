@@ -2,6 +2,7 @@ groups:
   - id: registry.messaging
     prefix: messaging
     type: attribute_group
+    display_name: General Messaging Attributes
     brief: 'Attributes describing telemetry around messaging systems and messaging activities.'
     attributes:
       - id: batch.message_count
@@ -217,6 +218,7 @@ groups:
   - id: registry.messaging.kafka
     prefix: messaging
     type: attribute_group
+    display_name: Kafka Attributes
     brief: >
       This group describes attributes specific to Apache Kafka.
     attributes:
@@ -244,6 +246,7 @@ groups:
   - id: registry.messaging.rabbitmq
     prefix: messaging
     type: attribute_group
+    display_name: RabbitMQ Attributes
     brief: >
       This group describes attributes specific to RabbitMQ.
     attributes:
@@ -262,6 +265,7 @@ groups:
   - id: registry.messaging.rocketmq
     prefix: messaging
     type: attribute_group
+    display_name: RocketMQ Attributes
     brief: >
       This group describes attributes specific to RocketMQ.
     attributes:
@@ -342,6 +346,7 @@ groups:
   - id: registry.messaging.gcp_pubsub
     prefix: messaging
     type: attribute_group
+    display_name: GCP Pub/Sub Attributes
     brief: >
       This group describes attributes specific to GCP Pub/Sub.
     attributes:
@@ -372,6 +377,7 @@ groups:
   - id: registry.messaging.servicebus
     prefix: messaging
     type: attribute_group
+    display_name: Azure Service Bus Attributes
     brief: >
       This group describes attributes specific to Azure Service Bus.
     attributes:
@@ -413,6 +419,7 @@ groups:
   - id: registry.messaging.eventhubs
     prefix: messaging
     type: attribute_group
+    display_name: Azure Event Hubs Attributes
     brief: >
       This group describes attributes specific to Azure Event Hubs.
     attributes:
