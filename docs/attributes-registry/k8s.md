@@ -6,10 +6,10 @@
 
 # K8s
 
-- [K8s](#k8s-attributes)
-- [K8s Deprecated](#k8s-deprecated-attributes)
+- [Kubernetes Attributes](#kubernetes-attributes)
+- [Deprecated Kubernetes Attributes](#deprecated-kubernetes-attributes)
 
-## K8s Attributes
+## Kubernetes Attributes
 
 Kubernetes resource attributes.
 
@@ -63,7 +63,7 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
-## K8s Deprecated Attributes
+## Deprecated Kubernetes Attributes
 
 Describes deprecated k8s attributes.
 

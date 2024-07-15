@@ -2,6 +2,7 @@ groups:
   - id: registry.file
     prefix: file
     type: attribute_group
+    display_name: File Attributes
     brief: "Describes file attributes."
     attributes:
       - id: directory

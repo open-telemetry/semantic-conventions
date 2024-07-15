@@ -1,6 +1,7 @@
 groups:
   - id: registry.log
     type: attribute_group
+    display_name: General Log Attributes
     prefix: log
     brief: >
       This document defines log attributes
@@ -23,6 +24,7 @@ groups:
 
   - id: registry.log.file    # TODO: should we move it to the file model?
     type: attribute_group
+    display_name: Log File Attributes
     prefix: log.file
     brief: >
       Attributes for a file to which log was emitted.
@@ -54,6 +56,7 @@ groups:
 
   - id: registry.log.record
     type: attribute_group
+    display_name: Log Record Attributes
     prefix: log.record
     brief: >
       This document defines the generic attributes that may be used in any Log Record.
