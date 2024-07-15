@@ -1,7 +1,30 @@
 groups:
+  - id: registry.gcp
+    prefix: gcp
+    type: attribute_group
+    display_name: GCP Attributes
+    brief: Attributes for Google Cloud
+  - id: registry.gcp.client
+    prefix: gcp.client
+    type: attribute_group
+    display_name: GCP Client Attributes
+    brief: >
+      Attributes for Google Cloud client libraries.
+    attributes:
+      - id: service
+        type: string
+        stability: experimental
+        brief: Identifies the Google Cloud service for which the official client library is intended.
+        note: >
+          Intended to be a stable identifier for Google Cloud client libraries
+          that is uniform across implementation languages. The value should be
+          derived from the canonical service domain for the service; for
+          example, 'foo.googleapis.com' should result in a value of 'foo'.
+        examples: ['appengine', 'run', 'firestore', 'alloydb', 'spanner']
   - id: registry.gcp.cloud_run
     prefix: gcp.cloud_run
     type: attribute_group
+    display_name: GCP - Google Cloud Run Attributes
     brief: >
       This document defines attributes for Google Cloud Run.
     attributes:
@@ -26,6 +49,7 @@ groups:
   - id: registry.gcp.gce
     prefix: gcp.gce
     type: attribute_group
+    display_name: GCP - Google Compute Engine (GCE) Attributes
     brief: >
       This document defines attributes for Google Compute Engine (GCE).
     attributes:

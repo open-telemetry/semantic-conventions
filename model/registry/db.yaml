@@ -2,6 +2,7 @@ groups:
   - id: registry.db
     prefix: db
     type: attribute_group
+    display_name: General Database Attributes
     brief: >
       This group defines the attributes used to describe telemetry in the context of databases.
     attributes:
@@ -10,8 +11,13 @@ groups:
         stability: experimental
         brief: The name of a collection (table, container) within the database.
         note: >
-            If the collection name is parsed from the query, it SHOULD match the value provided
-            in the query and may be qualified with the schema and database name.
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+          If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query
+          and it SHOULD match the value provided in the query text including any schema and database name prefix.
+
+          For batch operations, if the individual operations are known to have the same collection name
+          then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
         examples: ['public.users', 'customers']
       - id: namespace
         type: string
@@ -26,33 +32,65 @@ groups:
 
           Semantic conventions for individual database systems SHOULD document what `db.namespace`
           means in the context of that system.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: [ 'customers', 'test.users' ]
       - id: operation.name
         type: string
         stability: experimental
         brief: >
           The name of the operation or command being executed.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+          If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
+
+          For batch operations, if the individual operations are known to have the same operation name
+          then that operation name SHOULD be used prepended by `BATCH `,
+          otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
         examples: ['findAndModify', 'HMSET', 'SELECT']
       - id: query.text
         type: string
         stability: experimental
         brief: >
           The database query being executed.
+        note: >
+          For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+
+          For batch operations, if the individual operations are known to have the same query text
+          then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated
+          with separator `; ` or some other database system specific separator if more applicable.
+
+          Even though parameterized query text can potentially have sensitive data, by using a parameterized query
+          the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
+          to observability of capturing the static part of the query text by default outweighs the risk.
         examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
       - id: query.parameter
         type: template[string]
         stability: experimental
         brief: >
-          The query parameters used in `db.query.text`, with `<key>` being the parameter name,
-          and the attribute value being the parameter value.
+          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
+          and the attribute value being a string representation of the parameter value.
         note: >
           Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
         examples: ['someval', '55']
+      - id: operation.batch.size
+        type: int
+        stability: experimental
+        brief: The number of queries included in a [batch operation](/docs/database/database-spans.md#batch-operations).
+        note: >
+          Operations are only considered batches when they contain two or more operations,
+          and so `db.operation.batch.size` SHOULD never be `1`.
+        examples: [ 2, 3, 4 ]
       - id: system
-        brief: An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.
+        brief: The database management system (DBMS) product as identified by the client instrumentation.
+        note: >
+          The actual DBMS may differ from the one identified by the client.
+          For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system`
+          is set to `postgresql` based on the instrumentation's best knowledge.
         type:
           allow_custom_values: true
           members:
@@ -60,93 +98,121 @@ groups:
               value: 'other_sql'
               brief: 'Some other SQL database. Fallback only. See notes.'
               stability: experimental
-            - id: mssql
-              value: 'mssql'
-              brief: 'Microsoft SQL Server'
+            - id: adabas
+              value: 'adabas'
+              brief: 'Adabas (Adaptable Database System)'
               stability: experimental
-            - id: mssqlcompact
-              value: 'mssqlcompact'
-              brief: 'Microsoft SQL Server Compact'
+            - id: cache
+              value: 'cache'
+              deprecated: "Replaced by `intersystems_cache`."
+              brief: "Deprecated, use `intersystems_cache` instead."
               stability: experimental
-            - id: mysql
-              value: 'mysql'
-              brief: 'MySQL'
+            - id: intersystems_cache
+              value: 'intersystems_cache'
+              brief: "InterSystems Caché"
               stability: experimental
-            - id: oracle
-              value: 'oracle'
-              brief: 'Oracle Database'
+            - id: cassandra
+              value: 'cassandra'
+              brief: 'Apache Cassandra'
+              stability: experimental
+            - id: clickhouse
+              value: 'clickhouse'
+              brief: 'ClickHouse'
+              stability: experimental
+            - id: cloudscape
+              value: 'cloudscape'
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
+              stability: experimental
+            - id: cockroachdb
+              value: 'cockroachdb'
+              brief: 'CockroachDB'
+              stability: experimental
+            - id: coldfusion
+              value: 'coldfusion'
+              deprecated: "Removed."
+              brief: "Deprecated, no replacement at this time."
+              stability: experimental
+            - id: cosmosdb
+              value: 'cosmosdb'
+              brief: 'Microsoft Azure Cosmos DB'
+              stability: experimental
+            - id: couchbase
+              value: 'couchbase'
+              brief: 'Couchbase'
+              stability: experimental
+            - id: couchdb
+              value: 'couchdb'
+              brief: 'CouchDB'
               stability: experimental
             - id: db2
               value: 'db2'
               brief: 'IBM Db2'
               stability: experimental
-            - id: postgresql
-              value: 'postgresql'
-              brief: 'PostgreSQL'
+            - id: derby
+              value: 'derby'
+              brief: 'Apache Derby'
               stability: experimental
-            - id: redshift
-              value: 'redshift'
-              brief: 'Amazon Redshift'
-              stability: experimental
-            - id: hive
-              value: 'hive'
-              brief: 'Apache Hive'
-              stability: experimental
-            - id: cloudscape
-              value: 'cloudscape'
-              brief: 'Cloudscape'
-              stability: experimental
-            - id: hsqldb
-              value: 'hsqldb'
-              brief: 'HyperSQL DataBase'
-              stability: experimental
-            - id: progress
-              value: 'progress'
-              brief: 'Progress Database'
-              stability: experimental
-            - id: maxdb
-              value: 'maxdb'
-              brief: 'SAP MaxDB'
-              stability: experimental
-            - id: hanadb
-              value: 'hanadb'
-              brief: 'SAP HANA'
-              stability: experimental
-            - id: ingres
-              value: 'ingres'
-              brief: 'Ingres'
-              stability: experimental
-            - id: firstsql
-              value: 'firstsql'
-              brief: 'FirstSQL'
+            - id: dynamodb
+              value: 'dynamodb'
+              brief: 'Amazon DynamoDB'
               stability: experimental
             - id: edb
               value: 'edb'
               brief: 'EnterpriseDB'
               stability: experimental
-            - id: cache
-              value: 'cache'
-              brief: 'InterSystems Caché'
-              stability: experimental
-            - id: adabas
-              value: 'adabas'
-              brief: 'Adabas (Adaptable Database System)'
-              stability: experimental
-            - id: firebird
-              value: 'firebird'
-              brief: 'Firebird'
-              stability: experimental
-            - id: derby
-              value: 'derby'
-              brief: 'Apache Derby'
+            - id: elasticsearch
+              value: 'elasticsearch'
+              brief: 'Elasticsearch'
               stability: experimental
             - id: filemaker
               value: 'filemaker'
               brief: 'FileMaker'
               stability: experimental
+            - id: firebird
+              value: 'firebird'
+              brief: 'Firebird'
+              stability: experimental
+            - id: firstsql
+              value: 'firstsql'
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
+              stability: experimental
+            - id: geode
+              value: 'geode'
+              brief: 'Apache Geode'
+              stability: experimental
+            - id: h2
+              value: 'h2'
+              brief: 'H2'
+              stability: experimental
+            - id: hanadb
+              value: 'hanadb'
+              brief: 'SAP HANA'
+              stability: experimental
+            - id: hbase
+              value: 'hbase'
+              brief: 'Apache HBase'
+              stability: experimental
+            - id: hive
+              value: 'hive'
+              brief: 'Apache Hive'
+              stability: experimental
+            - id: hsqldb
+              value: 'hsqldb'
+              brief: 'HyperSQL DataBase'
+              stability: experimental
+            - id: influxdb
+              value: 'influxdb'
+              brief: 'InfluxDB'
+              stability: experimental
             - id: informix
               value: 'informix'
               brief: 'Informix'
+              stability: experimental
+            - id: ingres
+              value: 'ingres'
+              brief: 'Ingres'
               stability: experimental
             - id: instantdb
               value: 'instantdb'
@@ -160,9 +226,46 @@ groups:
               value: 'mariadb'
               brief: 'MariaDB'
               stability: experimental
+            - id: maxdb
+              value: 'maxdb'
+              brief: 'SAP MaxDB'
+              stability: experimental
+            - id: memcached
+              value: 'memcached'
+              brief: 'Memcached'
+              stability: experimental
+            - id: mongodb
+              value: 'mongodb'
+              brief: 'MongoDB'
+              stability: experimental
+            - id: mssql
+              value: 'mssql'
+              brief: 'Microsoft SQL Server'
+              stability: experimental
+            - id: mssqlcompact
+              value: 'mssqlcompact'
+              deprecated: "Removed, use `other_sql` instead."
+              brief: "Deprecated, Microsoft SQL Server Compact is discontinued."
+              stability: experimental
+            - id: mysql
+              value: 'mysql'
+              brief: 'MySQL'
+              stability: experimental
+            - id: neo4j
+              value: 'neo4j'
+              brief: 'Neo4j'
+              stability: experimental
             - id: netezza
               value: 'netezza'
               brief: 'Netezza'
+              stability: experimental
+            - id: opensearch
+              value: 'opensearch'
+              brief: 'OpenSearch'
+              stability: experimental
+            - id: oracle
+              value: 'oracle'
+              brief: 'Oracle Database'
               stability: experimental
             - id: pervasive
               value: 'pervasive'
@@ -171,6 +274,26 @@ groups:
             - id: pointbase
               value: 'pointbase'
               brief: 'PointBase'
+              stability: experimental
+            - id: postgresql
+              value: 'postgresql'
+              brief: 'PostgreSQL'
+              stability: experimental
+            - id: progress
+              value: 'progress'
+              brief: 'Progress Database'
+              stability: experimental
+            - id: redis
+              value: 'redis'
+              brief: 'Redis'
+              stability: experimental
+            - id: redshift
+              value: 'redshift'
+              brief: 'Amazon Redshift'
+              stability: experimental
+            - id: spanner
+              value: 'spanner'
+              brief: 'Cloud Spanner'
               stability: experimental
             - id: sqlite
               value: 'sqlite'
@@ -184,96 +307,16 @@ groups:
               value: 'teradata'
               brief: 'Teradata'
               stability: experimental
-            - id: vertica
-              value: 'vertica'
-              brief: 'Vertica'
-              stability: experimental
-            - id: h2
-              value: 'h2'
-              brief: 'H2'
-              stability: experimental
-            - id: coldfusion
-              value: 'coldfusion'
-              brief: 'ColdFusion IMQ'
-              stability: experimental
-            - id: cassandra
-              value: 'cassandra'
-              brief: 'Apache Cassandra'
-              stability: experimental
-            - id: hbase
-              value: 'hbase'
-              brief: 'Apache HBase'
-              stability: experimental
-            - id: mongodb
-              value: 'mongodb'
-              brief: 'MongoDB'
-              stability: experimental
-            - id: redis
-              value: 'redis'
-              brief: 'Redis'
-              stability: experimental
-            - id: couchbase
-              value: 'couchbase'
-              brief: 'Couchbase'
-              stability: experimental
-            - id: couchdb
-              value: 'couchdb'
-              brief: 'CouchDB'
-              stability: experimental
-            - id: cosmosdb
-              value: 'cosmosdb'
-              brief: 'Microsoft Azure Cosmos DB'
-              stability: experimental
-            - id: dynamodb
-              value: 'dynamodb'
-              brief: 'Amazon DynamoDB'
-              stability: experimental
-            - id: neo4j
-              value: 'neo4j'
-              brief: 'Neo4j'
-              stability: experimental
-            - id: geode
-              value: 'geode'
-              brief: 'Apache Geode'
-              stability: experimental
-            - id: elasticsearch
-              value: 'elasticsearch'
-              brief: 'Elasticsearch'
-              stability: experimental
-            - id: memcached
-              value: 'memcached'
-              brief: 'Memcached'
-              stability: experimental
-            - id: cockroachdb
-              value: 'cockroachdb'
-              brief: 'CockroachDB'
-              stability: experimental
-            - id: opensearch
-              value: 'opensearch'
-              brief: 'OpenSearch'
-              stability: experimental
-            - id: clickhouse
-              value: 'clickhouse'
-              brief: 'ClickHouse'
-              stability: experimental
-            - id: spanner
-              value: 'spanner'
-              brief: 'Cloud Spanner'
-              stability: experimental
             - id: trino
               value: 'trino'
               brief: 'Trino'
               stability: experimental
+            - id: vertica
+              value: 'vertica'
+              brief: 'Vertica'
+              stability: experimental
         stability: experimental
-      - id: instance.id
-        type: string
-        stability: experimental
-        brief: >
-          An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection.
-          This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query.
-          The client may obtain this value in databases like MySQL using queries like `select @@hostname`.
-        examples: 'mysql-e26b99z.example.com'
-      - id: client.connections.state
+      - id: client.connection.state
         stability: experimental
         type:
           allow_custom_values: true
@@ -286,7 +329,7 @@ groups:
               stability: experimental
         brief: "The state of a connection in the pool"
         examples: ["idle"]
-      - id: client.connections.pool.name
+      - id: client.connection.pool.name
         type: string
         stability: experimental
         brief: >
@@ -298,6 +341,7 @@ groups:
   - id: registry.db.cassandra
     prefix: db
     type: attribute_group
+    display_name: Cassandra Attributes
     brief: >
       This group defines attributes for Cassandra.
     attributes:
@@ -372,6 +416,7 @@ groups:
   - id: registry.db.cosmosdb
     prefix: db
     type: attribute_group
+    display_name: Azure Cosmos DB Attributes
     brief: >
       This group defines attributes for Azure Cosmos DB.
     attributes:
@@ -467,15 +512,16 @@ groups:
   - id: registry.db.elasticsearch
     prefix: db
     type: attribute_group
+    display_name: Elasticsearch Attributes
     brief: >
       This group defines attributes for Elasticsearch.
     attributes:
-      - id: elasticsearch.cluster.name
+      - id: elasticsearch.node.name
         type: string
         stability: experimental
         brief: >
-          Represents the identifier of an Elasticsearch cluster.
-        examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
+          Represents the human-readable identifier of the node/instance to which a request was routed.
+        examples: ["instance-0000000001"]
       - id: elasticsearch.path_parts
         type: template[string]
         stability: experimental

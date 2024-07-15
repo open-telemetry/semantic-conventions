@@ -13,7 +13,19 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
-SEMCONVGEN_VERSION=0.24.0
+SEMCONVGEN_VERSION=0.25.0
+WEAVER_VERSION=0.5.0
+
+# From where to resolve the containers (e.g. "otel/weaver").
+CONTAINER_REPOSITORY=docker.io
+
+# Per container overrides for the repository resolution.
+WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
+SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
+
+# Fully qualified references to containers used in this Makefile.
+WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/otel/weaver:$(WEAVER_VERSION)
+SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/otel/semconvgen:$(SEMCONVGEN_VERSION)
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -51,7 +63,7 @@ markdown-link-check:
 # This target runs markdown-toc on all files that contain
 # a comment <!-- tocstop -->.
 #
-# The recommended way to prepate a .md file for markdown-toc is
+# The recommended way to prepare a .md file for markdown-toc is
 # to add these comments:
 #
 #   <!-- toc -->
@@ -94,20 +106,56 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
+		$(WEAVER_CONTAINER) registry update-markdown \
+		--registry=/source \
+		--attribute-registry-base-url=/docs/attributes-registry \
+		--templates=/weaver/templates \
+		--target=markdown \
+		/spec
 
-# Check if current markdown tables differ from the ones that would be generated from YAML definitions
+# Generate attribute registry markdown.
+.PHONY: attribute-registry-generation
+attribute-registry-generation:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
+		$(WEAVER_CONTAINER) registry generate \
+		  --registry=/source \
+		  --templates=/weaver/templates \
+		  markdown \
+		  /spec/attributes-registry/
+	npm run fix:format
+
+# Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
 table-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
+		$(WEAVER_CONTAINER) registry update-markdown \
+		--registry=/source \
+		--attribute-registry-base-url=/docs/attributes-registry \
+		--templates=/weaver/templates \
+		--target=markdown \
+		--dry-run \
+		/spec
 
-LATEST_RELEASED_SEMCONV_VERSION := $(shell git describe --tags --abbrev=0 | sed 's/v//g')
+
+# A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
+# relied on "git describe". However, that approach does not work with
+# light-weight developer forks/branches that haven't synced tags. Hence the
+# more complex implementation of this using "git ls-remote".
+#
+# The output of "git ls-remote" looks something like this:
+#
+#    e531541025992b68177a68b87628c5dc75c4f7d9        refs/tags/v1.21.0
+#    cadfe53949266d33476b15ca52c92f682600a29c        refs/tags/v1.22.0
+#    ...
+#
+# .. which is why some additional processing is required to extract the
+# latest version number and strip off the "v" prefix.
+LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | sed 's/v//g')
 .PHONY: compatibility-check
 compatibility-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
+		$(SEMCONVGEN_CONTAINER) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
 
 .PHONY: schema-check
 schema-check:
@@ -122,14 +170,15 @@ fix-format:
 	npm run fix:format
 
 # Run all checks in order of speed / likely failure.
+# As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint check-format markdown-toc compatibility-check markdown-link-check
+check: misspell markdownlint check-format markdown-toc compatibility-check markdown-link-check attribute-registry-generation
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation misspell-correction fix-format markdown-toc
+fix: table-generation attribute-registry-generation misspell-correction fix-format markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools

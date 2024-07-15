@@ -2,6 +2,7 @@ groups:
   - id: registry.device
     prefix: device
     type: attribute_group
+    display_name: Device Attributes
     brief: >
         Describes device attributes.
     attributes:

@@ -28,13 +28,13 @@ body:
         - area:cloudevents
         - area:code
         - area:container
+        - area:cpu
         - area:db
         - area:deployment
         - area:destination
         - area:device
         - area:disk
         - area:dns
-        - area:enduser
         - area:error
         - area:event
         - area:exception
@@ -43,10 +43,12 @@ body:
         - area:file
         - area:gcp
         - area:gen-ai
+        - area:go
         - area:graphql
         - area:heroku
         - area:host
         - area:http
+        - area:jvm
         - area:k8s
         - area:log
         - area:messaging
@@ -69,6 +71,8 @@ body:
         - area:tls
         - area:url
         - area:user-agent
+        - area:user
+        - area:v8js
         - area:webengine
         # End semconv area list
   - type: textarea

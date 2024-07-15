@@ -47,11 +47,14 @@ Also consider the
 [OS process metrics](/docs/system/process-metrics.md)
 semantic conventions when instrumenting runtime environments.
 
+- [Go](go-metrics.md)
 - [JVM](jvm-metrics.md)
+- [Node.js](nodejs-metrics.md)
+- [V8 JS Engine](v8js-metrics.md)
 
 ### Attributes
 
 [`process.runtime`](/docs/resource/process.md#process-runtimes)
 resource attributes SHOULD be included on runtime metric events as appropriate.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

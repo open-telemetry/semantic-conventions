@@ -2,6 +2,7 @@ groups:
   - id: registry.k8s
     prefix: k8s
     type: attribute_group
+    display_name: Kubernetes Attributes
     brief: >
       Kubernetes resource attributes.
     attributes:
@@ -98,7 +99,13 @@ groups:
           Number of times the container was restarted. This attribute can be
           used to identify a particular container (running or stopped) within a
           container spec.
-        examples: [0, 2]
+      - id: container.status.last_terminated_reason
+        type: string
+        stability: experimental
+        brief: >
+          Last terminated reason of the Container.
+        examples: ["Evicted", "Error"]
+
       - id: replicaset.uid
         type: string
         stability: experimental

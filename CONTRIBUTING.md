@@ -83,7 +83,7 @@ environment configured:
 ### 1. Modify the YAML model
 
 Refer to the
-[Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.24.0/semantic-conventions/syntax.md)
+[Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.25.0/semantic-conventions/syntax.md)
 to learn how to make changes to the YAML files.
 
 #### Schema files
@@ -103,10 +103,10 @@ You can also take examples from past changes inside the `schemas` folder.
 ### 2. Update the markdown files
 
 After updating the YAML file(s), you need to update
-the respective markdown files. For this, run the following command:
+the respective markdown files. For this, run the following commands:
 
 ```bash
-make table-generation
+make table-generation attribute-registry-generation
 ```
 
 #### Hugo frontmatter

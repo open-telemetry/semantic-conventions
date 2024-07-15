@@ -2,6 +2,7 @@ groups:
   - id: registry.url
     brief: Attributes describing URL.
     type: attribute_group
+    display_name: URL Attributes
     prefix: url
     attributes:
       - id: domain
@@ -105,6 +106,12 @@ groups:
         note: >
            The subdomain portion of `www.east.mydomain.co.uk` is `east`. If the domain has multiple levels of subdomain,
            such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
+      - id: template
+        type: string
+        stability: experimental
+        brief: >
+          The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
+        examples: ["/users/{id}", "/users/:id", "/users?id={id}"]
       - id: top_level_domain
         type: string
         stability: experimental

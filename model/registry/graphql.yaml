@@ -2,6 +2,7 @@ groups:
   - id: registry.graphql
     prefix: graphql
     type: attribute_group
+    display_name: GraphQL Attributes
     brief: 'This document defines attributes for GraphQL.'
     attributes:
       - id: operation.name

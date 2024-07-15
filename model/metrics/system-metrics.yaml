@@ -8,8 +8,9 @@ groups:
     instrument: counter
     unit: "s"
     attributes:
-      - ref: system.cpu.state
-        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
+      - ref: cpu.mode
+        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
+        note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.utilization
@@ -20,8 +21,9 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: system.cpu.state
-        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
+      - ref: cpu.mode
+        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
+        note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.frequency
@@ -52,7 +54,7 @@ groups:
     unit: "{cpu}"
     attributes: []
 
-  # sytem.memory.* metrics
+  # system.memory.* metrics
   - id: metric.system.memory.usage
     type: metric
     metric_name: system.memory.usage
@@ -76,6 +78,17 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes: []
+
+  - id: metric.system.memory.shared
+    type: metric
+    metric_name: system.memory.shared
+    stability: experimental
+    brief: "Shared memory used (mostly by tmpfs)."
+    note: |
+      Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
+    instrument: updowncounter
+    unit: "By"
 
   - id: metric.system.memory.utilization
     type: metric

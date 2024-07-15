@@ -3,6 +3,7 @@ groups:
   - id: registry.system
     prefix: system
     type: attribute_group
+    display_name: General System Attributes
     brief: "Describes System attributes"
     attributes:
       - id: device
@@ -14,45 +15,19 @@ groups:
   - id: registry.system.cpu
     prefix: system.cpu
     type: attribute_group
+    display_name: System CPU Attributes
     brief: "Describes System CPU attributes"
     attributes:
-      - id: state
-        type:
-          allow_custom_values: true
-          members:
-            - id: user
-              value: 'user'
-              stability: experimental
-            - id: system
-              value: 'system'
-              stability: experimental
-            - id: nice
-              value: 'nice'
-              stability: experimental
-            - id: idle
-              value: 'idle'
-              stability: experimental
-            - id: iowait
-              value: 'iowait'
-              stability: experimental
-            - id: interrupt
-              value: 'interrupt'
-              stability: experimental
-            - id: steal
-              value: 'steal'
-              stability: experimental
-        brief: "The state of the CPU"
-        stability: experimental
-        examples: ["idle", "interrupt"]
       - id: logical_number
         type: int
         stability: experimental
         brief: "The logical CPU number [0..n-1]"
         examples: [1]
-  # sytem.memory.* attribute group
+  # system.memory.* attribute group
   - id: registry.system.memory
     prefix: system.memory
     type: attribute_group
+    display_name: System Memory Attributes
     brief: "Describes System Memory attributes"
     attributes:
       - id: state
@@ -68,6 +43,7 @@ groups:
             - id: shared
               value: 'shared'
               stability: experimental
+              deprecated: 'Removed, report shared memory usage with `metric.system.memory.shared` metric'
             - id: buffers
               value: 'buffers'
               stability: experimental
@@ -81,6 +57,7 @@ groups:
   - id: registry.system.paging
     prefix: system.paging
     type: attribute_group
+    display_name: System Paging Attributes
     brief: "Describes System Memory Paging attributes"
     attributes:
       - id: state
@@ -125,6 +102,7 @@ groups:
   - id: registry.system.filesystem
     prefix: system.filesystem
     type: attribute_group
+    display_name: Filesystem Attributes
     brief: "Describes Filesystem attributes"
     attributes:
       - id: state
@@ -182,6 +160,7 @@ groups:
   - id: registry.system.network
     prefix: system.network
     type: attribute_group
+    display_name: System Network Attributes
     brief: "Describes Network attributes"
     attributes:
       - id: state
@@ -231,6 +210,7 @@ groups:
   - id: registry.system.process
     prefix: system.process
     type: attribute_group
+    display_name: System Process Attributes
     brief: "Describes System Process attributes"
     attributes:
       - id: status
