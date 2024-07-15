@@ -231,7 +231,7 @@ groups:
           If the key type is not string, it's string representation has to be supplied for the attribute.
           If the key has no unambiguous, canonical string form, don't include its value.
         examples: 'myKey'
-      - id: kafka.message.offset
+      - id: kafka.offset
         type: int
         stability: experimental
         brief: >
