@@ -6,11 +6,11 @@
 
 # Log
 
-- [Log](#log-attributes)
-- [Log File](#log-file-attributes)
-- [Log Record](#log-record-attributes)
+- [General Log Attributes](#general-log-attributes)
+- [Log File Attributes](#log-file-attributes)
+- [Log Record Attributes](#log-record-attributes)
 
-## Log Attributes
+## General Log Attributes
 
 This document defines log attributes
 
