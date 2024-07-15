@@ -6,8 +6,8 @@
 
 # Deployment
 
-- [Deployment](#deployment-attributes)
-- [Deployment Deprecated](#deployment-deprecated-attributes)
+- [Deployment Attributes](#deployment-attributes)
+- [Deployment Deprecated Attributes](#deployment-deprecated-attributes)
 
 ## Deployment Attributes
 
