@@ -6,7 +6,7 @@
 
 # Dns
 
-## Dns Attributes
+## DNS Attributes
 
 This document defines the shared attributes used to report a DNS query.
 

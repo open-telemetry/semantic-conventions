@@ -2,6 +2,7 @@ groups:
   - id: registry.session
     prefix: session
     type: attribute_group
+    display_name: Session Attributes
     brief: >
       Session is defined as the period of time encompassing all activities performed by the application and the actions
       executed by the end user.

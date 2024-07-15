@@ -6,7 +6,7 @@
 
 # V8js
 
-## V8js Attributes
+## V8 JS Attributes
 
 Describes V8 JS Engine Runtime related attributes.
 

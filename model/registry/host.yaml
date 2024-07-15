@@ -2,6 +2,7 @@ groups:
   - id: registry.host
     prefix: host
     type: attribute_group
+    display_name: Host Attributes
     brief: >
       A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
     attributes:
