@@ -89,3 +89,12 @@ groups:
     attributes:
       - ref: k8s.cronjob.uid
       - ref: k8s.cronjob.name
+
+  - id: k8s.volume
+    prefix: k8s.volume
+    type: resource
+    brief: >
+      A Kubernetes Volume.
+    attributes:
+      - ref: k8s.volume.name
+      - ref: k8s.volume.type
