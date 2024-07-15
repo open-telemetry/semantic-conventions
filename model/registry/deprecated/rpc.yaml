@@ -1,6 +1,7 @@
 groups:
   - id: registry.rpc.deprecated
     type: attribute_group
+    display_name: Deprecated RPC Attributes
     brief: 'Deprecated rpc message attributes.'
     attributes:
       - id: message.type
