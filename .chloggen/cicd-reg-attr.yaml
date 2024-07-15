@@ -21,4 +21,4 @@ issues: [915, 832, 833]
 # Use pipe (|) for multiline entries.
 subtext: |
   - CICD common attributes have been added to the registry.
-  - "`deployment.environment` has been deprecated and moved to `deployment.environment.name`."
+  - `deployment.environment` has been deprecated and moved to `deployment.environment.name`.

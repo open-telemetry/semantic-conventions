@@ -18,13 +18,19 @@ groups:
         stability: experimental
         brief: >
           The human readable name of the pipeline within a CI/CD system.
-        examples: ['Build and Test', 'Lint', 'Deploy Go Project', 'deploy_to_environment']
+        examples:
+          [
+            "Build and Test",
+            "Lint",
+            "Deploy Go Project",
+            "deploy_to_environment",
+          ]
       - id: run.id
         type: string
         stability: experimental
         brief: >
           The unique identifier of a pipeline run within a CI/CD system.
-        examples: ['120912']
+        examples: ["120912"]
       - id: task.name
         type: string
         stability: experimental
@@ -33,20 +39,23 @@ groups:
           closely aligns with a [computing process](https://en.wikipedia.org/wiki/Pipeline_(computing))
           in a pipeline. Other terms for tasks include commands, steps, and
           procedures.
-        examples: ['Run GoLang Linter', 'Go Build', 'go-test', 'deploy_binary']
+        examples: ["Run GoLang Linter", "Go Build", "go-test", "deploy_binary"]
       - id: task.run.id
         type: string
         stability: experimental
         brief: >
           The unique identifier of a task run within a pipeline.
-        examples: ['12097']
+        examples: ["12097"]
       - id: task.run.url.full
         type: string
         stability: experimental
         brief: >
           The [URL](https://en.wikipedia.org/wiki/URL) of the pipeline run
-          providing the complete address in order to locate and identify the pipeline.
-        examples: ['https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075']
+          providing the complete address in order to locate and identify the pipeline run.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075",
+          ]
       - id: task.type
         type:
           members:
@@ -65,4 +74,4 @@ groups:
         stability: experimental
         brief: >
           The type of the task within a pipeline.
-        examples: ['build', 'test', 'deploy']
+        examples: ["build", "test", "deploy"]
