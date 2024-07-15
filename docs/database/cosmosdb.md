@@ -7,9 +7,7 @@ linkTitle: Cosmos DB
 **Status**: [Experimental][DocumentStatus]
 
 The Semantic Conventions for [Microsoft Cosmos DB](https://azure.microsoft.com/products/cosmos-db/)
-extend and override the [Database Semantic Conventions](database-spans.md)
-that describe common database operations attributes in addition to the Semantic Conventions
-described on this page.
+extend and override the [Database Semantic Conventions](database-spans.md).
 
 ## Attributes
 

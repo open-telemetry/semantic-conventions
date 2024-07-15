@@ -2,6 +2,7 @@ groups:
   - id: registry.disk
     prefix: disk
     type: attribute_group
+    display_name: Disk Attributes
     brief: >
         These attributes may be used for any disk related operation.
     attributes:
