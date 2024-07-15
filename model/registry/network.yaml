@@ -195,6 +195,10 @@ groups:
               value: 'unix'
               brief: "Unix domain socket"
               stability: stable
+            - id: quic
+              value: 'quic'
+              brief: "QUIC"
+              stability: experimental
         brief: >
           [OSI transport layer](https://osi-model.com/transport-layer/) or
           [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
