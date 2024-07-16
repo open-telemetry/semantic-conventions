@@ -86,7 +86,13 @@ Recommendations for defining events:
 * The events SHOULD document their semantic conventions including event name,
   attributes, and the payload.
 
-### Event payload (data)
+Recommendations on using attributes vs. body fields:
+
+* If the field should be comparable across every type of record, it should be an attribute.
+* If the field is specific to the event itself, then it should be a body field.
+* Unless the same `event.name` exists on two events, anything in two event bodies is not comparable to each other.
+
+### Event payload (body)
 
 * Common attribute naming conventions and [registry](../attributes-registry/README.md)
   requirements don't apply to event payload fields.
