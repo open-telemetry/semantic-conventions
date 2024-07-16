@@ -73,9 +73,9 @@ groups:
     type: metric
     metric_name: nodejs.eventloop.utilization
     brief: "Event loop utilization."
-    instrument: gauge
-    unit: "1"
+    instrument: counter
+    unit: "s"
     stability: experimental
     note: >
-      The value range is [0.0,1.0] and can be retrieved from value
+      Value can be retrieved from
       [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
