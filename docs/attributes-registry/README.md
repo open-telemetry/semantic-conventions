@@ -36,7 +36,7 @@ Currently, the following namespaces exist:
 - [Aspnetcore](aspnetcore.md)
 - [AWS](aws.md)
 - [Browser](browser.md)
-- [Cicd](cicd.md)
+- [CICD](cicd.md)
 - [Client](client.md)
 - [Cloud](cloud.md)
 - [CloudEvents](cloudevents.md)
