@@ -1,24 +1,24 @@
 groups:
   - id: registry.test.suite
-    prefix: test.suite
+    prefix: test
     type: attribute_group
     brief: >
-     This group describes attributes specific to
-     [software tests](https://en.wikipedia.org/wiki/Software_testing).
+      This group describes attributes specific to
+      [software tests](https://en.wikipedia.org/wiki/Software_testing).
     attributes:
-      - id: name
+      - id: suite.name
         type: string
         stability: experimental
         brief: >
           The human readable name of a [test suite](https://en.wikipedia.org/wiki/Test_suite).
-        examples: ['TestSuite1']
-      - id: run.id
+        examples: ["TestSuite1"]
+      - id: suite.run.id
         type: string
         stability: experimental
         brief: >
           The unique identifier of a test suite run.
-        examples: ['123408']
-      - id: run.status
+        examples: ["123408"]
+      - id: suite.run.status
         type:
           members:
             - id: success
@@ -48,13 +48,26 @@ groups:
         stability: experimental
         brief: >
           The status of the test suite run.
-        examples: ['success', 'failure', 'skipped', 'aborted', 'timed_out', 'in_progress']
+        examples:
+          [
+            "success",
+            "failure",
+            "skipped",
+            "aborted",
+            "timed_out",
+            "in_progress",
+          ]
       - id: case.name
         type: string
         stability: experimental
         brief: >
           The fully qualified human readable name of the [test case](https://en.wikipedia.org/wiki/Test_case).
-        examples: ['org.example.TestCase1.test1', 'example/tests/TestCase1.test1', 'ExampleTestCase1_test1']
+        examples:
+          [
+            "org.example.TestCase1.test1",
+            "example/tests/TestCase1.test1",
+            "ExampleTestCase1_test1",
+          ]
       - id: case.result.status
         type:
           members:
@@ -69,4 +82,4 @@ groups:
         stability: experimental
         brief: >
           The status of the actual test case result from test execution.
-        examples: ['pass', 'fail']
+        examples: ["pass", "fail"]

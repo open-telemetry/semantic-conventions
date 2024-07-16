@@ -46,7 +46,15 @@ groups:
         brief: >
           The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
           often found in checksum.txt on a release of the artifact and used to
-          verify pakage integrity.
+          verify package integrity.
+        note: |
+          The specific algorithm used to create the cryptographic hash value is
+          not defined. In situations where an artifact has many cryptographic
+          hashes, it is up to the implementer to choose which hash value to set
+          here; ideally that which is most secure, situationally ideal, and
+          consistent with the corresponding attestation. The implementer can
+          then provide the other hash values through an additional set of
+          attribute extensions as they deem necessary.
         examples:
           ["9ff4c52759e2c4ac70b7d517bc7fcdc1cda631ca0045271ddd1b192544f8a3e9"]
       - id: attestation.id
