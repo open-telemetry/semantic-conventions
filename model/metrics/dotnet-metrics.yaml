@@ -273,4 +273,6 @@ groups:
     stability: experimental
     attributes:
       - ref: error.type
+        note: ""
+        examples: ['System.OperationCanceledException', 'Contoso.MyException']
         requirement_level: required
