@@ -6,9 +6,9 @@
 
 # Dotnet
 
-## Dotnet Attributes
+## .NET Attributes
 
-This document defines .NET Common Language Runtime (CLR) related attributes.
+This document defines .NET related attributes.
 
 | Attribute                   | Type   | Description                                            | Examples               | Stability                                                        |
 | --------------------------- | ------ | ------------------------------------------------------ | ---------------------- | ---------------------------------------------------------------- |

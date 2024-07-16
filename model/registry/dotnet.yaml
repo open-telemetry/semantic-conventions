@@ -1,9 +1,10 @@
 groups:
   - id: registry.dotnet
     type: attribute_group
+    display_name: .NET Attributes
     prefix: dotnet
     brief: >
-      This document defines .NET Common Language Runtime (CLR) related attributes.
+      This document defines .NET related attributes.
     attributes:
       - id: gc.heap.generation
         stability: experimental
