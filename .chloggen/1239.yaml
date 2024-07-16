@@ -1,0 +1,4 @@
+change_type: enhancement
+component: network
+note: Add QUIC to the list of well known network transports
+issues: [ 1237, 1239 ]

@@ -65,18 +65,6 @@ groups:
         type: boolean
         stability: experimental
         brief: 'A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed.'
-      - id: destination_publish.anonymous
-        type: boolean
-        stability: experimental
-        brief: 'A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name).'
-      - id: destination_publish.name
-        type: string
-        stability: experimental
-        brief: 'The name of the original destination the message was published to'
-        note: |
-          The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
-          the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
-        examples: ['MyQueue', 'MyTopic']
       - id: destination.partition.id
         type: string
         stability: experimental
@@ -233,7 +221,7 @@ groups:
           If the key type is not string, it's string representation has to be supplied for the attribute.
           If the key has no unambiguous, canonical string form, don't include its value.
         examples: 'myKey'
-      - id: kafka.message.offset
+      - id: kafka.offset
         type: int
         stability: experimental
         brief: >

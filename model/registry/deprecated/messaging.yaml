@@ -57,3 +57,22 @@ groups:
         examples: 'subscription-a'
         deprecated: >
           Replaced by `messaging.servicebus.destination.subscription_name`.
+      - id: messaging.kafka.message.offset
+        type: int
+        stability: experimental
+        brief: >
+          Deprecated, use `messaging.kafka.offset` instead.
+        examples: 42
+        deprecated: >
+          Replaced by `messaging.kafka.offset`.
+      - id: messaging.destination_publish.anonymous
+        type: boolean
+        stability: experimental
+        brief: 'Deprecated, no replacement at this time.'
+        deprecated: "No replacement at this time."
+      - id: messaging.destination_publish.name
+        type: string
+        stability: experimental
+        brief: 'Deprecated, no replacement at this time.'
+        deprecated: "No replacement at this time."
+        examples: ['MyQueue', 'MyTopic']
