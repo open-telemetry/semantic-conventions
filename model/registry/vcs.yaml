@@ -41,19 +41,29 @@ groups:
         brief: >
           The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
         examples: ["branch", "tag"]
-      - id: ref.commit.hash
+      - id: ref.revision
         type: string
         stability: experimental
         brief: >
-          The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
-          of the recorded change the ref (branch) is pointing to in the
-          repository. This recorded change is known as the
-          [commit](https://git-scm.com/docs/git-commit). This commit is stored
-          as an object containing a
-          [unique identifier](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefobjectnameaobjectname)
-          which is a SHA.
+          The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision),
+          The revision most often refers to a commit object in Git, or a revision number in SVN.
+        note: |
+          The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+          of the recorded change to a ref within a repository pointing
+          to a commit [commit](https://git-scm.com/docs/git-commit) object.
+          It does not necessarily have to be a hash, however, as it can
+          simply define a [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html);
+          an integer that is monotonically increasing. It can also be identical
+          to the `ref.name` and SHOULD still be included if it is. It is up to
+          the implementer to decide which value to set as the revision based on
+          the VCS system and situational context.
         examples:
-          ["9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc"]
+          [
+            "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc",
+            "main",
+            "123",
+            "HEAD",
+          ]
       - id: change.title
         type: string
         stability: experimental
