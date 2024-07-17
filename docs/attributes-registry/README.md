@@ -70,6 +70,7 @@ Currently, the following namespaces exist:
 - [Log](log.md)
 - [Messaging](messaging.md)
 - [Network](network.md)
+- [NodeJS](nodejs.md)
 - [OCI](oci.md)
 - [OpenTracing](opentracing.md)
 - [OS](os.md)

@@ -1,0 +1,20 @@
+groups:
+  - id: registry.nodejs
+    type: attribute_group
+    brief: Describes Node.js related attributes.
+    display_name: Node.js Attributes
+    prefix: nodejs
+    attributes:
+      - id: eventloop.type
+        stability: experimental
+        brief: The type of event loop time.
+        type:
+          members:
+            - id: active
+              value: 'active'
+              brief: 'Active time.'
+              stability: experimental
+            - id: idle
+              value: 'idle'
+              brief: 'Idle time.'
+              stability: experimental

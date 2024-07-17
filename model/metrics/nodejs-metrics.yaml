@@ -73,9 +73,23 @@ groups:
     type: metric
     metric_name: nodejs.eventloop.utilization
     brief: "Event loop utilization."
+    instrument: gauge
+    unit: "1"
+    stability: experimental
+    note: >
+      The value range is [0.0,1.0] and can be retrieved from `utilization` from
+      [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
+
+  - id: metric.nodejs.eventloop.time
+    type: metric
+    metric_name: nodejs.eventloop.time
+    brief: "Cumulative duration of time the event loop has been on the state."
     instrument: counter
     unit: "s"
     stability: experimental
+    attributes:
+      - ref: nodejs.eventloop.type
+        requirement_level: required
     note: >
-      Value can be retrieved from
-      [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
+      Value can be retrieved from `idle` and `active` from
+      [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)    
