@@ -1,6 +1,7 @@
 groups:
   - id: registry.peer
     type: attribute_group
+    display_name: Peer Attributes
     prefix: peer
     brief: >
       Operations that access some remote service.

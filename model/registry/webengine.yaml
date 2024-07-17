@@ -2,6 +2,7 @@ groups:
   - id: registry.webengine
     prefix: webengine
     type: attribute_group
+    display_name: Web Engine Attributes
     brief: >
        This document defines the attributes used to describe the packaged software running the application code.
     attributes:
