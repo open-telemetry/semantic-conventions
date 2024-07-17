@@ -4,7 +4,9 @@ groups:
     type: event
     name: az.log
     brief: >
-      Describes Azure Resource Log event, see [Azure Resource Log Top-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema) for more details.
+      Describes Azure Resource Log event, see
+      [Azure Resource Log Topint-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema)
+      for more details.
     attributes:
       - ref: event.name
       - ref: az.service_request_id
@@ -38,7 +40,7 @@ groups:
     #       stability: experimental
     #       brief: >
     #         "A JSON blob that describes the identity of the user or application that performed the operation."
-    #         note: |  
+    #       note: >
     #         Typically, this field includes the authorization and claims or JWT token from Active Directory.
     #         > Warning:
     #         > this field contains sensitive (PII) information."
