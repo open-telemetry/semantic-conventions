@@ -87,3 +87,11 @@
 /model/metrics/process-metrics.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/resource/process.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/network.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+
+# CICD semantic conventions approvers
+/model/registry/artifact.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+/model/registry/cicd.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+/model/registry/code.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+/model/registry/deployment.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+/model/registry/test.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+/model/registry/vcs.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
