@@ -28,7 +28,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          Unique identifier of an authenticated user.
+          Unique identifier of the user. In the authentication context, this field should be treated as an authenticated user id, as opposed to the `anonymous_id` field.
         examples: ['S-1-5-21-202424912787-2692429404-2351956786-1000']
       - id: anonymous_id
         type: string
