@@ -92,4 +92,4 @@ groups:
         requirement_level: required
     note: >
       Value can be retrieved from `idle` and `active` from
-      [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)    
+      [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
