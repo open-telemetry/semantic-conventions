@@ -16,7 +16,7 @@ groups:
     type: event
     name: az.log
     brief: >
-      This document defines generic attributes for Azure Logs, see [Azure Log Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema) for more details.
+      Describes Azure Resource Log event, see [Azure Resource Log Top-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema) for more details.
     attributes:
       - ref: event.name
       - ref: az.service_request_id
@@ -50,8 +50,11 @@ groups:
     #       stability: experimental
     #       brief: >
     #         "A JSON blob that describes the identity of the user or application that performed the operation."
-    #         "Typically, this field includes the authorization and claims or JWT token from Active Directory."
-    #         "Warning: this field contains sensitive PII information."
+             note: |  
+    #         Typically, this field includes the authorization and claims or JWT token from Active Directory.
+    #         > Warning:
+    #         > this field contains sensitive (PII) information."
+    #       requirement_level: opt-in
     #       examples:
     #         - "someone"
     #     - id: operation.name
@@ -68,7 +71,7 @@ groups:
     #       brief: "The version of the operation"
     #       examples:
     #         - "1.0"
-    #     - id: properties
+    #     - id: property
     #       type: template[string[]]
     #       stability: experimental
     #       brief: "The properties of the log entry"
