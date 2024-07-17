@@ -5,7 +5,7 @@ groups:
     name: az.log
     brief: >
       Describes Azure Resource Log event, see
-      [Azure Resource Log Topint-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema)
+      [Azure Resource Log Top-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema)
       for more details.
     attributes:
       - ref: event.name
