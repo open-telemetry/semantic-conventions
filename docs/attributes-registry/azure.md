@@ -12,4 +12,4 @@ This document defines generic attributes for Azure SDK.
 
 | Attribute               | Type   | Description                                           | Examples                               | Stability                                                        |
 | ----------------------- | ------ | ----------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
-| `az.service_request_id` | string | The unique identifier of the service response. | `00000000-0000-0000-0000-000000000000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.service_request_id` | string | The unique reference string that identifies a request | `00000000-0000-0000-0000-000000000000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
