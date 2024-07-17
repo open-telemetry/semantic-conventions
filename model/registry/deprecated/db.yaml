@@ -2,6 +2,7 @@ groups:
   - id: registry.db.deprecated
     prefix: db
     type: attribute_group
+    display_name: Deprecated Database Attributes
     brief: >
       "Describes deprecated db attributes."
     attributes:
@@ -94,6 +95,7 @@ groups:
 
   - id: registry.db.metrics.deprecated
     type: attribute_group
+    display_name: Deprecated Database Metrics
     brief: >
       "Describes deprecated db metrics attributes."
     attributes:

@@ -7,13 +7,11 @@ linkTitle: Cosmos DB
 **Status**: [Experimental][DocumentStatus]
 
 The Semantic Conventions for [Microsoft Cosmos DB](https://azure.microsoft.com/products/cosmos-db/)
-extend and override the [Database Semantic Conventions](database-spans.md)
-that describe common database operations attributes in addition to the Semantic Conventions
-described on this page.
+extend and override the [Database Semantic Conventions](database-spans.md).
 
 ## Attributes
 
-`db.system` MUST be set to `"cosmosdb"`.
+`db.system` MUST be set to `"cosmosdb"` and SHOULD be provided **at span creation time**.
 
 Cosmos DB instrumentation includes call-level (public API) surface spans and network spans. Depending on the connection mode (Gateway or Direct), network-level spans may also be created.
 
@@ -75,6 +73,16 @@ Even though parameterized query text can potentially have sensitive data, by usi
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.namespace`](/docs/attributes-registry/db.md)
+* [`db.operation.name`](/docs/attributes-registry/db.md)
+* [`db.query.text`](/docs/attributes-registry/db.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
 
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

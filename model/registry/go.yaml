@@ -1,6 +1,7 @@
 groups:
   - id: registry.go
     type: attribute_group
+    display_name: Go Attributes
     prefix: go
     brief: >
       This document defines Go related attributes.

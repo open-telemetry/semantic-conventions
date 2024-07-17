@@ -6,16 +6,16 @@
 
 # System
 
-- [System](#system-attributes)
-- [System Cpu](#system-cpu-attributes)
-- [System Deprecated](#system-deprecated-attributes)
-- [System Filesystem](#system-filesystem-attributes)
-- [System Memory](#system-memory-attributes)
-- [System Network](#system-network-attributes)
-- [System Paging](#system-paging-attributes)
-- [System Process](#system-process-attributes)
+- [General System Attributes](#general-system-attributes)
+- [System CPU Attributes](#system-cpu-attributes)
+- [Filesystem Attributes](#filesystem-attributes)
+- [System Memory Attributes](#system-memory-attributes)
+- [System Network Attributes](#system-network-attributes)
+- [System Paging Attributes](#system-paging-attributes)
+- [System Process Attributes](#system-process-attributes)
+- [Deprecated System Attributes](#deprecated-system-attributes)
 
-## System Attributes
+## General System Attributes
 
 Describes System attributes
 
@@ -31,37 +31,7 @@ Describes System CPU attributes
 | --------------------------- | ---- | ------------------------------- | -------- | ---------------------------------------------------------------- |
 | `system.cpu.logical_number` | int  | The logical CPU number [0..n-1] | `1`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## System Deprecated Attributes
-
-Deprecated system attributes.
-
-| Attribute                 | Type   | Description                                      | Examples            | Stability                                                                                           |
-| ------------------------- | ------ | ------------------------------------------------ | ------------------- | --------------------------------------------------------------------------------------------------- |
-| `system.cpu.state`        | string | Deprecated, use `cpu.mode` instead.              | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`               |
-| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
-
-`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value       | Description | Stability                                                        |
-| ----------- | ----------- | ---------------------------------------------------------------- |
-| `idle`      | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interrupt` | interrupt   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iowait`    | iowait      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nice`      | nice        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `steal`     | steal       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system`    | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user`      | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value      | Description | Stability                                                        |
-| ---------- | ----------- | ---------------------------------------------------------------- |
-| `defunct`  | defunct     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `running`  | running     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sleeping` | sleeping    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stopped`  | stopped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## System Filesystem Attributes
+## Filesystem Attributes
 
 Describes Filesystem attributes
 
@@ -174,6 +144,36 @@ Describes System Process attributes
 | `system.process.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value      | Description | Stability                                                        |
+| ---------- | ----------- | ---------------------------------------------------------------- |
+| `defunct`  | defunct     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `running`  | running     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sleeping` | sleeping    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stopped`  | stopped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Deprecated System Attributes
+
+Deprecated system attributes.
+
+| Attribute                 | Type   | Description                                      | Examples            | Stability                                                                                           |
+| ------------------------- | ------ | ------------------------------------------------ | ------------------- | --------------------------------------------------------------------------------------------------- |
+| `system.cpu.state`        | string | Deprecated, use `cpu.mode` instead.              | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`               |
+| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
+
+`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value       | Description | Stability                                                        |
+| ----------- | ----------- | ---------------------------------------------------------------- |
+| `idle`      | idle        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interrupt` | interrupt   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `iowait`    | iowait      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nice`      | nice        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `steal`     | steal       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system`    | system      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `user`      | user        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value      | Description | Stability                                                        |
 | ---------- | ----------- | ---------------------------------------------------------------- |
