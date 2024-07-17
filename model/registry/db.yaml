@@ -92,7 +92,6 @@ groups:
           For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system`
           is set to `postgresql` based on the instrumentation's best knowledge.
         type:
-          allow_custom_values: true
           members:
             - id: other_sql
               value: 'other_sql'
@@ -319,7 +318,6 @@ groups:
       - id: client.connection.state
         stability: experimental
         type:
-          allow_custom_values: true
           members:
             - id: idle
               value: 'idle'
@@ -441,7 +439,6 @@ groups:
         brief: Cosmos client connection mode.
       - id: cosmosdb.operation_type
         type:
-          allow_custom_values: true
           members:
             - id: invalid
               value: 'Invalid'
@@ -541,7 +538,6 @@ groups:
     attributes:
       - id: similarity
         type:
-          allow_custom_values: true
           members:
             - id: cosine
               value: 'cosine'
