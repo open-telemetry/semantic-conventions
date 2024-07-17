@@ -49,14 +49,14 @@ groups:
           The revision most often refers to a commit object in Git, or a revision number in SVN.
         note: |
           The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
-          of the recorded change to a ref within a repository pointing
-          to a commit [commit](https://git-scm.com/docs/git-commit) object.
-          It does not necessarily have to be a hash, however, as it can
-          simply define a [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html);
-          an integer that is monotonically increasing. It can also be identical
-          to the `ref.name` and SHOULD still be included if it is. It is up to
-          the implementer to decide which value to set as the revision based on
-          the VCS system and situational context.
+          of the recorded change to a ref within a repository pointing to a
+          commit [commit](https://git-scm.com/docs/git-commit) object. It does
+          not necessarily have to be a hash; it can simply define a
+          [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+          which is an integer that is monotonically increasing. In cases where
+          it is identical to the `ref.name`, it SHOULD still be included. It is
+          up to the implementer to decide which value to set as the revision
+          based on the VCS system and situational context.
         examples:
           [
             "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc",

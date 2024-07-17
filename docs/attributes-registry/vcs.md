@@ -20,14 +20,14 @@ This group defines the attributes for [Version Control Systems (VCS)](https://en
 | `vcs.repository.url.full`     | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository.                                              | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
-of the recorded change to a ref within a repository pointing
-to a commit [commit](https://git-scm.com/docs/git-commit) object.
-It does not necessarily have to be a hash, however, as it can
-simply define a [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html);
-an integer that is monotonically increasing. It can also be identical
-to the `ref.name` and SHOULD still be included if it is. It is up to
-the implementer to decide which value to set as the revision based on
-the VCS system and situational context.
+of the recorded change to a ref within a repository pointing to a
+commit [commit](https://git-scm.com/docs/git-commit) object. It does
+not necessarily have to be a hash; it can simply define a
+[revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+which is an integer that is monotonically increasing. In cases where
+it is identical to the `ref.name`, it SHOULD still be included. It is
+up to the implementer to decide which value to set as the revision
+based on the VCS system and situational context.
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
