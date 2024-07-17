@@ -6,6 +6,7 @@
 
 # Db
 
+<<<<<<< HEAD
 - [Db](#db-attributes)
 - [Db Cassandra](#db-cassandra-attributes)
 - [Db Cosmosdb](#db-cosmosdb-attributes)
@@ -13,8 +14,16 @@
 - [Db Elasticsearch](#db-elasticsearch-attributes)
 - [Db Metrics Deprecated](#db-metrics-deprecated-attributes)
 - [Db Vector](#db-vector-attributes)
+=======
+- [General Database Attributes](#general-database-attributes)
+- [Cassandra Attributes](#cassandra-attributes)
+- [Azure Cosmos DB Attributes](#azure-cosmos-db-attributes)
+- [Elasticsearch Attributes](#elasticsearch-attributes)
+- [Deprecated Database Attributes](#deprecated-database-attributes)
+- [Deprecated Database Metrics](#deprecated-database-metrics)
+>>>>>>> upstream/main
 
-## Db Attributes
+## General Database Attributes
 
 This group defines the attributes used to describe telemetry in the context of databases.
 
@@ -120,7 +129,7 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `vector`             | vector                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `vertica`            | Vertica                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 
-## Db Cassandra Attributes
+## Cassandra Attributes
 
 This group defines attributes for Cassandra.
 
@@ -149,7 +158,7 @@ This group defines attributes for Cassandra.
 | `three`        | three        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `two`          | two          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Db CosmosDB Attributes
+## Azure Cosmos DB Attributes
 
 This group defines attributes for Azure Cosmos DB.
 
@@ -190,7 +199,18 @@ This group defines attributes for Azure Cosmos DB.
 | `Replace`           | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Upsert`            | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Db Deprecated Attributes
+## Elasticsearch Attributes
+
+This group defines attributes for Elasticsearch.
+
+| Attribute                           | Type   | Description                                                                                  | Examples                                                                                 | Stability                                                        |
+| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `db.elasticsearch.node.name`        | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001`                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [8]                                                         | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[8]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
+
+## Deprecated Database Attributes
 
 "Describes deprecated db attributes."
 
@@ -211,18 +231,7 @@ This group defines attributes for Azure Cosmos DB.
 | `db.statement`                  | string | The database statement being executed.                                                                        | `SELECT * FROM wuser_table`; `SET mykey "WuValue"`                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`.                                                                                  |
 | `db.user`                       | string | Deprecated, no replacement at this time.                                                                      | `readonly_user`; `reporting_user`                                       | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time.                                                                                  |
 
-## Db Elasticsearch Attributes
-
-This group defines attributes for Elasticsearch.
-
-| Attribute                           | Type   | Description                                                                                  | Examples                                                                                 | Stability                                                        |
-| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `db.elasticsearch.node.name`        | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001`                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [8]                                                         | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[8]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
-
-## Db Metrics Deprecated Attributes
+## Deprecated Database Metrics
 
 "Describes deprecated db metrics attributes."
 

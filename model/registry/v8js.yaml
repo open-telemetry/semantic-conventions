@@ -2,6 +2,7 @@ groups:
   - id: registry.v8js
     type: attribute_group
     brief: Describes V8 JS Engine Runtime related attributes.
+    display_name: V8 JS Attributes
     prefix: v8js
     attributes:
       - id: gc.type
