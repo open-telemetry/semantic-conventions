@@ -67,12 +67,6 @@
     #         - "{'int': 1234 }"
     #         - "{'float': '1.234'}"
     #         - "{'bool': true}"
-    #     - id: resource.id
-    #       type: string
-    #       stability: experimental
-    #       brief: "The ID of the resource"
-    #       examples:
-    #         - "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.ApiManagement/service/apim"
     #     - id: result.type
     #       type: string
     #       stability: experimental
