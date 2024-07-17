@@ -1,3 +1,4 @@
+groups:
   - id: az.resource.log
     stability: experimental
     type: event
