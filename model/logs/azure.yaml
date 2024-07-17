@@ -58,15 +58,11 @@
     #       brief: "The version of the operation"
     #       examples:
     #         - "1.0"
-    #     - id: property
+    #     - id: properties
     #       type: template[string[]]
     #       stability: experimental
-    #       brief: "The properties of the log entry"
-    #       examples:
-    #         - "{'string': 'value'}"
-    #         - "{'int': 1234 }"
-    #         - "{'float': '1.234'}"
-    #         - "{'bool': true}"
+    #       brief: "The properties provided in the Azure Resource Log."
+    #       examples: ['statusCode="Created",serviceRequestId="50d5cddb-8ca0-47ad-9b80-6cde2207f97c"']
     #     - id: result.type
     #       type: string
     #       stability: experimental
