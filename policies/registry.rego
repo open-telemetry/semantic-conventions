@@ -37,7 +37,6 @@ deny[attr_registry_violation("attributes_in_registry_cannot_reference_each_other
 	# TODO - this will need to be updated to support `embed` in the future.
 	group := input.groups[_]
 	startswith(group.id, "registry.")
-    attr := group.attributes[_]
+	attr := group.attributes[_]
 	attr.ref != null
 }
-
