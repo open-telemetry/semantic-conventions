@@ -3,6 +3,7 @@ groups:
     prefix: cpu
     type: attribute_group
     brief: Attributes specific to a cpu instance.
+    display_name: CPU Attributes
     attributes:
       - id: mode
         brief: "The mode of the CPU"

@@ -142,6 +142,17 @@ If a parameter has no name and instead is referenced only by index, then `<key>`
 
 
 
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.namespace`](/docs/attributes-registry/db.md)
+* [`db.operation.name`](/docs/attributes-registry/db.md)
+* [`db.query.text`](/docs/attributes-registry/db.md)
+* [`db.system`](/docs/attributes-registry/db.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
+
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -238,6 +249,10 @@ The placeholder value SHOULD be `?`, unless it already has a defined meaning in 
 in which case the instrumentation MAY choose a different placeholder.
 
 Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
+
+[IN-clauses](https://en.wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
+e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
+and can help control cardinality for users who choose to (optionally) add `db.query.text` to their metric attributes.
 
 ## Semantic Conventions for specific database technologies
 
