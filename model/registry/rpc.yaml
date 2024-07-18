@@ -2,6 +2,7 @@ groups:
   - id: registry.rpc
     prefix: rpc
     type: attribute_group
+    display_name: Remote Procedure Call (RPC) Attributes
     brief: 'This document defines attributes for remote procedure calls.'
     attributes:
       - id: connect_rpc.error_code
