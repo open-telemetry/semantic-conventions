@@ -95,19 +95,13 @@ The following table describes the payload fields that MUST be used to describe t
 | `connectEnd` | long | Time when the browser finishes establishing the connection to the server. | | Recommended |
 | `connectStart` | long | Time when the browser starts establishing the connection to the server. | | Recommended |
 | `decodedBodySize` | long | Size of the response body after it has been decoded. | | Recommended |
-| `domComplete` | long | Time when the DOM is fully loaded and parsed. | | Recommended |
-| `domContentLoadedEventEnd` | long | Time when the DOMContentLoaded event completes. | | Recommended |
-| `domContentLoadedEventStart` | long | Time when the DOMContentLoaded event starts. | | Recommended |
-| `domInteractive` | long | Time when the DOM becomes interactive. | | Recommended |
+| `deliveryType` | string | Type of delivery for the resource, for eg., 'cache'. | | Recommended |
 | `domainLookupEnd` | long | Time when the domain name lookup is finished. | | Recommended |
 | `domainLookupStart` | long | Time when the domain name lookup starts. | | Recommended |
 | `encodedBodySize` | long | Size of the response body as it is received from the server. | | Recommended |
 | `fetchStart` | long | Time when the browser starts fetching the resource. | | Recommended |
 | `initiatorType` | string | Type of resource that initiated the request. | | Recommended |
-| `loadEventEnd` | long | Time when the load event completes. | | Recommended |
-| `loadEventStart` | long | Time when the load event starts. | | Recommended |
 | `name` | string | URL of the resource. | | Recommended |
-| `navigationStart` | long | Time when the navigation starts. | | Recommended |
 | `redirectEnd` | long | Time when the last redirect is completed. | | Recommended |
 | `redirectStart` | long | Time when the first redirect starts. | | Recommended |
 | `requestStart` | long | Time when the browser starts requesting the resource. | | Recommended |
@@ -116,8 +110,6 @@ The following table describes the payload fields that MUST be used to describe t
 | `responseStatus` | string | HTTP response status code. | | Recommended |
 | `secureConnectionStart` | long | Time when the secure connection starts. | | Recommended |
 | `transferSize` | string | Size of the resource transferred over the network. | | Recommended |
-| `unloadEventEnd` | long | Time when the unload event completes. | | Recommended |
-| `unloadEventStart` | long | Time when the unload event starts. | | Recommended |
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
