@@ -110,7 +110,6 @@ check-policies:
 		otel/weaver:${WEAVER_VERSION} registry check \
 		--registry=/source \
 		--diagnostic-format=ansi \
-		--diagnostic-template=/templates/diagnostic \
 		--policy=/policies/registry.rego
 
 # Generate markdown tables from YAML definitions
