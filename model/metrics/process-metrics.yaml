@@ -108,6 +108,6 @@ groups:
     type: metric
     metric_name: process.uptime
     stability: experimental
-    brief: "The number of seconds the process has been running."
+    brief: "The time the process has been running."
     instrument: counter
     unit: "s"

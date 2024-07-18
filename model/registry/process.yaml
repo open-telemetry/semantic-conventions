@@ -161,11 +161,12 @@ groups:
         type: string
         stability: experimental
         brief: >
-          Process title
+          Process title (proctitle)
         note: >
-          The process title (proctitle), sometimes the same as process name. It can also be different, for
-          example, a browser setting its title to the web page currently opened.
-        examples: ["cat /etc/hostname"]
+          In many Unix-like systems, process title (proctitle), is the string
+          that represents the name or command line of a running process,
+          displayed by system monitoring tools like ps, top, and htop.
+        examples: ["cat /etc/hostname", "xfce4-session", "bash"]
       - id: creation.time
         type: string
         stability: experimental
