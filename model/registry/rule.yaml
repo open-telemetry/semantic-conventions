@@ -1,9 +1,9 @@
 groups:
-  - id: registry.rule
-    prefix: rule
+  - id: registry.rule.security
+    prefix: rule.security
     type: attribute_group
     brief: >
-      Describes rule attributes. Rule fields are used to capture the specifics of any observer or agent rules
+      Describes security rule attributes. Rule fields are used to capture the specifics of any observer or agent rules
       that generate alerts or other notable events.
     attributes:
       - id: category
