@@ -2,6 +2,7 @@ groups:
   - id: registry.process.deprecated
     type: attribute_group
     brief: "Deprecated process attributes."
+    display_name: Deprecated Process Attributes
     attributes:
       - id: process.cpu.state
         brief: "Deprecated, use `cpu.mode` instead."

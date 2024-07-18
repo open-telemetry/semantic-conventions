@@ -2,6 +2,7 @@ groups:
   - id: registry.gen_ai
     prefix: gen_ai
     type: attribute_group
+    display_name: GenAI Attributes
     brief: >
       This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
     attributes:
@@ -26,7 +27,10 @@ groups:
               value: "cohere"
               brief: 'Cohere'
         brief: The Generative AI product as identified by the client or server instrumentation.
-        note: >
+        note: |
+          The `gen_ai.system` describes a family of GenAI models with specific model identified
+          by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+
           The actual GenAI product may differ from the one identified by the client.
           For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
           is set to `openai` based on the instrumentation's best knowledge.
@@ -90,12 +94,12 @@ groups:
         type: string[]
         brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
         examples: ['stop']
-      - id: usage.prompt_tokens
+      - id: usage.input_tokens
         stability: experimental
         type: int
-        brief: The number of tokens used in the GenAI input or prompt.
+        brief: The number of tokens used in the GenAI input (prompt).
         examples: [100]
-      - id: usage.completion_tokens
+      - id: usage.output_tokens
         stability: experimental
         type: int
         brief: The number of tokens used in the GenAI response (completion).
@@ -128,6 +132,18 @@ groups:
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
       - id: operation.name
         stability: experimental
-        type: string
+        type:
+          members:
+            - id: chat
+              value: "chat"
+              brief: 'Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)'
+              stability: experimental
+            - id: text_completion
+              value: "text_completion"
+              brief: 'Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)'
+              stability: experimental
         brief: The name of the operation being performed.
-        examples: ['chat', 'completion']
+        note: >
+          If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
+          conventions for specific GenAI system and use system-specific name in the instrumentation.
+          If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
