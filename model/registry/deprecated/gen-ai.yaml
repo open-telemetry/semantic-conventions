@@ -2,6 +2,7 @@ groups:
   - id: registry.gen_ai.deprecated
     type: attribute_group
     brief: Describes deprecated `gen_ai` attributes.
+    display_name: Deprecated GenAI Attributes
     attributes:
       - id: gen_ai.usage.prompt_tokens
         type: int

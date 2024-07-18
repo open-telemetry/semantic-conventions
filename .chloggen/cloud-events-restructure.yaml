@@ -1,0 +1,5 @@
+change_type: 'enhancement'
+component: cloudevents
+note: CloudEvents conventions to follow HTTP/Messaging Span conventions
+issues: [654]
+subtext:
