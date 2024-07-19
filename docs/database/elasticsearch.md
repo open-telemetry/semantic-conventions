@@ -6,11 +6,9 @@ linkTitle: Elasticsearch
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and override the [Database Semantic Conventions](database-spans.md)
-that describe common database operations attributes in addition to the Semantic Conventions
-described on this page.
+The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"elasticsearch"`.
+`db.system` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
 
 ## Span Name
 
@@ -83,6 +81,18 @@ Even though parameterized query text can potentially have sensitive data, by usi
 **[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.namespace`](/docs/attributes-registry/db.md)
+* [`db.operation.name`](/docs/attributes-registry/db.md)
+* [`db.query.text`](/docs/attributes-registry/db.md)
+* [`http.request.method`](/docs/attributes-registry/http.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
+* [`url.full`](/docs/attributes-registry/url.md)
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

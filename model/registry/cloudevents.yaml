@@ -2,6 +2,7 @@ groups:
   - id: registry.cloudevents
     prefix: cloudevents
     type: attribute_group
+    display_name: CloudEvents Attributes
     brief: >
         This document defines attributes for CloudEvents.
     attributes:
