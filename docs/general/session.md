@@ -62,7 +62,7 @@ that the previous session has ended. If the session ID in `session.previous_id` 
 
 ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-`event.name`=`session.end`
+`event.name` MUST be `session.end`
 
 For instrumentation that tracks user behavior during user sessions, a `session.end` event SHOULD be emitted
 every time a session ends. When a session ends and continues as a new session, this event SHOULD be
