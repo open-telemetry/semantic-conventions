@@ -2,6 +2,7 @@ groups:
   - id: registry.otel
     prefix: otel
     type: attribute_group
+    display_name: OTel Attributes
     brief: Attributes reserved for OpenTelemetry
     attributes:
       - id: status_code
@@ -26,6 +27,7 @@ groups:
   - id: registry.otel.scope
     prefix: otel.scope
     type: attribute_group
+    display_name: OTel Scope Attributes
     brief: Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
     attributes:
       - id: name

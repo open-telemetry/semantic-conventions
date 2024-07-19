@@ -3,6 +3,7 @@ groups:
   - id: registry.system
     prefix: system
     type: attribute_group
+    display_name: General System Attributes
     brief: "Describes System attributes"
     attributes:
       - id: device
@@ -14,6 +15,7 @@ groups:
   - id: registry.system.cpu
     prefix: system.cpu
     type: attribute_group
+    display_name: System CPU Attributes
     brief: "Describes System CPU attributes"
     attributes:
       - id: logical_number
@@ -25,6 +27,7 @@ groups:
   - id: registry.system.memory
     prefix: system.memory
     type: attribute_group
+    display_name: System Memory Attributes
     brief: "Describes System Memory attributes"
     attributes:
       - id: state
@@ -54,6 +57,7 @@ groups:
   - id: registry.system.paging
     prefix: system.paging
     type: attribute_group
+    display_name: System Paging Attributes
     brief: "Describes System Memory Paging attributes"
     attributes:
       - id: state
@@ -98,6 +102,7 @@ groups:
   - id: registry.system.filesystem
     prefix: system.filesystem
     type: attribute_group
+    display_name: Filesystem Attributes
     brief: "Describes Filesystem attributes"
     attributes:
       - id: state
@@ -155,6 +160,7 @@ groups:
   - id: registry.system.network
     prefix: system.network
     type: attribute_group
+    display_name: System Network Attributes
     brief: "Describes Network attributes"
     attributes:
       - id: state
@@ -204,6 +210,7 @@ groups:
   - id: registry.system.process
     prefix: system.process
     type: attribute_group
+    display_name: System Process Attributes
     brief: "Describes System Process attributes"
     attributes:
       - id: status

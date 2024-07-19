@@ -2,6 +2,7 @@ groups:
   - id: registry.process
     prefix: process
     type: attribute_group
+    display_name: Process Attributes
     brief: >
         An operating system process.
     attributes:
@@ -130,8 +131,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the runtime of this process. For compiled native binaries,
-          this SHOULD be the name of the compiler.
+          The name of the runtime of this process.
         examples: ['OpenJDK Runtime Environment']
       - id: runtime.version
         type: string
