@@ -19,7 +19,7 @@ groups:
     type: metric
     metric_name: container.cpu.usage
     stability: experimental
-    brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable cpus"
+    brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
     note: >
       CPU usage of the specific container on all available CPU cores, averaged over the sample window
     instrument: gauge
