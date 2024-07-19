@@ -50,7 +50,7 @@ MUST be different.
 
 When the `session.start` event contains both `session.id` and `session.previous_id` fields, the event then implies
 that the previous session has ended. If the session ID in `session.previous_id` has not yet ended via explicit
-`session.end` event, then the receiver SHOULD treat this continuation event as semantically equivalent to
+`session.end` event, then the consumer SHOULD treat this continuation event as semantically equivalent to
 `session.end(session.previous_id)` and `session.start(session.id)`.
 
 | Body field                                                    | Type   | Description                                          | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability                                                        |
