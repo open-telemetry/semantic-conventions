@@ -149,14 +149,18 @@ The event name MUST be `browser.web_vital`.
 
 This event describes the website performance metrics introduced by Google (See <https://web.dev/vitals/>).
 
-The following table describes the payload fields that MUST be used to describe the details of event.
+The following table describes the payload fields that MUST be used to describe the details of event. Please refer to web-vitals library [documentation](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#metric) for more detailed description of these fields.
 
 | Body Field  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `name` | string | name of the web vital | `CLS` | Required |
+| `name` | string | name of the web vital metric | `CLS`, `FCP` | Required |
 | `value` | double | value of the web vital | `1.0`; `2.0` | Required |
 | `delta` | double | The delta between the current value and the last-reported value | `0.2` | Required |
 | `id` | string | A unique ID representing this particular metric instance | "v3-1677874579383-6381583661209" | Required |
+| `rating` | string | The rating of the metric | `good`, `needs-improvement`, `poor` | Recommended |
+| `navigationType` | string | The type of navigation | | Recommended |
+| `debug_taget` | string | The debug target when [sending attribution data](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#send-attribution-data). | | 'Opt-In' |
+
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
