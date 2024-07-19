@@ -41,7 +41,7 @@ backends can link the two sessions (see [Session Start Event](#session-start-eve
 
 ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-`event.name`=`session.start`
+`event.name` MUST be`session.start`
 
 For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted
 every time a session is created. When a new session is created as a continuation of a prior session,
