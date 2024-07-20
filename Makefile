@@ -2,6 +2,14 @@
 ALL_DOCS := $(shell find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' | sort)
 PWD := $(shell pwd)
 
+# Determine OS & Arch for specific OS only tools on Unix based systems
+OS := $(shell uname | tr '[:upper:]' '[:lower:]')
+ifeq ($(OS),darwin)
+	SED := gsed
+else
+	SED := sed
+endif
+
 TOOLS_DIR := ./internal/tools
 
 MISSPELL_BINARY=bin/misspell
@@ -151,7 +159,7 @@ table-check:
 #
 # .. which is why some additional processing is required to extract the
 # latest version number and strip off the "v" prefix.
-LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | sed 's/v//g')
+LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
 .PHONY: compatibility-check
 compatibility-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
