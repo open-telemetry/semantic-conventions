@@ -80,6 +80,14 @@ environment configured:
   npm install
   ```
 
+- If on MacOs, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
+  installed, then you can run the following command to install GSED.
+
+  ```bash
+  brew bundle
+
+  ```
+
 ### 1. Modify the YAML model
 
 Refer to the
