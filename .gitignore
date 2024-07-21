@@ -38,3 +38,6 @@ package-lock.json
 
 # Python
 venv
+
+# Homebrew
+Brewfile.lock.json

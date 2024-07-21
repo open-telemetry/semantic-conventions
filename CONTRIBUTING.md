@@ -80,6 +80,18 @@ environment configured:
   npm install
   ```
 
+- If [Homebrew](https://brew.sh) is installed on your system, you can install
+  GNU Sed and pipx with the following command:
+
+  ```bash
+  brew bundle --force
+  ```
+
+  - If you don't have Homebrew installed, you can install GNU Sed and pipx by
+    following the corresponding instructions for your operating system:
+    - [GNU Sed](https://www.gnu.org/software/sed/)
+    - [pipx](https://pypi.org/project/pipx/)
+
 ### 1. Modify the YAML model
 
 Refer to the

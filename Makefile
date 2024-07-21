@@ -2,6 +2,9 @@
 ALL_DOCS := $(shell find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' | sort)
 PWD := $(shell pwd)
 
+# Determine OS & Arch for specific OS only tools on Unix based systems
+OS := $(shell uname | tr '[:upper:]' '[:lower:]')
+
 TOOLS_DIR := ./internal/tools
 
 MISSPELL_BINARY=bin/misspell
@@ -27,9 +30,8 @@ SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/otel/weaver:$(WEAVER_VERSION)
 SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/otel/semconvgen:$(SEMCONVGEN_VERSION)
 
-# TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint markdown-link-check misspell table-check compatibility-check schema-check \
+all: install-tools markdownlint markdown-link-check misspell yamllint table-check compatibility-check schema-check \
 		 check-file-and-folder-names-in-docs
 
 .PHONY: check-file-and-folder-names-in-docs
@@ -94,14 +96,16 @@ markdownlint-old:
 			|| exit 1; \
 	done
 
-.PHONY: install-yamllint
-install-yamllint:
-    # Using a venv is recommended
-	pip install -U yamllint~=1.26.1
-
 .PHONY: yamllint
 yamllint:
-	yamllint .
+	@if ! command -v pipx; then \
+		echo "pipx not found, please install pipx to run yamllint"; \
+		echo "see CONTRIBUTING.md for more information on pre-requisites"; \
+		exit 1; \
+	else \
+		pipx run "yamllint~=1.26.1" . -f github; \
+	fi
+
 
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
@@ -185,6 +189,7 @@ fix: table-generation attribute-registry-generation misspell-correction fix-form
 install-tools: $(MISSPELL)
 	npm install
 	@echo "All tools installed"
+	if ()
 
 $(CHLOGGEN):
 	cd $(TOOLS_DIR) && go build -o $(CHLOGGEN_BINARY) go.opentelemetry.io/build-tools/chloggen
