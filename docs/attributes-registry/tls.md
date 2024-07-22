@@ -6,8 +6,8 @@
 
 # TLS
 
-- [Tls](#tls-attributes)
-- [Tls Deprecated](#tls-deprecated-attributes)
+- [TLS Attributes](#tls-attributes)
+- [TLS Deprecated Attributes](#tls-deprecated-attributes)
 
 ## TLS Attributes
 
