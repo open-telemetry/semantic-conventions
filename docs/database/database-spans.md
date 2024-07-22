@@ -250,6 +250,10 @@ in which case the instrumentation MAY choose a different placeholder.
 
 Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
 
+[IN-clauses](https://en.wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
+e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
+and can help control cardinality for users who choose to (optionally) add `db.query.text` to their metric attributes.
+
 ## Semantic Conventions for specific database technologies
 
 More specific Semantic Conventions are defined for the following database technologies:

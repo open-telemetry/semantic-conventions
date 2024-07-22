@@ -2,6 +2,7 @@ groups:
   - id: registry.service
     prefix: service
     type: attribute_group
+    display_name: Service Attributes
     brief: >
       A service instance.
     attributes:

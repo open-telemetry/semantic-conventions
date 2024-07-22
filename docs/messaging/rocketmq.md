@@ -6,9 +6,7 @@ linkTitle: RocketMQ
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for [Apache RocketMQ](https://rocketmq.apache.org/) extend and override the [Messaging Semantic Conventions](README.md)
-that describe common messaging operations attributes in addition to the Semantic Conventions
-described on this page.
+The Semantic Conventions for [Apache RocketMQ](https://rocketmq.apache.org/) extend and override the [Messaging Semantic Conventions](README.md).
 
 `messaging.system` MUST be set to `"rocketmq"` and SHOULD be provided **at span creation time**.
 
