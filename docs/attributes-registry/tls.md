@@ -6,6 +6,9 @@
 
 # TLS
 
+- [Tls](#tls-attributes)
+- [Tls Deprecated](#tls-deprecated-attributes)
+
 ## TLS Attributes
 
 This document defines semantic convention attributes in the TLS namespace.
@@ -22,7 +25,6 @@ This document defines semantic convention attributes in the TLS namespace.
 | `tls.client.ja3`               | string   | A hash that identifies clients based on how they perform an SSL/TLS handshake.                                                                                                                                                      | `d4e5b18d6b55c71272893221c96ba240`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tls.client.not_after`         | string   | Date/Time indicating when client certificate is no longer considered valid.                                                                                                                                                         | `2021-01-01T00:00:00.000Z`                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tls.client.not_before`        | string   | Date/Time indicating when client certificate is first considered valid.                                                                                                                                                             | `1970-01-01T00:00:00.000Z`                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tls.client.server_name`       | string   | Also called an SNI, this tells the server which hostname to which the client is attempting to connect to.                                                                                                                           | `opentelemetry.io`                                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tls.client.subject`           | string   | Distinguished name of subject of the x.509 certificate presented by the client.                                                                                                                                                     | `CN=myclient, OU=Documentation Team, DC=example, DC=com`                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tls.client.supported_ciphers` | string[] | Array of ciphers offered by the client during the client hello.                                                                                                                                                                     | `["TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", "..."]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tls.curve`                    | string   | String indicating the curve used for the given cipher, when applicable                                                                                                                                                              | `secp256r1`                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -50,3 +52,11 @@ This document defines semantic convention attributes in the TLS namespace.
 | ----- | ----------- | ---------------------------------------------------------------- |
 | `ssl` | ssl         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tls` | tls         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## TLS Deprecated Attributes
+
+Describes deprecated `tls` attributes.
+
+| Attribute                | Type   | Description                               | Examples           | Stability                                                                                   |
+| ------------------------ | ------ | ----------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------- |
+| `tls.client.server_name` | string | Deprecated, use `server.address` instead. | `opentelemetry.io` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address. |
