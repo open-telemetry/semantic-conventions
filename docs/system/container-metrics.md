@@ -85,7 +85,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable cpus [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
