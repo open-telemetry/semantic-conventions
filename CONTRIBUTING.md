@@ -85,7 +85,6 @@ environment configured:
 
   ```bash
   brew bundle
-
   ```
 
 ### 1. Modify the YAML model
