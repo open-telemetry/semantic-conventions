@@ -366,9 +366,11 @@ exists in some form in ECS, consider the following guidelines:
   - When no suitable alternatives are provided, altering an ECS name solely
     for the purpose of complying with [Name Pluralization guidelines](docs/general/attribute-naming.md#name-pluralization-guidelines)
     MAY BE avoided.
-- Do not use an existing ECS name as a namespace. If the name must differ, use a
-  different namespace name to avoid clashes or avoid using the namespace
-  entirely. See the [ECS field reference] for existing namespaces.
+- We should aim to avoid using an existing ECS name as a namespace whenever
+  possible and feasible. However, in critical situations where no other good
+  option exists, such changes might be necessary. If the name must differ,
+  use a different namespace name to avoid clashes or avoid using the
+  namespace entirely. See the [ECS field reference] for existing namespaces.
 
 [nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
 [stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/versioning-and-stability.md#semantic-conventions-stability
