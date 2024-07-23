@@ -2,6 +2,7 @@ groups:
   - id: registry.ios.deprecated
     prefix: ios
     type: attribute_group
+    display_name: Deprecated iOS Attributes
     brief: >
         The iOS platform on which the iOS application is running.
     attributes:

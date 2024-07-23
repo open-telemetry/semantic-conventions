@@ -22,14 +22,17 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:artifact
         - area:aspnetcore
         - area:aws
         - area:browser
+        - area:cicd
         - area:client
         - area:cloud
         - area:cloudevents
         - area:code
         - area:container
+        - area:cpu
         - area:db
         - area:deployment
         - area:destination
@@ -69,11 +72,14 @@ body:
         - area:source
         - area:system
         - area:telemetry
+        - area:test
         - area:thread
         - area:tls
         - area:url
         - area:user-agent
         - area:user
+        - area:v8js
+        - area:vcs
         - area:webengine
         # End semconv area list
   - type: textarea
