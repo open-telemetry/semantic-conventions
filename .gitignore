@@ -35,3 +35,9 @@ package-lock.json
 
 # Visual Studio
 .vs/
+
+# Python
+venv
+
+# Brew package lock
+Brewfile.lock.json
