@@ -15,6 +15,14 @@
 
 set -euo pipefail
 
+OS=$(uname | tr '[:upper:]' '[:lower:]')
+
+if [[ "${OS}" == "darwin" ]]; then
+  SED="gsed"
+else
+  SED="sed"
+fi
+
 if [[ -z "${ISSUE:-}" || -z "${BODY:-}" || -z "${OPENER:-}" ]]; then
   echo "Missing one of ISSUE, BODY, or OPENER, please ensure all are set."
   exit 0
@@ -25,7 +33,7 @@ AREAS_SECTION_START=$( (echo "${BODY}" | grep -n '### Area(s)' | awk '{ print $1
 BODY_AREAS=""
 
 if [[ "${AREAS_SECTION_START}" != '-1' ]]; then
-  BODY_AREAS=$(echo "${BODY}" | sed -n $((AREAS_SECTION_START+2))p)
+    BODY_AREAS=$(echo "${BODY}" | "${SED}" -n $((AREAS_SECTION_START+2))p)
 fi
 
 for AREA in ${BODY_AREAS}; do
