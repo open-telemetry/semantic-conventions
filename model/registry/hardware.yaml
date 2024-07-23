@@ -21,7 +21,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          Unique identifier of the parent component (typically the `id` attribute of the enclosure, or disk controller)
+          Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
         examples: ['dellStorage_perc_0']
       - id: type
         type:

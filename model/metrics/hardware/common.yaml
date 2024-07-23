@@ -27,6 +27,8 @@ groups:
     extends: metric.hardware.attributes
     attributes:
       - ref: error.type
+        brief: "The type of error encountered by the component"
+        examples: ['uncorrected', 'zero_buffer_credit', 'crc', 'bad_sector']
         requirement_level: recommended
 
   - id: metric.hardware.power
