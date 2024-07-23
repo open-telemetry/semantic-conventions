@@ -106,7 +106,7 @@ groups:
           Name of the file including the extension, without the directory.
         stability: experimental
         examples: ['example.png']
-      - id: owner
+      - id: owner.name
         type: string
         brief: >
           Username of the file owner.
@@ -131,7 +131,7 @@ groups:
           This attribute is only applicable to symbolic links.
         stability: experimental
         examples: ['/usr/bin/python3']
-      - id: uid
+      - id: owner.id
         type: string
         brief: >
           The user ID (UID) or security identifier (SID) of the file owner.
