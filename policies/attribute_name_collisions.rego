@@ -4,20 +4,20 @@ deny[attr_registry_collision(description, name)] {
     names := attr_names_except(excluded_const_collisions)
     name := names[_]
     const_name := to_const_name(name)
-    collisions:= { n | n := attr_names_except(excluded_const_collisions)[_]; n != name; to_const_name(n) == const_name}
+    collisions:= { n | n := attr_names_except(excluded_const_collisions)[_]; n != name; to_const_name(n) == const_name }
     count(collisions) > 0
 
-    description := sprintf("Attribute '%s' has the same constant name '%s' as %s", [name, const_name, collisions])
+    description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
 }
 
 deny[attr_registry_collision(description, name)] {
     names := attr_names_except(excluded_namespace_collisions)
     name := names[_]
 
-    collisions:= { n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(name))}
+    collisions:= { n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(name)) }
     count(collisions) > 0
 
-    description := sprintf("Attribute '%s' is used as a namespace in attributes %s", [name, collisions])
+    description := sprintf("Attribute '%s' name is used as a namespace in the following attributes '%s'.", [name, collisions])
 }
 
 attr_registry_collision(description, attr_name) = violation {
@@ -39,8 +39,11 @@ to_const_name(name) = const_name {
 }
 
 attr_names_except(excluded) = names {
-    names := {n | n := input.groups[_].attributes[_].name} - excluded
+    names := { n | n := input.groups[_].attributes[_].name } - excluded
 }
 
+# TODO - we'll need to specify how collision resolution happens in the schema -
+# see phase 2 in https://github.com/open-telemetry/semantic-conventions/issues/1118#issuecomment-2173803006
+# For now just allow current collisions.
 excluded_const_collisions := {"messaging.client_id"}
 excluded_namespace_collisions := {"messaging.operation", "db.operation", "deployment.environment"}
