@@ -8,7 +8,7 @@ package before_resolution
 attr_registry_violation(violation_id, group_id, attr_id) = violation {
     violation := {
         "id": violation_id,
-        "type": "semantic_convention_policies",
+        "type": "semconv_attribute",
         "category": "attribute_registry_checks",
         "group": group_id,
         "attr": attr_id,

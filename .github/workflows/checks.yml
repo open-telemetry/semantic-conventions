@@ -113,5 +113,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: policies checks
+    - name: verify semantic conventions yaml definitions
       run: make check-policies
