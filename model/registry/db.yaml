@@ -2,6 +2,7 @@ groups:
   - id: registry.db
     prefix: db
     type: attribute_group
+    display_name: General Database Attributes
     brief: >
       This group defines the attributes used to describe telemetry in the context of databases.
     attributes:
@@ -54,16 +55,22 @@ groups:
         brief: >
           The database query being executed.
         note: >
+          For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+
           For batch operations, if the individual operations are known to have the same query text
           then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated
           with separator `; ` or some other database system specific separator if more applicable.
+
+          Even though parameterized query text can potentially have sensitive data, by using a parameterized query
+          the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
+          to observability of capturing the static part of the query text by default outweighs the risk.
         examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
       - id: query.parameter
         type: template[string]
         stability: experimental
         brief: >
-          The query parameters used in `db.query.text`, with `<key>` being the parameter name,
-          and the attribute value being the parameter value.
+          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
+          and the attribute value being a string representation of the parameter value.
         note: >
           Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 
@@ -334,6 +341,7 @@ groups:
   - id: registry.db.cassandra
     prefix: db
     type: attribute_group
+    display_name: Cassandra Attributes
     brief: >
       This group defines attributes for Cassandra.
     attributes:
@@ -408,6 +416,7 @@ groups:
   - id: registry.db.cosmosdb
     prefix: db
     type: attribute_group
+    display_name: Azure Cosmos DB Attributes
     brief: >
       This group defines attributes for Azure Cosmos DB.
     attributes:
@@ -503,6 +512,7 @@ groups:
   - id: registry.db.elasticsearch
     prefix: db
     type: attribute_group
+    display_name: Elasticsearch Attributes
     brief: >
       This group defines attributes for Elasticsearch.
     attributes:

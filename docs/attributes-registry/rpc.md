@@ -6,10 +6,10 @@
 
 # RPC
 
-- [Rpc](#rpc-attributes)
-- [Rpc Deprecated](#rpc-deprecated-attributes)
+- [Remote Procedure Call (RPC) Attributes](#remote-procedure-call-rpc-attributes)
+- [Deprecated RPC Attributes](#deprecated-rpc-attributes)
 
-## RPC Attributes
+## Remote Procedure Call (RPC) Attributes
 
 This document defines attributes for remote procedure calls.
 
@@ -107,7 +107,7 @@ This document defines attributes for remote procedure calls.
 | `grpc`         | gRPC         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `java_rmi`     | Java RMI     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## RPC Deprecated Attributes
+## Deprecated RPC Attributes
 
 Deprecated rpc message attributes.
 

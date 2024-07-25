@@ -259,14 +259,15 @@ Function F:                      | Span ProcBatch |
 
 | Field or Attribute | Span Prod1 | Span Prod2 | Span ProcBatch | Span Proc1 | Span Proc2 |
 |-|-|-|-|-|-|
-| Span name | `Q send` | `Q send` | `Q process` | `Q process` | `Q process` |
+| Span name | `send Q` | `send Q` | `process Q` | `process Q` | `process Q` |
 | Parent |  |  |  | Span ProcBatch | Span ProcBatch |
 | Links |  |  |  | Span Prod1 | Span Prod2 |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
 | `messaging.system` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` |
 | `messaging.destination.name` | `Q` | `Q` | `Q` | `Q` | `Q` |
-| `messaging.operation.type` |  |  | `process` | `process` | `process` |
+| `messaging.operation.name` | `send` | `send` | `process` | `process` | `process` |
+| `messaging.operation.type` | `publish` | `publish` | `process` | `process` | `process` |
 | `messaging.message.id` | | | | `"a1"` | `"a2"` |
 
 Note that if Span Prod1 and Span Prod2 were sent to different queues, Span ProcBatch would not have
