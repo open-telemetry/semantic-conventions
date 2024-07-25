@@ -2,7 +2,7 @@ groups:
   - id: az.resource.log
     stability: experimental
     type: event
-    name: az.log
+    name: az.resource.log
     brief: >
       Describes Azure Resource Log event, see
       [Azure Resource Log Top-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema)
