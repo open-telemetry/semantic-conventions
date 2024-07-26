@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: HTTP migration
+aliases: [../http/migration-guide]
 --->
 
 # HTTP semantic convention stability migration
