@@ -2,6 +2,14 @@
 ALL_DOCS := $(shell find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' | sort)
 PWD := $(shell pwd)
 
+# Determine OS & Arch for specific OS only tools on Unix based systems
+OS := $(shell uname | tr '[:upper:]' '[:lower:]')
+ifeq ($(OS),darwin)
+	SED := gsed
+else
+	SED := sed
+endif
+
 TOOLS_DIR := ./internal/tools
 
 MISSPELL_BINARY=bin/misspell
@@ -14,7 +22,7 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
 SEMCONVGEN_VERSION=0.25.0
-WEAVER_VERSION=0.5.0
+WEAVER_VERSION=0.7.0
 
 # From where to resolve the containers (e.g. "otel/weaver").
 CONTAINER_REPOSITORY=docker.io
@@ -103,6 +111,15 @@ install-yamllint:
 yamllint:
 	yamllint .
 
+# Check semantic convention policies on YAML files
+.PHONY: check-policies
+check-policies:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/policies:/policies -v $(PWD)/templates:/templates \
+		otel/weaver:${WEAVER_VERSION} registry check \
+		--registry=/source \
+		--diagnostic-format=ansi \
+		--policy=/policies/registry.rego
+
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
@@ -151,7 +168,7 @@ table-check:
 #
 # .. which is why some additional processing is required to extract the
 # latest version number and strip off the "v" prefix.
-LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | sed 's/v//g')
+LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
 .PHONY: compatibility-check
 compatibility-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
@@ -172,7 +189,7 @@ fix-format:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint check-format markdown-toc compatibility-check markdown-link-check attribute-registry-generation
+check: misspell markdownlint check-format markdown-toc compatibility-check markdown-link-check check-policies attribute-registry-generation
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
