@@ -1,7 +1,7 @@
 groups:
   - id: trace-exception
-    type: event
     name: exception
+    type: event
     brief: >
       This document defines the attributes used to
       report a single exception associated with a span.

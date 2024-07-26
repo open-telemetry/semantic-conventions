@@ -100,8 +100,8 @@ groups:
 
   - id: rpc.message
     type: event
+    name: rpc.message
     brief: "RPC received/sent message."
-    name: "rpc.message"
     attributes:
       - ref: rpc.message.type
         requirement_level: recommended
