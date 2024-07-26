@@ -6,7 +6,6 @@ groups:
     instrument: histogram
     unit: "s"
     stability: experimental
-    prefix: v8js.gc
     attributes:
       - ref: v8js.gc.type
         requirement_level: required
@@ -61,7 +60,6 @@ groups:
     instrument: updowncounter
     unit: "By"
     stability: experimental
-    prefix: v8js.heap.space.physical_size
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: required

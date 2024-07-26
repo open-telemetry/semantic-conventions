@@ -1,12 +1,11 @@
 groups:
   - id: registry.telemetry
-    prefix: telemetry
     type: attribute_group
     display_name: Telemetry Attributes
     brief: >
         This document defines attributes for telemetry SDK.
     attributes:
-      - id: sdk.name
+      - id: telemetry.sdk.name
         type: string
         stability: stable
         requirement_level: required
@@ -20,9 +19,8 @@ groups:
           The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
           All custom identifiers SHOULD be stable across different versions of an implementation.
         examples: ["opentelemetry"]
-      - id: sdk.language
+      - id: telemetry.sdk.language
         type:
-          allow_custom_values: true
           members:
             - id: cpp
               value: "cpp"
@@ -64,14 +62,14 @@ groups:
         requirement_level: required
         brief: >
           The language of the telemetry SDK.
-      - id: sdk.version
+      - id: telemetry.sdk.version
         type: string
         stability: stable
         requirement_level: required
         brief: >
           The version string of the telemetry SDK.
         examples: ["1.2.3"]
-      - id: distro.name
+      - id: telemetry.distro.name
         type: string
         stability: experimental
         brief: >
@@ -80,7 +78,7 @@ groups:
           Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
           a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
         examples: ["parts-unlimited-java"]
-      - id: distro.version
+      - id: telemetry.distro.version
         type: string
         stability: experimental
         brief: >

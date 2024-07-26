@@ -1,6 +1,5 @@
 groups:
   - id: host
-    prefix: host
     type: resource
     brief: >
         A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
@@ -18,7 +17,6 @@ groups:
         requirement_level: opt_in
 
   - id: host.cpu
-    prefix: host.cpu
     type: resource
     brief: >
       A host's CPU information

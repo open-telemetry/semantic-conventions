@@ -1,6 +1,5 @@
 groups:
   - id: rpc
-    prefix: rpc
     type: span
     brief: 'This document defines semantic conventions for remote procedure calls.'
     events: [rpc.message]
@@ -74,7 +73,6 @@ groups:
         requirement_level: opt_in
 
   - id: rpc.jsonrpc
-    prefix: rpc.jsonrpc
     type: span
     extends: rpc
     brief: 'Tech-specific attributes for [JSON RPC](https://www.jsonrpc.org/).'
@@ -101,9 +99,9 @@ groups:
           RPC conventions for more information.
 
   - id: rpc.message
-    prefix: rpc.message
     type: event
     brief: "RPC received/sent message."
+    name: "rpc.message"
     attributes:
       - ref: rpc.message.type
         requirement_level: recommended
