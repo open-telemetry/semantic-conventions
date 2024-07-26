@@ -26,7 +26,7 @@ This document defines the attributes used to describe telemetry in the context o
 | `gen_ai.request.temperature`       | double   | The temperature setting for the GenAI request.                                       | `0.0`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.top_k`             | double   | The top_k sampling setting for the GenAI request.                                    | `1.0`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.request.top_p`             | double   | The top_p sampling setting for the GenAI request.                                    | `1.0`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.response.finish_reasons`   | string   | The reason(s) the model stopped generating tokens. [4]                               | `stop`; `stop,length`                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.response.finish_reason`    | string   | The reason(s) the model stopped generating tokens. [4]                               | `stop`; `stop,length`                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.response.id`               | string   | The unique identifier for the completion.                                            | `chatcmpl-123`                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.response.model`            | string   | The name of the model that generated the response.                                   | `gpt-4-0613`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gen_ai.system`                    | string   | The Generative AI product as identified by the client or server instrumentation. [5] | `openai`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -40,8 +40,8 @@ This document defines the attributes used to describe telemetry in the context o
 
 **[3]:** It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 
-**[4]:** The `gen_ai.response.finish_reasons` frequently contains a single value since it's common for applications to only request a single completion and many models support generating only a single completion.
-If multiple finish reasons are provided, they SHOULD be provided in the same order as completions and SHOULD be separated by a comma only.
+**[4]:** The `gen_ai.response.finish_reason` usually contains a single finish reason since it's common for applications to only request a single completion and many models support generating only a single completion.
+If the model supports generating multiple completions with different finish reasons, they SHOULD be provided as a comma-separated list. Finish reasons SHOULD be provided in the same order as completions.
 
 **[5]:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -80,7 +80,10 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 Describes deprecated `gen_ai` attributes.
 
-| Attribute                        | Type | Description                                           | Examples | Stability                                                                                                          |
-| -------------------------------- | ---- | ----------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
-| `gen_ai.usage.completion_tokens` | int  | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens` attribute. |
-| `gen_ai.usage.prompt_tokens`     | int  | Deprecated, use `gen_ai.usage.input_tokens` instead.  | `42`     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens` attribute.  |
+| Attribute                        | Type     | Description                                                | Examples             | Stability                                                                                                          |
+| -------------------------------- | -------- | ---------------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `gen_ai.response.finish_reasons` | string[] | Replaced by `gen_ai.response.finish_reason` attribute. [6] | `["stop", "length"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                                   |
+| `gen_ai.usage.completion_tokens` | int      | Deprecated, use `gen_ai.usage.output_tokens` instead.      | `42`                 | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens` attribute. |
+| `gen_ai.usage.prompt_tokens`     | int      | Deprecated, use `gen_ai.usage.input_tokens` instead.       | `42`                 | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens` attribute.  |
+
+**[6]:** Deprecated, use `gen_ai.response.finish_reason` instead.

@@ -10,7 +10,7 @@ groups:
           conditionally_required: If `sever.address` is set.
       - ref: gen_ai.response.model
         requirement_level: recommended
-      - ref: gen_ai.response.finish_reasons
+      - ref: gen_ai.response.finish_reason
         requirement_level: recommended
       - ref: gen_ai.request.model
         requirement_level: required

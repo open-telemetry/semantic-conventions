@@ -36,7 +36,7 @@ groups:
           If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor,
           then the value must be the exact name of the model actually used. If the model is a
           fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
-      - ref: gen_ai.response.finish_reasons
+      - ref: gen_ai.response.finish_reason
         requirement_level: recommended
       - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
