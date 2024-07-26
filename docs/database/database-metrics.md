@@ -243,7 +243,7 @@ This metric is [required][MetricRequired].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, `username` and `database`, formatted as `username@server.address:server.port/database`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.client.connection.state`](/docs/attributes-registry/db.md) | string | The state of a connection in the pool | `idle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.client.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -289,7 +289,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, `username` and `database`, formatted as `username@server.address:server.port/database`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -327,7 +327,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, `username` and `database`, formatted as `username@server.address:server.port/database`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -365,7 +365,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, `username` and `database`, formatted as `username@server.address:server.port/database`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -403,7 +403,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, `username` and `database`, formatted as `username@server.address:server.port/database`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -441,7 +441,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, `username` and `database`, formatted as `username@server.address:server.port/database`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -479,7 +479,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, `username` and `database`, formatted as `username@server.address:server.port/database`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -517,7 +517,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, `username` and `database`, formatted as `username@server.address:server.port/database`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -555,7 +555,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, `username` and `database`, formatted as `username@server.address:server.port/database`. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
