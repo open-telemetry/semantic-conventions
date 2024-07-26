@@ -10,6 +10,8 @@ groups:
           conditionally_required: If `sever.address` is set.
       - ref: gen_ai.response.model
         requirement_level: recommended
+      - ref: gen_ai.response.finish_reasons
+        requirement_level: recommended
       - ref: gen_ai.request.model
         requirement_level: required
       - ref: gen_ai.system
@@ -26,33 +28,6 @@ groups:
           conditionally_required: "if the operation ended in an error"
         note: |
           The `error.type` SHOULD match the error code returned by the Generative AI service,
-          the canonical name of exception that occurred, or another low-cardinality error identifier.
-          Instrumentations SHOULD document the list of errors they report.
-  - id: metric.gen_ai.client.token.usage
-    type: metric
-    metric_name: gen_ai.client.token.usage
-    brief: 'Measures number of input and output tokens used'
-    instrument: histogram
-    unit: "{token}"
-    stability: experimental
-    extends: metric_attributes.gen_ai
-    attributes:
-      - ref: gen_ai.token.type
-        requirement_level: required
-  - id: metric.gen_ai.client.operation.duration
-    type: metric
-    metric_name: gen_ai.client.operation.duration
-    brief: 'GenAI operation duration'
-    instrument: histogram
-    unit: "s"
-    stability: experimental
-    extends: metric_attributes.gen_ai
-    attributes:
-      - ref: error.type
-        requirement_level:
-          conditionally_required: "if the operation ended in an error"
-        note: |
-          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
   - id: metric.gen_ai.server.request.duration

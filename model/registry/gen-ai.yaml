@@ -91,9 +91,16 @@ groups:
         examples: ['gpt-4-0613']
       - id: response.finish_reasons
         stability: experimental
-        type: string[]
-        brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
-        examples: ['stop']
+        type: string
+        brief: The reason(s) the model stopped generating tokens.
+        note:
+          The `gen_ai.response.finish_reasons` frequently contains a single value since
+          it's common for applications to only request a single completion and many models
+          support generating only a single completion.
+
+          If multiple finish reasons are provided, they SHOULD be provided in the same order as completions
+          and SHOULD be separated by a comma only.
+        examples: ['stop', 'stop,length']
       - id: usage.input_tokens
         stability: experimental
         type: int
