@@ -1,4 +1,8 @@
-# HTTP semantic convention stability migration guide
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: HTTP migration
+--->
+
+# HTTP semantic convention stability migration
 
 Due to the significant number of modifications and the extensive user base
 affected by them, existing HTTP instrumentations published by
@@ -207,7 +211,7 @@ which case `{summary}` is `HTTP`.
 
 ### Migrating from `<= v1.16.0`
 
-This document does not cover these versions.
+This page does not cover these versions.
 
 [Host header]: https://tools.ietf.org/html/rfc7230#section-5.4
 [HTTP/2 authority]: https://tools.ietf.org/html/rfc9113#section-8.3.1
