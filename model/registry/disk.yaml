@@ -7,7 +7,6 @@ groups:
     attributes:
       - id: disk.io.direction
         type:
-          allow_custom_values: false
           members:
             - id: read
               value: 'read'
