@@ -16,3 +16,11 @@ groups:
         deprecated: Replaced by `gen_ai.usage.output_tokens` attribute.
         brief: "Deprecated, use `gen_ai.usage.output_tokens` instead."
         examples: [42]
+      - id: gen_ai.response.finish_reasons
+        stability: experimental
+        type: string[]
+        brief: Replaced by `gen_ai.response.finish_reason` attribute.
+        note:
+          "Deprecated, use `gen_ai.response.finish_reason` instead."
+        examples:
+          - ['stop', 'length']

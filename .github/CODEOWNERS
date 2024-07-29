@@ -72,7 +72,7 @@
 
 # Gen-AI semantic conventions approvers
 /model/registry/gen-ai.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
-/model/metrics/gen-ai.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
+/model/metrics/gen-ai/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
 /model/trace/gen-ai.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
 /docs/gen-ai/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
 
