@@ -46,6 +46,7 @@ body:
         - area:http
         - area:jvm
         - area:k8s
+        - area:linux
         - area:log
         - area:messaging
         - area:network
