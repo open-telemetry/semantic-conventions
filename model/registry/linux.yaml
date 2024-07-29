@@ -5,7 +5,7 @@ groups:
     type: attribute_group
     brief: "Describes Linux Memory attributes"
     attributes:
-      - id: state
+      - id: slab.state
         type:
           members:
             - id: reclaimable
@@ -15,5 +15,5 @@ groups:
               value: 'unreclaimable'
               stability: experimental
         stability: experimental
-        brief: "The Linux memory state"
+        brief: "The Linux Slab memory state"
         examples: ["reclaimable", "unreclaimable"]

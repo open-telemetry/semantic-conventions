@@ -1517,9 +1517,9 @@ See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`linux.memory.state`](/docs/attributes-registry/linux.md) | string | The Linux memory state | `reclaimable`; `unreclaimable` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`linux.memory.slab.state`](/docs/attributes-registry/linux.md) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`linux.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`linux.memory.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

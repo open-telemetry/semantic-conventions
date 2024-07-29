@@ -355,4 +355,4 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: linux.memory.state
+      - ref: linux.memory.slab.state
