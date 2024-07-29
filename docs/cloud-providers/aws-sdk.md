@@ -15,7 +15,7 @@ Some descriptions are also provided for populating general OpenTelemetry semanti
 
 ## Context Propagation
 
-See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation).
+See [compatibility](../non-normative/compatibility/aws.md#context-propagation).
 
 ## Common Attributes
 
