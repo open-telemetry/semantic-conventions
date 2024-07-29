@@ -7,7 +7,7 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: system
+component: linux
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: Add the `system.linux.memory.slab.usage` metric and the `linux.memory.slab.state` attributes.
