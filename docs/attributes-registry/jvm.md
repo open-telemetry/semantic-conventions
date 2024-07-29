@@ -6,7 +6,7 @@
 
 # JVM
 
-## JVM Attributes
+## Java Virtual Machine (JVM) Attributes
 
 This document defines Java Virtual machine related attributes.
 

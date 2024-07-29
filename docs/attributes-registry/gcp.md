@@ -6,10 +6,10 @@
 
 # GCP
 
-- [Gcp](#gcp-attributes)
-- [Gcp Client](#gcp-client-attributes)
-- [Gcp Cloud Run](#gcp-cloud-run-attributes)
-- [Gcp Gce](#gcp-gce-attributes)
+- [GCP Attributes](#gcp-attributes)
+- [GCP Client Attributes](#gcp-client-attributes)
+- [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
+- [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
 
 ## GCP Attributes
 
@@ -28,7 +28,7 @@ Attributes for Google Cloud client libraries.
 
 **[1]:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
 
-## GCP Cloud Run Attributes
+## GCP - Google Cloud Run Attributes
 
 This document defines attributes for Google Cloud Run.
 
@@ -37,7 +37,7 @@ This document defines attributes for Google Cloud Run.
 | `gcp.cloud_run.job.execution`  | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp.cloud_run.job.task_index` | int    | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.                                                                          | `0`; `1`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## GCP GCE Attributes
+## GCP - Google Compute Engine (GCE) Attributes
 
 This document defines attributes for Google Compute Engine (GCE).
 

@@ -2,6 +2,7 @@ groups:
   - id: registry.faas
     brief: FaaS attributes
     type: attribute_group
+    display_name: Function as a Service Attributes
     prefix: faas
     attributes:
       - id: name

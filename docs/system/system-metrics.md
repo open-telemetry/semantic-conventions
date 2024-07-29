@@ -104,16 +104,21 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`system.cpu.state`](/docs/attributes-registry/system.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `idle`; `interrupt` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+**[1]:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
+
+
+
+`cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -156,16 +161,21 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`system.cpu.state`](/docs/attributes-registry/system.md) | string | The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels. | `idle`; `interrupt` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+**[1]:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
+
+
+
+`cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -1295,6 +1305,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
