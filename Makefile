@@ -22,7 +22,7 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
 SEMCONVGEN_VERSION=0.25.0
-WEAVER_VERSION=0.5.0
+WEAVER_VERSION=0.7.0
 
 # From where to resolve the containers (e.g. "otel/weaver").
 CONTAINER_REPOSITORY=docker.io

@@ -1,6 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Logs
-aliases: [docs/specs/semconv/general/logs-general]
+aliases: [logs-general]
 --->
 
 # General Logs Attributes
