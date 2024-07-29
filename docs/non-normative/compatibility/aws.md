@@ -1,6 +1,10 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: AWS
+--->
+
 # Compatibility Considerations for AWS
 
-This document highlights compatibility considerations for OpenTelemetry
+This page highlights compatibility considerations for OpenTelemetry
 instrumentations when interacting with AWS managed services using an aws-sdk,
 a third-party library, or a direct HTTP request.
 
