@@ -1,9 +1,9 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Libraries
+linkTitle: Generating Semantic Convention libraries
 # Renamed from: semantic_conventions_code_generation
 --->
 
-# Semantic convention libraries
+# Generating Semantic Convention libraries
 
 <!-- toc -->
 
@@ -85,7 +85,7 @@ This section contains suggestions on how to structure semantic convention artifa
 
 This section describes how to do code-generation with weaver.
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > We're transitioning from [build-tools](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#code-generator)
 > to [opentelemetry-weaver](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md) to generate code for semantic conventions.
 > All new code-generation should be done using weaver, build-tools may become incompatible with future version of semantic conventions.
@@ -145,11 +145,11 @@ attributes not relevant to this language. You can write alternative or additiona
 
 In certain cases, calling `semconv_grouped_attributes` with namespace exclusion and stability filters may be enough and then no port-processing is necessary.
 
-The `application_mode: each` configures weaver to run code generation for each semconv group and, as a consequence, generate code for each group
-in a different file. The application mode `single` is also supported to apply the template to all groups at once.
+The `application_mode: each` configures weaver to run code generation for each semantic convention group and, as a consequence,
+generate code for each group in a different file. The application mode `single` is also supported to apply the template to all groups at once.
 
 See
-[weaver code-generation docs](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md) 
+[weaver code-generation docs](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md)
 for the details on the config, data schema, JQ filters, and more.
 
 #### Jinja templates
@@ -181,13 +181,13 @@ Notable changes on data structure:
 Notable changes on helper methods:
 
 - `attr.fqn | to_const_name` -> `attr.name | screaming_snake_case`
-- `attr.fqn | to_camelcase(True) -> attr.name | pascal_case`
-- `attr.brief | to_doc_brief | indent ` -> `attr.brief | comment_with_prefix("    ")` (prefix is used to indent)
+- `attr.fqn | to_camelcase(True)` -> `attr.name | pascal_case`
+- `attr.brief | to_doc_brief | indent` -> `attr.brief | comment_with_prefix("    ")` (prefix is used to indent)
 - stability/deprecation checks:
   - `attribute is stable` if checking one attribute, `attributes | select("stable")` to filter stable attributes
   - `attribute is experimental` if checking one attribute, `attributes | select("experimental")` to filter experimental attributes
   - `attribute is deprecated` if checking one attribute, `attributes | select("deprecated")` to filter deprecated attributes
 - check if attribute is a template: `attribute.type is template_type`
 - `print_member_value` - no replacement at this time, use something like `{%- if type == "string" -%}"{{value}}"{%-else-%}{{value}}{%-endif-%}`
-- new ways to simplify switch-like logic: `key | map_text("map_name")`. Maps can be defined in the weaver config.
+- new way to simplify switch-like logic: `key | map_text("map_name")`. Maps can be defined in the weaver config.
   It can be very useful to convert semantic convention attribute types to language-specific types.
