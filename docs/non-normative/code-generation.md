@@ -63,7 +63,7 @@ This section contains suggestions on how to structure semantic convention artifa
 
 - Artifact name:
   - `opentelemetry-semconv` - stable conventions
-  - `opentelemetry-semconv-incubating` - (if applicable) the preview artifact containing all conventions
+  - `opentelemetry-semconv-incubating` - (if applicable) the preview artifact containing all (stable and experimental) conventions
 - Namespace: `opentelemetry.semconv` and `opentelemetry.semconv.incubating`
 - All supported Schema URLs should be listed to allow different instrumentations in the same application to provide the exact version of conventions they follow.
 - Attributes, metrics, and other convention definitions should be grouped by the convention type and the root namespace. See the example below:
@@ -129,19 +129,21 @@ templates:
       | map({
           root_namespace: .root_namespace,
           attributes: .attributes,
-          output: $output
+          output: $output + "attributes/"
         })
     application_mode: each
 ```
 
-You can configure language-specific parameters in the `params` section of the config or pass them with `--param key=value` arguments when
-running weaver command from the code generation script (similarly to build-tools `-Dparam=value` option).
+You can configure language-specific parameters in the `params` section of the config or pass them with `-DparamName=value` arguments when
+running weaver command from the code generation script (similarly to build-tools).
 
 Weaver is able to run code-generation for multiple templates (defined in the corresponding section) at once.
 
 Before executing Jinja, weaver allows to filter or process semantic convention definitions in the `filter` section for each template.
 In this example, it uses `semconv_grouped_attributes` filter - a helper method that groups attribute definitions by root namespace and excludes
 attributes not relevant to this language. You can write alternative or additional filters and massage semantic conventions data using [JQ](https://jqlang.github.io/jq/manual/).
+
+In certain cases, calling `semconv_grouped_attributes` with namespace exclusion and stability filters may be enough and then no port-processing is necessary.
 
 The `application_mode: each` configures weaver to run code generation for each semconv group and, as a consequence, generate code for each group
 in a different file. The application mode `single` is also supported to apply the template to all groups at once.
