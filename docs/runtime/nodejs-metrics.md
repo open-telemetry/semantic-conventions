@@ -317,7 +317,7 @@ This metric is [recommended][MetricRecommended].
 | `nodejs.eventloop.utilization` | Gauge | `1` | Event loop utilization. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-**[1]:** The value range is [0.0,1.0] and can be retrieved from `utilization` from [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
+**[1]:** The value range is [0.0, 1.0] and can be retrieved from [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
 
 
 
