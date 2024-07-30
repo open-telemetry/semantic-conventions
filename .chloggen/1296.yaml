@@ -1,0 +1,4 @@
+change_type: enhancement
+component: other
+note: Update semantic conventions code generation documentation to use weaver instead of build-tools.
+issues: [ 1296 ]
