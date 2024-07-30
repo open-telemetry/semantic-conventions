@@ -6,7 +6,7 @@
 
 # Aspnetcore
 
-## Aspnetcore Attributes
+## ASP.NET Core Attributes
 
 ASP.NET Core attributes
 

@@ -6,7 +6,7 @@
 
 # OS
 
-## OS Attributes
+## Operating System Attributes
 
 The operating system (OS) on which the process represented by this resource is running.
 

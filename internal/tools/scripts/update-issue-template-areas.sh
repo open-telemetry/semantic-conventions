@@ -11,6 +11,14 @@
 
 set -euo pipefail
 
+OS=$(uname | tr '[:upper:]' '[:lower:]')
+
+if [[ "${OS}" == "darwin" ]]; then
+  SED="gsed"
+else
+  SED="sed"
+fi
+
 CUR_DIRECTORY=$(dirname "$0")
 REPO_DIR="$( cd "$CUR_DIRECTORY/../../../" && pwd )"
 GITHUB_DIR="$( cd "$REPO_DIR/.github/" && pwd )"
@@ -37,7 +45,7 @@ echo -e "The replacement text will be:"
 echo -e "---------------------------------------------\n"
 echo -e $replacement
 
-find ${TEMPLATES_DIR} -type f -name '*.yaml'  -print0 | xargs -0 sed -i "/$START_AREA_LIST/,/$END_AREA_LIST/c\\$replacement"
+find ${TEMPLATES_DIR} -type f -name '*.yaml'  -print0 | xargs -0 ${SED} -i "/$START_AREA_LIST/,/$END_AREA_LIST/c\\$replacement"
 
 echo -e "\nISSUE_TEMPLATES updated successfully"
 echo -e "---------------------------------------------"

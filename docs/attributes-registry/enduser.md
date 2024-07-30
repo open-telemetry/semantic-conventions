@@ -6,7 +6,7 @@
 
 # Enduser
 
-## Enduser Deprecated Attributes
+## Deprecated End User Attributes
 
 Describes deprecated enduser attributes. Complete enduser namespace has been deprecated
 

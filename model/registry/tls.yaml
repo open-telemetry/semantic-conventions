@@ -2,6 +2,7 @@ groups:
   - id: registry.tls
     prefix: tls
     type: attribute_group
+    display_name: TLS Attributes
     brief: "This document defines semantic convention attributes in the TLS namespace."
     attributes:
       - id: cipher
@@ -73,11 +74,6 @@ groups:
         stability: experimental
         brief: "Date/Time indicating when client certificate is first considered valid."
         examples: ["1970-01-01T00:00:00.000Z"]
-      - id: client.server_name
-        type: string
-        stability: experimental
-        brief: "Also called an SNI, this tells the server which hostname to which the client is attempting to connect to."
-        examples: ["opentelemetry.io"]
       - id: client.subject
         type: string
         stability: experimental

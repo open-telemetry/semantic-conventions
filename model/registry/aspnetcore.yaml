@@ -2,6 +2,7 @@ groups:
   - id: registry.aspnetcore
     prefix: aspnetcore
     type: attribute_group
+    display_name: ASP.NET Core Attributes
     brief: ASP.NET Core attributes
     attributes:
       - id: rate_limiting.policy

@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen_ai
+note: Add `server.address`, `server.port`, and `error.type` to GenAI spans.
+issues: [ 1297 ]

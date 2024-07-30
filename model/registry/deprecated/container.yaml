@@ -1,6 +1,7 @@
 groups:
   - id: registry.container.deprecated
     type: attribute_group
+    display_name: Deprecated Container Attributes
     brief: "Describes deprecated container attributes."
     attributes:
       - id: container.labels

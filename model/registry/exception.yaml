@@ -1,6 +1,7 @@
 groups:
   - id: registry.exception
     type: attribute_group
+    display_name: Exception Attributes
     prefix: exception
     brief: >
       This document defines the shared attributes used to

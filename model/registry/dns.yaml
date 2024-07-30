@@ -1,6 +1,7 @@
 groups:
   - id: registry.dns
     type: attribute_group
+    display_name: DNS Attributes
     prefix: dns
     brief: >
       This document defines the shared attributes used to report a DNS query.

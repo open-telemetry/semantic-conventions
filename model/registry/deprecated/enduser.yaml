@@ -2,6 +2,7 @@ groups:
   - id: registry.enduser.deprecated
     prefix: enduser
     type: attribute_group
+    display_name: Deprecated End User Attributes
     brief: Describes deprecated enduser attributes. Complete enduser namespace has been deprecated
     attributes:
       - id: id

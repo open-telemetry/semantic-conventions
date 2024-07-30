@@ -29,16 +29,6 @@ groups:
       - ref: aws.request_id
         requirement_level: recommended
 
-  - id: dynamodb.all
-    type: span
-    brief: "Attributes always filled for all DynamoDB request types."
-    attributes:
-      - ref: db.system
-        brief: "The value `dynamodb`."
-        requirement_level: required
-        examples:
-          - dynamodb
-
   - id: dynamodb.shared
     extends: aws
     type: span

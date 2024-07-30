@@ -6,8 +6,8 @@
 
 # Process
 
-- [Process](#process-attributes)
-- [Process Deprecated](#process-deprecated-attributes)
+- [Process Attributes](#process-attributes)
+- [Deprecated Process Attributes](#deprecated-process-attributes)
 
 ## Process Attributes
 
@@ -33,7 +33,7 @@ An operating system process.
 | `process.real_user.id`        | int      | The real user ID (RUID) of the process.                                                                                                                                                                                                                                                                                                                     | `1000`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.real_user.name`      | string   | The username of the real user of the process.                                                                                                                                                                                                                                                                                                               | `operator`                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.runtime.description` | string   | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment.                                                                                                                                                                                                                         | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `process.runtime.name`        | string   | The name of the runtime of this process. For compiled native binaries, this SHOULD be the name of the compiler.                                                                                                                                                                                                                                             | `OpenJDK Runtime Environment`                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.runtime.name`        | string   | The name of the runtime of this process.                                                                                                                                                                                                                                                                                                                    | `OpenJDK Runtime Environment`                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.runtime.version`     | string   | The version of the runtime of this process, as returned by the runtime without modification.                                                                                                                                                                                                                                                                | `14.0.2`                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.saved_user.id`       | int      | The saved user ID (SUID) of the process.                                                                                                                                                                                                                                                                                                                    | `1002`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process.saved_user.name`     | string   | The username of the saved user.                                                                                                                                                                                                                                                                                                                             | `operator`                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -58,7 +58,7 @@ An operating system process.
 | `major` | major       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | minor       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Process Deprecated Attributes
+## Deprecated Process Attributes
 
 Deprecated process attributes.
 

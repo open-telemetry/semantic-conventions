@@ -6,7 +6,7 @@
 
 # User Agent
 
-## User Agent Attributes
+## User-agent Attributes
 
 Describes user-agent attributes.
 

@@ -4,5 +4,5 @@ groups:
     brief: >
       The software deployment.
     attributes:
-      - ref: deployment.environment
+      - ref: deployment.environment.name
         requirement_level: recommended

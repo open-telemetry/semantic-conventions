@@ -6,7 +6,7 @@ linkTitle: Google Cloud Pub/Sub
 
 **Status**: [Experimental][DocumentStatus]
 
-The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) extend and override the [Messaging Semantic Conventions](README.md) that describe common messaging operations attributes in addition to the Semantic Conventions described on this page.
+The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) extend and override the [Messaging Semantic Conventions](README.md).
 
 `messaging.system` MUST be set to `"gcp_pubsub"` and SHOULD be provided **at span creation time**.
 

@@ -1,3 +1,8 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Libraries
+# Renamed from: semantic_conventions_code_generation
+--->
+
 # Semantic convention libraries
 
 <!-- toc -->
@@ -115,4 +120,4 @@ Code-generation usually involves several steps which could be semi-automated:
 5. Fix lint violations in the auto-generated code (if any)
 6. Send the PR with new code to the corresponding repository
 
-Here're the examples of how steps 2-5 are implemented for [Java](https://github.com/open-telemetry/semantic-conventions-java/blob/7da24068eea69dff11a78d59750b115dc4c5854d/build.gradle.kts#L55-L137) and [Python](https://github.com/open-telemetry/opentelemetry-python/blob/397e357dfad3e6ff42c09c74d5945dfdcad24bdd/scripts/semconv/generate.sh).
+Here are examples of how steps 2-5 are implemented for [Java](https://github.com/open-telemetry/semantic-conventions-java/blob/7da24068eea69dff11a78d59750b115dc4c5854d/build.gradle.kts#L55-L137) and [Python](https://github.com/open-telemetry/opentelemetry-python/blob/397e357dfad3e6ff42c09c74d5945dfdcad24bdd/scripts/semconv/generate.sh).

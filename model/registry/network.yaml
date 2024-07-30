@@ -2,6 +2,7 @@ groups:
   - id: registry.network
     prefix: network
     type: attribute_group
+    display_name: Network Attributes
     brief: >
         These attributes may be used for any network related operation.
     attributes:
@@ -194,6 +195,10 @@ groups:
               value: 'unix'
               brief: "Unix domain socket"
               stability: stable
+            - id: quic
+              value: 'quic'
+              brief: "QUIC"
+              stability: experimental
         brief: >
           [OSI transport layer](https://osi-model.com/transport-layer/) or
           [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
