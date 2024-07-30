@@ -63,12 +63,6 @@ groups:
         brief: >
           Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://en.wikipedia.org/wiki/ISO_3166-1#Codes)).
         examples: [ 'CA' ]
-      - id: country.name
-        stability: experimental
-        type: string
-        brief: >
-          Country name.
-        examples: [ 'Canada' ]
       - id: location.lon
         stability: experimental
         type: double
@@ -81,16 +75,6 @@ groups:
         brief: >
           Latitude of the geo location in [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ 45.505918 ]
-      - id: name
-        stability: experimental
-        type: string
-        brief: >
-          User-defined description of a location.
-        note: >
-          User-defined description of a location, at the level of granularity they care about.
-          Could be the name of their data centers, the floor number, if this describes a local physical entity, city names.
-          Not typically used in automated geolocation.
-        examples: [ 'boston-dc' ]
       - id: postal_code
         stability: experimental
         type: string
@@ -104,9 +88,3 @@ groups:
         brief: >
           Region ISO code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
         examples: [ 'CA-QC' ]
-      - id: region.name
-        stability: experimental
-        type: string
-        brief: >
-          Region name.
-        examples: [ 'Quebec' ]
