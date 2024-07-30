@@ -22,7 +22,7 @@ The code for OpenTelemetry Semantic Conventions defined in this repository can b
 OpenTelemetry Language SIGs can generate Semantic Conventions code in the form that's idiomatic for
 their language and may (or may not) ship it as a stand-alone library.
 
-This document outlines common patterns and provides non-normative guidance on how to structure semantic conventions artifact
+This document outlines common patterns and provides non-normative guidance on how to structure semantic conventions artifacts
 and generate the code.
 
 ## Stability and Versioning
@@ -55,11 +55,11 @@ the `deprecated` property that describes deprecation reason which can be used to
   and breaking changes in user applications.
 
 Keep stable convention definitions inside the preview (part of) semantic conversions artifact. It prevents user code from breaking when semantic convention stabilizes. Deprecate stable definitions inside the preview artifact and point users to the stable location in generated documentation.
-For example, in Java `http.request.method` attribute is defined as the deprecated `io.opentelemetry.semconv.incubating.HttpIncubatingAttributes.HTTP_REQUEST_METHOD` field and also as stable `io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD`.
+For example, in Java, the attribute `http.request.method` is defined as the deprecated in both stable and preview artifacts (e.g., `io.opentelemetry.semconv.incubating.HttpIncubatingAttributes.HTTP_REQUEST_METHOD`, `io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD`).
 
 ## Semantic Conventions Artifact Structure
 
-This section contains suggestions on structuring semantic convention artifact(s) which should be adjusted to the specific language.
+This section contains suggestions on how to structure semantic convention artifact(s).
 
 - Artifact name:
   - `opentelemetry-semconv` - stable conventions
@@ -85,12 +85,13 @@ This section contains suggestions on structuring semantic convention artifact(s)
 
 This section describes how to do code-generation with weaver.
 
-> Note:
+> [!IMPORTANT] 
 > We're transitioning from [build-tools](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#code-generator)
 > to [opentelemetry-weaver](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md) to generate code for semantic conventions.
 > All new code-generation should be done using weaver, build-tools may become incompatible with future version of semantic conventions.
 
-Code-generation is based on YAML definitions in the specific version of semantic conventions and usually
+Code-generation is based on YAML definitions in the specific version of semantic conventions.
+Usually, it involves several steps where some can be semi-automated:
 involves several steps which could be semi-automated:
 
 1. Manually update the Semantic Conventions version in config
@@ -105,11 +106,11 @@ Here are examples of how steps 2-5 are implemented for [Python](https://github.c
 
 Step 4 (running code generation) depends on language-specific customizations. It's also the only step that's affected by tooling migration.
 
-Check out[weaver code-generation documentation for the details](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md)
+Check out [weaver code-generation documentation for more details](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md)
 
 ### Migrating from build-tools
 
-Migration from build-tools involves changing Jinja templates and adding [weaver config file](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md#configuration-file---weaveryaml).
+Migration from build-tools involves changing Jinja templates and adding a [weaver config file](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md#configuration-file---weaveryaml).
 
 #### Weaver config
 
@@ -138,20 +139,23 @@ running weaver command from the code generation script (similarly to build-tools
 
 Weaver is able to run code-generation for multiple templates (defined in the corresponding section) at once.
 
-Before executing Jinja, weaver allows to filter or process semantic convention definitions in `filter` section for each template.
-In this example it uses `semconv_grouped_attributes` filter - a helper method that groups attribute definitions by root namespace and excludes
+Before executing Jinja, weaver allows to filter or process semantic convention definitions in the `filter` section for each template.
+In this example, it uses `semconv_grouped_attributes` filter - a helper method that groups attribute definitions by root namespace and excludes
 attributes not relevant to this language. You can write alternative or additional filters and massage semantic conventions data using [JQ](https://jqlang.github.io/jq/manual/).
 
 The `application_mode: each` configures weaver to run code generation for each semconv group and, as a consequence, generate code for each group
-in a different file.
+in a different file. The application mode `single` is also supported to apply the template to all groups at once.
 
 See
-[weaver code-generation docs](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md) for the details on the config, data schema, JQ filters, and more.
+[weaver code-generation docs](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md) 
+for the details on the config, data schema, JQ filters, and more.
 
 #### Jinja templates
 
 Jinja templates need to be changed to leverage (better) data structure and helper methods.
-The first key difference is that each jinja template should define how to name the corresponding file(s).
+The first key difference is that each jinja template can define how to name the corresponding file(s). If you
+don't specify the name of the output file via the method `set_file_name`, Weaver will use the relative path
+and the name of the template itself to determine the output file.
 
 E.g. here's an example that uses root namespace in a subfolder provided in the `output` parameter.
 
