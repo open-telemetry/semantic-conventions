@@ -51,12 +51,6 @@ groups:
               stability: experimental
               value: 'SA'
               brief: 'South America'
-      - id: continent.name
-        stability: experimental
-        type: string
-        brief: >
-          Name of the continent.
-        examples: [ 'North America', 'Europe' ]
       - id: country.iso_code
         stability: experimental
         type: string
