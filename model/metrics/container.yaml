@@ -13,7 +13,8 @@ groups:
       - ref: cpu.mode
         brief: "The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels."
         note: "Following states SHOULD be used: `user`, `system`, `kernel`"
-        requirement_level: opt_in
+        requirement_level:
+          conditionally_required: Required if mode is available, i.e. metrics coming from the Docker Stats API.
 
   - id: metric.container.cpu.usage
     type: metric
