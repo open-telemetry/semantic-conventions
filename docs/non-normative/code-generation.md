@@ -143,7 +143,7 @@ Before executing Jinja, weaver allows to filter or process semantic convention d
 In this example, it uses `semconv_grouped_attributes` filter - a helper method that groups attribute definitions by root namespace and excludes
 attributes not relevant to this language. You can write alternative or additional filters and massage semantic conventions data using [JQ](https://jqlang.github.io/jq/manual/).
 
-In certain cases, calling `semconv_grouped_attributes` with namespace exclusion and stability filters may be enough and then no port-processing is necessary.
+In certain cases, calling `semconv_grouped_attributes` with namespace exclusion and stability filters may be enough and post-processing is not necessary.
 
 The `application_mode: each` configures weaver to run code generation for each semantic convention group and, as a consequence,
 generate code for each group in a different file. The application mode `single` is also supported to apply the template to all groups at once.
