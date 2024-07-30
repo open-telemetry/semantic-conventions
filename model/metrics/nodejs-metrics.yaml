@@ -88,8 +88,8 @@ groups:
     unit: "s"
     stability: experimental
     attributes:
-      - ref: nodejs.eventloop.type
+      - ref: nodejs.eventloop.state
         requirement_level: required
     note: >
-      Value can be retrieved from `idle` and `active` from
+      Value can be retrieved from
       [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
