@@ -11,6 +11,9 @@ linkTitle: Libraries
   - [Deprecated Conventions](#deprecated-conventions)
 - [Semantic Conventions Artifact Structure](#semantic-conventions-artifact-structure)
 - [Generating semantic conventions](#generating-semantic-conventions)
+  - [Migrating from build-tools](#migrating-from-build-tools)
+    - [Weaver config](#weaver-config)
+    - [Jinja templates](#jinja-templates)
 
 <!-- tocstop -->
 
@@ -170,6 +173,7 @@ Notable changes on data structure:
 - `member.member_id` -> `member.id` (gets id of the enum member)
 
 Notable changes on helper methods:
+
 - `attr.fqn | to_const_name` -> `attr.name | screaming_snake_case`
 - `attr.fqn | to_camelcase(True) -> attr.name | pascal_case`
 - `attr.brief | to_doc_brief | indent ` -> `attr.brief | comment_with_prefix("    ")` (prefix is used to indent)
