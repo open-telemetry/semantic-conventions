@@ -352,7 +352,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `nodejs.eventloop.time` | Counter | `s` | Cumulative duration of time the event loop has been on the state. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `nodejs.eventloop.time` | Counter | `s` | Cumulative duration of time the event loop has been in each state. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** Value can be retrieved from [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)

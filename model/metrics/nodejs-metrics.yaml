@@ -83,7 +83,7 @@ groups:
   - id: metric.nodejs.eventloop.time
     type: metric
     metric_name: nodejs.eventloop.time
-    brief: "Cumulative duration of time the event loop has been on the state."
+    brief: "Cumulative duration of time the event loop has been in each state."
     instrument: counter
     unit: "s"
     stability: experimental
