@@ -243,7 +243,7 @@ This metric is [required][MetricRequired].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`,  and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
 Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.client.connection.state`](/docs/attributes-registry/db.md) | string | The state of a connection in the pool | `idle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -290,7 +290,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`,  and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
 Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -329,7 +329,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`,  and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
 Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -368,7 +368,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`,  and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
 Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -407,7 +407,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`,  and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
 Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -446,7 +446,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`,  and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
 Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -485,7 +485,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`,  and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
 Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -524,7 +524,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`,  and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
 Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -563,7 +563,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`,  and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
 Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 

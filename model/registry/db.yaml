@@ -336,9 +336,9 @@ groups:
           The name of the connection pool; unique within the instrumented application.
           In case the connection pool implementation doesn't provide a name,
           instrumentation SHOULD use a combination of parameters that would make the name
-          unique, for example, combining attributes `server.address`, `server.port`, 
+          unique, for example, combining attributes `server.address`, `server.port`,
           and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
-          
+
           Instrumentations that generate connection pool name following different patterns
           SHOULD document it.
         examples: ["myDataSource"]
