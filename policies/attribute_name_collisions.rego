@@ -42,8 +42,13 @@ attr_names_except(excluded) = names {
     names := { n | n := input.groups[_].attributes[_].name } - excluded
 }
 
-# TODO - we'll need to specify how collision resolution happens in the schema -
+# These lists contain exceptions for existing collisions that were introduced unintentionally.
+# We'll have a way to specify how collision resolution happens in the schema -
 # see phase 2 in https://github.com/open-telemetry/semantic-conventions/issues/1118#issuecomment-2173803006
-# For now just allow current collisions.
+# For now we'll exclude existing collisions from the checks.
+# ADDING NEW EXCEPTIONS IS NOT ALLOWED.
+
+# DO NOT ADD ATTRIBUTES TO THIS LIST
 excluded_const_collisions := {"messaging.client_id"}
+# DO NOT ADD ATTRIBUTES TO THIS LIST
 excluded_namespace_collisions := {"messaging.operation", "db.operation", "deployment.environment"}
