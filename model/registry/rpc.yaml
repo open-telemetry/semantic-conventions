@@ -264,23 +264,13 @@ groups:
         type: int
         stability: experimental
         brief: "Uncompressed size of the message in bytes."
-      - id: client.request.body.size
+      - id: request.body.size
         type: int
         stability: experimental
-        brief: "The size of the client request payload body in bytes."
+        brief: "The size of the request payload body in bytes. For gRPC, this value is calculated through protobuf (including unary and streaming calls)."
         examples: 3495
-      - id: client.response.body.size
+      - id: response.body.size
         type: int
         stability: experimental
-        brief: "The size of the client response payload body in bytes."
-        examples: 3495
-      - id: server.request.body.size
-        type: int
-        stability: experimental
-        brief: "The size of the server request payload body in bytes."
-        examples: 3495
-      - id: server.response.body.size
-        type: int
-        stability: experimental
-        brief: "The size of the server response payload body in bytes."
+        brief: "The size of the response payload body in bytes. For gRPC, this value is calculated through protobuf (including unary and streaming calls)."
         examples: 3495

@@ -37,9 +37,9 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
-      - ref: rpc.client.request.body.size
+      - ref: rpc.request.body.size
         requirement_level: recommended
-      - ref: rpc.client.response.body.size
+      - ref: rpc.response.body.size
         requirement_level: recommended
 
   - id: rpc.server
@@ -61,9 +61,9 @@ groups:
         requirement_level: recommended
       - ref: network.type
         requirement_level: recommended
-      - ref: rpc.server.request.body.size
+      - ref: rpc.request.body.size
         requirement_level: recommended
-      - ref: rpc.server.response.body.size
+      - ref: rpc.response.body.size
         requirement_level: recommended
 
   - id: rpc.grpc
