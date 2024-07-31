@@ -42,3 +42,5 @@ Semantic Conventions by signals:
 * [Metrics](general/metrics.md): Semantic Conventions for metrics.
 * [Resource](resource/README.md): Semantic Conventions for resources.
 * [Trace](general/trace.md): Semantic Conventions for traces and spans.
+
+Also see, [Non-normative supplementary information](non-normative/README.md).

@@ -70,6 +70,9 @@ versions:
               - process.cpu.time
               - process.cpu.utilization
               - container.cpu.time
+        # https://github.com/open-telemetry/semantic-conventions/pull/1265
+        - rename_metrics:
+            jvm.buffer.memory.usage: jvm.buffer.memory.used
   1.26.0:
     metrics:
       changes:

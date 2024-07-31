@@ -4,10 +4,12 @@ groups:
     brief: 'This group describes GenAI metrics attributes'
     attributes:
       - ref: server.address
+        brief: GenAI server address.
         requirement_level: recommended
       - ref: server.port
+        brief: GenAI server port.
         requirement_level:
-          conditionally_required: If `sever.address` is set.
+          conditionally_required: If `server.address` is set.
       - ref: gen_ai.response.model
         requirement_level: recommended
       - ref: gen_ai.request.model
