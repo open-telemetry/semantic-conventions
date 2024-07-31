@@ -7,6 +7,7 @@ deny[attr_registry_collision(description, name)] {
     collisions:= { n | n := attr_names_except(excluded_const_collisions)[_]; n != name; to_const_name(n) == const_name }
     count(collisions) > 0
 
+    # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
 }
 
@@ -17,6 +18,7 @@ deny[attr_registry_collision(description, name)] {
     collisions:= { n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(name)) }
     count(collisions) > 0
 
+    # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     description := sprintf("Attribute '%s' name is used as a namespace in the following attributes '%s'.", [name, collisions])
 }
 

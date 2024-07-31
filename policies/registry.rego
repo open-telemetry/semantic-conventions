@@ -21,7 +21,7 @@ deny[attr_registry_violation(description, group.id, "")] {
     startswith(group.id, "registry.")
     group.type != "attribute_group"
 
-    # TODO - separate violation_id and description once weaver supports it.
+    # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     # violation_id := "attribute_registry_can_only_contain_attribute_groups"
     description := sprintf("Registry group '%s' has invalid type '%s'. Groups in attribute registry must have `attribute_group` type.", [group.id, group.type])
 }
@@ -36,7 +36,7 @@ deny[attr_registry_violation(description, group.id, attr.id)] {
 
     attr_name := get_attribute_name(attr, group)
 
-    # TODO - separate violation_id and description once weaver supports it.
+    # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     # violation_id := "attributes_must_be_defined_in_attribute_registry"
     description := sprintf("Attribute '%s' is defined in the group '%s' which is not part of the attribute registy. Attributes can be defined in the registry group only.", [attr_name, group.id])
 }
@@ -50,7 +50,7 @@ deny[attr_registry_violation(description, group.id, attr.ref)] {
     attr := group.attributes[_]
     attr.ref != null
 
-    # TODO - separate violation_id and description once weaver supports it.
+    # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     # violation_id := "attributes_in_registry_cannot_reference_each_other"
     description := sprintf("Registy group '%s' references attribute '%s'. Registry groups can only define new attributes.", [group.id, attr.ref])
 }
