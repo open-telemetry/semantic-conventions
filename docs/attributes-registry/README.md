@@ -71,6 +71,7 @@ Currently, the following namespaces exist:
 - [Messaging](messaging.md)
 - [Network](network.md)
 - [OCI](oci.md)
+- [Oci2](oci2.md)
 - [OpenTracing](opentracing.md)
 - [OS](os.md)
 - [OTel](otel.md)
