@@ -1,6 +1,5 @@
 groups:
   - id: session-id
-    prefix: session
     type: attribute_group
     brief: >
       Session is defined as the period of time encompassing all activities performed by the application and the actions

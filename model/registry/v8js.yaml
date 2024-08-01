@@ -3,9 +3,8 @@ groups:
     type: attribute_group
     brief: Describes V8 JS Engine Runtime related attributes.
     display_name: V8 JS Attributes
-    prefix: v8js
     attributes:
-      - id: gc.type
+      - id: v8js.gc.type
         stability: experimental
         brief: The type of garbage collection.
         type:
@@ -26,7 +25,7 @@ groups:
               value: 'weakcb'
               brief: 'Weak Callbacks (Process Weak Callbacks).'
               stability: experimental
-      - id: heap.space.name
+      - id: v8js.heap.space.name
         stability: experimental
         brief: The name of the space type of heap memory.
         note: >

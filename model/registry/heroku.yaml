@@ -1,24 +1,23 @@
 groups:
   - id: registry.heroku
-    prefix: heroku
     type: attribute_group
     display_name: Heroku Attributes
     brief: >
         This document defines attributes for the Android platform on which the Android application is running.
     attributes:
-      - id: release.creation_timestamp
+      - id: heroku.release.creation_timestamp
         type: string
         stability: experimental
         brief: >
           Time and date the release was created
         examples: [ '2022-10-23T18:00:42Z' ]
-      - id: release.commit
+      - id: heroku.release.commit
         type: string
         stability: experimental
         brief: >
           Commit hash for the current release
         examples: [ 'e6134959463efd8966b20e75b913cafe3f5ec' ]
-      - id: app.id
+      - id: heroku.app.id
         type: string
         stability: experimental
         brief: >

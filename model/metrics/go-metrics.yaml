@@ -6,7 +6,6 @@ groups:
     note: >
       Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
     instrument: updowncounter
-    prefix: go.memory
     unit: "By"
     attributes:
       - ref: go.memory.type

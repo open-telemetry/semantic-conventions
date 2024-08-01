@@ -2,7 +2,6 @@ groups:
   - id: attributes.jvm.memory
     type: attribute_group
     brief: "Describes JVM memory metric attributes."
-    prefix: jvm.memory
     attributes:
       - ref: jvm.memory.type
         requirement_level: recommended
@@ -52,7 +51,6 @@ groups:
     brief: "Duration of JVM garbage collection actions."
     instrument: histogram
     unit: "s"
-    prefix: jvm.gc
     attributes:
       - ref: jvm.gc.name
         requirement_level: recommended
