@@ -1,91 +1,90 @@
 groups:
   - id: registry.db.deprecated
-    prefix: db
     type: attribute_group
     display_name: Deprecated Database Attributes
     brief: >
       "Describes deprecated db attributes."
     attributes:
-      - id: connection_string
+      - id: db.connection_string
         type: string
         brief: 'Deprecated, use `server.address`, `server.port` attributes instead.'
         stability: experimental
         deprecated: >
           "Replaced by `server.address` and `server.port`."
         examples: Server=(localdb)\v11.0;Integrated Security=true;
-      - id: jdbc.driver_classname
+      - id: db.jdbc.driver_classname
         type: string
         brief: 'Removed, no replacement at this time.'
         stability: experimental
         deprecated: 'Removed as not used.'
         examples: ['org.postgresql.Driver', 'com.microsoft.sqlserver.jdbc.SQLServerDriver']
-      - id: operation
+      - id: db.operation
         type: string
         brief: 'Deprecated, use `db.operation.name` instead.'
         stability: experimental
         deprecated: "Replaced by `db.operation.name`."
         examples: ['findAndModify', 'HMSET', 'SELECT']
-      - id: user
+      - id: db.user
         type: string
         brief: 'Deprecated, no replacement at this time.'
         deprecated: "No replacement at this time."
         stability: experimental
         examples: ['readonly_user', 'reporting_user']
-      - id: statement
+      - id: db.statement
         type: string
         brief: The database statement being executed.
         deprecated: "Replaced by `db.query.text`."
         stability: experimental
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
-      - id: cassandra.table
+      - id: db.cassandra.table
         type: string
         stability: experimental
         brief: 'Deprecated, use `db.collection.name` instead.'
         deprecated: "Replaced by `db.collection.name`."
         examples: 'mytable'
-      - id: cosmosdb.container
+      - id: db.cosmosdb.container
         type: string
         stability: experimental
         brief: 'Deprecated, use `db.collection.name` instead.'
         deprecated: "Replaced by `db.collection.name`."
         examples: 'mytable'
-      - id: mongodb.collection
+      - id: db.mongodb.collection
         type: string
         stability: experimental
         brief: 'Deprecated, use `db.collection.name` instead.'
         deprecated: "Replaced by `db.collection.name`."
         examples: 'mytable'
-      - id: sql.table
+      - id: db.sql.table
         type: string
         stability: experimental
         brief: 'Deprecated, use `db.collection.name` instead.'
         deprecated: "Replaced by `db.collection.name`."
         examples: 'mytable'
-      - id: redis.database_index
+      - id: db.redis.database_index
         type: int
         stability: experimental
         brief: 'Deprecated, use `db.namespace` instead.'
         deprecated: "Replaced by `db.namespace`."
         examples: [0, 1, 15]
-      - id: name
+      - id: db.name
         type: string
         stability: experimental
         brief: 'Deprecated, use `db.namespace` instead.'
         deprecated: "Replaced by `db.namespace`."
         examples: [ 'customers', 'main' ]
-      - id: mssql.instance_name
+      - id: db.mssql.instance_name
         type: string
         stability: experimental
         brief: 'Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.'
         deprecated: 'Deprecated, no replacement at this time.'
         examples: 'MSSQLSERVER'
-      - id: instance.id
+      - id: db.instance.id
         type: string
         stability: experimental
         brief: 'Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.'
         deprecated: 'Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.'
         examples: 'mysql-e26b99z.example.com'
-      - id: elasticsearch.cluster.name
+      - id: db.elasticsearch.cluster.name
         type: string
         stability: experimental
         deprecated: Replaced by `db.namespace`.
@@ -102,7 +101,6 @@ groups:
       - id: state
         stability: experimental
         type:
-          allow_custom_values: true
           members:
             - id: idle
               value: 'idle'
@@ -122,7 +120,6 @@ groups:
       - id: db.client.connections.state
         stability: experimental
         type:
-          allow_custom_values: true
           members:
             - id: idle
               value: 'idle'
