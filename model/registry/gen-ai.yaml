@@ -58,7 +58,6 @@ groups:
         type: double
         brief: The top_p sampling setting for the GenAI request.
         examples: [1.0]
-        tag: llm-generic-request
       - id: request.top_k
         stability: experimental
         type: double

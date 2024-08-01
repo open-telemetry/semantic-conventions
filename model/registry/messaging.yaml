@@ -37,7 +37,6 @@ groups:
           Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
           the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
         examples: ['MyQueue', 'MyTopic']
-        tag: messaging-generic
       - id: destination.subscription.name
         type: string
         stability: experimental
