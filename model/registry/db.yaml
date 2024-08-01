@@ -1,12 +1,11 @@
 groups:
   - id: registry.db
-    prefix: db
     type: attribute_group
     display_name: General Database Attributes
     brief: >
       This group defines the attributes used to describe telemetry in the context of databases.
     attributes:
-      - id: collection.name
+      - id: db.collection.name
         type: string
         stability: experimental
         brief: The name of a collection (table, container) within the database.
@@ -19,7 +18,7 @@ groups:
           For batch operations, if the individual operations are known to have the same collection name
           then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
         examples: ['public.users', 'customers']
-      - id: namespace
+      - id: db.namespace
         type: string
         stability: experimental
         brief: >
@@ -35,7 +34,7 @@ groups:
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: [ 'customers', 'test.users' ]
-      - id: operation.name
+      - id: db.operation.name
         type: string
         stability: experimental
         brief: >
@@ -49,7 +48,7 @@ groups:
           then that operation name SHOULD be used prepended by `BATCH `,
           otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
         examples: ['findAndModify', 'HMSET', 'SELECT']
-      - id: query.text
+      - id: db.query.text
         type: string
         stability: experimental
         brief: >
@@ -65,7 +64,7 @@ groups:
           the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
           to observability of capturing the static part of the query text by default outweighs the risk.
         examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
-      - id: query.parameter
+      - id: db.query.parameter
         type: template[string]
         stability: experimental
         brief: >
@@ -77,7 +76,7 @@ groups:
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
         examples: ['someval', '55']
-      - id: operation.batch.size
+      - id: db.operation.batch.size
         type: int
         stability: experimental
         brief: The number of queries included in a [batch operation](/docs/database/database-spans.md#batch-operations).
@@ -85,14 +84,13 @@ groups:
           Operations are only considered batches when they contain two or more operations,
           and so `db.operation.batch.size` SHOULD never be `1`.
         examples: [ 2, 3, 4 ]
-      - id: system
+      - id: db.system
         brief: The database management system (DBMS) product as identified by the client instrumentation.
         note: >
           The actual DBMS may differ from the one identified by the client.
           For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system`
           is set to `postgresql` based on the instrumentation's best knowledge.
         type:
-          allow_custom_values: true
           members:
             - id: other_sql
               value: 'other_sql'
@@ -316,10 +314,9 @@ groups:
               brief: 'Vertica'
               stability: experimental
         stability: experimental
-      - id: client.connection.state
+      - id: db.client.connection.state
         stability: experimental
         type:
-          allow_custom_values: true
           members:
             - id: idle
               value: 'idle'
@@ -329,7 +326,7 @@ groups:
               stability: experimental
         brief: "The state of a connection in the pool"
         examples: ["idle"]
-      - id: client.connection.pool.name
+      - id: db.client.connection.pool.name
         type: string
         stability: experimental
         brief: >
@@ -339,25 +336,24 @@ groups:
           formatted as `server.address:server.port`.
         examples: ["myDataSource"]
   - id: registry.db.cassandra
-    prefix: db
     type: attribute_group
     display_name: Cassandra Attributes
     brief: >
       This group defines attributes for Cassandra.
     attributes:
-      - id: cassandra.coordinator.dc
+      - id: db.cassandra.coordinator.dc
         type: string
         stability: experimental
         brief: >
           The data center of the coordinating node for a query.
         examples: 'us-west-2'
-      - id: cassandra.coordinator.id
+      - id: db.cassandra.coordinator.id
         type: string
         stability: experimental
         brief: >
           The ID of the coordinating node for a query.
         examples: 'be13faa2-8574-4d71-926d-27f16cf8a7af'
-      - id: cassandra.consistency_level
+      - id: db.cassandra.consistency_level
         brief: >
           The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
         type:
@@ -396,38 +392,36 @@ groups:
               value: 'local_serial'
               stability: experimental
         stability: experimental
-      - id: cassandra.idempotence
+      - id: db.cassandra.idempotence
         type: boolean
         stability: experimental
         brief: >
           Whether or not the query is idempotent.
-      - id: cassandra.page_size
+      - id: db.cassandra.page_size
         type: int
         stability: experimental
         brief: >
           The fetch size used for paging, i.e. how many rows will be returned at once.
         examples: [5000]
-      - id: cassandra.speculative_execution_count
+      - id: db.cassandra.speculative_execution_count
         type: int
         stability: experimental
         brief: >
           The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
         examples: [0, 2]
   - id: registry.db.cosmosdb
-    prefix: db
     type: attribute_group
     display_name: Azure Cosmos DB Attributes
     brief: >
       This group defines attributes for Azure Cosmos DB.
     attributes:
-      - id: cosmosdb.client_id
+      - id: db.cosmosdb.client_id
         type: string
         stability: experimental
         brief: Unique Cosmos client instance id.
         examples: '3ba4827d-4422-483f-b59f-85b74211c11d'
-      - id: cosmosdb.connection_mode
+      - id: db.cosmosdb.connection_mode
         type:
-          allow_custom_values: false
           members:
             - id: gateway
               value: 'gateway'
@@ -439,9 +433,8 @@ groups:
               stability: experimental
         stability: experimental
         brief: Cosmos client connection mode.
-      - id: cosmosdb.operation_type
+      - id: db.cosmosdb.operation_type
         type:
-          allow_custom_values: true
           members:
             - id: invalid
               value: 'Invalid'
@@ -490,39 +483,38 @@ groups:
               stability: experimental
         stability: experimental
         brief: CosmosDB Operation Type.
-      - id: cosmosdb.request_charge
+      - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
         brief: RU consumed for that operation
         examples: [46.18, 1.0]
-      - id: cosmosdb.request_content_length
+      - id: db.cosmosdb.request_content_length
         type: int
         stability: experimental
         brief: Request payload size in bytes
-      - id: cosmosdb.status_code
+      - id: db.cosmosdb.status_code
         type: int
         stability: experimental
         brief: Cosmos DB status code.
         examples: [200, 201]
-      - id: cosmosdb.sub_status_code
+      - id: db.cosmosdb.sub_status_code
         type: int
         stability: experimental
         brief: Cosmos DB sub status code.
         examples: [1000, 1002]
   - id: registry.db.elasticsearch
-    prefix: db
     type: attribute_group
     display_name: Elasticsearch Attributes
     brief: >
       This group defines attributes for Elasticsearch.
     attributes:
-      - id: elasticsearch.node.name
+      - id: db.elasticsearch.node.name
         type: string
         stability: experimental
         brief: >
           Represents the human-readable identifier of the node/instance to which a request was routed.
         examples: ["instance-0000000001"]
-      - id: elasticsearch.path_parts
+      - id: db.elasticsearch.path_parts
         type: template[string]
         stability: experimental
         brief: >

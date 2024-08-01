@@ -35,6 +35,7 @@ Currently, the following namespaces exist:
 - [Artifact](artifact.md)
 - [Aspnetcore](aspnetcore.md)
 - [AWS](aws.md)
+- [Azure](azure.md)
 - [Browser](browser.md)
 - [CICD](cicd.md)
 - [Client](client.md)

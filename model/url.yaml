@@ -2,7 +2,6 @@ groups:
   - id: url
     brief: Attributes describing URL.
     type: attribute_group
-    prefix: url
     attributes:
       - ref: url.scheme
       - ref: url.full

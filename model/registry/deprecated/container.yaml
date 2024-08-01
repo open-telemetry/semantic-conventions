@@ -13,7 +13,6 @@ groups:
       - id: container.cpu.state
         brief: "Deprecated, use `cpu.mode` instead."
         type:
-          allow_custom_values: true
           members:
             - id: user
               value: 'user'
