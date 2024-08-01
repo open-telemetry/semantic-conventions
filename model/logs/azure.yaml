@@ -1,0 +1,102 @@
+groups:
+  - id: az.resource.log
+    stability: experimental
+    type: event
+    name: az.resource.log
+    brief: >
+      Describes Azure Resource Log event, see
+      [Azure Resource Log Top-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema)
+      for more details.
+    attributes:
+      - ref: az.service_request_id
+      - ref: cloud.resource_id
+        brief: The [Fully Qualified Azure Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) the log is emitted for.
+        note: ""
+      - ref: event.name
+      # Future Note: When the build tools support this definition please uncomment and validate the details
+      # included here and what has been added to the manual markdown table
+      # body:
+      #   fields:
+      #     - id: category
+      #       type: string
+      #       stability: experimental
+      #       brief: "The Azure category of the log entry."
+      #       examples:
+      #         - AuditEvent
+      #         - GatewayLogs
+      #         - ApplicationGatewayAccessLog
+      #     - id: correlation.id
+      #       type: string
+      #       stability: experimental
+      #       brief: "The correlation ID of the log entry."
+      #       examples:
+      #         - 607964b6-41a5-4e24-a5db-db7aab3b9b34
+      #     - id: duration
+      #       type: int
+      #       stability: experimental
+      #       brief: "The duration of the operations in milliseconds."
+      #       examples:
+      #         - 1000
+      #     - id: identity
+      #       type: string
+      #       stability: experimental
+      #       brief: >
+      #         "A JSON blob that describes the identity of the user or application that performed the operation."
+      #       note: >
+      #         Typically, this field includes the authorization and claims or JWT token from Active Directory.
+      #         > Warning:
+      #         > this field contains sensitive (PII) information."
+      #       requirement_level: opt-in
+      #       examples:
+      #         - "someone"
+      #     - id: operation.name
+      #       type: string
+      #       stability: experimental
+      #       brief: "The name of the operation."
+      #       examples:
+      #         - SecretGet
+      #         - Microsoft.ApiManagement/GatewayLogs
+      #         - ApplicationGatewayAccess
+      #     - id: operation.version
+      #       type: string
+      #       stability: experimental
+      #       brief: "The version of the operation."
+      #       examples:
+      #         - "1.0"
+      #     - id: properties
+      #       type: KeyValueList # note: this is not a supported type in the current build tools
+      #       stability: experimental
+      #       brief: "The properties provided in the Azure Resource Log."
+      #       examples: <code>{<br/>&nbsp;&nbsp;"statusCode": "Created",<br/>&nbsp;&nbsp;"serviceRequestId": "50d5cddb-8ca0-47ad-9b80-6cde2207f97c"<br/>}</code>
+      #     - id: result.type
+      #       type: string
+      #       stability: experimental
+      #       brief: "The status associated with the logged event."
+      #       examples:
+      #         - "Started"
+      #         - "In Progress"
+      #         - "Succeeded"
+      #         - "Failed"
+      #         - "Active"
+      #         - "Resolved"
+      #     - id: result.signature
+      #       type: string
+      #       stability: experimental
+      #       brief: "The substatus of associated with the logged event. "
+      #       examples:
+      #         - "OK"
+      #     - id: result.description
+      #       type: string
+      #       stability: experimental
+      #       brief: "The description of the result."
+      #       examples:
+      #         - "The operation was successful"
+      #         - "The operation failed"
+      #     - id: tenant.id
+      #       type: string
+      #       stability: experimental
+      #       brief: "The tenant ID of the Active Directory tenant that this event is tied to."
+      #       requirement_level:
+      #         conditionally_required: "if the event is tied to an Active Directory tenant."
+      #       examples:
+      #         - "00000000-0000-0000-0000-000000000000"

@@ -228,3 +228,11 @@ chlog-update: $(CHLOGGEN)
 .PHONY: generate-gh-issue-templates
 generate-gh-issue-templates:
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh
+
+.PHONY: check-policies
+check-policies:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/policies:/policies \
+		otel/weaver:${WEAVER_VERSION} registry check \
+		--registry=/source \
+		--policy=/policies/registry.rego \
+		--policy=/policies/attribute_name_collisions.rego
