@@ -235,4 +235,5 @@ check-policies:
 		otel/weaver:${WEAVER_VERSION} registry check \
 		--registry=/source \
 		--policy=/policies/registry.rego \
-		--policy=/policies/attribute_name_collisions.rego
+		--policy=/policies/attribute_name_collisions.rego \
+		--policy=/policies/yaml_schema.rego

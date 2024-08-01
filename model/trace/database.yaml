@@ -335,7 +335,6 @@ groups:
   - id: db.cosmosdb
     type: span
     extends: trace.db.common.query_and_collection
-    prefix: db.cosmosdb
     brief: >
       Attributes for Cosmos DB.
     attributes:
