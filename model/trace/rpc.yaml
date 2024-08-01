@@ -80,6 +80,12 @@ groups:
       - ref: rpc.grpc.response.metadata
         tag: grpc-tech-specific
         requirement_level: opt_in
+      - ref: rpc.request.body.size
+        tag: grpc-tech-specific
+        requirement_level: recommended
+      - ref: rpc.response.body.size
+        tag: grpc-tech-specific
+        requirement_level: recommended
 
   - id: rpc.jsonrpc
     prefix: rpc.jsonrpc
