@@ -1,0 +1,4 @@
+change_type: enhancement
+component: db
+note: Add better example of how to make the pool name unique
+issues: [ 1289 ]

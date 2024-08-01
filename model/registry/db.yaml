@@ -332,8 +332,11 @@ groups:
         brief: >
           The name of the connection pool; unique within the instrumented application.
           In case the connection pool implementation doesn't provide a name,
-          instrumentation should use a combination of `server.address` and `server.port` attributes
-          formatted as `server.address:server.port`.
+          instrumentation SHOULD use a combination of parameters that would make the name
+          unique, for example, combining attributes `server.address`, `server.port`,
+          and `db.namespace`, formatted as `server.address:server.port/db.namespace`.
+          Instrumentations that generate connection pool name following different patterns
+          SHOULD document it.
         examples: ["myDataSource"]
   - id: registry.db.cassandra
     type: attribute_group
