@@ -110,3 +110,4 @@ groups:
     brief: "The time the process has been running."
     instrument: counter
     unit: "s"
+    note: "Instrumentations SHOULD use counter with type `double` and measure uptime with at least millisecond precision"

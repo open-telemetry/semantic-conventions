@@ -491,7 +491,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.uptime` | Counter | `s` | The time the process has been running. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.uptime` | Counter | `s` | The time the process has been running. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+**[1]:** Instrumentations SHOULD use counter with type `double` and measure uptime with at least millisecond precision
+
 
 
 <!-- markdownlint-restore -->
