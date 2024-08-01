@@ -1,8 +1,8 @@
 file_format: 1.1.0
-schema_url: https://opentelemetry.io/schemas/next
+schema_url: https://opentelemetry.io/schemas/1.27.0
 versions:
-  next:
-    1.27.0:
+  1.27.0:
+    all:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1216
         - rename_attributes:
