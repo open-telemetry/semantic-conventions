@@ -6,8 +6,8 @@ versions:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1216
         - rename_attributes:
-          attribute_map:
-            tls.client.server_name: server.address
+            attribute_map:
+              tls.client.server_name: server.address
         # https://github.com/open-telemetry/semantic-conventions/pull/1075
         - rename_attributes:
             attribute_map:
