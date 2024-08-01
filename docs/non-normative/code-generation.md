@@ -55,7 +55,7 @@ the `deprecated` property that describes deprecation reason which can be used to
   and breaking changes in user applications.
 
 Keep stable convention definitions inside the preview (part of) semantic conversions artifact. It prevents user code from breaking when semantic convention stabilizes. Deprecate stable definitions inside the preview artifact and point users to the stable location in generated documentation.
-For example, in Java, the attribute `http.request.method` is defined as the deprecated in both stable and preview artifacts (e.g., `io.opentelemetry.semconv.incubating.HttpIncubatingAttributes.HTTP_REQUEST_METHOD`, `io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD`).
+For example, in Java, the attribute `http.request.method` is defined as deprecated in both stable and preview artifacts (e.g., `io.opentelemetry.semconv.incubating.HttpIncubatingAttributes.HTTP_REQUEST_METHOD`, `io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD`).
 
 ## Semantic Conventions Artifact Structure
 
