@@ -1,6 +1,5 @@
 groups:
   - id: registry.server
-    prefix: server
     type: attribute_group
     display_name: Server Attributes
     brief: >
@@ -11,7 +10,7 @@ groups:
       protocol / API doesn't expose a clear notion of client and server).
       This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
     attributes:
-      - id: address
+      - id: server.address
         stability: stable
         type: string
         brief: "Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
@@ -19,7 +18,7 @@ groups:
           When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
           the server address behind any intermediaries, for example proxies, if it's available.
         examples: ['example.com', '10.1.2.80', '/tmp/my.sock']
-      - id: port
+      - id: server.port
         stability: stable
         type: int
         brief: Server port number.
