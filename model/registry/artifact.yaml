@@ -1,6 +1,5 @@
 groups:
   - id: registry.artifact
-    prefix: artifact
     type: attribute_group
     brief: >
       This group describes attributes specific to artifacts. Artifacts are
@@ -9,7 +8,7 @@ groups:
       [SLSA](https://slsa.dev/spec/v1.0/terminology#package-model) package
       model.
     attributes:
-      - id: filename
+      - id: artifact.filename
         type: string
         stability: experimental
         brief: >
@@ -28,13 +27,13 @@ groups:
             "release-1.tar.gz",
             "file-name-package.tar.gz",
           ]
-      - id: version
+      - id: artifact.version
         type: string
         stability: experimental
         brief: >
           The version of the artifact.
         examples: ["v0.1.0", "1.2.1", "122691-build"]
-      - id: purl
+      - id: artifact.purl
         type: string
         stability: experimental
         brief: >
@@ -46,7 +45,7 @@ groups:
             "pkg:github/package-url/purl-spec@1209109710924",
             "pkg:npm/foo@12.12.3",
           ]
-      - id: hash
+      - id: artifact.hash
         type: string
         stability: experimental
         brief: >
@@ -64,13 +63,13 @@ groups:
           deem necessary.
         examples:
           ["9ff4c52759e2c4ac70b7d517bc7fcdc1cda631ca0045271ddd1b192544f8a3e9"]
-      - id: attestation.id
+      - id: artifact.attestation.id
         type: string
         stability: experimental
         brief: >
           The id of the build [software attestation](https://slsa.dev/attestation-model).
         examples: ["123"]
-      - id: attestation.filename
+      - id: artifact.attestation.filename
         type: string
         stability: experimental
         brief: >
@@ -86,7 +85,7 @@ groups:
             "release-1.tar.gz.attestation",
             "file-name-package.tar.gz.intoto.json1",
           ]
-      - id: attestation.hash
+      - id: artifact.attestation.hash
         type: string
         stability: experimental
         brief: >

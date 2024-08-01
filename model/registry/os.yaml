@@ -1,6 +1,5 @@
 groups:
   - id: registry.os
-    prefix: os
     type: attribute_group
     display_name: Operating System Attributes
     brief: >
@@ -9,9 +8,8 @@ groups:
         In case of virtualized environments, this is the operating system as it is observed by
         the process, i.e., the virtualized guest rather than the underlying host.
     attributes:
-      - id: type
+      - id: os.type
         type:
-          allow_custom_values: true
           members:
             - id: windows
               value: 'windows'
@@ -60,26 +58,26 @@ groups:
         brief: >
           The operating system type.
         stability: experimental
-      - id: description
+      - id: os.description
         type: string
         stability: experimental
         brief: >
           Human readable (not intended to be parsed) OS version information,
           like e.g. reported by `ver` or `lsb_release -a` commands.
         examples: ['Microsoft Windows [Version 10.0.18363.778]', 'Ubuntu 18.04.1 LTS']
-      - id: name
+      - id: os.name
         type: string
         stability: experimental
         brief: 'Human readable operating system name.'
         examples: ['iOS', 'Android', 'Ubuntu']
-      - id: version
+      - id: os.version
         type: string
         stability: experimental
         brief: >
           The version string of the operating system as defined in
           [Version Attributes](/docs/resource/README.md#version-attributes).
         examples: ['14.2.1', '18.04.1']
-      - id: build_id
+      - id: os.build_id
         type: string
         stability: experimental
         brief: 'Unique identifier for a particular build or compilation of the operating system.'

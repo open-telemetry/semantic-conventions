@@ -16,6 +16,7 @@ body:
         - area:artifact
         - area:aspnetcore
         - area:aws
+        - area:azure
         - area:browser
         - area:cicd
         - area:client
@@ -45,6 +46,7 @@ body:
         - area:http
         - area:jvm
         - area:k8s
+        - area:linux
         - area:log
         - area:messaging
         - area:network
