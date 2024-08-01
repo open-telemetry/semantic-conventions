@@ -269,12 +269,14 @@ groups:
         stability: experimental
         brief: "The size of the request payload body in bytes."
         note: >
-          For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--) (including unary and streaming calls).
+          For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--)
+          (including unary and streaming calls).
         examples: 3495
       - id: response.body.size
         type: int
         stability: experimental
         brief: "The size of the response payload body in bytes."
         note: >
-          For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--) (including unary and streaming calls).
+          For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--)
+          (including unary and streaming calls).
         examples: 3495
