@@ -15,7 +15,7 @@ converted are now located in the [Hardware] (/docs/hardware/README.md) folder an
 
 Please note that this is an [ongoing process](https://github.com/open-telemetry/semantic-conventions/issues/1309) and may take some time to complete.
 
-<!-- toc -->
+<!-- Toc is maintained manually due to ongoing conversion -->
 
 - [Common hardware attributes](/docs/attributes-registry/hardware.md)
 - [Metric Instruments](#metric-instruments)
@@ -36,7 +36,6 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
   - [`hw.temperature.` - Temperature sensor metrics](#hwtemperature---temperature-sensor-metrics)
   - [`hw.voltage.` - Voltage sensor metrics](#hwvoltage---voltage-sensor-metrics)
 
-<!-- tocstop -->
 
 > **Warning**
 > Existing instrumentations and collector that are using<!-- markdown-link-check-disable-next-line -->
