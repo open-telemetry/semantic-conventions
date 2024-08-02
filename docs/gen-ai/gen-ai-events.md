@@ -250,14 +250,14 @@ Events:
    | `gen_ai.system`     | `"openai"`                                            |
    | Event body          | `"You're a friendly bot that answers questions about OpenTelemetry."` |
 
-3. `gen_ai.user.message`
+2. `gen_ai.user.message`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
    | `gen_ai.system`     | `"openai"`                                            |
    | Event body          | `{"content":"How to instrument GenAI library with OTel?"}` |
 
-4. `gen_ai.choice`
+3. `gen_ai.choice`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
