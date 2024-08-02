@@ -1,11 +1,10 @@
 groups:
   # linux.memory.* attribute group
   - id: registry.linux.memory
-    prefix: linux.memory
     type: attribute_group
     brief: "Describes Linux Memory attributes"
     attributes:
-      - id: slab.state
+      - id: linux.memory.slab.state
         type:
           members:
             - id: reclaimable

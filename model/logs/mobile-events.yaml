@@ -23,7 +23,6 @@ groups:
     #       brief: >
     #         This attribute represents the state the application has transitioned into at the occurrence of the event.
     #       type:
-    #         allow_custom_values: false
     #         members:
     #           - id: active
     #             value: 'active'
@@ -57,7 +56,6 @@ groups:
     #         The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
     #         and from which the `OS identifiers` are derived.
     #       type:
-    #         allow_custom_values: false
     #         members:
     #           - id: created
     #             value: 'created'

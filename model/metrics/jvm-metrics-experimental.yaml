@@ -37,7 +37,6 @@ groups:
   - id: attributes.jvm.buffer
     type: attribute_group
     brief: "Describes JVM buffer metric attributes."
-    prefix: jvm.buffer
     attributes:
       - ref: jvm.buffer.pool.name
         requirement_level: recommended

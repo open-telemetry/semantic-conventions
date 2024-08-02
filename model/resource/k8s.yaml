@@ -1,6 +1,5 @@
 groups:
   - id: k8s.cluster
-    prefix: k8s.cluster
     type: resource
     brief: >
       A Kubernetes Cluster.
@@ -9,7 +8,6 @@ groups:
       - ref: k8s.cluster.uid
 
   - id: k8s.node
-    prefix: k8s.node
     type: resource
     brief: >
       A Kubernetes Node object.
@@ -18,7 +16,6 @@ groups:
       - ref: k8s.node.uid
 
   - id: k8s.namespace
-    prefix: k8s.namespace
     type: resource
     brief: >
       A Kubernetes Namespace.
@@ -26,7 +23,6 @@ groups:
       - ref: k8s.namespace.name
 
   - id: k8s.pod
-    prefix: k8s.pod
     type: resource
     brief: >
       A Kubernetes Pod object.
@@ -38,7 +34,6 @@ groups:
         requirement_level: opt_in
 
   - id: k8s.container
-    prefix: k8s.container
     type: resource
     brief: >
       A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
@@ -48,7 +43,6 @@ groups:
       - ref: k8s.container.status.last_terminated_reason
 
   - id: k8s.replicaset
-    prefix: k8s.replicaset
     type: resource
     brief: >
       A Kubernetes ReplicaSet object.
@@ -57,7 +51,6 @@ groups:
       - ref: k8s.replicaset.name
 
   - id: k8s.deployment
-    prefix: k8s.deployment
     type: resource
     brief: >
       A Kubernetes Deployment object.
@@ -66,7 +59,6 @@ groups:
       - ref: k8s.deployment.name
 
   - id: k8s.statefulset
-    prefix: k8s.statefulset
     type: resource
     brief: >
       A Kubernetes StatefulSet object.
@@ -75,7 +67,6 @@ groups:
       - ref: k8s.statefulset.name
 
   - id: k8s.daemonset
-    prefix: k8s.daemonset
     type: resource
     brief: >
       A Kubernetes DaemonSet object.
@@ -84,7 +75,6 @@ groups:
       - ref: k8s.daemonset.name
 
   - id: k8s.job
-    prefix: k8s.job
     type: resource
     brief: >
       A Kubernetes Job object.
@@ -93,7 +83,6 @@ groups:
       - ref: k8s.job.name
 
   - id: k8s.cronjob
-    prefix: k8s.cronjob
     type: resource
     brief: >
       A Kubernetes CronJob object.
