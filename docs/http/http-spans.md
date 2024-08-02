@@ -43,7 +43,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the HTTP or networking conventions that they emit
+> * SHOULD NOT change the version of the HTTP or networking conventions that they emit by default
 >   until the HTTP semantic conventions are marked stable (HTTP stabilization will
 >   include stabilization of a core set of networking conventions which are also used
 >   in HTTP instrumentations). Conventions include, but are not limited to, attributes,
