@@ -36,7 +36,6 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
   - [`hw.temperature.` - Temperature sensor metrics](#hwtemperature---temperature-sensor-metrics)
   - [`hw.voltage.` - Voltage sensor metrics](#hwvoltage---voltage-sensor-metrics)
 
-
 > **Warning**
 > Existing instrumentations and collector that are using<!-- markdown-link-check-disable-next-line -->
 > [v1.21.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.21.0/docs/system/hardware-metrics.md)
