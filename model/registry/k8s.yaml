@@ -177,13 +177,13 @@ groups:
         brief: >
           The name of the CronJob.
         examples: ['opentelemetry']
-      - id: volume.name
+      - id: k8s.volume.name
         type: string
         stability: experimental
         brief: >
           The name of the K8s volume.
         examples: [ 'volume0' ]
-      - id: volume.type
+      - id: k8s.volume.type
         stability: experimental
         brief: >
           The type of the K8s volume.
