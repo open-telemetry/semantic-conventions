@@ -12,6 +12,6 @@ when creating instruments not explicitly defined in the specification.
 
 Semantic conventions for hardware are defined as following:
 
-* [Common Hardware Metrics](common.md): Semantic Conventions for hardware *common* metrics.
+* [Common Hardware Metrics](common.md): Semantic Conventions for *common* hardware metrics.
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
