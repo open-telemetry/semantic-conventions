@@ -13,11 +13,13 @@ when creating instruments not explicitly defined in the specification.
 This document is being converted to specific hardware metrics, parts of this document that have already been
 converted are now located in the [Hardware] (/docs/hardware/README.md) folder and are no longer present in this file.
 
-Please note that this is an ongoing process and may take some time to complete.
+Please note that this is an [ongoing process](https://github.com/open-telemetry/semantic-conventions/issues/1309) and may take some time to complete.
 
 <!-- toc -->
 
+- [Common hardware attributes](/docs/attributes-registry/hardware.md)
 - [Metric Instruments](#metric-instruments)
+  - [`hw.` - Common hardware metrics](/docs/hardware/common.md)
   - [`hw.host.` - Physical host metrics](#hwhost---physical-host-metrics)
   - [`hw.battery.` - Battery metrics](#hwbattery---battery-metrics)
   - [`hw.cpu.` - Physical processor metrics](#hwcpu---physical-processor-metrics)

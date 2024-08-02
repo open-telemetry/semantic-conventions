@@ -2,7 +2,7 @@ groups:
   - id: hardware.attributes.common
     type: attribute_group
     stability: experimental
-    brief: 'Hardware common attributes'
+    brief: 'Common hardware attributes'
     attributes:
       - ref: hw.id
         requirement_level: required

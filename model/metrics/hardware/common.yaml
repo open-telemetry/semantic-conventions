@@ -29,7 +29,11 @@ groups:
       - ref: error.type
         brief: "The type of error encountered by the component"
         examples: ['uncorrected', 'zero_buffer_credit', 'crc', 'bad_sector']
-        requirement_level: recommended
+        requirement_level:
+          conditionally_required: if and only if an error has occurred
+        note: >
+          The `error.type` SHOULD match the error code reported by the component, the canonical name of the error,
+          or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
   - id: metric.hardware.power
     type: metric
@@ -37,7 +41,7 @@ groups:
     stability: experimental
     brief: "Instantaneous power consumed by the component"
     note: >
-      `hw.energy` is preferred
+      It is recommended to report `hw.energy` instead of `hw.power` when possible.
     instrument: gauge
     unit: "W"
     extends: metric.hardware.attributes
