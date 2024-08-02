@@ -262,7 +262,7 @@ groups:
         type: int
         stability: experimental
         brief: "Uncompressed size of the message in bytes."
-      - id: request.body.size
+      - id: rpc.request.body.size
         type: int
         stability: experimental
         brief: "The size of the request payload body in bytes."
@@ -270,7 +270,7 @@ groups:
           For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--)
           (including unary and streaming calls).
         examples: 3495
-      - id: response.body.size
+      - id: rpc.response.body.size
         type: int
         stability: experimental
         brief: "The size of the response payload body in bytes."
