@@ -214,7 +214,7 @@ Span kind SHOULD be set according to the following table, based on the operation
 | `process`      | `CONSUMER` for push-based scenarios where no "Receive" span exists. |
 
 For cases not covered by the table above, the span kind should be set according
-to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#spankind),
+to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/trace/api.md#spankind),
 e. g. it should be set to CLIENT for the "Publish" span if its context is not
 used as creation context and if the "Publish" span models a synchronous call to
 the intermediary.
