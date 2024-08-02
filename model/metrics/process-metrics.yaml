@@ -51,7 +51,6 @@ groups:
     type: metric
     metric_name: process.disk.io
     stability: experimental
-    prefix: process.disk
     brief: "Disk bytes transferred."
     instrument: counter
     unit: "By"

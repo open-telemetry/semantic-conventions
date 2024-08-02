@@ -1,7 +1,6 @@
 groups:
   - id: log-exception
     type: attribute_group
-    prefix: exception
     brief: >
       This document defines attributes for exceptions represented using Log
       Records.

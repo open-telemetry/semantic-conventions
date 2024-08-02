@@ -1,6 +1,5 @@
 groups:
   - id: android
-    prefix: android
     type: resource
     brief: >
       The Android platform on which the Android application is running.
