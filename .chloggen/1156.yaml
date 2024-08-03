@@ -1,7 +1,0 @@
-change_type: breaking
-
-component: messaging
-
-note: Rename `messaging.kafka.message.offset` to `messaging.kafka.offset`
-
-issues: [1156]
