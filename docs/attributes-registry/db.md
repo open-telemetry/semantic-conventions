@@ -204,16 +204,16 @@ This group defines attributes for Elasticsearch.
 
 This group defines attributes for vector databases.
 
-| Attribute               | Type   | Description                                          | Examples                               | Stability                                                        |
-| ----------------------- | ------ | ---------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
-| `db.vector.dimension`   | int    | The dimension of the vector.                         | `3`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.vector.id`          | string | The ID of vector.                                    | `5c56c793-69f3-4fbf-87e6-c4bf54c28c26` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.vector.model`       | string | The model used for the embedding.                    | `text-embedding-3-small`               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.vector.name`        | string | The name field as of the vector (e.g. a field name). | `vector`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.vector.query.top_k` | int    | The top-k most similar vectors returned by a query.  | `5`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.vector.similarity`  | string | The metric used in similarity search.                | `cosine`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                     | Type   | Description                                          | Examples                               | Stability                                                        |
+| ----------------------------- | ------ | ---------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
+| `db.vector.dimension_count`   | int    | The dimension of the vector.                         | `3`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.id`                | string | The ID of vector.                                    | `5c56c793-69f3-4fbf-87e6-c4bf54c28c26` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.model`             | string | The model used for the embedding.                    | `text-embedding-3-small`               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.name`              | string | The name field as of the vector (e.g. a field name). | `vector`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.query.top_k`       | int    | The top-k most similar vectors returned by a query.  | `5`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.similarity_metric` | string | The metric used in similarity search.                | `cosine`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`db.vector.similarity` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`db.vector.similarity_metric` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value       | Description                    | Stability                                                        |
 | ----------- | ------------------------------ | ---------------------------------------------------------------- |

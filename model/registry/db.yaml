@@ -534,7 +534,7 @@ groups:
     brief: >
       This group defines attributes for vector databases.
     attributes:
-      - id: similarity
+      - id: similarity_metric
         type:
           members:
             - id: cosine
@@ -573,7 +573,7 @@ groups:
         brief: >
           The name field as of the vector (e.g. a field name).
         examples: 'vector'
-      - id: dimension
+      - id: dimension_count
         type: int
         stability: experimental
         brief: >
