@@ -40,7 +40,7 @@ metrics can be filtered for finer grain analysis.
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/metrics/semantic_conventions/rpc-metrics.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the networking conventions that they emit
+> * SHOULD NOT change the version of the networking conventions that they emit by default
 >   until the HTTP semantic conventions are marked stable (HTTP stabilization will
 >   include stabilization of a core set of networking conventions which are also used
 >   in RPC instrumentations). Conventions include, but are not limited to, attributes,

@@ -1,5 +1,0 @@
-change_type: breaking
-component: tls
-note: >
-  Deprecate `tls.client.server_name attribute` in favor of common `server.address`.
-issues: [ 1211, 1216 ]

@@ -19,7 +19,7 @@
 > **Warning**
 > Existing messaging instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-metrics.md)
-> (or prior) SHOULD NOT change the version of the messaging conventions that they emit
+> (or prior) SHOULD NOT change the version of the messaging conventions that they emit by default
 > until a transition plan to the (future) stable semantic conventions has been published.
 > Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
 
@@ -32,7 +32,7 @@ When this metric is reported alongside a messaging span, the metric value SHOULD
 This metric is [required][MetricRequired].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.messaging.client.operation.duration(metric_table) -->
@@ -393,7 +393,7 @@ When this metric is reported alongside a messaging process span, the metric valu
 This metric is [required][MetricRequired] for push-based message delivery and is [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/metrics/api.md#instrument-advice)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.messaging.process.duration(metric_table) -->
