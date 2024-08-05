@@ -69,7 +69,6 @@ conflict.
 
 | Value                   | Description                                                                                                             | Stability                                                        |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `awsElasticBlockStore`  | An [awsElasticBlockStore](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore) volume  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `configMap`             | A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `downwardAPI`           | A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `emptyDir`              | An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

@@ -189,21 +189,20 @@ groups:
           The type of the K8s volume.
         examples: [ "emptyDir", "persistentVolumeClaim" ]
         type:
-          allow_custom_values: true
           members:
-            - id: persistentvolumeclaim
+            - id: persistent_volume_claim
               value: 'persistentVolumeClaim'
               brief: "A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
               stability: experimental
-            - id: configmap
+            - id: config_map
               value: 'configMap'
               brief: "A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
               stability: experimental
-            - id: downwardapi
+            - id: downward_api
               value: 'downwardAPI'
               brief: "A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
               stability: experimental
-            - id: emptydir
+            - id: empty_dir
               value: 'emptyDir'
               brief: "An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
               stability: experimental
@@ -215,11 +214,7 @@ groups:
               value: 'local'
               brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
               stability: experimental
-            - id: awselasticblockstore
-              value: 'awsElasticBlockStore'
-              brief: "An [awsElasticBlockStore](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore) volume"
-              stability: experimental
-            - id: gcepersistentdisk
+            - id: gce_persistent_disk
               value: 'gcePersistentDisk'
               brief: "A [gcePersistentDisk](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#gcepersistentdisk) volume"
               stability: experimental
