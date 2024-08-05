@@ -853,7 +853,7 @@ This metric is [recommended][MetricRecommended].
 
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
-This metric reports the same values as calling [`AppDomain.CurrentDomain.FirstChanceException`](https://learn.microsoft.com/dotnet/api/system.appdomain.firstchanceexception).
+This metric reports the same values as counting calls to [`AppDomain.CurrentDomain.FirstChanceException`](https://learn.microsoft.com/dotnet/api/system.appdomain.firstchanceexception).
 
 
 
