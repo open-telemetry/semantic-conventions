@@ -1,12 +1,11 @@
 groups:
   - id: registry.vcs.repository
-    prefix: vcs.repository
     type: attribute_group
     brief: >
       This group defines the attributes for
       [Version Control Systems (VCS)](https://en.wikipedia.org/wiki/Version_control).
     attributes:
-      - id: url.full
+      - id: vcs.repository.url.full
         type: string
         stability: experimental
         brief: >
@@ -18,7 +17,7 @@ groups:
             "https://github.com/opentelemetry/open-telemetry-collector-contrib",
             "https://gitlab.com/my-org/my-project/my-projects-project/repo",
           ]
-      - id: ref.name
+      - id: vcs.repository.ref.name
         type: string
         stability: experimental
         brief: >
@@ -26,7 +25,7 @@ groups:
           [reference](https://git-scm.com/docs/gitglossary#def_ref) such as
           **branch** or **tag** in the repository.
         examples: ["my-feature-branch", "tag-1-test"]
-      - id: ref.type
+      - id: vcs.repository.ref.type
         type:
           members:
             - id: branch
@@ -41,7 +40,7 @@ groups:
         brief: >
           The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
         examples: ["branch", "tag"]
-      - id: ref.revision
+      - id: vcs.repository.ref.revision
         type: string
         stability: experimental
         brief: >
@@ -64,7 +63,7 @@ groups:
             "123",
             "HEAD",
           ]
-      - id: change.title
+      - id: vcs.repository.change.title
         type: string
         stability: experimental
         brief: >
@@ -77,7 +76,7 @@ groups:
             "feat: add my new feature",
             "[chore] update dependency",
           ]
-      - id: change.id
+      - id: vcs.repository.change.id
         type: string
         stability: experimental
         brief: >

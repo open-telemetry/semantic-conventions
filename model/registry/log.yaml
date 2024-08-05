@@ -2,16 +2,14 @@ groups:
   - id: registry.log
     type: attribute_group
     display_name: General Log Attributes
-    prefix: log
     brief: >
       This document defines log attributes
     attributes:
-      - id: iostream
+      - id: log.iostream
         stability: experimental
         brief: >
           The stream associated with the log. See below for a list of well-known values.
         type:
-          allow_custom_values: true
           members:
             - id: stdout
               value: 'stdout'
@@ -25,29 +23,28 @@ groups:
   - id: registry.log.file    # TODO: should we move it to the file model?
     type: attribute_group
     display_name: Log File Attributes
-    prefix: log.file
     brief: >
       Attributes for a file to which log was emitted.
     attributes:
-      - id: name
+      - id: log.file.name
         type: string
         stability: experimental
         brief: >
           The basename of the file.
         examples: [ "audit.log" ]
-      - id: path
+      - id: log.file.path
         type: string
         stability: experimental
         brief: >
           The full path to the file.
         examples: [ "/var/log/mysql/audit.log" ]
-      - id: name_resolved
+      - id: log.file.name_resolved
         type: string
         stability: experimental
         brief: >
           The basename of the file, with symlinks resolved.
         examples: [ "uuid.log" ]
-      - id: path_resolved
+      - id: log.file.path_resolved
         type: string
         stability: experimental
         brief: >
@@ -57,11 +54,10 @@ groups:
   - id: registry.log.record
     type: attribute_group
     display_name: Log Record Attributes
-    prefix: log.record
     brief: >
       This document defines the generic attributes that may be used in any Log Record.
     attributes:
-      - id: uid
+      - id: log.record.uid
         type: string
         stability: experimental
         brief: >
@@ -73,7 +69,7 @@ groups:
           The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec),
           but other identifiers (e.g. UUID) may be used as needed.
         examples: ["01ARZ3NDEKTSV4RRFFQ69G5FAV"]
-      - id: original
+      - id: log.record.original
         type: string
         stability: experimental
         brief: >

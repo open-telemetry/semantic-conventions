@@ -1,22 +1,21 @@
 groups:
   - id: registry.feature_flag
-    prefix: feature_flag
     type: attribute_group
     display_name: Feature Flag Attributes
     brief: >
         This document defines attributes for Feature Flags.
     attributes:
-      - id: key
+      - id: feature_flag.key
         type: string
         stability: experimental
         brief: The unique identifier of the feature flag.
         examples: ["logo-color"]
-      - id: provider_name
+      - id: feature_flag.provider_name
         type: string
         stability: experimental
         brief: The name of the service provider that performs the flag evaluation.
         examples: ["Flag Manager"]
-      - id: variant
+      - id: feature_flag.variant
         type: string
         stability: experimental
         examples: ["red", "true", "on"]

@@ -1,4 +1,0 @@
-change_type: enhancement
-component: gen-ai
-note: Use GenAI instead of LLM on GenAI trace semantic conventions and minor cleanups.
-issues: [1087]
