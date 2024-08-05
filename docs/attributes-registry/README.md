@@ -32,9 +32,12 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 - [Android](android.md)
+- [Artifact](artifact.md)
 - [Aspnetcore](aspnetcore.md)
 - [AWS](aws.md)
+- [Azure](azure.md)
 - [Browser](browser.md)
+- [CICD](cicd.md)
 - [Client](client.md)
 - [Cloud](cloud.md)
 - [CloudEvents](cloudevents.md)
@@ -64,6 +67,7 @@ Currently, the following namespaces exist:
 - [iOS](ios.md)
 - [JVM](jvm.md)
 - [K8s](k8s.md)
+- [Linux](linux.md)
 - [Log](log.md)
 - [Messaging](messaging.md)
 - [Network](network.md)
@@ -81,12 +85,14 @@ Currently, the following namespaces exist:
 - [Source](source.md)
 - [System](system.md)
 - [Telemetry](telemetry.md)
+- [Test](test.md)
 - [Thread](thread.md)
 - [TLS](tls.md)
 - [URL](url.md)
 - [User](user.md)
 - [User Agent](user-agent.md)
 - [V8js](v8js.md)
+- [VCS](vcs.md)
 - [Webengine](webengine.md)
 
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

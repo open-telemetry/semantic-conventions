@@ -1,34 +1,32 @@
 groups:
   - id: registry.network
-    prefix: network
     type: attribute_group
     display_name: Network Attributes
     brief: >
         These attributes may be used for any network related operation.
     attributes:
-      - id: carrier.icc
+      - id: network.carrier.icc
         type: string
         stability: experimental
         brief: "The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network."
         examples: "DE"
-      - id: carrier.mcc
+      - id: network.carrier.mcc
         type: string
         stability: experimental
         brief: "The mobile carrier country code."
         examples: "310"
-      - id: carrier.mnc
+      - id: network.carrier.mnc
         type: string
         stability: experimental
         brief: "The mobile carrier network code."
         examples: "001"
-      - id: carrier.name
+      - id: network.carrier.name
         type: string
         stability: experimental
         brief: "The name of the mobile carrier."
         examples: "sprint"
-      - id: connection.subtype
+      - id: network.connection.subtype
         type:
-          allow_custom_values: true
           members:
             - id: gprs
               brief: GPRS
@@ -117,9 +115,8 @@ groups:
         stability: experimental
         brief: 'This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.'
         examples: 'LTE'
-      - id: connection.type
+      - id: network.connection.type
         type:
-          allow_custom_values: true
           members:
             - id: wifi
               value: "wifi"
@@ -139,33 +136,33 @@ groups:
         stability: experimental
         brief: 'The internet connection type.'
         examples: 'wifi'
-      - id: local.address
+      - id: network.local.address
         stability: stable
         type: string
         brief: Local address of the network connection - IP address or Unix domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
-      - id: local.port
+      - id: network.local.port
         stability: stable
         type: int
         brief: Local port number of the network connection.
         examples: [65123]
-      - id: peer.address
+      - id: network.peer.address
         stability: stable
         type: string
         brief: Peer address of the network connection - IP address or Unix domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
-      - id: peer.port
+      - id: network.peer.port
         stability: stable
         type: int
         brief: Peer port number of the network connection.
         examples: [65123]
-      - id: protocol.name
+      - id: network.protocol.name
         stability: stable
         type: string
         brief: '[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['amqp', 'http', 'mqtt']
-      - id: protocol.version
+      - id: network.protocol.version
         stability: stable
         type: string
         brief: The actual version of the protocol used for network communication.
@@ -174,10 +171,9 @@ groups:
           If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)),
           this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known,
           this attribute SHOULD NOT be set.
-      - id: transport
+      - id: network.transport
         stability: stable
         type:
-          allow_custom_values: true
           members:
             - id: tcp
               value: 'tcp'
@@ -209,10 +205,9 @@ groups:
           a port number is ambiguous without knowing the transport. For example
           different processes could be listening on TCP port 12345 and UDP port 12345.
         examples: ['tcp', 'udp']
-      - id: type
+      - id: network.type
         stability: stable
         type:
-          allow_custom_values: true
           members:
             - id: ipv4
               value: 'ipv4'
@@ -225,9 +220,8 @@ groups:
         brief: '[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['ipv4', 'ipv6']
-      - id: io.direction
+      - id: network.io.direction
         type:
-          allow_custom_values: false
           members:
             - id: transmit
               value: 'transmit'

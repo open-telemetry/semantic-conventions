@@ -1,4 +1,0 @@
-change_type: enhancement
-component: gen-ai
-note: Adding metrics for GenAI clients.
-issues: [811]

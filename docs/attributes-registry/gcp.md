@@ -6,17 +6,9 @@
 
 # GCP
 
-- [GCP Attributes](#gcp-attributes)
 - [GCP Client Attributes](#gcp-client-attributes)
 - [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
-
-## GCP Attributes
-
-Attributes for Google Cloud
-
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
 
 ## GCP Client Attributes
 
