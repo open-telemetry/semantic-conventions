@@ -24,7 +24,7 @@ linkTitle: Client Calls
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the database conventions that they emit
+> * SHOULD NOT change the version of the database conventions that they emit by default
 >   until the database semantic conventions are marked stable.
 >   Conventions include, but are not limited to, attributes,
 >   metric and span names, and unit of measure.

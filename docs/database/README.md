@@ -15,7 +15,7 @@ database metrics and logs.
 > **Warning**
 > Existing database instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/README.md)
-> (or prior) SHOULD NOT change the version of the database conventions that they emit
+> (or prior) SHOULD NOT change the version of the database conventions that they emit by default
 > until a transition plan to the (future) stable semantic conventions has been published.
 > Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
 
