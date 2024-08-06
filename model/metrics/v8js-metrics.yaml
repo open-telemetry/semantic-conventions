@@ -1,5 +1,5 @@
 groups:
-  - id: metric.veightjs.gc.duration
+  - id: metric.v8js.gc.duration
     type: metric
     metric_name: v8js.gc.duration
     brief: "Garbage collection duration."
@@ -12,7 +12,7 @@ groups:
     note: >
       The values can be retrieve from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
-  - id: metric.veightjs.memory.heap.limit
+  - id: metric.v8js.memory.heap.limit
     type: metric
     metric_name: v8js.memory.heap.limit
     brief: "Total heap memory size pre-allocated."
@@ -26,7 +26,7 @@ groups:
       The value can be retrieved from value `space_size` of
       [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-  - id: metric.veightjs.memory.heap.used
+  - id: metric.v8js.memory.heap.used
     type: metric
     metric_name: v8js.memory.heap.used
     brief: "Heap Memory size allocated."
@@ -40,7 +40,7 @@ groups:
       The value can be retrieved from value `space_used_size` of
       [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-  - id: metric.veightjs.heap.space.available_size
+  - id: metric.v8js.heap.space.available_size
     type: metric
     metric_name: v8js.heap.space.available_size
     brief: "Heap space available size."
@@ -53,7 +53,7 @@ groups:
     note: >
       Value can be retrieved from value `space_available_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-  - id: metric.veightjs.heap.space.physical_size
+  - id: metric.v8js.heap.space.physical_size
     type: metric
     metric_name: v8js.heap.space.physical_size
     brief: "Committed size of a heap space."
