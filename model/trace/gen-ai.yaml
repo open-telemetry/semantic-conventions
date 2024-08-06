@@ -85,3 +85,17 @@ groups:
           conditionally_required: if and only if corresponding event is enabled
         note: >
           It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+          @@ -106,3 +106,13 @@ groups:
+    attributes:
+      - ref: gen_ai.event.content
+        requirement_level: opt_in
+
+  - id: gen_ai.evaluation.user_feedback
+    name: gen_ai.evaluation.user_feedback
+    type: event
+    brief: >
+      This event describes the evaluation of GenAI response based on the user feedback.
+    extends: gen_ai.common.event.attributes
+    attributes:
+      - ref: gen_ai.response.id
+        requirement_level: required
