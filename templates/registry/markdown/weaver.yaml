@@ -9,7 +9,9 @@ acronyms:
   - AI
   - iOS
   - AWS
+  - CICD
   - CloudEvents
+  - CPU
   - CosmosDB
   - DynamoDB
   - ECS
@@ -19,6 +21,7 @@ acronyms:
   - GCE
   - HTTP
   - JVM
+  - NodeJS
   - OCI
   - OTel
   - OpenTracing
@@ -30,3 +33,4 @@ acronyms:
   - SignalR
   - TLS
   - URL
+  - VCS

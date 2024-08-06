@@ -2,6 +2,7 @@ groups:
   - id: registry.user
     prefix: user
     type: attribute_group
+    display_name: User Attributes
     brief: "Describes information about the user."
     attributes:
       - id: email

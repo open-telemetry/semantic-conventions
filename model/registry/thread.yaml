@@ -2,6 +2,7 @@ groups:
   - id: registry.thread
     prefix: thread
     type: attribute_group
+    display_name: Thread Attributes
     brief: >
       These attributes may be used for any operation to store information about a thread that started a span.
     attributes:
