@@ -1,4 +1,0 @@
-change_type: enhancement
-component: db, messaging
-note: Clarify that DB and messaging system-specific conventions override common ones
-issues: [ 1235, 1244 ]

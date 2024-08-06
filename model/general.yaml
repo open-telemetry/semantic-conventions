@@ -28,7 +28,6 @@ groups:
       - ref: destination.address
       - ref: destination.port
   - id: peer
-    prefix: peer
     type: span
     brief: "Operations that access some remote service."
     attributes:

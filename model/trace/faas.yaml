@@ -1,6 +1,5 @@
 groups:
   - id: faas_span
-    prefix: faas
     type: span
     brief: >
         This semantic convention describes an instance of a function that
@@ -22,7 +21,6 @@ groups:
       - ref: cloud.resource_id
 
   - id: faas_span.datasource
-    prefix: faas.document
     type: span
     brief: >
       Semantic Convention for FaaS triggered as a response to some data
@@ -48,7 +46,6 @@ groups:
       sent to a messaging system.
 
   - id: faas_span.timer
-    prefix: faas
     type: span
     brief: >
       Semantic Convention for FaaS scheduled to be executed regularly.
@@ -58,7 +55,6 @@ groups:
 
   - id: faas_span.in
     span_kind: server
-    prefix: faas
     type: span
     brief: >
       Contains additional attributes for incoming FaaS spans.
@@ -79,7 +75,6 @@ groups:
 
   - id: faas_span.out
     span_kind: client
-    prefix: faas
     type: span
     brief: >
       Contains additional attributes for outgoing FaaS spans.
