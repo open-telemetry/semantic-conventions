@@ -2,7 +2,6 @@ groups:
   - id: attributes.faas.common
     type: attribute_group
     brief: "Describes FaaS attributes."
-    prefix: faas
     attributes:
       - ref: faas.trigger
       - ref: faas.invoked_name

@@ -1,11 +1,10 @@
 groups:
   - id: registry.messaging
-    prefix: messaging
     type: attribute_group
     display_name: General Messaging Attributes
     brief: 'Attributes describing telemetry around messaging systems and messaging activities.'
     attributes:
-      - id: batch.message_count
+      - id: messaging.batch.message_count
         type: int
         stability: experimental
         brief: The number of messages sent, received, or processed in the scope of the batching operation.
@@ -14,13 +13,13 @@ groups:
             When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD
             use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
         examples: [0, 1, 2]
-      - id: client.id
+      - id: messaging.client.id
         type: string
         stability: experimental
         brief: >
           A unique identifier for the client that consumes or produces a message.
         examples: ['client-5', 'myhost@8742@s8083jm']
-      - id: consumer.group.name
+      - id: messaging.consumer.group.name
         type: string
         stability: experimental
         brief: >
@@ -29,7 +28,7 @@ groups:
           Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name`
           is applicable and what it means in the context of that system.
         examples: ['my-group', 'indexer']
-      - id: destination.name
+      - id: messaging.destination.name
         type: string
         stability: experimental
         brief: 'The message destination name'
@@ -37,8 +36,7 @@ groups:
           Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
           the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
         examples: ['MyQueue', 'MyTopic']
-        tag: messaging-generic
-      - id: destination.subscription.name
+      - id: messaging.destination.subscription.name
         type: string
         stability: experimental
         brief: 'The name of the destination subscription from which a message is consumed.'
@@ -46,7 +44,7 @@ groups:
           Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name`
           is applicable and what it means in the context of that system.
         examples: ['subscription-a']
-      - id: destination.template
+      - id: messaging.destination.template
         type: string
         stability: experimental
         brief: Low cardinality representation of the messaging destination name
@@ -57,28 +55,28 @@ groups:
           the underlying template is of low cardinality and can be effectively
           used for grouping and aggregation.
         examples: ['/customers/{customerId}']
-      - id: destination.anonymous
+      - id: messaging.destination.anonymous
         type: boolean
         stability: experimental
         brief: 'A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name).'
-      - id: destination.temporary
+      - id: messaging.destination.temporary
         type: boolean
         stability: experimental
         brief: 'A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed.'
-      - id: destination.partition.id
+      - id: messaging.destination.partition.id
         type: string
         stability: experimental
         brief: >
           The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`.
         examples: '1'
-      - id: message.conversation_id
+      - id: messaging.message.conversation_id
         type: string
         stability: experimental
         brief: >
           The conversation ID identifying the conversation to which the message belongs,
           represented as a string. Sometimes called "Correlation ID".
         examples: 'MyConversationId'
-      - id: message.envelope.size
+      - id: messaging.message.envelope.size
         type: int
         stability: experimental
         brief: >
@@ -87,12 +85,12 @@ groups:
           This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
           size should be used.
         examples: 2738
-      - id: message.id
+      - id: messaging.message.id
         type: string
         stability: experimental
         brief: 'A value used by the messaging system as an identifier for the message, represented as a string.'
         examples: '452a7c7c7c7048c2f887f61572b18fc2'
-      - id: message.body.size
+      - id: messaging.message.body.size
         type: int
         stability: experimental
         brief: >
@@ -101,9 +99,8 @@ groups:
           This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
           body size should be used.
         examples: 1439
-      - id: operation.type
+      - id: messaging.operation.type
         type:
-          allow_custom_values: true
           members:
             - id: publish
               value: "publish"
@@ -143,20 +140,19 @@ groups:
         brief: >
           A string identifying the type of the messaging operation.
         note: If a custom value is used, it MUST be of low cardinality.
-      - id: operation.name
+      - id: messaging.operation.name
         type: string
         stability: experimental
         brief: >
           The system-specific name of the messaging operation.
         examples: [ "ack", "nack", "send" ]
-      - id: system
+      - id: messaging.system
         brief: The messaging system as identified by the client instrumentation.
         note: >
           The actual messaging system may differ from the one known by the client.
           For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system`
           is set to `kafka` based on the instrumentation's best knowledge.
         type:
-          allow_custom_values: true
           members:
             - id: activemq
               value: 'activemq'
@@ -204,13 +200,12 @@ groups:
               stability: experimental
         stability: experimental
   - id: registry.messaging.kafka
-    prefix: messaging
     type: attribute_group
     display_name: Kafka Attributes
     brief: >
       This group describes attributes specific to Apache Kafka.
     attributes:
-      - id: kafka.message.key
+      - id: messaging.kafka.message.key
         type: string
         stability: experimental
         brief: >
@@ -221,45 +216,42 @@ groups:
           If the key type is not string, it's string representation has to be supplied for the attribute.
           If the key has no unambiguous, canonical string form, don't include its value.
         examples: 'myKey'
-      - id: kafka.offset
+      - id: messaging.kafka.offset
         type: int
         stability: experimental
         brief: >
           The offset of a record in the corresponding Kafka partition.
         examples: 42
-      - id: kafka.message.tombstone
+      - id: messaging.kafka.message.tombstone
         type: boolean
         stability: experimental
         brief: 'A boolean that is true if the message is a tombstone.'
   - id: registry.messaging.rabbitmq
-    prefix: messaging
     type: attribute_group
     display_name: RabbitMQ Attributes
     brief: >
       This group describes attributes specific to RabbitMQ.
     attributes:
-      - id: rabbitmq.destination.routing_key
+      - id: messaging.rabbitmq.destination.routing_key
         type: string
         stability: experimental
         brief: >
           RabbitMQ message routing key.
         examples: 'myKey'
-      - id: rabbitmq.message.delivery_tag
+      - id: messaging.rabbitmq.message.delivery_tag
         type: int
         stability: experimental
         brief: >
           RabbitMQ message delivery tag
         examples: 123
   - id: registry.messaging.rocketmq
-    prefix: messaging
     type: attribute_group
     display_name: RocketMQ Attributes
     brief: >
       This group describes attributes specific to RocketMQ.
     attributes:
-      - id: rocketmq.consumption_model
+      - id: messaging.rocketmq.consumption_model
         type:
-          allow_custom_values: false
           members:
             - id: clustering
               value: 'clustering'
@@ -272,39 +264,38 @@ groups:
         stability: experimental
         brief: >
           Model of message consumption. This only applies to consumer spans.
-      - id: rocketmq.message.delay_time_level
+      - id: messaging.rocketmq.message.delay_time_level
         type: int
         stability: experimental
         brief: >
           The delay time level for delay message, which determines the message delay time.
         examples: 3
-      - id: rocketmq.message.delivery_timestamp
+      - id: messaging.rocketmq.message.delivery_timestamp
         type: int
         stability: experimental
         brief: >
           The timestamp in milliseconds that the delay message is expected to be delivered to consumer.
         examples: 1665987217045
-      - id: rocketmq.message.group
+      - id: messaging.rocketmq.message.group
         type: string
         stability: experimental
         brief: >
           It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group.
         examples: 'myMessageGroup'
-      - id: rocketmq.message.keys
+      - id: messaging.rocketmq.message.keys
         type: string[]
         stability: experimental
         brief: >
           Key(s) of message, another way to mark message besides message id.
         examples: ['keyA', 'keyB']
-      - id: rocketmq.message.tag
+      - id: messaging.rocketmq.message.tag
         type: string
         stability: experimental
         brief: >
           The secondary classifier of message besides topic.
         examples: tagA
-      - id: rocketmq.message.type
+      - id: messaging.rocketmq.message.type
         type:
-          allow_custom_values: false
           members:
             - id: normal
               value: 'normal'
@@ -325,67 +316,64 @@ groups:
         stability: experimental
         brief: >
           Type of message.
-      - id: rocketmq.namespace
+      - id: messaging.rocketmq.namespace
         type: string
         stability: experimental
         brief: >
           Namespace of RocketMQ resources, resources in different namespaces are individual.
         examples: 'myNamespace'
   - id: registry.messaging.gcp_pubsub
-    prefix: messaging
     type: attribute_group
     display_name: GCP Pub/Sub Attributes
     brief: >
       This group describes attributes specific to GCP Pub/Sub.
     attributes:
-      - id: gcp_pubsub.message.ordering_key
+      - id: messaging.gcp_pubsub.message.ordering_key
         type: string
         stability: experimental
         brief: >
           The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
         examples: 'ordering_key'
-      - id: gcp_pubsub.message.ack_id
+      - id: messaging.gcp_pubsub.message.ack_id
         type: string
         stability: experimental
         brief: >
          The ack id for a given message.
         examples: 'ack_id'
-      - id: gcp_pubsub.message.ack_deadline
+      - id: messaging.gcp_pubsub.message.ack_deadline
         type: int
         stability: experimental
         brief: >
           The ack deadline in seconds set for the modify ack deadline request.
         examples: 10
-      - id: gcp_pubsub.message.delivery_attempt
+      - id: messaging.gcp_pubsub.message.delivery_attempt
         type: int
         stability: experimental
         brief: >
           The delivery attempt for a given message.
         examples: 2
   - id: registry.messaging.servicebus
-    prefix: messaging
     type: attribute_group
     display_name: Azure Service Bus Attributes
     brief: >
       This group describes attributes specific to Azure Service Bus.
     attributes:
-      - id: servicebus.message.delivery_count
+      - id: messaging.servicebus.message.delivery_count
         type: int
         stability: experimental
         brief: >
           Number of deliveries that have been attempted for this message.
         examples: 2
-      - id: servicebus.message.enqueued_time
+      - id: messaging.servicebus.message.enqueued_time
         type: int
         stability: experimental
         brief: >
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
-      - id: servicebus.disposition_status
+      - id: messaging.servicebus.disposition_status
         brief: >
           Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
         type:
-          allow_custom_values: true
           members:
             - id: complete
               value: 'complete'
@@ -405,13 +393,12 @@ groups:
               stability: experimental
         stability: experimental
   - id: registry.messaging.eventhubs
-    prefix: messaging
     type: attribute_group
     display_name: Azure Event Hubs Attributes
     brief: >
       This group describes attributes specific to Azure Event Hubs.
     attributes:
-      - id: eventhubs.message.enqueued_time
+      - id: messaging.eventhubs.message.enqueued_time
         type: int
         stability: experimental
         brief: >
