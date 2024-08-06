@@ -40,7 +40,7 @@ groups:
     note: >
       `enduser` namespace has been deprecated. When `user.authentication.id` is present, it is strongly recommended to provide `user.id` as well.
     attributes:
-      - ref: user.authentication.id
+      - ref: authentication.id
         requirement_level: recommended
       - ref: user.roles
         requirement_level: recommended
