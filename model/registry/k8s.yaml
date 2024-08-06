@@ -214,11 +214,3 @@ groups:
               value: 'local'
               brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
               stability: experimental
-            - id: gce_persistent_disk
-              value: 'gcePersistentDisk'
-              brief: "A [gcePersistentDisk](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#gcepersistentdisk) volume"
-              stability: experimental
-            - id: glusterfs
-              value: 'glusterfs'
-              brief: "A [glusterfs](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#glusterfs) volume"
-              stability: experimental

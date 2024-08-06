@@ -72,8 +72,6 @@ conflict.
 | `configMap`             | A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `downwardAPI`           | A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `emptyDir`              | An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcePersistentDisk`     | A [gcePersistentDisk](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#gcepersistentdisk) volume         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `glusterfs`             | A [glusterfs](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#glusterfs) volume                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `local`                 | A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `secret`                | A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
