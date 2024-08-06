@@ -1,0 +1,12 @@
+groups:
+  - id: hardware.attributes.common
+    type: attribute_group
+    stability: experimental
+    brief: 'Common hardware attributes'
+    attributes:
+      - ref: hw.id
+        requirement_level: required
+      - ref: hw.name
+        requirement_level: recommended
+      - ref: hw.parent
+        requirement_level: recommended
