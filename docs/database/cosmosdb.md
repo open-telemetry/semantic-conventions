@@ -45,9 +45,115 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
 For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
 
-**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
-For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+**[2]:** The `db.operation.name` has the following known values:
+
+Batch/bulk operations:
+
+- `execute_batch`
+- `execute_bulk`
+
+Change feed operations:
+
+- `query_change_feed`
+
+Conflicts operations:
+
+- `delete_conflict`
+- `query_conflicts`
+- `read_all_conflicts`
+- `read_conflict`
+
+Container operations:
+
+- `create_container`
+- `create_container_if_not_exists`
+- `delete_container`
+- `query_containers`
+- `read_all_containers`
+- `read_container`
+- `replace_container`
+
+Database operations:
+
+- `create_database`
+- `create_database_if_not_exists`
+- `delete_database`
+- `query_databases`
+- `read_all_databases`
+
+Encryption key operations:
+
+- `create_client_encryption_key`
+- `query_encryption_keys`
+- `read_all_encryption_keys`
+- `read_client_encryption_key`
+- `replace_client_encryption_key`
+
+Item operations:
+
+- `create_item`
+- `delete_all_items_by_partition_key`
+- `delete_item`
+- `patch_item`
+- `query_items`
+- `read_all_items`
+- `read_all_items_of_logical_partition`
+- `read_many_items`
+- `read_item`
+- `replace_item`
+- `upsert_item`
+
+Permission operations:
+
+- `create_permission`
+- `delete_permission`
+- `query_permissions`
+- `read_all_permissions`
+- `read_permission`
+- `replace_permission`
+- `upsert_permission`
+
+Stored procedure operations:
+
+- `create_stored_procedure`
+- `delete_stored_procedure`
+- `execute_stored_procedure`
+- `query_stored_procedures`
+- `read_all_stored_procedures`
+- `read_stored_procedure`
+- `replace_stored_procedure`
+
+Throughput operations:
+
+- `read_throughput`
+- `replace_throughput`
+
+Trigger operations:
+
+- `create_trigger`
+- `delete_trigger`
+- `query_triggers`
+- `read_all_triggers`
+- `read_trigger`
+- `replace_trigger`
+
+User operations:
+
+- `create_user`
+- `delete_user`
+- `query_users`
+- `read_all_users`
+- `read_user`
+- `replace_user`
+- `upsert_user`
+
+User-defined function operations:
+
+- `create_user_defined_function`
+- `delete_user_defined_function`
+- `query_user_defined_functions`
+- `read_all_user_defined_functions`
+- `read_user_defined_function`
 
 **[3]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 

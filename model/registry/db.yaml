@@ -443,50 +443,50 @@ groups:
       - id: db.cosmosdb.operation_type
         type:
           members:
-            - id: invalid
-              value: "Invalid"
+            - id: batch
+              value: "batch"
               stability: experimental
             - id: create
-              value: "Create"
-              stability: experimental
-            - id: patch
-              value: "Patch"
-              stability: experimental
-            - id: read
-              value: "Read"
-              stability: experimental
-            - id: read_feed
-              value: "ReadFeed"
+              value: "create"
               stability: experimental
             - id: delete
-              value: "Delete"
-              stability: experimental
-            - id: replace
-              value: "Replace"
+              value: "delete"
               stability: experimental
             - id: execute
-              value: "Execute"
+              value: "execute"
               stability: experimental
-            - id: query
-              value: "Query"
+            - id: execute_javascript
+              value: "execute_javascript"
+              stability: experimental
+            - id: invalid
+              value: "invalid"
               stability: experimental
             - id: head
               value: "Head"
               stability: experimental
             - id: head_feed
-              value: "HeadFeed"
+              value: "head_feed"
               stability: experimental
-            - id: upsert
-              value: "Upsert"
+            - id: patch
+              value: "patch"
               stability: experimental
-            - id: batch
-              value: "Batch"
+            - id: query
+              value: "query"
               stability: experimental
             - id: query_plan
-              value: "QueryPlan"
+              value: "query_plan"
               stability: experimental
-            - id: execute_javascript
-              value: "ExecuteJavaScript"
+            - id: read
+              value: "read"
+              stability: experimental
+            - id: read_feed
+              value: "read_feed"
+              stability: experimental
+            - id: replace
+              value: "replace"
+              stability: experimental
+            - id: upsert
+              value: "upsert"
               stability: experimental
         stability: experimental
         brief: CosmosDB Operation Type.
