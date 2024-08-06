@@ -409,7 +409,7 @@ These attributes may be used for any operation with an authenticated and/or auth
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`authentication.id`](/docs/attributes-registry/user.md) | string | Unique identifier of an authenticated user in the system. | `S-1-5-21-202424912787-2692429404-2351956786-1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`user.authentication.id`](/docs/attributes-registry/user.md) | string | Unique identifier of an authenticated user in the system. | `S-1-5-21-202424912787-2692429404-2351956786-1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`user.roles`](/docs/attributes-registry/user.md) | string[] | Array of user roles at the time of the event. | `["admin", "reporting_user"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 

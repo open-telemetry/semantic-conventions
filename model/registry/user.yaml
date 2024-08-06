@@ -32,12 +32,12 @@ groups:
         note: >
           It can be a random guid or a hash of the user's IP address. This is different from `user.hash` which is a hash of a known `user.id` or `user.name`.
         examples: ['QdH5CAWJgqVT4rOr0qtumf']
-      - id: authentication.id
+      - id: user.authentication.id
         type: string
         brief: "Unique identifier of an authenticated user in the system."
         examples: ['S-1-5-21-202424912787-2692429404-2351956786-1000']
         stability: experimental
-      - id: name
+      - id: user.name
         type: string
         stability: experimental
         brief: >
