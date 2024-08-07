@@ -22,7 +22,7 @@ CHLOGGEN_CONFIG  := .chloggen/config.yaml
 # see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
 # Keep links in model/README.md and .vscode/settings.json in sync!
 SEMCONVGEN_VERSION=0.25.0
-WEAVER_VERSION=0.7.0
+WEAVER_VERSION=0.8.0
 
 # From where to resolve the containers (e.g. "otel/weaver").
 CONTAINER_REPOSITORY=docker.io
@@ -111,15 +111,6 @@ install-yamllint:
 yamllint:
 	yamllint .
 
-# Check semantic convention policies on YAML files
-.PHONY: check-policies
-check-policies:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/policies:/policies -v $(PWD)/templates:/templates \
-		otel/weaver:${WEAVER_VERSION} registry check \
-		--registry=/source \
-		--diagnostic-format=ansi \
-		--policy=/policies/registry.rego
-
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
@@ -171,8 +162,13 @@ table-check:
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
 .PHONY: compatibility-check
 compatibility-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
-		$(SEMCONVGEN_CONTAINER) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/policies:/policies -v $(PWD)/templates:/templates \
+		otel/weaver:${WEAVER_VERSION} registry check \
+		--registry=/source \
+		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
+		--diagnostic-format=ansi \
+		--policy=/policies/compatibility.rego
+
 
 .PHONY: schema-check
 schema-check:
