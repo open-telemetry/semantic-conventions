@@ -56,32 +56,3 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
-    events:
-      - gen_ai.content.prompt
-      - gen_ai.content.completion
-
-  - id: gen_ai.content.prompt
-    name: gen_ai.content.prompt
-    type: event
-    brief: >
-      In the lifetime of an GenAI span, events for prompts sent and completions received
-      may be created, depending on the configuration of the instrumentation.
-    attributes:
-      - ref: gen_ai.prompt
-        requirement_level:
-          conditionally_required: if and only if corresponding event is enabled
-        note: >
-          It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
-
-  - id: gen_ai.content.completion
-    name: gen_ai.content.completion
-    type: event
-    brief: >
-      In the lifetime of an GenAI span, events for prompts sent and completions received
-      may be created, depending on the configuration of the instrumentation.
-    attributes:
-      - ref: gen_ai.completion
-        requirement_level:
-          conditionally_required: if and only if corresponding event is enabled
-        note: >
-          It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
