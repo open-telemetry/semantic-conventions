@@ -205,7 +205,7 @@ This metric is [recommended][MetricRecommended].
 
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
-This metric reports the same values as calling [`GC.CollectionCount(int generation)`](https://learn.microsoft.com/dotnet/api/system.gc.collectioncount).
+This metric uses the [`GC.CollectionCount(int generation)`](https://learn.microsoft.com/dotnet/api/system.gc.collectioncount) API to calculate exclusive collections per generation.
 
 
 
