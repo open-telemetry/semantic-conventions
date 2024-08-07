@@ -1,4 +1,0 @@
-change_type: breaking
-component: messaging
-note: Deprecate `messaging.destination_publish.*`` namespace and remove all usages.
-issues: [ 1178, 1241 ]

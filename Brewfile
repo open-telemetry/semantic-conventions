@@ -1,1 +1,2 @@
+brew "gsed"
 brew "pipx"

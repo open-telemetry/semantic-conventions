@@ -6,7 +6,6 @@ groups:
     attributes:
       - id: system.processes.status
         type:
-          allow_custom_values: true
           members:
             - id: running
               value: 'running'
@@ -26,7 +25,6 @@ groups:
         examples: ["running"]
       - id: system.cpu.state
         type:
-          allow_custom_values: true
           members:
             - id: user
               value: 'user'

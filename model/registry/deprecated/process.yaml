@@ -8,7 +8,6 @@ groups:
         brief: "Deprecated, use `cpu.mode` instead."
         deprecated: 'Replaced by `cpu.mode`'
         type:
-          allow_custom_values: true
           members:
             - id: system
               value: 'system'
