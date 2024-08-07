@@ -1,8 +1,0 @@
-change_type: breaking
-component: messaging
-note: >
-  Introduce common attributes for consumer group and subscription name instead of per-system ones:
-  - `messaging.consumer.group.name` instead of `messaging.kafka.consumer.group`, `messaging.rocketmq.client_group`, and `messaging.eventhubs.consumer.group`.
-  - `messaging.destination.subscription.name` instead of `messaging.servicebus.destination.subscription_name`. Use it in the Google Pub/Sub conventions.
-
-issues: [ 815 ]
