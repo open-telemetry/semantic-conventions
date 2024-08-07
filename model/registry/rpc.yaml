@@ -267,7 +267,7 @@ groups:
         stability: experimental
         brief: "The size of the request payload body in bytes."
         note: >
-          For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--)
+          The request body size represents the serialized size of the message payload that is sent over the wire. In case of streaming calls, it accounts for the original message in the request and does not include size of the consequent message stream.
           (including unary and streaming calls).
         examples: 3495
       - id: rpc.response.body.size
