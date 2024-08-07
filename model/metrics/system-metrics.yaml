@@ -8,8 +8,9 @@ groups:
     instrument: counter
     unit: "s"
     attributes:
-      - ref: system.cpu.state
-        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
+      - ref: cpu.mode
+        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
+        note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.utilization
@@ -20,8 +21,9 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: system.cpu.state
-        brief: "The CPU state for this data point. A system's CPU SHOULD be characterized *either* by data points with no `state` labels, *or only* data points with `state` labels."
+      - ref: cpu.mode
+        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
+        note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: system.cpu.logical_number
 
   - id: metric.system.cpu.frequency
@@ -340,3 +342,17 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes: []
+
+  - id: metric.system.linux.memory.slab.usage
+    type: metric
+    metric_name: system.linux.memory.slab.usage
+    stability: experimental
+    brief: "Reports the memory used by the Linux kernel for managing caches of frequently used objects."
+    note: |
+      The sum over the `reclaimable` and `unreclaimable` state values in `linux.memory.slab.usage` SHOULD be equal to the total slab memory available on the system.
+      Note that the total slab memory is not constant and may vary over time.
+      See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-linux-kernel-memory-statistics) and `Slab` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: linux.memory.slab.state

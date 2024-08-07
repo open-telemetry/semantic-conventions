@@ -3,7 +3,7 @@
 Welcome to OpenTelemetry semantic conventions repository!
 
 Before you start - see OpenTelemetry general
-[contributing](https://github.com/open-telemetry/community/blob/main/CONTRIBUTING.md)
+[contributing](https://github.com/open-telemetry/community/blob/main/guides/contributor/README.md)
 requirements and recommendations.
 
 <details>
@@ -80,10 +80,17 @@ environment configured:
   npm install
   ```
 
+- If on MacOs, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
+  installed, then you can run the following command to install GSED.
+
+  ```bash
+  brew bundle
+  ```
+
 ### 1. Modify the YAML model
 
 Refer to the
-[Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.24.0/semantic-conventions/syntax.md)
+[Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.25.0/semantic-conventions/syntax.md)
 to learn how to make changes to the YAML files.
 
 #### Schema files
@@ -364,6 +371,6 @@ exists in some form in ECS, consider the following guidelines:
   entirely. See the [ECS field reference] for existing namespaces.
 
 [nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
-[stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.26.0/specification/versioning-and-stability.md#semantic-conventions-stability
+[stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.35.0/specification/versioning-and-stability.md#semantic-conventions-stability
 [otep222]: https://github.com/open-telemetry/oteps/pull/222
 [ECS field reference]: https://www.elastic.co/guide/en/ecs/current/ecs-field-reference.html

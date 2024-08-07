@@ -7,6 +7,90 @@
 
 <!-- next version -->
 
+## 1.27.0
+
+### 🛑 Breaking changes 🛑
+
+- `messaging`: Support generic operations in messaging and rename metrics:
+
+  - Make `messaging.operation.name` required and `messaging.operation.type` conditionally required when type is applicable.
+  - Rename `messaging.publish.messages` metric to `messaging.client.published.messages`
+  - Unify `messaging.publish.duration` and `messaging.receive.duration` metrics into `messaging.client.operation.duration`
+  - Unify `messaging.receive.messages` and `messaging.process.messages` metrics into `messaging.client.consumed.messages`
+ (#1006, #947, #937)
+
+- `db`: Clean up `db.system` enum members:
+
+  - remove `firstsql`, `mssqlcompact`, and `cloudscape` as the corresponding databases are discontinued.
+  - rename `cache` to `intersystems_cache`
+  - remove `coldfusion` as it is not a database.
+   (#1110)
+
+- `db`: Rename `db.client.connections.*` attributes to `db.client.connection.*` (#1125)
+- `messaging`: Rename `messaging.kafka.message.offset` to `messaging.kafka.offset` (#1156)
+- `db`: Sampling relevant attributes defined for database client spans (#1019)
+- `tls`: Deprecate `tls.client.server_name attribute` in favor of common `server.address`.
+ (#1211, #1216)
+- `messaging`: Deprecate `messaging.destination_publish.*`` namespace and remove all usages. (#1178, #1241)
+- `messaging`: Introduce common attributes for consumer group and subscription name instead of per-system ones: - `messaging.consumer.group.name` instead of `messaging.kafka.consumer.group`, `messaging.rocketmq.client_group`, and `messaging.eventhubs.consumer.group`. - `messaging.destination.subscription.name` instead of `messaging.servicebus.destination.subscription_name`. Use it in the Google Pub/Sub conventions.
+ (#815)
+- `db`: Align Elasticsearch span name to the general database span name guidelines. Deprecates `db.elasticsearch.cluster.name` in favor of `db.namespace`.
+ (#1002)
+- `cicd, deployment, artifact, test, vcs`: Adds CICD common attributes to the registry. (#915, #832, #833)
+  - CICD common attributes have been added to the registry.
+  - `deployment.environment` has been deprecated and moved to `deployment.environment.name`.
+
+- `jvm`: Rename JVM metric `jvm.buffer.memory.usage` to `jvm.buffer.memory.used` (#288)
+- `system`: Rename `process.cpu.state`, `container.cpu.state`, and `system.cpu.state` attributes into a common `cpu.mode` attribute (#840)
+
+### 🚀 New components 🚀
+
+- `azure`: Add Azure SDK attributes & Logs event semantic conventions (#1027)
+- `go`: Add new go namespace for Go runtime metrics (#535)
+- `nodejs`: Introducing semantic conventions for Node.js runtime metrics. (#990)
+- `user`: BREAKING - deprecate `enduser` in favor of a new `user` namespace. Add more `user` attributes. (#731)
+- `v8js`: Introducing semantic conventions for V8 JS Engine runtime metrics. (#990)
+
+### 💡 Enhancements 💡
+
+- `db`: List SQL database systems on the SQL semantic conventions. (#1024)
+- `db`: Update database span name: clarify that target depends on the operation and should not be set when corresponding data is not available. (#1045)
+- `db`: Mention how to capture collection and operation names from query text in the registry (#1070)
+- `docs`: Don't render deprecated enum members in semconv tables. (#1110)
+- `gen-ai`: Use GenAI instead of LLM on GenAI trace semantic conventions and minor cleanups. (#1087)
+- `gen-ai`: Add GenAI model server metrics for measuring LLM serving latency (#1102)
+- `db`: Clarify that `db.query.parameter.<key>` is string representation of the parameter value (#1165)
+- `messaging`: Clarify how per-message attributes should be recorded for batch operations. (#1168)
+- `messaging`: Define sampling relevant attributes for messaging client spans (#432, #1169)
+- `gen_ai`: Rename `gen_ai.usage.prompt_tokens` to `gen_ai.usage.input_tokens` and `gen_ai.usage.completion_tokens` to `gen_ai.usage.output_tokens` to align terminology between spans and metrics.
+ (#1200)
+- `gen_ai`: Convert `gen_ai.operation.name` to enum and use it on spans (#1202)
+- `network`: Add QUIC to the list of well known network transports (#1237, #1239)
+- `db`: `db.query.text` IN-clauses MAY be collapsed during the sanitization process (#1053)
+- `db`, `messaging`: Clarify that DB and messaging system-specific conventions override common ones (#1235, #1244)
+- `db`: Add better example of how to make the pool name unique (#1289)
+- `docs`: Update semantic conventions code generation documentation to use weaver instead of build-tools. (#1296)
+- `gen_ai`: Add `server.address`, `server.port`, and `error.type` to GenAI spans. (#1297)
+- `gen-ai`: Adding metrics for GenAI clients. (#811)
+- `gen-ai`: Adding `gen_ai.request.top_k`, `gen_ai.request.presence_penalty`,  `gen_ai.request.frequency_penalty` and `gen_ai.request.stop_sequences` attributes. (#839)
+- `messaging`: Document `messaging.operation.name` for Azure messaging systems. (#942)
+- `all`: Define name abbreviations guidelines in attribute and metric names. (#1121)
+- `messaging`: Add pulsar message system (#1099)
+- `linux`: Add the `system.linux.memory.slab.usage` metric and the `linux.memory.slab.state` attributes. (#531)
+- `cloudevents`: CloudEvents conventions to follow HTTP/Messaging Span conventions (#654)
+- `db`: Add support for database batch operations (#712)
+- `db`: Specify sanitization for `db.query.text`. (#717)
+- `gen-ai`: Add 3 well-known gen-ai systems as reference values of the gen-ai system attribute (#1020)
+- `gcp`: Introduces `gcp.client.service` scope attribute. (#1047)
+- `db`: Add semantic convention of InfluxDB (#949)
+- `log`: Add 'log.record.original' attribute. (#1137)
+- `session`: Add new experimental `session.start` and `session.end` events (#1091)
+
+### 🧰 Bug fixes 🧰
+
+- `messaging`: Update Kafka Spring example to align with the messaging spec (#1155)
+- `http`: Relax requirement on when to set HTTP span status to Error from `MUST` to `SHOULD`. (#1167, #1003)
+
 ## v1.26.0
 
 ### 🛑 Breaking changes 🛑
@@ -26,7 +110,7 @@
 - `device.app.lifecycle`: Reformat and update the `device.app.lifecycle` event description adds constraints for the possible values of the `android.state` and `ios.state`.
  (#794)
   Removes the `ios.lifecycle.events` and `android.lifecycle.events` attributes from the global registry and adds constraints for the possible values of the `android.state` and `ios.state` attributes.
-  
+
 - `messaging`: Rename `messaging.client_id` to `messaging.client.id` (#935)
 - `rpc`: Rename`message.*` attributes under `rpc` to `rpc.message.*`. Deprecate old `message.*` attributes. (#854)
 
@@ -51,7 +135,7 @@
   The entirety of the registry now is generated using weaver with templates
   under the `templates/` directory.  Snippets still require a hardcoded
   command.
-  
+
 - `http`: List all HTTP client and server attributes in the corresponding table, remove common attributes from yaml and markdown. (#928)
 - `other`: Document patterns and suggestions for semconv code generation. (#551, #953)
 - `db`: Show applicable common attributes in individual database semantic conventions. (#973)
@@ -71,14 +155,6 @@
   These attributes were deprecated in 1.13
 - `net`: Add previously deprecated net attributes to registry (#1029)
   These attributes were deprecated in 1.13
-
-## Unreleased
-
-### Breaking
-
-### Features
-
-### Fixes
 
 ## v1.25.0
 

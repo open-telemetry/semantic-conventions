@@ -166,9 +166,9 @@ be `<event source> process`. If there are multiple sources in the batch, the nam
 
 For every message in the event, the [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/context/api-propagators.md) and
 added as a link to the span. This means the span may have as many links as messages in the batch.
-See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
+See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
@@ -179,9 +179,9 @@ See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-
 For the SQS message span, the name MUST be `<event source> process`.  The parent MUST be the `CONSUMER` span
 corresponding to the SQS event. The [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/context/api-propagators.md) and
 added as a link to the span.
-See [compatibility](../../supplementary-guidelines/compatibility/aws.md#context-propagation) for more info.
+See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `process`.
@@ -259,14 +259,15 @@ Function F:                      | Span ProcBatch |
 
 | Field or Attribute | Span Prod1 | Span Prod2 | Span ProcBatch | Span Proc1 | Span Proc2 |
 |-|-|-|-|-|-|
-| Span name | `Q send` | `Q send` | `Q process` | `Q process` | `Q process` |
+| Span name | `send Q` | `send Q` | `process Q` | `process Q` | `process Q` |
 | Parent |  |  |  | Span ProcBatch | Span ProcBatch |
 | Links |  |  |  | Span Prod1 | Span Prod2 |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
 | `messaging.system` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` |
 | `messaging.destination.name` | `Q` | `Q` | `Q` | `Q` | `Q` |
-| `messaging.operation.type` |  |  | `process` | `process` | `process` |
+| `messaging.operation.name` | `send` | `send` | `process` | `process` | `process` |
+| `messaging.operation.type` | `publish` | `publish` | `process` | `process` | `process` |
 | `messaging.message.id` | | | | `"a1"` | `"a2"` |
 
 Note that if Span Prod1 and Span Prod2 were sent to different queues, Span ProcBatch would not have

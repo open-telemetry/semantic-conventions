@@ -2,9 +2,9 @@ groups:
   - id: registry.url
     brief: Attributes describing URL.
     type: attribute_group
-    prefix: url
+    display_name: URL Attributes
     attributes:
-      - id: domain
+      - id: url.domain
         type: string
         stability: experimental
         brief: >
@@ -15,7 +15,7 @@ groups:
           If the URL contains a [literal IPv6 address](https://www.rfc-editor.org/rfc/rfc2732#section-2)
           enclosed by `[` and `]`, the `[` and `]` characters should also be captured in the domain field.
         examples: ["www.foo.bar", "opentelemetry.io", "3.12.167.2", "[1080:0:0:0:8:800:200C:417A]"]
-      - id: extension
+      - id: url.extension
         type: string
         stability: experimental
         brief: >
@@ -24,13 +24,13 @@ groups:
           The file extension is only set if it exists, as not every url has a file extension.
           When the file name has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
         examples: [ "png", "gz" ]
-      - id: fragment
+      - id: url.fragment
         stability: stable
         type: string
         brief: >
           The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component
         examples: ["SemConv"]
-      - id: full
+      - id: url.full
         stability: stable
         type: string
         brief: Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986)
@@ -44,7 +44,7 @@ groups:
           `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
           Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
         examples: ['https://www.foo.bar/search?q=OpenTelemetry#SemConv', '//localhost']
-      - id: original
+      - id: url.original
         type: string
         stability: experimental
         brief: >
@@ -56,7 +56,7 @@ groups:
           `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`.
           In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.
         examples: ["https://www.foo.bar/search?q=OpenTelemetry#SemConv", "search?q=OpenTelemetry"]
-      - id: path
+      - id: url.path
         stability: stable
         type: string
         brief: >
@@ -64,13 +64,13 @@ groups:
         examples: ["/search"]
         note: >
           Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
-      - id: port
+      - id: url.port
         type: int
         stability: experimental
         brief: >
           Port extracted from the `url.full`
         examples: [443]
-      - id: query
+      - id: url.query
         stability: stable
         type: string
         brief: >
@@ -78,7 +78,7 @@ groups:
         examples: ["q=OpenTelemetry"]
         note: >
           Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
-      - id: registered_domain
+      - id: url.registered_domain
         type: string
         stability: experimental
         brief: >
@@ -88,13 +88,13 @@ groups:
           This value can be determined precisely with the [public suffix list](http://publicsuffix.org).
           For example, the registered domain for `foo.example.com` is `example.com`.
           Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
-      - id: scheme
+      - id: url.scheme
         stability: stable
         type: string
         brief: >
           The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol.
         examples: ["https", "ftp", "telnet"]
-      - id: subdomain
+      - id: url.subdomain
         type: string
         stability: experimental
         brief: >
@@ -105,13 +105,13 @@ groups:
         note: >
            The subdomain portion of `www.east.mydomain.co.uk` is `east`. If the domain has multiple levels of subdomain,
            such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
-      - id: template
+      - id: url.template
         type: string
         stability: experimental
         brief: >
           The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
         examples: ["/users/{id}", "/users/:id", "/users?id={id}"]
-      - id: top_level_domain
+      - id: url.top_level_domain
         type: string
         stability: experimental
         brief: >

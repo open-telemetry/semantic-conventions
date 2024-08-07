@@ -1,11 +1,11 @@
 groups:
   - id: registry.device
-    prefix: device
     type: attribute_group
+    display_name: Device Attributes
     brief: >
         Describes device attributes.
     attributes:
-      - id: id
+      - id: device.id
         type: string
         stability: experimental
         brief: >
@@ -20,7 +20,7 @@ groups:
           Caution should be taken when storing personal data or anything which can identify a user. GDPR and
           data protection laws may apply, ensure you do your own due diligence.
         examples: ['2ab2916d-a51f-4ac8-80ee-45ac31a28092']
-      - id: manufacturer
+      - id: device.manufacturer
         type: string
         stability: experimental
         brief: >
@@ -29,7 +29,7 @@ groups:
           The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER).
           iOS apps SHOULD hardcode the value `Apple`.
         examples: ['Apple', 'Samsung']
-      - id: model.identifier
+      - id: device.model.identifier
         type: string
         stability: experimental
         brief: >
@@ -39,7 +39,7 @@ groups:
           the model identifier rather than the market or consumer-friendly name
           of the device.
         examples: ['iPhone3,4', 'SM-G920F']
-      - id: model.name
+      - id: device.model.name
         type: string
         stability: experimental
         brief: >

@@ -6,15 +6,15 @@
 
 # AWS
 
-- [Aws](#aws-attributes)
-- [Aws Dynamodb](#aws-dynamodb-attributes)
-- [Aws Ecs](#aws-ecs-attributes)
-- [Aws Eks](#aws-eks-attributes)
-- [Aws Lambda](#aws-lambda-attributes)
-- [Aws Log](#aws-log-attributes)
-- [Aws S3](#aws-s3-attributes)
+- [General AWS Attributes](#general-aws-attributes)
+- [Amazon DynamoDB Attributes](#amazon-dynamodb-attributes)
+- [Amazon ECS Attributes](#amazon-ecs-attributes)
+- [Amazon EKS Attributes](#amazon-eks-attributes)
+- [Amazon Lambda Attributes](#amazon-lambda-attributes)
+- [Amazon Logs Attributes](#amazon-logs-attributes)
+- [Amazon S3 Attributes](#amazon-s3-attributes)
 
-## AWS Attributes
+## General AWS Attributes
 
 This document defines generic attributes for AWS services.
 
@@ -22,7 +22,7 @@ This document defines generic attributes for AWS services.
 | ---------------- | ------ | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
 | `aws.request_id` | string | The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## AWS DynamoDB Attributes
+## Amazon DynamoDB Attributes
 
 This document defines attributes for AWS DynamoDB.
 
@@ -51,7 +51,7 @@ This document defines attributes for AWS DynamoDB.
 | `aws.dynamodb.table_names`                    | string[] | The keys in the `RequestItems` object field.                                               | `["Users", "Cats"]`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.dynamodb.total_segments`                 | int      | The value of the `TotalSegments` request parameter.                                        | `100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## AWS ECS Attributes
+## Amazon ECS Attributes
 
 This document defines attributes for AWS Elastic Container Service (ECS).
 
@@ -72,7 +72,7 @@ This document defines attributes for AWS Elastic Container Service (ECS).
 | `ec2`     | ec2         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `fargate` | fargate     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## AWS EKS Attributes
+## Amazon EKS Attributes
 
 This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 
@@ -80,7 +80,7 @@ This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 | --------------------- | ------ | -------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------- |
 | `aws.eks.cluster.arn` | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## AWS Lambda Attributes
+## Amazon Lambda Attributes
 
 This document defines attributes for AWS Lambda.
 
@@ -90,7 +90,7 @@ This document defines attributes for AWS Lambda.
 
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
 
-## AWS Log Attributes
+## Amazon Logs Attributes
 
 This document defines attributes for AWS Logs.
 
@@ -107,7 +107,7 @@ This document defines attributes for AWS Logs.
 
 **[4]:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
 
-## AWS S3 Attributes
+## Amazon S3 Attributes
 
 This document defines attributes for AWS S3.
 

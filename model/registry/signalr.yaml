@@ -1,10 +1,10 @@
 groups:
   - id: registry.signalr
-    prefix: signalr
     type: attribute_group
+    display_name: SignalR Attributes
     brief: SignalR attributes
     attributes:
-      - id: connection.status
+      - id: signalr.connection.status
         type:
           members:
             - id: normal_closure
@@ -22,10 +22,9 @@ groups:
         stability: stable
         brief: SignalR HTTP connection closure status.
         examples: ["app_shutdown", "timeout"]
-      - id: transport
+      - id: signalr.transport
         brief: "[SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)"
         type:
-          allow_custom_values: true
           members:
             - id: server_sent_events
               value: 'server_sent_events'

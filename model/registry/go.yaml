@@ -1,14 +1,13 @@
 groups:
   - id: registry.go
     type: attribute_group
-    prefix: go
+    display_name: Go Attributes
     brief: >
       This document defines Go related attributes.
     attributes:
-      - id: memory.type
+      - id: go.memory.type
         stability: experimental
         type:
-          allow_custom_values: false
           members:
             - id: stack
               value: 'stack'

@@ -1,11 +1,11 @@
 groups:
   - id: registry.service
-    prefix: service
     type: attribute_group
+    display_name: Service Attributes
     brief: >
       A service instance.
     attributes:
-      - id: name
+      - id: service.name
         type: string
         brief: >
           Logical name of the service.
@@ -16,13 +16,13 @@ groups:
           If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
         examples: ["shoppingcart"]
         stability: stable
-      - id: version
+      - id: service.version
         type: string
         brief: >
           The version string of the service API or implementation. The format is not defined by these conventions.
         examples: ["2.0.0", "a01dbef8a"]
         stability: stable
-      - id: namespace
+      - id: service.namespace
         type: string
         stability: experimental
         brief: >
@@ -36,7 +36,7 @@ groups:
           (so the empty/unspecified namespace is simply one more valid namespace).
           Zero-length namespace string is assumed equal to unspecified namespace.
         examples: ["Shop"]
-      - id: instance.id
+      - id: service.instance.id
         type: string
         stability: experimental
         brief: >

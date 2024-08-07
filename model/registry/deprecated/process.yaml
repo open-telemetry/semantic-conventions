@@ -1,0 +1,21 @@
+groups:
+  - id: registry.process.deprecated
+    type: attribute_group
+    brief: "Deprecated process attributes."
+    display_name: Deprecated Process Attributes
+    attributes:
+      - id: process.cpu.state
+        brief: "Deprecated, use `cpu.mode` instead."
+        deprecated: 'Replaced by `cpu.mode`'
+        type:
+          members:
+            - id: system
+              value: 'system'
+              stability: experimental
+            - id: user
+              value: 'user'
+              stability: experimental
+            - id: wait
+              value: 'wait'
+              stability: experimental
+        stability: experimental

@@ -1,63 +1,34 @@
 groups:
   # General system attributes
   - id: registry.system
-    prefix: system
     type: attribute_group
+    display_name: General System Attributes
     brief: "Describes System attributes"
     attributes:
-      - id: device
+      - id: system.device
         type: string
         stability: experimental
         brief: "The device identifier"
         examples: ["(identifier)"]
   # system.cpu.* attribute group
   - id: registry.system.cpu
-    prefix: system.cpu
     type: attribute_group
+    display_name: System CPU Attributes
     brief: "Describes System CPU attributes"
     attributes:
-      - id: state
-        type:
-          allow_custom_values: true
-          members:
-            - id: user
-              value: 'user'
-              stability: experimental
-            - id: system
-              value: 'system'
-              stability: experimental
-            - id: nice
-              value: 'nice'
-              stability: experimental
-            - id: idle
-              value: 'idle'
-              stability: experimental
-            - id: iowait
-              value: 'iowait'
-              stability: experimental
-            - id: interrupt
-              value: 'interrupt'
-              stability: experimental
-            - id: steal
-              value: 'steal'
-              stability: experimental
-        brief: "The state of the CPU"
-        stability: experimental
-        examples: ["idle", "interrupt"]
-      - id: logical_number
+      - id: system.cpu.logical_number
         type: int
         stability: experimental
         brief: "The logical CPU number [0..n-1]"
         examples: [1]
   # system.memory.* attribute group
   - id: registry.system.memory
-    prefix: system.memory
     type: attribute_group
+    display_name: System Memory Attributes
     brief: "Describes System Memory attributes"
     attributes:
-      - id: state
+      - id: system.memory.state
         type:
-          allow_custom_values: true
           members:
             - id: used
               value: 'used'
@@ -80,13 +51,12 @@ groups:
         examples: ["free", "cached"]
   # system.paging.* attribute group
   - id: registry.system.paging
-    prefix: system.paging
     type: attribute_group
+    display_name: System Paging Attributes
     brief: "Describes System Memory Paging attributes"
     attributes:
-      - id: state
+      - id: system.paging.state
         type:
-          allow_custom_values: false
           members:
             - id: used
               value: 'used'
@@ -97,9 +67,8 @@ groups:
         stability: experimental
         brief: "The memory paging state"
         examples: ["free"]
-      - id: type
+      - id: system.paging.type
         type:
-          allow_custom_values: false
           members:
             - id: major
               value: 'major'
@@ -110,9 +79,8 @@ groups:
         stability: experimental
         brief: "The memory paging type"
         examples: ["minor"]
-      - id: direction
+      - id: system.paging.direction
         type:
-          allow_custom_values: false
           members:
             - id: in
               value: 'in'
@@ -124,14 +92,13 @@ groups:
         brief: "The paging access direction"
         examples: ["in"]
   - id: registry.system.filesystem
-    prefix: system.filesystem
     type: attribute_group
+    display_name: Filesystem Attributes
     brief: "Describes Filesystem attributes"
     attributes:
-      - id: state
+      - id: system.filesystem.state
         brief: "The filesystem state"
         type:
-          allow_custom_values: false
           members:
             - id: used
               value: 'used'
@@ -144,9 +111,8 @@ groups:
               stability: experimental
         stability: experimental
         examples: ["used"]
-      - id: type
+      - id: system.filesystem.type
         type:
-          allow_custom_values: true
           members:
             - id: fat32
               value: 'fat32'
@@ -169,25 +135,24 @@ groups:
         stability: experimental
         brief: "The filesystem type"
         examples: ["ext4"]
-      - id: mode
+      - id: system.filesystem.mode
         type: string
         stability: experimental
         brief: "The filesystem mode"
         examples: ["rw, ro"]
-      - id: mountpoint
+      - id: system.filesystem.mountpoint
         type: string
         stability: experimental
         brief: "The filesystem mount path"
         examples: ["/mnt/data"]
   # System-specific network attributes
   - id: registry.system.network
-    prefix: system.network
     type: attribute_group
+    display_name: System Network Attributes
     brief: "Describes Network attributes"
     attributes:
-      - id: state
+      - id: system.network.state
         type:
-          allow_custom_values: false
           members:
             - id: close
               value: 'close'
@@ -230,13 +195,12 @@ groups:
         examples: ["close_wait"]
   # system.process.* attribute group
   - id: registry.system.process
-    prefix: system.process
     type: attribute_group
+    display_name: System Process Attributes
     brief: "Describes System Process attributes"
     attributes:
-      - id: status
+      - id: system.process.status
         type:
-          allow_custom_values: true
           members:
             - id: running
               value: 'running'

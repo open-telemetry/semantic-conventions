@@ -1,11 +1,11 @@
 groups:
   - id: registry.event
-    prefix: event
     type: attribute_group
+    display_name: Event Attributes
     brief: >
       Attributes for Events represented using Log Records.
     attributes:
-      - id: name
+      - id: event.name
         type: string
         stability: experimental
         brief: >

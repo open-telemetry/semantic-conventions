@@ -1,11 +1,11 @@
 groups:
   - id: registry.peer
     type: attribute_group
-    prefix: peer
+    display_name: Peer Attributes
     brief: >
       Operations that access some remote service.
     attributes:
-      - id: service
+      - id: peer.service
         type: string
         stability: experimental
         brief: >

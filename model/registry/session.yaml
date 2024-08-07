@@ -1,7 +1,7 @@
 groups:
   - id: registry.session
-    prefix: session
     type: attribute_group
+    display_name: Session Attributes
     brief: >
       Session is defined as the period of time encompassing all activities performed by the application and the actions
       executed by the end user.
@@ -14,12 +14,12 @@ groups:
       will be assigned. The previous session identifier may be provided by the instrumentation so that telemetry
       backends can link the two sessions.
     attributes:
-      - id: id
+      - id: session.id
         type: string
         stability: experimental
         brief: "A unique id to identify a session."
         examples: "00112233-4455-6677-8899-aabbccddeeff"
-      - id: previous_id
+      - id: session.previous_id
         type: string
         stability: experimental
         brief: "The previous `session.id` for this user, when known."

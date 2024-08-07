@@ -1,42 +1,61 @@
 groups:
-  - id: gen_ai.request
+  - id: trace.gen_ai.client
     type: span
     brief: >
-      A request to an LLM is modeled as a span in a trace. The span name should be a low cardinality value representing the request made to an LLM, like the name of the API endpoint being called.
+      Describes GenAI operation span.
     attributes:
       - ref: gen_ai.system
         requirement_level: required
-        note: >
-          If not using a vendor-supplied model, provide a custom friendly name, such as a name of the company or project.
-          If the instrumetnation reports any attributes specific to a custom model, the value provided in the `gen_ai.system` SHOULD match the custom attribute namespace segment.
-          For example, if `gen_ai.system` is set to `the_best_llm`, custom attributes should be added in the `gen_ai.the_best_llm.*` namespace.
-          If none of above options apply, the instrumentation should set `_OTHER`.
       - ref: gen_ai.request.model
         requirement_level: required
         note: >
-            The name of the LLM a request is being made to. If the LLM is supplied by a vendor,
-            then the value must be the exact name of the model requested. If the LLM is a fine-tuned
+            The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
+            then the value must be the exact name of the model requested. If the model is a fine-tuned
             custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: gen_ai.operation.name
+        requirement_level: required
       - ref: gen_ai.request.max_tokens
         requirement_level: recommended
       - ref: gen_ai.request.temperature
         requirement_level: recommended
       - ref: gen_ai.request.top_p
         requirement_level: recommended
+      - ref: gen_ai.request.top_k
+        requirement_level: recommended
+      - ref: gen_ai.request.stop_sequences
+        requirement_level: recommended
+      - ref: gen_ai.request.frequency_penalty
+        requirement_level: recommended
+      - ref: gen_ai.request.presence_penalty
+        requirement_level: recommended
       - ref: gen_ai.response.id
         requirement_level: recommended
       - ref: gen_ai.response.model
         requirement_level: recommended
         note: >
-          If available. The name of the LLM serving a response. If the LLM is supplied by a vendor,
-          then the value must be the exact name of the model actually used. If the LLM is a
+          If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor,
+          then the value must be the exact name of the model actually used. If the model is a
           fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: gen_ai.response.finish_reasons
         requirement_level: recommended
-      - ref: gen_ai.usage.prompt_tokens
+      - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
-      - ref: gen_ai.usage.completion_tokens
+      - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
     events:
       - gen_ai.content.prompt
       - gen_ai.content.completion
@@ -45,7 +64,7 @@ groups:
     name: gen_ai.content.prompt
     type: event
     brief: >
-      In the lifetime of an LLM span, events for prompts sent and completions received
+      In the lifetime of an GenAI span, events for prompts sent and completions received
       may be created, depending on the configuration of the instrumentation.
     attributes:
       - ref: gen_ai.prompt
@@ -58,7 +77,7 @@ groups:
     name: gen_ai.content.completion
     type: event
     brief: >
-      In the lifetime of an LLM span, events for prompts sent and completions received
+      In the lifetime of an GenAI span, events for prompts sent and completions received
       may be created, depending on the configuration of the instrumentation.
     attributes:
       - ref: gen_ai.completion

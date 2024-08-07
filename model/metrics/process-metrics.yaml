@@ -7,10 +7,11 @@ groups:
     instrument: counter
     unit: "s"
     attributes:
-      - ref: process.cpu.state
+      - ref: cpu.mode
         brief: >
-          A process SHOULD be characterized _either_ by data points with no `state`
-          labels, _or only_ data points with `state` labels.
+          A process SHOULD be characterized _either_ by data points with no `mode`
+          labels, _or only_ data points with `mode` labels.
+        note: "Following states SHOULD be used: `user`, `system`, `wait`"
 
   - id: metric.process.cpu.utilization
     type: metric
@@ -22,10 +23,11 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: process.cpu.state
+      - ref: cpu.mode
         brief: >
-          A process SHOULD be characterized _either_ by data points with no `state`
-          labels, _or only_ data points with `state` labels.
+          A process SHOULD be characterized _either_ by data points with no `mode`
+          labels, _or only_ data points with `mode` labels.
+        note: "Following states SHOULD be used: `user`, `system`, `wait`"
 
   - id: metric.process.memory.usage
     type: metric
@@ -49,7 +51,6 @@ groups:
     type: metric
     metric_name: process.disk.io
     stability: experimental
-    prefix: process.disk
     brief: "Disk bytes transferred."
     instrument: counter
     unit: "By"
@@ -91,6 +92,7 @@ groups:
     unit: "{count}"
     attributes:
       - ref: process.context_switch_type
+
   - id: metric.process.paging.faults
     type: metric
     metric_name: process.paging.faults
@@ -100,3 +102,12 @@ groups:
     unit: "{fault}"
     attributes:
       - ref: process.paging.fault_type
+
+  - id: metric.process.uptime
+    type: metric
+    metric_name: process.uptime
+    stability: experimental
+    brief: "The time the process has been running."
+    instrument: counter
+    unit: "s"
+    note: "Instrumentations SHOULD use counter with type `double` and measure uptime with at least millisecond precision"

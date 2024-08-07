@@ -1,11 +1,11 @@
 groups:
   - id: registry.android.deprecated
-    prefix: android
     type: attribute_group
+    display_name: Deprecated Android Attributes
     brief: >
         This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
     attributes:
-      - id: state
+      - id: android.state
         stability: experimental
         brief: >
           Deprecated use the `device.app.lifecycle` event definition including
@@ -14,7 +14,6 @@ groups:
           The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
           and from which the `OS identifiers` are derived.
         type:
-          allow_custom_values: true
           members:
             - id: created
               value: 'created'

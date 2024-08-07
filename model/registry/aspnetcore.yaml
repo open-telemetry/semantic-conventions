@@ -1,17 +1,16 @@
 groups:
   - id: registry.aspnetcore
-    prefix: aspnetcore
     type: attribute_group
+    display_name: ASP.NET Core Attributes
     brief: ASP.NET Core attributes
     attributes:
-      - id: rate_limiting.policy
+      - id: aspnetcore.rate_limiting.policy
         type: string
         brief: Rate limiting policy name.
         stability: stable
         examples: ["fixed", "sliding", "token"]
-      - id: rate_limiting.result
+      - id: aspnetcore.rate_limiting.result
         type:
-          allow_custom_values: true
           members:
             - id: acquired
               value: 'acquired'
@@ -33,12 +32,12 @@ groups:
         brief: Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
         examples: ["acquired", "request_canceled"]
         requirement_level: required
-      - id: routing.is_fallback
+      - id: aspnetcore.routing.is_fallback
         type: boolean
         stability: stable
         brief: A value that indicates whether the matched route is a fallback route.
         examples: [true]
-      - id: diagnostics.handler.type
+      - id: aspnetcore.diagnostics.handler.type
         type: string
         stability: stable
         brief: Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler)
@@ -46,14 +45,13 @@ groups:
         examples: ["Contoso.MyHandler"]
         requirement_level:
           conditionally_required: if and only if the exception was handled by this handler.
-      - id: request.is_unhandled
+      - id: aspnetcore.request.is_unhandled
         type: boolean
         stability: stable
         brief: Flag indicating if request was handled by the application pipeline.
         examples: [true]
-      - id: routing.match_status
+      - id: aspnetcore.routing.match_status
         type:
-          allow_custom_values: true
           members:
             - id: success
               value: 'success'
@@ -66,7 +64,7 @@ groups:
         stability: stable
         brief: Match result - success or failure
         examples: ["success", "failure"]
-      - id: diagnostics.exception.result
+      - id: aspnetcore.diagnostics.exception.result
         type:
           members:
             - id: handled

@@ -1,15 +1,11 @@
 groups:
-  - id: registry.gcp
-    prefix: gcp
-    type: attribute_group
-    brief: Attributes for Google Cloud
   - id: registry.gcp.client
-    prefix: gcp.client
     type: attribute_group
+    display_name: GCP Client Attributes
     brief: >
       Attributes for Google Cloud client libraries.
     attributes:
-      - id: service
+      - id: gcp.client.service
         type: string
         stability: experimental
         brief: Identifies the Google Cloud service for which the official client library is intended.
@@ -20,12 +16,12 @@ groups:
           example, 'foo.googleapis.com' should result in a value of 'foo'.
         examples: ['appengine', 'run', 'firestore', 'alloydb', 'spanner']
   - id: registry.gcp.cloud_run
-    prefix: gcp.cloud_run
     type: attribute_group
+    display_name: GCP - Google Cloud Run Attributes
     brief: >
       This document defines attributes for Google Cloud Run.
     attributes:
-      - id: job.execution
+      - id: gcp.cloud_run.job.execution
         type: string
         stability: experimental
         brief: >
@@ -35,7 +31,7 @@ groups:
           [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars)
           environment variable.
         examples: ['job-name-xxxx', 'sample-job-mdw84']
-      - id: job.task_index
+      - id: gcp.cloud_run.job.task_index
         type: int
         stability: experimental
         brief: >
@@ -44,12 +40,12 @@ groups:
           environment variable.
         examples: [0, 1]
   - id: registry.gcp.gce
-    prefix: gcp.gce
     type: attribute_group
+    display_name: GCP - Google Compute Engine (GCE) Attributes
     brief: >
       This document defines attributes for Google Compute Engine (GCE).
     attributes:
-      - id: instance.name
+      - id: gcp.gce.instance.name
         type: string
         stability: experimental
         brief: >
@@ -60,7 +56,7 @@ groups:
           DNS
           name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names).
         examples: ['instance-1', 'my-vm-name']
-      - id: instance.hostname
+      - id: gcp.gce.instance.hostname
         type: string
         stability: experimental
         brief: >

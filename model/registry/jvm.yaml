@@ -1,11 +1,11 @@
 groups:
   - id: registry.jvm
     type: attribute_group
-    prefix: jvm
+    display_name: Java Virtual Machine (JVM) Attributes
     brief: >
       This document defines Java Virtual machine related attributes.
     attributes:
-      - id: gc.action
+      - id: jvm.gc.action
         stability: stable
         type: string
         brief: Name of the garbage collector action.
@@ -13,7 +13,7 @@ groups:
         note: >
           Garbage collector action is generally obtained via
           [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
-      - id: gc.name
+      - id: jvm.gc.name
         stability: stable
         type: string
         brief: Name of the garbage collector.
@@ -21,10 +21,9 @@ groups:
         note: >
           Garbage collector name is generally obtained via
           [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
-      - id: memory.type
+      - id: jvm.memory.type
         stability: stable
         type:
-          allow_custom_values: false
           members:
             - id: heap
               value: 'heap'
@@ -36,7 +35,7 @@ groups:
               stability: stable
         brief: The type of memory.
         examples: ["heap", "non_heap"]
-      - id: memory.pool.name
+      - id: jvm.memory.pool.name
         stability: stable
         type: string
         brief: Name of the memory pool.
@@ -44,16 +43,15 @@ groups:
         note: >
           Pool names are generally obtained via
           [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
-      - id: thread.daemon
+      - id: jvm.thread.daemon
         stability: stable
         type: boolean
         brief: "Whether the thread is daemon or not."
-      - id: thread.state
+      - id: jvm.thread.state
         stability: stable
         brief: "State of the thread."
         examples: ["runnable", "blocked"]
         type:
-          allow_custom_values: false
           members:
             - id: new
               value: 'new'
@@ -79,7 +77,7 @@ groups:
               value: 'terminated'
               brief: 'A thread that has exited is in this state.'
               stability: stable
-      - id: buffer.pool.name
+      - id: jvm.buffer.pool.name
         type: string
         stability: experimental
         brief: Name of the buffer pool.

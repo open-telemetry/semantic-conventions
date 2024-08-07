@@ -13,6 +13,8 @@
   - [Intermediary](#intermediary)
   - [Destinations](#destinations)
   - [Message consumption](#message-consumption)
+    - [Consumer groups](#consumer-groups)
+    - [Subscriptions](#subscriptions)
   - [Conversations](#conversations)
   - [Temporary and anonymous destinations](#temporary-and-anonymous-destinations)
 - [Conventions](#conventions)
@@ -24,21 +26,18 @@
     - [Producer spans](#producer-spans)
     - [Consumer spans](#consumer-spans)
 - [Messaging attributes](#messaging-attributes)
-  - [Consumer attributes](#consumer-attributes)
-  - [Per-message attributes](#per-message-attributes)
-  - [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems)
+  - [Recording per-message attributes on batch operations](#recording-per-message-attributes-on-batch-operations)
 - [Examples](#examples)
   - [Topic with multiple consumers](#topic-with-multiple-consumers)
   - [Batch receiving](#batch-receiving)
   - [Batch publishing](#batch-publishing)
-- [Semantic Conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies)
 
 <!-- tocstop -->
 
 > **Warning**
 > Existing messaging instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
-> (or prior) SHOULD NOT change the version of the messaging conventions that they emit
+> (or prior) SHOULD NOT change the version of the messaging conventions that they emit by default
 > until a transition plan to the (future) stable semantic conventions has been published.
 > Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
 
@@ -89,12 +88,6 @@ A destination is usually uniquely identified by its name within
 the messaging system instance.
 Examples of a destination name would be an URL or a simple one-word identifier.
 
-In some use cases, messages are routed within one or multiple brokers. In such
-cases, the destination the message was originally published to is different
-from the destination it is being consumed from. When information about the
-destination where the message was originally published to is available, consumers
-can record them under the `destination_publish` namespace.
-
 Typical examples of destinations include Kafka topics, RabbitMQ queues and topics.
 
 ### Message consumption
@@ -103,6 +96,23 @@ The consumption of a message can happen in multiple steps.
 First, the lower-level receiving of a message at a consumer, and then the logical processing of the message.
 Often, the waiting for a message is not particularly interesting and hidden away in a framework that only invokes some handler function to process a message once one is received
 (in the same way that the listening on a TCP port for an incoming HTTP message is not particularly interesting).
+
+#### Consumer groups
+
+Consumer groups provide a logical grouping for the message consumers. Messaging systems use them to
+load balance message consumption within the group, broadcast messages to multiple types of the consumers,
+manage offset for each group independently.
+As a result, different groups of consumers can receive messages at a different pace
+or using different settings.
+
+#### Subscriptions
+
+Subscriptions represent entities within messaging systems that allow multiple consumers
+to receive messages from the topic following subscription-specific consumption behavior that includes
+load balancing, durability, filtering, or other system-specific capabilities.
+
+Named subscriptions and consumers groups are semantically different mechanisms messaging systems use
+for similar scenarios such as load-balancing or broadcasting.
 
 ### Conversations
 
@@ -153,36 +163,32 @@ in such a way that it cannot be changed by intermediaries.
 
 ### Span name
 
-The span name SHOULD be set to the message destination name and the name of the operation being performed (as captured in [`messaging.operation.name`](../attributes-registry/messaging.md)) in the following format:
+Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/trace/api.md#span).
 
-```
-<destination name> <operation name>
-```
+<!-- markdown-link-check-disable -->
+<!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
+The **span name** SHOULD be `{messaging.operation.name} {destination}` (see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
+<!-- markdown-link-check-enable -->
 
-If the operation name is not specified by the messaging system, then the operation type as defined in [Operation types](#operation-types) SHOULD be used:
+Semantic conventions for individual messaging systems MAY specify different span name format and then MUST document it in semantic conventions for specific messaging technologies.
 
-```
-<destination name> <operation type>
-```
+The <span id="destination-placeholder">`{destination}`</span> SHOULD describe the entity that the operation is performed against
+and SHOULD adhere to one of the following values, provided they are accessible:
 
-The destination name SHOULD only be used for the span name if it is known to be of low cardinality (cf. [general span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#span)).
-This can be assumed if it is statically derived from application code or configuration.
-Wherever possible, the real destination names after resolving logical or aliased names SHOULD be used.
-If the destination name is dynamic, such as a [conversation ID](#conversations) or a value obtained from a `Reply-To` header, it SHOULD NOT be used for the span name.
-In these cases, an artificial destination name that best expresses the destination, or a generic, static fallback like `"(anonymous)"` for [anonymous destinations](#temporary-and-anonymous-destinations) SHOULD be used instead.
+1. `messaging.destination.template` SHOULD be used when it is available.
+2. `messaging.destination.name` SHOULD be used when the destination is known to be neither [temporary nor anonymous](#temporary-and-anonymous-destinations).
+3. `server.address:server.port` SHOULD be used only for operations not targeting any specific destination(s).
+
+If a corresponding `{destination}` value is not available for a specific operation, the instrumentation SHOULD omit the `{destination}`.
 
 Examples:
 
-* `shop.orders publish`
-* `shop.orders subscribe`
-* `shop.orders settle`
-* `print_jobs publish`
-* `print_jobs nack`
-* `topic with spaces process`
-* `AuthenticationRequest-Conversations settle`
-* `(anonymous) send` (`(anonymous)` being a stable identifier for an unnamed destination)
-
-Messaging system specific adaptions to span naming MUST be documented in [semantic conventions for specific messaging technologies](#semantic-conventions-for-specific-messaging-technologies).
+* `publish shop.orders`
+* `subscribe shop.orders`
+* `ack shop.orders`
+* `nack print_jobs`
+* `process topic with spaces`
+* `settle AuthenticationRequest-Conversations`
 
 ### Operation types
 
@@ -193,23 +199,22 @@ The following operation types related to messages are defined for these semantic
 | `create`       | A message is created or passed to a client library for publishing. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
 | `publish`      | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
 | `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
-| `process`      | One or more messages are delivered to or processed by a consumer. |
+| `process`      | One or more messages are processed by a consumer. |
 | `settle`       | One or more messages are settled. |
 
 ### Span kind
 
-[Span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#spankind)
-SHOULD be set according to the following table, based on the operation type a span describes.
+Span kind SHOULD be set according to the following table, based on the operation type a span describes.
 
 | Operation type | Span kind|
 |----------------|-------------|
 | `create`       | `PRODUCER` |
 | `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context. |
 | `receive`      | `CONSUMER` |
-| `process`      | `CONSUMER` for push-based scenarios where no `receive` span exists. |
+| `process`      | `CONSUMER` for push-based scenarios where no "Receive" span exists. |
 
 For cases not covered by the table above, the span kind should be set according
-to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.33.0/specification/trace/api.md#spankind),
+to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/trace/api.md#spankind),
 e. g. it should be set to CLIENT for the "Publish" span if its context is not
 used as creation context and if the "Publish" span models a synchronous call to
 the intermediary.
@@ -274,16 +279,14 @@ context of the message.
 
 Messaging attributes are organized into the following namespaces:
 
-- `messaging.message`: Contains [per-message attributes](#per-message-attributes) that describe individual messages. Those attributes are relevant only for spans or links that represent a single message.
+- `messaging.message`: Contains attributes that describe individual messages.
 - `messaging.destination`: Contains attributes that describe the logical entity messages are published to. See [Destinations](#destinations) for more details.
-- `messaging.destination_publish`: Contains attributes that describe the logical entity messages were originally published to. See [Destinations](#destinations) for more details.
 - `messaging.batch`: Contains attributes that describe batch operations.
-- `messaging.consumer`: Contains [consumer attributes](#consumer-attributes) that describe the application instance that consumes a message. See [consumer](#consumer) for more details.
+- `messaging.consumer`: Contains attributes that describe the application instance that consumes a message. See [Consumer](#consumer) for more details.
 
-Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace
-as described in [Attributes specific to certain messaging systems](#attributes-specific-to-certain-messaging-systems).
+Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace.
 
-<!-- semconv messaging(full) -->
+<!-- semconv messaging -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -292,31 +295,31 @@ as described in [Attributes specific to certain messaging systems](#attributes-s
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [1] | `publish`; `create`; `receive` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | The messaging system as identified by the client instrumentation. [2] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [4] | `0`; `1`; `2` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | The name of the consumer group with which a consumer is associated. [5] | `my-group`; `indexer` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.anonymous`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [7] | `MyQueue`; `MyTopic` | `Conditionally Required` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` | `Conditionally Required` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.temporary`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | `Conditionally Required` [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` If a client id is available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md) | string | The name of the destination subscription from which a message is consumed. [9] | `subscription-a` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [10] | `/customers/{customerId}` | `Conditionally Required` [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.destination.temporary`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | `Conditionally Required` [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [13] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [14] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` When applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [13] | `1439` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [15] | `1439` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.conversation_id`](/docs/attributes-registry/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [14] | `2738` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [16] | `2738` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Recommended` [15] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [16] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this messaging system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [17] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this messaging system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [17] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [18] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** If a custom value is used, it MUST be of low cardinality.
+**[1]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
-
-**[3]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -336,9 +339,11 @@ it's RECOMMENDED to:
 * Use a domain-specific attribute
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[3]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[5]:** If the span describes an operation on a batch of messages.
+**[4]:** If the span describes an operation on a batch of messages.
+
+**[5]:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
 **[6]:** If value is `true`. When missing, the value is assumed to be `false`.
 
@@ -347,29 +352,45 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8]:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[9]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9]:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
 
-**[10]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
+**[10]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[11]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[11]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[12]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12]:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[13]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[13]:** If a custom value is used, it MUST be of low cardinality.
+
+**[14]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+
+**[15]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[14]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[16]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[15]:** If the operation is not sufficiently described by `messaging.operation.type`.
-
-**[16]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
+**[17]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[17]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[18]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.destination.template`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
+* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
+* [`messaging.system`](/docs/attributes-registry/messaging.md)
+* [`server.address`](/docs/attributes-registry/server.md)
+* [`server.port`](/docs/attributes-registry/server.md)
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -383,7 +404,7 @@ If a messaging operation involved multiple network calls (for example retries), 
 | Value  | Description | Stability |
 |---|---|---|
 | `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `process` | One or more messages are delivered to or processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -412,58 +433,18 @@ If a messaging operation involved multiple network calls (for example retries), 
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Consumer attributes
-
-The following additional attributes describe message consumer operations.
-
-Since messages could be routed by brokers, the destination messages are published
-to may not match with the destination they are consumed from.
-
-If information about the original destination is available on the consumer,
-consumer instrumentations SHOULD populate the attributes
-under the namespace `messaging.destination_publish.*`
-
-<!-- semconv messaging.destination_publish -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`messaging.destination_publish.anonymous`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name). |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination_publish.name`](/docs/attributes-registry/messaging.md) | string | The name of the original destination the message was published to [1] | `MyQueue`; `MyTopic` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[1]:** The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
-the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
-
-
-
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Per-message attributes
+### Recording per-message attributes on batch operations
 
 All messaging operations (`publish`, `receive`, `process`, or others not covered by this specification) can describe both single and/or batch of messages.
-Attributes in the `messaging.message` or `messaging.{system}.message` namespace describe individual messages. For single-message operations they SHOULD be set on corresponding span.
+Attributes in the `messaging.message` or `messaging.{system}.message` namespace apply to individual messages and typically vary between messages within the same batch.
 
-For batch operations, per-message attributes are usually different and cannot be set on the corresponding span. In such cases the attributes SHOULD be set on links. See [Batch receiving](#batch-receiving) for more information on correlation using links.
+Some messaging systems such as Kafka or Azure Event Grid allow publishing a batch of messages to different topics in a single operation, resulting in
+different `messaging.destination.name` or other destination attributes within a single messaging operation.
 
-Some messaging systems (e.g., Kafka, Azure EventGrid) allow publishing a single batch of messages to different topics. In such cases, the attributes in `messaging.destination` MAY be
-set on links. Instrumentations MAY set destination attributes on the span if all messages in the batch share the same destination.
+If the attribute value is the same for all messages in the batch, the instrumentation SHOULD set such attribute on the span representing the batch operation.
+If the attribute values vary, the instrumentation SHOULD set such attributes on links describing individual messages.
 
-### Attributes specific to certain messaging systems
-
-All attributes that are specific for a messaging system SHOULD be populated in `messaging.{system}` namespace. Attributes that describe a message, a destination, a consumer, or a batch of messages SHOULD be populated under the corresponding namespace:
-
-* `messaging.{system}.message.*`: Describes attributes for individual messages
-* `messaging.{system}.destination.*`: Describes the destination a message (or a batch) are published to and received from respectively. The combination of attributes in these namespaces should uniquely identify the entity and include properties significant for this messaging system. For example, Kafka instrumentations should include partition identifier.
-* `messaging.{system}.consumer.*`: Describes message consumer properties
-* `messaging.{system}.batch.*`: Describes message batch properties
+See [Batch receiving](#batch-receiving) for more information on correlation using links.
 
 ## Examples
 
@@ -503,14 +484,15 @@ flowchart LR;
 
 | Field or Attribute | Span Publish A | Span Process A 1| Span Process A 2 |
 |-|-|-|-|
-| Span name | `T publish` | `T process` | `T process` |
+| Span name | `publish T` | `consume T` | `consume T` |
 | Parent | | | |
-| Links |  | `T publish` | `T publish` |
+| Links |  | `publish T` | `publish T` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
+| `messaging.operation.name` | `"publish"` | `"consume"` | `"consume"` |
 | `messaging.operation.type` | `"publish"` | `"process"` | `"process"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
@@ -539,7 +521,7 @@ flowchart LR;
 
 | Field or Attribute | Span Publish A | Span Publish B | Span Receive A B |
 |-|-|-|-|
-| Span name | `Q publish` | `Q publish` | `Q receive` |
+| Span name | `send Q` | `send Q` | `poll Q` |
 | Parent |  |  |  |
 | Links |  |  | Span Publish A, Span Publish B |
 | Link attributes |  |  | Span Publish A: `messaging.message.id`: `"a1"`  |
@@ -549,6 +531,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
+| `messaging.operation.name` | `"send"` | `"send"` | `"poll"` |
 | `messaging.operation.type` | `"publish"` | `"publish"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
@@ -586,7 +569,7 @@ flowchart LR;
 
 | Field or Attribute | Span Create A | Span Create B | Span Publish | Span Receive A | Span Receive B |
 |-|-|-|-|-|-|
-| Span name | `Q create` | `Q create` | `Q publish` | `Q receive` | `Q receive` |
+| Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
 | Parent |  | | | | |
 | Links |  |  |  | Span Create A | Span Create B |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CONSUMER` | `CONSUMER` |
@@ -594,16 +577,9 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
+| `messaging.operation.name` | `"create"` | `"create"` | `"send"` | `"poll"` | `"poll"` |
 | `messaging.operation.type` | `"create"` | `"create"` | `"publish"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | | | 2 | | |
-
-## Semantic Conventions for specific messaging technologies
-
-More specific Semantic Conventions are defined for the following messaging technologies:
-
-* [Kafka](kafka.md): Semantic Conventions for *Apache Kafka*.
-* [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
-* [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

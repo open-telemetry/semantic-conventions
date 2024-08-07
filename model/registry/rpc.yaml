@@ -1,10 +1,10 @@
 groups:
   - id: registry.rpc
-    prefix: rpc
     type: attribute_group
+    display_name: Remote Procedure Call (RPC) Attributes
     brief: 'This document defines attributes for remote procedure calls.'
     attributes:
-      - id: connect_rpc.error_code
+      - id: rpc.connect_rpc.error_code
         type:
           members:
             - id: cancelled
@@ -57,7 +57,7 @@ groups:
               stability: experimental
         stability: experimental
         brief: "The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
-      - id: connect_rpc.request.metadata
+      - id: rpc.connect_rpc.request.metadata
         type: template[string[]]
         stability: experimental
         brief: >
@@ -66,7 +66,7 @@ groups:
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
         examples: ['rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
-      - id: connect_rpc.response.metadata
+      - id: rpc.connect_rpc.response.metadata
         type: template[string[]]
         stability: experimental
         brief: >
@@ -75,7 +75,7 @@ groups:
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
         examples: ['rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
-      - id: grpc.status_code
+      - id: rpc.grpc.status_code
         type:
           members:
             - id: ok
@@ -148,7 +148,7 @@ groups:
               value: 16
         stability: experimental
         brief: "The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request."
-      - id: grpc.request.metadata
+      - id: rpc.grpc.request.metadata
         type: template[string[]]
         stability: experimental
         brief: >
@@ -157,7 +157,7 @@ groups:
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
         examples: ['rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
-      - id: grpc.response.metadata
+      - id: rpc.grpc.response.metadata
         type: template[string[]]
         stability: experimental
         brief: >
@@ -166,17 +166,17 @@ groups:
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
         examples: ['rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
-      - id: jsonrpc.error_code
+      - id: rpc.jsonrpc.error_code
         type: int
         stability: experimental
         brief: "`error.code` property of response if it is an error response."
         examples: [-32700, 100]
-      - id: jsonrpc.error_message
+      - id: rpc.jsonrpc.error_message
         type: string
         stability: experimental
         brief: "`error.message` property of response if it is an error response."
         examples: ['Parse error', 'User already exists']
-      - id: jsonrpc.request_id
+      - id: rpc.jsonrpc.request_id
         type: string
         stability: experimental
         brief: >
@@ -185,12 +185,12 @@ groups:
           value is expected to be cast to string for simplicity.
           Use empty string in case of `null` value. Omit entirely if this is a notification.
         examples: ['10', 'request-7', '']
-      - id: jsonrpc.version
+      - id: rpc.jsonrpc.version
         type: string
         stability: experimental
         brief: "Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted."
         examples: ['2.0', '1.0']
-      - id: method
+      - id: rpc.method
         type: string
         stability: experimental
         brief: 'The name of the (logical) method being called, must be equal to the $method part in the span name.'
@@ -201,7 +201,7 @@ groups:
           (e.g., method actually executing the call on the server side,
           RPC client stub method on the client side).
         examples: "exampleMethod"
-      - id: service
+      - id: rpc.service
         type: string
         stability: experimental
         brief: 'The full (logical) name of the service being called, including its package name, if applicable.'
@@ -213,10 +213,9 @@ groups:
           e.g., class with method actually executing the call on the server side,
           RPC client stub class on the client side).
         examples: "myservice.EchoService"
-      - id: system
+      - id: rpc.system
         brief: 'A string identifying the remoting system. See below for a list of well-known identifiers.'
         type:
-          allow_custom_values: true
           members:
             - id: grpc
               value: 'grpc'
@@ -239,7 +238,7 @@ groups:
               brief: 'Connect RPC'
               stability: experimental
         stability: experimental
-      - id: message.type
+      - id: rpc.message.type
         type:
           members:
             - id: sent
@@ -250,16 +249,16 @@ groups:
               stability: experimental
         stability: experimental
         brief: "Whether this is a received or sent message."
-      - id: message.id
+      - id: rpc.message.id
         type: int
         stability: experimental
         brief: "MUST be calculated as two different counters starting from `1` one for sent messages and one for received message."
         note: "This way we guarantee that the values will be consistent between different implementations."
-      - id: message.compressed_size
+      - id: rpc.message.compressed_size
         type: int
         stability: experimental
         brief: "Compressed size of the message in bytes."
-      - id: message.uncompressed_size
+      - id: rpc.message.uncompressed_size
         type: int
         stability: experimental
         brief: "Uncompressed size of the message in bytes."
