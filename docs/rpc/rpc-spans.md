@@ -131,9 +131,9 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[6]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
-**[7]:** For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--) (including unary and streaming calls).
+**[7]:** The request body size represents the serialized size of the message payload that is sent over the wire. In case of streaming calls, it accounts for the original message in the request and does not include size of the consequent message stream. (including unary and streaming calls).
 
-**[8]:** For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--) (including unary and streaming calls).
+**[8]:** The response body size represents the serialized size of the message payload that is received in the response over the wire. In case of streaming calls, it accounts for the first response payload and does not include size of the consequent message stream. (including unary and streaming calls).
 
 **[9]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
@@ -220,9 +220,9 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[8]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
-**[9]:** For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--) (including unary and streaming calls).
+**[9]:** The request body size represents the serialized size of the message payload that is sent over the wire. In case of streaming calls, it accounts for the original message in the request and does not include size of the consequent message stream. (including unary and streaming calls).
 
-**[10]:** For gRPC, this value is calculated through [protobuf](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/MessageLite.html#getSerializedSize--) (including unary and streaming calls).
+**[10]:** The response body size represents the serialized size of the message payload that is received in the response over the wire. In case of streaming calls, it accounts for the first response payload and does not include size of the consequent message stream. (including unary and streaming calls).
 
 **[11]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
