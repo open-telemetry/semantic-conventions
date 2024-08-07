@@ -33,7 +33,7 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 
 **[1]:** The request body size represents the serialized size of the message payload that is sent over the wire. In case of streaming calls, it accounts for the original message in the request and does not include size of the consequent message stream. This value can usually be obtained from protobuf API such as [AbstractMessage#getSerializedSize](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/AbstractMessage.html#getSerializedSize--).
 
-**[2]:** The response body size represents the serialized size of the message payload that is received in the response over the wire. In case of streaming calls, it accounts for the first response payload and does not include size of the consequent message stream.         This value can usually be obtained from protobuf API such as [AbstractMessage#getSerializedSize](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/AbstractMessage.html#getSerializedSize--).
+**[2]:** The response body size represents the serialized size of the message payload that is received in the response over the wire. In case of streaming calls, it accounts for the first response payload and does not include size of the consequent message stream. This value can usually be obtained from protobuf API such as [AbstractMessage#getSerializedSize](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/AbstractMessage.html#getSerializedSize--).
 
 **[3]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
