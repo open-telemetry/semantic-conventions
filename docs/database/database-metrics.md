@@ -386,7 +386,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of pending requests for an open connection, cumulative for the entire pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of current pending requests for an open connection | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
