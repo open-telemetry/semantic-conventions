@@ -10,18 +10,27 @@ import rego.v1
 # semconv package.
 
 # Import the previous release (baseline) and current sets of attributes, metrics.
-baseline_attributes := {attr |
+baseline_attributes := [attr |
     some g in data.semconv.registry_baseline_groups
     some attr in g.attributes
-}
-registry_attributes := {attr |
+]
+registry_attributes := [attr |
     some g in data.semconv.registry_groups
     some attr in g.attributes
-}
+]
 registry_attribute_names := {attr.name |
     some g in data.semconv.registry_groups
     some attr in g.attributes
 }
+baseline_metrics := [ g |
+    some g in data.semconv.baseline_groups
+    g.type == "metric"
+]
+registry_metrics := [ g |
+    some g in data.semconv.groups
+    g.type == "metric"
+]
+registry_metric_names := { g.metric_name | some g in registry_metrics }
 
 
 # Rules we enforce:
@@ -31,13 +40,13 @@ registry_attribute_names := {attr.name |
 #   - [x] Stable attributes cannot change type
 #   - Enum members
 #     - [x] Stable members cannot change stability
-#     - [X] Values cannot change
+#     - [x] Values cannot change
 #     - [x] ids cannot be removed
 # - Metrics
-#   - [ ] metrics cannot be removed
-#   - [ ] Stable metrics cannot become unstable
-#   - [ ] Stable Metric units cannot change
-#   - [ ] Stable Metric instruments cannot change
+#   - [x] metrics cannot be removed
+#   - [x] Stable metrics cannot become unstable
+#   - [x] Stable Metric units cannot change
+#   - [x] Stable Metric instruments cannot change
 #   - [ ] Set of required/recommended attributes must remain the same
 
 
@@ -196,7 +205,76 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
      description := sprintf("Enum '%s' had member '%s', but is no longer defined", [attr.name, member.id])
 }
 
-# Rule: Detect Stable enum
+# Rule: Detect Removed Metrics
+#
+# This rule checks for stable metrics that existed in the baseline registry
+# but are no longer present in the current registry. Removing attributes
+# is considered a backward compatibility violation.
+#
+# In other words, we do not allow the removal of an attribute once added
+# to the registry. It must exist SOMEWHERE in a group, but may be deprecated.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Check if an attribute from the baseline is missing in the current registry
+    some metric in baseline_metrics
+    metric.stability == "stable"
+    not registry_metric_names[metric.metric_name]
+
+    # Generate human readable error.
+    group_id := metric.id
+    description := sprintf("Metric '%s' no longer exists in semantic conventions", [metric.metric_name])
+}
+
+# Rule: Stable metrics cannot become unstable
+#
+# This rule checks that stable metrics cannot have their stability level changed.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Check if an attribute from the baseline is missing in the current registry
+    some metric in baseline_metrics
+    metric.stability == "stable"
+    some nmetric in registry_metrics
+    metric.metric_name = nmetric.metric_name
+    nmetric.stability != "stable"
+
+    # Generate human readable error.
+    group_id := metric.id
+    description := sprintf("Metric '%s' cannot change from stable", [metric.metric_name])
+}
+
+# Rule: Stable metrics units cannot change
+#
+# This rule checks that stable metrics cannot change the unit type.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Check if an attribute from the baseline is missing in the current registry
+    some metric in baseline_metrics
+    metric.stability == "stable"
+    some nmetric in registry_metrics
+    metric.metric_name = nmetric.metric_name
+    nmetric.unit != metric.unit
+
+    # Generate human readable error.
+    group_id := metric.id
+    description := sprintf("Metric '%s' cannot change unit (was '%s', now: '%s')", [metric.metric_name, metric.unit, nmetric.unit])
+}
+
+# Rule: Stable Metric instruments cannot change
+#
+# This rule checks that stable metrics cannot change the instrument type.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Check if an attribute from the baseline is missing in the current registry
+    some metric in baseline_metrics
+    metric.stability == "stable"
+    some nmetric in registry_metrics
+    metric.metric_name = nmetric.metric_name
+    nmetric.instrument != metric.instrument
+
+    # Generate human readable error.
+    group_id := metric.id
+    description := sprintf("Metric '%s' cannot change instrument (was '%s', now: '%s')", [metric.metric_name, metric.instrument, nmetric.instrument])
+}
+
+# Rule: Stable Metric required/recommended attributes cannot change
+# TODO
+
 
 # Helper Function: Create Backward Compatibility Violation Object
 #
