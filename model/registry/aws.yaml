@@ -23,38 +23,37 @@ groups:
         stability: experimental
         brief: The keys in the `RequestItems` object field.
         examples:
-          - Users
-          - Cats
+          - [Users, Cats]
       - id: aws.dynamodb.consumed_capacity
         type: string[]
         stability: experimental
         brief: "The JSON-serialized value of each item in the `ConsumedCapacity` response field."
         examples:
-          - '{
+          - ['{
               "CapacityUnits": number,
               "GlobalSecondaryIndexes": {
-                 "string" : {
+                "string" : {
                     "CapacityUnits": number,
                     "ReadCapacityUnits": number,
                     "WriteCapacityUnits": number
-                 }
+                }
               },
               "LocalSecondaryIndexes": {
-                 "string" : {
+                "string" : {
                     "CapacityUnits": number,
                     "ReadCapacityUnits": number,
                     "WriteCapacityUnits": number
-                 }
+                }
               },
               "ReadCapacityUnits": number,
               "Table": {
-                 "CapacityUnits": number,
-                 "ReadCapacityUnits": number,
-                 "WriteCapacityUnits": number
+                "CapacityUnits": number,
+                "ReadCapacityUnits": number,
+                "WriteCapacityUnits": number
               },
               "TableName": "string",
               "WriteCapacityUnits": number
-            }'
+            }']
       - id: aws.dynamodb.item_collection_metrics
         type: string
         stability: experimental
@@ -62,29 +61,29 @@ groups:
         examples:
           - '{
               "string" : [
-                 {
+                {
                     "ItemCollectionKey": {
-                       "string" : {
+                      "string" : {
                           "B": blob,
                           "BOOL": boolean,
                           "BS": [ blob ],
                           "L": [
-                             "AttributeValue"
+                            "AttributeValue"
                           ],
                           "M": {
-                             "string" : "AttributeValue"
+                            "string" : "AttributeValue"
                           },
                           "N": "string",
                           "NS": [ "string" ],
                           "NULL": boolean,
                           "S": "string",
                           "SS": [ "string" ]
-                       }
+                      }
                     },
                     "SizeEstimateRangeGB": [ number ]
-                 }
+                }
               ]
-             }'
+            }'
       - id: aws.dynamodb.provisioned_read_capacity
         type: double
         stability: experimental
@@ -122,8 +121,7 @@ groups:
         stability: experimental
         brief: "The value of the `AttributesToGet` request parameter."
         examples:
-          - lives
-          - id
+          - [lives, id]
       - id: aws.dynamodb.index_name
         type: string
         stability: experimental
@@ -142,7 +140,7 @@ groups:
         stability: experimental
         brief: "The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field"
         examples:
-          - '{
+          - ['{
               "IndexName": "string",
               "KeySchema": [
                 {
@@ -158,13 +156,13 @@ groups:
                 "ReadCapacityUnits": number,
                 "WriteCapacityUnits": number
               }
-            }'
+            }']
       - id: aws.dynamodb.local_secondary_indexes
         type: string[]
         stability: experimental
         brief: "The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field."
         examples:
-          - '{
+          - ['{
               "IndexArn": "string",
               "IndexName": "string",
               "IndexSizeBytes": number,
@@ -179,14 +177,12 @@ groups:
                 "NonKeyAttributes": [ "string" ],
                 "ProjectionType": "string"
               }
-            }'
+            }']
       - id: aws.dynamodb.exclusive_start_table
         type: string
         stability: experimental
         brief: "The value of the `ExclusiveStartTableName` request parameter."
-        examples:
-          - Users
-          - CatsTable
+        examples: [Users, CatsTable]
       - id: aws.dynamodb.table_count
         type: int
         stability: experimental
@@ -226,16 +222,16 @@ groups:
         stability: experimental
         brief: "The JSON-serialized value of each item in the `AttributeDefinitions` request field."
         examples:
-          - '{
+          - ['{
               "AttributeName": "string",
               "AttributeType": "string"
-             }'
+            }']
       - id: aws.dynamodb.global_secondary_index_updates
         type: string[]
         stability: experimental
         brief: "The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field."
         examples:
-          - '{
+          - ['{
               "Create": {
                 "IndexName": "string",
                 "KeySchema": [
@@ -252,7 +248,7 @@ groups:
                   "ReadCapacityUnits": number,
                   "WriteCapacityUnits": number
                 }
-              }'
+              }']
   - id: registry.aws.ecs
     type: attribute_group
     display_name: Amazon ECS Attributes
@@ -335,7 +331,8 @@ groups:
         stability: experimental
         brief: >
           The name(s) of the AWS log group(s) an application is writing to.
-        examples: ['/aws/lambda/my-function', 'opentelemetry-service']
+        examples:
+          - ['/aws/lambda/my-function', 'opentelemetry-service']
         note: >
           Multiple log groups must be supported for cases like multi-container applications,
           where a single application has sidecar containers, and each write to their own log
@@ -345,7 +342,8 @@ groups:
         stability: experimental
         brief: >
           The Amazon Resource Name(s) (ARN) of the AWS log group(s).
-        examples: ['arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*']
+        examples:
+          - ['arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*']
         note: >
           See the
           [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
@@ -354,13 +352,15 @@ groups:
         stability: experimental
         brief: >
           The name(s) of the AWS log stream(s) an application is writing to.
-        examples: ['logs/main/10838bed-421f-43ef-870a-f43feacbbb5b']
+        examples:
+          - ['logs/main/10838bed-421f-43ef-870a-f43feacbbb5b']
       - id: aws.log.stream.arns
         type: string[]
         stability: experimental
         brief: >
           The ARN(s) of the AWS log stream(s).
-        examples: ['arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b']
+        examples:
+          - ['arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b']
         note: >
           See the
           [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
