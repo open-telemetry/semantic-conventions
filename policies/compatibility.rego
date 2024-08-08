@@ -197,8 +197,8 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
      is_enum(attr)
      current_member_ids := {member.id | some member in nattr.type.members}
      # Enforce the policy
-    some member in attr.type.members
-    not current_member_ids[member.id]
+     some member in attr.type.members
+     not current_member_ids[member.id]
 
      # Generate human readable error.
      group_id := data.semconv.baseline_group_ids_by_attribute[attr.name]
