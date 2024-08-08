@@ -182,8 +182,7 @@ groups:
         type: string
         stability: experimental
         brief: "The value of the `ExclusiveStartTableName` request parameter."
-        examples:
-          - [Users, CatsTable]
+        examples: [Users, CatsTable]
       - id: aws.dynamodb.table_count
         type: int
         stability: experimental
