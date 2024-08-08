@@ -409,8 +409,19 @@ These attributes may be used for any operation with an authenticated and/or auth
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`user.authentication.id`](/docs/attributes-registry/user.md) | string | Unique identifier of an authenticated user in the system. | `S-1-5-21-202424912787-2692429404-2351956786-1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`user.id`](/docs/attributes-registry/user.md) | string | Identifies a user interacting with a system regardless of user authentication status. This identifier may be unique only through best-effort means. [1] | `QdH5CAWJgqVT4rOr0qtumf` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`user.authentication.id`](/docs/attributes-registry/user.md) | string | Unique identifier of an authenticated user in the system. [3] | `S-1-5-21-202424912787-2692429404-2351956786-1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`user.roles`](/docs/attributes-registry/user.md) | string[] | Array of user roles at the time of the event. | `["admin", "reporting_user"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The `user.id`, when populated, is expected to be generated before user is authenticated and SHOULD NOT change after the user logs in. In browser scenarios `user.id` is usually stored in cookies.
+It's NOT RECOMMENDED to populate this attribute when unauthenticated users are not tracked or identified by the system.
+It can be a random guid or a hash of the user's IP address. This is different from `user.hash` which is a hash of a known `user.id` or `user.name`.
+
+**[2]:** If instrumentation supports tracking unauthenticated users and if `user.authentication.id` is set, recommended otherwise.
+
+**[3]:** The `user.authentication.id` MAY be used to identify a user attempting to authenticate if it's known at this stage.
+
+
 
 
 <!-- markdownlint-restore -->

@@ -34,12 +34,13 @@ groups:
       - ref: peer.service
         requirement_level: recommended
   - id: identity
-    type: span
+    type: attribute_group
     brief: >
       These attributes may be used for any operation with an authenticated and/or authorized user.
-    note: >
-      `enduser` namespace has been deprecated. When `user.authentication.id` is present, it is strongly recommended to provide `user.id` as well.
     attributes:
+      - ref: user.id
+        requirement_level:
+          conditionally_required: If instrumentation supports tracking unauthenticated users and if `user.authentication.id` is set, recommended otherwise.
       - ref: user.authentication.id
         requirement_level: recommended
       - ref: user.roles
