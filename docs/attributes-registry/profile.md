@@ -6,8 +6,8 @@
 
 # Profile
 
-- [Profile Build Id](#profile-build-id-attributes)
-- [Profile Frame](#profile-frame-attributes)
+- [Profile Build Id Attributes](#profile-build-id-attributes)
+- [Profile Frame Attributes](#profile-frame-attributes)
 
 ## Profile Build Id Attributes
 
