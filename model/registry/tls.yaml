@@ -29,7 +29,8 @@ groups:
         brief: >
           Array of PEM-encoded certificates that make up the certificate chain offered by the client.
           This is usually mutually-exclusive of `client.certificate` since that value should be the first certificate in the chain.
-        examples: ["MII...", "MI..."]
+        examples:
+          - ['MII...', 'MI...']
       - id: tls.client.hash.md5
         type: string
         stability: experimental
@@ -83,9 +84,7 @@ groups:
         stability: experimental
         brief: Array of ciphers offered by the client during the client hello.
         examples:
-          [
-            "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", "..."
-          ]
+          - [TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384]
       - id: tls.curve
         brief: "String indicating the curve used for the given cipher, when applicable"
         type: string
@@ -139,7 +138,8 @@ groups:
         brief: >
           Array of PEM-encoded certificates that make up the certificate chain offered by the server.
           This is usually mutually-exclusive of `server.certificate` since that value should be the first certificate in the chain.
-        examples: ["MII...", "MI..."]
+        examples:
+          - ["MII...", "MI..."]
       - id: tls.server.hash.md5
         type: string
         stability: experimental

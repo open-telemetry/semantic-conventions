@@ -317,7 +317,7 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.exclusive_start_table`](/docs/attributes-registry/aws.md) | string | The value of the `ExclusiveStartTableName` request parameter. | `Users`; `CatsTable` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`aws.dynamodb.exclusive_start_table`](/docs/attributes-registry/aws.md) | string | The value of the `ExclusiveStartTableName` request parameter. | `["Users", "CatsTable"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`aws.dynamodb.limit`](/docs/attributes-registry/aws.md) | int | The value of the `Limit` request parameter. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`aws.dynamodb.table_count`](/docs/attributes-registry/aws.md) | int | The number of items in the `TableNames` response parameter. | `20` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
