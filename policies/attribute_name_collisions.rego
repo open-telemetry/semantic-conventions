@@ -4,12 +4,12 @@ import rego.v1
 
 # Data structures to make checking things faster.
 attribute_names := { obj |
-  group := input.groups[_];
-  attr := group.attributes[_];
-  obj := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name) }
+    group := input.groups[_];
+    attr := group.attributes[_];
+    obj := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name) }
 }
 
-
+# check that attribute constant names do not collide
 deny contains attr_registry_collision(description, name) if {
     some i
     name := attribute_names[i].name
@@ -26,6 +26,7 @@ deny contains attr_registry_collision(description, name) if {
     description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
 }
 
+# check that attribute names do not collide with namespaces
 deny contains attr_registry_collision(description, name) if {
     some i
     name := attribute_names[i].name
@@ -39,6 +40,18 @@ deny contains attr_registry_collision(description, name) if {
     count(collisions) > 0
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     description := sprintf("Attribute '%s' is used as a namespace in '%s'.", [name, collisions])
+}
+
+# check that attribute is not defined or referenced more than once within the same group
+deny contains attr_registry_collision(description, name) {
+    group := input.groups[_]
+    attr := group.attributes[_]
+    name := attr.name
+
+    collisions := [n | n := group.attributes[_].name; n == name ]
+    count(collisions) > 1
+
+    description := sprintf("Attribute '%s' is already defined in the group '%s'. Attributes must be unique.", [name, group.id])
 }
 
 attr_registry_collision(description, attr_name) = violation if {
