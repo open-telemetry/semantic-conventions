@@ -15,4 +15,4 @@ groups:
           Notably, event names are namespaced to avoid collisions and provide a clean
           separation of semantics for events in separate domains like browser, mobile, and
           kubernetes.
-        examples: ['browser.mouse.click', 'device.app.lifecycle']
+        examples: ["browser.mouse.click", "device.app.lifecycle"]
