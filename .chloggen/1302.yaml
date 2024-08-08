@@ -1,0 +1,4 @@
+change_type: enhancement
+component: docs
+note: Add note on tooling limitations for attribute names and enforce attribute name format and uniqueness.
+issues: [1124]
