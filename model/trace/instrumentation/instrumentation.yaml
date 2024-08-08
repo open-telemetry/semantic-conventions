@@ -1,0 +1,29 @@
+groups:
+  - id: scope.instrumentation.source
+    prefix: instrumentation.source
+    type: scope
+    brief: >
+      Scope attributes identifying the source code of the instrumentation.
+    attributes:
+    - ref: instrumentation.source.repo
+      requirement_level: recommended
+    - ref: instrumentation.source.target
+      requirement_level:
+        recommended: >
+          If multiple equally valid options exist in
+          the same repo or if a non-standard/non-default option is used
+  - id: scope.instrumentation.distribution
+    prefix: instrumentation.distribution
+    type: scope
+    brief: >
+      Scope attributes identifying the instrumentation distribution channel.
+    attributes:
+    - ref: instrumentation.distribution.source
+      requirement_level:
+        recommended: If readily available
+    - ref: instrumentation.distribution.package
+      requirement_level:
+        recommended: If readily available
+    - ref: instrumentation.distribution.artifact
+      requirement_level:
+        recommended: If applicable and readily available

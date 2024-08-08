@@ -1,0 +1,37 @@
+groups:
+  - id: registry.instrumentation.source
+    prefix: instrumentation.source
+    brief: >
+      Attributes identifying the source code of the instrumentation.
+    attributes:
+      - id: repo
+        type: string
+        brief: Link to the source repository of the instrumentation library.
+        examples: [https://github.com/user_or_org/repo, https://gitlab.com/user_or_group/repo]
+        stability: experimental
+      - id: target
+        type: string
+        brief: Build target used to differentiate multiple variants within the repo.
+        examples: ['opt', 'dev', 'asan_enabled', '//variant:a', '//variant:b']
+        stability: experimental
+  - id: registry.instrumentation.distribution
+    prefix: instrumentation.distribution
+    brief: >
+      Attributes identifying the distribution channel of the instrumentation.
+    attributes:
+      - id: source
+        type: string
+        brief: Link to the mode of distribution.
+        examples: [https://mvnrepository.com/, https://pypi.org/, https://packages.ubuntu.com/noble]
+        stability: experimental
+      - id: package
+        type: string
+        brief: Source-specific name of the distribution bundle, project, etc.
+        examples: ['org.springframework.boot', 'tensorflow', 'python3-jwt']
+        stability: experimental
+      - id: artifact
+        type: string
+        brief: Library component inside the package if applicable.
+        examples: ['spring-boot-starter-web']
+        stability: experimental
+
