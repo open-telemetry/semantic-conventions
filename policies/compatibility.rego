@@ -47,7 +47,7 @@ registry_metric_names := { g.metric_name | some g in registry_metrics }
 #   - [x] Stable metrics cannot become unstable
 #   - [x] Stable Metric units cannot change
 #   - [x] Stable Metric instruments cannot change
-#   - [ ] Set of required/recommended attributes must remain the same
+#   - [x] Set of required/recommended attributes must remain the same
 
 
 # Rule: Detect Removed Attributes
