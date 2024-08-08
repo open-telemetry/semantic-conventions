@@ -415,7 +415,7 @@ These attributes may be used for any operation with an authenticated and/or auth
 
 **[1]:** The `user.id`, when populated, is expected to be generated before user is authenticated and SHOULD NOT change after the user logs in. In browser scenarios `user.id` is usually stored in cookies.
 It's NOT RECOMMENDED to populate this attribute when unauthenticated users are not tracked or identified by the system.
-It can be a random guid or a hash of the user's IP address. This is different from `user.hash` which is a hash of a known `user.id` or `user.name`.
+It can be a random guid or a hash of the user's IP address. This is different from `user.hash` which is a hash of a known `user.authentication.id` or `user.name`.
 
 **[2]:** If instrumentation supports tracking unauthenticated users and if `user.authentication.id` is set, recommended otherwise.
 
