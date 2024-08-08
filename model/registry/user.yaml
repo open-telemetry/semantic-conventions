@@ -29,8 +29,9 @@ groups:
         stability: experimental
         brief: >
           Identifies a user interacting with a system regardless of user authentication status. This identifier may be unique only through best-effort means.
-        note: > 
-          The `user.id`, when populated, is expected to be generated before user is authenticated and SHOULD NOT change after the user logs in. In browser scenarios `user.id` is usually stored in cookies.
+        note: >
+          The `user.id`, when populated, is expected to be generated before user is authenticated and SHOULD NOT change after the user logs in.
+          In browser scenarios `user.id` is usually stored in cookies.
 
           It's NOT RECOMMENDED to populate this attribute when unauthenticated users are not tracked or identified by the system.
 
