@@ -1,5 +1,6 @@
 package after_resolution
 
+# check that attribute constant names do not collide
 deny[attr_registry_collision(description, name)] {
     names := attr_names_except(excluded_const_collisions)
     name := names[_]
@@ -11,15 +12,42 @@ deny[attr_registry_collision(description, name)] {
     description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
 }
 
+# check that attribute name does not collide with namespaces
 deny[attr_registry_collision(description, name)] {
     names := attr_names_except(excluded_namespace_collisions)
     name := names[_]
 
-    collisions:= { n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(name)) }
+    collisions := { n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(name)) }
     count(collisions) > 0
 
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     description := sprintf("Attribute '%s' name is used as a namespace in the following attributes '%s'.", [name, collisions])
+}
+
+# check that attribute is defined once
+deny[attr_registry_collision(description, name)] {
+    group := input.groups[_]
+    startswith(group.id, "registry.")
+
+    attr := group.attributes[_]
+    name := attr.name
+
+    collisions := [c | g := input.groups[_]; startswith(g.id, "registry."); g.id != group.id; n := g.attributes[_].name; n == name; c := g.id ]
+    count(collisions) > 0
+
+    description := sprintf("Attribute '%s' in group '%s' is also defined in the group(s) '%s'. Attribute names must be unique.", [name, group.id, collisions])
+}
+
+# check that attribute is not defined or referenced more than once within the same group
+deny[attr_registry_collision(description, name)] {
+    group := input.groups[_]
+    attr := group.attributes[_]
+    name := attr.name
+
+    collisions := [n | n := group.attributes[_].name; n == name ]
+    count(collisions) > 1
+
+    description := sprintf("Attribute '%s' is already defined in the group '%s'. Attribute names must be unique.", [name, group.id])
 }
 
 attr_registry_collision(description, attr_name) = violation {

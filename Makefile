@@ -111,15 +111,6 @@ install-yamllint:
 yamllint:
 	yamllint .
 
-# Check semantic convention policies on YAML files
-.PHONY: check-policies
-check-policies:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/policies:/policies -v $(PWD)/templates:/templates \
-		otel/weaver:${WEAVER_VERSION} registry check \
-		--registry=/source \
-		--diagnostic-format=ansi \
-		--policy=/policies/registry.rego
-
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
