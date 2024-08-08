@@ -2,7 +2,7 @@
 linkTitle: Container
 --->
 
-# Semantic Conventions for K8s Metrics
+# Semantic Conventions for Kubernetes Metrics
 
 **Status**: [Experimental][DocumentStatus]
 
