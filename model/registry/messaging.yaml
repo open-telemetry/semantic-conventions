@@ -287,7 +287,8 @@ groups:
         stability: experimental
         brief: >
           Key(s) of message, another way to mark message besides message id.
-        examples: ['keyA', 'keyB']
+        examples:
+          - [keyA, keyB]
       - id: messaging.rocketmq.message.tag
         type: string
         stability: experimental
