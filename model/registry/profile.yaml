@@ -19,25 +19,6 @@ groups:
           The Go build ID.
         examples: ['foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY']
 
-  - id: registry.profile.link
-    type: attribute_group
-    prefix: profile.link
-    brief: >
-      Connect Profile information to Spans and Traces.
-    attributes:
-      - id: trace_id
-        stability: experimental
-        type: string
-        brief: >
-          A 16-byte array identifier for a trace as specified in [`SpanContext`](https://opentelemetry.io/docs/specs/otel/trace/api/#spancontext).
-        examples: ['4bf92f3577b34da6a3ce929d0e0e4736']
-      - id: span_id
-        stability: experimental
-        type: string
-        brief: >
-          A 8-byte array identifier for a span as specified in [`SpanContext`](https://opentelemetry.io/docs/specs/otel/trace/api/#spancontext).
-        examples: ['00f067aa0ba902b7']
-
   - id: registry.profile.frame
     type: attribute_group
     prefix: profile.frame

@@ -8,7 +8,6 @@
 
 - [Profile Build Id](#profile-build-id-attributes)
 - [Profile Frame](#profile-frame-attributes)
-- [Profile Link](#profile-link-attributes)
 
 ## Profile Build Id Attributes
 
@@ -40,12 +39,3 @@ Describes the origin of a single frame in a Profile.
 | `python` | [Python](<https://wikipedia.org/wiki/Python_(programming_language)>)                                                                                                                                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ruby`   | [Ruby](<https://wikipedia.org/wiki/Ruby_(programming_language)>)                                                                                                                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `v8js`   | [V8JS](<https://wikipedia.org/wiki/V8_(JavaScript_engine)>)                                                                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Profile Link Attributes
-
-Connect Profile information to Spans and Traces.
-
-| Attribute               | Type   | Description                                                                                                                              | Examples                           | Stability                                                        |
-| ----------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------- |
-| `profile.link.span_id`  | string | A 8-byte array identifier for a span as specified in [`SpanContext`](https://opentelemetry.io/docs/specs/otel/trace/api/#spancontext).   | `00f067aa0ba902b7`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `profile.link.trace_id` | string | A 16-byte array identifier for a trace as specified in [`SpanContext`](https://opentelemetry.io/docs/specs/otel/trace/api/#spancontext). | `4bf92f3577b34da6a3ce929d0e0e4736` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
