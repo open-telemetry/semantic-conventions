@@ -1,0 +1,33 @@
+groups:
+  - id: registry.dotnet
+    type: attribute_group
+    display_name: .NET Attributes
+    brief: >
+      This document defines .NET related attributes.
+    attributes:
+      - id: dotnet.gc.heap.generation
+        stability: experimental
+        type:
+          members:
+            - id: gen0
+              value: 'gen0'
+              brief: "Generation 0"
+              stability: experimental
+            - id: gen1
+              value: 'gen1'
+              brief: "Generation 1"
+              stability: experimental
+            - id: gen2
+              value: 'gen2'
+              brief: "Generation 2"
+              stability: experimental
+            - id: loh
+              value: 'loh'
+              brief: "Large Object Heap"
+              stability: experimental
+            - id: poh
+              value: 'poh'
+              brief: "Pinned Object Heap"
+              stability: experimental
+        brief: Name of the garbage collector managed heap generation.
+        examples: ["gen0", "gen1", "gen2"]

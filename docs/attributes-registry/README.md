@@ -50,6 +50,7 @@ Currently, the following namespaces exist:
 - [Device](device.md)
 - [Disk](disk.md)
 - [Dns](dns.md)
+- [Dotnet](dotnet.md)
 - [Enduser](enduser.md)
 - [Error](error.md)
 - [Event](event.md)
