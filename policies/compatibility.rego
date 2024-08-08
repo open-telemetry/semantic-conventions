@@ -214,9 +214,10 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
 # In other words, we do not allow the removal of an attribute once added
 # to the registry. It must exist SOMEWHERE in a group, but may be deprecated.
 deny contains back_comp_violation(description, group_id, "") if {
-    # Check if an attribute from the baseline is missing in the current registry
+    # Find data we need to enforce
     some metric in baseline_metrics
     metric.stability == "stable"
+    # Enforce the policy
     not registry_metric_names[metric.metric_name]
 
     # Generate human readable error.
@@ -228,11 +229,12 @@ deny contains back_comp_violation(description, group_id, "") if {
 #
 # This rule checks that stable metrics cannot have their stability level changed.
 deny contains back_comp_violation(description, group_id, "") if {
-    # Check if an attribute from the baseline is missing in the current registry
+    # Find data we need to enforce
     some metric in baseline_metrics
     metric.stability == "stable"
     some nmetric in registry_metrics
     metric.metric_name = nmetric.metric_name
+    # Enforce the policy
     nmetric.stability != "stable"
 
     # Generate human readable error.
@@ -244,11 +246,12 @@ deny contains back_comp_violation(description, group_id, "") if {
 #
 # This rule checks that stable metrics cannot change the unit type.
 deny contains back_comp_violation(description, group_id, "") if {
-    # Check if an attribute from the baseline is missing in the current registry
+    # Find data we need to enforce
     some metric in baseline_metrics
     metric.stability == "stable"
     some nmetric in registry_metrics
     metric.metric_name = nmetric.metric_name
+    # Enforce the policy
     nmetric.unit != metric.unit
 
     # Generate human readable error.
@@ -260,11 +263,12 @@ deny contains back_comp_violation(description, group_id, "") if {
 #
 # This rule checks that stable metrics cannot change the instrument type.
 deny contains back_comp_violation(description, group_id, "") if {
-    # Check if an attribute from the baseline is missing in the current registry
+    # Find data we need to enforce
     some metric in baseline_metrics
     metric.stability == "stable"
     some nmetric in registry_metrics
     metric.metric_name = nmetric.metric_name
+    # Enforce the policy
     nmetric.instrument != metric.instrument
 
     # Generate human readable error.
@@ -272,8 +276,59 @@ deny contains back_comp_violation(description, group_id, "") if {
     description := sprintf("Metric '%s' cannot change instrument (was '%s', now: '%s')", [metric.metric_name, metric.instrument, nmetric.instrument])
 }
 
-# Rule: Stable Metric required/recommended attributes cannot change
-# TODO
+# Rule: Stable Metric required/recommended attributes cannot change - missing
+#
+# This rule checks that stable metrics have stable sets of attributes.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Find data we need to enforce
+    some metric in baseline_metrics
+    metric.stability == "stable"
+    some nmetric in registry_metrics
+    metric.metric_name = nmetric.metric_name
+    
+    baseline_attributes := { attr.name |
+        some attr in metric.attributes
+        not is_opt_in(attr)
+    }
+    new_attributes := { attr.name |
+        some attr in nmetric.attributes
+        not is_opt_in(attr)
+    }
+    missing_attributes := baseline_attributes - new_attributes
+    # Enforce the policy
+    count(missing_attributes) > 0
+
+    # Generate human readable error.
+    group_id := metric.id
+    description := sprintf("Metric '%s' cannot change required/recommended attributes (missing '%s')", [metric.metric_name, missing_attributes])
+}
+
+# Rule: Stable Metric required/recommended attributes cannot change - added
+#
+# This rule checks that stable metrics have stable sets of attributes.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Find data we need to enforce
+    some metric in baseline_metrics
+    metric.stability == "stable"
+    some nmetric in registry_metrics
+    metric.metric_name = nmetric.metric_name
+    
+    baseline_attributes := { attr.name |
+        some attr in metric.attributes
+        not is_opt_in(attr)
+    }
+    new_attributes := { attr.name |
+        some attr in nmetric.attributes
+        not is_opt_in(attr)
+    }
+    added_attributes := new_attributes - baseline_attributes
+    # Enforce the policy
+    count(added_attributes) > 0
+
+    # Generate human readable error.
+    group_id := metric.id
+    description := sprintf("Metric '%s' cannot change required/recommended attributes (added '%s')", [metric.metric_name, added_attributes])
+}
 
 
 # Helper Function: Create Backward Compatibility Violation Object
@@ -294,3 +349,4 @@ back_comp_violation(description, group_id, attr_id) := violation if {
 is_enum(attr) := true if count(attr.type.members) > 0
 type_string(attr) := attr.type if not is_enum(attr)
 type_string(attr) := "enum" if is_enum(attr)
+is_opt_in(attr) := true if attr.requirement_level == "opt_in"
