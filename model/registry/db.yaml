@@ -17,7 +17,7 @@ groups:
 
           For batch operations, if the individual operations are known to have the same collection name
           then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
-        examples: ['public.users', 'customers']
+        examples: ["public.users", "customers"]
       - id: db.namespace
         type: string
         stability: experimental
@@ -33,7 +33,7 @@ groups:
           means in the context of that system.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: [ 'customers', 'test.users' ]
+        examples: ["customers", "test.users"]
       - id: db.operation.name
         type: string
         stability: experimental
@@ -47,7 +47,7 @@ groups:
           For batch operations, if the individual operations are known to have the same operation name
           then that operation name SHOULD be used prepended by `BATCH `,
           otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
-        examples: ['findAndModify', 'HMSET', 'SELECT']
+        examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.query.text
         type: string
         stability: experimental
@@ -63,7 +63,11 @@ groups:
           Even though parameterized query text can potentially have sensitive data, by using a parameterized query
           the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
           to observability of capturing the static part of the query text by default outweighs the risk.
-        examples: ['SELECT * FROM wuser_table where username = ?', 'SET mykey "WuValue"']
+        examples:
+          [
+            "SELECT * FROM wuser_table where username = ?",
+            'SET mykey "WuValue"',
+          ]
       - id: db.query.parameter
         type: template[string]
         stability: experimental
@@ -75,7 +79,7 @@ groups:
 
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
-        examples: ['someval', '55']
+        examples: ["someval", "55"]
       - id: db.operation.batch.size
         type: int
         stability: experimental
@@ -83,7 +87,7 @@ groups:
         note: >
           Operations are only considered batches when they contain two or more operations,
           and so `db.operation.batch.size` SHOULD never be `1`.
-        examples: [ 2, 3, 4 ]
+        examples: [2, 3, 4]
       - id: db.system
         brief: The database management system (DBMS) product as identified by the client instrumentation.
         note: >
@@ -93,225 +97,225 @@ groups:
         type:
           members:
             - id: other_sql
-              value: 'other_sql'
-              brief: 'Some other SQL database. Fallback only. See notes.'
+              value: "other_sql"
+              brief: "Some other SQL database. Fallback only. See notes."
               stability: experimental
             - id: adabas
-              value: 'adabas'
-              brief: 'Adabas (Adaptable Database System)'
+              value: "adabas"
+              brief: "Adabas (Adaptable Database System)"
               stability: experimental
             - id: cache
-              value: 'cache'
+              value: "cache"
               deprecated: "Replaced by `intersystems_cache`."
               brief: "Deprecated, use `intersystems_cache` instead."
               stability: experimental
             - id: intersystems_cache
-              value: 'intersystems_cache'
+              value: "intersystems_cache"
               brief: "InterSystems Caché"
               stability: experimental
             - id: cassandra
-              value: 'cassandra'
-              brief: 'Apache Cassandra'
+              value: "cassandra"
+              brief: "Apache Cassandra"
               stability: experimental
             - id: clickhouse
-              value: 'clickhouse'
-              brief: 'ClickHouse'
+              value: "clickhouse"
+              brief: "ClickHouse"
               stability: experimental
             - id: cloudscape
-              value: 'cloudscape'
+              value: "cloudscape"
               deprecated: "Replaced by `other_sql`."
               brief: "Deprecated, use `other_sql` instead."
               stability: experimental
             - id: cockroachdb
-              value: 'cockroachdb'
-              brief: 'CockroachDB'
+              value: "cockroachdb"
+              brief: "CockroachDB"
               stability: experimental
             - id: coldfusion
-              value: 'coldfusion'
+              value: "coldfusion"
               deprecated: "Removed."
               brief: "Deprecated, no replacement at this time."
               stability: experimental
             - id: cosmosdb
-              value: 'cosmosdb'
-              brief: 'Microsoft Azure Cosmos DB'
+              value: "cosmosdb"
+              brief: "Microsoft Azure Cosmos DB"
               stability: experimental
             - id: couchbase
-              value: 'couchbase'
-              brief: 'Couchbase'
+              value: "couchbase"
+              brief: "Couchbase"
               stability: experimental
             - id: couchdb
-              value: 'couchdb'
-              brief: 'CouchDB'
+              value: "couchdb"
+              brief: "CouchDB"
               stability: experimental
             - id: db2
-              value: 'db2'
-              brief: 'IBM Db2'
+              value: "db2"
+              brief: "IBM Db2"
               stability: experimental
             - id: derby
-              value: 'derby'
-              brief: 'Apache Derby'
+              value: "derby"
+              brief: "Apache Derby"
               stability: experimental
             - id: dynamodb
-              value: 'dynamodb'
-              brief: 'Amazon DynamoDB'
+              value: "dynamodb"
+              brief: "Amazon DynamoDB"
               stability: experimental
             - id: edb
-              value: 'edb'
-              brief: 'EnterpriseDB'
+              value: "edb"
+              brief: "EnterpriseDB"
               stability: experimental
             - id: elasticsearch
-              value: 'elasticsearch'
-              brief: 'Elasticsearch'
+              value: "elasticsearch"
+              brief: "Elasticsearch"
               stability: experimental
             - id: filemaker
-              value: 'filemaker'
-              brief: 'FileMaker'
+              value: "filemaker"
+              brief: "FileMaker"
               stability: experimental
             - id: firebird
-              value: 'firebird'
-              brief: 'Firebird'
+              value: "firebird"
+              brief: "Firebird"
               stability: experimental
             - id: firstsql
-              value: 'firstsql'
+              value: "firstsql"
               deprecated: "Replaced by `other_sql`."
               brief: "Deprecated, use `other_sql` instead."
               stability: experimental
             - id: geode
-              value: 'geode'
-              brief: 'Apache Geode'
+              value: "geode"
+              brief: "Apache Geode"
               stability: experimental
             - id: h2
-              value: 'h2'
-              brief: 'H2'
+              value: "h2"
+              brief: "H2"
               stability: experimental
             - id: hanadb
-              value: 'hanadb'
-              brief: 'SAP HANA'
+              value: "hanadb"
+              brief: "SAP HANA"
               stability: experimental
             - id: hbase
-              value: 'hbase'
-              brief: 'Apache HBase'
+              value: "hbase"
+              brief: "Apache HBase"
               stability: experimental
             - id: hive
-              value: 'hive'
-              brief: 'Apache Hive'
+              value: "hive"
+              brief: "Apache Hive"
               stability: experimental
             - id: hsqldb
-              value: 'hsqldb'
-              brief: 'HyperSQL DataBase'
+              value: "hsqldb"
+              brief: "HyperSQL DataBase"
               stability: experimental
             - id: influxdb
-              value: 'influxdb'
-              brief: 'InfluxDB'
+              value: "influxdb"
+              brief: "InfluxDB"
               stability: experimental
             - id: informix
-              value: 'informix'
-              brief: 'Informix'
+              value: "informix"
+              brief: "Informix"
               stability: experimental
             - id: ingres
-              value: 'ingres'
-              brief: 'Ingres'
+              value: "ingres"
+              brief: "Ingres"
               stability: experimental
             - id: instantdb
-              value: 'instantdb'
-              brief: 'InstantDB'
+              value: "instantdb"
+              brief: "InstantDB"
               stability: experimental
             - id: interbase
-              value: 'interbase'
-              brief: 'InterBase'
+              value: "interbase"
+              brief: "InterBase"
               stability: experimental
             - id: mariadb
-              value: 'mariadb'
-              brief: 'MariaDB'
+              value: "mariadb"
+              brief: "MariaDB"
               stability: experimental
             - id: maxdb
-              value: 'maxdb'
-              brief: 'SAP MaxDB'
+              value: "maxdb"
+              brief: "SAP MaxDB"
               stability: experimental
             - id: memcached
-              value: 'memcached'
-              brief: 'Memcached'
+              value: "memcached"
+              brief: "Memcached"
               stability: experimental
             - id: mongodb
-              value: 'mongodb'
-              brief: 'MongoDB'
+              value: "mongodb"
+              brief: "MongoDB"
               stability: experimental
             - id: mssql
-              value: 'mssql'
-              brief: 'Microsoft SQL Server'
+              value: "mssql"
+              brief: "Microsoft SQL Server"
               stability: experimental
             - id: mssqlcompact
-              value: 'mssqlcompact'
+              value: "mssqlcompact"
               deprecated: "Removed, use `other_sql` instead."
               brief: "Deprecated, Microsoft SQL Server Compact is discontinued."
               stability: experimental
             - id: mysql
-              value: 'mysql'
-              brief: 'MySQL'
+              value: "mysql"
+              brief: "MySQL"
               stability: experimental
             - id: neo4j
-              value: 'neo4j'
-              brief: 'Neo4j'
+              value: "neo4j"
+              brief: "Neo4j"
               stability: experimental
             - id: netezza
-              value: 'netezza'
-              brief: 'Netezza'
+              value: "netezza"
+              brief: "Netezza"
               stability: experimental
             - id: opensearch
-              value: 'opensearch'
-              brief: 'OpenSearch'
+              value: "opensearch"
+              brief: "OpenSearch"
               stability: experimental
             - id: oracle
-              value: 'oracle'
-              brief: 'Oracle Database'
+              value: "oracle"
+              brief: "Oracle Database"
               stability: experimental
             - id: pervasive
-              value: 'pervasive'
-              brief: 'Pervasive PSQL'
+              value: "pervasive"
+              brief: "Pervasive PSQL"
               stability: experimental
             - id: pointbase
-              value: 'pointbase'
-              brief: 'PointBase'
+              value: "pointbase"
+              brief: "PointBase"
               stability: experimental
             - id: postgresql
-              value: 'postgresql'
-              brief: 'PostgreSQL'
+              value: "postgresql"
+              brief: "PostgreSQL"
               stability: experimental
             - id: progress
-              value: 'progress'
-              brief: 'Progress Database'
+              value: "progress"
+              brief: "Progress Database"
               stability: experimental
             - id: redis
-              value: 'redis'
-              brief: 'Redis'
+              value: "redis"
+              brief: "Redis"
               stability: experimental
             - id: redshift
-              value: 'redshift'
-              brief: 'Amazon Redshift'
+              value: "redshift"
+              brief: "Amazon Redshift"
               stability: experimental
             - id: spanner
-              value: 'spanner'
-              brief: 'Cloud Spanner'
+              value: "spanner"
+              brief: "Cloud Spanner"
               stability: experimental
             - id: sqlite
-              value: 'sqlite'
-              brief: 'SQLite'
+              value: "sqlite"
+              brief: "SQLite"
               stability: experimental
             - id: sybase
-              value: 'sybase'
-              brief: 'Sybase'
+              value: "sybase"
+              brief: "Sybase"
               stability: experimental
             - id: teradata
-              value: 'teradata'
-              brief: 'Teradata'
+              value: "teradata"
+              brief: "Teradata"
               stability: experimental
             - id: trino
-              value: 'trino'
-              brief: 'Trino'
+              value: "trino"
+              brief: "Trino"
               stability: experimental
             - id: vertica
-              value: 'vertica'
-              brief: 'Vertica'
+              value: "vertica"
+              brief: "Vertica"
               stability: experimental
         stability: experimental
       - id: db.client.connection.state
@@ -319,10 +323,10 @@ groups:
         type:
           members:
             - id: idle
-              value: 'idle'
+              value: "idle"
               stability: experimental
             - id: used
-              value: 'used'
+              value: "used"
               stability: experimental
         brief: "The state of a connection in the pool"
         examples: ["idle"]
@@ -349,50 +353,50 @@ groups:
         stability: experimental
         brief: >
           The data center of the coordinating node for a query.
-        examples: 'us-west-2'
+        examples: "us-west-2"
       - id: db.cassandra.coordinator.id
         type: string
         stability: experimental
         brief: >
           The ID of the coordinating node for a query.
-        examples: 'be13faa2-8574-4d71-926d-27f16cf8a7af'
+        examples: "be13faa2-8574-4d71-926d-27f16cf8a7af"
       - id: db.cassandra.consistency_level
         brief: >
           The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
         type:
           members:
             - id: all
-              value: 'all'
+              value: "all"
               stability: experimental
             - id: each_quorum
-              value: 'each_quorum'
+              value: "each_quorum"
               stability: experimental
             - id: quorum
-              value: 'quorum'
+              value: "quorum"
               stability: experimental
             - id: local_quorum
-              value: 'local_quorum'
+              value: "local_quorum"
               stability: experimental
             - id: one
-              value: 'one'
+              value: "one"
               stability: experimental
             - id: two
-              value: 'two'
+              value: "two"
               stability: experimental
             - id: three
-              value: 'three'
+              value: "three"
               stability: experimental
             - id: local_one
-              value: 'local_one'
+              value: "local_one"
               stability: experimental
             - id: any
-              value: 'any'
+              value: "any"
               stability: experimental
             - id: serial
-              value: 'serial'
+              value: "serial"
               stability: experimental
             - id: local_serial
-              value: 'local_serial'
+              value: "local_serial"
               stability: experimental
         stability: experimental
       - id: db.cassandra.idempotence
@@ -422,16 +426,16 @@ groups:
         type: string
         stability: experimental
         brief: Unique Cosmos client instance id.
-        examples: '3ba4827d-4422-483f-b59f-85b74211c11d'
+        examples: "3ba4827d-4422-483f-b59f-85b74211c11d"
       - id: db.cosmosdb.connection_mode
         type:
           members:
             - id: gateway
-              value: 'gateway'
+              value: "gateway"
               brief: Gateway (HTTP) connections mode
               stability: experimental
             - id: direct
-              value: 'direct'
+              value: "direct"
               brief: Direct connection.
               stability: experimental
         stability: experimental
@@ -440,49 +444,49 @@ groups:
         type:
           members:
             - id: invalid
-              value: 'Invalid'
+              value: "Invalid"
               stability: experimental
             - id: create
-              value: 'Create'
+              value: "Create"
               stability: experimental
             - id: patch
-              value: 'Patch'
+              value: "Patch"
               stability: experimental
             - id: read
-              value: 'Read'
+              value: "Read"
               stability: experimental
             - id: read_feed
-              value: 'ReadFeed'
+              value: "ReadFeed"
               stability: experimental
             - id: delete
-              value: 'Delete'
+              value: "Delete"
               stability: experimental
             - id: replace
-              value: 'Replace'
+              value: "Replace"
               stability: experimental
             - id: execute
-              value: 'Execute'
+              value: "Execute"
               stability: experimental
             - id: query
-              value: 'Query'
+              value: "Query"
               stability: experimental
             - id: head
-              value: 'Head'
+              value: "Head"
               stability: experimental
             - id: head_feed
-              value: 'HeadFeed'
+              value: "HeadFeed"
               stability: experimental
             - id: upsert
-              value: 'Upsert'
+              value: "Upsert"
               stability: experimental
             - id: batch
-              value: 'Batch'
+              value: "Batch"
               stability: experimental
             - id: query_plan
-              value: 'QueryPlan'
+              value: "QueryPlan"
               stability: experimental
             - id: execute_javascript
-              value: 'ExecuteJavaScript'
+              value: "ExecuteJavaScript"
               stability: experimental
         stability: experimental
         brief: CosmosDB Operation Type.
@@ -527,4 +531,8 @@ groups:
           `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD
           reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
           in order to map the path part values to their names.
-        examples: ['db.elasticsearch.path_parts.index=test-index', 'db.elasticsearch.path_parts.doc_id=123']
+        examples:
+          [
+            "db.elasticsearch.path_parts.index=test-index",
+            "db.elasticsearch.path_parts.doc_id=123",
+          ]
