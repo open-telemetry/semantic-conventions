@@ -1,25 +1,31 @@
 package after_resolution
 
-deny[attr_registry_collision(description, name)] {
-    names := attr_names_except(excluded_const_collisions)
-    name := names[_]
-    const_name := to_const_name(name)
-    collisions:= { n | n := attr_names_except(excluded_const_collisions)[_]; n != name; to_const_name(n) == const_name }
-    count(collisions) > 0
+# Data structures to make checking things faster.
+attribute_names := [ data |
+  attr := input.groups[_].attributes[_].name
+  data := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name) }
+]
 
+
+deny[attr_registry_collision(description, name)] {
+    name := attribute_names
+    name2 := attribute_names
+    name.name != name2.name
+    name.const_name == name2.const_name
+    not excluded_const_collisions[name.name]
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
-    description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
+    description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name.name, name.const_name, name2.name])
 }
 
 deny[attr_registry_collision(description, name)] {
-    names := attr_names_except(excluded_namespace_collisions)
-    name := names[_]
-
-    collisions:= { n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(name)) }
-    count(collisions) > 0
+    name := attribute_names
+    name2 := attribute_names
+    name.name != name2.name
+    name.namespace_prefix == name2.namespace_prefix
+    not excluded_namespace_collisions[name.namespace_prefix]
 
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
-    description := sprintf("Attribute '%s' name is used as a namespace in the following attributes '%s'.", [name, collisions])
+    description := sprintf("Attribute '%s' name is used as a namespace in the following attributes '%s'.", [name.name, name2.name])
 }
 
 attr_registry_collision(description, attr_name) = violation {
@@ -38,10 +44,6 @@ to_namespace_prefix(name) = namespace {
 
 to_const_name(name) = const_name {
     const_name := replace(name, ".", "_")
-}
-
-attr_names_except(excluded) = names {
-    names := { n | n := input.groups[_].attributes[_].name } - excluded
 }
 
 # These lists contain exceptions for existing collisions that were introduced unintentionally.
