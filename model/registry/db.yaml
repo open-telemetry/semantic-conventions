@@ -489,7 +489,7 @@ groups:
               value: "upsert"
               stability: experimental
         stability: experimental
-        brief: CosmosDB Operation Type.
+        brief: Cosmos DB Operation Type.
       - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
