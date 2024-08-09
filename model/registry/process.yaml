@@ -95,7 +95,8 @@ groups:
           systems supporting procfs), can be set according to the list of
           null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based
           executables, this would be the full argv vector passed to `main`.
-        examples: ['cmd/otecol', '--config=config.yaml']
+        examples:
+          - ['cmd/otecol', '--config=config.yaml']
       - id: args_count
         type: int
         stability: experimental
