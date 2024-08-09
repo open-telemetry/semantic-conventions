@@ -78,6 +78,9 @@ in the connection string and keep track of the currently selected database name.
 
 For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
 
+In case a specific query explicitly targets a database different from the one used by the connection,
+the db.namespace should still be the one from the connection.
+
 If instrumentation cannot reliably determine the current database name, it SHOULD NOT set `db.namespace`.
 
 **[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
