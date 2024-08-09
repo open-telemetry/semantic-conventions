@@ -21,7 +21,6 @@ deny[attr_registry_collision(description, name)] {
     ]
     count(collisions) > 0
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
-    #description := sprintf("Attributes '%s' have the same constant name '%s'.", [conflicts, const_name])
     description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
 }
 
