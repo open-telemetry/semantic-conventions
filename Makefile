@@ -220,7 +220,4 @@ check-policies:
 		otel/weaver:${WEAVER_VERSION} registry check \
 		--registry=/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
-		--policy=/policies/registry.rego \
-		--policy=/policies/attribute_name_collisions.rego \
-		--policy=/policies/yaml_schema.rego \
-		--policy=/policies/compatibility.rego
+		--policy=/policies
