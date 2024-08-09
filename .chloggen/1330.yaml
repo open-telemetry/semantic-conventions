@@ -1,0 +1,4 @@
+change_type: enhancement
+component: az, db
+note: Define  `db.operation.name` values for CosmosDB, declare `az.namespace` attribute and add proper reference to it.
+issues: [1330]
