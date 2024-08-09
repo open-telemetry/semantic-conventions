@@ -10,33 +10,34 @@ attribute_names := { data |
 
 deny[attr_registry_collision(description, name)] {
     some i
-    some j
-    i != j
-    attribute_names[i].const_name == attribute_names[j].const_name
     name := attribute_names[i].name
-    name2 := attribute_names[j].name
-    not excluded_const_collisions[name]
-    not excluded_const_collisions[name2]
     const_name := attribute_names[i].const_name
-
+    not excluded_const_collisions[name]
+    collisions := [other.name |
+        other := attribute_names[_]
+        other.name != name
+        other.const_name == const_name
+        not excluded_const_collisions[other.name]
+    ]
+    count(collisions) > 0
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     #description := sprintf("Attributes '%s' have the same constant name '%s'.", [conflicts, const_name])
-    description := sprintf("Attributes '%s' have the same constant name '%s'.", [[name, name2], const_name])
+    description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
 }
 
 deny[attr_registry_collision(description, name)] {
     some i
-    some j
-    i != j
     name := attribute_names[i].name
+    prefix := attribute_names[i].namespace_prefix
     not excluded_namespace_collisions[name]
-    name2 := attribute_names[j].name
-    not excluded_namespace_collisions[name2]
-    prefix := attribute_names[j].namespace_prefix
-    startswith(name, prefix)
-
+    collisions := [other.name |
+        other := attribute_names[_]
+        other.name != name
+        startswith(other.name, prefix)
+    ]
+    count(collisions) > 0
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
-    description := sprintf("Attribute '%s' name is used as a namespace in the following attributes '%s'.", [name, name2])
+    description := sprintf("Attribute '%s' is used as a namespace in '%s'.", [name, collisions])
 }
 
 attr_registry_collision(description, attr_name) = violation {
