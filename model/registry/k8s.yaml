@@ -177,3 +177,40 @@ groups:
         brief: >
           The name of the CronJob.
         examples: ['opentelemetry']
+      - id: k8s.volume.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the K8s volume.
+        examples: [ 'volume0' ]
+      - id: k8s.volume.type
+        stability: experimental
+        brief: >
+          The type of the K8s volume.
+        examples: [ "emptyDir", "persistentVolumeClaim" ]
+        type:
+          members:
+            - id: persistent_volume_claim
+              value: 'persistentVolumeClaim'
+              brief: "A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
+              stability: experimental
+            - id: config_map
+              value: 'configMap'
+              brief: "A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
+              stability: experimental
+            - id: downward_api
+              value: 'downwardAPI'
+              brief: "A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
+              stability: experimental
+            - id: empty_dir
+              value: 'emptyDir'
+              brief: "An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
+              stability: experimental
+            - id: secret
+              value: 'secret'
+              brief: "A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
+              stability: experimental
+            - id: local
+              value: 'local'
+              brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              stability: experimental

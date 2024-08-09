@@ -39,6 +39,8 @@ Kubernetes resource attributes.
 | `k8s.replicaset.uid`                          | string | The UID of the ReplicaSet.                                                                                                                                       | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `k8s.statefulset.name`                        | string | The name of the StatefulSet.                                                                                                                                     | `opentelemetry`                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `k8s.statefulset.uid`                         | string | The UID of the StatefulSet.                                                                                                                                      | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.volume.name`                             | string | The name of the K8s volume.                                                                                                                                      | `volume0`                                                                                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.volume.type`                             | string | The type of the K8s volume.                                                                                                                                      | `emptyDir`; `persistentVolumeClaim`                                                                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
@@ -62,6 +64,17 @@ Which states:
 
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
+
+`k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value                   | Description                                                                                                             | Stability                                                        |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `configMap`             | A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `downwardAPI`           | A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `emptyDir`              | An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local`                 | A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `secret`                | A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated Kubernetes Attributes
 
