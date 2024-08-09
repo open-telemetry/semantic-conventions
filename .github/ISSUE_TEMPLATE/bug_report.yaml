@@ -66,6 +66,7 @@ body:
         - area:peer
         - area:process
         - area:rpc
+        - area:security-rule
         - area:server
         - area:service
         - area:session
