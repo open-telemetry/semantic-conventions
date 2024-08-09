@@ -462,7 +462,7 @@ groups:
               value: "invalid"
               stability: experimental
             - id: head
-              value: "Head"
+              value: "head"
               stability: experimental
             - id: head_feed
               value: "head_feed"

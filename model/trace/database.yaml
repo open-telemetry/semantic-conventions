@@ -358,7 +358,7 @@ groups:
         examples: ['cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|']
       - ref: db.cosmosdb.connection_mode
         requirement_level:
-          conditionally_required: if not `direct` (or pick gw as default)
+          conditionally_required: if not `direct` (the default value is assumed to be `direct`).
       - ref: db.collection.name
         brief: >
           Cosmos DB container name.
@@ -379,6 +379,11 @@ groups:
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note
+      - ref: az.namespace
+        note: >
+          When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all
+          operations performed by Cosmos DB client.
+        examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
         note: |
           The `db.operation.name` has the following known values:

@@ -177,7 +177,7 @@ This group defines attributes for Azure Cosmos DB.
 | `delete`             | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `execute`            | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `execute_javascript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Head`               | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `head`               | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `head_feed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `invalid`            | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Patch`              | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
