@@ -92,7 +92,8 @@ groups:
         note: >
           IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses
           MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
-        examples: ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]
+        examples:
+          - ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]
       - id: host.mac
         stability: experimental
         type: string[]
@@ -101,7 +102,8 @@ groups:
         note: >
           MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
           as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
-        examples: ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
+        examples:
+          - ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
       - id: host.cpu.vendor.id
         stability: experimental
         type: string
