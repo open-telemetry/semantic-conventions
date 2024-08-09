@@ -48,7 +48,8 @@ For batch operations, if the individual operations are known to have the same co
 
 **[2]:** if not `direct` (the default value is assumed to be `direct`).
 
-**[3]:** The `db.operation.name` has the following known values:
+**[3]:** The `db.operation.name` has the following list of well-known values.
+If one of them applies, then the respective value MUST be used.
 
 Batch/bulk operations:
 
@@ -157,6 +158,10 @@ User-defined function operations:
 - `query_user_defined_functions`
 - `read_all_user_defined_functions`
 - `read_user_defined_function`
+
+If none of them applies, it's RECOMMENDED to use client method name
+in snake_case and language-agnostic. Instrumentations SHOULD document
+additional values in this document when introducing new operations.
 
 **[4]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 

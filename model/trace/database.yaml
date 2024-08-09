@@ -386,7 +386,8 @@ groups:
         examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
         note: |
-          The `db.operation.name` has the following known values:
+          The `db.operation.name` has the following list of well-known values.
+          If one of them applies, then the respective value MUST be used.
 
           Batch/bulk operations:
 
@@ -495,6 +496,10 @@ groups:
           - `query_user_defined_functions`
           - `read_all_user_defined_functions`
           - `read_user_defined_function`
+
+          If none of them applies, it's RECOMMENDED to use client method name
+          in snake_case and language-agnostic. Instrumentations SHOULD document
+          additional values in this document when introducing new operations.
 
         examples: ['create_item', 'query_items', 'read_item']
       - ref: server.port
