@@ -497,3 +497,6 @@ groups:
           - `read_user_defined_function`
 
         examples: ['create_item', 'query_items', 'read_item']
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (443).
