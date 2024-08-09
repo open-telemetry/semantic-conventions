@@ -402,20 +402,25 @@ groups:
           Container operations:
 
           - `create_container`
-          - `create_container_if_not_exists`
+          - `create_container_if_not_exists` # TODO or not needed?
           - `delete_container`
           - `query_containers`
           - `read_all_containers`
           - `read_container`
+          - `read_container_throughput`
           - `replace_container`
+          - `replace_container_throughput`
 
           Database operations:
 
           - `create_database`
-          - `create_database_if_not_exists`
+          - `create_database_if_not_exists` # TODO or not needed?
           - `delete_database`
           - `query_databases`
           - `read_all_databases`
+          - `read_database`
+          - `read_database_throughput`
+          - `replace_database_throughput`
 
           Encryption key operations:
 
@@ -459,11 +464,6 @@ groups:
           - `read_stored_procedure`
           - `replace_stored_procedure`
 
-          Throughput operations:
-
-          - `read_throughput`
-          - `replace_throughput`
-
           Trigger operations:
 
           - `create_trigger`
@@ -490,11 +490,5 @@ groups:
           - `query_user_defined_functions`
           - `read_all_user_defined_functions`
           - `read_user_defined_function`
+
         examples: ['create_item', 'query_items', 'read_item']
-
-
-
-
-
-
-

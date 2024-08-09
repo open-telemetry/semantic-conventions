@@ -26,12 +26,12 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.connection_mode`](/docs/attributes-registry/db.md) | string | Cosmos client connection mode. | `gateway`; `direct` | `Conditionally Required` if not `direct` (or pick gw as default) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.operation_type`](/docs/attributes-registry/db.md) | string | CosmosDB Operation Type. | `Invalid`; `Create`; `Patch` | `Conditionally Required` when performing one of the operations in this list | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.operation_type`](/docs/attributes-registry/db.md) | string | CosmosDB Operation Type. | `batch`; `create`; `delete` | `Conditionally Required` when performing one of the operations in this list | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.request_charge`](/docs/attributes-registry/db.md) | double | RU consumed for that operation | `46.18`; `1.0` | `Conditionally Required` when available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB status code. | `200`; `201` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.cosmosdb.client_id`](/docs/attributes-registry/db.md) | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -66,26 +66,31 @@ Conflicts operations:
 Container operations:
 
 - `create_container`
-- `create_container_if_not_exists`
+- `create_container_if_not_exists` # TODO or not needed?
 - `delete_container`
 - `query_containers`
 - `read_all_containers`
 - `read_container`
+- `read_container_throughput`
 - `replace_container`
+- `replace_container_throughput`
 
 Database operations:
 
 - `create_database`
-- `create_database_if_not_exists`
+- `create_database_if_not_exists` # TODO or not needed?
 - `delete_database`
 - `query_databases`
 - `read_all_databases`
+- `read_database`
+- `read_database_throughput`
+- `replace_database_throughput`
 
 Encryption key operations:
 
 - `create_client_encryption_key`
-- `query_encryption_keys`
-- `read_all_encryption_keys`
+- `query_client_encryption_keys`
+- `read_all_client_encryption_keys`
 - `read_client_encryption_key`
 - `replace_client_encryption_key`
 
@@ -122,11 +127,6 @@ Stored procedure operations:
 - `read_all_stored_procedures`
 - `read_stored_procedure`
 - `replace_stored_procedure`
-
-Throughput operations:
-
-- `read_throughput`
-- `replace_throughput`
 
 Trigger operations:
 
@@ -202,21 +202,21 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `Batch` | batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Create` | create | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Execute` | execute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `batch` | batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create` | create | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute` | execute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_javascript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Head` | head | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HeadFeed` | head_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Invalid` | invalid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `head_feed` | head_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `invalid` | invalid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Patch` | patch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query` | query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QueryPlan` | query_plan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed` | read_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query` | query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query_plan` | query_plan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read_feed` | read_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
