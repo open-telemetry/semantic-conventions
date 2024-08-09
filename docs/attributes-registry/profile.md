@@ -6,18 +6,6 @@
 
 # Profile
 
-- [Profile Build Id Attributes](#profile-build-id-attributes)
-- [Profile Frame Attributes](#profile-frame-attributes)
-
-## Profile Build Id Attributes
-
-Unique identifier for an executable.
-
-| Attribute              | Type   | Description                                                               | Examples                                                                              | Stability                                                        |
-| ---------------------- | ------ | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `profile.build_id.gnu` | string | The GNU build ID as can be found in the `.note.gnu.build-id` ELF section. | `c89b11207f6479603b0d49bf291c092c2b719293`                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `profile.build_id.go`  | string | The Go build ID.                                                          | `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 ## Profile Frame Attributes
 
 Describes the origin of a single frame in a Profile.
