@@ -1,5 +1,5 @@
 groups:
-  # k8s.pod.cpu.* metrics and attribute group
+  # k8s.pod.cpu.* metrics
   - id: metric.k8s.pod.cpu.time
     type: metric
     metric_name: k8s.pod.cpu.time
@@ -19,7 +19,7 @@ groups:
     instrument: gauge
     unit: "{cpu}"
 
-  # k8s.node.cpu.* metrics and attribute group
+  # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
     metric_name: k8s.node.cpu.time
