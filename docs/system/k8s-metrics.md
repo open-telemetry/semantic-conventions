@@ -12,7 +12,7 @@ This document describes instruments and attributes for common K8s level
 metrics in OpenTelemetry. These metrics are collected from technology-specific,
 well-defined APIs (e.g. Kubelet's API).
 
-Metrics in `k8s.` instruments should be attached to a [K8s Resource](/docs/resource/k8s.md)
+Metrics in `k8s.` instruments SHOULD be attached to a [K8s Resource](/docs/resource/k8s.md)
 and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
 
 ### Metric: `k8s.pod.cpu.time`
