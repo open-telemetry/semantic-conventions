@@ -61,6 +61,7 @@ Currently, the following namespaces exist:
 - [Gen AI](gen-ai.md)
 - [Go](go.md)
 - [GraphQL](graphql.md)
+- [Hardware](hardware.md)
 - [Heroku](heroku.md)
 - [Host](host.md)
 - [HTTP](http.md)
