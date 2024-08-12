@@ -1,12 +1,11 @@
 groups:
   - id: registry.oci.manifest
-    prefix: oci.manifest
     type: attribute_group
     display_name: Open Container Initiative (OCI) Attributes
     brief: >
       An OCI image manifest.
     attributes:
-      - id: digest
+      - id: oci.manifest.digest
         type: string
         stability: experimental
         brief: >

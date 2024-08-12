@@ -1,12 +1,11 @@
 groups:
   - id: registry.ios.deprecated
-    prefix: ios
     type: attribute_group
     display_name: Deprecated iOS Attributes
     brief: >
         The iOS platform on which the iOS application is running.
     attributes:
-      - id: state
+      - id: ios.state
         stability: experimental
         deprecated: "Moved to a payload field of `device.app.lifecycle`."
         note: >
@@ -16,7 +15,6 @@ groups:
           Deprecated use the `device.app.lifecycle` event definition including
           `ios.state` as a payload field instead.
         type:
-          allow_custom_values: true
           members:
             - id: active
               value: 'active'

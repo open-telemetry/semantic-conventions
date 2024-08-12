@@ -2,11 +2,10 @@ groups:
   - id: registry.dns
     type: attribute_group
     display_name: DNS Attributes
-    prefix: dns
     brief: >
       This document defines the shared attributes used to report a DNS query.
     attributes:
-      - id: question.name
+      - id: dns.question.name
         type: string
         stability: experimental
         brief: The name being queried.

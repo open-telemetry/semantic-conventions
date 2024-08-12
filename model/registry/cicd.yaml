@@ -1,6 +1,5 @@
 groups:
   - id: registry.cicd.pipeline
-    prefix: cicd.pipeline
     type: attribute_group
     brief: >
       This group describes attributes specific to pipelines within a Continuous
@@ -13,7 +12,7 @@ groups:
       producing something. In the context of CI/CD, a pipeline produces or
       delivers software.
     attributes:
-      - id: name
+      - id: cicd.pipeline.name
         type: string
         stability: experimental
         brief: >
@@ -25,13 +24,13 @@ groups:
             "Deploy Go Project",
             "deploy_to_environment",
           ]
-      - id: run.id
+      - id: cicd.pipeline.run.id
         type: string
         stability: experimental
         brief: >
           The unique identifier of a pipeline run within a CI/CD system.
         examples: ["120912"]
-      - id: task.name
+      - id: cicd.pipeline.task.name
         type: string
         stability: experimental
         brief: >
@@ -40,13 +39,13 @@ groups:
           in a pipeline. Other terms for tasks include commands, steps, and
           procedures.
         examples: ["Run GoLang Linter", "Go Build", "go-test", "deploy_binary"]
-      - id: task.run.id
+      - id: cicd.pipeline.task.run.id
         type: string
         stability: experimental
         brief: >
           The unique identifier of a task run within a pipeline.
         examples: ["12097"]
-      - id: task.run.url.full
+      - id: cicd.pipeline.task.run.url.full
         type: string
         stability: experimental
         brief: >
@@ -56,7 +55,7 @@ groups:
           [
             "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075",
           ]
-      - id: task.type
+      - id: cicd.pipeline.task.type
         type:
           members:
             - id: build
