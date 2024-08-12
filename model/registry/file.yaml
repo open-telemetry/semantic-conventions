@@ -136,4 +136,3 @@ groups:
           This attribute is only applicable to symbolic links.
         stability: experimental
         examples: ['/usr/bin/python3']
-
