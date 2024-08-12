@@ -1,12 +1,11 @@
 groups:
   - id: registry.browser
-    prefix: browser
     type: attribute_group
     display_name: Browser Attributes
     brief: >
       The web browser attributes
     attributes:
-      - id: brands
+      - id: browser.brands
         type: string[]
         stability: experimental
         brief: 'Array of brand name and version separated by a space'
@@ -14,8 +13,9 @@ groups:
           This value is intended to be taken from the
           [UA client hints API](https://wicg.github.io/ua-client-hints/#interface)
           (`navigator.userAgentData.brands`).
-        examples: [ " Not A;Brand 99", "Chromium 99", "Chrome 99" ]
-      - id: platform
+        examples:
+          - [ ' Not A;Brand 99', 'Chromium 99', 'Chrome 99' ]
+      - id: browser.platform
         type: string
         stability: experimental
         brief: 'The platform on which the browser is running'
@@ -33,7 +33,7 @@ groups:
           However, for consistency, the values in the `browser.platform` attribute
           should capture the exact value that the user agent provides.
         examples: ['Windows', 'macOS', 'Android']
-      - id: mobile
+      - id: browser.mobile
         type: boolean
         stability: experimental
         brief: 'A boolean that is true if the browser is running on a mobile device'
@@ -42,7 +42,7 @@ groups:
           [UA client hints API](https://wicg.github.io/ua-client-hints/#interface)
           (`navigator.userAgentData.mobile`). If unavailable, this attribute
           SHOULD be left unset.
-      - id: language
+      - id: browser.language
         type: string
         stability: experimental
         brief: 'Preferred language of the user using the browser'
