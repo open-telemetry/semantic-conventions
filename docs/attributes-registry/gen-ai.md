@@ -6,8 +6,10 @@
 
 # Gen AI
 
-- [GenAI Attributes](#genai-attributes)
-- [Deprecated GenAI Attributes](#deprecated-genai-attributes)
+- [Gen AI](#gen-ai)
+  - [GenAI Attributes](#genai-attributes)
+  - [GenAI Security Attributes](#genai-security-attributes)
+  - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 
 ## GenAI Attributes
 
@@ -72,6 +74,17 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | -------- | ------------------------------------------ | ---------------------------------------------------------------- |
 | `input`  | Input tokens (prompt, input, etc.)         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## GenAI Security Attributes
+
+| Attribute                          | Type     | Description                                                                                      | Examples                                                                | Stability                                                        |
+| ---------------------------------- | -------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `gen_ai.policy.name`                | string   | Name of the specific policy that was triggered.                                          | `contentPolicy` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.policy.action`            | string   | Action taken due to a policy violation, such as blocking, alerting, or modifying the content.                                                   | `INTERVENED`                                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.policy.confidence`                    | double   | Confidence level in the policy match that triggered the action, quantifying how closely the identified content matched the policy criteria.    | `0.8`       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.compliance.violation_detected` | boolean   | Indicates if any compliance violation was detected during the interaction.    | `True`;`False`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.compliance.violation_code`        | string      | Code identifying the specific compliance rule that was violated.    | `FedRAMP`                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.performance.request_size`             | int   | Size of the request payload in bytes.    | `456000`                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated GenAI Attributes
 

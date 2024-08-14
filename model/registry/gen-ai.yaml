@@ -1,3 +1,4 @@
+// edit this file
 groups:
   - id: registry.gen_ai
     type: attribute_group
@@ -148,3 +149,39 @@ groups:
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
           conventions for specific GenAI system and use system-specific name in the instrumentation.
           If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+      - id: gen_ai.policy.name
+        stability: experimental
+        type: string
+        brief: Name of the specific policy that was triggered.
+        note: 
+        examples: contentPolicy
+      - id: gen_ai.policy.action
+        stability: experimental
+        type: string
+        brief: Action taken due to a policy violation, such as blocking, alerting, or modifying the content.
+        note: 
+        examples: INTERVENED
+      - id: gen_ai.policy.confidence
+        stability: experimental
+        type: double
+        brief: Confidence level in the policy match that triggered the action, quantifying how closely the identified content matched the policy criteria.
+        note: 
+        examples: 0.8
+      - id: gen_ai.compliance.violation_detected
+        stability: experimental
+        type: boolean
+        brief: Indicates if any compliance violation was detected during the interaction.
+        note: 
+        examples: True
+      - id: gen_ai.compliance.violation_code
+        stability: experimental
+        type: string
+        brief: Code identifying the specific compliance rule that was violated.
+        note: 
+        examples: FedRAMP
+      - id: gen_ai.performance.request_size
+        stability: experimental
+        type: int
+        brief: Size of the request payload in bytes.
+        note: 
+        examples: 456000
