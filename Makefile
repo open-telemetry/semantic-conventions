@@ -120,6 +120,11 @@ check-policies:
 		--diagnostic-format=ansi \
 		--policy=/policies/registry.rego
 
+# Test rego policies
+.PHONY: test-policies
+test-policies:
+	docker run --rm -v $(PWD)/policies:/policies openpolicyagent/opa:0.67.1 test --explain fails /policies
+
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
@@ -235,4 +240,5 @@ check-policies:
 		otel/weaver:${WEAVER_VERSION} registry check \
 		--registry=/source \
 		--policy=/policies/registry.rego \
-		--policy=/policies/attribute_name_collisions.rego
+		--policy=/policies/attribute_name_collisions.rego \
+		--policy=/policies/yaml_schema.rego

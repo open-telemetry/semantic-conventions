@@ -1,4 +1,0 @@
-change_type: bug_fix
-component: messaging
-note: Update Kafka Spring example to align with the messaging spec
-issues: [ 1155 ]

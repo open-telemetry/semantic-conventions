@@ -1,23 +1,22 @@
 groups:
   - id: registry.enduser.deprecated
-    prefix: enduser
     type: attribute_group
     display_name: Deprecated End User Attributes
     brief: Describes deprecated enduser attributes. Complete enduser namespace has been deprecated
     attributes:
-      - id: id
+      - id: enduser.id
         type: string
         stability: experimental
         deprecated: Replaced by `user.id` attribute.
         brief: "Deprecated, use `user.id` instead."
         examples: 'username'
-      - id: role
+      - id: enduser.role
         type: string
         stability: experimental
         deprecated: Replaced by `user.roles` attribute.
         brief: "Deprecated, use `user.roles` instead."
         examples: 'admin'
-      - id: scope
+      - id: enduser.scope
         type: string
         stability: experimental
         deprecated: Removed.
