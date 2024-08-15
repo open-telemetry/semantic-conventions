@@ -3,9 +3,8 @@ groups:
     type: attribute_group
     brief: Describes Node.js related attributes.
     display_name: Node.js Attributes
-    prefix: nodejs
     attributes:
-      - id: eventloop.state
+      - id: nodejs.eventloop.state
         stability: experimental
         brief: The state of event loop time.
         type:
