@@ -80,7 +80,7 @@ See [Metric `db.client.operation.duration` v1.TODO](https://github.com/open-tele
 
 ### Experimental connection metrics
 
-Database connection metrics are still experimental, but there have been several changes in the latest
+Database connection metrics are still experimental, but there have been several changes in the latest release.
 
 #### Database client connection count
 
