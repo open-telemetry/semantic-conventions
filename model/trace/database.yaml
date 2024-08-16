@@ -513,4 +513,4 @@ groups:
         examples: ['create_item', 'query_items', 'read_item']
       - ref: server.port
         requirement_level:
-          recommended: If not default (443).
+          conditionally_required: If not default (443).
