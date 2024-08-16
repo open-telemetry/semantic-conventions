@@ -26,6 +26,8 @@ SEMCONVGEN_VERSION=0.25.0
 # see https://github.com/open-telemetry/weaver/releases for weaver updates
 WEAVER_VERSION=0.8.0
 
+OPA_POLICY_AGENT_VERSION=0.67.1
+
 # From where to resolve the containers (e.g. "otel/weaver").
 CONTAINER_REPOSITORY=docker.io
 
@@ -223,6 +225,14 @@ check-policies:
 		--registry=/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
 		--policy=/policies
+
+# Test rego policies
+.PHONY: test-policies
+test-policies:
+	docker run --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
+	openpolicyagent/opa:${OPA_POLICY_AGENT_VERSION} test \
+	--explain fails \
+	/policies /policies_test
 
 # TODO: This is now duplicative with weaver policy checks.  We can remove
 # once github action requirements are updated.
