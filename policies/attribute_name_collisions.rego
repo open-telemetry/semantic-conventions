@@ -39,7 +39,7 @@ deny contains attr_registry_collision(description, name) if {
     ]
     count(collisions) > 0
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
-    description := sprintf("Attribute '%s' is used as a namespace in '%s'.", [name, collisions])
+    description := sprintf("Attribute '%s' name is used as a namespace in the following attributes '%s'.", [name, collisions])
 }
 
 # check that attribute is not defined or referenced more than once within the same group
