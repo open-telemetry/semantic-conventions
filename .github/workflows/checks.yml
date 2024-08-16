@@ -109,6 +109,13 @@ jobs:
     - name: verify semantic conventions yaml definitions
       run: make check-policies
 
+  polices-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify semantic conventions yaml definitions
+      run: make test-policies
+
   # TODO: Remove this once policies-check is the only enforcement on github.
   semantic-conventions-compatibility:
     runs-on: ubuntu-latest
