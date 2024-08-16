@@ -1,0 +1,5 @@
+change_type: enhancement
+component: k8s
+note: Add `csi.driver` and `csi.volume.handle` attributes.
+issues: [1119]
+subtext:
