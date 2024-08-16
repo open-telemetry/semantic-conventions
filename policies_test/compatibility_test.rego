@@ -431,4 +431,224 @@ test_attribute_enum_member_missing if {
     }
 }
 
-## TODO - Metrics
+# Check that metrics cannot be removed.
+test_removed_metrics if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+            }],
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+            }]
+    }
+}
+
+# Check that Stable metrics cannot become unstable
+test_metric_stability_change if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "experimental",
+            }]
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+            }]
+    }
+}
+
+# Check that Stable metrics cannot change unit
+test_metric_unit_change if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "ms",
+            }]
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+            }]
+    }
+}
+
+# Check that Stable metrics cannot change unit
+test_metric_instrument_change if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "histogram",
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "gauge",
+            }]
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "histogram",
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "histogram",
+            }]
+    }
+}
+
+# Check that Stable metrics cannot change required/recommended attributes
+test_metric_attribute_missing if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "histogram",
+                "attributes": [{
+                    "name": "test.missing",
+                    "requirement_level": "required"
+                }],
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "gauge",
+            }]
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "histogram",
+                "attributes": [{
+                    "name": "test.missing",
+                    "requirement_level": "required"
+                },{
+                    "name": "test.ignored",
+                    "requirement_level": "opt_in"
+                }],
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "histogram",
+                "attributes": [{
+                    "name": "test.missing",
+                    "requirement_level": "required"
+                }],
+            }]
+    }
+}
+
+# Check that Stable metrics cannot change required/recommended attributes
+test_metric_attribute_added if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "histogram",
+                "attributes": [{
+                    "name": "test.missing",
+                    "requirement_level": "required"
+                }],
+            }],
+            "groups": [{
+                "id": "metric.test",
+                "type": "metric",
+                "metric_name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "gauge",
+                "attributes": [{
+                    "name": "test.missing",
+                    "requirement_level": "required"
+                }, {
+                    "name": "test.added",
+                    "requirement_level": "required"
+                }],
+            }]
+    }
+}
