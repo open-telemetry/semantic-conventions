@@ -89,12 +89,15 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`service.name`](/docs/attributes-registry/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`service.version`](/docs/attributes-registry/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`service.version`](/docs/attributes-registry/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. [2] | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
-
-
+**[2]:** When languages/platforms offer standard ways to version applications
+and/or libraries SDKs MAY offer mechanisms to auto-populate `service.version`
+from the standard sources. If SDKs offer an auto-population mechanism it MUST be
+an optional feature users opt-into and if `service.version` is manually
+populated it MUST take priority over auto-population.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
