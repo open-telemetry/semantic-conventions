@@ -358,7 +358,7 @@ groups:
         examples: ['cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|']
       - ref: db.cosmosdb.connection_mode
         requirement_level:
-          conditionally_required: if not `direct` (the default value is assumed to be `direct`).
+          conditionally_required: if not `gateway` (the default value is assumed to be `gateway`).
       - ref: db.collection.name
         brief: >
           Cosmos DB container name.
@@ -389,10 +389,19 @@ groups:
           The `db.operation.name` has the following list of well-known values.
           If one of them applies, then the respective value MUST be used.
 
-          Batch/bulk operations:
+          Batch operations:
 
           - `execute_batch`
-          - `execute_bulk`
+
+          Bulk operations:
+
+          - `execute_bulk` SHOULD be used on spans reported for methods like
+            [`executeBulkOperations`](https://javadoc.io/doc/com.azure/azure-cosmos/latest/com/azure/cosmos/CosmosAsyncContainer.html#executeBulkOperations)).
+            which represents a bulk execution of multiple operations.
+          - `bulk_{operation name}` (`bulk_create_item`, `bulk_upsert_item`, etc) SHOULD be used on spans describing individual operations (when they are reported)
+            within the bulk. This pattern SHOULD be used when instrumentation creates span per each operation, but operations are buffered and then performed in bulk.
+            For example, this applies when [`AllowBulkExecution`](https://learn.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.allowbulkexecution)
+            property is configured on the `Microsoft.Azure.Cosmos` client.
 
           Change feed operations:
 
@@ -408,7 +417,7 @@ groups:
           Container operations:
 
           - `create_container`
-          - `create_container_if_not_exists` # TODO or not needed?
+          - `create_container_if_not_exists`
           - `delete_container`
           - `query_containers`
           - `read_all_containers`
@@ -420,7 +429,7 @@ groups:
           Database operations:
 
           - `create_database`
-          - `create_database_if_not_exists` # TODO or not needed?
+          - `create_database_if_not_exists`
           - `delete_database`
           - `query_databases`
           - `read_all_databases`
@@ -497,11 +506,11 @@ groups:
           - `read_all_user_defined_functions`
           - `read_user_defined_function`
 
-          If none of them applies, it's RECOMMENDED to use client method name
-          in snake_case and language-agnostic. Instrumentations SHOULD document
-          additional values in this document when introducing new operations.
+          If none of them applies, it's RECOMMENDED to use language-agnostic representation of
+          client method name in snake_case. Instrumentations SHOULD document
+          additional values when introducing new operations.
 
         examples: ['create_item', 'query_items', 'read_item']
       - ref: server.port
         requirement_level:
-          conditionally_required: If not default (443).
+          recommended: If not default (443).
