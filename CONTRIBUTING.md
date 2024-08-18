@@ -93,6 +93,40 @@ Refer to the
 [Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.25.0/semantic-conventions/syntax.md)
 to learn how to make changes to the YAML files.
 
+#### Code structure
+
+The YAML (model definition) and Markdown (documentation) files are organized in the following way:
+
+```
+├── docs
+│   ├── attribute_registry
+│   ├── {domain}
+│   │   ├── README.md
+│   │   ├── ....md
+├── model
+│   ├── {domain}
+│   │   ├── {domain}-events.yaml
+│   │   ├── {domain}-metrics.yaml
+│   │   ├── {domain}-resources.yaml
+│   │   ├── {domain}-spans.yaml
+│   ├── registry
+│   │   ├── {domain}.yaml
+```
+
+All attributes must be defined in the domain-specific file under `/model/registry`.
+Corresponding markdown files are auto-generated (see [Update the markdown files](#2-update-the-markdown-files))
+in `/docs/attribute_registry` folder.
+
+Semantic conventions definitions for domain-specific signals should be placed under
+`/model/{domain}` and should follow `{domain}-{signal}.yaml` pattern. For example,
+HTTP spans are defined in `model/http/http-spans.yaml`.
+
+Domain-specific YAML definitions could be broken down into multiple files. For example,
+AWS spans are defined in `/model/aws/aws-lambda-spans.yaml`
+and `/model/aws/aws-sdk-spans.yaml` files.
+
+
+
 #### Schema files
 
 When making changes to existing semantic conventions (attributes, metrics, etc)

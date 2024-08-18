@@ -1,6 +1,6 @@
 groups:
   - id: opentracing
-    type: span
+    type: attribute_group
     brief: 'This document defines semantic conventions for the OpenTracing Shim'
     note: >
         These conventions are used by the OpenTracing Shim layer.
