@@ -29,6 +29,10 @@ test_passes_on_valid_names if {
     }
 }
 
+test_fails_if_prefix_is_present if {
+    count(yaml_schema.deny) == 1 with input as {"groups": [{"id": "test", "prefix": "foo"}]}
+}
+
 create_attribute_group(attr) = json {
     json := [{"id": "yaml_schema.test", "attributes": [{"id": attr}]}]
 }

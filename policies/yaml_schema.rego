@@ -46,6 +46,17 @@ deny[yaml_schema_violation(description, group.id, attr_name)] {
     description := sprintf("Member id '%s' on attribute '%s' is invalid. Member id %s'", [name, attr_name, invalid_name_helper])
 }
 
+# check that attribute is fully qualified with their id, prefix is no longer supported
+deny[yaml_schema_violation(description, group.id, "")] {
+    group := input.groups[_]
+
+    group.prefix != null
+    group.prefix != ""
+
+    # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
+    description := sprintf("Group '%s' uses prefix '%s'. All attribute should be fully qualified with their id, prefix is no longer supported.", [group.id, group.prefix])
+}
+
 yaml_schema_violation(description, group, attr) = violation {
     violation := {
         "id": description,
