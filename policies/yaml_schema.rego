@@ -1,10 +1,10 @@
-package before_resolution
+package yaml_schema
 
 # checks attribute name format
 deny[yaml_schema_violation(description, group.id, name)] {
     group := input.groups[_]
     attr := group.attributes[_]
-    name := get_attribute_name(attr, group)
+    name := attr.id
 
     not regex.match(name_regex, name)
 
@@ -38,7 +38,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
 deny[yaml_schema_violation(description, group.id, attr_name)] {
     group := input.groups[_]
     attr := group.attributes[_]
-    attr_name := get_attribute_name(attr, group)
+    attr_name := attr.id
     name := attr.type.members[_].id
 
     not regex.match(name_regex, name)
@@ -61,10 +61,3 @@ yaml_schema_violation(description, group, attr) = violation {
 name_regex := "^[a-z][a-z0-9]*([._][a-z0-9]+)*$"
 
 invalid_name_helper := "must consist of lowercase alphanumeric characters separated by '_' and '.'"
-
-get_attribute_name(attr, group) = name {
-    full_name = concat(".", [group.prefix, attr.id])
-
-    # if there was no prefix, we have a leading dot
-    name := trim(full_name, ".")
-}
