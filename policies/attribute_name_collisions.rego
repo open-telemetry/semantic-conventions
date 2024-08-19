@@ -1,25 +1,42 @@
 package after_resolution
 
-deny[attr_registry_collision(description, name)] {
-    names := attr_names_except(excluded_const_collisions)
-    name := names[_]
-    const_name := to_const_name(name)
-    collisions:= { n | n := attr_names_except(excluded_const_collisions)[_]; n != name; to_const_name(n) == const_name }
-    count(collisions) > 0
+# Data structures to make checking things faster.
+attribute_names := { data |
+  group := input.groups[_]
+  attr := group.attributes[_]
+  data := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name) }
+}
 
+
+deny[attr_registry_collision(description, name)] {
+    some i
+    name := attribute_names[i].name
+    const_name := attribute_names[i].const_name
+    not excluded_const_collisions[name]
+    collisions := [other.name |
+        other := attribute_names[_]
+        other.name != name
+        other.const_name == const_name
+        not excluded_const_collisions[other.name]
+    ]
+    count(collisions) > 0
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
 }
 
 deny[attr_registry_collision(description, name)] {
-    names := attr_names_except(excluded_namespace_collisions)
-    name := names[_]
-
-    collisions:= { n | n := input.groups[_].attributes[_].name; startswith(n, to_namespace_prefix(name)) }
+    some i
+    name := attribute_names[i].name
+    prefix := attribute_names[i].namespace_prefix
+    not excluded_namespace_collisions[name]
+    collisions := [other.name |
+        other := attribute_names[_]
+        other.name != name
+        startswith(other.name, prefix)
+    ]
     count(collisions) > 0
-
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
-    description := sprintf("Attribute '%s' name is used as a namespace in the following attributes '%s'.", [name, collisions])
+    description := sprintf("Attribute '%s' is used as a namespace in '%s'.", [name, collisions])
 }
 
 attr_registry_collision(description, attr_name) = violation {
@@ -38,10 +55,6 @@ to_namespace_prefix(name) = namespace {
 
 to_const_name(name) = const_name {
     const_name := replace(name, ".", "_")
-}
-
-attr_names_except(excluded) = names {
-    names := { n | n := input.groups[_].attributes[_].name } - excluded
 }
 
 # These lists contain exceptions for existing collisions that were introduced unintentionally.
