@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+  - package-ecosystem: "github-actions"
+    directory: ".github"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+  - package-ecosystem: "gomod"
+    directory: "internal/tools"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
