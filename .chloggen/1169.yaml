@@ -1,4 +1,0 @@
-change_type: enhancement
-component: messaging
-note: Define sampling relevant attributes for messaging client spans
-issues: [ 432, 1169 ]

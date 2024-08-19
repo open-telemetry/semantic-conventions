@@ -1,20 +1,18 @@
 groups:
   - id: registry.graphql
-    prefix: graphql
     type: attribute_group
     display_name: GraphQL Attributes
     brief: 'This document defines attributes for GraphQL.'
     attributes:
-      - id: operation.name
+      - id: graphql.operation.name
         brief: "The name of the operation being executed."
         type: string
         stability: experimental
         examples: 'findBookById'
-      - id: operation.type
+      - id: graphql.operation.type
         brief: "The type of the operation being executed."
         stability: experimental
         type:
-          allow_custom_values: false
           members:
             - id: query
               value: "query"
@@ -29,7 +27,7 @@ groups:
               brief: "GraphQL subscription"
               stability: experimental
         examples: ['query', 'mutation', 'subscription']
-      - id: document
+      - id: graphql.document
         brief: "The GraphQL document being executed."
         type: string
         stability: experimental

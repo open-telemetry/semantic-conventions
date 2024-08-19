@@ -1,24 +1,23 @@
 groups:
   - id: registry.deployment
-    prefix: deployment
     type: attribute_group
     display_name: Deployment Attributes
     brief: >
      This document defines attributes for software deployments.
     attributes:
-      - id: name
+      - id: deployment.name
         type: string
         stability: experimental
         brief: >
           The name of the deployment.
         examples: ['deploy my app', 'deploy-frontend']
-      - id: id
+      - id: deployment.id
         type: string
         stability: experimental
         brief: >
           The id of the deployment.
         examples: ['1208']
-      - id: status
+      - id: deployment.status
         type:
           members:
             - id: failed
@@ -32,7 +31,7 @@ groups:
         brief: >
           The status of the deployment.
         stability: experimental
-      - id: environment.name
+      - id: deployment.environment.name
         type: string
         stability: experimental
         brief: >
