@@ -96,7 +96,7 @@ groups:
           filter Log Records which produce high volume and yield low value
           (spammy logs).
 
-          Consider this psuedo-code example:
+          Consider this pseudo-code example:
 
           ```csharp
           internal static partial class LoggerExtensions
@@ -133,8 +133,8 @@ groups:
           `log.record.id=1` and all Log Records emitted using
           `LogFoodRecallNotice` will have `log.record.id=2`.
         examples:
-          - "1"
-          - "10018"
+          - 1
+          - 10018
       - id: log.record.name
         type: string
         stability: experimental
@@ -144,9 +144,10 @@ groups:
           This value MAY be added when processing a Log Record which has the
           concept of a durable name.
 
-          A durable name is similar to a durable identifier except it is more
-          friendly (human-readable). In the above example all Log Records
-          emitted using `LogFoodPriceChanged` will have
+          A durable name is the human readable version of the durable
+          identifier. A durable name is a unique value assigned to a well-known
+          Log Record inside a given instrumentation scope. In the above example
+          all Log Records emitted using `LogFoodPriceChanged` will have
           `log.record.name=FoodPriceChanged` and all Log Records emitted using
           `LogFoodRecallNotice` will have `log.record.name=FoodRecallNotice`.
         examples:
