@@ -19,11 +19,6 @@ CHLOGGEN_BINARY=bin/chloggen
 CHLOGGEN = $(TOOLS_DIR)/$(CHLOGGEN_BINARY)
 CHLOGGEN_CONFIG  := .chloggen/config.yaml
 
-# see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
-# Keep links in model/README.md and .vscode/settings.json in sync!
-SEMCONVGEN_VERSION=0.25.0
-WEAVER_VERSION=0.7.0
-
 # From where to resolve the containers (e.g. "otel/weaver").
 CONTAINER_REPOSITORY=docker.io
 
@@ -32,8 +27,12 @@ WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 
 # Fully qualified references to containers used in this Makefile.
-WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/otel/weaver:$(WEAVER_VERSION)
-SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/otel/semconvgen:$(SEMCONVGEN_VERSION)
+# These are parsed from dependencies.Dockerfile so dependabot will autoupdate
+# the versions of docker files we use.
+WEAVER_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
+SEMCONVGEN_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
+OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -115,7 +114,7 @@ yamllint:
 .PHONY: check-policies
 check-policies:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/policies:/policies -v $(PWD)/templates:/templates \
-		otel/weaver:${WEAVER_VERSION} registry check \
+		${WEAVER_CONTAINER} registry check \
 		--registry=/source \
 		--diagnostic-format=ansi \
 		--policy=/policies/registry.rego
@@ -123,7 +122,7 @@ check-policies:
 # Test rego policies
 .PHONY: test-policies
 test-policies:
-	docker run --rm -v $(PWD)/policies:/policies openpolicyagent/opa:0.67.1 test --explain fails /policies
+	docker run --rm -v $(PWD)/policies:/policies $(OPA_CONTAINER) test --explain fails /policies
 
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
@@ -237,7 +236,7 @@ generate-gh-issue-templates:
 .PHONY: check-policies
 check-policies:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/policies:/policies \
-		otel/weaver:${WEAVER_VERSION} registry check \
+		${WEAVER_CONTAINER} registry check \
 		--registry=/source \
 		--policy=/policies/registry.rego \
 		--policy=/policies/attribute_name_collisions.rego \
