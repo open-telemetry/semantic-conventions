@@ -101,9 +101,6 @@ Recommendations on using attributes vs. body fields:
   * The _fields_ are unique to the named event (`event.name`) and different events
     may use the same _field_ name to represent different data, due to the unique
     nature of the event.
-* The _fields_ MAY reference / inherit details from the attribute registry
-  attributes and provide additional details specific to the event, including
-  providing an _alias_ (shorter) name for the attribute.
 
 ## External event compatibility
 
