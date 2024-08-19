@@ -232,7 +232,8 @@ test-policies:
 	docker run --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
 	openpolicyagent/opa:${OPA_POLICY_AGENT_VERSION} test \
 	--explain fails \
-	/policies /policies_test
+	/policies \
+	/policies_test
 
 # TODO: This is now duplicative with weaver policy checks.  We can remove
 # once github action requirements are updated.
