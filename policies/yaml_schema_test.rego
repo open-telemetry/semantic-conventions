@@ -1,36 +1,35 @@
-package yaml_schema_test
+package before_resolution
 
-import data.yaml_schema
 import future.keywords
 
 test_fails_on_invalid_attribute_name if {
     every name in invalid_names {
-        count(yaml_schema.deny) == 1 with input as {"groups": create_attribute_group(name)}
+        count(deny) == 1 with input as {"groups": create_attribute_group(name)}
     }
 }
 
 test_fails_on_invalid_metric_name if {
     every name in invalid_names {
-        count(yaml_schema.deny) == 1 with input as {"groups": create_metric(name)}
+        count(deny) == 1 with input as {"groups": create_metric(name)}
     }
 }
 
 test_fails_on_invalid_event_name if {
     every name in invalid_names {
-        count(yaml_schema.deny) == 1 with input as {"groups": create_event(name)}
+        count(deny) == 1 with input as {"groups": create_event(name)}
     }
 }
 
 test_passes_on_valid_names if {
     every name in valid_names {
-        count(yaml_schema.deny) == 0 with input as {"groups": create_attribute_group(name)}
-        count(yaml_schema.deny) == 0 with input as {"groups": create_metric(name)}
-        count(yaml_schema.deny) == 0 with input as {"groups": create_event(name)}
+        count(deny) == 0 with input as {"groups": create_attribute_group(name)}
+        count(deny) == 0 with input as {"groups": create_metric(name)}
+        count(deny) == 0 with input as {"groups": create_event(name)}
     }
 }
 
 test_fails_if_prefix_is_present if {
-    count(yaml_schema.deny) == 1 with input as {"groups": [{"id": "test", "prefix": "foo"}]}
+    count(deny) == 1 with input as {"groups": [{"id": "test", "prefix": "foo"}]}
 }
 
 create_attribute_group(attr) = json {

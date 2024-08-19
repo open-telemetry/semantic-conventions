@@ -1,4 +1,4 @@
-package yaml_schema
+package before_resolution
 
 # checks attribute name format
 deny[yaml_schema_violation(description, group.id, name)] {

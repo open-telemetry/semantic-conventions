@@ -1,4 +1,4 @@
-package attribute_name_collisions
+package after_resolution
 
 import rego.v1
 
