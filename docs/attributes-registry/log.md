@@ -40,21 +40,22 @@ Attributes for a file to which log was emitted.
 
 This document defines the generic attributes that may be used in any Log Record.
 
-| Attribute             | Type   | Description                                   | Examples                                                                                                                         | Stability                                                        |
-| --------------------- | ------ | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `log.record.id`       | string | A durable identifier for the Log Record. [1]  | `1`; `0x100F`                                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `log.record.name`     | string | A durable name for the Log Record. [2]        | `RequestProcessed`; `InvalidResponse`                                                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `log.record.original` | string | The complete orignal Log Record. [3]          | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `log.record.uid`      | string | A unique identifier for the Log Record. [4]   | `01ARZ3NDEKTSV4RRFFQ69G5FAV`                                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute             | Type   | Description                                  | Examples                                                                                                                         | Stability                                                        |
+| --------------------- | ------ | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `log.record.id`       | int    | A durable identifier for the Log Record. [1] | `1`; `10018`                                                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `log.record.name`     | string | A durable name for the Log Record. [2]       | `RequestProcessed`; `InvalidResponse`                                                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `log.record.original` | string | The complete orignal Log Record. [3]         | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `log.record.uid`      | string | A unique identifier for the Log Record. [4]  | `01ARZ3NDEKTSV4RRFFQ69G5FAV`                                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This value MAY be added when processing a Log Record which has the
 concept of a durable identifier.
 
-A durable identifier is a unique value assigned to a well-known Log Record
-inside a given instrumentation scope. A durable identifier SHOULD be traceable
-back to a specific piece of code where the log is defined. Durable identifiers
-MAY be used by backends to safely and efficiently filter Log Records which
-produce high volume and yield low value (spammy logs).
+A durable identifier is a unique value assigned to a well-known Log
+Record inside a given instrumentation scope. A durable identifier
+SHOULD be traceable back to a specific piece of code where the log is
+defined. Durable identifiers MAY be used to safely and efficiently
+filter Log Records which produce high volume and yield low value
+(spammy logs).
 
 Consider this psuedo-code example:
 
@@ -86,20 +87,21 @@ internal static partial class LoggerExtensions
 }
 ```
 
-Two log helpers are defined inside the `MyLogic` instrumentation scope:
-`LogFoodPriceChanged` (with the durable identifier `1`) and
-`LogFoodRecallNotice` (with the durable identifier `2`). All Log Records emitted
-using `LogFoodPriceChanged` will have `log.record.id=1` and all Log Records
-emitted using `LogFoodRecallNotice` will have `log.record.id=2`.
+Two log helpers are defined inside the `MyLogic` instrumentation
+scope: `LogFoodPriceChanged` (with the durable identifier `1`) and
+`LogFoodRecallNotice` (with the durable identifier `2`). All Log
+Records emitted using `LogFoodPriceChanged` will have
+`log.record.id=1` and all Log Records emitted using
+`LogFoodRecallNotice` will have `log.record.id=2`.
 
 **[2]:** This value MAY be added when processing a Log Record which has the
 concept of a durable name.
 
-A durable name is similar to a durable identifier except it is more friendly
-(human-readable). In the above example all Log Records emitted using
-`LogFoodPriceChanged` will have `log.record.name=FoodPriceChanged` and all Log
-Records emitted using `LogFoodRecallNotice` will have
-`log.record.name=FoodRecallNotice`.
+A durable name is similar to a durable identifier except it is more
+friendly (human-readable). In the above example all Log Records
+emitted using `LogFoodPriceChanged` will have
+`log.record.name=FoodPriceChanged` and all Log Records emitted using
+`LogFoodRecallNotice` will have `log.record.name=FoodRecallNotice`.
 
 **[3]:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
 

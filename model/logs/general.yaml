@@ -8,3 +8,7 @@ groups:
         requirement_level: opt_in
       - ref: log.record.original
         requirement_level: opt_in
+      - ref: log.record.id
+        requirement_level: recommended
+      - ref: log.record.name
+        requirement_level: recommended
