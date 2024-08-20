@@ -35,7 +35,7 @@ groups:
           Time when the file attributes or metadata was last changed, in ISO 8601 format.
         note: >
           `file.ctime` captures the time when any of the file's properties or attributes
-          (including the content) are changed, while `file.mtime` captures the timestamp
+          (including the content) are changed, while `file.modified` captures the timestamp
           when the file content is modified.
         stability: experimental
         examples: ['2021-01-01T12:00:00Z']
@@ -69,13 +69,13 @@ groups:
           should populate `file.extension`. The full path, `file.path`, will include the fork name.
         stability: experimental
         examples: ['Zone.Identifer']
-      - id: file.gid
+      - id: file.group.id
         type: string
         brief: >
           Primary Group ID (GID) of the file.
         stability: experimental
         examples: ["1000"]
-      - id: file.group
+      - id: file.group.name
         type: string
         brief: >
           Primary group name of the file.
@@ -93,7 +93,7 @@ groups:
           Mode of the file in octal representation.
         stability: experimental
         examples: ['0640']
-      - id: file.mtime
+      - id: file.modified
         type: string
         brief: >
           Time when the file content was last modified, in ISO 8601 format.
@@ -128,7 +128,7 @@ groups:
         brief: >
           File size in bytes.
         stability: experimental
-      - id: file.target_path
+      - id: file.symbolic_link.target_path
         type: string
         brief: >
           Path to the target of a symbolic link.
