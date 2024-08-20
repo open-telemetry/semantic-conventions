@@ -18,6 +18,15 @@ groups:
           For batch operations, if the individual operations are known to have the same collection name
           then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
         examples: ['public.users', 'customers']
+      - id: db.record.id
+        type: string
+        stability: experimental
+        brief: The record identifier if present.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+          If the record id is parsed from the query text, it SHOULD be the first id found in the query.
+        examples: ['1', 'W0tpsmIBdwcYyG50zbta']
       - id: db.namespace
         type: string
         stability: experimental
@@ -561,13 +570,7 @@ groups:
         brief: >
           The metric used in similarity search.
         examples: 'cosine'
-      - id: id
-        type: string
-        stability: experimental
-        brief: >
-          The ID of vector.
-        examples: '5c56c793-69f3-4fbf-87e6-c4bf54c28c26'
-      - id: name
+      - id: field_name
         type: string
         stability: experimental
         brief: >
