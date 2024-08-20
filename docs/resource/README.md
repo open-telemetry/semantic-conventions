@@ -93,11 +93,12 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 
 **[1]:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
-**[2]:** When languages/platforms offer standard ways to version applications
-and/or libraries SDKs MAY offer mechanisms to auto-populate `service.version`
-from the standard sources. If SDKs offer an auto-population mechanism it MUST be
-an optional feature users opt-into and if `service.version` is manually
-populated it MUST take priority over auto-population.
+**[2]:** When possible, service detector component MAY use
+language/platform-specific capabilities to determine application
+version and populate `service.version` automatically.
+
+If `service.version` is provided explicitly it MUST take priority over
+the version determined automatically.
 
 
 
