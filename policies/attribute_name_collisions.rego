@@ -43,7 +43,7 @@ deny contains attr_registry_collision(description, name) if {
 }
 
 # check that attribute is not defined or referenced more than once within the same group
-deny contains attr_registry_collision(description, name) {
+deny contains attr_registry_collision(description, name) if {
     group := input.groups[_]
     attr := group.attributes[_]
     name := attr.name
