@@ -18,13 +18,6 @@ groups:
         brief: >
           The description of the rule generating the event.
         examples: ['Block requests to public DNS over HTTPS / TLS protocols']
-      - id: security_rule.id
-        type: string
-        stability: experimental
-        brief: >
-          A rule ID that is unique within the scope of an agent, observer,
-          or other entity using the rule for detection of this event.
-        examples: ['101']
       - id: security_rule.license
         type: string
         stability: experimental
