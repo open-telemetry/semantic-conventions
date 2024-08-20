@@ -29,12 +29,12 @@ groups:
           This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
         stability: experimental
         examples: ['2021-01-01T12:00:00Z']
-      - id: file.ctime
+      - id: file.changed
         type: string
         brief: >
           Time when the file attributes or metadata was last changed, in ISO 8601 format.
         note: >
-          `file.ctime` captures the time when any of the file's properties or attributes
+          `file.changed` captures the time when any of the file's properties or attributes
           (including the content) are changed, while `file.modified` captures the timestamp
           when the file content is modified.
         stability: experimental
