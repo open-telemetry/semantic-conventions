@@ -1,0 +1,4 @@
+change_type: enhancement
+component: service
+note: Allow SDKs to populate `service.version` automatically
+issues: [ 1338 ]
