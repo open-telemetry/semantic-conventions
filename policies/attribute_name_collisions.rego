@@ -1,14 +1,16 @@
 package after_resolution
 
+import rego.v1
+
 # Data structures to make checking things faster.
-attribute_names := { data |
-  group := input.groups[_]
-  attr := group.attributes[_]
-  data := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name) }
+attribute_names := { obj |
+  group := input.groups[_];
+  attr := group.attributes[_];
+  obj := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name) }
 }
 
 
-deny[attr_registry_collision(description, name)] {
+deny contains attr_registry_collision(description, name) if {
     some i
     name := attribute_names[i].name
     const_name := attribute_names[i].const_name
@@ -24,7 +26,7 @@ deny[attr_registry_collision(description, name)] {
     description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
 }
 
-deny[attr_registry_collision(description, name)] {
+deny contains attr_registry_collision(description, name) if {
     some i
     name := attribute_names[i].name
     prefix := attribute_names[i].namespace_prefix
@@ -39,7 +41,7 @@ deny[attr_registry_collision(description, name)] {
     description := sprintf("Attribute '%s' is used as a namespace in '%s'.", [name, collisions])
 }
 
-attr_registry_collision(description, attr_name) = violation {
+attr_registry_collision(description, attr_name) = violation if {
     violation := {
         "id": description,
         "type": "semconv_attribute",
@@ -49,11 +51,11 @@ attr_registry_collision(description, attr_name) = violation {
     }
 }
 
-to_namespace_prefix(name) = namespace {
+to_namespace_prefix(name) = namespace if {
     namespace := concat("", [name, "."])
 }
 
-to_const_name(name) = const_name {
+to_const_name(name) = const_name if {
     const_name := replace(name, ".", "_")
 }
 
