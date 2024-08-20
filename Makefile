@@ -110,20 +110,6 @@ install-yamllint:
 yamllint:
 	yamllint .
 
-# Check semantic convention policies on YAML files
-.PHONY: check-policies
-check-policies:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/policies:/policies -v $(PWD)/templates:/templates \
-		${WEAVER_CONTAINER} registry check \
-		--registry=/source \
-		--diagnostic-format=ansi \
-		--policy=/policies/registry.rego
-
-# Test rego policies
-.PHONY: test-policies
-test-policies:
-	docker run --rm -v $(PWD)/policies:/policies $(OPA_CONTAINER) test --explain fails /policies
-
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
@@ -157,26 +143,6 @@ table-check:
 		--target=markdown \
 		--dry-run \
 		/spec
-
-
-# A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
-# relied on "git describe". However, that approach does not work with
-# light-weight developer forks/branches that haven't synced tags. Hence the
-# more complex implementation of this using "git ls-remote".
-#
-# The output of "git ls-remote" looks something like this:
-#
-#    e531541025992b68177a68b87628c5dc75c4f7d9        refs/tags/v1.21.0
-#    cadfe53949266d33476b15ca52c92f682600a29c        refs/tags/v1.22.0
-#    ...
-#
-# .. which is why some additional processing is required to extract the
-# latest version number and strip off the "v" prefix.
-LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
-.PHONY: compatibility-check
-compatibility-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
-		$(SEMCONVGEN_CONTAINER) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
 
 .PHONY: schema-check
 schema-check:
@@ -233,11 +199,40 @@ chlog-update: $(CHLOGGEN)
 generate-gh-issue-templates:
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh
 
+# A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
+# relied on "git describe". However, that approach does not work with
+# light-weight developer forks/branches that haven't synced tags. Hence the
+# more complex implementation of this using "git ls-remote".
+#
+# The output of "git ls-remote" looks something like this:
+#
+#    e531541025992b68177a68b87628c5dc75c4f7d9        refs/tags/v1.21.0
+#    cadfe53949266d33476b15ca52c92f682600a29c        refs/tags/v1.22.0
+#    ...
+#
+# .. which is why some additional processing is required to extract the
+# latest version number and strip off the "v" prefix.
+LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
 .PHONY: check-policies
 check-policies:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/policies:/policies \
 		${WEAVER_CONTAINER} registry check \
 		--registry=/source \
-		--policy=/policies/registry.rego \
-		--policy=/policies/attribute_name_collisions.rego \
-		--policy=/policies/yaml_schema.rego
+		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
+		--policy=/policies
+
+# Test rego policies
+.PHONY: test-policies
+test-policies:
+	docker run --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
+	${OPA_CONTAINER} test \
+	--explain fails \
+	/policies \
+	/policies_test
+
+# TODO: This is now duplicative with weaver policy checks.  We can remove
+# once github action requirements are updated.
+.PHONY: compatibility-check
+compatibility-check:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
+		$(SEMCONVGEN_CONTAINER) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
