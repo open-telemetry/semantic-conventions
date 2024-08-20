@@ -83,7 +83,7 @@ groups:
       - id: db.operation.batch.size
         type: int
         stability: experimental
-        brief: The number of queries included in a [batch operation](/docs/database/database-spans.md#batch-operations).
+        brief: The number of queries included in a batch operation.
         note: >
           Operations are only considered batches when they contain two or more operations,
           and so `db.operation.batch.size` SHOULD never be `1`.

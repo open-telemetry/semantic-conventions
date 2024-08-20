@@ -19,11 +19,6 @@ CHLOGGEN_BINARY=bin/chloggen
 CHLOGGEN = $(TOOLS_DIR)/$(CHLOGGEN_BINARY)
 CHLOGGEN_CONFIG  := .chloggen/config.yaml
 
-# see https://github.com/open-telemetry/build-tools/releases for semconvgen updates
-# Keep links in model/README.md and .vscode/settings.json in sync!
-SEMCONVGEN_VERSION=0.25.0
-WEAVER_VERSION=0.7.0
-
 # From where to resolve the containers (e.g. "otel/weaver").
 CONTAINER_REPOSITORY=docker.io
 
@@ -32,8 +27,12 @@ WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 
 # Fully qualified references to containers used in this Makefile.
-WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/otel/weaver:$(WEAVER_VERSION)
-SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/otel/semconvgen:$(SEMCONVGEN_VERSION)
+# These are parsed from dependencies.Dockerfile so dependabot will autoupdate
+# the versions of docker files we use.
+WEAVER_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
+SEMCONVGEN_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
+OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -111,20 +110,6 @@ install-yamllint:
 yamllint:
 	yamllint .
 
-# Check semantic convention policies on YAML files
-.PHONY: check-policies
-check-policies:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/policies:/policies -v $(PWD)/templates:/templates \
-		otel/weaver:${WEAVER_VERSION} registry check \
-		--registry=/source \
-		--diagnostic-format=ansi \
-		--policy=/policies/registry.rego
-
-# Test rego policies
-.PHONY: test-policies
-test-policies:
-	docker run --rm -v $(PWD)/policies:/policies openpolicyagent/opa:0.67.1 test --explain fails /policies
-
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
@@ -158,26 +143,6 @@ table-check:
 		--target=markdown \
 		--dry-run \
 		/spec
-
-
-# A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
-# relied on "git describe". However, that approach does not work with
-# light-weight developer forks/branches that haven't synced tags. Hence the
-# more complex implementation of this using "git ls-remote".
-#
-# The output of "git ls-remote" looks something like this:
-#
-#    e531541025992b68177a68b87628c5dc75c4f7d9        refs/tags/v1.21.0
-#    cadfe53949266d33476b15ca52c92f682600a29c        refs/tags/v1.22.0
-#    ...
-#
-# .. which is why some additional processing is required to extract the
-# latest version number and strip off the "v" prefix.
-LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
-.PHONY: compatibility-check
-compatibility-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
-		$(SEMCONVGEN_CONTAINER) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
 
 .PHONY: schema-check
 schema-check:
@@ -234,11 +199,40 @@ chlog-update: $(CHLOGGEN)
 generate-gh-issue-templates:
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh
 
+# A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
+# relied on "git describe". However, that approach does not work with
+# light-weight developer forks/branches that haven't synced tags. Hence the
+# more complex implementation of this using "git ls-remote".
+#
+# The output of "git ls-remote" looks something like this:
+#
+#    e531541025992b68177a68b87628c5dc75c4f7d9        refs/tags/v1.21.0
+#    cadfe53949266d33476b15ca52c92f682600a29c        refs/tags/v1.22.0
+#    ...
+#
+# .. which is why some additional processing is required to extract the
+# latest version number and strip off the "v" prefix.
+LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
 .PHONY: check-policies
 check-policies:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/policies:/policies \
-		otel/weaver:${WEAVER_VERSION} registry check \
+		${WEAVER_CONTAINER} registry check \
 		--registry=/source \
-		--policy=/policies/registry.rego \
-		--policy=/policies/attribute_name_collisions.rego \
-		--policy=/policies/yaml_schema.rego
+		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
+		--policy=/policies
+
+# Test rego policies
+.PHONY: test-policies
+test-policies:
+	docker run --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
+	${OPA_CONTAINER} test \
+	--explain fails \
+	/policies \
+	/policies_test
+
+# TODO: This is now duplicative with weaver policy checks.  We can remove
+# once github action requirements are updated.
+.PHONY: compatibility-check
+compatibility-check:
+	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
+		$(SEMCONVGEN_CONTAINER) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
