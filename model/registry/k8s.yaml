@@ -218,7 +218,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the CSI driver used by the volume.
+          The name of the Container Storage Interface (CSI) driver used by the volume.
         note: >
           This maps 1:1 to [CSIPersistentVolumeSource.driver](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#csipersistentvolumesource-v1-core).
         examples:
