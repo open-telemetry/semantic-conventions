@@ -227,7 +227,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The unique volume name returned by the CSI volume plugin's CreateVolume.
+          The unique volume name returned by the Container Storage Interface (CSI) volume plugin's CreateVolume.
         note: >
           This maps 1:1 to [CSIPersistentVolumeSource.volumeHandle](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#csipersistentvolumesource-v1-core).
         examples:
