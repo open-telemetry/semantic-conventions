@@ -152,9 +152,9 @@ The event name MUST be `gen_ai.tool.message`.
 | `content`      | string | The contents of the tool message.             | `opentelemetry.io`              | `Opt-In`          |
 | `id`           | string | Tool call that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required`        |
 
-## Choice message
+## Choice event
 
-This event describes the model-generated chat response message (choice).
+This event describes model-generated individual chat response (choice).
 If GenAI model returns multiple choices, each choice SHOULD be recorded as an individual event.
 
 When response is streamed, instrumentations that report response events MUST reconstruct and report the full message and MUST NOT report individual chunks as events.
