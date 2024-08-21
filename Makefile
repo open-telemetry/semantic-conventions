@@ -230,7 +230,6 @@ check-policies:
 		-u $(id -u ${USER}):$(id -g ${USER}) \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
-		-v $(PWD)/policies:/policies \
 		${WEAVER_CONTAINER} registry check \
 		--registry=/home/weaver/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
