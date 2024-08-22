@@ -362,6 +362,8 @@ groups:
       - ref: db.collection.name
         brief: >
           Cosmos DB container name.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         requirement_level:
           conditionally_required: if available
       - ref: db.cosmosdb.request_content_length
