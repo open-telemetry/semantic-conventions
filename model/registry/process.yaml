@@ -97,7 +97,7 @@ groups:
           executables, this would be the full argv vector passed to `main`.
         examples:
           - ['cmd/otecol', '--config=config.yaml']
-      - id: args_count
+      - id: process.args_count
         type: int
         stability: experimental
         brief: >
