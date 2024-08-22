@@ -21,9 +21,9 @@ groups:
         brief: >
           The version string of the service API or implementation. The format is not defined by these conventions.
         note: |
-          When possible, service detector component MAY use
-          language/platform-specific capabilities to determine application
-          version and populate `service.version` automatically.
+          When possible, SDKs MAY use language/platform-specific capabilities to
+          determine application version and populate `service.version`
+          automatically.
 
           If `service.version` is provided explicitly it MUST take priority over
           the version determined automatically.

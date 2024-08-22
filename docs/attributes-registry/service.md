@@ -48,9 +48,9 @@ port.
 
 **[3]:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
 
-**[4]:** When possible, service detector component MAY use
-language/platform-specific capabilities to determine application
-version and populate `service.version` automatically.
+**[4]:** When possible, SDKs MAY use language/platform-specific capabilities to
+determine application version and populate `service.version`
+automatically.
 
 If `service.version` is provided explicitly it MUST take priority over
 the version determined automatically.
