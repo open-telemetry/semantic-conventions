@@ -135,7 +135,7 @@ attribute-registry-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry generate \
 		  --registry=/home/weaver/source \
-		  --templates=/home/weaver//templates \
+		  --templates=/home/weaver/templates \
 		  markdown \
 		  /home/weaver/target/attributes-registry/
 	npm run fix:format
