@@ -4,19 +4,23 @@ import future.keywords
 
 test_fails_on_invalid_attribute_name if {
     every name in invalid_names {
-        count(deny) == 1 with input as {"groups": create_attribute_group(name)}
+        count(deny) >= 1 with input as {"groups": create_attribute_group(name)}
     }
+}
+
+test_fails_on_attribute_name_without_namespace if {
+    count(deny) >= 1 with input as {"groups": create_attribute_group("foo")}
 }
 
 test_fails_on_invalid_metric_name if {
     every name in invalid_names {
-        count(deny) == 1 with input as {"groups": create_metric(name)}
+        count(deny) >= 1 with input as {"groups": create_metric(name)}
     }
 }
 
 test_fails_on_invalid_event_name if {
     every name in invalid_names {
-        count(deny) == 1 with input as {"groups": create_event(name)}
+        count(deny) >= 1 with input as {"groups": create_event(name)}
     }
 }
 
@@ -52,9 +56,9 @@ invalid_names := [
     "foo.bar.",
     "foo..bar",
     "foo._bar",
-    "foo__bar",
+    "foo.bar__baz",
     "foo_.bar",
-    "foo,bar",
+    "foo.bar,baz",
     "fü.bär",
 ]
 

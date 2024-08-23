@@ -11,10 +11,10 @@ test_registry_attribute_groups if {
 
 test_attribute_ids if {
 	# This requires a prefix for use with opa, but weaver will fill in.
-	count(before_resolution.deny) > 0 with input as {"groups": [{"id": "not_registry", "prefix": "", "attributes": [{"id": "foo"}]}]}
+	count(before_resolution.deny) > 0 with input as {"groups": [{"id": "not_registry", "prefix": "", "attributes": [{"id": "foo.bar"}]}]}
 	count(before_resolution.deny) == 0 with input as {"groups": [
-		{"id": "registry.test", "prefix": "", "attributes": [{"id": "foo"}]},
-		{"id": "not_registry", "prefix": "", "attributes": [{"ref": "foo"}]},
+		{"id": "registry.test", "prefix": "", "attributes": [{"id": "foo.bar"}]},
+		{"id": "not_registry", "prefix": "", "attributes": [{"ref": "foo.bar"}]},
 	]}
 }
 
