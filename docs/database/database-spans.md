@@ -70,7 +70,7 @@ Semantic conventions for individual database systems MAY specify different span 
 The <span id="target-placeholder">`{target}`</span> SHOULD describe the entity that the operation is performed against
 and SHOULD adhere to one of the following values, provided they are accessible:
 
-- `db.collection.name` SHOULD be used for data manipulation operations or operations on database collections.
+- `db.collection.name` SHOULD be used for data manipulation operations or operations on a database collection.
 - `db.namespace` SHOULD be used for operations on a specific database namespace.
 - `server.address:server.port` SHOULD be used for other operations not targeting any specific database(s) or collection(s)
 
