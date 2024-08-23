@@ -40,6 +40,7 @@ body:
         - area:device
         - area:disk
         - area:dns
+        - area:dotnet
         - area:error
         - area:event
         - area:exception
@@ -60,6 +61,7 @@ body:
         - area:log
         - area:messaging
         - area:network
+        - area:nodejs
         - area:oci
         - area:opentracing
         - area:os

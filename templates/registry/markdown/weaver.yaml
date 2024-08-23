@@ -11,8 +11,8 @@ acronyms:
   - AWS
   - CICD
   - CloudEvents
+  - CLR
   - CPU
-  - CosmosDB
   - DynamoDB
   - ECS
   - EKS
