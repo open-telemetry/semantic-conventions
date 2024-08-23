@@ -14,7 +14,7 @@ groups:
   - id: metric.dotnet.process.cpu.time
     type: metric
     metric_name: dotnet.process.cpu.time
-    brief: "CPU time used by the process as reported by the CLR."
+    brief: "CPU time used by the process."
     note: >
       Meter name: `System.Runtime`; Added in: .NET 9.0.
 
