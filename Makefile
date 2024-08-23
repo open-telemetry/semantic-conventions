@@ -240,6 +240,7 @@ check-policies:
 test-policies:
 	docker run --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
 	${OPA_CONTAINER} test \
+    --var-values \
 	--explain fails \
 	/policies \
 	/policies_test
