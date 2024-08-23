@@ -39,6 +39,7 @@ body:
         - area:device
         - area:disk
         - area:dns
+        - area:dotnet
         - area:error
         - area:event
         - area:exception
