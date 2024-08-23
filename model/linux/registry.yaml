@@ -16,3 +16,15 @@ groups:
         stability: experimental
         brief: "The Linux Slab memory state"
         examples: ["reclaimable", "unreclaimable"]
+  # linux.process.* attribute group
+  - id: registry.linux.process
+    type: attribute_group
+    brief: "Describes Linux Process attributes"
+    attributes:
+      - id: linux.process.cgroup
+        type: string
+        stability: experimental
+        brief: The control group associated with the process.
+        examples: ["1:name=systemd:/user.slice/user-1000.slice/session-3.scope", "0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope"]
+        note: >
+          Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the cgroup(s) path that the process belongs to.
