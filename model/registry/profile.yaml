@@ -15,7 +15,7 @@ groups:
           members:
             - id: dotnet
               brief: >
-                [.Net](https://wikipedia.org/wiki/.NET)
+                [.NET](https://wikipedia.org/wiki/.NET)
               value: "dotnet"
               stability: experimental
             - id: jvm
