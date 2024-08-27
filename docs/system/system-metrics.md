@@ -935,7 +935,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.disk.limit` | UpDownCounter | `By` | The total memory of the disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.disk.limit` | UpDownCounter | `By` | The total storage capacity of the disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->

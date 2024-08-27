@@ -213,7 +213,7 @@ groups:
     type: metric
     metric_name: system.disk.limit
     stability: experimental
-    brief: "The total memory of the disk"
+    brief: "The total storage capacity of the disk"
     instrument: updowncounter
     unit: "By"
     attributes:
