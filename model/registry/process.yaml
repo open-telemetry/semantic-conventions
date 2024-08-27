@@ -41,13 +41,13 @@ groups:
           The PID of the process's group leader. This is also the process group
           ID (PGID) of the process.
         examples: [23]
-      - id: process.executable.gnu.build_id
+      - id: process.executable.build_id.gnu
         stability: experimental
         type: string
         brief: >
           The GNU build ID as can be found in the `.note.gnu.build-id` ELF section.
         examples: ['c89b11207f6479603b0d49bf291c092c2b719293']
-      - id: process.executable.go.build_id
+      - id: process.executable.build_id.go
         stability: experimental
         type: string
         brief: >
