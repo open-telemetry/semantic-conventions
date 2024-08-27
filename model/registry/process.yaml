@@ -51,7 +51,7 @@ groups:
         stability: experimental
         type: string
         brief: >
-          The Go build ID.
+          The Go build ID as it can be retrieved by `go tool buildid <go executable>`.
         examples: ['foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY']
       - id: process.executable.name
         type: string
