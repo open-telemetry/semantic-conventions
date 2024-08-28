@@ -66,7 +66,8 @@ groups:
         stability: experimental
         type: string[]
         brief: List of sequences that the model will use to stop generating further tokens.
-        examples: ['forest', 'lived']
+        examples:
+          - [forest, lived]
       - id: gen_ai.request.frequency_penalty
         stability: experimental
         type: double
@@ -91,7 +92,9 @@ groups:
         stability: experimental
         type: string[]
         brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
-        examples: ['stop']
+        examples:
+          - [stop]
+          - [stop, length]
       - id: gen_ai.usage.input_tokens
         stability: experimental
         type: int

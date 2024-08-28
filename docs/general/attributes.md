@@ -25,7 +25,7 @@ Particular operations may refer to or require some of these attributes.
     - [Destination](#destination)
   - [Other network attributes](#other-network-attributes)
     - [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
-      - [Client/server examples using `network.peer.*`](#clientserver-examples-using--networkpeer)
+      - [Client/server examples using `network.peer.*`](#clientserver-examples-using-networkpeer)
         - [Simple client/server example](#simple-clientserver-example)
         - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
         - [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
@@ -288,7 +288,7 @@ of `sockaddr_in` structure.
 ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getsockname.2.html) /
 [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname)).
 
-##### Client/server examples using  `network.peer.*`
+##### Client/server examples using `network.peer.*`
 
 Note that `network.local.*` attributes are not included in these examples since they are typically Opt-In.
 

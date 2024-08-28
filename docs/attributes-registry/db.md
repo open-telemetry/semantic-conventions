@@ -23,7 +23,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | `db.client.connection.state`     | string | The state of a connection in the pool                                                                                                                                                                                                                                                                                                                                                                                                                                                       | `idle`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.collection.name`             | string | The name of a collection (table, container) within the database. [1]                                                                                                                                                                                                                                                                                                                                                                                                                        | `public.users`; `customers`                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.namespace`                   | string | The name of the database, fully qualified within the server address and port. [2]                                                                                                                                                                                                                                                                                                                                                                                                           | `customers`; `test.users`                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.operation.batch.size`        | int    | The number of queries included in a [batch operation](/docs/database/database-spans.md#batch-operations). [3]                                                                                                                                                                                                                                                                                                                                                                               | `2`; `3`; `4`                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.operation.batch.size`        | int    | The number of queries included in a batch operation. [3]                                                                                                                                                                                                                                                                                                                                                                                                                                    | `2`; `3`; `4`                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.operation.name`              | string | The name of the operation or command being executed. [4]                                                                                                                                                                                                                                                                                                                                                                                                                                    | `findAndModify`; `HMSET`; `SELECT`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.parameter.<key>`       | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5]                                                                                                                                                                                                                                                                                                                         | `someval`; `55`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.query.text`                  | string | The database query being executed. [6]                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -155,7 +155,7 @@ This group defines attributes for Azure Cosmos DB.
 | ------------------------------------ | ------ | --------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
 | `db.cosmosdb.client_id`              | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.connection_mode`        | string | Cosmos client connection mode.    | `gateway`; `direct`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.operation_type`         | string | CosmosDB Operation Type.          | `Invalid`; `Create`; `Patch`           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.operation_type`         | string | Cosmos DB Operation Type.         | `batch`; `create`; `delete`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.request_charge`         | double | RU consumed for that operation    | `46.18`; `1.0`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.request_content_length` | int    | Request payload size in bytes     |                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.status_code`            | int    | Cosmos DB status code.            | `200`; `201`                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -170,23 +170,23 @@ This group defines attributes for Azure Cosmos DB.
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value               | Description        | Stability                                                        |
-| ------------------- | ------------------ | ---------------------------------------------------------------- |
-| `Batch`             | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Create`            | create             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Delete`            | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Execute`           | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Head`              | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HeadFeed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Invalid`           | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Patch`             | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query`             | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QueryPlan`         | query_plan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read`              | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Replace`           | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert`            | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value                | Description        | Stability                                                        |
+| -------------------- | ------------------ | ---------------------------------------------------------------- |
+| `batch`              | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create`             | create             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delete`             | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute`            | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_javascript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `head`               | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `head_feed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `invalid`            | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `patch`              | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query`              | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query_plan`         | query_plan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read`               | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read_feed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `replace`            | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `upsert`             | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Elasticsearch Attributes
 
