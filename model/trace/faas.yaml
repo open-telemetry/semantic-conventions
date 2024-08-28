@@ -2,9 +2,9 @@ groups:
   - id: faas_span
     type: span
     brief: >
-        This semantic convention describes an instance of a function that
-        runs without provisioning or managing of servers (also known as
-        serverless functions or Function as a Service (FaaS)) with spans.
+      This semantic convention describes an instance of a function that
+      runs without provisioning or managing of servers (also known as
+      serverless functions or Function as a Service (FaaS)) with spans.
     attributes:
       - ref: faas.trigger
         note: |
@@ -32,18 +32,6 @@ groups:
         requirement_level: required
       - ref: faas.document.time
       - ref: faas.document.name
-
-  - id: faas_span.http
-    type: span
-    brief: >
-      Semantic Convention for FaaS triggered as a response to some data
-      source operation such as a database or filesystem read/write.
-
-  - id: faas_span.pubsub
-    type: span
-    brief: >
-      Semantic Convention for FaaS set to be executed when messages are
-      sent to a messaging system.
 
   - id: faas_span.timer
     type: span

@@ -86,13 +86,6 @@ jobs:
         make attribute-registry-generation
         git diff --exit-code './docs/attributes-registry/*.md' || (echo 'Attribute registry markdown is out of date, please run "make attribute-registry-generation" and commit the changes in this PR.' && exit 1)
 
-  semantic-conventions-compatibility:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: verify semantic convention compatibility with latest released version
-      run: make compatibility-check
-
   schemas-check:
     runs-on: ubuntu-latest
     steps:
@@ -115,3 +108,18 @@ jobs:
     - uses: actions/checkout@v1
     - name: verify semantic conventions yaml definitions
       run: make check-policies
+
+  polices-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify semantic conventions yaml definitions
+      run: make test-policies
+
+  # TODO: Remove this once policies-check is the only enforcement on github.
+  semantic-conventions-compatibility:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify semantic convention compatibility with latest released version
+      run: make compatibility-check
