@@ -9,7 +9,7 @@ groups:
         stability: experimental
         brief: >
           Describes the interpreter or compiler of a single frame.
-        examples: ['python']
+        examples: ['cpython']
         type:
           allow_custom_values: true
           members:
@@ -46,10 +46,10 @@ groups:
                 [PHP](https://wikipedia.org/wiki/PHP)
               value: "php"
               stability: experimental
-            - id: python
+            - id: cpython
               brief: >
                 [Python](https://wikipedia.org/wiki/Python_(programming_language))
-              value: "python"
+              value: "cpython"
               stability: experimental
             - id: ruby
               brief: >
