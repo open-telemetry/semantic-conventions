@@ -37,14 +37,13 @@ groups:
   - id: attributes.jvm.buffer
     type: attribute_group
     brief: "Describes JVM buffer metric attributes."
-    prefix: jvm.buffer
     attributes:
       - ref: jvm.buffer.pool.name
         requirement_level: recommended
 
-  - id: metric.jvm.buffer.memory.usage
+  - id: metric.jvm.buffer.memory.used
     type: metric
-    metric_name: jvm.buffer.memory.usage
+    metric_name: jvm.buffer.memory.used
     stability: experimental
     extends: attributes.jvm.buffer
     brief: "Measure of memory used by buffers."

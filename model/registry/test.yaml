@@ -1,18 +1,17 @@
 groups:
   - id: registry.test
-    prefix: test
     type: attribute_group
     brief: >
       This group describes attributes specific to
       [software tests](https://en.wikipedia.org/wiki/Software_testing).
     attributes:
-      - id: suite.name
+      - id: test.suite.name
         type: string
         stability: experimental
         brief: >
           The human readable name of a [test suite](https://en.wikipedia.org/wiki/Test_suite).
         examples: ["TestSuite1"]
-      - id: suite.run.status
+      - id: test.suite.run.status
         type:
           members:
             - id: success
@@ -51,7 +50,7 @@ groups:
             "timed_out",
             "in_progress",
           ]
-      - id: case.name
+      - id: test.case.name
         type: string
         stability: experimental
         brief: >
@@ -62,7 +61,7 @@ groups:
             "example/tests/TestCase1.test1",
             "ExampleTestCase1_test1",
           ]
-      - id: case.result.status
+      - id: test.case.result.status
         type:
           members:
             - id: pass

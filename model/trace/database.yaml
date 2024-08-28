@@ -335,7 +335,6 @@ groups:
   - id: db.cosmosdb
     type: span
     extends: trace.db.common.query_and_collection
-    prefix: db.cosmosdb
     brief: >
       Attributes for Cosmos DB.
     attributes:
@@ -359,10 +358,12 @@ groups:
         examples: ['cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|']
       - ref: db.cosmosdb.connection_mode
         requirement_level:
-          conditionally_required: if not `direct` (or pick gw as default)
+          conditionally_required: if not `gateway` (the default value is assumed to be `gateway`).
       - ref: db.collection.name
         brief: >
           Cosmos DB container name.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         requirement_level:
           conditionally_required: if available
       - ref: db.cosmosdb.request_content_length
@@ -380,3 +381,138 @@ groups:
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note
+      - ref: az.namespace
+        note: >
+          When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all
+          operations performed by Cosmos DB client.
+        examples: ["Microsoft.DocumentDB"]
+      - ref: db.operation.name
+        note: |
+          The `db.operation.name` has the following list of well-known values.
+          If one of them applies, then the respective value MUST be used.
+
+          Batch operations:
+
+          - `execute_batch`
+
+          Bulk operations:
+
+          - `execute_bulk` SHOULD be used on spans reported for methods like
+            [`executeBulkOperations`](https://javadoc.io/doc/com.azure/azure-cosmos/latest/com/azure/cosmos/CosmosAsyncContainer.html#executeBulkOperations)).
+            which represents a bulk execution of multiple operations.
+          - `bulk_{operation name}` (`bulk_create_item`, `bulk_upsert_item`, etc) SHOULD be used on spans describing individual operations (when they are reported)
+            within the bulk. This pattern SHOULD be used when instrumentation creates span per each operation, but operations are buffered and then performed in bulk.
+            For example, this applies when [`AllowBulkExecution`](https://learn.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.allowbulkexecution)
+            property is configured on the `Microsoft.Azure.Cosmos` client.
+
+          Change feed operations:
+
+          - `query_change_feed`
+
+          Conflicts operations:
+
+          - `delete_conflict`
+          - `query_conflicts`
+          - `read_all_conflicts`
+          - `read_conflict`
+
+          Container operations:
+
+          - `create_container`
+          - `create_container_if_not_exists`
+          - `delete_container`
+          - `query_containers`
+          - `read_all_containers`
+          - `read_container`
+          - `read_container_throughput`
+          - `replace_container`
+          - `replace_container_throughput`
+
+          Database operations:
+
+          - `create_database`
+          - `create_database_if_not_exists`
+          - `delete_database`
+          - `query_databases`
+          - `read_all_databases`
+          - `read_database`
+          - `read_database_throughput`
+          - `replace_database_throughput`
+
+          Encryption key operations:
+
+          - `create_client_encryption_key`
+          - `query_client_encryption_keys`
+          - `read_all_client_encryption_keys`
+          - `read_client_encryption_key`
+          - `replace_client_encryption_key`
+
+          Item operations:
+
+          - `create_item`
+          - `delete_all_items_by_partition_key`
+          - `delete_item`
+          - `patch_item`
+          - `query_items`
+          - `read_all_items`
+          - `read_all_items_of_logical_partition`
+          - `read_many_items`
+          - `read_item`
+          - `replace_item`
+          - `upsert_item`
+
+          Permission operations:
+
+          - `create_permission`
+          - `delete_permission`
+          - `query_permissions`
+          - `read_all_permissions`
+          - `read_permission`
+          - `replace_permission`
+          - `upsert_permission`
+
+          Stored procedure operations:
+
+          - `create_stored_procedure`
+          - `delete_stored_procedure`
+          - `execute_stored_procedure`
+          - `query_stored_procedures`
+          - `read_all_stored_procedures`
+          - `read_stored_procedure`
+          - `replace_stored_procedure`
+
+          Trigger operations:
+
+          - `create_trigger`
+          - `delete_trigger`
+          - `query_triggers`
+          - `read_all_triggers`
+          - `read_trigger`
+          - `replace_trigger`
+
+          User operations:
+
+          - `create_user`
+          - `delete_user`
+          - `query_users`
+          - `read_all_users`
+          - `read_user`
+          - `replace_user`
+          - `upsert_user`
+
+          User-defined function operations:
+
+          - `create_user_defined_function`
+          - `delete_user_defined_function`
+          - `query_user_defined_functions`
+          - `read_all_user_defined_functions`
+          - `read_user_defined_function`
+
+          If none of them applies, it's RECOMMENDED to use language-agnostic representation of
+          client method name in snake_case. Instrumentations SHOULD document
+          additional values when introducing new operations.
+
+        examples: ['create_item', 'query_items', 'read_item']
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (443).

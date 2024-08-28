@@ -16,6 +16,7 @@ body:
         - area:artifact
         - area:aspnetcore
         - area:aws
+        - area:azure
         - area:browser
         - area:cicd
         - area:client
@@ -30,6 +31,7 @@ body:
         - area:device
         - area:disk
         - area:dns
+        - area:dotnet
         - area:error
         - area:event
         - area:exception
@@ -40,14 +42,17 @@ body:
         - area:gen-ai
         - area:go
         - area:graphql
+        - area:hardware
         - area:heroku
         - area:host
         - area:http
         - area:jvm
         - area:k8s
+        - area:linux
         - area:log
         - area:messaging
         - area:network
+        - area:nodejs
         - area:oci
         - area:opentracing
         - area:os

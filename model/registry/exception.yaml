@@ -2,12 +2,11 @@ groups:
   - id: registry.exception
     type: attribute_group
     display_name: Exception Attributes
-    prefix: exception
     brief: >
       This document defines the shared attributes used to
       report a single exception associated with a span or log.
     attributes:
-      - id: type
+      - id: exception.type
         type: string
         stability: stable
         brief: >
@@ -15,22 +14,24 @@ groups:
           The dynamic type of the exception should be preferred over the static type
           in languages that support it.
         examples: ["java.net.ConnectException", "OSError"]
-      - id: message
+      - id: exception.message
         type: string
         stability: stable
         brief: The exception message.
-        examples: ["Division by zero", "Can't convert 'int' object to str implicitly"]
-      - id: stacktrace
+        examples:
+          ["Division by zero", "Can't convert 'int' object to str implicitly"]
+      - id: exception.stacktrace
         type: string
         stability: stable
         brief: >
           A stacktrace as a string in the natural representation for the language runtime.
           The representation is to be determined and documented by each language SIG.
-        examples: 'Exception in thread "main" java.lang.RuntimeException: Test exception\n
-        at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n
-        at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n
-        at com.example.GenerateTrace.main(GenerateTrace.java:5)'
-      - id: escaped
+        examples: >
+          Exception in thread "main" java.lang.RuntimeException: Test exception\n
+          at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n
+          at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n
+          at com.example.GenerateTrace.main(GenerateTrace.java:5)
+      - id: exception.escaped
         type: boolean
         stability: stable
         brief: >

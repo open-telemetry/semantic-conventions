@@ -231,7 +231,7 @@ groups:
     type: metric
     metric_name: db.client.connection.pending_requests
     stability: experimental
-    brief: "The number of pending requests for an open connection, cumulative for the entire pool"
+    brief: "The number of current pending requests for an open connection"
     instrument: updowncounter
     unit: "{request}"
     attributes:

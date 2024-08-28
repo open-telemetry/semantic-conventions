@@ -5,7 +5,7 @@
 #####################################################
 #
 # Learn about membership in OpenTelemetry community:
-#  https://github.com/open-telemetry/community/blob/main/community-membership.md
+#  https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md
 #
 #
 # Learn about CODEOWNERS file format:
@@ -65,10 +65,13 @@
 /model/registry/oci.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 
 # .NET semantic conventions approvers
-/model/metrics/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
-/model/registry/aspnetcore.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
-/model/registry/signalr.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
-/docs/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver  @open-telemetry/semconv-http-approvers
+/model/metrics/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
+/model/registry/aspnetcore.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
+/model/registry/signalr.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
+/docs/dotnet/ @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
+/model/metrics/dotnet-metrics.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
+/model/registry/dotnet.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
+/docs/runtime/dotnet-metrics.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 
 # Gen-AI semantic conventions approvers
 /model/registry/gen-ai.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
