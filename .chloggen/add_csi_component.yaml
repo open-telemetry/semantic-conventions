@@ -1,0 +1,7 @@
+change_type: new_component
+component: csi
+note: >
+  Add CSI attribute group to registry with `csi.plugin.name` and `csi.volume.id` attributes.
+  Add `csi.plugin.name` and `csi.volume.id` attributes to k8s attributes.
+issues: [1119]
+subtext:

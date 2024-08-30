@@ -1,0 +1,27 @@
+groups:
+  - id: registry.csi
+    type: attribute_group
+    display_name: Container Storage Interface (CSI) Attributes
+    brief: >
+      Attributes related to the Container Storage Interface (CSI).
+    attributes:
+      - id: csi.plugin.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the CSI plugin used by the volume.
+        note: >
+          This can sometimes be referred to as a "driver" in CSI implementations.
+          This should represent the `name` field of the GetPluginInfo RPC.
+        examples:
+          - "pd.csi.storage.gke.io"
+      - id: csi.volume.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique volume ID returned by the CSI plugin.
+        note: >
+          This can sometimes be referred to as a "volume handle" in CSI implementations.
+          This should represent the `Volume.volume_id` field in CSI spec.
+        examples:
+          - "projects/my-gcp-project/zones/my-gcp-zone/disks/my-gcp-disk"

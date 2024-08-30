@@ -214,21 +214,7 @@ groups:
               value: 'local'
               brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
               stability: experimental
-      - id: csi.driver
-        type: string
-        stability: experimental
-        brief: >
-          The name of the Container Storage Interface (CSI) driver used by the volume.
-        note: >
-          This maps 1:1 to [CSIPersistentVolumeSource.driver](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#csipersistentvolumesource-v1-core).
-        examples:
-          - "pd.csi.storage.gke.io"
-      - id: csi.volume.handle
-        type: string
-        stability: experimental
-        brief: >
-          The unique volume name returned by the Container Storage Interface (CSI) volume plugin's CreateVolume.
-        note: >
-          This maps 1:1 to [CSIPersistentVolumeSource.volumeHandle](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#csipersistentvolumesource-v1-core).
-        examples:
-          - "projects/my-gcp-project/zones/my-gcp-zone/disks/my-gcp-disk"
+      - ref: csi.plugin.name
+        requirement_level: recommended
+      - ref: csi.volume.id
+        requirement_level: recommended
