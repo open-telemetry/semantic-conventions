@@ -11,6 +11,20 @@ deny[yaml_schema_violation(description, group.id, name)] {
     description := sprintf("Attribute name '%s' is invalid. Attribute name %s", [name, invalid_name_helper])
 }
 
+# checks attribute name has a namespace
+deny[yaml_schema_violation(description, group.id, name)] {
+    group := input.groups[_]
+    attr := group.attributes[_]
+    name := attr.id
+
+    # some deprecated attributes have no namespace and need to be ignored
+    not attr.deprecated
+    not regex.match(has_namespace_regex, name)
+
+    description := sprintf("Attribute name '%s' should have a namespace. Attribute name %s", [name, invalid_name_helper])
+}
+
+
 # checks metric name format
 deny[yaml_schema_violation(description, group.id, name)] {
     group := input.groups[_]
@@ -70,5 +84,7 @@ yaml_schema_violation(description, group, attr) = violation {
 # not valid: '1foo.bar', 'foo.bar.', 'foo.bar_', 'foo..bar', 'foo._bar' ...
 # valid: 'foo.bar', 'foo.1bar', 'foo.1_bar'
 name_regex := "^[a-z][a-z0-9]*([._][a-z0-9]+)*$"
+
+has_namespace_regex := "^[a-z0-9_]+\\.([a-z0-9._]+)+$"
 
 invalid_name_helper := "must consist of lowercase alphanumeric characters separated by '_' and '.'"
