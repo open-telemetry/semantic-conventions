@@ -15,6 +15,7 @@ requirements and recommendations.
 - [How to Contribute](#how-to-contribute)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
+    - [Code structure](#code-structure)
     - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)

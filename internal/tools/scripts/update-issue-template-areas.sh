@@ -24,16 +24,20 @@ REPO_DIR="$( cd "$CUR_DIRECTORY/../../../" && pwd )"
 GITHUB_DIR="$( cd "$REPO_DIR/.github/" && pwd )"
 TEMPLATES_DIR="$( cd "$GITHUB_DIR/ISSUE_TEMPLATE" && pwd )"
 
-AREAS=$(sh "${GITHUB_DIR}/workflows/scripts/get-registry-areas.sh")
+AREAS=$1
 
 START_AREA_LIST="# Start semconv area list"
 END_AREA_LIST="# End semconv area list"
 
 replacement="        ${START_AREA_LIST}"
 
+while IFS= read -r line; do
+   replacement="${replacement}\n$line"
+done < ${AREAS}
+
 for AREA in ${AREAS}; do
     LABEL_NAME=$(basename "${AREA}" .yaml)
-   replacement="${replacement}\n        - area:${LABEL_NAME}"
+
 done
 
 echo -e "\nStarting to replace areas in ISSUE_TEMPLATES:"
