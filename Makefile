@@ -210,17 +210,18 @@ chlog-update: $(CHLOGGEN)
 # files that have the "area" dropdown field
 .PHONY: generate-gh-issue-templates
 generate-gh-issue-templates:
+	mkdir -p $(TOOLS_DIR)/bin
 	docker run --rm \
 	-u $(id -u ${USER}):$(id -g ${USER}) \
 	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
-	--mount 'type=bind,source=$(PWD)/internal/tools/bin,target=/home/weaver/target' \
+	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
 	$(WEAVER_CONTAINER) registry generate \
 		--registry=/home/weaver/source \
 		--templates=/home/weaver/templates \
 		--config=/home/weaver/templates/registry/areas-weaver.yaml \
 		. \
-		/home/weaver/target/
+		/home/weaver/target
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh $(PWD)/internal/tools/bin/areas.txt
 
 # Updates github labels for areas based on the root namespaces in the resolved registry
