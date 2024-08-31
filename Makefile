@@ -223,6 +223,22 @@ generate-gh-issue-templates:
 		/home/weaver/target/
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh $(PWD)/internal/tools/bin/areas.txt
 
+# Updates github labels for areas based on the root namespaces in the resolved registry
+.PHONY: generate-registry-area-labels
+update-registry-area-labels:
+	docker run --rm \
+	-u $(id -u ${USER}):$(id -g ${USER}) \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+	--mount 'type=bind,source=$(PWD)/internal/tools/bin,target=/home/weaver/target' \
+	$(WEAVER_CONTAINER) registry generate \
+		--registry=/home/weaver/source \
+		--templates=/home/weaver/templates \
+		--config=/home/weaver/templates/registry/areas-weaver.yaml \
+		. \
+		/home/weaver/target/
+	$(TOOLS_DIR)/scripts/generate-registry-area-labels.sh $(PWD)/internal/tools/bin/areas.txt
+
 # A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
 # relied on "git describe". However, that approach does not work with
 # light-weight developer forks/branches that haven't synced tags. Hence the

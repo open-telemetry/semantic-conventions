@@ -32,13 +32,8 @@ END_AREA_LIST="# End semconv area list"
 replacement="        ${START_AREA_LIST}"
 
 while IFS= read -r line; do
-   replacement="${replacement}\n$line"
+  replacement="${replacement}\n        - $line"
 done < ${AREAS}
-
-for AREA in ${AREAS}; do
-    LABEL_NAME=$(basename "${AREA}" .yaml)
-
-done
 
 echo -e "\nStarting to replace areas in ISSUE_TEMPLATES:"
 echo -e "---------------------------------------------\n"
