@@ -17,4 +17,3 @@ jobs:
       - name: Generate registry area labels
         run: |
           make generate-registry-area-labels
-
