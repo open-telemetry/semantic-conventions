@@ -209,6 +209,16 @@ groups:
       - ref: system.device
       - ref: disk.io.direction
 
+  - id: metric.system.disk.limit
+    type: metric
+    metric_name: system.disk.limit
+    stability: experimental
+    brief: "The total storage capacity of the disk"
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.device
+
   # system.filesystem.* metrics
   - id: metric.system.filesystem.usage
     type: metric
