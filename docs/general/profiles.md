@@ -29,19 +29,19 @@ They may be used in any Profiles record they apply to.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`profile.frame.type`](/docs/attributes-registry/profile.md) | string | Describes the interpreter or compiler of a single frame. | `python` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`profile.frame.type`](/docs/attributes-registry/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `profile.frame.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `cpython` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `dotnet` | [.NET](https://wikipedia.org/wiki/.NET) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `jvm` | [JVM](https://wikipedia.org/wiki/Java_virtual_machine) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `kernel` | [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `native` | [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)), [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `perl` | [Perl](https://wikipedia.org/wiki/Perl) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `php` | [PHP](https://wikipedia.org/wiki/PHP) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `python` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ruby` | [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `v8js` | [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
