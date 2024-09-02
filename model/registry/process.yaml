@@ -159,7 +159,7 @@ groups:
           An additional description about the runtime of the process, for example
           a specific vendor customization of the runtime environment.
         examples: 'Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0'
-      - id: title
+      - id: process.title
         type: string
         stability: experimental
         brief: >
@@ -192,7 +192,7 @@ groups:
         stability: experimental
         brief: >
           Whether the process is connected to an interactive shell.
-      - id: working_directory
+      - id: process.working_directory
         type: string
         stability: experimental
         brief: >
