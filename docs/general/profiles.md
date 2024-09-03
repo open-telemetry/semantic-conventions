@@ -29,7 +29,7 @@ They may be used in any Profiles record they apply to.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`profile.frame.type`](/docs/attributes-registry/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`profile.frame.type`](/docs/attributes-registry/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `profile.frame.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

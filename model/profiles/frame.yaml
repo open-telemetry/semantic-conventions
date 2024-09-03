@@ -5,4 +5,4 @@ groups:
       Describes the origin of a single frame in a Profile.
     attributes:
       - ref: profile.frame.type
-        requirement_level: opt_in
+        requirement_level: recommended
