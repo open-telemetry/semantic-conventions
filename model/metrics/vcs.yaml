@@ -127,7 +127,7 @@ groups:
   - id: metric.vcs.repository.ref.time
     type: metric
     metric_name: vcs.repository.ref.time
-    brief: 'Time a ref (branch) created from the default branch (trunk) has existed. The `ref.type`` attribute will always be `branch`'
+    brief: 'Time a ref (branch) created from the default branch (trunk) has existed. The `ref.type` attribute will always be `branch`'
     instrument: gauge
     unit: "s"
     stability: experimental
