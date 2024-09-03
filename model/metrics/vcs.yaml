@@ -12,3 +12,139 @@ groups:
         requirement_level: required
       - ref: vcs.repository.name
         requirement_level: required
+  - id: metric.vcs.repository.change.time_open
+    type: metric
+    metric_name: vcs.repository.change.time_open
+    brief: 'The amount of time a change (pull request) has been open'
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.ref.name
+        requirement_level: required
+  - id: metric.vcs.repository.change.time_to_approval
+    type: metric
+    metric_name: vcs.repository.change.time_to_approval
+    brief: 'The amount of time it took a change (pull request) to go from open to approved'
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.ref.name
+        requirement_level: required
+  - id: metric.vcs.repository.change.time_to_merge
+    type: metric
+    metric_name: vcs.repository.change.time_to_merge
+    brief: 'The amount of time it took a change (pull request) to go from open to merged'
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.ref.name
+        requirement_level: required
+  - id: metric.vcs.repository.count
+    type: metric
+    metric_name: vcs.repository.count
+    brief: 'The number of repositories in an organization'
+    instrument: gauge
+    unit: "{repository}"
+    stability: experimental
+    attributes: []
+  - id: metric.vcs.repository.ref.count
+    type: metric
+    metric_name: vcs.repository.ref.count
+    brief: 'The number of refs of type branch in a repository'
+    instrument: gauge
+    unit: "{ref}"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.ref.type
+        requirement_level: required
+  - id: metric.vcs.repository.ref.lines_added
+    type: metric
+    metric_name: vcs.repository.ref.lines_added
+    brief: 'The number of lines added in a ref (branch) relative to the default branch (trunk)'
+    instrument: gauge
+    unit: "{line}"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.ref.name
+        requirement_level: required
+      - ref: vcs.repository.ref.type
+        requirement_level: required
+  - id: metric.vcs.repository.ref.lines_deleted
+    type: metric
+    metric_name: vcs.repository.ref.lines_deleted
+    brief: 'The number of lines deleted in a ref (branch) relative to the default branch (trunk)'
+    instrument: gauge
+    unit: "{line}"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.ref.name
+        requirement_level: required
+      - ref: vcs.repository.ref.type
+        requirement_level: required
+  - id: metric.vcs.repository.ref.revisions_ahead
+    type: metric
+    metric_name: vcs.repository.ref.revisions_ahead
+    brief: 'The number of revisions (commits) a ref (branch) is ahead of the default branch (trunk)'
+    instrument: gauge
+    unit: "{revision}"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.ref.name
+        requirement_level: required
+      - ref: vcs.repository.ref.type
+        requirement_level: required
+  - id: metric.vcs.repository.ref.revisions_behind
+    type: metric
+    metric_name: vcs.repository.ref.revisions_behind
+    brief: 'The number of revisions (commits) a ref (branch) is behind the default branch (trunk)'
+    instrument: gauge
+    unit: "{revision}"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.ref.name
+        requirement_level: required
+      - ref: vcs.repository.ref.type
+        requirement_level: required
+  - id: metric.vcs.repository.ref.time
+    type: metric
+    metric_name: vcs.repository.ref.time
+    brief: 'Time a ref (branch) created from the default branch (trunk) has existed. The `ref.type`` attribute will always be `branch`'
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.ref.name
+        requirement_level: required
+      - ref: vcs.repository.ref.type
+        requirement_level: required
+  - id: metric.vcs.repository.contributor.count
+    type: metric
+    metric_name: vcs.repository.contributor.count
+    brief: 'The number of unique contributors to a repository'
+    instrument: gauge
+    unit: "{contributor}"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.name
+        requirement_level: required
