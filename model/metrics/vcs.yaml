@@ -4,7 +4,7 @@ groups:
     metric_name: vcs.repository.change.count
     brief: 'The number of changes (pull requests) in a repository, categorized by their state (either open or merged)'
     instrument: gauge
-    unit: "{count}"
+    unit: "{change}"
     stability: experimental
     #extends: metric_attributes.vcs
     attributes:

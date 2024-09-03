@@ -37,7 +37,7 @@ but more may be added in the future.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.repository.change.count` | Gauge | `{count}` | The number of changes (pull requests) in a repository, categorized by their state (either open or merged) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.repository.change.count` | Gauge | `{change}` | The number of changes (pull requests) in a repository, categorized by their state (either open or merged) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
