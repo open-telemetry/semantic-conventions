@@ -1,7 +1,7 @@
 groups:
-  - id: metric.vsc.repository.change.count
+  - id: metric.vcs.repository.change.count
     type: metric
-    metric_name: vsc.repository.change.count
+    metric_name: vcs.repository.change.count
     brief: 'The number of changes (pull requests) in a repository, categorized by their state (either open or merged)'
     instrument: gauge
     unit: "{count}"
