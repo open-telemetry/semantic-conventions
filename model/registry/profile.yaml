@@ -1,0 +1,63 @@
+groups:
+
+  - id: registry.profile.frame
+    type: attribute_group
+    brief: >
+      Describes the origin of a single frame in a Profile.
+    attributes:
+      - id: profile.frame.type
+        stability: experimental
+        brief: >
+          Describes the interpreter or compiler of a single frame.
+        examples: ['cpython']
+        type:
+          allow_custom_values: true
+          members:
+            - id: dotnet
+              brief: >
+                [.NET](https://wikipedia.org/wiki/.NET)
+              value: "dotnet"
+              stability: experimental
+            - id: jvm
+              brief: >
+                [JVM](https://wikipedia.org/wiki/Java_virtual_machine)
+              value: "jvm"
+              stability: experimental
+            - id: kernel
+              brief: >
+                [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system))
+              value: "kernel"
+              stability: experimental
+            - id: native
+              brief: >
+                [C](https://wikipedia.org/wiki/C_(programming_language)),
+                [C++](https://wikipedia.org/wiki/C%2B%2B),
+                [Go](https://wikipedia.org/wiki/Go_(programming_language)),
+                [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
+              value: "native"
+              stability: experimental
+            - id: perl
+              brief: >
+                [Perl](https://wikipedia.org/wiki/Perl)
+              value: "perl"
+              stability: experimental
+            - id: php
+              brief: >
+                [PHP](https://wikipedia.org/wiki/PHP)
+              value: "php"
+              stability: experimental
+            - id: cpython
+              brief: >
+                [Python](https://wikipedia.org/wiki/Python_(programming_language))
+              value: "cpython"
+              stability: experimental
+            - id: ruby
+              brief: >
+                [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language))
+              value: "ruby"
+              stability: experimental
+            - id: v8js
+              brief: >
+                [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
+              value: "v8js"
+              stability: experimental
