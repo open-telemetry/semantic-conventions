@@ -225,6 +225,9 @@ groups:
     metric_name: system.filesystem.usage
     stability: experimental
     brief: ""
+    note: |
+      The sum over all `system.filesystem.state` values SHOULD equal the total storage
+      capacity of the filesystem, that is `system.filesystem.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -244,6 +247,19 @@ groups:
     attributes:
       - ref: system.device
       - ref: system.filesystem.state
+      - ref: system.filesystem.type
+      - ref: system.filesystem.mode
+      - ref: system.filesystem.mountpoint
+
+  - id: metric.system.filesystem.limit
+    type: metric
+    metric_name: system.filesystem.limit
+    stability: experimental
+    brief: "The total storage capacity of the filesystem"
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.device
       - ref: system.filesystem.type
       - ref: system.filesystem.mode
       - ref: system.filesystem.mountpoint
