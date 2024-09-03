@@ -10,9 +10,8 @@ linkTitle: CICD metrics
 
 <!-- toc -->
 
-- [Semantic Conventions for CICD Metrics](#semantic-conventions-for-cicd-metrics)
-  - [CICD Metrics](#cicd-metrics)
-    - [Metric: `vcs.repository.change.count`](#metric-vcsrepositorychangecount)
+- [CICD Metrics](#cicd-metrics)
+  - [Metric: `vcs.repository.change.count`](#metric-vcsrepositorychangecount)
 
 <!-- tocstop -->
 
