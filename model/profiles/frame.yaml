@@ -1,0 +1,8 @@
+groups:
+  - id: profile.frame
+    type: attribute_group
+    brief: >
+      Describes the origin of a single frame in a Profile.
+    attributes:
+      - ref: profile.frame.type
+        requirement_level: recommended
