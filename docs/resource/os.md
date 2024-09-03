@@ -15,46 +15,41 @@ In case of virtualized environments, this is the operating system as it is obser
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute                                           | Type   | Description                                                                                                                  | Examples                                                           | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability                                                        |
-| --------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| [`os.type`](/docs/attributes-registry/os.md)        | string | The operating system type.                                                                                                   | `windows`; `linux`; `darwin`                                       | `Required`                                                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.build_id`](/docs/attributes-registry/os.md)    | string | Unique identifier for a particular build or compilation of the operating system.                                             | `TQ3C.230805.001.B2`; `20E247`; `22621`                            | `Recommended`                                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.description`](/docs/attributes-registry/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended`                                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.name`](/docs/attributes-registry/os.md)        | string | Human readable operating system name.                                                                                        | `iOS`; `Android`; `Ubuntu`                                         | `Recommended`                                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.version`](/docs/attributes-registry/os.md)     | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).  | `14.2.1`; `18.04.1`                                                | `Recommended`                                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`os.build_id`](/docs/attributes-registry/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`os.description`](/docs/attributes-registry/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`os.name`](/docs/attributes-registry/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`os.version`](/docs/attributes-registry/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Resource detector SHOULD fetch values from following sources:
+
+| OS      | Primary                                                                                              | Fallback                                                                            |
+| ------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | -                                                                                   |
+| MacOS   | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist`                        | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist`       |
+| Linux   | `BUILD_ID` from `/etc/os-release`                                                                    | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
+
+
 
 `os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value          | Description                          | Stability                                                        |
-| -------------- | ------------------------------------ | ---------------------------------------------------------------- |
-| `aix`          | AIX (Advanced Interactive eXecutive) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `darwin`       | Apple Darwin                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dragonflybsd` | DragonFly BSD                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `freebsd`      | FreeBSD                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hpux`         | HP-UX (Hewlett Packard Unix)         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `linux`        | Linux                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `netbsd`       | NetBSD                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openbsd`      | OpenBSD                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `solaris`      | SunOS, Oracle Solaris                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `windows`      | Microsoft Windows                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `z_os`         | IBM z/OS                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description | Stability |
+|---|---|---|
+| `aix` | AIX (Advanced Interactive eXecutive) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `darwin` | Apple Darwin | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dragonflybsd` | DragonFly BSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `freebsd` | FreeBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hpux` | HP-UX (Hewlett Packard Unix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `linux` | Linux | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `netbsd` | NetBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `openbsd` | OpenBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `solaris` | SunOS, Oracle Solaris | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `windows` | Microsoft Windows | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `z_os` | IBM z/OS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## OS Build ID Lookup
 
-To standardize the retrieval of OS build ID information across different operating systems, SDK detector implementations should use the sources listed below.
-
-| OS      | Primary                                                                                              | Fallback                                                                      |
-| ------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | -                                                                             |
-| MacOS   | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist`                        | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
-| Linux   | `BUILD_ID` from `/etc/os-release`                                                                    | `BUILD_ID` from `/usr/lib/os-release`                                         |
-|         |                                                                                                      | contents of `/proc/sys/kernel/osrelease`                                      |
-
-### Implementation Notes
-
-1. **Windows**: The build ID can be retrieved from the registry key `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion`, where the `CurrentBuildNumber` value holds the desired information.
-2. **MacOS**: On MacOS, the build ID is stored in the `ProductBuildVersion` field within the plist files located at `/System/Library/CoreServices/SystemVersion.plist` and `/System/Library/CoreServices/ServerVersion.plist`. The first file is typically used for regular MacOS installations, while the second might be used in server configurations.
-3. **Linux**: Linux distributions typically store the build ID in the `/etc/os-release` or `/usr/lib/os-release` files under the `BUILD_ID` field. If these files or the `BUILD_ID` field are not available, the `os.build_id` can be obtained from the `/proc/sys/kernel/osrelease` file as a fallback.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
