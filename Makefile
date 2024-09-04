@@ -33,6 +33,8 @@ WEAVER_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print
 SEMCONVGEN_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
 OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
 
+DOCKER_USER=$(shell id -u):$(shell id -g)
+
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -114,7 +116,7 @@ yamllint:
 .PHONY: table-generation
 table-generation:
 	docker run --rm \
-		-u $(id -u ${USER}):$(id -g ${USER}) \
+		-u $(DOCKER_USER) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
@@ -129,7 +131,7 @@ table-generation:
 .PHONY: attribute-registry-generation
 attribute-registry-generation:
 	docker run --rm \
-		-u $(id -u ${USER}):$(id -g ${USER}) \
+		-u $(DOCKER_USER) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
@@ -227,7 +229,7 @@ LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.c
 .PHONY: check-policies
 check-policies:
 	docker run --rm \
-		-u $(id -u ${USER}):$(id -g ${USER}) \
+		-u $(DOCKER_USER) \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
