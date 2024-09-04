@@ -229,7 +229,6 @@ LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.c
 .PHONY: check-policies
 check-policies:
 	docker run --rm \
-		-u $(DOCKER_USER) \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
