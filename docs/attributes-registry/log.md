@@ -42,7 +42,7 @@ This document defines the generic attributes that may be used in any Log Record.
 
 | Attribute             | Type   | Description                                 | Examples                                                                                                                         | Stability                                                        |
 | --------------------- | ------ | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `log.record.original` | string | The complete orignal Log Record. [1]        | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `log.record.original` | string | The complete original Log Record. [1]       | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `log.record.uid`      | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV`                                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)

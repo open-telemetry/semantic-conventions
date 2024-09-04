@@ -80,6 +80,7 @@ Currently, the following namespaces exist:
 - [OTel](otel.md)
 - [Peer](peer.md)
 - [Process](process.md)
+- [Profile](profile.md)
 - [RPC](rpc.md)
 - [Server](server.md)
 - [Service](service.md)
