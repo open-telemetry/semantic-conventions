@@ -214,7 +214,3 @@ groups:
               value: 'local'
               brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
               stability: experimental
-      - ref: csi.plugin.name
-        requirement_level: recommended
-      - ref: csi.volume.id
-        requirement_level: recommended
