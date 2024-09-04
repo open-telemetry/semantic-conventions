@@ -208,15 +208,13 @@ Span kind SHOULD be set according to the following table, based on the operation
 
 | Operation type | Span kind|
 |----------------|-------------|
-| `create`       | `PRODUCER` |
+| `create`       | `PRODUCER`  |
 | `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context, otherwise `CLIENT`. |
-| `receive`      | `CONSUMER` |
-| `process`      | `CONSUMER` for push-based scenarios where no "Receive" span exists, otherwise `SERVER`. |
+| `receive`      | `CLIENT`    |
+| `process`      | `CONSUMER`  |
 
-Setting span kinds according to this table ensures that there always exists a
-span link between a PRODUCER span on the producer side and a CONSUMER span on
-the consumer side. This allows analysis tools to interpret linked traces
-without the need for additional semantic hints.
+Setting span kinds according to this table allows analysis tools to interpret spans
+and relationships between them without the need for additional semantic hints.
 
 ### Trace structure
 
