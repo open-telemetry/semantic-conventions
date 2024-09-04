@@ -29,8 +29,8 @@ body:
         - area:browser
         - area:cicd
         - area:client
-        - area:cloudevents
         - area:cloud
+        - area:cloudevents
         - area:code
         - area:container
         - area:cpu
