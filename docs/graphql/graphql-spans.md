@@ -9,7 +9,7 @@ linkTitle: GraphQL Server
 This document defines semantic conventions to apply when instrumenting the GraphQL implementation. They map GraphQL
 operations to attributes on a Span.
 
-The **span name** MUST be of the format `<graphql.operation.type>` provided that
+The **span name** SHOULD be of the format `<graphql.operation.type>` provided that
 `graphql.operation.type` is available. If `graphql.operation.type` is not available, the
 span SHOULD be named `GraphQL Operation`.
 
