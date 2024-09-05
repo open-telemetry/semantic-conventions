@@ -7,6 +7,7 @@ groups:
     attributes:
       - id: android.state
         stability: experimental
+        deprecated: "Replaced by `device.app.lifecycle`."
         brief: >
           Deprecated use the `device.app.lifecycle` event definition including
           `android.state` as a payload field instead.

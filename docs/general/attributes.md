@@ -480,7 +480,7 @@ Examples of where `thread.id` and `thread.name` can be extracted from:
 
 | Language or platform  | `thread.id`                            | `thread.name`                                  |
 |-----------------------|----------------------------------------|------------------------------------------------|
-| JVM                   | `Thread.currentThread().getId()`       | `Thread.currentThread().getName()`             |
+| JVM                   | `Thread.currentThread().threadId()`    | `Thread.currentThread().getName()`             |
 | .NET                  | `Thread.CurrentThread.ManagedThreadId` | `Thread.CurrentThread.Name`                    |
 | Python                | `threading.current_thread().ident`     | `threading.current_thread().name`              |
 | Ruby                  | `Thread.current.object_id`             | `Thread.current.name`                          |
