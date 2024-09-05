@@ -14,7 +14,7 @@ groups:
       - ref: os.version
       - ref: os.build_id
         note: >
-          Resource detector SHOULD fetch values from following sources:
+          `build_id` values SHOULD be obtained from the following sources:
 
 
           | OS      | Primary                                                                                              | Fallback                                                                            |
