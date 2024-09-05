@@ -98,8 +98,9 @@ groups:
   - id: trace.gen_ai.az.ai_inference.client
     extends: trace.gen_ai.client.common_attributes
     stability: experimental
+    type: attribute_group
     brief: >
-      Describes an Azure AI Inference span attributes.
+      Describes Azure AI Inference span attributes.
     attributes:
       - ref: az.namespace
         note: >
