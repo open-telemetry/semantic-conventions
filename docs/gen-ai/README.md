@@ -20,4 +20,8 @@ Semantic conventions for Generative AI operations are defined for the following 
 * [Metrics](gen-ai-metrics.md): Semantic Conventions for Generative AI operations - *metrics*.
 * [Spans](gen-ai-spans.md): Semantic Conventions for Generative AI requests - *spans*.
 
+Technology specific semantic conventions are defined for the following GenAI system:
+
+* [Azure AI Inference](./azure-ai-inference.md): Semantic Conventions for Azure AI Inference.
+
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

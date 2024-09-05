@@ -95,7 +95,7 @@ groups:
       - ref: gen_ai.usage.output_tokens
         brief: The number of tokens used in the completions from OpenAI.
 
-  - id: trace.gen_ai.az.ai_inference.client
+  - id: trace.gen_ai.az.ai.inference.client
     extends: trace.gen_ai.client.common_attributes
     stability: experimental
     type: attribute_group
