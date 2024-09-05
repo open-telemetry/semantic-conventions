@@ -29,8 +29,8 @@ body:
         - area:browser
         - area:cicd
         - area:client
-        - area:cloud
         - area:cloudevents
+        - area:cloud
         - area:code
         - area:container
         - area:cpu
@@ -68,6 +68,7 @@ body:
         - area:otel
         - area:peer
         - area:process
+        - area:profile
         - area:rpc
         - area:server
         - area:service
