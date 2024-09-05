@@ -29,8 +29,7 @@ groups:
         type: string
         brief: >
           Deprecated, use `messaging.consumer.group.name` instead.
-        deprecated: >
-          Replaced by `messaging.consumer.group.name`.
+        deprecated: "Replaced by `messaging.consumer.group.name`."
         stability: experimental
         examples: 'my-group'
       - id: messaging.rocketmq.client_group
@@ -39,32 +38,28 @@ groups:
           Deprecated, use `messaging.consumer.group.name` instead.
         stability: experimental
         examples: 'myConsumerGroup'
-        deprecated: >
-          Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans.
+        deprecated: "Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans."
       - id: messaging.eventhubs.consumer.group
         type: string
         brief: >
           Deprecated, use `messaging.consumer.group.name` instead.
         stability: experimental
         examples: '$Default'
-        deprecated: >
-          Replaced by `messaging.consumer.group.name`.
+        deprecated: "Replaced by `messaging.consumer.group.name`."
       - id: messaging.servicebus.destination.subscription_name
         type: string
         brief: >
           Deprecated, use `messaging.servicebus.destination.subscription_name` instead.
         stability: experimental
         examples: 'subscription-a'
-        deprecated: >
-          Replaced by `messaging.servicebus.destination.subscription_name`.
+        deprecated: "Replaced by `messaging.servicebus.destination.subscription_name`."
       - id: messaging.kafka.message.offset
         type: int
         stability: experimental
         brief: >
           Deprecated, use `messaging.kafka.offset` instead.
         examples: 42
-        deprecated: >
-          Replaced by `messaging.kafka.offset`.
+        deprecated: "Replaced by `messaging.kafka.offset`."
       - id: messaging.destination_publish.anonymous
         type: boolean
         stability: experimental

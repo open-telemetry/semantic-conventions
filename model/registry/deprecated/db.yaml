@@ -9,8 +9,7 @@ groups:
         type: string
         brief: 'Deprecated, use `server.address`, `server.port` attributes instead.'
         stability: experimental
-        deprecated: >
-          "Replaced by `server.address` and `server.port`."
+        deprecated: "Replaced by `server.address` and `server.port`."
         examples: Server=(localdb)\v11.0;Integrated Security=true;
       - id: db.jdbc.driver_classname
         type: string
