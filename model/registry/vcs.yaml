@@ -101,6 +101,10 @@ groups:
               value: open
               brief: "[open](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)"
               stability: experimental
+            - id: closed
+              value: closed
+              brief: "closed"
+              stability: experimental
             - id: merged
               value: merged
               brief: "[merged](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
@@ -108,4 +112,4 @@ groups:
         stability: experimental
         brief: >
           The state of a change (pull request).
-        examples: ["open", "merged"]
+        examples: ["open", "closed", "merged"]

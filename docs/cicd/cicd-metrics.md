@@ -61,13 +61,14 @@ but more may be added in the future.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of a change (pull request). | `open`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of a change (pull request). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.change.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `closed` | closed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `merged` | [merged](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `open` | [open](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
