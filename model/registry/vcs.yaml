@@ -111,5 +111,5 @@ groups:
               stability: experimental
         stability: experimental
         brief: >
-          The state of a change (pull request).
+          The state of the change (pull request/merge request).
         examples: ["open", "closed", "merged"]
