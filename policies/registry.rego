@@ -38,7 +38,7 @@ deny[attr_registry_violation(description, group.id, attr.id)] {
 
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     # violation_id := "attributes_must_be_defined_in_attribute_registry"
-    description := sprintf("Attribute '%s' is defined in the group '%s' which is not part of the attribute registy. Attributes can be defined in the registry group only.", [attr_name, group.id])
+    description := sprintf("Attribute '%s' is defined in the group '%s' which is not part of the attribute registry. Attributes can be defined in the registry group only.", [attr_name, group.id])
 }
 
 # A registry `attribute_group` containing at least one `ref` attribute is
@@ -52,7 +52,7 @@ deny[attr_registry_violation(description, group.id, attr.ref)] {
 
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     # violation_id := "attributes_in_registry_cannot_reference_each_other"
-    description := sprintf("Registy group '%s' references attribute '%s'. Registry groups can only define new attributes.", [group.id, attr.ref])
+    description := sprintf("Registry group '%s' references attribute '%s'. Registry groups can only define new attributes.", [group.id, attr.ref])
 }
 
 get_attribute_name(attr, group) = name {
