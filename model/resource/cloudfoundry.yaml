@@ -1,6 +1,5 @@
 groups:
   - id: cloudfoundry
-    prefix: cloudfoundry
     type: resource
     brief: >
       A CloudFoundry application or system component.
@@ -10,7 +9,6 @@ groups:
           conditionally_required: if the the event is a log message
         tag: source.type
   - id: cloudfoundry.system
-    prefix: cloudfoundry.system
     type: resource
     brief: >
       The system component which is monitored.
@@ -18,7 +16,6 @@ groups:
       - ref: cloudfoundry.system.id
       - ref: cloudfoundry.system.instance.id
   - id: cloudfoundry.app
-    prefix: cloudfoundry.app
     type: resource
     brief: >
       The application which is monitored.
@@ -26,7 +23,6 @@ groups:
       - ref: cloudfoundry.app.id
       - ref: cloudfoundry.app.name
   - id: cloudfoundry.space
-    prefix: cloudfoundry.space
     type: resource
     brief: >
       The space of the application which is monitored.
@@ -34,7 +30,6 @@ groups:
       - ref: cloudfoundry.space.id
       - ref: cloudfoundry.space.name
   - id: cloudfoundry.org
-    prefix: cloudfoundry.org
     type: resource
     brief: >
       The organization of the application which is monitored.
@@ -42,7 +37,6 @@ groups:
       - ref: cloudfoundry.org.id
       - ref: cloudfoundry.org.name
   - id: cloudfoundry.process
-    prefix: cloudfoundry.process
     type: resource
     brief: >
       The process of the application which is monitored.
