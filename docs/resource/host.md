@@ -32,7 +32,9 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 
 **Non-privileged Machine ID Lookup**
 
-When collecting `host.id` for non-containerized systems non-privileged lookups of the machine id are preferred. SDK detector implementations MUST use the sources listed below to obtain the machine id.
+When collecting `host.id` for non-containerized systems non-privileged lookups
+of the machine id are preferred. SDK detector implementations MUST use the
+sources listed below to obtain the machine id.
 
 | OS | Primary | Fallback |
 |---------|---------|---------|
@@ -43,7 +45,14 @@ When collecting `host.id` for non-containerized systems non-privileged lookups o
 
 **Privileged Machine ID Lookup**
 
-The `host.id` can be looked up using privileged sources. For example, Linux systems can use the output of `dmidecode -t system`, `dmidecode -t baseboard`, `dmidecode -t chassis`, or read the corresponding data from the filesystem (e.g. `cat /sys/devices/virtual/dmi/id/product_id`, `cat /sys/devices/virtual/dmi/id/product_uuid`, etc), however, SDK resource detector implementations MUST not collect `host.id` from privileged sources. If privileged lookup of `host.id` is required, the value should be injected via the `OTEL_RESOURCE_ATTRIBUTES` environment variable.
+The `host.id` can be looked up using privileged sources. For example, Linux
+systems can use the output of `dmidecode -t system`, `dmidecode -t baseboard`,
+`dmidecode -t chassis`, or read the corresponding data from the filesystem
+(e.g. `cat /sys/devices/virtual/dmi/id/product_id`,
+`cat /sys/devices/virtual/dmi/id/product_uuid`, etc), however, SDK resource
+detector implementations MUST not collect `host.id` from privileged sources. If
+privileged lookup of `host.id` is required, the value should be injected via the
+`OTEL_RESOURCE_ATTRIBUTES` environment variable.
 
 **[2]:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
 
