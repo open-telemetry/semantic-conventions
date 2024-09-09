@@ -1,11 +1,10 @@
 groups:
   - id: registry.cloudfoundry
-    prefix: cloudfoundry
     type: attribute_group
     brief: >
       CloudFoundry resource attributes.
     attributes:
-      - id: system.id
+      - id: cloudfoundry.system.id
         type: string
         stability: experimental
         brief: >
@@ -22,7 +21,7 @@ groups:
           `spec.deployment/spec.name`.
         examples:
           - 'cf/gorouter'
-      - id: system.instance.id
+      - id: cloudfoundry.system.instance.id
         type: string
         stability: experimental
         brief: >
@@ -37,7 +36,7 @@ groups:
           should be used. The `system.instance.id` should be set to `spec.id`.
         examples:
           - '218fc5a9-a5f1-4b54-aa05-46717d0ab26d'
-      - id: app.name
+      - id: cloudfoundry.app.name
         type: string
         stability: experimental
         brief: >
@@ -47,7 +46,7 @@ groups:
           variable `VCAP_APPLICATION.application_name`. This is the same value
           as reported by `cf apps`.
         examples: ['my-app-name']
-      - id: app.id
+      - id: cloudfoundry.app.id
         type: string
         stability: experimental
         brief: >
@@ -57,7 +56,7 @@ groups:
           variable `VCAP_APPLICATION.application_id`. This is the same value as
           reported by `cf app <app-name> --guid`.
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
-      - id: app.instance.id
+      - id: cloudfoundry.app.instance.id
         type: string
         stability: experimental
         brief: >
@@ -73,7 +72,7 @@ groups:
         examples:
           - '0'
           - '1'
-      - id: space.name
+      - id: cloudfoundry.space.name
         type: string
         stability: experimental
         brief: >
@@ -83,7 +82,7 @@ groups:
           variable `VCAP_APPLICATION.space_name`. This is the same value as
           reported by `cf spaces`.
         examples: ['my-space-name']
-      - id: space.id
+      - id: cloudfoundry.space.id
         type: string
         stability: experimental
         brief: >
@@ -93,7 +92,7 @@ groups:
           variable `VCAP_APPLICATION.space_id`. This is the same value as
           reported by `cf space <space-name> --guid`.
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
-      - id: org.name
+      - id: cloudfoundry.org.name
         type: string
         stability: experimental
         brief: >
@@ -103,7 +102,7 @@ groups:
           variable `VCAP_APPLICATION.org_name`. This is the same value as
           reported by `cf orgs`.
         examples: ['my-org-name']
-      - id: org.id
+      - id: cloudfoundry.org.id
         type: string
         stability: experimental
         brief: >
@@ -113,7 +112,7 @@ groups:
           variable `VCAP_APPLICATION.org_id`. This is the same value as
           reported by `cf org <org-name> --guid`.
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
-      - id: source.type
+      - id: cloudfoundry.source.type
         type: string
         stability: experimental
         brief: >
@@ -135,7 +134,7 @@ groups:
           - 'APP/TASK/jobscheduler-task-70013817-ab92-4f75-82d4-de8ae4dd64b4'
           - 'RTR'
           - 'STG'
-      - id: process.id
+      - id: cloudfoundry.process.id
         type: string
         stability: experimental
         brief: >
@@ -146,7 +145,7 @@ groups:
           `VCAP_APPLICATION.app_id` for applications deployed to the runtime.
           For system components, this could be the actual PID.
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
-      - id: process.type
+      - id: cloudfoundry.process.type
         type: string
         stability: experimental
         brief: >
