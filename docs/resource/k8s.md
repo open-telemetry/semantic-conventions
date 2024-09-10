@@ -109,7 +109,7 @@ a namespace, but not across namespaces.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-**type:** `none`
+**type:** `k8s.namespace`
 
 **Description:** A Kubernetes Namespace.
 

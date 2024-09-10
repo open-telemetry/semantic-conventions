@@ -52,8 +52,8 @@ deny[yaml_schema_violation(description, group.id, name)] {
 deny[yaml_schema_violation(description, group.id, "")] {
     group := input.groups[_]
     group.type == "resource"
-    not group.name
-    description := sprintf("Resource id '%s' is invalid.  Resource must have name.", [group.id])
+    group.name == null
+    description := sprintf("Resource id '%s' is invalid. Resource must have name.", [group.id])
 }
 
 # checks resource name format

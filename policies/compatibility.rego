@@ -343,7 +343,7 @@ deny contains back_comp_violation(description, group_id, "") if {
 # Rule: Detect Removed Resources
 #
 # This rule checks for stable resources that existed in the baseline registry
-# but are no longer present in the current registry. Removing resoruces
+# but are no longer present in the current registry. Removing resources
 # is considered a backward compatibility violation.
 #
 # In other words, we do not allow the removal of a resource once added

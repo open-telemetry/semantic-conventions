@@ -19,6 +19,7 @@ groups:
 
   - id: k8s.namespace
     type: resource
+    name: k8s.namespace
     brief: >
       A Kubernetes Namespace.
     attributes:
