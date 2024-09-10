@@ -1,11 +1,5 @@
 # Function as a Service
 
-**Status**: [Experimental][DocumentStatus]
-
-**type:** `faas`
-
-**Description:** A "function as a service" aka "serverless function" instance.
-
 See also:
 
 - The [Trace semantic conventions for FaaS](/docs/faas/faas-spans.md)
@@ -19,6 +13,13 @@ See also:
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `faas`
+
+**Description:** A serverless instance.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

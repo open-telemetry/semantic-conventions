@@ -1,5 +1,6 @@
 groups:
   - id: telemetry.sdk
+    name: 'telemetry.sdk'
     type: resource
     stability: stable
     brief: >

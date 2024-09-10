@@ -1,11 +1,5 @@
 # Host
 
-**Status**: [Experimental][DocumentStatus]
-
-**type:** `host`
-
-**Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
-
 The `host.*` namespace SHOULD be exclusively used to capture resource attributes.
 To report host metrics, the `system.*` namespace SHOULD be used.
 
@@ -15,6 +9,13 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `host`
+
+**Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -88,6 +89,13 @@ privileged lookup of `host.id` is required, the value should be injected via the
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `host.cpu`
+
+**Description:** A host's CPU information
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

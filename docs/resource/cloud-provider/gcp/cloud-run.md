@@ -15,6 +15,13 @@ These conventions are recommended for resources running on Cloud Run.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `gcp.cloud_run`
+
+**Description:** Resource used by Google Cloud Run.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gcp.cloud_run.job.execution`](/docs/attributes-registry/gcp.md) | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

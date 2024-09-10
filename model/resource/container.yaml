@@ -1,6 +1,7 @@
 groups:
   - id: container
     type: resource
+    name: container
     brief: >
       A container instance.
     attributes:

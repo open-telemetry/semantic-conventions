@@ -13,6 +13,13 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `aws.ecs`
+
+**Description:** Resources used by AWS Elastic Container Service (ECS).
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aws.ecs.task.id`](/docs/attributes-registry/aws.md) | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`. | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | `Conditionally Required` If and only if `task.arn` is populated. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

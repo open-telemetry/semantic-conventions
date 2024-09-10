@@ -11,6 +11,13 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `gcp.gce`
+
+**Description:** Resources used by Google Compute Engine (GCE).
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gcp.gce.instance.hostname`](/docs/attributes-registry/gcp.md) | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

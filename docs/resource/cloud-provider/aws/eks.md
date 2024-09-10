@@ -13,6 +13,13 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `aws.eks`
+
+**Description:** Resources used by AWS Elastic Kubernetes Service (EKS).
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aws.eks.cluster.arn`](/docs/attributes-registry/aws.md) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
