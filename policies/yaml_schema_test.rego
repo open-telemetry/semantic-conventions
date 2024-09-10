@@ -31,7 +31,7 @@ test_fails_on_invalid_resource_name if {
 }
 
 test_fails_on_missing_resource_name if {
-    count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "type": "resource"}]}
+    count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "type": "resource", "name": null}]}
 }
 
 test_passes_on_valid_names if {
