@@ -33,6 +33,8 @@ WEAVER_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print
 SEMCONVGEN_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
 OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
 
+DOCKER_USER=$(shell id -u):$(shell id -g)
+
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -113,33 +115,44 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
+	docker run --rm \
+		-u $(DOCKER_USER) \
+		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
+		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
-		--registry=/source \
+		--registry=/home/weaver/source \
 		--attribute-registry-base-url=/docs/attributes-registry \
-		--templates=/weaver/templates \
+		--templates=/home/weaver/templates \
 		--target=markdown \
-		/spec
+		/home/weaver/target
 
 # Generate attribute registry markdown.
 .PHONY: attribute-registry-generation
 attribute-registry-generation:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
+	docker run --rm \
+		-u $(DOCKER_USER) \
+		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
+		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry generate \
-		  --registry=/source \
-		  --templates=/weaver/templates \
+		  --registry=/home/weaver/source \
+		  --templates=/home/weaver/templates \
 		  markdown \
-		  /spec/attributes-registry/
+		  /home/weaver/target/attributes-registry/
 	npm run fix:format
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
 table-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/templates:/weaver/templates \
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
+		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
-		--registry=/source \
+		--registry=/home/weaver/target \
 		--attribute-registry-base-url=/docs/attributes-registry \
-		--templates=/weaver/templates \
+		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
 		/spec
@@ -215,11 +228,13 @@ generate-gh-issue-templates:
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
 .PHONY: check-policies
 check-policies:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec -v $(PWD)/policies:/policies \
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
+		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
-		--registry=/source \
+		--registry=/home/weaver/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
-		--policy=/policies
+		--policy=/home/weaver/policies
 
 # Test rego policies
 .PHONY: test-policies
