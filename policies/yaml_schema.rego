@@ -48,6 +48,14 @@ deny[yaml_schema_violation(description, group.id, name)] {
     description := sprintf("Event name '%s' is invalid. Event name %s'", [name, invalid_name_helper])
 }
 
+# require resources have names
+deny[yaml_schema_violation(description, group.id, "")] {
+    group := input.groups[_]
+    group.type == "resource"
+    not group.name
+    description := sprintf("Resource id '%s' is invalid.  Resource must have name.", [group.id])
+}
+
 # checks resource name format
 deny[yaml_schema_violation(description, group.id, name)] {
     group := input.groups[_]

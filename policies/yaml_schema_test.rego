@@ -24,6 +24,16 @@ test_fails_on_invalid_event_name if {
     }
 }
 
+test_fails_on_invalid_resource_name if {
+    every name in invalid_names {
+        count(deny) >= 1 with input as {"groups": create_resource(name)}
+    }
+}
+
+test_fails_on_missing_resource_name if {
+    count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "type": "resource"}]}
+}
+
 test_passes_on_valid_names if {
     every name in valid_names {
         count(deny) == 0 with input as {"groups": create_attribute_group(name)}
@@ -46,6 +56,10 @@ create_metric(name) = json {
 
 create_event(name) = json {
     json := [{"id": "yaml_schema.test", "type": "event", "name": name}]
+}
+
+create_resource(name) = json {
+    json := [{"id": "yaml_schema.test", "type": "resource", "name": name}]
 }
 
 invalid_names := [
