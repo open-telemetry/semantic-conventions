@@ -3,6 +3,7 @@ groups:
     type: resource
     brief: >
       A service instance.
+    stability: stable
     attributes:
       - ref: service.name
         requirement_level: required
