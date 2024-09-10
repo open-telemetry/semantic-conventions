@@ -93,5 +93,3 @@ Note: The resource attribute `faas.instance` differs from the span attribute `fa
 There are cases where a FaaS resource attribute is better applied as a span
 attribute instead.
 See the [FaaS trace conventions](/docs/faas/faas-spans.md) for more.
-
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

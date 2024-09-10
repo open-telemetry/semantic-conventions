@@ -42,5 +42,3 @@ The list of possible values is defined in the [W3C User-Agent Client Hints speci
 <!-- endsemconv -->
 
 All of these attributes can be provided by the user agent itself in the form of an HTTP header (e.g. Sec-CH-UA, Sec-CH-Platform, User-Agent). However, the headers could be removed by proxy servers, and are tied to calls from individual clients. In order to support batching through services like the Collector and to prevent loss of data (e.g. due to proxy servers removing headers), these attributes should be used when possible.
-
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

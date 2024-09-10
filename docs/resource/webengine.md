@@ -34,5 +34,3 @@ The situations where there are multiple candidates, it is up to instrumentation 
 
 * Either Apache HTTP Server or `mod_wsgi` MAY be chosen as `webengine`, depending on the decision made by the instrumentation authors.
 * Django SHOULD NOT be set as an `webengine` as the required information is already available in instrumentation library and setting this into `webengine` would duplicate the information.
-
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
