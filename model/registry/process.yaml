@@ -53,6 +53,13 @@ groups:
         brief: >
           The Go build ID as it can be retrieved by `go tool buildid <go executable>`.
         examples: ['foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY']
+      - id: process.executable.build_id.profiling
+        stability: experimental
+        type: string
+        brief: >
+          Profiling specific build ID for executables. See the OTel specification
+          for Profiles for more information.
+        examples: ['600DCAFE4A110000F2BF38C493F5FB92']
       - id: process.executable.name
         type: string
         stability: experimental
