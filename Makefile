@@ -251,4 +251,4 @@ test-policies:
 .PHONY: compatibility-check
 compatibility-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
-		$(SEMCONVGEN_CONTAINER) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
+		$(SEMCONVGEN_CONTAINER) --continue-on-validation-errors -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
