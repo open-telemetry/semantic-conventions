@@ -39,7 +39,7 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concept
 
 Describes deprecated otel.library attributes.
 
-| Attribute              | Type   | Description | Examples                           | Stability                                                                                              |
-| ---------------------- | ------ | ----------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `otel.library.name`    | string |             | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.name` attribute.    |
-| `otel.library.version` | string |             | `1.0.0`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>use the `otel.scope.version` attribute. |
+| Attribute              | Type   | Description                                         | Examples                           | Stability                                                                                              |
+| ---------------------- | ------ | --------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `otel.library.name`    | string | Deprecated. Use the `otel.scope.name` attribute     | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the `otel.scope.name` attribute.    |
+| `otel.library.version` | string | Deprecated. Use the `otel.scope.version` attribute. | `1.0.0`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the `otel.scope.version` attribute. |
