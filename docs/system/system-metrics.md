@@ -978,7 +978,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.filesystem.usage` | UpDownCounter | `By` |  [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.filesystem.usage` | UpDownCounter | `By` | Reports a filesystem's space usage across different states. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 **[1]:** The sum over all `system.filesystem.state` values SHOULD equal the total storage
