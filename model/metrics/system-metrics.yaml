@@ -232,6 +232,8 @@ groups:
     unit: "By"
     attributes:
       - ref: system.device
+        brief: Identifier for the device where the filesystem resides.
+        examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
       - ref: system.filesystem.type
       - ref: system.filesystem.mode
@@ -246,6 +248,8 @@ groups:
     unit: "1"
     attributes:
       - ref: system.device
+        brief: Identifier for the device where the filesystem resides.
+        examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
       - ref: system.filesystem.type
       - ref: system.filesystem.mode
@@ -260,6 +264,8 @@ groups:
     unit: "By"
     attributes:
       - ref: system.device
+        brief: Identifier for the device where the filesystem resides.
+        examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.type
       - ref: system.filesystem.mode
       - ref: system.filesystem.mountpoint
