@@ -226,8 +226,8 @@ groups:
     stability: experimental
     brief: "Reports a filesystem's space usage across different states."
     note: |
-      The sum over all `system.filesystem.state` values SHOULD equal the total storage
-      capacity of the filesystem, that is `system.filesystem.limit`.
+      The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
+      SHOULD equal the total storage capacity of the filesystem, that is `system.filesystem.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:

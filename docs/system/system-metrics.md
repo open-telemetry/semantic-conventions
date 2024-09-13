@@ -981,8 +981,8 @@ This metric is [recommended][MetricRecommended].
 | `system.filesystem.usage` | UpDownCounter | `By` | Reports a filesystem's space usage across different states. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-**[1]:** The sum over all `system.filesystem.state` values SHOULD equal the total storage
-capacity of the filesystem, that is `system.filesystem.limit`.
+**[1]:** The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
+SHOULD equal the total storage capacity of the filesystem, that is `system.filesystem.limit`.
 
 
 
