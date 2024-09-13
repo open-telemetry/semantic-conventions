@@ -111,7 +111,9 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 | [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.request.body.size`](/docs/attributes-registry/rpc.md) | int | The size of the request payload body in bytes. [7] | `3495` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.response.body.size`](/docs/attributes-registry/rpc.md) | int | The size of the response payload body in bytes. [8] | `3495` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -129,7 +131,11 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[6]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
-**[7]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+**[7]:** The request body size represents the serialized size of the message payload that is sent over the wire. In case of streaming calls, it accounts for the original message in the request and does not include size of the consequent message stream. (including unary and streaming calls).
+
+**[8]:** The response body size represents the serialized size of the message payload that is received in the response over the wire. In case of streaming calls, it accounts for the first response payload and does not include size of the consequent message stream. (including unary and streaming calls).
+
+**[9]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 
 
@@ -190,7 +196,9 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [8] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.request.body.size`](/docs/attributes-registry/rpc.md) | int | The size of the request payload body in bytes. [9] | `3495` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.response.body.size`](/docs/attributes-registry/rpc.md) | int | The size of the response payload body in bytes. [10] | `3495` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [11] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -212,7 +220,11 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[8]:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
-**[9]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+**[9]:** The request body size represents the serialized size of the message payload that is sent over the wire. In case of streaming calls, it accounts for the original message in the request and does not include size of the consequent message stream. (including unary and streaming calls).
+
+**[10]:** The response body size represents the serialized size of the message payload that is received in the response over the wire. In case of streaming calls, it accounts for the first response payload and does not include size of the consequent message stream. (including unary and streaming calls).
+
+**[11]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 
 

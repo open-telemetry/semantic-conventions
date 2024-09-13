@@ -36,6 +36,10 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
+      - ref: rpc.request.body.size
+        requirement_level: recommended
+      - ref: rpc.response.body.size
+        requirement_level: recommended
 
   - id: rpc.server
     type: span
@@ -56,6 +60,10 @@ groups:
         requirement_level: recommended
       - ref: network.type
         requirement_level: recommended
+      - ref: rpc.request.body.size
+        requirement_level: recommended
+      - ref: rpc.response.body.size
+        requirement_level: recommended
 
   - id: rpc.grpc
     type: span
@@ -71,6 +79,22 @@ groups:
       - ref: rpc.grpc.response.metadata
         tag: grpc-tech-specific
         requirement_level: opt_in
+      - ref: rpc.request.body.size
+        tag: grpc-tech-specific
+        requirement_level: recommended
+        note: >
+          The request body size represents the serialized size of the message payload that is sent over the wire.
+          In case of streaming calls, it accounts for the original message in the request and does not include size of the consequent message stream.
+          This value can usually be obtained from protobuf API such as
+          [AbstractMessage#getSerializedSize](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/AbstractMessage.html#getSerializedSize--).
+      - ref: rpc.response.body.size
+        tag: grpc-tech-specific
+        requirement_level: recommended
+        note: >
+          The response body size represents the serialized size of the message payload that is received in the response over the wire.
+          In case of streaming calls, it accounts for the first response payload and does not include size of the consequent message stream.
+          This value can usually be obtained from protobuf API such as
+          [AbstractMessage#getSerializedSize](https://protobuf.dev/reference/java/api-docs/com/google/protobuf/AbstractMessage.html#getSerializedSize--).
 
   - id: rpc.jsonrpc
     type: span
