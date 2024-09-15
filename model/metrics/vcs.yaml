@@ -12,35 +12,25 @@ groups:
         requirement_level: required
       - ref: vcs.repository.name
         requirement_level: required
-  - id: metric.vcs.repository.change.time_open
+  - id: metric.vcs.repository.change.time
     type: metric
-    metric_name: vcs.repository.change.time_open
-    brief: 'The amount of time a change (pull request) has been open'
-    instrument: gauge
+    metric_name: vcs.repository.change.time
+    brief: 'The time distribution a change (pull request) has been in open state or that it took to go from open to another state.'
+    instrument: histogram
     unit: "s"
     stability: experimental
     attributes:
       - ref: vcs.repository.name
         requirement_level: required
       - ref: vcs.repository.ref.name
+        requirement_level: required
+      - ref: vcs.change.state
         requirement_level: required
   - id: metric.vcs.repository.change.time_to_approval
     type: metric
     metric_name: vcs.repository.change.time_to_approval
     brief: 'The amount of time it took a change (pull request) to go from open to approved'
-    instrument: gauge
-    unit: "s"
-    stability: experimental
-    attributes:
-      - ref: vcs.repository.name
-        requirement_level: required
-      - ref: vcs.repository.ref.name
-        requirement_level: required
-  - id: metric.vcs.repository.change.time_to_merge
-    type: metric
-    metric_name: vcs.repository.change.time_to_merge
-    brief: 'The amount of time it took a change (pull request) to go from open to merged'
-    instrument: gauge
+    instrument: histogram
     unit: "s"
     stability: experimental
     attributes:
