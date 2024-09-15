@@ -49,7 +49,7 @@ groups:
   - id: metric.vcs.repository.ref.count
     type: metric
     metric_name: vcs.repository.ref.count
-    brief: 'The number of refs of type branch in a repository'
+    brief: 'The number of refs of type branch or tag in a repository'
     instrument: gauge
     unit: "{ref}"
     stability: experimental

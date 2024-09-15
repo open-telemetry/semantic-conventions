@@ -173,7 +173,7 @@ but more may be added in the future.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.repository.ref.count` | Gauge | `{ref}` | The number of refs of type branch in a repository | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.repository.ref.count` | Gauge | `{ref}` | The number of refs of type branch or tag in a repository | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -218,7 +218,7 @@ but more may be added in the future.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.repository.ref.count` | Gauge | `{ref}` | The number of refs of type branch in a repository | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.repository.ref.count` | Gauge | `{ref}` | The number of refs of type branch or tag in a repository | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
