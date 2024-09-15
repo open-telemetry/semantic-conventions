@@ -14,12 +14,12 @@ Semantic conventions for the spec MUST adhere to the
 [attribute requirement level](../docs/general/attribute-requirement-level.md),
 and [metric requirement level](../docs/general/metric-requirement-level.md) conventions.
 
-Refer to the [syntax](https://github.com/open-telemetry/build-tools/tree/v0.25.0/semantic-conventions/syntax.md)
+Refer to the [syntax](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)
 for how to write the YAML files for semantic conventions and what the YAML properties mean.
 
 A schema file for VS code is configured in the `/.vscode/settings.json` of this
 repository, enabling auto-completion and additional checks. Refer to
-[the generator README](https://github.com/open-telemetry/build-tools/tree/v0.25.0/semantic-conventions/README.md) for what extension you need.
+[the generator README](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md) for what extension you need.
 
 ## Generating markdown
 
@@ -32,12 +32,10 @@ make table-generation
 
 For more information, see the [Weaver](https://github.com/open-telemetry/weaver)
 as our code generations tool.
-Using Weaver, it is also possible to generate code for use in OpenTelemetry
-language projects, in addition to build-tools.
 
 See also:
 
-* [Markdown Templates](https://github.com/open-telemetry/semantic-conventions/tree/main/templates/registry/markdown)
+* [Markdown Templates](../templates/registry/markdown)
 * [Weaver Template Documentation](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md)
 * [Weaver Usage Documentation](https://github.com/open-telemetry/weaver/blob/main/docs/usage.md#registry-generate)
-* [Build Tools - Code Generator](https://github.com/open-telemetry/build-tools/tree/main/semantic-conventions#code-generator)
+* [Code Generator Documentation](../docs/non-normative/code-generation.md)
