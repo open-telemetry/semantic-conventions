@@ -99,15 +99,15 @@ groups:
           members:
             - id: open
               value: open
-              brief: "[open](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)"
+              brief: "Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments."
               stability: experimental
             - id: closed
               value: closed
-              brief: "closed"
+              brief: "Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request."
               stability: experimental
             - id: merged
               value: merged
-              brief: "[merged](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
+              brief: "Merged indicates that the change has been successfully integrated into the target codebase."
               stability: experimental
         stability: experimental
         brief: >

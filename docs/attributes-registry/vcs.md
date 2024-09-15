@@ -33,11 +33,11 @@ based on the VCS system and situational context.
 
 `vcs.change.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value    | Description                                                                                    | Stability                                                        |
-| -------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `closed` | closed                                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `merged` | [merged](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `open`   | [open](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value    | Description                                                                                                                                                                                                                                 | Stability                                                        |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `closed` | Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `merged` | Merged indicates that the change has been successfully integrated into the target codebase.                                                                                                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `open`   | Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments.                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
