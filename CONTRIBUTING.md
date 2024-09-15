@@ -101,36 +101,30 @@ The YAML (model definition) and Markdown (documentation) files are organized in 
 ```
 ├── docs
 │   ├── attribute_registry
-│   ├── {domain}
+│   ├── {root-namespace}
 │   │   ├── README.md
 │   │   ├── ....md
 ├── model
-│   ├── {domain}
-│   │   ├── {domain}-events.yaml
-│   │   ├── {domain}-metrics.yaml
-│   │   ├── {domain}-registry.yaml
-│   │   ├── {domain}-spans.yaml
-|   ├── resources
-│   │   ├── {domain}-resources.yaml
-│   │   ├── {domain}-registry.yaml
+│   ├── {root-namespace}
+│   │   ├── {root-namespace}-events.yaml
+│   │   ├── {root-namespace}-metrics.yaml
+│   │   ├── {root-namespace}-spans.yaml
+│   │   ├── {root-namespace}-registry.yaml
+│   │   ├── {root-namespace}-resources.yaml
 ```
 
-All attributes must be defined in the domain-specific folder under
-`/{domain}/{domain}-registry` or `/resource/{domain}-registry.yaml`.
+All attributes must be defined in the folder matching its root namespace under
+`/{root-namespace}/{root-namespace}-registry.yaml` file.
 
 Corresponding markdown files are auto-generated (see [Update the markdown files](#2-update-the-markdown-files))
 in `/docs/attribute_registry` folder.
 
-All semantic conventions definitions for domain-specific signals should be placed under
-`/model/{domain}` and should follow `{domain}-{signal}.yaml` pattern. For example,
+All semantic conventions definitions for telemetry signals should be placed under
+`/model/{root-namespace}` and should follow `{root-namespace}-{signal}.yaml` pattern. For example,
 HTTP spans are defined in `model/http/http-spans.yaml`.
 
-Resources are considered to be their own domain and are defined in the `model/resources`
-folder.
-
-Domain-specific YAML definitions could be broken down into multiple files. For example,
-AWS spans are defined in `/model/aws/aws-lambda-spans.yaml`
-and `/model/aws/aws-sdk-spans.yaml` files.
+YAML definitions could be broken down into multiple files. For example, AWS spans
+are defined in `/model/aws/aws-lambda-spans.yaml` and `/model/aws/aws-sdk-spans.yaml` files.
 
 #### Schema files
 
