@@ -108,9 +108,9 @@ The YAML (model definition) and Markdown (documentation) files are organized in 
 │   ├── {root-namespace}
 │   │   ├── {root-namespace}-events.yaml
 │   │   ├── {root-namespace}-metrics.yaml
-│   │   ├── {root-namespace}-spans.yaml
 │   │   ├── {root-namespace}-registry.yaml
 │   │   ├── {root-namespace}-resources.yaml
+│   │   ├── {root-namespace}-spans.yaml
 ```
 
 All attributes must be defined in the folder matching its root namespace under
