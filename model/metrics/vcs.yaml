@@ -3,7 +3,7 @@ groups:
     type: metric
     metric_name: vcs.repository.change.count
     brief: 'The number of changes (pull requests) in a repository, categorized by their state (either open or merged)'
-    instrument: gauge
+    instrument: updowncounter
     unit: "{change}"
     stability: experimental
     #extends: metric_attributes.vcs
@@ -50,7 +50,7 @@ groups:
     type: metric
     metric_name: vcs.repository.ref.count
     brief: 'The number of refs of type branch or tag in a repository'
-    instrument: gauge
+    instrument: updowncounter
     unit: "{ref}"
     stability: experimental
     attributes:
