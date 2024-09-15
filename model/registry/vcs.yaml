@@ -5,17 +5,6 @@ groups:
       This group defines the attributes for
       [Version Control Systems (VCS)](https://en.wikipedia.org/wiki/Version_control).
     attributes:
-      - id: vcs.repository.name
-        type: string
-        stability: experimental
-        brief: >
-          The name of the repository.
-        examples:
-          [
-            "open-telemetry-collector-contrib",
-            "opentelemetry/open-telemetry-collector-contrib",
-            "my-org/my-project/my-projects-project",
-          ]
       - id: vcs.repository.url.full
         type: string
         stability: experimental

@@ -10,7 +10,7 @@ groups:
     attributes:
       - ref: vcs.change.state
         requirement_level: required
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required
   - id: metric.vcs.repository.change.time
     type: metric
@@ -20,7 +20,7 @@ groups:
     unit: "s"
     stability: experimental
     attributes:
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.ref.name
         requirement_level: required
@@ -34,7 +34,7 @@ groups:
     unit: "s"
     stability: experimental
     attributes:
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.ref.name
         requirement_level: required
@@ -54,7 +54,7 @@ groups:
     unit: "{ref}"
     stability: experimental
     attributes:
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.ref.type
         requirement_level: required
@@ -66,7 +66,7 @@ groups:
     unit: "{line}"
     stability: experimental
     attributes:
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.ref.name
         requirement_level: required
@@ -80,7 +80,7 @@ groups:
     unit: "{line}"
     stability: experimental
     attributes:
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.ref.name
         requirement_level: required
@@ -94,7 +94,7 @@ groups:
     unit: "{revision}"
     stability: experimental
     attributes:
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.ref.name
         requirement_level: required
@@ -108,7 +108,7 @@ groups:
     unit: "{revision}"
     stability: experimental
     attributes:
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.ref.name
         requirement_level: required
@@ -122,7 +122,7 @@ groups:
     unit: "s"
     stability: experimental
     attributes:
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.ref.name
         requirement_level: required
@@ -136,5 +136,5 @@ groups:
     unit: "{contributor}"
     stability: experimental
     attributes:
-      - ref: vcs.repository.name
+      - ref: vcs.repository.url.full
         requirement_level: required

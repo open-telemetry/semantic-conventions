@@ -61,7 +61,7 @@ but more may be added in the future.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of the change (pull request/merge request). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.change.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -107,8 +107,8 @@ but more may be added in the future.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of the change (pull request/merge request). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.change.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -153,8 +153,8 @@ but more may be added in the future.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -222,8 +222,8 @@ but more may be added in the future.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -267,9 +267,9 @@ but more may be added in the future.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -313,9 +313,9 @@ but more may be added in the future.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -359,9 +359,9 @@ but more may be added in the future.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -405,9 +405,9 @@ but more may be added in the future.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -451,9 +451,9 @@ but more may be added in the future.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -497,7 +497,7 @@ but more may be added in the future.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The name of the repository. | `open-telemetry-collector-contrib`; `opentelemetry/open-telemetry-collector-contrib`; `my-org/my-project/my-projects-project` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
