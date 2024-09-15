@@ -90,7 +90,7 @@ environment configured:
 ### 1. Modify the YAML model
 
 Refer to the
-[Semantic Convention YAML Language](https://github.com/open-telemetry/weaver/blob/v0.9.2/schemas/semconv-syntax.md)
+[Semantic Convention YAML Language](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)
 to learn how to make changes to the YAML files.
 
 #### Schema files
