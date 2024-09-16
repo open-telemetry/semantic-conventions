@@ -1,6 +1,7 @@
 groups:
   - id: host
     type: resource
+    name: host
     brief: >
         A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
     attributes:
@@ -44,6 +45,7 @@ groups:
 
   - id: host.cpu
     type: resource
+    name: host.cpu
     brief: >
       A host's CPU information
     attributes:

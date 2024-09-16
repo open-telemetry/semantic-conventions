@@ -1,6 +1,7 @@
 groups:
   - id: aws.ecs
     type: resource
+    name: aws.ecs
     brief: >
       Resources used by AWS Elastic Container Service (ECS).
     attributes:

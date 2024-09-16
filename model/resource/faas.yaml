@@ -1,6 +1,7 @@
 groups:
   - id: faas_resource
     type: resource
+    name: faas
     brief: >
       A serverless instance.
     attributes:
