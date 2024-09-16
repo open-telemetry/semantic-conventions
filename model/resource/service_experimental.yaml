@@ -1,6 +1,7 @@
 groups:
   - id: service_experimental
     type: resource
+    name: 'service'
     brief: >
       A service instance.
     attributes:

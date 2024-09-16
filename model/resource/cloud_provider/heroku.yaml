@@ -1,6 +1,7 @@
 groups:
   - id: heroku
     type: resource
+    name: heroku
     brief: >
       Heroku dyno metadata
     attributes:

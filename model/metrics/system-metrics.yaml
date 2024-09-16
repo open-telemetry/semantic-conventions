@@ -224,11 +224,16 @@ groups:
     type: metric
     metric_name: system.filesystem.usage
     stability: experimental
-    brief: ""
+    brief: "Reports a filesystem's space usage across different states."
+    note: |
+      The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
+      SHOULD equal the total storage capacity of the filesystem, that is `system.filesystem.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
       - ref: system.device
+        brief: Identifier for the device where the filesystem resides.
+        examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
       - ref: system.filesystem.type
       - ref: system.filesystem.mode
@@ -243,7 +248,24 @@ groups:
     unit: "1"
     attributes:
       - ref: system.device
+        brief: Identifier for the device where the filesystem resides.
+        examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
+      - ref: system.filesystem.type
+      - ref: system.filesystem.mode
+      - ref: system.filesystem.mountpoint
+
+  - id: metric.system.filesystem.limit
+    type: metric
+    metric_name: system.filesystem.limit
+    stability: experimental
+    brief: "The total storage capacity of the filesystem"
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.device
+        brief: Identifier for the device where the filesystem resides.
+        examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.type
       - ref: system.filesystem.mode
       - ref: system.filesystem.mountpoint

@@ -1,6 +1,7 @@
 groups:
   - id: process
     type: resource
+    name: process
     brief: >
         An operating system process.
     attributes:
@@ -25,6 +26,7 @@ groups:
 
   - id: process.runtime
     type: resource
+    name: process.runtime
     brief: >
       The single (language) runtime instance which is monitored.
     attributes:

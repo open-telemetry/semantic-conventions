@@ -1,6 +1,7 @@
 groups:
   - id: gcp.gce
     type: resource
+    name: gcp.gce
     brief: >
       Resources used by Google Compute Engine (GCE).
     attributes:
