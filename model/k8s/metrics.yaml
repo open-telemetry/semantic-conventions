@@ -19,6 +19,17 @@ groups:
     instrument: gauge
     unit: "{cpu}"
 
+  # k8s.pod.memory.* metrics
+  - id: metric.k8s.pod.memory.usage
+    type: metric
+    metric_name: k8s.pod.memory.usage
+    stability: experimental
+    brief: "Memory usage of the Pod"
+    note: >
+      Total memory usage of the Pod
+    instrument: gauge
+    unit: "By"
+
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
@@ -38,3 +49,14 @@ groups:
       CPU usage of the specific Node on all available CPU cores, averaged over the sample window
     instrument: gauge
     unit: "{cpu}"
+
+  # k8s.node.memory.* metrics
+  - id: metric.k8s.node.memory.usage
+    type: metric
+    metric_name: k8s.node.memory.usage
+    stability: experimental
+    brief: "Memory usage of the Node"
+    note: >
+      Total memory usage of the Node
+    instrument: gauge
+    unit: "By"
