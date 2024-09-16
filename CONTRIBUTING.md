@@ -106,25 +106,25 @@ The YAML (model definition) and Markdown (documentation) files are organized in 
 │   │   ├── ....md
 ├── model
 │   ├── {root-namespace}
-│   │   ├── {root-namespace}-events.yaml
-│   │   ├── {root-namespace}-metrics.yaml
-│   │   ├── {root-namespace}-registry.yaml
-│   │   ├── {root-namespace}-resources.yaml
-│   │   ├── {root-namespace}-spans.yaml
+│   │   ├── events.yaml
+│   │   ├── metrics.yaml
+│   │   ├── registry.yaml
+│   │   ├── resources.yaml
+│   │   ├── spans.yaml
 ```
 
-All attributes must be defined in the folder matching its root namespace under
-`/{root-namespace}/{root-namespace}-registry.yaml` file.
+All attributes must be defined in the folder matching their root namespace under
+`/{root-namespace}/*registry.yaml` file.
 
 Corresponding markdown files are auto-generated (see [Update the markdown files](#2-update-the-markdown-files))
 in `/docs/attribute_registry` folder.
 
 All semantic conventions definitions for telemetry signals should be placed under
-`/model/{root-namespace}` and should follow `{root-namespace}-{signal}.yaml` pattern. For example,
-HTTP spans are defined in `model/http/http-spans.yaml`.
+`/model/{root-namespace}` and should follow `*{signal}.yaml` pattern. For example,
+HTTP spans are defined in `model/http/spans.yaml`.
 
 YAML definitions could be broken down into multiple files. For example, AWS spans
-are defined in `/model/aws/aws-lambda-spans.yaml` and `/model/aws/aws-sdk-spans.yaml` files.
+are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` files.
 
 #### Schema files
 

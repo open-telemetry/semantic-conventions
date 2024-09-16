@@ -52,6 +52,6 @@ The event name MUST be `az.resource.log`.
 | `tenant.id` | string | The tenant ID of the Active Directory tenant that this event is tied to. | `607964b6-41a5-4e24-a5db-db7aab3b9b34` | `Conditionally Required`: if the event is tied to an Active Directory tenant. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 <!-- end of manually added table -->
 
-See [Azure Resource Log definition](/model/azure/azure-logs.yaml) for the details.
+See [Azure Resource Log definition](/model/azure/logs.yaml) for the details.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

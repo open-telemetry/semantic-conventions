@@ -19,70 +19,71 @@
 /schemas/                                 @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /internal/tools/schema_check.sh           @open-telemetry/specs-semconv-approvers @tigrannajaryan
 
-# Logs semantic conventions
+# Logs and events semantic conventions
 /docs/exceptions/exceptions-logs.md       @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /docs/feature-flags/feature-flags-logs.md @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /docs/general/events-general.md           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-event-approvers @tigrannajaryan
 /docs/general/logs-general.md             @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /docs/logs/                               @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /model/log/                               @open-telemetry/specs-semconv-approvers @tigrannajaryan
+/model/event/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-event-approvers
 
-# JVM semantic conventions approvers
+# JVM semantic conventions
 /docs/jvm/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 /model/jvm/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 
-# HTTP semantic conventions approvers
+# HTTP semantic conventions
 /docs/http/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/http/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/server/*-registry.yaml     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/client/*-registry.yaml     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/network/*-registry.yaml    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-security-approvers
-/model/error/*-registry.yaml      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/url/*-registry.yaml        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/user-agent/*-registry.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/error/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/client/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/network/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-security-approvers
+/model/server/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/url/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/user-agent/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 
-# System semantic conventions approvers
+# System semantic conventions
 /docs/system/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /docs/resource/host.md            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/model/host/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/system/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
-/model/host/*-registry.yaml       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 
-# Mobile semantic conventions approvers
+# Mobile semantic conventions
 /docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
-/model/device/device-events.yaml  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
+/model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 
-# K8s semantic conventions approvers
+# K8s semantic conventions
 /docs/resource/k8s.md             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 /model/k8s/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
-# Container semantic conventions approvers
+# Container semantic conventions
 /docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 /model/container/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 /model/oci/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 
-# .NET semantic conventions approvers
+# .NET semantic conventions
 /docs/dotnet/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
 /docs/runtime/dotnet-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 /model/aspnetcore/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
 /model/dotnet/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
 /model/signalr/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
 
-# Gen-AI semantic conventions approvers
+# Gen-AI semantic conventions
 /docs/gen-ai/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
 /model/gen-ai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
 
-# Security semantic conventions approvers
+# Security semantic conventions
 /model/dns/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/file/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
-/model/network/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+# /model/network/                 is defined in HTTP section
 /model/process/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/tls/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
-/model/user/*-registry.yaml       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/model/user/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 
-# CICD semantic conventions approvers
+# CICD semantic conventions
+/model/artifact/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/cicd/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+/model/code/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+/model/deployment/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/test/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/vcs/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
-/model/artifact/*-registry.yaml   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
-/model/code/*-registry.yaml       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
-/model/deployment/*-registry.yaml @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
