@@ -1,0 +1,58 @@
+groups:
+  - id: registry.datacenter
+    stability:
+    type: attribute_group
+    display_name: Datacenter Attributes
+    brief: >
+      Generic DataCenter infrastructure tagging.
+    attributes:
+      - id: dc.name
+        type: string
+        stability: experimental
+        brief: 'Name of datacenter.'
+        examples: ['dc-name']
+      - id: dc.provider.name
+        type: string
+        stability: experimental
+        brief: 'Name of the datacenter provider'
+        examples: ['aws', 'azure', 'gcp', 'corp']
+      - id: dc.provider.type
+        type: string
+        stability: experimental
+        brief: 'Type of datacenter'
+        examples: ['cloud', 'colocation', 'internal']
+      - id: dc.device.type
+        type: string
+        stability: experimental
+        brief: 'Type of device used.'
+        examples: ['server', 'chassis', 'network', 'pdu', 'switch', 'patch-panel']
+      - id: dc.suite
+        type: string
+        stability: experimental
+        brief: 'Name of the datacenter suite'
+        examples: ['suite-5']
+      - id: dc.site
+        type: string
+        stability: experimental
+        brief: 'Name of the datacenter site'
+        examples: ['site-1']
+      - id: dc.cage
+        type: string
+        stability: experimental
+        brief: 'Name of the cage'
+        examples: ['cage-1']
+      - id: dc.pod
+        type: string
+        stability: experimental
+        brief: 'Name of the pod'
+        examples: ['pod-4']
+      - id: dc.chassis
+        type: string
+        stability: experimental
+        brief: 'Name of the chassis the server lives in.'
+        examples: ['pod-4']
+      - id: dc.rack
+        type: string
+        stability: experimental
+        brief: 'Name of the rack.'
+        examples: ['rack-7']
