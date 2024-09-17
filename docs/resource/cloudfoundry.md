@@ -33,6 +33,13 @@ They align with the Bosh deployment tool of CloudFoundry.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `cloudfoundry.org`
+
+**Description:** The organization of the application which is monitored.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cloudfoundry.org.id`](/docs/attributes-registry/cloudfoundry.md) | string | The guid of the CloudFoundry org the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -66,6 +73,13 @@ reported by `cf orgs`.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `cloudfoundry.space`
+
+**Description:** The space of the application which is monitored.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -101,6 +115,13 @@ reported by `cf spaces`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `cloudfoundry.app`
+
+**Description:** The application which is monitored.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cloudfoundry.app.id`](/docs/attributes-registry/cloudfoundry.md) | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -134,6 +155,13 @@ as reported by `cf apps`.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `cloudfoundry.process`
+
+**Description:** The process of the application which is monitored.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -169,6 +197,13 @@ tasks or side-cars with different process types.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `cloudfoundry.system`
+
+**Description:** The system component which is monitored.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
