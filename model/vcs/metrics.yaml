@@ -6,7 +6,6 @@ groups:
     instrument: updowncounter
     unit: "{change}"
     stability: experimental
-    #extends: metric_attributes.vcs
     attributes:
       - ref: vcs.change.state
         requirement_level: required
