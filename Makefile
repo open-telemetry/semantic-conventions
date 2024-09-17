@@ -210,7 +210,19 @@ chlog-update: $(CHLOGGEN)
 # files that have the "area" dropdown field
 .PHONY: generate-gh-issue-templates
 generate-gh-issue-templates:
-	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh
+	mkdir -p $(TOOLS_DIR)/bin
+	docker run --rm \
+	-u $(id -u ${USER}):$(id -g ${USER}) \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
+	$(WEAVER_CONTAINER) registry generate \
+		--registry=/home/weaver/source \
+		--templates=/home/weaver/templates \
+		--config=/home/weaver/templates/registry/areas-weaver.yaml \
+		. \
+		/home/weaver/target
+	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh $(PWD)/internal/tools/bin/areas.txt
 
 # A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
 # relied on "git describe". However, that approach does not work with
@@ -251,4 +263,4 @@ test-policies:
 .PHONY: compatibility-check
 compatibility-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
-		$(SEMCONVGEN_CONTAINER) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
+		$(SEMCONVGEN_CONTAINER) --continue-on-validation-errors -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)

@@ -1,0 +1,390 @@
+groups:
+  # system.cpu.* metrics
+  - id: metric.system.cpu.time
+    type: metric
+    metric_name: system.cpu.time
+    stability: experimental
+    brief: "Seconds each logical CPU spent on each mode"
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: cpu.mode
+        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
+        note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
+      - ref: system.cpu.logical_number
+
+  - id: metric.system.cpu.utilization
+    type: metric
+    metric_name: system.cpu.utilization
+    stability: experimental
+    brief: "Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs"
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: cpu.mode
+        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
+        note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
+      - ref: system.cpu.logical_number
+
+  - id: metric.system.cpu.frequency
+    type: metric
+    metric_name: system.cpu.frequency
+    stability: experimental
+    brief: "Reports the current frequency of the CPU in Hz"
+    instrument: gauge
+    unit: "{Hz}"
+    attributes:
+      - ref: system.cpu.logical_number
+
+  - id: metric.system.cpu.physical.count
+    type: metric
+    metric_name: system.cpu.physical.count
+    stability: experimental
+    brief: "Reports the number of actual physical processor cores on the hardware"
+    instrument: updowncounter
+    unit: "{cpu}"
+    attributes: []
+
+  - id: metric.system.cpu.logical.count
+    type: metric
+    metric_name: system.cpu.logical.count
+    stability: experimental
+    brief: "Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking"
+    instrument: updowncounter
+    unit: "{cpu}"
+    attributes: []
+
+  # system.memory.* metrics
+  - id: metric.system.memory.usage
+    type: metric
+    metric_name: system.memory.usage
+    stability: experimental
+    brief: "Reports memory in use by state."
+    note: |
+      The sum over all `system.memory.state` values SHOULD equal the total memory
+      available on the system, that is `system.memory.limit`.
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.memory.state
+
+  - id: metric.system.memory.limit
+    type: metric
+    metric_name: system.memory.limit
+    stability: experimental
+    brief: "Total memory available in the system."
+    note: |
+      Its value SHOULD equal the sum of `system.memory.state` over all states.
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+
+  - id: metric.system.memory.shared
+    type: metric
+    metric_name: system.memory.shared
+    stability: experimental
+    brief: "Shared memory used (mostly by tmpfs)."
+    note: |
+      Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
+    instrument: updowncounter
+    unit: "By"
+
+  - id: metric.system.memory.utilization
+    type: metric
+    metric_name: system.memory.utilization
+    stability: experimental
+    brief: ""
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.memory.state
+
+  # system.paging.* metrics
+  - id: metric.system.paging.usage
+    type: metric
+    metric_name: system.paging.usage
+    stability: experimental
+    brief: "Unix swap or windows pagefile usage"
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.paging.state
+
+  - id: metric.system.paging.utilization
+    type: metric
+    metric_name: system.paging.utilization
+    stability: experimental
+    brief: ""
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.paging.state
+
+  - id: metric.system.paging.faults
+    type: metric
+    metric_name: system.paging.faults
+    stability: experimental
+    brief: ""
+    instrument: counter
+    unit: "{fault}"
+    attributes:
+      - ref: system.paging.type
+
+  - id: metric.system.paging.operations
+    type: metric
+    metric_name: system.paging.operations
+    stability: experimental
+    brief: ""
+    instrument: counter
+    unit: "{operation}"
+    attributes:
+      - ref: system.paging.type
+      - ref: system.paging.direction
+
+  # system.disk.* metrics
+  - id: metric.system.disk.io
+    type: metric
+    metric_name: system.disk.io
+    stability: experimental
+    brief: ""
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: system.device
+      - ref: disk.io.direction
+
+  - id: metric.system.disk.operations
+    type: metric
+    metric_name: system.disk.operations
+    stability: experimental
+    brief: ""
+    instrument: counter
+    unit: "{operation}"
+    attributes:
+      - ref: system.device
+      - ref: disk.io.direction
+
+  - id: metric.system.disk.io_time
+    type: metric
+    metric_name: system.disk.io_time
+    stability: experimental
+    brief: "Time disk spent activated"
+    instrument: counter
+    unit: "s"
+    note: |
+       The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
+
+       - Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+       - Windows: The complement of
+         ["Disk\% Idle Time"](https://learn.microsoft.com/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
+         performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
+    attributes:
+      - ref: system.device
+
+  - id: metric.system.disk.operation_time
+    type: metric
+    metric_name: system.disk.operation_time
+    stability: experimental
+    brief: "Sum of the time each operation took to complete"
+    instrument: counter
+    unit: "s"
+    note: |
+       Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
+
+       - Linux: Fields 7 & 11 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+       - Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes)
+    attributes:
+      - ref: system.device
+      - ref: disk.io.direction
+
+  - id: metric.system.disk.merged
+    type: metric
+    metric_name: system.disk.merged
+    stability: experimental
+    brief: ""
+    instrument: counter
+    unit: "{operation}"
+    attributes:
+      - ref: system.device
+      - ref: disk.io.direction
+
+  - id: metric.system.disk.limit
+    type: metric
+    metric_name: system.disk.limit
+    stability: experimental
+    brief: "The total storage capacity of the disk"
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.device
+
+  # system.filesystem.* metrics
+  - id: metric.system.filesystem.usage
+    type: metric
+    metric_name: system.filesystem.usage
+    stability: experimental
+    brief: "Reports a filesystem's space usage across different states."
+    note: |
+      The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
+      SHOULD equal the total storage capacity of the filesystem, that is `system.filesystem.limit`.
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.device
+        brief: Identifier for the device where the filesystem resides.
+        examples: ["/dev/sda", "\\network-drive"]
+      - ref: system.filesystem.state
+      - ref: system.filesystem.type
+      - ref: system.filesystem.mode
+      - ref: system.filesystem.mountpoint
+
+  - id: metric.system.filesystem.utilization
+    type: metric
+    metric_name: system.filesystem.utilization
+    stability: experimental
+    brief: ""
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.device
+        brief: Identifier for the device where the filesystem resides.
+        examples: ["/dev/sda", "\\network-drive"]
+      - ref: system.filesystem.state
+      - ref: system.filesystem.type
+      - ref: system.filesystem.mode
+      - ref: system.filesystem.mountpoint
+
+  - id: metric.system.filesystem.limit
+    type: metric
+    metric_name: system.filesystem.limit
+    stability: experimental
+    brief: "The total storage capacity of the filesystem"
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: system.device
+        brief: Identifier for the device where the filesystem resides.
+        examples: ["/dev/sda", "\\network-drive"]
+      - ref: system.filesystem.type
+      - ref: system.filesystem.mode
+      - ref: system.filesystem.mountpoint
+
+  # system.network.* metrics
+  - id: metric.system.network.dropped
+    type: metric
+    metric_name: system.network.dropped
+    stability: experimental
+    brief: "Count of packets that are dropped or discarded even though there was no error"
+    instrument: counter
+    unit: "{packet}"
+    note: |
+      Measured as:
+
+      - Linux: the `drop` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
+      - Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+        from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2)
+    attributes:
+      - ref: system.device
+      - ref: network.io.direction
+
+  - id: metric.system.network.packets
+    type: metric
+    metric_name: system.network.packets
+    stability: experimental
+    brief: ""
+    instrument: counter
+    unit: "{packet}"
+    attributes:
+      - ref: system.device
+      - ref: network.io.direction
+
+  - id: metric.system.network.errors
+    type: metric
+    metric_name: system.network.errors
+    stability: experimental
+    brief: "Count of network errors detected"
+    instrument: counter
+    unit: "{error}"
+    note: |
+      Measured as:
+
+      - Linux: the `errs` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
+      - Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+        from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2).
+    attributes:
+      - ref: system.device
+      - ref: network.io.direction
+
+  - id: metric.system.network.io
+    type: metric
+    metric_name: system.network.io
+    stability: experimental
+    brief: ""
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: system.device
+      - ref: network.io.direction
+
+  - id: metric.system.network.connections
+    type: metric
+    metric_name: system.network.connections
+    stability: experimental
+    brief: ""
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: system.device
+      - ref: system.network.state
+      - ref: network.transport
+
+  # system.process.* metrics
+  - id: metric.system.process.count
+    type: metric
+    metric_name: system.process.count
+    stability: experimental
+    brief: "Total number of processes in each state"
+    instrument: updowncounter
+    unit: "{process}"
+    attributes:
+      - ref: system.process.status
+
+  - id: metric.system.process.created
+    type: metric
+    metric_name: system.process.created
+    stability: experimental
+    brief: "Total number of processes created over uptime of the host"
+    instrument: counter
+    unit: "{process}"
+    attributes: []
+
+  # system.linux.* metrics
+  - id: metric.system.linux.memory.available
+    type: metric
+    metric_name: system.linux.memory.available
+    stability: experimental
+    brief: "An estimate of how much memory is available for starting new applications, without causing swapping"
+    note: |
+      This is an alternative to `system.memory.usage` metric with `state=free`.
+      Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
+      This is supposed to be more accurate than just "free" memory.
+      For reference, see the calculations [here](https://superuser.com/a/980821).
+      See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+
+  - id: metric.system.linux.memory.slab.usage
+    type: metric
+    metric_name: system.linux.memory.slab.usage
+    stability: experimental
+    brief: "Reports the memory used by the Linux kernel for managing caches of frequently used objects."
+    note: |
+      The sum over the `reclaimable` and `unreclaimable` state values in `linux.memory.slab.usage` SHOULD be equal to the total slab memory available on the system.
+      Note that the total slab memory is not constant and may vary over time.
+      See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-linux-kernel-memory-statistics) and `Slab` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: linux.memory.slab.state

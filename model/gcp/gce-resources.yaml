@@ -1,0 +1,11 @@
+groups:
+  - id: gcp.gce
+    type: resource
+    name: gcp.gce
+    brief: >
+      Resources used by Google Compute Engine (GCE).
+    attributes:
+      - ref: gcp.gce.instance.name
+        requirement_level: recommended
+      - ref: gcp.gce.instance.hostname
+        requirement_level: recommended

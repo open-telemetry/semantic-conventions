@@ -652,3 +652,111 @@ test_metric_attribute_added if {
             }]
     }
 }
+
+# Check that resources cannot be removed.
+test_removed_resources if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+            }],
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+            }],
+            "groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+            }]
+    }
+}
+
+# Check that Stable resources cannot become unstable
+test_resource_stability_change if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+            }],
+            "groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "experimental",
+            }]
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+            }],
+            "groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+            }]
+    }
+}
+
+
+# Check that Stable resources cannot change required/recommended attributes
+test_resource_attribute_missing if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+                "attributes": [{
+                    "name": "test.missing",
+                    "requirement_level": "required"
+                }],
+            }],
+            "groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+            }]
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+                "attributes": [{
+                    "name": "test.missing",
+                    "requirement_level": "required"
+                },{
+                    "name": "test.ignored",
+                    "requirement_level": "opt_in"
+                }],
+            }],
+            "groups": [{
+                "id": "resource.test",
+                "type": "resource",
+                "name": "test.missing",
+                "stability": "stable",
+                "unit": "s",
+                "instrument": "histogram",
+                "attributes": [{
+                    "name": "test.missing",
+                    "requirement_level": "required"
+                }],
+            }]
+    }
+}
