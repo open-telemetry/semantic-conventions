@@ -29,10 +29,9 @@ body:
         - area:browser
         - area:cicd
         - area:client
-        - area:cloudevents
-        - area:cloudfoundry
         - area:cloud
         - area:cloudevents
+        - area:cloudfoundry
         - area:code
         - area:container
         - area:cpu
