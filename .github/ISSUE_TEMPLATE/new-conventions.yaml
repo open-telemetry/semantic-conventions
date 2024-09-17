@@ -32,6 +32,7 @@ body:
         - area:cloudevents
         - area:cloudfoundry
         - area:cloud
+        - area:cloudevents
         - area:code
         - area:container
         - area:cpu
@@ -82,8 +83,8 @@ body:
         - area:thread
         - area:tls
         - area:url
-        - area:user-agent
         - area:user
+        - area:user-agent
         - area:v8js
         - area:vcs
         - area:webengine

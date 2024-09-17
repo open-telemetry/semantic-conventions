@@ -1,0 +1,9 @@
+{#- Macros for simplifying creating "Resource" documentation. -#}
+{% import 'stability.j2' as stability %}
+{% macro header(resource) %}
+**Status:** {{ stability.badge(resource.stability, resource.deprecated) }}
+
+**type:** `{{ resource.name }}`
+
+**Description:** {{ resource.brief }}
+{% endmacro %}

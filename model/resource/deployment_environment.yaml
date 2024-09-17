@@ -1,8 +1,0 @@
-groups:
-  - id: deployment
-    type: resource
-    brief: >
-      The software deployment.
-    attributes:
-      - ref: deployment.environment.name
-        requirement_level: recommended
