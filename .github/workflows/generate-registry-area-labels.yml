@@ -3,9 +3,10 @@ on:
   push:
     branches: [main]
     paths:
-      - model/registry/**
+      - model/**
       - ./.github/workflows/generate-registry-area-labels.yml
       - ./.github/workflows/scripts/generate-registry-area-labels.sh
+
   workflow_dispatch:
 
 jobs:
@@ -14,6 +15,9 @@ jobs:
     if: ${{ github.repository_owner == 'open-telemetry' }}
     steps:
       - uses: actions/checkout@v4
+      - name: Generate registry area labels
+        run: |
+          make generate-gh-issue-templates
 
       - name: Run update permissions
         run: chmod +x ./.github/workflows/scripts/generate-registry-area-labels.sh

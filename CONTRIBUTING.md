@@ -15,6 +15,7 @@ requirements and recommendations.
 - [How to Contribute](#how-to-contribute)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
+    - [Code structure](#code-structure)
     - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
@@ -92,6 +93,38 @@ environment configured:
 Refer to the
 [Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.25.0/semantic-conventions/syntax.md)
 to learn how to make changes to the YAML files.
+
+#### Code structure
+
+The YAML (model definition) and Markdown (documentation) files are organized in the following way:
+
+```
+├── docs
+│   ├── attribute_registry
+│   ├── {root-namespace}
+│   │   ├── README.md
+│   │   ├── ....md
+├── model
+│   ├── {root-namespace}
+│   │   ├── events.yaml
+│   │   ├── metrics.yaml
+│   │   ├── registry.yaml
+│   │   ├── resources.yaml
+│   │   ├── spans.yaml
+```
+
+All attributes must be defined in the folder matching their root namespace under
+`/{root-namespace}/*registry.yaml` file.
+
+Corresponding markdown files are auto-generated (see [Update the markdown files](#2-update-the-markdown-files))
+in `/docs/attribute_registry` folder.
+
+All semantic conventions definitions for telemetry signals should be placed under
+`/model/{root-namespace}` and should follow `*{signal}.yaml` pattern. For example,
+HTTP spans are defined in `model/http/spans.yaml`.
+
+YAML definitions could be broken down into multiple files. For example, AWS spans
+are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` files.
 
 #### Schema files
 
