@@ -261,11 +261,30 @@ batch of messages, or for no message at all (if it is signalled that no
 messages were received). For each message it accounts for, the "Process" or
 "Receive" span SHOULD link to the message's creation context.
 
+> [!IMPORTANT]
+> These conventions use spans links as the default mechanism to correlate
+> producers and consumer(s) because:
+>
+> - It is the only consistent trace structure that can be guaranteed,
+> given the many different messaging systems models available.
+>
+> - It is the only option to correlate produce and consumer(s) in batch scenarios
+> as a span can only have a single parent.
+>
+> - Offers a consistent experience for users analysing traces from different
+> messaging systems.
+
+Exclusively for single messages scenarios, "Process" or "Receive" span MAY
+use the message's creation context as its parent, thus achieving a direct
+parent-child relationship between producer and consumer(s).
+
 "Settle" spans SHOULD be created for every manually or automatically triggered
 settlement operation. A single "Settle" span can account for a single message
 or for multiple messages (in case messages are passed for settling as batches).
 For each message it accounts for, the "Settle" span MAY link to the creation
 context of the message.
+
+
 
 ## Messaging attributes
 
