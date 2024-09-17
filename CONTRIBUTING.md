@@ -91,7 +91,7 @@ environment configured:
 ### 1. Modify the YAML model
 
 Refer to the
-[Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.25.0/semantic-conventions/syntax.md)
+[Semantic Convention YAML Language](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)
 to learn how to make changes to the YAML files.
 
 #### Code structure
@@ -221,8 +221,8 @@ During the release process, all `./.chloggen/*.yaml` files are transcribed into
 1. Create an entry file using `make chlog-new`. The command generates a new file,
    with its name based on the current branch (e.g. `./.chloggen/my-feature-xyz.yaml`)
 2. Fill in all the fields in the generated file
-3. The value for the `component` field MUST match a filename (without type) in the
-   [registry](https://github.com/open-telemetry/semantic-conventions/tree/main/model/registry)
+3. The value for the `component` field MUST match a folder name in the
+   [model](https://github.com/open-telemetry/semantic-conventions/tree/main/model) directory
    (e.g. `browser`, `http`)
 4. Run `make chlog-validate` to ensure the new file is valid
 5. Commit and push the file
@@ -343,14 +343,14 @@ make markdown-link-check
 
 ### Version compatibility check
 
-Semantic conventions are validated for backward compatibility with last released versions. Here's [the full list of compatibility checks](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#version-compatibility-check).
+Semantic conventions are validated for backward compatibility with last released versions. Here's [the full list of compatibility checks](./policies/compatibility.rego).
 Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
 It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
 
-You can run backward compatibility check in all yaml files with the following command:
+You can run backward compatibility check (along with other policies) in all yaml files with the following command:
 
 ```bash
-make compatibility-check
+make check-policies
 ```
 
 ## Updating the referenced specification version
