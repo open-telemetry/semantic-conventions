@@ -221,8 +221,8 @@ During the release process, all `./.chloggen/*.yaml` files are transcribed into
 1. Create an entry file using `make chlog-new`. The command generates a new file,
    with its name based on the current branch (e.g. `./.chloggen/my-feature-xyz.yaml`)
 2. Fill in all the fields in the generated file
-3. The value for the `component` field MUST match a filename (without type) in the
-   [registry](https://github.com/open-telemetry/semantic-conventions/tree/main/model/registry)
+3. The value for the `component` field MUST match a folder name in the
+   [model](https://github.com/open-telemetry/semantic-conventions/tree/main/model) directory
    (e.g. `browser`, `http`)
 4. Run `make chlog-validate` to ensure the new file is valid
 5. Commit and push the file
