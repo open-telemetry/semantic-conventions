@@ -284,8 +284,6 @@ or for multiple messages (in case messages are passed for settling as batches).
 For each message it accounts for, the "Settle" span MAY link to the creation
 context of the message.
 
-
-
 ## Messaging attributes
 
 Messaging attributes are organized into the following namespaces:
@@ -486,17 +484,19 @@ flowchart LR;
   R2[Span Process A 2]
   end
   P-. link .-R1;
+  P-- parent -->R1;
   P-. link .-R2;
+  P-- parent -->R2;
 
   classDef normal fill:green
   class P,R1,R2 normal
-  linkStyle 0,1 color:green,stroke:green
+  linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
 | Field or Attribute | Span Publish A | Span Process A 1| Span Process A 2 |
 |-|-|-|-|
 | Span name | `publish T` | `consume T` | `consume T` |
-| Parent | | | |
+| Parent (optional) | | `publish T` | `publish T` |
 | Links |  | `publish T` | `publish T` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
