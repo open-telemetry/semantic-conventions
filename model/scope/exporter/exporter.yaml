@@ -1,9 +1,0 @@
-groups:
-  - id: otel.scope
-    type: resource
-    brief: Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
-    attributes:
-      - ref: otel.scope.name
-        requirement_level: recommended
-      - ref: otel.scope.version
-        requirement_level: recommended

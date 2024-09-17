@@ -1,0 +1,8 @@
+groups:
+  - id: client
+    type: attribute_group
+    brief: >
+      General client attributes.
+    attributes:
+      - ref: client.address
+      - ref: client.port

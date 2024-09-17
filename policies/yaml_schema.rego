@@ -48,6 +48,26 @@ deny[yaml_schema_violation(description, group.id, name)] {
     description := sprintf("Event name '%s' is invalid. Event name %s'", [name, invalid_name_helper])
 }
 
+# require resources have names
+deny[yaml_schema_violation(description, group.id, "")] {
+    group := input.groups[_]
+    group.type == "resource"
+    group.name == null
+    description := sprintf("Resource id '%s' is invalid. Resource must have name.", [group.id])
+}
+
+# checks resource name format
+deny[yaml_schema_violation(description, group.id, name)] {
+    group := input.groups[_]
+    group.type == "resource"
+    name := group.name
+
+    name != null
+    not regex.match(name_regex, name)
+
+    description := sprintf("Resource name '%s' is invalid. Resource name %s'", [name, invalid_name_helper])
+}
+
 # checks attribute member id format
 deny[yaml_schema_violation(description, group.id, attr_name)] {
     group := input.groups[_]

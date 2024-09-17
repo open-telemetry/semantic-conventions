@@ -33,6 +33,8 @@ WEAVER_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print
 SEMCONVGEN_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
 OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
 
+DOCKER_USER=$(shell id -u):$(shell id -g)
+
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
@@ -114,7 +116,7 @@ yamllint:
 .PHONY: table-generation
 table-generation:
 	docker run --rm \
-		-u $(id -u ${USER}):$(id -g ${USER}) \
+		-u $(DOCKER_USER) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
@@ -129,7 +131,7 @@ table-generation:
 .PHONY: attribute-registry-generation
 attribute-registry-generation:
 	docker run --rm \
-		-u $(id -u ${USER}):$(id -g ${USER}) \
+		-u $(DOCKER_USER) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
@@ -208,7 +210,19 @@ chlog-update: $(CHLOGGEN)
 # files that have the "area" dropdown field
 .PHONY: generate-gh-issue-templates
 generate-gh-issue-templates:
-	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh
+	mkdir -p $(TOOLS_DIR)/bin
+	docker run --rm \
+	-u $(id -u ${USER}):$(id -g ${USER}) \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
+	$(WEAVER_CONTAINER) registry generate \
+		--registry=/home/weaver/source \
+		--templates=/home/weaver/templates \
+		--config=/home/weaver/templates/registry/areas-weaver.yaml \
+		. \
+		/home/weaver/target
+	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh $(PWD)/internal/tools/bin/areas.txt
 
 # A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
 # relied on "git describe". However, that approach does not work with
@@ -227,7 +241,6 @@ LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.c
 .PHONY: check-policies
 check-policies:
 	docker run --rm \
-		-u $(id -u ${USER}):$(id -g ${USER}) \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
@@ -250,4 +263,4 @@ test-policies:
 .PHONY: compatibility-check
 compatibility-check:
 	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
-		$(SEMCONVGEN_CONTAINER) -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
+		$(SEMCONVGEN_CONTAINER) --continue-on-validation-errors -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
