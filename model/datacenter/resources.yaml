@@ -1,0 +1,15 @@
+groups:
+  - id: datacenter
+    stability: experimental
+    type: resource
+    brief: >
+      Generic DataCenter infrastructure tagging.
+    attributes:
+      - ref: dc.name
+      - ref: dc.provider.name
+      - ref: dc.provider.type
+      - ref: dc.suite
+      - ref: dc.site
+      - ref: dc.cage
+      - ref: dc.pod
+      - ref: dc.rack
