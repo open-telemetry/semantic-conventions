@@ -1,0 +1,31 @@
+groups:
+  - id: log.record
+    type: attribute_group
+    brief: >
+      The attributes described in this section are rather generic. They may be used in any Log Record they apply to.
+    attributes:
+      - ref: log.record.uid
+        requirement_level: opt_in
+      - ref: log.record.original
+        requirement_level: opt_in
+
+  - id: attributes.log
+    type: attribute_group
+    brief: "Describes Log attributes"
+    attributes:
+      - ref: log.iostream
+        requirement_level: opt_in
+
+  - id: attributes.log.file
+    type: attribute_group
+    brief: >
+      A file to which log was emitted.
+    attributes:
+      - ref: log.file.name
+        requirement_level: recommended
+      - ref: log.file.path
+        requirement_level: opt_in
+      - ref: log.file.name_resolved
+        requirement_level: opt_in
+      - ref: log.file.path_resolved
+        requirement_level: opt_in
