@@ -13,6 +13,13 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+**type:** `heroku`
+
+**Description:** Heroku dyno metadata
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`heroku.app.id`](/docs/attributes-registry/heroku.md) | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

@@ -1,0 +1,13 @@
+templates:
+  - pattern: areas.md.j2
+    filter: >
+      semconv_grouped_attributes({"exclude_deprecated": true}) | .[].root_namespace
+    application_mode: single
+whitespace_control:
+  trim_blocks: true
+  lstrip_blocks: true
+  keep_trailing_newline: true
+text_maps:
+  areas:
+    az: azure
+    hw: hardware

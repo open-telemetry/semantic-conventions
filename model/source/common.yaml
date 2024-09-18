@@ -1,0 +1,8 @@
+groups:
+  - id: source
+    type: attribute_group
+    brief: >
+      General source attributes.
+    attributes:
+      - ref: source.address
+      - ref: source.port

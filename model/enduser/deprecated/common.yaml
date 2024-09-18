@@ -1,0 +1,12 @@
+groups:
+  - id: identity
+    type: attribute_group
+    brief: >
+      These attributes may be used for any operation with an authenticated and/or authorized enduser.
+    attributes:
+      - ref: enduser.id
+        requirement_level: recommended
+      - ref: enduser.role
+        requirement_level: recommended
+      - ref: enduser.scope
+        requirement_level: recommended
