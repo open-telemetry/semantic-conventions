@@ -27,7 +27,7 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 | [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [2] | `MyQueue`; `MyTopic` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [4] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [4] | `send`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rabbitmq.destination.routing_key`](/docs/attributes-registry/messaging.md) | string | RabbitMQ message routing key. | `myKey` | `Conditionally Required` If not empty. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.rabbitmq.message.delivery_tag`](/docs/attributes-registry/messaging.md) | int | RabbitMQ message delivery tag | `123` | `Conditionally Required` When available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -96,9 +96,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

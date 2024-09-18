@@ -9,7 +9,7 @@
 - [Common metrics](#common-metrics)
   - [Metric: `messaging.client.operation.duration`](#metric-messagingclientoperationduration)
 - [Producer metrics](#producer-metrics)
-  - [Metric: `messaging.client.published.messages`](#metric-messagingclientpublishedmessages)
+  - [Metric: `messaging.client.sent.messages`](#metric-messagingclientsentmessages)
 - [Consumer metrics](#consumer-metrics)
   - [Metric: `messaging.client.consumed.messages`](#metric-messagingclientconsumedmessages)
   - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
@@ -59,7 +59,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md) | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` | `Conditionally Required` if applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [8] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [8] | `sent`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -116,9 +116,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 | Value  | Description | Stability |
 |---|---|---|
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -148,7 +148,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 ## Producer metrics
 
-### Metric: `messaging.client.published.messages`
+### Metric: `messaging.client.sent.messages`
 
 This metric is [required][MetricRequired].
 
@@ -161,10 +161,10 @@ This metric is [required][MetricRequired].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `messaging.client.published.messages` | Counter | `{message}` | Number of messages producer attempted to publish to the broker. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `messaging.client.sent.messages` | Counter | `{message}` | Number of messages producer attempted to send to the broker. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-**[1]:** This metric MUST NOT count messages that were created haven't yet been attempted to be published.
+**[1]:** This metric MUST NOT count messages that were created but haven't yet been sent.
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
