@@ -1,0 +1,38 @@
+groups:
+  - id: registry.file
+    type: attribute_group
+    display_name: File Attributes
+    brief: "Describes file attributes."
+    attributes:
+      - id: file.directory
+        type: string
+        brief: >
+          Directory where the file is located. It should include the drive letter, when appropriate.
+        stability: experimental
+        examples: ['/home/user', 'C:\Program Files\MyApp']
+      - id: file.extension
+        type: string
+        brief: >
+          File extension, excluding the leading dot.
+        stability: experimental
+        examples: ['png', 'gz']
+        note: >
+          When the file name has multiple extensions (example.tar.gz), only the last one should
+          be captured ("gz", not "tar.gz").
+      - id: file.name
+        type: string
+        brief: >
+          Name of the file including the extension, without the directory.
+        stability: experimental
+        examples: ['example.png']
+      - id: file.path
+        type: string
+        brief: >
+          Full path to the file, including the file name. It should include the drive letter, when appropriate.
+        stability: experimental
+        examples: ['/home/alice/example.png', 'C:\Program Files\MyApp\myapp.exe']
+      - id: file.size
+        type: int
+        brief: >
+          File size in bytes.
+        stability: experimental

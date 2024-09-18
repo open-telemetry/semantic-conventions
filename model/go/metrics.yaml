@@ -1,0 +1,96 @@
+groups:
+  - id: metric.go.memory.used
+    type: metric
+    metric_name: go.memory.used
+    brief: "Memory used by the Go runtime."
+    note: >
+      Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: go.memory.type
+        requirement_level: recommended
+    stability: experimental
+
+  - id: metric.go.memory.limit
+    type: metric
+    metric_name: go.memory.limit
+    brief: "Go runtime memory limit configured by the user, if a limit exists."
+    note: >
+      Computed from `/gc/gomemlimit:bytes`.
+      This metric is excluded if the limit obtained from the Go runtime is math.MaxInt64.
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+
+  - id: metric.go.memory.allocated
+    type: metric
+    metric_name: go.memory.allocated
+    brief: "Memory allocated to the heap by the application."
+    note: >
+      Computed from `/gc/heap/allocs:bytes`.
+    instrument: counter
+    unit: "By"
+    stability: experimental
+
+  - id: metric.go.memory.allocations
+    type: metric
+    metric_name: go.memory.allocations
+    brief: "Count of allocations to the heap by the application."
+    note: >
+      Computed from `/gc/heap/allocs:objects`.
+    instrument: counter
+    unit: "{allocation}"
+    stability: experimental
+
+  - id: metric.go.memory.gc.goal
+    type: metric
+    metric_name: go.memory.gc.goal
+    brief: "Heap size target for the end of the GC cycle."
+    note: >
+      Computed from `/gc/heap/goal:bytes`.
+    instrument: updowncounter
+    unit: "By"
+    stability: experimental
+
+  - id: metric.go.goroutine.count
+    type: metric
+    metric_name: go.goroutine.count
+    brief: "Count of live goroutines."
+    note: >
+      Computed from `/sched/goroutines:goroutines`.
+    instrument: updowncounter
+    unit: "{goroutine}"
+    stability: experimental
+
+  - id: metric.go.processor.limit
+    type: metric
+    metric_name: go.processor.limit
+    brief: "The number of OS threads that can execute user-level Go code simultaneously."
+    note: >
+      Computed from `/sched/gomaxprocs:threads`.
+    instrument: updowncounter
+    unit: "{thread}"
+    stability: experimental
+
+  - id: metric.go.schedule.duration
+    type: metric
+    metric_name: go.schedule.duration
+    brief: "The time goroutines have spent in the scheduler in a runnable state before actually running."
+    note: >
+      Computed from `/sched/latencies:seconds`.
+      Bucket boundaries are provided by the runtime, and are subject to change.
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+
+  - id: metric.go.config.gogc
+    type: metric
+    metric_name: go.config.gogc
+    brief: "Heap size target percentage configured by the user, otherwise 100."
+    note: >
+      The value range is [0.0,100.0].
+      Computed from `/gc/gogc:percent`.
+    instrument: updowncounter
+    unit: "%"
+    stability: experimental

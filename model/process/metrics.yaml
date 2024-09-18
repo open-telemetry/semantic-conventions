@@ -1,0 +1,113 @@
+groups:
+  - id: metric.process.cpu.time
+    type: metric
+    metric_name: process.cpu.time
+    stability: experimental
+    brief: "Total CPU seconds broken down by different states."
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: cpu.mode
+        brief: >
+          A process SHOULD be characterized _either_ by data points with no `mode`
+          labels, _or only_ data points with `mode` labels.
+        note: "Following states SHOULD be used: `user`, `system`, `wait`"
+
+  - id: metric.process.cpu.utilization
+    type: metric
+    metric_name: process.cpu.utilization
+    stability: experimental
+    brief:
+      Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs
+      available to the process.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: cpu.mode
+        brief: >
+          A process SHOULD be characterized _either_ by data points with no `mode`
+          labels, _or only_ data points with `mode` labels.
+        note: "Following states SHOULD be used: `user`, `system`, `wait`"
+
+  - id: metric.process.memory.usage
+    type: metric
+    metric_name: process.memory.usage
+    stability: experimental
+    brief: "The amount of physical memory in use."
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+
+  - id: metric.process.memory.virtual
+    type: metric
+    metric_name: process.memory.virtual
+    stability: experimental
+    brief: "The amount of committed virtual memory."
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+
+  - id: metric.process.disk.io
+    type: metric
+    metric_name: process.disk.io
+    stability: experimental
+    brief: "Disk bytes transferred."
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: disk.io.direction
+
+  - id: metric.process.network.io
+    type: metric
+    metric_name: process.network.io
+    stability: experimental
+    brief: "Network bytes transferred."
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: network.io.direction
+
+  - id: metric.process.thread.count
+    type: metric
+    metric_name: process.thread.count
+    stability: experimental
+    brief: "Process threads count."
+    instrument: updowncounter
+    unit: "{thread}"
+
+  - id: metric.process.open_file_descriptor.count
+    type: metric
+    metric_name: process.open_file_descriptor.count
+    stability: experimental
+    brief: "Number of file descriptors in use by the process."
+    instrument: updowncounter
+    unit: "{count}"
+
+  - id: metric.process.context_switches
+    type: metric
+    metric_name: process.context_switches
+    stability: experimental
+    brief: "Number of times the process has been context switched."
+    instrument: counter
+    unit: "{count}"
+    attributes:
+      - ref: process.context_switch_type
+
+  - id: metric.process.paging.faults
+    type: metric
+    metric_name: process.paging.faults
+    stability: experimental
+    brief: "Number of page faults the process has made."
+    instrument: counter
+    unit: "{fault}"
+    attributes:
+      - ref: process.paging.fault_type
+
+  - id: metric.process.uptime
+    type: metric
+    metric_name: process.uptime
+    stability: experimental
+    brief: "The time the process has been running."
+    instrument: counter
+    unit: "s"
+    note: "Instrumentations SHOULD use counter with type `double` and measure uptime with at least millisecond precision"

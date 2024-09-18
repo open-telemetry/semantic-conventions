@@ -1,0 +1,12 @@
+groups:
+  - id: url
+    brief: Attributes describing URL.
+    type: attribute_group
+    attributes:
+      - ref: url.scheme
+      - ref: url.full
+        tag: sensitive-information
+      - ref: url.path
+      - ref: url.query
+        tag: sensitive-information
+      - ref: url.fragment

@@ -1,0 +1,129 @@
+groups:
+  - id: rpc
+    type: span
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    events: [rpc.message]
+    attributes:
+      - ref: rpc.system
+        requirement_level: required
+      - ref: rpc.service
+        requirement_level: recommended
+      - ref: rpc.method
+        requirement_level: recommended
+      - ref: network.transport
+        requirement_level: recommended
+      - ref: network.type
+        requirement_level: recommended
+      - ref: server.address
+        requirement_level: required
+        brief: >
+          RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
+        note: >
+          May contain server IP address, DNS name, or local socket name. When host component is an IP address,
+          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set
+          `server.address` to the IP address provided in the host component.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if the port is supported by the network transport used for communication.
+
+  - id: rpc.client
+    type: span
+    brief: 'This document defines semantic conventions for remote procedure call client spans.'
+    extends: rpc
+    attributes:
+      - ref: network.peer.address
+        requirement_level: recommended
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
+
+  - id: rpc.server
+    type: span
+    extends: rpc
+    span_kind: server
+    brief: 'Semantic Convention for RPC server spans'
+    attributes:
+      - ref: client.address
+        requirement_level: recommended
+      - ref: client.port
+        requirement_level: recommended
+      - ref: network.peer.address
+        requirement_level: recommended
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
+      - ref: network.transport
+        requirement_level: recommended
+      - ref: network.type
+        requirement_level: recommended
+
+  - id: rpc.grpc
+    type: span
+    extends: rpc
+    brief: 'Tech-specific attributes for gRPC.'
+    attributes:
+      - ref: rpc.grpc.status_code
+        tag: grpc-tech-specific
+        requirement_level: required
+      - ref: rpc.grpc.request.metadata
+        tag: grpc-tech-specific
+        requirement_level: opt_in
+      - ref: rpc.grpc.response.metadata
+        tag: grpc-tech-specific
+        requirement_level: opt_in
+
+  - id: rpc.jsonrpc
+    type: span
+    extends: rpc
+    brief: 'Tech-specific attributes for [JSON RPC](https://www.jsonrpc.org/).'
+    attributes:
+      - ref: rpc.jsonrpc.version
+        tag: jsonrpc-tech-specific
+        requirement_level:
+          conditionally_required: If other than the default version (`1.0`)
+      - ref: rpc.jsonrpc.request_id
+        tag: jsonrpc-tech-specific
+        requirement_level: recommended
+      - ref: rpc.jsonrpc.error_code
+        tag: jsonrpc-tech-specific
+        requirement_level:
+          conditionally_required: If response is not successful.
+      - ref: rpc.jsonrpc.error_message
+        tag: jsonrpc-tech-specific
+        requirement_level: recommended
+      - ref: rpc.method
+        tag: jsonrpc-tech-specific
+        requirement_level: required
+        note: >
+          This is always required for jsonrpc. See the note in the general
+          RPC conventions for more information.
+
+  - id: rpc.message
+    type: event
+    name: rpc.message
+    brief: "RPC received/sent message."
+    attributes:
+      - ref: rpc.message.type
+        requirement_level: recommended
+      - ref: rpc.message.id
+        requirement_level: recommended
+      - ref: rpc.message.compressed_size
+        requirement_level: recommended
+      - ref: rpc.message.uncompressed_size
+        requirement_level: recommended
+
+  - id: rpc.connect_rpc
+    type: span
+    extends: rpc
+    brief: 'Tech-specific attributes for Connect RPC.'
+    attributes:
+      - ref: rpc.connect_rpc.error_code
+        tag: connect_rpc-tech-specific
+        requirement_level:
+          conditionally_required: If response is not successful and if error code available.
+      - ref: rpc.connect_rpc.request.metadata
+        tag: connect_rpc-tech-specific
+        requirement_level: opt_in
+      - ref: rpc.connect_rpc.response.metadata
+        tag: connect_rpc-tech-specific
+        requirement_level: opt_in

@@ -6,7 +6,7 @@
 
 # OCI
 
-## OCI Manifest Attributes
+## Open Container Initiative (OCI) Attributes
 
 An OCI image manifest.
 

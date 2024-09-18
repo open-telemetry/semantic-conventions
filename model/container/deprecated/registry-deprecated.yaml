@@ -1,0 +1,31 @@
+groups:
+  - id: registry.container.deprecated
+    type: attribute_group
+    display_name: Deprecated Container Attributes
+    brief: "Describes deprecated container attributes."
+    attributes:
+      - id: container.labels
+        type: template[string]
+        examples: [ 'container.label.app=nginx' ]
+        brief: "Deprecated, use `container.label` instead."
+        stability: experimental
+        deprecated: "Replaced by `container.label`."
+      - id: container.cpu.state
+        brief: "Deprecated, use `cpu.mode` instead."
+        type:
+          members:
+            - id: user
+              value: 'user'
+              brief: "When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows)."
+              stability: experimental
+            - id: system
+              value: 'system'
+              brief: "When CPU is used by the system (host OS)"
+              stability: experimental
+            - id: kernel
+              value: 'kernel'
+              brief: "When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows)."
+              stability: experimental
+        stability: experimental
+        deprecated: 'Replaced by `cpu.mode`'
+        examples: [ "user", "kernel" ]

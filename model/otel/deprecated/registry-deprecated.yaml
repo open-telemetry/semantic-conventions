@@ -1,0 +1,18 @@
+groups:
+  - id: registry.otel.library.deprecated
+    type: attribute_group
+    display_name: Deprecated OTel Library Attributes
+    brief: "Describes deprecated otel.library attributes."
+    attributes:
+      - id: otel.library.name
+        type: string
+        deprecated: "Use the `otel.scope.name` attribute."
+        stability: experimental
+        brief: "Deprecated. Use the `otel.scope.name` attribute"
+        examples: ['io.opentelemetry.contrib.mongodb']
+      - id: otel.library.version
+        type: string
+        deprecated: "Use the `otel.scope.version` attribute."
+        stability: experimental
+        brief: "Deprecated. Use the `otel.scope.version` attribute."
+        examples: ['1.0.0']

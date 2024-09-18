@@ -1,0 +1,13 @@
+groups:
+  - id: registry.deployment.deprecated
+    type: attribute_group
+    brief: >
+      "Describes deprecated deployment attributes."
+    attributes:
+      - id: deployment.environment
+        type: string
+        stability: experimental
+        deprecated: 'Deprecated, use `deployment.environment.name` instead.'
+        brief: >
+          'Deprecated, use `deployment.environment.name` instead.'
+        examples: ['staging', 'production']

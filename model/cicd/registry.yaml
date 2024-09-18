@@ -1,0 +1,76 @@
+groups:
+  - id: registry.cicd.pipeline
+    type: attribute_group
+    brief: >
+      This group describes attributes specific to pipelines within a Continuous
+      Integration and Continuous Deployment (CI/CD) system. A
+      [pipeline](https://en.wikipedia.org/wiki/Pipeline_(computing)) in this
+      case is a series of steps that are performed in order to deliver a new
+      version of software. This aligns with the
+      [Britannica](https://www.britannica.com/dictionary/pipeline) definition
+      of a pipeline where a **pipeline** is the system for developing and
+      producing something. In the context of CI/CD, a pipeline produces or
+      delivers software.
+    attributes:
+      - id: cicd.pipeline.name
+        type: string
+        stability: experimental
+        brief: >
+          The human readable name of the pipeline within a CI/CD system.
+        examples:
+          [
+            "Build and Test",
+            "Lint",
+            "Deploy Go Project",
+            "deploy_to_environment",
+          ]
+      - id: cicd.pipeline.run.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of a pipeline run within a CI/CD system.
+        examples: ["120912"]
+      - id: cicd.pipeline.task.name
+        type: string
+        stability: experimental
+        brief: >
+          The human readable name of a task within a pipeline. Task here most
+          closely aligns with a [computing process](https://en.wikipedia.org/wiki/Pipeline_(computing))
+          in a pipeline. Other terms for tasks include commands, steps, and
+          procedures.
+        examples: ["Run GoLang Linter", "Go Build", "go-test", "deploy_binary"]
+      - id: cicd.pipeline.task.run.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of a task run within a pipeline.
+        examples: ["12097"]
+      - id: cicd.pipeline.task.run.url.full
+        type: string
+        stability: experimental
+        brief: >
+          The [URL](https://en.wikipedia.org/wiki/URL) of the pipeline run
+          providing the complete address in order to locate and identify the pipeline run.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075",
+          ]
+      - id: cicd.pipeline.task.type
+        type:
+          members:
+            - id: build
+              value: build
+              brief: build
+              stability: experimental
+            - id: test
+              value: test
+              brief: test
+              stability: experimental
+            - id: deploy
+              value: deploy
+              brief: deploy
+              stability: experimental
+        stability: experimental
+        brief: >
+          The type of the task within a pipeline.
+        examples: ["build", "test", "deploy"]

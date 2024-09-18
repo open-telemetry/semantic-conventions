@@ -1,0 +1,21 @@
+groups:
+  - id: registry.opentracing
+    type: attribute_group
+    display_name: OpenTracing Attributes
+    brief: Attributes used by the OpenTracing Shim layer.
+    attributes:
+      - id: opentracing.ref_type
+        brief: 'Parent-child Reference type'
+        stability: experimental
+        note: >
+            The causal relationship between a child Span and a parent Span.
+        type:
+          members:
+            - id: child_of
+              value: 'child_of'
+              brief: "The parent Span depends on the child Span in some capacity"
+              stability: experimental
+            - id: follows_from
+              value: 'follows_from'
+              brief: "The parent Span doesn't depend in any way on the result of the child Span"
+              stability: experimental

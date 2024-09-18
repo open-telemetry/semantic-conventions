@@ -1,0 +1,53 @@
+groups:
+  - id: registry.system.deprecated
+    type: attribute_group
+    display_name: Deprecated System Attributes
+    brief: "Deprecated system attributes."
+    attributes:
+      - id: system.processes.status
+        type:
+          members:
+            - id: running
+              value: 'running'
+              stability: experimental
+            - id: sleeping
+              value: 'sleeping'
+              stability: experimental
+            - id: stopped
+              value: 'stopped'
+              stability: experimental
+            - id: defunct
+              value: 'defunct'
+              stability: experimental
+        brief: "Deprecated, use `system.process.status` instead."
+        deprecated: "Replaced by `system.process.status`."
+        stability: experimental
+        examples: ["running"]
+      - id: system.cpu.state
+        type:
+          members:
+            - id: user
+              value: 'user'
+              stability: experimental
+            - id: system
+              value: 'system'
+              stability: experimental
+            - id: nice
+              value: 'nice'
+              stability: experimental
+            - id: idle
+              value: 'idle'
+              stability: experimental
+            - id: iowait
+              value: 'iowait'
+              stability: experimental
+            - id: interrupt
+              value: 'interrupt'
+              stability: experimental
+            - id: steal
+              value: 'steal'
+              stability: experimental
+        brief: "Deprecated, use `cpu.mode` instead."
+        stability: experimental
+        deprecated: 'Replaced by `cpu.mode`'
+        examples: [ "idle", "interrupt" ]

@@ -1,0 +1,29 @@
+groups:
+  - id: registry.webengine
+    type: attribute_group
+    display_name: Web Engine Attributes
+    stability: experimental
+    brief: >
+      This document defines the attributes used to describe the packaged software running the application code.
+    attributes:
+      - id: webengine.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the web engine.
+        examples: ["WildFly"]
+      - id: webengine.version
+        type: string
+        stability: experimental
+        brief: >
+          The version of the web engine.
+        examples: ["21.0.0"]
+      - id: webengine.description
+        type: string
+        stability: experimental
+        brief: >
+          Additional description of the web engine (e.g. detailed version and edition information).
+        examples:
+          [
+            "WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final",
+          ]

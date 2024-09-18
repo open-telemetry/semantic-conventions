@@ -1,0 +1,33 @@
+groups:
+  - id: registry.rpc.deprecated
+    type: attribute_group
+    display_name: Deprecated RPC Attributes
+    brief: 'Deprecated rpc message attributes.'
+    attributes:
+      - id: message.type
+        type:
+          members:
+            - id: sent
+              value: "SENT"
+              stability: experimental
+            - id: received
+              value: "RECEIVED"
+              stability: experimental
+        stability: experimental
+        brief: "Deprecated, use `rpc.message.type` instead."
+        deprecated: "Replaced by `rpc.message.type`."
+      - id: message.id
+        type: int
+        stability: experimental
+        brief: "Deprecated, use `rpc.message.id` instead."
+        deprecated: "Replaced by `rpc.message.id`."
+      - id: message.compressed_size
+        type: int
+        stability: experimental
+        brief: "Deprecated, use `rpc.message.compressed_size` instead."
+        deprecated: "Replaced by `rpc.message.compressed_size`."
+      - id: message.uncompressed_size
+        type: int
+        stability: experimental
+        brief: "Deprecated, use `rpc.message.uncompressed_size` instead."
+        deprecated: "Replaced by `rpc.message.uncompressed_size`."

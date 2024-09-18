@@ -1,0 +1,216 @@
+groups:
+  - id: registry.k8s
+    type: attribute_group
+    display_name: Kubernetes Attributes
+    brief: >
+      Kubernetes resource attributes.
+    attributes:
+      - id: k8s.cluster.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the cluster.
+        examples: ['opentelemetry-cluster']
+      - id: k8s.cluster.uid
+        type: string
+        stability: experimental
+        brief: >
+          A pseudo-ID for the cluster, set to the UID of the `kube-system`
+          namespace.
+        note: |
+          K8s doesn't have support for obtaining a cluster ID. If this is ever
+          added, we will recommend collecting the `k8s.cluster.uid` through the
+          official APIs. In the meantime, we are able to use the `uid` of the
+          `kube-system` namespace as a proxy for cluster ID. Read on for the
+          rationale.
+
+          Every object created in a K8s cluster is assigned a distinct UID. The
+          `kube-system` namespace is used by Kubernetes itself and will exist
+          for the lifetime of the cluster. Using the `uid` of the `kube-system`
+          namespace is a reasonable proxy for the K8s ClusterID as it will only
+          change if the cluster is rebuilt. Furthermore, Kubernetes UIDs are
+          UUIDs as standardized by
+          [ISO/IEC 9834-8 and ITU-T X.667](https://www.itu.int/ITU-T/studygroups/com17/oid.html).
+          Which states:
+
+          > If generated according to one of the mechanisms defined in Rec.
+            ITU-T X.667 | ISO/IEC 9834-8, a UUID is either guaranteed to be
+            different from all other UUIDs generated before 3603 A.D., or is
+            extremely likely to be different (depending on the mechanism chosen).
+
+          Therefore, UIDs between clusters should be extremely unlikely to
+          conflict.
+        examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
+      - id: k8s.node.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the Node.
+        examples: ['node-1']
+      - id: k8s.node.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the Node.
+        examples: ['1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2']
+      - id: k8s.namespace.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the namespace that the pod is running in.
+        examples: ['default']
+      - id: k8s.pod.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the Pod.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.pod.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the Pod.
+        examples: ['opentelemetry-pod-autoconf']
+      - id: k8s.pod.label
+        type: template[string]
+        stability: experimental
+        brief: >
+          The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value.
+        examples: ['k8s.pod.label.app=my-app', 'k8s.pod.label.mycompany.io/arch=x64', 'k8s.pod.label.data=']
+      - id: k8s.pod.annotation
+        type: template[string]
+        stability: experimental
+        brief: >
+          The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
+        examples: [ 'k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true', 'k8s.pod.annotation.mycompany.io/arch=x64', 'k8s.pod.annotation.data=' ]
+      - id: k8s.container.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the Container from Pod specification, must be unique
+          within a Pod. Container runtime usually uses different globally unique
+          name (`container.name`).
+        examples: ['redis']
+      - id: k8s.container.restart_count
+        type: int
+        stability: experimental
+        brief: >
+          Number of times the container was restarted. This attribute can be
+          used to identify a particular container (running or stopped) within a
+          container spec.
+      - id: k8s.container.status.last_terminated_reason
+        type: string
+        stability: experimental
+        brief: >
+          Last terminated reason of the Container.
+        examples: ["Evicted", "Error"]
+
+      - id: k8s.replicaset.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the ReplicaSet.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.replicaset.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the ReplicaSet.
+        examples: ['opentelemetry']
+      - id: k8s.deployment.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the Deployment.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.deployment.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the Deployment.
+        examples: ['opentelemetry']
+      - id: k8s.statefulset.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the StatefulSet.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.statefulset.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the StatefulSet.
+        examples: ['opentelemetry']
+      - id: k8s.daemonset.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the DaemonSet.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.daemonset.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the DaemonSet.
+        examples: ['opentelemetry']
+      - id: k8s.job.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the Job.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.job.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the Job.
+        examples: ['opentelemetry']
+      - id: k8s.cronjob.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the CronJob.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.cronjob.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the CronJob.
+        examples: ['opentelemetry']
+      - id: k8s.volume.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the K8s volume.
+        examples: [ 'volume0' ]
+      - id: k8s.volume.type
+        stability: experimental
+        brief: >
+          The type of the K8s volume.
+        examples: [ "emptyDir", "persistentVolumeClaim" ]
+        type:
+          members:
+            - id: persistent_volume_claim
+              value: 'persistentVolumeClaim'
+              brief: "A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
+              stability: experimental
+            - id: config_map
+              value: 'configMap'
+              brief: "A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
+              stability: experimental
+            - id: downward_api
+              value: 'downwardAPI'
+              brief: "A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
+              stability: experimental
+            - id: empty_dir
+              value: 'emptyDir'
+              brief: "An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
+              stability: experimental
+            - id: secret
+              value: 'secret'
+              brief: "A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
+              stability: experimental
+            - id: local
+              value: 'local'
+              brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              stability: experimental

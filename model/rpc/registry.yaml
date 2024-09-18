@@ -1,0 +1,264 @@
+groups:
+  - id: registry.rpc
+    type: attribute_group
+    display_name: Remote Procedure Call (RPC) Attributes
+    brief: 'This document defines attributes for remote procedure calls.'
+    attributes:
+      - id: rpc.connect_rpc.error_code
+        type:
+          members:
+            - id: cancelled
+              value: cancelled
+              stability: experimental
+            - id: unknown
+              value: unknown
+              stability: experimental
+            - id: invalid_argument
+              value: invalid_argument
+              stability: experimental
+            - id: deadline_exceeded
+              value: deadline_exceeded
+              stability: experimental
+            - id: not_found
+              value: not_found
+              stability: experimental
+            - id: already_exists
+              value: already_exists
+              stability: experimental
+            - id: permission_denied
+              value: permission_denied
+              stability: experimental
+            - id: resource_exhausted
+              value: resource_exhausted
+              stability: experimental
+            - id: failed_precondition
+              value: failed_precondition
+              stability: experimental
+            - id: aborted
+              value: aborted
+              stability: experimental
+            - id: out_of_range
+              value: out_of_range
+              stability: experimental
+            - id: unimplemented
+              value: unimplemented
+              stability: experimental
+            - id: internal
+              value: internal
+              stability: experimental
+            - id: unavailable
+              value: unavailable
+              stability: experimental
+            - id: data_loss
+              value: data_loss
+              stability: experimental
+            - id: unauthenticated
+              value: unauthenticated
+              stability: experimental
+        stability: experimental
+        brief: "The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
+      - id: rpc.connect_rpc.request.metadata
+        type: template[string[]]
+        stability: experimental
+        brief: >
+          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
+      - id: rpc.connect_rpc.response.metadata
+        type: template[string[]]
+        stability: experimental
+        brief: >
+          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
+      - id: rpc.grpc.status_code
+        type:
+          members:
+            - id: ok
+              brief: OK
+              stability: experimental
+              value: 0
+            - id: cancelled
+              brief: CANCELLED
+              stability: experimental
+              value: 1
+            - id: unknown
+              brief: UNKNOWN
+              stability: experimental
+              value: 2
+            - id: invalid_argument
+              brief: INVALID_ARGUMENT
+              stability: experimental
+              value: 3
+            - id: deadline_exceeded
+              brief: DEADLINE_EXCEEDED
+              stability: experimental
+              value: 4
+            - id: not_found
+              brief: NOT_FOUND
+              stability: experimental
+              value: 5
+            - id: already_exists
+              brief: ALREADY_EXISTS
+              stability: experimental
+              value: 6
+            - id: permission_denied
+              brief: PERMISSION_DENIED
+              stability: experimental
+              value: 7
+            - id: resource_exhausted
+              brief: RESOURCE_EXHAUSTED
+              stability: experimental
+              value: 8
+            - id: failed_precondition
+              brief: FAILED_PRECONDITION
+              stability: experimental
+              value: 9
+            - id: aborted
+              brief: ABORTED
+              stability: experimental
+              value: 10
+            - id: out_of_range
+              brief: OUT_OF_RANGE
+              stability: experimental
+              value: 11
+            - id: unimplemented
+              brief: UNIMPLEMENTED
+              stability: experimental
+              value: 12
+            - id: internal
+              brief: INTERNAL
+              stability: experimental
+              value: 13
+            - id: unavailable
+              brief: UNAVAILABLE
+              stability: experimental
+              value: 14
+            - id: data_loss
+              brief: DATA_LOSS
+              stability: experimental
+              value: 15
+            - id: unauthenticated
+              brief: UNAUTHENTICATED
+              stability: experimental
+              value: 16
+        stability: experimental
+        brief: "The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request."
+      - id: rpc.grpc.request.metadata
+        type: template[string[]]
+        stability: experimental
+        brief: >
+          gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
+      - id: rpc.grpc.response.metadata
+        type: template[string[]]
+        stability: experimental
+        brief: >
+          gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
+      - id: rpc.jsonrpc.error_code
+        type: int
+        stability: experimental
+        brief: "`error.code` property of response if it is an error response."
+        examples: [-32700, 100]
+      - id: rpc.jsonrpc.error_message
+        type: string
+        stability: experimental
+        brief: "`error.message` property of response if it is an error response."
+        examples: ['Parse error', 'User already exists']
+      - id: rpc.jsonrpc.request_id
+        type: string
+        stability: experimental
+        brief: >
+          `id` property of request or response.
+          Since protocol allows id to be int, string, `null` or missing (for notifications),
+          value is expected to be cast to string for simplicity.
+          Use empty string in case of `null` value. Omit entirely if this is a notification.
+        examples: ['10', 'request-7', '']
+      - id: rpc.jsonrpc.version
+        type: string
+        stability: experimental
+        brief: "Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted."
+        examples: ['2.0', '1.0']
+      - id: rpc.method
+        type: string
+        stability: experimental
+        brief: 'The name of the (logical) method being called, must be equal to the $method part in the span name.'
+        note: >
+          This is the logical name of the method from the RPC interface perspective,
+          which can be different from the name of any implementing method/function.
+          The `code.function` attribute may be used to store the latter
+          (e.g., method actually executing the call on the server side,
+          RPC client stub method on the client side).
+        examples: "exampleMethod"
+      - id: rpc.service
+        type: string
+        stability: experimental
+        brief: 'The full (logical) name of the service being called, including its package name, if applicable.'
+        note: >
+          This is the logical name of the service from the RPC interface perspective,
+          which can be different from the name of any implementing class.
+          The `code.namespace` attribute may be used to store the latter
+          (despite the attribute name, it may include a class name;
+          e.g., class with method actually executing the call on the server side,
+          RPC client stub class on the client side).
+        examples: "myservice.EchoService"
+      - id: rpc.system
+        brief: 'A string identifying the remoting system. See below for a list of well-known identifiers.'
+        type:
+          members:
+            - id: grpc
+              value: 'grpc'
+              brief: 'gRPC'
+              stability: experimental
+            - id: java_rmi
+              value: 'java_rmi'
+              brief: 'Java RMI'
+              stability: experimental
+            - id: dotnet_wcf
+              value: 'dotnet_wcf'
+              brief: '.NET WCF'
+              stability: experimental
+            - id: apache_dubbo
+              value: 'apache_dubbo'
+              brief: 'Apache Dubbo'
+              stability: experimental
+            - id: connect_rpc
+              value: 'connect_rpc'
+              brief: 'Connect RPC'
+              stability: experimental
+        stability: experimental
+      - id: rpc.message.type
+        type:
+          members:
+            - id: sent
+              value: "SENT"
+              stability: experimental
+            - id: received
+              value: "RECEIVED"
+              stability: experimental
+        stability: experimental
+        brief: "Whether this is a received or sent message."
+      - id: rpc.message.id
+        type: int
+        stability: experimental
+        brief: "MUST be calculated as two different counters starting from `1` one for sent messages and one for received message."
+        note: "This way we guarantee that the values will be consistent between different implementations."
+      - id: rpc.message.compressed_size
+        type: int
+        stability: experimental
+        brief: "Compressed size of the message in bytes."
+      - id: rpc.message.uncompressed_size
+        type: int
+        stability: experimental
+        brief: "Uncompressed size of the message in bytes."

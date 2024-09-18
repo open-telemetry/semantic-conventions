@@ -50,6 +50,8 @@ semantic conventions when instrumenting runtime environments.
 - [Go](go-metrics.md)
 - [JVM](jvm-metrics.md)
 - [Node.js](nodejs-metrics.md)
+- [V8 JS Engine](v8js-metrics.md)
+- [.NET](dotnet-metrics.md)
 
 ### Attributes
 

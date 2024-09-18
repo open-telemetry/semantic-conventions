@@ -1,0 +1,15 @@
+groups:
+  - id: aws.log
+    type: resource
+    name: aws.log
+    brief: >
+      Resources specific to Amazon Web Services.
+    attributes:
+      - ref: aws.log.group.names
+        requirement_level: recommended
+      - ref: aws.log.group.arns
+        requirement_level: recommended
+      - ref: aws.log.stream.names
+        requirement_level: recommended
+      - ref: aws.log.stream.arns
+        requirement_level: recommended

@@ -1,0 +1,37 @@
+groups:
+  - id: registry.cpu
+    type: attribute_group
+    brief: Attributes specific to a cpu instance.
+    display_name: CPU Attributes
+    attributes:
+      - id: cpu.mode
+        brief: "The mode of the CPU"
+        type:
+          # TODO: Fix how enum members are used in semantic conventions after https://github.com/open-telemetry/build-tools/issues/192 is merged
+          members:
+            - id: user
+              value: 'user'
+              stability: experimental
+            - id: system
+              value: 'system'
+              stability: experimental
+            - id: nice
+              value: 'nice'
+              stability: experimental
+            - id: idle
+              value: 'idle'
+              stability: experimental
+            - id: iowait
+              value: 'iowait'
+              stability: experimental
+            - id: interrupt
+              value: 'interrupt'
+              stability: experimental
+            - id: steal
+              value: 'steal'
+              stability: experimental
+            - id: kernel
+              value: 'kernel'
+              stability: experimental
+        stability: experimental
+        examples: [ "user", "system" ]

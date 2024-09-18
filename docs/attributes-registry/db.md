@@ -6,28 +6,28 @@
 
 # Db
 
-- [Db](#db-attributes)
-- [Db Cassandra](#db-cassandra-attributes)
-- [Db Cosmosdb](#db-cosmosdb-attributes)
-- [Db Deprecated](#db-deprecated-attributes)
-- [Db Elasticsearch](#db-elasticsearch-attributes)
-- [Db Metrics Deprecated](#db-metrics-deprecated-attributes)
+- [General Database Attributes](#general-database-attributes)
+- [Cassandra Attributes](#cassandra-attributes)
+- [Azure Cosmos DB Attributes](#azure-cosmos-db-attributes)
+- [Elasticsearch Attributes](#elasticsearch-attributes)
+- [Deprecated Database Attributes](#deprecated-database-attributes)
+- [Deprecated Database Metrics](#deprecated-database-metrics)
 
-## Db Attributes
+## General Database Attributes
 
 This group defines the attributes used to describe telemetry in the context of databases.
 
-| Attribute                        | Type   | Description                                                                                                                                                                                                                                                                          | Examples                                                              | Stability                                                        |
-| -------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `db.client.connection.pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`. | `myDataSource`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.client.connection.state`     | string | The state of a connection in the pool                                                                                                                                                                                                                                                | `idle`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.collection.name`             | string | The name of a collection (table, container) within the database. [1]                                                                                                                                                                                                                 | `public.users`; `customers`                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.namespace`                   | string | The name of the database, fully qualified within the server address and port. [2]                                                                                                                                                                                                    | `customers`; `test.users`                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.operation.batch.size`        | int    | The number of queries included in a [batch operation](/docs/database/database-spans.md#batch-operations). [3]                                                                                                                                                                        | `2`; `3`; `4`                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.operation.name`              | string | The name of the operation or command being executed. [4]                                                                                                                                                                                                                             | `findAndModify`; `HMSET`; `SELECT`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.query.parameter.<key>`       | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5]                                                                                                                  | `someval`; `55`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.query.text`                  | string | The database query being executed. [6]                                                                                                                                                                                                                                               | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.system`                      | string | The database management system (DBMS) product as identified by the client instrumentation. [7]                                                                                                                                                                                       | `other_sql`; `adabas`; `cache`                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                        | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Examples                                                              | Stability                                                        |
+| -------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `db.client.connection.pool.name` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.connection.state`     | string | The state of a connection in the pool                                                                                                                                                                                                                                                                                                                                                                                                                                                       | `idle`                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.collection.name`             | string | The name of a collection (table, container) within the database. [1]                                                                                                                                                                                                                                                                                                                                                                                                                        | `public.users`; `customers`                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.namespace`                   | string | The name of the database, fully qualified within the server address and port. [2]                                                                                                                                                                                                                                                                                                                                                                                                           | `customers`; `test.users`                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.operation.batch.size`        | int    | The number of queries included in a batch operation. [3]                                                                                                                                                                                                                                                                                                                                                                                                                                    | `2`; `3`; `4`                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.operation.name`              | string | The name of the operation or command being executed. [4]                                                                                                                                                                                                                                                                                                                                                                                                                                    | `findAndModify`; `HMSET`; `SELECT`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.query.parameter.<key>`       | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5]                                                                                                                                                                                                                                                                                                                         | `someval`; `55`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.query.text`                  | string | The database query being executed. [6]                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.system`                      | string | The database management system (DBMS) product as identified by the client instrumentation. [7]                                                                                                                                                                                                                                                                                                                                                                                              | `other_sql`; `adabas`; `cache`                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
@@ -118,7 +118,7 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `trino`              | Trino                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 | `vertica`            | Vertica                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue)                                 |
 
-## Db Cassandra Attributes
+## Cassandra Attributes
 
 This group defines attributes for Cassandra.
 
@@ -147,7 +147,7 @@ This group defines attributes for Cassandra.
 | `three`        | three        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `two`          | two          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Db CosmosDB Attributes
+## Azure Cosmos DB Attributes
 
 This group defines attributes for Azure Cosmos DB.
 
@@ -155,7 +155,7 @@ This group defines attributes for Azure Cosmos DB.
 | ------------------------------------ | ------ | --------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
 | `db.cosmosdb.client_id`              | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.connection_mode`        | string | Cosmos client connection mode.    | `gateway`; `direct`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.operation_type`         | string | CosmosDB Operation Type.          | `Invalid`; `Create`; `Patch`           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.operation_type`         | string | Cosmos DB Operation Type.         | `batch`; `create`; `delete`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.request_charge`         | double | RU consumed for that operation    | `46.18`; `1.0`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.request_content_length` | int    | Request payload size in bytes     |                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.status_code`            | int    | Cosmos DB status code.            | `200`; `201`                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -170,32 +170,43 @@ This group defines attributes for Azure Cosmos DB.
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value               | Description        | Stability                                                        |
-| ------------------- | ------------------ | ---------------------------------------------------------------- |
-| `Batch`             | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Create`            | create             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Delete`            | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Execute`           | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ExecuteJavaScript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Head`              | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `HeadFeed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Invalid`           | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Patch`             | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Query`             | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QueryPlan`         | query_plan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Read`              | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ReadFeed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Replace`           | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Upsert`            | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value                | Description        | Stability                                                        |
+| -------------------- | ------------------ | ---------------------------------------------------------------- |
+| `batch`              | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create`             | create             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delete`             | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute`            | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_javascript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `head`               | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `head_feed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `invalid`            | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `patch`              | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query`              | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query_plan`         | query_plan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read`               | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read_feed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `replace`            | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `upsert`             | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Db Deprecated Attributes
+## Elasticsearch Attributes
+
+This group defines attributes for Elasticsearch.
+
+| Attribute                           | Type   | Description                                                                                  | Examples                                                                                 | Stability                                                        |
+| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `db.elasticsearch.node.name`        | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001`                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [8]                                                         | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[8]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
+
+## Deprecated Database Attributes
 
 "Describes deprecated db attributes."
 
 | Attribute                       | Type   | Description                                                                                                   | Examples                                                                | Stability                                                                                                                                                                    |
 | ------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `db.cassandra.table`            | string | Deprecated, use `db.collection.name` instead.                                                                 | `mytable`                                                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`.                                                                             |
-| `db.connection_string`          | string | Deprecated, use `server.address`, `server.port` attributes instead.                                           | `Server=(localdb)\v11.0;Integrated Security=true;`                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>"Replaced by `server.address` and `server.port`."                                                             |
+| `db.connection_string`          | string | Deprecated, use `server.address`, `server.port` attributes instead.                                           | `Server=(localdb)\v11.0;Integrated Security=true;`                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` and `server.port`.                                                               |
 | `db.cosmosdb.container`         | string | Deprecated, use `db.collection.name` instead.                                                                 | `mytable`                                                               | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`.                                                                             |
 | `db.elasticsearch.cluster.name` | string | Deprecated, use `db.namespace` instead.                                                                       | `e9106fc68e3044f0b1475b04bf4ffd5f`                                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`.                                                                                   |
 | `db.instance.id`                | string | Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. | `mysql-e26b99z.example.com`                                             | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
@@ -209,18 +220,7 @@ This group defines attributes for Azure Cosmos DB.
 | `db.statement`                  | string | The database statement being executed.                                                                        | `SELECT * FROM wuser_table`; `SET mykey "WuValue"`                      | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`.                                                                                  |
 | `db.user`                       | string | Deprecated, no replacement at this time.                                                                      | `readonly_user`; `reporting_user`                                       | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time.                                                                                  |
 
-## Db Elasticsearch Attributes
-
-This group defines attributes for Elasticsearch.
-
-| Attribute                           | Type   | Description                                                                                  | Examples                                                                                 | Stability                                                        |
-| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `db.elasticsearch.node.name`        | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001`                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.elasticsearch.path_parts.<key>` | string | A dynamic value in the url path. [8]                                                         | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[8]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
-
-## Db Metrics Deprecated Attributes
+## Deprecated Database Metrics
 
 "Describes deprecated db metrics attributes."
 
