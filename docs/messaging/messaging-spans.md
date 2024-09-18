@@ -268,13 +268,13 @@ messages were received). For each message it accounts for, the "Process" or
 > - It is the only consistent trace structure that can be guaranteed,
 > given the many different messaging systems models available.
 >
-> - It is the only option to correlate produce and consumer(s) in batch scenarios
+> - It is the only option to correlate producer and consumer(s) in batch scenarios
 > as a span can only have a single parent.
 >
 > - Offers a consistent experience for users analysing traces from different
 > messaging systems.
 
-Exclusively for single messages scenarios, "Process" or "Receive" span MAY
+Exclusively for single messages scenarios, "Process" span MAY
 use the message's creation context as its parent, thus achieving a direct
 parent-child relationship between producer and consumer(s).
 
