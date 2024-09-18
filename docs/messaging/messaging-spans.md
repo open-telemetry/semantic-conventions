@@ -25,6 +25,7 @@
   - [Trace structure](#trace-structure)
     - [Producer spans](#producer-spans)
     - [Consumer spans](#consumer-spans)
+      - [Message creation context as parent of "Process" span](#message-creation-context-as-parent-of-process-span)
 - [Messaging attributes](#messaging-attributes)
   - [Recording per-message attributes on batch operations](#recording-per-message-attributes-on-batch-operations)
 - [Examples](#examples)
@@ -271,18 +272,45 @@ messages were received). For each message it accounts for, the "Process" or
 > - It is the only option to correlate producer and consumer(s) in batch scenarios
 > as a span can only have a single parent.
 >
-> - Offers a consistent experience for users analysing traces from different
-> messaging systems.
-
-Exclusively for single messages scenarios, "Process" span MAY
-use the message's creation context as its parent, thus achieving a direct
-parent-child relationship between producer and consumer(s).
+> - It is the only option to correlate produce and consumer(s) when message
+> consumption can happen in the scope of another ambient context such as a
+> HTTP server span.
 
 "Settle" spans SHOULD be created for every manually or automatically triggered
 settlement operation. A single "Settle" span can account for a single message
 or for multiple messages (in case messages are passed for settling as batches).
 For each message it accounts for, the "Settle" span MAY link to the creation
 context of the message.
+
+##### Message creation context as parent of "Process" span
+
+Exclusively for single messages scenarios, the "Process" span MAY
+use the message's creation context as its parent, thus achieving a direct
+parent-child relationship between producer and consumer(s).
+Instrumentations SHOULD document whether they use the message creation context
+as a parent for "Process" spans and MAY provide configuration options
+allowing users to control this behavior.
+
+It is NOT RECOMMENDED to use the message creation context as the parent of "Process"
+spans (by default) if processing happens in the scope of another span.
+
+If instrumentation use the message creation context as the parent for "Process"
+spans in the scope of another valid ambient context, they SHOULD add the
+ambient context as a link on the "Process" span to preserve the correlation
+between message processing and that context.
+
+For example, a messaging broker pushes messages over HTTP to a consumer
+application which has HTTP server and messaging instrumentations enabled.
+
+The messaging instrumentation would create the "Process" span following
+one of these possible approaches:
+
+- "Process" span is a child of the HTTP server span context and has a link
+  to the message creation context. This is the default behavior.
+
+- "Process" span is a child of the message creation context and has two links:
+  one to the message creation context and another one to HTTP server span context.
+  This is an opt-in behavior.
 
 ## Messaging attributes
 
