@@ -89,7 +89,7 @@ groups:
     metric_name: go.config.gogc
     brief: "Heap size target percentage configured by the user, otherwise 100."
     note: >
-      The value range is [0.0,100.0].
+      The value range is \[0.0,100.0\].
       Computed from `/gc/gogc:percent`.
     instrument: updowncounter
     unit: "%"
