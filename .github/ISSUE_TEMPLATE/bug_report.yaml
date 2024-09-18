@@ -33,7 +33,6 @@ body:
         - area:code
         - area:container
         - area:cpu
-        - area:csi
         - area:db
         - area:deployment
         - area:destination

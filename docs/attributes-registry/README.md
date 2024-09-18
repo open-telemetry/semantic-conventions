@@ -44,7 +44,6 @@ Currently, the following namespaces exist:
 - [Code](code.md)
 - [Container](container.md)
 - [CPU](cpu.md)
-- [CSI](csi.md)
 - [Db](db.md)
 - [Deployment](deployment.md)
 - [Destination](destination.md)
