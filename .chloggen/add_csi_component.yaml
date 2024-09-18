@@ -1,6 +1,0 @@
-change_type: new_component
-component: csi
-note: >
-  Add CSI component with `csi.plugin.name` and `csi.volume.id` attributes.
-issues: [1119]
-subtext:
