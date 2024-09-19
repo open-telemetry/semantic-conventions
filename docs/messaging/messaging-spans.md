@@ -30,7 +30,7 @@
 - [Examples](#examples)
   - [Topic with multiple consumers](#topic-with-multiple-consumers)
   - [Batch receiving](#batch-receiving)
-  - [Batch sending](#batch-sending)
+  - [Batch publishing](#batch-publishing)
 
 <!-- tocstop -->
 

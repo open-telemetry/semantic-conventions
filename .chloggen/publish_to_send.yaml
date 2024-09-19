@@ -1,0 +1,4 @@
+change_type: enhancement
+component: messaging
+note: Change messaging.operation.type = publish to messaging.operation.type = send
+issues: [1285]
