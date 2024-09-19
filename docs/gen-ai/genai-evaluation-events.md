@@ -75,4 +75,5 @@ The user feedback event body has the following structure:
 | Body Field | Type | Description | Examples | Requirement Level |
 |---|---|---|---|---|
 | `score` | double | Quantified score calculated based on the user reaction in [-1.0, 1.0] range with 0 representing a neutral reaction. | `0.42` | `Required` |
+| `comment` | string | Additional details about the user feedback | `I did not like it` | `Optional` |
 
