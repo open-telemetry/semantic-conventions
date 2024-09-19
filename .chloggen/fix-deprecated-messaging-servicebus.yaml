@@ -1,0 +1,4 @@
+change_type: 'bug_fix'
+component: messaging
+note: Fix deprecated note for service bus attributes
+issues: [1418]
