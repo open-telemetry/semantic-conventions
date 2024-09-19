@@ -84,13 +84,13 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The full command run by the container as a single string representing the full command. [2]
+          The full command run by the container as a single string representing the full command.
         examples: [ 'otelcontribcol --config config.yaml' ]
       - id: container.command_args
         type: string[]
         stability: experimental
         brief: >
-          All the command arguments (including the command/executable itself) run by the container. [2]
+          All the command arguments (including the command/executable itself) run by the container.
         examples:
           - [ 'otelcontribcol', '--config', 'config.yaml' ]
       - id: container.label
