@@ -110,6 +110,7 @@ groups:
         brief: >
           [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number
           represented as a string.
+        note: ""
         examples: ["102", "40020"]
 
   - id: db.cassandra
