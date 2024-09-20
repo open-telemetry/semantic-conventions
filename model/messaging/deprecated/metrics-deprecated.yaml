@@ -48,3 +48,13 @@ groups:
     instrument: counter
     unit: "{message}"
     extends: attributes.messaging.common.minimal
+
+  - id: metric.messaging.client.published.messages
+    type: metric
+    metric_name: messaging.client.published.messages
+    brief: "Deprecated. Use `messaging.client.sent.messages` instead."
+    deprecated: "Replaced by `messaging.client.sent.messages`."
+    stability: experimental
+    instrument: counter
+    unit: "{message}"
+    extends: metric.messaging.attributes
