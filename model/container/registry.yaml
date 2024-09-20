@@ -113,7 +113,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The unique volume ID returned by the CSI (Container Storage Interface) plugin.
+          The unique volume ID returned by the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin.
         note: >
           This can sometimes be referred to as a "volume handle" in CSI implementations.
           This should represent the `Volume.volume_id` field in CSI spec.
