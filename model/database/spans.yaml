@@ -110,7 +110,8 @@ groups:
         brief: >
           [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number
           represented as a string.
-        note: ""
+        note: >
+          Microsoft SQL Server error codes are different from SQLSTATE codes. Instrumentations SHOULD use the SQL Server error codes.
         examples: ["102", "40020"]
 
   - id: db.cassandra
@@ -385,10 +386,15 @@ groups:
 
       - ref: db.response.status_code
         brief: >
-          The value of [SQLSTATE](https://en.wikipedia.org/wiki/SQLSTATE) returned by the database (when available)
-          or a vendor-specific error code recorded as a string.
+          Database response code recorded as string.
         note: >
-          Here's a list of status codes for some popular SQL databases:
+          SQL standard defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
+          return code, but it's not used by all databases.
+
+          Instrumentations, when possible, SHOULD use response codes applicable
+          to the database being instrumented.
+
+          Here are some references to error codes for popular databases:
 
           - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql)
           - [Maria DB errors](https://mariadb.com/kb/en/mariadb-error-code-reference/)
@@ -397,6 +403,7 @@ groups:
           - [Oracle error codes](https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/JDBC-error-messages.html)
           - [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html)
           - [SQLite result codes](https://www.sqlite.org/rescode.html)
+
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
           conditionally_required: If response has ended with warning or an error.

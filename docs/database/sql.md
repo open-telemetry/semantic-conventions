@@ -48,7 +48,7 @@ Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic co
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `users`; `dbo.products` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [3] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The value of [SQLSTATE](https://en.wikipedia.org/wiki/SQLSTATE) returned by the database (when available) or a vendor-specific error code recorded as a string. [6] | `ORA-17027`; `1052`; `2201B` | `Conditionally Required` If response has ended with warning or an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response code recorded as string. [6] | `ORA-17027`; `1052`; `2201B` | `Conditionally Required` If response has ended with warning or an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required` [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [10] | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -86,7 +86,9 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 
 **[5]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
-**[6]:** Here's a list of status codes for some popular SQL databases:
+**[6]:** SQL standard defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database return code, but it's not used by all databases.
+Instrumentations, when possible, SHOULD use response codes applicable to the database being instrumented.
+Here are some references to error codes for popular databases:
 - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql) - [Maria DB errors](https://mariadb.com/kb/en/mariadb-error-code-reference/) - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) - [MySQL codes codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html) - [Oracle error codes](https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/JDBC-error-messages.html) - [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html) - [SQLite result codes](https://www.sqlite.org/rescode.html)
 
 **[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
