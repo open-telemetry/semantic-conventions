@@ -1,12 +1,13 @@
 groups:
-  - id: datacenter
-    stability: experimental
+  - id: dc
     type: resource
+    name: dc
     brief: >
       Generic DataCenter infrastructure tagging.
     attributes:
       - ref: dc.name
-      - ref: dc.provider.name
+        requirement_level: recommended
+      - ref: cloud.provider
       - ref: dc.provider.type
       - ref: dc.suite
       - ref: dc.site

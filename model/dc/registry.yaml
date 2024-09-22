@@ -1,6 +1,5 @@
 groups:
-  - id: registry.datacenter
-    stability:
+  - id: registry.dc
     type: attribute_group
     display_name: Datacenter Attributes
     brief: >
@@ -11,11 +10,6 @@ groups:
         stability: experimental
         brief: 'Name of datacenter.'
         examples: ['dc-name']
-      - id: dc.provider.name
-        type: string
-        stability: experimental
-        brief: 'Name of the datacenter provider'
-        examples: ['aws', 'azure', 'gcp', 'corp']
       - id: dc.provider.type
         type: string
         stability: experimental
@@ -26,33 +20,46 @@ groups:
         stability: experimental
         brief: 'Type of device used.'
         examples: ['server', 'chassis', 'network', 'pdu', 'switch', 'patch-panel']
-      - id: dc.suite
-        type: string
-        stability: experimental
-        brief: 'Name of the datacenter suite'
-        examples: ['suite-5']
       - id: dc.site
         type: string
         stability: experimental
         brief: 'Name of the datacenter site'
+        note: >
+          The name of the physical building.
         examples: ['site-1']
+      - id: dc.suite
+        type: string
+        stability: experimental
+        brief: 'Name of the datacenter suite'
+        note: >
+          Typically the room in the building where the server cages are located.
+        examples: ['suite-5']
       - id: dc.cage
         type: string
         stability: experimental
         brief: 'Name of the cage'
+        note: >
+          This is a literal cage which is used to protect servers from potential intruders.
         examples: ['cage-1']
       - id: dc.pod
         type: string
         stability: experimental
         brief: 'Name of the pod'
+        note: >
+          This is a grouping of many servers typically several racks of servers.
         examples: ['pod-4']
       - id: dc.chassis
         type: string
         stability: experimental
         brief: 'Name of the chassis the server lives in.'
+        note: >
+          A chassis is used to describe frame which contains servers together inside of a rack unit
+          of a server rack. Typically used to take advantage of shared power supplies.
         examples: ['pod-4']
       - id: dc.rack
         type: string
         stability: experimental
         brief: 'Name of the rack.'
+        note: >
+          A tower frame which hold many servers and chassis. [Rack Unit](https://en.wikipedia.org/wiki/Rack_unit)
         examples: ['rack-7']

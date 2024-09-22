@@ -35,6 +35,7 @@ body:
         - area:container
         - area:cpu
         - area:db
+        - area:dc
         - area:deployment
         - area:destination
         - area:device
