@@ -1,4 +1,8 @@
-# Messaging semantic convention stability migration guide
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Messaging migration
+--->
+
+# Messaging semantic convention stability migration
 
 Due to the significant number of modifications and the extensive user base
 affected by them, existing messaging instrumentations published by
@@ -22,6 +26,20 @@ updated to the stable messaging semantic conventions, they:
 - May drop the environment variable in their next major version and emit only
   the stable messaging conventions.
 
+<!-- toc -->
+
+- [Summary of changes](#summary-of-changes)
+  - [Migrating from v1.26.0](#migrating-from-v1260)
+  - [Migrating from v1.25.0](#migrating-from-v1250)
+  - [Migrating from v1.24.0](#migrating-from-v1240)
+  - [Migrating from v1.23.0 and v1.22.0](#migrating-from-v1230-and-v1220)
+  - [Migrating from v1.21.0](#migrating-from-v1210)
+  - [Migrating from v1.20.0](#migrating-from-v1200)
+  - [Migrating from v1.19.0 and v1.18.0 v1.17.0](#migrating-from-v1190-and-v1180-v1170)
+  - [Migrating from v1.16](#migrating-from-v116)
+
+<!-- tocstop -->
+
 ## Summary of changes
 
 This section summarizes the changes made to the messaging semantic conventions
@@ -29,21 +47,17 @@ from a range of versions. Each starting version shows all the changes required
 to bring the conventions to
 [v1.TODO (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.TODO/docs/messaging/README.md).
 
-### From v1.26.0
-
-#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+### Migrating from v1.26.0
 
 <!-- prettier-ignore-start -->
-| New attributes |
+| New attributes ![new](https://img.shields.io/badge/new-green?style=flat) |
 | -------------- |
 | `messaging.consumer.group.name` |
 | `messaging.destination.subscription.name` |
 <!-- prettier-ignore-end -->
 
-#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
-
 <!-- prettier-ignore-start -->
-| Old | New |
+| Old ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
 | --- | --- |
 | `messaging.eventhubs.consumer.group` | `messaging.consumer.group.name` |
 | `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
@@ -52,21 +66,17 @@ to bring the conventions to
 | `messaging.servicebus.destination.subscription_name` | `messaging.destination.subscription.name` |
 <!-- prettier-ignore-end -->
 
-#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
-
 <!-- prettier-ignore-start -->
-| Removed attributes |
+| Removed attributes ![removed](https://img.shields.io/badge/removed-red?style=flat) |
 | ------------------ |
 | `messaging.destination_publish.anonymous` |
 | `messaging.destination_publish.name` |
 <!-- prettier-ignore-end -->
 
-### From v1.25.0
-
-#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+### Migrating from v1.25.0
 
 <!-- prettier-ignore-start -->
-| New attributes |
+| New attributes ![new](https://img.shields.io/badge/new-green?style=flat) |
 | -------------- |
 | `messaging.consumer.group.name` |
 | `messaging.destination.subscription.name` |
@@ -76,10 +86,8 @@ to bring the conventions to
 | `messaging.operation.name` |
 <!-- prettier-ignore-end -->
 
-#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
-
 <!-- prettier-ignore-start -->
-| Old | New |
+| Old ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
 | --- | --- |
 | `messaging.client_id` | `messaging.client.id` |
 | `messaging.eventhubs.consumer.group` | `messaging.consumer.group.name` |
@@ -90,21 +98,17 @@ to bring the conventions to
 | `messaging.servicebus.destination.subscription_name` | `messaging.destination.subscription.name` |
 <!-- prettier-ignore-end -->
 
-#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
-
 <!-- prettier-ignore-start -->
-| Removed attributes |
+| Removed attributes ![removed](https://img.shields.io/badge/removed-red?style=flat) |
 | ------------------ |
 | `messaging.destination_publish.anonymous` |
 | `messaging.destination_publish.name` |
 <!-- prettier-ignore-end -->
 
-### From v1.24.0
-
-#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+### Migrating from v1.24.0
 
 <!-- prettier-ignore-start -->
-| New attributes |
+| New attributes ![new](https://img.shields.io/badge/new-green?style=flat) |
 | -------------- |
 | `messaging.consumer.group.name` |
 | `messaging.destination.partition.id` |
@@ -120,10 +124,8 @@ to bring the conventions to
 | `messaging.servicebus.message.enqueued_time` |
 <!-- prettier-ignore-end -->
 
-#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
-
 <!-- prettier-ignore-start -->
-| Old | New |
+| Old ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
 | --- | --- |
 | `messaging.client_id` | `messaging.client.id` |
 | `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
@@ -133,10 +135,8 @@ to bring the conventions to
 | `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
 <!-- prettier-ignore-end -->
 
-#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
-
 <!-- prettier-ignore-start -->
-| Removed attributes |
+| Removed attributes ![removed](https://img.shields.io/badge/removed-red?style=flat) |
 | ------------------ |
 | `messaging.destination_publish.anonymous` |
 | `messaging.destination_publish.name` |
@@ -146,12 +146,10 @@ to bring the conventions to
 | `network.type` |
 <!-- prettier-ignore-end -->
 
-### From v1.23.0 and v1.22.0
-
-#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+### Migrating from v1.23.0 and v1.22.0
 
 <!-- prettier-ignore-start -->
-| New attributes |
+| New attributes ![new](https://img.shields.io/badge/new-green?style=flat) |
 | -------------- |
 | `error.type` |
 | `messaging.consumer.group.name` |
@@ -170,10 +168,8 @@ to bring the conventions to
 | `server.port` |
 <!-- prettier-ignore-end -->
 
-#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
-
 <!-- prettier-ignore-start -->
-| Old | New |
+| Old ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
 | --- | --- |
 | `messaging.client_id` | `messaging.client.id` |
 | `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
@@ -183,10 +179,8 @@ to bring the conventions to
 | `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
 <!-- prettier-ignore-end -->
 
-#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
-
 <!-- prettier-ignore-start -->
-| Removed attributes |
+| Removed attributes ![removed](https://img.shields.io/badge/removed-red?style=flat) |
 | ------------------ |
 | `messaging.destination_publish.anonymous` |
 | `messaging.destination_publish.name` |
@@ -196,12 +190,10 @@ to bring the conventions to
 | `network.type` |
 <!-- prettier-ignore-end -->
 
-### From v1.21.0
-
-#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+### Migrating from v1.21.0
 
 <!-- prettier-ignore-start -->
-| New attributes |
+| New attributes ![new](https://img.shields.io/badge/new-green?style=flat) |
 | -------------- |
 | `error.type` |
 | `messaging.consumer.group.name` |
@@ -221,10 +213,8 @@ to bring the conventions to
 | `server.port` |
 <!-- prettier-ignore-end -->
 
-#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
-
 <!-- prettier-ignore-start -->
-| Old | New |
+| Old ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
 | --- | --- |
 | `messaging.client_id` | `messaging.client.id` |
 | `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
@@ -238,10 +228,8 @@ to bring the conventions to
 | `server.socket.port` | `network.peer.port` |
 <!-- prettier-ignore-end -->
 
-#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
-
 <!-- prettier-ignore-start -->
-| Removed attributes |
+| Removed attributes ![removed](https://img.shields.io/badge/removed-red?style=flat) |
 | ------------------ |
 | `network.protocol.name` |
 | `network.protocol.version` |
@@ -250,12 +238,10 @@ to bring the conventions to
 | `server.socket.domain` |
 <!-- prettier-ignore-end -->
 
-### From v1.20.0
-
-#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+### Migrating from v1.20.0
 
 <!-- prettier-ignore-start -->
-| New attributes |
+| New attributes ![new](https://img.shields.io/badge/new-green?style=flat) |
 | -------------- |
 | `error.type` |
 | `messaging.consumer.group.name` |
@@ -275,10 +261,8 @@ to bring the conventions to
 | `server.port` |
 <!-- prettier-ignore-end -->
 
-#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
-
 <!-- prettier-ignore-start -->
-| Old | New |
+| Old ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
 | --- | --- |
 | `messaging.client_id` | `messaging.client.id` |
 | `messaging.consumer.id` | `messaging.client.id` |
@@ -296,10 +280,8 @@ to bring the conventions to
 | `net.sock.peer.port` | `network.peer.port` |
 <!-- prettier-ignore-end -->
 
-#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
-
 <!-- prettier-ignore-start -->
-| Removed attributes |
+| Removed attributes ![removed](https://img.shields.io/badge/removed-red?style=flat) |
 | ------------------ |
 | `messaging.kafka.source.partition` |
 | `messaging.source.anonymous` |
@@ -312,12 +294,10 @@ to bring the conventions to
 | `net.sock.peer.name` |
 <!-- prettier-ignore-end -->
 
-### From v1.19.0 and v1.18.0 v1.17.0
-
-#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+### Migrating from v1.19.0 and v1.18.0 v1.17.0
 
 <!-- prettier-ignore-start -->
-| New attributes |
+| New attributes ![new](https://img.shields.io/badge/new-green?style=flat) |
 | -------------- |
 | `error.type` |
 | `messaging.consumer.group.name` |
@@ -337,10 +317,8 @@ to bring the conventions to
 | `server.port` |
 <!-- prettier-ignore-end -->
 
-#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
-
 <!-- prettier-ignore-start -->
-| Old | New |
+| Old ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
 | --- | --- |
 | `message.servicebus.destination.subscription_name` | `messaging.destination.subscription.name` |
 | `messaging.client_id` | `messaging.client.id` |
@@ -359,10 +337,8 @@ to bring the conventions to
 | `net.sock.peer.port` | `network.peer.port` |
 <!-- prettier-ignore-end -->
 
-#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
-
 <!-- prettier-ignore-start -->
-| Removed attributes |
+| Removed attributes ![removed](https://img.shields.io/badge/removed-red?style=flat) |
 | ------------------ |
 | `destination_publish.anonymous` |
 | `messaging.destination.kind` |
@@ -381,12 +357,10 @@ to bring the conventions to
 | `network.type` |
 <!-- prettier-ignore-end -->
 
-### From v1.16
-
-#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+### Migrating from v1.16
 
 <!-- prettier-ignore-start -->
-| New attributes |
+| New attributes ![new](https://img.shields.io/badge/new-green?style=flat) |
 | -------------- |
 | `error.type` |
 | `messaging.batch.message_count` |
@@ -409,10 +383,8 @@ to bring the conventions to
 | `server.port` |
 <!-- prettier-ignore-end -->
 
-#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
-
 <!-- prettier-ignore-start -->
-| Old | New |
+| Old ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
 | --- | --- |
 | `messaging.consumer_id` | `messaging.client.id` |
 | `messaging.conversation_id` | `messaging.message.conversation_id` |
@@ -442,10 +414,8 @@ to bring the conventions to
 | `net.sock.peer.port` | `network.peer.port` |
 <!-- prettier-ignore-end -->
 
-#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
-
 <!-- prettier-ignore-start -->
-| Removed attributes |
+| Removed attributes ![removed](https://img.shields.io/badge/removed-red?style=flat) |
 | ------------------ |
 | `messaging.url` |
 | `messaging.destination_kind` |
