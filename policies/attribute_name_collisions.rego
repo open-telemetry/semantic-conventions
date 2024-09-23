@@ -1,14 +1,16 @@
 package after_resolution
 
+import rego.v1
+
 # Data structures to make checking things faster.
-attribute_names := { data |
-  group := input.groups[_]
-  attr := group.attributes[_]
-  data := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name) }
+attribute_names := { obj |
+    group := input.groups[_];
+    attr := group.attributes[_];
+    obj := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name) }
 }
 
-
-deny[attr_registry_collision(description, name)] {
+# check that attribute constant names do not collide
+deny contains attr_registry_collision(description, name) if {
     some i
     name := attribute_names[i].name
     const_name := attribute_names[i].const_name
@@ -24,7 +26,8 @@ deny[attr_registry_collision(description, name)] {
     description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
 }
 
-deny[attr_registry_collision(description, name)] {
+# check that attribute names do not collide with namespaces
+deny contains attr_registry_collision(description, name) if {
     some i
     name := attribute_names[i].name
     prefix := attribute_names[i].namespace_prefix
@@ -36,10 +39,22 @@ deny[attr_registry_collision(description, name)] {
     ]
     count(collisions) > 0
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
-    description := sprintf("Attribute '%s' is used as a namespace in '%s'.", [name, collisions])
+    description := sprintf("Attribute '%s' name is used as a namespace in the following attributes '%s'.", [name, collisions])
 }
 
-attr_registry_collision(description, attr_name) = violation {
+# check that attribute is not defined or referenced more than once within the same group
+deny contains attr_registry_collision(description, name) if {
+    group := input.groups[_]
+    attr := group.attributes[_]
+    name := attr.name
+
+    collisions := [n | n := group.attributes[_].name; n == name ]
+    count(collisions) > 1
+
+    description := sprintf("Attribute '%s' is already defined in the group '%s'. Attributes must be unique.", [name, group.id])
+}
+
+attr_registry_collision(description, attr_name) = violation if {
     violation := {
         "id": description,
         "type": "semconv_attribute",
@@ -49,11 +64,11 @@ attr_registry_collision(description, attr_name) = violation {
     }
 }
 
-to_namespace_prefix(name) = namespace {
+to_namespace_prefix(name) = namespace if {
     namespace := concat("", [name, "."])
 }
 
-to_const_name(name) = const_name {
+to_const_name(name) = const_name if {
     const_name := replace(name, ".", "_")
 }
 

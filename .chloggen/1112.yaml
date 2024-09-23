@@ -1,0 +1,4 @@
+change_type: enhancement
+component: messaging
+note: Define span kind for unspecified cases of messaging `publish` and `process` spans.
+issues: [1112]

@@ -1,0 +1,8 @@
+groups:
+  - id: server
+    type: attribute_group
+    brief: >
+      General server attributes.
+    attributes:
+      - ref: server.address
+      - ref: server.port

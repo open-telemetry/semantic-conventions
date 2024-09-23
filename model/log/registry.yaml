@@ -1,0 +1,82 @@
+groups:
+  - id: registry.log
+    type: attribute_group
+    display_name: General Log Attributes
+    brief: >
+      This document defines log attributes
+    attributes:
+      - id: log.iostream
+        stability: experimental
+        brief: >
+          The stream associated with the log. See below for a list of well-known values.
+        type:
+          members:
+            - id: stdout
+              value: 'stdout'
+              brief: 'Logs from stdout stream'
+              stability: experimental
+            - id: stderr
+              value: 'stderr'
+              brief: 'Events from stderr stream'
+              stability: experimental
+
+  - id: registry.log.file    # TODO: should we move it to the file model?
+    type: attribute_group
+    display_name: Log File Attributes
+    brief: >
+      Attributes for a file to which log was emitted.
+    attributes:
+      - id: log.file.name
+        type: string
+        stability: experimental
+        brief: >
+          The basename of the file.
+        examples: [ "audit.log" ]
+      - id: log.file.path
+        type: string
+        stability: experimental
+        brief: >
+          The full path to the file.
+        examples: [ "/var/log/mysql/audit.log" ]
+      - id: log.file.name_resolved
+        type: string
+        stability: experimental
+        brief: >
+          The basename of the file, with symlinks resolved.
+        examples: [ "uuid.log" ]
+      - id: log.file.path_resolved
+        type: string
+        stability: experimental
+        brief: >
+          The full path to the file, with symlinks resolved.
+        examples: [ "/var/lib/docker/uuid.log" ]
+
+  - id: registry.log.record
+    type: attribute_group
+    display_name: Log Record Attributes
+    brief: >
+      This document defines the generic attributes that may be used in any Log Record.
+    attributes:
+      - id: log.record.uid
+        type: string
+        stability: experimental
+        brief: >
+          A unique identifier for the Log Record.
+        note: >
+          If an id is provided, other log records with the same id will be considered duplicates and can be removed safely.
+          This means, that two distinguishable log records MUST have different values.
+
+          The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec),
+          but other identifiers (e.g. UUID) may be used as needed.
+        examples: ["01ARZ3NDEKTSV4RRFFQ69G5FAV"]
+      - id: log.record.original
+        type: string
+        stability: experimental
+        brief: >
+          The complete original Log Record.
+        note: >
+          This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND
+          the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
+        examples:
+          - "77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened"
+          - "[INFO] 8/3/24 12:34:56 Something happened"

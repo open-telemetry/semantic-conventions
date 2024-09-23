@@ -25,6 +25,7 @@
   - [Trace structure](#trace-structure)
     - [Producer spans](#producer-spans)
     - [Consumer spans](#consumer-spans)
+      - [Message creation context as parent of "Process" span](#message-creation-context-as-parent-of-process-span)
 - [Messaging attributes](#messaging-attributes)
   - [Recording per-message attributes on batch operations](#recording-per-message-attributes-on-batch-operations)
 - [Examples](#examples)
@@ -208,21 +209,13 @@ Span kind SHOULD be set according to the following table, based on the operation
 
 | Operation type | Span kind|
 |----------------|-------------|
-| `create`       | `PRODUCER` |
-| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context. |
-| `receive`      | `CONSUMER` |
-| `process`      | `CONSUMER` for push-based scenarios where no "Receive" span exists. |
+| `create`       | `PRODUCER`  |
+| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context, otherwise `CLIENT`. |
+| `receive`      | `CLIENT`    |
+| `process`      | `CONSUMER`  |
 
-For cases not covered by the table above, the span kind should be set according
-to the [generic specification about span kinds](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/trace/api.md#spankind),
-e. g. it should be set to CLIENT for the "Publish" span if its context is not
-used as creation context and if the "Publish" span models a synchronous call to
-the intermediary.
-
-Setting span kinds according to this table ensures that span links between
-consumers and producers always exist between a PRODUCER span on the producer
-side and a CONSUMER span on the consumer side. This allows analysis tools to
-interpret linked traces without the need for additional semantic hints.
+Setting span kinds according to this table allows analysis tools to interpret spans
+and relationships between them without the need for additional semantic hints.
 
 ### Trace structure
 
@@ -269,11 +262,55 @@ batch of messages, or for no message at all (if it is signalled that no
 messages were received). For each message it accounts for, the "Process" or
 "Receive" span SHOULD link to the message's creation context.
 
+> [!IMPORTANT]
+> These conventions use spans links as the default mechanism to correlate
+> producers and consumer(s) because:
+>
+> - It is the only consistent trace structure that can be guaranteed,
+> given the many different messaging systems models available.
+>
+> - It is the only option to correlate producer and consumer(s) in batch scenarios
+> as a span can only have a single parent.
+>
+> - It is the only option to correlate produce and consumer(s) when message
+> consumption can happen in the scope of another ambient context such as a
+> HTTP server span.
+
 "Settle" spans SHOULD be created for every manually or automatically triggered
 settlement operation. A single "Settle" span can account for a single message
 or for multiple messages (in case messages are passed for settling as batches).
 For each message it accounts for, the "Settle" span MAY link to the creation
 context of the message.
+
+##### Message creation context as parent of "Process" span
+
+Exclusively for single messages scenarios, the "Process" span MAY
+use the message's creation context as its parent, thus achieving a direct
+parent-child relationship between producer and consumer(s).
+Instrumentations SHOULD document whether they use the message creation context
+as a parent for "Process" spans and MAY provide configuration options
+allowing users to control this behavior.
+
+It is NOT RECOMMENDED to use the message creation context as the parent of "Process"
+spans (by default) if processing happens in the scope of another span.
+
+If instrumentation use the message creation context as the parent for "Process"
+spans in the scope of another valid ambient context, they SHOULD add the
+ambient context as a link on the "Process" span to preserve the correlation
+between message processing and that context.
+
+For example, a messaging broker pushes messages over HTTP to a consumer
+application which has HTTP server and messaging instrumentations enabled.
+
+The messaging instrumentation would create the "Process" span following
+one of these possible approaches:
+
+- "Process" span is a child of the HTTP server span context and has a link
+  to the message creation context. This is the default behavior.
+
+- "Process" span is a child of the message creation context and has two links:
+  one to the message creation context and another one to HTTP server span context.
+  This is an opt-in behavior.
 
 ## Messaging attributes
 
@@ -475,17 +512,19 @@ flowchart LR;
   R2[Span Process A 2]
   end
   P-. link .-R1;
+  P-- parent -->R1;
   P-. link .-R2;
+  P-- parent -->R2;
 
   classDef normal fill:green
   class P,R1,R2 normal
-  linkStyle 0,1 color:green,stroke:green
+  linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
 | Field or Attribute | Span Publish A | Span Process A 1| Span Process A 2 |
 |-|-|-|-|
 | Span name | `publish T` | `consume T` | `consume T` |
-| Parent | | | |
+| Parent (optional) | | `publish T` | `publish T` |
 | Links |  | `publish T` | `publish T` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
