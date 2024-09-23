@@ -1,0 +1,5 @@
+{{- template.set_file_name("areas.txt") -}}
+
+{% for item in ctx | map('map_text', 'areas') | sort  %}
+area:{{ item | kebab_case }}
+{% endfor %}

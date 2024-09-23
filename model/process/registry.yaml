@@ -1,0 +1,243 @@
+groups:
+  - id: registry.process
+    type: attribute_group
+    display_name: Process Attributes
+    brief: >
+        An operating system process.
+    attributes:
+      - id: process.pid
+        type: int
+        stability: experimental
+        brief: >
+          Process identifier (PID).
+        examples: [1234]
+      - id: process.parent_pid
+        type: int
+        stability: experimental
+        brief: >
+          Parent Process identifier (PPID).
+        examples: [111]
+      - id: process.vpid
+        type: int
+        stability: experimental
+        brief: >
+          Virtual process identifier.
+        note: >
+          The process ID within a PID namespace. This is not necessarily unique
+          across all processes on the host but it is unique within the process
+          namespace that the process exists within.
+        examples: [12]
+      - id: process.session_leader.pid
+        type: int
+        stability: experimental
+        brief: >
+          The PID of the process's session leader. This is also the session ID
+          (SID) of the process.
+        examples: [14]
+      - id: process.group_leader.pid
+        type: int
+        stability: experimental
+        brief: >
+          The PID of the process's group leader. This is also the process group
+          ID (PGID) of the process.
+        examples: [23]
+      - id: process.executable.build_id.gnu
+        stability: experimental
+        type: string
+        brief: >
+          The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string).
+        examples: ['c89b11207f6479603b0d49bf291c092c2b719293']
+      - id: process.executable.build_id.go
+        stability: experimental
+        type: string
+        brief: >
+          The Go build ID as retrieved by `go tool buildid <go executable>`.
+        examples: ['foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY']
+      - id: process.executable.build_id.profiling
+        stability: experimental
+        type: string
+        brief: >
+          Profiling specific build ID for executables. See the OTel specification
+          for Profiles for more information.
+        examples: ['600DCAFE4A110000F2BF38C493F5FB92']
+      - id: process.executable.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the process executable. On Linux based systems, can be set
+          to the `Name` in `proc/[pid]/status`. On Windows, can be set to the
+          base name of `GetProcessImageFileNameW`.
+        examples: ['otelcol']
+      - id: process.executable.path
+        type: string
+        stability: experimental
+        brief: >
+          The full path to the process executable. On Linux based systems, can
+          be set to the target of `proc/[pid]/exe`. On Windows, can be set to the
+          result of `GetProcessImageFileNameW`.
+        examples: ['/usr/bin/cmd/otelcol']
+      - id: process.command
+        type: string
+        stability: experimental
+        brief: >
+          The command used to launch the process (i.e. the command name). On Linux
+          based systems, can be set to the zeroth string in `proc/[pid]/cmdline`.
+          On Windows, can be set to the first parameter extracted from `GetCommandLineW`.
+        examples: ['cmd/otelcol']
+      - id: process.command_line
+        type: string
+        stability: experimental
+        brief: >
+          The full command used to launch the process as a single string representing
+          the full command. On Windows, can be set to the result of `GetCommandLineW`.
+          Do not set this if you have to assemble it just for monitoring; use
+          `process.command_args` instead.
+        examples: ['C:\cmd\otecol --config="my directory\config.yaml"']
+      - id: process.command_args
+        type: string[]
+        stability: experimental
+        brief: >
+          All the command arguments (including the command/executable itself) as
+          received by the process. On Linux-based systems (and some other Unixoid
+          systems supporting procfs), can be set according to the list of
+          null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based
+          executables, this would be the full argv vector passed to `main`.
+        examples:
+          - ['cmd/otecol', '--config=config.yaml']
+      - id: process.args_count
+        type: int
+        stability: experimental
+        brief: >
+          Length of the process.command_args array
+        note: >
+          This field can be useful for querying or performing bucket analysis on how many
+          arguments were provided to start a process. More arguments may be an indication
+          of suspicious activity.
+        requirement_level:
+          recommended: if `process.command_args` is populated.
+        examples: [4]
+      - id: process.owner
+        type: string
+        stability: experimental
+        brief: >
+          The username of the user that owns the process.
+        examples: ['root']
+      - id: process.user.id
+        type: int
+        stability: experimental
+        brief: >
+          The effective user ID (EUID) of the process.
+        examples: [1001]
+      - id: process.user.name
+        type: string
+        stability: experimental
+        brief: >
+          The username of the effective user of the process.
+        examples: ['root']
+      - id: process.real_user.id
+        type: int
+        stability: experimental
+        brief: >
+          The real user ID (RUID) of the process.
+        examples: [1000]
+      - id: process.real_user.name
+        type: string
+        stability: experimental
+        brief: >
+          The username of the real user of the process.
+        examples: ['operator']
+      - id: process.saved_user.id
+        type: int
+        stability: experimental
+        brief: >
+          The saved user ID (SUID) of the process.
+        examples: [1002]
+      - id: process.saved_user.name
+        type: string
+        stability: experimental
+        brief: >
+          The username of the saved user.
+        examples: ['operator']
+      - id: process.runtime.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the runtime of this process.
+        examples: ['OpenJDK Runtime Environment']
+      - id: process.runtime.version
+        type: string
+        stability: experimental
+        brief: >
+          The version of the runtime of this process, as returned by the runtime
+          without modification.
+        examples: '14.0.2'
+      - id: process.runtime.description
+        type: string
+        stability: experimental
+        brief: >
+          An additional description about the runtime of the process, for example
+          a specific vendor customization of the runtime environment.
+        examples: 'Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0'
+      - id: process.title
+        type: string
+        stability: experimental
+        brief: >
+          Process title (proctitle)
+        note: >
+          In many Unix-like systems, process title (proctitle), is the string
+          that represents the name or command line of a running process,
+          displayed by system monitoring tools like ps, top, and htop.
+        examples: ["cat /etc/hostname", "xfce4-session", "bash"]
+      - id: process.creation.time
+        type: string
+        stability: experimental
+        brief: >
+          The date and time the process was created, in ISO 8601 format.
+        examples: ['2023-11-21T09:25:34.853Z']
+      - id: process.exit.time
+        type: string
+        stability: experimental
+        brief: >
+          The date and time the process exited, in ISO 8601 format.
+        examples: ['2023-11-21T09:26:12.315Z']
+      - id: process.exit.code
+        type: int
+        stability: experimental
+        brief: >
+          The exit code of the process.
+        examples: [127]
+      - id: process.interactive
+        type: boolean
+        stability: experimental
+        brief: >
+          Whether the process is connected to an interactive shell.
+      - id: process.working_directory
+        type: string
+        stability: experimental
+        brief: >
+          The working directory of the process.
+        examples: ["/root"]
+      - id: process.context_switch_type
+        brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
+        type:
+          members:
+            - id: voluntary
+              value: 'voluntary'
+              stability: experimental
+            - id: involuntary
+              value: 'involuntary'
+              stability: experimental
+        stability: experimental
+      - id: process.paging.fault_type
+        brief: >
+          The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor`
+          is for minor/soft page faults.
+        type:
+          members:
+            - id: major
+              value: 'major'
+              stability: experimental
+            - id: minor
+              value: 'minor'
+              stability: experimental
+        stability: experimental

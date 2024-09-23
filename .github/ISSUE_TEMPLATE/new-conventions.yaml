@@ -40,6 +40,7 @@ body:
         - area:device
         - area:disk
         - area:dns
+        - area:dotnet
         - area:error
         - area:event
         - area:exception
@@ -67,6 +68,7 @@ body:
         - area:otel
         - area:peer
         - area:process
+        - area:profile
         - area:rpc
         - area:server
         - area:service
@@ -79,8 +81,8 @@ body:
         - area:thread
         - area:tls
         - area:url
-        - area:user-agent
         - area:user
+        - area:user-agent
         - area:v8js
         - area:vcs
         - area:webengine

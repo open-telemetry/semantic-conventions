@@ -44,7 +44,7 @@ These attributes may be used for identifying a Log Record.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`log.record.original`](/docs/attributes-registry/log.md) | string | The complete orignal Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.record.original`](/docs/attributes-registry/log.md) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`log.record.uid`](/docs/attributes-registry/log.md) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)

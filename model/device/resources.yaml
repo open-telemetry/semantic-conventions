@@ -1,0 +1,11 @@
+groups:
+  - id: device
+    type: resource
+    name: device
+    brief: >
+        The device on which the process represented by this resource is running.
+    attributes:
+      - ref: device.id
+      - ref: device.manufacturer
+      - ref: device.model.identifier
+      - ref: device.model.name
