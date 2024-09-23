@@ -25,410 +25,432 @@ updated to the stable messaging semantic conventions, they:
 ## Summary of changes
 
 This section summarizes the changes made to the messaging semantic conventions
-from
-[v1.24.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/README.md).
-to
+from a range of versions. Each starting version shows all the changes required
+to bring the conventions to
 [v1.TODO (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.TODO/docs/messaging/README.md).
 
-### Common messaging attributes
+### From v1.26.0
 
-#### New attributes
+#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
 
 <!-- prettier-ignore-start -->
 | New attributes |
 | -------------- |
-| `messaging.destination.partition.id` |
-| `messaging.operation.name` |
-| `error.type` |
-| `server.port` |
+| `messaging.consumer.group.name` |
+| `messaging.destination.subscription.name` |
 <!-- prettier-ignore-end -->
 
-#### Changed attributes
+#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
 
 <!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.system` from string to enum |  |
-| `messaging.operation` → `messaging.operation.type` |  |
-| `messaging.client_id` → `messaging.client.id` |  |
+| Old | New |
+| --- | --- |
+| `messaging.eventhubs.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.message.offset` | `messaging.kafka.offset` |
+| `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
+| `messaging.servicebus.destination.subscription_name` | `messaging.destination.subscription.name` |
 <!-- prettier-ignore-end -->
 
-### Removed attributes
+#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
 
 <!-- prettier-ignore-start -->
 | Removed attributes |
-| -------------- |
-| `network.transport` |
-| `network.type` |
-| `network.protocol.name` |
-| `network.protocol.version` |
+| ------------------ |
+| `messaging.destination_publish.anonymous` |
+| `messaging.destination_publish.name` |
 <!-- prettier-ignore-end -->
 
-### Kafka attributes
+### From v1.25.0
 
-#### New attributes
+#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
 
 <!-- prettier-ignore-start -->
 | New attributes |
 | -------------- |
-| `messaging.operation.type` |
-| `error.type` |
-| `messaging.batch.message_count` |
-| `messaging.destination.name` |
-| `server.address` |
-| `messaging.client.id` |
-| `messaging.message.body.size` |
-| `messaging.message.id` |
-| `messaging.operation.name` |
-| `server.port` |
-<!-- prettier-ignore-end -->
-
-#### Changed attributes
-
-<!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.kafka.partition` → `messaging.destination.partition.id` |  |
-
-<!-- prettier-ignore-end -->
-
-### RabbitMQ attributes
-
-#### New attributes
-
-<!-- prettier-ignore-start -->
-| New attributes |
-| -------------- |
-| `messaging.rabbitmq.message.delivery_tag` |
-| `network.peer.address` |
-| `network.peer.port` |
-| `messaging.operation.type` |
-| `error.type` |
-| `messaging.destination.name` |
-| `server.address` |
-| `messaging.message.body.size` |
-| `messaging.message.conversation_id` |
-| `messaging.message.id` |
-| `messaging.operation.name` |
-| `server.port` |
-<!-- prettier-ignore-end -->
-
-#### RocketMQ attributes
-
-##### New attributes
-
-<!-- prettier-ignore-start -->
-| New attributes |
-| -------------- |
-| `messaging.operation.type` |
-| `error.type` |
-| `messaging.batch.message_count` |
-| `messaging.destination.name` |
-| `server.address` |
-| `messaging.client.id` |
-| `messaging.message.body.size` |
-| `messaging.message.id` |
-| `messaging.operation.name` |
-| `server.port` |
-<!-- prettier-ignore-end -->
-
-### Azure Servicebus
-
-#### New attributes
-
-<!-- prettier-ignore-start -->
-| New attributes |
-| -------------- |
-| `messaging.operation.type` |
-| `error.type` |
-| `messaging.batch.message_count` |
-| `messaging.destination.name` |
-| `messaging.servicebus.destination.subscription_name` |
-| `messaging.servicebus.disposition_status` |
-| `messaging.servicebus.message.delivery_count` |
-| `server.address` |
-| `messaging.message.conversation_id` |
-| `messaging.message.id` |
-| `messaging.operation.name` |
-| `messaging.servicebus.message.enqueued_time` |
-| `messaging.destination.partition.id` |
-| `messaging.eventhubs.consumer.group` |
-| `messaging.eventhubs.message.enqueued_time` |
-<!-- prettier-ignore-end -->
-
-### Azure Event Hubs
-
-#### New attributes
-
-<!-- prettier-ignore-start -->
-| New attributes |
-| -------------- |
-| `messaging.operation.type` |
-| `error.type` |
-| `messaging.batch.message_count` |
-| `messaging.destination.name` |
-| `messaging.destination.partition.id` |
-| `messaging.eventhubs.consumer.group` |
-| `server.address` |
-| `messaging.servicebus.message.enqueued_time` |
-| `messaging.message.id` |
-| `messaging.operation.name` |
-| `server.port` |
-<!-- prettier-ignore-end -->
-
-### GCP Pubsub attributes
-
-#### New attributes
-
-<!-- prettier-ignore-start -->
-| New attributes |
-| -------------- |
-| `messaging.operation.type` |
-| `error.type` |
-| `messaging.batch.message_count` |
-| `messaging.destination.name` |
-| `messaging.gcp_pubsub.message.ordering_key` |
-| `server.address` |
+| `messaging.consumer.group.name` |
+| `messaging.destination.subscription.name` |
 | `messaging.gcp_pubsub.message.ack_deadline` |
 | `messaging.gcp_pubsub.message.ack_id` |
 | `messaging.gcp_pubsub.message.delivery_attempt` |
-| `messaging.message.id` |
 | `messaging.operation.name` |
-| `server.port` |
 <!-- prettier-ignore-end -->
 
-## Migrating from a version prior to v1.24.0?
-
-In addition to the changes made to the Messaging semantic conventions
-from
-[v1.24.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/README.md)
-to
-[v1.TODO (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.TODO/docs/messaging/README.md),
-there are additional changes if you are migrating to v1.TODO from a version prior to v1.24.0.
-
-### Migrating from `<= v1.23.0`
-
-- Initial version of new trace structure [#284](https://github.com/open-telemetry/semantic-conventions/pull/284)
-  - Using links to correlate producer to consumers
-  - Concept of create spans
-  - Model traces for pull and push based scenarios"
-
-### Migrating from `<= v1.22.0`
-
-#### Common messaging attributes
-
-##### New attributes
+#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
 
 <!-- prettier-ignore-start -->
-| New attributes |
-| -------------- |
-| `messaging.message.envelope.size` |
-| `messaging.destination_publish.name` |
-| `messaging.destination_publish.anonymous` |
+| Old | New |
+| --- | --- |
+| `messaging.client_id` | `messaging.client.id` |
+| `messaging.eventhubs.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.message.offset` | `messaging.kafka.offset` |
+| `messaging.operation` | `messaging.operation.type` |
+| `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
+| `messaging.servicebus.destination.subscription_name` | `messaging.destination.subscription.name` |
 <!-- prettier-ignore-end -->
 
-##### Changed attributes
-
-<!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.message.payload_size_bytes` → `messaging.message.body.size` |  |
-| `server.socket.address` → `network.peer.address` |  |
-| `server.socket.port` → `network.peer.port` |  |
-<!-- prettier-ignore-end -->
-
-##### Removed attributes
+#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
 
 <!-- prettier-ignore-start -->
 | Removed attributes |
-| -------------- |
-| `server.socket.domain` |
-| `messaging.message.payload_compressed_size_bytes` |
+| ------------------ |
+| `messaging.destination_publish.anonymous` |
+| `messaging.destination_publish.name` |
 <!-- prettier-ignore-end -->
 
-### Migrating from `<= v1.21.0`
+### From v1.24.0
 
-#### Common messaging attributes
-
-##### New attributes
+#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
 
 <!-- prettier-ignore-start -->
 | New attributes |
 | -------------- |
+| `messaging.consumer.group.name` |
+| `messaging.destination.partition.id` |
+| `messaging.destination.subscription.name` |
+| `messaging.eventhubs.message.enqueued_time` |
+| `messaging.gcp_pubsub.message.ack_deadline` |
+| `messaging.gcp_pubsub.message.ack_id` |
+| `messaging.gcp_pubsub.message.delivery_attempt` |
+| `messaging.operation.name` |
+| `messaging.rabbitmq.message.delivery_tag` |
+| `messaging.servicebus.disposition_status` |
+| `messaging.servicebus.message.delivery_count` |
+| `messaging.servicebus.message.enqueued_time` |
+<!-- prettier-ignore-end -->
+
+#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
+
+<!-- prettier-ignore-start -->
+| Old | New |
+| --- | --- |
+| `messaging.client_id` | `messaging.client.id` |
+| `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.destination.partition` | `messaging.destination.partition.id` |
+| `messaging.kafka.message.offset` | `messaging.kafka.offset` |
+| `messaging.operation` | `messaging.operation.type` |
+| `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
+<!-- prettier-ignore-end -->
+
+#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
+
+<!-- prettier-ignore-start -->
+| Removed attributes |
+| ------------------ |
+| `messaging.destination_publish.anonymous` |
+| `messaging.destination_publish.name` |
+| `network.protocol.name` |
+| `network.protocol.version` |
 | `network.transport` |
 | `network.type` |
 <!-- prettier-ignore-end -->
 
-##### Changed attributes
+### From v1.23.0 and v1.22.0
+
+#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
 
 <!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.consumer.id` →  `messaging.client_id` |  |
-| `net.peer.name` →  `server.address` |  |
-| `net.protocol.name` →  `network.protocol.name` |  |
-| `net.protocol.version` →  `network.protocol.version` |  |
-| `net.sock.peer.addr` →  `server.socket.address` |  |
-| `net.sock.peer.name` →  `server.socket.domain` |  |
-| `net.sock.peer.port` →  `server.socket.port` |  |
+| New attributes |
+| -------------- |
+| `error.type` |
+| `messaging.consumer.group.name` |
+| `messaging.destination.partition.id` |
+| `messaging.destination.subscription.name` |
+| `messaging.eventhubs.message.enqueued_time` |
+| `messaging.gcp_pubsub.message.ack_deadline` |
+| `messaging.gcp_pubsub.message.ack_id` |
+| `messaging.gcp_pubsub.message.delivery_attempt` |
+| `messaging.gcp_pubsub.message.ordering_key` |
+| `messaging.operation.name` |
+| `messaging.rabbitmq.message.delivery_tag` |
+| `messaging.servicebus.disposition_status` |
+| `messaging.servicebus.message.delivery_count` |
+| `messaging.servicebus.message.enqueued_time` |
+| `server.port` |
 <!-- prettier-ignore-end -->
 
-#### Removed attributes
+#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
+
+<!-- prettier-ignore-start -->
+| Old | New |
+| --- | --- |
+| `messaging.client_id` | `messaging.client.id` |
+| `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.destination.partition` | `messaging.destination.partition.id` |
+| `messaging.kafka.message.offset` | `messaging.kafka.offset` |
+| `messaging.operation` | `messaging.operation.type` |
+| `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
+<!-- prettier-ignore-end -->
+
+#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
 
 <!-- prettier-ignore-start -->
 | Removed attributes |
+| ------------------ |
+| `messaging.destination_publish.anonymous` |
+| `messaging.destination_publish.name` |
+| `network.protocol.name` |
+| `network.protocol.version` |
+| `network.transport` |
+| `network.type` |
+<!-- prettier-ignore-end -->
+
+### From v1.21.0
+
+#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+
+<!-- prettier-ignore-start -->
+| New attributes |
 | -------------- |
+| `error.type` |
+| `messaging.consumer.group.name` |
+| `messaging.destination.partition.id` |
+| `messaging.destination.subscription.name` |
+| `messaging.eventhubs.message.enqueued_time` |
+| `messaging.gcp_pubsub.message.ack_deadline` |
+| `messaging.gcp_pubsub.message.ack_id` |
+| `messaging.gcp_pubsub.message.delivery_attempt` |
+| `messaging.gcp_pubsub.message.ordering_key` |
+| `messaging.message.envelope.size` |
+| `messaging.operation.name` |
+| `messaging.rabbitmq.message.delivery_tag` |
+| `messaging.servicebus.disposition_status` |
+| `messaging.servicebus.message.delivery_count` |
+| `messaging.servicebus.message.enqueued_time` |
+| `server.port` |
+<!-- prettier-ignore-end -->
+
+#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
+
+<!-- prettier-ignore-start -->
+| Old | New |
+| --- | --- |
+| `messaging.client_id` | `messaging.client.id` |
+| `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.destination.partition` | `messaging.destination.partition.id` |
+| `messaging.kafka.message.offset` | `messaging.kafka.offset` |
+| `messaging.message.payload_compressed_size_bytes` | `messaging.message.body.size` |
+| `messaging.message.payload_size_bytes` | `messaging.message.envelope.size` |
+| `messaging.operation` | `messaging.operation.type` |
+| `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
+| `server.socket.address` | `network.peer.address` |
+| `server.socket.port` | `network.peer.port` |
+<!-- prettier-ignore-end -->
+
+#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
+
+<!-- prettier-ignore-start -->
+| Removed attributes |
+| ------------------ |
+| `network.protocol.name` |
+| `network.protocol.version` |
+| `network.transport` |
+| `network.type` |
+| `server.socket.domain` |
+<!-- prettier-ignore-end -->
+
+### From v1.20.0
+
+#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
+
+<!-- prettier-ignore-start -->
+| New attributes |
+| -------------- |
+| `error.type` |
+| `messaging.consumer.group.name` |
+| `messaging.destination.partition.id` |
+| `messaging.destination.subscription.name` |
+| `messaging.eventhubs.message.enqueued_time` |
+| `messaging.gcp_pubsub.message.ack_deadline` |
+| `messaging.gcp_pubsub.message.ack_id` |
+| `messaging.gcp_pubsub.message.delivery_attempt` |
+| `messaging.gcp_pubsub.message.ordering_key` |
+| `messaging.message.envelope.size` |
+| `messaging.operation.name` |
+| `messaging.rabbitmq.message.delivery_tag` |
+| `messaging.servicebus.disposition_status` |
+| `messaging.servicebus.message.delivery_count` |
+| `messaging.servicebus.message.enqueued_time` |
+| `server.port` |
+<!-- prettier-ignore-end -->
+
+#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
+
+<!-- prettier-ignore-start -->
+| Old | New |
+| --- | --- |
+| `messaging.client_id` | `messaging.client.id` |
+| `messaging.consumer.id` | `messaging.client.id` |
+| `messaging.kafka.client_id` | `messaging.client.id` |
+| `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.destination.partition` | `messaging.destination.partition.id` |
+| `messaging.kafka.message.offset` | `messaging.kafka.offset` |
+| `messaging.message.payload_compressed_size_bytes` | `messaging.message.body.size` |
+| `messaging.message.payload_size_bytes` | `messaging.message.envelope.size` |
+| `messaging.operation` | `messaging.operation.type` |
+| `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
+| `messaging.rocketmq.client_id` | `messaging.client.id` |
+| `net.peer.name` | `server.address` |
+| `net.sock.peer.addr` | `network.peer.address` |
+| `net.sock.peer.port` | `network.peer.port` |
+<!-- prettier-ignore-end -->
+
+#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
+
+<!-- prettier-ignore-start -->
+| Removed attributes |
+| ------------------ |
+| `messaging.kafka.source.partition` |
+| `messaging.source.anonymous` |
+| `messaging.source.name` |
+| `messaging.source.template` |
+| `messaging.source.temporary` |
+| `net.protocol.name` |
+| `net.protocol.version` |
 | `net.sock.family` |
-| `messaging.source.anonymous` |
-| `messaging.source.name` |
-| `messaging.source.template` |
-| `messaging.source.temporary` |
+| `net.sock.peer.name` |
 <!-- prettier-ignore-end -->
 
-#### Kafka attributes
+### From v1.19.0 and v1.18.0 v1.17.0
 
-##### Changed attributes
+#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
 
 <!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.kafka.client_id` →  `messaging.client_id` |  |
+| New attributes |
+| -------------- |
+| `error.type` |
+| `messaging.consumer.group.name` |
+| `messaging.destination.partition.id` |
+| `messaging.destination.subscription.name` |
+| `messaging.eventhubs.message.enqueued_time` |
+| `messaging.gcp_pubsub.message.ack_deadline` |
+| `messaging.gcp_pubsub.message.ack_id` |
+| `messaging.gcp_pubsub.message.delivery_attempt` |
+| `messaging.gcp_pubsub.message.ordering_key` |
+| `messaging.message.envelope.size` |
+| `messaging.operation.name` |
+| `messaging.rabbitmq.message.delivery_tag` |
+| `messaging.servicebus.disposition_status` |
+| `messaging.servicebus.message.delivery_count` |
+| `messaging.servicebus.message.enqueued_time` |
+| `server.port` |
 <!-- prettier-ignore-end -->
 
-##### Removed attributes
+#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
+
+<!-- prettier-ignore-start -->
+| Old | New |
+| --- | --- |
+| `message.servicebus.destination.subscription_name` | `messaging.destination.subscription.name` |
+| `messaging.client_id` | `messaging.client.id` |
+| `messaging.consumer.id` | `messaging.client.id` |
+| `messaging.evenhubs.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.client_id` | `messaging.client.id` |
+| `messaging.kafka.consumer.group` | `messaging.consumer.group.name` |
+| `messaging.kafka.message.offset` | `messaging.kafka.offset` |
+| `messaging.kafka.partition` | `messaging.destination.partition.id` |
+| `messaging.message.payload_size_bytes` | `messaging.message.envelope.size` |
+| `messaging.operation` | `messaging.operation.type` |
+| `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
+| `messaging.rocketmq.client_id` | `messaging.client.id` |
+| `net.peer.name` | `server.address` |
+| `net.sock.peer.addr` | `network.peer.address` |
+| `net.sock.peer.port` | `network.peer.port` |
+<!-- prettier-ignore-end -->
+
+#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
 
 <!-- prettier-ignore-start -->
 | Removed attributes |
-| -------------- |
-| `messaging.kafka.source.partition` |
-<!-- prettier-ignore-end -->
-
-#### RocketMQ attributes
-
-##### Changed attributes
-
-<!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.rocketmq.client_id` →  `messaging.client_id` |  |
-<!-- prettier-ignore-end -->
-
-### Migrating from `<= v1.20.0`
-
-#### Common messaging attributes
-
-##### Changed attributes
-
-<!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `net.app.protocol.name` →  `net.protocol.name` |  |
-| `net.app.protocol.version` →  `net.protocol.version` |  |
-<!-- prettier-ignore-end -->
-
-##### Removed attributes
-
-<!-- prettier-ignore-start -->
-| Removed attributes |
-| -------------- |
+| ------------------ |
+| `destination_publish.anonymous` |
 | `messaging.destination.kind` |
-| `messaging.source.kind` |
-<!-- prettier-ignore-end -->
-
-### Migrating from `<= v1.19.0`
-
-No changes
-
-### Migrating from `<= v1.18.0`
-
-No changes
-
-### Migrating from `<= v1.17.0`
-
-#### Common messaging attributes
-
-##### New attributes
-
-<!-- prettier-ignore-start -->
-| New attributes |
-| -------------- |
-| `messaging.batch.message_count` |
-| `messaging.destination.anonymous` |
-| `messaging.destination.template` |
+| `messaging.kafka.source.partition` |
+| `messaging.message.payload_compressed_size_bytes` |
 | `messaging.source.anonymous` |
 | `messaging.source.kind` |
 | `messaging.source.name` |
 | `messaging.source.template` |
 | `messaging.source.temporary` |
+| `net.app.protocol.name` |
+| `net.app.protocol.version` |
+| `net.sock.family` |
+| `net.sock.peer.name` |
+| `network.transport` |
+| `network.type` |
 <!-- prettier-ignore-end -->
 
-##### Changed attributes
+### From v1.16
 
-<!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.destination` →  `messaging.destination.name` |  |
-| `messaging.destination_kind` →  `messaging.destination.kind` |  |
-| `messaging.temp_destination` →  `messaging.destination.temporary` |  |
-| `messaging.protocol` →  `net.app.protocol.name` |  |
-| `messaging.protocol_version` →  `net.app.protocol.version` |  |
-| `messaging.consumer_id` →  `messaging.consumer.id` |  |
-| `messaging.message_id` →  `messaging.message.id` |  |
-| `messaging.conversation_id` →  `messaging.message.conversation_id` |  |
-| `messaging.message_payload_size_bytes` →  `messaging.message.payload_size_bytes` |  |
-| `messaging.message_payload_compressed_size_bytes` →  `messaging.message.payload_compressed_size_bytes` |  |
-<!-- prettier-ignore-end -->
-
-##### Removed attributes
-
-<!-- prettier-ignore-start -->
-| Removed attributes |
-| -------------- |
-| `messaging.url` |
-<!-- prettier-ignore-end -->
-
-#### Kafka attributes
-
-##### New attributes
+#### ![new](https://img.shields.io/badge/new-green?style=flat) New attributes
 
 <!-- prettier-ignore-start -->
 | New attributes |
 | -------------- |
-| `messaging.kafka.source.partition` |
+| `error.type` |
+| `messaging.batch.message_count` |
+| `messaging.consumer.group.name` |
+| `messaging.destination.anonymous` |
+| `messaging.destination.partition.id` |
+| `messaging.destination.subscription.name` |
+| `messaging.destination.template` |
+| `messaging.eventhubs.message.enqueued_time` |
+| `messaging.gcp_pubsub.message.ack_deadline` |
+| `messaging.gcp_pubsub.message.ack_id` |
+| `messaging.gcp_pubsub.message.delivery_attempt` |
+| `messaging.gcp_pubsub.message.ordering_key` |
+| `messaging.message.envelope.size` |
+| `messaging.operation.name` |
+| `messaging.rabbitmq.message.delivery_tag` |
+| `messaging.servicebus.disposition_status` |
+| `messaging.servicebus.message.delivery_count` |
+| `messaging.servicebus.message.enqueued_time` |
+| `server.port` |
 <!-- prettier-ignore-end -->
 
-##### Changed attributes
+#### ![changed](https://img.shields.io/badge/changed-orange?style=flat) Changed attributes
 
 <!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.kafka.message_key` →  `messaging.kafka.message.key` |  |
-| `messaging.kafka.consumer_group` →  `messaging.kafka.consumer.group` |  |
-| `messaging.kafka.partition` →  `messaging.kafka.destination.partition` |  |
-| `messaging.kafka.tombstone` →  `messaging.kafka.message.tombstone` |  |
+| Old | New |
+| --- | --- |
+| `messaging.consumer_id` | `messaging.client.id` |
+| `messaging.conversation_id` | `messaging.message.conversation_id` |
+| `messaging.destination` | `messaging.destination.name` |
+| `messaging.kafka.client_id` | `messaging.client.id` |
+| `messaging.kafka.consumer_group` | `messaging.consumer.group.name` |
+| `messaging.kafka.message_key` | `messaging.kafka.message.key` |
+| `messaging.kafka.message.offset` | `messaging.kafka.offset` |
+| `messaging.kafka.partition` | `messaging.destination.partition.id` |
+| `messaging.kafka.tombstone` | `messaging.kafka.message.tombstone` |
+| `messaging.message_id` | `messaging.message.id` |
+| `messaging.message_payload_compressed_size_bytes` | `messaging.message.body.size` |
+| `messaging.message_payload_size_bytes` | `messaging.message.envelope.size` |
+| `messaging.operation` | `messaging.operation.type` |
+| `messaging.rabbitmq.routing_key` | `messaging.rabbitmq.destination.routing_key` |
+| `messaging.rocketmq.client_group` | `messaging.consumer.group.name` |
+| `messaging.rocketmq.client_id` | `messaging.client.id` |
+| `messaging.rocketmq.delay_time_level` | `messaging.rocketmq.message.delay_time_level` |
+| `messaging.rocketmq.delivery_timestamp` | `messaging.rocketmq.message.delivery_timestamp` |
+| `messaging.rocketmq.message_group` | `messaging.rocketmq.message.group` |
+| `messaging.rocketmq.message_keys` | `messaging.rocketmq.message.keys` |
+| `messaging.rocketmq.message_tag` | `messaging.rocketmq.message.tag` |
+| `messaging.rocketmq.message_type` | `messaging.rocketmq.message.type` |
+| `messaging.temp_destination` | `messaging.destination.temporary` |
+| `net.peer.name` | `server.address` |
+| `net.sock.peer.addr` | `network.peer.address` |
+| `net.sock.peer.port` | `network.peer.port` |
 <!-- prettier-ignore-end -->
 
-#### RabbitMQ attributes
-
-##### Changed attributes
+#### ![removed](https://img.shields.io/badge/removed-red?style=flat) Removed attributes
 
 <!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.rabbitmq.routing_key` →  `messaging.rabbitmq.destination.routing_key` |  |
-<!-- prettier-ignore-end -->
-
-#### RocketMQ attributes
-
-##### Changed attributes
-
-<!-- prettier-ignore-start -->
-| Attribute change | Comments |
-| ---------------- | -------- |
-| `messaging.rocketmq.message_type` →  `messaging.rocketmq.message.type` |  |
-| `messaging.rocketmq.message_tag` →  `messaging.rocketmq.message.tag` |  |
-| `messaging.rocketmq.message_keys` →  `messaging.rocketmq.message.keys` |  |
-| `messaging.rocketmq.delivery_timestamp` →  `messaging.rocketmq.message.delivery_timestamp` |  |
-| `messaging.rocketmq.delay_time_level` →  `messaging.rocketmq.message.delay_time_level` |  |
-| `messaging.rocketmq.message_group` →  `messaging.rocketmq.message.group` |  |
+| Removed attributes |
+| ------------------ |
+| `messaging.url` |
+| `messaging.destination_kind` |
+| `net.sock.family` |
+| `net.sock.peer.name` |
+| `messaging.protocol` |
+| `messaging.protocol_version` |
 <!-- prettier-ignore-end -->
