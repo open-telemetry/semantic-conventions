@@ -30,6 +30,28 @@ groups:
     instrument: gauge
     unit: "By"
 
+  # k8s.pod.network.* metrics
+  - id: metric.k8s.pod.network.io
+    type: metric
+    metric_name: k8s.pod.network.io
+    stability: experimental
+    brief: "Pod network IO"
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: system.device
+      - ref: network.io.direction
+  - id: metric.k8s.pod.network.errors
+    type: metric
+    metric_name: k8s.pod.network.errors
+    stability: experimental
+    brief: "Pod network errors"
+    instrument: counter
+    unit: "{error}"
+    attributes:
+      - ref: system.device
+      - ref: network.io.direction
+
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
@@ -60,3 +82,25 @@ groups:
       Total memory usage of the Node
     instrument: gauge
     unit: "By"
+
+  # k8s.node.network.* metrics
+  - id: metric.k8s.node.network.io
+    type: metric
+    metric_name: k8s.node.network.io
+    stability: experimental
+    brief: "Node network IO"
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: system.device
+      - ref: network.io.direction
+  - id: metric.k8s.node.network.errors
+    type: metric
+    metric_name: k8s.node.network.errors
+    stability: experimental
+    brief: "Node network errors"
+    instrument: counter
+    unit: "{error}"
+    attributes:
+      - ref: system.device
+      - ref: network.io.direction
