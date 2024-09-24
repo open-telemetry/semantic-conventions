@@ -10,20 +10,19 @@
 
 CloudFoundry resource attributes.
 
-| Attribute                         | Type   | Description                                                                    | Examples                                                                                          | Stability                                                        |
-| --------------------------------- | ------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `cloudfoundry.app.id`             | string | The guid of the application. [1]                                               | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.app.instance.id`    | string | The index of the application instance. 0 when just one instance is active. [2] | `0`; `1`                                                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.app.name`           | string | The name of the application. [3]                                               | `my-app-name`                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.org.id`             | string | The guid of the CloudFoundry org the application is running in. [4]            | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.org.name`           | string | The name of the CloudFoundry organization the app is running in. [5]           | `my-org-name`                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.process.id`         | string | The UID identifying the process. [6]                                           | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.process.type`       | string | The type of process. [7]                                                       | `web`                                                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.source.type`        | string | The type of the event source. [8]                                              | `APP/PROC/WEB/0`; `APP/TASK/jobscheduler-task-70013817-ab92-4f75-82d4-de8ae4dd64b4`; `RTR`; `STG` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.space.id`           | string | The guid of the CloudFoundry space the application is running in. [9]          | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.space.name`         | string | The name of the CloudFoundry space the application is running in. [10]         | `my-space-name`                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.system.id`          | string | A guid or another name describing the event source. [11]                       | `cf/gorouter`                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudfoundry.system.instance.id` | string | A guid describing the concrete instance of the event source. [12]              | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                         | Type   | Description                                                                    | Examples                               | Stability                                                        |
+| --------------------------------- | ------ | ------------------------------------------------------------------------------ | -------------------------------------- | ---------------------------------------------------------------- |
+| `cloudfoundry.app.id`             | string | The guid of the application. [1]                                               | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.app.instance.id`    | string | The index of the application instance. 0 when just one instance is active. [2] | `0`; `1`                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.app.name`           | string | The name of the application. [3]                                               | `my-app-name`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.org.id`             | string | The guid of the CloudFoundry org the application is running in. [4]            | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.org.name`           | string | The name of the CloudFoundry organization the app is running in. [5]           | `my-org-name`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.process.id`         | string | The UID identifying the process. [6]                                           | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.process.type`       | string | The type of process. [7]                                                       | `web`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.space.id`           | string | The guid of the CloudFoundry space the application is running in. [8]          | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.space.name`         | string | The name of the CloudFoundry space the application is running in. [9]          | `my-space-name`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.system.id`          | string | A guid or another name describing the event source. [10]                       | `cf/gorouter`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudfoundry.system.instance.id` | string | A guid describing the concrete instance of the event source. [11]              | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_id`. This is the same value as
@@ -58,27 +57,15 @@ For system components, this could be the actual PID.
 main process will be of type `web`. There can be additional background
 tasks or side-cars with different process types.
 
-**[8]:** CloudFoundry generates log messages with different source types for an
-applications. This indicates, whether the log was created from the
-actual application, a background task, the central load balancer, or
-the CloudFoundry runtime, e.g. during a deployment.
-
-The `source_type` is contained as a tag of the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
-It is also available in the syslog drain structured data as documented
-in the [CloudFoundry Dev Guide](https://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html).
-Application developers can access the value of the `source_type` in
-the log stream generated by `cf logs <app-name>`, usually in square
-brackets.
-
-**[9]:** Application instrumentation should use the value from environment
+**[8]:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_id`. This is the same value as
 reported by `cf space <space-name> --guid`.
 
-**[10]:** Application instrumentation should use the value from environment
+**[9]:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_name`. This is the same value as
 reported by `cf spaces`.
 
-**[11]:** CloudFoundry defines the `source_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[10]:** CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the component name, e.g. "gorouter", for
 CloudFoundry components.
@@ -88,7 +75,7 @@ When system components are instrumented, values from the
 should be used. The `system.id` should be set to
 `spec.deployment/spec.name`.
 
-**[12]:** CloudFoundry defines the `instance_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[11]:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the vm id for CloudFoundry components.
 

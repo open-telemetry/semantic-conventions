@@ -1,14 +1,4 @@
 groups:
-  - id: cloudfoundry
-    type: resource
-    name: cloudfoundry
-    brief: >
-      A CloudFoundry application or system component.
-    attributes:
-      - ref: cloudfoundry.source.type
-        requirement_level:
-          conditionally_required: if the the event is a log message
-        tag: source.type
   - id: cloudfoundry.system
     type: resource
     name: cloudfoundry.system
