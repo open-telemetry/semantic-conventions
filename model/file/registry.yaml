@@ -111,6 +111,22 @@ groups:
           The user ID (UID) or security identifier (SID) of the file owner.
         stability: experimental
         examples: ["1000"]
+      - id: file.origin_referrer_url
+        type: string
+        brief: >
+          The URL of the webpage that linked to the file.
+        note: > 
+          This information is inteded to be retrieved from the Mark of the Web (NTFS Zone.Identifer ADS Stream) Note that the URL might contain sensitive information.
+        stability: experimental
+        examples: ['https://example.com']     
+      - id: file.origin_url
+        type: string
+        brief: >
+          The URL where the file is hosted.
+        note: > 
+          This information is inteded to be retrieved from the Mark of the Web (NTFS Zone.Identifer ADS Stream) Note that the URL might contain sensitive information.
+        stability: experimental
+        examples: ['https://example.com/file.zip'] 
       - id: file.owner.name
         type: string
         brief: >

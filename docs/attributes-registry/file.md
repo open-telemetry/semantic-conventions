@@ -1,3 +1,7 @@
+
+
+
+
 <!--- Hugo front matter used to generate the website version of this page:
 --->
 
@@ -5,31 +9,33 @@
 <!-- see templates/registry/markdown/attribute_namespace.md.j2 -->
 
 # File
-
 ## File Attributes
 
 Describes file attributes.
 
-| Attribute                        | Type     | Description                                                                                           | Examples                                                      | Stability                                                        |
-| -------------------------------- | -------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `file.accessed`                  | string   | Time when the file was last accessed, in ISO 8601 format. [1]                                         | `2021-01-01T12:00:00Z`                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.attributes`                | string[] | Array of file attributes. [2]                                                                         | `["readonly", "hidden"]`                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.changed`                   | string   | Time when the file attributes or metadata was last changed, in ISO 8601 format. [3]                   | `2021-01-01T12:00:00Z`                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.created`                   | string   | Time when the file was created, in ISO 8601 format. [4]                                               | `2021-01-01T12:00:00Z`                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.directory`                 | string   | Directory where the file is located. It should include the drive letter, when appropriate.            | `/home/user`; `C:\Program Files\MyApp`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.extension`                 | string   | File extension, excluding the leading dot. [5]                                                        | `png`; `gz`                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.fork_name`                 | string   | Name of the fork. A fork is additional data associated with a filesystem object. [6]                  | `Zone.Identifer`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.group.id`                  | string   | Primary Group ID (GID) of the file.                                                                   | `1000`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.group.name`                | string   | Primary group name of the file.                                                                       | `users`                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.inode`                     | string   | Inode representing the file in the filesystem.                                                        | `256383`                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.mode`                      | string   | Mode of the file in octal representation.                                                             | `0640`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.modified`                  | string   | Time when the file content was last modified, in ISO 8601 format.                                     | `2021-01-01T12:00:00Z`                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.name`                      | string   | Name of the file including the extension, without the directory.                                      | `example.png`                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.owner.id`                  | string   | The user ID (UID) or security identifier (SID) of the file owner.                                     | `1000`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.owner.name`                | string   | Username of the file owner.                                                                           | `root`                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.path`                      | string   | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.size`                      | int      | File size in bytes.                                                                                   |                                                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.symbolic_link.target_path` | string   | Path to the target of a symbolic link. [7]                                                            | `/usr/bin/python3`                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute  | Type | Description  | Examples  | Stability |
+|---|---|---|---|---|
+| `file.accessed` | string | Time when the file was last accessed, in ISO 8601 format. [1] | `2021-01-01T12:00:00Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.attributes` | string[] | Array of file attributes. [2] | `["readonly", "hidden"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.changed` | string | Time when the file attributes or metadata was last changed, in ISO 8601 format. [3] | `2021-01-01T12:00:00Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.created` | string | Time when the file was created, in ISO 8601 format. [4] | `2021-01-01T12:00:00Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.directory` | string | Directory where the file is located. It should include the drive letter, when appropriate. | `/home/user`; `C:\Program Files\MyApp` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.extension` | string | File extension, excluding the leading dot. [5] | `png`; `gz` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.fork_name` | string | Name of the fork. A fork is additional data associated with a filesystem object. [6] | `Zone.Identifer` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.group.id` | string | Primary Group ID (GID) of the file. | `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.group.name` | string | Primary group name of the file. | `users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.inode` | string | Inode representing the file in the filesystem. | `256383` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.mode` | string | Mode of the file in octal representation. | `0640` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.modified` | string | Time when the file content was last modified, in ISO 8601 format. | `2021-01-01T12:00:00Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.name` | string | Name of the file including the extension, without the directory. | `example.png` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.origin_referrer_url` | string | The URL of the webpage that linked to the file. [7] | `https://example.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.origin_url` | string | The URL where the file is hosted. [8] | `https://example.com/file.zip` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.owner.id` | string | The user ID (UID) or security identifier (SID) of the file owner. | `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.owner.name` | string | Username of the file owner. | `root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.path` | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.size` | int | File size in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.symbolic_link.target_path` | string | Path to the target of a symbolic link. [9] | `/usr/bin/python3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
 
 **[1]:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 
@@ -44,4 +50,11 @@ Describes file attributes.
 **[6]:** On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
 On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
 
-**[7]:** This attribute is only applicable to symbolic links.
+**[7]:** This information is inteded to be retrieved from the Mark of the Web (NTFS Zone.Identifer ADS Stream) Note that the URL might contain sensitive information.
+
+**[8]:** This information is inteded to be retrieved from the Mark of the Web (NTFS Zone.Identifer ADS Stream) Note that the URL might contain sensitive information.
+
+**[9]:** This attribute is only applicable to symbolic links.
+
+
+
