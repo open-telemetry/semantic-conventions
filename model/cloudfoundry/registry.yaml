@@ -10,7 +10,7 @@ groups:
         brief: >
           A guid or another name describing the event source.
         note: |
-          CloudFoundry defines the `source_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+          CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
           It is used for logs and metrics emitted by CloudFoundry. It is
           supposed to contain the component name, e.g. "gorouter", for
           CloudFoundry components.
@@ -27,7 +27,7 @@ groups:
         brief: >
           A guid describing the concrete instance of the event source.
         note: |
-          CloudFoundry defines the `instance_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+          CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
           It is used for logs and metrics emitted by CloudFoundry. It is
           supposed to contain the vm id for CloudFoundry components.
 
