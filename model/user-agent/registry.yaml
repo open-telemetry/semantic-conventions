@@ -1,0 +1,37 @@
+groups:
+  - id: registry.user_agent
+    type: attribute_group
+    display_name: User-agent Attributes
+    brief: "Describes user-agent attributes."
+    attributes:
+      - id: user_agent.original
+        stability: stable
+        type: string
+        brief: >
+          Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client.
+        examples:
+          - "CERN-LineMode/2.15 libwww/2.17b3"
+          - "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1"
+          - "YourApp/1.0.0 grpc-java-okhttp/1.27.2"
+      - id: user_agent.name
+        type: string
+        stability: experimental
+        brief: >
+          Name of the user-agent extracted from original. Usually refers to the browser's name.
+        examples: ["Safari", "YourApp"]
+        note: >
+          [Example](https://www.whatsmyua.info) of extracting browser's name from original string. In the case of using
+          a user-agent for non-browser products, such as microservices with multiple names/versions inside the
+          `user_agent.original`, the most significant name SHOULD be selected. In such a scenario it should align with
+          `user_agent.version`
+      - id: user_agent.version
+        type: string
+        stability: experimental
+        brief: >
+          Version of the user-agent extracted from original. Usually refers to the browser's version
+        examples: ["14.1.2", "1.0.0"]
+        note: >
+          [Example](https://www.whatsmyua.info) of extracting browser's version from original string. In the case of
+          using a user-agent for non-browser products, such as microservices with multiple names/versions inside the
+          `user_agent.original`, the most significant version SHOULD be selected. In such a scenario it should align
+          with `user_agent.name`

@@ -1,0 +1,9 @@
+groups:
+  - id: aws.eks
+    type: resource
+    name: aws.eks
+    brief: >
+      Resources used by AWS Elastic Kubernetes Service (EKS).
+    attributes:
+      - ref: aws.eks.cluster.arn
+        requirement_level: recommended

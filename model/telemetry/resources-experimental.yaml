@@ -1,0 +1,11 @@
+groups:
+  - id: telemetry.sdk_experimental
+    type: resource
+    name: 'telemetry.sdk'
+    brief: >
+      The telemetry SDK used to capture data recorded by the instrumentation libraries.
+    attributes:
+      - ref: telemetry.distro.name
+        requirement_level: recommended
+      - ref: telemetry.distro.version
+        requirement_level: recommended

@@ -1,9 +1,0 @@
-groups:
-  - id: service
-    type: resource
-    brief: >
-      A service instance.
-    attributes:
-      - ref: service.name
-        requirement_level: required
-      - ref: service.version

@@ -7,25 +7,26 @@ templates:
     application_mode: each
 acronyms:
   - AI
-  - iOS
   - AWS
   - CICD
   - CloudEvents
+  - CLR
   - CPU
-  - CosmosDB
+  - CSI
   - DynamoDB
   - ECS
   - EKS
-  - GraphQL
-  - GCP
   - GCE
+  - GCP
+  - GraphQL
   - HTTP
+  - iOS
   - JVM
   - NodeJS
   - OCI
-  - OTel
   - OpenTracing
   - OS
+  - OTel
   - RabbitMQ
   - RocketMQ
   - RPC

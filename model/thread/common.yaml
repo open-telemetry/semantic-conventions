@@ -1,0 +1,8 @@
+groups:
+  - id: thread
+    type: attribute_group
+    brief: >
+      These attributes may be used for any operation to store information about a thread that started a span.
+    attributes:
+      - ref: thread.id
+      - ref: thread.name

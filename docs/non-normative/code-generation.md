@@ -86,9 +86,10 @@ This section contains suggestions on how to structure semantic convention artifa
 This section describes how to do code-generation with weaver.
 
 > [!IMPORTANT]
-> We're transitioning from [build-tools](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#code-generator)
+> We're transitioning away from [build-tools](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#code-generator)
 > to [opentelemetry-weaver](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md) to generate code for semantic conventions.
 > All new code-generation should be done using weaver, build-tools may become incompatible with future version of semantic conventions.
+> Weaver supports Semantic Conventions version starting from [1.26.0](https://github.com/open-telemetry/semantic-conventions/tree/v1.26.0).
 
 Code-generation is based on YAML definitions in the specific version of semantic conventions.
 Usually, it involves several steps where some can be semi-automated:
@@ -182,12 +183,11 @@ Notable changes on helper methods:
 
 - `attr.fqn | to_const_name` -> `attr.name | screaming_snake_case`
 - `attr.fqn | to_camelcase(True)` -> `attr.name | pascal_case`
-- `attr.brief | to_doc_brief | indent` -> `attr.brief | comment_with_prefix("    ")` (prefix is used to indent)
+- `attr.brief | to_doc_brief | indent` -> `attr.brief | comment(indent=4)`, check out extensive [comment formatting configuration](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md#comment-filter)
 - stability/deprecation checks:
   - `attribute is stable` if checking one attribute, `attributes | select("stable")` to filter stable attributes
   - `attribute is experimental` if checking one attribute, `attributes | select("experimental")` to filter experimental attributes
   - `attribute is deprecated` if checking one attribute, `attributes | select("deprecated")` to filter deprecated attributes
 - check if attribute is a template: `attribute.type is template_type`
-- `print_member_value` - no replacement at this time, use something like `{%- if type == "string" -%}"{{value}}"{%-else-%}{{value}}{%-endif-%}`
 - new way to simplify switch-like logic: `key | map_text("map_name")`. Maps can be defined in the weaver config.
   It can be very useful to convert semantic convention attribute types to language-specific types.

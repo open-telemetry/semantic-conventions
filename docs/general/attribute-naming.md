@@ -116,6 +116,12 @@ denote old attribute names in rename operations).
   the following Unicode code points: Latin alphabet, Numeric, Underscore, Dot
   (as namespace delimiter).
 
+> Note:
+> Semantic Conventions tooling limits names to lowercase
+> Latin alphabet, Numeric, Underscore, Dot (as namespace delimiter).
+> Names must start with a letter, end with an alphanumeric character, and must not
+> contain two or more consecutive delimiters (Underscore or Dot).
+
 ## Recommendations for Application Developers
 
 As an application developer when you need to record an attribute first consult
