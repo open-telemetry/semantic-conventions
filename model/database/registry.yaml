@@ -541,11 +541,12 @@ groups:
           reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
           in order to map the path part values to their names.
         examples: ['db.elasticsearch.path_parts.index=test-index', 'db.elasticsearch.path_parts.doc_id=123']
-  - id: registry.db.vector
-    prefix: db.vector
+  - id: registry.db.search
+    prefix: db.search
     type: attribute_group
+    display_name: Search attributes
     brief: >
-      This group defines attributes for vector databases.
+      This group defines attributes for Search.
     attributes:
       - id: similarity_metric
         type:
@@ -574,6 +575,12 @@ groups:
         brief: >
           The metric used in similarity search.
         examples: 'cosine'
+  - id: registry.db.vector
+    prefix: db.vector
+    type: attribute_group
+    brief: >
+      This group defines attributes for vector databases.
+    attributes:
       - id: field_name
         type: string
         stability: experimental
@@ -586,12 +593,6 @@ groups:
         brief: >
           The dimension of the vector.
         examples: [3]
-      - id: model
-        type: string
-        stability: experimental
-        brief: >
-          The model used for the embedding.
-        examples: 'text-embedding-3-small'
       - id: query.top_k
         type: int
         stability: experimental

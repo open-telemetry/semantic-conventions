@@ -10,6 +10,7 @@
 - [Cassandra Attributes](#cassandra-attributes)
 - [Azure Cosmos DB Attributes](#azure-cosmos-db-attributes)
 - [Elasticsearch Attributes](#elasticsearch-attributes)
+- [Search attributes](#search-attributes)
 - [Db Vector Attributes](#db-vector-attributes)
 - [Deprecated Database Attributes](#deprecated-database-attributes)
 - [Deprecated Database Metrics](#deprecated-database-metrics)
@@ -204,19 +205,15 @@ This group defines attributes for Elasticsearch.
 
 **[9]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 
-## Db Vector Attributes
+## Search attributes
 
-This group defines attributes for vector databases.
+This group defines attributes for Search.
 
-| Attribute                     | Type   | Description                                          | Examples                 | Stability                                                        |
-| ----------------------------- | ------ | ---------------------------------------------------- | ------------------------ | ---------------------------------------------------------------- |
-| `db.vector.dimension_count`   | int    | The dimension of the vector.                         | `3`                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.vector.field_name`        | string | The name field as of the vector (e.g. a field name). | `vector`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.vector.model`             | string | The model used for the embedding.                    | `text-embedding-3-small` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.vector.query.top_k`       | int    | The top-k most similar vectors returned by a query.  | `5`                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.vector.similarity_metric` | string | The metric used in similarity search.                | `cosine`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                     | Type   | Description                           | Examples | Stability                                                        |
+| ----------------------------- | ------ | ------------------------------------- | -------- | ---------------------------------------------------------------- |
+| `db.search.similarity_metric` | string | The metric used in similarity search. | `cosine` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`db.vector.similarity_metric` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`db.search.similarity_metric` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value       | Description                    | Stability                                                        |
 | ----------- | ------------------------------ | ---------------------------------------------------------------- |
@@ -224,6 +221,16 @@ This group defines attributes for vector databases.
 | `dot`       | The dot product metric.        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `euclidean` | The euclidean distance metric. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `manhattan` | The Manhattan distance metric. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Db Vector Attributes
+
+This group defines attributes for vector databases.
+
+| Attribute                   | Type   | Description                                          | Examples | Stability                                                        |
+| --------------------------- | ------ | ---------------------------------------------------- | -------- | ---------------------------------------------------------------- |
+| `db.vector.dimension_count` | int    | The dimension of the vector.                         | `3`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.field_name`      | string | The name field as of the vector (e.g. a field name). | `vector` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.vector.query.top_k`     | int    | The top-k most similar vectors returned by a query.  | `5`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated Database Attributes
 
