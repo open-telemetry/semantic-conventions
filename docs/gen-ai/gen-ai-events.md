@@ -96,8 +96,6 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 ## System event
 
 This event describes the instructions passed to the GenAI model.
-It's NOT RECOMMENDED to report this event when capturing content is disabled, unless there are additional system-specific fields
-instrumentation adds to the event body.
 
 The event name MUST be `gen_ai.system.message`.
 
