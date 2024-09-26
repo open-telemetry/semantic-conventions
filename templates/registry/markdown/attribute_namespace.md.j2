@@ -7,6 +7,7 @@
 {% import 'notes.j2' as notes %}
 {% import 'enum_macros.j2' as enums %}
 {% import 'attribute_macros.j2' as attrs %}
+{% import 'examples_macros.j2' as examples %}
 {%- set my_file_name = ctx.id | lower | kebab_case ~ ".md" -%}
 {{- template.set_file_name(my_file_name) -}}
 {%- set groups = namespace(deprecated=[], non_deprecated=[]) -%}
