@@ -1,0 +1,24 @@
+{% macro find_lineage(attr_id, lineage) %}{% if attr_id in lineage %}{{lineage[attr_id].source_group}}{% endif %}{% endmacro %}
+
+{% macro print_examples(examples) %}{%- for e in examples %}{%if loop.first == false %}; {% endif %}`{{ e | trim }}`{%- endfor %}{% endmacro %}
+
+{% macro examples(field) %}{%- if field.examples %}
+{%- if "[]" in field.type and "template" not in field.type %}
+{%- if field.examples is sequence %}
+{%- if field.examples | select("sequence") | length == 0 %}`{{ field.examples | trim }}`
+{%- else %}{{ print_examples(field.examples) }}
+{%- endif %}
+{%- else %}`[{{ field.examples | trim }}]`
+{%- endif %}
+{%- elif field.examples is sequence %}{{ print_examples(field.examples) }}
+{%- else %}`{{ field.examples | trim }}`
+{%- endif %}{%- elif field.type is mapping %}
+{%- for e in field.type.members %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
+{%- endif %}{% endmacro %}
+
+{% macro display_name(group) %}
+{%- if 'display_name' in group %}{{ group.display_name }}
+{%- else %}{{ group.id | split_id | list | reject("eq", "registry") | join(" ") | title_case | acronym }} Attributes
+{%- endif %}{% endmacro %}
+
+{% macro heading_link_fragments(title) %}{{ title | trim | lower | replace(" ", "-") | replace("(", "") | replace(")", "") | replace("/", "") | replace("\\", "") | replace(".", "") | replace("!", "") | replace("?", "") | replace("~", "") | replace("#", "")}}{% endmacro %}

@@ -1,0 +1,21 @@
+{% import 'requirement.j2' as requirement %}
+{% import 'stability.j2' as stability %}
+{% import 'notes.j2' as notes %}
+{% import 'body_field_macros.j2' as fs %}
+{% import 'enum_macros.j2' as enums %}
+{% import 'sampling_macros.j2' as sampling %}
+{% macro flatten(fields, ns, depth) %}{%- if fields -%}
+{%- for f in fields | sort(attribute="id") -%}
+{% set ns.flat = [ns.flat, [{'f':f,'depth':depth}]] | flatten %}
+{%- if f.fields -%}
+{%- set _= flatten(f.fields, ns, depth + 1) -%}
+{%- endif -%}
+{%- endfor -%}
+{%- endif -%}{% endmacro %}
+{% macro field_cell(field, depth) %}{% set name= "&nbsp;" * 2 * depth ~ '`' ~ field.id ~ '`' %}{% if field.type == "map" %}{{ name ~ ":"}}{% else %}{{ name }}{% endif %}{% endmacro %}
+{#- Macro for creating body table -#}
+{% macro generate(fields) %}{% if (fields | length > 0) %}{% set ns = namespace(flat=[])%}{% set _= flatten(fields, ns, 0) %}| Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+{% for f in ns.flat %}| {{ field_cell(f.f, f.depth) }} | {{ f.f.type }} | {{ f.f.brief | trim }}{{ notes.add(f.f.note) }} | {{ fs.examples(f.f) | trim }} | {{ requirement.render(f.f.requirement_level, notes) | trim }} | {{ stability.badge(f.f.stability, f.f.deprecated) | trim }} |
+{% endfor %}{{ notes.render() }}{{ enums.tables(fields | selectattr("type", "mapping"), notes) }}
+{% endif %}{% endmacro %}

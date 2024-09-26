@@ -265,6 +265,8 @@ and one received message will be recorded for both client and server spans.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
 The event name MUST be `rpc.message`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

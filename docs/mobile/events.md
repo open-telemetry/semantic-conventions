@@ -36,8 +36,11 @@ NOT be used together, each field MUST be used with its corresponding
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-The event name MUST be `device.app.lifecycle`.
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
+This event represents an occurrence of a lifecycle transition on Android or iOS platform.
+
+The event name MUST be `device.app.lifecycle`.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
