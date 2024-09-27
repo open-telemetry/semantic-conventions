@@ -28,8 +28,8 @@ Describes file attributes.
 | `file.mode` | string | Mode of the file in octal representation. | `0640` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `file.modified` | string | Time when the file content was last modified, in ISO 8601 format. | `2021-01-01T12:00:00Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `file.name` | string | Name of the file including the extension, without the directory. | `example.png` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.origin_referrer_url` | string | The URL of the webpage that linked to the file. [7] | `https://example.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file.origin_url` | string | The URL where the file is hosted. [8] | `https://example.com/file.zip` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.origin_referrer_url` | string | The URL of the webpage that linked to the file. [7] | `http://example.com/article1.html` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.origin_url` | string | The URL where the file is hosted. [8] | `http://example.com/imgs/article1_img1.jpg` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `file.owner.id` | string | The user ID (UID) or security identifier (SID) of the file owner. | `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `file.owner.name` | string | Username of the file owner. | `root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `file.path` | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -50,9 +50,9 @@ Describes file attributes.
 **[6]:** On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
 On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
 
-**[7]:** This information is inteded to be retrieved from the Mark of the Web (NTFS Zone.Identifer ADS Stream) Note that the URL might contain sensitive information.
+**[7]:** This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present.
 
-**[8]:** This information is inteded to be retrieved from the Mark of the Web (NTFS Zone.Identifer ADS Stream) Note that the URL might contain sensitive information.
+**[8]:** This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present.
 
 **[9]:** This attribute is only applicable to symbolic links.
 

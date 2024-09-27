@@ -116,17 +116,17 @@ groups:
         brief: >
           The URL of the webpage that linked to the file.
         note: > 
-          This information is inteded to be retrieved from the Mark of the Web (NTFS Zone.Identifer ADS Stream) Note that the URL might contain sensitive information.
+          This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present.
         stability: experimental
-        examples: ['https://example.com']     
+        examples: ['http://example.com/article1.html']     
       - id: file.origin_url
         type: string
         brief: >
           The URL where the file is hosted.
         note: > 
-          This information is inteded to be retrieved from the Mark of the Web (NTFS Zone.Identifer ADS Stream) Note that the URL might contain sensitive information.
+          This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present.
         stability: experimental
-        examples: ['https://example.com/file.zip'] 
+        examples: ['http://example.com/imgs/article1_img1.jpg'] 
       - id: file.owner.name
         type: string
         brief: >
