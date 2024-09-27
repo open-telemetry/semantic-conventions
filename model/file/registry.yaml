@@ -116,7 +116,7 @@ groups:
         brief: >
           The URL of the webpage that linked to the file.
         note: > 
-          This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present.
+          This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
         stability: experimental
         examples: ['http://example.com/article1.html']     
       - id: file.origin_url
@@ -124,7 +124,7 @@ groups:
         brief: >
           The URL where the file is hosted.
         note: > 
-          This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present.
+          This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
         stability: experimental
         examples: ['http://example.com/imgs/article1_img1.jpg'] 
       - id: file.owner.name
