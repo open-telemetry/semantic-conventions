@@ -10,7 +10,7 @@ else
 	SED := sed
 endif
 
-TOOLS_DIR := ./internal/tools
+TOOLS_DIR := $(PWD)/internal/tools
 
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
