@@ -45,7 +45,7 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 
 **[5]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
-**[6]:** Microsoft SQL Server error codes are different from SQLSTATE codes. Instrumentations SHOULD use the SQL Server error codes.
+**[6]:** Microsoft SQL Server does not report SQLSTATE.
 
 **[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.

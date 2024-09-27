@@ -86,10 +86,41 @@ In the case of `EXEC`, this SHOULD be the stored procedure name that is being ex
 
 **[5]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
-**[6]:** SQL standard defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database return code, but it's not used by all databases.
-Instrumentations, when possible, SHOULD use response codes applicable to the database being instrumented.
-Here are some references to error codes for popular databases:
-- [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql) - [Maria DB errors](https://mariadb.com/kb/en/mariadb-error-code-reference/) - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) - [MySQL codes codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html) - [Oracle error codes](https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/JDBC-error-messages.html) - [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html) - [SQLite result codes](https://www.sqlite.org/rescode.html)
+**[6]:** SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
+return code which is adopted by some database systems like PostgreSQL.
+See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
+for the details.
+
+Other systems like MySQL, Oracle, or MS SQL Server define vendor-specific
+error codes. Database SQL drivers usually provide access to both properties.
+For example, in Java, the [`SQLException`](https://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html)
+class reports them with `getSQLState()` and `getErrorCode()` methods.
+
+Instrumentations SHOULD populate the `db.response.status_code` with the
+the most specific code available to them.
+
+Here're a non-exhaustive list of databases that report vendor-specific
+codes with granularity higher than SQLSTATE (or don't report SQLSTATE
+at all):
+
+- [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
+- [Maria DB error codes](https://mariadb.com/kb/en/mariadb-error-code-reference/)
+- [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
+- [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
+- [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
+- [SQLite result codes](https://www.sqlite.org/rescode.html)
+
+These systems SHOULD set the `db.response.status_code` to a
+known vendor-specific error code. If only SQLSTATE is available,
+it SHOULD be used.
+
+When multiple error codes are available and specificity is unclear,
+instrumentation SHOULD set the `db.response.status_code` to the
+concatenated string of all codes with '/' used as a separator.
+
+For example, generic DB instrumentation that detected an error and has
+SQLSTATE `"42000"` and vendor-specific `1071` should set
+`db.response.status_code` to `"42000/1071"`."
 
 **[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.

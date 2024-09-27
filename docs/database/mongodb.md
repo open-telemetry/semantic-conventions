@@ -24,10 +24,10 @@ The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and over
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.namespace`. [1] | `public.users`; `customers` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The MongoDB database name. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [2] | `findAndModify`; `getMore`; `update` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [4] | `36`; `11602` | `Conditionally Required` If the operation failed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [4] | `36`; `11602` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
@@ -40,15 +40,17 @@ For batch operations, if the individual operations are known to have the same co
 **[4]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
-**[5]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[5]:** If the operation failed and status code is available.
+
+**[6]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[8]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[9]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 
 
