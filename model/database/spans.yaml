@@ -99,8 +99,90 @@ groups:
           the database. When connecting to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
           `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
 
-          For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
+          The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
+
+          Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
+          unable to capture the current database without causing an additional query to be executed (e.g. `SELECT DB_NAME()`).
+
+          Instrumentation SHOULD document if `db.namespace` only reflects the database name provided during at connection time.
+
+          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ["instance1.products", "customers"]
+
+  - id: db.postgresql
+    type: span
+    extends: db.sql
+    brief: >
+      Attributes for PostgreSQL
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The name of the schema, fully qualified within the server address and port.
+        note: >
+          `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
+
+          The current schema may change during the lifetime of a connection, e.g. from executing `SET search_path TO myschema`.
+          If the search path has multiple schemas, the first schema in the search path SHOULD be used.
+
+          Instrumentation SHOULD set `db.namespace` using the schema provided at connection time if it is
+          unable to capture the current schema without causing an additional query to be executed (e.g. `SELECT current_schema()`).
+
+          Instrumentation SHOULD document if `db.namespace` only reflects the schema name provided at connection time.
+
+          Instrumentation MAY use the user name from the connection as the schema name.
+
+          Instrumentation SHOULD document if schema name only reflects the user name.
+
+          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["mydatabase.products", "mydatabase.customers"]
+
+  - id: db.mysql
+    type: span
+    extends: db.sql
+    brief: >
+      Attributes for MySQL
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The MySQL database name.
+        note:
+          The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
+
+          Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
+          unable to capture the current database without causing an additional query to be executed (e.g. `SELECT DATABASE()`).
+
+          Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
+
+          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["products", "customers"]
+
+  - id: db.mariadb
+    type: span
+    extends: db.sql
+    brief: >
+      Attributes for MariaDB
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The MariaDB database name.
+        note:
+          The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
+
+          Instrumentation SHOULD set `db.namespace` to the database name provided at connection time if it is
+          unable to capture the current database name without causing an additional query to be executed (e.g. `SELECT DATABASE()`).
+
+          Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
+
+          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["products", "customers"]
 
   - id: db.cassandra
     type: span
@@ -198,7 +280,8 @@ groups:
           the initial database index provided in the connection string and keep track of the currently selected
           database to capture the `db.namespace`.
 
-          Instrumentations SHOULD NOT set this attribute if capturing it would require additional network calls to Redis.
+          Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
+          unable to capture the current database without causing an additional network call to Redis.
 
           For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
         examples: ["0", "1", "15"]
@@ -311,9 +394,9 @@ groups:
         examples: ['users', 'dbo.products']
       - ref: db.namespace
         requirement_level:
-          conditionally_required: If available.
+          conditionally_required: If available without an additional network call.
         note: |
-          If a database system has multiple namespace components, they SHOULD be concatenated
+          If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
           (potentially using database system specific conventions) from most general to most
           specific namespace component, and more specific namespaces SHOULD NOT be captured without
           the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
@@ -321,17 +404,16 @@ groups:
           Unless specified by the system-specific semantic convention, the `db.namespace` attribute matches
           the name of the database being accessed.
 
-          The database name can usually be obtained with database driver API such as
-          [JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--)
-          or [.NET `SqlConnection.Database`](https://learn.microsoft.com/dotnet/api/system.data.sqlclient.sqlconnection.database).
+          The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
 
-          Some database drivers don't detect when the current database is changed (for example, with SQL `USE database` statement).
-          Instrumentations that parse SQL statements MAY use the database name provided
-          in the connection string and keep track of the currently selected database name.
+          Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
+          unable to capture the current database without causing an additional query to be executed (e.g. `SELECT DATABASE()`).
 
-          For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
+          Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
 
-          If instrumentation cannot reliably determine the current database name, it SHOULD NOT set `db.namespace`.
+          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
   - id: db.cosmosdb
     type: span
     extends: trace.db.common.query_and_collection
