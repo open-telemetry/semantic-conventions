@@ -37,9 +37,15 @@ For batch operations, if the individual operations are known to have the same co
 **[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
 **[3]:** The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
-Instrumentation SHOULD set `db.namespace` to the database name provided at connection time if it is unable to capture the current database name without causing an additional query to be executed (e.g. `SELECT DATABASE()`).
+
+If instrumentation is unable to capture the current database without causing an additional query to be executed
+(e.g. `SELECT DATABASE()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
+instead of not capturing any value for `db.namespace`.
+
 Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
+
 For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.

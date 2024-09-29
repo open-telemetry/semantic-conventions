@@ -94,15 +94,16 @@ groups:
       - ref: db.namespace
         sampling_relevant: true
         brief: The name of the database, fully qualified within the server address and port.
-        note:
+        note: |
           When connecting to a default instance, `db.namespace` SHOULD be set to the name of
           the database. When connecting to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
           `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
 
           The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
 
-          Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
-          unable to capture the current database without causing an additional query to be executed (e.g. `SELECT DB_NAME()`).
+          If instrumentation is unable to capture the current database without causing an additional query to be executed
+          (e.g. `SELECT DB_NAME()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
+          instead of not capturing any value for `db.namespace`.
 
           Instrumentation SHOULD document if `db.namespace` only reflects the database name provided during at connection time.
 
@@ -120,7 +121,7 @@ groups:
       - ref: db.namespace
         sampling_relevant: true
         brief: The name of the schema, fully qualified within the server address and port.
-        note: >
+        note: |
           `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
 
           The current schema may change during the lifetime of a connection, e.g. from executing `SET search_path TO myschema`.
@@ -129,9 +130,13 @@ groups:
           Instrumentation SHOULD set `db.namespace` using the schema provided at connection time if it is
           unable to capture the current schema without causing an additional query to be executed (e.g. `SELECT current_schema()`).
 
+          If instrumentation is unable to capture the current schema without causing an additional query to be executed
+          (e.g. `SELECT current_schema()`), then it is RECOMMENDED to set `db.namespace` using the schema provided at connection time
+          instead of not capturing any schema for `db.namespace`.
+
           Instrumentation SHOULD document if `db.namespace` only reflects the schema name provided at connection time.
 
-          Instrumentation MAY use the user name from the connection as the schema name.
+          Instrumentation MAY use the user name from the connection as a stand-in for the schema name.
 
           Instrumentation SHOULD document if schema name only reflects the user name.
 
@@ -149,11 +154,12 @@ groups:
       - ref: db.namespace
         sampling_relevant: true
         brief: The MySQL database name.
-        note:
+        note: |
           The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
 
-          Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
-          unable to capture the current database without causing an additional query to be executed (e.g. `SELECT DATABASE()`).
+          If instrumentation is unable to capture the current database without causing an additional query to be executed
+          (e.g. `SELECT DATABASE()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
+          instead of not capturing any value for `db.namespace`.
 
           Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
 
@@ -171,11 +177,12 @@ groups:
       - ref: db.namespace
         sampling_relevant: true
         brief: The MariaDB database name.
-        note:
+        note: |
           The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
 
-          Instrumentation SHOULD set `db.namespace` to the database name provided at connection time if it is
-          unable to capture the current database name without causing an additional query to be executed (e.g. `SELECT DATABASE()`).
+          If instrumentation is unable to capture the current database without causing an additional query to be executed
+          (e.g. `SELECT DATABASE()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
+          instead of not capturing any value for `db.namespace`.
 
           Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
 
@@ -275,7 +282,7 @@ groups:
           (captured as a string).
         requirement_level:
           conditionally_required: If and only if it can be captured reliably.
-        note: >
+        note: |
           The database index for current connection can be changed by the application dynamically. Instrumentations MAY use
           the initial database index provided in the connection string and keep track of the currently selected
           database to capture the `db.namespace`.
@@ -406,8 +413,9 @@ groups:
 
           The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
 
-          Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
-          unable to capture the current database without causing an additional query to be executed (e.g. `SELECT DATABASE()`).
+          If instrumentation is unable to capture the current database without causing an additional query to be executed
+          (e.g. `SELECT DATABASE()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
+          instead of not capturing any value for `db.namespace`.
 
           Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
 

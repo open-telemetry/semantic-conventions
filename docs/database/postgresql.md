@@ -37,12 +37,25 @@ For batch operations, if the individual operations are known to have the same co
 **[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
 **[3]:** `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
-The current schema may change during the lifetime of a connection, e.g. from executing `SET search_path TO myschema`. If the search path has multiple schemas, the first schema in the search path SHOULD be used.
-Instrumentation SHOULD set `db.namespace` using the schema provided at connection time if it is unable to capture the current schema without causing an additional query to be executed (e.g. `SELECT current_schema()`).
+
+The current schema may change during the lifetime of a connection, e.g. from executing `SET search_path TO myschema`.
+If the search path has multiple schemas, the first schema in the search path SHOULD be used.
+
+Instrumentation SHOULD set `db.namespace` using the schema provided at connection time if it is
+unable to capture the current schema without causing an additional query to be executed (e.g. `SELECT current_schema()`).
+
+If instrumentation is unable to capture the current schema without causing an additional query to be executed
+(e.g. `SELECT current_schema()`), then it is RECOMMENDED to set `db.namespace` using the schema provided at connection time
+instead of not capturing any schema for `db.namespace`.
+
 Instrumentation SHOULD document if `db.namespace` only reflects the schema name provided at connection time.
-Instrumentation MAY use the user name from the connection as the schema name.
+
+Instrumentation MAY use the user name from the connection as a stand-in for the schema name.
+
 Instrumentation SHOULD document if schema name only reflects the user name.
+
 For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.

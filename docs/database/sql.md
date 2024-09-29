@@ -70,8 +70,9 @@ the name of the database being accessed.
 
 The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
 
-Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
-unable to capture the current database without causing an additional query to be executed (e.g. `SELECT DATABASE()`).
+If instrumentation is unable to capture the current database without causing an additional query to be executed
+(e.g. `SELECT DATABASE()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
+instead of not capturing any value for `db.namespace`.
 
 Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
 

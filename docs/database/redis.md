@@ -31,8 +31,13 @@ The Semantic Conventions for [Redis](https://redis.com/) extend and override the
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [11] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The database index for current connection can be changed by the application dynamically. Instrumentations MAY use the initial database index provided in the connection string and keep track of the currently selected database to capture the `db.namespace`.
-Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is unable to capture the current database without causing an additional network call to Redis.
+**[1]:** The database index for current connection can be changed by the application dynamically. Instrumentations MAY use
+the initial database index provided in the connection string and keep track of the currently selected
+database to capture the `db.namespace`.
+
+Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
+unable to capture the current database without causing an additional network call to Redis.
+
 For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
 
 **[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
