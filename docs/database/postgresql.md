@@ -22,7 +22,7 @@ The Semantic Conventions for *PostgreSQL* extend and override the [Database Sema
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `users`; `dbo.products` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [3] | `instance1.products`; `customers` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the schema, fully qualified within the server address and port. [3] | `mydatabase.products`; `mydatabase.customers` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -36,8 +36,14 @@ For batch operations, if the individual operations are known to have the same co
 
 **[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
-**[3]:** When connecting to a default instance, `db.namespace` SHOULD be set to the name of the database. When connecting to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances), `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
-For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
+**[3]:** `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
+The current schema may change during the lifetime of a connection, e.g. from executing `SET search_path TO myschema`. If the search path has multiple schemas, the first schema in the search path SHOULD be used.
+Instrumentation SHOULD set `db.namespace` using the schema provided at connection time if it is unable to capture the current schema without causing an additional query to be executed (e.g. `SELECT current_schema()`).
+Instrumentation SHOULD document if `db.namespace` only reflects the schema name provided at connection time.
+Instrumentation MAY use the user name from the connection as the schema name.
+Instrumentation SHOULD document if schema name only reflects the user name.
+For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
 In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
