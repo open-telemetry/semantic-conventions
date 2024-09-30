@@ -156,7 +156,7 @@ groups:
   - id: metric.db.cosmos.operation.actual_item_count
     type: metric
     metric_name: db.cosmos.operation.actual_item_count
-    brief: "Actual Item Count got by the Feed (Query, ReadAll, ReadMany, Change Feed) Operation"
+    brief: "Actual item count returned by the feed operation (ex. Query, ReadAll, ReadMany, Change Feed)"
     instrument: gauge
     unit: "{count}"
     stability: experimental
