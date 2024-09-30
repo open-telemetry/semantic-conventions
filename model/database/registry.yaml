@@ -534,6 +534,11 @@ groups:
         stability: experimental
         brief: Cosmos DB sub status code.
         examples: [1000, 1002]
+      - id: db.cosmosdb.consistency_level
+        type: string
+        stability: experimental
+        brief: Account or Request Consistency Level.
+        examples: [Eventual, ConsistentPrefix, BoundedStaleness, Strong or Session]
   - id: registry.db.elasticsearch
     type: attribute_group
     display_name: Elasticsearch Attributes
