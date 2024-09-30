@@ -165,7 +165,7 @@ groups:
   - id: metric.db.cosmos.operation.regions_contacted
     type: metric
     metric_name: db.cosmos.operation.regions_contacted
-    brief: "Number of region contacted by the Operation"
+    brief: "Number of regions contacted for the operation"
     instrument: gauge
     unit: "{count}"
     stability: experimental
