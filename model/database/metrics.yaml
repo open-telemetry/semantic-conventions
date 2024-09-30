@@ -137,36 +137,36 @@ groups:
 
   - id: metric.db.cosmosdb.operation.request_charge
     type: metric
-    metric_name: db.cosmos.operation.request_charge
+    metric_name: db.cosmosdb.operation.request_charge
     brief: "Request Charge consumed by the operation"
     instrument: histogram
     unit: "{request_units}"
     stability: experimental
-    extends: attributes.db.cosmos.minimal
+    extends: attributes.db.cosmosdb.minimal
 
-  - id: metric.db.cosmos.operation.max_item_count
+  - id: metric.db.cosmosdb.operation.max_item_count
     type: metric
-    metric_name: db.cosmos.operation.max_item_count
+    metric_name: db.cosmosdb.operation.max_item_count
     brief: "Max item count requested by the feed operation (ex. Query, ReadAll, ReadMany, Change Feed) "
     instrument: gauge
     unit: "{count}"
     stability: experimental
-    extends: attributes.db.cosmos.minimal
+    extends: attributes.db.cosmosdb.minimal
 
-  - id: metric.db.cosmos.operation.actual_item_count
+  - id: metric.db.cosmosdb.operation.actual_item_count
     type: metric
-    metric_name: db.cosmos.operation.actual_item_count
+    metric_name: db.cosmosdb.operation.actual_item_count
     brief: "Actual item count returned by the feed operation (ex. Query, ReadAll, ReadMany, Change Feed)"
     instrument: gauge
     unit: "{count}"
     stability: experimental
-    extends: attributes.db.cosmos.minimal
+    extends: attributes.db.cosmosdb.minimal
 
-  - id: metric.db.cosmos.operation.regions_contacted
+  - id: metric.db.cosmosdb.operation.regions_contacted
     type: metric
-    metric_name: db.cosmos.operation.regions_contacted
+    metric_name: db.cosmosdb.operation.regions_contacted
     brief: "Number of regions contacted for the operation"
     instrument: gauge
     unit: "{count}"
     stability: experimental
-    extends: attributes.db.cosmos.minimal
+    extends: attributes.db.cosmosdb.minimal
