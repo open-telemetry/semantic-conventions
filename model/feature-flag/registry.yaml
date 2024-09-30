@@ -10,7 +10,7 @@ groups:
         stability: experimental
         brief: The unique identifier of the feature flag.
         examples: ["logo-color"]
-      - id: feature_flag.provider_name
+      - id: feature_flag.provider.id
         type: string
         stability: experimental
         brief: The name of the service provider that performs the flag evaluation.
@@ -31,3 +31,28 @@ groups:
           A stringified version of the value can be used in situations where a
           semantic identifier is unavailable. String representation of the value
           should be determined by the implementer.
+      - id: feature_flag.value
+        type: string
+        stability: experimental
+        examples: ["#ff0000", "1", "true"]
+        brief: >
+          The evaluated value of the feature flag.
+      - id: feature_flag.context.id
+        type: string
+        stability: experimental
+        examples: ["5157782b-2203-4c80-a857-dbbd5e7761db"]
+        brief: >
+          The unique identifier for the flag evaluation context. For example, the targeting key.
+      - id: feature_flag.version
+        type: string
+        stability: experimental
+        examples: ["1", "01ABCDEF"]
+        brief: >
+          The version of the ruleset used during the evaluation. Could use a hash if a version is not available.
+      - id: feature_flag.environment.id
+        type: string
+        stability: experimental
+        examples: ["proj-1", "ab98sgs"]
+        brief: >
+          The identifier of the environment which the feature flag belongs to in a flag management system.
+
