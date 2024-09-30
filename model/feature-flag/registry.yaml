@@ -55,4 +55,3 @@ groups:
         examples: ["proj-1", "ab98sgs"]
         brief: >
           The identifier of the environment which the feature flag belongs to in a flag management system.
-
