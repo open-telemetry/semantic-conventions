@@ -20,7 +20,8 @@ groups:
           Attributes names depend on the OS or file system. Here’s a non-exhaustive list of values expected for this
           attribute: `archive`, `compressed`, `directory`, `encrypted`, `execute`, `hidden`, `immutable`, `journaled`, `read`, `readonly`, `symbolic link`, `system`, `temporary`, `write`.
         stability: experimental
-        examples: ['readonly', 'hidden']
+        examples:
+          - ['readonly', 'hidden']
       - id: file.created
         type: string
         brief: >
