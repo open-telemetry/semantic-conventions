@@ -147,7 +147,7 @@ groups:
   - id: metric.db.cosmos.operation.max_item_count
     type: metric
     metric_name: db.cosmos.operation.max_item_count
-    brief: "Max Item Count Requested by the Feed (Query, ReadAll, ReadMany, Change Feed) operation"
+    brief: "Max item count requested by the feed operation (ex. Query, ReadAll, ReadMany, Change Feed) "
     instrument: gauge
     unit: "{count}"
     stability: experimental
