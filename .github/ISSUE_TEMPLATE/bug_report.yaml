@@ -30,6 +30,7 @@ body:
         - area:client
         - area:cloud
         - area:cloudevents
+        - area:cloudfoundry
         - area:code
         - area:container
         - area:cpu

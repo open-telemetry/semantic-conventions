@@ -292,6 +292,7 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 - Deployment:
   - [Deployment Environment](./deployment-environment.md)
   - [Kubernetes](./k8s.md)
+  - [CloudFoundry](./cloudfoundry.md)
 - [Browser](./browser.md)
 
 ## Version attributes

@@ -1,0 +1,41 @@
+groups:
+  - id: cloudfoundry.system
+    type: resource
+    name: cloudfoundry.system
+    brief: >
+      The system component which is monitored.
+    attributes:
+      - ref: cloudfoundry.system.id
+      - ref: cloudfoundry.system.instance.id
+  - id: cloudfoundry.app
+    type: resource
+    name: cloudfoundry.app
+    brief: >
+      The application which is monitored.
+    attributes:
+      - ref: cloudfoundry.app.id
+      - ref: cloudfoundry.app.name
+  - id: cloudfoundry.space
+    type: resource
+    name: cloudfoundry.space
+    brief: >
+      The space of the application which is monitored.
+    attributes:
+      - ref: cloudfoundry.space.id
+      - ref: cloudfoundry.space.name
+  - id: cloudfoundry.org
+    type: resource
+    name: cloudfoundry.org
+    brief: >
+      The organization of the application which is monitored.
+    attributes:
+      - ref: cloudfoundry.org.id
+      - ref: cloudfoundry.org.name
+  - id: cloudfoundry.process
+    type: resource
+    name: cloudfoundry.process
+    brief: >
+      The process of the application which is monitored.
+    attributes:
+      - ref: cloudfoundry.process.id
+      - ref: cloudfoundry.process.type
