@@ -6,6 +6,9 @@
 
 # Feature Flag
 
+- [Feature Flag Attributes](#feature-flag-attributes)
+- [Deprecated Feature Flag Attributes](#deprecated-feature-flag-attributes)
+
 ## Feature Flag Attributes
 
 This document defines attributes for Feature Flags.
@@ -28,3 +31,11 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 A stringified version of the value can be used in situations where a
 semantic identifier is unavailable. String representation of the value
 should be determined by the implementer.
+
+## Deprecated Feature Flag Attributes
+
+Describes deprecated Feature Flag attributes.
+
+| Attribute                    | Type   | Description                                         | Examples       | Stability                                                                                              |
+| ---------------------------- | ------ | --------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------ |
+| `feature_flag.provider_name` | string | Deprecated, use `feature_flag.provider.id` instead. | `Flag Manager` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.id`. |
