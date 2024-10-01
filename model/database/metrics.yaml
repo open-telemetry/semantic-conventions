@@ -144,20 +144,20 @@ groups:
     stability: experimental
     extends: attributes.db.cosmosdb.minimal
 
-  - id: metric.db.cosmosdb.operation.max_item_count
+  - id: metric.db.query.limit
     type: metric
-    metric_name: db.cosmosdb.operation.max_item_count
+    metric_name: db.query.limit
     brief: "Max item count requested by the feed operation (ex. Query, ReadAll, ReadMany, Change Feed) "
-    instrument: gauge
+    instrument: histogram
     unit: "{count}"
     stability: experimental
     extends: attributes.db.cosmosdb.minimal
 
-  - id: metric.db.cosmosdb.operation.actual_item_count
+  - id: metric.db.query.response.item_count
     type: metric
-    metric_name: db.cosmosdb.operation.actual_item_count
+    metric_name: db.query.response.item_count
     brief: "Actual item count returned by the feed operation (ex. Query, ReadAll, ReadMany, Change Feed)"
-    instrument: gauge
+    instrument: histogram
     unit: "{count}"
     stability: experimental
     extends: attributes.db.cosmosdb.minimal
@@ -166,7 +166,30 @@ groups:
     type: metric
     metric_name: db.cosmosdb.operation.regions_contacted
     brief: "Number of regions contacted for the operation"
-    instrument: gauge
+    instrument: histogram
     unit: "{count}"
     stability: experimental
     extends: attributes.db.cosmosdb.minimal
+
+  - id: attributes.db.cosmosdb.minimal
+    type: attribute_group
+    brief: 'Azure Cosmos DB attributes'
+    attributes:
+      - ref: db.system
+        requirement_level: required
+      - ref: db.collection.name
+        requirement_level: required
+      - ref: db.namespace
+        requirement_level: required
+      - ref: db.operation.name
+        requirement_level: required
+      - ref: server.address
+        requirement_level: required
+      - ref: db.cosmosdb.status_code
+        requirement_level: required
+      - ref: db.cosmosdb.sub_status_code
+        requirement_level: required
+      - ref: db.cosmosdb.client_id
+        requirement_level: required
+      - ref: db.cosmosdb.consistency_level
+        requirement_level: required

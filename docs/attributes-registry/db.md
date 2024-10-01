@@ -163,6 +163,7 @@ This group defines attributes for Cassandra.
 
 This group defines attributes for Azure Cosmos DB.
 
+<<<<<<< HEAD
 | Attribute                            | Type   | Description                       | Examples                               | Stability                                                        |
 | ------------------------------------ | ------ | --------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
 | `db.cosmosdb.client_id`              | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -171,6 +172,18 @@ This group defines attributes for Azure Cosmos DB.
 | `db.cosmosdb.request_charge`         | double | RU consumed for that operation    | `46.18`; `1.0`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.request_content_length` | int    | Request payload size in bytes     |                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `db.cosmosdb.sub_status_code`        | int    | Cosmos DB sub status code.        | `1000`; `1002`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+=======
+| Attribute                            | Type   | Description                           | Examples                                                                | Stability                                                        |
+| ------------------------------------ | ------ | ------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `db.cosmosdb.client_id`              | string | Unique Cosmos client instance id.     | `3ba4827d-4422-483f-b59f-85b74211c11d`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.connection_mode`        | string | Cosmos client connection mode.        | `gateway`; `direct`                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.consistency_level`      | string | Account or Request Consistency Level. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong or Session` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.operation_type`         | string | Cosmos DB Operation Type.             | `batch`; `create`; `delete`                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.request_charge`         | double | RU consumed for that operation        | `46.18`; `1.0`                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.request_content_length` | int    | Request payload size in bytes         |                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.status_code`            | int    | Cosmos DB status code.                | `200`; `201`                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.cosmosdb.sub_status_code`        | int    | Cosmos DB sub status code.            | `1000`; `1002`                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+>>>>>>> fb55db0 (wip)
 
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
