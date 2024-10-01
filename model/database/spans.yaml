@@ -147,9 +147,7 @@ groups:
           recommended: if and only if `network.peer.address` is set.
       - ref: db.response.status_code
         brief: >
-          [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec). If
-
-          represented as a string.
+          [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string.
         examples: ["102", "40020"]
   - id: db.hbase
     type: span
