@@ -210,7 +210,7 @@ groups:
           The HTTP response code returned by the Couch DB.
         examples: ["200", "201", "429"]
         requirement_level:
-          conditionally_required: If response was received.
+          conditionally_required: If response was received and the HTTP response code is available.
 
   - id: db.redis
     type: span
