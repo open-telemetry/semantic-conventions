@@ -701,3 +701,5 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
+      - ref: db.cosmosdb.consistency_level
+        requirement_level: required

@@ -179,6 +179,16 @@ This group defines attributes for Azure Cosmos DB.
 | `direct`  | Direct connection.              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+`db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value              | Description       | Stability                                                        |
+| ------------------ | ----------------- | ---------------------------------------------------------------- |
+| `BoundedStaleness` | bounded_staleness | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ConsistentPrefix` | consistent_prefix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Eventual`         | eventual          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Session`          | session           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Strong`           | strong            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value                | Description        | Stability                                                        |

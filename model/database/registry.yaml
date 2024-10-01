@@ -535,7 +535,23 @@ groups:
         brief: Cosmos DB sub status code.
         examples: [1000, 1002]
       - id: db.cosmosdb.consistency_level
-        type: string
+        type:
+          members:
+            - id: strong
+              value: "Strong"
+              stability: experimental
+            - id: bounded_staleness
+              value: "BoundedStaleness"
+              stability: experimental
+            - id: session
+              value: "Session"
+              stability: experimental
+            - id: eventual
+              value: "Eventual"
+              stability: experimental
+            - id: consistent_prefix
+              value: "ConsistentPrefix"
+              stability: experimental
         stability: experimental
         brief: Account or Request Consistency Level.
         examples: [Eventual, ConsistentPrefix, BoundedStaleness, Strong or Session]
