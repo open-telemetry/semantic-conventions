@@ -286,7 +286,7 @@ groups:
         brief: >
           [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string.
         requirement_level:
-          conditionally_required: If the operation failed and status code is available.
+          conditionally_required: If the operation failed and error code is available.
         examples: ["36", "11602"]
 
   - id: db.elasticsearch
