@@ -486,6 +486,17 @@ For batch operations, if the individual operations are known to have the same op
 
 
 
+`db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `BoundedStaleness` | bounded_staleness | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ConsistentPrefix` | consistent_prefix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -586,6 +597,17 @@ For batch operations, if the individual operations are known to have the same op
 
 **[5]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
+
+
+`db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `BoundedStaleness` | bounded_staleness | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ConsistentPrefix` | consistent_prefix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -690,6 +712,17 @@ For batch operations, if the individual operations are known to have the same op
 
 
 
+`db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `BoundedStaleness` | bounded_staleness | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ConsistentPrefix` | consistent_prefix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -790,6 +823,17 @@ For batch operations, if the individual operations are known to have the same op
 
 **[5]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
+
+
+`db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `BoundedStaleness` | bounded_staleness | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ConsistentPrefix` | consistent_prefix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
