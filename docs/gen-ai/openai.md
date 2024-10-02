@@ -24,7 +24,7 @@ for [Gen AI Spans](gen-ai-spans.md) and [Gen AI Metrics](gen-ai-metrics.md).
 
 ## OpenAI Span attributes
 
-These attributes track input data and metadata for a request to an OpenAI model. The attributes include general Generate AI
+These attributes track input data and metadata for a request to an OpenAI model. The attributes include general Generative AI
 attributes and ones specific the OpenAI.
 
 <!-- semconv trace.gen_ai.openai.client -->
