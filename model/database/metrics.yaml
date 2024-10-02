@@ -175,8 +175,6 @@ groups:
     type: attribute_group
     brief: 'Azure Cosmos DB attributes'
     attributes:
-      - ref: db.system
-        requirement_level: required
       - ref: db.collection.name
         requirement_level: required
       - ref: db.namespace
