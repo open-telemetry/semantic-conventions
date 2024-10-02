@@ -1,0 +1,57 @@
+groups:
+  - id: metric.db.cosmosdb.operation.request_charge
+    type: metric
+    metric_name: db.cosmosdb.operation.request_charge
+    brief: "Request Charge consumed by the operation"
+    instrument: histogram
+    unit: "{request_units}"
+    stability: experimental
+    extends: attributes.db.cosmosdb.minimal
+
+  - id: metric.db.cosmosdb.operation.regions_contacted
+    type: metric
+    metric_name: db.cosmosdb.operation.regions_contacted
+    brief: "Number of regions contacted for the operation"
+    instrument: histogram
+    unit: "{count}"
+    stability: experimental
+    extends: attributes.db.cosmosdb.minimal
+
+  - id: metric.db.cosmosdb.client.active_instances
+    type: metric
+    metric_name: db.cosmosdb.client.active_instances
+    brief: "Number of active client instance"
+    instrument: histogram
+    unit: "{count}"
+    stability: experimental
+    extends: attributes.db.cosmosdb.minimal
+
+  - id: attributes.db.cosmosdb.minimal
+    type: attribute_group
+    brief: 'Azure Cosmos DB attributes'
+    attributes:
+      - ref: db.system
+        requirement_level:
+          conditionally_required: if available
+      - ref: db.collection.name
+        requirement_level:
+          conditionally_required: if available
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.operation.name
+        requirement_level: required
+      - ref: server.address
+        requirement_level: required
+      - ref: db.cosmosdb.status_code
+        requirement_level:
+          conditionally_required: if response was received
+      - ref: db.cosmosdb.sub_status_code
+        requirement_level:
+          conditionally_required: if response was received
+      - ref: db.cosmosdb.consistency_level
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.cosmosdb.machine_id
+        requirement_level:
+          conditionally_required: If available.

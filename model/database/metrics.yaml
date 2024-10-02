@@ -135,15 +135,6 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.cosmosdb.operation.request_charge
-    type: metric
-    metric_name: db.cosmosdb.operation.request_charge
-    brief: "Request Charge consumed by the operation"
-    instrument: histogram
-    unit: "{request_units}"
-    stability: experimental
-    extends: attributes.db.cosmosdb.minimal
-
   - id: metric.db.query.limit
     type: metric
     metric_name: db.query.limit
@@ -151,7 +142,7 @@ groups:
     instrument: histogram
     unit: "{count}"
     stability: experimental
-    extends: attributes.db.cosmosdb.minimal
+    extends: attributes.db.client.minimal
 
   - id: metric.db.query.response.item_count
     type: metric
@@ -160,34 +151,4 @@ groups:
     instrument: histogram
     unit: "{count}"
     stability: experimental
-    extends: attributes.db.cosmosdb.minimal
-
-  - id: metric.db.cosmosdb.operation.regions_contacted
-    type: metric
-    metric_name: db.cosmosdb.operation.regions_contacted
-    brief: "Number of regions contacted for the operation"
-    instrument: histogram
-    unit: "{count}"
-    stability: experimental
-    extends: attributes.db.cosmosdb.minimal
-
-  - id: attributes.db.cosmosdb.minimal
-    type: attribute_group
-    brief: 'Azure Cosmos DB attributes'
-    attributes:
-      - ref: db.collection.name
-        requirement_level: required
-      - ref: db.namespace
-        requirement_level: required
-      - ref: db.operation.name
-        requirement_level: required
-      - ref: server.address
-        requirement_level: required
-      - ref: db.cosmosdb.status_code
-        requirement_level: required
-      - ref: db.cosmosdb.sub_status_code
-        requirement_level: required
-      - ref: db.cosmosdb.client_id
-        requirement_level: required
-      - ref: db.cosmosdb.consistency_level
-        requirement_level: required
+    extends: attributes.db.client.minimal
