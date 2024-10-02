@@ -78,12 +78,12 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 Thie group defines attributes for OpenAI.
 
-| Attribute                               | Type   | Description                                                           | Examples                      | Stability                                                        |
-| --------------------------------------- | ------ | --------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------- |
-| `gen_ai.openai.request.response_format` | string | The response format that is requested.                                | `json`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.openai.request.seed`            | int    | Requests with same seed value more likely to return same result.      | `100`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.openai.request.service_tier`    | string | The service tier requested. May be a specific tier, detault, or auto. | `auto`; `default`; `standard` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.openai.response.service_tier`   | string | The service tier used for the response.                               | `standard`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                               | Type   | Description                                                           | Examples           | Stability                                                        |
+| --------------------------------------- | ------ | --------------------------------------------------------------------- | ------------------ | ---------------------------------------------------------------- |
+| `gen_ai.openai.request.response_format` | string | The response format that is requested.                                | `json`             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.openai.request.seed`            | int    | Requests with same seed value more likely to return same result.      | `100`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.openai.request.service_tier`    | string | The service tier requested. May be a specific tier, detault, or auto. | `auto`; `default`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.openai.response.service_tier`   | string | The service tier used for the response.                               | `scale`; `detault` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
