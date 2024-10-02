@@ -134,7 +134,7 @@ Instrumentations SHOULD document the list of errors they report.
 
 ## OpenAI Metric attributes
 
-OpenAI metrics follow metrics defined in [Generative AI metrics](gen-ai-metrics.md) with the noted additional attributes.
+OpenAI metrics follow [Generative AI metrics](gen-ai-metrics.md) with the noted additional attributes.
 
 ### Metric: `gen_ai.client.token.usage`
 
