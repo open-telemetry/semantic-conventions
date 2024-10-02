@@ -84,13 +84,13 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The full command run by the container as a single string representing the full command. [2]
+          The full command run by the container as a single string representing the full command.
         examples: [ 'otelcontribcol --config config.yaml' ]
       - id: container.command_args
         type: string[]
         stability: experimental
         brief: >
-          All the command arguments (including the command/executable itself) run by the container. [2]
+          All the command arguments (including the command/executable itself) run by the container.
         examples:
           - [ 'otelcontribcol', '--config', 'config.yaml' ]
       - id: container.label
@@ -99,3 +99,23 @@ groups:
         brief: >
           Container labels, `<key>` being the label name, the value being the label value.
         examples: [ 'container.label.app=nginx' ]
+      - id: container.csi.plugin.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin used by the volume.
+        note: >
+          This can sometimes be referred to as a "driver" in CSI implementations.
+          This should represent the `name` field of the GetPluginInfo RPC.
+        examples:
+          - "pd.csi.storage.gke.io"
+      - id: container.csi.volume.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique volume ID returned by the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin.
+        note: >
+          This can sometimes be referred to as a "volume handle" in CSI implementations.
+          This should represent the `Volume.volume_id` field in CSI spec.
+        examples:
+          - "projects/my-gcp-project/zones/my-gcp-zone/disks/my-gcp-disk"
