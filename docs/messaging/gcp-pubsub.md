@@ -169,7 +169,7 @@ flowchart TD;
   subgraph PRODUCER
   direction LR
   CM1[Create m1]
-  PM1[Publish]
+  PM1[Send]
   end
   %% Link 0
   CM1-. link .-PM1;
