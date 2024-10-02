@@ -74,7 +74,7 @@ versions:
         # https://github.com/open-telemetry/semantic-conventions/pull/1265
         - rename_metrics:
             jvm.buffer.memory.usage: jvm.buffer.memory.used
-        https://github.com/open-telemetry/semantic-conventions/pull/1422
+        # https://github.com/open-telemetry/semantic-conventions/pull/1422
         - rename_metrics:
             messaging.client.published.messages: messaging.client.sent.messages
   1.26.0:
