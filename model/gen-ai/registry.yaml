@@ -195,4 +195,4 @@ groups:
         stability: experimental
         type: string
         brief: The service tier used for the response.
-        examples: ['standard']
+        examples: ['scale', 'detault']
