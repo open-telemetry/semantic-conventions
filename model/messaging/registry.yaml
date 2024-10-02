@@ -1,6 +1,7 @@
 groups:
   - id: registry.messaging
     type: attribute_group
+    stability: experimental
     display_name: General Messaging Attributes
     brief: 'Attributes describing telemetry around messaging systems and messaging activities.'
     attributes:

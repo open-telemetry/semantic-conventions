@@ -238,6 +238,14 @@ into the message.
 The "Publish" span SHOULD always link to the creation context that was injected
 into a message either from a "Create" span or as a custom creation context.
 
+When instrumenting library API that always sends a single message, it's
+RECOMMENDED to create "Publish" span without "Create" span.
+
+When instrumenting library API that usually operate with batches, it's
+RECOMMENDED to create "Create" span for each message along with the "Publish" span.
+It's also RECOMMENDED to provide a configuration option allowing to disable "Create"
+span creation.
+
 #### Consumer spans
 
 "Receive" spans SHOULD be created for operations of passing messages to the
@@ -272,7 +280,7 @@ messages were received). For each message it accounts for, the "Process" or
 > - It is the only option to correlate producer and consumer(s) in batch scenarios
 > as a span can only have a single parent.
 >
-> - It is the only option to correlate produce and consumer(s) when message
+> - It is the only option to correlate producer and consumer(s) when message
 > consumption can happen in the scope of another ambient context such as a
 > HTTP server span.
 
@@ -294,8 +302,8 @@ allowing users to control this behavior.
 It is NOT RECOMMENDED to use the message creation context as the parent of "Process"
 spans (by default) if processing happens in the scope of another span.
 
-If instrumentation use the message creation context as the parent for "Process"
-spans in the scope of another valid ambient context, they SHOULD add the
+If instrumentation uses the message creation context as the parent for "Process"
+spans in the scope of another valid ambient context, it SHOULD add the
 ambient context as a link on the "Process" span to preserve the correlation
 between message processing and that context.
 
