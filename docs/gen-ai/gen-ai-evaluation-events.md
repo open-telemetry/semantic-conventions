@@ -7,13 +7,6 @@ linkTitle: Generative AI evaluation events
 
 **Status**: [Experimental][DocumentStatus]
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
-<!-- toc -->
-
-<!-- tocstop -->
-
-
 Each evaluation event defines a common way to report an evaluation score and the context for this specific evaluation method.
 
 ## Naming pattern
@@ -54,3 +47,4 @@ The user feedback event body has the following structure:
 |---|---|---|---|---|
 | `comment` | string | Additional details about the user feedback | `"I did not like it"` | `Opt-in` |
 
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
