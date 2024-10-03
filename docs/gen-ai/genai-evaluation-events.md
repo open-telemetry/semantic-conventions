@@ -40,29 +40,7 @@ The event name MUST be `gen_ai.evaluation.user_feedback`.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.response.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[1]:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
-
-The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
-is set to `openai` based on the instrumentation's best knowledge.
-
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
-
-
-
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
+| [`gen_ai.evaluation.score`](/docs/attributes-registry/gen-ai.md) | double | Quantified score calculated based on the user reaction in [-1.0, 1.0] range with 0 representing a neutral reaction. | `0.42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->
@@ -74,6 +52,5 @@ The user feedback event body has the following structure:
 
 | Body Field | Type | Description | Examples | Requirement Level |
 |---|---|---|---|---|
-| `score` | double | Quantified score calculated based on the user reaction in [-1.0, 1.0] range with 0 representing a neutral reaction. | `0.42` | `Required` |
-| `comment` | string | Additional details about the user feedback | `I did not like it` | `Optional` |
+| `comment` | string | Additional details about the user feedback | `"I did not like it"` | `Opt-in` |
 

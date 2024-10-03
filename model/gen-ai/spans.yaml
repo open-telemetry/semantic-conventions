@@ -58,32 +58,6 @@ groups:
       - gen_ai.content.prompt
       - gen_ai.content.completion
 
-  - id: gen_ai.content.prompt
-    name: gen_ai.content.prompt
-    type: event
-    brief: >
-      In the lifetime of an GenAI span, events for prompts sent and completions received
-      may be created, depending on the configuration of the instrumentation.
-    attributes:
-      - ref: gen_ai.prompt
-        requirement_level:
-          conditionally_required: if and only if corresponding event is enabled
-        note: >
-          It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
-
-  - id: gen_ai.content.completion
-    name: gen_ai.content.completion
-    type: event
-    brief: >
-      In the lifetime of an GenAI span, events for prompts sent and completions received
-      may be created, depending on the configuration of the instrumentation.
-    attributes:
-      - ref: gen_ai.completion
-        requirement_level:
-          conditionally_required: if and only if corresponding event is enabled
-        note: >
-          It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
-
   - id: trace.gen_ai.client
     extends: trace.gen_ai.client.common
     brief: >
@@ -113,13 +87,3 @@ groups:
         brief: The number of tokens used in the prompt sent to OpenAI.
       - ref: gen_ai.usage.output_tokens
         brief: The number of tokens used in the completions from OpenAI.
-
-  - id: gen_ai.evaluation.user_feedback
-    name: gen_ai.evaluation.user_feedback
-    type: event
-    brief: >
-      This event describes the evaluation of GenAI response based on the user feedback.
-    extends: gen_ai.common.event.attributes
-    attributes:
-      - ref: gen_ai.response.id
-        requirement_level: required
