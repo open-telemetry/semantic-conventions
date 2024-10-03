@@ -573,7 +573,7 @@ It captures the total time taken by an Azure Cosmos DB operation. This metric fo
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
-of `[ 0.001, 0.005, 0.010,  0.050, 0.100, 0.200, 0.500, 1.000, 2.000, 5.000 ]`.
+of `[0.001, 0.005, 0.010,  0.050, 0.100, 0.200, 0.500, 1.000, 2.000, 5.000]`.
 
 Explaining bucket configuration:
 
@@ -612,7 +612,7 @@ Explaining bucket configuration:
 
 1. 10, 50, 100: These buckets are useful for capturing scenarios where only a small number of items are returned. Such small queries are common in real-time or interactive applications where performance and quick responses are critical.
 2. 250, 500, 1000: These values represent typical workloads where moderate amounts of data are returned in each query.
-3. 2000, 5000: These boundaries capture scenarios where the query returns large datasets. These larger page sizes can potentially increase memory or CPU usage and may lead to longer query execution times, making it important to track performance in these ranges. 
+3. 2000, 5000: These boundaries capture scenarios where the query returns large datasets. These larger page sizes can potentially increase memory or CPU usage and may lead to longer query execution times, making it important to track performance in these ranges.
 4. 10000: This boundary is included to capture rare, very large response sizes. Such queries can put significant strain on system resources, including memory, CPU, and network bandwidth, and can often lead to performance issues such as high latency or even network drops.
 
 Refer `db.cosmosdb.operation.request_charge` metrics for dimensions.
@@ -643,10 +643,10 @@ of `[ 3, 6, 9, 10, 50, 100]`.
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [3] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request consistency level. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong or Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.machine_id`](/docs/attributes-registry/db.md) | string | Azure VM Id or hashed machine name or unique generate GUID, whatever is available. | `vmId:4d5ab1c4-d821-43fe-aacf-b61ea1f9c918`; `hashedMachineName:910dc3c9-7d90-074d-95bf-c930100d14d4`; `uuid:703e5e25-1bd3-4a53-ad53-f42f6ec50042` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.status_code`](/docs/attributes-registry/db.md) | int | Deprecated, use `db.response.status_code` instead. | `200`; `201` | `Conditionally Required` if response was received | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.response.status_code`. |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [5] | `other_sql`; `adabas`; `cache` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [6] | `other_sql`; `adabas`; `cache` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
@@ -662,7 +662,10 @@ For batch operations, if the individual operations are known to have the same co
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[5]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+
+**[6]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 
 
 
@@ -764,10 +767,10 @@ of `[1, 2, 3, 5, 10, 20, 50]`.
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [3] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request consistency level. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong or Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.machine_id`](/docs/attributes-registry/db.md) | string | Azure VM Id or hashed machine name or unique generate GUID, whatever is available. | `vmId:4d5ab1c4-d821-43fe-aacf-b61ea1f9c918`; `hashedMachineName:910dc3c9-7d90-074d-95bf-c930100d14d4`; `uuid:703e5e25-1bd3-4a53-ad53-f42f6ec50042` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.status_code`](/docs/attributes-registry/db.md) | int | Deprecated, use `db.response.status_code` instead. | `200`; `201` | `Conditionally Required` if response was received | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.response.status_code`. |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [5] | `other_sql`; `adabas`; `cache` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [6] | `other_sql`; `adabas`; `cache` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
@@ -783,7 +786,10 @@ For batch operations, if the individual operations are known to have the same co
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[5]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+
+**[6]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 
 
 
@@ -885,10 +891,10 @@ of `[1, 2, 3, 5, 10, 50, 100]`.
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [3] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request consistency level. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong or Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.machine_id`](/docs/attributes-registry/db.md) | string | Azure VM Id or hashed machine name or unique generate GUID, whatever is available. | `vmId:4d5ab1c4-d821-43fe-aacf-b61ea1f9c918`; `hashedMachineName:910dc3c9-7d90-074d-95bf-c930100d14d4`; `uuid:703e5e25-1bd3-4a53-ad53-f42f6ec50042` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.status_code`](/docs/attributes-registry/db.md) | int | Deprecated, use `db.response.status_code` instead. | `200`; `201` | `Conditionally Required` if response was received | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.response.status_code`. |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [5] | `other_sql`; `adabas`; `cache` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [6] | `other_sql`; `adabas`; `cache` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
@@ -904,7 +910,10 @@ For batch operations, if the individual operations are known to have the same co
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[5]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+
+**[6]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 
 
 

@@ -43,7 +43,7 @@ groups:
         requirement_level: required
       - ref: server.address
         requirement_level: required
-      - ref: db.cosmosdb.status_code
+      - ref: db.response.status_code
         requirement_level:
           conditionally_required: if response was received
       - ref: db.cosmosdb.sub_status_code
