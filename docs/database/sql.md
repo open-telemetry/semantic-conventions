@@ -46,7 +46,7 @@ Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic co
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `users`; `dbo.products` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [3] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection, fully qualified within the server address and port. [3] | `customers`; `test.users` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response code recorded as string. [6] | `ORA-17027`; `1052`; `2201B` | `Conditionally Required` If response has ended with warning or an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -61,7 +61,7 @@ For batch operations, if the individual operations are known to have the same co
 
 **[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
-**[3]:** If a database system has multiple namespace components, they SHOULD be concatenated
+**[3]:** If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
 (potentially using database system specific conventions) from most general to most
 specific namespace component, and more specific namespaces SHOULD NOT be captured without
 the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
@@ -69,17 +69,15 @@ the more general namespaces, to ensure that "startswith" queries for the more ge
 Unless specified by the system-specific semantic convention, the `db.namespace` attribute matches
 the name of the database being accessed.
 
-The database name can usually be obtained with database driver API such as
-[JDBC `Connection.getCatalog()`](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#getCatalog--)
-or [.NET `SqlConnection.Database`](https://learn.microsoft.com/dotnet/api/system.data.sqlclient.sqlconnection.database).
+A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
-Some database drivers don't detect when the current database is changed (for example, with SQL `USE database` statement).
-Instrumentations that parse SQL statements MAY use the database name provided
-in the connection string and keep track of the currently selected database name.
+If instrumentation is unable to capture the connection's currently associated database on each query
+without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+then it is RECOMMENDED to fallback and use the database provided when the connection was established.
 
-For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
+Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
-If instrumentation cannot reliably determine the current database name, it SHOULD NOT set `db.namespace`.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
 In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
