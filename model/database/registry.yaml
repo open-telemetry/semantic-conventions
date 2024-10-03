@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: db.collection.name
         type: string
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: The name of a collection (table, container) within the database.
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
@@ -22,7 +22,7 @@ groups:
         examples: ["public.users", "customers"]
       - id: db.namespace
         type: string
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           The name of the database, fully qualified within the server address and port.
         note: >
@@ -40,7 +40,7 @@ groups:
         examples: ["customers", "test.users"]
       - id: db.operation.name
         type: string
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           The name of the operation or command being executed.
         note: >
@@ -56,7 +56,7 @@ groups:
         examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.query.text
         type: string
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           The database query being executed.
         note: >
@@ -78,7 +78,7 @@ groups:
           ]
       - id: db.query.parameter
         type: template[string]
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           A query parameter used in `db.query.text`, with `<key>` being the parameter name,
           and the attribute value being a string representation of the parameter value.
@@ -92,7 +92,7 @@ groups:
         examples: ["someval", "55"]
       - id: db.operation.batch.size
         type: int
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: The number of queries included in a batch operation.
         note: >
           Operations are only considered batches when they contain two or more operations,
@@ -102,7 +102,7 @@ groups:
         examples: [2, 3, 4]
       - id: db.response.status_code
         type: string
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: Database response status code.
         note: >
           The status code returned by the database. Usually it represents an error code,
@@ -256,7 +256,7 @@ groups:
             - id: mariadb
               value: "mariadb"
               brief: "MariaDB (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental # RELEASE CANDIDATE
+              stability: experimental  # RELEASE CANDIDATE
             - id: maxdb
               value: "maxdb"
               brief: "SAP MaxDB"
@@ -272,7 +272,7 @@ groups:
             - id: mssql
               value: "mssql"
               brief: "Microsoft SQL Server (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental # RELEASE CANDIDATE
+              stability: experimental  # RELEASE CANDIDATE
             - id: mssqlcompact
               value: "mssqlcompact"
               deprecated: "Removed, use `other_sql` instead."
@@ -281,7 +281,7 @@ groups:
             - id: mysql
               value: "mysql"
               brief: "MySQL (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental # RELEASE CANDIDATE
+              stability: experimental  # RELEASE CANDIDATE
             - id: neo4j
               value: "neo4j"
               brief: "Neo4j"
@@ -309,7 +309,7 @@ groups:
             - id: postgresql
               value: "postgresql"
               brief: "PostgreSQL (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental # RELEASE CANDIDATE
+              stability: experimental  # RELEASE CANDIDATE
             - id: progress
               value: "progress"
               brief: "Progress Database"
@@ -346,7 +346,7 @@ groups:
               value: "vertica"
               brief: "Vertica"
               stability: experimental
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
       - id: db.client.connection.state
         stability: experimental
         type:
