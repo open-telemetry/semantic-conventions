@@ -88,6 +88,19 @@ groups:
           Operations are only considered batches when they contain two or more operations,
           and so `db.operation.batch.size` SHOULD never be `1`.
         examples: [2, 3, 4]
+      - id: db.response.status_code
+        type: string
+        stability: experimental
+        brief: Database response status code.
+        note: >
+          The status code returned by the database. Usually it represents an error code,
+          but may also represent partial success, warning, or differentiate
+          between various types of successful outcomes.
+
+          Semantic conventions for individual database systems SHOULD document what
+          `db.response.status_code` means in the context of that system.
+        examples: ["102", "ORA-17002", "08P01", "404"]
+
       - id: db.system
         brief: The database management system (DBMS) product as identified by the client instrumentation.
         note: >
@@ -419,6 +432,7 @@ groups:
   - id: registry.db.cosmosdb
     type: attribute_group
     display_name: Azure Cosmos DB Attributes
+    stability: experimental
     brief: >
       This group defines attributes for Azure Cosmos DB.
     attributes:
@@ -499,11 +513,6 @@ groups:
         type: int
         stability: experimental
         brief: Request payload size in bytes
-      - id: db.cosmosdb.status_code
-        type: int
-        stability: experimental
-        brief: Cosmos DB status code.
-        examples: [200, 201]
       - id: db.cosmosdb.sub_status_code
         type: int
         stability: experimental
