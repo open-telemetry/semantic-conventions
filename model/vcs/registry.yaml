@@ -63,7 +63,7 @@ groups:
             "123",
             "HEAD",
           ]
-      - id: vcs.repository.change.title
+      - id: vcs.change.title
         type: string
         stability: experimental
         brief: >
@@ -76,7 +76,7 @@ groups:
             "feat: add my new feature",
             "[chore] update dependency",
           ]
-      - id: vcs.repository.change.id
+      - id: vcs.change.id
         type: string
         stability: experimental
         brief: >
