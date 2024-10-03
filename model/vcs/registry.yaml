@@ -90,6 +90,10 @@ groups:
               value: open
               brief: "Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments."
               stability: experimental
+            - id: wip
+              value: wip
+              brief: "WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes."
+              stability: experimental
             - id: closed
               value: closed
               brief: >-

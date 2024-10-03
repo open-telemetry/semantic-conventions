@@ -59,6 +59,7 @@ This metric is [recommended][MetricRecommended].
 | `closed` | Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `merged` | Merged indicates that the change has been successfully integrated into the target codebase. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `open` | Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wip` | WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
@@ -95,6 +96,7 @@ This metric is [recommended][MetricRecommended].
 | `closed` | Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `merged` | Merged indicates that the change has been successfully integrated into the target codebase. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `open` | Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `wip` | WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 
