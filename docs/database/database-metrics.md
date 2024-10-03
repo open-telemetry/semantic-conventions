@@ -569,37 +569,57 @@ The following metric instruments describe Azure Cosmos DB client behaviour.
 
 ### Metric: `db.client.operation.duration`
 
-This metric is [recommended][MetricRecommended].
+It captures the total time taken by an Azure Cosmos DB operation. This metric follows the common [db.client.operation.duration] (#metric-dbclientoperationduration)b definition.
 
-this metric SHOULD be specified with
+This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
-of `[ .010, .200, .400, .600, .800, 1.000 ]`.
+of `[ 0.001, 0.005, 0.010,  0.050, 0.100, 0.200, 0.500, 1.000, 2.000, 5.000 ]`.
+
+Explaining bucket configuration:
+
+1. 0.001, 0.005, 0.010 seconds: : These boundaries provide high precision for high-performance workloads, especially when dealing with microservices or low-latency queries.
+2. 0.050, 0.100, 0.200 seconds: These intervals capture typical latencies between 50ms and 200ms, common in web applications, offering detailed tracking for normal operational performance.
+3. 0.500, 1.000 seconds: These boundaries identify operations that take longer, highlighting potential bottlenecks or slower requests that may need optimization.
+4. 2.000, 5.000 seconds: Although Azure Cosmos DB is optimized for sub-second latencies, these buckets are included to track rare, long-running outliers that might exceed 1 second.
 
 Refer `db.cosmosdb.operation.request_charge` metrics for dimensions.
 
 ### Metric: `db.query.limit`
 
-This metric is [recommended][MetricRecommended].
+It captures the requested page size for Query or Feed operations in Azure Cosmos DB. It helps in identifying patterns in page size requests that could contribute to higher latencies or other performance issues.
 
-this metric SHOULD be specified with
+This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
-of `[ 100, 500, 1000, 1500, 2000, 2500]`.
+of `[50, 100, 250, 500, 1000, 2000, 5000]`.
+
+Explaining bucket configuration:
+
+1. 50, 100, 250, 500: These small page sizes are common for lightweight queries where quick responses are essential, such as in real-time applications.
+2. 1000, 2000: These boundaries capture scenarios where larger datasets are returned in fewer queries, which can be more efficient but might result in longer query execution times.
+3. 5000: This boundary is used to capture rare cases where very large page sizes are requested. Although Cosmos DB generally handles larger datasets efficiently, large page sizes can sometimes lead to performance bottlenecks due to increased processing times or network bandwidth limitations.
 
 Refer `db.cosmosdb.operation.request_charge` metrics for dimensions.
 
 ### Metric: `db.query.response.item_count`
 
-This metric is [recommended][MetricRecommended].
+It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures.
 
-this metric SHOULD be specified with
+This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
-of `[ 100, 500, 1000, 1500, 2000, 2500]`.
+of `[10, 50, 100, 250, 500, 1000, 2000, 5000, 10000]`.
+
+Explaining bucket configuration:
+
+1. 10, 50, 100: These buckets are useful for capturing scenarios where only a small number of items are returned. Such small queries are common in real-time or interactive applications where performance and quick responses are critical.
+2. 250, 500, 1000: These values represent typical workloads where moderate amounts of data are returned in each query.
+3. 2000, 5000: These boundaries capture scenarios where the query returns large datasets. These larger page sizes can potentially increase memory or CPU usage and may lead to longer query execution times, making it important to track performance in these ranges. 
+4. 10000: This boundary is included to capture rare, very large response sizes. Such queries can put significant strain on system resources, including memory, CPU, and network bandwidth, and can often lead to performance issues such as high latency or even network drops.
 
 Refer `db.cosmosdb.operation.request_charge` metrics for dimensions.
 
 ### Metric: `db.cosmosdb.operation.request_charge`
 
-This metric is [recommended][MetricRecommended].
+It captures the Request Units consumed by each operation in Azure Cosmos DB. Since Request Units serve as a form of currency within the Azure Cosmos DB database, monitoring their usage is crucial to avoid throttling.
 
 this metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
@@ -720,11 +740,11 @@ It is RECOMMENDED to capture the value as provided by the application without at
 
 ### Metric: `db.cosmosdb.operation.regions_contacted`
 
-This metric is [recommended][MetricRecommended].
+It captures the number of regions contacted by the SDK in a multi-region setup. Understanding the SDK's interaction with multiple regions is crucial, as it may contribute to higher latency. In a single-region setup, this value will remain at 1
 
 this metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
-of `[ 3, 6, 9, 10, 50]`.
+of `[1, 2, 3, 5, 10, 20, 50]`.
 
 <!-- semconv metric.db.cosmosdb.operation.regions_contacted -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -841,11 +861,11 @@ It is RECOMMENDED to capture the value as provided by the application without at
 
 ### Metric: `db.cosmosdb.client.active_instances`
 
-This metric is [recommended][MetricRecommended].
+It aptures the number of active instances at any given time. Best practices dictate that there should ideally be only one instance of the SDK client per process. Having multiple instances of the SDK client can lead to CPU or memory-related issues.
 
 this metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
-of `[ 2, 10, 50, 100]`.
+of `[1, 2, 3, 5, 10, 50, 100]`.
 
 <!-- semconv metric.db.cosmosdb.client.active_instances -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
