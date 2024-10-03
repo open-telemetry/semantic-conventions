@@ -6,6 +6,9 @@
 
 # VCS
 
+- [VCS Repository Attributes](#vcs-repository-attributes)
+- [VCS Deprecated Attributes](#vcs-deprecated-attributes)
+
 ## VCS Repository Attributes
 
 This group defines the attributes for [Version Control Systems (VCS)](https://en.wikipedia.org/wiki/Version_control).
@@ -40,6 +43,25 @@ based on the VCS system and situational context.
 | `wip`    | WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes.                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value    | Description                                                                                      | Stability                                                        |
+| -------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tag`    | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## VCS Deprecated Attributes
+
+"Describes deprecated vcs attributes."
+
+| Attribute                     | Type   | Description                                 | Examples                                                                                  | Stability                                                                                                  |
+| ----------------------------- | ------ | ------------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `vcs.repository.change.id`    | string | Deprecated, use `vcs.change.id` instead.    | `123`                                                                                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.change.id` instead.    |
+| `vcs.repository.change.title` | string | Deprecated, use `vcs.change.title` instead. | `Fixes broken thing`; `feat: add my new feature`; `[chore] update dependency`             | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.change.title` instead. |
+| `vcs.repository.ref.name`     | string | Deprecated, use `vcs.ref.name` instead.     | `my-feature-branch`; `tag-1-test`                                                         | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.name` instead.     |
+| `vcs.repository.ref.revision` | string | Deprecated, use `vcs.ref.revision` instead. | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.revision` instead. |
+| `vcs.repository.ref.type`     | string | Deprecated, use `vcs.ref.type` instead.     | `branch`; `tag`                                                                           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.type` instead.     |
+
+`vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value    | Description                                                                                      | Stability                                                        |
 | -------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
