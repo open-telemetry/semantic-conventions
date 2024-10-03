@@ -553,7 +553,7 @@ groups:
               value: "ConsistentPrefix"
               stability: experimental
         stability: experimental
-        brief: Account or Request Consistency Level.
+        brief: Account or request consistency level.
         examples: [Eventual, ConsistentPrefix, BoundedStaleness, Strong or Session]
       - id: db.cosmosdb.machine_id
         type: string
