@@ -22,7 +22,7 @@ The Semantic Conventions for *PostgreSQL* extend and override the [Database Sema
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `users`; `dbo.products` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the schema, fully qualified within the server address and port. [3] | `mydatabase.products`; `mydatabase.customers` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The schema associated with the connection, qualified by the database name. [3] | `mydatabase.products`; `mydatabase.customers` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html). [6] | `08000`; `08P01` | `Conditionally Required` If response has ended with warning or an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -39,23 +39,18 @@ For batch operations, if the individual operations are known to have the same co
 
 **[3]:** `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
 
-The current schema may change during the lifetime of a connection, e.g. from executing `SET search_path TO myschema`.
+A connection's currently associated database may change during its lifetime, e.g. from executing `SET search_path TO <schema>`.
 If the search path has multiple schemas, the first schema in the search path SHOULD be used.
 
-Instrumentation SHOULD set `db.namespace` using the schema provided at connection time if it is
-unable to capture the current schema without causing an additional query to be executed (e.g. `SELECT current_schema()`).
+If instrumentation is unable to capture the connection's currently associated schema on each query
+without triggering an additional query to be executed (e.g. `SELECT current_schema()`),
+then it is RECOMMENDED to fallback and use the schema provided when the connection was established.
 
-If instrumentation is unable to capture the current schema without causing an additional query to be executed
-(e.g. `SELECT current_schema()`), then it is RECOMMENDED to set `db.namespace` using the schema provided at connection time
-instead of not capturing any schema for `db.namespace`.
+Instrumentation SHOULD document if `db.namespace` reflects the schema provided when the connection was established.
 
-Instrumentation SHOULD document if `db.namespace` only reflects the schema name provided at connection time.
+Instrumentation MAY use the user name when the connection was established as a stand-in for the schema name.
 
-Instrumentation MAY use the user name from the connection as a stand-in for the schema name.
-
-Instrumentation SHOULD document if schema name only reflects the user name.
-
-For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+Instrumentation SHOULD document if `db.namespace` reflects the user provided when the connection was established.
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 

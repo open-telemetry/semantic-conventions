@@ -22,7 +22,7 @@ The Semantic Conventions for *MariaDB* extend and override the [Database Semanti
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `users`; `dbo.products` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The MariaDB database name. [3] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection. [3] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/) represented as a string. [6] | `1008`; `3058` | `Conditionally Required` If response has ended with warning or an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -37,15 +37,13 @@ For batch operations, if the individual operations are known to have the same co
 
 **[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
-**[3]:** The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
+**[3]:** A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
-If instrumentation is unable to capture the current database without causing an additional query to be executed
-(e.g. `SELECT DATABASE()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
-instead of not capturing any value for `db.namespace`.
+If instrumentation is unable to capture the connection's currently associated database on each query
+without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+then it is RECOMMENDED to fallback and use the database provided when the connection was established.
 
-Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
-
-For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
