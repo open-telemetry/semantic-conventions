@@ -31,7 +31,8 @@
 - [Examples](#examples)
   - [Topic with multiple consumers](#topic-with-multiple-consumers)
   - [Batch receiving](#batch-receiving)
-  - [Batch publishing](#batch-publishing)
+  - [Batch publishing with "Create" spans](#batch-publishing-with-create-spans)
+  - [Batch publishing without "Create" spans](#batch-publishing-without-create-spans)
 
 <!-- tocstop -->
 
@@ -583,10 +584,13 @@ flowchart LR;
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
 
-### Batch publishing
+### Batch publishing with "Create" spans
 
 Given is a publisher that publishes a batch with two messages to a topic "Q" on
 Kafka, and two different consumers receiving one of the messages.
+
+Instrumentation in this case reports "Create" span for each message and a "Publish"
+span that's linked to a "Create" span.
 
 ```mermaid
 flowchart LR;
@@ -628,5 +632,50 @@ flowchart LR;
 | `messaging.operation.type` | `"create"` | `"create"` | `"publish"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | | | 2 | | |
+
+### Batch publishing without "Create" spans
+
+Given is a publisher that publishes a batch with two messages to a topic "Q" on
+Kafka, and two different consumers receiving one of the messages.
+
+Based on the configuration provided by user, instrumentation in this case reports
+"Publish" span only. It injects "Publish" span context into both messages.
+
+```mermaid
+flowchart LR;
+  subgraph PRODUCER
+  direction TB
+  P[Span Publish]
+  end
+  subgraph CONSUMER1
+  direction TB
+  D1[Span Receive A]
+  end
+  subgraph CONSUMER2
+  direction TB
+  D2[Span Receive B]
+  end
+  P-. link .-D1;
+  P-. link .-D2;
+
+  classDef normal fill:green
+  class P,D1,D2 normal
+  linkStyle 0,1 color:green,stroke:green
+```
+
+| Field or Attribute | Span Publish | Span Receive A | Span Receive B |
+|-|-|-|-|
+| Span name | `send Q` | `poll Q` | `poll Q` |
+| Parent | | | |
+| Links |  | Span Publish | Span Publish |
+| SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
+| `server.address` | `"ms"` | `"ms"` | `"ms"` |
+| `server.port` | `1234` | `1234` | `1234` |
+| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
+| `messaging.operation.name` | `"send"` | `"poll"` | `"poll"` |
+| `messaging.operation.type` | `"publish"` | `"receive"` | `"receive"` |
+| `messaging.message.id` | | `"a1"` | `"a2"` |
+| `messaging.batch.message_count`| 2 | | |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
