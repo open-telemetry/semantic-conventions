@@ -2,7 +2,7 @@ groups:
   - id: metric.vcs.repository.change.count
     type: metric
     metric_name: vcs.repository.change.count
-    brief: 'The number of changes (pull requests/merge requests) in a repository, categorized by their state (e.g. open or merged)'
+    brief: 'The number of changes (pull requests/merge requests/changelists) in a repository, categorized by their state (e.g. open or merged)'
     instrument: updowncounter
     unit: "{change}"
     stability: experimental
@@ -14,7 +14,7 @@ groups:
   - id: metric.vcs.repository.change.duration
     type: metric
     metric_name: vcs.repository.change.duration
-    brief: 'The time duration a change (pull request/merge request) has been in a given state.'
+    brief: 'The time duration a change (pull request/merge request/changelist) has been in a given state.'
     instrument: histogram
     unit: "s"
     stability: experimental
@@ -28,7 +28,7 @@ groups:
   - id: metric.vcs.repository.change.time_to_approval
     type: metric
     metric_name: vcs.repository.change.time_to_approval
-    brief: 'The amount of time it took a change (pull request/merge request) to go from open to approved'
+    brief: 'The amount of time it took a change (pull request/merge request/changelist) to go from open to approved'
     instrument: histogram
     unit: "s"
     stability: experimental

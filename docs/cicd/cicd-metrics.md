@@ -45,11 +45,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.repository.change.count` | UpDownCounter | `{change}` | The number of changes (pull requests/merge requests) in a repository, categorized by their state (e.g. open or merged) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.repository.change.count` | UpDownCounter | `{change}` | The number of changes (pull requests/merge requests/changelists) in a repository, categorized by their state (e.g. open or merged) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of the change (pull request/merge request). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.change.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -81,11 +81,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.repository.change.duration` | Histogram | `s` | The time duration a change (pull request/merge request) has been in a given state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.repository.change.duration` | Histogram | `s` | The time duration a change (pull request/merge request/changelist) has been in a given state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of the change (pull request/merge request). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -118,7 +118,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.repository.change.time_to_approval` | Histogram | `s` | The amount of time it took a change (pull request/merge request) to go from open to approved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.repository.change.time_to_approval` | Histogram | `s` | The amount of time it took a change (pull request/merge request/changelist) to go from open to approved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
