@@ -20,7 +20,7 @@ groups:
   - id: metric.db.cosmosdb.client.active_instances
     type: metric
     metric_name: db.cosmosdb.client.active_instances
-    brief: "Number of active client instance"
+    brief: "Number of active client instances"
     instrument: histogram
     unit: "{count}"
     stability: experimental
