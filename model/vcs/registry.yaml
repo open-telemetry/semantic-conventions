@@ -17,7 +17,7 @@ groups:
             "https://github.com/opentelemetry/open-telemetry-collector-contrib",
             "https://gitlab.com/my-org/my-project/my-projects-project/repo",
           ]
-      - id: vcs.repository.ref.name
+      - id: vcs.ref.name
         type: string
         stability: experimental
         brief: >
@@ -25,7 +25,7 @@ groups:
           [reference](https://git-scm.com/docs/gitglossary#def_ref) such as
           **branch** or **tag** in the repository.
         examples: ["my-feature-branch", "tag-1-test"]
-      - id: vcs.repository.ref.type
+      - id: vcs.ref.type
         type:
           members:
             - id: branch
@@ -40,7 +40,7 @@ groups:
         brief: >
           The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
         examples: ["branch", "tag"]
-      - id: vcs.repository.ref.revision
+      - id: vcs.ref.revision
         type: string
         stability: experimental
         brief: >

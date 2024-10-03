@@ -21,7 +21,7 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
-      - ref: vcs.repository.ref.name
+      - ref: vcs.ref.name
         requirement_level: required
       - ref: vcs.change.state
         requirement_level: required
@@ -35,7 +35,7 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
-      - ref: vcs.repository.ref.name
+      - ref: vcs.ref.name
         requirement_level: required
   - id: metric.vcs.repository.count
     type: metric
@@ -45,9 +45,9 @@ groups:
     unit: "{repository}"
     stability: experimental
     attributes: []
-  - id: metric.vcs.repository.ref.count
+  - id: metric.vcs.ref.count
     type: metric
-    metric_name: vcs.repository.ref.count
+    metric_name: vcs.ref.count
     brief: 'The number of refs of type branch or tag in a repository'
     instrument: updowncounter
     unit: "{ref}"
@@ -55,11 +55,11 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
-      - ref: vcs.repository.ref.type
+      - ref: vcs.ref.type
         requirement_level: required
-  - id: metric.vcs.repository.ref.lines_added
+  - id: metric.vcs.ref.lines_added
     type: metric
-    metric_name: vcs.repository.ref.lines_added
+    metric_name: vcs.ref.lines_added
     brief: 'The number of lines added in a ref (branch) relative to the default branch (trunk)'
     instrument: gauge
     unit: "{line}"
@@ -67,13 +67,13 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
-      - ref: vcs.repository.ref.name
+      - ref: vcs.ref.name
         requirement_level: required
-      - ref: vcs.repository.ref.type
+      - ref: vcs.ref.type
         requirement_level: required
-  - id: metric.vcs.repository.ref.lines_deleted
+  - id: metric.vcs.ref.lines_deleted
     type: metric
-    metric_name: vcs.repository.ref.lines_deleted
+    metric_name: vcs.ref.lines_deleted
     brief: 'The number of lines deleted in a ref (branch) relative to the default branch (trunk)'
     instrument: gauge
     unit: "{line}"
@@ -81,13 +81,13 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
-      - ref: vcs.repository.ref.name
+      - ref: vcs.ref.name
         requirement_level: required
-      - ref: vcs.repository.ref.type
+      - ref: vcs.ref.type
         requirement_level: required
-  - id: metric.vcs.repository.ref.revisions_ahead
+  - id: metric.vcs.ref.revisions_ahead
     type: metric
-    metric_name: vcs.repository.ref.revisions_ahead
+    metric_name: vcs.ref.revisions_ahead
     brief: 'The number of revisions (commits) a ref (branch) is ahead of the default branch (trunk)'
     instrument: gauge
     unit: "{revision}"
@@ -95,13 +95,13 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
-      - ref: vcs.repository.ref.name
+      - ref: vcs.ref.name
         requirement_level: required
-      - ref: vcs.repository.ref.type
+      - ref: vcs.ref.type
         requirement_level: required
-  - id: metric.vcs.repository.ref.revisions_behind
+  - id: metric.vcs.ref.revisions_behind
     type: metric
-    metric_name: vcs.repository.ref.revisions_behind
+    metric_name: vcs.ref.revisions_behind
     brief: 'The number of revisions (commits) a ref (branch) is behind the default branch (trunk)'
     instrument: gauge
     unit: "{revision}"
@@ -109,13 +109,13 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
-      - ref: vcs.repository.ref.name
+      - ref: vcs.ref.name
         requirement_level: required
-      - ref: vcs.repository.ref.type
+      - ref: vcs.ref.type
         requirement_level: required
-  - id: metric.vcs.repository.ref.time
+  - id: metric.vcs.ref.time
     type: metric
-    metric_name: vcs.repository.ref.time
+    metric_name: vcs.ref.time
     brief: 'Time a ref (branch) created from the default branch (trunk) has existed. The `ref.type` attribute will always be `branch`'
     instrument: gauge
     unit: "s"
@@ -123,9 +123,9 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
-      - ref: vcs.repository.ref.name
+      - ref: vcs.ref.name
         requirement_level: required
-      - ref: vcs.repository.ref.type
+      - ref: vcs.ref.type
         requirement_level: required
   - id: metric.vcs.repository.contributor.count
     type: metric
