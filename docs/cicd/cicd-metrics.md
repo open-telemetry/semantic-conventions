@@ -134,7 +134,7 @@ but more may be added in the future.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.repository.count` | Gauge | `{repository}` | The number of repositories in an organization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.repository.count` | UpDownCounter | `{repository}` | The number of repositories in an organization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
 <!-- markdownlint-restore -->

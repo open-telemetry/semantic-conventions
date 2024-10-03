@@ -41,7 +41,7 @@ groups:
     type: metric
     metric_name: vcs.repository.count
     brief: 'The number of repositories in an organization'
-    instrument: gauge
+    instrument: updowncounter
     unit: "{repository}"
     stability: experimental
     attributes: []
