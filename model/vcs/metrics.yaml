@@ -11,10 +11,10 @@ groups:
         requirement_level: required
       - ref: vcs.repository.url.full
         requirement_level: required
-  - id: metric.vcs.repository.change.time
+  - id: metric.vcs.repository.change.duration
     type: metric
-    metric_name: vcs.repository.change.time
-    brief: 'The time distribution a change (pull request) has been in open state or that it took to go from open to another state.'
+    metric_name: vcs.repository.change.duration
+    brief: 'The time duration a change (pull request/merge request) has been in a given state.'
     instrument: histogram
     unit: "s"
     stability: experimental
