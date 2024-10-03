@@ -156,6 +156,10 @@ groups:
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ["mydatabase.products", "mydatabase.customers"]
+      - ref: db.response.status_code
+        brief: >
+          [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
+        examples: ["08000", "08P01"]
 
   - id: db.mysql
     type: span
@@ -179,6 +183,10 @@ groups:
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ["products", "customers"]
+      - ref: db.response.status_code
+        brief: >
+          [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html).
+        examples: ["1005", "MY-010016"]
 
   - id: db.mariadb
     type: span
@@ -202,6 +210,11 @@ groups:
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ["products", "customers"]
+      - ref: db.response.status_code
+        brief: >
+          [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/)
+          represented as a string.
+        examples: ["1008", "3058"]
 
   - id: db.cassandra
     type: span
