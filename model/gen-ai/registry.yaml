@@ -1,6 +1,7 @@
 groups:
   - id: registry.gen_ai
     type: attribute_group
+    stability: experimental
     display_name: GenAI Attributes
     brief: >
       This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
@@ -148,8 +149,18 @@ groups:
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
           conventions for specific GenAI system and use system-specific name in the instrumentation.
           If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+      - id: gen_ai.evaluation.score
+        stability: experimental
+        type: double
+        brief: The score calculated by the evaluator for the GenAI response.
+        note: >
+          Semantic conventions describing GenAI evaluation telemetry SHOULD document
+          the scoring system and method used to calculate the score.
+        examples: [0.42]
+
   - id: registry.gen_ai.openai
     type: attribute_group
+    stability: experimental
     display_name: OpenAI Attributes
     brief: >
       Thie group defines attributes for OpenAI.
