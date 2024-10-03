@@ -43,7 +43,7 @@ but more may be added in the future.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.repository.change.count` | UpDownCounter | `{change}` | The number of changes (pull requests/merge requests) in a repository, categorized by their state (either open or merged) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.repository.change.count` | UpDownCounter | `{change}` | The number of changes (pull requests/merge requests) in a repository, categorized by their state (e.g. open or merged) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

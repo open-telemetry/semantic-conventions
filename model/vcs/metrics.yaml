@@ -2,7 +2,7 @@ groups:
   - id: metric.vcs.repository.change.count
     type: metric
     metric_name: vcs.repository.change.count
-    brief: 'The number of changes (pull requests/merge requests) in a repository, categorized by their state (either open or merged)'
+    brief: 'The number of changes (pull requests/merge requests) in a repository, categorized by their state (e.g. open or merged)'
     instrument: updowncounter
     unit: "{change}"
     stability: experimental
