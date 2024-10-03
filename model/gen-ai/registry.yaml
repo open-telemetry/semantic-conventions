@@ -148,3 +148,51 @@ groups:
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
           conventions for specific GenAI system and use system-specific name in the instrumentation.
           If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+  - id: registry.gen_ai.openai
+    type: attribute_group
+    display_name: OpenAI Attributes
+    brief: >
+      Thie group defines attributes for OpenAI.
+    attributes:
+      - id: gen_ai.openai.request.seed
+        stability: experimental
+        type: int
+        brief: Requests with same seed value more likely to return same result.
+        examples: [100]
+      - id: gen_ai.openai.request.response_format
+        stability: experimental
+        type:
+          members:
+            - id: text
+              value: "text"
+              brief: 'Text response format'
+              stability: experimental
+            - id: json_object
+              value: "json_object"
+              brief: 'JSON object response format'
+              stability: experimental
+            - id: json_schema
+              value: "json_schema"
+              brief: 'JSON schema response format'
+              stability: experimental
+        brief: The response format that is requested.
+        examples: ['json']
+      - id: gen_ai.openai.request.service_tier
+        stability: experimental
+        type:
+          members:
+            - id: auto
+              value: "auto"
+              brief: The system will utilize scale tier credits until they are exhausted.
+              stability: experimental
+            - id: default
+              value: "default"
+              brief: The system will utilize the default scale tier.
+              stability: experimental
+        brief: The service tier requested. May be a specific tier, detault, or auto.
+        examples: ['auto', 'default']
+      - id: gen_ai.openai.response.service_tier
+        stability: experimental
+        type: string
+        brief: The service tier used for the response.
+        examples: ['scale', 'detault']
