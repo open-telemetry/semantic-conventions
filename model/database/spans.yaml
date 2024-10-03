@@ -98,21 +98,20 @@ groups:
     attributes:
       - ref: db.namespace
         sampling_relevant: true
-        brief: The name of the database, fully qualified within the server address and port.
+        brief: >
+          The database associated with the connection, qualified by the instance name.
         note: |
-          When connecting to a default instance, `db.namespace` SHOULD be set to the name of
-          the database. When connecting to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
+          When connected to a default instance, `db.namespace` SHOULD be set to the name of
+          the database. When connected to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
           `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
 
-          The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
-          If instrumentation is unable to capture the current database without causing an additional query to be executed
-          (e.g. `SELECT DB_NAME()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
-          instead of not capturing any value for `db.namespace`.
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DB_NAME()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
 
-          Instrumentation SHOULD document if `db.namespace` only reflects the database name provided during at connection time.
-
-          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ["instance1.products", "customers"]
@@ -132,27 +131,23 @@ groups:
     attributes:
       - ref: db.namespace
         sampling_relevant: true
-        brief: The name of the schema, fully qualified within the server address and port.
+        brief: >
+          The schema associated with the connection, qualified by the database name.
         note: |
           `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
 
-          The current schema may change during the lifetime of a connection, e.g. from executing `SET search_path TO myschema`.
+          A connection's currently associated database may change during its lifetime, e.g. from executing `SET search_path TO <schema>`.
           If the search path has multiple schemas, the first schema in the search path SHOULD be used.
 
-          Instrumentation SHOULD set `db.namespace` using the schema provided at connection time if it is
-          unable to capture the current schema without causing an additional query to be executed (e.g. `SELECT current_schema()`).
+          If instrumentation is unable to capture the connection's currently associated schema on each query
+          without triggering an additional query to be executed (e.g. `SELECT current_schema()`),
+          then it is RECOMMENDED to fallback and use the schema provided when the connection was established.
 
-          If instrumentation is unable to capture the current schema without causing an additional query to be executed
-          (e.g. `SELECT current_schema()`), then it is RECOMMENDED to set `db.namespace` using the schema provided at connection time
-          instead of not capturing any schema for `db.namespace`.
+          Instrumentation SHOULD document if `db.namespace` reflects the schema provided when the connection was established.
 
-          Instrumentation SHOULD document if `db.namespace` only reflects the schema name provided at connection time.
+          Instrumentation MAY use the user name when the connection was established as a stand-in for the schema name.
 
-          Instrumentation MAY use the user name from the connection as a stand-in for the schema name.
-
-          Instrumentation SHOULD document if schema name only reflects the user name.
-
-          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+          Instrumentation SHOULD document if `db.namespace` reflects the user provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ["mydatabase.products", "mydatabase.customers"]
@@ -169,17 +164,15 @@ groups:
     attributes:
       - ref: db.namespace
         sampling_relevant: true
-        brief: The MySQL database name.
+        brief: The database associated with the connection.
         note: |
-          The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
-          If instrumentation is unable to capture the current database without causing an additional query to be executed
-          (e.g. `SELECT DATABASE()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
-          instead of not capturing any value for `db.namespace`.
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
 
-          Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
-
-          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ["products", "customers"]
@@ -196,17 +189,15 @@ groups:
     attributes:
       - ref: db.namespace
         sampling_relevant: true
-        brief: The MariaDB database name.
+        brief: The database associated with the connection.
         note: |
-          The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
-          If instrumentation is unable to capture the current database without causing an additional query to be executed
-          (e.g. `SELECT DATABASE()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
-          instead of not capturing any value for `db.namespace`.
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
 
-          Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
-
-          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ["products", "customers"]
@@ -225,8 +216,7 @@ groups:
     attributes:
       - ref: db.namespace
         sampling_relevant: true
-        brief: The Cassandra keyspace name.
-        note: For commands that switch the keyspace, this SHOULD be set to the target keyspace (even if the command fails).
+        brief: The keyspace associated with the session.
         examples: ["mykeyspace"]
         requirement_level:
           conditionally_required: If available.
@@ -263,10 +253,6 @@ groups:
         brief: The HBase namespace.
         requirement_level:
           conditionally_required: If applicable.
-        note: >
-          When performing table-related operations, the instrumentations SHOULD extract the namespace from the table name according to
-          the [HBase table naming conventions](https://hbase.apache.org/book.html#namespace_creation). If namespace is not provided,
-          instrumentation SHOULD set `db.namespace` value to `default`.
         examples: ['mynamespace']
       - ref: db.collection.name
         sampling_relevant: true
@@ -322,19 +308,17 @@ groups:
       - ref: db.namespace
         sampling_relevant: true
         brief: >
-          The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select)
-          (captured as a string).
+          The [database index] associated with the connection, represented as a string.
         requirement_level:
           conditionally_required: If and only if it can be captured reliably.
         note: |
-          The database index for current connection can be changed by the application dynamically. Instrumentations MAY use
-          the initial database index provided in the connection string and keep track of the currently selected
-          database to capture the `db.namespace`.
+          A connection's currently associated database index may change during its lifetime, e.g. from executing `SELECT <index>`.
 
-          Instrumentation SHOULD set `db.namespace` to the database provided at connection time if it is
-          unable to capture the current database without causing an additional network call to Redis.
+          If instrumentation is unable to capture the connection's currently associated database index on each query
+          without triggering an additional query to be executed,
+          then it is RECOMMENDED to fallback and use the database index provided when the connection was established.
 
-          For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
+          Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
         examples: ["0", "1", "15"]
       - ref: db.query.text
         sampling_relevant: true
@@ -462,6 +446,9 @@ groups:
         brief: The name of the SQL table that the operation is acting upon.
         examples: ['users', 'dbo.products']
       - ref: db.namespace
+        brief: >
+          The database associated with the connection,
+          fully qualified within the server address and port.
         requirement_level:
           conditionally_required: If available without an additional network call.
         note: |
@@ -473,15 +460,13 @@ groups:
           Unless specified by the system-specific semantic convention, the `db.namespace` attribute matches
           the name of the database being accessed.
 
-          The current database may change during the lifetime of a connection, e.g. from executing `USE <database>`.
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
-          If instrumentation is unable to capture the current database without causing an additional query to be executed
-          (e.g. `SELECT DATABASE()`), then it is RECOMMENDED to set `db.namespace` to the database name provided at connection time
-          instead of not capturing any value for `db.namespace`.
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
 
-          Instrumentation SHOULD document if `db.namespace` only reflects the database name provided at connection time.
-
-          For commands that switch the database, `db.namespace` SHOULD be set to the target database (even if the command fails).
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
       - ref: db.response.status_code
