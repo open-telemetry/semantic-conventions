@@ -23,5 +23,6 @@ Semantic conventions for Generative AI operations are defined for the following 
 Technology specific semantic conventions are defined for the following GenAI system:
 
 * [Azure AI Inference](./azure-ai-inference.md): Semantic Conventions for Azure AI Inference.
+* [OpenAI](./openai.md): Semantic Conventions for OpenAI.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

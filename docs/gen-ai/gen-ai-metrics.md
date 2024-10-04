@@ -32,6 +32,9 @@ The following metric instruments describe Generative AI operations. An
 operation may be a request to an LLM, a function call, or some other
 distinct action within a larger Generative AI workflow.
 
+Individual systems may include additional system-specific attributes.
+It is recommended to check system-specific documentation, if available.
+
 ### Metric: `gen_ai.client.token.usage`
 
 This metric is [recommended][MetricRecommended] when an operation involves the usage
