@@ -1,0 +1,135 @@
+groups:
+  - id: registry.cloudfoundry
+    type: attribute_group
+    brief: >
+      CloudFoundry resource attributes.
+    attributes:
+      - id: cloudfoundry.system.id
+        type: string
+        stability: experimental
+        brief: >
+          A guid or another name describing the event source.
+        note: |
+          CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+          It is used for logs and metrics emitted by CloudFoundry. It is
+          supposed to contain the component name, e.g. "gorouter", for
+          CloudFoundry components.
+
+          When system components are instrumented, values from the
+          [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
+          should be used. The `system.id` should be set to
+          `spec.deployment/spec.name`.
+        examples:
+          - 'cf/gorouter'
+      - id: cloudfoundry.system.instance.id
+        type: string
+        stability: experimental
+        brief: >
+          A guid describing the concrete instance of the event source.
+        note: |
+          CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+          It is used for logs and metrics emitted by CloudFoundry. It is
+          supposed to contain the vm id for CloudFoundry components.
+
+          When system components are instrumented, values from the
+          [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
+          should be used. The `system.instance.id` should be set to `spec.id`.
+        examples:
+          - '218fc5a9-a5f1-4b54-aa05-46717d0ab26d'
+      - id: cloudfoundry.app.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the application.
+        note: |
+          Application instrumentation should use the value from environment
+          variable `VCAP_APPLICATION.application_name`. This is the same value
+          as reported by `cf apps`.
+        examples: ['my-app-name']
+      - id: cloudfoundry.app.id
+        type: string
+        stability: experimental
+        brief: >
+          The guid of the application.
+        note: |
+          Application instrumentation should use the value from environment
+          variable `VCAP_APPLICATION.application_id`. This is the same value as
+          reported by `cf app <app-name> --guid`.
+        examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
+      - id: cloudfoundry.app.instance.id
+        type: string
+        stability: experimental
+        brief: >
+          The index of the application instance. 0 when just one instance is active.
+        note: |
+          CloudFoundry defines the `instance_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+          It is used for logs and metrics emitted by CloudFoundry. It is
+          supposed to contain the application instance index for applications
+          deployed on the runtime.
+
+          Application instrumentation should use the value from environment
+          variable `CF_INSTANCE_INDEX`.
+        examples:
+          - '0'
+          - '1'
+      - id: cloudfoundry.space.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the CloudFoundry space the application is running in.
+        note: |
+          Application instrumentation should use the value from environment
+          variable `VCAP_APPLICATION.space_name`. This is the same value as
+          reported by `cf spaces`.
+        examples: ['my-space-name']
+      - id: cloudfoundry.space.id
+        type: string
+        stability: experimental
+        brief: >
+          The guid of the CloudFoundry space the application is running in.
+        note: |
+          Application instrumentation should use the value from environment
+          variable `VCAP_APPLICATION.space_id`. This is the same value as
+          reported by `cf space <space-name> --guid`.
+        examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
+      - id: cloudfoundry.org.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the CloudFoundry organization the app is running in.
+        note: |
+          Application instrumentation should use the value from environment
+          variable `VCAP_APPLICATION.org_name`. This is the same value as
+          reported by `cf orgs`.
+        examples: ['my-org-name']
+      - id: cloudfoundry.org.id
+        type: string
+        stability: experimental
+        brief: >
+          The guid of the CloudFoundry org the application is running in.
+        note: |
+          Application instrumentation should use the value from environment
+          variable `VCAP_APPLICATION.org_id`. This is the same value as
+          reported by `cf org <org-name> --guid`.
+        examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
+      - id: cloudfoundry.process.id
+        type: string
+        stability: experimental
+        brief: >
+          The UID identifying the process.
+        note: |
+          Application instrumentation should use the value from environment
+          variable `VCAP_APPLICATION.process_id`. It is supposed to be equal to
+          `VCAP_APPLICATION.app_id` for applications deployed to the runtime.
+          For system components, this could be the actual PID.
+        examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
+      - id: cloudfoundry.process.type
+        type: string
+        stability: experimental
+        brief: >
+          The type of process.
+        note: |
+          CloudFoundry applications can consist of multiple jobs. Usually the
+          main process will be of type `web`. There can be additional background
+          tasks or side-cars with different process types.
+        examples: ['web']

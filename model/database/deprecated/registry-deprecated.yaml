@@ -4,6 +4,7 @@ groups:
     display_name: Deprecated Database Attributes
     brief: >
       "Describes deprecated db attributes."
+    stability: experimental
     attributes:
       - id: db.connection_string
         type: string
@@ -90,12 +91,19 @@ groups:
         brief: >
           Deprecated, use `db.namespace` instead.
         examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
+      - id: db.cosmosdb.status_code
+        type: int
+        stability: experimental
+        deprecated: 'Replaced by `db.response.status_code`.'
+        brief: 'Deprecated, use `db.response.status_code` instead.'
+        examples: [200, 201]
 
   - id: registry.db.metrics.deprecated
     type: attribute_group
     display_name: Deprecated Database Metrics
     brief: >
       "Describes deprecated db metrics attributes."
+    stability: experimental
     attributes:
       - id: state
         stability: experimental
