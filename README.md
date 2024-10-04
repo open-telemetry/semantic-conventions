@@ -34,6 +34,8 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Josh Suereth](https://github.com/jsuereth), Google
 - [Liudmila Molkova](https://github.com/lmolkova), Microsoft
-- [Reiley Yang](https://github.com/reyang), Microsoft
+
+Emeritus Maintainers:
+- [Reiley Yang](https://github.com/reyang)
 
 _Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer)._
