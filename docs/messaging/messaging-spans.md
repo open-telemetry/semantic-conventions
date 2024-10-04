@@ -588,7 +588,7 @@ flowchart LR;
   direction TB
   CA[Span Create A]
   CB[Span Create B]
-  P[Span Publish]
+  P[Span Send]
   end
   subgraph CONSUMER1
   direction TB
@@ -608,7 +608,7 @@ flowchart LR;
   linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Create A | Span Create B | Span Publish | Span Receive A | Span Receive B |
+| Field or Attribute | Span Create A | Span Create B | Span Send | Span Receive A | Span Receive B |
 |-|-|-|-|-|-|
 | Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
 | Parent |  | | | | |
