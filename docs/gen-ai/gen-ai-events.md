@@ -151,7 +151,7 @@ The event name MUST be `gen_ai.tool.message`.
 | Body Field     | Type   | Description                                   | Examples                        | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) |
 |----------------|--------|-----------------------------------------------|---------------------------------|-------------------|
 | `role`         | string | The actual role of the message author as passed in the message. | `"tool"`, `"function"` | `Conditionally Required`: if available and if not equal to `tool` |
-| `content`      | string | The contents of the tool message.             | `opentelemetry.io`              | `Opt-In`          |
+| `content`      | AnyValue | The contents of the tool message.             | `opentelemetry.io`              | `Opt-In`          |
 | `id`           | string | Tool call that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required`        |
 
 ## Choice event
