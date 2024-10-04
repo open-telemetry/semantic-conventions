@@ -36,6 +36,7 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Liudmila Molkova](https://github.com/lmolkova), Microsoft
 
 Emeritus Maintainers:
+
 - [Reiley Yang](https://github.com/reyang)
 
 _Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer)._
