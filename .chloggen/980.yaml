@@ -1,0 +1,4 @@
+change_type: breaking
+component: gen_ai
+note: Deprecate `gen_ai.prompt` and `gen_ai.completion` attributes, introduce log-based events for GenAI inputs and outputs.
+issues: [834, 980]
