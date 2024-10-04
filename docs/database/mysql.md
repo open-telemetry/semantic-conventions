@@ -4,7 +4,7 @@ linkTitle: MySQL
 
 # Semantic Conventions for MySQL
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 The Semantic Conventions for *MySQL* extend and override the [Database Semantic Conventions](database-spans.md).
 

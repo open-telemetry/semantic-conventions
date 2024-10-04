@@ -4,7 +4,7 @@ linkTitle: PostgreSQL
 
 # Semantic Conventions for PostgreSQL
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 The Semantic Conventions for *PostgreSQL* extend and override the [Database Semantic Conventions](database-spans.md).
 

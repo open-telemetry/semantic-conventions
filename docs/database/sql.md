@@ -4,7 +4,7 @@ linkTitle: SQL
 
 # Semantic Conventions for SQL Databases
 
-**Status**: [Release Candidate][DocumentStatus], unless otherwise specified
+**Status**: [Release Candidate][DocumentStatus]
 
 The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](database-spans.md) apply to SQL databases.
 
