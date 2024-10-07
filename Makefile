@@ -223,6 +223,7 @@ generate-gh-issue-templates:
 		. \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh $(PWD)/internal/tools/bin/areas.txt
+	$(TOOLS_DIR)/scripts/generate-registry-area-labels.sh $(PWD)/internal/tools/bin/areas.txt
 
 # A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
 # relied on "git describe". However, that approach does not work with
