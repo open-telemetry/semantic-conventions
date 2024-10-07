@@ -33,6 +33,9 @@ groups:
       - ref: db.system
         requirement_level:
           conditionally_required: if available
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (443).
       - ref: db.collection.name
         requirement_level:
           conditionally_required: if available
@@ -50,8 +53,5 @@ groups:
         requirement_level:
           conditionally_required: if response was received
       - ref: db.cosmosdb.consistency_level
-        requirement_level:
-          conditionally_required: If available.
-      - ref: db.cosmosdb.machine_id
         requirement_level:
           conditionally_required: If available.

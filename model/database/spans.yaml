@@ -704,6 +704,3 @@ groups:
       - ref: db.cosmosdb.consistency_level
         requirement_level:
           conditionally_required: If available.
-      - ref: db.cosmosdb.machine_id
-        requirement_level:
-          conditionally_required: If available.
