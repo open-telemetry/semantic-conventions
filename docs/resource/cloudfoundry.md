@@ -190,7 +190,7 @@ tasks or side-cars with different process types.
 | [`cloudfoundry.system.id`](/docs/attributes-registry/cloudfoundry.md) | string | A guid or another name describing the event source. [1] | `cf/gorouter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloudfoundry.system.instance.id`](/docs/attributes-registry/cloudfoundry.md) | string | A guid describing the concrete instance of the event source. [2] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** CloudFoundry defines the `source_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[1]:** CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the component name, e.g. "gorouter", for
 CloudFoundry components.
@@ -200,7 +200,7 @@ When system components are instrumented, values from the
 should be used. The `system.id` should be set to
 `spec.deployment/spec.name`.
 
-**[2]:** CloudFoundry defines the `instance_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[2]:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the vm id for CloudFoundry components.
 

@@ -13,11 +13,30 @@ This document defines semantic conventions for database client spans as well as
 database metrics and logs.
 
 > **Warning**
+>
 > Existing database instrumentations that are using
-> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/README.md)
-> (or prior) SHOULD NOT change the version of the database conventions that they emit by default
-> until a transition plan to the (future) stable semantic conventions has been published.
-> Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
+> (or prior):
+>
+> * SHOULD NOT change the version of the database conventions that they emit by default
+>   until the database semantic conventions are marked stable.
+>   Conventions include, but are not limited to, attributes,
+>   metric and span names, and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   in the existing major version which is a comma-separated list of values.
+>   If the list of values includes:
+>   * `database` - emit the new, stable database conventions,
+>     and stop emitting the old experimental database conventions
+>     that the instrumentation emitted previously.
+>   * `database/dup` - emit both the old and the stable database conventions,
+>     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental database conventions
+>     the instrumentation was emitting previously.
+>   * Note: `database/dup` has higher precedence than `database` in case both values are present
+> * SHOULD maintain (security patching at a minimum) the existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * SHOULD drop the environment variable in the next major version.
 
 Semantic conventions for database operations are defined for the following signals:
 
