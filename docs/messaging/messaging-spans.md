@@ -63,8 +63,9 @@ Messages can be delivered to 0, 1, or multiple consumers depending on the dispat
 ### Producer
 
 The "producer" is a specific instance, process or device that creates and
-publishes a message. "Publishing" is the process of sending a message or batch
-of messages to the intermediary or consumer.
+sends a message. "Sending" is the process of transmitting a message or batch
+of messages to the intermediary or consumer. Some intermediaries use "publishing"
+as a synonym to sending.
 
 ### Consumer
 
@@ -84,7 +85,7 @@ might be another intermediary or a consumer.
 ### Destinations
 
 A destination represents the entity within a messaging system where
-messages are published to and consumed from.
+messages are sent to and consumed from.
 
 A destination is usually uniquely identified by its name within
 the messaging system instance.
@@ -186,6 +187,7 @@ If a corresponding `{destination}` value is not available for a specific operati
 Examples:
 
 * `publish shop.orders`
+* `send shop.orders`
 * `subscribe shop.orders`
 * `ack shop.orders`
 * `nack print_jobs`
@@ -198,8 +200,8 @@ The following operation types related to messages are defined for these semantic
 
 | Operation type | Description |
 | -------------- | ----------- |
-| `create`       | A message is created or passed to a client library for publishing. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. |
-| `publish`      | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. |
+| `create`       | A message is created or passed to a client library for sending. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. |
+| `send`         | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. |
 | `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
 | `process`      | One or more messages are processed by a consumer. |
 | `settle`       | One or more messages are settled. |
@@ -211,7 +213,7 @@ Span kind SHOULD be set according to the following table, based on the operation
 | Operation type | Span kind|
 |----------------|-------------|
 | `create`       | `PRODUCER`  |
-| `publish`      | `PRODUCER` if the context of the "Publish" span is used as creation context, otherwise `CLIENT`. |
+| `send`         | `PRODUCER` if the context of the "Send" span is used as creation context, otherwise `CLIENT`. |
 | `receive`      | `CLIENT`    |
 | `process`      | `CONSUMER`  |
 
@@ -223,20 +225,20 @@ and relationships between them without the need for additional semantic hints.
 #### Producer spans
 
 "Create" spans MAY be created when a message is created or passed to the client
-library or other component responsible for publishing.  A single "Create" span
-SHOULD account only for a single message. "Publish" spans SHOULD be created
+library or other component responsible for sending.  A single "Create" span
+SHOULD account only for a single message. "Send" spans SHOULD be created
 for operations of sending or publishing a message to an intermediary. A single
-"Publish" span can account for a single message, or for multiple messages (in
+"Send" span can account for a single message, or for multiple messages (in
 the case of sending messages in batches).
 
 If a user provides a custom creation context in a message, this context SHOULD
 NOT be modified and a "Create" span SHOULD NOT be created.  Otherwise, if a
 "Create" span exists for a message, its context SHOULD be injected into the
 message. If no "Create" span exists and no custom creation context is injected
-into the message, the context of the related "Publish" span SHOULD be injected
+into the message, the context of the related "Send" span SHOULD be injected
 into the message.
 
-The "Publish" span SHOULD always link to the creation context that was injected
+The "Send" span SHOULD always link to the creation context that was injected
 into a message either from a "Create" span or as a custom creation context.
 
 When instrumenting a library API that always sends a single message, it is
@@ -326,7 +328,7 @@ one of these possible approaches:
 Messaging attributes are organized into the following namespaces:
 
 - `messaging.message`: Contains attributes that describe individual messages.
-- `messaging.destination`: Contains attributes that describe the logical entity messages are published to. See [Destinations](#destinations) for more details.
+- `messaging.destination`: Contains attributes that describe the logical entity messages are sent to. See [Destinations](#destinations) for more details.
 - `messaging.batch`: Contains attributes that describe batch operations.
 - `messaging.consumer`: Contains attributes that describe the application instance that consumes a message. See [Consumer](#consumer) for more details.
 
@@ -351,7 +353,7 @@ Messaging system-specific attributes MUST be defined in the corresponding `messa
 | [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md) | string | The name of the destination subscription from which a message is consumed. [9] | `subscription-a` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.template`](/docs/attributes-registry/messaging.md) | string | Low cardinality representation of the messaging destination name [10] | `/customers/{customerId}` | `Conditionally Required` [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.temporary`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | `Conditionally Required` [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [13] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [13] | `send`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [14] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` When applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -449,10 +451,10 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -481,10 +483,10 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### Recording per-message attributes on batch operations
 
-All messaging operations (`publish`, `receive`, `process`, or others not covered by this specification) can describe both single and/or batch of messages.
+All messaging operations (`send`, `receive`, `process`, or others not covered by this specification) can describe both single and/or batch of messages.
 Attributes in the `messaging.message` or `messaging.{system}.message` namespace apply to individual messages and typically vary between messages within the same batch.
 
-Some messaging systems such as Kafka or Azure Event Grid allow publishing a batch of messages to different topics in a single operation, resulting in
+Some messaging systems such as Kafka or Azure Event Grid allow sending a batch of messages to different topics in a single operation, resulting in
 different `messaging.destination.name` or other destination attributes within a single messaging operation.
 
 If the attribute value is the same for all messages in the batch, the instrumentation SHOULD set such attribute on the span representing the batch operation.
@@ -510,7 +512,7 @@ Given is a publisher that publishes a message to a topic exchange "T" on RabbitM
 flowchart LR;
   subgraph PRODUCER
   direction TB
-  P[Span Publish A]
+  P[Span Send A]
   end
   subgraph CONSUMER1
   direction TB
@@ -530,7 +532,7 @@ flowchart LR;
   linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Publish A | Span Process A 1| Span Process A 2 |
+| Field or Attribute | Span Send A | Span Process A 1| Span Process A 2 |
 |-|-|-|-|
 | Span name | `publish T` | `consume T` | `consume T` |
 | Parent (optional) | | `publish T` | `publish T` |
@@ -541,19 +543,19 @@ flowchart LR;
 | `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation.name` | `"publish"` | `"consume"` | `"consume"` |
-| `messaging.operation.type` | `"publish"` | `"process"` | `"process"` |
+| `messaging.operation.type` | `"send"` | `"process"` | `"process"` |
 | `messaging.message.id` | `"a"` | `"a"`| `"a"` |
 
 ### Batch receiving
 
-Given is a publisher that publishes two messages to a topic "Q" on Kafka, and a consumer which receives both messages in one batch.
+Given is a producer that publishes two messages to a topic "Q" on Kafka, and a consumer which receives both messages in one batch.
 
 ```mermaid
 flowchart LR;
   subgraph PRODUCER
   direction TB
-  PA[Span Publish A]
-  PB[Span Publish B]
+  PA[Span Send A]
+  PB[Span Send B]
   end
   subgraph CONSUMER1
   direction TB
@@ -567,26 +569,26 @@ flowchart LR;
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Publish A | Span Publish B | Span Receive A B |
+| Field or Attribute | Span Send A | Span Send B | Span Receive A B |
 |-|-|-|-|
 | Span name | `send Q` | `send Q` | `poll Q` |
 | Parent |  |  |  |
-| Links |  |  | Span Publish A, Span Publish B |
-| Link attributes |  |  | Span Publish A: `messaging.message.id`: `"a1"`  |
-|                 |  |  | Span Publish B: `messaging.message.id`: `"a2"`  |
+| Links |  |  | Span Send A, Span Send B |
+| Link attributes |  |  | Span Send A: `messaging.message.id`: `"a1"`  |
+|                 |  |  | Span Send B: `messaging.message.id`: `"a2"`  |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation.name` | `"send"` | `"send"` | `"poll"` |
-| `messaging.operation.type` | `"publish"` | `"publish"` | `"receive"` |
+| `messaging.operation.type` | `"send"` | `"send"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
 
 ### Batch publishing with "Create" spans
 
-Given is a publisher that publishes a batch with two messages to a topic "Q" on
+Given is a producer that publishes a batch with two messages to a topic "Q" on
 Kafka, and two different consumers receiving one of the messages.
 
 Instrumentation in this case reports "Create" span for each message and a "Publish"
@@ -598,7 +600,7 @@ flowchart LR;
   direction TB
   CA[Span Create A]
   CB[Span Create B]
-  P[Span Publish]
+  P[Span Send]
   end
   subgraph CONSUMER1
   direction TB
@@ -618,7 +620,7 @@ flowchart LR;
   linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Create A | Span Create B | Span Publish | Span Receive A | Span Receive B |
+| Field or Attribute | Span Create A | Span Create B | Span Send | Span Receive A | Span Receive B |
 |-|-|-|-|-|-|
 | Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
 | Parent |  | | | | |
@@ -629,7 +631,7 @@ flowchart LR;
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation.name` | `"create"` | `"create"` | `"send"` | `"poll"` | `"poll"` |
-| `messaging.operation.type` | `"create"` | `"create"` | `"publish"` | `"receive"` | `"receive"` |
+| `messaging.operation.type` | `"create"` | `"create"` | `"send"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | | | 2 | | |
 

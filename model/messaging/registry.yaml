@@ -103,17 +103,17 @@ groups:
       - id: messaging.operation.type
         type:
           members:
-            - id: publish
-              value: "publish"
-              brief: >
-                One or more messages are provided for publishing to an intermediary.
-                If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created.
-              stability: experimental
             - id: create
               value: "create"
               brief: >
                 A message is created.
-                "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios.
+                "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios.
+              stability: experimental
+            - id: send
+              value: "send"
+              brief: >
+                One or more messages are provided for sending to an intermediary.
+                If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created.
               stability: experimental
             - id: receive
               value: "receive"
@@ -135,6 +135,11 @@ groups:
               value: "deliver"
               brief: "Deprecated. Use `process` instead."
               deprecated: "Replaced by `process`."
+              stability: experimental
+            - id: publish
+              value: "publish"
+              brief: "Deprecated. Use `send` instead."
+              deprecated: "Replaced by `send`."
               stability: experimental
 
         stability: experimental
