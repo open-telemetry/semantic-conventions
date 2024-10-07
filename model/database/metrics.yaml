@@ -147,7 +147,7 @@ groups:
   - id: metric.db.query.response.item_count
     type: metric
     metric_name: db.query.response.item_count
-    brief: "Actual item count returned by the feed operation (ex. Query, ReadAll, ReadMany, Change Feed)"
+    brief: "The actual number of records returned by the query."
     instrument: histogram
     unit: "{count}"
     stability: experimental
