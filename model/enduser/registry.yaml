@@ -1,4 +1,3 @@
-
 groups:
   - id: registry.enduser
     type: attribute_group
