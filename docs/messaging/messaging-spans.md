@@ -31,7 +31,8 @@
 - [Examples](#examples)
   - [Topic with multiple consumers](#topic-with-multiple-consumers)
   - [Batch receiving](#batch-receiving)
-  - [Batch publishing](#batch-publishing)
+  - [Batch publishing with "Create" spans](#batch-publishing-with-create-spans)
+  - [Batch publishing without "Create" spans](#batch-publishing-without-create-spans)
 
 <!-- tocstop -->
 
@@ -240,6 +241,14 @@ into the message.
 The "Send" span SHOULD always link to the creation context that was injected
 into a message either from a "Create" span or as a custom creation context.
 
+When instrumenting a library API that always sends a single message, it is
+RECOMMENDED to create "Publish" span without "Create" span.
+
+When instrumenting a library API that usually operate with batches, it is
+RECOMMENDED to create a "Create" span for each message along with the "Publish" span.
+It is also RECOMMENDED to provide a configuration option allowing to disable "Create"
+span creation.
+
 #### Consumer spans
 
 "Receive" spans SHOULD be created for operations of passing messages to the
@@ -274,7 +283,7 @@ messages were received). For each message it accounts for, the "Process" or
 > - It is the only option to correlate producer and consumer(s) in batch scenarios
 > as a span can only have a single parent.
 >
-> - It is the only option to correlate produce and consumer(s) when message
+> - It is the only option to correlate producer and consumer(s) when message
 > consumption can happen in the scope of another ambient context such as a
 > HTTP server span.
 
@@ -296,8 +305,8 @@ allowing users to control this behavior.
 It is NOT RECOMMENDED to use the message creation context as the parent of "Process"
 spans (by default) if processing happens in the scope of another span.
 
-If instrumentation use the message creation context as the parent for "Process"
-spans in the scope of another valid ambient context, they SHOULD add the
+If instrumentation uses the message creation context as the parent for "Process"
+spans in the scope of another valid ambient context, it SHOULD add the
 ambient context as a link on the "Process" span to preserve the correlation
 between message processing and that context.
 
@@ -348,13 +357,13 @@ Messaging system-specific attributes MUST be defined in the corresponding `messa
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [14] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` When applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [15] | `1439` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.conversation_id`](/docs/attributes-registry/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [16] | `2738` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [17] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this messaging system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [15] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this messaging system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [18] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [16] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [17] | `1439` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [18] | `2738` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
@@ -403,17 +412,17 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[14]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[15]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
-body size should be used.
-
-**[16]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
-size should be used.
-
-**[17]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
+**[15]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[18]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[16]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[17]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+body size should be used.
+
+**[18]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+size should be used.
 
 
 
@@ -577,10 +586,13 @@ flowchart LR;
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
 
-### Batch publishing
+### Batch publishing with "Create" spans
 
 Given is a producer that publishes a batch with two messages to a topic "Q" on
 Kafka, and two different consumers receiving one of the messages.
+
+Instrumentation in this case reports "Create" span for each message and a "Publish"
+span that's linked to a "Create" span.
 
 ```mermaid
 flowchart LR;
@@ -622,5 +634,50 @@ flowchart LR;
 | `messaging.operation.type` | `"create"` | `"create"` | `"send"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | | | 2 | | |
+
+### Batch publishing without "Create" spans
+
+Given is a publisher that publishes a batch with two messages to a topic "Q" on
+Kafka, and two different consumers receiving one of the messages.
+
+Based on the configuration provided by user, instrumentation in this case reports
+"Publish" span only. It injects "Publish" span context into both messages.
+
+```mermaid
+flowchart LR;
+  subgraph PRODUCER
+  direction TB
+  P[Span Publish]
+  end
+  subgraph CONSUMER1
+  direction TB
+  D1[Span Receive A]
+  end
+  subgraph CONSUMER2
+  direction TB
+  D2[Span Receive B]
+  end
+  P-. link .-D1;
+  P-. link .-D2;
+
+  classDef normal fill:green
+  class P,D1,D2 normal
+  linkStyle 0,1 color:green,stroke:green
+```
+
+| Field or Attribute | Span Publish | Span Receive A | Span Receive B |
+|-|-|-|-|
+| Span name | `send Q` | `poll Q` | `poll Q` |
+| Parent | | | |
+| Links |  | Span Publish | Span Publish |
+| SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
+| `server.address` | `"ms"` | `"ms"` | `"ms"` |
+| `server.port` | `1234` | `1234` | `1234` |
+| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
+| `messaging.operation.name` | `"send"` | `"poll"` | `"poll"` |
+| `messaging.operation.type` | `"publish"` | `"receive"` | `"receive"` |
+| `messaging.message.id` | | `"a1"` | `"a2"` |
+| `messaging.batch.message_count`| 2 | | |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

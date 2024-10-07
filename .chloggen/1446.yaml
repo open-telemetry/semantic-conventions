@@ -1,0 +1,6 @@
+change_type: enhancement
+component: messaging
+note: >
+  Add recommendation to report "Create" spans for batch send calls only and
+  to allow to disable "Create" spans.
+issues: [ 1273 ]
