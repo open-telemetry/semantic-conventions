@@ -43,9 +43,9 @@ For Apache Kafka, the following additional attributes are defined:
 | [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | String representation of the partition id the message (or batch) is sent to or received from. | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.message.key`](/docs/attributes-registry/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [9] | `myKey` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.offset`](/docs/attributes-registry/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [10] | `1439` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [11] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [11] | `1439` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -84,10 +84,10 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[9]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
-**[10]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
-body size should be used.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[11]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+body size should be used.
 
 
 
