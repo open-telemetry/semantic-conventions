@@ -4,7 +4,7 @@ linkTitle: MariaDB
 
 # Semantic Conventions for MariaDB
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 The Semantic Conventions for *MariaDB* extend and override the [Database Semantic Conventions](database-spans.md).
 
