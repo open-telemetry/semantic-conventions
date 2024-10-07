@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     display_name: End User Attributes
     brief: >
-      Describes information about the end user, which can be used as a sub-namespace of browser, client, or user domains.
+      Describes information about the end user, which can be used as a subdomain of browser, client, or user domains.
     attributes:
       - id: enduser.id
         type: string
@@ -12,9 +12,7 @@ groups:
           Identifier of an end user who interacts with a system.
           This identifier may be unique only through best-effort means and does not imply that the user is authenticated to the system.
         examples: ['QdH5CAWJgqVT4rOr0qtumf']
-      - id: enduser.authentication
-        type: attribute_group
+      - ref: authentication.id
         stability: experimental
-        brief: >
-          Describes the authentication information of an authenticated end user.
-        ref: registry.authentication
+        requirement_level:
+          conditionally_required: if and only if the end user is authenticated.
