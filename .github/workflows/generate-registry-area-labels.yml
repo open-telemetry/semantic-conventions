@@ -16,5 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Generate registry area labels
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           make generate-gh-issue-templates
