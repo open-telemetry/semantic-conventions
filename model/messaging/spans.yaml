@@ -66,7 +66,9 @@ groups:
         sampling_relevant: true
       - ref: messaging.message.conversation_id
       - ref: messaging.message.envelope.size
+        requirement_level: opt_in
       - ref: messaging.message.body.size
+        requirement_level: opt_in
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
@@ -115,6 +117,7 @@ groups:
         brief: >
           Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
       - ref: messaging.message.body.size
+        requirement_level: opt_in
 
   - id: messaging.kafka
     type: attribute_group
@@ -146,8 +149,8 @@ groups:
           conditionally_required: If the span describes an operation on a batch of messages.
       - ref: messaging.client.id
       - ref: messaging.message.body.size
-        requirement_level:
-          recommended: If span describes operation on a single message.
+        requirement_level: opt_in
+        brief: The size of the message body in bytes. Only applicable for spans describing single message operations.
 
   - id: messaging.rocketmq
     type: attribute_group
@@ -178,6 +181,7 @@ groups:
       - ref: messaging.rocketmq.consumption_model
       - ref: messaging.client.id
       - ref: messaging.message.body.size
+        requirement_level: opt_in
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
