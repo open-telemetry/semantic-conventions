@@ -239,12 +239,12 @@ into the message.
 The "Publish" span SHOULD always link to the creation context that was injected
 into a message either from a "Create" span or as a custom creation context.
 
-When instrumenting library API that always sends a single message, it's
+When instrumenting a library API that always sends a single message, it is
 RECOMMENDED to create "Publish" span without "Create" span.
 
-When instrumenting library API that usually operate with batches, it's
-RECOMMENDED to create "Create" span for each message along with the "Publish" span.
-It's also RECOMMENDED to provide a configuration option allowing to disable "Create"
+When instrumenting a library API that usually operate with batches, it is
+RECOMMENDED to create a "Create" span for each message along with the "Publish" span.
+It is also RECOMMENDED to provide a configuration option allowing to disable "Create"
 span creation.
 
 #### Consumer spans
