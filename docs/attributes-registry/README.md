@@ -34,6 +34,7 @@ Currently, the following namespaces exist:
 - [Android](android.md)
 - [Artifact](artifact.md)
 - [Aspnetcore](aspnetcore.md)
+- [Authentication](authentication.md)
 - [AWS](aws.md)
 - [Azure](azure.md)
 - [Browser](browser.md)

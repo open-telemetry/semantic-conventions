@@ -6,12 +6,11 @@
 
 # Enduser
 
-## Deprecated End User Attributes
+## End User Attributes
 
-Describes deprecated enduser attributes. Complete enduser namespace has been deprecated
+Describes information about the end user, which can be used as a subdomain of browser, client, or user domains.
 
-| Attribute       | Type   | Description                              | Examples                    | Stability                                                                                          |
-| --------------- | ------ | ---------------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------- |
-| `enduser.id`    | string | Deprecated, use `user.id` instead.       | `username`                  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.id` attribute.    |
-| `enduser.role`  | string | Deprecated, use `user.roles` instead.    | `admin`                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.roles` attribute. |
-| `enduser.scope` | string | Deprecated, no replacement at this time. | `read:message, write:files` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed.                            |
+| Attribute           | Type   | Description                                                                                                                                                                          | Examples                                           | Stability                                                        |
+| ------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- | ---------------------------------------------------------------- |
+| `authentication.id` | string | Unique identifier of an authenticated user in the system.                                                                                                                            | `S-1-5-21-202424912787-2692429404-2351956786-1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `enduser.id`        | string | Identifier of an end user who interacts with a system. This identifier may be unique only through best-effort means and does not imply that the user is authenticated to the system. | `QdH5CAWJgqVT4rOr0qtumf`                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
