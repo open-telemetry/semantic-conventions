@@ -285,7 +285,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `db.cosmosdb.sub_status_code`        | `0` |
 | `db.cosmosdb.request_charge`         | `7.43` |
 
-
 ## Azure Cosmos DB
 
 The following metric instruments describe Azure Cosmos DB client behaviour.

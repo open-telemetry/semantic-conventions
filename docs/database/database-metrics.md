@@ -25,13 +25,6 @@ linkTitle: Metrics
     - [Metric: `db.client.connection.create_time`](#metric-dbclientconnectioncreate_time)
     - [Metric: `db.client.connection.wait_time`](#metric-dbclientconnectionwait_time)
     - [Metric: `db.client.connection.use_time`](#metric-dbclientconnectionuse_time)
-- [Azure Cosmos DB](#azure-cosmos-db)
-  - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration-1)
-  - [Metric: `db.query.limit`](#metric-dbquerylimit-1)
-  - [Metric: `db.query.response.item_count`](#metric-dbqueryresponseitem_count-1)
-  - [Metric: `db.cosmosdb.operation.request_charge`](#metric-dbcosmosdboperationrequest_charge)
-  - [Metric: `db.cosmosdb.operation.regions_contacted`](#metric-dbcosmosdboperationregions_contacted)
-  - [Metric: `db.cosmosdb.client.active_instances`](#metric-dbcosmosdbclientactive_instances)
 
 <!-- tocstop -->
 
