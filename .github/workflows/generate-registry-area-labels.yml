@@ -5,7 +5,7 @@ on:
     paths:
       - model/**
       - ./.github/workflows/generate-registry-area-labels.yml
-      - ./.github/workflows/scripts/generate-registry-area-labels.sh
+      - ./internal/tools/scripts/generate-registry-area-labels.sh
 
   workflow_dispatch:
 
