@@ -31,7 +31,9 @@ The Semantic Conventions for [HBase](https://hbase.apache.org/) extend and overr
 
 **[1]:** If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
 
-**[2]:** When performing table-related operations, the instrumentations SHOULD extract the namespace from the table name according to the [HBase table naming conventions](https://hbase.apache.org/book.html#namespace_creation). If namespace is not provided, instrumentation SHOULD set `db.namespace` value to `default`.
+**[2]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[3]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.

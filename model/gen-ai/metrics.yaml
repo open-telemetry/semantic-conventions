@@ -30,6 +30,12 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI service,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
+  - id: metric_attributes.gen_ai.openai
+    type: attribute_group
+    brief: 'This group describes GenAI server metrics attributes'
+    attributes:
+      - ref: gen_ai.openai.response.service_tier
+        requirement_level: recommended
   - id: metric.gen_ai.client.token.usage
     type: metric
     metric_name: gen_ai.client.token.usage

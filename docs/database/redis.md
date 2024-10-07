@@ -21,7 +21,7 @@ The Semantic Conventions for [Redis](https://redis.com/) extend and override the
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select) (captured as a string). [1] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The [database index] associated with the connection, represented as a string. [1] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [4] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -32,9 +32,13 @@ The Semantic Conventions for [Redis](https://redis.com/) extend and override the
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [13] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The database index for current connection can be changed by the application dynamically. Instrumentations MAY use the initial database index provided in the connection string and keep track of the currently selected database to capture the `db.namespace`.
-Instrumentations SHOULD NOT set this attribute if capturing it would require additional network calls to Redis.
-For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
+**[1]:** A connection's currently associated database index may change during its lifetime, e.g. from executing `SELECT <index>`.
+
+If instrumentation is unable to capture the connection's currently associated database index on each query
+without triggering an additional query to be executed,
+then it is RECOMMENDED to fallback and use the database index provided when the connection was established.
+
+Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
 
 **[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.

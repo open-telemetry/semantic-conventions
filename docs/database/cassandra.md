@@ -22,7 +22,7 @@ The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend a
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the Cassandra table that the operation is acting upon. [1] | `public.users`; `customers` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The Cassandra keyspace name. [3] | `mykeyspace` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The keyspace associated with the session. [3] | `mykeyspace` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string. [6] | `102`; `40020` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -45,7 +45,9 @@ For batch operations, if the individual operations are known to have the same co
 
 **[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
-**[3]:** For commands that switch the keyspace, this SHOULD be set to the target keyspace (even if the command fails).
+**[3]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[4]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
