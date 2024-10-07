@@ -33,6 +33,7 @@ The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and over
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
 For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[2]:** See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
 
@@ -40,6 +41,7 @@ For batch operations, if the individual operations are known to have the same co
 
 **[4]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[5]:** If the operation failed and error code is available.
 

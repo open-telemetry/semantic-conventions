@@ -35,6 +35,7 @@ The Semantic Conventions for [CouchDB](https://couchdb.apache.org/) extend and o
 
 **[3]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[4]:** If response was received and the HTTP response code is available.
 
