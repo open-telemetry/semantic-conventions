@@ -555,11 +555,6 @@ groups:
         stability: experimental
         brief: Account or request consistency level.
         examples: [Eventual, ConsistentPrefix, BoundedStaleness, Strong or Session]
-      - id: db.cosmosdb.machine_id
-        type: string
-        stability: experimental
-        brief: Azure VM Id or hashed machine name or unique generate GUID, whatever is available.
-        examples: ["vmId:4d5ab1c4-d821-43fe-aacf-b61ea1f9c918", "hashedMachineName:910dc3c9-7d90-074d-95bf-c930100d14d4", "uuid:703e5e25-1bd3-4a53-ad53-f42f6ec50042" ]
 
   - id: registry.db.elasticsearch
     type: attribute_group
