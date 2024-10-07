@@ -49,16 +49,16 @@
   - Rename `telemetry` to `telemetry.sdk`, attributes are unchanged.
   - Mark `telemetry.sdk` and `resource` as stable in YAML model.
   - Markdown templates for resource groups NOW includes header describing
-    the reosurce `type`, `stability` and `description`.
+    the resource `type`, `stability` and `description`.
 
 - `process`: Add additional process fields from ECS (#993)
-- `container`: Add container.cpu.usage metric (#1128)
+- `container`: Add `container.cpu.usage` metric (#1128)
 - `container`: Add CSI (Container Storage Interface) attributes: `container.csi.plugin.name` and `container.csi.volume.id`. (#1119)
 - `system`: Add the `system.filesystem.limit` metric (#127)
 - `k8s`: Add `k8s.pod.cpu.time`, `k8s.pod.cpu.usage`, `k8s.node.cpu.time`, `k8s.node.cpu.usage` metrics (#1320)
 - `k8s`: Add k8s.pod.memory usage and k8s.node.memory.usage metrics (#1406)
 - `k8s`: Adds `k8s.volume.name` and `k8s.volume.type` attributes to the registry (#1164)
-- `os`: add lookup for os.build_id (#1318)
+- `os`: add lookup for `os.build_id` (#1318)
 - `gen_ai`: Add system specific conventions for OpenAI. (#1370)
 - `system`: Add the `system.disk.limit` metric (#127)
 - `file`: Add additional attributes from ECS to the `file` namespace. (#914)
