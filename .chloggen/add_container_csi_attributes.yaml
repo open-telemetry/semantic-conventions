@@ -1,7 +1,0 @@
-change_type: enhancement
-component: container
-note: >-
-  Add CSI (Container Storage Interface) attributes:
-  `container.csi.plugin.name` and `container.csi.volume.id`.
-issues: [1119]
-subtext:

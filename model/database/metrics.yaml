@@ -7,7 +7,7 @@ groups:
       Batch operations SHOULD be recorded as a single operation.
     instrument: histogram
     unit: "s"
-    stability: experimental
+    stability: experimental  # RELEASE CANDIDATE
     extends: attributes.db.client.minimal
     attributes:
       - ref: db.collection.name
