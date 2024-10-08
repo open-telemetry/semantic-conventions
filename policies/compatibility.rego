@@ -386,7 +386,7 @@ deny contains back_comp_violation(description, group_id, "") if {
     resource.stability == "stable"
     some nresource in registry_resources
     resource.name == nresource.name
-    nresource.stability == "stable"
+    nresource.stability == "stable" # remove after https://github.com/open-telemetry/semantic-conventions/pull/1423 is merged
 
     baseline_attributes := { attr.name |
         some attr in resource.attributes
