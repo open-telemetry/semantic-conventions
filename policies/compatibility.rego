@@ -160,7 +160,7 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
      some nmember in nattr.type.members
      member.id == nmember.id
 
-     # Enforce the policy    
+     # Enforce the policy
      member.stability == "stable"
      nmember.stability != "stable"
 
@@ -184,7 +184,7 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
      some nmember in nattr.type.members
      member.id == nmember.id
 
-     # Enforce the policy    
+     # Enforce the policy
      member.value != nmember.value
 
      # Generate human readable error.
@@ -294,7 +294,7 @@ deny contains back_comp_violation(description, group_id, "") if {
     metric.stability == "stable"
     some nmetric in registry_metrics
     metric.metric_name = nmetric.metric_name
-    
+
     baseline_attributes := { attr.name |
         some attr in metric.attributes
         not is_opt_in(attr)
@@ -321,7 +321,7 @@ deny contains back_comp_violation(description, group_id, "") if {
     metric.stability == "stable"
     some nmetric in registry_metrics
     metric.metric_name = nmetric.metric_name
-    
+
     baseline_attributes := { attr.name |
         some attr in metric.attributes
         not is_opt_in(attr)
@@ -385,8 +385,9 @@ deny contains back_comp_violation(description, group_id, "") if {
     some resource in baseline_resources
     resource.stability == "stable"
     some nresource in registry_resources
-    resource.name = nresource.name
-    
+    resource.name == nresource.name
+    nresource.stability == "stable"
+
     baseline_attributes := { attr.name |
         some attr in resource.attributes
         not is_opt_in(attr)
