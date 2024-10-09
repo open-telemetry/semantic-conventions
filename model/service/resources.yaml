@@ -1,0 +1,11 @@
+groups:
+  - id: service
+    type: resource
+    name: service
+    brief: >
+      A service instance.
+    stability: stable
+    attributes:
+      - ref: service.name
+        requirement_level: required
+      - ref: service.version

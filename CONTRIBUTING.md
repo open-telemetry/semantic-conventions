@@ -15,6 +15,7 @@ requirements and recommendations.
 - [How to Contribute](#how-to-contribute)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
+    - [Code structure](#code-structure)
     - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
@@ -90,8 +91,40 @@ environment configured:
 ### 1. Modify the YAML model
 
 Refer to the
-[Semantic Convention YAML Language](https://github.com/open-telemetry/build-tools/blob/v0.25.0/semantic-conventions/syntax.md)
+[Semantic Convention YAML Language](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)
 to learn how to make changes to the YAML files.
+
+#### Code structure
+
+The YAML (model definition) and Markdown (documentation) files are organized in the following way:
+
+```
+├── docs
+│   ├── attribute_registry
+│   ├── {root-namespace}
+│   │   ├── README.md
+│   │   ├── ....md
+├── model
+│   ├── {root-namespace}
+│   │   ├── events.yaml
+│   │   ├── metrics.yaml
+│   │   ├── registry.yaml
+│   │   ├── resources.yaml
+│   │   ├── spans.yaml
+```
+
+All attributes must be defined in the folder matching their root namespace under
+`/{root-namespace}/*registry.yaml` file.
+
+Corresponding markdown files are auto-generated (see [Update the markdown files](#2-update-the-markdown-files))
+in `/docs/attribute_registry` folder.
+
+All semantic conventions definitions for telemetry signals should be placed under
+`/model/{root-namespace}` and should follow `*{signal}.yaml` pattern. For example,
+HTTP spans are defined in `model/http/spans.yaml`.
+
+YAML definitions could be broken down into multiple files. For example, AWS spans
+are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` files.
 
 #### Schema files
 
@@ -188,8 +221,8 @@ During the release process, all `./.chloggen/*.yaml` files are transcribed into
 1. Create an entry file using `make chlog-new`. The command generates a new file,
    with its name based on the current branch (e.g. `./.chloggen/my-feature-xyz.yaml`)
 2. Fill in all the fields in the generated file
-3. The value for the `component` field MUST match a filename (without type) in the
-   [registry](https://github.com/open-telemetry/semantic-conventions/tree/main/model/registry)
+3. The value for the `component` field MUST match a folder name in the
+   [model](https://github.com/open-telemetry/semantic-conventions/tree/main/model) directory
    (e.g. `browser`, `http`)
 4. Run `make chlog-validate` to ensure the new file is valid
 5. Commit and push the file
@@ -310,14 +343,14 @@ make markdown-link-check
 
 ### Version compatibility check
 
-Semantic conventions are validated for backward compatibility with last released versions. Here's [the full list of compatibility checks](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#version-compatibility-check).
+Semantic conventions are validated for backward compatibility with last released versions. Here's [the full list of compatibility checks](./policies/compatibility.rego).
 Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
 It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
 
-You can run backward compatibility check in all yaml files with the following command:
+You can run backward compatibility check (along with other policies) in all yaml files with the following command:
 
 ```bash
-make compatibility-check
+make check-policies
 ```
 
 ## Updating the referenced specification version
@@ -371,6 +404,6 @@ exists in some form in ECS, consider the following guidelines:
   entirely. See the [ECS field reference] for existing namespaces.
 
 [nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
-[stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.35.0/specification/versioning-and-stability.md#semantic-conventions-stability
+[stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.37.0/specification/versioning-and-stability.md#semantic-conventions-stability
 [otep222]: https://github.com/open-telemetry/oteps/pull/222
 [ECS field reference]: https://www.elastic.co/guide/en/ecs/current/ecs-field-reference.html

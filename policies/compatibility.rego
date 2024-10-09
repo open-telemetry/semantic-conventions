@@ -32,6 +32,15 @@ registry_metrics := [ g |
 ]
 registry_metric_names := { g.metric_name | some g in registry_metrics }
 
+baseline_resources := [ g |
+    some g in data.semconv.baseline_groups
+    g.type == "resource"
+]
+registry_resources := [g |
+    some g in data.semconv.groups
+    g.type == "resource"
+]
+registry_resource_names := { g.name | some g in registry_resources }
 
 # Rules we enforce:
 # - Attributes
@@ -151,7 +160,7 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
      some nmember in nattr.type.members
      member.id == nmember.id
 
-     # Enforce the policy    
+     # Enforce the policy
      member.stability == "stable"
      nmember.stability != "stable"
 
@@ -175,7 +184,7 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
      some nmember in nattr.type.members
      member.id == nmember.id
 
-     # Enforce the policy    
+     # Enforce the policy
      member.value != nmember.value
 
      # Generate human readable error.
@@ -285,7 +294,7 @@ deny contains back_comp_violation(description, group_id, "") if {
     metric.stability == "stable"
     some nmetric in registry_metrics
     metric.metric_name = nmetric.metric_name
-    
+
     baseline_attributes := { attr.name |
         some attr in metric.attributes
         not is_opt_in(attr)
@@ -312,7 +321,7 @@ deny contains back_comp_violation(description, group_id, "") if {
     metric.stability == "stable"
     some nmetric in registry_metrics
     metric.metric_name = nmetric.metric_name
-    
+
     baseline_attributes := { attr.name |
         some attr in metric.attributes
         not is_opt_in(attr)
@@ -328,6 +337,72 @@ deny contains back_comp_violation(description, group_id, "") if {
     # Generate human readable error.
     group_id := metric.id
     description := sprintf("Metric '%s' cannot change required/recommended attributes (added '%s')", [metric.metric_name, added_attributes])
+}
+
+
+# Rule: Detect Removed Resources
+#
+# This rule checks for stable resources that existed in the baseline registry
+# but are no longer present in the current registry. Removing resources
+# is considered a backward compatibility violation.
+#
+# In other words, we do not allow the removal of a resource once added
+# to the registry. It must exist SOMEWHERE, but may be deprecated.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Find data we need to enforce
+    some resource in baseline_resources
+    resource.stability == "stable"
+    # Enforce the policy
+    not registry_resource_names[resource.name]
+
+    # Generate human readable error.
+    group_id := resource.id
+    description := sprintf("Resource '%s' no longer exists in semantic conventions", [resource.name])
+}
+
+# Rule: Stable resources cannot become unstable
+#
+# This rule checks that stable resources cannot have their stability level changed.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Find data we need to enforce
+    some resource in baseline_resources
+    resource.stability == "stable"
+    some nresource in registry_resources
+    resource.name = nresource.name
+    # Enforce the policy
+    nresource.stability != "stable"
+
+    # Generate human readable error.
+    group_id := resource.id
+    description := sprintf("Resource '%s' cannot change from stable", [resource.name])
+}
+
+# Rule: Stable Resource required/recommended attributes cannot be dropped.
+#
+# This rule checks that stable resources have stable sets of attributes.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Find data we need to enforce
+    some resource in baseline_resources
+    resource.stability == "stable"
+    some nresource in registry_resources
+    resource.name == nresource.name
+    nresource.stability == "stable" # remove after https://github.com/open-telemetry/semantic-conventions/pull/1423 is merged
+
+    baseline_attributes := { attr.name |
+        some attr in resource.attributes
+        not is_opt_in(attr)
+    }
+    new_attributes := { attr.name |
+        some attr in nresource.attributes
+        not is_opt_in(attr)
+    }
+    missing_attributes := baseline_attributes - new_attributes
+    # Enforce the policy
+    count(missing_attributes) > 0
+
+    # Generate human readable error.
+    group_id := resource.id
+    description := sprintf("Resource '%s' cannot remove required/recommended attributes (missing '%s')", [resource.name, missing_attributes])
 }
 
 

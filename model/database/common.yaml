@@ -1,0 +1,32 @@
+groups:
+  - id: attributes.db.client.minimal
+    type: attribute_group
+    brief: 'Database Client attributes'
+    stability: experimental
+    attributes:
+      - ref: db.operation.name
+        requirement_level:
+          conditionally_required: >
+            If readily available. The operation name MAY be parsed from the query text,
+            in which case it SHOULD be the first operation name found in the query.
+      - ref: server.address
+        brief: >
+          Name of the database host.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If the operation failed and status code is available.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+        note: >
+          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
+          or the canonical name of exception that occurred.
+
+          When using canonical exception type name, instrumentation SHOULD do the best effort to
+          report the most relevant type. For example, if the original exception is wrapped into a
+          generic one, the original exception SHOULD be preferred.
+
+          Instrumentations SHOULD document how `error.type` is populated.

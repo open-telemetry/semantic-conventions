@@ -1,0 +1,74 @@
+groups:
+  - id: registry.messaging.deprecated
+    type: attribute_group
+    stability: experimental
+    display_name: Deprecated Messaging Attributes
+    brief: "Describes deprecated messaging attributes."
+    attributes:
+      - id: messaging.kafka.destination.partition
+        type: int
+        brief: >
+          Deprecated, use `messaging.destination.partition.id` instead.
+        examples: 2
+        deprecated: "Replaced by `messaging.destination.partition.id`."
+        stability: experimental
+      - id: messaging.operation
+        type: string
+        stability: experimental
+        brief: >
+          Deprecated, use `messaging.operation.type` instead.
+        examples: ["publish", "create", "process"]
+        deprecated: "Replaced by `messaging.operation.type`."
+      - id: messaging.client_id
+        type: string
+        stability: experimental
+        brief: >
+          Deprecated, use `messaging.client.id` instead.
+        examples: ['client-5', 'myhost@8742@s8083jm']
+        deprecated: "Replaced by `messaging.client.id`."
+      - id: messaging.kafka.consumer.group
+        type: string
+        brief: >
+          Deprecated, use `messaging.consumer.group.name` instead.
+        deprecated: "Replaced by `messaging.consumer.group.name`."
+        stability: experimental
+        examples: 'my-group'
+      - id: messaging.rocketmq.client_group
+        type: string
+        brief: >
+          Deprecated, use `messaging.consumer.group.name` instead.
+        stability: experimental
+        examples: 'myConsumerGroup'
+        deprecated: "Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans."
+      - id: messaging.eventhubs.consumer.group
+        type: string
+        brief: >
+          Deprecated, use `messaging.consumer.group.name` instead.
+        stability: experimental
+        examples: '$Default'
+        deprecated: "Replaced by `messaging.consumer.group.name`."
+      - id: messaging.servicebus.destination.subscription_name
+        type: string
+        brief: >
+          Deprecated, use `messaging.destination.subscription.name` instead.
+        stability: experimental
+        examples: 'subscription-a'
+        deprecated: "Replaced by `messaging.destination.subscription.name`."
+      - id: messaging.kafka.message.offset
+        type: int
+        stability: experimental
+        brief: >
+          Deprecated, use `messaging.kafka.offset` instead.
+        examples: 42
+        deprecated: "Replaced by `messaging.kafka.offset`."
+      - id: messaging.destination_publish.anonymous
+        type: boolean
+        stability: experimental
+        brief: 'Deprecated, no replacement at this time.'
+        deprecated: "No replacement at this time."
+      - id: messaging.destination_publish.name
+        type: string
+        stability: experimental
+        brief: 'Deprecated, no replacement at this time.'
+        deprecated: "No replacement at this time."
+        examples: ['MyQueue', 'MyTopic']

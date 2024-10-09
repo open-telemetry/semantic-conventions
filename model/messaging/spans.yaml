@@ -1,0 +1,297 @@
+groups:
+  - id: attributes.messaging.trace.minimal
+    type: attribute_group
+    stability: experimental
+    brief: >
+        Defines minimal set of attributes used by all messaging systems.
+    extends: attributes.messaging.common.minimal
+    attributes:
+      - ref: messaging.operation.name
+        requirement_level: required
+        sampling_relevant: true
+      - ref: messaging.operation.type
+        requirement_level:
+          conditionally_required: If applicable.
+        sampling_relevant: true
+      - ref: messaging.destination.name
+        requirement_level:
+          conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
+        sampling_relevant: true
+      - ref: messaging.message.id
+        requirement_level:
+          recommended: If span describes operation on a single message.
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+        # TODO: add messaging.system once https://github.com/open-telemetry/build-tools/issues/192 is implemented
+        # - ref: messaging.system
+        #   sampling_relevant: true
+
+  - id: messaging
+    type: span
+    stability: experimental
+    brief: >
+        Defines a full set of attributes used in messaging systems.
+    extends: attributes.messaging.trace.minimal
+    attributes:
+      - ref: messaging.system
+        requirement_level: required
+        sampling_relevant: true
+      - ref: messaging.client.id
+        requirement_level: recommended
+      - ref: messaging.destination.partition.id
+        requirement_level:
+          recommended: When applicable.
+        sampling_relevant: true
+      - ref: messaging.destination.template
+        requirement_level:
+          conditionally_required: >
+            If available. Instrumentations MUST NOT use `messaging.destination.name` as template
+            unless low-cardinality of destination name is guaranteed.
+        sampling_relevant: true
+      - ref: messaging.destination.temporary
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref: messaging.destination.anonymous
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref: messaging.consumer.group.name
+        requirement_level:
+          conditionally_required: If applicable.
+        sampling_relevant: true
+      - ref: messaging.destination.subscription.name
+        requirement_level:
+          conditionally_required: If applicable.
+        sampling_relevant: true
+      - ref: messaging.message.conversation_id
+      - ref: messaging.message.envelope.size
+        requirement_level: opt_in
+      - ref: messaging.message.body.size
+        requirement_level: opt_in
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: network.peer.address
+        brief: Peer address of the messaging intermediary node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this messaging system.
+        note: >
+          Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
+
+          Network peer address and port are important when the application interacts with individual intermediary nodes directly,
+
+          If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        brief: Peer port of the messaging intermediary node where the operation was performed.
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+
+  - id: messaging.network.attributes
+    type: attribute_group
+    stability: experimental
+    brief: Attributes that describe messaging operation along with network information.
+    extends: attributes.messaging.trace.minimal
+    attributes:
+      - ref: network.peer.address
+        requirement_level: recommended
+        note: >
+          If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level: recommended
+
+  - id: messaging.rabbitmq
+    type: attribute_group
+    stability: experimental
+    extends: messaging.network.attributes
+    brief: >
+      Attributes for RabbitMQ
+    attributes:
+      - ref: messaging.rabbitmq.destination.routing_key
+        requirement_level:
+          conditionally_required: If not empty.
+      - ref: messaging.rabbitmq.message.delivery_tag
+        requirement_level:
+          conditionally_required: When available.
+      - ref: messaging.message.conversation_id
+        brief: >
+          Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
+      - ref: messaging.message.body.size
+        requirement_level: opt_in
+
+  - id: messaging.kafka
+    type: attribute_group
+    stability: experimental
+    extends: attributes.messaging.trace.minimal
+    brief: >
+      Attributes for Apache Kafka
+    attributes:
+      - ref: messaging.consumer.group.name
+        brief: "Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html)."
+        note: ""
+        sampling_relevant: true
+      - ref: messaging.destination.partition.id
+        brief: >
+          String representation of the partition id the message (or batch) is sent to or received from.
+        requirement_level: recommended
+        sampling_relevant: true
+      - ref: messaging.kafka.message.key
+        requirement_level:
+          recommended: If span describes operation on a single message.
+      - ref: messaging.kafka.offset
+        requirement_level:
+          recommended: If span describes operation on a single message.
+      - ref: messaging.kafka.message.tombstone
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.client.id
+      - ref: messaging.message.body.size
+        requirement_level: opt_in
+        brief: The size of the message body in bytes. Only applicable for spans describing single message operations.
+
+  - id: messaging.rocketmq
+    type: attribute_group
+    stability: experimental
+    extends: attributes.messaging.trace.minimal
+    brief: >
+      Attributes for Apache RocketMQ
+    attributes:
+      - ref: messaging.consumer.group.name
+        brief: "RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup)."
+        note: ""
+        sampling_relevant: true
+        requirement_level: required
+      - ref: messaging.rocketmq.namespace
+        requirement_level: required
+      - ref: messaging.rocketmq.message.delivery_timestamp
+        requirement_level:
+          conditionally_required: If the message type is delay and delay time level is not specified.
+      - ref: messaging.rocketmq.message.delay_time_level
+        requirement_level:
+          conditionally_required: If the message type is delay and delivery timestamp is not specified.
+      - ref: messaging.rocketmq.message.group
+        requirement_level:
+          conditionally_required: If the message type is FIFO.
+      - ref: messaging.rocketmq.message.type
+      - ref: messaging.rocketmq.message.tag
+      - ref: messaging.rocketmq.message.keys
+      - ref: messaging.rocketmq.consumption_model
+      - ref: messaging.client.id
+      - ref: messaging.message.body.size
+        requirement_level: opt_in
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+
+  - id: messaging.gcp_pubsub
+    type: attribute_group
+    stability: experimental
+    extends: attributes.messaging.trace.minimal
+    brief: >
+      Attributes for Google Cloud Pub/Sub
+    attributes:
+      - ref: messaging.destination.subscription.name
+        brief: "Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview)."
+        note: ""
+        sampling_relevant: true
+      - ref: messaging.gcp_pubsub.message.ordering_key
+        requirement_level:
+          conditionally_required: If the message type has an ordering key set.
+      - ref: messaging.gcp_pubsub.message.delivery_attempt
+      - ref: messaging.gcp_pubsub.message.ack_deadline
+      - ref: messaging.gcp_pubsub.message.ack_id
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.operation.name
+        note: |
+          The `messaging.operation.name` has the following list of well-known values in the context of Google Pub/Sub.
+          If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+          - `ack` and `nack` for settlement operations
+          - `send` for publishing operations
+          - `modack` for extending the lease for a single message or batch of messages
+          - `subscribe` for operations that represent the time from after the message was received to when the message is acknowledged, negatively acknowledged, or expired.
+          - `create` and `receive` for [common messaging operations](/docs/messaging/messaging-spans.md#operation-types)
+  - id: messaging.servicebus
+    type: attribute_group
+    stability: experimental
+    extends: attributes.messaging.trace.minimal
+    brief: >
+      Attributes for Azure Service Bus
+    attributes:
+      - ref: messaging.destination.subscription.name
+        brief: "Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions)."
+        note: ""
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
+      - ref: messaging.servicebus.message.delivery_count
+        requirement_level:
+          conditionally_required: If delivery count is available and is bigger than 0.
+      - ref: messaging.servicebus.message.enqueued_time
+      - ref: messaging.servicebus.disposition_status
+        requirement_level:
+          conditionally_required: if and only if `messaging.operation` is `settle`.
+      - ref: messaging.message.conversation_id
+        brief: Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        note: |
+          The operation name SHOULD match one of the following values:
+
+          - sender operations: `send`, `schedule`, `cancel_scheduled`
+          - transaction operations: `create_transaction`, `commit_transaction`, `rollback_transaction`
+          - receiver operation: `receive`, `peek`, `receive_deferred`, `renew_message_lock`
+          - settlement operations: `abandon`, `complete`, `defer`, `dead_letter`, `delete`
+          - session operations: `accept_session`, `get_session_state`, `set_session_state`, `renew_session_lock`
+
+          If none of the above operation names apply, the attribute SHOULD be set
+          to the name of the client method in snake_case.
+
+        examples: ['send', 'receive', 'complete', 'process', 'peek']
+
+  - id: messaging.eventhubs
+    type: attribute_group
+    stability: experimental
+    extends: attributes.messaging.trace.minimal
+    brief: >
+      Attributes for Azure Event Hubs
+    attributes:
+      - ref: messaging.consumer.group.name
+        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#consumer-groups)."
+        note: ""
+        requirement_level:
+          conditionally_required: On consumer spans.
+        sampling_relevant: true
+      - ref: messaging.destination.partition.id
+        brief: >
+          String representation of the partition id messages are sent to or received from, unique within the Event Hub.
+        requirement_level:
+          conditionally_required: If available.
+        sampling_relevant: true
+      - ref: messaging.eventhubs.message.enqueued_time
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        examples: ['send', 'receive', 'checkpoint']
+        note: |
+          The operation name SHOULD match one of the following values:
+
+          - `send`
+          - `receive`
+          - `process`
+          - `checkpoint`
+          - `get_partition_properties`
+          - `get_event_hub_properties`
+
+          If none of the above operation names apply, the attribute SHOULD be set
+          to the name of the client method in snake_case.

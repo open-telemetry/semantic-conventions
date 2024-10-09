@@ -1,0 +1,86 @@
+groups:
+  - id: trace.gen_ai.client.common
+    type: span
+    brief: >
+      Describes GenAI operation span.
+    attributes:
+      - ref: gen_ai.system
+        requirement_level: required
+      - ref: gen_ai.request.model
+        requirement_level: required
+        note: >
+            The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
+            then the value must be the exact name of the model requested. If the model is a fine-tuned
+            custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.request.max_tokens
+        requirement_level: recommended
+      - ref: gen_ai.request.temperature
+        requirement_level: recommended
+      - ref: gen_ai.request.top_p
+        requirement_level: recommended
+      - ref: gen_ai.request.stop_sequences
+        requirement_level: recommended
+      - ref: gen_ai.request.frequency_penalty
+        requirement_level: recommended
+      - ref: gen_ai.request.presence_penalty
+        requirement_level: recommended
+      - ref: gen_ai.response.id
+        requirement_level: recommended
+      - ref: gen_ai.response.model
+        requirement_level: recommended
+        note: >
+          If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor,
+          then the value must be the exact name of the model actually used. If the model is a
+          fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: gen_ai.response.finish_reasons
+        requirement_level: recommended
+      - ref: gen_ai.usage.input_tokens
+        requirement_level: recommended
+      - ref: gen_ai.usage.output_tokens
+        requirement_level: recommended
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
+
+  - id: trace.gen_ai.client
+    extends: trace.gen_ai.client.common
+    brief: >
+      Describes a GenAI operation span.
+    attributes:
+      - ref: gen_ai.request.top_k
+        requirement_level: recommended
+
+  - id: trace.gen_ai.openai.client
+    extends: trace.gen_ai.client.common
+    brief: >
+      Describes an OpenAI operation span.
+    attributes:
+      - ref: gen_ai.openai.request.seed
+        requirement_level:
+          conditionally_required: if the request includes a seed
+      - ref: gen_ai.openai.request.response_format
+        requirement_level:
+          conditionally_required: if the request includes a response_format
+      - ref: gen_ai.openai.request.service_tier
+        requirement_level:
+          conditionally_required: if the request includes a service_tier and the value is not 'auto'
+      - ref: gen_ai.openai.response.service_tier
+        requirement_level:
+          conditionally_required: if the response was received and includes a service_tier
+      - ref: gen_ai.usage.input_tokens
+        brief: The number of tokens used in the prompt sent to OpenAI.
+      - ref: gen_ai.usage.output_tokens
+        brief: The number of tokens used in the completions from OpenAI.
