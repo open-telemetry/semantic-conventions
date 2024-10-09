@@ -10,16 +10,16 @@ This document defines semantic conventions to apply when instrumenting the Graph
 operations to attributes on a Span.
 
 The **span name** SHOULD be of the format `{graphql.operation.type}` provided
-`graphql.operation.type` is available. If `graphql.operation.type` is not available, 
+`graphql.operation.type` is available. If `graphql.operation.type` is not available,
 the span SHOULD be named `GraphQL Operation`.
 
 > **Warning**
-> The `graphql.operation.name` value is provided by the client and can have high 
-> cardinality. Using it in the GraphQL server span name (by default) is 
+> The `graphql.operation.name` value is provided by the client and can have high
+> cardinality. Using it in the GraphQL server span name (by default) is
 > NOT RECOMMENDED.
 >
-> Instrumentation MAY provide a configuration option to enable a more descriptive 
-> span name following `{graphql.operation.type} {graphql.operation.name}` format 
+> Instrumentation MAY provide a configuration option to enable a more descriptive
+> span name following `{graphql.operation.type} {graphql.operation.name}` format
 > when `graphql.operation.name` is available.
 
 <!-- semconv graphql -->
