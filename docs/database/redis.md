@@ -63,7 +63,6 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[9]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
-This attribute has stability level RELEASE CANDIDATE.
 
 **[10]:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
