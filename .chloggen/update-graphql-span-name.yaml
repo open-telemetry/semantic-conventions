@@ -1,4 +1,4 @@
 change_type: breaking
 component: graphql
-note: Updates the GraphQL Span name convention to be the `graphql.operation.type` attribute
+note: Update the GraphQL Span name convention
 issues: [1361]
