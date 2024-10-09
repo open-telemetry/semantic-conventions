@@ -1,0 +1,9 @@
+groups:
+  - id: opentracing
+    type: attribute_group
+    brief: 'This document defines semantic conventions for the OpenTracing Shim'
+    note: >
+        These conventions are used by the OpenTracing Shim layer.
+    attributes:
+      - ref: opentracing.ref_type
+        requirement_level: recommended

@@ -1,0 +1,65 @@
+groups:
+  # COMMON METRICS
+  - id: metric.hw.attributes
+    type: attribute_group
+    brief: "Attributes for hardware metrics"
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.type
+        requirement_level: required
+
+  - id: metric.hw.energy
+    type: metric
+    metric_name: hw.energy
+    stability: experimental
+    brief: "Energy consumed by the component"
+    instrument: counter
+    unit: "J"
+    extends: metric.hw.attributes
+
+  - id: metric.hw.errors
+    type: metric
+    metric_name: hw.errors
+    stability: experimental
+    brief: "Number of errors encountered by the component"
+    instrument: counter
+    unit: "{error}"
+    extends: metric.hw.attributes
+    attributes:
+      - ref: error.type
+        brief: "The type of error encountered by the component"
+        examples: ['uncorrected', 'zero_buffer_credit', 'crc', 'bad_sector']
+        requirement_level:
+          conditionally_required: if and only if an error has occurred
+        note: >
+          The `error.type` SHOULD match the error code reported by the component, the canonical name of the error,
+          or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
+
+  - id: metric.hw.power
+    type: metric
+    metric_name: hw.power
+    stability: experimental
+    brief: "Instantaneous power consumed by the component"
+    note: >
+      It is recommended to report `hw.energy` instead of `hw.power` when possible.
+    instrument: gauge
+    unit: "W"
+    extends: metric.hw.attributes
+
+  - id: metric.hw.status
+    type: metric
+    metric_name: hw.status
+    stability: experimental
+    brief: "Operational status: `1` (true) or `0` (false) for each of the possible states"
+    instrument: updowncounter
+    unit: "1"
+    extends: metric.hw.attributes
+    note: >
+      `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a
+      [*StateSet* as defined in OpenMetrics](https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md#stateset).
+      This semantic convention will be updated once *StateSet* is specified in OpenTelemetry. This planned change
+      is not expected to have any consequence on the way users query their timeseries backend to retrieve the
+      values of `hw.status` over time.
+    attributes:
+      - ref: hw.state
+        requirement_level: required

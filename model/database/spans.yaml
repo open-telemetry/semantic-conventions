@@ -1,0 +1,703 @@
+groups:
+  - id: trace.db.common.minimal
+    extends: attributes.db.client.minimal
+    type: attribute_group
+    stability: experimental
+    brief: This group defines the attributes used to perform database client calls.
+    attributes:
+      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # - ref: db.system
+      #   sampling_relevant: true
+      - ref: db.operation.name
+        sampling_relevant: true
+      - ref: db.operation.batch.size
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+
+  - id: trace.db.common.query
+    extends: trace.db.common.minimal
+    type: attribute_group
+    stability: experimental
+    brief: This group defines the attributes used to perform database client calls.
+    attributes:
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: >
+            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
+            sensitive data, e.g. by redacting all literal values present in the query text.
+
+            Parameterized query text SHOULD be collected by default
+            (the query parameter values themselves are opt-in,
+            see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
+      - ref: db.query.parameter
+        requirement_level: opt_in
+
+  - id: trace.db.common.query_and_collection
+    extends: trace.db.common.minimal
+    type: attribute_group
+    stability: experimental
+    brief: This group defines the attributes used to perform database client calls.
+    attributes:
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: >
+            SHOULD be collected by default only if there is sanitization that excludes sensitive information.
+            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+      - ref: db.query.parameter
+        requirement_level: opt_in
+      - ref: db.collection.name
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: >
+            If readily available. The collection name MAY be parsed from the query text,
+            in which case it SHOULD be the first collection name found in the query.
+
+  - id: trace.db.common.full
+    type: attribute_group
+    stability: experimental
+    brief: This group documents attributes that describe database call along with network information.
+    extends: trace.db.common.query_and_collection
+    attributes:
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+      - ref: db.system
+        sampling_relevant: true
+        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
+        requirement_level: required
+      - ref: db.namespace
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If available.
+
+  - id: db
+    type: span
+    stability: experimental
+    brief: This span defines the attributes used to perform database client calls.
+    span_kind: client
+    extends: trace.db.common.full
+
+  - id: db.mssql
+    type: span
+    stability: experimental
+    extends: db.sql
+    brief: >
+      Attributes for Microsoft SQL Server
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: >
+          The database associated with the connection, qualified by the instance name.
+        note: |
+          When connected to a default instance, `db.namespace` SHOULD be set to the name of
+          the database. When connected to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
+          `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
+
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DB_NAME()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["instance1.products", "customers"]
+      - ref: db.response.status_code
+        brief: >
+          [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number
+          represented as a string.
+        note: >
+          Microsoft SQL Server does not report SQLSTATE.
+        examples: ["102", "40020"]
+
+  - id: db.postgresql
+    type: span
+    extends: db.sql
+    brief: >
+      Attributes for PostgreSQL
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: >
+          The schema associated with the connection, qualified by the database name.
+        note: |
+          `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
+
+          A connection's currently associated database may change during its lifetime, e.g. from executing `SET search_path TO <schema>`.
+          If the search path has multiple schemas, the first schema in the search path SHOULD be used.
+
+          If instrumentation is unable to capture the connection's currently associated schema on each query
+          without triggering an additional query to be executed (e.g. `SELECT current_schema()`),
+          then it is RECOMMENDED to fallback and use the schema provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the schema provided when the connection was established.
+
+          Instrumentation MAY use the user name when the connection was established as a stand-in for the schema name.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the user provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["mydatabase.products", "mydatabase.customers"]
+      - ref: db.response.status_code
+        brief: >
+          [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
+        examples: ["08000", "08P01"]
+
+  - id: db.mysql
+    type: span
+    extends: db.sql
+    brief: >
+      Attributes for MySQL
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The database associated with the connection.
+        note: |
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["products", "customers"]
+      - ref: db.response.status_code
+        brief: >
+          [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html).
+        examples: ["1005", "MY-010016"]
+
+  - id: db.mariadb
+    type: span
+    extends: db.sql
+    brief: >
+      Attributes for MariaDB
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The database associated with the connection.
+        note: |
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["products", "customers"]
+      - ref: db.response.status_code
+        brief: >
+          [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/)
+          represented as a string.
+        examples: ["1008", "3058"]
+
+  - id: db.cassandra
+    type: span
+    stability: experimental
+    extends: trace.db.common.query_and_collection
+    brief: >
+      Attributes for Cassandra
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The keyspace associated with the session.
+        examples: ["mykeyspace"]
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.cassandra.page_size
+      - ref: db.cassandra.consistency_level
+      - ref: db.collection.name
+        brief: The name of the Cassandra table that the operation is acting upon.
+      - ref: db.cassandra.idempotence
+      - ref: db.cassandra.speculative_execution_count
+      - ref: db.cassandra.coordinator.id
+      - ref: db.cassandra.coordinator.dc
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended
+        note: >
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+      - ref: db.response.status_code
+        brief: >
+          [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string.
+        examples: ["102", "40020"]
+  - id: db.hbase
+    type: span
+    stability: experimental
+    extends: trace.db.common.minimal
+    brief: >
+      Attributes for HBase
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The HBase namespace.
+        requirement_level:
+          conditionally_required: If applicable.
+        examples: ['mynamespace']
+      - ref: db.collection.name
+        sampling_relevant: true
+        brief: The HBase table name.
+        requirement_level:
+          conditionally_required: If applicable.
+        note: >
+          If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
+        examples: ['mytable', 'ns:table']
+      - ref: db.response.status_code
+        brief: >
+          Protocol-specific response code recorded as string.
+        examples: ["200", "409", "14"]
+        requirement_level:
+          conditionally_required: If response was received.
+  - id: db.couchdb
+    type: span
+    stability: experimental
+    extends: trace.db.common.minimal
+    brief: >
+      Attributes for CouchDB
+    attributes:
+      - ref: db.operation.name
+        sampling_relevant: true
+        brief: >
+          The HTTP method + the target REST route.
+        examples: ['GET /{db}/{docid}']
+        note: >
+          In **CouchDB**, `db.operation.name` should be set to the HTTP method +
+          the target REST route according to the API reference documentation.
+          For example, when retrieving a document, `db.operation.name` would be set to
+          (literally, i.e., without replacing the placeholders with concrete values):
+          [`GET /{db}/{docid}`](https://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
+      - ref: db.namespace
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If available.
+        note: ""  # overriding the base note
+      - ref: db.response.status_code
+        brief: >
+          The HTTP response code returned by the Couch DB.
+        examples: ["200", "201", "429"]
+        requirement_level:
+          conditionally_required: If response was received and the HTTP response code is available.
+
+  - id: db.redis
+    type: span
+    stability: experimental
+    extends: trace.db.common.query
+    brief: >
+      Attributes for Redis
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: >
+          The [database index] associated with the connection, represented as a string.
+        requirement_level:
+          conditionally_required: If and only if it can be captured reliably.
+        note: |
+          A connection's currently associated database index may change during its lifetime, e.g. from executing `SELECT <index>`.
+
+          If instrumentation is unable to capture the connection's currently associated database index on each query
+          without triggering an additional query to be executed,
+          then it is RECOMMENDED to fallback and use the database index provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
+        examples: ["0", "1", "15"]
+      - ref: db.query.text
+        sampling_relevant: true
+        brief: >
+          The full syntax of the Redis CLI command.
+        examples: ["HMSET myhash field1 'Hello' field2 'World'"]
+        note: >
+          For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
+          If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended
+        note: >
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+      - ref: db.response.status_code
+        brief: >
+          The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix.
+        examples: ["ERR", "WRONGTYPE", "CLUSTERDOWN"]
+
+  - id: db.mongodb
+    type: span
+    stability: experimental
+    extends: trace.db.common.minimal
+    brief: >
+      Attributes for MongoDB
+    attributes:
+      - ref: db.operation.name
+        sampling_relevant: true
+        brief: >
+          The name of the command being executed.
+        note: >
+          See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
+        examples: ['findAndModify', 'getMore', 'update']
+      - ref: db.collection.name
+        sampling_relevant: true
+        brief:
+          The MongoDB collection being accessed within the database stated in `db.namespace`.
+        requirement_level: required
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The MongoDB database name.
+        requirement_level:
+          conditionally_required: If available.
+        note: ""  # overriding the base note
+      - ref: db.response.status_code
+        brief: >
+          [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string.
+        requirement_level:
+          conditionally_required: If the operation failed and error code is available.
+        examples: ["36", "11602"]
+
+  - id: db.elasticsearch
+    type: span
+    stability: experimental
+    extends: trace.db.common.minimal
+    brief: >
+      Attributes for Elasticsearch
+    attributes:
+      - ref: http.request.method
+        sampling_relevant: true
+        requirement_level: required
+      - ref: db.operation.name
+        requirement_level: required
+        note: >
+          The `db.operation.name` SHOULD match the endpoint identifier provided in the request
+          (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
+        examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
+      - ref: url.full
+        sampling_relevant: true
+        requirement_level: required
+        examples: [ 'https://localhost:9200/index/_search?q=user.id:kimchy' ]
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: >
+            Should be collected by default for search-type queries and only if there is sanitization that excludes
+            sensitive information.
+        brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
+        examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
+      - ref: db.collection.name
+        sampling_relevant: true
+        requirement_level: recommended
+        brief: The index or data stream against which the query is executed.
+        note: >
+          The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those.
+          If the query doesn't target a specific index, this field MUST NOT be set.
+        examples: [ 'my_index', 'index1, index2' ]
+      - ref: db.namespace
+        sampling_relevant: true
+        note: >
+          When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+        brief: The name of the Elasticsearch cluster which the client connects to.
+        requirement_level: recommended
+      - ref: db.elasticsearch.node.name
+        note: >
+          When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+        requirement_level: recommended
+      - ref: db.elasticsearch.path_parts
+        requirement_level:
+          conditionally_required: when the url has dynamic values
+      - ref: db.response.status_code
+        brief: >
+          The HTTP response code returned by the Elasticsearch cluster.
+        examples: ["200", "201", "429"]
+        requirement_level:
+          conditionally_required: If response was received.
+  - id: db.sql
+    type: span
+    stability: experimental
+    extends: trace.db.common.query_and_collection
+    brief: >
+      Attributes for SQL databases
+    attributes:
+      - ref: db.operation.name
+        note: >
+          This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
+
+          In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
+        examples: ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'mystoredproc']
+      - ref: db.collection.name
+        brief: The name of the SQL table that the operation is acting upon.
+        examples: ['users', 'dbo.products']
+      - ref: db.namespace
+        brief: >
+          The database associated with the connection,
+          fully qualified within the server address and port.
+        requirement_level:
+          conditionally_required: If available without an additional network call.
+        note: |
+          If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
+          (potentially using database system specific conventions) from most general to most
+          specific namespace component, and more specific namespaces SHOULD NOT be captured without
+          the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+
+          Unless specified by the system-specific semantic convention, the `db.namespace` attribute matches
+          the name of the database being accessed.
+
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+      - ref: db.response.status_code
+        brief: >
+          Database response code recorded as string.
+        note: |
+          SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
+          return code which is adopted by some database systems like PostgreSQL.
+          See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
+          for the details.
+
+          Other systems like MySQL, Oracle, or MS SQL Server define vendor-specific
+          error codes. Database SQL drivers usually provide access to both properties.
+          For example, in Java, the [`SQLException`](https://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html)
+          class reports them with `getSQLState()` and `getErrorCode()` methods.
+
+          Instrumentations SHOULD populate the `db.response.status_code` with the
+          the most specific code available to them.
+
+          Here's a non-exhaustive list of databases that report vendor-specific
+          codes with granularity higher than SQLSTATE (or don't report SQLSTATE
+          at all):
+
+          - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
+          - [Maria DB error codes](https://mariadb.com/kb/en/mariadb-error-code-reference/)
+          - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
+          - [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
+          - [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
+          - [SQLite result codes](https://www.sqlite.org/rescode.html)
+
+          These systems SHOULD set the `db.response.status_code` to a
+          known vendor-specific error code. If only SQLSTATE is available,
+          it SHOULD be used.
+
+          When multiple error codes are available and specificity is unclear,
+          instrumentation SHOULD set the `db.response.status_code` to the
+          concatenated string of all codes with '/' used as a separator.
+
+          For example, generic DB instrumentation that detected an error and has
+          SQLSTATE `"42000"` and vendor-specific `1071` should set
+          `db.response.status_code` to `"42000/1071"`."
+
+        examples: ["ORA-17027", "1052", "2201B"]
+        requirement_level:
+          conditionally_required: If response has ended with warning or an error.
+  - id: db.cosmosdb
+    type: span
+    stability: experimental
+    extends: trace.db.common.query_and_collection
+    brief: >
+      Attributes for Cosmos DB.
+    attributes:
+      - ref: db.cosmosdb.client_id
+      - ref: db.cosmosdb.operation_type
+        requirement_level:
+          conditionally_required: when performing one of the operations in this list
+      - ref: user_agent.original
+        brief: 'Full user-agent string is generated by Cosmos DB SDK'
+        note: >
+          The user-agent value is generated by SDK which is a combination of<br>
+          `sdk_version` : Current version of SDK. e.g. 'cosmos-netstandard-sdk/3.23.0'<br>
+          `direct_pkg_version` : Direct package version used by Cosmos DB SDK. e.g. '3.23.1'<br>
+          `number_of_client_instances` : Number of cosmos client instances created by the application. e.g. '1'<br>
+          `type_of_machine_architecture` : Machine architecture. e.g. 'X64'<br>
+          `operating_system` : Operating System. e.g. 'Linux 5.4.0-1098-azure 104 18'<br>
+          `runtime_framework` : Runtime Framework. e.g. '.NET Core 3.1.32'<br>
+          `failover_information` : Generated key to determine if region failover enabled.
+             Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
+             Default value is "NS".
+        examples: ['cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|']
+      - ref: db.cosmosdb.connection_mode
+        requirement_level:
+          conditionally_required: if not `gateway` (the default value is assumed to be `gateway`).
+      - ref: db.collection.name
+        brief: >
+          Cosmos DB container name.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        requirement_level:
+          conditionally_required: if available
+      - ref: db.cosmosdb.request_content_length
+      - ref: db.response.status_code
+        brief: >
+          Cosmos DB status code.
+        examples: ["200", "201"]
+        requirement_level:
+          conditionally_required: if response was received
+      - ref: db.cosmosdb.sub_status_code
+        requirement_level:
+          conditionally_required: when response was received and contained sub-code.
+      - ref: db.cosmosdb.request_charge
+        requirement_level:
+          conditionally_required: when available
+      - ref: db.namespace
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If available.
+        note: ""  # overriding the base note
+      - ref: az.namespace
+        note: >
+          When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all
+          operations performed by Cosmos DB client.
+        examples: ["Microsoft.DocumentDB"]
+      - ref: db.operation.name
+        note: |
+          The `db.operation.name` has the following list of well-known values.
+          If one of them applies, then the respective value MUST be used.
+
+          Batch operations:
+
+          - `execute_batch`
+
+          Bulk operations:
+
+          - `execute_bulk` SHOULD be used on spans reported for methods like
+            [`executeBulkOperations`](https://javadoc.io/doc/com.azure/azure-cosmos/latest/com/azure/cosmos/CosmosAsyncContainer.html#executeBulkOperations)).
+            which represents a bulk execution of multiple operations.
+          - `bulk_{operation name}` (`bulk_create_item`, `bulk_upsert_item`, etc) SHOULD be used on spans describing individual operations (when they are reported)
+            within the bulk. This pattern SHOULD be used when instrumentation creates span per each operation, but operations are buffered and then performed in bulk.
+            For example, this applies when [`AllowBulkExecution`](https://learn.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.allowbulkexecution)
+            property is configured on the `Microsoft.Azure.Cosmos` client.
+
+          Change feed operations:
+
+          - `query_change_feed`
+
+          Conflicts operations:
+
+          - `delete_conflict`
+          - `query_conflicts`
+          - `read_all_conflicts`
+          - `read_conflict`
+
+          Container operations:
+
+          - `create_container`
+          - `create_container_if_not_exists`
+          - `delete_container`
+          - `query_containers`
+          - `read_all_containers`
+          - `read_container`
+          - `read_container_throughput`
+          - `replace_container`
+          - `replace_container_throughput`
+
+          Database operations:
+
+          - `create_database`
+          - `create_database_if_not_exists`
+          - `delete_database`
+          - `query_databases`
+          - `read_all_databases`
+          - `read_database`
+          - `read_database_throughput`
+          - `replace_database_throughput`
+
+          Encryption key operations:
+
+          - `create_client_encryption_key`
+          - `query_client_encryption_keys`
+          - `read_all_client_encryption_keys`
+          - `read_client_encryption_key`
+          - `replace_client_encryption_key`
+
+          Item operations:
+
+          - `create_item`
+          - `delete_all_items_by_partition_key`
+          - `delete_item`
+          - `patch_item`
+          - `query_items`
+          - `read_all_items`
+          - `read_all_items_of_logical_partition`
+          - `read_many_items`
+          - `read_item`
+          - `replace_item`
+          - `upsert_item`
+
+          Permission operations:
+
+          - `create_permission`
+          - `delete_permission`
+          - `query_permissions`
+          - `read_all_permissions`
+          - `read_permission`
+          - `replace_permission`
+          - `upsert_permission`
+
+          Stored procedure operations:
+
+          - `create_stored_procedure`
+          - `delete_stored_procedure`
+          - `execute_stored_procedure`
+          - `query_stored_procedures`
+          - `read_all_stored_procedures`
+          - `read_stored_procedure`
+          - `replace_stored_procedure`
+
+          Trigger operations:
+
+          - `create_trigger`
+          - `delete_trigger`
+          - `query_triggers`
+          - `read_all_triggers`
+          - `read_trigger`
+          - `replace_trigger`
+
+          User operations:
+
+          - `create_user`
+          - `delete_user`
+          - `query_users`
+          - `read_all_users`
+          - `read_user`
+          - `replace_user`
+          - `upsert_user`
+
+          User-defined function operations:
+
+          - `create_user_defined_function`
+          - `delete_user_defined_function`
+          - `query_user_defined_functions`
+          - `read_all_user_defined_functions`
+          - `read_user_defined_function`
+
+          If none of them applies, it's RECOMMENDED to use language-agnostic representation of
+          client method name in snake_case. Instrumentations SHOULD document
+          additional values when introducing new operations.
+
+        examples: ['create_item', 'query_items', 'read_item']
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (443).

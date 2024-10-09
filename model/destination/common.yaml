@@ -1,0 +1,8 @@
+groups:
+  - id: destination
+    type: attribute_group
+    brief: >
+      General destination attributes.
+    attributes:
+      - ref: destination.address
+      - ref: destination.port

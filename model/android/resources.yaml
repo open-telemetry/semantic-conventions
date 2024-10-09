@@ -1,0 +1,8 @@
+groups:
+  - id: android
+    type: resource
+    name: android
+    brief: >
+      The Android platform on which the Android application is running.
+    attributes:
+      - ref: android.os.api_level
