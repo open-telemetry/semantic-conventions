@@ -54,6 +54,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[9]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[10]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 

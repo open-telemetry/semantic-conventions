@@ -99,6 +99,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[9]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[10]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[11]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
