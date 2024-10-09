@@ -12,10 +12,10 @@ linkTitle: Metrics
 
 - [Database operation](#database-operation)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
-- [Experimental](#experimental)
-    - [Metric: `db.query.limit`](#metric-dbquerylimit)
+  - [Metric: `db.query.limit`](#metric-dbquerylimit)
   - [Metric: `db.query.response.item_count`](#metric-dbqueryresponseitem_count)
-- [Connection pools](#connection-pools)
+- [Experimental](#experimental)
+  - [Connection pools](#connection-pools)
     - [Metric: `db.client.connection.count`](#metric-dbclientconnectioncount)
     - [Metric: `db.client.connection.idle.max`](#metric-dbclientconnectionidlemax)
     - [Metric: `db.client.connection.idle.min`](#metric-dbclientconnectionidlemin)
@@ -230,11 +230,13 @@ of `[ 100, 500, 1000, 1500, 2000]`.
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
 For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[2]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
 **[3]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[4]:** If the operation failed and status code is available.
 
@@ -280,7 +282,7 @@ of `[ 100, 500, 1000, 1500, 2000]`.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.query.response.item_count` | Histogram | `{count}` | Actual item count returned by the feed operation (ex. Query, ReadAll, ReadMany, Change Feed) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.query.response.item_count` | Histogram | `{count}` | The actual number of records returned by the query. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -293,11 +295,13 @@ of `[ 100, 500, 1000, 1500, 2000]`.
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
 For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[2]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
 **[3]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[4]:** If the operation failed and status code is available.
 
