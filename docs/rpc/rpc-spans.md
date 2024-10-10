@@ -269,9 +269,9 @@ The event name MUST be `rpc.message`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-Described the message sent or received in the scope of RPC call.
+Describes a message sent or received within the context of an RPC call.
 
-In the lifetime of an RPC stream, an event for each message sent/received on client and server spans SHOULD be created. In case of unary calls only one sent	client and server spans SHOULD be created. In case of unary calls only one sent and one received message will be recorded for both client and server spans.	and one received message will be recorded for both client and server spans.
+In the lifetime of an RPC stream, an event for each message sent/received on client and server spans SHOULD be created. In case of unary calls only one sent and one received message will be recorded for both client and server spans.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

@@ -4,7 +4,7 @@ groups:
     stability: experimental
     name: feature_flag
     brief: >
-      Describes Feature Flag Evaluation event.
+      This event describes feature flag evaluation.
     attributes:
       - ref: feature_flag.key
         requirement_level: required

@@ -4,7 +4,7 @@ groups:
     stability: experimental
     name: feature_flag
     brief: >
-      Describes Feature Flag Evaluation event represented using Log Records.
+      This event describes feature flag evaluation representation on a Log Record.
     attributes:
       - ref: feature_flag.key
       - ref: feature_flag.provider_name

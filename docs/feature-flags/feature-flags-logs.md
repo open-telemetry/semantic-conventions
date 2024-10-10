@@ -50,7 +50,7 @@ The event name MUST be `feature_flag`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-Describes Feature Flag Evaluation event represented using Log Records.
+This event describes feature flag evaluation representation on a Log Record.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
