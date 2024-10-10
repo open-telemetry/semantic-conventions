@@ -160,3 +160,9 @@ groups:
           This attribute is only applicable to symbolic links.
         stability: experimental
         examples: ['/usr/bin/python3']
+      - id: file.zone_identifier
+        type: int
+        brief: >
+          Windows Zone Identifier for a file.
+        stability: experimental
+        examples: 3

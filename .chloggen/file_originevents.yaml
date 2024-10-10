@@ -10,7 +10,7 @@ change_type: enhancement
 component: file
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: add file.origin_referrer_url and file.origin_url
+note: add file.origin_referrer_url, file.origin_url, and file.zone_identifier
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.

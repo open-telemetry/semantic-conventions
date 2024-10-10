@@ -32,6 +32,7 @@ Describes file attributes.
 | `file.path`                      | string   | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `file.size`                      | int      | File size in bytes.                                                                                   |                                                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `file.symbolic_link.target_path` | string   | Path to the target of a symbolic link. [9]                                                            | `/usr/bin/python3`                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file.zone_identifier`           | int      | Windows Zone Identifier for a file.                                                                   | `3`                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 
