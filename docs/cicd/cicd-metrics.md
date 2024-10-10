@@ -81,7 +81,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.change.duration` | Histogram | `s` | The time duration a change (pull request/merge request/changelist) has been in a given state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.change.duration` | Gauge | `s` | The time duration a change (pull request/merge request/changelist) has been in a given state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -118,7 +118,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.change.time_to_approval` | Histogram | `s` | The amount of time it took a change (pull request/merge request/changelist) to go from open to approved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.change.time_to_approval` | Gauge | `s` | The amount of time it took a change (pull request/merge request/changelist) to go from open to approved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

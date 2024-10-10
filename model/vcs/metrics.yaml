@@ -15,7 +15,7 @@ groups:
     type: metric
     metric_name: vcs.change.duration
     brief: 'The time duration a change (pull request/merge request/changelist) has been in a given state.'
-    instrument: histogram
+    instrument: gauge
     unit: "s"
     stability: experimental
     attributes:
@@ -29,7 +29,7 @@ groups:
     type: metric
     metric_name: vcs.change.time_to_approval
     brief: 'The amount of time it took a change (pull request/merge request/changelist) to go from open to approved'
-    instrument: histogram
+    instrument: gauge
     unit: "s"
     stability: experimental
     attributes:
