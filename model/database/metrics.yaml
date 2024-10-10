@@ -33,6 +33,7 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
+
   - id: metric.db.client.connection.count
     type: metric
     metric_name: db.client.connection.count
@@ -133,3 +134,12 @@ groups:
     attributes:
       - ref: db.client.connection.pool.name
         requirement_level: required
+
+  - id: metric.db.query.response.item_count
+    type: metric
+    metric_name: db.query.response.item_count
+    brief: "The actual number of records returned by the query."
+    instrument: histogram
+    unit: "{count}"
+    stability: experimental
+    extends: attributes.db.client.minimal
