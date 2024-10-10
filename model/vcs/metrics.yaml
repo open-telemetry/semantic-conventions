@@ -60,7 +60,7 @@ groups:
   - id: metric.vcs.change.lines_delta
     type: metric
     metric_name: vcs.change.lines_delta
-    brief: 'The number of lines added/removed in a change relative to the target branch of the change)'
+    brief: 'The number of lines added/removed in a change relative to the target branch of the change'
     instrument: gauge
     unit: "{line}"
     stability: experimental

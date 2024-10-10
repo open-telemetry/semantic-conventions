@@ -76,7 +76,7 @@ groups:
               stability: experimental
         stability: experimental
         brief: >
-          The type of .
+          The type of revision comparison.
         examples: ["ahead", "behind"]
       - id: vcs.line_change.type
         type:
