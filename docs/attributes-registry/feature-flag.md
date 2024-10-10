@@ -6,15 +6,22 @@
 
 # Feature Flag
 
+- [Feature Flag Attributes](#feature-flag-attributes)
+- [Deprecated Feature Flag Attributes](#deprecated-feature-flag-attributes)
+
 ## Feature Flag Attributes
 
 This document defines attributes for Feature Flags.
 
-| Attribute                    | Type   | Description                                                                                                             | Examples            | Stability                                                        |
-| ---------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------- |
-| `feature_flag.key`           | string | The unique identifier of the feature flag.                                                                              | `logo-color`        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `feature_flag.provider_name` | string | The name of the service provider that performs the flag evaluation.                                                     | `Flag Manager`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `feature_flag.variant`       | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                     | Type   | Description                                                                                                             | Examples                               | Stability                                                        |
+| ----------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
+| `feature_flag.context.id`     | string | The unique identifier for the flag evaluation context. For example, the targeting key.                                  | `5157782b-2203-4c80-a857-dbbd5e7761db` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `feature_flag.environment.id` | string | The identifier of the environment which the feature flag belongs to in a flag management system.                        | `proj-1`; `ab98sgs`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `feature_flag.key`            | string | The unique identifier of the feature flag.                                                                              | `logo-color`                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `feature_flag.provider.id`    | string | The name of the service provider that performs the flag evaluation.                                                     | `Flag Manager`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `feature_flag.value`          | string | The evaluated value of the feature flag.                                                                                | `#ff0000`; `1`; `true`                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `feature_flag.variant`        | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `feature_flag.version`        | string | The version of the ruleset used during the evaluation. Could use a hash if a version is not available.                  | `1`; `01ABCDEF`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
@@ -24,3 +31,11 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 A stringified version of the value can be used in situations where a
 semantic identifier is unavailable. String representation of the value
 should be determined by the implementer.
+
+## Deprecated Feature Flag Attributes
+
+Describes deprecated Feature Flag attributes.
+
+| Attribute                    | Type   | Description                                         | Examples       | Stability                                                                                              |
+| ---------------------------- | ------ | --------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------ |
+| `feature_flag.provider_name` | string | Deprecated, use `feature_flag.provider.id` instead. | `Flag Manager` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.id`. |

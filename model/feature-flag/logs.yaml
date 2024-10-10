@@ -1,11 +1,22 @@
 groups:
-  - id: log-feature_flag
+  - id: feature_flag.evaluation
     type: event
-    name: feature_flag
+    name: feature_flag.evaluation
     brief: >
-      This document defines attributes for feature flag evaluations
-      represented using Log Records.
+      This semantic convention defines the attributes used to represent a
+      feature flag evaluation as an event.
     attributes:
       - ref: feature_flag.key
-      - ref: feature_flag.provider_name
+        requirement_level: required
       - ref: feature_flag.variant
+        requirement_level: required
+      - ref: feature_flag.provider.id
+        requirement_level: recommended
+      - ref: feature_flag.context.id
+        requirement_level: recommended
+      - ref: feature_flag.version
+        requirement_level: recommended
+      - ref: feature_flag.environment.id
+        requirement_level: recommended
+      - ref: feature_flag.value
+        requirement_level: opt_in
