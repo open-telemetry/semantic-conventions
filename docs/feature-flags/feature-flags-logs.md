@@ -21,7 +21,7 @@ section of the trace semantic convention for feature flag evaluations.
 <!-- toc -->
 
 - [Recording an Evaluation](#recording-an-evaluation)
-- [Attributes](#attributes)
+- [Evaluation event](#evaluation-event)
 
 <!-- tocstop -->
 

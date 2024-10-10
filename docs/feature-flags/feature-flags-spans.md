@@ -18,6 +18,7 @@ To record an evaluation outside of a transaction context, consider
 - [Motivation](#motivation)
 - [Overview](#overview)
 - [Convention](#convention)
+  - [Evaluation event](#evaluation-event)
 
 <!-- tocstop -->
 
