@@ -10,15 +10,11 @@ linkTitle: Generative AI events
 
 <!-- toc -->
 
-- [Common attributes](#common-attributes)
 - [System event](#system-event)
 - [User event](#user-event)
 - [Assistant event](#assistant-event)
-  - [`ToolCall` object](#toolcall-object)
-  - [`Function` object](#function-object)
 - [Tool event](#tool-event)
 - [Choice event](#choice-event)
-  - [`Message` object](#message-object)
 - [Custom events](#custom-events)
 - [Examples](#examples)
   - [Chat completion](#chat-completion)
@@ -94,7 +90,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-| Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Body fields:**
+
+| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `content` | undefined | The contents of the system message. | `You're a friendly bot that answers questions about weather.` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `role` | string | The actual role of the message author as passed in the message. | `system`; `instruction` | `Conditionally Required` if available and not equal to `system`.` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -149,7 +147,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-| Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Body fields:**
+
+| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `content` | undefined | The contents of the user message. | `What's the weather in Paris.` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `role` | string | The actual role of the message author as passed in the message. | `user`; `customer` | `Conditionally Required` if available and not equal to `user`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -203,7 +203,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-| Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Body fields:**
+
+| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `content` | undefined | The contents of the tool message. | `The weather in Paris is rainy and overcast, with temperatures around 57°F.` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `role` | string | The actual role of the message author as passed in the message. | `assistant`; `bot` | `Conditionally Required` if available and not equal to `assistant`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -270,7 +272,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-| Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Body fields:**
+
+| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `content` | undefined | The contents of the tool message. | `rainy, 57°F` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `id` | string | Tool call id that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -325,7 +329,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
-| Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Body fields:**
+
+| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `finish_reason` | enum | The reason the model stopped generating tokens. | `stop`; `tool_calls`; `content_filter` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `index` | int | The index of the choice in the list of choices. | `0`; `1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

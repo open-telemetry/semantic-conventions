@@ -10,5 +10,7 @@
 
 {% endif %}{% endmacro %}
 
-{% macro body(body) %}{% if body %}{{ body_table.generate(body.fields) }}
+{% macro body(body) %}{% if body %}{{"**Body fields:**"}}
+
+{{ body_table.generate(body.fields) }}
 {% endif %}{% endmacro %}

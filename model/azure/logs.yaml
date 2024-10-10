@@ -37,7 +37,7 @@ groups:
           brief: "The duration of the operations in milliseconds."
           examples: [1000]
         - id: identity
-          type: string
+          type: undefined
           stability: experimental
           brief: >
             "A JSON blob that describes the identity of the user or application that performed the operation."
@@ -47,8 +47,6 @@ groups:
             > [!Warning]
             > This field contains sensitive (PII) information.
           requirement_level: opt_in
-          examples: []
-            - "someone"
         - id: operation.name
           type: string
           stability: experimental
