@@ -28,7 +28,7 @@ CloudFoundry resource attributes.
 variable `VCAP_APPLICATION.application_id`. This is the same value as
 reported by `cf app <app-name> --guid`.
 
-**[2]:** CloudFoundry defines the `instance_id` in the [Loggegator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[2]:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the application instance index for applications
 deployed on the runtime.
