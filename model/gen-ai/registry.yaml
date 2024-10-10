@@ -25,6 +25,10 @@ groups:
               stability: experimental
               value: "cohere"
               brief: 'Cohere'
+            - id: az.ai.inference
+              stability: experimental
+              value: "az.ai.inference"
+              brief: 'Azure AI Inference'
         brief: The Generative AI product as identified by the client or server instrumentation.
         note: |
           The `gen_ai.system` describes a family of GenAI models with specific model identified
