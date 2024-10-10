@@ -85,6 +85,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -173,7 +174,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-This event describes the assistant message.
+This event describes the assistant message passed to GenAI system or received from it.
 
 The event name MUST be `gen_ai.assistant.message`.
 
@@ -198,6 +199,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -242,7 +244,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-This event describes the output of the tool or function submitted back to the model.
+This event describes the tool or function response message.
 
 The event name MUST be `gen_ai.tool.message`.
 
@@ -267,6 +269,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -299,7 +302,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-This event describes model-generated individual chat response (choice).
+This event describes the Gen AI response message.
 
 The event name MUST be `gen_ai.choice`.
 
@@ -324,6 +327,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

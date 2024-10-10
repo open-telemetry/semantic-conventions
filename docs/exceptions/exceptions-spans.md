@@ -51,7 +51,7 @@ their types.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
 This document defines the attributes used to report a single exception associated with a span.
 

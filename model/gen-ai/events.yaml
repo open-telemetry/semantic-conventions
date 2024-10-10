@@ -68,7 +68,7 @@ groups:
     type: event
     stability: experimental
     brief: >
-      This event describes the assistant message.
+      This event describes the assistant message passed to GenAI system or received from it.
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.assistant.message
@@ -143,7 +143,7 @@ groups:
     type: event
     stability: experimental
     brief: >
-      This event describes the output of the tool or function submitted back to the model.
+      This event describes the tool or function response message.
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.tool.message
@@ -178,7 +178,7 @@ groups:
     type: event
     stability: experimental
     brief: >
-      This event describes model-generated individual chat response (choice).
+      This event describes the Gen AI response message.
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.choice
