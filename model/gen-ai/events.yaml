@@ -30,7 +30,7 @@ groups:
           type: string
           stability: experimental
           brief: >
-            Role.
+            The actual role of the message author as passed in the message.
           examples: ["system", "instruction"]
           requirement_level:
             conditionally_required: if available and not equal to `system`.`
@@ -58,7 +58,7 @@ groups:
           type: string
           stability: experimental
           brief: >
-            Role.
+            The actual role of the message author as passed in the message.
           examples: ["user", "customer"]
           requirement_level:
             conditionally_required: if available and not equal to `user`.
@@ -86,7 +86,7 @@ groups:
           type: string
           stability: experimental
           brief: >
-            Role.
+            The actual role of the message author as passed in the message.
           examples: ["assistant", "bot"]
           requirement_level:
             conditionally_required: if available and not equal to `assistant`.
@@ -106,7 +106,11 @@ groups:
               examples: ["call_mszuSIzqtI65i1wAUOE8w5H4"]
               requirement_level: required
             - id: type
-              type: string
+              type: enum
+              members:
+                - id: function
+                  value: 'function'
+                  brief: Function
               stability: experimental
               brief: >
                 The type of the tool.
@@ -116,7 +120,7 @@ groups:
               type: map
               stability: experimental
               brief: >
-                The function that the model called.
+                The function call.
               requirement_level: required
               fields:
                 - id: name
@@ -157,7 +161,7 @@ groups:
           type: string
           stability: experimental
           brief: >
-            Role.
+            The actual role of the message author as passed in the message.
           examples: ["tool", "function"]
           requirement_level:
             conditionally_required: if available and not equal to `tool`.
@@ -193,11 +197,26 @@ groups:
           examples: [0, 1]
           requirement_level: required
         - id: finish_reason
-          type: string
+          type: enum
+          members:
+            - id: stop
+              value: 'stop'
+              brief: Stop
+            - id: tool_calls
+              value: 'tool_calls'
+              brief: Tool Calls
+            - id: content_filter
+              value: 'content_filter'
+              brief: Content Filter
+            - id: length
+              value: 'length'
+              brief: Length
+            - id: error
+              value: 'error'
+              brief: Error
           stability: experimental
           brief: >
             The reason the model stopped generating tokens.
-          examples: ["stop", "tool_calls", "content_filter"]
           requirement_level: required
         - id: message
           type: map
@@ -217,7 +236,7 @@ groups:
               type: string
               stability: experimental
               brief: >
-                Role.
+                The actual role of the message author as passed in the message.
               examples: ["assistant", "bot"]
               requirement_level:
                 conditionally_required: if available and not equal to `assistant`.
@@ -237,11 +256,14 @@ groups:
               examples: ["call_mszuSIzqtI65i1wAUOE8w5H4"]
               requirement_level: required
             - id: type
-              type: string
+              type: enum
+              members:
+                - id: function
+                  value: 'function'
+                  brief: Function
               stability: experimental
               brief: >
                 The type of the tool.
-              examples: ["function"]
               requirement_level: required
             - id: function
               type: map

@@ -33,6 +33,30 @@ The event name MUST be `az.resource.log`.
 
 
 
+| Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `category` | string | The Azure category of the log entry. | `AuditEvent`; `GatewayLogs`; `ApplicationGatewayAccessLog` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `correlation.id` | string | The correlation ID of the log entry. | `607964b6-41a5-4e24-a5db-db7aab3b9b34` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `duration` | int | The duration of the operations in milliseconds. | `1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `identity` | string | "A JSON blob that describes the identity of the user or application that performed the operation." [1] | `someone` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `operation.name` | string | The name of the operation. | `SecretGet`; `Microsoft.ApiManagement/GatewayLogs`; `ApplicationGatewayAccess` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `operation.version` | string | The version of the operation. | `1.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `properties` | undefined | The properties provided in the Azure Resource Log. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `result.description` | string | The description of the result. | `The operation was successful`; `The operation failed` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `result.signature` | string | The substatus of associated with the logged event. | `OK` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `result.type` | string | The status associated with the logged event. | `Started`; `In Progress`; `Succeeded`; `Failed`; `Active`; `Resolved` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tenant.id` | string | The tenant ID of the Active Directory tenant that this event is tied to. | `00000000-0000-0000-0000-000000000000` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Typically, this field includes the authorization and claims or JWT token from Active Directory.
+
+> [!Warning]
+> This field contains sensitive (PII) information.
+
+**[2]:** if the event is tied to an Active Directory tenant.
+
+
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

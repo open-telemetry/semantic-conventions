@@ -265,7 +265,10 @@ and one received message will be recorded for both client and server spans.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+RPC received/sent message.
 
 The event name MUST be `rpc.message`.
 

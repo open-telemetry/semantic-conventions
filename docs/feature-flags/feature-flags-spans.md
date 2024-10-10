@@ -48,6 +48,7 @@ A flag evaluation SHOULD be recorded as an Event on the span during which it occ
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
 This semantic convention defines the attributes used to represent a feature flag evaluation as an event.

@@ -1,3 +1,4 @@
+{% import 'examples_macros.j2' as examples %}
 {% macro type(attribute) %}{%- if attribute.type is mapping %}
 {%- if attribute.type.members[0].value is string %}string{%- endif %}
 {%- if attribute.type.members[0].value is int %}int{%- endif %}
@@ -18,22 +19,6 @@
 {% macro find_lineage(attr_id, lineage) %}{% if attr_id in lineage %}{{lineage[attr_id].source_group}}{% endif %}{% endmacro %}
 
 {% macro name_with_link(attribute, attribute_registry_base_url, lineage_attributes) %}[{{name(attribute)}}]({{attribute_registry_base_url}}/{{ find_lineage(attribute.name, lineage_attributes) | split_id | list | reject("eq", "registry")| first | kebab_case }}.md){% endmacro %}
-
-{% macro print_examples(examples) %}{%- for e in examples %}{%if loop.first == false %}; {% endif %}`{{ e | trim }}`{%- endfor %}{% endmacro %}
-
-{% macro examples(attribute) %}{%- if attribute.examples %}
-{%- if "[]" in attribute.type and "template" not in attribute.type %}
-{%- if attribute.examples is sequence %}
-{%- if attribute.examples | select("sequence") | length == 0 %}`{{ attribute.examples | trim }}`
-{%- else %}{{ print_examples(attribute.examples) }}
-{%- endif %}
-{%- else %}`[{{ attribute.examples | trim }}]`
-{%- endif %}
-{%- elif attribute.examples is sequence %}{{ print_examples(attribute.examples) }}
-{%- else %}`{{ attribute.examples | trim }}`
-{%- endif %}{%- elif attribute.type is mapping %}
-{%- for e in attribute.type.members %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
-{%- endif %}{% endmacro %}
 
 {% macro display_name(group) %}
 {%- if 'display_name' in group %}{{ group.display_name }}

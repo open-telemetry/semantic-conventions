@@ -50,6 +50,7 @@ their types.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
 This document defines the attributes used to report a single exception associated with a span.
