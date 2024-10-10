@@ -41,6 +41,7 @@ Currently, the following namespaces exist:
 - [Client](client.md)
 - [Cloud](cloud.md)
 - [CloudEvents](cloudevents.md)
+- [CloudFoundry](cloudfoundry.md)
 - [Code](code.md)
 - [Container](container.md)
 - [CPU](cpu.md)
