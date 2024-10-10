@@ -1,6 +1,7 @@
 groups:
   - id: trace-exception
     name: exception
+    stability: stable
     type: event
     brief: >
       This document defines the attributes used to

@@ -50,7 +50,13 @@ their types.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+
+
 The event name MUST be `exception`.
+
+**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
+
+This document defines the attributes used to report a single exception associated with a span.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
