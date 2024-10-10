@@ -110,6 +110,9 @@ groups:
     unit: "By"
     attributes:
       - ref: system.paging.state
+      - ref: system.device
+        brief: Unique identifier for the device responsible for managing paging operations.
+        examples: ["/dev/dm-0"]
 
   - id: metric.system.paging.utilization
     type: metric
@@ -120,6 +123,9 @@ groups:
     unit: "1"
     attributes:
       - ref: system.paging.state
+      - ref: system.device
+        brief: Unique identifier for the device responsible for managing paging operations.
+        examples: ["/dev/dm-0"]
 
   - id: metric.system.paging.faults
     type: metric
