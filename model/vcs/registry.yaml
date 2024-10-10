@@ -63,6 +63,36 @@ groups:
             "123",
             "HEAD",
           ]
+      - id: vcs.revision_delta.type
+        type:
+          members:
+            - id: behind
+              value: behind
+              brief: "How many revisions the change is behind the target ref."
+              stability: experimental
+            - id: ahead
+              value: ahead
+              brief: "How many revisions the change is ahead of the target ref."
+              stability: experimental
+        stability: experimental
+        brief: >
+          The type of .
+        examples: ["ahead", "behind"]
+      - id: vcs.line_change.type
+        type:
+          members:
+            - id: added
+              value: added
+              brief: "How many lines were added."
+              stability: experimental
+            - id: removed
+              value: removed
+              brief: "How many lines were removed."
+              stability: experimental
+        stability: experimental
+        brief: >
+          The type of line change being measured on a branch or change.
+        examples: ["added", "removed"]
       - id: vcs.change.title
         type: string
         stability: experimental

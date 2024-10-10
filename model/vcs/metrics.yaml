@@ -57,10 +57,10 @@ groups:
         requirement_level: required
       - ref: vcs.ref.type
         requirement_level: required
-  - id: metric.vcs.ref.lines_added
+  - id: metric.vcs.change.lines_delta
     type: metric
-    metric_name: vcs.ref.lines_added
-    brief: 'The number of lines added in a ref (branch) relative to the default branch (trunk)'
+    metric_name: vcs.change.lines_delta
+    brief: 'The number of lines added/removed in a change relative to the target branch of the change)'
     instrument: gauge
     unit: "{line}"
     stability: experimental
@@ -71,10 +71,12 @@ groups:
         requirement_level: required
       - ref: vcs.ref.type
         requirement_level: required
-  - id: metric.vcs.ref.lines_deleted
+      - ref: vcs.line_change.type
+        requirement_level: required
+  - id: metric.vcs.ref.lines_delta
     type: metric
-    metric_name: vcs.ref.lines_deleted
-    brief: 'The number of lines deleted in a ref (branch) relative to the default branch (trunk)'
+    metric_name: vcs.ref.lines_delta
+    brief: 'The number of lines added/removed in a ref (branch) relative to the previous day'
     instrument: gauge
     unit: "{line}"
     stability: experimental
@@ -85,10 +87,12 @@ groups:
         requirement_level: required
       - ref: vcs.ref.type
         requirement_level: required
-  - id: metric.vcs.ref.revisions_ahead
+      - ref: vcs.line_change.type
+        requirement_level: required
+  - id: metric.vcs.change.revisions_delta
     type: metric
-    metric_name: vcs.ref.revisions_ahead
-    brief: 'The number of revisions (commits) a ref (branch) is ahead of the default branch (trunk)'
+    metric_name: vcs.change.revisions_delta
+    brief: 'The number of revisions (commits) a change is ahead/behind the target branch of the change'
     instrument: gauge
     unit: "{revision}"
     stability: experimental
@@ -99,10 +103,12 @@ groups:
         requirement_level: required
       - ref: vcs.ref.type
         requirement_level: required
-  - id: metric.vcs.ref.revisions_behind
+      - ref: vcs.revision_delta.type
+        requirement_level: required
+  - id: metric.vcs.ref.revisions_delta
     type: metric
-    metric_name: vcs.ref.revisions_behind
-    brief: 'The number of revisions (commits) a ref (branch) is behind the default branch (trunk)'
+    metric_name: vcs.ref.revisions_delta
+    brief: 'The number of revisions (commits) a ref (branch) is ahead/behind the default branch (trunk)'
     instrument: gauge
     unit: "{revision}"
     stability: experimental
@@ -112,6 +118,8 @@ groups:
       - ref: vcs.ref.name
         requirement_level: required
       - ref: vcs.ref.type
+        requirement_level: required
+      - ref: vcs.revision_delta.type
         requirement_level: required
   - id: metric.vcs.ref.time
     type: metric
