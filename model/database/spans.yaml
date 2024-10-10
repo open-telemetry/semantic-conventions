@@ -10,6 +10,7 @@ groups:
       #   sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
+      - ref: db.operation.batch.size
       - ref: server.address
         sampling_relevant: true
       - ref: server.port

@@ -28,7 +28,7 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 | [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.gcp_pubsub.message.ordering_key`](/docs/attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | `Conditionally Required` If the message type has an ordering key set. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md) | string | Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview). | `subscription-a` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.gcp_pubsub.message.ack_deadline`](/docs/attributes-registry/messaging.md) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -104,10 +104,10 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 
@@ -129,7 +129,7 @@ flowchart LR;
   direction LR
   CA[Span Create A]
   CB[Span Create B]
-  P[Span Publish A B]
+  P[Span Send A B]
   end
   CA-. link .-P;
   CB-. link .-P;
@@ -141,7 +141,7 @@ flowchart LR;
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Create A | Span Create B | Span Publish A B |
+| Field or Attribute | Span Create A | Span Create B | Span Send A B |
 |-|-|-|-|
 | Span name | `create T` | `create T` | `send T` |
 | Parent |  |  |  |
@@ -151,7 +151,7 @@ flowchart LR;
 | `messaging.batch.message_count` |  |  | 2 |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation.name` | `"create"` | `"create"` | `"send"` |
-| `messaging.operation.type` | `"create"` | `"create"` | `"publish"` |
+| `messaging.operation.type` | `"create"` | `"create"` | `"send"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.message.envelope.size` | `1` | `1` | |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
@@ -169,7 +169,7 @@ flowchart TD;
   subgraph PRODUCER
   direction LR
   CM1[Create m1]
-  PM1[Publish]
+  PM1[Send]
   end
   %% Link 0
   CM1-. link .-PM1;
@@ -200,7 +200,7 @@ flowchart TD;
   linkStyle 3 color:#0560f2,stroke:#0560f2
 ```
 
-| Field or Attribute | Span Create A | Span Publish A | Span Receive A | Span Modack A | Span Ack A |
+| Field or Attribute | Span Create A | Span Send A | Span Receive A | Span Modack A | Span Ack A |
 |-|-|-|-|-|-|
 | Span name | `create T` | `send T` |  `receive S` | `modack S` | `ack S` |
 | Parent |  |  |  | |  |
@@ -210,7 +210,7 @@ flowchart TD;
 | `messaging.destination.name` | `"T"`| `"T"`| `"S"` | `"S"` |`"S"` |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
 | `messaging.operation.name` | `"create"` | `"send"` | `"receive"` | `"modack"` | `"ack"` |
-| `messaging.operation.type` | `"create"` | `"publish"` | `"receive"` |  | `"settle"` |
+| `messaging.operation.type` | `"create"` | `"send"` | `"receive"` |  | `"settle"` |
 | `messaging.message.id` | `"a1"` | | `"a1"` | | |
 | `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
 | `messaging.gcp_pubsub.message.ack_id` | | |  | `"ack_id1"` |`"ack_id1"` |

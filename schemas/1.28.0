@@ -1,17 +1,6 @@
 file_format: 1.1.0
-schema_url: https://opentelemetry.io/schemas/next
+schema_url: https://opentelemetry.io/schemas/1.28.0
 versions:
-  next:
-    all:
-      changes:
-        # https://github.com/open-telemetry/semantic-conventions/pull/1383
-        - rename_attributes:
-            attribute_map:
-              vcs.repository.change.id: vcs.change.id
-              vcs.repository.change.title: vcs.change.title
-              vcs.repository.ref.name: vcs.ref.name
-              vcs.repository.ref.revision: vcs.ref.revision
-              vcs.repository.ref.type: vcs.ref.type
   1.28.0:
     metrics:
       changes:
