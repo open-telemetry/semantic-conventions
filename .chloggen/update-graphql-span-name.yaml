@@ -1,0 +1,4 @@
+change_type: breaking
+component: graphql
+note: Update the GraphQL Span name convention
+issues: [1361]
