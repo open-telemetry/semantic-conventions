@@ -58,11 +58,12 @@ This event describes the instructions passed to the GenAI model.
 <!-- markdownlint-disable -->
 
 
+
+The event name MUST be `gen_ai.system.message`.
+
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
 This event describes the instructions passed to the GenAI system inside the prompt.
-
-The event name MUST be `gen_ai.system.message`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -115,11 +116,12 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-disable -->
 
 
+
+The event name MUST be `gen_ai.user.message`.
+
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
 This event describes the prompt message specified by the user.
-
-The event name MUST be `gen_ai.user.message`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -172,11 +174,12 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-disable -->
 
 
+
+The event name MUST be `gen_ai.assistant.message`.
+
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
 This event describes the assistant message passed to GenAI system or received from it.
-
-The event name MUST be `gen_ai.assistant.message`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -242,11 +245,12 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-disable -->
 
 
+
+The event name MUST be `gen_ai.tool.message`.
+
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
 This event describes the tool or function response message.
-
-The event name MUST be `gen_ai.tool.message`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -300,11 +304,12 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-disable -->
 
 
+
+The event name MUST be `gen_ai.choice`.
+
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
 This event describes the Gen AI response message.
-
-The event name MUST be `gen_ai.choice`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

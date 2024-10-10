@@ -1,10 +1,10 @@
 groups:
   - id: feature_flag
     type: event
+    stability: experimental
     name: feature_flag
     brief: >
-      This semantic convention defines the attributes used to represent a
-      feature flag evaluation as an event.
+      Describes Feature Flag Evaluation event.
     attributes:
       - ref: feature_flag.key
         requirement_level: required

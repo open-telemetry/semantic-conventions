@@ -32,7 +32,7 @@ Feature flag evaluations SHOULD be recorded as attributes on the
 operations. Evaluations MAY be recorded on "logs" or "events" depending on the
 context.
 
-## Attributes
+## Evaluation event
 
 The table below indicates which attributes should be added to the
 [LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
@@ -45,11 +45,12 @@ The table below indicates which attributes should be added to the
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
-
-This document defines attributes for feature flag evaluations represented using Log Records.
 
 The event name MUST be `feature_flag`.
+
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
+Describes Feature Flag Evaluation event represented using Log Records.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
