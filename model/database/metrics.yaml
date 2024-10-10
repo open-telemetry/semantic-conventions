@@ -135,15 +135,6 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.query.limit
-    type: metric
-    metric_name: db.query.limit
-    brief: "Max item count requested by the feed operation (ex. Query, ReadAll, ReadMany, Change Feed) "
-    instrument: histogram
-    unit: "{count}"
-    stability: experimental
-    extends: attributes.db.client.minimal
-
   - id: metric.db.query.response.item_count
     type: metric
     metric_name: db.query.response.item_count
