@@ -12,3 +12,7 @@ groups:
         requirement_level: required
       - ref: telemetry.sdk.version
         requirement_level: required
+      - ref: telemetry.distro.name
+        requirement_level: recommended
+      - ref: telemetry.distro.version
+        requirement_level: recommended
