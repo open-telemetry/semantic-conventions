@@ -1,4 +1,0 @@
-change_type: enhancement
-component: messaging
-note: Clarify the possibility to have a parent-child trace structure in messaging conventions
-issues: [1282]

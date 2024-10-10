@@ -16,3 +16,15 @@ groups:
         deprecated: Replaced by `gen_ai.usage.output_tokens` attribute.
         brief: "Deprecated, use `gen_ai.usage.output_tokens` instead."
         examples: [42]
+      - id: gen_ai.prompt
+        type: string
+        stability: experimental
+        deprecated: "Removed, no replacement at this time."
+        brief: "Deprecated, use Event API to report prompt contents."
+        examples: ["[{'role': 'user', 'content': 'What is the capital of France?'}]"]
+      - id: gen_ai.completion
+        type: string
+        stability: experimental
+        deprecated: "Removed, no replacement at this time."
+        brief: "Deprecated, use Event API to report completions contents."
+        examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
