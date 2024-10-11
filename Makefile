@@ -10,7 +10,7 @@ else
 	SED := sed
 endif
 
-TOOLS_DIR := ./internal/tools
+TOOLS_DIR := $(PWD)/internal/tools
 
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
@@ -150,12 +150,12 @@ table-check:
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
-		--registry=/home/weaver/target \
+		--registry=/home/weaver/source \
 		--attribute-registry-base-url=/docs/attributes-registry \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
-		/spec
+		/home/weaver/target
 
 .PHONY: schema-check
 schema-check:

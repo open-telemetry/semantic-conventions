@@ -1,6 +1,7 @@
 groups:
   - id: attributes.messaging.trace.minimal
     type: attribute_group
+    stability: experimental
     brief: >
         Defines minimal set of attributes used by all messaging systems.
     extends: attributes.messaging.common.minimal
@@ -29,6 +30,7 @@ groups:
 
   - id: messaging
     type: span
+    stability: experimental
     brief: >
         Defines a full set of attributes used in messaging systems.
     extends: attributes.messaging.trace.minimal
@@ -64,7 +66,9 @@ groups:
         sampling_relevant: true
       - ref: messaging.message.conversation_id
       - ref: messaging.message.envelope.size
+        requirement_level: opt_in
       - ref: messaging.message.body.size
+        requirement_level: opt_in
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
@@ -85,6 +89,7 @@ groups:
 
   - id: messaging.network.attributes
     type: attribute_group
+    stability: experimental
     brief: Attributes that describe messaging operation along with network information.
     extends: attributes.messaging.trace.minimal
     attributes:
@@ -97,6 +102,7 @@ groups:
 
   - id: messaging.rabbitmq
     type: attribute_group
+    stability: experimental
     extends: messaging.network.attributes
     brief: >
       Attributes for RabbitMQ
@@ -111,9 +117,11 @@ groups:
         brief: >
           Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
       - ref: messaging.message.body.size
+        requirement_level: opt_in
 
   - id: messaging.kafka
     type: attribute_group
+    stability: experimental
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Apache Kafka
@@ -141,11 +149,12 @@ groups:
           conditionally_required: If the span describes an operation on a batch of messages.
       - ref: messaging.client.id
       - ref: messaging.message.body.size
-        requirement_level:
-          recommended: If span describes operation on a single message.
+        requirement_level: opt_in
+        brief: The size of the message body in bytes. Only applicable for spans describing single message operations.
 
   - id: messaging.rocketmq
     type: attribute_group
+    stability: experimental
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Apache RocketMQ
@@ -172,6 +181,7 @@ groups:
       - ref: messaging.rocketmq.consumption_model
       - ref: messaging.client.id
       - ref: messaging.message.body.size
+        requirement_level: opt_in
       - ref: messaging.batch.message_count
         requirement_level:
           conditionally_required: If the span describes an operation on a batch of messages.
@@ -208,6 +218,7 @@ groups:
           - `create` and `receive` for [common messaging operations](/docs/messaging/messaging-spans.md#operation-types)
   - id: messaging.servicebus
     type: attribute_group
+    stability: experimental
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Azure Service Bus
@@ -248,6 +259,7 @@ groups:
 
   - id: messaging.eventhubs
     type: attribute_group
+    stability: experimental
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Azure Event Hubs

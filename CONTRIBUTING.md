@@ -404,6 +404,6 @@ exists in some form in ECS, consider the following guidelines:
   entirely. See the [ECS field reference] for existing namespaces.
 
 [nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
-[stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.35.0/specification/versioning-and-stability.md#semantic-conventions-stability
+[stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.37.0/specification/versioning-and-stability.md#semantic-conventions-stability
 [otep222]: https://github.com/open-telemetry/oteps/pull/222
 [ECS field reference]: https://www.elastic.co/guide/en/ecs/current/ecs-field-reference.html
