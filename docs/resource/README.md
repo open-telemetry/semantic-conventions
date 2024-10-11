@@ -79,7 +79,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
+**Status:** ![Mixed](https://img.shields.io/badge/-mixed-yellow)
 
 **type:** `service`
 
@@ -155,7 +155,7 @@ service.name = Shop.shoppingcart
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
+**Status:** ![Mixed](https://img.shields.io/badge/-mixed-yellow)
 
 **type:** `telemetry.sdk`
 
