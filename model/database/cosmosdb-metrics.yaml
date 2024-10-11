@@ -2,7 +2,7 @@ groups:
   - id: metric.db.cosmosdb.operation.request_charge
     type: metric
     metric_name: db.cosmosdb.operation.request_charge
-    brief: "Request charge consumed by the operation. Refer https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
+    brief: "[Request charge](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units) consumed by the operation"
     instrument: histogram
     unit: "{request_unit}"
     stability: experimental

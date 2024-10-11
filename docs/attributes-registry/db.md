@@ -163,24 +163,15 @@ This group defines attributes for Cassandra.
 
 This group defines attributes for Azure Cosmos DB.
 
-| Attribute                                                                                                                      | Type   | Description                       | Examples                               | Stability                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------ | --------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
-| <a id="db-cosmosdb-client-id" href="#db-cosmosdb-client-id">`db.cosmosdb.client_id`</a>                                        | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a>                      | string | Cosmos client connection mode.    | `gateway`; `direct`                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-operation-type" href="#db-cosmosdb-operation-type">`db.cosmosdb.operation_type`</a>                         | string | Cosmos DB Operation Type.         | `batch`; `create`; `delete`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-request-charge" href="#db-cosmosdb-request-charge">`db.cosmosdb.request_charge`</a>                         | double | RU consumed for that operation    | `46.18`; `1.0`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-request-content-length" href="#db-cosmosdb-request-content-length">`db.cosmosdb.request_content_length`</a> | int    | Request payload size in bytes     |                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-sub-status-code" href="#db-cosmosdb-sub-status-code">`db.cosmosdb.sub_status_code`</a>                      | int    | Cosmos DB sub status code.        | `1000`; `1002`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| Attribute                            | Type   | Description                                                                        | Examples                                                                                                                                           | Stability                                                        |
-| ------------------------------------ | ------ | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `db.cosmosdb.client_id`              | string | Unique Cosmos client instance id.                                                  | `3ba4827d-4422-483f-b59f-85b74211c11d`                                                                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.connection_mode`        | string | Cosmos client connection mode.                                                     | `gateway`; `direct`                                                                                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.consistency_level`      | string | Account or request consistency level.                                              | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong or Session`                                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.machine_id`             | string | Azure VM Id or hashed machine name or unique generate GUID, whatever is available. | `vmId:4d5ab1c4-d821-43fe-aacf-b61ea1f9c918`; `hashedMachineName:910dc3c9-7d90-074d-95bf-c930100d14d4`; `uuid:703e5e25-1bd3-4a53-ad53-f42f6ec50042` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.operation_type`         | string | Cosmos DB Operation Type.                                                          | `batch`; `create`; `delete`                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.request_charge`         | double | RU consumed for that operation                                                     | `46.18`; `1.0`                                                                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.request_content_length` | int    | Request payload size in bytes                                                      |                                                                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db.cosmosdb.sub_status_code`        | int    | Cosmos DB sub status code.                                                         | `1000`; `1002`                                                                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                            | Type   | Description                                                                                                   | Examples                                                                | Stability                                                               |
+| ------------------------------------ | ------ | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `db.cosmosdb.client_id`              | string | Unique Cosmos client instance id.                                                                             | `3ba4827d-4422-483f-b59f-85b74211c11d`                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue)        |
+| `db.cosmosdb.connection_mode`        | string | Cosmos client connection mode.                                                                                | `Gateway`; `Direct`                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue)        |
+| `db.cosmosdb.consistency_level`      | string | Account or request [consistency level](https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong or Session` | ![Experimental](https://img.shields.io/badge/-experimental-blue)        |
+| `db.cosmosdb.operation_type`         | string | Deprecated, Cosmos DB Operation Type.                                                                         | `batch`; `create`; `delete`                                             | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
+| `db.cosmosdb.request_charge`         | double | RU consumed for that operation                                                                                | `46.18`; `1.0`                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue)        |
+| `db.cosmosdb.request_content_length` | int    | Request payload size in bytes                                                                                 |                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue)        |
+| `db.cosmosdb.sub_status_code`        | int    | Cosmos DB sub status code.                                                                                    | `1000`; `1002`                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue)        |
 
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -198,6 +189,26 @@ This group defines attributes for Azure Cosmos DB.
 | `Eventual`         | eventual          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Session`          | session           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Strong`           | strong            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value                | Description        | Stability                                                        |
+| -------------------- | ------------------ | ---------------------------------------------------------------- |
+| `batch`              | batch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create`             | create             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delete`             | delete             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute`            | execute            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_javascript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `head`               | head               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `head_feed`          | head_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `invalid`            | invalid            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `patch`              | patch              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query`              | query              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query_plan`         | query_plan         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read`               | read               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read_feed`          | read_feed          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `replace`            | replace            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `upsert`             | upsert             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Elasticsearch Attributes
 

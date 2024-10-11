@@ -470,6 +470,57 @@ groups:
               stability: experimental
         stability: experimental
         brief: Cosmos client connection mode.
+      - id: db.cosmosdb.operation_type
+        type:
+          members:
+            - id: batch
+              value: "batch"
+              stability: experimental
+            - id: create
+              value: "create"
+              stability: experimental
+            - id: delete
+              value: "delete"
+              stability: experimental
+            - id: execute
+              value: "execute"
+              stability: experimental
+            - id: execute_javascript
+              value: "execute_javascript"
+              stability: experimental
+            - id: invalid
+              value: "invalid"
+              stability: experimental
+            - id: head
+              value: "head"
+              stability: experimental
+            - id: head_feed
+              value: "head_feed"
+              stability: experimental
+            - id: patch
+              value: "patch"
+              stability: experimental
+            - id: query
+              value: "query"
+              stability: experimental
+            - id: query_plan
+              value: "query_plan"
+              stability: experimental
+            - id: read
+              value: "read"
+              stability: experimental
+            - id: read_feed
+              value: "read_feed"
+              stability: experimental
+            - id: replace
+              value: "replace"
+              stability: experimental
+            - id: upsert
+              value: "upsert"
+              stability: experimental
+        stability: experimental
+        deprecated: "Removed."
+        brief: Deprecated, Cosmos DB Operation Type.
       - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
@@ -503,7 +554,7 @@ groups:
               value: "ConsistentPrefix"
               stability: experimental
         stability: experimental
-        brief: Account or request consistency level. Refer https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels
+        brief: Account or request [consistency level](https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels).
         examples: [Eventual, ConsistentPrefix, BoundedStaleness, Strong or Session]
 
   - id: registry.db.elasticsearch
