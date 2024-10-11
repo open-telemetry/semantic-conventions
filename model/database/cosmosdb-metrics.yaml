@@ -4,7 +4,7 @@ groups:
     metric_name: db.cosmosdb.operation.request_charge
     brief: "Request charge consumed by the operation."
     instrument: histogram
-    unit: "{request_units}"
+    unit: "{request_unit}"
     stability: experimental
     extends: attributes.db.cosmosdb.minimal
 
