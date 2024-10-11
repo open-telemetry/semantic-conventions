@@ -155,7 +155,7 @@ table-check:
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
-		/spec
+		/home/weaver/target
 
 .PHONY: schema-check
 schema-check:
