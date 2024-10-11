@@ -26,7 +26,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.connection_mode`](/docs/attributes-registry/db.md) | string | Cosmos client connection mode. | `Gateway`; `Direct` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request consistency level. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong or Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request consistency level. Refer https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong or Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.request_charge`](/docs/attributes-registry/db.md) | double | RU consumed for that operation | `46.18`; `1.0` | `Conditionally Required` when available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -277,10 +277,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `db.operation.name`                  | `"read_item"` |
 | `server.address`                     | `"account.documents.azure.com"` |
 | `db.cosmosdb.client_id`              | `"3ba4827d-4422-483f-b59f-85b74211c11d"` |
-| `db.cosmosdb.operation_type`         | `"read"` |
 | `user_agent.original`                | `"cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|"` |
 | `db.cosmosdb.request_content_length` | `20` |
-| `db.cosmosdb.status_code`            | `201` |
+| `db.response.status_code`            | `201` |
 | `db.cosmosdb.sub_status_code`        | `0` |
 | `db.cosmosdb.request_charge`         | `7.43` |
 
