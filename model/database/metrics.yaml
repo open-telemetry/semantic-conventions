@@ -135,9 +135,9 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.response.item_count
+  - id: metric.db.client.response.row_count
     type: metric
-    metric_name: db.query.response.item_count
+    metric_name: db.client.response.row_count
     brief: "The actual number of records returned by the query."
     instrument: histogram
     unit: "{row}"
