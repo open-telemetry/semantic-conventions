@@ -519,7 +519,7 @@ groups:
               value: "upsert"
               stability: experimental
         stability: experimental
-        deprecated: "Removed."
+        deprecated: "No replacement at this time."
         brief: Deprecated, Cosmos DB Operation Type.
       - id: db.cosmosdb.request_charge
         type: double
