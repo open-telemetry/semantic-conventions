@@ -15,7 +15,7 @@ database metrics and logs.
 > **Warning**
 >
 > Existing database instrumentations that are using
-> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
+> [v1.25.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.25.0/docs/database/database-spans.md)
 > (or prior):
 >
 > * SHOULD NOT change the version of the database conventions that they emit by default
