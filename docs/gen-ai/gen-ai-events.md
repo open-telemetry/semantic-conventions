@@ -190,15 +190,27 @@ SHOULD follow `gen_ai.{gen_ai.system}.*` naming pattern for system-specific even
 
 ### Chat completion
 
-This example covers the following scenario:
+This is an example of telemetry generated for a chat completion call with system and user messages.
 
-- user requests chat completion from OpenAI GPT-4 model for the following prompt:
-  - System message: `You're a friendly bot that answers questions about OpenTelemetry.`
-  - User message: `How to instrument GenAI library with OTel?`
+```mermaid
+%%{init:
+{
+  "sequence": { "messageAlign": "left", "htmlLabels":true },
+  "themeVariables": { "noteBkgColor" : "green", "noteTextColor": "black", "activationBkgColor": "green", "htmlLabels":true }
+}
+}%%
+sequenceDiagram
+    participant A as Application
+    participant I as Instrumented Client
+    participant M as Model
+    A->>+I: #U+200D
+    I->>M: gen_ai.system.message: You are a helpful bot<br/>gen_ai.user.message: Tell me a joke about OpenTelemetry
+    Note left of I: GenAI Client span
+    I-->M: gen_ai.choice: Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!
+    I-->>-A: #U+200D
+```
 
-- The model responds with `"Follow GenAI semantic conventions available at opentelemetry.io."` message
-
-Span:
+**GenAI Client span:**
 
 |   Attribute name                |                     Value                  |
 |---------------------------------|--------------------------------------------|
@@ -213,79 +225,98 @@ Span:
 | `gen_ai.usage.input_tokens`     | `52`                                       |
 | `gen_ai.response.finish_reasons`| `["stop"]`                                 |
 
-Events:
+**Events:**
 
-1. `gen_ai.system.message`.
+
+
+1. `gen_ai.system.message`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
    | `gen_ai.system`     | `"openai"`                                            |
-   | Event body          | `{"content": "You're a friendly bot that answers questions about OpenTelemetry."}` |
+   | Event body (with content enabled) | `{"content": "You're a helpful bot"}` |
 
 2. `gen_ai.user.message`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
    | `gen_ai.system`     | `"openai"`                                            |
-   | Event body          | `{"content":"How to instrument GenAI library with OTel?"}` |
+   | Event body (with content enabled) | `{"content":"Tell me a joke about OpenTelemetry"}` |
 
 3. `gen_ai.choice`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
    | `gen_ai.system`     | `"openai"`                                            |
-   | Event body (with content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Follow GenAI semantic conventions available at opentelemetry.io."}}` |
+   | Event body (with content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}}` |
    | Event body (without content) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
 ### Tools
 
-This example covers the following scenario:
+This is an example of telemetry generated for a chat completion call with user message and function definition
+that results in a model requesting application to call provided function. Application executes a function and
+requests another completion now with the tool response.
 
-1. Application requests chat completion from OpenAI GPT-4 model and provides a function definition.
-
-   - Application provides the following prompt:
-     - User message: `How to instrument GenAI library with OTel?`
-   - Application defines a tool (a function) names `get_link_to_otel_semconv` with single string argument named `semconv`
-
-2. The model responds with a tool call request which application executes
-3. The application requests chat completion again now with the tool execution result
-
+```mermaid
+%%{init:
+{
+  "sequence": { "messageAlign": "left", "htmlLabels":true },
+  "themeVariables": { "noteBkgColor" : "green", "noteTextColor": "black", "activationBkgColor": "green", "htmlLabels":true }
+}
+}%%
+sequenceDiagram
+    participant A as Application
+    participant I as Instrumented Client
+    participant M as Model
+    A->>+I: #U+200D
+    I->>M: gen_ai.user.message: What's the weather in Paris?
+    Note left of I: GenAI Client span 1
+    I-->M: gen_ai.choice: Call to the get_weather tool with Paris as the location argument.
+    I-->>-A: #U+200D
+    A -->> A: parse tool parameters<br/>execute tool<br/>update chat history
+    A->>+I: #U+200D
+    I->>M: gen_ai.user.message: What's the weather in Paris?<br/>gen_ai.assistant.message: get_weather tool call<br/>gen_ai.tool.message: rainy, 57°F
+    Note left of I: GenAI Client span 2
+    I-->M: gen_ai.choice: The weather in Paris is rainy and overcast, with temperatures around 57°F.
+    I-->>-A: #U+200D
+```
 Here's the telemetry generated for each step in this scenario:
 
-1. Chat completion resulting in a tool call.
+**GenAI Client span 1:**
 
-   |   Attribute name    |                     Value                             |
-   |---------------------|-------------------------------------------------------|
-   | Span name           | `"chat gpt-4"`                             |
-   | `gen_ai.system`     | `"openai"`                                            |
-   | `gen_ai.request.model`| `"gpt-4"`                                           |
-   | `gen_ai.request.max_tokens`| `200`                                          |
-   | `gen_ai.request.top_p`| `1.0`                                               |
-   | `gen_ai.response.id`| `"chatcmpl-9J3uIL87gldCFtiIbyaOvTeYBRA3l"`            |
-   | `gen_ai.response.model`| `"gpt-4-0613"`                                     |
-   | `gen_ai.usage.output_tokens`| `17`                                          |
-   | `gen_ai.usage.input_tokens`| `47`                                           |
-   | `gen_ai.response.finish_reasons`| `["tool_calls"]`                          |
+|   Attribute name    |                     Value                             |
+|---------------------|-------------------------------------------------------|
+| Span name           | `"chat gpt-4"`                             |
+| `gen_ai.system`     | `"openai"`                                            |
+| `gen_ai.request.model`| `"gpt-4"`                                           |
+| `gen_ai.request.max_tokens`| `200`                                          |
+| `gen_ai.request.top_p`| `1.0`                                               |
+| `gen_ai.response.id`| `"chatcmpl-9J3uIL87gldCFtiIbyaOvTeYBRA3l"`            |
+| `gen_ai.response.model`| `"gpt-4-0613"`                                     |
+| `gen_ai.usage.output_tokens`| `17`                                          |
+| `gen_ai.usage.input_tokens`| `47`                                           |
+| `gen_ai.response.finish_reasons`| `["tool_calls"]`                          |
 
-   Events parented to this span:
+  **Events**:
 
-   - `gen_ai.user.message` (not reported when capturing content is disabled)
+  All the following events are parented to the **GenAI chat span 1**.
 
-     |   Property          |                     Value                             |
-     |---------------------|-------------------------------------------------------|
-     | `gen_ai.system`     | `"openai"`                                            |
-     | Event body          | `{"content":"How to instrument GenAI library with OTel?"}` |
-
-   - `gen_ai.choice`
+  1. `gen_ai.user.message` (not reported when capturing content is disabled)
 
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
      | `gen_ai.system`     | `"openai"`                                            |
-     | Event body (with content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"{\"semconv\":\"GenAI\"}"},"type":"function"}]}` |
-     | Event body (without content) | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv"},"type":"function"}]}` |
+     | Event body          | `{"content":"What's the weather in Paris?"}` |
 
-2. Application executes the tool call. Application may create span which is not covered by this semantic convention.
-3. Final chat completion call
+  2. `gen_ai.choice`
+
+     |   Property          |                     Value                             |
+     |---------------------|-------------------------------------------------------|
+     | `gen_ai.system`     | `"openai"`                                            |
+     | Event body (with content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
+     | Event body (without content) | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}` |
+
+**GenAI Client span 2:**
 
    |   Attribute name                |                     Value                             |
    |---------------------------------|-------------------------------------------------------|
@@ -300,55 +331,65 @@ Here's the telemetry generated for each step in this scenario:
    | `gen_ai.usage.input_tokens`     | `47`                                                  |
    | `gen_ai.response.finish_reasons`| `["stop"]`                                            |
 
-   Events parented to this span:
-   (in this example, the event content matches the original messages, but applications may also drop messages or change their content)
+  **Events**:
 
-   - `gen_ai.user.message` (not reported when capturing content is not enabled)
+  All the following events are parented to the **GenAI chat span 2**.
+
+  In this example, the event content matches the original messages, but applications may also drop messages or change their content.
+  1. `gen_ai.user.message`
 
      |   Property                       |                     Value                                  |
      |----------------------------------|------------------------------------------------------------|
      | `gen_ai.system`                  | `"openai"`                                                 |
-     | Event body                       | `{"content":"How to instrument GenAI library with OTel?"}` |
+     | Event body                       | `{"content":"What's the weather in Paris?"}` |
 
-   - `gen_ai.assistant.message`
+  2. `gen_ai.assistant.message`
 
      |   Property                       |                     Value                                                                                                                  |
      |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
      | `gen_ai.system`                  | `"openai"`                                                                                                                                 |
-     | Event body (content enabled)     | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"{\"semconv\":\"GenAI\"}"},"type":"function"}]}` |
-     | Event body (content not enabled) | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv"},"type":"function"}]}`                 |
+     | Event body (content enabled)     | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
+     | Event body (content not enabled) | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}`                 |
 
-   - `gen_ai.tool.message`
+  3. `gen_ai.tool.message`
 
      |   Property                       |                     Value                                                                      |
      |----------------------------------|------------------------------------------------------------------------------------------------|
      | `gen_ai.system`                  | `"openai"`                                                                                     |
-     | Event body (content enabled)     | `{"content":"opentelemetry.io/semconv/gen-ai","id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
+     | Event body (content enabled)     | `{"content":"rainy, 57°F","id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
      | Event body (content not enabled) | `{"id":"call_VSPygqKTWdrhaFErNvMV18Yl"}`                                             |
 
-   - `gen_ai.choice`
+  4. `gen_ai.choice`
 
      |   Property                       |                     Value                                                                                                     |
      |----------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
      | `gen_ai.system`                  | `"openai"`                                                                                                                    |
-     | Event body (content enabled)     | `{"index":0,"finish_reason":"stop","message":{"content":"Follow OTel semconv available at opentelemetry.io/semconv/gen-ai"}}` |
+     | Event body (content enabled)     | `{"index":0,"finish_reason":"stop","message":{"content":"The weather in Paris is rainy and overcast, with temperatures around 57°F."}}` |
      | Event body (content not enabled) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
 ### Chat completion with multiple choices
 
-This example covers the following scenario:
+This example covers the scenario when user requests model to generate two completions for the same prompt :
 
-- user requests 2 chat completion from OpenAI GPT-4 model for the following prompt:
+```mermaid
+%%{init:
+{
+  "sequence": { "messageAlign": "left", "htmlLabels":true },
+  "themeVariables": { "noteBkgColor" : "green", "noteTextColor": "black", "activationBkgColor": "green", "htmlLabels":true }
+}
+}%%
+sequenceDiagram
+    participant A as Application
+    participant I as Instrumented Client
+    participant M as Model
+    A->>+I: #U+200D
+    I->>M: gen_ai.system.message - "You are a helpful bot"<br/>gen_ai.user.message - "Tell me a joke about OpenTelemetry"
+    Note left of I: GenAI Client span
+    I-->M: gen_ai.choice - Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!<br/>gen_ai.choice - Why did OpenTelemetry get promoted? It had great span of control!
+    I-->>-A: #U+200D
+```
 
-  - System message: `You're a friendly bot that answers questions about OpenTelemetry.`
-  - User message: `How to instrument GenAI library with OTel?`
-
-- The model responds with two choices
-
-  - `"Follow GenAI semantic conventions available at opentelemetry.io."` message
-  - `"Use OpenAI instrumentation library."` message
-
-Span:
+**GenAI Client Span**:
 
 |   Attribute name    |                     Value                  |
 |---------------------|--------------------------------------------|
@@ -361,24 +402,26 @@ Span:
 | `gen_ai.response.model`| `"gpt-4-0613"`                          |
 | `gen_ai.usage.output_tokens`| `77`                               |
 | `gen_ai.usage.input_tokens`| `52`                                |
-| `gen_ai.response.finish_reasons`| `["stop"]`                     |
+| `gen_ai.response.finish_reasons`| `["stop", "stop"]`             |
 
-Events:
+**Events**:
+
+All events are parented to the GenAI chat span above.
 
 1. `gen_ai.system.message`: the same as in the [Chat Completion](#chat-completion) example
-2. `gen_ai.user.message`: the same as in the previous example
+2. `gen_ai.user.message`: the same as in the [Chat Completion](#chat-completion) example
 3. `gen_ai.choice`
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
    | `gen_ai.system`              | `"openai"`                                            |
-   | Event body (content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Follow GenAI semantic conventions available at opentelemetry.io."}}` |
+   | Event body (content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}}` |
 
 4. `gen_ai.choice`
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
    | `gen_ai.system`              | `"openai"`                                            |
-   | Event body (content enabled) | `{"index":1,"finish_reason":"stop","message":{"content":"Use OpenAI instrumentation library."}}` |
+   | Event body (content enabled) | `{"index":1,"finish_reason":"stop","message":{"content":"Why did OpenTelemetry get promoted? It had great span of control!"}}` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
