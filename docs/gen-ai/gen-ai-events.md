@@ -114,7 +114,7 @@ The event name MUST be `gen_ai.user.message`.
 | Body Field | Type | Description | Examples | Requirement Level |
 |---|---|---|---|---|
 | `role`    | string     | The actual role of the message author as passed in the message. | `"user"`, `"customer"` | `Conditionally Required`: if available and if not equal to `user` |
-| `content` | `AnyValue` | The contents of the user message. | `What's the weather in Paris` | `Opt-In` |
+| `content` | `AnyValue` | The contents of the user message. | `What's the weather in Paris?` | `Opt-In` |
 
 ## Assistant event
 
@@ -277,7 +277,7 @@ sequenceDiagram
     A->>+I: #U+200D
     I->>M: gen_ai.user.message: What's the weather in Paris?<br/>gen_ai.assistant.message: get_weather tool call<br/>gen_ai.tool.message: rainy, 57°F
     Note left of I: GenAI Client span 2
-    I-->M: gen_ai.choice: The weather in Paris is rainy and overcast, with temperatures around 57°F.
+    I-->M: gen_ai.choice: The weather in Paris is rainy and overcast, with temperatures around 57°F
     I-->>-A: #U+200D
 ```
 Here's the telemetry generated for each step in this scenario:
@@ -313,7 +313,7 @@ Here's the telemetry generated for each step in this scenario:
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
      | `gen_ai.system`     | `"openai"`                                            |
-     | Event body (with content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
+     | Event body (with content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":{"location":"Paris"}},"type":"function"}]}` |
      | Event body (without content) | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}` |
 
 **GenAI Client span 2:**
@@ -348,7 +348,7 @@ Here's the telemetry generated for each step in this scenario:
      |   Property                       |                     Value                                                                                                                  |
      |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
      | `gen_ai.system`                  | `"openai"`                                                                                                                                 |
-     | Event body (content enabled)     | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
+     | Event body (content enabled)     | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":{"location":"Paris"}},"type":"function"}]}` |
      | Event body (content not enabled) | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}`                 |
 
   3. `gen_ai.tool.message`
@@ -364,7 +364,7 @@ Here's the telemetry generated for each step in this scenario:
      |   Property                       |                     Value                                                                                                     |
      |----------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
      | `gen_ai.system`                  | `"openai"`                                                                                                                    |
-     | Event body (content enabled)     | `{"index":0,"finish_reason":"stop","message":{"content":"The weather in Paris is rainy and overcast, with temperatures around 57°F."}}` |
+     | Event body (content enabled)     | `{"index":0,"finish_reason":"stop","message":{"content":"The weather in Paris is rainy and overcast, with temperatures around 57°F"}}` |
      | Event body (content not enabled) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
 ### Chat completion with multiple choices
