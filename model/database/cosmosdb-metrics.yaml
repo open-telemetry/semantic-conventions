@@ -13,7 +13,7 @@ groups:
     metric_name: db.cosmosdb.client.active_instances
     brief: "Number of active client instances"
     instrument: histogram
-    unit: "{count}"
+    unit: "{instance}"
     stability: experimental
     extends: attributes.db.cosmosdb.minimal
 
