@@ -140,6 +140,6 @@ groups:
     metric_name: db.query.response.item_count
     brief: "The actual number of records returned by the query."
     instrument: histogram
-    unit: "{count}"
+    unit: "{row}"
     stability: experimental
     extends: attributes.db.client.minimal
