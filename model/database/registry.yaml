@@ -520,7 +520,7 @@ groups:
               stability: experimental
         stability: experimental
         deprecated: "No replacement at this time."
-        brief: Deprecated, Cosmos DB Operation Type.
+        brief: Deprecated, no replacement at this time.
       - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
