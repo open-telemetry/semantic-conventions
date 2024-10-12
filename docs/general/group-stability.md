@@ -37,79 +37,47 @@ for the details.
 
 ## Group Stability
 
-TODO: adopt new maturity levels.
+<!-- TODO: this section will need to change when https://github.com/open-telemetry/semantic-conventions/issues/1096 is implemented -->
 
 Semantic Convention groups can be `stable` (corresponds to
-[Stable maturity level](https://github.com/open-telemetry/oteps/blob/main/text/0232-maturity-of-otel.md#stable))
-or `experimental` (corresponds to [Development maturity level](https://github.com/open-telemetry/oteps/blob/main/text/0232-maturity-of-otel.md#alpha))
+[Stable maturity level][MaturityLevel]) or `experimental` (corresponds to [Development maturity level][MaturityLevel])
 if stability level is not specified, it's assumed to be `experimental`.
 
 Group stability MUST NOT change from `stable` to `experimental`.
 
-Identifiable (TODO) semantic convention group MUST NOT be removed even if it's `experimental`
-to allow code generation and preserve documentation for legacy instrumentations.
+Identifiable (TODO) semantic convention group of any stability level MUST NOT be removed
+to preserve code generation and documentation for legacy instrumentations.
 
-When group is no longer recommended or supported, it SHOULD be deprecated.
-When group is renamed, the existing group SHOULD be deprecated in favor of a new convention.
+When group is renamed or no longer recommended, it SHOULD be deprecated.
 
-See [Versioning and Stability](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability)
-for the details on stability guarantees provided for specific group types.
+See [Versioning and Stability][Stability] for the details on stability guarantees
+provided for semantic convention groups of different types.
 
-### Attribute vs group stability
+### Groups with mixed stability
 
-Semantic convention groups MAY reference attributes with stability levels different
-from a group level.
+Stability guarantees on a group apply to the group properties (such as type, identity and
+signal-specific properties) as well as stable attribute properties referenced by this group.
 
-Stability guarantees on the group level apply to group properties (such as type, identity and
-signal-specific properties) and a subset of stable attributes used within this group.
+Stability guarantees on a group level **do not** apply to experimental attribute references.
 
-Experimental group of any type:
-- MAY add or remove a reference to a stable or an experimental attribute
-- MAY change attribute requirement levels and other properties (that can be changed
-  when referencing an attribute)
+**Experimental groups:**
 
-Stable groups MAY
-- add references to experimental attributes with `opt_in` requirement level. The level MAY
-in some cases be changed to a different level when attribute becomes stable.
-- add or remove reference to stable attributes with `opt_in` requirement level.
-- span, event, or resources groups MAY add a reference to a stable attribute with  `recommended` level,
-- change stable attribute brief, note, or examples without altering the meaning and purpose of the attribute
-  that would result in breaking change on the instrumentation or consumer side
-- change experimental attribute properties or remove references to them.
+- MAY add or remove references to stable or experimental attributes
+- MAY change requirement level and other properties of attribute references
 
+**Stable groups:**
 
-Stable group:
-- MUST NOT add or remove attribute references with `required` level
-- SHOULD NOT add or remove attribute references with `conditionally_required` level
-- SHOULD NOT change requirement level on stable attribute references
-- span groups SHOULD NOT change `sampling_relevant` values on stable attribute references
-- stable attributes MUST NOT be removed from a stable group.
-- requirement level of a stable attribute SHOULD NOT change
+- MAY add or remove references to stable or experimental attributes with `opt_in`
+  requirement level regardless of attribute stability.
+- MUST NOT have references to experimental attributes with requirement level
+  other than `opt_in`. The requirement level of an experimental attribute reference
+  MAY be changed when this attribute becomes stable in the cases allowed by the
+  [Versioning and Stability][Stability].
 
-### Examples of allowed and not allowed changes
+Stable instrumentations MUST NOT report telemetry following the experimental part
+of semantic conventions by default. They MAY support experimental part and allow
+users to opt into it.
 
-#### Stable group and **stable** attribute
-
-| Change                                                  | Is change allowed?                     | Description |
-| ------------------------------------------------------- | -------------------------------------- | ----------- |
-| Adding or removing **required** attribute               | not allowed                            | Breaks instrumentations and consumers |
-| Adding or removing **conditionally required** attribute | not allowed, there could be exceptions | Could be fine if condition was never satisfied (e.g. HTTP 4 comes out)|
-| Removing **recommended** attribute from a span/event    | not allowed, there could be exceptions |  |
-| Adding **recommended** attributes to a span/event       | yes                                    |  |
-| Adding or removing **recommended** attributes to a metric | not allowed, there could be exceptions | Some attributes don't affect number of time series |
-| Adding or removing **opt-in** attribute from a group    | yes                                    |  |
-| Changing requirement level                              | not allowed, there could be exceptions | Some changes from conditionally required -> recommended could be justified |
-| Changing sampling_relevant value on a span attribute    | not allowed, there could be exceptions | Depending on requirement level |
-| Changing brief, description, examples                   | yes                                    | As long as it does not change the meaning of the attribute |
-
-#### Stable group and **experimental** attribute
-
-| Change                                                  | Is change allowed?                     | Description |
-| ------------------------------------------------------- | -------------------------------------- | ----------- |
-| Adding or removing **required** attribute               | not allowed                            |  |
-| Adding or removing **conditionally required** attribute | not allowed                            |  |
-| Adding or removing **recommended** attribute from a group | not allowed                          |  |
-| Adding or removing **opt-in** attribute from a group    | yes                                    |  |
-| Changing requirement level                              | not allowed                            | Experimental attributes can only be opt-in on stable groups |
-| Changing sampling_relevant value on a span attribute    | yes                                    |  |
-| Changing brief, description, examples                   | yes                                    |  |
+[Stability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability
+[MaturityLevel]: https://github.com/open-telemetry/oteps/blob/main/text/0232-maturity-of-otel.md
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
