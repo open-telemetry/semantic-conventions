@@ -48,7 +48,7 @@ groups:
         stability: experimental
         examples: ["1", "01ABCDEF"]
         brief: >
-          The version of the ruleset used during the evaluation. Could use a hash if a version is not available.
+          The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset.
       - id: feature_flag.environment.id
         type: string
         stability: experimental
