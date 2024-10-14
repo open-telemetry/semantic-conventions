@@ -505,7 +505,7 @@ Solid arrows denote parent/child relationships, dotted arrows denote link
 relationships.
 
 > [!IMPORTANT]
-> The text inside the "Span" boxes is only for reference and visualization purposes.
+> The text inside the "Span" box is only for reference and visualization purposes.
 > Check the accompaining table to see the actual span name to be reported
 > as well as other attributes.
 
