@@ -1,4 +1,0 @@
-change_type: breaking
-component: database
-note: Add new `db.response.status_code` attribute, deprecate `db.cosmos.status_code`.
-issues: [1424]

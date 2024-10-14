@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen_ai
+note: Add system-specific conventions for Azure AI Inference.
+issues: [1393]

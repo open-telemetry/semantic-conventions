@@ -58,7 +58,7 @@ structure and semantics will also be defined.
 ### General event semantics
 
 * An event MUST have an `event.name` attribute that uniquely identifies the event.
-* It MAY have [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/common#attribute)
+* It MAY have [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/common#attribute)
   attributes that provide additional context about the event.
 * It MAY contain a _payload_ (body) that describes the specific details of the
   named event.
@@ -73,7 +73,7 @@ structure and semantics will also be defined.
 Recommendations for defining events:
 
 * Use the _payload_ (body) to represent the details of the event instead of a
-  collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/common#attribute)
+  collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/common#attribute)
   attributes.
 * Events SHOULD be generated / produced / recorded using the
     [Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md)
