@@ -116,7 +116,7 @@ groups:
         examples: ["102", "ORA-17002", "08P01", "404"]
       - id: db.response.row_count
         type: int
-        stability: experimental  # RELEASE CANDIDATE
+        stability: experimental
         brief: Database response item count.
         note: >
           Number of rows returned by the database in response to a query.
@@ -469,11 +469,11 @@ groups:
         type:
           members:
             - id: gateway
-              value: "Gateway"
+              value: "gateway"
               brief: Gateway (HTTP) connections mode
               stability: experimental
             - id: direct
-              value: "Direct"
+              value: "direct"
               brief: Direct connection.
               stability: experimental
         stability: experimental
