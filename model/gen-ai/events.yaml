@@ -1,0 +1,48 @@
+groups:
+  - id: gen_ai.common.event.attributes
+    type: attribute_group
+    stability: experimental
+    brief: >
+      Describes common Gen AI event attributes.
+    attributes:
+      - ref: gen_ai.system
+
+  - id: gen_ai.system.message
+    name: gen_ai.system.message
+    type: event
+    stability: experimental
+    brief: >
+      This event describes the instructions passed to the GenAI system inside the prompt.
+    extends: gen_ai.common.event.attributes
+
+  - id: gen_ai.user.message
+    name: gen_ai.user.message
+    type: event
+    stability: experimental
+    brief: >
+      This event describes the prompt message specified by the user.
+    extends: gen_ai.common.event.attributes
+
+  - id: gen_ai.assistant.message
+    name: gen_ai.assistant.message
+    type: event
+    stability: experimental
+    brief: >
+      This event describes the assistant message passed to GenAI system or received from it.
+    extends: gen_ai.common.event.attributes
+
+  - id: gen_ai.tool.message
+    name: gen_ai.tool.message
+    type: event
+    stability: experimental
+    brief: >
+      This event describes the tool or function response message.
+    extends: gen_ai.common.event.attributes
+
+  - id: gen_ai.choice
+    name: gen_ai.choice
+    type: event
+    stability: experimental
+    brief: >
+      This event describes the Gen AI response message.
+    extends: gen_ai.common.event.attributes
