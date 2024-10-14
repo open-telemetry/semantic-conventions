@@ -511,7 +511,7 @@ groups:
               value: "ConsistentPrefix"
               stability: experimental
         stability: experimental
-        brief: Account or request [consistency level](https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels).
+        brief: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
         examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
 
   - id: registry.db.elasticsearch
