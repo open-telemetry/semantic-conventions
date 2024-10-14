@@ -29,6 +29,9 @@ updated to the stable messaging semantic conventions, they:
 <!-- toc -->
 
 - [Summary of changes](#summary-of-changes)
+  - [Span name](#span-name)
+  - [Operation](#operation)
+  - [Span Kind](#span-kind)
   - [Migrating from v1.26.0](#migrating-from-v1260)
   - [Migrating from v1.25.0](#migrating-from-v1250)
   - [Migrating from v1.24.0](#migrating-from-v1240)
@@ -37,6 +40,7 @@ updated to the stable messaging semantic conventions, they:
   - [Migrating from v1.20.0](#migrating-from-v1200)
   - [Migrating from v1.19.0 and v1.18.0 v1.17.0](#migrating-from-v1190-and-v1180-v1170)
   - [Migrating from v1.16](#migrating-from-v116)
+  - [Metrics](#metrics)
 
 <!-- tocstop -->
 
@@ -46,6 +50,46 @@ This section summarizes the changes made to the messaging semantic conventions
 from a range of versions. Each starting version shows all the changes required
 to bring the conventions to
 [v1.TODO (stable)](https://github.com/open-telemetry/semantic-conventions/blob/v1.TODO/docs/messaging/README.md).
+
+### Span name
+
+The recommended span name has changed to `{messaging.operation.name} {destination}`, where the `{destination}` SHOULD describe the entity
+that the operation is performed against and SHOULD adhere to one of the following values, provided they are accessible:
+
+- `messaging.destination.template` SHOULD be used when it is available.
+- `messaging.destination.name` SHOULD be used when the destination is known to be neither temporary nor anonymous.
+- `server.address:server.port` SHOULD be used only for operations not targeting any specific destination(s).
+
+References:
+
+- [Span name](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/messaging/messaging-spans.md#span-name)
+
+### Operation
+
+The previously `messaging.operation` attribute is renamed to `messaging.operation.type` and has the following defined values:
+
+- `create`
+- `send`
+- `receive`
+- `process`
+- `settle`
+
+References:
+
+- [Operation types](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/messaging/messaging-spans.md#operation-types)
+
+### Span Kind
+
+The recommended span kind has changed and is now based on the `messaging.operation.type`.
+
+- `create` -> `PRODUCER`
+- `send` -> `PRODUCER` if the context of the "Send" span is used as creation context, otherwise `CLIENT`
+- `receive` -> `CLIENT`
+- `process` -> `CONSUMER`
+
+References:
+
+- [Span kind](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/messaging/messaging-spans.md#span-kind)
 
 ### Migrating from v1.26.0
 
@@ -424,3 +468,26 @@ to bring the conventions to
 | `messaging.protocol` |
 | `messaging.protocol_version` |
 <!-- prettier-ignore-end -->
+
+### Metrics
+
+Messaging client metrics were initially added in Semantic Conventions
+version `v1.24.0`. Instrumentations that implemented these experimental
+metrics should adapt and migrate to the latest version:
+
+Common metrics:
+
+- [messaging.client.operation.duration](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/messaging/messaging-metrics.md#metric-messagingclientoperationduration)
+
+Producer metrics:
+
+- [messaging.client.sent.messages](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/messaging/messaging-metrics.md#metric-messagingclientsentmessages)
+
+Consumer metrics:
+
+- [messaging.client.consumed.messages](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/messaging/messaging-metrics.md#metric-messagingclientconsumedmessages)
+- [messaging.process.duration](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/messaging/messaging-metrics.md#metric-messagingprocessduration)
+
+References:
+
+- [Messaging Client Metrics](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/messaging/messaging-metrics.md)
