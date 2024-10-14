@@ -2,7 +2,7 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for Database Metrics
+# Semantic Conventions for Database Client Metrics
 
 **Status**: [Mixed][DocumentStatus]
 
