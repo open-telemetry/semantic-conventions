@@ -78,8 +78,6 @@ Parameterized query text SHOULD be collected by default (the query parameter val
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 This attribute has stability level RELEASE CANDIDATE.
 
-
-
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -94,8 +92,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

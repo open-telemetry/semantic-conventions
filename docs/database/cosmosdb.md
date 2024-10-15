@@ -205,8 +205,6 @@ This attribute has stability level RELEASE CANDIDATE.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 This attribute has stability level RELEASE CANDIDATE.
 
-
-
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -223,7 +221,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 |---|---|---|
 | `direct` | Direct connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -245,14 +242,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

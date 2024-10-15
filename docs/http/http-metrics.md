@@ -144,14 +144,11 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -167,8 +164,6 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -222,8 +217,6 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-
-
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -238,8 +231,6 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -261,9 +252,7 @@ This metric is optional.
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `http.server.request.body.size` | Histogram | `By` | Size of HTTP server request bodies. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -330,14 +319,11 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -353,8 +339,6 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -376,9 +360,7 @@ This metric is optional.
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `http.server.response.body.size` | Histogram | `By` | Size of HTTP server response bodies. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -445,14 +427,11 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
 > to trigger cardinality limits, degrading the usefulness of the metric.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -468,8 +447,6 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -552,14 +529,11 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[7]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -575,8 +549,6 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -602,9 +574,6 @@ Instrumentations MAY allow users to enable additional experimental attributes.
 
 **[1]:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
-
-
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -625,9 +594,7 @@ This metric is optional.
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `http.client.request.body.size` | Histogram | `By` | Size of HTTP client request bodies. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -685,14 +652,11 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[8]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -708,8 +672,6 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -731,9 +693,7 @@ This metric is optional.
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `http.client.response.body.size` | Histogram | `By` | Size of HTTP client response bodies. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -791,14 +751,11 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[8]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -814,8 +771,6 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -852,16 +807,12 @@ This metric is optional.
 
 **[3]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-
-
 `http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `active` | active state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `idle` | idle state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -900,9 +851,6 @@ This metric is optional.
 **[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[3]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -955,8 +903,6 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-
-
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -971,8 +917,6 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

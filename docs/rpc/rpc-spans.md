@@ -131,8 +131,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[7]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
-
-
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -143,14 +141,12 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -161,8 +157,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -214,8 +208,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[9]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
-
-
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -226,14 +218,12 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -244,8 +234,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -276,16 +264,12 @@ The event name MUST be `rpc.message`.
 
 **[1]:** This way we guarantee that the values will be consistent between different implementations.
 
-
-
 `rpc.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `RECEIVED` | received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `SENT` | sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
