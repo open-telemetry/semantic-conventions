@@ -2,7 +2,6 @@
 {#- It consists of two variables: -#}
 {#- - id: The top-level namespace id. -#}
 {#- - groups: A sequence of all attribute groups under this namespace. -#}
-{#-           This includes deprecated groups. -#}
 {% import 'stability.j2' as stability %}
 {% import 'notes.j2' as notes %}
 {% import 'enum_macros.j2' as enums %}
@@ -39,8 +38,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 {%- for attribute in group.attributes | sort(attribute="name") %}
-| [{{ attrs.name(attribute) }}](#{{ attrs.name(attribute) | lower | replace(' ', '-') }}) | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add(attribute.note) }} | {{ attrs.examples(attribute) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
-<a id="{{ attrs.name(attribute) | lower | replace(' ', '-') }}"></a>  {# This line creates the anchor point #}
+| <a id="{{ attrs.name(attribute) | lower | replace(' ', '-') }}"></a>[{{ attrs.name(attribute) }}] | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add(attribute.note) }} | {{ attrs.examples(attribute) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {%- endfor %}
 
 {{ notes.render() }}
