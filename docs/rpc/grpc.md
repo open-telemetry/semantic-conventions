@@ -33,8 +33,6 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 
 **[2]:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-
-
 `rpc.grpc.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -56,8 +54,6 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 | `14` | UNAVAILABLE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `15` | DATA_LOSS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `16` | UNAUTHENTICATED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
