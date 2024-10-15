@@ -384,6 +384,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`system.device`](/docs/attributes-registry/system.md) | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.paging.state`](/docs/attributes-registry/system.md) | string | The memory paging state | `free` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.paging.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -417,6 +418,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`system.device`](/docs/attributes-registry/system.md) | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.paging.state`](/docs/attributes-registry/system.md) | string | The memory paging state | `free` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `system.paging.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
