@@ -1,0 +1,4 @@
+change_type: enhancement
+component: feature_flag
+note: Define `feature_flag.evaluation` event.
+issues: [1140]
