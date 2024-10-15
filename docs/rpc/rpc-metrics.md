@@ -87,13 +87,10 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
 
 **Streaming**: N/A.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -115,10 +112,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** **Streaming**: Recorded per message in a streaming batch
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -140,10 +134,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** **Streaming**: Recorded per response in a streaming batch
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -165,12 +156,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.server.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Should be 1 for all non-streaming RPCs.
 
 **Streaming** : This metric is required for server and client streaming RPCs
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -192,12 +180,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.server.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Should be 1 for all non-streaming RPCs.
 
 **Streaming**: This metric is required for server and client streaming RPCs
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -224,13 +209,10 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
 
 **Streaming**: N/A.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -252,10 +234,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** **Streaming**: Recorded per message in a streaming batch
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -277,10 +256,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** **Streaming**: Recorded per response in a streaming batch
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -302,12 +278,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.client.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Should be 1 for all non-streaming RPCs.
 
 **Streaming**: This metric is required for server and client streaming RPCs
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -329,12 +302,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `rpc.client.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Should be 1 for all non-streaming RPCs.
 
 **Streaming**: This metric is required for server and client streaming RPCs
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -379,8 +349,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[6]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-
-
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -391,14 +359,12 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -409,8 +375,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
