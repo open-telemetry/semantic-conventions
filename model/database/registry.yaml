@@ -117,7 +117,7 @@ groups:
       - id: db.response.row_count
         type: int
         stability: experimental
-        brief: Database response item count.
+        brief: Number of rows returned by the database in response to a query.
         note: >
           Number of rows returned by the database in response to a query.
 
