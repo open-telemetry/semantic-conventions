@@ -1,7 +1,14 @@
 {#- Macros for simplifying creating "Resource" documentation. -#}
 {% import 'stability.j2' as stability %}
+{% macro real_stability(resource) %}
+{% if resource.attributes | map(attribute='stability') | unique | length > 1 -%}
+{{ stability.badge("mixed", "") }}
+{%- else -%}
+{{ stability.badge(resource.stability, resource.deprecated) }}
+{%- endif %}
+{% endmacro %}
 {% macro header(resource) %}
-**Status:** {{ stability.badge(resource.stability, resource.deprecated) }}
+**Status:** {{ real_stability(resource) | trim }}
 
 **type:** `{{ resource.name }}`
 
