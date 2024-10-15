@@ -506,7 +506,7 @@ relationships.
 
 > [!IMPORTANT]
 > The text inside the "Span" box is only for reference and visualization purposes.
-> Check the accompaining table to see the actual span name to be reported
+> Check the accompanying table to see the actual span name to be reported
 > as well as other attributes.
 
 ### Topic with multiple consumers
