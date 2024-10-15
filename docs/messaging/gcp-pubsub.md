@@ -141,7 +141,7 @@ flowchart LR;
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Create A | Span Create B | Span Send A B |
+| Field or Attribute | Producer Span Create A | Producer Span Create B | Producer Span Send A B |
 |-|-|-|-|
 | Span name | `create T` | `create T` | `send T` |
 | Parent |  |  |  |
@@ -162,13 +162,13 @@ flowchart LR;
 flowchart TD;
   subgraph CONSUMER
   direction LR
-  R1[Receive m1]
-  SM1[Ack m1]
-  EM1[Modack m1]
+  R1[Receive A]
+  SM1[Ack A]
+  EM1[Modack A]
   end
   subgraph PRODUCER
   direction LR
-  CM1[Create m1]
+  CM1[Create A]
   PM1[Send]
   end
   %% Link 0
@@ -200,7 +200,7 @@ flowchart TD;
   linkStyle 3 color:#0560f2,stroke:#0560f2
 ```
 
-| Field or Attribute | Span Create A | Span Send A | Span Receive A | Span Modack A | Span Ack A |
+| Field or Attribute | Producer Span Create A | Producer Span Send | Consumer Span Receive A | Consumer Span Modack A | Consumer Span Ack A |
 |-|-|-|-|-|-|
 | Span name | `create T` | `send T` |  `receive S` | `modack S` | `ack S` |
 | Parent |  |  |  | |  |

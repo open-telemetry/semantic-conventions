@@ -504,6 +504,11 @@ understanding how messaging spans can be integrated into an overall trace flow.
 Solid arrows denote parent/child relationships, dotted arrows denote link
 relationships.
 
+> [!IMPORTANT]
+> The text inside the "Span" box is only for reference and visualization purposes.
+> Check the accompanying table to see the actual span name to be reported
+> as well as other attributes.
+
 ### Topic with multiple consumers
 
 Given is a publisher that publishes a message to a topic exchange "T" on RabbitMQ, and two consumers which both get the message delivered.
@@ -532,7 +537,7 @@ flowchart LR;
   linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Send A | Span Process A 1| Span Process A 2 |
+| Field or Attribute | Producer | Consumer 1| Consumer 2 |
 |-|-|-|-|
 | Span name | `publish T` | `consume T` | `consume T` |
 | Parent (optional) | | `publish T` | `publish T` |
@@ -557,7 +562,7 @@ flowchart LR;
   PA[Span Send A]
   PB[Span Send B]
   end
-  subgraph CONSUMER1
+  subgraph CONSUMER
   direction TB
   D1[Span Receive A B]
   end
@@ -569,7 +574,7 @@ flowchart LR;
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Send A | Span Send B | Span Receive A B |
+| Field or Attribute | Producer Span A | Producer Span B | Consumer |
 |-|-|-|-|
 | Span name | `send Q` | `send Q` | `poll Q` |
 | Parent |  |  |  |
@@ -620,7 +625,7 @@ flowchart LR;
   linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Create A | Span Create B | Span Send | Span Receive A | Span Receive B |
+| Field or Attribute | Producer Span Create A | Producer Span Create B | Producer Span Send | Consumer 1 | Consumer 2 |
 |-|-|-|-|-|-|
 | Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
 | Parent |  | | | | |
@@ -637,7 +642,7 @@ flowchart LR;
 
 ### Batch publishing without "Create" spans
 
-Given is a publisher that publishes a batch with two messages to a topic "Q" on
+Given is a producer that publishes a batch with two messages to a topic "Q" on
 Kafka, and two different consumers receiving one of the messages.
 
 Based on the configuration provided by user, instrumentation in this case reports
@@ -665,7 +670,7 @@ flowchart LR;
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Publish | Span Receive A | Span Receive B |
+| Field or Attribute | Producer | Consumer 1 | Consumer 2 |
 |-|-|-|-|
 | Span name | `send Q` | `poll Q` | `poll Q` |
 | Parent | | | |
