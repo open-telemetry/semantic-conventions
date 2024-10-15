@@ -7,6 +7,73 @@
 
 <!-- next version -->
 
+## v1.28.0
+
+### 🛑 Breaking changes 🛑
+
+- `database`: Add new `db.response.status_code` attribute, deprecate `db.cosmos.status_code`. (#1424)
+- `gen_ai`: Deprecate `gen_ai.prompt` and `gen_ai.completion` attributes, introduce log-based events for GenAI inputs and outputs. (#834, #980)
+- `system`: Make `system.cpu.utilization` and `process.cpu.utilization` opt-in (#1130)
+- `messaging`: Mark `*.size` messaging attributes as opt-in (#474)
+
+### 🚩 Deprecations 🚩
+
+- `event`: Remove support for the event `fields` supporting referencing / inheriting fields from global attributes. (#1341)
+
+### 🚀 New components 🚀
+
+- `cloudfoundry`: Adds a resource convention for Cloud Foundry applications and system components. (#622, #624)
+  Introduces a description for CloudFoundry resources. These can either be
+  applications deployed on the runtime or system components of Cloud Foundry
+  itself. It also extends to the runtime logs and metrics, e.g. Gorouter access
+  logs and container metrics.
+
+- `dotnet`: Adds experimental metrics for the .NET Common Language Runtime (CLR). (#956)
+- `profile`: Introduce semantic convention for OTel Profiles. (#1188)
+
+### 💡 Enhancements 💡
+
+- `db`: Mark database semantic conventions as release candidate (#1101)
+- `messaging`: Define span kind for unspecified cases of messaging `publish` and `process` spans. (#1112)
+- `db`: Change description of `db.client.connection.pending_requests` from cumulative to current value (#1290)
+- `docs`: Add note on tooling limitations for attribute names and enforce name format. (#1124)
+- `az, db`: Define  `db.operation.name` values for Cosmos DB, declare `az.namespace` attribute and add proper reference to it. (#1330)
+- `db`: Recommend to capture `db.namespace` from initial connection over not capturing any, also specify `db.namespace` value for PostgreSQL, MySQL and MariaDB (#1437)
+- `messaging`: Add recommendation to report "Create" spans for batch send calls only and to allow to disable "Create" spans.
+ (#1273)
+- `other`: Update resource to include stability in the YAML file (#1399)
+  Makes the following changes:
+
+  - Require `name` on resource groups.
+  - Enforce backwards compatibility stability requirements on resource groups.
+  - Rename `telemetry` to `telemetry.sdk`, attributes are unchanged.
+  - Mark `telemetry.sdk` and `resource` as stable in YAML model.
+  - Markdown templates for resource groups NOW includes header describing
+    the resource `type`, `stability` and `description`.
+
+- `process`: Add additional process fields from ECS (#993)
+- `container`: Add `container.cpu.usage` metric (#1128)
+- `container`: Add CSI (Container Storage Interface) attributes: `container.csi.plugin.name` and `container.csi.volume.id`. (#1119)
+- `system`: Add the `system.filesystem.limit` metric (#127)
+- `k8s`: Add `k8s.pod.cpu.time`, `k8s.pod.cpu.usage`, `k8s.node.cpu.time`, `k8s.node.cpu.usage` metrics (#1320)
+- `k8s`: Add k8s.pod.memory usage and k8s.node.memory.usage metrics (#1406)
+- `k8s`: Adds `k8s.volume.name` and `k8s.volume.type` attributes to the registry (#1164)
+- `os`: add lookup for `os.build_id` (#1318)
+- `gen_ai`: Add system specific conventions for OpenAI. (#1370)
+- `system`: Add the `system.disk.limit` metric (#127)
+- `file`: Add additional attributes from ECS to the `file` namespace. (#914)
+- `messaging`: Clarify the possibility to have a parent-child trace structure in messaging conventions (#1282)
+- `nodejs`: Adding `nodejs.eventloop.time` metric to Node.js runtime metrics. (#1259)
+- `process`: Extend process.executable with build_id attributes. (#1329)
+  For correct symbolization it is important to uniquely identify executables.
+- `messaging`: Change messaging.operation.type = publish to messaging.operation.type = send (#1285)
+- `host`: update lookup for os.build_id (#1396)
+
+### 🧰 Bug fixes 🧰
+
+- `messaging`: Fix deprecated note for service bus attributes (#1418)
+- `container`: Fixes broken link (#1332)
+
 ## 1.27.0
 
 ### 🛑 Breaking changes 🛑

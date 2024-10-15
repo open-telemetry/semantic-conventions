@@ -1,13 +1,13 @@
 groups:
-  - id: trace.gen_ai.client.common
-    type: span
+  - id: trace.gen_ai.client.common_attributes
+    type: attribute_group
+    stability: experimental
     brief: >
       Describes GenAI operation span.
     attributes:
-      - ref: gen_ai.system
-        requirement_level: required
       - ref: gen_ai.request.model
-        requirement_level: required
+        requirement_level:
+          conditionally_required: If available.
         note: >
             The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
             then the value must be the exact name of the model requested. If the model is a fine-tuned
@@ -54,20 +54,30 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
-
-  - id: trace.gen_ai.client
-    extends: trace.gen_ai.client.common
+  - id: trace.gen_ai.client.span
+    type: span
+    stability: experimental
     brief: >
-      Describes a GenAI operation span.
+      Describes GenAI operation span.
+    extends: trace.gen_ai.client.common_attributes
     attributes:
+      - ref: gen_ai.system
+        # TODO: Not adding to trace.gen_ai.client.common_attributes because of https://github.com/open-telemetry/build-tools/issues/192
+        requirement_level: required
       - ref: gen_ai.request.top_k
         requirement_level: recommended
+    events:
+      - gen_ai.content.prompt
+      - gen_ai.content.completion
 
   - id: trace.gen_ai.openai.client
-    extends: trace.gen_ai.client.common
+    extends: trace.gen_ai.client.common_attributes
+    stability: experimental
     brief: >
       Describes an OpenAI operation span.
     attributes:
+      - ref: gen_ai.request.model
+        requirement_level: required
       - ref: gen_ai.openai.request.seed
         requirement_level:
           conditionally_required: if the request includes a seed
@@ -84,3 +94,25 @@ groups:
         brief: The number of tokens used in the prompt sent to OpenAI.
       - ref: gen_ai.usage.output_tokens
         brief: The number of tokens used in the completions from OpenAI.
+
+  - id: trace.gen_ai.az.ai.inference.client
+    extends: trace.gen_ai.client.common_attributes
+    stability: experimental
+    type: attribute_group
+    brief: >
+      Describes Azure AI Inference span attributes.
+    attributes:
+      - ref: az.namespace
+        note: >
+          When `az.namespace` attribute is populated, it MUST be set to `Microsoft.CognitiveServices` for all
+          operations performed by Azure AI Inference clients.
+        examples: ["Microsoft.CognitiveServices"]
+      - ref: gen_ai.usage.input_tokens
+        brief: >
+          The number of prompt tokens as reported in the usage prompt_tokens property of the response.
+      - ref: gen_ai.usage.output_tokens
+        brief: >
+          The number of completion tokens as reported in the usage completion_tokens property of the response.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not default (443).

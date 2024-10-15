@@ -1,4 +1,0 @@
-change_type: breaking
-component: messaging
-note: Mark *.size messaging attributes as Opt-In
-issues: [474]
