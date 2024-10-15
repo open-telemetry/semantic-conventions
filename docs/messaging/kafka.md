@@ -165,7 +165,7 @@ flowchart LR;
   linkStyle 1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Send | Span Poll | Span Process | Span Commit T |
+| Field or Attribute | Producer | Consumer Span Poll | Consumer Span Process | Consumer Span Commit T |
 |-|-|-|-|-|
 | Span name | `"send T"` | `"poll T"` | `"process T"` | `"commit T"` |
 | Parent |  |  |  (optional) Span Send  | Span Process |
