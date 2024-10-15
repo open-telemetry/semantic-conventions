@@ -32,9 +32,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `signalr.server.connection.duration` | Histogram | `s` | The duration of connections on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 **[1]:** Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -49,7 +47,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `normal_closure` | The connection was closed normally. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `timeout` | The connection was closed due to a timeout. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -57,8 +54,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `long_polling` | LongPolling protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `server_sent_events` | ServerSentEvents protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `web_sockets` | WebSockets protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -78,9 +73,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `signalr.server.active_connections` | UpDownCounter | `{connection}` | Number of connections that are currently active on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 **[1]:** Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -95,7 +88,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `normal_closure` | The connection was closed normally. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `timeout` | The connection was closed due to a timeout. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -103,8 +95,6 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `long_polling` | LongPolling protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `server_sent_events` | ServerSentEvents protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `web_sockets` | WebSockets protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
