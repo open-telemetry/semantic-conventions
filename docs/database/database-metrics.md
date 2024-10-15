@@ -439,7 +439,7 @@ The following metric instruments describe Azure Cosmos DB client behaviour.
 
 ### Metric: `db.client.operation.duration`
 
-It captures the total time taken by an Azure Cosmos DB operation. This metric follows the common [db.client.operation.duration] (#metric-dbclientoperationduration)b definition.
+It captures the total time taken by an Azure Cosmos DB operation. This metric follows the common [db.client.operation.duration](#metric-dbclientoperationduration) definition.
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
