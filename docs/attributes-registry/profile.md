@@ -10,9 +10,14 @@
 
 Describes the origin of a single frame in a Profile.
 
-| Attribute            | Type   | Description                                              | Examples  | Stability                                                        |
-| -------------------- | ------ | -------------------------------------------------------- | --------- | ---------------------------------------------------------------- |
-| `profile.frame.type` | string | Describes the interpreter or compiler of a single frame. | `cpython` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `profile.frame.type`
+
+<a id="`profile.frame.type`"></a>
+
+| [`profile.frame.type`](#`profile.frame.type`) | string | Describes the interpreter or compiler of a single frame. | `cpython` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 `profile.frame.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

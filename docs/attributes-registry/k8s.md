@@ -13,34 +13,164 @@
 
 Kubernetes resource attributes.
 
-| Attribute                                     | Type   | Description                                                                                                                                                      | Examples                                                                                                                                  | Stability                                                        |
-| --------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `k8s.cluster.name`                            | string | The name of the cluster.                                                                                                                                         | `opentelemetry-cluster`                                                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.cluster.uid`                             | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1]                                                                                  | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.container.name`                          | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis`                                                                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.container.restart_count`                 | int    | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec.         |                                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.container.status.last_terminated_reason` | string | Last terminated reason of the Container.                                                                                                                         | `Evicted`; `Error`                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.cronjob.name`                            | string | The name of the CronJob.                                                                                                                                         | `opentelemetry`                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.cronjob.uid`                             | string | The UID of the CronJob.                                                                                                                                          | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.daemonset.name`                          | string | The name of the DaemonSet.                                                                                                                                       | `opentelemetry`                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.daemonset.uid`                           | string | The UID of the DaemonSet.                                                                                                                                        | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.deployment.name`                         | string | The name of the Deployment.                                                                                                                                      | `opentelemetry`                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.deployment.uid`                          | string | The UID of the Deployment.                                                                                                                                       | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.job.name`                                | string | The name of the Job.                                                                                                                                             | `opentelemetry`                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.job.uid`                                 | string | The UID of the Job.                                                                                                                                              | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.namespace.name`                          | string | The name of the namespace that the pod is running in.                                                                                                            | `default`                                                                                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.node.name`                               | string | The name of the Node.                                                                                                                                            | `node-1`                                                                                                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.node.uid`                                | string | The UID of the Node.                                                                                                                                             | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.pod.annotation.<key>`                    | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.                                   | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.pod.label.<key>`                         | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value.                                                  | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=`                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.pod.name`                                | string | The name of the Pod.                                                                                                                                             | `opentelemetry-pod-autoconf`                                                                                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.pod.uid`                                 | string | The UID of the Pod.                                                                                                                                              | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.replicaset.name`                         | string | The name of the ReplicaSet.                                                                                                                                      | `opentelemetry`                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.replicaset.uid`                          | string | The UID of the ReplicaSet.                                                                                                                                       | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.statefulset.name`                        | string | The name of the StatefulSet.                                                                                                                                     | `opentelemetry`                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.statefulset.uid`                         | string | The UID of the StatefulSet.                                                                                                                                      | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.volume.name`                             | string | The name of the K8s volume.                                                                                                                                      | `volume0`                                                                                                                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `k8s.volume.type`                             | string | The type of the K8s volume.                                                                                                                                      | `emptyDir`; `persistentVolumeClaim`                                                                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `k8s.cluster.name`
+
+<a id="`k8s.cluster.name`"></a>
+
+| [`k8s.cluster.name`](#`k8s.cluster.name`) | string | The name of the cluster. | `opentelemetry-cluster` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.cluster.uid`
+
+<a id="`k8s.cluster.uid`"></a>
+
+| [`k8s.cluster.uid`](#`k8s.cluster.uid`) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.container.name`
+
+<a id="`k8s.container.name`"></a>
+
+| [`k8s.container.name`](#`k8s.container.name`) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.container.restart_count`
+
+<a id="`k8s.container.restart_count`"></a>
+
+| [`k8s.container.restart_count`](#`k8s.container.restart_count`) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.container.status.last_terminated_reason`
+
+<a id="`k8s.container.status.last_terminated_reason`"></a>
+
+| [`k8s.container.status.last_terminated_reason`](#`k8s.container.status.last_terminated_reason`) | string | Last terminated reason of the Container. | `Evicted`; `Error` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.cronjob.name`
+
+<a id="`k8s.cronjob.name`"></a>
+
+| [`k8s.cronjob.name`](#`k8s.cronjob.name`) | string | The name of the CronJob. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.cronjob.uid`
+
+<a id="`k8s.cronjob.uid`"></a>
+
+| [`k8s.cronjob.uid`](#`k8s.cronjob.uid`) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.daemonset.name`
+
+<a id="`k8s.daemonset.name`"></a>
+
+| [`k8s.daemonset.name`](#`k8s.daemonset.name`) | string | The name of the DaemonSet. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.daemonset.uid`
+
+<a id="`k8s.daemonset.uid`"></a>
+
+| [`k8s.daemonset.uid`](#`k8s.daemonset.uid`) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.deployment.name`
+
+<a id="`k8s.deployment.name`"></a>
+
+| [`k8s.deployment.name`](#`k8s.deployment.name`) | string | The name of the Deployment. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.deployment.uid`
+
+<a id="`k8s.deployment.uid`"></a>
+
+| [`k8s.deployment.uid`](#`k8s.deployment.uid`) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.job.name`
+
+<a id="`k8s.job.name`"></a>
+
+| [`k8s.job.name`](#`k8s.job.name`) | string | The name of the Job. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.job.uid`
+
+<a id="`k8s.job.uid`"></a>
+
+| [`k8s.job.uid`](#`k8s.job.uid`) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.namespace.name`
+
+<a id="`k8s.namespace.name`"></a>
+
+| [`k8s.namespace.name`](#`k8s.namespace.name`) | string | The name of the namespace that the pod is running in. | `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.node.name`
+
+<a id="`k8s.node.name`"></a>
+
+| [`k8s.node.name`](#`k8s.node.name`) | string | The name of the Node. | `node-1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.node.uid`
+
+<a id="`k8s.node.uid`"></a>
+
+| [`k8s.node.uid`](#`k8s.node.uid`) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.pod.annotation.<key>`
+
+<a id="`k8s.pod.annotation.<key>`"></a>
+
+| [`k8s.pod.annotation.<key>`](#`k8s.pod.annotation.<key>`) | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.pod.label.<key>`
+
+<a id="`k8s.pod.label.<key>`"></a>
+
+| [`k8s.pod.label.<key>`](#`k8s.pod.label.<key>`) | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.pod.name`
+
+<a id="`k8s.pod.name`"></a>
+
+| [`k8s.pod.name`](#`k8s.pod.name`) | string | The name of the Pod. | `opentelemetry-pod-autoconf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.pod.uid`
+
+<a id="`k8s.pod.uid`"></a>
+
+| [`k8s.pod.uid`](#`k8s.pod.uid`) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.replicaset.name`
+
+<a id="`k8s.replicaset.name`"></a>
+
+| [`k8s.replicaset.name`](#`k8s.replicaset.name`) | string | The name of the ReplicaSet. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.replicaset.uid`
+
+<a id="`k8s.replicaset.uid`"></a>
+
+| [`k8s.replicaset.uid`](#`k8s.replicaset.uid`) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.statefulset.name`
+
+<a id="`k8s.statefulset.name`"></a>
+
+| [`k8s.statefulset.name`](#`k8s.statefulset.name`) | string | The name of the StatefulSet. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.statefulset.uid`
+
+<a id="`k8s.statefulset.uid`"></a>
+
+| [`k8s.statefulset.uid`](#`k8s.statefulset.uid`) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.volume.name`
+
+<a id="`k8s.volume.name`"></a>
+
+| [`k8s.volume.name`](#`k8s.volume.name`) | string | The name of the K8s volume. | `volume0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `k8s.volume.type`
+
+<a id="`k8s.volume.type`"></a>
+
+| [`k8s.volume.type`](#`k8s.volume.type`) | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 **[1]:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
@@ -80,6 +210,11 @@ conflict.
 
 Describes deprecated k8s attributes.
 
-| Attribute              | Type   | Description                              | Examples                   | Stability                                                                                   |
-| ---------------------- | ------ | ---------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------- |
-| `k8s.pod.labels.<key>` | string | Deprecated, use `k8s.pod.label` instead. | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `k8s.pod.labels.<key>`
+
+<a id="`k8s.pod.labels.<key>`"></a>
+
+| [`k8s.pod.labels.<key>`](#`k8s.pod.labels.<key>`) | string | Deprecated, use `k8s.pod.label` instead. | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. | |

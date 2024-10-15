@@ -10,10 +10,20 @@
 
 SignalR attributes
 
-| Attribute                   | Type   | Description                                                                                                           | Examples                      | Stability                                                  |
-| --------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------- |
-| `signalr.connection.status` | string | SignalR HTTP connection closure status.                                                                               | `app_shutdown`; `timeout`     | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `signalr.transport`         | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `signalr.connection.status`
+
+<a id="`signalr.connection.status`"></a>
+
+| [`signalr.connection.status`](#`signalr.connection.status`) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `signalr.transport`
+
+<a id="`signalr.transport`"></a>
+
+| [`signalr.transport`](#`signalr.transport`) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 `signalr.connection.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -19,28 +19,58 @@
 
 Describes System attributes
 
-| Attribute       | Type   | Description           | Examples       | Stability                                                        |
-| --------------- | ------ | --------------------- | -------------- | ---------------------------------------------------------------- |
-| `system.device` | string | The device identifier | `(identifier)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `system.device`
+
+<a id="`system.device`"></a>
+
+| [`system.device`](#`system.device`) | string | The device identifier | `(identifier)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 ## System CPU Attributes
 
 Describes System CPU attributes
 
-| Attribute                   | Type | Description                     | Examples | Stability                                                        |
-| --------------------------- | ---- | ------------------------------- | -------- | ---------------------------------------------------------------- |
-| `system.cpu.logical_number` | int  | The logical CPU number [0..n-1] | `1`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `system.cpu.logical_number`
+
+<a id="`system.cpu.logical_number`"></a>
+
+| [`system.cpu.logical_number`](#`system.cpu.logical_number`) | int | The logical CPU number [0..n-1] | `1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 ## Filesystem Attributes
 
 Describes Filesystem attributes
 
-| Attribute                      | Type   | Description               | Examples    | Stability                                                        |
-| ------------------------------ | ------ | ------------------------- | ----------- | ---------------------------------------------------------------- |
-| `system.filesystem.mode`       | string | The filesystem mode       | `rw, ro`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system.filesystem.mountpoint` | string | The filesystem mount path | `/mnt/data` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system.filesystem.state`      | string | The filesystem state      | `used`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system.filesystem.type`       | string | The filesystem type       | `ext4`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `system.filesystem.mode`
+
+<a id="`system.filesystem.mode`"></a>
+
+| [`system.filesystem.mode`](#`system.filesystem.mode`) | string | The filesystem mode | `rw, ro` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `system.filesystem.mountpoint`
+
+<a id="`system.filesystem.mountpoint`"></a>
+
+| [`system.filesystem.mountpoint`](#`system.filesystem.mountpoint`) | string | The filesystem mount path | `/mnt/data` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `system.filesystem.state`
+
+<a id="`system.filesystem.state`"></a>
+
+| [`system.filesystem.state`](#`system.filesystem.state`) | string | The filesystem state | `used` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `system.filesystem.type`
+
+<a id="`system.filesystem.type`"></a>
+
+| [`system.filesystem.type`](#`system.filesystem.type`) | string | The filesystem type | `ext4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 `system.filesystem.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -65,9 +95,14 @@ Describes Filesystem attributes
 
 Describes System Memory attributes
 
-| Attribute             | Type   | Description      | Examples         | Stability                                                        |
-| --------------------- | ------ | ---------------- | ---------------- | ---------------------------------------------------------------- |
-| `system.memory.state` | string | The memory state | `free`; `cached` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `system.memory.state`
+
+<a id="`system.memory.state`"></a>
+
+| [`system.memory.state`](#`system.memory.state`) | string | The memory state | `free`; `cached` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 `system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -83,9 +118,14 @@ Describes System Memory attributes
 
 Describes Network attributes
 
-| Attribute              | Type   | Description                                      | Examples     | Stability                                                        |
-| ---------------------- | ------ | ------------------------------------------------ | ------------ | ---------------------------------------------------------------- |
-| `system.network.state` | string | A stateless protocol MUST NOT set this attribute | `close_wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `system.network.state`
+
+<a id="`system.network.state`"></a>
+
+| [`system.network.state`](#`system.network.state`) | string | A stateless protocol MUST NOT set this attribute | `close_wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 `system.network.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -108,11 +148,26 @@ Describes Network attributes
 
 Describes System Memory Paging attributes
 
-| Attribute                 | Type   | Description                 | Examples | Stability                                                        |
-| ------------------------- | ------ | --------------------------- | -------- | ---------------------------------------------------------------- |
-| `system.paging.direction` | string | The paging access direction | `in`     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system.paging.state`     | string | The memory paging state     | `free`   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system.paging.type`      | string | The memory paging type      | `minor`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `system.paging.direction`
+
+<a id="`system.paging.direction`"></a>
+
+| [`system.paging.direction`](#`system.paging.direction`) | string | The paging access direction | `in` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `system.paging.state`
+
+<a id="`system.paging.state`"></a>
+
+| [`system.paging.state`](#`system.paging.state`) | string | The memory paging state | `free` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `system.paging.type`
+
+<a id="`system.paging.type`"></a>
+
+| [`system.paging.type`](#`system.paging.type`) | string | The memory paging type | `minor` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 `system.paging.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -139,9 +194,14 @@ Describes System Memory Paging attributes
 
 Describes System Process attributes
 
-| Attribute               | Type   | Description                                                                                                               | Examples  | Stability                                                        |
-| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------- |
-| `system.process.status` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `system.process.status`
+
+<a id="`system.process.status`"></a>
+
+| [`system.process.status`](#`system.process.status`) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 `system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -156,10 +216,20 @@ Describes System Process attributes
 
 Deprecated system attributes.
 
-| Attribute                 | Type   | Description                                      | Examples            | Stability                                                                                           |
-| ------------------------- | ------ | ------------------------------------------------ | ------------------- | --------------------------------------------------------------------------------------------------- |
-| `system.cpu.state`        | string | Deprecated, use `cpu.mode` instead.              | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`               |
-| `system.processes.status` | string | Deprecated, use `system.process.status` instead. | `running`           | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `system.cpu.state`
+
+<a id="`system.cpu.state`"></a>
+
+| [`system.cpu.state`](#`system.cpu.state`) | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode` | |
+
+### `system.processes.status`
+
+<a id="`system.processes.status`"></a>
+
+| [`system.processes.status`](#`system.processes.status`) | string | Deprecated, use `system.process.status` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. | |
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

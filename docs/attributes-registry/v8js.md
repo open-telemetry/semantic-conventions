@@ -10,10 +10,20 @@
 
 Describes V8 JS Engine Runtime related attributes.
 
-| Attribute              | Type   | Description                                    | Examples                               | Stability                                                        |
-| ---------------------- | ------ | ---------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
-| `v8js.gc.type`         | string | The type of garbage collection.                | `major`; `minor`; `incremental`        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `v8js.heap.space.name` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `v8js.gc.type`
+
+<a id="`v8js.gc.type`"></a>
+
+| [`v8js.gc.type`](#`v8js.gc.type`) | string | The type of garbage collection. | `major`; `minor`; `incremental` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `v8js.heap.space.name`
+
+<a id="`v8js.heap.space.name`"></a>
+
+| [`v8js.heap.space.name`](#`v8js.heap.space.name`) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 **[1]:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 

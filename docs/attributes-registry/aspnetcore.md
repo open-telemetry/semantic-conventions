@@ -10,15 +10,50 @@
 
 ASP.NET Core attributes
 
-| Attribute                                 | Type    | Description                                                                                                                                                                       | Examples                       | Stability                                                  |
-| ----------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------- |
-| `aspnetcore.diagnostics.exception.result` | string  | ASP.NET Core exception middleware handling result                                                                                                                                 | `handled`; `unhandled`         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `aspnetcore.diagnostics.handler.type`     | string  | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler`            | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `aspnetcore.rate_limiting.policy`         | string  | Rate limiting policy name.                                                                                                                                                        | `fixed`; `sliding`; `token`    | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `aspnetcore.rate_limiting.result`         | string  | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason                                                                                         | `acquired`; `request_canceled` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `aspnetcore.request.is_unhandled`         | boolean | Flag indicating if request was handled by the application pipeline.                                                                                                               | `true`                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `aspnetcore.routing.is_fallback`          | boolean | A value that indicates whether the matched route is a fallback route.                                                                                                             | `true`                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `aspnetcore.routing.match_status`         | string  | Match result - success or failure                                                                                                                                                 | `success`; `failure`           | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `aspnetcore.diagnostics.exception.result`
+
+<a id="`aspnetcore.diagnostics.exception.result`"></a>
+
+| [`aspnetcore.diagnostics.exception.result`](#`aspnetcore.diagnostics.exception.result`) | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `aspnetcore.diagnostics.handler.type`
+
+<a id="`aspnetcore.diagnostics.handler.type`"></a>
+
+| [`aspnetcore.diagnostics.handler.type`](#`aspnetcore.diagnostics.handler.type`) | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `aspnetcore.rate_limiting.policy`
+
+<a id="`aspnetcore.rate_limiting.policy`"></a>
+
+| [`aspnetcore.rate_limiting.policy`](#`aspnetcore.rate_limiting.policy`) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `aspnetcore.rate_limiting.result`
+
+<a id="`aspnetcore.rate_limiting.result`"></a>
+
+| [`aspnetcore.rate_limiting.result`](#`aspnetcore.rate_limiting.result`) | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `aspnetcore.request.is_unhandled`
+
+<a id="`aspnetcore.request.is_unhandled`"></a>
+
+| [`aspnetcore.request.is_unhandled`](#`aspnetcore.request.is_unhandled`) | boolean | Flag indicating if request was handled by the application pipeline. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `aspnetcore.routing.is_fallback`
+
+<a id="`aspnetcore.routing.is_fallback`"></a>
+
+| [`aspnetcore.routing.is_fallback`](#`aspnetcore.routing.is_fallback`) | boolean | A value that indicates whether the matched route is a fallback route. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `aspnetcore.routing.match_status`
+
+<a id="`aspnetcore.routing.match_status`"></a>
+
+| [`aspnetcore.routing.match_status`](#`aspnetcore.routing.match_status`) | string | Match result - success or failure | `success`; `failure` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 `aspnetcore.diagnostics.exception.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

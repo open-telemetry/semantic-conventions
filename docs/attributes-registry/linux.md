@@ -10,9 +10,14 @@
 
 Describes Linux Memory attributes
 
-| Attribute                 | Type   | Description                 | Examples                       | Stability                                                        |
-| ------------------------- | ------ | --------------------------- | ------------------------------ | ---------------------------------------------------------------- |
-| `linux.memory.slab.state` | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `linux.memory.slab.state`
+
+<a id="`linux.memory.slab.state`"></a>
+
+| [`linux.memory.slab.state`](#`linux.memory.slab.state`) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 `linux.memory.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -10,9 +10,14 @@
 
 Describes Node.js related attributes.
 
-| Attribute                | Type   | Description                   | Examples         | Stability                                                        |
-| ------------------------ | ------ | ----------------------------- | ---------------- | ---------------------------------------------------------------- |
-| `nodejs.eventloop.state` | string | The state of event loop time. | `active`; `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `nodejs.eventloop.state`
+
+<a id="`nodejs.eventloop.state`"></a>
+
+| [`nodejs.eventloop.state`](#`nodejs.eventloop.state`) | string | The state of event loop time. | `active`; `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 `nodejs.eventloop.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

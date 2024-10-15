@@ -10,8 +10,23 @@
 
 This document defines the attributes used to describe the packaged software running the application code.
 
-| Attribute               | Type   | Description                                                                               | Examples                                                              | Stability                                                        |
-| ----------------------- | ------ | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `webengine.description` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `webengine.name`        | string | The name of the web engine.                                                               | `WildFly`                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `webengine.version`     | string | The version of the web engine.                                                            | `21.0.0`                                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `webengine.description`
+
+<a id="`webengine.description`"></a>
+
+| [`webengine.description`](#`webengine.description`) | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `webengine.name`
+
+<a id="`webengine.name`"></a>
+
+| [`webengine.name`](#`webengine.name`) | string | The name of the web engine. | `WildFly` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `webengine.version`
+
+<a id="`webengine.version`"></a>
+
+| [`webengine.version`](#`webengine.version`) | string | The version of the web engine. | `21.0.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |

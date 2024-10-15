@@ -10,11 +10,26 @@
 
 This document defines attributes for GraphQL.
 
-| Attribute                | Type   | Description                               | Examples                                          | Stability                                                        |
-| ------------------------ | ------ | ----------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------- |
-| `graphql.document`       | string | The GraphQL document being executed. [1]  | `query findBookById { bookById(id: ?) { name } }` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `graphql.operation.name` | string | The name of the operation being executed. | `findBookById`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `graphql.operation.type` | string | The type of the operation being executed. | `query`; `mutation`; `subscription`               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `graphql.document`
+
+<a id="`graphql.document`"></a>
+
+| [`graphql.document`](#`graphql.document`) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `graphql.operation.name`
+
+<a id="`graphql.operation.name`"></a>
+
+| [`graphql.operation.name`](#`graphql.operation.name`) | string | The name of the operation being executed. | `findBookById` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `graphql.operation.type`
+
+<a id="`graphql.operation.type`"></a>
+
+| [`graphql.operation.type`](#`graphql.operation.type`) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 **[1]:** The value may be sanitized to exclude sensitive information.
 

@@ -10,15 +10,50 @@
 
 This document defines Java Virtual machine related attributes.
 
-| Attribute              | Type    | Description                               | Examples                                           | Stability                                                        |
-| ---------------------- | ------- | ----------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------- |
-| `jvm.buffer.pool.name` | string  | Name of the buffer pool. [1]              | `mapped`; `direct`                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `jvm.gc.action`        | string  | Name of the garbage collector action. [2] | `end of minor GC`; `end of major GC`               | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
-| `jvm.gc.name`          | string  | Name of the garbage collector. [3]        | `G1 Young Generation`; `G1 Old Generation`         | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
-| `jvm.memory.pool.name` | string  | Name of the memory pool. [4]              | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
-| `jvm.memory.type`      | string  | The type of memory.                       | `heap`; `non_heap`                                 | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
-| `jvm.thread.daemon`    | boolean | Whether the thread is daemon or not.      |                                                    | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
-| `jvm.thread.state`     | string  | State of the thread.                      | `runnable`; `blocked`                              | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `jvm.buffer.pool.name`
+
+<a id="`jvm.buffer.pool.name`"></a>
+
+| [`jvm.buffer.pool.name`](#`jvm.buffer.pool.name`) | string | Name of the buffer pool. [1] | `mapped`; `direct` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `jvm.gc.action`
+
+<a id="`jvm.gc.action`"></a>
+
+| [`jvm.gc.action`](#`jvm.gc.action`) | string | Name of the garbage collector action. [2] | `end of minor GC`; `end of major GC` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `jvm.gc.name`
+
+<a id="`jvm.gc.name`"></a>
+
+| [`jvm.gc.name`](#`jvm.gc.name`) | string | Name of the garbage collector. [3] | `G1 Young Generation`; `G1 Old Generation` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `jvm.memory.pool.name`
+
+<a id="`jvm.memory.pool.name`"></a>
+
+| [`jvm.memory.pool.name`](#`jvm.memory.pool.name`) | string | Name of the memory pool. [4] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `jvm.memory.type`
+
+<a id="`jvm.memory.type`"></a>
+
+| [`jvm.memory.type`](#`jvm.memory.type`) | string | The type of memory. | `heap`; `non_heap` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `jvm.thread.daemon`
+
+<a id="`jvm.thread.daemon`"></a>
+
+| [`jvm.thread.daemon`](#`jvm.thread.daemon`) | boolean | Whether the thread is daemon or not. | | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `jvm.thread.state`
+
+<a id="`jvm.thread.state`"></a>
+
+| [`jvm.thread.state`](#`jvm.thread.state`) | string | State of the thread. | `runnable`; `blocked` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](<https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()>).
 

@@ -14,10 +14,20 @@
 
 Attributes reserved for OpenTelemetry
 
-| Attribute                 | Type   | Description                                                                            | Examples             | Stability                                                  |
-| ------------------------- | ------ | -------------------------------------------------------------------------------------- | -------------------- | ---------------------------------------------------------- |
-| `otel.status_code`        | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`; `ERROR`        | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `otel.status_description` | string | Description of the Status if it has a value, otherwise not set.                        | `resource not found` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `otel.status_code`
+
+<a id="`otel.status_code`"></a>
+
+| [`otel.status_code`](#`otel.status_code`) | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`; `ERROR` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `otel.status_description`
+
+<a id="`otel.status_description`"></a>
+
+| [`otel.status_description`](#`otel.status_description`) | string | Description of the Status if it has a value, otherwise not set. | `resource not found` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 `otel.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -30,16 +40,36 @@ Attributes reserved for OpenTelemetry
 
 Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
 
-| Attribute            | Type   | Description                                                                          | Examples                           | Stability                                                  |
-| -------------------- | ------ | ------------------------------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------- |
-| `otel.scope.name`    | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP).       | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `otel.scope.version` | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0`                            | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `otel.scope.name`
+
+<a id="`otel.scope.name`"></a>
+
+| [`otel.scope.name`](#`otel.scope.name`) | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+
+### `otel.scope.version`
+
+<a id="`otel.scope.version`"></a>
+
+| [`otel.scope.version`](#`otel.scope.version`) | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 ## Deprecated OTel Library Attributes
 
 Describes deprecated otel.library attributes.
 
-| Attribute              | Type   | Description                                         | Examples                           | Stability                                                                                              |
-| ---------------------- | ------ | --------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `otel.library.name`    | string | Deprecated. Use the `otel.scope.name` attribute     | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the `otel.scope.name` attribute.    |
-| `otel.library.version` | string | Deprecated. Use the `otel.scope.version` attribute. | `1.0.0`                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the `otel.scope.version` attribute. |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `otel.library.name`
+
+<a id="`otel.library.name`"></a>
+
+| [`otel.library.name`](#`otel.library.name`) | string | Deprecated. Use the `otel.scope.name` attribute | `io.opentelemetry.contrib.mongodb` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the `otel.scope.name` attribute. | |
+
+### `otel.library.version`
+
+<a id="`otel.library.version`"></a>
+
+| [`otel.library.version`](#`otel.library.version`) | string | Deprecated. Use the `otel.scope.version` attribute. | `1.0.0` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the `otel.scope.version` attribute. | |

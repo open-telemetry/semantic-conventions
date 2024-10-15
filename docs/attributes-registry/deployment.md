@@ -13,12 +13,32 @@
 
 This document defines attributes for software deployments.
 
-| Attribute                     | Type   | Description                                                                                                        | Examples                           | Stability                                                        |
-| ----------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------- |
-| `deployment.environment.name` | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deployment.id`               | string | The id of the deployment.                                                                                          | `1208`                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deployment.name`             | string | The name of the deployment.                                                                                        | `deploy my app`; `deploy-frontend` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deployment.status`           | string | The status of the deployment.                                                                                      | `failed`; `succeeded`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `deployment.environment.name`
+
+<a id="`deployment.environment.name`"></a>
+
+| [`deployment.environment.name`](#`deployment.environment.name`) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `deployment.id`
+
+<a id="`deployment.id`"></a>
+
+| [`deployment.id`](#`deployment.id`) | string | The id of the deployment. | `1208` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `deployment.name`
+
+<a id="`deployment.name`"></a>
+
+| [`deployment.name`](#`deployment.name`) | string | The name of the deployment. | `deploy my app`; `deploy-frontend` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+
+### `deployment.status`
+
+<a id="`deployment.status`"></a>
+
+| [`deployment.status`](#`deployment.status`) | string | The status of the deployment. | `failed`; `succeeded` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
 
 **[1]:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
@@ -39,6 +59,11 @@ considered to be identifying the same service:
 
 "Describes deprecated deployment attributes."
 
-| Attribute                | Type   | Description                                              | Examples                | Stability                                                                                                             |
-| ------------------------ | ------ | -------------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `deployment.environment` | string | 'Deprecated, use `deployment.environment.name` instead.' | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `deployment.environment.name` instead. |
+| Attribute | Type | Description | Examples | Stability |
+| --------- | ---- | ----------- | -------- | --------- |
+
+### `deployment.environment`
+
+<a id="`deployment.environment`"></a>
+
+| [`deployment.environment`](#`deployment.environment`) | string | 'Deprecated, use `deployment.environment.name` instead.' | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `deployment.environment.name` instead. | |
