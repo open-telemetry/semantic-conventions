@@ -216,6 +216,10 @@ Span kind SHOULD be set according to the following table, based on the operation
 | `send`         | `PRODUCER` if the context of the "Send" span is used as creation context, otherwise `CLIENT`. |
 | `receive`      | `CLIENT`    |
 | `process`      | `CONSUMER`  |
+| `settle`       | (see below) |
+
+The span kind of a `settle` operation SHOULD be set to `CLIENT` if the span
+models a synchronous call to the intermediary. In other cases, it can be set to `INTERNAL`.
 
 Setting span kinds according to this table allows analysis tools to interpret spans
 and relationships between them without the need for additional semantic hints.
