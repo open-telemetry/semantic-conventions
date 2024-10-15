@@ -1,6 +1,6 @@
 groups:
   # COMMON METRICS
-  - id: metric.hardware.attributes
+  - id: metric.hw.attributes
     type: attribute_group
     brief: "Attributes for hardware metrics"
     extends: hardware.attributes.common
@@ -8,23 +8,23 @@ groups:
       - ref: hw.type
         requirement_level: required
 
-  - id: metric.hardware.energy
+  - id: metric.hw.energy
     type: metric
     metric_name: hw.energy
     stability: experimental
     brief: "Energy consumed by the component"
     instrument: counter
     unit: "J"
-    extends: metric.hardware.attributes
+    extends: metric.hw.attributes
 
-  - id: metric.hardware.errors
+  - id: metric.hw.errors
     type: metric
     metric_name: hw.errors
     stability: experimental
     brief: "Number of errors encountered by the component"
     instrument: counter
     unit: "{error}"
-    extends: metric.hardware.attributes
+    extends: metric.hw.attributes
     attributes:
       - ref: error.type
         brief: "The type of error encountered by the component"
@@ -35,7 +35,7 @@ groups:
           The `error.type` SHOULD match the error code reported by the component, the canonical name of the error,
           or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-  - id: metric.hardware.power
+  - id: metric.hw.power
     type: metric
     metric_name: hw.power
     stability: experimental
@@ -44,16 +44,16 @@ groups:
       It is recommended to report `hw.energy` instead of `hw.power` when possible.
     instrument: gauge
     unit: "W"
-    extends: metric.hardware.attributes
+    extends: metric.hw.attributes
 
-  - id: metric.hardware.status
+  - id: metric.hw.status
     type: metric
     metric_name: hw.status
     stability: experimental
     brief: "Operational status: `1` (true) or `0` (false) for each of the possible states"
     instrument: updowncounter
     unit: "1"
-    extends: metric.hardware.attributes
+    extends: metric.hw.attributes
     note: >
       `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a
       [*StateSet* as defined in OpenMetrics](https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md#stateset).

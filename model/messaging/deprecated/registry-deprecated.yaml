@@ -1,6 +1,7 @@
 groups:
   - id: registry.messaging.deprecated
     type: attribute_group
+    stability: experimental
     display_name: Deprecated Messaging Attributes
     brief: "Describes deprecated messaging attributes."
     attributes:
@@ -49,10 +50,10 @@ groups:
       - id: messaging.servicebus.destination.subscription_name
         type: string
         brief: >
-          Deprecated, use `messaging.servicebus.destination.subscription_name` instead.
+          Deprecated, use `messaging.destination.subscription.name` instead.
         stability: experimental
         examples: 'subscription-a'
-        deprecated: "Replaced by `messaging.servicebus.destination.subscription_name`."
+        deprecated: "Replaced by `messaging.destination.subscription.name`."
       - id: messaging.kafka.message.offset
         type: int
         stability: experimental

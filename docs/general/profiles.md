@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Logs
+linkTitle: Profiles
 aliases: [docs/specs/semconv/general/profiles-general]
 --->
 
