@@ -10,9 +10,9 @@
 
 This document defines .NET related attributes.
 
-| Attribute                   | Type   | Description                                            | Examples               | Stability                                                        |
-| --------------------------- | ------ | ------------------------------------------------------ | ---------------------- | ---------------------------------------------------------------- |
-| `dotnet.gc.heap.generation` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                                                           | Type   | Description                                            | Examples               | Stability                                                        |
+| ------------------------------------------------------------------- | ------ | ------------------------------------------------------ | ---------------------- | ---------------------------------------------------------------- |
+| <a id="`dotnet.gc.heap.generation`">`dotnet.gc.heap.generation`</a> | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `dotnet.gc.heap.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
