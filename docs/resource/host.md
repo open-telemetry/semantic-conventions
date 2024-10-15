@@ -59,8 +59,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **[3]:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
-
-
 `host.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -73,8 +71,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | `ppc64` | 64-bit PowerPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `s390x` | IBM z/Architecture | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `x86` | 32-bit x86 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -107,9 +103,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | [`host.cpu.vendor.id`](/docs/attributes-registry/host.md) | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
-
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
