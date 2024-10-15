@@ -135,7 +135,7 @@ If a database operation involved multiple network calls (for example retries), t
 **[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[14]:** The `db.query.text` attribute value has high cardinality in a typical case and MUST NOT be collected by default.
-Instrumentations that support parsing and [sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext) MAY provide an option to populate the query text on the `db.client.operation.duration` metric.
+Instrumentations MAY provide an option to populate [sanitized query text](../../docs/database/database-spans.md#sanitization-of-dbquerytext) on the `db.client.operation.duration` metric.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
