@@ -12,37 +12,7 @@ groups:
     type: metric
     metric_name: db.cosmosdb.client.active_instances
     brief: "Number of active client instances"
-    instrument: histogram
+    instrument: updowncounter
     unit: "{instance}"
     stability: experimental
     extends: attributes.db.cosmosdb.minimal
-
-  - id: attributes.db.cosmosdb.minimal
-    type: attribute_group
-    brief: 'Azure Cosmos DB attributes'
-    attributes:
-      - ref: db.system
-        requirement_level:
-          conditionally_required: if available
-      - ref: server.port
-        requirement_level:
-          conditionally_required: If not default (443).
-      - ref: db.collection.name
-        requirement_level:
-          conditionally_required: if available
-      - ref: db.namespace
-        requirement_level:
-          conditionally_required: If available.
-      - ref: db.operation.name
-        requirement_level: required
-      - ref: server.address
-        requirement_level: required
-      - ref: db.response.status_code
-        requirement_level:
-          conditionally_required: if response was received
-      - ref: db.cosmosdb.sub_status_code
-        requirement_level:
-          conditionally_required: if response was received
-      - ref: db.cosmosdb.consistency_level
-        requirement_level:
-          conditionally_required: If available.
