@@ -39,7 +39,7 @@
 | Attribute  | Type | Description  | Examples  | Stability |
 |---|---|---|---|---|
 {%- for attribute in group.attributes | sort(attribute="name") %}
-| <a id="{{ attrs.name(attribute) | replace('.', '-') | replace('_', '-') }}" href="#{{ attrs.name(attribute) | replace('.', '-') | replace('_', '-') }}">`{{ attrs.name(attribute) }}`</a> | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add(attribute.note) }} | {{ attrs.examples(attribute) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
+| <a id="{{ attribute.id | replace('.', '-') | replace('_', '-') }}" href="#{{ attribute.id | replace('.', '-') | replace('_', '-') }}">{{ attrs.name(attribute) }}</a> | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add(attribute.note) }} | {{ attrs.examples(attribute) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated) | trim }} |
 {%- endfor %}
 
 {{ notes.render() }}

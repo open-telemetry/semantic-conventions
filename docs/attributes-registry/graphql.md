@@ -10,11 +10,11 @@
 
 This document defines attributes for GraphQL.
 
-| Attribute                                                                                      | Type   | Description                               | Examples                                          | Stability                                                        |
-| ---------------------------------------------------------------------------------------------- | ------ | ----------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------- |
-| <a id="`graphql-document`" href="#`graphql-document`">`graphql.document`</a>                   | string | The GraphQL document being executed. [1]  | `query findBookById { bookById(id: ?) { name } }` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="`graphql-operation-name`" href="#`graphql-operation-name`">`graphql.operation.name`</a> | string | The name of the operation being executed. | `findBookById`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="`graphql-operation-type`" href="#`graphql-operation-type`">`graphql.operation.type`</a> | string | The type of the operation being executed. | `query`; `mutation`; `subscription`               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                                      | Type   | Description                               | Examples                                          | Stability                                                        |
+| ---------------------------------------------- | ------ | ----------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="" href="#">`graphql.document`</a>       | string | The GraphQL document being executed. [1]  | `query findBookById { bookById(id: ?) { name } }` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="" href="#">`graphql.operation.name`</a> | string | The name of the operation being executed. | `findBookById`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="" href="#">`graphql.operation.type`</a> | string | The type of the operation being executed. | `query`; `mutation`; `subscription`               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The value may be sanitized to exclude sensitive information.
 
