@@ -311,6 +311,7 @@ Instrumentations that support query parsing SHOULD generate query summary when
 one is not readily available from other sources.
 
 The summary SHOULD preserve the following parts of query in the order they were provided:
+
 - operations such as SQL SELECT, INSERT, UPDATE, DELETE or other commands
 - operation targets such as collection or database names
 
@@ -369,6 +370,7 @@ or other attributes, it SHOULD match the value used in the `db.query.summary`.
   the corresponding `db.query.summary` is `SELECT songs artists`.
 
 - Query that performs an operation on an anonymous table:
+
    ```sql
    SELECT order_date
    FROM   (SELECT *

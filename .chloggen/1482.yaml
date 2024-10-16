@@ -15,4 +15,4 @@ note: |
   - avoid capturing `db.operation.name` and `db.collection.name` when the query
     involves multiple operations or collections, to prevent ambiguity.
 
-issues: [521, 805,1159]
+issues: [521, 805, 1159]
