@@ -311,11 +311,11 @@ one is not readily available from other sources.
 
 The summary SHOULD preserve the following parts of query in the order they were provided:
 - operations such as SQL SELECT, INSERT, UPDATE, DELETE or other commands
-- operation targets such as collection or database name
+- operation targets such as collection or database names
 
 Instrumentation MAY include additional details such as specific SQL clauses as long
-as summary remains relatively short and its cardinality remains relatively low
-comparing to the `db.query.text`.
+as summary remains relatively short and its cardinality remains low comparing to
+the `db.query.text`.
 
 The instrumentation SHOULD parse the query and extract a list of operations and
 corresponding targets from the query. It SHOULD set `db.query.summary` attribute
@@ -324,6 +324,11 @@ to the value formatted in the following way:
 ```
 {operation1} {target1} {operation2} {target2} {target3} ...
 ````
+
+Instrumentations SHOULD capture the values of operations and targets as provided
+by the application without attempting to do any case normalization. If the operation
+and target value is populated on `db.operation.name`, `db.collection.name`, `db.namespace`
+or other attributes, it SHOULD match the value used in the `db.query.summary`.
 
 **Examples**:
 
