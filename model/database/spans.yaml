@@ -557,7 +557,7 @@ groups:
           Cosmos DB row count in result set.
         examples: [10, 20]
         requirement_level:
-          conditionally_required: if response was received and operation type is query.
+          conditionally_required: if response was received and returned any rows
       - ref: db.cosmosdb.sub_status_code
         requirement_level:
           conditionally_required: when response was received and contained sub-code.
