@@ -13,7 +13,7 @@ linkTitle: Metrics
 - [Database operation](#database-operation)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
 - [Experimental](#experimental)
-  - [Database Response](#database-response)
+  - [Database operations](#database-operations)
     - [Metric: `db.client.response.row_count`](#metric-dbclientresponserow_count)
   - [Connection pools](#connection-pools)
     - [Metric: `db.client.connection.count`](#metric-dbclientconnectioncount)
