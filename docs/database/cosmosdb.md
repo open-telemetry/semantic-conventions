@@ -303,7 +303,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ## Operation Level Metrics
 
-The following metric instruments describe Azure Cosmos DB client Operation level behaviour.
+The following metrics provide insights into Azure Cosmos DB client operation performance and behavior.
 
 ### Metric: `db.client.operation.duration`
 
