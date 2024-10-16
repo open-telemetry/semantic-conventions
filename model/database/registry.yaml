@@ -466,7 +466,7 @@ groups:
           members:
             - id: gateway
               value: "gateway"
-              brief: Gateway (HTTP) connections mode
+              brief: Gateway (HTTP) connection.
               stability: experimental
             - id: direct
               value: "direct"
@@ -477,12 +477,12 @@ groups:
       - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
-        brief: RU consumed for that operation
+        brief: RU consumed for the operation.
         examples: [46.18, 1.0]
       - id: db.cosmosdb.request_content_length
         type: int
         stability: experimental
-        brief: Request payload size in bytes
+        brief: Request payload size in bytes.
       - id: db.cosmosdb.sub_status_code
         type: int
         stability: experimental
