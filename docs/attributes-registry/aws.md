@@ -18,202 +18,52 @@
 
 This document defines generic attributes for AWS services.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `aws.request_id`
-
-<a id="`aws.request_id`"></a>
-
-| [`aws.request_id`](#`aws.request_id`) | string | The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                              | Type   | Description                                                                                     | Examples                                                   | Stability                                                        |
+| ---------------------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="`aws-request-id`" href="#`aws-request-id`">`aws.request_id`</a> | string | The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Amazon DynamoDB Attributes
 
 This document defines attributes for AWS DynamoDB.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `aws.dynamodb.attribute_definitions`
-
-<a id="`aws.dynamodb.attribute_definitions`"></a>
-
-| [`aws.dynamodb.attribute_definitions`](#`aws.dynamodb.attribute_definitions`) | string[] | The JSON-serialized value of each item in the `AttributeDefinitions` request field. | `["{ \"AttributeName\": \"string\", \"AttributeType\": \"string\" }"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.attributes_to_get`
-
-<a id="`aws.dynamodb.attributes_to_get`"></a>
-
-| [`aws.dynamodb.attributes_to_get`](#`aws.dynamodb.attributes_to_get`) | string[] | The value of the `AttributesToGet` request parameter. | `["lives", "id"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.consistent_read`
-
-<a id="`aws.dynamodb.consistent_read`"></a>
-
-| [`aws.dynamodb.consistent_read`](#`aws.dynamodb.consistent_read`) | boolean | The value of the `ConsistentRead` request parameter. | | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.consumed_capacity`
-
-<a id="`aws.dynamodb.consumed_capacity`"></a>
-
-| [`aws.dynamodb.consumed_capacity`](#`aws.dynamodb.consumed_capacity`) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.count`
-
-<a id="`aws.dynamodb.count`"></a>
-
-| [`aws.dynamodb.count`](#`aws.dynamodb.count`) | int | The value of the `Count` response parameter. | `10` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.exclusive_start_table`
-
-<a id="`aws.dynamodb.exclusive_start_table`"></a>
-
-| [`aws.dynamodb.exclusive_start_table`](#`aws.dynamodb.exclusive_start_table`) | string | The value of the `ExclusiveStartTableName` request parameter. | `Users`; `CatsTable` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.global_secondary_index_updates`
-
-<a id="`aws.dynamodb.global_secondary_index_updates`"></a>
-
-| [`aws.dynamodb.global_secondary_index_updates`](#`aws.dynamodb.global_secondary_index_updates`) | string[] | The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field. | `["{ \"Create\": { \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.global_secondary_indexes`
-
-<a id="`aws.dynamodb.global_secondary_indexes`"></a>
-
-| [`aws.dynamodb.global_secondary_indexes`](#`aws.dynamodb.global_secondary_indexes`) | string[] | The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field | `["{ \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.index_name`
-
-<a id="`aws.dynamodb.index_name`"></a>
-
-| [`aws.dynamodb.index_name`](#`aws.dynamodb.index_name`) | string | The value of the `IndexName` request parameter. | `name_to_group` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.item_collection_metrics`
-
-<a id="`aws.dynamodb.item_collection_metrics`"></a>
-
-| [`aws.dynamodb.item_collection_metrics`](#`aws.dynamodb.item_collection_metrics`) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.limit`
-
-<a id="`aws.dynamodb.limit`"></a>
-
-| [`aws.dynamodb.limit`](#`aws.dynamodb.limit`) | int | The value of the `Limit` request parameter. | `10` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.local_secondary_indexes`
-
-<a id="`aws.dynamodb.local_secondary_indexes`"></a>
-
-| [`aws.dynamodb.local_secondary_indexes`](#`aws.dynamodb.local_secondary_indexes`) | string[] | The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field. | `["{ \"IndexArn\": \"string\", \"IndexName\": \"string\", \"IndexSizeBytes\": number, \"ItemCount\": number, \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" } }"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.projection`
-
-<a id="`aws.dynamodb.projection`"></a>
-
-| [`aws.dynamodb.projection`](#`aws.dynamodb.projection`) | string | The value of the `ProjectionExpression` request parameter. | `Title`; `Title, Price, Color`; `Title, Description, RelatedItems, ProductReviews` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.provisioned_read_capacity`
-
-<a id="`aws.dynamodb.provisioned_read_capacity`"></a>
-
-| [`aws.dynamodb.provisioned_read_capacity`](#`aws.dynamodb.provisioned_read_capacity`) | double | The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter. | `1.0`; `2.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.provisioned_write_capacity`
-
-<a id="`aws.dynamodb.provisioned_write_capacity`"></a>
-
-| [`aws.dynamodb.provisioned_write_capacity`](#`aws.dynamodb.provisioned_write_capacity`) | double | The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter. | `1.0`; `2.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.scan_forward`
-
-<a id="`aws.dynamodb.scan_forward`"></a>
-
-| [`aws.dynamodb.scan_forward`](#`aws.dynamodb.scan_forward`) | boolean | The value of the `ScanIndexForward` request parameter. | | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.scanned_count`
-
-<a id="`aws.dynamodb.scanned_count`"></a>
-
-| [`aws.dynamodb.scanned_count`](#`aws.dynamodb.scanned_count`) | int | The value of the `ScannedCount` response parameter. | `50` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.segment`
-
-<a id="`aws.dynamodb.segment`"></a>
-
-| [`aws.dynamodb.segment`](#`aws.dynamodb.segment`) | int | The value of the `Segment` request parameter. | `10` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.select`
-
-<a id="`aws.dynamodb.select`"></a>
-
-| [`aws.dynamodb.select`](#`aws.dynamodb.select`) | string | The value of the `Select` request parameter. | `ALL_ATTRIBUTES`; `COUNT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.table_count`
-
-<a id="`aws.dynamodb.table_count`"></a>
-
-| [`aws.dynamodb.table_count`](#`aws.dynamodb.table_count`) | int | The number of items in the `TableNames` response parameter. | `20` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.table_names`
-
-<a id="`aws.dynamodb.table_names`"></a>
-
-| [`aws.dynamodb.table_names`](#`aws.dynamodb.table_names`) | string[] | The keys in the `RequestItems` object field. | `["Users", "Cats"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.dynamodb.total_segments`
-
-<a id="`aws.dynamodb.total_segments`"></a>
-
-| [`aws.dynamodb.total_segments`](#`aws.dynamodb.total_segments`) | int | The value of the `TotalSegments` request parameter. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                                                                                                                     | Type     | Description                                                                                | Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Stability                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="`aws-dynamodb-attribute-definitions`" href="#`aws-dynamodb-attribute-definitions`">`aws.dynamodb.attribute_definitions`</a>                            | string[] | The JSON-serialized value of each item in the `AttributeDefinitions` request field.        | `["{ \"AttributeName\": \"string\", \"AttributeType\": \"string\" }"]`                                                                                                                                                                                                                                                                                                                                                                                                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-attributes-to-get`" href="#`aws-dynamodb-attributes-to-get`">`aws.dynamodb.attributes_to_get`</a>                                        | string[] | The value of the `AttributesToGet` request parameter.                                      | `["lives", "id"]`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-consistent-read`" href="#`aws-dynamodb-consistent-read`">`aws.dynamodb.consistent_read`</a>                                              | boolean  | The value of the `ConsistentRead` request parameter.                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-consumed-capacity`" href="#`aws-dynamodb-consumed-capacity`">`aws.dynamodb.consumed_capacity`</a>                                        | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field.           | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-count`" href="#`aws-dynamodb-count`">`aws.dynamodb.count`</a>                                                                            | int      | The value of the `Count` response parameter.                                               | `10`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-exclusive-start-table`" href="#`aws-dynamodb-exclusive-start-table`">`aws.dynamodb.exclusive_start_table`</a>                            | string   | The value of the `ExclusiveStartTableName` request parameter.                              | `Users`; `CatsTable`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-global-secondary-index-updates`" href="#`aws-dynamodb-global-secondary-index-updates`">`aws.dynamodb.global_secondary_index_updates`</a> | string[] | The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field. | `["{ \"Create\": { \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]`                                                                                                                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-global-secondary-indexes`" href="#`aws-dynamodb-global-secondary-indexes`">`aws.dynamodb.global_secondary_indexes`</a>                   | string[] | The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field       | `["{ \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]`                                                                                                                                                                                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-index-name`" href="#`aws-dynamodb-index-name`">`aws.dynamodb.index_name`</a>                                                             | string   | The value of the `IndexName` request parameter.                                            | `name_to_group`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-item-collection-metrics`" href="#`aws-dynamodb-item-collection-metrics`">`aws.dynamodb.item_collection_metrics`</a>                      | string   | The JSON-serialized value of the `ItemCollectionMetrics` response field.                   | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }`                                                                                                                                                                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-limit`" href="#`aws-dynamodb-limit`">`aws.dynamodb.limit`</a>                                                                            | int      | The value of the `Limit` request parameter.                                                | `10`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-local-secondary-indexes`" href="#`aws-dynamodb-local-secondary-indexes`">`aws.dynamodb.local_secondary_indexes`</a>                      | string[] | The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field.       | `["{ \"IndexArn\": \"string\", \"IndexName\": \"string\", \"IndexSizeBytes\": number, \"ItemCount\": number, \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" } }"]`                                                                                                                                                                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-projection`" href="#`aws-dynamodb-projection`">`aws.dynamodb.projection`</a>                                                             | string   | The value of the `ProjectionExpression` request parameter.                                 | `Title`; `Title, Price, Color`; `Title, Description, RelatedItems, ProductReviews`                                                                                                                                                                                                                                                                                                                                                                                                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-provisioned-read-capacity`" href="#`aws-dynamodb-provisioned-read-capacity`">`aws.dynamodb.provisioned_read_capacity`</a>                | double   | The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter.              | `1.0`; `2.0`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-provisioned-write-capacity`" href="#`aws-dynamodb-provisioned-write-capacity`">`aws.dynamodb.provisioned_write_capacity`</a>             | double   | The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.             | `1.0`; `2.0`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-scan-forward`" href="#`aws-dynamodb-scan-forward`">`aws.dynamodb.scan_forward`</a>                                                       | boolean  | The value of the `ScanIndexForward` request parameter.                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-scanned-count`" href="#`aws-dynamodb-scanned-count`">`aws.dynamodb.scanned_count`</a>                                                    | int      | The value of the `ScannedCount` response parameter.                                        | `50`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-segment`" href="#`aws-dynamodb-segment`">`aws.dynamodb.segment`</a>                                                                      | int      | The value of the `Segment` request parameter.                                              | `10`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-select`" href="#`aws-dynamodb-select`">`aws.dynamodb.select`</a>                                                                         | string   | The value of the `Select` request parameter.                                               | `ALL_ATTRIBUTES`; `COUNT`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-table-count`" href="#`aws-dynamodb-table-count`">`aws.dynamodb.table_count`</a>                                                          | int      | The number of items in the `TableNames` response parameter.                                | `20`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-table-names`" href="#`aws-dynamodb-table-names`">`aws.dynamodb.table_names`</a>                                                          | string[] | The keys in the `RequestItems` object field.                                               | `["Users", "Cats"]`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-dynamodb-total-segments`" href="#`aws-dynamodb-total-segments`">`aws.dynamodb.total_segments`</a>                                                 | int      | The value of the `TotalSegments` request parameter.                                        | `100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Amazon ECS Attributes
 
 This document defines attributes for AWS Elastic Container Service (ECS).
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `aws.ecs.cluster.arn`
-
-<a id="`aws.ecs.cluster.arn`"></a>
-
-| [`aws.ecs.cluster.arn`](#`aws.ecs.cluster.arn`) | string | The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html). | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.ecs.container.arn`
-
-<a id="`aws.ecs.container.arn`"></a>
-
-| [`aws.ecs.container.arn`](#`aws.ecs.container.arn`) | string | The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html). | `arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.ecs.launchtype`
-
-<a id="`aws.ecs.launchtype`"></a>
-
-| [`aws.ecs.launchtype`](#`aws.ecs.launchtype`) | string | The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task. | `ec2`; `fargate` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.ecs.task.arn`
-
-<a id="`aws.ecs.task.arn`"></a>
-
-| [`aws.ecs.task.arn`](#`aws.ecs.task.arn`) | string | The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids). | `arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b`; `arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.ecs.task.family`
-
-<a id="`aws.ecs.task.family`"></a>
-
-| [`aws.ecs.task.family`](#`aws.ecs.task.family`) | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.ecs.task.id`
-
-<a id="`aws.ecs.task.id`"></a>
-
-| [`aws.ecs.task.id`](#`aws.ecs.task.id`) | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`. | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.ecs.task.revision`
-
-<a id="`aws.ecs.task.revision`"></a>
-
-| [`aws.ecs.task.revision`](#`aws.ecs.task.revision`) | string | The revision for the task definition used to create the ECS task. | `8`; `26` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                                                   | Type   | Description                                                                                                                                                  | Examples                                                                                                                                                                          | Stability                                                        |
+| ------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="`aws-ecs-cluster-arn`" href="#`aws-ecs-cluster-arn`">`aws.ecs.cluster.arn`</a>       | string | The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).                                                      | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster`                                                                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-ecs-container-arn`" href="#`aws-ecs-container-arn`">`aws.ecs.container.arn`</a> | string | The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).               | `arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9`                                                                                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-ecs-launchtype`" href="#`aws-ecs-launchtype`">`aws.ecs.launchtype`</a>          | string | The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.                                            | `ec2`; `fargate`                                                                                                                                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-ecs-task-arn`" href="#`aws-ecs-task-arn`">`aws.ecs.task.arn`</a>                | string | The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids).                     | `arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b`; `arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-ecs-task-family`" href="#`aws-ecs-task-family`">`aws.ecs.task.family`</a>       | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family`                                                                                                                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-ecs-task-id`" href="#`aws-ecs-task-id`">`aws.ecs.task.id`</a>                   | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`.                                                                                      | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd`                                                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-ecs-task-revision`" href="#`aws-ecs-task-revision`">`aws.ecs.task.revision`</a> | string | The revision for the task definition used to create the ECS task.                                                                                            | `8`; `26`                                                                                                                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -226,27 +76,17 @@ This document defines attributes for AWS Elastic Container Service (ECS).
 
 This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `aws.eks.cluster.arn`
-
-<a id="`aws.eks.cluster.arn`"></a>
-
-| [`aws.eks.cluster.arn`](#`aws.eks.cluster.arn`) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                                             | Type   | Description                | Examples                                                | Stability                                                        |
+| ------------------------------------------------------------------------------------- | ------ | -------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="`aws-eks-cluster-arn`" href="#`aws-eks-cluster-arn`">`aws.eks.cluster.arn`</a> | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Amazon Lambda Attributes
 
 This document defines attributes for AWS Lambda.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `aws.lambda.invoked_arn`
-
-<a id="`aws.lambda.invoked_arn`"></a>
-
-| [`aws.lambda.invoked_arn`](#`aws.lambda.invoked_arn`) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                                                      | Type   | Description                                                                                                                                                               | Examples                                                      | Stability                                                        |
+| ---------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="`aws-lambda-invoked-arn`" href="#`aws-lambda-invoked-arn`">`aws.lambda.invoked_arn`</a> | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
 
@@ -254,32 +94,12 @@ This document defines attributes for AWS Lambda.
 
 This document defines attributes for AWS Logs.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `aws.log.group.arns`
-
-<a id="`aws.log.group.arns`"></a>
-
-| [`aws.log.group.arns`](#`aws.log.group.arns`) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [2] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.log.group.names`
-
-<a id="`aws.log.group.names`"></a>
-
-| [`aws.log.group.names`](#`aws.log.group.names`) | string[] | The name(s) of the AWS log group(s) an application is writing to. [3] | `["/aws/lambda/my-function", "opentelemetry-service"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.log.stream.arns`
-
-<a id="`aws.log.stream.arns`"></a>
-
-| [`aws.log.stream.arns`](#`aws.log.stream.arns`) | string[] | The ARN(s) of the AWS log stream(s). [4] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.log.stream.names`
-
-<a id="`aws.log.stream.names`"></a>
-
-| [`aws.log.stream.names`](#`aws.log.stream.names`) | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                                                | Type     | Description                                                           | Examples                                                                                                                    | Stability                                                        |
+| ---------------------------------------------------------------------------------------- | -------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="`aws-log-group-arns`" href="#`aws-log-group-arns`">`aws.log.group.arns`</a>       | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [2]        | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]`                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-log-group-names`" href="#`aws-log-group-names`">`aws.log.group.names`</a>    | string[] | The name(s) of the AWS log group(s) an application is writing to. [3] | `["/aws/lambda/my-function", "opentelemetry-service"]`                                                                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-log-stream-arns`" href="#`aws-log-stream-arns`">`aws.log.stream.arns`</a>    | string[] | The ARN(s) of the AWS log stream(s). [4]                              | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-log-stream-names`" href="#`aws-log-stream-names`">`aws.log.stream.names`</a> | string[] | The name(s) of the AWS log stream(s) an application is writing to.    | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]`                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[2]:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 
@@ -291,44 +111,14 @@ This document defines attributes for AWS Logs.
 
 This document defines attributes for AWS S3.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `aws.s3.bucket`
-
-<a id="`aws.s3.bucket`"></a>
-
-| [`aws.s3.bucket`](#`aws.s3.bucket`) | string | The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [5] | `some-bucket-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.s3.copy_source`
-
-<a id="`aws.s3.copy_source`"></a>
-
-| [`aws.s3.copy_source`](#`aws.s3.copy_source`) | string | The source object (in the form `bucket`/`key`) for the copy operation. [6] | `someFile.yml` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.s3.delete`
-
-<a id="`aws.s3.delete`"></a>
-
-| [`aws.s3.delete`](#`aws.s3.delete`) | string | The delete request container that specifies the objects to be deleted. [7] | `Objects=[{Key=string,VersionId=string},{Key=string,VersionId=string}],Quiet=boolean` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.s3.key`
-
-<a id="`aws.s3.key`"></a>
-
-| [`aws.s3.key`](#`aws.s3.key`) | string | The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [8] | `someFile.yml` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.s3.part_number`
-
-<a id="`aws.s3.part_number`"></a>
-
-| [`aws.s3.part_number`](#`aws.s3.part_number`) | int | The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000. [9] | `3456` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `aws.s3.upload_id`
-
-<a id="`aws.s3.upload_id`"></a>
-
-| [`aws.s3.upload_id`](#`aws.s3.upload_id`) | string | Upload ID that identifies the multipart upload. [10] | `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                                          | Type   | Description                                                                                                                                                                          | Examples                                                                              | Stability                                                        |
+| ---------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="`aws-s3-bucket`" href="#`aws-s3-bucket`">`aws.s3.bucket`</a>                | string | The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [5] | `some-bucket-name`                                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-s3-copy-source`" href="#`aws-s3-copy-source`">`aws.s3.copy_source`</a> | string | The source object (in the form `bucket`/`key`) for the copy operation. [6]                                                                                                           | `someFile.yml`                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-s3-delete`" href="#`aws-s3-delete`">`aws.s3.delete`</a>                | string | The delete request container that specifies the objects to be deleted. [7]                                                                                                           | `Objects=[{Key=string,VersionId=string},{Key=string,VersionId=string}],Quiet=boolean` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-s3-key`" href="#`aws-s3-key`">`aws.s3.key`</a>                         | string | The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [8]     | `someFile.yml`                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-s3-part-number`" href="#`aws-s3-part-number`">`aws.s3.part_number`</a> | int    | The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000. [9]                                                     | `3456`                                                                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`aws-s3-upload-id`" href="#`aws-s3-upload-id`">`aws.s3.upload_id`</a>       | string | Upload ID that identifies the multipart upload. [10]                                                                                                                                 | `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ`                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[5]:** The `bucket` attribute is applicable to all S3 operations that reference a bucket, i.e. that require the bucket name as a mandatory parameter.
 This applies to almost all S3 operations except `list-buckets`.

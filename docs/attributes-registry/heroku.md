@@ -10,23 +10,8 @@
 
 This document defines attributes for the Android platform on which the Android application is running.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `heroku.app.id`
-
-<a id="`heroku.app.id`"></a>
-
-| [`heroku.app.id`](#`heroku.app.id`) | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `heroku.release.commit`
-
-<a id="`heroku.release.commit`"></a>
-
-| [`heroku.release.commit`](#`heroku.release.commit`) | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `heroku.release.creation_timestamp`
-
-<a id="`heroku.release.creation_timestamp`"></a>
-
-| [`heroku.release.creation_timestamp`](#`heroku.release.creation_timestamp`) | string | Time and date the release was created | `2022-10-23T18:00:42Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                                                                                       | Type   | Description                           | Examples                                | Stability                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------ | ------------------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
+| <a id="`heroku-app-id`" href="#`heroku-app-id`">`heroku.app.id`</a>                                                             | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`heroku-release-commit`" href="#`heroku-release-commit`">`heroku.release.commit`</a>                                     | string | Commit hash for the current release   | `e6134959463efd8966b20e75b913cafe3f5ec` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`heroku-release-creation-timestamp`" href="#`heroku-release-creation-timestamp`">`heroku.release.creation_timestamp`</a> | string | Time and date the release was created | `2022-10-23T18:00:42Z`                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

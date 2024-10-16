@@ -14,104 +14,24 @@
 
 This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `gen_ai.operation.name`
-
-<a id="`gen_ai.operation.name`"></a>
-
-| [`gen_ai.operation.name`](#`gen_ai.operation.name`) | string | The name of the operation being performed. [1] | `chat`; `text_completion` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.request.frequency_penalty`
-
-<a id="`gen_ai.request.frequency_penalty`"></a>
-
-| [`gen_ai.request.frequency_penalty`](#`gen_ai.request.frequency_penalty`) | double | The frequency penalty setting for the GenAI request. | `0.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.request.max_tokens`
-
-<a id="`gen_ai.request.max_tokens`"></a>
-
-| [`gen_ai.request.max_tokens`](#`gen_ai.request.max_tokens`) | int | The maximum number of tokens the model generates for a request. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.request.model`
-
-<a id="`gen_ai.request.model`"></a>
-
-| [`gen_ai.request.model`](#`gen_ai.request.model`) | string | The name of the GenAI model a request is being made to. | `gpt-4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.request.presence_penalty`
-
-<a id="`gen_ai.request.presence_penalty`"></a>
-
-| [`gen_ai.request.presence_penalty`](#`gen_ai.request.presence_penalty`) | double | The presence penalty setting for the GenAI request. | `0.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.request.stop_sequences`
-
-<a id="`gen_ai.request.stop_sequences`"></a>
-
-| [`gen_ai.request.stop_sequences`](#`gen_ai.request.stop_sequences`) | string[] | List of sequences that the model will use to stop generating further tokens. | `["forest", "lived"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.request.temperature`
-
-<a id="`gen_ai.request.temperature`"></a>
-
-| [`gen_ai.request.temperature`](#`gen_ai.request.temperature`) | double | The temperature setting for the GenAI request. | `0.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.request.top_k`
-
-<a id="`gen_ai.request.top_k`"></a>
-
-| [`gen_ai.request.top_k`](#`gen_ai.request.top_k`) | double | The top_k sampling setting for the GenAI request. | `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.request.top_p`
-
-<a id="`gen_ai.request.top_p`"></a>
-
-| [`gen_ai.request.top_p`](#`gen_ai.request.top_p`) | double | The top_p sampling setting for the GenAI request. | `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.response.finish_reasons`
-
-<a id="`gen_ai.response.finish_reasons`"></a>
-
-| [`gen_ai.response.finish_reasons`](#`gen_ai.response.finish_reasons`) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.response.id`
-
-<a id="`gen_ai.response.id`"></a>
-
-| [`gen_ai.response.id`](#`gen_ai.response.id`) | string | The unique identifier for the completion. | `chatcmpl-123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.response.model`
-
-<a id="`gen_ai.response.model`"></a>
-
-| [`gen_ai.response.model`](#`gen_ai.response.model`) | string | The name of the model that generated the response. | `gpt-4-0613` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.system`
-
-<a id="`gen_ai.system`"></a>
-
-| [`gen_ai.system`](#`gen_ai.system`) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.token.type`
-
-<a id="`gen_ai.token.type`"></a>
-
-| [`gen_ai.token.type`](#`gen_ai.token.type`) | string | The type of token being counted. | `input`; `output` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.usage.input_tokens`
-
-<a id="`gen_ai.usage.input_tokens`"></a>
-
-| [`gen_ai.usage.input_tokens`](#`gen_ai.usage.input_tokens`) | int | The number of tokens used in the GenAI input (prompt). | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.usage.output_tokens`
-
-<a id="`gen_ai.usage.output_tokens`"></a>
-
-| [`gen_ai.usage.output_tokens`](#`gen_ai.usage.output_tokens`) | int | The number of tokens used in the GenAI response (completion). | `180` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                                                                                    | Type     | Description                                                                                      | Examples                         | Stability                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------ | -------------------------------- | ---------------------------------------------------------------- |
+| <a id="`gen-ai-operation-name`" href="#`gen-ai-operation-name`">`gen_ai.operation.name`</a>                                  | string   | The name of the operation being performed. [1]                                                   | `chat`; `text_completion`        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-request-frequency-penalty`" href="#`gen-ai-request-frequency-penalty`">`gen_ai.request.frequency_penalty`</a> | double   | The frequency penalty setting for the GenAI request.                                             | `0.1`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-request-max-tokens`" href="#`gen-ai-request-max-tokens`">`gen_ai.request.max_tokens`</a>                      | int      | The maximum number of tokens the model generates for a request.                                  | `100`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-request-model`" href="#`gen-ai-request-model`">`gen_ai.request.model`</a>                                     | string   | The name of the GenAI model a request is being made to.                                          | `gpt-4`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-request-presence-penalty`" href="#`gen-ai-request-presence-penalty`">`gen_ai.request.presence_penalty`</a>    | double   | The presence penalty setting for the GenAI request.                                              | `0.1`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-request-stop-sequences`" href="#`gen-ai-request-stop-sequences`">`gen_ai.request.stop_sequences`</a>          | string[] | List of sequences that the model will use to stop generating further tokens.                     | `["forest", "lived"]`            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-request-temperature`" href="#`gen-ai-request-temperature`">`gen_ai.request.temperature`</a>                   | double   | The temperature setting for the GenAI request.                                                   | `0.0`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-request-top-k`" href="#`gen-ai-request-top-k`">`gen_ai.request.top_k`</a>                                     | double   | The top_k sampling setting for the GenAI request.                                                | `1.0`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-request-top-p`" href="#`gen-ai-request-top-p`">`gen_ai.request.top_p`</a>                                     | double   | The top_p sampling setting for the GenAI request.                                                | `1.0`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-response-finish-reasons`" href="#`gen-ai-response-finish-reasons`">`gen_ai.response.finish_reasons`</a>       | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-response-id`" href="#`gen-ai-response-id`">`gen_ai.response.id`</a>                                           | string   | The unique identifier for the completion.                                                        | `chatcmpl-123`                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-response-model`" href="#`gen-ai-response-model`">`gen_ai.response.model`</a>                                  | string   | The name of the model that generated the response.                                               | `gpt-4-0613`                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-system`" href="#`gen-ai-system`">`gen_ai.system`</a>                                                          | string   | The Generative AI product as identified by the client or server instrumentation. [2]             | `openai`                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-token-type`" href="#`gen-ai-token-type`">`gen_ai.token.type`</a>                                              | string   | The type of token being counted.                                                                 | `input`; `output`                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-usage-input-tokens`" href="#`gen-ai-usage-input-tokens`">`gen_ai.usage.input_tokens`</a>                      | int      | The number of tokens used in the GenAI input (prompt).                                           | `100`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-usage-output-tokens`" href="#`gen-ai-usage-output-tokens`">`gen_ai.usage.output_tokens`</a>                   | int      | The number of tokens used in the GenAI response (completion).                                    | `180`                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -153,32 +73,12 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 Thie group defines attributes for OpenAI.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `gen_ai.openai.request.response_format`
-
-<a id="`gen_ai.openai.request.response_format`"></a>
-
-| [`gen_ai.openai.request.response_format`](#`gen_ai.openai.request.response_format`) | string | The response format that is requested. | `json` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.openai.request.seed`
-
-<a id="`gen_ai.openai.request.seed`"></a>
-
-| [`gen_ai.openai.request.seed`](#`gen_ai.openai.request.seed`) | int | Requests with same seed value more likely to return same result. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.openai.request.service_tier`
-
-<a id="`gen_ai.openai.request.service_tier`"></a>
-
-| [`gen_ai.openai.request.service_tier`](#`gen_ai.openai.request.service_tier`) | string | The service tier requested. May be a specific tier, detault, or auto. | `auto`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `gen_ai.openai.response.service_tier`
-
-<a id="`gen_ai.openai.response.service_tier`"></a>
-
-| [`gen_ai.openai.response.service_tier`](#`gen_ai.openai.response.service_tier`) | string | The service tier used for the response. | `scale`; `detault` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                                                                                                                   | Type   | Description                                                           | Examples           | Stability                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------- | ------------------ | ---------------------------------------------------------------- |
+| <a id="`gen-ai-openai-request-response-format`" href="#`gen-ai-openai-request-response-format`">`gen_ai.openai.request.response_format`</a> | string | The response format that is requested.                                | `json`             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-openai-request-seed`" href="#`gen-ai-openai-request-seed`">`gen_ai.openai.request.seed`</a>                                  | int    | Requests with same seed value more likely to return same result.      | `100`              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-openai-request-service-tier`" href="#`gen-ai-openai-request-service-tier`">`gen_ai.openai.request.service_tier`</a>          | string | The service tier requested. May be a specific tier, detault, or auto. | `auto`; `default`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`gen-ai-openai-response-service-tier`" href="#`gen-ai-openai-response-service-tier`">`gen_ai.openai.response.service_tier`</a>       | string | The service tier used for the response.                               | `scale`; `detault` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -199,29 +99,9 @@ Thie group defines attributes for OpenAI.
 
 Describes deprecated `gen_ai` attributes.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `gen_ai.completion`
-
-<a id="`gen_ai.completion`"></a>
-
-| [`gen_ai.completion`](#`gen_ai.completion`) | string | Deprecated, use Event API to report completions contents. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | |
-
-### `gen_ai.prompt`
-
-<a id="`gen_ai.prompt`"></a>
-
-| [`gen_ai.prompt`](#`gen_ai.prompt`) | string | Deprecated, use Event API to report prompt contents. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | |
-
-### `gen_ai.usage.completion_tokens`
-
-<a id="`gen_ai.usage.completion_tokens`"></a>
-
-| [`gen_ai.usage.completion_tokens`](#`gen_ai.usage.completion_tokens`) | int | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens` attribute. | |
-
-### `gen_ai.usage.prompt_tokens`
-
-<a id="`gen_ai.usage.prompt_tokens`"></a>
-
-| [`gen_ai.usage.prompt_tokens`](#`gen_ai.usage.prompt_tokens`) | int | Deprecated, use `gen_ai.usage.input_tokens` instead. | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens` attribute. | |
+| Attribute                                                                                                              | Type   | Description                                               | Examples                                                                | Stability                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| <a id="`gen-ai-completion`" href="#`gen-ai-completion`">`gen_ai.completion`</a>                                        | string | Deprecated, use Event API to report completions contents. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time.               |
+| <a id="`gen-ai-prompt`" href="#`gen-ai-prompt`">`gen_ai.prompt`</a>                                                    | string | Deprecated, use Event API to report prompt contents.      | `[{'role': 'user', 'content': 'What is the capital of France?'}]`       | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time.               |
+| <a id="`gen-ai-usage-completion-tokens`" href="#`gen-ai-usage-completion-tokens`">`gen_ai.usage.completion_tokens`</a> | int    | Deprecated, use `gen_ai.usage.output_tokens` instead.     | `42`                                                                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens` attribute. |
+| <a id="`gen-ai-usage-prompt-tokens`" href="#`gen-ai-usage-prompt-tokens`">`gen_ai.usage.prompt_tokens`</a>             | int    | Deprecated, use `gen_ai.usage.input_tokens` instead.      | `42`                                                                    | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens` attribute.  |

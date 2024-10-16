@@ -10,38 +10,13 @@
 
 Attributes for hardware.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `hw.id`
-
-<a id="`hw.id`"></a>
-
-| [`hw.id`](#`hw.id`) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `hw.name`
-
-<a id="`hw.name`"></a>
-
-| [`hw.name`](#`hw.name`) | string | An easily-recognizable name for the hardware component | `eth0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `hw.parent`
-
-<a id="`hw.parent`"></a>
-
-| [`hw.parent`](#`hw.parent`) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `hw.state`
-
-<a id="`hw.state`"></a>
-
-| [`hw.state`](#`hw.state`) | string | The current state of the component | `ok`; `degraded`; `failed` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
-
-### `hw.type`
-
-<a id="`hw.type`"></a>
-
-| [`hw.type`](#`hw.type`) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                               | Type   | Description                                                                                                      | Examples                            | Stability                                                        |
+| ------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------- |
+| <a id="`hw-id`" href="#`hw-id`">`hw.id`</a>             | string | An identifier for the hardware component, unique within the monitored host                                       | `win32battery_battery_testsysa33_1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`hw-name`" href="#`hw-name`">`hw.name`</a>       | string | An easily-recognizable name for the hardware component                                                           | `eth0`                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`hw-parent`" href="#`hw-parent`">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0`                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`hw-state`" href="#`hw-state`">`hw.state`</a>    | string | The current state of the component                                                                               | `ok`; `degraded`; `failed`          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="`hw-type`" href="#`hw-type`">`hw.type`</a>       | string | Type of the component [1]                                                                                        | `battery`; `cpu`; `disk_controller` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 

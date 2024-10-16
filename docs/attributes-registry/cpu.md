@@ -10,14 +10,9 @@
 
 Attributes specific to a cpu instance.
 
-| Attribute | Type | Description | Examples | Stability |
-| --------- | ---- | ----------- | -------- | --------- |
-
-### `cpu.mode`
-
-<a id="`cpu.mode`"></a>
-
-| [`cpu.mode`](#`cpu.mode`) | string | The mode of the CPU | `user`; `system` | ![Experimental](https://img.shields.io/badge/-experimental-blue) | |
+| Attribute                                            | Type   | Description         | Examples         | Stability                                                        |
+| ---------------------------------------------------- | ------ | ------------------- | ---------------- | ---------------------------------------------------------------- |
+| <a id="`cpu-mode`" href="#`cpu-mode`">`cpu.mode`</a> | string | The mode of the CPU | `user`; `system` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
