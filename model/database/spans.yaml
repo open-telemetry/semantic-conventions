@@ -34,7 +34,7 @@ groups:
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
             see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
-      - ref: db.query.synthetic
+      - ref: db.query.summary
         sampling_relevant: true
       - ref: db.query.parameter
         requirement_level: opt_in

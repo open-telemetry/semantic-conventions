@@ -85,7 +85,7 @@ groups:
         examples:
           [
             "SELECT * FROM wuser_table where username = ?",
-            'SET mykey "WuValue"',
+            'SET mykey ?',
           ]
       - id: db.query.parameter
         type: template[string]
@@ -101,20 +101,28 @@ groups:
 
           This attribute has stability level RELEASE CANDIDATE.
         examples: ["someval", "55"]
-      - id: db.query.synthetic
+      - id: db.query.summary
         type: string
         stability: experimental  # RELEASE CANDIDATE
         brief: >
-          Low cardinality representation of a query text reconstructed from original query text.
+          Low cardinality representation of a database query text.
         note: >
-          See [Synthetic query text](../../docs/database/database-spans.md#synthetic-query-text) for
-          the details.
+          `db.query.summary` provides static summary of the query text. It describes
+          a class of database queries and is useful as a grouping key,
+          especially when analyzing telemetry for database calls involving complex queries.
+
+          Summary may be available to the instrumentation through SQL comment,
+          instrumentation hooks, or other means. If it is not available, instrumentation
+          that support query parsing SHOULD create a summary following
+          [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text)
+          section.
 
           This attribute has stability level RELEASE CANDIDATE.
         examples:
           [
             'SELECT wuser_table',
-            'INSERT shipping_details, SELECT orders',
+            'INSERT shipping_details SELECT orders',
+            'get user by id',
           ]
       - id: db.operation.batch.size
         type: int

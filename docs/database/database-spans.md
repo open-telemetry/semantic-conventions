@@ -54,13 +54,16 @@ with all retries.
 
 Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
 
+The **span name** SHOULD be `{db.query.summary}` if a summary is available.
+
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
-The **span name** SHOULD be `{db.operation.name} {target}` if there is a
-(low-cardinality) `{db.operation.name}` available (see below for the exact definition of the [`{target}`](#target-placeholder) placeholder).
+If no summary is available, the span name SHOULD be `{db.operation.name} {target}`
+provided that a (low-cardinality) `db.operation.name` is available (see below for
+the exact definition of the [`{target}`](#target-placeholder) placeholder).
 
-If there is no (low-cardinality) `db.operation.name` available, database span names
-SHOULD be [`{target}`](#target-placeholder).
+If a (low-cardinality) `db.operation.name` is not available, database span names
+SHOULD default to the [`{target}`](#target-placeholder).
 <!-- markdown-link-check-enable -->
 
 If neither `{db.operation.name}` nor `{target}` are available, span name SHOULD be `{db.system}`.
@@ -98,8 +101,8 @@ These attributes will usually be the same for all operations performed over the 
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [12] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.synthetic`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a query text reconstructed from original query text. [13] | `SELECT wuser_table`; `INSERT shipping_details, SELECT orders` | `Recommended` [14] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [15] | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [16] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [14] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [15] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [16] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [17] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [18] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -155,10 +158,11 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[12]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[13]:** See [Synthetic query text](../../docs/database/database-spans.md#synthetic-query-text) for the details.
+**[13]:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+Summary may be available to the instrumentation through SQL comment, instrumentation hooks, or other means. If it is not available, instrumentation that support query parsing SHOULD create a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[14]:** if applicable and available through query parsing. TODO
+**[14]:** if readily available or if instrumentation supports query summarization.
 
 **[15]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
@@ -183,7 +187,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.collection.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
 * [`db.operation.name`](/docs/attributes-registry/db.md)
-* [`db.query.synthetic`](/docs/attributes-registry/db.md)
+* [`db.query.summary`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
 * [`db.system`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
@@ -287,36 +291,43 @@ Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = 
 e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
 and can help control cardinality for users who choose to (optionally) add `db.query.text` to their metric attributes.
 
-## Synthetic query text
+## Generating a summary of the query text
 
-The `db.query.synthetic` attribute captures a shortened representation of a query text
+The `db.query.summary` attribute captures a shortened representation of a query text
 which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitive data.
 
-It SHOULD only be reported if instrumentation parses query text for the database call.
+> [!NOTE]
+> The `db.query.text` is intended to identify individual queries. Even though
+> is it sanitized if captured by default, it still could have high cardinality and
+> might reach hundreds of lines of code.
+>
+> The `db.query.summary` is intended to provide less granular grouping key that
+> can be used as a span name or a metric attribute in a common case. It SHOULD
+> only contain information that has a significant impact on the query, database,
+> or application performance.
 
-When query text is parsed, the parser SHOULD extract a list of operations and corresponding
-collection names performed in this query.
+Instrumentations that support query parsing SHOULD generate query summary when
+one is not readily available from other sources.
 
-The `db.query.synthetic` attribute value SHOULD contain a semicolon separated list
-of operation and corresponding collection names formatted in the following way:
+The summary SHOULD preserve the following parts of query in the order they were provided:
+- operations such as SQL SELECT, INSERT, UPDATE, DELETE or other statements
+- operation targets such as collection or database name
+
+Instrumentation MAY include additional details such as specific SQL clauses as long
+as summary remains relatively short and its cardinality remains relatively low
+comparing to the `db.query.text`.
+
+The instrumentation SHOULD parse the query and extract a list of operations and
+corresponding targets from the query. It SHOULD set `db.query.summary` attribute
+to the value formatted in the following way:
 
 ```
-{operation1} {collection1}; {operation2} {collection2}; ...
+{operation1} {target1} {operation2} {target2} {target3} ...
 ````
-
-For example, a
-> [!NOTE]
-> Operations may be performed on an anonymous collection or on multiple collections
-> at the same time, so there could be 0 or more collection names associated with one
-> operation name.
-
-If operation is performed on an anonymous collection, the corresponding collection
-name SHOULD NOT be captured. If operation is performed on multiple collections, collection names
-for this operation should be recorded as comma-separated list.
 
 **Examples**:
 
-- Query that performs single operation:
+- Query that consist of a single operation:
 
    ```sql
    SELECT *
@@ -324,7 +335,7 @@ for this operation should be recorded as comma-separated list.
    WHERE  username = ?
    ```
 
-   the corresponding `db.query.synthetic` is `SELECT wuser_table`.
+   the corresponding `db.query.summary` is `SELECT wuser_table`.
 
 - Query that performs multiple operations:
 
@@ -338,7 +349,7 @@ for this operation should be recorded as comma-separated list.
    WHERE  order_id = ?
    ```
 
-   the corresponding `db.query.synthetic` is `INSERT shipping_details; SELECT orders`.
+   the corresponding `db.query.summary` is `INSERT shipping_details SELECT orders`.
 
 - Query that performs an operation that's applied to multiple collections:
 
@@ -349,7 +360,7 @@ for this operation should be recorded as comma-separated list.
    WHERE  songs.artist_id == artists.id
    ```
 
-  the corresponding `db.query.synthetic` is `SELECT songs,artists`.
+  the corresponding `db.query.summary` is `SELECT songs artists`.
 
 - Query that performs an operation on an anonymous table:
    ```sql
@@ -360,10 +371,10 @@ for this operation should be recorded as comma-separated list.
                     ON o.customer_id = c.customer_id)
    ```
 
-  the corresponding `db.query.synthetic` is `SELECT; SELECT orders; JOIN orders,customers`.
+  the corresponding `db.query.summary` is `SELECT SELECT orders JOIN customers`.
 
 Semantic conventions for individual database systems MAY specify a
-different `db.query.synthetic` format.
+different `db.query.summary` format.
 
 ## Semantic Conventions for specific database technologies
 

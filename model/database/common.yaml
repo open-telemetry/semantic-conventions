@@ -36,12 +36,13 @@ groups:
     extends: attributes.db.client.minimal
     type: attribute_group
     stability: experimental
-    brief: This group defines the attributes used to perform database client calls that have a notion of collection.
+    brief: This group defines the attributes describing database operations that
+      have query and collection name.
     attributes:
       - ref: db.query.text
-      - ref: db.query.synthetic
+      - ref: db.query.summary
         requirement_level:
-          recommended: if applicable and available through query parsing. TODO
+          recommended: if readily available or if instrumentation supports query summarization.
       - ref: db.collection.name
         sampling_relevant: true
         requirement_level:
