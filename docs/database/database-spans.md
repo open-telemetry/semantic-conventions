@@ -14,6 +14,7 @@ linkTitle: Client Calls
 - [Common attributes](#common-attributes)
   - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
+- [Generating a summary of the query text](#generating-a-summary-of-the-query-text)
 - [Semantic Conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->

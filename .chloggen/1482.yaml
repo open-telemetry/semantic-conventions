@@ -1,0 +1,18 @@
+# Use this changelog template to create an entry for release notes.
+#
+# If your change doesn't affect end users you should instead start
+# your pull request title with [chore] or use the "Skip Changelog" label.
+
+# One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
+change_type: bug_fix
+component: db
+note: |
+  Fix telemetry for complex queries:
+
+  - introduce the `db.query.summary` attribute to provide a concise, low-cardinality
+    representation of the query text.
+  - use `db.query.summary` as the span name and as a recommended attribute on metrics.
+  - avoid capturing `db.operation.name` and `db.collection.name` when the query
+    involves multiple operations or collections, to prevent ambiguity.
+
+issues: [521, 805,1159]
