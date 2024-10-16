@@ -15,4 +15,14 @@ groups:
     instrument: updowncounter
     unit: "{instance}"
     stability: experimental
-    extends: attributes.db.cosmosdb.minimal
+    attributes:
+        # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
+        # - ref: db.system
+        #   requirement_level:
+        #     conditionally_required: if available
+        - ref: server.address
+          brief: >
+            Name of the database host.
+        - ref: server.port
+          requirement_level:
+            conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
