@@ -386,8 +386,6 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[9]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-
-
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -403,14 +401,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -471,8 +466,6 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[9]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-
-
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -488,14 +481,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
