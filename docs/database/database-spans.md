@@ -159,7 +159,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[13]:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through SQL comment, instrumentation hooks, or other means. If it is not available, instrumentation that support query parsing SHOULD create a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
+Summary may be available to the instrumentation through SQL comment, instrumentation hooks, or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[14]:** if readily available or if instrumentation supports query summarization.
@@ -310,7 +310,7 @@ Instrumentations that support query parsing SHOULD generate query summary when
 one is not readily available from other sources.
 
 The summary SHOULD preserve the following parts of query in the order they were provided:
-- operations such as SQL SELECT, INSERT, UPDATE, DELETE or other statements
+- operations such as SQL SELECT, INSERT, UPDATE, DELETE or other commands
 - operation targets such as collection or database name
 
 Instrumentation MAY include additional details such as specific SQL clauses as long
