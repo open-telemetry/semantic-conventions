@@ -212,11 +212,11 @@ This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
-of `[10, 50, 100, 250, 500, 1000, 2000, 5000, 10000]`.
+of `[1, 10, 50, 100, 250, 500, 1000, 2000, 5000, 10000]`.
 
 Explaining bucket configuration:
 
-1. 10, 50, 100: These buckets are useful for capturing scenarios where only a small number of items are returned. Such small queries are common in real-time or interactive applications where performance and quick responses are critical.
+1. 1, 10, 50, 100: These buckets are useful for capturing scenarios where only a small number of items are returned. Such small queries are common in real-time or interactive applications where performance and quick responses are critical.
 2. 250, 500, 1000: These values represent typical workloads where moderate amounts of data are returned in each query.
 3. 2000, 5000: These boundaries capture scenarios where the query returns large datasets. These larger page sizes can potentially increase memory or CPU usage and may lead to longer query execution times, making it important to track performance in these ranges.
 4. 10000: This boundary is included to capture rare, very large response sizes. Such queries can put significant strain on system resources, including memory, CPU, and network bandwidth, and can often lead to performance issues such as high latency or even network drops.
