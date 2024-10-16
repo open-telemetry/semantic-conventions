@@ -298,11 +298,11 @@ which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitiv
 
 > [!NOTE]
 > The `db.query.text` is intended to identify individual queries. Even though
-> is it sanitized if captured by default, it still could have high cardinality and
+> it is sanitized if captured by default, it could still have high cardinality and
 > might reach hundreds of lines of code.
 >
-> The `db.query.summary` is intended to provide less granular grouping key that
-> can be used as a span name or a metric attribute in a common case. It SHOULD
+> The `db.query.summary` is intended to provide a less granular grouping key that
+> can be used as a span name or a metric attribute in common cases. It SHOULD
 > only contain information that has a significant impact on the query, database,
 > or application performance.
 
@@ -344,7 +344,7 @@ to the value formatted in the following way:
                (order_id,
                address)
    SELECT order_id,
-         address
+          address
    FROM   orders
    WHERE  order_id = ?
    ```
