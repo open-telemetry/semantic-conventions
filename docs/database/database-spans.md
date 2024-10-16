@@ -371,7 +371,7 @@ to the value formatted in the following way:
                     ON o.customer_id = c.customer_id)
    ```
 
-  the corresponding `db.query.summary` is `SELECT SELECT orders JOIN customers`.
+  the corresponding `db.query.summary` is `SELECT SELECT orders customers`.
 
 Semantic conventions for individual database systems MAY specify a
 different `db.query.summary` format.
