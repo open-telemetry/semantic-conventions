@@ -356,7 +356,7 @@ to the value formatted in the following way:
    ```sql
    SELECT *
    FROM   songs,
-         artists
+          artists
    WHERE  songs.artist_id == artists.id
    ```
 
