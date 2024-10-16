@@ -13,7 +13,7 @@ linkTitle: Metrics
 - [Database operation](#database-operation)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
 - [Experimental](#experimental)
-  - [Database operations](#database-operations)
+  - [Database Response](#database-response)
     - [Metric: `db.client.response.row_count`](#metric-dbclientresponserow_count)
   - [Connection pools](#connection-pools)
     - [Metric: `db.client.connection.count`](#metric-dbclientconnectioncount)
@@ -230,7 +230,7 @@ Explaining bucket configuration:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.response.row_count` | Histogram | `{row}` | The actual number of records returned by the query. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.response.row_count` | Histogram | `{row}` | The actual number of records returned by the database operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
