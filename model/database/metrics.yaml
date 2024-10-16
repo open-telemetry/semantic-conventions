@@ -138,7 +138,7 @@ groups:
   - id: metric.db.client.response.row_count
     type: metric
     metric_name: db.client.response.row_count
-    brief: "The actual number of records returned by the query."
+    brief: "The actual number of records returned by the database operation."
     instrument: histogram
     unit: "{row}"
     stability: experimental
