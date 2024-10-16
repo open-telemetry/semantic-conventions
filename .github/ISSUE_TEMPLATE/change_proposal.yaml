@@ -15,6 +15,7 @@ body:
         - area:android
         - area:artifact
         - area:aspnetcore
+        - area:authentication
         - area:aws
         - area:azure
         - area:browser
@@ -33,6 +34,7 @@ body:
         - area:disk
         - area:dns
         - area:dotnet
+        - area:enduser
         - area:error
         - area:event
         - area:exception
