@@ -297,7 +297,7 @@ The `db.query.summary` attribute captures a shortened representation of a query 
 which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitive data.
 
 > [!NOTE]
-> The `db.query.text` is intended to identify individual queries. Even though
+> The `db.query.text` attribute is intended to identify individual queries. Even though
 > it is sanitized if captured by default, it could still have high cardinality and
 > might reach hundreds of lines of code.
 >
