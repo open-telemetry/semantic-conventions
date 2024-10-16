@@ -178,7 +178,7 @@ This group defines attributes for Azure Cosmos DB.
 | Value     | Description                     | Stability                                                        |
 | --------- | ------------------------------- | ---------------------------------------------------------------- |
 | `direct`  | Direct connection.              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gateway` | Gateway (HTTP) connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
