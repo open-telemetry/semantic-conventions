@@ -323,7 +323,7 @@ Refer [db.cosmosdb.operation.request_charge](#metric-dbcosmosdboperationrequest_
 
 This metric is [required][MetricRequired].
 
-It captures the Request Units consumed by each operation in Azure Cosmos DB. Since Request Units serve as a form of currency within the Azure Cosmos DB database, monitoring their usage is crucial to avoid throttling.
+It captures the Request Units consumed by each operation in Azure Cosmos DB. Since Request Units serve as a form of throughput control within the Azure Cosmos DB database, monitoring their usage is crucial to avoid throttling.
 
 this metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
