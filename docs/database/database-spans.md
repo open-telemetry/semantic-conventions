@@ -325,9 +325,8 @@ The summary SHOULD preserve the following parts of query in the order they were 
 - operations such as SQL SELECT, INSERT, UPDATE, DELETE, and other commands
 - operation targets such as collections and database names
 
-Instrumentation MAY include additional details such as specific SQL clauses as long
-as summary remains relatively short and its cardinality remains low comparing to
-the `db.query.text`.
+Instrumentation MAY include additional details as long as summary remains
+relatively short and its cardinality remains low comparing to the `db.query.text`.
 
 The instrumentation SHOULD parse the query and extract a list of operations and
 targets from the query. It SHOULD set `db.query.summary` attribute
@@ -339,7 +338,7 @@ to the value formatted in the following way:
 
 Instrumentations SHOULD capture the values of operations and targets as provided
 by the application without attempting to do any case normalization. If the operation
-and target value is populated on `db.operation.name`, `db.collection.name`, `db.namespace`
+and target value is populated on `db.operation.name`, `db.collection.name`,
 or other attributes, it SHOULD match the value used in the `db.query.summary`.
 
 **Examples**:
@@ -377,7 +376,7 @@ or other attributes, it SHOULD match the value used in the `db.query.summary`.
    WHERE  songs.artist_id == artists.id
    ```
 
-  the corresponding `db.query.summary` is `SELECT songs artists`.
+   the corresponding `db.query.summary` is `SELECT songs artists`.
 
 - Query that performs an operation on an anonymous table:
 
@@ -389,7 +388,17 @@ or other attributes, it SHOULD match the value used in the `db.query.summary`.
                     ON o.customer_id = c.customer_id)
    ```
 
-  the corresponding `db.query.summary` is `SELECT SELECT orders customers`.
+   the corresponding `db.query.summary` is `SELECT SELECT orders customers`.
+
+- Query that performs an operation on multiple collections with double-quotes or other punctuation:
+
+    ```sql
+    SELECT *
+    FROM   "song list",
+           'artists'
+    ```
+
+    the corresponding `db.query.summary` is `SELECT "songs list" 'artists'`.
 
 Semantic conventions for individual database systems MAY specify a
 different `db.query.summary` format.
