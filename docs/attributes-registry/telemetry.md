@@ -10,13 +10,13 @@
 
 This document defines attributes for telemetry SDK.
 
-| Attribute                  | Type   | Description                                                                    | Examples                  | Stability                                                        |
-| -------------------------- | ------ | ------------------------------------------------------------------------------ | ------------------------- | ---------------------------------------------------------------- |
-| `telemetry.distro.name`    | string | The name of the auto instrumentation agent or distribution, if used. [1]       | `parts-unlimited-java`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `telemetry.distro.version` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3`                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `telemetry.sdk.language`   | string | The language of the telemetry SDK.                                             | `cpp`; `dotnet`; `erlang` | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
-| `telemetry.sdk.name`       | string | The name of the telemetry SDK as defined above. [2]                            | `opentelemetry`           | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
-| `telemetry.sdk.version`    | string | The version string of the telemetry SDK.                                       | `1.2.3`                   | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| Attribute                                                                                        | Type   | Description                                                                    | Examples                  | Stability                                                        |
+| ------------------------------------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------------ | ------------------------- | ---------------------------------------------------------------- |
+| <a id="telemetry-distro-name" href="#telemetry-distro-name">`telemetry.distro.name`</a>          | string | The name of the auto instrumentation agent or distribution, if used. [1]       | `parts-unlimited-java`    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="telemetry-distro-version" href="#telemetry-distro-version">`telemetry.distro.version`</a> | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3`                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="telemetry-sdk-language" href="#telemetry-sdk-language">`telemetry.sdk.language`</a>       | string | The language of the telemetry SDK.                                             | `cpp`; `dotnet`; `erlang` | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| <a id="telemetry-sdk-name" href="#telemetry-sdk-name">`telemetry.sdk.name`</a>                   | string | The name of the telemetry SDK as defined above. [2]                            | `opentelemetry`           | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| <a id="telemetry-sdk-version" href="#telemetry-sdk-version">`telemetry.sdk.version`</a>          | string | The version string of the telemetry SDK.                                       | `1.2.3`                   | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 
 **[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
