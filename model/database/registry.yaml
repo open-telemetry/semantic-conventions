@@ -49,14 +49,14 @@ groups:
         stability: experimental  # RELEASE CANDIDATE
         brief: >
           The name of the operation or command being executed.
-        note: >
+        note: |
           It is RECOMMENDED to capture the value as provided by the application
           without attempting to do any case normalization.
 
           A single database query may involve multiple operations. If the operation
           name is parsed from the query text, it SHOULD only be captured for queries that
           contain a single operation or when the operation name describing the
-          whole query is available by other means (such as SQL comments).
+          whole query is available by other means.
 
           For batch operations, if the individual operations are known to have the same operation name
           then that operation name SHOULD be used prepended by `BATCH `,
@@ -111,8 +111,8 @@ groups:
           a class of database queries and is useful as a grouping key,
           especially when analyzing telemetry for database calls involving complex queries.
 
-          Summary may be available to the instrumentation through SQL comment,
-          instrumentation hooks, or other means. If it is not available, instrumentations
+          Summary may be available to the instrumentation through
+          instrumentation hooks or other means. If it is not available, instrumentations
           that support query parsing SHOULD generate a summary following
           [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text)
           section.
