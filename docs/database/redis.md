@@ -41,9 +41,19 @@ then it is RECOMMENDED to fallback and use the database index provided when the 
 
 Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
 
-**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-A single database query may involve multiple operations. If the operation name is parsed from the query text, it SHOULD only be captured for queries that contain a single operation or when the operation name describing the whole query is available by other means (such as SQL comments).
-For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
+A single database query may involve multiple operations. If the operation
+name is parsed from the query text, it SHOULD only be captured for queries that
+contain a single operation or when the operation name describing the
+whole query is available by other means.
+
+For batch operations, if the individual operations are known to have the same operation name
+then that operation name SHOULD be used prepended by `BATCH `,
+otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
+
 This attribute has stability level RELEASE CANDIDATE.
 
 **[3]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
