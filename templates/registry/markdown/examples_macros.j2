@@ -12,6 +12,6 @@
 {%- else %}`{{ item.examples | trim }}`
 {%- endif %}{%- elif item.type is mapping %}
 {%- for e in item.type.members %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
-{%- elif item.type == "enum" %}
+{%- elif item.type == "enum" -%}
 {%- for e in item.members %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
 {%- endif %}{% endmacro %}
