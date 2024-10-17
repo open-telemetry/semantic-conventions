@@ -325,9 +325,6 @@ The summary SHOULD preserve the following parts of query in the order they were 
 - operations such as SQL SELECT, INSERT, UPDATE, DELETE, and other commands
 - operation targets such as collections and database names
 
-Instrumentation MAY include additional details as long as summary remains
-relatively short and its cardinality remains low comparing to the `db.query.text`.
-
 The instrumentation SHOULD parse the query and extract a list of operations and
 targets from the query. It SHOULD set `db.query.summary` attribute
 to the value formatted in the following way:
@@ -400,8 +397,9 @@ or other attributes, it SHOULD match the value used in the `db.query.summary`.
 
     the corresponding `db.query.summary` is `SELECT "songs list" 'artists'`.
 
-Semantic conventions for individual database systems MAY specify a
-different `db.query.summary` format.
+Semantic conventions for individual database systems or specialized instrumentations
+MAY specify a different `db.query.summary` format as long as produced summary remains
+relatively short and its cardinality remains low comparing to the `db.query.text`.
 
 ## Semantic Conventions for specific database technologies
 
