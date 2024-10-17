@@ -12,7 +12,6 @@ groups:
       - ref: cloud.resource_id
         brief: The [Fully Qualified Azure Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) the log is emitted for.
         note: ""
-      - ref: event.name
     body:
       id: az.resource.log
       requirement_level: recommended
