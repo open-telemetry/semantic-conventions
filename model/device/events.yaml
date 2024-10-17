@@ -6,9 +6,16 @@ groups:
     brief: >
       This event represents an occurrence of a lifecycle transition on Android or iOS platform.
     note: >
-      This event identifies the fields that are common to all lifecycle events for android and iOS using
-      the `android.state` and `ios.state` fields. The `android.state` and `ios.state` attributes are
-      mutually exclusive.
+      The event body fields MUST be used to describe the state of the application
+      at the time of the event.
+
+      This event is meant to be used in conjunction with `os.name`
+      [resource semantic convention](/docs/resource/os.md) to identify the
+      mobile operating system (e.g. Android, iOS).
+
+      The `android.state` and `ios.state` fields are mutually exclusive and MUST
+      NOT be used together, each field MUST be used with its corresponding
+      `os.name` value.
     body:
       id: device_lifecycle_state
       type: map

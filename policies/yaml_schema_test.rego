@@ -24,6 +24,14 @@ test_fails_on_invalid_event_name if {
     }
 }
 
+test_fails_on_referenced_event_name_on_event if {
+    event := [{ "id": "yaml_schema.test",
+                "type": "event",
+                "name": "foo",
+                "attributes": [{"ref": "event.name"}]}]
+    count(deny) == 1 with input as {"groups": event}
+}
+
 test_fails_on_invalid_resource_name if {
     every name in invalid_names {
         count(deny) >= 1 with input as {"groups": create_resource(name)}
