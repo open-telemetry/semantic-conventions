@@ -310,27 +310,27 @@ which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitiv
 > [!NOTE]
 > The `db.query.text` attribute is intended to identify individual queries. Even though
 > it is sanitized if captured by default, it could still have high cardinality and
-> might reach hundreds of lines of code.
+> might reach hundreds of lines.
 >
 > The `db.query.summary` is intended to provide a less granular grouping key that
 > can be used as a span name or a metric attribute in common cases. It SHOULD
 > only contain information that has a significant impact on the query, database,
 > or application performance.
 
-Instrumentations that support query parsing SHOULD generate query summary when
+Instrumentations that support query parsing SHOULD generate a query summary when
 one is not readily available from other sources.
 
 The summary SHOULD preserve the following parts of query in the order they were provided:
 
-- operations such as SQL SELECT, INSERT, UPDATE, DELETE or other commands
-- operation targets such as collection or database names
+- operations such as SQL SELECT, INSERT, UPDATE, DELETE, and other commands
+- operation targets such as collections and database names
 
 Instrumentation MAY include additional details such as specific SQL clauses as long
 as summary remains relatively short and its cardinality remains low comparing to
 the `db.query.text`.
 
 The instrumentation SHOULD parse the query and extract a list of operations and
-corresponding targets from the query. It SHOULD set `db.query.summary` attribute
+targets from the query. It SHOULD set `db.query.summary` attribute
 to the value formatted in the following way:
 
 ```
