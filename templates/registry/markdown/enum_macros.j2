@@ -18,7 +18,11 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-{% for espec in enum.members | sort(attribute='value') %}{% if filter(espec) == "True" %}| `{{ espec.value }}` | {{ (espec.brief or espec.id) | trim }}{{ notes.add(espec.note) }} | {{ stability.badge(espec.stability, espec.deprecated) }} |
+{% for espec in enum.members | sort(attribute='value') %}
+{%- if filter(espec) == "True" -%}
+| `{{ espec.value }}` | {{ (espec.brief or espec.id) | trim }}{{ notes.add(espec.note) }} | {{ stability.badge(espec.stability, espec.deprecated) }} |
 {% endif %}{% endfor %}{{ notes.render() }}{% endmacro %}
-{% macro field_tables(enums, notes) %}{% for enum in enums | sort(attribute="id") %}{{ field_table(enum, notes) }}
+{% macro field_tables(enums, notes) -%}
+{% for enum in enums | sort(attribute="id") -%}
+{{ field_table(enum, notes) -}}
 {% endfor %}{% endmacro %}

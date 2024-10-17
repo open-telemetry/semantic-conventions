@@ -19,10 +19,10 @@
 {{ at.generate(group.attributes, tag_filter, attribute_registry_base_url, group.lineage.attributes) }}{% endmacro -%}
 
 {% if group.type == "event" -%}
-{{ generate_event(group) }}
+{{ generate_event(group) -}}
 {%- elif group.type == "resource" -%}
 {{ generate_resource(group) }}
-{%- elif group.type=="metric" -%}
+{%- elif group.type == "metric" -%}
 {{ generate_metric(group) }}
 {%- else -%}
 {{ generate_attributes(group) -}}
