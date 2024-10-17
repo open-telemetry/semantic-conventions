@@ -325,9 +325,9 @@ The summary SHOULD preserve the following parts of query in the order they were 
 - operations such as SQL SELECT, INSERT, UPDATE, DELETE, and other commands
 - operation targets such as collections and database names
 
-The instrumentation SHOULD parse the query and extract a list of operations and
-targets from the query. It SHOULD set `db.query.summary` attribute
-to the value formatted in the following way:
+Instrumentations that support query parsing SHOULD parse the query and extract a
+list of operations and targets from the query. It SHOULD set `db.query.summary`
+attribute to the value formatted in the following way:
 
 ```
 {operation1} {target1} {operation2} {target2} {target3} ...
