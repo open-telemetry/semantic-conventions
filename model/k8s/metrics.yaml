@@ -35,7 +35,7 @@ groups:
     type: metric
     metric_name: k8s.pod.network.io
     stability: experimental
-    brief: "Pod network IO"
+    brief: "Network bytes for the Pod"
     instrument: counter
     unit: "By"
     attributes:
@@ -88,7 +88,7 @@ groups:
     type: metric
     metric_name: k8s.node.network.io
     stability: experimental
-    brief: "Node network IO"
+    brief: "Network bytes for the Node"
     instrument: counter
     unit: "By"
     attributes:
