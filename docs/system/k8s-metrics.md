@@ -94,7 +94,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.pod.network.io` | Counter | `By` | Pod network IO | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.pod.network.io` | Counter | `By` | Network bytes for the Pod | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -107,8 +107,6 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -141,8 +139,6 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -228,7 +224,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.node.network.io` | Counter | `By` | Node network IO | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.node.network.io` | Counter | `By` | Network bytes for the Node | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -241,8 +237,6 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -275,8 +269,6 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
