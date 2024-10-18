@@ -391,8 +391,6 @@ sequenceDiagram
 
 **Events:**
 
-
-
 1. `gen_ai.system.message`
 
    |   Property          |                     Value                             |
@@ -444,6 +442,7 @@ sequenceDiagram
     I-->M: gen_ai.choice: The weather in Paris is rainy and overcast, with temperatures around 57°F
     I-->>-A: #U+200D
 ```
+
 Here's the telemetry generated for each step in this scenario:
 
 **GenAI Client span 1:**
@@ -500,6 +499,7 @@ Here's the telemetry generated for each step in this scenario:
   All the following events are parented to the **GenAI chat span 2**.
 
   In this example, the event content matches the original messages, but applications may also drop messages or change their content.
+
   1. `gen_ai.user.message`
 
      |   Property                       |                     Value                                  |
