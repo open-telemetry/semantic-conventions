@@ -39,5 +39,5 @@ package-lock.json
 # Python
 venv
 
-# Brew package lock
+# Homebrew
 Brewfile.lock.json
