@@ -134,8 +134,14 @@ groups:
                   type: undefined
                   stability: experimental
                   brief: >
-                    The arguments of the function.
-                  examples: ['{"location": "Paris"}']
+                    The arguments of the function as provided in the LLM response.
+                  note: >
+                    Models usually return arguments as a JSON string. In this case, it's
+                    RECOMMENDED to provide arguments as is without attempting to deserialize them.
+
+                    Semantic conventions for individual systems MAY specify a different type for
+                    arguments field.
+                  examples: ['{\"location\": \"Paris\"}']
                   requirement_level: opt_in
 
   - id: event.gen_ai.tool.message
@@ -286,5 +292,12 @@ groups:
                   type: undefined
                   stability: experimental
                   brief: >
-                    The arguments of the function.
+                    The arguments of the function as provided in the LLM response.
+                  note: >
+                    Models usually return arguments as a JSON string. In this case, it's
+                    RECOMMENDED to provide arguments as is without attempting to deserialize them.
+
+                    Semantic conventions for individual systems MAY specify a different type for
+                    arguments field.
+                  examples: ['{\"location\": \"Paris\"}']
                   requirement_level: opt_in
