@@ -30,3 +30,32 @@ groups:
           generic one, the original exception SHOULD be preferred.
 
           Instrumentations SHOULD document how `error.type` is populated.
+
+  - id: attributes.db.cosmosdb.minimal
+    type: attribute_group
+    brief: 'Azure Cosmos DB Client attributes'
+    stability: experimental
+    extends: attributes.db.client.minimal
+    attributes:
+      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # - ref: db.system
+      #   requirement_level:
+      #     conditionally_required: if available
+      - ref: db.collection.name
+        brief: >
+          Cosmos DB container name.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        requirement_level:
+          conditionally_required: If available
+      - ref: db.namespace
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If available.
+        note: ""  # overriding the base note
+      - ref: db.cosmosdb.sub_status_code
+        requirement_level:
+          conditionally_required: when response was received and contained sub-code.
+      - ref: db.cosmosdb.consistency_level
+        requirement_level:
+          conditionally_required: If available.
