@@ -62,11 +62,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.process.cpu.count` | UpDownCounter | `{cpu}` | The number of processors available to the process. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as accessing [`Environment.ProcessorCount`](https://learn.microsoft.com/dotnet/api/system.environment.processorcount).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -88,10 +85,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.process.cpu.time` | Counter | `s` | CPU time used by the process. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as accessing the corresponding processor time properties on [`System.Diagnostics.Process`](https://learn.microsoft.com/dotnet/api/system.diagnostics.process).
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -109,8 +104,6 @@ This metric reports the same values as accessing the corresponding processor tim
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -132,11 +125,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.process.memory.working_set` | UpDownCounter | `By` | The number of bytes of physical memory mapped to the process context. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`Environment.WorkingSet`](https://learn.microsoft.com/dotnet/api/system.environment.workingset).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -164,10 +154,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.gc.collections` | Counter | `{collection}` | The number of garbage collections that have occurred since the process has started. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric uses the [`GC.CollectionCount(int generation)`](https://learn.microsoft.com/dotnet/api/system.gc.collectioncount) API to calculate exclusive collections per generation.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -182,8 +170,6 @@ This metric uses the [`GC.CollectionCount(int generation)`](https://learn.micros
 | `gen2` | Generation 2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `loh` | Large Object Heap | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `poh` | Pinned Object Heap | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -205,11 +191,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.gc.heap.total_allocated` | Counter | `By` | The *approximate* number of bytes allocated on the managed GC heap since the process has started. The returned value does not include any native allocations. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`GC.GetTotalAllocatedBytes()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalallocatedbytes).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -231,11 +214,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.gc.last_collection.memory.committed_size` | UpDownCounter | `By` | The amount of committed virtual memory in use by the .NET GC, as observed during the latest garbage collection. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`GC.GetGCMemoryInfo().TotalCommittedBytes`](https://learn.microsoft.com/dotnet/api/system.gcmemoryinfo.totalcommittedbytes). Committed virtual memory may be larger than the heap size because it includes both memory for storing existing objects (the heap size) and some extra memory that is ready to handle newly allocated objects in the future.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -257,10 +237,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.gc.last_collection.heap.size` | UpDownCounter | `By` | The managed GC heap size (including fragmentation), as observed during the latest garbage collection. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.SizeAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.sizeafterbytes).
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -275,8 +253,6 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 | `gen2` | Generation 2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `loh` | Large Object Heap | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `poh` | Pinned Object Heap | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -298,10 +274,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.gc.last_collection.heap.fragmentation.size` | UpDownCounter | `By` | The heap fragmentation, as observed during the latest garbage collection. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.FragmentationAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.fragmentationafterbytes).
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -316,8 +290,6 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 | `gen2` | Generation 2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `loh` | Large Object Heap | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `poh` | Pinned Object Heap | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -339,11 +311,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.gc.pause.time` | Counter | `s` | The total amount of time paused in GC since the process has started. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`GC.GetTotalPauseDuration()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalpauseduration).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -371,11 +340,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.jit.compiled_il.size` | Counter | `By` | Count of bytes of intermediate language that have been compiled since the process has started. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`JitInfo.GetCompiledILBytes()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledilbytes).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -397,11 +363,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.jit.compiled_methods` | Counter | `{method}` | The number of times the JIT compiler (re)compiled methods since the process has started. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`JitInfo.GetCompiledMethodCount()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledmethodcount).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -423,11 +386,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.jit.compilation.time` | Counter | `s` | The amount of time the JIT compiler has spent compiling methods since the process has started. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`JitInfo.GetCompilationTime()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompilationtime).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -455,11 +415,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.thread_pool.thread.count` | UpDownCounter | `{thread}` | The number of thread pool threads that currently exist. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`ThreadPool.ThreadCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.threadcount).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -481,11 +438,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.thread_pool.work_item.count` | Counter | `{work_item}` | The number of work items that the thread pool has completed since the process has started. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`ThreadPool.CompletedWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.completedworkitemcount).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -507,11 +461,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.thread_pool.queue.length` | UpDownCounter | `{work_item}` | The number of work items that are currently queued to be processed by the thread pool. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`ThreadPool.PendingWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.pendingworkitemcount).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -539,11 +490,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.monitor.lock_contentions` | Counter | `{contention}` | The number of times there was contention when trying to acquire a monitor lock since the process has started. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`Monitor.LockContentionCount`](https://learn.microsoft.com/dotnet/api/system.threading.monitor.lockcontentioncount).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -565,11 +513,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.timer.count` | UpDownCounter | `{timer}` | The number of timer instances that are currently active. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`Timer.ActiveCount`](https://learn.microsoft.com/dotnet/api/system.threading.timer.activecount).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -591,11 +536,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.assembly.count` | UpDownCounter | `{assembly}` | The number of .NET assemblies that are currently loaded. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`AppDomain.CurrentDomain.GetAssemblies().Length`](https://learn.microsoft.com/dotnet/api/system.appdomain.getassemblies).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -617,10 +559,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `dotnet.exceptions` | Counter | `{exception}` | The number of exceptions that have been thrown in managed code. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as counting calls to [`AppDomain.CurrentDomain.FirstChanceException`](https://learn.microsoft.com/dotnet/api/system.appdomain.firstchanceexception).
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -631,8 +571,6 @@ This metric reports the same values as counting calls to [`AppDomain.CurrentDoma
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

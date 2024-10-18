@@ -81,8 +81,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-
-
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -99,7 +97,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -109,8 +106,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -141,7 +136,7 @@ flowchart LR;
   linkStyle 0,1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Create A | Span Create B | Span Send A B |
+| Field or Attribute | Producer Span Create A | Producer Span Create B | Producer Span Send A B |
 |-|-|-|-|
 | Span name | `create T` | `create T` | `send T` |
 | Parent |  |  |  |
@@ -162,13 +157,13 @@ flowchart LR;
 flowchart TD;
   subgraph CONSUMER
   direction LR
-  R1[Receive m1]
-  SM1[Ack m1]
-  EM1[Modack m1]
+  R1[Receive A]
+  SM1[Ack A]
+  EM1[Modack A]
   end
   subgraph PRODUCER
   direction LR
-  CM1[Create m1]
+  CM1[Create A]
   PM1[Send]
   end
   %% Link 0
@@ -200,7 +195,7 @@ flowchart TD;
   linkStyle 3 color:#0560f2,stroke:#0560f2
 ```
 
-| Field or Attribute | Span Create A | Span Send A | Span Receive A | Span Modack A | Span Ack A |
+| Field or Attribute | Producer Span Create A | Producer Span Send | Consumer Span Receive A | Consumer Span Modack A | Consumer Span Ack A |
 |-|-|-|-|-|-|
 | Span name | `create T` | `send T` |  `receive S` | `modack S` | `ack S` |
 | Parent |  |  |  | |  |
