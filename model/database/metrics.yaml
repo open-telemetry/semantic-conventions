@@ -8,13 +8,8 @@ groups:
     instrument: histogram
     unit: "s"
     stability: experimental  # RELEASE CANDIDATE
-    extends: attributes.db.client.minimal
+    extends: attributes.db.client.with_query_and_collection
     attributes:
-      - ref: db.collection.name
-        requirement_level:
-          conditionally_required: >
-            If readily available. The collection name MAY be parsed from the query text,
-            in which case it SHOULD be the first collection name in the query.
       - ref: db.system
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
@@ -33,6 +28,9 @@ groups:
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.
+      - ref: db.query.text
+        requirement_level: opt_in
+
   - id: metric.db.client.connection.count
     type: metric
     metric_name: db.client.connection.count

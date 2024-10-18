@@ -46,9 +46,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `messaging.client.operation.duration` | Histogram | `s` | Duration of messaging operation initiated by a producer or consumer client. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -103,14 +101,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -121,7 +116,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -138,8 +132,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -163,9 +155,7 @@ This metric is [required][MetricRequired].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `messaging.client.sent.messages` | Counter | `{message}` | Number of messages producer attempted to send to the broker. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** This metric MUST NOT count messages that were created but haven't yet been sent.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -211,14 +201,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -235,8 +222,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -260,10 +245,8 @@ This metric is [required][MetricRequired].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `messaging.client.consumed.messages` | Counter | `{message}` | Number of messages that were delivered to the application. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Records the number of messages pulled from the broker or number of messages dispatched to the application in push-based scenarios.
 The metric SHOULD be reported once per message delivery. For example, if receiving and processing operations are both instrumented for a single message delivery, this counter is incremented when the message is received and not reported when it is processed.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -315,14 +298,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -339,8 +319,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -368,9 +346,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `messaging.process.duration` | Histogram | `s` | Duration of processing operation. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** This metric MUST be reported for operations with `messaging.operation.type` that matches `process`.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -422,14 +398,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -446,8 +419,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
