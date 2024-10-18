@@ -68,16 +68,12 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -107,16 +103,12 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -146,16 +138,12 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -185,16 +173,12 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -214,7 +198,7 @@ This metric is obtained by subscribing to
 [`GarbageCollectionNotificationInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GarbageCollectionNotificationInfo.html) events provided by [`GarbageCollectorMXBean`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/GarbageCollectorMXBean.html). The duration value is obtained from [`GcInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GcInfo.html#getDuration--)
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.1, 1, 10 ]`.
 
 <!-- semconv metric.jvm.gc.duration -->
@@ -236,9 +220,6 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 **[1]:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
 **[2]:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
-
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -290,8 +271,6 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 | `timed_waiting` | A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `waiting` | A thread that is waiting indefinitely for another thread to perform a particular action is in this state. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -319,7 +298,6 @@ This metric is obtained from [`ClassLoadingMXBean#getTotalLoadedClassCount()`](h
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `jvm.class.loaded` | Counter | `{class}` | Number of classes loaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -341,7 +319,6 @@ This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](http
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `jvm.class.unloaded` | Counter | `{class}` | Number of classes unloaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -362,7 +339,6 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `jvm.class.count` | UpDownCounter | `{class}` | Number of classes currently loaded. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -393,7 +369,6 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `jvm.cpu.time` | Counter | `s` | CPU time used by the process as reported by the JVM. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -415,7 +390,6 @@ Note that this is always an integer value (i.e. fractional or millicores are not
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `jvm.cpu.count` | UpDownCounter | `{cpu}` | Number of processors available to the Java virtual machine. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -440,10 +414,7 @@ Note that the JVM does not provide a definition of what "recent" means.
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `jvm.cpu.recent_utilization` | Gauge | `1` | Recent CPU utilization for the process as reported by the JVM. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 **[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -479,16 +450,12 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1]:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-
-
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -512,10 +479,7 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https:/
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `jvm.system.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the whole system as reported by the JVM. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -538,10 +502,7 @@ This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](ht
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `jvm.system.cpu.load_1m` | Gauge | `{run_queue_item}` | Average CPU load of the whole system for the last minute as reported by the JVM. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The value range is [0,n], where n is the number of CPU cores - or a negative number if the value is not available. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/java.management/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()).
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -570,9 +531,6 @@ This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.o
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
-
-
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -600,9 +558,6 @@ This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://doc
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
-
-
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -629,9 +584,6 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 | [`jvm.buffer.pool.name`](/docs/attributes-registry/jvm.md) | string | Name of the buffer pool. [1] | `mapped`; `direct` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
-
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -50,10 +50,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `nodejs.eventloop.delay.min` | Gauge | `s` | Event loop minimum delay. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Value can be retrieved from value `histogram.min` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -75,10 +72,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `nodejs.eventloop.delay.max` | Gauge | `s` | Event loop maximum delay. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Value can be retrieved from value `histogram.max` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -100,10 +94,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `nodejs.eventloop.delay.mean` | Gauge | `s` | Event loop mean delay. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Value can be retrieved from value `histogram.mean` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -125,10 +116,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `nodejs.eventloop.delay.stddev` | Gauge | `s` | Event loop standard deviation delay. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Value can be retrieved from value `histogram.stddev` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -150,10 +138,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `nodejs.eventloop.delay.p50` | Gauge | `s` | Event loop 50 percentile delay. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Value can be retrieved from value `histogram.percentile(50)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -175,10 +160,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `nodejs.eventloop.delay.p90` | Gauge | `s` | Event loop 90 percentile delay. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Value can be retrieved from value `histogram.percentile(90)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -200,10 +182,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `nodejs.eventloop.delay.p99` | Gauge | `s` | Event loop 99 percentile delay. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Value can be retrieved from value `histogram.percentile(99)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -225,10 +204,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `nodejs.eventloop.utilization` | Gauge | `1` | Event loop utilization. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The value range is [0.0, 1.0] and can be retrieved from [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -250,9 +226,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `nodejs.eventloop.time` | Counter | `s` | Cumulative duration of time the event loop has been in each state. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Value can be retrieved from [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -265,13 +239,11 @@ This metric is [recommended][MetricRecommended].
 | `active` | Active time. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `idle` | Idle time. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.31.0/specification/document-status.md
+[DocumentStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/document-status.md
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
 [Eventloop]: https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions
