@@ -10,6 +10,7 @@ linkTitle: Cosmos DB
   - [Attributes](#attributes)
   - [Example](#example)
   - [Operation Level Metrics](#operation-level-metrics)
+    - [Metric: `db.client.operation.count`](#metric-dbclientoperationcount)
     - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
     - [Metric: `db.client.response.row_count`](#metric-dbclientresponserow_count)
     - [Metric: `db.cosmosdb.operation.request_charge`](#metric-dbcosmosdboperationrequest_charge)
@@ -42,28 +43,31 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.connection_mode`](/docs/attributes-registry/db.md) | string | Cosmos client connection mode. | `gateway`; `direct` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.regions_contacted`](/docs/attributes-registry/db.md) | string | Comma separated list of regions contacted by Azure Cosmos DB operations. [3] | `North Central US,Central US`; `East US 2,North Central US` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.request_charge`](/docs/attributes-registry/db.md) | double | RU consumed for the operation. | `46.18`; `1.0` | `Conditionally Required` when available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.response.row_count`](/docs/attributes-registry/db.md) | int | Cosmos DB row count in result set. | `10`; `20` | `Conditionally Required` if response was received and returned any rows | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Cosmos DB status code. [5] | `200`; `201` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` If not default (443). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`az.namespace`](/docs/attributes-registry/azure.md) | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [8] | `Microsoft.DocumentDB` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Cosmos DB status code. [6] | `200`; `201` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required` If not default (443). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`az.namespace`](/docs/attributes-registry/azure.md) | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [9] | `Microsoft.DocumentDB` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.client_id`](/docs/attributes-registry/db.md) | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.request_content_length`](/docs/attributes-registry/db.md) | int | Request payload size in bytes. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [10] | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`user_agent.original`](/docs/attributes-registry/user-agent.md) | string | Full user-agent string is generated by Cosmos DB SDK [13] | `cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [10] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [11] | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`user_agent.original`](/docs/attributes-registry/user-agent.md) | string | Full user-agent string is generated by Cosmos DB SDK [14] | `cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [15] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[2]:** if not `gateway` (the default value is assumed to be `gateway`).
 
-**[3]:** The `db.operation.name` has the following list of well-known values.
+**[3]:** When `db.cosmosdb.regions_contacted` attribute is populated, it would indicate than the operation was performed on multiple regions i.e. cross-regional call.
+
+**[4]:** The `db.operation.name` has the following list of well-known values.
 If one of them applies, then the respective value MUST be used.
 
 Batch operations:
@@ -187,37 +191,37 @@ If none of them applies, it's RECOMMENDED to use language-agnostic representatio
 client method name in snake_case. Instrumentations SHOULD document
 additional values when introducing new operations.
 
-**[4]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
+**[5]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
-**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[6]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8]:** When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
+**[9]:** When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
 
-**[9]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[10]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[10]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[11]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[11]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[12]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 
-**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[13]:** The user-agent value is generated by SDK which is a combination of<br> `sdk_version` : Current version of SDK. e.g. 'cosmos-netstandard-sdk/3.23.0'<br> `direct_pkg_version` : Direct package version used by Cosmos DB SDK. e.g. '3.23.1'<br> `number_of_client_instances` : Number of cosmos client instances created by the application. e.g. '1'<br> `type_of_machine_architecture` : Machine architecture. e.g. 'X64'<br> `operating_system` : Operating System. e.g. 'Linux 5.4.0-1098-azure 104 18'<br> `runtime_framework` : Runtime Framework. e.g. '.NET Core 3.1.32'<br> `failover_information` : Generated key to determine if region failover enabled.
+**[14]:** The user-agent value is generated by SDK which is a combination of<br> `sdk_version` : Current version of SDK. e.g. 'cosmos-netstandard-sdk/3.23.0'<br> `direct_pkg_version` : Direct package version used by Cosmos DB SDK. e.g. '3.23.1'<br> `number_of_client_instances` : Number of cosmos client instances created by the application. e.g. '1'<br> `type_of_machine_architecture` : Machine architecture. e.g. 'X64'<br> `operating_system` : Operating System. e.g. 'Linux 5.4.0-1098-azure 104 18'<br> `runtime_framework` : Runtime Framework. e.g. '.NET Core 3.1.32'<br> `failover_information` : Generated key to determine if region failover enabled.
    Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
    Default value is "NS".
 
-**[14]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+**[15]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 This attribute has stability level RELEASE CANDIDATE.
 
@@ -281,6 +285,14 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 The following metrics provide insights into Azure Cosmos DB client operation performance and behavior.
 
+### Metric: `db.client.operation.count`
+
+This metric is [required][MetricRequired].
+
+It captures the total number of operation made by an Azure Cosmos DB account. This metric follows the common [db.client.operation.count](/docs/database/database-metrics.md#metric-dbclientoperationduration) definition.
+
+Refer [db.cosmosdb.operation.request_charge](#metric-dbcosmosdboperationrequest_charge) metrics for dimensions.
+
 ### Metric: `db.client.operation.duration`
 
 This metric is [required][MetricRequired].
@@ -329,6 +341,7 @@ Explaining bucket configuration:
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.regions_contacted`](/docs/attributes-registry/db.md) | string | List of regions contacted by the client during a given operation. | `North Central US,Central US`; `East US 2,North Central US` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
