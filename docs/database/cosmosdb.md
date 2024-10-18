@@ -238,7 +238,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `direct` | Direct connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gateway` | Gateway (HTTP) connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 `db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -248,27 +247,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
-`db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `batch` | batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `create` | create | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `execute` | execute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `execute_javascript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `head` | head | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `head_feed` | head_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid` | invalid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `patch` | patch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `query` | query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `query_plan` | query_plan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `read_feed` | read_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
