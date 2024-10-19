@@ -348,12 +348,22 @@ Explaining bucket configuration:
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
-For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
+A single database query may involve multiple operations. If the operation
+name is parsed from the query text, it SHOULD only be captured for queries that
+contain a single operation or when the operation name describing the
+whole query is available by other means.
+
+For batch operations, if the individual operations are known to have the same operation name
+then that operation name SHOULD be used prepended by `BATCH `,
+otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
+
 This attribute has stability level RELEASE CANDIDATE.
 
-**[3]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
+**[3]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
 **[4]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.

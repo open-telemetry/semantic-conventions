@@ -288,8 +288,19 @@ Explaining bucket configuration:
 This attribute has stability level RELEASE CANDIDATE.
 
 **[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
-For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
+
+A single database query may involve multiple collections.
+
+If the collection name is parsed from the query text, it SHOULD only be captured for queries that
+contain a single collection and it SHOULD match the value provided in
+the query text including any schema and database name prefix.
+
+For batch operations, if the individual operations are known to have the same collection name
+then that collection name SHOULD be used.
+
+If the operation or query involves multiple collections, `db.collection.name`
+SHOULD NOT be captured.
+
 This attribute has stability level RELEASE CANDIDATE.
 
 **[3]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name in the query.
@@ -299,12 +310,22 @@ Semantic conventions for individual database systems SHOULD document what `db.na
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[5]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
-For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+**[5]:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
+A single database query may involve multiple operations. If the operation
+name is parsed from the query text, it SHOULD only be captured for queries that
+contain a single operation or when the operation name describing the
+whole query is available by other means.
+
+For batch operations, if the individual operations are known to have the same operation name
+then that operation name SHOULD be used prepended by `BATCH `,
+otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
+
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
+**[6]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
 **[7]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
