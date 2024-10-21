@@ -10,11 +10,11 @@
 
 This document defines attributes for Feature Flags.
 
-| Attribute                                                                                              | Type   | Description                                                                                                             | Examples            | Stability                                                        |
-| ------------------------------------------------------------------------------------------------------ | ------ | ----------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------- |
-| <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a>                               | string | The unique identifier of the feature flag.                                                                              | `logo-color`        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | The name of the service provider that performs the flag evaluation.                                                     | `Flag Manager`      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a>                   | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | string | The unique identifier of the feature flag. | `logo-color` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | The name of the service provider that performs the flag evaluation. | `Flag Manager` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can

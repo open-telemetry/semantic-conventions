@@ -10,18 +10,18 @@
 
 This document defines attributes for GraphQL.
 
-| Attribute                                                                                  | Type   | Description                               | Examples                                          | Stability                                                        |
-| ------------------------------------------------------------------------------------------ | ------ | ----------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------- |
-| <a id="graphql-document" href="#graphql-document">`graphql.document`</a>                   | string | The GraphQL document being executed. [1]  | `query findBookById { bookById(id: ?) { name } }` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | string | The name of the operation being executed. | `findBookById`                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | string | The type of the operation being executed. | `query`; `mutation`; `subscription`               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="graphql-document" href="#graphql-document">`graphql.document`</a> | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | string | The name of the operation being executed. | `findBookById` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The value may be sanitized to exclude sensitive information.
 
 `graphql.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value          | Description          | Stability                                                        |
-| -------------- | -------------------- | ---------------------------------------------------------------- |
-| `mutation`     | GraphQL mutation     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `query`        | GraphQL query        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description | Stability |
+|---|---|---|
+| `mutation` | GraphQL mutation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `query` | GraphQL query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `subscription` | GraphQL subscription | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

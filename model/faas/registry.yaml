@@ -20,7 +20,7 @@ groups:
           definition of function name MUST be used for this attribute
           (and consequently the span name) for the listed cloud providers/products:
 
-          * **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
+          - **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
             followed by a forward slash followed by the function name (this form
             can also be seen in the resource JSON for the function).
             This means that a span attribute MUST be used, as an Azure function
@@ -34,13 +34,13 @@ groups:
         note: |
           Depending on the cloud provider and platform, use:
 
-          * **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
+          - **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
             (an integer represented as a decimal string).
-          * **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
+          - **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
             (i.e., the function name plus the revision suffix).
-          * **Google Cloud Functions:** The value of the
+          - **Google Cloud Functions:** The value of the
             [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
-          * **Azure Functions:** Not applicable. Do not set this attribute.
+          - **Azure Functions:** Not applicable. Do not set this attribute.
         examples: ['26', 'pinkfroid-00002']
       - id: faas.instance
         type: string
@@ -49,7 +49,7 @@ groups:
           The execution environment ID as a string, that will be potentially reused
           for other invocations to the same function/function version.
         note: >
-          * **AWS Lambda:** Use the (full) log stream name.
+          - **AWS Lambda:** Use the (full) log stream name.
         examples: ['2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de']
       - id: faas.max_memory
         type: int
