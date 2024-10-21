@@ -67,16 +67,19 @@ Stability guarantees on a group level **do not** apply to experimental attribute
 
 **Stable groups:**
 
-- MAY add or remove references to stable or experimental attributes with `opt_in`
+- MAY add or remove references to experimental attributes with `opt_in`
   requirement level regardless of attribute stability.
-- MUST NOT have references to experimental attributes with requirement level
-  other than `opt_in`. The requirement level of an experimental attribute reference
+- SHOULD NOT have references to experimental attributes with requirement level
+  other than `opt_in`.
+  The requirement level of an experimental attribute reference
   MAY be changed when this attribute becomes stable in the cases allowed by the
   [Versioning and Stability][Stability].
 
 Stable instrumentations MUST NOT report telemetry following the experimental part
 of semantic conventions by default. They MAY support experimental part and allow
 users to opt into it.
+
+<!-- TODO the SchemaURL needs to contain some indication of stability level, e.g. as a suffix-->
 
 [Stability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability
 [MaturityLevel]: https://github.com/open-telemetry/oteps/blob/main/text/0232-maturity-of-otel.md
