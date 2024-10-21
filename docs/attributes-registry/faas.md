@@ -29,7 +29,7 @@ FaaS attributes
 | <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="faas-version" href="#faas-version">`faas.version`</a> | string | The immutable version of the function being executed. [7] | `26`; `pinkfroid-00002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** * **AWS Lambda:** Use the (full) log stream name.
+**[1]:** - **AWS Lambda:** Use the (full) log stream name.
 
 **[2]:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
@@ -49,7 +49,7 @@ For some cloud providers, the above definition is ambiguous. The following
 definition of function name MUST be used for this attribute
 (and consequently the span name) for the listed cloud providers/products:
 
-* **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
+- **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
   followed by a forward slash followed by the function name (this form
   can also be seen in the resource JSON for the function).
   This means that a span attribute MUST be used, as an Azure function
@@ -58,13 +58,13 @@ definition of function name MUST be used for this attribute
 
 **[7]:** Depending on the cloud provider and platform, use:
 
-* **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
+- **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
   (an integer represented as a decimal string).
-* **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
+- **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
   (i.e., the function name plus the revision suffix).
-* **Google Cloud Functions:** The value of the
+- **Google Cloud Functions:** The value of the
   [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
-* **Azure Functions:** Not applicable. Do not set this attribute.
+- **Azure Functions:** Not applicable. Do not set this attribute.
 
 `faas.document.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
