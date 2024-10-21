@@ -100,4 +100,5 @@ Currently, the following namespaces exist:
 - [VCS](vcs.md)
 - [Webengine](webengine.md)
 
+
 [developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers

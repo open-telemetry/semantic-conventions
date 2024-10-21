@@ -140,7 +140,6 @@ attribute-registry-generation:
 		  --templates=/home/weaver/templates \
 		  markdown \
 		  /home/weaver/target/attributes-registry/
-	npm run fix:format
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check

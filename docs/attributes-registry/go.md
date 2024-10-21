@@ -10,15 +10,15 @@
 
 This document defines Go related attributes.
 
-| Attribute                                                          | Type   | Description         | Examples         | Stability                                                        |
-| ------------------------------------------------------------------ | ------ | ------------------- | ---------------- | ---------------------------------------------------------------- |
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
 | <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | string | The type of memory. | `other`; `stack` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `go.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value   | Description                                                                                                 | Stability                                                        |
-| ------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `other` | Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration.    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description | Stability |
+|---|---|---|
+| `other` | Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Computed from `/memory/classes/heap/stacks:bytes`.
