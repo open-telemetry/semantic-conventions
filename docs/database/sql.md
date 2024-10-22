@@ -43,6 +43,8 @@ The following database systems (defined in the [`db.system`](./database-spans.md
 Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
 Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
 
+This span has stability level RELEASE CANDIDATE.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `users`; `dbo.products` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

@@ -19,8 +19,6 @@ Semantic Conventions for [Cassandra](https://cassandra.apache.org/) client spans
 
 `db.system` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
 
-This span has stability level RELEASE CANDIDATE.
-
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the Cassandra table that the operation is acting upon. [1] | `public.users`; `customers` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

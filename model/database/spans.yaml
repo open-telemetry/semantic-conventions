@@ -87,7 +87,9 @@ groups:
       For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
       with all retries.
 
-      See [Name](../../docs/attributes-registry/db.md#name) for span naming details.
+      Refer to the [Name](../../docs/attributes-registry/db.md#name) section for details on naming spans.
+
+      This span has stability level RELEASE CANDIDATE.
     span_kind: client
     extends: trace.db.common.full
 
@@ -238,8 +240,6 @@ groups:
       extend and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
     note: |
       `db.system` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
-
-      This span has stability level RELEASE CANDIDATE.
     extends: trace.db.common.query_and_collection
     attributes:
       - ref: db.namespace
@@ -537,6 +537,8 @@ groups:
 
         Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
         Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
+
+        This span has stability level RELEASE CANDIDATE.
     attributes:
       - ref: db.operation.name
         note: >

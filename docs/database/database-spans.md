@@ -95,7 +95,9 @@ Span that describes database call SHOULD cover the duration of the corresponding
 For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
 with all retries.
 
-See [Name](../../docs/attributes-registry/db.md#name) for span naming details.
+Refer to the [Name](../../docs/attributes-registry/db.md#name) section for details on naming spans.
+
+This span has stability level RELEASE CANDIDATE.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

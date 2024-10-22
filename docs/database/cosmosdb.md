@@ -2,7 +2,7 @@
 linkTitle: Cosmos DB
 --->
 
-# Semantic Conventions for Microsoft Cosmos DB client operations
+# Semantic Conventions for Microsoft Cosmos DB Client Operations
 
 **Status**: [Experimental][DocumentStatus]
 
