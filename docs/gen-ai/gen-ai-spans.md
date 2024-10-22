@@ -18,7 +18,7 @@ linkTitle: Generative AI traces
 
 A request to an Generative AI is modeled as a span in a trace.
 
-**Span kind:** MUST always be `CLIENT`.
+**Span kind:** SHOULD always be `CLIENT`.
 
 ## Name
 

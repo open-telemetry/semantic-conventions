@@ -45,7 +45,7 @@ linkTitle: Client Calls
 >   for at least six months after it starts emitting both sets of conventions.
 > * SHOULD drop the environment variable in the next major version.
 
-**Span kind:** MUST always be `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`.
 
 Span that describes database call SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
 For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation

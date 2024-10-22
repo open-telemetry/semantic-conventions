@@ -32,7 +32,7 @@ use cases.
 
 ## All triggers
 
-For all events, a span with kind `SERVER` MUST be created corresponding to the function invocation unless stated
+For all events, a span with kind `SERVER` SHOULD be created corresponding to the function invocation unless stated
 otherwise below. Unless stated otherwise below, the name of the span MUST be set to the function name from the
 Lambda `Context`.
 
@@ -153,7 +153,7 @@ business logic, not the Lambda framework, automatic instrumentation mechanisms w
 not be able to instrument the processing of the individual messages. Instrumentation SHOULD provide utilities
 for creating message processing spans within user code.
 
-The span kind for both types of SQS spans MUST be `CONSUMER`.
+The span kind for both types of SQS spans SHOULD be `CONSUMER`.
 
 ### SQS Event
 
